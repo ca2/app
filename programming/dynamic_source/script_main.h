@@ -19,7 +19,6 @@ namespace dynamic_source
       ::pointer<httpd_socket>                                  m_psocket2;
       script_manager *                                         m_pmanager2;
 
-
       ::pointer_array < ::dynamic_source::script_interface >   m_interfacea;
 
       ::pointer<::dynamic_source::script_interface>            m_pscriptinterfaceTopic;

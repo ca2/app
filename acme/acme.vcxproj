@@ -1389,6 +1389,7 @@
     <ClInclude Include="parallelization\queue.h" />
     <ClInclude Include="parallelization\task_context.h" />
     <ClInclude Include="parallelization\task_message_queue.h" />
+    <ClInclude Include="parallelization\wait_for_end_of_sequence.h" />
     <ClInclude Include="platform\allocator.h" />
     <ClInclude Include="platform\application_acme.h" />
     <ClInclude Include="platform\application_apex.h" />
@@ -1397,6 +1398,9 @@
     <ClInclude Include="platform\application_axis.h" />
     <ClInclude Include="platform\application_bred.h" />
     <ClInclude Include="platform\application_core.h" />
+    <ClInclude Include="platform\application_menu.h" />
+    <ClInclude Include="platform\application_menu_callback.h" />
+    <ClInclude Include="platform\application_menu_command.h" />
     <ClInclude Include="platform\c.h" />
     <ClInclude Include="platform\context_acme.h" />
     <ClInclude Include="platform\context_apex.h" />
@@ -1449,6 +1453,9 @@
     <ClInclude Include="prototype\prototype\_impl_ptr.h" />
     <ClInclude Include="prototype\string\c_string.h" />
     <ClInclude Include="prototype\time\__time.h" />
+    <ClInclude Include="release\_.h" />
+    <ClInclude Include="user\menu\menu.h" />
+    <ClInclude Include="user\menu\_.h" />
     <ClInclude Include="user\micro\aaa_brush.h" />
     <ClInclude Include="user\micro\aaa_child.h" />
     <ClInclude Include="user\micro\aaa_device.h" />
@@ -1483,6 +1490,12 @@
     <ClInclude Include="user\user\text.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="windowing\display.h" />
+    <ClInclude Include="windowing\sandbox\aaa_node.h" />
+    <ClInclude Include="windowing\sandbox\host_interaction.h" />
+    <ClInclude Include="windowing\sandbox\window.h" />
+    <ClInclude Include="windowing\sandbox\windowing.h" />
+    <ClInclude Include="windowing\sandbox\_.h" />
+    <ClInclude Include="windowing\sandbox\_sandbox.h" />
     <ClInclude Include="windowing\window.h" />
     <ClInclude Include="windowing\windowing.h" />
     <ClInclude Include="windowing\_.h" />
@@ -1962,6 +1975,7 @@
     </ClCompile>
     <ClCompile Include="operating_system\_.cpp" />
     <ClCompile Include="operating_system\_api.cpp" />
+    <ClCompile Include="operating_system\__eoperating_ambient.cpp" />
     <ClCompile Include="parallelization\condition.cpp" />
     <ClCompile Include="parallelization\condition_variable.cpp" />
     <ClCompile Include="parallelization\create_task_attributes.cpp" />
@@ -1985,6 +1999,7 @@
     <ClCompile Include="parallelization\task.cpp" />
     <ClCompile Include="parallelization\task_message_queue.cpp" />
     <ClCompile Include="parallelization\tools.cpp" />
+    <ClCompile Include="parallelization\wait_for_end_of_sequence.cpp" />
     <ClCompile Include="parallelization\_.cpp" />
     <ClCompile Include="platform\acme.cpp" />
     <ClCompile Include="platform\allocator.cpp" />
@@ -2000,6 +2015,8 @@
     <ClCompile Include="platform\application_container.cpp" />
     <ClCompile Include="platform\application_core.cpp" />
     <ClCompile Include="platform\application_exit.cpp" />
+    <ClCompile Include="platform\application_menu.cpp" />
+    <ClCompile Include="platform\application_menu_command.cpp" />
     <ClCompile Include="platform\assert.cpp" />
     <ClCompile Include="platform\build_debug.cpp" />
     <ClCompile Include="platform\c.cpp" />
@@ -2181,7 +2198,7 @@
     <ClCompile Include="prototype\prototype\object.cpp" />
     <ClCompile Include="prototype\prototype\object_meta.cpp" />
     <ClCompile Include="prototype\prototype\particle.cpp" />
-    <ClCompile Include="prototype\prototype\post_procedure_continuation.cpp" />
+    <ClCompile Include="prototype\prototype\sequence_continuation.cpp" />
     <ClCompile Include="prototype\prototype\prototype.cpp" />
     <ClCompile Include="prototype\prototype\property_object.cpp" />
     <ClCompile Include="prototype\prototype\e_status.cpp" />
@@ -2233,6 +2250,8 @@
     <ClCompile Include="regular_expression\context.cpp" />
     <ClCompile Include="regular_expression\regular_expression.cpp" />
     <ClCompile Include="regular_expression\result.cpp" />
+    <ClCompile Include="release\release.cpp" />
+    <ClCompile Include="user\menu\menu.cpp" />
     <ClCompile Include="user\micro\aaa_brush.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
@@ -2406,6 +2425,9 @@
     <ClCompile Include="user\user\tool_item.cpp" />
     <ClCompile Include="user\user\_string.cpp" />
     <ClCompile Include="windowing\display.cpp" />
+    <ClCompile Include="windowing\sandbox\host_interaction.cpp" />
+    <ClCompile Include="windowing\sandbox\window.cpp" />
+    <ClCompile Include="windowing\sandbox\windowing.cpp" />
     <ClCompile Include="windowing\window.cpp" />
     <ClCompile Include="windowing\windowing.cpp" />
     <ClCompile Include="windowing\_windowing.cpp" />

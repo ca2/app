@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A4753BE2CF541EE00ED30AE /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5243FB2CD5BC99006ED868 /* _.cpp */; };
+		9A4753BF2CF541EE00ED30AE /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5244022CD5BCC5006ED868 /* framework.cpp */; };
+		9A4753C02CF541EE00ED30AE /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5244002CD5BCC5006ED868 /* application.cpp */; };
 		9A5244122CD5BDB7006ED868 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A52440C2CD5BCD7006ED868 /* libacme.dylib */; };
 		9A5244182CD5BE13006ED868 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5244002CD5BCC5006ED868 /* application.cpp */; };
 		9A5244192CD5BE2B006ED868 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5244022CD5BCC5006ED868 /* framework.cpp */; };
@@ -14,6 +17,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9A4753CD2CF5425100ED30AE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A5244032CD5BCD7006ED868 /* acme.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AC100A72B6AC9BD0053DB45;
+			remoteInfo = ios_acme;
+		};
 		9A5244062CD5BCD7006ED868 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A5244032CD5BCD7006ED868 /* acme.xcodeproj */;
@@ -31,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A1CC4D32CF315E3004A00CB /* app_just_message_box.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = app_just_message_box.xcodeproj; path = /Users/camilo/workspace/main/source/app/just_message_box/app_just_message_box.xcodeproj; sourceTree = "<absolute>"; };
+		9A4753C62CF541EE00ED30AE /* libios_app_just_message_box.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_app_just_message_box.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A5243E92CD5BBE2006ED868 /* libapp_just_message_box.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapp_just_message_box.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A5243FA2CD5BC99006ED868 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A5243FB2CD5BC99006ED868 /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
@@ -56,6 +68,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A1CC4D42CF315E3004A00CB /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9A5243E02CD5BBE2006ED868 = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +88,7 @@
 				9A5243FE2CD5BC99006ED868 /* _factory.cpp */,
 				9A5244112CD5BDB7006ED868 /* Frameworks */,
 				9A5243EA2CD5BBE2006ED868 /* Products */,
+				9A1CC4D32CF315E3004A00CB /* app_just_message_box.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				9A5243E92CD5BBE2006ED868 /* libapp_just_message_box.dylib */,
+				9A4753C62CF541EE00ED30AE /* libios_app_just_message_box.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,6 +119,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		9A4753BC2CF541EE00ED30AE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9A5243E52CD5BBE2006ED868 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -110,6 +136,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		9A4753B92CF541EE00ED30AE /* ios_app_just_message_box */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A4753C32CF541EE00ED30AE /* Build configuration list for PBXNativeTarget "ios_app_just_message_box" */;
+			buildPhases = (
+				9A4753BC2CF541EE00ED30AE /* Headers */,
+				9A4753BD2CF541EE00ED30AE /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9A4753CE2CF5425100ED30AE /* PBXTargetDependency */,
+			);
+			name = ios_app_just_message_box;
+			packageProductDependencies = (
+			);
+			productName = app_just_message_box;
+			productReference = 9A4753C62CF541EE00ED30AE /* libios_app_just_message_box.a */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
 		9A5243E82CD5BBE2006ED868 /* app_just_message_box */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9A5243F42CD5BBE2006ED868 /* Build configuration list for PBXNativeTarget "app_just_message_box" */;
@@ -161,10 +206,15 @@
 					ProductGroup = 9A5244042CD5BCD7006ED868 /* Products */;
 					ProjectRef = 9A5244032CD5BCD7006ED868 /* acme.xcodeproj */;
 				},
+				{
+					ProductGroup = 9A1CC4D42CF315E3004A00CB /* Products */;
+					ProjectRef = 9A1CC4D32CF315E3004A00CB /* app_just_message_box.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
 				9A5243E82CD5BBE2006ED868 /* app_just_message_box */,
+				9A4753B92CF541EE00ED30AE /* ios_app_just_message_box */,
 			);
 		};
 /* End PBXProject section */
@@ -180,6 +230,16 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9A4753BD2CF541EE00ED30AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A4753BE2CF541EE00ED30AE /* _.cpp in Sources */,
+				9A4753BF2CF541EE00ED30AE /* framework.cpp in Sources */,
+				9A4753C02CF541EE00ED30AE /* application.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9A5243E62CD5BBE2006ED868 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -193,6 +253,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9A4753CE2CF5425100ED30AE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_acme;
+			targetProxy = 9A4753CD2CF5425100ED30AE /* PBXContainerItemProxy */;
+		};
 		9A5244072CD5BCD7006ED868 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = acme;
@@ -201,6 +266,28 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		9A4753C42CF541EE00ED30AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = ios;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9A4753C52CF541EE00ED30AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = ios;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
 		9A5243F22CD5BBE2006ED868 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -470,6 +557,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9A4753C32CF541EE00ED30AE /* Build configuration list for PBXNativeTarget "ios_app_just_message_box" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A4753C42CF541EE00ED30AE /* Debug */,
+				9A4753C52CF541EE00ED30AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9A5243E42CD5BBE2006ED868 /* Build configuration list for PBXProject "app_just_message_box" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

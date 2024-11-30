@@ -1237,7 +1237,7 @@ namespace apex
 
 #if defined(LINUX) || defined(__BSD__)
 
-      virtual string get_wm_class() const;
+      virtual string get_wm_class() const override;
 
 #endif
 

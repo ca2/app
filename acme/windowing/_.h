@@ -23,6 +23,7 @@
 
 #include "acme/platform/reference_referer.h"
 #include "acme/constant/windowing.h"
+#include "acme/windowing/sandbox/_.h"
 
 
 namespace acme
@@ -88,7 +89,7 @@ namespace windowing
    //CLASS_DECL_ACME::windowing::enum_windowing get_ewindowing();
 
 
-   CLASS_DECL_ACME::windowing::enum_operating_ambient calculate_edesktop();
+   CLASS_DECL_ACME::windowing::enum_operating_ambient calculate_eoperating_ambient();
    CLASS_DECL_ACME::windowing::enum_operating_ambient get_eoperating_ambient();
 
 
@@ -100,7 +101,7 @@ namespace windowing
    CLASS_DECL_ACME::windowing::enum_display_type get_edisplaytype();
    
    
-   CLASS_DECL_ACME::string get_edesktop_name();
+   CLASS_DECL_ACME::string get_eoperating_ambient_name();
 
 
 } // namespace windowing

@@ -1386,7 +1386,7 @@ typedef struct __GLsync *GLsync;
 #ifndef GLEXT_64_TYPES_DEFINED
 /* This code block is duplicated in glxext.h, so must be protected */
 #define GLEXT_64_TYPES_DEFINED
-/* Define int32_t, int64_t, and uint64_t types for UST/MSC */
+/* Define int32_t, huge_integer, and uint64_t types for UST/MSC */
 /* (as used in the GL_EXT_timer_query extension). */
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
 #include <inttypes.h>
@@ -1394,10 +1394,10 @@ typedef struct __GLsync *GLsync;
 #include <inttypes.h>
 #if defined(__STDC__)
 #if defined(__arch64__) || defined(_LP64)
-typedef long int int64_t;
+typedef long int huge_integer;
 typedef unsigned long int uint64_t;
 #else
-typedef huge_integer int int64_t;
+typedef huge_integer int huge_integer;
 typedef huge_natural uint64_t;
 #endif /* __arch64__ */
 #endif /* __STDC__ */
@@ -1407,13 +1407,13 @@ typedef huge_natural uint64_t;
 #include <stdint.h>
 #elif defined(__UNIXOS2__) || defined(__SOL64__)
 typedef long int int32_t;
-typedef huge_integer int int64_t;
+typedef huge_integer int huge_integer;
 typedef huge_natural uint64_t;
 #elif defined(_WIN32) && defined(__GNUC__)
 #include <stdint.h>
 #elif defined(_WIN32)
 //typedef __int32 int32_t;
-//typedef huge_integer int64_t;
+//typedef huge_integer huge_integer;
 //typedef huge_natural uint64_t;
 #else
 /* Fallback if nothing above works */
@@ -1421,7 +1421,7 @@ typedef huge_natural uint64_t;
 #endif
 #endif
 typedef uint64_t GLuint64;
-typedef int64_t GLint64;
+typedef huge_integer GLint64;
 #define GL_CONTEXT_CORE_PROFILE_BIT       0x00000001
 #define GL_CONTEXT_COMPATIBILITY_PROFILE_BIT 0x00000002
 #define GL_LINES_ADJACENCY                0x000A
@@ -5380,7 +5380,7 @@ GLAPI void APIENTRY glBlendEquationSeparateIndexedAMD (GLuint buf, GLenum modeRG
 
 #ifndef GL_AMD_gpu_shader_int64
 #define GL_AMD_gpu_shader_int64 1
-typedef int64_t GLint64EXT;
+typedef huge_integer GLint64EXT;
 #define GL_INT64_NV                       0x140E
 #define GL_UNSIGNED_INT64_NV              0x140F
 #define GL_INT8_NV                        0x8FE0

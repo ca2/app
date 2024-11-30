@@ -14,11 +14,11 @@ inline huge_integer subparticle::increment_reference_count()
 
    auto c = ++m_countReference;
 
-#if REFERENCING_DEBUGGING
-
-   add_ref_history(pReferer, pszObjRefDbg);
-
-#endif
+//#if REFERENCING_DEBUGGING
+//
+//   add_ref_history(pReferer, pszObjRefDbg);
+//
+//#endif
 
    return c;
 
@@ -30,16 +30,16 @@ inline huge_integer subparticle::decrement_reference_count()
 
    auto c = --m_countReference;
 
-#if REFERENCING_DEBUGGING
-
-   if (c > 0)
-   {
-
-      dec_ref_history(pReferer, pszObjRefDbg);
-
-   }
-
-#endif
+//#if REFERENCING_DEBUGGING
+//
+//   if (c > 0)
+//   {
+//
+//      dec_ref_history(pReferer, pszObjRefDbg);
+//
+//   }
+//
+//#endif
 
    return c;
 

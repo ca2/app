@@ -56,7 +56,7 @@ namespace user
    }
 
 
-   ::particle_pointer check_box::clone()
+   ::subparticle_pointer check_box::clone()
    {
 
       auto pcheckbox = m_papplication->__create_new <::user::check_box>();
@@ -411,7 +411,7 @@ namespace user
 
       ppath->close_figure();
 
-      auto ppen = __create < ::draw2d::pen > ();
+      auto ppen = __øcreate < ::draw2d::pen > ();
 
       ::draw2d::pen_pointer p0(e_create, this);
 
@@ -449,7 +449,7 @@ namespace user
 
          auto color = argb(255, 255, 255, 255);
 
-         auto pbrush = __create < ::draw2d::brush > ();
+         auto pbrush = __øcreate < ::draw2d::brush > ();
 
          auto pmathematics = mathematics();
 
@@ -512,7 +512,7 @@ namespace user
 
             rectangleEllipse.rate(0.6);
 
-            auto pbrush = __create < ::draw2d::brush > ();
+            auto pbrush = __øcreate < ::draw2d::brush > ();
 
             pbrush->create_solid(argb(255, 0, 0, 0));
 
@@ -542,7 +542,7 @@ namespace user
 
             rectangleEllipse.rate(0.6);
 
-            auto pbrush = __create < ::draw2d::brush > ();
+            auto pbrush = __øcreate < ::draw2d::brush > ();
 
             pbrush->create_solid(argb(255, 255, 255, 255));
 
@@ -592,13 +592,13 @@ namespace user
 
       }
 
-      auto ppen = __create < ::draw2d::pen > ();
+      auto ppen = __øcreate < ::draw2d::pen > ();
 
       ppen->create_solid(1.0, crPen);
 
       pgraphics->set(ppen);
 
-      auto pbrush = __create < ::draw2d::brush >();
+      auto pbrush = __øcreate < ::draw2d::brush >();
 
       pbrush->create_solid(crBrush);
 
@@ -609,7 +609,7 @@ namespace user
       //   if (m_echeck == e_check_tristate
       //      || m_echeck == e_check_checked)
       //   {
-      //      auto ppen = __create < ::draw2d::pen > ();
+      //      auto ppen = __øcreate < ::draw2d::pen > ();
       //      ppen->create_solid(1, m_echeck == e_check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
       //      pgraphics->set(ppen);
       //      pgraphics->set_current_point(2, 8);
@@ -625,7 +625,7 @@ namespace user
    }
 
 
-   void check_box::_001OnTimer(::timer * ptimer)
+   void check_box::on_timer(::timer * ptimer)
    {
 
       if (ptimer->m_uEvent == e_timer_check_toggle_animation)
@@ -664,7 +664,7 @@ namespace user
 //
 //      }
 
-      ::user::interaction::_001OnTimer(ptimer);
+      ::user::interaction::on_timer(ptimer);
 
    }
 

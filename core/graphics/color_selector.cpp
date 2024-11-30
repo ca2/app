@@ -146,9 +146,9 @@ namespace graphics
       double _dG = (dCMin + dG * dCAdd);
       double _dB = (dCMin + dB * dCAdd);
 
-      r = unsigned char(_dR * 255.0);
-      g = unsigned char(_dG * 255.0);
-      b = unsigned char(_dB * 255.0);
+      r = (unsigned char)(_dR * 255.0);
+      g = (unsigned char)(_dG * 255.0);
+      b = (unsigned char)(_dB * 255.0);
 
    }
 
@@ -485,7 +485,7 @@ namespace graphics
 
    //   //m_pimageBeam->fill(0);
 
-   //   //auto ppen = __create < ::draw2d::pen > ();
+   //   //auto ppen = __øcreate < ::draw2d::pen > ();
 
    //   //ppen->create_solid(1.0, argb(255, 255, 255, 255));
 
@@ -672,7 +672,7 @@ namespace graphics
 
       rectangleInner.deflate(sizeBeam.cx() / 4.0, sizeBeam.cy() / 4.0);
 
-      auto pbrush = __create < ::draw2d::brush >();
+      auto pbrush = __øcreate < ::draw2d::brush >();
 
       pbrush->create_solid(argb(255, 0, 0, 0));
 
@@ -744,7 +744,7 @@ namespace graphics
 
       rectangleOuter.inflate(dSize / 2.0, dSize / 2.0);
 
-      auto pbrush = __create < ::draw2d::brush >();
+      auto pbrush = __øcreate < ::draw2d::brush >();
 
       pbrush->create_solid(argb(255, 0, 0, 0));
 

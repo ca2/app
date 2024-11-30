@@ -122,7 +122,7 @@ namespace operating_system
    bool dynamic_library::close(library_t* plibrary)
    {
 
-      throw ::interface_only();
+      //throw ::interface_only();
       return false;
 
    }

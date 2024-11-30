@@ -77,9 +77,9 @@ namespace platform
 
       m_uNodeFlags = 0;
 
-      m_papexnode = nullptr;
-      m_pauranode = nullptr;
-      //m_edesktop = ::user::e_desktop_none;
+      //m_papexnode = nullptr;
+      //m_pauranode = nullptr;
+      //m_edesktop = ::user::e_operating_ambient_none;
       //m_etoolkit = ::user::e_toolkit_none;
 
       m_pAcmePosix = nullptr;
@@ -299,7 +299,7 @@ namespace platform
    ::particle_pointer node::create_mutex()
    {
 
-      return __create < ::mutex >();
+      return __øcreate < ::mutex >();
 
    }
   
@@ -1382,18 +1382,18 @@ namespace platform
 
       }
 
-      auto pevent = __allocate manual_reset_happening();
+      auto phappening = __allocate manual_reset_happening();
 
-      user_post([ procedure, pevent ]
+      user_post([ procedure, phappening ]
       {
 
          procedure();
 
-         pevent->set_happening();
+         phappening->set_happening();
 
       });
 
-      if(!pevent->wait(procedure.timeout()))
+      if(!phappening->wait(procedure.timeout()))
       {
 
          throw ::exception(error_timeout);
@@ -1683,7 +1683,7 @@ namespace platform
    //::user::enum_operating_ambient node::get_eoperating_ambient()
    //{
 
-   //   if (m_edesktop == ::user::e_desktop_none)
+   //   if (m_edesktop == ::user::e_operating_ambient_none)
    //   {
 
    //      m_edesktop = calculate_edesktop();
@@ -3425,7 +3425,7 @@ bool node::_is_smart_git_installed()
    ::pointer < ::operating_system::application > node::process_identifier_application(::process_identifier processidentifier)
    {
       
-      auto papplication = __create < ::operating_system::application >();
+      auto papplication = __øcreate < ::operating_system::application >();
       
       papplication->open_by_process_identifier(processidentifier);
       
@@ -3442,7 +3442,7 @@ bool node::_is_smart_git_installed()
       for (auto & processidentifier : processidentifiera)
       {
 
-         auto papplication = __create < ::operating_system::application >();
+         auto papplication = __øcreate < ::operating_system::application >();
 
          papplication->open_by_process_identifier(processidentifier);
 
@@ -3508,11 +3508,11 @@ bool node::_is_smart_git_installed()
    }
 
 
-   void node::application_handle(huge_integer l, void * p)
-   {
-
-      
-   }
+//   void node::application_handle(huge_integer l, void * p)
+//   {
+//
+//      
+//   }
 
 
 #if defined(__BSD__) || defined(__APPLE__)

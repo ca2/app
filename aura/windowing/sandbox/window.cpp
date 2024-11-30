@@ -338,8 +338,7 @@ namespace sandbox_windowing
    }
 
 
-
-   ::sandbox_windowing::windowing * window::sandbox_windowing()
+   ::acme::sandbox_windowing::windowing * window::sandbox_windowing()
    {
       
       ::cast < ::sandbox_windowing::windowing > psandboxwindowing = system()->windowing();
@@ -1107,21 +1106,21 @@ namespace sandbox_windowing
    bool window::is_child(::oswindow oswindow)
    {
 
-      if (oswindow == nullptr || oswindow->m_puserinteraction == nullptr)
+      if (oswindow == nullptr || oswindow->m_pacmeuserinteraction == nullptr)
       {
 
          return false;
 
       }
 
-      if (m_puserinteraction == nullptr)
+      if (m_pacmeuserinteraction == nullptr)
       {
 
          return false;
 
       }
 
-      return m_puserinteraction->is_child(oswindow->m_puserinteraction);
+      return m_pacmeuserinteraction->is_child(oswindow->m_pacmeuserinteraction);
 
    }
 
@@ -3545,7 +3544,7 @@ namespace sandbox_windowing
             if (pwindowing->m_pwindowMouseCapture)
             {
 
-               pwindowing->m_pwindowMouseCapture->m_puserinteractionMouseCapture.release();
+               pwindowing->m_pwindowMouseCapture->m_pacmeuserinteractionCapture.release();
 
             }
 

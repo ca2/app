@@ -107,7 +107,7 @@ protected:
    DECLARE_MESSAGE_HANDLER(_001OnMenuChar);
    //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
    //DECLARE_MESSAGE_HANDLER(_001OnAppLanguage);
-   void _001OnTimer(::timer * ptimer) override;
+   void on_timer(::timer * ptimer) override;
 
    //virtual ::collection::index OnMessage(MPARAM mparam, NPARAM nparam, OPARAM oparam);
 

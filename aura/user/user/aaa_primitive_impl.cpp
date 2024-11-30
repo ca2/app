@@ -2179,7 +2179,7 @@ namespace user
    }
 
 
-   void primitive_impl::_001OnTimer(::timer * ptimer)
+   void primitive_impl::on_timer(::timer * ptimer)
    {
 
       if (m_puserinteraction == nullptr)
@@ -2189,7 +2189,7 @@ namespace user
 
       }
 
-      m_puserinteraction->_001OnTimer(ptimer);
+      m_puserinteraction->on_timer(ptimer);
 
    }
 
@@ -2991,7 +2991,7 @@ namespace user
 #ifdef LINUX
 
 
-   lresult primitive_impl::send_x11_event(void * pevent)
+   lresult primitive_impl::send_x11_event(void * phappening)
    {
 
       throw interface_only();

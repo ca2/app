@@ -93,7 +93,7 @@ namespace acme
 
          void on_initialize_particle() override;
 
-
+         virtual ::oswindow oswindow();
 
          virtual void set_user_interaction(::acme::user::interaction * pacmeuserinteraction);
          virtual void set_user_thread(::user::thread * puserthread);
@@ -139,6 +139,17 @@ namespace acme
 
          virtual bool _is_window();
 
+         
+         virtual void set_foreground_window();
+         
+         
+         virtual bool has_keyboard_focus();
+
+         virtual bool is_window();
+         //virtual int_bool is_window( windowing_android_WINDOW_MEMBER );
+         
+         
+         virtual void set_window_text(const ::scoped_string & scopedstrString);
 
          ::pointer<::nano::graphics::device>create_device();
 
@@ -288,6 +299,45 @@ namespace acme
          virtual bool is_active_window();
 
          //virtual ::int_point try_absolute_mouse_position(const ::int_point & point);
+
+         
+         virtual void exit_iconify();
+         
+         virtual void full_screen(const ::int_rectangle & rect = {});
+         
+         virtual void exit_full_screen();
+         
+         virtual void exit_zoomed();
+
+         
+         virtual void set_parent(::acme::windowing::window* pwindowNewParent);
+         //virtual ::e_status set_parent(::windowing::window * pwindowNewParent) override;
+         //virtual long get_state();
+         virtual bool is_iconic();
+         //virtual bool is_window_visible() override;
+//         virtual bool _configure_window_unlocked(const class ::zorder & zorder, const ::e_activation & eactivation, bool bNoZorder, ::e_display edisplay);
+         //virtual iptr get_window_long_ptr(int nIndex);
+         //virtual iptr set_window_long_ptr(int nIndex, iptr l);
+         virtual bool client_to_screen(::int_point* ppoint);
+         
+         virtual bool screen_to_client(::int_point* ppoint);
+         
+         
+         //virtual bool set_window_pos(class::zorder zorder, int x, int y, int cx, int cy,unsigned int nFlags);
+         //virtual bool _set_window_pos(class::zorder zorder, int x, int y, int cx, int cy,unsigned int nFlags);
+         
+         
+         virtual bool is_destroying();
+         
+         
+         //virtual bool bamf_set_icon();
+         
+         
+         //virtual bool set_icon(::image::image* pimage);
+         
+         //virtual int x_change_property(Atom property, Atom type, int format, int mode, const unsigned char * data, int nelements);
+         
+         virtual void set_mouse_cursor(::windowing::cursor* pcursor);
 
 
          //void handle(::topic * ptopic, ::context * pcontext) override;

@@ -268,6 +268,8 @@ namespace micro
          void show() override;
 
          void hide() override;
+         
+         ::shift_int client_to_host() override;
 
          //virtual void message_loop();
 

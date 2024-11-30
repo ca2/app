@@ -87,7 +87,7 @@ namespace draw2d_opengl
       m_bitmapinfo.bmiHeader.biCompression   = BI_RGB;
       m_bitmapinfo.bmiHeader.biSizeImage     = iStride  * size.cy();
 
-      __construct(m_pbitmap);
+      __øconstruct(m_pbitmap);
 
       image32_t * pimage32 = nullptr;
       m_pbitmap->create_bitmap(nullptr, size, (void **)&pimage32, &iStride);
@@ -110,7 +110,7 @@ namespace draw2d_opengl
       }
 
 
-      this->init(size, pimage32, iStride);
+      this->initialize(size, pimage32, iStride);
 
       m_eflagElement = eobjectCreate;
 
@@ -144,7 +144,7 @@ namespace draw2d_opengl
 
       ::memory_copy((::pixmap *) this, ppixmap, sizeof(::pixmap));
 
-      //__construct(m_pbitmap);
+      //__øconstruct(m_pbitmap);
       __defer_construct(m_pgraphics);
       //m_pgraphics->set(m_pbitmap);
 
@@ -2425,7 +2425,7 @@ namespace draw2d_opengl
 
          }
 
-         ((image *)this)->__construct(((image*)this)->m_pgraphics);
+         ((image *)this)->__øconstruct(((image*)this)->m_pgraphics);
 
 
          ((image *)this)->m_pgraphics->set(m_pbitmap);

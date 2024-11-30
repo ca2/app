@@ -401,7 +401,7 @@ inline atom::atom(enum_type etypeAdd, const ::atom & atom)
 
       m_etype = (enum_type) (etypeAdd | e_type_text);
 
-      ::new(&m_str) ::string(atom.m_str);
+      m_str._construct(atom.m_str);
 
    }
    else if (atom.is_integer())
@@ -424,6 +424,22 @@ inline atom::atom(enum_type etypeAdd, const ::atom & atom)
 }
 
 
+inline atom::atom(::atom && atom)
+{
+   m_etype = atom.m_etype;
+   if (atom.m_etype & e_type_text)
+   {
+      m_str._construct(::transfer(atom.m_str));
+   }
+   else
+   {
+      m_uLargest = atom.m_uLargest;
+   }
+   atom.m_etype = e_type_integer;
+   atom.m_uLargest = 0;
+}
+
+
 inline atom::atom(const atom & atom)
 {
 
@@ -432,7 +448,7 @@ inline atom::atom(const atom & atom)
 
       m_etype = atom.m_etype;
 
-      __raw_new(&m_str) ::string(atom.m_str);
+      m_str._construct(atom.m_str);
 
    }
    else
@@ -664,7 +680,7 @@ inline atom & atom::operator = (const atom & atom)
       else if (atom.is_text())
       {
 
-         ::new(&m_str) ::string(atom.m_str);
+         m_str._construct(atom.m_str);
 
       }
       else

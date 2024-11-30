@@ -139,7 +139,7 @@ namespace userpresence
    }
 
 
-   void department::_001OnTimer(::timer * ptimer)
+   void department::on_timer(::timer * ptimer)
    {
 
       auto psession = session();

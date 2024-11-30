@@ -61,7 +61,7 @@ public:
 
    virtual void on_sequence();
    
-
+   virtual bool should_create_sequence_on_synchronicity();
 
    virtual bool defer_consume_main_arguments(int argc, char ** argv, int & iArgument);
 
@@ -185,6 +185,9 @@ public:
    virtual void destroy_impl_data();
    virtual void destroy_os_data();
 
+
+   virtual ::subparticle_pointer clone();
+
 //#if REFERENCING_DEBUGGING
 //
 //   virtual void set_creation_referer(::reference_referer* preferer);
@@ -192,8 +195,6 @@ public:
 //#endif
 
    virtual void delete_this();
-
-   //void operator delete(void* p);
 
    virtual void call_member(enum_id eid);
 
@@ -237,6 +238,13 @@ public:
 
    virtual void acquire_ownership();
    virtual void release_ownership();
+
+
+   [[nodiscard]] virtual character_count sz_len() const;
+   virtual void to_sz(char * sz, character_count len) const;
+
+
+   virtual void on_timed_out();
 
 };
 

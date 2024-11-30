@@ -194,7 +194,7 @@ namespace draw2d_opengl
    int  draw2d::opengl_init()
    {
 
-      //__construct(m_popenglcontext);
+      //__øconstruct(m_popenglcontext);
 
       //if (m_atomClass)
       //{

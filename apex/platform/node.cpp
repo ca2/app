@@ -33,7 +33,7 @@ namespace apex
    node::node()
    {
 
-      m_papexnode = this;
+      //m_papexnode = this;
 
    }
 
@@ -311,10 +311,10 @@ namespace apex
    }
 
 
-   void node::application_handle(huge_integer l, void * p)
-   {
-   
-   }
+//   void node::application_handle(huge_integer l, void * p)
+//   {
+//   
+//   }
 
 
    // void node::on_operating_system_user_theme_change()
@@ -663,7 +663,7 @@ namespace apex
    ::pointer < ::input::input > node::create_input()
    {
 
-      return __create < ::input::input > ();
+      return __øcreate < ::input::input > ();
 
    }
 

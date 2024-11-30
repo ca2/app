@@ -42,7 +42,7 @@ namespace user
 
       bool should_draw() override;
 
-      void _001OnTimer(::timer * ptimer) override;
+      void on_timer(::timer * ptimer) override;
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 

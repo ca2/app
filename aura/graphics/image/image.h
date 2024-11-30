@@ -436,7 +436,7 @@ namespace image
       //::stream & read(::stream & stream) override;
 
 
-      ::particle_pointer clone() override;
+      ::subparticle_pointer clone() override;
 
 
       //inline int line(int line);
@@ -881,9 +881,9 @@ namespace image
 ////
 //// Compose, Construct, Create and Add_Reference Porngraphs
 ////
-//// __create      // return ::pointer<BASE_TYPE>// _id atom // _new TYPE
-//// __construct     // ::pointer<BASE_TYPE>&    // _id atom // _new TYPE // SOURCE psource
-//// __construct   // ::pointer<BASE_TYPE>&      // _id atom // _new TYPE // SOURCE psource
+//// __øcreate      // return ::pointer<BASE_TYPE>// _id atom // _new TYPE
+//// __øconstruct     // ::pointer<BASE_TYPE>&    // _id atom // _new TYPE // SOURCE psource
+//// __øconstruct   // ::pointer<BASE_TYPE>&      // _id atom // _new TYPE // SOURCE psource
 //// add_reference // ::pointer<BASE_TYPE>& SOURCE psource
 ////
 //// >>
@@ -894,26 +894,26 @@ namespace image
 //inline ::image::image_pointer __create_image()
 //{
 //
-//   return ::__create<::image::image>();
+//   return ::__øcreate<::image::image>();
 //
 //}
 //
 //// template < typename COMPOSER >
-//// void __construct(COMPOSER && pcomposer, __ & pimage);
+//// void __øconstruct(COMPOSER && pcomposer, __ & pimage);
 // //
 // template < typename COMPOSER >
-// inline void __construct(COMPOSER && pcomposer, ::pointer<::image::image>& pimage, ::image::image *pimageSource);
+// inline void __øconstruct(COMPOSER && pcomposer, ::pointer<::image::image>& pimage, ::image::image *pimageSource);
 // //
 // //
 // template < typename COMPOSER >
-// inline void __construct(COMPOSER && pcomposer, ::pointer<::image::image>& pimage, const ::int_size & size, ::enum_flag eflagCreate = OK, int iGoodStride = -1, void bPreserve = false);
+// inline void __øconstruct(COMPOSER && pcomposer, ::pointer<::image::image>& pimage, const ::int_size & size, ::enum_flag eflagCreate = OK, int iGoodStride = -1, void bPreserve = false);
 // //
 // //
 // template < typename COMPOSER >
 // inline void __preserve(COMPOSER && pcomposer, ::pointer<::image::image>& pimage, const ::int_size & size, ::enum_flag eflagCreate = OK, int iGoodStride = -1);
 // //
 //
-//void __construct(::image::image_pointer & pimage);
+//void __øconstruct(::image::image_pointer & pimage);
 
 inline void __call__construct(::image::image_pointer & pimage, ::image::image *pimageSource);
 //

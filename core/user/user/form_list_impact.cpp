@@ -243,12 +243,12 @@ namespace user
    }
 
 
-   void form_list_impact::_001OnTimer(::timer * ptimer)
+   void form_list_impact::on_timer(::timer * ptimer)
    {
 
-      ::user::list_impact::_001OnTimer(ptimer);
+      ::user::list_impact::on_timer(ptimer);
 
-      ::user::form_impact::_001OnTimer(ptimer);
+      ::user::form_impact::on_timer(ptimer);
 
    }
 

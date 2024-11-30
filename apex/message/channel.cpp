@@ -261,7 +261,7 @@ void channel::route_message(::message::message * pmessage)
 //#ifdef LINUX
 //
 //
-//::pointer<::user::message>channel::get_message_base(void * pevent,::user::interaction * puserinteraction)
+//::pointer<::user::message>channel::get_message_base(void * phappening,::user::interaction * puserinteraction)
 //{
 //
 //   throw ::exception(todo);

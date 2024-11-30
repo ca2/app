@@ -148,7 +148,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
       DECLARE_MESSAGE_HANDLER(on_message_right_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_right_button_up);
-      void _001OnTimer(::timer * ptimer) override;
+      void on_timer(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_scroll_y);
       DECLARE_MESSAGE_HANDLER(on_message_scroll_x);

@@ -654,9 +654,7 @@ namespace user
 
       ::user::list::on_update_item_count();
 
-      auto children = synchronized_get_children();
-
-      for (auto pinteraction : children)
+      for_user_interaction_children(pinteraction, this)
       {
 
          if (pinteraction->has_function(::user::e_control_function_duplicate_on_check_box))
@@ -1125,9 +1123,9 @@ namespace user
    //   __UNREFERENCED_PARAMETER(pmessage);
    //}
 
-   void form_list::_001OnTimer(::timer * ptimer)
+   void form_list::on_timer(::timer * ptimer)
    {
-      list::_001OnTimer(ptimer);
+      list::on_timer(ptimer);
    }
 
    void form_list::_001OnMessageNotify(::message::message * pmessage)

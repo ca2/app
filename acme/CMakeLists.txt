@@ -397,7 +397,9 @@ list(APPEND library_source
    #networking/url_domain.h
    operating_system/_.cpp
    operating_system/_const_console.h
+   operating_system/__eoperating_ambient.cpp
    operating_system/ansi/_pthread.h
+   operating_system/__eoperating_ambient.cpp
    #operating_system/ansi/base.cpp
    operating_system/ansi/call_stack.cpp
    operating_system/ansi/call_stack.h
@@ -521,6 +523,12 @@ list(APPEND library_source
    prototype/data/client.h
    prototype/data/client.cpp
    user/menu/_.h
+   user/menu/menu.cpp
+   user/menu/menu.h
+   platform/application_menu.cpp
+   platform/application_menu.h
+   platform/application_menu_command.cpp
+   platform/application_menu_command.h
    platform/application.cpp
    platform/application.h
    platform/application_acme.cpp
@@ -962,8 +970,6 @@ list(APPEND library_source
    prototype/prototype/payload2.h
    prototype/prototype/pointer.h
    prototype/prototype/pointer2.h
-   prototype/prototype/post_procedure_continuation.cpp
-   prototype/prototype/post_procedure_continuation.h
    prototype/prototype/prototype.cpp
    prototype/prototype/prototype.h
    prototype/prototype/property.cpp
@@ -984,6 +990,7 @@ list(APPEND library_source
    #prototype/prototype/runnable.cpp
    #prototype/prototype/runnable.h
    prototype/prototype/scope_stack.h
+   prototype/prototype/sequence_continuation.cpp
    #prototype/prototype/shared_memory.cpp
    #prototype/prototype/shared_memory.h
    #prototype/prototype/simple_object.h
@@ -1341,6 +1348,13 @@ list(APPEND library_source
    user/user/tool_item.cpp
    user/user/tool_item.h
    user/_.h
+   windowing/sandbox/_sandbox.h
+   windowing/sandbox/host_interaction.cpp
+   windowing/sandbox/host_interaction.h
+   windowing/sandbox/window.cpp
+   windowing/sandbox/window.h
+   windowing/sandbox/windowing.cpp
+   windowing/sandbox/windowing.h
    windowing/_.h
    windowing/_windowing.cpp
    windowing/display.cpp
@@ -1831,6 +1845,8 @@ list(APPEND library_source
    parallelization/task.h
    parallelization/tools.cpp
    parallelization/tools.h
+   parallelization/wait_for_end_of_sequence.cpp
+   parallelization/wait_for_end_of_sequence.h
    platform/_features.h
    platform/_global.h
    platform/_impl.h
@@ -1982,6 +1998,7 @@ list(APPEND library_source
    user/user/os_colors.h
    release/release.config.h
    release/release.h
+   release/release.cpp
    include/_impl.h
 )
 
@@ -2899,10 +2916,6 @@ endif ()
 
 if (${LINUX} OR ${__BSD__} OR ${NETBSD} OR ${OPENBSD})
 
-list(APPEND library_source
-      operating_system/posix/dynamic_library_dl.cpp
-      operating_system/posix/dynamic_library_dl.h
-   )
 
 list(APPEND library_source
       operating_system/posix/__edesktop_calculate.cpp
@@ -2969,7 +2982,10 @@ endif ()
 
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   operating_system/posix/dynamic_library_dl.cpp
+   operating_system/posix/dynamic_library_dl.h
+)
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

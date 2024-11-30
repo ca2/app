@@ -43,7 +43,9 @@
 #include "acme/user/micro/user.h"
 #include "acme/nano/http/http.h"
 #include "acme/nano/speech/speech.h"
+#include "acme/windowing/window.h"
 #include "acme/windowing/windowing.h"
+#include "acme/windowing/sandbox/host_interaction.h"
 //#include "acme/user/user/conversation.h"
 
 
@@ -163,7 +165,11 @@ namespace platform
 
 #endif
 
-      m_etracelevelMinimum = e_trace_level_undefined;
+#ifdef DEBUG
+      m_etracelevelMinimum = e_trace_level_information;
+#else
+      m_etracelevelMinimum = e_trace_level_warning;
+#endif
 
 #ifdef DEBUG
       ::atom atom;
@@ -216,7 +222,7 @@ namespace platform
    system::~system()
    {
 
-      print_line("platform::system::~system() (start)");
+      debug() << "platform::system::~system() (start)";
 
       trace_category_static_term();
 
@@ -229,7 +235,7 @@ namespace platform
       // m_pbredsystem = nullptr;
       // m_pcoresystem = nullptr;
 
-      print_line("platform::system::~system() (end)");
+      debug() << "platform::system::~system() (end)";
 
       //::acme::get()->m_pmanualresethappeningReadyToExit->set_happening();
       //on_system_before_destroy();
@@ -442,7 +448,11 @@ namespace platform
 
       //m_plogger = __create_new < ::simple_log >();
 
-      __construct(m_plogger);
+      __øconstruct(m_plogger);
+
+      __øconstruct(m_pmutexTask);
+
+      __øconstruct(m_pmutexTaskOn);
 
       //::output_debug_string("output_debug_string : simple log created\n");
 
@@ -571,7 +581,7 @@ namespace platform
       //      //
       //      //#endif
       //
-      //      //m_edesktop = ::user::e_desktop_none;
+      //      //m_edesktop = ::user::e_operating_ambient_none;
       //
       //      information() << "initialize_system os_construct";
       //
@@ -589,7 +599,7 @@ namespace platform
 
       //information() << "initialize_system create nano";
 
-      //__construct(m_pnano);
+      //__øconstruct(m_pnano);
 
       //m_psystemimpl = ___new system_impl();
 
@@ -815,7 +825,7 @@ namespace platform
 
 #if !defined(WINDOWS)
 
-      __construct(m_pexceptiontranslator);
+      __øconstruct(m_pexceptiontranslator);
 
       m_pexceptiontranslator->attach();
 
@@ -823,7 +833,7 @@ namespace platform
 
       //information() << "create_os_node going to create node";
 
-      papplication->__construct(m_pnode);
+      papplication->__øconstruct(m_pnode);
 
       m_pnode = m_pnode;
 
@@ -834,8 +844,9 @@ namespace platform
       //
       // }
 
-      m_pmutexHttpDownload = node()->create_mutex();
-
+      __øconstruct(m_pmutexTask);
+         
+      __øconstruct(m_pmutexHttpDownload);
 
       //if(!estatus)
       //{
@@ -933,7 +944,7 @@ namespace platform
 
       // }
 
-      //estatus = __construct(m_pnode);
+      //estatus = __øconstruct(m_pnode);
 
       //if (!m_pnode)
       //{
@@ -1044,7 +1055,7 @@ namespace platform
       ////}
       ////estatus =
 
-      //__construct(m_pfilesystem);
+      //__øconstruct(m_pfilesystem);
 
       ////if(!estatus)
       ////{
@@ -1059,7 +1070,7 @@ namespace platform
 
       ////::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
 
-      //__construct(m_pdirectorysystem);
+      //__øconstruct(m_pdirectorysystem);
 
       //if (!estatus)
       //{
@@ -1253,6 +1264,7 @@ namespace platform
    //      return estatus;
    //
    //   }
+
 
    ::task* system::get_task(itask_t itask)
    {
@@ -1955,7 +1967,7 @@ particle* system::matter_mutex()
    //
    //      initialize_nano_http(factory());
    //
-   //      __construct(m_pnanohttp);
+   //      __øconstruct(m_pnanohttp);
    //
    //   }
    //
@@ -1972,7 +1984,7 @@ particle* system::matter_mutex()
    //
    //         initialize_nano_http(factory());
    //
-   //         __construct(m_pnanohttp);
+   //         __øconstruct(m_pnanohttp);
    //
    //      }
    //
@@ -2375,7 +2387,7 @@ particle* system::matter_mutex()
 
          }
 
-         pfactory->__construct(this, pcontext);
+         pfactory->__øconstruct(this, pcontext);
 
       }
 
@@ -3129,12 +3141,12 @@ particle* system::matter_mutex()
    void system::system_id_update(huge_integer iId, huge_integer iPayload)
    {
 
-      call((::enum_id)iId, iPayload);
+      call((::enum_id)iId, iPayload, {}, nullptr);
 
    }
 
 
-   void system::handle(::topic* ptopic, ::context* pcontext)
+   void system::handle(::topic * ptopic, ::context * pcontext)
    {
 
       if (ptopic->m_atom == id_get_operating_system_dark_mode_reply)
@@ -3200,6 +3212,13 @@ particle* system::matter_mutex()
          }
 
       }
+      else if (ptopic->m_atom == id_initialize_host_window)
+      {
+
+         acme_windowing()->defer_initialize_host_window(nullptr);
+
+
+      }
       else if (ptopic->m_atom == id_app_activated)
       {
 
@@ -3228,6 +3247,36 @@ particle* system::matter_mutex()
       }
 
    }
+
+
+   void system::call(const ::atom& atom, ::wparam wparam, ::lparam lparam, ::particle* pparticle)
+   {
+      
+      if(atom == id_initialize_host_window)
+      {
+       
+         acme_windowing()->defer_initialize_host_window(nullptr);
+         
+      }
+      else if(atom == id_defer_create_context_button)
+      {
+         
+         auto pwindow = acme_windowing()->get_application_host_window();
+         
+         ::cast < ::acme::sandbox_windowing::host_interaction> phostinteraction = pwindow->m_pacmeuserinteraction;
+         
+         phostinteraction->create_context_button();
+         
+      }
+      else if(atom == id_defer_post_initial_request)
+      {
+         
+         defer_post_initial_request();
+         
+      }
+
+   }
+
 
 
    //   void system::add_handler(::matter * pmatter, bool bPriority)
@@ -3596,7 +3645,7 @@ particle* system::matter_mutex()
          if (strAppId.is_empty() || this->is_console())
          {
 
-            papp = __create<::platform::application>();
+            papp = __øcreate<::platform::application>();
 
             papp->increment_reference_count();
 
@@ -3674,7 +3723,7 @@ particle* system::matter_mutex()
             if (pfactory)
             {
 
-               papp = __create<::platform::application>(pfactory);
+               papp = __øcreate<::platform::application>(pfactory);
 
                if (!papp)
                {
@@ -4358,7 +4407,7 @@ particle* system::matter_mutex()
 
          do_graphics_and_windowing_factory();
 
-         __construct(m_pacmewindowing);
+         __øconstruct(m_pacmewindowing);
 
       }
 
@@ -4378,6 +4427,11 @@ particle* system::matter_mutex()
    void system::do_operating_ambient_factory()
    {
 
+      auto strOperatingAmbient = ::windowing::get_eoperating_ambient_name();
+
+      auto & pfactory = factory("acme", strOperatingAmbient);
+
+      pfactory->merge_to_global_factory();
 
    }
 
@@ -4390,7 +4444,7 @@ particle* system::matter_mutex()
 
          m_bGraphicsAndWindowingFactory = true;
          
-         if(!is_sandboxed())
+         //if(!is_sandboxed())
          {
             
             nano()->graphics();
@@ -4487,7 +4541,7 @@ particle* system::matter_mutex()
 
    //      do_graphics_and_windowing_system_factory();
 
-   //      __construct(m_pwindowingbase);
+   //      __øconstruct(m_pwindowingbase);
 
    //   }
 

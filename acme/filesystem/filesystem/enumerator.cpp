@@ -119,6 +119,32 @@ namespace file
 
    }
 
+   
+   listing enumerator::get_folders(const ::scoped_string & scopedstr)
+   {
+
+      ::file::listing listing;
+
+      listing.set_listing(scopedstr, e_depth_none, e_flag_folder);
+
+      if(enumerate(listing))
+      {
+
+         listing.m_estatus = success;
+
+      }
+      else
+      {
+
+         listing.m_estatus = error_failed;
+
+      }
+
+      return listing;
+
+   }
+
+
 
    //bool enumerator::enumerate_pattern(::file::listing & listing, const ::file::path & path, const ::string_array & straPattern, ::file::e_flag eflag, enum_depth edepth)
    //{

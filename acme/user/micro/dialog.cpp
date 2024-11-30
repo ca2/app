@@ -4,6 +4,8 @@
 // 
 #include "framework.h"
 #include "dialog.h"
+#include "acme/windowing/window.h"
+#include "acme/windowing/windowing.h"
 
 
 namespace micro
@@ -69,6 +71,13 @@ namespace micro
       destroy_window();
       
       on_sequence();
+      
+      if(system()->acme_windowing()->get_application_host_window())
+      {
+         
+         system()->acme_windowing()->get_application_host_window()->redraw();
+         
+      }
 
    }
 

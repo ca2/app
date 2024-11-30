@@ -891,7 +891,7 @@ namespace experience
    }
 
 
-   bool frame::_001OnTimer(unsigned int uEvent)
+   bool frame::on_timer(unsigned int uEvent)
    {
 
       __UNREFERENCED_PARAMETER(uEvent);
@@ -1143,7 +1143,7 @@ namespace experience
          if (!m_pcontrolbox)
          {
 
-            m_pcontrolbox = __create < ::experience::control_box >(m_pexperience->m_pfactory);
+            m_pcontrolbox = __øcreate < ::experience::control_box >(m_pexperience->m_pfactory);
 
             //m_pcontrolbox->initialize(this);
 

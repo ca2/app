@@ -66,7 +66,6 @@ public:
    using iterator = typename BASE_RANGE::iterator;
    using const_iterator = typename BASE_RANGE::const_iterator;
 
-
    using THIS_RAW_RANGE = typename BASE_RANGE::THIS_RAW_RANGE;
    using RAW_RANGE = typename BASE_RANGE::RAW_RANGE;
    using CONST_RAW_RANGE = typename BASE_RANGE::CONST_RAW_RANGE;
@@ -81,6 +80,8 @@ public:
    using ARG_ITEM = typename BASE_RANGE::ARG_ITEM;
 
    using STRING = string_base < ITERATOR_TYPE >;
+
+   using STRING_ARRAY = ::string_array_base < STRING, STRING, e_type_string_array >;
 
 
    template<::std::size_t count>
@@ -137,6 +138,7 @@ public:
 
    //auto subrange(character_count start, character_count count) const { auto range = *this; ::_start_count_range(range, start, count); return range; }
 
+   
 
    //auto & last() { return ::get(this->end() - 1); }
    auto& last() const { return (const CHARACTER&) ::get(this->end() - 1); }
@@ -211,8 +213,6 @@ this->m_erange = e_range_none;
       return pair;
 
    }
-
-
 
 
    bool has_character() const { return !this->is_empty(); }
@@ -1760,6 +1760,8 @@ this->m_erange = e_range_none;
 
    STRING single_quoted(bool bEscape) const;
 
+
+   STRING_ARRAY explode(const SCOPED_STRING & scopedstrSeparator, bool bAddEmpty = true) const;
 
 };
 

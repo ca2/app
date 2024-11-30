@@ -125,7 +125,7 @@ public:
    DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
    //DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
    //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
-   void _001OnTimer(::timer * ptimer) override;
+   void on_timer(::timer * ptimer) override;
    //DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
    DECLARE_MESSAGE_HANDLER(on_message_non_client_calculate_size);
    //DECLARE_MESSAGE_HANDLER(_001OnNcHitTest);

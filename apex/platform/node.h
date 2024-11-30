@@ -71,7 +71,7 @@ namespace apex
       void start_node() override;
       
       
-      void application_handle(huge_integer l, void * p) override;
+      //void application_handle(huge_integer l, void * p) override;
 
 
       // void on_operating_system_user_theme_change() override;

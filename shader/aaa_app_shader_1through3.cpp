@@ -14,11 +14,11 @@ namespace simple_shader
 
       //string strFontFamily = get_font();
 
-      //auto ppen = __create < ::draw2d::pen > ();
+      //auto ppen = __øcreate < ::draw2d::pen > ();
 
-      //auto pbrush = __create < ::draw2d::brush >();
+      //auto pbrush = __øcreate < ::draw2d::brush >();
 
-      //auto pfont = __create < ::write_text::font > ();
+      //auto pfont = __øcreate < ::write_text::font > ();
 
       //if (m_iDrawing == 3)
       //{
@@ -36,7 +36,7 @@ namespace simple_shader
       //            if (::is_ok(m_pimage1))
       //            {
 
-      //               __construct(m_pimage2);
+      //               __øconstruct(m_pimage2);
 
       //               m_pimage2->copy_from(m_pimage1);
 

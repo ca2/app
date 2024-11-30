@@ -406,6 +406,7 @@ TOKEN_CONCATENATE(name, _factory)(pfactory)
 #endif
 
 
+#define sizeof_in_bits(TYPE) (sizeof(TYPE) * 8)
 
 
 

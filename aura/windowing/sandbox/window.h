@@ -7,6 +7,7 @@
 #pragma once
 
 
+#include "acme/windowing/sandbox/window.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 
@@ -16,7 +17,8 @@ namespace sandbox_windowing
 
 
    class CLASS_DECL_AURA window :
-      virtual public ::windowing::window
+      virtual public ::windowing::window,
+      virtual public ::acme::sandbox_windowing::window
    {
    public:
 
@@ -40,7 +42,7 @@ namespace sandbox_windowing
 
       //::sandbox_windowing::windowing* windowing();
 
-      virtual ::sandbox_windowing::windowing * sandbox_windowing();
+      virtual ::acme::sandbox_windowing::windowing * sandbox_windowing() override;
 
       void exit_iconify() override;
 
@@ -50,13 +52,13 @@ namespace sandbox_windowing
 
       void exit_zoomed() override;
 
-      virtual void set_user_interaction(::windowing::window* pinteraction);
+      void set_user_interaction(::windowing::window* pinteraction) override;
 
-      virtual void post_nc_destroy();
+      void post_nc_destroy() override;
 
-      virtual ::e_status set_window_icon(const ::file::path& path);
+      ::e_status set_window_icon(const ::file::path& path) override;
 
-      virtual bool is_child(::windowing::window* candidateChildOrDescendant); // or descendant
+      bool is_child(::oswindow candidateChildOrDescendant) override; // or descendant
 
       //::windowing::window* get_parent() override;
       //virtual ::Window get_parent_handle();
@@ -98,14 +100,14 @@ namespace sandbox_windowing
 
       void set_mouse_cursor(::windowing::cursor* pcursor) override;
 
-      virtual void set_mouse_cursor2(::windowing::cursor* pcursor);
+      void set_mouse_cursor2(::windowing::cursor* pcursor) override;
 
       void set_keyboard_focus() override;
       void set_mouse_capture() override;
       void set_active_window() override;
 
 
-      virtual void SetInternalFocus();
+      void SetInternalFocus() override;
 
 
       void set_foreground_window() override;

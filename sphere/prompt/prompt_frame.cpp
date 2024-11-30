@@ -43,10 +43,10 @@ namespace prompt
 
 
 
-   void frame::_001OnTimer(::timer * ptimer)
+   void frame::on_timer(::timer * ptimer)
    {
 
-      simple_frame_window::_001OnTimer(ptimer);;
+      simple_frame_window::on_timer(ptimer);;
 
       auto uEvent = ptimer->m_uEvent;
 

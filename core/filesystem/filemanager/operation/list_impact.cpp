@@ -28,7 +28,7 @@ namespace filemanager
 
       ::user::impact::install_message_routing(pchannel);
       ::user::list::install_message_routing(pchannel);
-//      //MESSAGE_LINK(e_message_timer,pchannel,this,&operation_list_impact::_001OnTimer);
+//      //MESSAGE_LINK(e_message_timer,pchannel,this,&operation_list_impact::on_timer);
       MESSAGE_LINK(e_message_create,pchannel,this,&operation_list_impact::on_message_create);
    }
 
@@ -123,9 +123,9 @@ namespace filemanager
    }
 
 
-   void operation_list_impact::_001OnTimer(::timer * ptimer)
+   void operation_list_impact::on_timer(::timer * ptimer)
    {
-      BASE::_001OnTimer(ptimer);
+      BASE::on_timer(ptimer);
       if(ptimer->m_uEvent == 123)
       {
          /*if(m_timeLastUpdate.elapsed() > 500)

@@ -61,7 +61,7 @@ void request::initialize_create(arguments arguments)
 
          //auto estatus = 
          
-         //__construct(m_pcommandline);
+         //__øconstruct(m_pcommandline);
 
          //if (!estatus)
          //{
@@ -231,7 +231,7 @@ void request::finish_initialization()
 
    //   //estatus = 
    //   
-   //   __construct(m_pcommandline);
+   //   __øconstruct(m_pcommandline);
 
    //   //if (!estatus)
    //   //{

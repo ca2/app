@@ -52,7 +52,7 @@ namespace experience_core
       if (::is_null(m_pfont))
       {
 
-         __construct(m_pfont);
+         __øconstruct(m_pfont);
 
          //auto pnode = node();
 
@@ -226,7 +226,7 @@ namespace experience_core
 
             }
 
-            auto ppath = __create < ::draw2d::path >();
+            auto ppath = __øcreate < ::draw2d::path >();
 
             if (pdata->m_idaSel.contains(ppane->m_atom))
             {
@@ -256,7 +256,7 @@ namespace experience_core
                   if (!ppen)
                   {
 
-                     __construct(ppen);
+                     __øconstruct(ppen);
 
                      ppen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_selected));
 
@@ -335,7 +335,7 @@ namespace experience_core
                      if (!ppen)
                      {
 
-                        __construct(ppen);
+                        __øconstruct(ppen);
 
                         ppen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
@@ -387,7 +387,7 @@ namespace experience_core
                      if (!ppen)
                      {
 
-                        __construct(ppen);
+                        __øconstruct(ppen);
 
                         ppen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
 
@@ -478,7 +478,7 @@ namespace experience_core
                if (!ppath)
                {
 
-                  __construct(ppath);
+                  __øconstruct(ppath);
 
                   ppath->m_pointUserOffset = ptab->m_pointBarDragScroll;
 
@@ -499,7 +499,7 @@ namespace experience_core
                   if (!pbrush)
                   {
 
-                     __construct(pbrush);
+                     __øconstruct(pbrush);
 
                      pbrush->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 235, 235, 230), argb(250, 255, 255, 250));
 
@@ -522,7 +522,7 @@ namespace experience_core
                   if (!ppen)
                   {
 
-                     __construct(ppen);
+                     __øconstruct(ppen);
 
                      ppen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
@@ -602,7 +602,7 @@ namespace experience_core
                if (!ppath)
                {
 
-                  __construct(ppath);
+                  __øconstruct(ppath);
 
                   ppath->m_pointUserOffset = ptab->m_pointBarDragScroll;
 
@@ -630,7 +630,7 @@ namespace experience_core
                      if (!pbrush)
                      {
 
-                        __construct(pbrush);
+                        __øconstruct(pbrush);
 
                         pbrush->CreateLinearGradientBrush(rectangleBorder.top_left(), rectangleBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
 
@@ -653,7 +653,7 @@ namespace experience_core
                      if (!ppen)
                      {
 
-                        __construct(ppen);
+                        __øconstruct(ppen);
 
                         ppen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
@@ -714,7 +714,7 @@ namespace experience_core
                      if (!pbrush)
                      {
 
-                        __construct(pbrush);
+                        __øconstruct(pbrush);
 
                         pbrush->CreateLinearGradientBrush(
                            rectangleBorder.top_left(),
@@ -743,7 +743,7 @@ namespace experience_core
                      if (!ppen)
                      {
 
-                        __construct(ppen);
+                        __øconstruct(ppen);
 
                         ppen->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
 
@@ -862,7 +862,7 @@ namespace experience_core
                {
                 
                   
-                  auto ppath = __create < ::draw2d::path >();
+                  auto ppath = __øcreate < ::draw2d::path >();
                   
                   ppath->begin_figure();
                   
@@ -874,7 +874,7 @@ namespace experience_core
                   
                   ppath->close_figure();
                   
-                  auto pbrush = __create < ::draw2d::brush >();
+                  auto pbrush = __øcreate < ::draw2d::brush >();
                   
                   pbrush->create_solid( argb(127, 0, 0, 0));
                   
@@ -907,7 +907,7 @@ namespace experience_core
                else
                {
                   
-                  auto ppath = __create < ::draw2d::path >();
+                  auto ppath = __øcreate < ::draw2d::path >();
                   
                   ppath->begin_figure();
                   
@@ -919,7 +919,7 @@ namespace experience_core
                   
                   ppath->close_figure();
                   
-                  auto pbrush = __create < ::draw2d::brush >();
+                  auto pbrush = __øcreate < ::draw2d::brush >();
                   
                   pbrush->create_solid( argb(127, 0, 0, 0));
                   
@@ -1011,7 +1011,7 @@ namespace experience_core
 
                }
 
-               auto pbrush = __create < ::draw2d::brush >();
+               auto pbrush = __øcreate < ::draw2d::brush >();
 
                pbrush->create_solid(colorText);
 
@@ -1984,13 +1984,13 @@ namespace experience_core
 
       ::pointer < ::simple_scroll_bar > pbar = pscrollbar;
 
-      auto ppenDraw = __create < ::draw2d::pen >();
+      auto ppenDraw = __øcreate < ::draw2d::pen >();
 
       ppenDraw->create_solid(1, colorBorder);
 
       ::color::color colorTrack = pscrollbar->scrollbar_color(this, ::e_element_scrollbar_trackbar);
 
-      auto pbrushDraw = __create < ::draw2d::brush >();
+      auto pbrushDraw = __øcreate < ::draw2d::brush >();
 
       pbrushDraw->create_solid(colorTrack);
 
@@ -2154,7 +2154,7 @@ namespace experience_core
 
       }
 
-      auto ppenGrip = __create < ::draw2d::pen >();
+      auto ppenGrip = __øcreate < ::draw2d::pen >();
 
       ppenGrip->create_solid(2.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_trackbar));
 
@@ -2189,7 +2189,7 @@ namespace experience_core
 
          auto rectangleA = pbar->get_buttonA_rectangle(rectangleX);
 
-         auto ppenArrow = __create < ::draw2d::pen >();
+         auto ppenArrow = __øcreate < ::draw2d::pen >();
 
          ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectA));
 
@@ -2207,7 +2207,7 @@ namespace experience_core
 
          auto rectangleB = pbar->get_buttonB_rectangle(rectangleX);
 
-         auto ppenArrow = __create < ::draw2d::pen >();
+         auto ppenArrow = __øcreate < ::draw2d::pen >();
 
          ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectB));
 
@@ -2250,7 +2250,7 @@ namespace experience_core
 
       {
 
-         auto ppenArrow = __create < ::draw2d::pen >();
+         auto ppenArrow = __øcreate < ::draw2d::pen >();
 
          ppenArrow->m_elinecapBeg = ::draw2d::e_line_cap_round;
          ppenArrow->m_elinecapEnd = ::draw2d::e_line_cap_round;

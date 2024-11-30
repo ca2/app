@@ -1015,14 +1015,14 @@ namespace node_xfce
 } // namespace node_xfce
 
 
-namespace desktop_environment_gtk_based
+namespace operating_ambient_gtk_based
 {
 
 
    class node;
 
 
-} // namespace desktop_environment_gtk_based
+} // namespace operating_ambient_gtk_based
 
 
 namespace windowing
@@ -2107,6 +2107,13 @@ namespace acme
 
    class timer_array;
 
+namespace windowing
+{
+
+class window;
+
+}
+
 
 } // namespace acme
 
@@ -2135,7 +2142,7 @@ using oswindow_t = hwnd;
 
 #else
 
-using oswindow_t = ::windowing::window;
+using oswindow_t = ::acme::windowing::window;
 
 #endif
 

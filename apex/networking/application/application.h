@@ -25,7 +25,7 @@ namespace networking
       ::string                                                 m_strHostname;
 
 
-      ::pointer < ::netserver::incoming_socket_thread >        m_psocketthread;
+      ::pointer < ::networking::application_incoming_socket_thread > m_psocketthread;
 
 
       application();

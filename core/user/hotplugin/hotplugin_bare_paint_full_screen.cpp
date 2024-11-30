@@ -40,7 +40,7 @@ namespace hotplugin
 
       strProgress.formatf("%0.3f%%", dRate * 100.0);
 
-      auto pbrush = __create < ::draw2d::brush > ();
+      auto pbrush = __øcreate < ::draw2d::brush > ();
 
 
 

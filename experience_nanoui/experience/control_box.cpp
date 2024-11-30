@@ -93,10 +93,10 @@ namespace experience_nanoui
    }
 
 
-   void control_box::_001OnTimer(::timer * ptimer)
+   void control_box::on_timer(::timer * ptimer)
    {
 
-      ::experience::control_box::_001OnTimer(ptimer);
+      ::experience::control_box::on_timer(ptimer);
 
    }
 

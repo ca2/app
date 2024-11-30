@@ -238,7 +238,7 @@ public:
 
    void prepare_frame(::user::document * pdocument,bool bMakeVisible) override;
 
-   virtual void _001OnTimer(::timer * ptimer) override;
+   virtual void on_timer(::timer * ptimer) override;
 
    virtual bool frame_is_transparent() override;
 

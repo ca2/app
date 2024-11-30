@@ -22,7 +22,7 @@ namespace aura
    node::node()
    {
 
-      m_pauranode = this;
+      //m_pauranode = this;
 
       m_bUnhookX = true;
 
@@ -52,7 +52,7 @@ namespace aura
 
       //message_box_factory();
 
-      //system()->m_pauranode = this;
+      //system() = this;
 
       //return estatus;
 
@@ -166,7 +166,7 @@ namespace aura
    //pointer< ::extended::sequence < ::conversation > > node::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
    //{
 
-   //   auto pmessagebox = puserinteraction->__create < ::user::message_box >();
+   //   auto pmessagebox = puserinteraction->__øcreate < ::user::message_box >();
 
    //   auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::sequence();
 

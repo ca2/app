@@ -455,7 +455,7 @@ void thread::task_osterm()
    ::task::task_osterm();
 
 
-   //system()->m_papexnode->thread_finalize(this);
+   //system()->thread_finalize(this);
 
    //::e_status estatus = m_result.m_estatus;
 
@@ -4354,10 +4354,10 @@ bool thread::process_message()
       //    pmessage = papexapplication->get_message(&message);
       //
       // }
-      // else if (session() && node()->m_papexnode)
+      // else if (session() && node())
       // {
       //
-      //    pmessage = node()->m_papexnode->get_message(&message);
+      //    pmessage = node()->get_message(&message);
       //
       // }
 
@@ -4643,7 +4643,7 @@ CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
       if (m_pmutexThreadUiPtra == nullptr)
       {
 
-         __construct(m_pmutexThreadUiPtra);
+         __øconstruct(m_pmutexThreadUiPtra);
 
       }
 

@@ -47,10 +47,12 @@
 #include "apex/interprocess/communication.h"
 #include "apex/interprocess/target.h"
 #include "apex/interprocess/task.h"
-#include "apex/platform/application_menu.h"
+#include "acme/platform/application_menu.h"
 #include "apex/database/_binary_stream.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "acme/windowing/display.h"
+#include "acme/windowing/windowing.h"
 #include "apex/networking/application/application.h"
 #include "apex/networking/http/context.h"
 #include "apex/user/user/language_map.h"
@@ -397,16 +399,7 @@ namespace apex
    ::application_menu * application::application_menu()
    {
 
-      if (__defer_construct_new(m_papplicationmenu))
-      {
-
-         m_papplicationmenu->m_strName = application_title();
-
-         m_papplicationmenu->m_bPopup = true;
-
-      }
-
-      return m_papplicationmenu;
+      return ::platform::application::application_menu();
 
    }
 
@@ -431,31 +424,33 @@ namespace apex
 
    void application::application_menu_update()
    {
+      
+      ::platform::application::application_menu_update();
 
-//#ifdef LINUX
+////#ifdef LINUX
+////
+////      auto psystem = system();
+////
+////      if (application()->m_bGtkApp)
+////      {
+////
+////         auto pnode = psystem->node();
+////
+////         if (pnode)
+////         {
+////
+////            pnode->set_application_menu(m_pappmenu, this);
+////
+////         }
+////
+////      }
+////
+////#else
+////
+//      node()->application_handle(id_application_menu_update, nullptr);
+////
+////#endif
 //
-//      auto psystem = system();
-//
-//      if (application()->m_bGtkApp)
-//      {
-//
-//         auto pnode = psystem->node();
-//
-//         if (pnode)
-//         {
-//
-//            pnode->set_application_menu(m_pappmenu, this);
-//
-//         }
-//
-//      }
-//
-//#else
-//
-      node()->application_handle(id_application_menu_update, nullptr);
-//
-//#endif
-
    }
 
 
@@ -518,7 +513,7 @@ namespace apex
    //
    //      auto psystem = system();
    //
-   //      auto papexnode = psystem->m_papexnode;
+   //      auto papexnode = psystem;
    //
    //      papexnode->show_wait_cursor(bShow);
    //
@@ -603,7 +598,7 @@ namespace apex
 
       }
 
-      pfsfoldersync = pfactory->__create < ::fs::folder_sync >(this);
+      pfsfoldersync = pfactory->__øcreate < ::fs::folder_sync >(this);
 
       return pfsfoldersync;
 
@@ -1131,7 +1126,7 @@ namespace apex
       //   /*        if (m_pfsdata.is_null())
       //           {
 
-      //              __construct(m_pfsdata, __allocate ::fs::set());
+      //              __øconstruct(m_pfsdata, __allocate ::fs::set());
 
       //           }*/
 
@@ -2390,7 +2385,7 @@ namespace apex
       }
       //return true;
 
-      //node()->m_papexnode->on_start_application(this);
+      //node()->on_start_application(this);
 
       on_start_application();
 
@@ -2421,7 +2416,7 @@ namespace apex
    void application::on_create_app_shortcut()
    {
 
-      node()->m_papexnode->on_create_app_shortcut(this);
+      node()->on_create_app_shortcut(this);
 
    }
 
@@ -2909,7 +2904,7 @@ namespace apex
 
          string strSchema = straSchema[i];
 
-         system()->m_pnode->m_papexnode->set_application_installed(pathExe, strId, strBuild, psystem->get_system_platform(), psystem->get_system_configuration(), strLocale, strSchema);
+         system()->m_pnode->set_application_installed(pathExe, strId, strBuild, psystem->get_system_platform(), psystem->get_system_configuration(), strLocale, strSchema);
 
       }
 
@@ -5588,9 +5583,9 @@ namespace apex
 
       }
 
-      system()->m_pnode->m_papexnode->set_last_run_application_path(strAppId);
+      system()->m_pnode->set_last_run_application_path(strAppId);
 
-      node()->m_papexnode->on_start_application(this);
+      node()->on_start_application(this);
 
 //      if (!os_on_start_application())
 //      {
@@ -6405,6 +6400,8 @@ namespace apex
 
    void application::init()
    {
+      
+      ::platform::application::init();
 
       m_timeHeartBeat.Now();
 
@@ -6477,44 +6474,6 @@ namespace apex
       }
 
       error() << "1.1";
-
-      auto papplicationmenu = application_menu();
-
-      papplicationmenu->erase_all();
-
-      using namespace ::apex;
-
-      {
-
-         auto ppopupApp = papplicationmenu->popup(application_title());
-
-         //pmenuMain->add(pmenuApp);
-
-         ppopupApp->item("About " + application_title(), "display_about", "", "");
-
-         ppopupApp->separator();
-
-         ppopupApp->item("Quit " + application_title(), "app_exit", "", "");
-
-      }
-
-      //      {
-      //
-      //         auto ppopupView = papplicationmenu->popup("View");
-      //
-      //         //ppopupView->add(pmenuView);
-      //
-      //         ppopupView->item("Transparent Frame", "transparent_frame", "", "");
-      //
-      //      }
-      //
-      //      //applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
-      //
-      ////      applicationmenu()->add_item(i++, "About " + m_strAppName, "show_about", "", "Show About");
-      ////
-      ////      applicationmenu()->add_item(i++, "Transparent Frame", "transparent_frame", "Ctrl+Shift+T", "Toggle Transparent Frame");
-
-      application_menu_update();
 
       information() << "success";
 
@@ -6924,7 +6883,7 @@ namespace apex
 
          auto psystem = system();
 
-         auto pnode = psystem->node()->m_papexnode;
+         auto pnode = psystem->node();
 
          pnode->show_wait_cursor(false);
 
@@ -6942,7 +6901,7 @@ namespace apex
 
             auto psystem = system();
 
-            auto pnode = psystem->node()->m_papexnode;
+            auto pnode = psystem->node();
 
             pnode->show_wait_cursor(true);
 
@@ -6952,7 +6911,7 @@ namespace apex
 
          auto psystem = system();
 
-         auto pnode = psystem->node()->m_papexnode;
+         auto pnode = psystem->node();
 
          pnode->show_wait_cursor(false);
 
@@ -6969,7 +6928,7 @@ namespace apex
 
          auto psystem = system();
 
-         auto pnode = psystem->node()->m_papexnode;
+         auto pnode = psystem->node();
 
          pnode->show_wait_cursor(true);
 
@@ -7283,7 +7242,7 @@ namespace apex
    //}
 
 
-   //void application::on_notify_control_event(::user::control_event* pevent)
+   //void application::on_notify_control_event(::user::control_event* phappening)
    //{
 
 
@@ -7302,7 +7261,7 @@ namespace apex
 
    //   }
 
-   //   on_notify_control_event(pevent);
+   //   on_notify_control_event(phappening);
 
    //   if (ptopic->m_bRet)
    //   {
@@ -10199,7 +10158,7 @@ namespace apex
 
       auto psystem = system();
 
-      auto papex = psystem->m_pnode->m_papexnode;
+      auto papex = psystem->m_pnode;
 
       return papex->_001InitializeShellOpen();
 
@@ -10357,7 +10316,7 @@ namespace apex
    bool application::exclusive_fails(const ::string & strName, security_attributes * psecurityattributes)
    {
 
-      return node()->m_papexnode->exclusive_fails(this, strName, psecurityattributes);
+      return node()->exclusive_fails(this, strName, psecurityattributes);
 
    }
 
@@ -10365,7 +10324,7 @@ namespace apex
    bool application::exclusive_erase(const ::string & strName)
    {
 
-      return node()->m_papexnode->erase_exclusive(strName);
+      return node()->erase_exclusive(strName);
 
    }
 
@@ -10373,7 +10332,7 @@ namespace apex
    void application::release_exclusive()
    {
 
-      auto papexnode = node()->m_papexnode;
+      auto papexnode = node();
 
       papexnode->release_exclusive();
 
@@ -10398,82 +10357,89 @@ namespace apex
 
    void application::show_about_box()
    {
-
-      system()->defer_innate_ui();
-
-      auto pdialog = __create < ::innate_ui::dialog>();
-
-      pdialog->create();
-
-      ::string strTitle;
-
-      strTitle = "About " + m_strAppId;
-
-      pdialog->set_text(strTitle);
-
-      auto stra = get_about_box_lines();
-
-      int y = 30;
       
-      auto pstillIcon = __create < ::innate_ui::still>();
-
-      pstillIcon->create_icon_still(pdialog);
-
-      pstillIcon->set_size({48, 48});
-
-      pstillIcon->set_position({ 30, 30 });
-
-      auto piconApplication = innate_ui_icon({48, 48});
-
-      pstillIcon->set_icon(piconApplication);
-
-      for (auto str : stra)
-      {
-
-         auto pstill = __create < ::innate_ui::still>();
-
-         pstill->create_child(pdialog);
-
-         pstill->set_text(str);
-
-         pstill->set_position({ 30 + 48+10, y });
-
-         pstill->set_size({ 400, 30 });
-
-         y += 30;
-
-      }
-
-      y += 30;
-
-      auto pbutton = __create < ::innate_ui::button>();
-
-      pbutton->create_child(pdialog);
-
-      pbutton->set_text("OK");
-
-      pbutton->set_size({ 100, 35 });
-
-      pbutton->set_position({ 520 - 100 -30, y });
-
-      y += 35;
-
-      pdialog->adjust_for_client_size({ 520, y+30 });
-
-      pdialog->center();
-
-      auto pdialogRaw = pdialog.m_p;
-      pbutton->set_callback_on_click([pdialogRaw]()
+      main_post([this]()
+                {
+         
+         system()->defer_innate_ui();
+         
+         auto pdialog = __øcreate < ::innate_ui::dialog>();
+         
+         pdialog->create();
+         
+         int max_width = system()->acme_windowing()->acme_display()->get_main_screen_size().cx();
+         
+         ::string strTitle;
+         
+         strTitle = "About " + m_strAppId;
+         
+         pdialog->set_text(strTitle);
+         
+         auto stra = get_about_box_lines();
+         
+         int y = 30;
+         
+         auto pstillIcon = __øcreate < ::innate_ui::still>();
+         
+         pstillIcon->create_icon_still(pdialog);
+         
+         pstillIcon->set_size({48, 48});
+         
+         pstillIcon->set_position({30, 30});
+         
+         auto piconApplication = innate_ui_icon({48, 48});
+         
+         pstillIcon->set_icon(piconApplication);
+         
+         for (auto str : stra)
          {
-
-         pdialogRaw->hide();
-         pdialogRaw->destroy_window();
-
+            
+            auto pstill = __øcreate < ::innate_ui::still>();
+            
+            pstill->create_child(pdialog);
+            
+            pstill->set_text(str);
+            
+            pstill->set_position({30 + 48+10, y});
+            
+            pstill->set_size({minimum(400, max_width), 30});
+            
+            y += 30;
+            
+         }
+         
+         y += 30;
+         
+         auto pbutton = __øcreate < ::innate_ui::button>();
+         
+         pbutton->create_child(pdialog);
+         
+         pbutton->set_text("OK");
+         
+         pbutton->set_size({100, 35});
+         
+         pbutton->set_position({minimum(520,max_width) - 100 -30, y});
+         
+         y += 35;
+         
+         pdialog->adjust_for_client_size({minimum(520,max_width), y+30});
+         
+         pdialog->center();
+         
+         auto pdialogRaw = pdialog.m_p;
+         pbutton->set_callback_on_click([pdialogRaw]()
+                                        {
+            
+            pdialogRaw->hide();
+            pdialogRaw->destroy_window();
+            
          });
-
-
-
-      pdialog->show();
+         
+         
+         
+         pdialog->show();
+         
+      });
 
    }
 

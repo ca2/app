@@ -102,7 +102,7 @@ inline sequence_continuation particle::sync(const class ::time & timeTimeout)
 
    }
 
-   return { this, e_dispatch_send, procedure};
+   return { this, e_dispatch_send, procedure, should_create_sequence_on_synchronicity()};
 
 }
 

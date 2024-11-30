@@ -332,7 +332,7 @@ namespace user
       virtual void set_edit_file(::file::file * pfile);
 
 
-      void _001OnTimer(::timer * ptimer) override;
+      void on_timer(::timer * ptimer) override;
 
 
       status < ::double_rectangle > get_margin(style * pstyle, enum_element eelement = ::e_element_none, ::user::enum_state estate = ::user::e_state_none) override;

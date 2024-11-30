@@ -1803,7 +1803,7 @@ namespace aura
 
 #ifdef WINDOWS_DESKTOP
       
-      __construct(m_pshellopen);
+      __øconstruct(m_pshellopen);
 
       //if (!estatus)
       //{
@@ -2240,7 +2240,7 @@ retry_license:
       //{
 
       //   //estatus = 
-      //   __construct(m_pimagecontext);
+      //   __øconstruct(m_pimagecontext);
 
       //   //if (!estatus)
       //   //{
@@ -5120,7 +5120,7 @@ retry_license:
 
          auto psystem = system();
 
-         auto pnode = psystem->node()->m_papexnode;
+         auto pnode = psystem->node();
 
          pnode->show_wait_cursor(false);
 
@@ -5138,7 +5138,7 @@ retry_license:
 
             auto psystem = system();
 
-            auto pnode = psystem->node()->m_papexnode;
+            auto pnode = psystem->node();
 
             pnode->show_wait_cursor(true);
 
@@ -5148,7 +5148,7 @@ retry_license:
 
          auto psystem = system();
 
-         auto pnode = psystem->node()->m_papexnode;
+         auto pnode = psystem->node();
 
          pnode->show_wait_cursor(false);
 
@@ -5165,7 +5165,7 @@ retry_license:
 
          auto psystem = system();
 
-         auto pnode = psystem->node()->m_papexnode;
+         auto pnode = psystem->node();
 
          pnode->show_wait_cursor(true);
 
@@ -5438,7 +5438,7 @@ retry_license:
    //}
 
 
-   //void application::on_notify_control_event(::user::control_event* pevent)
+   //void application::on_notify_control_event(::user::control_event* phappening)
    //{
 
 
@@ -5457,7 +5457,7 @@ retry_license:
 
    //   }
 
-   //   on_notify_control_event(pevent);
+   //   on_notify_control_event(phappening);
 
    //   if (ptopic->m_bRet)
    //   {

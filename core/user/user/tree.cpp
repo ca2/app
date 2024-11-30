@@ -909,10 +909,10 @@ namespace user
    }
 
 
-   void tree::_001OnTimer(::timer * ptimer)
+   void tree::on_timer(::timer * ptimer)
    {
 
-      ::user::interaction::_001OnTimer(ptimer);
+      ::user::interaction::on_timer(ptimer);
 
    }
 
@@ -1012,7 +1012,7 @@ namespace user
       MESSAGE_LINK(e_message_scroll_x, pchannel, this, &tree::on_message_scroll_x);
       MESSAGE_LINK(e_message_scroll_y, pchannel, this, &tree::on_message_scroll_y);
       MESSAGE_LINK(e_message_change_experience, pchannel, this, &tree::_001OnChangeExperience);
-      //      //MESSAGE_LINK(e_message_timer         , pchannel, this, &tree::_001OnTimer);
+      //      //MESSAGE_LINK(e_message_timer         , pchannel, this, &tree::on_timer);
 
    }
 
@@ -1739,7 +1739,7 @@ namespace user
 
       //pgraphics->CreateCompatibleDC(nullptr);
 
-      //auto pfont = __create < ::write_text::font > ();
+      //auto pfont = __øcreate < ::write_text::font > ();
       //pfont->operator=(*pdraw2d->fonts().GetListCtrlFont());
       //pfont->set_bold();
       //g->set_font(font);

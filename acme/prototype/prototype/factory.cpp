@@ -302,7 +302,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 
 //
 //template < typename BASE_TYPE >
-//inline ::pointer<BASE_TYPE>__create()
+//inline ::pointer<BASE_TYPE>__øcreate()
 //{
 //
 //   auto pfactory = factory_item < BASE_TYPE >();
@@ -338,10 +338,10 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //
 //
 //template < typename BASE_TYPE >
-//inline ::pointer<BASE_TYPE>__create(::particle * pparticle)
+//inline ::pointer<BASE_TYPE>__øcreate(::particle * pparticle)
 //{
 //
-//   auto p = __create < BASE_TYPE >();
+//   auto p = __øcreate < BASE_TYPE >();
 //
 //   if (!p)
 //   {
@@ -465,11 +465,11 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //}
 //
 
-// __construct __composite
+// __øconstruct __composite
 
 
 // template < typename OBJECT, typename BASE_TYPE >
-// inline void __construct(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite)
+// inline void __øconstruct(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite)
 // {
 
 //    //if (((uptr)&pcomposite) < (uptr)pparticle || ((uptr)&pcomposite) >= ((uptr)pparticle) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
@@ -479,31 +479,31 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 
 //    //}
 
-//    return pparticle->__construct(pcomposite);
+//    return pparticle->__øconstruct(pcomposite);
 
 // }
 
 
 // template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-// inline void __construct(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const ::pointer<SOURCE> psource)
+// inline void __øconstruct(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const ::pointer<SOURCE> psource)
 // {
 
-//    return __construct(pparticle, pcomposite, psource.m_p);
+//    return __øconstruct(pparticle, pcomposite, psource.m_p);
 
 // }
 
 
 // template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-// inline void __construct(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const ::member < SOURCE > & psource)
+// inline void __øconstruct(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const ::member < SOURCE > & psource)
 // {
 
-//    return __construct(pparticle, pcomposite, psource.operator SOURCE * ());
+//    return __øconstruct(pparticle, pcomposite, psource.operator SOURCE * ());
 
 // }
 
 
 // template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-// inline void __construct(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const SOURCE * psource)
+// inline void __øconstruct(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const SOURCE * psource)
 // {
 // //
 // //#ifdef _DEBUG
@@ -521,7 +521,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 // //
 // //   }
 
-//    return pparticle->__construct(pcomposite, psource);
+//    return pparticle->__øconstruct(pcomposite, psource);
 
 // }
 
@@ -571,28 +571,28 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 
 
 // template < typename OBJECT, typename BASE_TYPE >
-// inline void __defer_construct(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite) { return !pcomposite ? __construct(pparticle, pcomposite) : ::success; }
+// inline void __defer_construct(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite) { return !pcomposite ? __øconstruct(pparticle, pcomposite) : ::success; }
 
 // template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-// inline void __defer_construct(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const SOURCE * psource) { return !pcomposite ? __construct(pparticle, pcomposite, psource) : ::success; }
+// inline void __defer_construct(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const SOURCE * psource) { return !pcomposite ? __øconstruct(pparticle, pcomposite, psource) : ::success; }
 
 // template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-// inline void __defer_construct(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const ::pointer<SOURCE> psource) { return !pcomposite ? __construct(pparticle, pcomposite, psource) : ::success; }
+// inline void __defer_construct(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const ::pointer<SOURCE> psource) { return !pcomposite ? __øconstruct(pparticle, pcomposite, psource) : ::success; }
 
 // template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-// inline void __defer_construct(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const ::member < SOURCE > & psource) { return !pcomposite ? __construct(pparticle, pcomposite, psource) : ::success; }
+// inline void __defer_construct(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const ::member < SOURCE > & psource) { return !pcomposite ? __øconstruct(pparticle, pcomposite, psource) : ::success; }
 
 // template < typename OBJECT, typename BASE_TYPE >
 // inline void __defer_id_compose(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const ::atom & atom) { return !pcomposite ? __id_construct(pparticle, pcomposite) : ::success; }
 
 // //template < typename OBJECT, typename BASE_TYPE >
-// //inline void __defer_id_compose(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const ::type_atom & typeatom)  { return !pcomposite ? __construct(pparticle, pcomposite) : ::success; }
+// //inline void __defer_id_compose(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite, const ::type_atom & typeatom)  { return !pcomposite ? __øconstruct(pparticle, pcomposite) : ::success; }
 
 // template < typename OBJECT, typename BASE_TYPE >
 // inline void __defer_construct_new(OBJECT && pparticle, ::pointer<BASE_TYPE>& pcomposite) { return !pcomposite ? __construct_new(pparticle, pcomposite) : ::success; }
 
 
-// __construct __reference
+// __øconstruct __reference
 
 
 //
@@ -713,11 +713,11 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //}
 
 
-// __construct
+// __øconstruct
 //
 //
 //template < typename BASE_TYPE >
-//inline void __construct(::pointer<BASE_TYPE>& pusermessage)
+//inline void __øconstruct(::pointer<BASE_TYPE>& pusermessage)
 //{
 //
 //   auto & pfactory = factory_item < BASE_TYPE >();
@@ -768,7 +768,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //   if(!pusermessage)
 //   {
 //
-//      estatus = __construct(pusermessage);
+//      estatus = __øconstruct(pusermessage);
 //
 //   }
 //
@@ -818,7 +818,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 
 
 //template < typename BASE_TYPE >
-//inline void __defer_id_construct(::pointer<BASE_TYPE>& pusermessage, const ::atom & atom) { return !pusermessage ? __construct(pusermessage, atom) : ::success; }
+//inline void __defer_id_construct(::pointer<BASE_TYPE>& pusermessage, const ::atom & atom) { return !pusermessage ? __øconstruct(pusermessage, atom) : ::success; }
 
 
 //template < typename TYPE >

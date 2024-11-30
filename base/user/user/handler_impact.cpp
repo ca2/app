@@ -27,7 +27,7 @@ namespace user
 #ifdef _DEBUG
 
 
-   int64_t handler_impact::increment_reference_count()
+   huge_integer handler_impact::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -35,7 +35,7 @@ namespace user
    }
 
 
-   int64_t handler_impact::decrement_reference_count()
+   huge_integer handler_impact::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();

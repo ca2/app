@@ -1361,10 +1361,10 @@ _001SelectItem(pchild);
    //}
 
 
-   void tree_data::_001OnTimer(::timer * ptimer)
+   void tree_data::on_timer(::timer * ptimer)
    {
 
-      ::userfs::tree_data::_001OnTimer(ptimer);
+      ::userfs::tree_data::on_timer(ptimer);
 
       if (ptimer->m_uEvent == 1234567)
       {

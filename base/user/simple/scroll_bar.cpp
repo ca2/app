@@ -814,10 +814,10 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
 }
 
 
-void simple_scroll_bar::_001OnTimer(::timer * ptimer)
+void simple_scroll_bar::on_timer(::timer * ptimer)
 {
 
-   ::user::scroll_bar::_001OnTimer(ptimer);
+   ::user::scroll_bar::on_timer(ptimer);
 
    //auto pointCursor = mouse_cursor_position();
 
@@ -1071,10 +1071,10 @@ puiParent->SendMessage(e_message_scroll_y, MAKEWPARAM(e_scroll_command_LINEDOWN,
 void simple_scroll_bar::on_message_create(::message::message * pmessage)
 {
 
-   __construct(m_ppenDraw);
-   __construct(m_pbrushDraw);
-   __construct(m_pregionA); // regiao da primeira seta
-   __construct(m_pregionB); // regiao da segunda seta
+   __øconstruct(m_ppenDraw);
+   __øconstruct(m_pbrushDraw);
+   __øconstruct(m_pregionA); // regiao da primeira seta
+   __øconstruct(m_pregionB); // regiao da segunda seta
 
    auto pitemScrollbarTrackbar = __allocate ::item(::item_t{ e_element_scrollbar_trackbar });
 
@@ -1894,7 +1894,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    {
 
-      auto ppenArrow = __create < ::draw2d::pen >();
+      auto ppenArrow = __øcreate < ::draw2d::pen >();
 
       ppenArrow->m_elinecapBeg = ::draw2d::e_line_cap_round;
 
@@ -1966,7 +1966,7 @@ void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics_pointer & pgrap
 
    rectangleDraw.deflate(1, 1);
 
-   auto ppen = __create < ::draw2d::pen >();
+   auto ppen = __øcreate < ::draw2d::pen >();
 
    ppen->create_solid(2.0, argb(150 * uchAlpha / 255, 108, 108, 100));
 
@@ -1974,7 +1974,7 @@ void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics_pointer & pgrap
 
    pgraphics->draw_ellipse(rectangleDraw);
 
-   auto pbrush = __create < ::draw2d::brush >();
+   auto pbrush = __øcreate < ::draw2d::brush >();
 
    ::int_rectangle rectangleDotto(0, 0, 5, 5);
 
@@ -2005,7 +2005,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
       //auto estatus = 
 
-      __construct(m_pimageDots);
+      __øconstruct(m_pimageDots);
 
       //if (!estatus)
       //{

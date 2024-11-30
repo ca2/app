@@ -31,7 +31,7 @@ namespace filemanager
       virtual void OnDraw(::draw2d::graphics_pointer & pgraphics);
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      void _001OnTimer(::timer * ptimer) override;
+      void on_timer(::timer * ptimer) override;
 
       virtual ::collection::count _001GetItemCount() override;
       virtual void _001GetSubItemText(::user::mesh_subitem * psubitem) override;

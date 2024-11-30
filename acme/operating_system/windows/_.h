@@ -18,7 +18,7 @@ inline HWND as_hwnd(oswindow oswindow)
 }
 
 
-inline oswindow __oswindow(HWND hwnd)
+inline oswindow as_oswindow(HWND hwnd)
 {
 
    return (oswindow)hwnd;

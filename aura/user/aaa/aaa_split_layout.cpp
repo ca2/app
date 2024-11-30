@@ -147,7 +147,7 @@ namespace user
          if(!m_splitbara[i])
          {
             
-            auto estatus = __construct(m_splitbara[i]);
+            auto estatus = __øconstruct(m_splitbara[i]);
 
             if (!estatus)
             {

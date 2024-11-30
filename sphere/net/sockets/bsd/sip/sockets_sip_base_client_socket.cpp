@@ -480,7 +480,7 @@ namespace sockets
          {
             //m_estate = state_ringing;
             //         sip_event happening;
-            //happening.m_eevent = sip_event::event_invite;
+            //happening.m_ehappening = sip_event::event_invite;
             //m_pcallback->on_event(&happening);
          }
       }

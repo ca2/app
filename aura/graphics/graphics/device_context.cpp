@@ -33,7 +33,7 @@ namespace graphics
       if (m_spgraphics.is_null())
       {
 
-         __construct(m_spgraphics);
+         __øconstruct(m_spgraphics);
 
       }
 

@@ -128,6 +128,9 @@ public:
 
    bool _is_ok() const override;
 
+
+
+
 //   virtual void delete_this();
 
    inline ::particle * trace_this() const { return (::particle *) this; }
@@ -138,7 +141,7 @@ public:
    void set_synchronization(::particle * pparticleSynchronization);
    void defer_create_synchronization();
 
-   void operator()(::topic* ptopic, ::context* pcontext) override;
+   void operator()(::topic * ptopic, ::context * pcontext) override;
    //void operator()(::sequencer & sequencer) override;
 
    //virtual void destroy();
@@ -257,8 +260,6 @@ public:
 
 
 
-   [[nodiscard]] virtual character_count sz_len() const;
-   virtual void to_sz(char * sz, character_count len) const;
 
    virtual const char * topic_text() const;
    //virtual const char * raw_class_title() const;
@@ -445,7 +446,7 @@ public:
    using subparticle::call;
    // ThomasBorregaardSorensen!! Like handlers
    virtual lresult call(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
-   virtual void call_handle(::topic* ptopic, ::context* pcontext);
+   virtual void call_handle(::topic * ptopic, ::context * pcontext);
    virtual void call_handle_message(::message::message* pmessage);
    virtual void call_handle_item(::item* pitem);
 
@@ -570,7 +571,7 @@ public:
    ::pointer < T > create_clone(const T * pSource)
    {
 
-      auto p = this->__create< T >();
+      auto p = this->__øcreate< T >();
 
       if (!p)
       {
@@ -780,7 +781,7 @@ public:
    }
 
 
-   virtual ::particle_pointer clone();
+   //virtual ::subparticle_pointer clone();
 
 
    virtual ::user::user * user();
@@ -822,7 +823,7 @@ public:
 //#define OPTIONAL_BASE_BODY                                                          \
 //public:                                                                             \
 //   void on_initialize_particle() override {}         \
-//   void handle(::topic*,::context*) override {}
+//   void handle(::topic *, ::context *) override {}
 //
 ////   void assert_ok() const override {}                                    \
 ////   void dump(dump_context&) const override {}                               \

@@ -95,7 +95,7 @@ namespace httpd
       if (m_typeSocketThread.is_empty())
       {
 
-         return __create < ::sockets::socket_thread >(m_pfactorySocketThread);
+         return __øcreate < ::sockets::socket_thread >(m_pfactorySocketThread);
 
       }
       else
@@ -107,6 +107,12 @@ namespace httpd
 
    }
 
+
+   void socket::on_set_parent_socket()
+   {
+
+
+   }
 
 
    void socket::Send64(const ::string& str64, const string& type)

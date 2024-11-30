@@ -496,7 +496,7 @@ namespace platform
    //
    //      auto psystem = system();
    //
-   //      if (!system()->m_papexnode->is_application_installed(pathExe, strApp, strBuild, psystem->get_system_platform(),
+   //      if (!system()->is_application_installed(pathExe, strApp, strBuild, psystem->get_system_platform(),
    //         psystem->get_system_configuration(), strLocale, strSchema))
    //      {
    //

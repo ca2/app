@@ -230,7 +230,7 @@ bool db_server::create_message_queue()
 
    //   //SetTimer(1258477, 484, nullptr);
 
-   //   ////MESSAGE_LINK(e_message_timer, m_pimpl, this, &db_server::_001OnTimer);
+   //   ////MESSAGE_LINK(e_message_timer, m_pimpl, this, &db_server::on_timer);
 
    //}
 
@@ -248,10 +248,10 @@ bool db_server::destroy_message_queue()
    return true;
 }
 
-void db_server::_001OnTimer(::timer * ptimer)
+void db_server::on_timer(::timer * ptimer)
 {
 
-   //super::_001OnTimer(ptimer);;
+   //super::on_timer(ptimer);;
    //
    //if(ptimer->m_uEvent == 1258477)
    //{

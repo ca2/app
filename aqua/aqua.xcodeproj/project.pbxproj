@@ -562,6 +562,7 @@
 		9A865F8F29661498000C82F0 /* exception.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception.cpp; sourceTree = "<group>"; };
 		9A865F9029661498000C82F0 /* xml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xml.h; sourceTree = "<group>"; };
 		9A8E9EB9282A3210005FF778 /* libios_aqua.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_aqua.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A919E732CF2A0A500272FF2 /* aqua.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = aqua.xcodeproj; sourceTree = "<group>"; };
 		9A94EC1D29E46D4700C8C249 /* sound_track_player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sound_track_player.cpp; sourceTree = "<group>"; };
 		9A94EC1E29E46D4700C8C249 /* text_to_speech_client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text_to_speech_client.cpp; sourceTree = "<group>"; };
 		9A94EC1F29E46D4700C8C249 /* speaker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = speaker.cpp; sourceTree = "<group>"; };
@@ -625,6 +626,7 @@
 		9A2818F525242488009FA9CB = {
 			isa = PBXGroup;
 			children = (
+				9A919E732CF2A0A500272FF2 /* aqua.xcodeproj */,
 				9A281A32252428C3009FA9CB /* apex.xcodeproj */,
 				9A28192625242523009FA9CB /* aqua */,
 				9A2818FF25242488009FA9CB /* Products */,
@@ -871,6 +873,11 @@
 				9A97C7BF28236AFA00755A0A /* idpool.cpp */,
 			);
 			path = constant;
+			sourceTree = "<group>";
+		};
+		9AA244302CF2AE42005F8E9B /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1209,7 +1216,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1610;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 				TargetAttributes = {
 					9A2818FD25242488009FA9CB = {
@@ -1232,6 +1239,10 @@
 				{
 					ProductGroup = 9A281A33252428C3009FA9CB /* Products */;
 					ProjectRef = 9A281A32252428C3009FA9CB /* apex.xcodeproj */;
+				},
+				{
+					ProductGroup = 9AA244302CF2AE42005F8E9B /* Products */;
+					ProjectRef = 9A919E732CF2A0A500272FF2 /* aqua.xcodeproj */;
 				},
 			);
 			projectRoot = "";

@@ -111,6 +111,17 @@ public:
       str.m_end = nullptr; 
    }
 
+   void _construct(const ::ansi_string & ansistr) { construct10(ansistr); }
+   void _construct(const ::wd16_string & wd16str) { construct10(wd16str); }
+   void _construct(const ::wd32_string & wd32str) { construct10(wd32str); }
+   void _construct(string_base && str)
+   {
+      this->m_begin = str.m_begin;
+      this->m_end = str.m_end;
+      this->m_erange = str.m_erange;
+      str.m_begin = nullptr;
+      str.m_end = nullptr;
+   }
 
 //   template<typed_range<::ansi_character *> RANGE>
 //   string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str); }
@@ -2191,6 +2202,19 @@ string_base<ITERATOR_TYPE> const_string_range<ITERATOR_TYPE>::single_quoted(bool
    }
 
    return this->surrounded("\'");
+
+}
+
+
+template<typename ITERATOR_TYPE>
+typename const_string_range<ITERATOR_TYPE>::STRING_ARRAY const_string_range<ITERATOR_TYPE>::explode(const SCOPED_STRING & scopedstrSeparator, bool bAddEmpty) const
+{
+
+   STRING_ARRAY stra;
+
+   stra.explode(scopedstrSeparator, *this, bAddEmpty);
+
+   return stra;
 
 }
 

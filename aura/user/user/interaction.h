@@ -40,6 +40,22 @@ namespace user
    };
 
 
+#define for_user_interaction_children(puserinteraction, puserinteractionParent) \
+   for ( \
+   auto puserinteraction = (puserinteractionParent)->first_child(); \
+   ::is_set(puserinteraction); \
+   puserinteraction = (puserinteractionParent)->next_sibling(puserinteraction) \
+      )
+
+
+#define rear_for_user_interaction_children(puserinteraction, puserinteractionParent) \
+   for ( \
+   auto puserinteraction = (puserinteractionParent)->last_child(); \
+   ::is_set(puserinteraction); \
+   puserinteraction = (puserinteractionParent)->previous_sibling(puserinteraction) \
+      )
+
+
    class CLASS_DECL_AURA interaction :
       virtual public ::user::interaction_base,
       virtual public ::user::drawable,
@@ -1110,6 +1126,9 @@ namespace user
       ::user::element * previous_user_element() override;
 
 
+      virtual ::particle * children_synchronization();
+
+
       virtual ::user::interaction* first_child() override;
       virtual ::user::interaction* last_child() override;
       virtual ::user::interaction* last_sibling() override;
@@ -1530,7 +1549,7 @@ namespace user
 
 #ifdef LINUX
 
-      lresult send_x11_event(void* pevent) override; // XEvent *
+      lresult send_x11_event(void* phappening) override; // XEvent *
 
 #endif
 
@@ -1550,8 +1569,8 @@ namespace user
 
       virtual void call_and_set_timer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer = nullptr);
       virtual void set_timer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void* pdata = nullptr);
-      virtual void SetTimer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void* pdata = nullptr) override;
-      virtual void KillTimer(uptr uEvent) override;
+      //virtual void SetTimer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void* pdata = nullptr) override;
+      //virtual void KillTimer(uptr uEvent) override;
 
 //      virtual void enable_window(bool bEnable = true) override;
 
@@ -1803,7 +1822,7 @@ namespace user
 
       //virtual void on_size_change_request(const ::int_rectangle & rectanglePrevious);
 
-      void _001OnTimer(::timer* ptimer) override;
+      //void on_timer(::timer* ptimer) override;
       void on_timer(::timer* ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_character);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
@@ -2237,7 +2256,7 @@ namespace user
 
       virtual void hide() override;
 
-      virtual ::pointer_array < ::user::interaction > synchronized_get_children();
+      //virtual ::pointer_array < ::user::interaction > synchronized_get_children();
 
 
 
@@ -2274,6 +2293,8 @@ namespace user
       virtual bool get_child(::pointer<::user::interaction> & pinteraction);
       virtual bool rget_child(::pointer<::user::interaction> & pinteraction);
 
+
+      
 
 
       //template < typename CHILD >
@@ -2523,7 +2544,7 @@ namespace user
       //DECLARE_MESSAGE_HANDLER(on_message_set_focus);
       //DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
       //virtual void route(::topic * ptopic, ::context * pcontext) override;
-      //virtual void on_notify_control_event(control_event* pevent) override;
+      //virtual void on_notify_control_event(control_event* phappening) override;
       //void handle(::topic * ptopic, ::context * pcontext) override;
       //virtual bool simple_on_control_event(::message::message * pmessage, ::enum_topic etopic) override;
       //virtual void walk_pre_translate_tree(::message::message * pmessage,::pointer<::user::interaction>puiStop);

@@ -816,7 +816,7 @@ namespace axis
    //   //   return estatus;
 
    //   //}
-   //   auto estatus = __construct(m_puser);
+   //   auto estatus = __øconstruct(m_puser);
 
    //   if (!estatus || !m_puser)
    //   {

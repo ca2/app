@@ -100,7 +100,7 @@ namespace micro
    }
 
 
-   void still::on_mouse_move(::user::mouse * pmouse)
+   void still::fore_on_mouse_move(::user::mouse * pmouse)
    {
 
       if (m_bHyperlink)
@@ -133,7 +133,7 @@ namespace micro
          }
 
       }
-
+      
    }
 
 
@@ -161,7 +161,7 @@ namespace micro
       ::micro::elemental::resize_to_fit();
 
       //
-      //   auto pdevice = __create < ::nano::graphics::device >();
+      //   auto pdevice = __øcreate < ::nano::graphics::device >();
       //
       //   auto size = pdevice->get_text_extents(m_strText, acme_windowing_window()->m_pfont);
       //

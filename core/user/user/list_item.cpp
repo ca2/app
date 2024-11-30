@@ -453,7 +453,7 @@ namespace user
       if (!pbrushText)
       {
 
-         m_pitem->m_pmesh->m_plist->__construct(pbrushText);
+         m_pitem->m_pmesh->m_plist->__øconstruct(pbrushText);
 
       }
 
@@ -555,7 +555,7 @@ namespace user
          else if (m_strText.has_character())
          {
 
-            //auto pbrushText = __create < ::draw2d::brush > ();
+            //auto pbrushText = __øcreate < ::draw2d::brush > ();
 
             update_color(pgraphics);
 

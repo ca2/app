@@ -6,6 +6,7 @@
 #include "button.h"
 #include "acme/windowing/window.h"
 #include "acme/platform/system.h"
+#include "acme/user/user/mouse.h"
 #include "acme/windowing/display.h"
 #include "acme/windowing/windowing.h"
 
@@ -189,7 +190,10 @@ namespace micro
       //destroy();
 
       set_dialog_result(payload);
-
+      
+      pmouse->m_bRet = true;
+      
+      //return true;
    }
 
 

@@ -238,9 +238,9 @@ namespace user
       __UNREFERENCED_PARAMETER(pmessage);
    }
 
-   void form_mesh::_001OnTimer(::timer * ptimer)
+   void form_mesh::on_timer(::timer * ptimer)
    {
-      mesh::_001OnTimer(ptimer);
+      mesh::on_timer(ptimer);
    }
 
    void form_mesh::_001OnMessageNotify(::message::message * pmessage)
@@ -327,9 +327,7 @@ namespace user
 
       }
 
-      auto children = synchronized_get_children();
-
-      for(auto pinteraction : children)
+      for_user_interaction_children(pinteraction, this)
       {
 
          if(pinteraction->m_econtroltype == e_control_type_edit  || pinteraction->m_econtroltype == e_control_type_edit_plain_text)

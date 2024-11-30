@@ -184,7 +184,7 @@ namespace gpu
 
       }
 
-      //__construct(m_pbuffer);
+      //__øconstruct(m_pbuffer);
 
       //m_pbuffer->m_pimage = image()->create_image(size);
 

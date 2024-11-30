@@ -103,20 +103,16 @@ bool handler_manager::is_branch_current() const
 void handler_manager::handle_asynchronously(const ::procedure & procedure)
 {
 
-   {
+   _synchronous_lock synchronouslock(this->synchronization());
 
-      _synchronous_lock synchronouslock(this->synchronization());
+   m_procedurea.add(procedure);
 
-      m_procedurea.add(procedure);
-
-      m_pevTaskOnQueue->set_happening();
-
-   }
+   m_pevTaskOnQueue->set_happening();
 
    if (!m_pthread)
    {
 
-      application()->post([this]()
+      application()->send([this]()
          {
 
             m_pthread = fork([this]()

@@ -45,7 +45,7 @@ namespace user
       ~check_box() override;
 
       
-      ::particle_pointer clone() override;
+      ::subparticle_pointer clone() override;
 
 
       enum_element get_default_element() override;
@@ -78,7 +78,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       DECLARE_MESSAGE_HANDLER(on_message_key_up);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
-      virtual void _001OnTimer(::timer * ptimer) override;
+      virtual void on_timer(::timer * ptimer) override;
 
    };
 

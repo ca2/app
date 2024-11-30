@@ -51,12 +51,12 @@ namespace windowing
 
    //    }
 
-   //    auto pmenu = pparticle->__create < menu >();
+   //    auto pmenu = pparticle->__øcreate < menu >();
 
    //    for (int i = 0; i < straParent.get_count(); i++)
    //    {
 
-   //       auto pitem = pparticle->__create < ::menu::item >();
+   //       auto pitem = pparticle->__øcreate < ::menu::item >();
 
    //       pitem->m_strParent = straParent[i];
    //       pitem->m_strMenu = straMenu[i];

@@ -237,8 +237,10 @@ namespace user
       //   return nullptr;
 
       //}
+      
+      ::cast< ::user::interaction > puserinteraction = pwindow->m_pacmeuserinteraction;
 
-      return pwindow->m_puserinteraction;
+      return puserinteraction;
 
    }
 
@@ -272,8 +274,10 @@ namespace user
       //   return nullptr;
 
       //}
+      
+      ::cast< ::user::interaction > puserinteraction = pwindow->m_pacmeuserinteractionCapture;
 
-      return pwindow->m_puserinteractionMouseCapture;
+      return puserinteraction;
 
    }
 
@@ -729,9 +733,9 @@ namespace user
       if (!m_pshell)
       {
 
-         //estatus = __construct(m_pshell, __allocate ::windows::shell());
+         //estatus = __øconstruct(m_pshell, __allocate ::windows::shell());
          //estatus =
-         __construct(m_pshell);
+         __øconstruct(m_pshell);
 
          //if (!estatus)
          //{
@@ -1558,7 +1562,7 @@ namespace user
 
    //      desktop_environment()->windowing() = windowing();
 
-   //      //__construct(windowing());
+   //      //__øconstruct(windowing());
 
    //      //m_pdesktopenvironment->windowing() = windowing();
 
@@ -1633,7 +1637,7 @@ namespace user
    //
    //    //   system()->do_graphics_and_windowing_system_factory();
    //
-   //    //   __construct(windowing());
+   //    //   __øconstruct(windowing());
    //
    //    //   windowing()->initialize_windowing(this);
    //
@@ -1666,7 +1670,7 @@ namespace user
       if (!m_pdesktopenvironment)
       {
 
-         __construct(m_pdesktopenvironment);
+         __øconstruct(m_pdesktopenvironment);
 
 
       }

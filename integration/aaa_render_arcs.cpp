@@ -73,9 +73,9 @@ namespace app_integration
 
       pgraphics->text_out(rectangleBack.left() + 4, rectangleBack.top() + size.cy() + 8, str2);
 
-      auto ppen = __create < ::draw2d::pen >();
+      auto ppen = __øcreate < ::draw2d::pen >();
 
-      auto pbrush = __create < ::draw2d::brush >();
+      auto pbrush = __øcreate < ::draw2d::brush >();
 
       pbrush->create_null();
 

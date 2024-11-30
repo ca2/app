@@ -431,7 +431,7 @@ namespace user
 
       }
 
-      auto pbrushText = __create < ::draw2d::brush > ();
+      auto pbrushText = __øcreate < ::draw2d::brush > ();
 
       pgraphics->set(pbrushText);
 
@@ -687,7 +687,7 @@ namespace user
 
          pgraphics->set_text_color(crText);
 
-         auto ppen = __create < ::draw2d::pen > ();
+         auto ppen = __øcreate < ::draw2d::pen > ();
 
          ppen->m_color = crText;
 
@@ -960,7 +960,7 @@ namespace user
       rectangle.right() = x2;
       rectangle.bottom() = rectangle.top() + 5;
 
-      auto ppen = __create < ::draw2d::pen > ();
+      auto ppen = __øcreate < ::draw2d::pen > ();
 
       ppen->create_solid(1, colorExt1TL);
 

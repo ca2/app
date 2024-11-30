@@ -255,7 +255,7 @@ void user::init(){
 //
 //      //estatus = 
 //
-//      __construct(m_phtml);
+//      __øconstruct(m_phtml);
 //
 //      //if(!estatus)
 //      //{

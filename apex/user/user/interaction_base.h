@@ -34,7 +34,7 @@ namespace user
       void destroy() override;
 
 
-      void _001OnTimer(::timer * ptimer) override;
+      void on_timer(::timer * ptimer) override;
 
 
       void create_message_queue(const ::string & lpszName) override;
@@ -271,7 +271,7 @@ namespace user
 
 #ifdef LINUX
 
-      virtual lresult send_x11_event(void * pevent); // pevent <= XEvent *
+      virtual lresult send_x11_event(void * phappening); // phappening <= XEvent *
 
 #endif
 
@@ -290,8 +290,8 @@ namespace user
       //virtual void SetWindowDisplayChanged();
 
       // timer Functions
-      void SetTimer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer, bool bPeriodic = true, void* pdata = nullptr) override;
-      void KillTimer(uptr uEvent)override;
+      //void SetTimer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer, bool bPeriodic = true, void* pdata = nullptr) override;
+      //void KillTimer(uptr uEvent)override;
 
 
 
@@ -492,7 +492,7 @@ namespace user
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
-      //virtual void on_notify_control_event(control_event* pevent);
+      //virtual void on_notify_control_event(control_event* phappening);
 
 
 
@@ -617,7 +617,7 @@ namespace user
       bool _001CanEnterScreenSaver() override;
 
 
-      //virtual void _001OnTimer(::timer * ptimer);
+      //virtual void on_timer(::timer * ptimer);
 
       void on_reset_focus_start_tick() override;
 
@@ -671,7 +671,7 @@ namespace user
       //void InputConnectionSetSelection(character_count iStart, character_count iEnd) override;
       //void InputConnectionFinishComposingText() override;
 
-      //virtual void _001OnTimer(::timer * ptimer);
+      //virtual void on_timer(::timer * ptimer);
 
       //virtual bool enable_window(bool bEnable );
 

@@ -17,7 +17,7 @@
 #include "acme/handler/request.h"
 #include "acme/nano/nano.h"
 #include "acme/user/micro/user.h"
-#include "apex/platform/application_menu.h"
+#include "acme/platform/application_menu.h"
 #include "aura/graphics/image/image.h"
 #include "aura/message/user.h"
 #include "aura/user/menu/track_popup.h"
@@ -793,7 +793,7 @@ namespace base
    //   if (m_pfontlistSingleColumn.is_null())
    //   {
 
-   //      __construct(m_pfontlistSingleColumn, __create_new < ::write_text::font_list > ());
+   //      __øconstruct(m_pfontlistSingleColumn, __create_new < ::write_text::font_list > ());
 
    //      m_pfontlistSingleColumn->m_etype = ::write_text::font_list::type_single_column;
 
@@ -1201,7 +1201,7 @@ namespace base
 
       }
 
-      ::pointer<::user::menu>pmenu = pparticleContext->__create <  ::user::menu  >();
+      ::pointer<::user::menu>pmenu = pparticleContext->__øcreate <  ::user::menu  >();
 
       if (!pmenu->load_xml_menu(strXml))
       {
@@ -1272,7 +1272,7 @@ namespace base
    //   ::pointer<::user::menu> user::track_popup_menu(::user::interaction * pinteraction, ::application_menu * papplicationmenu, int iFlags, const ::int_point & point, const ::int_size & sizeMinimum, ::channel * pchannelNotify)
    //   {
    //
-   //      ::pointer<::user::menu> pmenu = __create <  ::user::menu  >();
+   //      ::pointer<::user::menu> pmenu = __øcreate <  ::user::menu  >();
    //
    //      auto pmenuitem = menu_item_from_application_menu(papplicationmenu, pmenu);
    //
@@ -1301,7 +1301,7 @@ namespace base
    //         
    //      }
    //      
-   //      ::pointer<::user::menu>pmenu = pinteraction->__create <  ::user::menu  >();
+   //      ::pointer<::user::menu>pmenu = pinteraction->__øcreate <  ::user::menu  >();
    //
    //      if (!pmenu->load_xml_menu(strXml))
    //      {
@@ -1354,7 +1354,7 @@ namespace base
 
       ::user::style_pointer pstyle;
 
-      pexperience->m_pfactory->__construct(papp, pstyle);
+      pexperience->m_pfactory->__øconstruct(papp, pstyle);
 
       if (!pstyle)
       {

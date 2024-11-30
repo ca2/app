@@ -316,7 +316,7 @@ namespace hi5
       }
 
 
-      void authorization::handle(::topic * ptopic, ::context *pcontext)   
+      void authorization::handle(::topic * ptopic, ::context * pcontext)   
       {
 
          if(ptopic->m_atom == ::id_click || ptopic->m_atom == ::id_enter_key)

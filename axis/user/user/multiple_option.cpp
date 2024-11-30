@@ -68,7 +68,7 @@ namespace user
    }
 
 
-   ::particle_pointer multiple_option::clone()
+   ::subparticle_pointer multiple_option::clone()
    {
 
       auto pmultipleoptionClone = m_papplication->__create_new < multiple_option >();

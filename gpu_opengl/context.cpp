@@ -363,7 +363,7 @@ namespace opengl
 
    //   }
 
-   //   ::e_status estatus = __construct(m_pbuffer);
+   //   ::e_status estatus = __øconstruct(m_pbuffer);
 
    //   if (!estatus)
    //   {

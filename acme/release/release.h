@@ -1,11 +1,11 @@
+// Created by camilo on 2024-11-18 20:43 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
-#define CA2_BASIS 1
-#define CA2_STAGE 10
+CLASS_DECL_ACME::std::strong_ordering compare_release(const ::string_array & straA, const ::string_array & straB);
 
 
-#include "release.config.h"
+CLASS_DECL_ACME::std::strong_ordering compare_release(const ::scoped_string & scopedstrA, const ::scoped_string & scopedstrB);
 
 
 

@@ -217,6 +217,8 @@ list(APPEND apex_source
    networking/application/application_socket.h
    networking/application/application_incoming_socket.cpp
    networking/application/application_incoming_socket.h
+   networking/application/application_incoming_socket_thread.cpp
+   networking/application/application_incoming_socket_thread.h
    #networking/http/_.cpp
    networking/http/_.h
    networking/http/context.cpp
@@ -482,10 +484,10 @@ list(APPEND apex_source
    #platform/application_exit.h
    platform/application_heap.h
    platform/application_impl.h
-   platform/application_menu.cpp
-   platform/application_menu.h
-   platform/application_menu_command.cpp
-   platform/application_menu_command.h
+   #platform/application_menu.cpp
+   #platform/application_menu.h
+   #platform/application_menu_command.cpp
+   #platform/application_menu_command.h
    platform/application_signal_details.h
    platform/assert_running_task.cpp
    platform/assert_running_task.h
@@ -578,8 +580,8 @@ list(APPEND apex_source
    #  user/menu/menu.h
    # user/menu/command.cpp
    #user/menu/command.h
-   user/menu/menu.cpp
-   user/menu/menu.h
+   #user/menu/menu.cpp
+   #user/menu/menu.h
    user/user/_.h
    #user/_const_key.h
    #user/command.cpp

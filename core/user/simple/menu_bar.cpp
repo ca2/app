@@ -863,9 +863,9 @@ void simple_menu_bar::_001Hover()
    _001Hover(point);
 }*/
 
-void simple_menu_bar::_001OnTimer(::timer * ptimer)
+void simple_menu_bar::on_timer(::timer * ptimer)
 {
-   simple_toolbar::_001OnTimer(ptimer);
+   simple_toolbar::on_timer(ptimer);
 //   if (ptimer->m_uEvent == TIMER_HOVER)
 //   {
 //      _001Hover();

@@ -51,10 +51,10 @@ namespace filehandler
    }
 
 
-   void impact::_001OnTimer(::timer * ptimer)
+   void impact::on_timer(::timer * ptimer)
    {
 
-      form_impact::_001OnTimer(ptimer);;
+      form_impact::on_timer(ptimer);;
 
       if(ptimer->m_uEvent == 8888)
       {
@@ -153,7 +153,7 @@ namespace filehandler
       }
       pgraphics->draw_inset_3d_rectangle(m_rectangleItem, cr1, cr2);
       color32 |= 0xff000000;
-      auto pbrushText = __create < ::draw2d::brush > ();
+      auto pbrushText = __øcreate < ::draw2d::brush > ();
       pbrushText->create_solid(color32);
       //pgraphics->set_color(color32);
       pgraphics->draw_text(m_strApp, m_rectangleName, e_align_bottom_left);

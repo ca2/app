@@ -36,7 +36,7 @@ namespace acme
       virtual void delete_all_timers();
 
       void on_timer(::timer * ptimer) override;
-      virtual void _001OnTimer(::timer * ptimer);
+      virtual void call_on_timer(::timer * ptimer) override;
 
       bool e_timer_is_ok() override;
 

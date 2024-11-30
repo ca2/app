@@ -106,11 +106,11 @@ namespace userfs
    }
 
 
-   void list::_001OnTimer(::timer * ptimer)
+   void list::on_timer(::timer * ptimer)
    {
       //      __UNREFERENCED_PARAMETER(pmessage);
 
-      ::user::form_list_impact::_001OnTimer(ptimer);
+      ::user::form_list_impact::on_timer(ptimer);
 
    }
 

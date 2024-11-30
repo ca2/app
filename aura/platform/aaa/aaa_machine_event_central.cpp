@@ -69,11 +69,11 @@ void     machine_event_central::run()
    {
 
       {
-         synchronous_lock lockMachineEvent(&m_machineevent.m_pmutex);
+         synchronous_lock lockMachineEvent(&m_machinehappening.m_pmutex);
 
          //machine_event_data data;
 
-         //m_machineevent.read(&data);
+         //m_machinehappening.read(&data);
 
          //::auraacmesystem()->process_machine_event_data(&data);
       }
@@ -92,11 +92,11 @@ void     machine_event_central::run()
 bool machine_event_central::is_close_application()
 {
 
-   synchronous_lock lockMachineEvent(&m_machineevent.m_pmutex);
+   synchronous_lock lockMachineEvent(&m_machinehappening.m_pmutex);
 
    machine_event_data data;
 
-   m_machineevent.read(&data);
+   m_machinehappening.read(&data);
 
    ::auraacmesystem()->process_machine_event_data(&data);
 
@@ -108,11 +108,11 @@ bool machine_event_central::is_close_application()
 //void machine_event_central::command(::pointer<::xml::node>pnode)
 //{
 //
-//   synchronous_lock lockMachineEvent(&m_machineevent.m_pmutex);
+//   synchronous_lock lockMachineEvent(&m_machinehappening.m_pmutex);
 //
 //   machine_event_data data;
 //
-//   m_machineevent.read(&data);
+//   m_machinehappening.read(&data);
 //
 //   throw ::exception(todo("xml->network_payload"));
 //
@@ -132,7 +132,7 @@ bool machine_event_central::is_close_application()
 //
 //   //data.m_blobCommand = doc.get_xml();
 //
-//   //m_machineevent.write(&data);
+//   //m_machinehappening.write(&data);
 //
 //   sleep(500_ms);
 //

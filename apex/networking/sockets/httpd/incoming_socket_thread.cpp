@@ -59,7 +59,17 @@ namespace httpd
    ::pointer <::sockets::socket_handler > incoming_socket_thread::create_socket_handler()
    {
 
-      return __create< ::sockets::socket_handler >();
+      return __øcreate< ::sockets::socket_handler >();
+
+   }
+
+
+   ::pointer < ::httpd::incoming_socket > incoming_socket_thread::create_incoming_socket()
+   {
+
+      auto pincomingsocket = __id_create(m_typeIncomingSocket);
+
+      return pincomingsocket;
 
    }
 

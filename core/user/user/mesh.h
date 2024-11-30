@@ -521,7 +521,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnMeshImpactAutoArrange);
 
 
-      virtual void _001OnTimer(::timer * ptimer) override;
+      virtual void on_timer(::timer * ptimer) override;
 
 
       virtual void  enable_hover_select(bool bEnable = true);

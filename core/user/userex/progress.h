@@ -86,7 +86,7 @@ namespace userex
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void _001OnTimer(::timer* ptimer) override;
+      virtual void on_timer(::timer* ptimer) override;
 
    };
 

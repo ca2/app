@@ -108,10 +108,10 @@ namespace userex
    }
 
 
-   void top_edit_impact::_001OnTimer(::timer * ptimer)
+   void top_edit_impact::on_timer(::timer * ptimer)
    {
 
-      ::user::show < ::user::plain_edit >::_001OnTimer(ptimer);
+      ::user::show < ::user::plain_edit >::on_timer(ptimer);
 
       if (ptimer->m_etimer == 5544)
       {

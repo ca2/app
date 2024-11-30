@@ -45,6 +45,7 @@
 #include "acme/user/user/mouse.h"
 #include "acme/user/user/tool.h"
 #include "acme/windowing/window.h"
+#include "acme/windowing/windowing.h"
 
 
 namespace micro
@@ -77,6 +78,24 @@ namespace micro
 
 
    }
+
+
+::shift_int main_window::client_to_host()
+{
+   
+   if (system()->acme_windowing()->get_application_host_window())
+   {
+      return ::micro::elemental::client_to_host();
+   }
+   else
+   {
+      return {};
+
+   }
+   
+
+}
+
 
 
    void main_window::on_before_create_window(acme::windowing::window* pacmewindowingwindow)
@@ -234,7 +253,7 @@ namespace micro
    //void main_window::resize_to_fit()
    //{
 
-   //   auto pdevice = __create < ::nano::graphics::device >();
+   //   auto pdevice = __øcreate < ::nano::graphics::device >();
 
    //   auto size = pdevice->get_text_extents(m_strText, micro_theme()->m_pfont);
 
@@ -596,16 +615,26 @@ namespace micro
 
    void main_window::show()
    {
-
-      acme_windowing_window()->show_window();
+      
+      if(!m_pacmeuserinteractionParent)
+      {
+         
+         acme_windowing_window()->show_window();
+         
+      }
 
    }
 
 
    void main_window::hide()
    {
-
-      acme_windowing_window()->hide_window();
+      
+      if(!m_pacmeuserinteractionParent)
+      {
+         
+         acme_windowing_window()->hide_window();
+         
+      }
 
    }
 
@@ -1504,6 +1533,8 @@ namespace micro
    void main_window::redraw()
    {
 
+      ::acme::user::interaction::redraw();
+
 
    }
 
@@ -1611,7 +1642,7 @@ namespace micro
    }
 
 
-   void main_window::handle(::topic* ptopic, ::context* pcontext)
+   void main_window::handle(::topic * ptopic, ::context * pcontext)
    {
 
       if (ptopic->m_atom == id_operating_system_user_color_change)
@@ -1695,7 +1726,7 @@ namespace micro
 
          }
 
-         __construct(m_pacmewindowingwindow);
+         __øconstruct(m_pacmewindowingwindow);
 
       }
 

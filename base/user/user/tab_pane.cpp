@@ -56,9 +56,9 @@ namespace user
 
       m_ptab = ptab;
 
-      __construct(m_pbrushFill);
-      __construct(m_pbrushFillSel);
-      __construct(m_pbrushFillHover);
+      __øconstruct(m_pbrushFill);
+      __øconstruct(m_pbrushFillSel);
+      __øconstruct(m_pbrushFillHover);
 
       m_pitemClose = __allocate ::item(e_element_close_tab_button);
 

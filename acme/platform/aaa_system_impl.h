@@ -596,7 +596,7 @@ namespace acme
 
       virtual void system_id_update(huge_integer iUpdate, huge_integer iPayload);
       
-      void handle(::topic* ptopic, ::context* pcontext) override;
+      void handle(::topic * ptopic, ::context * pcontext) override;
 
       //virtual void add_handler(::particle * pmatter, bool bPriority = false);
 

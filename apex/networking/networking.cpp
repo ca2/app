@@ -163,7 +163,7 @@ namespace networking
    //::sockets::listen_socket * networking::new_listen_socket(const ::type_atom& type)
    //{
 
-   //   auto plistensocket = __create< ::sockets::listen_socket >();
+   //   auto plistensocket = __øcreate< ::sockets::listen_socket >();
 
    //   plistensocket->initialize_listen_socket(type);
 
@@ -192,7 +192,7 @@ namespace networking
    bool networking::has_ip4_internet()
    {
 
-      return node()->m_papexnode->has_ip4_internet();
+      return node()->has_ip4_internet();
 
    }
 
@@ -200,7 +200,7 @@ namespace networking
    bool networking::has_ip6_internet()
    {
 
-      return node()->m_papexnode->has_ip6_internet();
+      return node()->has_ip6_internet();
 
    }
 

@@ -99,7 +99,8 @@ namespace micro
 
       //void on_draw(::micro::graphics::device * pmicrodevice) override;
 
-      void draw(::nano::graphics::device * pnanodevice);
+      void draw_background(::nano::graphics::device * pnanodevice);
+      void draw_foreground(::nano::graphics::device * pnanodevice);
 
       virtual void on_char(int iChar);
 
@@ -136,7 +137,7 @@ namespace micro
       virtual ::micro::elemental * get_child_by_id(const ::atom & atom);
 
       ::int_rectangle get_client_rectangle() override;
-
+      void set_rectangle(const ::int_rectangle & rectangle) override;
 
       virtual void on_draw(::nano::graphics::device * pnanodevice);
       //virtual void on_char(int iChar);
@@ -328,14 +329,19 @@ namespace micro
 
       void display_temporary_file_with_text(const ::string & str) override;
 
-      virtual void on_mouse_move(::user::mouse * pmouse);
-      virtual void on_left_button_down(::user::mouse * pmouse);
-      virtual void on_left_button_up(::user::mouse * pmouse);
+      virtual void back_on_mouse_move(::user::mouse * pmouse);
+      virtual void back_on_left_button_down(::user::mouse * pmouse);
+      virtual void back_on_left_button_up(::user::mouse * pmouse);
+      virtual void fore_on_mouse_move(::user::mouse * pmouse);
+      virtual void fore_on_left_button_down(::user::mouse * pmouse);
+      virtual void fore_on_left_button_up(::user::mouse * pmouse);
       virtual void on_click(const ::payload & payload, ::user::mouse * pmouse);
-      virtual void on_right_button_down(::user::mouse * pmouse);
-      virtual void on_right_button_up(::user::mouse * pmouse);
+      virtual void back_on_right_button_down(::user::mouse * pmouse);
+      virtual void back_on_right_button_up(::user::mouse * pmouse);
+      virtual void fore_on_right_button_down(::user::mouse * pmouse);
+      virtual void fore_on_right_button_up(::user::mouse * pmouse);
       virtual void on_right_click(const ::payload & payload, ::user::mouse * pmouse);
-
+      virtual void on_context_menu(::user::mouse * pmouse);
 
       //virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
 

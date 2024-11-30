@@ -38,7 +38,7 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      void _001OnTimer(::timer * ptimer) override;
+      void on_timer(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);

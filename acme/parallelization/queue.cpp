@@ -62,18 +62,18 @@ namespace parallelization
       }
 
 
-      auto pevent = __create_new < manual_reset_happening >();
+      auto phappening = __create_new < manual_reset_happening >();
 
-      async([procedure, pevent]()
+      async([procedure, phappening]()
          {
 
             procedure();
 
-            pevent->set_happening();
+            phappening->set_happening();
 
          });
 
-      pevent->_wait(timeTimeout);
+      phappening->_wait(timeTimeout);
 
    }
 

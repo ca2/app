@@ -94,12 +94,21 @@ namespace acme
       //}
 
 
+      ::oswindow window::oswindow()
+      {
+
+
+         return nullptr;
+
+      }
+
+
       void window::on_initialize_particle()
       {
 
          ::user::element::on_initialize_particle();
 
-         //__construct(m_pacmeuserinteraction);
+         //__øconstruct(m_pacmeuserinteraction);
 
          //m_pacmeuserinteraction->m_pacmeuserinteraction = this;
 
@@ -298,10 +307,99 @@ namespace acme
 
       }
 
+   
+   void window::exit_iconify()
+   {
+      
+      
+   }
+   
+   
+   void window::full_screen(const ::int_rectangle & rect)
+   {
+      
+      
+   }
+   
+   
+   void window::exit_full_screen()
+   {
+      
+      
+   }
+   
+   
+   void window::exit_zoomed()
+   {
+      
+      
+   }
+ 
+   
+   void window::set_parent(::acme::windowing::window* pwindowNewParent)
+   {
+      
+   }
+   //virtual ::e_status set_parent(::windowing::window * pwindowNewParent) override;
+   //virtual long get_state();
+   bool window::is_iconic()
+   {
+      
+      return false;
+      
+   }
+   //virtual bool is_window_visible() override;
+//   bool window::_configure_window_unlocked(const class ::zorder & zorder, const ::e_activation & eactivation, bool bNoZorder, ::e_display edisplay)
+//   {
+//      
+//      return true;
+//   
+//   }
+   //virtual iptr get_window_long_ptr(int nIndex);
+   //virtual iptr set_window_long_ptr(int nIndex, iptr l);
+   bool window::client_to_screen(::int_point* ppoint)
+   {
+      
+      
+      return true;
+      
+   }
+   
+   bool window::screen_to_client(::int_point* ppoint)
+   {
+      
+      return true;
+      
+   
+   }
+   
+   
+   //virtual bool set_window_pos(class::zorder zorder, int x, int y, int cx, int cy,unsigned int nFlags);
+   //virtual bool _set_window_pos(class::zorder zorder, int x, int y, int cx, int cy,unsigned int nFlags);
+   
+   
+   bool window::is_destroying()
+   {
+      
+      return false;
+      
+   }
+   
+   
+   //virtual bool bamf_set_icon();
+   
+   
+   //virtual bool set_icon(::image::image* pimage);
+   
+   //virtual int x_change_property(Atom property, Atom type, int format, int mode, const unsigned char * data, int nelements);
+   
+   void window::set_mouse_cursor(::windowing::cursor* pcursor)
+   {
+      
+      
+   }
 
-
-
-
+   
       //bool window::get_dark_mode()
       //{
 
@@ -584,6 +682,38 @@ namespace acme
          return false;
 
       }
+   
+   
+   
+   void window::set_foreground_window()
+   {
+      
+      
+   }
+   
+   
+    bool window::has_keyboard_focus()
+   {
+       
+       return false;
+       
+   
+    }
+
+    bool window::is_window()
+   {
+       return _is_window();
+       
+    
+    }
+   //virtual int_bool is_window( windowing_android_WINDOW_MEMBER );
+   
+   
+   void window::set_window_text(const ::scoped_string & scopedstrString)
+   {
+      
+
+   }
 
 
       bool window::has_capture()
@@ -681,6 +811,7 @@ namespace acme
       //   return m_pacmeuserinteraction->m_payloadResult;
 
       //}
+
 
 
 

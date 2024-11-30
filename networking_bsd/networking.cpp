@@ -163,7 +163,7 @@ namespace networking_bsd
 
       m_psslinit = __create_new<::sockets_bsd::SSLInitializer>();
 
-      __construct(m_pmutexCert);
+      __øconstruct(m_pmutexCert);
 
       //estatus = __construct_new(m_pnet);
 
@@ -199,7 +199,7 @@ namespace networking_bsd
    //      {
    //
    //#ifdef WINDOWS
-   //         __construct(m_pportforward);
+   //         __øconstruct(m_pportforward);
    //#endif
    //
    //      }
@@ -3221,7 +3221,7 @@ namespace networking_bsd
 ////      {
 ////
 ////#ifdef WINDOWS
-////         __construct(m_pportforward);
+////         __øconstruct(m_pportforward);
 ////#endif
 ////
 ////      }

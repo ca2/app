@@ -95,7 +95,7 @@
 //{
 //   ::user::form::install_message_routing(pchannel);
 //   MESSAGE_LINK(e_message_create, pchannel, this, &menu_impact::on_message_create);
-////   //MESSAGE_LINK(e_message_timer, pchannel, this, &menu_impact::_001OnTimer);
+////   //MESSAGE_LINK(e_message_timer, pchannel, this, &menu_impact::on_timer);
 //   //MESSAGE_LINK(WM_USER + 123, pchannel, this, &menu_impact::_001OnUser123);
 //
 //}
@@ -107,10 +107,10 @@
 //}
 //
 //
-//void menu_impact::_001OnTimer(::timer * ptimer)
+//void menu_impact::on_timer(::timer * ptimer)
 //{
 //
-//   ::user::form_impact::_001OnTimer(ptimer);;
+//   ::user::form_impact::on_timer(ptimer);;
 //
 //   if(m_pcallback != nullptr)
 //   {

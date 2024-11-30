@@ -17,7 +17,7 @@
 #include "apex/platform/node.h"
 #include "apex/platform/savings.h"
 #include "apex/platform/system.h"
-#include "apex/platform/application_menu.h"
+#include "acme/platform/application_menu.h"
 #include "aqua/xml/document.h"
 #include "aura/user/user/interaction_array.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -1936,7 +1936,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 
       auto edesktop = ::windowing::get_eoperating_ambient();
 
-      if (edesktop == ::windowing::e_desktop_unity)
+      if (edesktop == ::windowing::e_operating_ambient_unity)
       {
 
          display(e_display_none);
@@ -3132,7 +3132,7 @@ void simple_frame_window::defer_create_notification_icon()
 
             //auto estatus = 
 
-            __construct(m_piconNotify);
+            __øconstruct(m_piconNotify);
 
             if(m_piconNotify)
             {
@@ -3762,9 +3762,9 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    //}
 
-   auto children = synchronized_get_children();
+   //auto children = synchronized_get_children();
 
-   if (children.has_element())
+   //if (children.has_element())
    {
 
       ::draw2d::save_context savecontext(pgraphics);
@@ -3776,12 +3776,12 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
          try
          {
 
-            for (auto & pinteraction : children)
+            for_user_interaction_children(puserinteraction, this)
             {
 
                //synchronouslock.unlock();
 
-               ::pointer < ::experience::control_box > pcontrolbox = pinteraction;
+               ::pointer < ::experience::control_box > pcontrolbox = puserinteraction;
 
                if (!pcontrolbox)
                {
@@ -3790,14 +3790,14 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
                      auto timeStart = ::time::now();
 
-                     pinteraction->_000CallOnDraw(pgraphics);
+                     puserinteraction->_000CallOnDraw(pgraphics);
 
                      auto timeEllapsed = timeStart.elapsed();
 
                      if (timeEllapsed > 50_ms)
                      {
 
-                        string strType = ::type(pinteraction).name();
+                        string strType = ::type(puserinteraction).name();
 
                         //if(strType.contains("pane_impact"))
                         //{
@@ -3876,15 +3876,16 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
          //if (puserinteractionpointeraChild)
          {
 
-            auto children = synchronized_get_children();
+            //auto children = synchronized_get_children();
 
-            for (auto & pinteraction : children)
+            //for (auto & pinteraction : children)
+            for_user_interaction_children(puserinteraction, this)
             {
 
-               if (base_class < ::experience::control_box > ::bases(pinteraction))
+               if (base_class < ::experience::control_box > ::bases(puserinteraction))
                {
 
-                  auto strWindowText = pinteraction->get_window_text();
+                  auto strWindowText = puserinteraction->get_window_text();
 
                   //pinteraction->get_window_text(str);
 
@@ -3907,7 +3908,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
 #endif
 
-                        pinteraction->_000CallOnDraw(pgraphics);
+                        puserinteraction->_000CallOnDraw(pgraphics);
 
 #ifdef VERBOSE_LOG
 
@@ -4285,12 +4286,12 @@ void simple_frame_window::prepare_frame(::user::document * pdocument, bool bMake
 }
 
 
-void simple_frame_window::_001OnTimer(::timer * ptimer)
+void simple_frame_window::on_timer(::timer * ptimer)
 {
 
-   ::user::frame_window::_001OnTimer(ptimer);
+   ::user::frame_window::on_timer(ptimer);
 
-   ::experience::frame_window::_001OnTimer(ptimer);
+   ::experience::frame_window::on_timer(ptimer);
 
 }
 

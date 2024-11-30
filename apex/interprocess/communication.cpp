@@ -76,7 +76,7 @@ namespace interprocess
 
       //call_procedures(CREATE_ROUTINE);
 
-      /*estatus = */ __construct(m_ptarget);
+      /*estatus = */ __øconstruct(m_ptarget);
 
       //if (!estatus)
       //{
@@ -326,7 +326,7 @@ namespace interprocess
       if (pmutex.is_null())
       {
 
-         __construct(pmutex);
+         __øconstruct(pmutex);
 
       }
 
@@ -350,7 +350,7 @@ namespace interprocess
 
       }
 
-      auto plauncher = __create < ::apex::app_launcher>();
+      auto plauncher = __øcreate < ::apex::app_launcher>();
 
       plauncher->initialize_app_launcher(this, node()->process_platform_name(), strApp);
 
@@ -408,7 +408,7 @@ namespace interprocess
       if (m_callermap[strKey].is_null())
       {
 
-         m_callermap[strKey] = __create < ::interprocess::caller>();
+         m_callermap[strKey] = __øcreate < ::interprocess::caller>();
 
       }
 
@@ -425,7 +425,7 @@ namespace interprocess
       if (m_callermap[strKey].is_null())
       {
 
-         m_callermap[strKey] = __create<::interprocess::caller>();
+         m_callermap[strKey] = __øcreate<::interprocess::caller>();
 
       }
 
@@ -449,7 +449,7 @@ namespace interprocess
       if (m_callermap[strKey].is_null())
       {
 
-         m_callermap[strKey] = __create < ::interprocess::caller>();
+         m_callermap[strKey] = __øcreate < ::interprocess::caller>();
 
       }
 

@@ -80,7 +80,7 @@ namespace platform
    ::string http::get(const ::url::url & url, ::property_set & set, const class ::time & timeTimeout)
    {
 
-      auto pget = __create < ::nano::http::get >();
+      auto pget = __øcreate < ::nano::http::get >();
 
       pget->m_url = url;
 
@@ -138,11 +138,13 @@ namespace platform
 
       auto pfile = file_system()->get_writer(payloadFile);
 
-      auto pget = __create_new < ::nano::http::get >();
+      auto pget = __øcreate < ::nano::http::get >();
 
       pget->m_url = url;
 
       pget->get_property_set() = set;
+
+      pget->want_memory_response();
 
       pget->m_timeSyncTimeout =  timeTimeout;
 

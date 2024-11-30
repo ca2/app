@@ -49,7 +49,6 @@ namespace windowing
       //::pointer<::user::user>                   m_puser;
 
       // Fallback implementation of a Main thread mouse capture
-      ::pointer<::windowing::window>            m_pwindowMouseCapture;
 
       windowing();
       ~windowing() override;
@@ -102,13 +101,13 @@ namespace windowing
       //virtual void set_cursor_position(const ::int_point & pointCursor);
       virtual ::windowing::display * display();
 
-      virtual ::windowing::window * window(oswindow oswindow);
+      virtual ::acme::windowing::window * window(oswindow oswindow) override;
 
-      virtual void defer_initialize_host_window(const ::int_rectangle* lpcrect);
+      void defer_initialize_host_window(const ::int_rectangle* lpcrect) override;
 
       virtual bool is_sandboxed();
       
-      virtual ::windowing::window * get_application_host_window();
+      virtual ::acme::windowing::window * get_application_host_window() override;
 
       virtual ::windowing::window * get_desktop_window();
 
@@ -118,20 +117,20 @@ namespace windowing
 
       virtual void clear_active_window(::thread * pthread, ::windowing::window * pwindow);
 
-      virtual ::acme::windowing::window * get_keyboard_focus(::thread * pthread);
+      virtual ::acme::windowing::window * get_keyboard_focus(::thread * pthread) override;
 
       virtual ::int_point try_absolute_mouse_position(::user::interaction* puserinteraction, const ::int_point& point);
-      virtual ::windowing::window * get_mouse_capture(::thread * pthread);
-      virtual void set_mouse_capture(::thread * pthread, ::windowing::window * pwindow);
-      virtual bool has_mouse_capture(::thread * pthread, ::windowing::window * pwindow);
-      virtual bool is_mouse_captured(::thread * pthread, ::windowing::window * pwindow);
-      virtual void release_mouse_capture(::thread * pthread, ::windowing::window * pwindow);
+      virtual ::acme::windowing::window * get_mouse_capture(::thread * pthread) override;
+      virtual void set_mouse_capture(::thread * pthread, ::acme::windowing::window * pwindow);
+      virtual bool has_mouse_capture(::thread * pthread, ::acme::windowing::window * pwindow);
+      virtual bool is_mouse_captured(::thread * pthread, ::acme::windowing::window * pwindow);
+      virtual void release_mouse_capture(::thread * pthread, ::acme::windowing::window * pwindow);
 
-      virtual bool defer_release_mouse_capture(::thread * pthread, ::windowing::window * pwindow);
+       bool defer_release_mouse_capture(::thread * pthread, ::acme::windowing::window * pwindow) override;
 
       virtual void set_mouse_cursor2(::windowing::cursor * pcursor);
 
-      virtual void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr);
+      virtual void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr) override;
 
       void term1() override;
 
@@ -152,7 +151,7 @@ namespace windowing
 
       virtual void handle_just_hooks();
       virtual void defer_handle_just_hooks();
-      virtual bool __hook_process_event(class display * pdisplay, void * pevent, void * cookie);
+      virtual bool __hook_process_event(class display * pdisplay, void * phappening, void * cookie);
 
 
 
@@ -170,7 +169,7 @@ namespace windowing
       virtual ::pointer < ::windowing::window > new_message_window();
 
       
-      virtual ::pointer < ::windowing::window > get_new_window();
+      ::pointer < ::acme::windowing::window > get_new_window()  override;
       
 
       virtual ::pointer < ::windowing::window > new_window();
@@ -209,7 +208,7 @@ namespace windowing
       // MSG * for windows
       // XEvent * for X11 (Gnome)
       // xcb_event * for xcb (KDE)
-      virtual void _message_handler(void * p);
+      void _message_handler(void * p) override;
 
 
 #if defined(LINUX) || defined(__BSD__)

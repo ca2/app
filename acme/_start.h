@@ -9,7 +9,7 @@
 
 
 #include "acme/include/_acme.h"
-#include "acme/release/release.h"
+#include "acme/release/_.h"
 #include "configuration_selection.h"
 #include "acme/platform/_features.h"
 #include "debugbreak.h"

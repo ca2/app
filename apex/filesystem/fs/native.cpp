@@ -98,7 +98,7 @@ namespace fs
    ::file::listing & native::root_ones(::file::listing & listing)
    {
       
-      node()->m_papexnode->root_ones(listing);
+      node()->root_ones(listing);
 
       return listing;
 
@@ -182,7 +182,7 @@ namespace fs
       //else
       //{
 
-         __construct(pfile);
+         __øconstruct(pfile);
 
 //      }
 

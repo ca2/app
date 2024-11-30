@@ -244,17 +244,25 @@ namespace acme
 {
 
 
-   ::acme::acme * acme::s_p = nullptr;
+   ::acme::acme * g_pacme = nullptr;
+
+
+   CLASS_DECL_ACME::acme::acme * get()
+   {
+
+      return g_pacme;
+
+   }
 
 
    acme::acme() :
       m_timeStart(now_t{})
    {
 
-      if (!s_p)
+      if (!g_pacme)
       {
 
-         s_p = this;
+         g_pacme = this;
 
       }
 

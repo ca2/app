@@ -198,7 +198,7 @@ namespace aqua
       //}
 
       //auto estatus = 
-      pfactory->__construct(this, m_paudio);
+      pfactory->__øconstruct(this, m_paudio);
 
       //if (!estatus)
       //{
@@ -255,7 +255,7 @@ namespace aqua
    void system::initialize_xml()
    {
 
-      __construct(m_pxml);
+      __øconstruct(m_pxml);
 
       m_pxml->init();
 
@@ -306,8 +306,8 @@ bool system::has_audio() const
 
             //auto estatus = 
             
-//            __construct(m_pmultimedia, pelement);
-      __construct(m_pmultimedia);
+//            __øconstruct(m_pmultimedia, pelement);
+      __øconstruct(m_pmultimedia);
 
             //if (!estatus)
             //{
@@ -364,7 +364,7 @@ bool system::has_audio() const
 
 //         auto pgetnewmultimedia = plibrary->get<PFUNCTION_GET_NEW_MULTIMEDIA>("get_new_multimedia");
 
-  //       __construct(m_pmultimedia, ::pointer_transfer(pgetnewmultimedia()));
+  //       __øconstruct(m_pmultimedia, ::pointer_transfer(pgetnewmultimedia()));
 
 //    m_pmultimedia->initialize_multimedia(this);
 
@@ -372,7 +372,7 @@ bool system::has_audio() const
       //else
       //{
 
-      //   __construct(m_pmultimedia);
+      //   __øconstruct(m_pmultimedia);
 
       //}
 
@@ -398,7 +398,7 @@ bool system::has_audio() const
 
          pfactory->merge_to_global_factory();
 
-         pfactory->__construct(this, m_paudiomixer);
+         pfactory->__øconstruct(this, m_paudiomixer);
 
          if (m_paudiomixer)
          {

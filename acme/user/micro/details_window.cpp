@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "details_window.h"
 #include "button.h"
+#include "acme/user/user/mouse.h"
 #include "acme/windowing/window.h"
 #include "acme/platform/system.h"
 #include "acme/windowing/display.h"
@@ -74,12 +75,16 @@ namespace micro
 
          //m_atomResult.clear();
 
+         pmouse->m_bRet = true;
+
          return;
 
       }
 
       ::micro::message_box::on_click(payload, pmouse);
 
+//      return false;
+      
    }
 
 

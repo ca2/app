@@ -243,7 +243,7 @@ namespace windowing
    }
 
 
-   ::windowing::window * windowing::window(oswindow oswindow)
+   ::acme::windowing::window * windowing::window(oswindow oswindow)
    {
 
       return nullptr;
@@ -275,7 +275,7 @@ namespace windowing
    }
 
 
-   ::windowing::window * windowing::get_application_host_window()
+   ::acme::windowing::window * windowing::get_application_host_window()
    {
 
       return nullptr;
@@ -353,7 +353,7 @@ namespace windowing
    }
 
 
-   bool windowing::__hook_process_event(class display * pdisplay, void * pevent, void * cookie)
+   bool windowing::__hook_process_event(class display * pdisplay, void * phappening, void * cookie)
    {
 
 
@@ -428,7 +428,7 @@ namespace windowing
    }
 
 
-    ::windowing::window * windowing::get_mouse_capture(::thread * pthread)
+    ::acme::windowing::window * windowing::get_mouse_capture(::thread * pthread)
    {
 
        return m_pwindowMouseCapture;
@@ -436,7 +436,7 @@ namespace windowing
    }
 
 
-    void windowing::set_mouse_capture(::thread * pthread, ::windowing::window * pwindow)
+    void windowing::set_mouse_capture(::thread * pthread, ::acme::windowing::window * pwindow)
    {
 
        m_pwindowMouseCapture = pwindow;
@@ -444,7 +444,7 @@ namespace windowing
    }
 
 
-   bool windowing::has_mouse_capture(::thread * pthread, ::windowing::window * pwindow)
+   bool windowing::has_mouse_capture(::thread * pthread, ::acme::windowing::window * pwindow)
    {
 
       if(::is_null(pwindow))
@@ -468,7 +468,7 @@ namespace windowing
    }
 
 
-   bool windowing::is_mouse_captured(::thread * pthread, ::windowing::window * pwindowUnusedQuestion)
+   bool windowing::is_mouse_captured(::thread * pthread, ::acme::windowing::window * pwindowUnusedQuestion)
    {
 
        auto pwindowCapture = get_mouse_capture(pthread);
@@ -485,7 +485,7 @@ namespace windowing
    }
 
 
-   void windowing::release_mouse_capture(::thread * pthread, ::windowing::window * pwindow)
+   void windowing::release_mouse_capture(::thread * pthread, ::acme::windowing::window * pwindow)
    {
 
        ASSERT(m_pwindowMouseCapture == pwindow);
@@ -513,7 +513,7 @@ namespace windowing
 //   }
 
 
-   bool windowing::defer_release_mouse_capture(::thread * pthread, ::windowing::window * pwindow)
+   bool windowing::defer_release_mouse_capture(::thread * pthread, ::acme::windowing::window * pwindow)
    {
 
       throw ::interface_only();
@@ -625,10 +625,10 @@ namespace windowing
    }
 
 
-   ::pointer < ::windowing::window > windowing::get_new_window()
+   ::pointer < ::acme::windowing::window > windowing::get_new_window()
    {
       
-      auto pwindow = __create < ::windowing::window >();
+      auto pwindow = __øcreate < ::windowing::window >();
 
       return pwindow;
 
@@ -758,7 +758,7 @@ namespace windowing
 //   void windowing::windowing_post(const ::procedure & procedure)
 //   {
 //
-//      if(node()->m_pauranode->defer_windowing_post(procedure))
+//      if(node()->defer_windowing_post(procedure))
 //      {
 //
 //         return;
@@ -774,7 +774,7 @@ namespace windowing
       if (!m_pkeyboard)
       {
 
-         __construct(m_pkeyboard);
+         __øconstruct(m_pkeyboard);
 
          initialize_keyboard(m_pkeyboard);
 

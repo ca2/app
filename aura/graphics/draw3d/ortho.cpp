@@ -26,7 +26,7 @@ namespace draw3d
 
       m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      auto ppen = __create < ::draw2d::pen > ();
+      auto ppen = __øcreate < ::draw2d::pen > ();
 
       double zmin = locationa[0].z();
       double zmax = locationa[0].z();
@@ -241,7 +241,7 @@ namespace draw3d
 
       m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      auto ppen = __create < ::draw2d::pen > ();
+      auto ppen = __øcreate < ::draw2d::pen > ();
 
       double zmin = 1000000.0;
       double zmax = -1000000.0;

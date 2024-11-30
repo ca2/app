@@ -246,6 +246,16 @@ namespace windowing
    }
 
 
+   ::int_size display::get_main_screen_size()
+   {
+   
+      return get_main_monitor_size();
+      
+   }
+      
+      
+
+
    ::int_rectangle display::get_monitor_union_rectangle()
    {
 
@@ -650,7 +660,7 @@ namespace windowing
 
          information() << "create_monitor";
 
-         __construct(pmonitor);
+         __øconstruct(pmonitor);
 
          if (!pmonitor)
          {

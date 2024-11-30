@@ -27,9 +27,9 @@ namespace core
       //virtual void initialize(::particle * pparticle) override;
 
 
-      virtual void initialize_rich_text();
+      void initialize_rich_text() override;
 
-      virtual void InsertTime(::ftp::file_status& ftpFileStatus);
+      void InsertTime(::ftp::file_status& ftpFileStatus) override;
      
 
    };

@@ -215,7 +215,7 @@ namespace filemanager
       ////                   ::type < form_child_frame >(),
       ////                   ::type < form >()));
 
-      ////__construct(m_pimpactsystemForm, pmulti);
+      ////__øconstruct(m_pimpactsystemForm, pmulti);
 
       ////psession->add_document_template(pmulti);
 
@@ -225,7 +225,7 @@ namespace filemanager
       ////                    ::type < operation_child_frame >(),
       ////                    ::type < operation_impact >()));
       ////
-      ////__construct(m_pimpactsystemOperation, psingle);
+      ////__øconstruct(m_pimpactsystemOperation, psingle);
 
       ////psession->add_document_template(psingle);
 
@@ -335,7 +335,7 @@ namespace filemanager
       throw ::exception(todo("core"));
       //add_reference(pdata);
 
-      //__construct(datamap()[atom], pdata);
+      //__øconstruct(datamap()[atom], pdata);
 
    }
 
@@ -767,7 +767,7 @@ pdirectorysystem->localconfig() / "user.component";
  /*     if (!pdata)
       {
 
-         __construct(pdata, filemanager_create_data(atom));
+         __øconstruct(pdata, filemanager_create_data(atom));
 
       }*/
 

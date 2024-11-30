@@ -64,7 +64,7 @@ namespace user
 
       virtual void ensure_item_visible_by_index(::collection::index iItem);
 
-      void _001OnTimer(::timer* ptimer) override;
+      void on_timer(::timer* ptimer) override;
 
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

@@ -5,6 +5,7 @@
 #include "framework.h"
 #include "application.h"
 #include "acme.h"
+#include "application_menu.h"
 #include "acme/exception/exit.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/directory_system.h"
@@ -219,10 +220,19 @@ namespace platform
    }
 
 
-   ::application_menu* application::application_menu()
+   ::application_menu * application::application_menu()
    {
 
-      return nullptr;
+      if (__defer_construct_new(m_papplicationmenu))
+      {
+
+         m_papplicationmenu->m_strName = application_title();
+
+         m_papplicationmenu->m_bPopup = true;
+
+      }
+
+      return m_papplicationmenu;
 
    }
 
@@ -890,9 +900,78 @@ namespace platform
    void application::init()
    {
 
+      if (!system()->m_bConsole)
+      {
+         auto papplicationmenu = application_menu();
+
+         papplicationmenu->erase_all();
+
+         using namespace ::apex;
+
+         {
+
+            auto ppopupApp = papplicationmenu->popup(application_title());
+
+            //pmenuMain->add(pmenuApp);
+
+            ppopupApp->item("About " + application_title(), "show_about_box", "", "");
+
+            ppopupApp->separator();
+
+            ppopupApp->item("Quit " + application_title(), "try_close_application", "", "");
+
+         }
+
+         //      {
+         //
+         //         auto ppopupView = papplicationmenu->popup("View");
+         //
+         //         //ppopupView->add(pmenuView);
+         //
+         //         ppopupView->item("Transparent Frame", "transparent_frame", "", "");
+         //
+         //      }
+         //
+         //      //applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
+         //
+         ////      applicationmenu()->add_item(i++, "About " + m_strAppName, "show_about", "", "Show About");
+         ////
+         ////      applicationmenu()->add_item(i++, "Transparent Frame", "transparent_frame", "Ctrl+Shift+T", "Toggle Transparent Frame");
+
+         application_menu_update();
+      }
 
    }
 
+
+   void application::application_menu_update()
+   {
+
+   //#ifdef LINUX
+   //
+   //      auto psystem = system();
+   //
+   //      if (application()->m_bGtkApp)
+   //      {
+   //
+   //         auto pnode = psystem->node();
+   //
+   //         if (pnode)
+   //         {
+   //
+   //            pnode->set_application_menu(m_pappmenu, this);
+   //
+   //         }
+   //
+   //      }
+   //
+   //#else
+   //
+      system()->acme_windowing()->application_handle(id_application_menu_update, nullptr);
+   //
+   //#endif
+
+   }
 
 
    void application::init_instance()
@@ -2080,7 +2159,7 @@ namespace platform
 
       strMessage = lines.implode("\n");
 
-      auto picon = __create < ::nano::graphics::icon>();
+      auto picon = __øcreate < ::nano::graphics::icon>();
 
       auto pfile = file()->get("matter://main/icon.png");
 

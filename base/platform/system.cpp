@@ -48,7 +48,7 @@ namespace base
 //      //try
 //      //{
 //
-//      //   ::acme::del(m_pmachineeventcentral);
+//      //   ::acme::del(m_pmachinehappeningcentral);
 //
 //      //}
 //      //catch (...)

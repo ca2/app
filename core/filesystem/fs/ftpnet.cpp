@@ -32,7 +32,7 @@ void ftpnet::initialize(::particle * pparticle)
 
    //estatus = 
    
-   __construct(m_psockethandler);
+   __øconstruct(m_psockethandler);
 
    //if (!estatus)
    //{

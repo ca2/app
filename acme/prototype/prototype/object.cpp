@@ -703,6 +703,21 @@ bool object::is_running() const
 }
 
 
+void object::branch_send(const ::procedure & procedure, manual_reset_happening * phappening)
+{
+
+   fork([procedure]()
+      {
+
+         procedure();
+
+      });
+
+   phappening->wait(procedure.timeout());
+
+}
+
+
 //void object::runchild_post_quit(const ::scoped_string & scopedstrTag)
 //{
 //
@@ -2073,7 +2088,7 @@ void object::sleep(const class time & time)
    {
 
 
-      ::pointer<manual_reset_happening>pevent;
+      ::pointer<manual_reset_happening>phappening;
 
       {
 
@@ -2088,7 +2103,7 @@ void object::sleep(const class time & time)
 
          }
 
-         pevent = ptask->m_pevSleep;
+         phappening = ptask->m_pevSleep;
 
       }
 
@@ -2113,12 +2128,12 @@ void object::sleep(const class time & time)
 
       //}
 
-      if (::is_set(pevent))
+      if (::is_set(phappening))
       {
 
-         pevent->wait(time);
+         phappening->wait(time);
 
-         pevent.release();
+         phappening.release();
 
          return;
          //return ::task_get_run();
@@ -3092,7 +3107,7 @@ void object::initialize(::particle * pparticle)
 //::image::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
 //template < typename BASE_TYPE >
-//inline ::pointer<BASE_TYPE>__create();
+//inline ::pointer<BASE_TYPE>__øcreate();
 
 //template < typename BASE_TYPE >
 //inline ::pointer<BASE_TYPE>__id_create(const ::atom& atom);
@@ -3100,22 +3115,22 @@ void object::initialize(::particle * pparticle)
 //template < typename TYPE >
 //inline ::pointer<TYPE>__create_new();
 
-//inline void __construct(::pointer<::image::image>& pimage);
+//inline void __øconstruct(::pointer<::image::image>& pimage);
 
-//inline void __construct(::pointer<::image::image>& pimage, ::image::image *pimageSource);
+//inline void __øconstruct(::pointer<::image::image>& pimage, ::image::image *pimageSource);
 
-//inline void __defer_construct(::pointer<::image::image>& pimage) { return !pimage ? __construct(pimage) : void(::success); }
+//inline void __defer_construct(::pointer<::image::image>& pimage) { return !pimage ? __øconstruct(pimage) : void(::success); }
 
 // for composition (ownership)
 
 //template < typename BASE_TYPE >
-//inline void __construct(::pointer<BASE_TYPE> pusermessage);
+//inline void __øconstruct(::pointer<BASE_TYPE> pusermessage);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void __construct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource);
+//inline void __øconstruct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void __construct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource);
+//inline void __øconstruct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource);
 
 //template < typename BASE_TYPE >
 //inline void __id_construct(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
@@ -3139,7 +3154,7 @@ void object::initialize(::particle * pparticle)
 
 
 //template < typename BASE_TYPE >
-//inline void __defer_construct(::pointer<BASE_TYPE> pusermessage) { return !pusermessage ? __construct(pusermessage) : void(::success); }
+//inline void __defer_construct(::pointer<BASE_TYPE> pusermessage) { return !pusermessage ? __øconstruct(pusermessage) : void(::success); }
 
 //template < typename BASE_TYPE >
 //inline void __defer_id_compose(::pointer<BASE_TYPE> pusermessage, const ::atom& atom) { return !pusermessage ? __id_construct(pusermessage) : void(::success); }
@@ -3154,7 +3169,7 @@ void object::initialize(::particle * pparticle)
 
 
 //template < typename BASE_TYPE >
-//inline void __construct(::pointer<BASE_TYPE> pusermessage);
+//inline void __øconstruct(::pointer<BASE_TYPE> pusermessage);
 
 //template < typename BASE_TYPE >
 //inline void __id_construct(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
@@ -3762,7 +3777,7 @@ bool object::IsSerializable() const
 
 
    //template < typename TYPE >
-   //void __construct(::thread_pointer& p, void (TYPE::* pfn)(), enum_priority epriority);
+   //void __øconstruct(::thread_pointer& p, void (TYPE::* pfn)(), enum_priority epriority);
 
    //template < typename TYPE >
    //void __construct_below_normal(::thread_pointer& p, void (TYPE::* pfn)());
@@ -3829,7 +3844,7 @@ void object::defer_branch(::task_pointer & ptask, const ::procedure & procedure)
    if (::is_null(ptask))
    {
 
-      __construct(ptask);
+      __øconstruct(ptask);
 
       //ptask->m_bAutoRelease = true;
 

@@ -621,7 +621,7 @@ namespace experience
    }
 
 
-   bool dock_manager::_001OnTimer(unsigned int uEvent)
+   bool dock_manager::on_timer(unsigned int uEvent)
    {
 
       return false;

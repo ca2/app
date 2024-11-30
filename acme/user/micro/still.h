@@ -29,7 +29,7 @@ namespace micro
 
       virtual void set_icon(::nano::graphics::icon * picon);
 
-      void on_mouse_move(::user::mouse * pmouse) override;
+      void fore_on_mouse_move(::user::mouse * pmouse) override;
 
       bool is_focusable() override;
 

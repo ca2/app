@@ -10,7 +10,7 @@ class CLASS_DECL_APEX machine_event_central :
 public:
 
 
-   ::pointer<machine_event>      m_pmachineevent;
+   ::pointer<machine_event>      m_pmachinehappening;
    bool                          m_bInitialized;
 
 

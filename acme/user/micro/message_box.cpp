@@ -6,6 +6,7 @@
 #include "message_box.h"
 #include "still.h"
 #include "theme.h"
+#include "acme/handler/sequence.h"
 #include "acme/nano/graphics/device.h"
 #include "acme/nano/graphics/icon.h"
 #include "acme/user/micro/details_window.h"
@@ -17,6 +18,7 @@
 #include "acme/platform/node.h"
 //#include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
+#include "acme/platform/timer.h"
 #include "acme/user/user/mouse.h"
 #include "acme/_operating_system.h"
 #include "acme/user/micro/user.h"
@@ -36,6 +38,10 @@ namespace micro
 
    message_box::message_box()
    {
+
+      m_atom = e_dialog_result_none;
+
+      set_flag(e_flag_should_create_sequence_on_synchronicity);
 
    }
 
@@ -101,12 +107,12 @@ namespace micro
    }
 
 
-//   void message_box::on_sequence()
-//   {
-//      
-//      ::reified<::message_box>::on_sequence();
-//      
-//   }
+   //   void message_box::on_sequence()
+   //   {
+   //      
+   //      ::reified<::message_box>::on_sequence();
+   //      
+   //   }
 
 
    void message_box::on_draw(::nano::graphics::device* pmicrodevice)
@@ -147,7 +153,7 @@ namespace micro
       if (m_prealizable->m_strDetails.has_character())
       {
 
-         m_pstillDetails = __allocate ::micro::still();
+         m_pstillDetails = __allocate::micro::still();
 
          m_pstillDetails->m_atom = "details";
 
@@ -264,6 +270,8 @@ namespace micro
 
       defer_create_details_still();
 
+
+
       if (m_prealizable->m_emessagebox & e_message_box_default_button_mask)
       {
 
@@ -307,7 +315,11 @@ namespace micro
 
          iRight = pmicrobutton->m_rectangle.left() - wSpacing;
 
+         printf_line("234");
+
       }
+
+
 
 
    }
@@ -332,9 +344,26 @@ namespace micro
       //printf("message_box::calculate_size (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
 
       int w = wScreen / 2;
+
+      if (w < 200)
+      {
+
+         w = wScreen * 9 / 10;
+
+      }
+
       int h = (w / 16) * 5;
+
+      if (wScreen < hScreen)
+      {
+
+         h = (w / 10) * 5;
+
+      }
       int x = (wScreen - w) / 2;
       int y = (hScreen - h) / 2;
+
+
 
       m_rectangle.set_dimension(x, y, w, h);
 
@@ -342,6 +371,21 @@ namespace micro
 
 
 #endif
+
+   }
+
+
+   void message_box::on_timer(::timer* ptimer)
+   {
+
+      if (ptimer->m_uEvent == 1021)
+      {
+
+         m_pstillTimeout->m_strText.formatf("%0.2fs", m_prealizable->m_psequence->remaining_from_timeout().floating_second());
+
+         redraw();
+
+      }
 
    }
 
@@ -440,6 +484,40 @@ namespace micro
 
       }
 
+
+      if (m_prealizable->m_psequence)
+      {
+
+         if (!m_prealizable->m_psequence->m_timeLocked.is_null())
+         {
+
+            m_pstillTimeout = __allocate::micro::still();
+
+            m_pstillTimeout->m_atom = "timeout";
+
+            add_child(m_pstillTimeout);
+
+         }
+
+      }
+      if (m_pstillTimeout)
+      {
+
+
+         auto iBottom = (int)(m_rectangle.height() - m_rectangle.width() * 0.025);
+         auto hButton = (int)(m_rectangle.height() * 0.2);
+         auto wButton = (int)(m_rectangle.width() * 0.2);
+
+
+
+         m_pstillTimeout->m_rectangle.bottom() = iBottom;
+         m_pstillTimeout->m_rectangle.top() = m_pstillTimeout->m_rectangle.bottom() - hButton / 2;
+         m_pstillTimeout->m_rectangle.left() = (int)(m_rectangle.width() * 0.025);
+         m_pstillTimeout->m_rectangle.right() = m_pstillTimeout->m_rectangle.left() + wButton / 3;
+
+         SetTimer(1021, 200_ms);
+
+      }
    }
 
 
@@ -474,13 +552,13 @@ namespace micro
 
    //CLASS_DECL_ACME ::platform::system * system();
 #ifdef WINDOWS_DESKTOP
-      CLASS_DECL_ACME int message_box_to_windows_message_box(enum_message_box emessagebox);
-      CLASS_DECL_ACME enum_dialog_result windows_message_box_result_to_dialog_result(int iResult);
+   CLASS_DECL_ACME int message_box_to_windows_message_box(enum_message_box emessagebox);
+   CLASS_DECL_ACME enum_dialog_result windows_message_box_result_to_dialog_result(int iResult);
 #endif
 
 #ifdef MACOS
 
-      enum_dialog_result ns_alert_box(const char * pszMessage, const char * pszTitle, enum_message_box emessagebox);
+   enum_dialog_result ns_alert_box(const char* pszMessage, const char* pszTitle, enum_message_box emessagebox);
 
 #endif
 
@@ -504,7 +582,15 @@ namespace micro
 
    void message_box::on_click(const ::payload& payload, ::user::mouse* pmouse)
    {
-
+      //#ifdef APPLE_IOS
+      //      if(payload == e_dialog_result_none)
+      //      {
+      //         
+      //         on_context_menu(pmouse);
+      //         
+      //         return;
+      //      }
+      //#endif
       if (payload == "details")
       {
 
@@ -529,11 +615,23 @@ namespace micro
 
          //m_payloadResult.unset();
 
+         pmouse->m_bRet = true;
+
+         return;
+
+      }
+      else if (payload == "timeout")
+      {
+
+         pmouse->m_bRet = true;
+
          return;
 
       }
 
       set_dialog_result(payload);
+
+      pmouse->m_bRet = true;
 
    }
 
@@ -546,9 +644,21 @@ namespace micro
 
          m_pacmewindowingwindow->defer_show_system_menu(pmouse);
 
+         pmouse->m_bRet = true;
+
          return;
 
       }
+
+      on_context_menu(pmouse);
+
+      pmouse->m_bRet = true;
+
+   }
+
+
+   void message_box::on_context_menu(::user::mouse* pmouse)
+   {
 
       auto ppopupbutton = __create_new<popup_button>();
 
@@ -562,12 +672,17 @@ namespace micro
       rectanglePointTo.bottom() = rectanglePointTo.top() + 2;
 
       ppopupbutton->acme_windowing_window()->m_rectanglePointingTo = rectanglePointTo;
-
+#ifdef APPLE_IOS
+      ppopupbutton->initialize_popup_button(
+         "Dump to Clipboard...",
+         pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y(),
+         this);
+#else
       ppopupbutton->initialize_popup_button(
          "Dump to File...",
          pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y(),
          this);
-
+#endif
       ppopupbutton->main_async()
          << [this, ppopupbutton]()
          {
@@ -577,9 +692,19 @@ namespace micro
             if (result == e_dialog_result_yes)
             {
 
+#ifdef APPLE_IOS
+
+               system()->acme_windowing()->set_clipboard_text(
+                  m_prealizable->m_strMessage + "\n\n"
+                  + m_prealizable->m_strDetails);
+
+#else
+
                display_temporary_file_with_text(
                   m_prealizable->m_strMessage + "\n\n"
                   + m_prealizable->m_strDetails);
+
+#endif
 
             }
 
@@ -587,8 +712,8 @@ namespace micro
 
       //post(psequence);
 
-   }
 
+   }
 
    bool message_box::is_popup_window() const
    {
@@ -612,7 +737,7 @@ namespace micro
 //                                                        scopedstrDetails, picon);
 //      
 //      return psequencer;
-////      auto pmessagebox = ::platform::get()->__create < ::operating_system::message_box >();
+////      auto pmessagebox = ::platform::get()->__øcreate < ::operating_system::message_box >();
 ////
 ////      return pmessagebox->create_sequencer(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
 //

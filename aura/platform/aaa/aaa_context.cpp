@@ -86,7 +86,7 @@ bool context::is_system() const
 void context::initialize_context()
 {
 
-   auto estatus = __construct(m_phttp);
+   auto estatus = __øconstruct(m_phttp);
 
    if(!estatus)
    {
@@ -95,7 +95,7 @@ void context::initialize_context()
 
    }
 
-   estatus = __construct(m_pfile);
+   estatus = __øconstruct(m_pfile);
 
    if (!estatus)
    {
@@ -104,7 +104,7 @@ void context::initialize_context()
 
    }
 
-   estatus = __construct(m_pdir);
+   estatus = __øconstruct(m_pdir);
 
    if (!estatus)
    {
@@ -165,7 +165,7 @@ void context::initialize_context()
 
    }
 
-   estatus = __construct(m_pos);
+   estatus = __øconstruct(m_pos);
 
    if (!estatus)
    {

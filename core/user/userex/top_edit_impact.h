@@ -40,7 +40,7 @@ namespace userex
 
       bool keyboard_focus_is_focusable() override;
 
-      virtual void _001OnTimer(::timer * ptimer) override;
+      virtual void on_timer(::timer * ptimer) override;
 
       //virtual bool _is_window_visible() override;
 

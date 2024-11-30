@@ -149,7 +149,7 @@ namespace experience_nanoui
       else
       {
 
-         auto pbrush = __create < ::draw2d::brush >();
+         auto pbrush = __øcreate < ::draw2d::brush >();
 
          if (pbrush && pgraphics->get_current_pen())
          {
@@ -160,7 +160,7 @@ namespace experience_nanoui
 
          pgraphics->set(pbrush);
 
-         auto ppen = __create < ::draw2d::pen >();
+         auto ppen = __øcreate < ::draw2d::pen >();
 
          ppen->create_solid(1.0f, ::rgba(255, 255, 255, 255));
 

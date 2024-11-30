@@ -41,10 +41,10 @@ namespace console
 
 
 
-   void prompt_frame::_001OnTimer(::timer * ptimer)
+   void prompt_frame::on_timer(::timer * ptimer)
    {
 
-      simple_frame_window::_001OnTimer(ptimer);;
+      simple_frame_window::on_timer(ptimer);;
 
 //      unsigned int uEvent = ptimer->m_uEvent;
 //      static float theta;
@@ -212,7 +212,7 @@ namespace console
       simple_frame_window::install_message_routing(pchannel);
       MESSAGE_LINK(e_message_create, pchannel, this, &prompt_frame::on_message_create);
       MESSAGE_LINK(e_message_close, pchannel, this, &prompt_frame::on_message_close);
-//      //MESSAGE_LINK(e_message_timer, pchannel, this, &prompt_frame::_001OnTimer);
+//      //MESSAGE_LINK(e_message_timer, pchannel, this, &prompt_frame::on_timer);
       MESSAGE_LINK(e_message_reposition, pchannel, this, &prompt_frame::on_message_move);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &prompt_frame::on_message_show_window);
       MESSAGE_LINK(WM_APP + 2000, pchannel, this, &prompt_frame::_001OnApp2000);

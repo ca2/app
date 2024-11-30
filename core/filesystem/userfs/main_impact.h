@@ -23,7 +23,7 @@ namespace userfs
       main_impact();
       void install_message_routing(::channel * pchannel);
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      void _001OnTimer(::timer * ptimer);
+      void on_timer(::timer * ptimer);
 
 
       ::user::document * get_document();

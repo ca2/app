@@ -17,15 +17,17 @@ public:
    void _wait();
    bool _wait(const class ::time& wait);
    ::e_status wait();
-   ::e_status wait(const class ::time& wait = ::time::infinity());
+   ::e_status wait(const class ::time& wait);
    void _lock();
    bool lock(const class ::time & wait = ::time::infinity());
    void unlock();
    void unlock(int lCount, int * lPrevCount = nullptr);
    bool is_locked() const;
+   class ::time remaining_from_timeout() const;
 
 
 };
+
 
 
 

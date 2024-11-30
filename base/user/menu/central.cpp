@@ -164,7 +164,7 @@ namespace user
 
       }
 
-      __construct(m_pfontMenu);
+      __øconstruct(m_pfontMenu);
 
       __construct_new(m_pimagelist);
       __construct_new(m_pimagelistHue);

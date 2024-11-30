@@ -99,7 +99,7 @@ namespace windowing
 
       void call_expose(display *pdisplay);
 
-      virtual void on_subject(::topic *ptopic, ::context *pcontext) override;
+      virtual void on_subject(::topic * ptopic, ::context * pcontext) override;
 
       void on_layout(display *pdisplay);
 
@@ -109,7 +109,7 @@ namespace windowing
 
       void on_free_colors(display *pdisplay);
 
-      virtual bool process_event(display *pdisplay, happening * pevent) override;
+      virtual bool process_event(display *pdisplay, happening * phappening) override;
 
       int show();
 

@@ -15,11 +15,25 @@ namespace windowing
 {
 
 
-   ::windowing::enum_operating_ambient g_eoperatingambient = ::windowing::e_desktop_none;
+   ::windowing::enum_operating_ambient g_eoperatingambient = ::windowing::e_operating_ambient_none;
 
 
    ::windowing::enum_operating_ambient calculate_edesktop()
    {
+      
+#if defined(APPLE_IOS)
+         
+         printf_line("calculate_edesktop e_operating_ambient_ios");
+
+         return ::windowing::e_operating_ambient_ios;
+
+#elif defined(MACOS)
+         
+         printf_line("calculate_edesktop e_operating_ambient_macos");
+
+         return ::windowing::e_operating_ambient_macos;
+      
+#else
 
       const char *pszDesktop = getenv("XDG_CURRENT_DESKTOP");
 
@@ -30,33 +44,33 @@ namespace windowing
       if (strDesktop.case_insensitive_order("kde") == 0)
       {
 
-         printf_line("calculate_edesktop e_desktop_kde");
+         printf_line("calculate_edesktop e_operating_ambient_kde");
 
-         return ::windowing::e_desktop_kde;
+         return ::windowing::e_operating_ambient_kde;
          
       }
       else if (strDesktop.case_insensitive_order("gnome") == 0)
       {
 
-         printf_line("calculate_edesktop e_desktop_gnome");
+         printf_line("calculate_edesktop e_operating_ambient_gnome");
 
-         return ::windowing::e_desktop_gnome;
+         return ::windowing::e_operating_ambient_gnome;
          
       }
       else if (strDesktop.case_insensitive_order("lxde") == 0)
       {
 
-         printf_line("calculate_edesktop e_desktop_lxde");
+         printf_line("calculate_edesktop e_operating_ambient_lxde");
 
-         return ::windowing::e_desktop_lxde;
+         return ::windowing::e_operating_ambient_lxde;
          
       }
       else if (strDesktop.case_insensitive_order("unity") == 0)
       {
 
-         printf_line("calculate_edesktop e_desktop_unity_gnome");
+         printf_line("calculate_edesktop e_operating_ambient_unity_gnome");
 
-         return ::windowing::e_desktop_unity;
+         return ::windowing::e_operating_ambient_unity;
          
       }
 
@@ -72,7 +86,7 @@ namespace windowing
       //    if(strcasecmp(pszDesktop, "Unity") == 0)
       //    {
 
-      //       return ::windowing::e_desktop_unity_gnome;
+      //       return ::windowing::e_operating_ambient_unity_gnome;
 
       //    }
 
@@ -81,77 +95,69 @@ namespace windowing
       else if (is_directory("/etc/xdg/lubuntu"))
       {
 
-         printf_line("calculate_edesktop e_desktop_lxde");
+         printf_line("calculate_edesktop e_operating_ambient_lxde");
 
-         return ::windowing::e_desktop_lxde;
+         return ::windowing::e_operating_ambient_lxde;
          
       }
       else if (file_exists("/usr/bin/xfconf-query") || file_exists("/usr/pkg/bin/xfconf-query"))
       {
 
-         printf_line("calculate_edesktop e_desktop_xfce");
+         printf_line("calculate_edesktop e_operating_ambient_xfce");
 
-         return ::windowing::e_desktop_xfce;
+         return ::windowing::e_operating_ambient_xfce;
          
       }
       else if (file_exists("/usr/bin/cinnamon"))
       {
 
-         printf_line("calculate_edesktop e_desktop_cinnamon");
+         printf_line("calculate_edesktop e_operating_ambient_cinnamon");
 
-         return ::windowing::e_desktop_cinnamon;
+         return ::windowing::e_operating_ambient_cinnamon;
          
       }
       else if (file_exists("/usr/bin/mate-about"))
       {
 
-         printf_line("calculate_edesktop e_desktop_mate");
+         printf_line("calculate_edesktop e_operating_ambient_mate");
 
-         return ::windowing::e_desktop_mate;
+         return ::windowing::e_operating_ambient_mate;
          
       }
       else if (file_exists("/usr/bin/unity"))
       {
 
-         printf_line("calculate_edesktop e_desktop_unity_gnome");
+         printf_line("calculate_edesktop e_operating_ambient_unity_gnome");
 
-         return ::windowing::e_desktop_unity;
+         return ::windowing::e_operating_ambient_unity;
          
       }
       else if (strDesktop.case_insensitive_order("ubuntu:gnome") == 0)
       {
 
-         printf_line("calculate_edesktop e_desktop_ubuntu_gnome");
+         printf_line("calculate_edesktop e_operating_ambient_ubuntu_gnome");
 
-         return ::windowing::e_desktop_unity;
+         return ::windowing::e_operating_ambient_unity;
          
       }
       else if (strDesktop.case_insensitive_order("gnome") == 0)
       {
 
-         printf_line("calculate_edesktop e_desktop_gnome");
+         printf_line("calculate_edesktop e_operating_ambient_gnome");
 
-         return ::windowing::e_desktop_gnome;
+         return ::windowing::e_operating_ambient_gnome;
          
       }
       else
       {
          
-#if defined(APPLE_IOS)
-         
-         printf_line("calculate_edesktop e_desktop_ios");
+         printf_line("calculate_edesktop e_operating_ambient_gnome (1)");
 
-         return ::windowing::e_desktop_ios;
-
-#else
-         
-         printf_line("calculate_edesktop e_desktop_gnome (1)");
-
-         return ::windowing::e_desktop_gnome;
-         
-#endif
+         return ::windowing::e_operating_ambient_gnome;
          
       }
+      
+#endif
       
    }
 
@@ -159,7 +165,7 @@ namespace windowing
    ::windowing::enum_operating_ambient get_eoperating_ambient()
    {
 
-      if (g_eoperatingambient == ::windowing::e_desktop_none)
+      if (g_eoperatingambient == ::windowing::e_operating_ambient_none)
       {
 
          g_eoperatingambient = calculate_edesktop();
@@ -169,24 +175,4 @@ namespace windowing
    }
    
    
-   ::string get_edesktop_name()
-   {
-      
-      auto edesktop = get_eoperating_ambient();
-      
-      switch(edesktop)
-      {
-      case e_desktop_xfce:
-         return "xfce";
-      case e_desktop_ios:
-         return "ios";
-      default:
-         throw todo;
-      };
-      
-      return {};
-
-   }
-
-
 } // namespace windowing

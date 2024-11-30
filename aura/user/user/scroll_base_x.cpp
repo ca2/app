@@ -456,7 +456,7 @@ namespace user
 
       }
 
-      auto pbar = __create < scroll_bar >();
+      auto pbar = __øcreate < scroll_bar >();
 
       pbar->m_eorientation = ::e_orientation_horizontal;
 

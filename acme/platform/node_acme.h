@@ -55,8 +55,8 @@ namespace platform
 
 
       htask_t m_htaskSystem;
-      ::apex::node* m_papexnode;
-      ::aura::node* m_pauranode;
+      //::apex::node* m_papexnode;
+      //::aura::node* m_pauranode;
 
       ::acme_posix::node* m_pAcmePosix;
       ::apex_posix::node* m_pApexPosix;
@@ -100,7 +100,7 @@ namespace platform
       ::node_kde5::node* m_pNodeKDE5;
       ::node_kde6::node* m_pNodeKDE6;
       ::node_xfce::node* m_pNodeXfce;
-      ::desktop_environment_gtk_based::node* m_pNodeDesktopEnvironmentGtkBased;
+      ::operating_ambient_gtk_based::node* m_pNodeDesktopEnvironmentGtkBased;
       ::desktop_environment_kde::node* m_pNodeDesktopEnvironmentKDE;
       ::desktop_environment_xfce::node* m_pNodeDesktopEnvironmentXfce;
 
@@ -884,7 +884,6 @@ namespace platform
       virtual ::string operating_system_application_version();
 
 
-      virtual void application_handle(huge_integer l, void* p);
 
 
       virtual bool is_application_running_good_effort(const ::scoped_string& scopedstrRepos,

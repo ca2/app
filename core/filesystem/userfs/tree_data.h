@@ -91,7 +91,7 @@ namespace userfs
 
       void arrange(::fs::e_arrange earrange);
 
-      void _001OnTimer(::timer * ptimer);
+      void on_timer(::timer * ptimer);
 
 
       void RenameFile(int iLine, string & str, const ::action_context & action_context);

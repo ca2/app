@@ -250,7 +250,7 @@ namespace userex
 
       pmessage->previous();
 
-      __construct(m_pprogress);
+      __øconstruct(m_pprogress);
 
       m_pprogress->create_control(this, "progress_control");
 
@@ -271,7 +271,7 @@ namespace userex
    }
 
 
-   void progress_impact::_001OnTimer(::timer * ptimer)
+   void progress_impact::on_timer(::timer * ptimer)
    {
 
             if (ptimer->m_uEvent == e_timer_update_current_area)

@@ -194,7 +194,7 @@ public:
    //::image::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
    //template < typename BASE_TYPE >
-   //inline ::pointer<BASE_TYPE>__create();
+   //inline ::pointer<BASE_TYPE>__øcreate();
 
    //template < typename BASE_TYPE >
    //inline ::pointer<BASE_TYPE>__id_create(const ::atom& atom);
@@ -202,22 +202,22 @@ public:
    //template < typename TYPE >
    //inline ::pointer<TYPE>__create_new();
 
-   //inline void __construct(::pointer<::image::image>& pimage);
+   //inline void __øconstruct(::pointer<::image::image>& pimage);
 
-   //inline void __construct(::pointer<::image::image>& pimage, ::image::image *pimageSource);
+   //inline void __øconstruct(::pointer<::image::image>& pimage, ::image::image *pimageSource);
 
-   //inline void __defer_construct(::pointer<::image::image>& pimage) { return !pimage ? __construct(pimage) : void(::success); }
+   //inline void __defer_construct(::pointer<::image::image>& pimage) { return !pimage ? __øconstruct(pimage) : void(::success); }
 
    // for composition (ownership)
 
    template < typename BASE_TYPE >
-   inline void __construct(::pointer<BASE_TYPE> pusermessage);
+   inline void __øconstruct(::pointer<BASE_TYPE> pusermessage);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline void __construct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource);
+   inline void __øconstruct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline void __construct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource);
+   inline void __øconstruct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource);
 
    template < typename BASE_TYPE >
    inline void __id_construct(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
@@ -241,7 +241,7 @@ public:
 
 
    template < typename BASE_TYPE >
-   inline void __defer_construct(::pointer<BASE_TYPE> pusermessage) { return !pusermessage ? __construct(pusermessage) : void(::success); }
+   inline void __defer_construct(::pointer<BASE_TYPE> pusermessage) { return !pusermessage ? __øconstruct(pusermessage) : void(::success); }
 
    template < typename BASE_TYPE >
    inline void __defer_id_compose(::pointer<BASE_TYPE> pusermessage, const ::atom& atom) { return !pusermessage ? __id_construct(pusermessage) : void(::success); }
@@ -255,7 +255,7 @@ public:
 
 
    //template < typename BASE_TYPE >
-   //inline void __construct(::pointer<BASE_TYPE> pusermessage);
+   //inline void __øconstruct(::pointer<BASE_TYPE> pusermessage);
 
    //template < typename BASE_TYPE >
    //inline void __id_construct(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
@@ -608,7 +608,7 @@ public:
 
 
    //template < typename TYPE >
-   //void __construct(::thread_pointer& p, void (TYPE::* pfn)(), enum_priority epriority);
+   //void __øconstruct(::thread_pointer& p, void (TYPE::* pfn)(), enum_priority epriority);
 
    template < typename TYPE >
    void __construct_below_normal(::thread_pointer& p, void (TYPE::* pfn)());
@@ -637,7 +637,7 @@ do                                                                   \
    if(!pthread)                                                      \
    {                                                                 \
                                                                      \
-      __construct(pthread);                                          \
+      __øconstruct(pthread);                                          \
                                                                      \
       pthread->m_pmatter = __routine([this]()                        \
       {                                                              \

@@ -65,6 +65,9 @@
 //#endif
 
 
+CLASS_DECL_ACME ::string get_operating_system_name();
+
+
 CLASS_DECL_ACME void exception_message_box(::particle* pparticle, ::exception& exception,
                                            const ::string& strMoreDetails);
 
@@ -4427,9 +4430,9 @@ particle* system::matter_mutex()
    void system::do_operating_ambient_factory()
    {
 
-      auto strOperatingAmbient = ::windowing::get_eoperating_ambient_name();
+      auto strOperatingSystem = ::get_operating_system_name();
 
-      auto & pfactory = factory("acme", strOperatingAmbient);
+      auto & pfactory = factory("acme", strOperatingSystem);
 
       pfactory->merge_to_global_factory();
 

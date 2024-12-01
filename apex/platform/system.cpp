@@ -66,6 +66,9 @@ int file_put_contents(const ::file::path & path, const char * contents);;
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
 
 
+CLASS_DECL_ACME ::string get_operating_system_name();
+
+
 //extern ::apex::system* g_papexsystem;
 
 //CLASS_DECL_APEX void apex_generate_random_bytes(void* p, memsize s);
@@ -5177,9 +5180,9 @@ namespace apex
 //
 //#endif
 
-      auto strOperatingAmbient = ::windowing::get_eoperating_ambient_name();
+      auto strOperatingSystem = ::get_operating_system_name();
 
-      auto & pfactory = factory("apex", strOperatingAmbient);
+      auto & pfactory = factory("apex", strOperatingSystem);
 
       pfactory->merge_to_global_factory();
 

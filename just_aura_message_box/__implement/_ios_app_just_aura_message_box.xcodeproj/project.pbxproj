@@ -25,6 +25,8 @@
 		9A4753DB2CF5433E00ED30AE /* libios_app_just_message_box.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4753DA2CF5433E00ED30AE /* libios_app_just_message_box.a */; };
 		9A4753DD2CF543AB00ED30AE /* libios_darwin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4753DC2CF543AB00ED30AE /* libios_darwin.a */; };
 		9A4753E02CF5484000ED30AE /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4753DF2CF5484000ED30AE /* libz.tbd */; };
+		9A97A7932CFBDDFB000A2F7C /* libios_acme_windowing_kit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A97A7922CFBDDFB000A2F7C /* libios_acme_windowing_kit.a */; };
+		9A97A7942CFBDDFB000A2F7C /* libios_acme_windowing_kit.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A97A7922CFBDDFB000A2F7C /* libios_acme_windowing_kit.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AC3F1182CF6B0560061DCC0 /* libios_apex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1172CF6B0560061DCC0 /* libios_apex.a */; };
 		9AC3F11A2CF6B0560061DCC0 /* libios_apex_apple.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1192CF6B0560061DCC0 /* libios_apex_apple.a */; };
 		9AC3F11C2CF6B0560061DCC0 /* libios_apex_darwin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F11B2CF6B0560061DCC0 /* libios_apex_darwin.a */; };
@@ -149,6 +151,7 @@
 				9AC3F1FD2CF7B14C0061DCC0 /* libios_draw2d_quartz2d.a in Embed Libraries */,
 				9AC3F1FA2CF7B08B0061DCC0 /* libaura_ios.a in Embed Libraries */,
 				9AC3F2052CF7B21C0061DCC0 /* libwindowing_ios.a in Embed Libraries */,
+				9A97A7942CFBDDFB000A2F7C /* libios_acme_windowing_kit.a in Embed Libraries */,
 				9AC3F1F62CF7B08B0061DCC0 /* libios_aura_apple.a in Embed Libraries */,
 				9AC3F2022CF7B1DA0061DCC0 /* libnode_ios.a in Embed Libraries */,
 			);
@@ -183,6 +186,7 @@
 		9A4753DA2CF5433E00ED30AE /* libios_app_just_message_box.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_app_just_message_box.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4753DC2CF543AB00ED30AE /* libios_darwin.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_darwin.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4753DF2CF5484000ED30AE /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		9A97A7922CFBDDFB000A2F7C /* libios_acme_windowing_kit.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_acme_windowing_kit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC3F0CF2CF691670061DCC0 /* apex_ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex_ios.xcodeproj; path = "/Users/camilo/workspace/main/operating_system/operating_system-ios/apex_ios/apex_ios.xcodeproj"; sourceTree = "<absolute>"; };
 		9AC3F1172CF6B0560061DCC0 /* libios_apex.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_apex.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC3F1192CF6B0560061DCC0 /* libios_apex_apple.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_apex_apple.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -230,6 +234,7 @@
 				9AC3F1182CF6B0560061DCC0 /* libios_apex.a in Frameworks */,
 				9AC3F1E92CF7AFFF0061DCC0 /* libios_app_just_aura_message_box.a in Frameworks */,
 				9AC3F1F02CF7B0660061DCC0 /* libios_aura.a in Frameworks */,
+				9A97A7932CFBDDFB000A2F7C /* libios_acme_windowing_kit.a in Frameworks */,
 				9AC3F11A2CF6B0560061DCC0 /* libios_apex_apple.a in Frameworks */,
 				9AC3F11C2CF6B0560061DCC0 /* libios_apex_darwin.a in Frameworks */,
 				9AC3F11F2CF6B0560061DCC0 /* libapex_ios.a in Frameworks */,
@@ -330,6 +335,7 @@
 		9A4753962CF53D3900ED30AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A97A7922CFBDDFB000A2F7C /* libios_acme_windowing_kit.a */,
 				9AC3F20E2CF7B6B00061DCC0 /* libios_write_text_quartz2d.a */,
 				9AC3F20C2CF7B69A0061DCC0 /* libwrite_text_quartz2d.dylib */,
 				9AC3F2062CF7B3340061DCC0 /* libinnate_ui_uikit.a */,

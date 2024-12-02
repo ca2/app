@@ -14,7 +14,8 @@ namespace windowing
       switch(eoperatingambient)
       {
       case e_operating_ambient_xfce:
-         return "xfce";
+         //return "xfce";
+         return "gtk3";
       case e_operating_ambient_ios:
          return "ios";
       case e_operating_ambient_macos:

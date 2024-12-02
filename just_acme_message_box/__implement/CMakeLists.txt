@@ -64,7 +64,6 @@ elseif(${LINUX} OR ${__BSD__})
 endif ()
 
 
-message(STATUS "default_nano_user is ${default_nano_user}")
 
 
 add_dependencies(${PROJECT_NAME} ${copy_libraries_dependency} ${default_acme})

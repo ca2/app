@@ -31,10 +31,10 @@ namespace windowing
       return ::windowing::e_toolkit_kde5;
 #elif defined(HAS_KDE6)
       return ::windowing::e_toolkit_kde6;
-#elif defined(HAS_GTK3)
-      return ::windowing::e_toolkit_gtk3;
 #elif defined(HAS_GTK4)
       return ::windowing::e_toolkit_gtk4;
+#elif defined(HAS_GTK3)
+      return ::windowing::e_toolkit_gtk3;
 #else
       return ::windowing::e_toolkit_unknown;
 #endif

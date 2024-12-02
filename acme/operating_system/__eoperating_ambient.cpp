@@ -25,7 +25,11 @@ namespace windowing
       case e_operating_ambient_unity:
          return "gtk_based";
       case e_operating_ambient_gnome:
-         return "gtk_based";
+#ifdef HAS_GTK4
+         return "gtk4";
+#else
+         return "gtk3";
+#endif
       default:
          throw todo;
       };

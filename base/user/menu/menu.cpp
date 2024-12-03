@@ -2437,10 +2437,18 @@ namespace user
       if (get_parent() == nullptr)
       {
 
+         ::int_rectangle rectangleMonitor;
+
+         auto rectangleMonitorHint = rectangleScreenHint;
+
+         auto iMonitor = get_best_monitor(&rectangleMonitor, rectangleMonitorHint);
+
          ::int_rectangle rectangleWindow;
 
          rectangleWindow.left() = pointCursorHint.x();
+
          //rectangleWindow.top() = rectangleScreenHint.bottom();
+
          if (m_etrackpopup & ::menu::e_track_popup_outside_target)
          {
 
@@ -2460,17 +2468,52 @@ namespace user
          else
          {
 
+            bool bUp = false;
+
+            if (rectangleScreenHint.center_y() > rectangleMonitor.y_rate(0.75))
+            {
+
+               bUp = true;
+
+            }
+
+            bool bLeft = false;
+
+            if (rectangleScreenHint.center_x() > rectangleMonitor.x_rate(0.75))
+            {
+
+               bLeft = true;
+
+            }
+
+            if (bUp)
+            {
+
+               rectangleWindow.top() = rectangleScreenHint.top() - 32 - m_size.cy();
+
+            }
+            else
+            {
+
+               rectangleWindow.top() = rectangleScreenHint.top() + pointCursorHint.y() + 8;
+
+            }
+
             rectangleWindow.left() = rectangleScreenHint.left() + pointCursorHint.x() + 8;
-            rectangleWindow.top() = rectangleScreenHint.top() + pointCursorHint.y() + 8;
+            
+            if (bLeft)
+            {
+
+               rectangleWindow.left() -= m_size.cx();
+
+            }
 
          }
 
          rectangleWindow.right() = rectangleWindow.left() + m_size.cx();
          rectangleWindow.bottom() = rectangleWindow.top() + m_size.cy();
 
-         ::int_rectangle rectangleMonitor;
-
-         auto iMonitor = get_best_monitor(&rectangleMonitor, rectangleWindow);
+         iMonitor = get_best_monitor(&rectangleMonitor, rectangleWindow);
 
          if (iMonitor >= 0)
          {

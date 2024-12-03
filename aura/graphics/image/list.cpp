@@ -90,6 +90,8 @@ namespace image
       m_size.cx() = cx;
       m_size.cy() = cy;
 
+      system()->draw2d();
+
       __defer_construct(m_pimage);
 
       if (m_iSize > 0)

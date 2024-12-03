@@ -149,7 +149,7 @@ public:
 
 #endif
 
-   ::pointer<::manual_reset_happening>                 m_pmanualresethappeningNewProcedurePosted;
+   //::pointer<::manual_reset_happening>                 m_pmanualresethappeningNewProcedurePosted;
 
    ::synchronization_array                         m_synchronizationaMainLoop;
    htask_t                                         m_htask;
@@ -163,7 +163,7 @@ public:
    ::procedure                                     m_procedure;
    ::pointer<manual_reset_happening>                   m_pevSleep;
    ::pointer<manual_reset_happening>                   m_phappeningFinished2;
-   ::pointer<manual_reset_happening>                   m_pmanualresethappeningHappening;
+   //::pointer<manual_reset_happening>                   m_pmanualresethappeningHappening;
    ::comparable_array<e_happening>                 m_ehappeninga;
 
 
@@ -196,7 +196,7 @@ int m_iExitCode;
    virtual void on_pre_run_task();
 
    
-   void __on_update_handler_happening_unlocked() override;
+   ///void __on_update_handler_happening_unlocked() override;
 
 
    virtual void __priority_and_affinity();
@@ -210,11 +210,13 @@ int m_iExitCode;
    void task_osinit() override;
    void task_osterm() override;
 
+   bool has_main_loop_happening() override;
+
    //virtual bool os_on_init_task();
    //virtual void os_on_term_task();
-   virtual ::manual_reset_happening * new_procedure_posted();
+   //virtual ::manual_reset_happening * new_main_loop_happening();
 
-   virtual ::manual_reset_happening* new_happening();
+   //virtual ::manual_reset_happening* new_happening();
 
    virtual procedure pick_next_posted_procedure();
 

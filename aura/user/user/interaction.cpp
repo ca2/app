@@ -587,6 +587,41 @@ namespace user
    }
 
 
+   void interaction::on_display_restore()
+   {
+
+
+      //if (puserinteraction->layout().m_statea[::user::e_layout_normal].m_bProdevian)
+            //{
+
+            //   //puserinteraction->set_auto_refresh();
+
+            //}
+
+            //if (puserinteraction->layout().m_statea[::user::e_layout_normal].display() == e_display_zoomed)
+            //{
+
+            //   puserinteraction->_001Maximize();
+
+            //}
+            //else
+            //{
+
+            //   puserinteraction->_001Restore();
+
+            //}
+
+      display_previous(true);
+
+      set_need_layout();
+
+      set_need_redraw();
+
+      post_redraw();
+
+   }
+
+
    //   void interaction::set_restored_rectangle(const ::int_rectangle & rectangleRestored)
    //   {
    //

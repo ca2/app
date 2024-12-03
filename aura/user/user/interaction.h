@@ -489,6 +489,9 @@ namespace user
 
       virtual void _001Minimize();
 
+      virtual void on_display_restore();
+
+
       //void enable_drag_move();
 
 //      virtual void set_restored_rectangle(const ::int_rectangle & rectangleRestored);

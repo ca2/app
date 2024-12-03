@@ -270,6 +270,18 @@ namespace user
          Δ = pscroll->m_dPosition - y;
 
       }
+      else if (pscroll->m_ecommand == e_scroll_command_home)
+      {
+
+         Δ = -y;
+
+      }
+      else if (pscroll->m_ecommand == e_scroll_command_end)
+      {
+
+         Δ = m_pscrolllayoutY->m_scrollstatea[elayout].m_dMaximum - y;
+
+      }
 
       if (fabs(Δ) > 0.001)
       {

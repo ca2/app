@@ -23121,14 +23121,6 @@ namespace user
    }
 
 
-   //item_pointer interaction::hover_item()
-   //{
-
-   //   return m_pitemHover;
-
-   //}
-
-
    void interaction::show_tooltip(const ::string & str, bool bError)
    {
 
@@ -26327,18 +26319,18 @@ namespace user
 
             //bool bAvoidRedraw = !m_bDefaultMouseHoverHandling;
 
-            //auto pitemFront = update_hover(pmouse, e_zorder_front);
+            auto pitemFront = update_hover(pmouse, e_zorder_front);
 
-            //decltype(pitemFront) pitemBack;
+            decltype(pitemFront) pitemBack;
 
-            //if (!pitemFront)
-            //{
+            if (!pitemFront)
+            {
 
             //information() << "update_hover pmouse e_zorder_back";
 
-            auto pitemBack = update_hover(pmouse, e_zorder_back);
+               pitemBack = update_hover(pmouse, e_zorder_back);
 
-            //}
+            }
 
             //update_hover(pointCursorClient, false);
 

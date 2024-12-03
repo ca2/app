@@ -382,7 +382,7 @@ bool item_container::contains_item(const ::atom & atom) const
 //bool item_container::is_item_hover_by_index(::collection::index iIndex) const
 //{
 //
-//   return ::is_item_index(m_pitemHover, iIndex);
+//   return ::is_item_index(m_pitemHoverXXX, iIndex);
 //
 //}
 

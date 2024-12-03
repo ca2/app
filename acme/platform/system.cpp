@@ -3158,13 +3158,13 @@ particle* system::matter_mutex()
          if (ptopic->payload("wparam").is_true())
          {
 
-            background_color(::color::black);
+            set_background_color(::color::black);
 
          }
          else
          {
 
-            background_color(::color::white);
+            set_background_color(::color::white);
 
          }
 
@@ -4118,7 +4118,7 @@ particle* system::matter_mutex()
    }
 
 
-   void system::background_color(const ::color::color& color)
+   void system::set_background_color(const ::color::color& color)
    {
 
       if (m_colorBackground == color)
@@ -4219,9 +4219,11 @@ particle* system::matter_mutex()
       if (!m_bAcmeSystemDarkModeFetched)
       {
 
-         ((system *)this)->m_bAcmeSystemDarkMode = ((system *)this)->acme_windowing()->dark_mode();
-
          ((system *)this)->m_bAcmeSystemDarkModeFetched = true;
+
+         ((system *)this)->acme_windowing()->fetch_dark_mode();
+
+         ((system *)this)->m_bAcmeSystemDarkMode = ((system *)this)->acme_windowing()->dark_mode();
 
       }
 

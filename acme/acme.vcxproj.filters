@@ -5855,6 +5855,9 @@
     <ClCompile Include="windowing\sandbox\windowing.cpp">
       <Filter>Source Files\windowing\sandbox</Filter>
     </ClCompile>
+    <ClCompile Include="operating_system\__operating_system.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="prototype\string\_defer.h">

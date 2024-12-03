@@ -195,10 +195,10 @@ namespace graphics
    }
 
 
-   bool graphics::update_screen()
+   void graphics::update_screen()
    {
 
-      return true;
+      //return true;
 
    }
 
@@ -282,13 +282,13 @@ namespace graphics
    }
 
 
-   bool graphics::on_update_screen(buffer_item * pitem)
+   void graphics::on_update_screen(buffer_item * pitem)
    {
 
       //__UNREFERENCED_PARAMETER(pitem);
 
 
-      return true;
+      //return true;
 
    }
 

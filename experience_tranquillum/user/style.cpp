@@ -224,7 +224,7 @@ namespace experience_tranquillum
                   else if (estate & ::user::e_state_selected)
                   {
 
-                     return argb(255, 40, 40, 40);
+                     return argb(255, 240, 240, 240);
 
                   }
                   else
@@ -266,12 +266,12 @@ namespace experience_tranquillum
                      if (estate & ::user::e_state_selected)
                      {
 
-                        return argb(255, 200, 200, 240);
+                        return argb(255, 120, 140, 160);
 
                      }
                      else
                      {
-                        return argb(255, 220, 220, 220);
+                        return argb(255, 140, 140, 140);
 
                      }
 
@@ -279,7 +279,7 @@ namespace experience_tranquillum
                   else if (estate & ::user::e_state_selected)
                   {
 
-                     return argb(255, 200, 200, 200);
+                     return argb(255, 120, 120, 120);
 
                   }
                   else
@@ -813,7 +813,7 @@ namespace experience_tranquillum
          if (is_dark_mode())
          {
 
-            return argb(255, 192, 192, 192);
+            return argb(255, 50, 50, 50);
 
          }
          else
@@ -2354,7 +2354,20 @@ namespace experience_tranquillum
 
       rectangleX = psplitlayout->rectangle();
 
-      pgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
+      auto pstyle = psplitlayout->get_style(pgraphics);
+
+      if (pstyle->is_dark_mode())
+      {
+
+         pgraphics->fill_rectangle(rectangleX, argb(255, 110, 110, 110));
+
+      }
+      else
+      {
+
+         pgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
+
+      }
 
       return true;
 

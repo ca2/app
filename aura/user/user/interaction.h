@@ -492,6 +492,9 @@ namespace user
       virtual void on_display_restore();
 
 
+      virtual void on_display_task_list();
+
+
       //void enable_drag_move();
 
 //      virtual void set_restored_rectangle(const ::int_rectangle & rectangleRestored);

@@ -817,6 +817,21 @@ namespace user
          auto timeFrame = m_puserinteraction->has_fps_output_purpose()
             ? m_timePostRedrawProdevian : m_timePostRedrawNominal ;
 
+
+         if (
+            m_puserinteraction->m_pacmewindowingwindow)
+         {
+
+            auto elapsed = m_puserinteraction->window()->m_timeLastDrawGuard1.elapsed();
+
+            if (elapsed > timeFrame)
+            {
+
+               return true;
+
+            }
+
+         }
          //huge_integer i2 = get_nanos();
 
          // calculates the next/aaa_memory_new frame atom

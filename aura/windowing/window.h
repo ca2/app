@@ -75,6 +75,7 @@ namespace windowing
       ::pointer<::windowing::cursor>            m_pcursor;
       //::oswindow                                m_oswindow;
       bool                                      m_bUpdateScreenSynchronously;
+      class ::time                              m_timeLastDrawGuard1;
       
       bool                                      m_bActiveWindow;
       bool                                      m_bKeyboardFocus;

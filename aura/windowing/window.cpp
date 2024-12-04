@@ -12428,6 +12428,7 @@ bMove = false;
       m_sizeSetWindowSizeRequest = psize->m_size;
 
       if (!placement_log()->has_recent(psize->m_size)
+         && m_puserinteraction->is_this_screen_visible()
           && !m_puserinteraction->is_window_resizing()
           && !m_puserinteraction->is_window_repositioning()
           && !m_puserinteraction->is_window_docking())

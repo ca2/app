@@ -1562,7 +1562,7 @@ namespace acme
          int_rectangle interaction::get_window_rectangle()
          {
 
-            return {};
+            return m_pacmewindowingwindow->get_window_rectangle();
 
          }
 

@@ -622,6 +622,12 @@ namespace user
    }
 
 
+   void interaction::on_display_task_list()
+   {
+
+   }
+
+
    //   void interaction::set_restored_rectangle(const ::int_rectangle & rectangleRestored)
    //   {
    //

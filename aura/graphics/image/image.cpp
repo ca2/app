@@ -239,9 +239,15 @@ void image::defer_realize(::draw2d::graphics* pgraphics) const
 void image::create_ex(const ::int_size & size, ::image32_t * pimage32, int iScan, ::enum_flag eflagCreate, int iGoodStride, bool bPreserve)
 {
 
-   throw ::interface_only();
+   create(size, eflagCreate, iGoodStride, bPreserve);
 
-   //throw ::interface_only();
+   if (::is_set(pimage32))
+   {
+
+      m_pimage32->copy(size, m_iScan, pimage32, iScan);
+
+   }
+
 
 }
 

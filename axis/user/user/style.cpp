@@ -51,12 +51,12 @@ namespace axis
    }
 
 
-   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame_interaction * pframe)
+   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::interaction * pinteraction)
    {
 
       ::draw2d::save_context savecontext(pgraphics);
 
-      pgraphics->m_pdraw2dhost = pframe;
+      pgraphics->m_pdraw2dhost = pinteraction;
 
       //      if (!pframe->is_custom_draw() && pgraphics != nullptr && pgraphics->m_pnext == nullptr)
       //      {
@@ -67,11 +67,11 @@ namespace axis
 
       ::int_rectangle rectangleX;
 
-      rectangleX = pframe->rectangle();
+      rectangleX = pinteraction->rectangle();
 
-      auto pstyle = pframe->get_style(pgraphics);
+      auto pstyle = pinteraction->get_style(pgraphics);
 
-      status < ::color::color > crBackground = pframe->get_color(pstyle, ::e_element_background);
+      status < ::color::color > crBackground = pinteraction->get_color(pstyle, ::e_element_background);
 
       //crBackground = argb(255, 200, 180, 180);
 

@@ -69,7 +69,7 @@ namespace axis
       virtual void initialize_style() override;
 
 
-      virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::frame_interaction * pframe) override;
+      bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::interaction * pframe) override;
 
       virtual bool draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::int_rectangle & rectangle, ::draw2d::graphics_pointer & pgraphics) override;
 

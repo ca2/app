@@ -9739,6 +9739,15 @@ bMove = false;
 
          pgraphics->m_pgraphicsbufferitem = pbufferitem;
 
+         ::string strType = type(m_pacmeuserinteraction).name();
+
+         if (strType.case_insensitive_contains("menu"))
+         {
+
+            printf_line("menu");
+
+         }
+
          pgraphics->on_begin_draw();
 
          pgraphics->reset_clip();

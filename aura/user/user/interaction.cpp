@@ -1607,6 +1607,22 @@ namespace user
 
       }
 
+      auto ptoplevel = top_level();
+
+      if (ptoplevel && ptoplevel != this)
+      {
+
+         auto pstyleTopLevel = ptoplevel->get_style();
+
+         if (pstyleTopLevel)
+         {
+
+            return pstyleTopLevel;
+
+         }
+
+      }
+
       auto powner = get_owner();
 
       if (powner)

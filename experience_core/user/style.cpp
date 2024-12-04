@@ -2287,14 +2287,14 @@ namespace experience_core
    }
 
 
-   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame_interaction * pframe)
+   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::interaction * pinteraction)
    {
 
       ::draw2d::save_context savecontext(pgraphics);
 
-      pgraphics->m_pdraw2dhost = pframe;
+      pgraphics->m_pdraw2dhost = pinteraction;
 
-      if (pframe->is_top_level())
+      if (pinteraction->is_top_level())
       {
 
          //      if (!pframe->is_custom_draw() && pgraphics != nullptr && pgraphics->m_pnext == nullptr)
@@ -2306,11 +2306,23 @@ namespace experience_core
 
          ::int_rectangle rectangleX;
 
-         rectangleX = pframe->rectangle();
+         rectangleX = pinteraction->rectangle();
 
-         auto pstyle = pframe->get_style(pgraphics);
+         auto pstyle = pinteraction->get_style(pgraphics);
 
-         status < ::color::color > crBackground = pframe->get_color(pstyle, ::e_element_background);
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+
+         ::string strType =  ::type(pinteraction).name();
+
+
+         if (strType.case_insensitive_contains("menu"))
+         {
+
+            printf_line("menu");
+
+         }
+
+         status < ::color::color > crBackground = pinteraction->get_color(pstyle, ::e_element_background);
 
          //crBackground = argb(255, 200, 180, 180);
 

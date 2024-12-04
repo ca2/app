@@ -1026,31 +1026,72 @@ namespace user
    //}
 
 
+   void menu::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      if (this == top_level())
+      {
+
+         auto pstyle = get_style(pgraphics);
+
+         //information() << "user::frame_window::_001OnNcDraw graphics offset (2) : " << pgraphics->get_origin();
+
+   //      ::int_rectangle rectangleX;
+   //
+   //      this->rectangle(rectangleX);
+
+         if (pstyle)
+         {
+
+            if (pstyle->_001OnDrawMainFrameBackground(pgraphics, this))
+            {
+
+               //_001DrawThis(pgraphics);
+
+               //_001DrawChildren(pgraphics);
+
+               //_008CallOnDraw(pgraphics);
+
+               return;
+
+            }
+
+         }
+
+      }
+
+      ::user::interaction::_001OnNcDraw(pgraphics);
+
+   }
+
+
    void menu::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
-      auto pstyle = m_puserinteractionOwner->get_style(pgraphics);
+      //auto pstyle = m_puserinteractionOwner->get_style(pgraphics);
+
+      ::pointer<::base::style>pstyle = get_style(pgraphics);
 
       auto crBackground = get_color(pstyle, e_element_background);
 
-      if (crBackground.is_translucent())
-      {
+      //if (crBackground.is_translucent())
+      //{
 
-         ::double_rectangle rectangleClip;
+      //   ::double_rectangle rectangleClip;
 
-         pgraphics->get_clip_box(rectangleClip);
+      //   pgraphics->get_clip_box(rectangleClip);
 
-         auto rectangleX = this->rectangle();
+      //   auto rectangleX = this->rectangle();
 
-         //pgraphics->reset_clip();
+      //   //pgraphics->reset_clip();
 
-         //auto pointOffset = pgraphics->get_origin();
+      //   //auto pointOffset = pgraphics->get_origin();
 
-         //::memory_set(pgraphics->m_pimage->m_pimage32, 80, pgraphics->m_pimage->scan_area_in_bytes());
+      //   //::memory_set(pgraphics->m_pimage->m_pimage32, 80, pgraphics->m_pimage->scan_area_in_bytes());
 
-         pgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
+      //   //pgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
 
-      }
+      //}
 
       ::user::interaction::_001OnDraw(pgraphics);
 
@@ -1573,6 +1614,14 @@ namespace user
       /// descriptor().set_control_type(e_control_type_menu);
 
       pmessage->previous();
+
+
+      if (this == top_level())
+      {
+
+         m_ewindowflag += e_window_flag_top_level;
+
+      }
 
       __UNREFERENCED_PARAMETER(pmessage);
 

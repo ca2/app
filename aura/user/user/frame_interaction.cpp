@@ -438,7 +438,7 @@ namespace user
 
 
 
-      add_command_handler("app_exit", { this, &frame_interaction::on_message_application_exit });
+      add_command_handler("try_close_application", { this, &frame_interaction::on_message_application_exit });
       
 
       MESSAGE_LINK(e_message_destroy, pchannel, this, &frame_interaction::on_message_destroy);

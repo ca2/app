@@ -389,9 +389,11 @@ namespace platform
    }
 
 
-   bool acme_application_layer::on_application_menu_action(const ::atom& atom)
+   bool acme_application_layer::on_command(const ::atom& atom)
    {
+
       return false;
+
    }
 
 

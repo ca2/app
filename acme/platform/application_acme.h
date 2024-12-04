@@ -269,7 +269,7 @@ namespace platform
 
       virtual void show_about_box();
 
-      virtual bool on_application_menu_action(const ::atom & atom);
+      virtual bool on_command(const ::atom & atom);
 
 
 

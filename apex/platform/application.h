@@ -1265,7 +1265,8 @@ namespace apex
 
       //bool on_interprocess_handle(const ::scoped_string & scopedstrUri) override;
 
-      bool on_application_menu_action(const ::atom& atom) override;
+      
+      bool on_command(const ::atom& atom) override;
 
 
    };

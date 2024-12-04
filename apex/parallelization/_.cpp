@@ -142,9 +142,7 @@ namespace parallelization
    void post_quit_to_all_threads()
    {
 
-      //auto psystem = system();
-
-      synchronous_lock synchronouslock(::platform::get()->m_pmutexTask);
+      critical_section_lock criticalsectionlock(&::platform::get()->m_criticalsectionTask);
 
       for (auto& pair : ::system()->m_taskidmap)
       {
@@ -168,7 +166,7 @@ namespace parallelization
    CLASS_DECL_APEX void post_to_all_threads(const ::atom & atom, wparam wparam, lparam lparam)
    {
 
-      synchronous_lock synchronouslock(::platform::get()->m_pmutexTask);
+      critical_section_lock criticalsectionlock(&::platform::get()->m_criticalsectionTask);
 
       for (auto& pair : ::system()->m_taskidmap)
       {

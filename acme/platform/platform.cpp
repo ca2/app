@@ -70,16 +70,16 @@ namespace platform
 {
 
 
-   ::platform::platform * platform::s_p = nullptr;
+   ::platform::platform * platform::s_pplatform = nullptr;
 
 
    platform::platform()
    {
 
-      if (!s_p)
+      if (!s_pplatform)
       {
 
-         s_p = this;
+         s_pplatform = this;
 
       }
       

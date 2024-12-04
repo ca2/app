@@ -374,7 +374,9 @@ namespace graphics
    huge_integer graphics::_001GetTopLeftWeightedOpaqueArea(const ::int_rectangle & rect)
    {
 
-      synchronous_lock synchronouslock(get_screen_item()->m_pmutex);
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      _synchronous_lock synchronouslockMutex(get_screen_item()->m_pmutex);
 
       return get_screen_item()->m_pimage2->_001GetTopLeftWeightedOpaqueArea(0, rect);
 

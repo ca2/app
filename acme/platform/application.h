@@ -324,7 +324,7 @@ namespace platform
 
       virtual void show_about_box() override;
 
-      bool on_application_menu_action(const ::atom & atom) override;
+      bool on_command(const ::atom & atom) override;
 
 
 

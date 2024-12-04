@@ -1402,7 +1402,8 @@ namespace user
          pmenuitem->m_puserinteraction,
          m_pchannelNotify,
          mouse_cursor_position(),
-         rectangle);
+         rectangle,
+         ::menu::e_track_popup_right);
 
       m_pmenuSubMenu->track_popup_menu(ptrackpopup);
 
@@ -2502,6 +2503,13 @@ namespace user
          {
 
             rectangleWindow.top() = rectangleScreenHint.bottom();
+
+         }
+         else if (m_etrackpopup & ::menu::e_track_popup_right)
+         {
+
+            rectangleWindow.left() = rectangleScreenHint.right();
+            rectangleWindow.top() = rectangleScreenHint.top();
 
          }
          else if (m_etrackpopup & ::menu::e_track_popup_inside_target)

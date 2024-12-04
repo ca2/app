@@ -2194,19 +2194,23 @@ namespace platform
    }
 
 
-   bool application::on_application_menu_action(const ::atom& atom)
+   bool application::on_command(const ::atom& atom)
    {
       
       if(atom == "show_about_box")
       {
        
          show_about_box();
+
+         return true;
          
       }
       else if(atom == "try_close_application")
       {
        
          _001TryCloseApplication();
+
+         return true;
          
       }
 
@@ -2338,10 +2342,10 @@ CLASS_DECL_ACME void application_send_status(::enum_status estatus, ::particle* 
 }
 
 
-void application_on_menu_action(::platform::application * papplication, const char * pszCommand)
+void application_on_command(::platform::application * papplication, const char * pszCommand)
 {
 
-   papplication->on_application_menu_action(pszCommand);
+   papplication->on_command(pszCommand);
 
 }
 

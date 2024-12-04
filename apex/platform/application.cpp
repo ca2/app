@@ -644,9 +644,9 @@ namespace apex
 
       MESSAGE_LINK(e_message_close, pchannel, this, &application::on_message_close);
 
-      add_command_handler("app_exit", { this, &application::on_message_app_exit });
+      add_command_handler("try_close_application", { this, &application::on_message_app_exit });
       add_command_handler("switch_context_theme", { this, &application::_001OnSwitchContextTheme });
-      add_command_handler("display_about", { this, &application::on_command_display_about });
+      add_command_handler("show_about_box", { this, &application::on_command_display_about });
 
    }
 
@@ -2974,19 +2974,10 @@ namespace apex
    }
 
 
-   bool application::on_application_menu_action(const ::atom & atom)
+   bool application::on_command(const ::atom & atom)
    {
 
-      if(atom == "display_about")
-      {
-
-         show_about_box();
-
-         return true;
-
-      }
-
-      return ::platform::application::on_application_menu_action(atom);
+      return ::platform::application::on_command(atom);
 
    }
 

@@ -2554,6 +2554,12 @@ bMove = false;
          stateOutput.m_zorder.clear_request();
 
       }
+      else
+      {
+
+         _set_window_position_unchanged();
+
+      }
 
       return true;
 
@@ -2571,6 +2577,13 @@ bMove = false;
       bool bOk2 = _strict_set_window_position_unlocked(x, y, cx, cy, bNoMove, bNoSize);
 
       return bOk1 && bOk2;
+
+   }
+
+
+   void window::_set_window_position_unchanged()
+   {
+
 
    }
 
@@ -12696,11 +12709,13 @@ bMove = false;
    huge_integer window::opaque_area(const ::int_rectangle & rect)
    {
 
+      _synchronous_lock synchronouslock(this->synchronization());
+
       auto pitem = m_pgraphicsgraphics->get_screen_item();
 
-      _synchronous_lock synchronouslock(pitem->m_pmutex);
+      _synchronous_lock synchronouslockScreen(pitem->m_pmutex);
 
-      ::color::color colorTransparent(0);
+      ::color::color colorTransparent(::color::transparent);
 
       ::int_rectangle rectangle(rect);
 
@@ -12726,11 +12741,13 @@ bMove = false;
    huge_integer window::opaque_area()
    {
 
+      _synchronous_lock synchronouslock(this->synchronization());
+
       auto pitem = m_pgraphicsgraphics->get_screen_item();
 
-      _synchronous_lock synchronouslock(pitem->m_pmutex);
+      _synchronous_lock synchronouslockScreen(pitem->m_pmutex);
 
-      ::color::color colorTransparent(0);
+      ::color::color colorTransparent(::color::transparent);
 
       ::int_rectangle rectangle;
 
@@ -12744,11 +12761,13 @@ bMove = false;
    huge_integer window::_001GetTopLeftWeightedArea()
    {
 
+      _synchronous_lock synchronouslock(this->synchronization());
+
       auto pitem = m_pgraphicsgraphics->get_screen_item();
 
-      _synchronous_lock synchronouslock(pitem->m_pmutex);
+      _synchronous_lock synchronouslockScreen(pitem->m_pmutex);
 
-      ::color::color colorTransparent(0);
+      ::color::color colorTransparent(::color::transparent);
 
       ::int_rectangle rectangle;
 

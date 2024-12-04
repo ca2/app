@@ -3240,41 +3240,30 @@ namespace aura
    //}
 
 
-   //bool system::on_application_menu_action(const ::string & pszCommand)
-   //{
+   bool system::on_command(const ::atom & atom)
+   {
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization());
 
-   //   
+      auto applicationa = session()->m_applicationa;
 
-   //   auto applicationa = psession->m_applicationa;
+      synchronouslock.unlock();
 
-   //   synchronouslock.unlock();
+      for(auto & papplication : applicationa)
+      {
 
-   //   for(auto & papp : applicationa)
-   //   {
+         if(papplication->on_command(atom))
+         {
 
-   //      ASSERT(papp != this);
+            return true;
 
-   //      if(papp == this)
-   //      {
+         }
 
-   //         continue;
+      }
 
-   //      }
+      return false;
 
-   //      if(papp->on_application_menu_action(pszCommand))
-   //      {
-
-   //         return true;
-
-   //      }
-
-   //   }
-
-   //   return false;
-
-   //}
+   }
 
 
    //bool system::merge_accumulated_on_open_file(::request * prequest)

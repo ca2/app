@@ -227,6 +227,8 @@ namespace platform
 
       debug() << "platform::system::~system() (start)";
 
+      m_pparticleSynchronization.release();
+
       trace_category_static_term();
 
       m_psystem = nullptr;
@@ -453,9 +455,9 @@ namespace platform
 
       __øconstruct(m_plogger);
 
-      __øconstruct(m_pmutexTask);
+      //__øconstruct(m_pmutexTask);
 
-      __øconstruct(m_pmutexTaskOn);
+      //__øconstruct(m_pmutexTaskOn);
 
       //::output_debug_string("output_debug_string : simple log created\n");
 
@@ -847,7 +849,7 @@ namespace platform
       //
       // }
 
-      __øconstruct(m_pmutexTask);
+      //__øconstruct(m_pmutexTask);
          
       __øconstruct(m_pmutexHttpDownload);
 
@@ -1272,7 +1274,7 @@ namespace platform
    ::task* system::get_task(itask_t itask)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexTask);
+      critical_section_lock criticalsectionlock(&m_criticalsectionTask);
 
       return m_taskmap[itask];
 
@@ -1282,7 +1284,7 @@ namespace platform
    itask_t system::get_task_id(const ::task* ptask)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexTask);
+      critical_section_lock criticalsectionlock(&m_criticalsectionTask);
 
       itask_t itask = null_itask;
 
@@ -1301,7 +1303,7 @@ namespace platform
    void system::set_task(itask_t itask, ::task* ptask)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexTask);
+      critical_section_lock criticalsectionlock(&m_criticalsectionTask);
 
       __refdbg_add_referer_for(ptask);
 
@@ -1315,7 +1317,7 @@ namespace platform
    void system::unset_task(itask_t itask, ::task* ptask)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexTask);
+      critical_section_lock criticalsectionlock(&m_criticalsectionTask);
 
       if(m_taskmap.has(itask)) m_taskmap.erase_item(itask);
 
@@ -1327,7 +1329,7 @@ namespace platform
    bool system::is_task_on(itask_t atom)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexTaskOn);
+      critical_section_lock criticalsectionlock(&m_criticalsectionTaskOn);
 
       return m_mapTaskOn.plookup(atom);
 
@@ -1352,7 +1354,7 @@ namespace platform
    void system::set_task_on(itask_t atom)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexTaskOn);
+      critical_section_lock criticalsectionlock(&m_criticalsectionTaskOn);
 
       m_mapTaskOn.set_at(atom, atom);
 
@@ -1362,7 +1364,7 @@ namespace platform
    void system::set_task_off(itask_t atom)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexTaskOn);
+      critical_section_lock criticalsectionlock(&m_criticalsectionTaskOn);
 
       m_mapTaskOn.erase_item(atom);
 

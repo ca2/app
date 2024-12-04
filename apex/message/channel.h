@@ -145,6 +145,7 @@ public:
    virtual void on_command(::message::command * pcommand);
    virtual bool has_command_handler(::message::command * pcommand);
    virtual void on_command_probe(::message::command * pcommand);
+   virtual bool on_command(const ::atom & atom);
 
 
    virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false);

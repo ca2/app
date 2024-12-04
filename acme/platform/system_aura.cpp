@@ -356,9 +356,12 @@ namespace platform
 
    //void aura_system_layer::discard_to_factory(::object * pca){}
 
-   bool  aura_system_layer::on_application_menu_action(const ::string& pszCommand)
+   
+   bool aura_system_layer::on_command(const ::string& pszCommand)
    {
+
       return false;
+
    }
 
 

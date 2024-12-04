@@ -5660,28 +5660,28 @@ namespace aura
    //}
 
 
-   bool application::on_application_menu_action(const ::atom & atom)
+   bool application::on_command(const ::atom & atom)
    {
 
-      if (m_puserinteractionMain != nullptr)
-      {
+      //if (m_puserinteractionMain != nullptr)
+      //{
 
-         ::message::command command(atom);
+      //   ::message::command command(atom);
 
-         auto puserinteractionMain = m_puserinteractionMain;
+      //   auto puserinteractionMain = m_puserinteractionMain;
 
-         puserinteractionMain->route_command(&command);
+      //   puserinteractionMain->route_command(&command);
 
-         if(command.m_bRet)
-         {
+      //   if(command.m_bRet)
+      //   {
 
-            return true;
+      //      return true;
 
-         }
+      //   }
 
-      }
+      //}
 
-      return ::aqua::application::on_application_menu_action(atom);
+      return ::aqua::application::on_command(atom);
 
    }
 

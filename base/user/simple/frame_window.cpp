@@ -1269,7 +1269,7 @@ void simple_frame_window::on_message_display_change(::message::message * pmessag
 
       ::e_display edisplay = const_layout().sketch().display();
 
-      display(edisplay, e_activation_display_change);
+      display(edisplay, { ::user::e_activation_display_change });
 
       set_need_layout();
 
@@ -1510,9 +1510,9 @@ void simple_frame_window::show_control_bars(const ::e_display & edisplay, bool b
             if ((is_screen_visible(edisplay) || (!toolbartransport->m_bFullScreenBar || !bLeaveFullScreenBarsOnHide)))
             {
 
-               enum_activation eactivation = e_activation_default;
+               ::user::activation useractivationDefault;
 
-               toolbartransport->display(edisplay, eactivation);
+               toolbartransport->display(edisplay, useractivationDefault);
 
             }
             else
@@ -2415,7 +2415,7 @@ void simple_frame_window::pre_translate_message(::message::message * pmessage)
 void simple_frame_window::on_frame_position()
 {
 
-   display(e_display_default, e_activation_set_active);
+   display(e_display_default, { ::user::e_activation_set_active } );
 
    order_top();
 

@@ -676,7 +676,7 @@ namespace user
 //   }
 
 
-//   void interaction_child::_window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation)
+//   void interaction_child::_window_show_change_visibility_unlocked(::e_display edisplay, const ::user::activation & useractivation)
 //   {
 //
 //      try

@@ -74,7 +74,7 @@ namespace user
       //void erase_fps_interest(::particle * pparticle) override;
       //bool is_fps_interest(const ::particle * pparticle) const override;
 
-      void display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default) override;
+      void display(::e_display edisplay = e_display_default, const ::user::activation & useractivation = {}) override;
 
 
       string get_title() override;
@@ -184,7 +184,7 @@ namespace user
 
       void fps_interest_stop() override;
 
-      virtual void design_window_minimize(::e_activation eactivation);
+      virtual void design_window_minimize(const ::user::activation & useractivation);
       virtual void design_window_maximize();
       virtual void design_window_full_screen(const ::int_rectangle & rectangleHint = {});
       virtual void design_window_normal(e_display edisplay);

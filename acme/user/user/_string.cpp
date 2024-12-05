@@ -88,42 +88,42 @@ CLASS_DECL_ACME ::string as_string(::enum_display edisplay)
 }
 
 
-CLASS_DECL_ACME ::string as_string(::enum_activation eactivation)
+CLASS_DECL_ACME ::string as_string(::user::enum_activation useractivation)
 {
 
-   if(eactivation == e_activation_default)
+   if(useractivation == ::user::e_activation_default)
    {
 
-   return "e_activation_default";
+   return "::user::e_activation_default";
 }
    ::string str;
-   if(eactivation & e_activation_no_activate)
+   if(useractivation & ::user::e_activation_no_activate)
    {
       str += "no_activate;";
    }
-   if(eactivation & e_activation_set_active)
+   if(useractivation & ::user::e_activation_set_active)
    {
       str += "set_active;";
    }
-   if(eactivation & e_activation_set_foreground)
+   if(useractivation & ::user::e_activation_set_foreground)
    {
       str += "set_foreground;";
    }
-   if(eactivation & e_activation_under_mouse_cursor)
+   if(useractivation & ::user::e_activation_under_mouse_cursor)
    {
       str += "under_mouse_cursor;";
    }
-   if(eactivation & e_activation_on_center_of_screen)
+   if(useractivation & ::user::e_activation_on_center_of_screen)
    {
       str += "on_center_of_screen;";
    }
-   if(eactivation & e_activation_display_change)
+   if(useractivation & ::user::e_activation_display_change)
    {
       str += "display_change;";
    }
    if(str.is_empty())
    {
-      str.formatf("unknown e_display %d", (iptr) eactivation);
+      str.formatf("unknown e_display %d", (iptr) useractivation);
    }
    else
    {

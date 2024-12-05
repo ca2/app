@@ -1478,6 +1478,7 @@
     <ClInclude Include="user\micro\theme.h" />
     <ClInclude Include="user\micro\user.h" />
     <ClInclude Include="user\micro\_.h" />
+    <ClInclude Include="user\user\activation.h" />
     <ClInclude Include="user\user\check.h" />
     <ClInclude Include="user\user\control.h" />
     <ClInclude Include="user\user\controller.h" />

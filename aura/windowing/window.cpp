@@ -1904,7 +1904,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::_window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
+   void window::_window_show_change_visibility(::e_display edisplay, const ::user::activation & useractivation)
    {
 
       throw ::interface_only();
@@ -2038,7 +2038,7 @@ void window::set_oswindow(::oswindow oswindow)
 
 
    //   /// this function should be called in user/main thread
-   //   void window::show_window(const ::e_display & edisplay, const ::e_activation & eactivation)
+   //   void window::show_window(const ::e_display & edisplay, const ::user::e_activation & useractivation)
    //   {
    //
    //      windowing_output_debug_string("::window::show_window 1");
@@ -2046,7 +2046,7 @@ void window::set_oswindow(::oswindow oswindow)
    //   }
    //
    //
-   //   void window::_show_window_unlocked(const ::e_display & edisplay, const ::e_activation & eactivation)
+   //   void window::_show_window_unlocked(const ::e_display & edisplay, const ::user::e_activation & useractivation)
    //   {
    //
    //
@@ -2233,17 +2233,17 @@ void window::set_oswindow(::oswindow oswindow)
 
 
    bool window::on_set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy,
-                                       const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize,
+                                       const ::user::e_activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize,
                                        ::e_display edisplay)
    {
 
-      return set_window_position(zorder, x, y, cx, cy, eactivation, bNoZorder, bNoMove, bNoSize, edisplay);
+      return set_window_position(zorder, x, y, cx, cy, useractivation, bNoZorder, bNoMove, bNoSize, edisplay);
 
    }
 
 
    bool window::set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy,
-                                    const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize,
+                                    const ::user::e_activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize,
                                     ::e_display edisplay)
    {
 
@@ -2255,7 +2255,7 @@ void window::set_oswindow(::oswindow oswindow)
 
 
    bool window::_set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy,
-                                     const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize,
+                                     const ::user::e_activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize,
                                      ::e_display edisplay, unsigned int nOverrideFlags)
    {
 
@@ -2282,9 +2282,9 @@ void window::set_oswindow(::oswindow oswindow)
 
       //}
 
-      auto eactivationOutput = stateOutput.activation();
+      auto activationOutput = stateOutput.activation();
 
-      auto eactivationWindow = stateWindow.activation();
+      auto activationWindow = stateWindow.activation();
 
       auto edisplayOutput = stateOutput.display();
 
@@ -2298,26 +2298,26 @@ void window::set_oswindow(::oswindow oswindow)
 
       bool bZ = zOutput.is_change_request();
 
-      if (bVisibilityChange || bZ || eactivationOutput != e_activation_default)
+      if (bVisibilityChange || bZ || activationOutput.is_change_request())
       {
 
          informationf("::windowing::window::configure_window_unlocked bVisibilityChange(%d) bZ(%d) bActivation(%d)",
                      (int)bVisibilityChange,
                      (int)bZ,
-                     (int)(eactivationOutput != e_activation_default));
+                     (int)(activationOutput.is_change_request()));
 
          information() << "::windowing::window::configure_window_unlocked displayRequest : " << edisplayOutput;
 
          if (_configure_window_unlocked(
             zOutput,
-            eactivationOutput,
+            activationOutput,
             !bZ,
             edisplayOutput))
          {
 
             stateWindow.display() = stateOutput.display();
 
-            stateOutput.m_eactivation.clear();
+            stateOutput.m_activation.clear();
 
             stateOutput.m_zorder.clear_request();
 
@@ -2423,6 +2423,8 @@ void window::set_oswindow(::oswindow oswindow)
    bool window::set_window_position_unlocked()
    {
 
+      information() << "windowing::window::set_window_position_unlocked";
+
       auto & stateDesign = m_puserinteraction->layout().m_statea[::user::e_layout_design];
 
       auto pointDesign = stateDesign.origin();
@@ -2437,9 +2439,10 @@ void window::set_oswindow(::oswindow oswindow)
          if(system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
          {
 
-bMove = false;
+            bMove = false;
 
          }
+         
          //information() << "Design.point != Window.point " << pointDesign << ", " << pointWindow;
 
       }
@@ -2472,9 +2475,9 @@ bMove = false;
 
       //}
 
-      auto eactivationOutput = stateOutput.activation();
+      auto activationOutput = stateOutput.activation();
 
-      auto eactivationWindow = stateWindow.activation();
+      auto activationWindow = stateWindow.activation();
 
       auto edisplayOutput = stateOutput.display();
 
@@ -2497,11 +2500,20 @@ bMove = false;
 
       }
 
+      bool bActivate = activationOutput.is_change_request();
+
       if (bMove || bSize
-         || bVisibilityChange || bZ || eactivationOutput != e_activation_default)
+         || bVisibilityChange || bZ || bActivate)
       {
 
          ::int_rectangle r(pointDesign, sizeOutput);
+
+         information()  << "bMove : " << bMove
+                        << ", bSize : " << bSize
+                        << ", bVisibilityChange : " << bVisibilityChange
+                        << ", bZ : " << bZ
+                        << ", bActivate : " << bActivate;
+
 
          //information() << "::windowing::window::_set_window_position_unlocked l:" << r.left() << ", t:" << r.top()
          //              << ", r:" << r.right() << ", b:" << r.bottom() << ", thrd:" << ::task_index();
@@ -2532,7 +2544,7 @@ bMove = false;
             pointDesign.y(),
             sizeOutput.cx(),
             sizeOutput.cy(),
-            eactivationOutput,
+            activationOutput,
             !bZ, !bMove, !bSize,
             edisplayOutput);
 
@@ -2549,7 +2561,7 @@ bMove = false;
 
          stateWindow.display() = stateOutput.display();
 
-         stateOutput.m_eactivation.clear();
+         stateOutput.m_activation.clear();
 
          stateOutput.m_zorder.clear_request();
 
@@ -2568,11 +2580,11 @@ bMove = false;
 
 
    bool window::_set_window_position_unlocked(const class ::zorder & zorder, int x, int y, int cx, int cy,
-                                              const ::e_activation & eactivation, bool bNoZorder, bool bNoMove,
+                                              const ::user::activation & useractivation, bool bNoZorder, bool bNoMove,
                                               bool bNoSize, ::e_display edisplay)
    {
 
-      bool bOk1 = _configure_window_unlocked(zorder, eactivation, bNoZorder, edisplay);
+      bool bOk1 = _configure_window_unlocked(zorder, useractivation, bNoZorder, edisplay);
 
       bool bOk2 = _strict_set_window_position_unlocked(x, y, cx, cy, bNoMove, bNoSize);
 
@@ -2589,7 +2601,7 @@ bMove = false;
 
 
    bool
-      window::_configure_window_unlocked(const class ::zorder & zorder, const ::e_activation & eactivation, bool bNoZorder,
+      window::_configure_window_unlocked(const class ::zorder & zorder, const ::user::activation & useractivation, bool bNoZorder,
                                          ::e_display edisplay)
    {
 
@@ -2677,7 +2689,7 @@ bMove = false;
       //}
 
 
-   //   void window::_window_request_presentation_set_window_position_unlocked(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
+   //   void window::_window_request_presentation_set_window_position_unlocked(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::e_activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
    //   {
    //
    //
@@ -10358,7 +10370,7 @@ bMove = false;
 
    //   pinteraction->place(rectangle);
 
-   //   pinteraction->display(e_display_normal, e_activation_no_activate);
+   //   pinteraction->display(e_display_normal, ::user::e_activation_no_activate);
 
    //}
 
@@ -11457,7 +11469,7 @@ bMove = false;
    //
    //      //}
    //
-   //      //if (eactivationOutput & e_activation_no_activate)
+   //      //if (eactivationOutput & ::user::e_activation_no_activate)
    //      //{
    //
    //      //   uFlags |= SWP_NOACTIVATE;
@@ -11546,7 +11558,7 @@ bMove = false;
    //
    //      }
    //
-   //      //if (eactivationOutput & e_activation_no_activate)
+   //      //if (eactivationOutput & ::user::e_activation_no_activate)
    //      //{
    //
    //      //   uFlags |= SWP_NOACTIVATE;
@@ -11790,7 +11802,7 @@ bMove = false;
    //
    //      }
    //
-   //      if (eactivationOutput & e_activation_set_foreground)
+   //      if (eactivationOutput & ::user::e_activation_set_foreground)
    //      {
    //
    //         //throw ::exception(todo);
@@ -11800,7 +11812,7 @@ bMove = false;
    //
    //      }
    //
-   //      if (eactivationOutput & e_activation_set_active)
+   //      if (eactivationOutput & ::user::e_activation_set_active)
    //      {
    //
    //         //throw ::exception(todo);
@@ -11918,10 +11930,10 @@ bMove = false;
    }
 
 
-   //   void window::_window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation)
+   //   void window::_window_show_change_visibility_unlocked(::e_display edisplay, const ::user::activation & useractivation)
    //   {
    //
-   //      //m_puserthread->post_procedure([this, edisplay, eactivation]()
+   //      //m_puserthread->post_procedure([this, edisplay, useractivation]()
    //        // {
    //
    //      if (!m_puserinteraction)
@@ -11936,16 +11948,16 @@ bMove = false;
    //      if (edisplay == e_display_iconic)
    //      {
    //
-   //         if (eactivation == e_activation_no_activate)
+   //         if (useractivation == ::user::e_activation_no_activate)
    //         {
    //
-   //            _show_window_unlocked(edisplay, eactivation);
+   //            _show_window_unlocked(edisplay, useractivation);
    //
    //         }
    //         else
    //         {
    //
-   //            _show_window_unlocked(edisplay, eactivation);
+   //            _show_window_unlocked(edisplay, useractivation);
    //
    //         }
    //
@@ -11953,14 +11965,14 @@ bMove = false;
    //      else
    //      {
    //
-   //         _show_window_unlocked(edisplay, eactivation);
+   //         _show_window_unlocked(edisplay, useractivation);
    //
    //      }
    //
    //      if (m_puserinteraction)
    //      {
    //
-   //         m_puserinteraction->set_activation(e_activation_default, e_layout_design);
+   //         m_puserinteraction->set_activation(::user::e_activation_default, e_layout_design);
    //
    //      }
    //
@@ -16035,7 +16047,7 @@ bMove = false;
    // }
 
 
-   //   void window::_window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation)
+   //   void window::_window_show_change_visibility_unlocked(::e_display edisplay, const ::user::activation & useractivation)
    //   {
    //
    //   }

@@ -40,7 +40,7 @@ namespace simple_ui
 
       }
 
-      layout().sketch() = e_activation_on_center_of_screen;
+      layout().sketch() = ::user::e_activation_on_center_of_screen;
 
       m_happeningReady.reset_happening();
 

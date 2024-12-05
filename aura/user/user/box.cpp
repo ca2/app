@@ -287,7 +287,7 @@ namespace user
 
          m_bLoadingWindowRectangle = true;
 
-         ::collection::index iDisplay = good_restore(nullptr, {}, true, e_activation_default, e_zorder_top, initial_restore_display());
+         ::collection::index iDisplay = good_restore(nullptr, {}, true, { ::user::e_activation_default }, e_zorder_top, initial_restore_display());
 
          bool bRestore = iDisplay >= 0;
 
@@ -334,7 +334,7 @@ namespace user
 
          m_bLoadingWindowRectangle = true;
 
-         ::collection::index iDisplay = good_restore(nullptr, {}, true, e_activation_default, e_zorder_top, initial_restore_display());
+         ::collection::index iDisplay = good_restore(nullptr, {}, true, { ::user::e_activation_default }, e_zorder_top, initial_restore_display());
 
          bool bRestore = iDisplay >= 0;
 
@@ -445,7 +445,7 @@ namespace user
 
          //auto rectangleWindow = window_rectangle();
 
-         //good_restore(nullptr, rectangleWindow, true, e_activation_default, e_zorder_top, edisplayForRestore);
+         //good_restore(nullptr, rectangleWindow, true, ::user::e_activation_default, e_zorder_top, edisplayForRestore);
 
          //display(edisplay);
 
@@ -469,7 +469,7 @@ namespace user
 ///*         auto functionGoodRestore = [this, windowrectangle]()
 //         {
 //
-//            good_restore(nullptr, windowrectangle.XXXm_rectangleRestored, true, e_activation_default, e_zorder_top, windowrectangle.m_edisplay);
+//            good_restore(nullptr, windowrectangle.XXXm_rectangleRestored, true, ::user::e_activation_default, e_zorder_top, windowrectangle.m_edisplay);
 //
 //         };
 //
@@ -586,7 +586,7 @@ namespace user
 
             information() << "FancyLoadWindowRectangle windowrectangle.m_rectangleNormal " << windowdisplayandlayout.m_rectangleNormal;
 
-            good_restore(nullptr, windowdisplayandlayout.m_rectangleNormal, true, e_activation_default, e_zorder_top, windowdisplayandlayout.m_edisplay);
+            good_restore(nullptr, windowdisplayandlayout.m_rectangleNormal, true, { ::user::e_activation_default }, e_zorder_top, windowdisplayandlayout.m_edisplay);
                
          };
          
@@ -755,7 +755,7 @@ namespace user
    }
 
 
-   void box::display_normal(::e_display edisplay, ::e_activation eactivation)
+   void box::display_normal(::e_display edisplay, const ::user::activation & useractivation)
    {
 
 #ifdef INFO_LAYOUT_DISPLAY
@@ -783,7 +783,7 @@ namespace user
 
             information() << "display_normal m_windowdisplayandlayout.m_rectangleBroad : " << m_windowdisplayandlayout.m_rectangleBroad << ", rectangleSketch : " << rectangleSketch;
 
-            good_restore(nullptr, rectangle, true, eactivation, e_zorder_top, e_display_broad);
+            good_restore(nullptr, rectangle, true, useractivation, e_zorder_top, e_display_broad);
 
          }
          else if (edisplay == e_display_compact)
@@ -793,7 +793,7 @@ namespace user
 
             information() << "display_normal m_windowdisplayandlayout.m_rectangleCompact : " << m_windowdisplayandlayout.m_rectangleCompact << ", rectangleSketch : " << rectangleSketch;
 
-            good_restore(nullptr, rectangle, true, eactivation, e_zorder_top, e_display_compact);
+            good_restore(nullptr, rectangle, true, useractivation, e_zorder_top, e_display_compact);
 
          }
          else
@@ -803,7 +803,7 @@ namespace user
 
             information() << "display_normal m_windowdisplayandlayout.m_rectangleNormal : " << m_windowdisplayandlayout.m_rectangleNormal << ", rectangleSketch : " << rectangleSketch;
 
-            good_restore(nullptr, rectangle, true, eactivation, e_zorder_top, e_display_normal);
+            good_restore(nullptr, rectangle, true, useractivation, e_zorder_top, e_display_normal);
 
          }
 
@@ -813,7 +813,7 @@ namespace user
 
          set_display(edisplay);
 
-         set_activation(eactivation);
+         set_activation(useractivation);
 
       }
 
@@ -833,10 +833,10 @@ namespace user
    }
 
 
-   void box::display_full_screen(::collection::index iMonitor, ::e_activation eactivation)
+   void box::display_full_screen(::collection::index iMonitor, const ::user::activation & useractivation)
    {
 
-      best_monitor(nullptr, const_layout().sketch().parent_raw_rectangle(), true, e_activation_default, e_zorder_top);
+      best_monitor(nullptr, const_layout().sketch().parent_raw_rectangle(), true, { ::user::e_activation_default }, e_zorder_top);
 
    }
 

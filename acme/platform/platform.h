@@ -2,6 +2,7 @@
 #pragma once
 
 
+
 #include "acme/constant/windowing.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/task.h"
@@ -9,6 +10,7 @@
 #include "acme/platform/release_time_for_project.h"
 #include "acme/prototype/collection/atom_map.h"
 #include "acme/prototype/collection/string_map.h"
+#include "acme/user/user/activation.h"
 
 
 #ifdef LINUX
@@ -62,7 +64,7 @@ namespace platform
       ::critical_section                              m_criticalsection;
 
       ::e_display                                     m_edisplay;
-      ::e_activation                                  m_eactivativation;
+      ::user::e_activation                            m_eactivation;
       int                                             m_argc = 0;
       char **                                         m_args = nullptr;
       char **                                         m_envp = nullptr;

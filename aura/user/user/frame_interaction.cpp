@@ -86,7 +86,7 @@ namespace user
          ////
          ////               information() << "LoadFrame sketch !is_screen_visible going to display_normal (1)";
          ////
-         ////               display_normal(e_display_normal, e_activation_set_foreground);
+         ////               display_normal(e_display_normal, ::user::e_activation_set_foreground);
          ////
          ////            }
          //
@@ -1035,13 +1035,13 @@ namespace user
       if (!const_layout().sketch().is_screen_visible())
       {
 
-         display_normal(e_display_normal, e_activation_set_foreground);
+         display_normal(e_display_normal, { ::user::e_activation_set_foreground, ::get_task() });
 
       }
       else
       {
 
-         set_activation(e_activation_set_foreground);
+         set_activation({ ::user::e_activation_set_foreground, ::get_task() });
 
       }
 

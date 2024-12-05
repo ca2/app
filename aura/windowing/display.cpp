@@ -1055,7 +1055,7 @@ namespace windowing
    }
 
 
-   ::collection::index display::get_best_monitor(::int_rectangle * prectangle, const int_rectangle & rectangleParam, ::e_activation eactivation, ::user::interaction * puserinteractionCursorPosition)
+   ::collection::index display::get_best_monitor(::int_rectangle * prectangle, const int_rectangle & rectangleParam, const ::user::activation & useractivation, ::user::interaction * puserinteractionCursorPosition)
    {
 
       ::collection::index iMatchingMonitor = -1;
@@ -1066,7 +1066,7 @@ namespace windowing
 
       ::int_rectangle rectangle(rectangleParam);
 
-      if (eactivation & e_activation_under_mouse_cursor || rectangle.is_null())
+      if (useractivation & ::user::e_activation_under_mouse_cursor || rectangle.is_null())
       {
 
          if(has_readily_gettable_absolute_pointer_position())
@@ -1080,7 +1080,7 @@ namespace windowing
          else
          {
 
-            warning() << "This windowing system !is_absolute_pointer_position_readily_gettable(). Is there a specific flag to set at window creation for enabling e_activation_under_mouse_cursor?";
+            warning() << "This windowing system !is_absolute_pointer_position_readily_gettable(). Is there a specific flag to set at window creation for enabling ::user::e_activation_under_mouse_cursor?";
 
             //throw ::exception(todo,
             //             "The window may not be visible yet so no mouse position in it."
@@ -1174,7 +1174,7 @@ namespace windowing
    }
 
 
-   ::collection::index display::get_best_workspace(::int_rectangle * prectangle, const int_rectangle & rectangleParam, ::e_activation eactivation, ::user::interaction * puserinteractionCursorPosition)
+   ::collection::index display::get_best_workspace(::int_rectangle * prectangle, const int_rectangle & rectangleParam, const ::user::activation & useractivation, ::user::interaction * puserinteractionCursorPosition)
    {
 
       information() << "display::get_best_workspace";
@@ -1187,11 +1187,11 @@ namespace windowing
 
       ::int_rectangle rectangle(rectangleParam);
 
-      //if (eactivation & e_activation_under_mouse_cursor || rectangle.is_null())
-      if (eactivation & e_activation_under_mouse_cursor)
+      //if (useractivation & ::user::e_activation_under_mouse_cursor || rectangle.is_null())
+      if (useractivation & ::user::e_activation_under_mouse_cursor)
       {
 
-         information() << "get_best_workspace e_activation_under_mouse_cursor";
+         information() << "get_best_workspace ::user::e_activation_under_mouse_cursor";
 
          //::int_point pointCursor = pwindowCursorPosition->get_cursor_position();
 
@@ -1208,7 +1208,7 @@ namespace windowing
          else
          {
 
-            warning() << "This windowing system !is_absolute_pointer_position_readily_gettable(). Is there a specific flag to set at window creation for enabling e_activation_under_mouse_cursor?";
+            warning() << "This windowing system !is_absolute_pointer_position_readily_gettable(). Is there a specific flag to set at window creation for enabling ::user::e_activation_under_mouse_cursor?";
 
             //throw ::exception(todo,
             //             "The window may not be visible yet so no mouse position in it."

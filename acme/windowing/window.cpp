@@ -349,7 +349,7 @@ namespace acme
       
    }
    //virtual bool is_window_visible() override;
-//   bool window::_configure_window_unlocked(const class ::zorder & zorder, const ::e_activation & eactivation, bool bNoZorder, ::e_display edisplay)
+//   bool window::_configure_window_unlocked(const class ::zorder & zorder, const ::user::e_activation & useractivation, bool bNoZorder, ::e_display edisplay)
 //   {
 //      
 //      return true;

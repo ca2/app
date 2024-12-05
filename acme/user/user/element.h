@@ -2,6 +2,7 @@
 #pragma once
 
 
+#include "activation.h"
 #include "command_update_target.h"
 #include "acme/prototype/data/property_container.h"
 #include "acme/user/user/check.h"
@@ -236,7 +237,7 @@ namespace user
       virtual void erase_fps_interest(::particle * pparticle);
       virtual bool is_fps_interest(::particle * pparticle);
 
-      virtual void display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default);
+      virtual void display(::e_display edisplay = e_display_default, const ::user::activation & useractivation = {});
 
 
       virtual string get_title();

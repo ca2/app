@@ -2610,7 +2610,7 @@ namespace user
    // }
 
 
-   void interaction_base::design_window_minimize(::e_activation eactivation)
+   void interaction_base::design_window_minimize(const ::user::activation & useractivation)
    {
 
       throw ::interface_only();
@@ -4639,12 +4639,13 @@ namespace user
    //}
 
 
-   void interaction_base::display(::e_display edisplay, ::e_activation eactivation)
+   void interaction_base::display(::e_display edisplay, const ::user::activation & useractivation)
    {
 
       //return true;
 
    }
+
 
 } // namespace user
 

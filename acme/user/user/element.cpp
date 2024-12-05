@@ -2534,7 +2534,7 @@ namespace user
    // }
 
 
-   //void element::design_window_minimize(::e_activation eactivation)
+   //void element::design_window_minimize(const ::user::activation & useractivation)
    //{
 
    //   throw ::interface_only();
@@ -4885,7 +4885,7 @@ namespace user
    //}
 
 
-   void element::display(::e_display edisplay, ::e_activation eactivation)
+   void element::display(::e_display edisplay, const ::user::activation & useractivation)
    {
 
       //return true;

@@ -76,7 +76,7 @@ namespace user
 
       place(point.x(), point.y(), 400, 200);
 
-      display(e_display_normal, e_activation_set_popup);
+      display(e_display_normal, { ::user::e_activation_set_popup });
 
       set_need_redraw();
 

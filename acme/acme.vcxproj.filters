@@ -4110,6 +4110,9 @@
     <ClInclude Include="windowing\sandbox\_.h">
       <Filter>Header Files\windowing\sandbox</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\activation.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">

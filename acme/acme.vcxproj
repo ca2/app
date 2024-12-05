@@ -1230,6 +1230,7 @@
     <ClInclude Include="operating_system\windows\nano\http\_.h" />
     <ClInclude Include="operating_system\windows\nano\http\_http.h" />
     <ClInclude Include="operating_system\windows\window.h" />
+    <ClInclude Include="operating_system\windows\windowing.h" />
     <ClInclude Include="operating_system\windows_common\nano\idn\idn.h" />
     <ClInclude Include="operating_system\x11\display_lock.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -1812,6 +1813,7 @@
     <ClCompile Include="operating_system\windows\thread.cpp" />
     <ClCompile Include="operating_system\windows\user.cpp" />
     <ClCompile Include="operating_system\windows\window.cpp" />
+    <ClCompile Include="operating_system\windows\windowing.cpp" />
     <ClCompile Include="operating_system\windows\windows.cpp" />
     <ClCompile Include="operating_system\windows\_factory.cpp" />
     <ClCompile Include="operating_system\windows_common\acme.cpp" />

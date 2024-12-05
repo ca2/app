@@ -4113,6 +4113,9 @@
     <ClInclude Include="user\user\activation.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="operating_system\windows\windowing.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -5860,6 +5863,9 @@
     </ClCompile>
     <ClCompile Include="operating_system\__operating_system.cpp">
       <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\windowing.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

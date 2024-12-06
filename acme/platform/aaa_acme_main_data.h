@@ -17,7 +17,7 @@ public:
    string                           m_strStandalone;
    //LPFN_MAIN_RUNNER                 m_mainrunnera[64];
    ::e_display                      m_edisplay;
-   ::e_activation                   m_eactivation;
+   ::user::e_activation                   m_eactivation;
    ::file::path                     m_pathCacheDirectory;
 
 //#ifdef WINDOWS

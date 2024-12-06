@@ -16,10 +16,10 @@ inline ::write_text_stream & operator <<(::write_text_stream  & textstream, ::en
 
 
 
-inline ::write_text_stream & operator <<(::write_text_stream & textstream, ::enum_activation eactivation)
+inline ::write_text_stream & operator <<(::write_text_stream & textstream, ::user::enum_activation useractivation)
 {
 
-   return textstream << ::as_string(eactivation);
+   return textstream << ::as_string(useractivation);
 
 }
 

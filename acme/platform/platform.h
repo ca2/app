@@ -2,6 +2,7 @@
 #pragma once
 
 
+
 #include "acme/constant/windowing.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/task.h"
@@ -9,6 +10,7 @@
 #include "acme/platform/release_time_for_project.h"
 #include "acme/prototype/collection/atom_map.h"
 #include "acme/prototype/collection/string_map.h"
+#include "acme/user/user/activation.h"
 
 
 #ifdef LINUX
@@ -45,8 +47,6 @@ namespace platform
 {
 
 
-//   class CLASS_DECL_ACME platform :
-//      virtual public ::particle
    class CLASS_DECL_ACME platform :
       virtual public ::acme::acme,
       virtual public ::particle
@@ -54,24 +54,27 @@ namespace platform
    public:
 
 
-      static ::platform::platform * s_p;
+      bool                                            m_bConsole : 1;
 
-      //::acme::acme *                                  m_pacme;
+
+      static ::platform::platform *                   s_pplatform;
+
+      //::acme::acme *                                m_pacme;
 
       ::critical_section                              m_criticalsection;
 
       ::e_display                                     m_edisplay;
-      ::e_activation                                  m_eactivativation;
+      ::user::e_activation                            m_eactivation;
       int                                             m_argc = 0;
-      char **                                                  m_args = nullptr;
-      char ** m_envp = nullptr;
-      ::platform::system* m_psystem;
+      char **                                         m_args = nullptr;
+      char **                                         m_envp = nullptr;
+      ::platform::system *                            m_psystem;
       //int m_iExitCode;
 
 #ifdef WINDOWS
 
-      wchar_t ** m_wargs = nullptr;
-      wchar_t ** m_wenvp = nullptr;
+      wchar_t **                                      m_wargs = nullptr;
+      wchar_t **                                      m_wenvp = nullptr;
 
       hinstance                                       m_hinstanceThis = nullptr;
       hinstance                                       m_hinstancePrev = nullptr;
@@ -87,7 +90,7 @@ namespace platform
 
 #ifdef __APPLE__
 
-      void * m_pApplicationDelegate = nullptr;
+      void *                                          m_pApplicationDelegate = nullptr;
 
 #endif
 
@@ -108,8 +111,8 @@ namespace platform
       ::critical_section m_criticalsectionFactory;
 
 
-
 #if !defined(WINDOWS)
+
 
       ::critical_section m_criticalsectionDemangle;
 
@@ -136,9 +139,8 @@ namespace platform
       //
 
 
-
-
 #ifdef ANDROID
+
 
       ::critical_section m_criticalsectionOutputDebugStringA;
 
@@ -157,18 +159,16 @@ namespace platform
       //#endif
 
 
+      ::memory_counter *                                    m_pmemorycounter;
 
 
-      ::memory_counter* m_pmemorycounter;
+      bool                                                  m_bOutputDebugString;
+
+      string                                                m_strCommandLine;
 
 
-      bool                                m_bOutputDebugString;
-
-      string                                          m_strCommandLine;
-
-
-      ::pointer < ::mutex >                                 m_pmutexTask;
-      ::pointer < ::mutex >                                 m_pmutexTaskOn;
+      ::critical_section                                    m_criticalsectionTask;
+      ::critical_section                                    m_criticalsectionTaskOn;
 
 
       ::block                                               m_blockMatter;
@@ -176,37 +176,28 @@ namespace platform
       ::factory::factory_pointer                            m_pfactory;
       ::factory::factory_map                                m_factorymap;
       ::factory::component_factory_map                      m_componentfactorymap;
-      //::pointer < ::platform::system >                    m_psystem;
       ::pointer < ::operating_system::dynamic_library >     m_pdynamiclibrary;
       int                                                   m_iProcessStatus = 0;
 
-      ::critical_section                              m_criticalsectionTask;
-      ::index_array                                   m_iaTaskIndex;
-      bool                                            m_bVerboseLog;
-      ::windowing::enum_windowing                     m_ewindowing;
-      ::windowing::enum_operating_ambient                       m_edesktop;
-      ::windowing::enum_toolkit                       m_etoolkit;
+      ::index_array                                         m_iaTaskIndex;
+      bool                                                  m_bVerboseLog;
+      ::windowing::enum_windowing                           m_ewindowing;
+      ::windowing::enum_operating_ambient                   m_edesktop;
+      ::windowing::enum_toolkit                             m_etoolkit;
 
 
-      //::platform::application * m_papplication;
+      ::critical_section   m_criticalsectionSystemHeap;
 
 
-      ::critical_section m_criticalsectionSystemHeap;
+      ::critical_section   m_criticalsectionChannel;
+      ::critical_section   m_criticalsectionSequence;
+      ::critical_section   m_criticalsectionMessageDispatch;
 
-
-      ::critical_section m_criticalsectionChannel;
-      ::critical_section m_criticalsectionSequence;
-      ::critical_section m_criticalsectionMessageDispatch;
-
-
-
-
-      bool m_bConsole;
 
 
 
       platform();
-      ~platform() override;
+      virtual ~platform();
 
       virtual bool is_console() const;
 
@@ -485,7 +476,7 @@ namespace platform
    //{
 
 
-   inline ::platform::platform * get() { return ::platform::platform::s_p; }
+   inline ::platform::platform * get() { return ::platform::platform::s_pplatform; }
    
 
 

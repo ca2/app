@@ -5,7 +5,7 @@
 //
 //
 //using edisplay = enumeration < enum_display >;
-//using eactivation = enumeration < enum_activation >;
+//using useractivation = enumeration < enum_activation >;
 //DECLARE_ENUMERATION(eappearance, enum_appearance);
 //
 //
@@ -25,8 +25,8 @@
 //inline bool window_is_minimal(enum_display edisplay) { return edisplay == ::e_display_minimal; }
 
 
-//CLASS_DECL_APEX int windows_show_window(enum_display edisplay, enum_activation eactivation);
-//CLASS_DECL_APEX enum_display windows_show_window_to_edisplay(int iShowWindow, enum_activation & eactivation);
+//CLASS_DECL_APEX int windows_show_window(enum_display edisplay, enum_activation useractivation);
+//CLASS_DECL_APEX enum_display windows_show_window_to_edisplay(int iShowWindow, enum_activation & useractivation);
 
 
 

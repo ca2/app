@@ -219,7 +219,7 @@ void simple_frame_window::on_update_notify_icon_menu_header(::collection::index 
                {
 
                   if (ppopupApp->element_at(iIndexPopup)->is_separator()
-                     && ppopupApp->element_at(iIndexPopup + 1)->m_atom == "app_exit")
+                     && ppopupApp->element_at(iIndexPopup + 1)->m_atom == "try_close_application")
                   {
 
                      if (iIndexPopup + 1 == ppopupApp->upper_bound())
@@ -241,7 +241,7 @@ void simple_frame_window::on_update_notify_icon_menu_header(::collection::index 
 
                auto pitem = ppopupApp->element_at(iIndexPopup);
 
-               if (pitem->m_atom == "app_exit")
+               if (pitem->m_atom == "try_close_application")
                {
 
                   continue;
@@ -360,7 +360,7 @@ void simple_frame_window::on_update_notify_icon_menu_footer(::collection::index 
    m_pnotifyicon->menu()->separator_at(iNotifyIconItem);
 
    //m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Exit"), "app_exit");
-   m_pnotifyicon->menu()->stock_item_at(iNotifyIconItem, "Exit", "app_exit");
+   m_pnotifyicon->menu()->stock_item_at(iNotifyIconItem, "Exit", "try_close_application");
 
 }
 
@@ -418,7 +418,7 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
    add_command_handler("view_full_screen", { this,  &simple_frame_window::_001OnImpactFullScreen });
 
    add_command_handler("notify_icon_topic", { this,  &simple_frame_window::_001OnNotifyIconTopic });
-   add_command_handler("app_exit", { this,  &simple_frame_window::on_message_app_exit });
+   add_command_handler("try_close_application", { this,  &simple_frame_window::on_message_app_exit });
 
 #ifdef WINDOWS_DESKTOP
 
@@ -1269,7 +1269,7 @@ void simple_frame_window::on_message_display_change(::message::message * pmessag
 
       ::e_display edisplay = const_layout().sketch().display();
 
-      display(edisplay, e_activation_display_change);
+      display(edisplay, { ::user::e_activation_display_change });
 
       set_need_layout();
 
@@ -1510,9 +1510,9 @@ void simple_frame_window::show_control_bars(const ::e_display & edisplay, bool b
             if ((is_screen_visible(edisplay) || (!toolbartransport->m_bFullScreenBar || !bLeaveFullScreenBarsOnHide)))
             {
 
-               enum_activation eactivation = e_activation_default;
+               ::user::activation useractivationDefault;
 
-               toolbartransport->display(edisplay, eactivation);
+               toolbartransport->display(edisplay, useractivationDefault);
 
             }
             else
@@ -2415,7 +2415,7 @@ void simple_frame_window::pre_translate_message(::message::message * pmessage)
 void simple_frame_window::on_frame_position()
 {
 
-   display(e_display_default, e_activation_set_active);
+   display(e_display_default, { ::user::e_activation_set_active } );
 
    order_top();
 

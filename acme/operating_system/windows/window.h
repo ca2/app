@@ -23,6 +23,7 @@ namespace windows
       bool m_bSizeMoveMode;
       HWND m_hwnd;
       HMENU m_hmenuSystem;
+      int m_iDebugAtom = 0;
 
       window();
       ~window() override;
@@ -35,7 +36,12 @@ namespace windows
    };
 
 
+   CLASS_DECL_ACME LRESULT CALLBACK window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
+   CLASS_DECL_ACME HINSTANCE get_window_procedure_hinstance();
+
+
 } // namespace windows
+
 
 
 

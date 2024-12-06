@@ -831,7 +831,7 @@ namespace user
 
       //virtual bool is_this_visible(enum_layout elayout) override;
 
-      //void _window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation) override;
+      //void _window_show_change_visibility_unlocked(::e_display edisplay, const ::user::activation & useractivation) override;
       
       //void _window_request_presentation_locked() override;
       //void _window_request_presentation_unlocked() override;

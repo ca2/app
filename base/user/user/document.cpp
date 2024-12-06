@@ -720,9 +720,9 @@ namespace user
 
          ::pointer<::user::impact>pimpact = get_impact(index);
 
-         enum_activation eactivation = e_activation_default;
+         ::user::activation useractivationDefault;
 
-         pimpact->parent_frame()->display(edisplay, eactivation);
+         pimpact->parent_frame()->display(edisplay, useractivationDefault);
 
       }
 

@@ -9,3 +9,14 @@ menu_frame::menu_frame()
    m_bWindowFrame    = false;
 
 }
+
+
+menu_frame::~menu_frame()
+{
+
+
+
+}
+
+
+

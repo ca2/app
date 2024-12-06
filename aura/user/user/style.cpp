@@ -213,7 +213,7 @@ namespace user
    }
 
 
-   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame_interaction * pframe)
+   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::interaction * pframe)
    {
 
       return false;

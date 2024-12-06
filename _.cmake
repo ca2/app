@@ -14,8 +14,9 @@ endif()
 
 
 
-
 message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
+
+
 
 
 set(CMAKE_CXX_STANDARD 20)
@@ -56,57 +57,15 @@ set(HAS_NO_APPINDICATOR FALSE)
 
 
 
-# In include(source/_.cmake) set variables like below
-#set(INCLUDE_DRAW2D_CAIRO TRUE)
-#set(INCLUDE_IMAGING_FREEIMAGE TRUE)
-#set(INCLUDE_AUDIO TRUE)
+
 include(source/_.cmake)
+
+
 
 
 include(operating_system/_.cmake)
 
 
-#if(${PLATFORM_NAME} STREQUAL "freebsd")
-#   set(FREEBSD TRUE)
-#   set(OPENBSD FALSE)
-#   set(DARWIN TRUE)
-#   set(BSD TRUE)
-#   add_compile_definitions(FREEBSD)
-#   add_compile_definitions(BSD_UNIX)
-#elseif(${PLATFORM_NAME} STREQUAL "openbsd")
-#   set(FREEBSD FALSE)
-#   set(OPENBSD TRUE)
-#   set(NETBSD FALSE)
-#   set(DARWIN TRUE)
-#   set(BSD TRUE)
-#   add_compile_definitions(OPENBSD)
-#   add_compile_definitions(BSD_UNIX)
-#elseif(${PLATFORM_NAME} STREQUAL "netbsd")
-#   set(FREEBSD FALSE)
-#   set(OPENBSD FALSE)
-#   set(NETBSD TRUE)
-#   set(DARWIN TRUE)/home/camilo/cmake/integration/CMakeLists.txt
-#   set(BSD TRUE)
-#   add_compile_definitions(NETBSD)
-#   add_compile_definitions(BSD_UNIX)
-#else()
-#   set(FREEBSD FALSE)
-#   set(OPENBSD FALSE)
-#   set(NETBSD FALSE)
-#   set(DARWIN FALSE)
-#   set(BSD FALSE)
-#endif()
-
-
-#if(${PLATFORM_NAME} STREQUAL "linux")
-#   set(LINUX TRUE)
-#   set(WAYLAND TRUE)
-#   add_compile_definitions(LINUX)
-#else()
-#   set(LINUX FALSE)
-#   set(WAYLAND FALSE)
-#   set(DISTRO "(NotApplicable)")
-#endif()
 
 
 if(NOT ${HAS_SYSTEM_UNAC})

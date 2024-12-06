@@ -590,7 +590,7 @@ namespace platform
 
       virtual double luminance() const override;
 
-      virtual void background_color(const ::color::color & color) override;
+      virtual void set_background_color(const ::color::color & color) override;
 
 
       virtual bool dark_mode() const override;

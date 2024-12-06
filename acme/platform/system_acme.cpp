@@ -4821,7 +4821,7 @@ return nullptr;
    }
 
 
-   void acme_system_layer::background_color(const ::color::color& color)
+   void acme_system_layer::set_background_color(const ::color::color& color)
    {
    }
 

@@ -587,6 +587,47 @@ namespace user
    }
 
 
+   void interaction::on_display_restore()
+   {
+
+
+      //if (puserinteraction->layout().m_statea[::user::e_layout_normal].m_bProdevian)
+            //{
+
+            //   //puserinteraction->set_auto_refresh();
+
+            //}
+
+            //if (puserinteraction->layout().m_statea[::user::e_layout_normal].display() == e_display_zoomed)
+            //{
+
+            //   puserinteraction->_001Maximize();
+
+            //}
+            //else
+            //{
+
+            //   puserinteraction->_001Restore();
+
+            //}
+
+      display_previous(true);
+
+      set_need_layout();
+
+      set_need_redraw();
+
+      post_redraw();
+
+   }
+
+
+   void interaction::on_display_task_list()
+   {
+
+   }
+
+
    //   void interaction::set_restored_rectangle(const ::int_rectangle & rectangleRestored)
    //   {
    //
@@ -1569,6 +1610,22 @@ namespace user
       {
 
          return pframe->m_puserstyleFrameInteraction;
+
+      }
+
+      auto ptoplevel = top_level();
+
+      if (ptoplevel && ptoplevel != this)
+      {
+
+         auto pstyleTopLevel = ptoplevel->get_style();
+
+         if (pstyleTopLevel)
+         {
+
+            return pstyleTopLevel;
+
+         }
 
       }
 
@@ -3293,10 +3350,10 @@ namespace user
    }
 
 
-   void interaction::set_activation(::e_activation eactivation, enum_layout elayout)
+   void interaction::set_activation(const ::user::activation & useractivation, enum_layout elayout)
    {
 
-      m_layout.m_statea[elayout].m_eactivation = eactivation;
+      m_layout.m_statea[elayout].m_activation = useractivation;
 
    }
 
@@ -3375,10 +3432,10 @@ namespace user
    }
 
 
-   void interaction::display_full_screen(::collection::index iMonitor, ::e_activation eactivation)
+   void interaction::display_full_screen(::collection::index iMonitor, const ::user::activation & useractivation)
    {
 
-      best_monitor(nullptr, {}, true, e_activation_default, e_zorder_top);
+      best_monitor(nullptr, {}, true, { ::user::e_activation_default }, e_zorder_top);
 
    }
 
@@ -3404,7 +3461,7 @@ namespace user
    }
 
 
-   void interaction::display_normal(::e_display edisplay, ::e_activation eactivation)
+   void interaction::display_normal(::e_display edisplay, const ::user::activation & useractivation)
    {
 
 #ifdef INFO_LAYOUT_DISPLAY
@@ -3426,12 +3483,12 @@ namespace user
 
       }
 
-      layout().sketch().activation() = eactivation;
+      layout().sketch().activation() = useractivation;
 
    }
 
 
-   void interaction::display_docked(::e_display edisplay, ::e_activation eactivation)
+   void interaction::display_docked(::e_display edisplay, const ::user::activation & useractivation)
    {
 
 
@@ -3444,7 +3501,7 @@ namespace user
 
       set_display(edisplay);
 
-      set_activation(eactivation);
+      set_activation(useractivation);
 
    }
 
@@ -3480,7 +3537,7 @@ namespace user
    }
 
 
-   void interaction::display(::e_display edisplay, ::e_activation eactivation)
+   void interaction::display(::e_display edisplay, const ::user::activation & useractivation)
    {
 
       bool bChange = false;
@@ -3493,13 +3550,13 @@ namespace user
          if (equivalence_sink(edisplay) == e_display_normal)
          {
 
-            display_normal(edisplay, eactivation);
+            display_normal(edisplay, useractivation);
 
          }
          else if (::is_docking_appearance(edisplay))
          {
 
-            display_docked(edisplay, eactivation);
+            display_docked(edisplay, useractivation);
 
          }
          else if (edisplay == e_display_hide || edisplay == e_display_none)
@@ -3548,7 +3605,7 @@ namespace user
             information() << "interaction_layout::display e_display_full_screen";
 
 #endif
-            display_full_screen(-1, eactivation);
+            display_full_screen(-1, useractivation);
             //layout().sketch().display() = e_display_full_screen;
 
          }
@@ -3628,12 +3685,12 @@ namespace user
 
       }
 
-      if (eactivation > const_layout().sketch().activation())
+      if (useractivation > const_layout().sketch().activation())
       {
 
          bChange = true;
 
-         layout().sketch() = eactivation;
+         layout().sketch() = useractivation;
 
       }
 
@@ -13014,12 +13071,12 @@ namespace user
 
       auto edisplayLading = layout().lading().display();
 
-      auto eactivationLading = layout().lading().activation();
+      auto activationLading = layout().lading().activation();
 
       bool bDisplay =
          edisplayLading != edisplayLayout
-         || eactivationLading & e_activation_under_mouse_cursor
-         || eactivationLading & e_activation_display_change;
+         || activationLading & ::user::e_activation_under_mouse_cursor
+         || activationLading & ::user::e_activation_display_change;
 
       if (bDisplay)
       {
@@ -15415,11 +15472,11 @@ namespace user
    //         if (::is_set(window()))
    //         {
    //
-   //            //auto eactivation = layout().output().activation();
+   //            //auto useractivation = layout().output().activation();
    //
-   //            auto eactivation = layout().layout().activation();
+   //            auto useractivation = layout().layout().activation();
    //
-   //            window()->_window_show_change_visibility_unlocked(edisplayOutputForOsShowWindow, eactivation);
+   //            window()->_window_show_change_visibility_unlocked(edisplayOutputForOsShowWindow, useractivation);
    //
    //         }
    //
@@ -16620,7 +16677,7 @@ namespace user
 
       layout().sketch().reset_pending();
 
-      //layout().sketch().m_eactivation = e_activation_default;
+      //layout().sketch().m_eactivation = ::user::e_activation_default;
       //layout().sketch().m_bImpactUpdateGoingOn = false;
 
       if (get_parent() == nullptr)
@@ -16865,14 +16922,14 @@ namespace user
 
       }
 
-      bool bActivation = layout().lading().m_eactivation != ::e_activation_default;
+      bool bActivation = layout().lading().m_activation.is_change_request();
 
       layout().layout() = layout().lading().appearance();
 
       if (bActivation)
       {
 
-         layout().layout().m_eactivation = layout().lading().m_eactivation;
+         layout().layout().m_activation = layout().lading().m_activation;
 
       }
 
@@ -17188,14 +17245,14 @@ namespace user
 
       }
 
-      if (layout().design().m_eactivation == e_activation_default || layout().layout().m_eactivation != e_activation_default)
+      if (!layout().design().activation().is_change_request() || layout().layout().activation().is_change_request())
       {
 
-         layout().design().m_eactivation = layout().layout().m_eactivation;
+         layout().design().m_activation = layout().layout().m_activation;
 
       }
 
-      auto & eactivation = layout().design().m_eactivation;
+      auto & useractivation = layout().design().m_activation;
 
       layout().layout().reset_pending();
 
@@ -20291,10 +20348,10 @@ namespace user
    }
 
 
-   void interaction::activation(::e_activation eactivation)
+   void interaction::activation(const ::user::activation & useractivation)
    {
 
-      layout().sketch() = eactivation;
+      layout().sketch() = useractivation;
 
    }
 
@@ -20395,12 +20452,12 @@ namespace user
    }
 
 
-   void interaction::design_window_minimize(::e_activation eactivation)
+   void interaction::design_window_minimize(const ::user::activation & useractivation)
    {
 
       auto rectangleRequest = this->screen_rectangle(e_layout_lading);
 
-      good_iconify(nullptr, rectangleRequest, true, eactivation, layout().lading().zorder());
+      good_iconify(nullptr, rectangleRequest, true, useractivation, layout().lading().zorder());
 
    }
 
@@ -20472,14 +20529,14 @@ namespace user
    }
 
 
-   void interaction::frame_experience_restore(::e_activation eactivation)
+   void interaction::frame_experience_restore(const ::user::activation & useractivation)
    {
 
       //throw ::interface_only();
 
       //display_previous();
 
-      display(e_display_normal, eactivation);
+      display(e_display_normal, useractivation);
 
    }
 
@@ -20556,13 +20613,20 @@ namespace user
       if (!is_window_screen_visible())
       {
 
-         frame_experience_restore(e_activation_set_foreground);
+         information() << "interaction::frame_restore Not Screen Visible!";
+
+         frame_experience_restore({ ::user::e_activation_set_foreground, ::get_task() });
 
       }
       else
       {
 
-         display(e_display_normal, e_activation_set_foreground);
+         information() << "interaction::frame_restore Screen Visible!!";
+
+         display(e_display_normal, 
+            { ::user::e_activation_set_foreground
+            | ::user::e_activation_set_active,
+            ::get_task() });
 
       }
 
@@ -20697,7 +20761,7 @@ namespace user
 
 
    ::collection::index interaction::best_monitor(::int_rectangle * prectangle, const ::int_rectangle & rectangle, bool bSet,
-                                   ::e_activation eactivation, ::zorder zorderParam)
+                                   const ::user::activation & useractivation, ::zorder zorderParam)
    {
 
       ::int_rectangle rectangleSample;
@@ -20706,7 +20770,7 @@ namespace user
 
       //auto pdisplay = pwindowing->display();
 
-      if (window() && (eactivation & e_activation_under_mouse_cursor || rectangle.is_null()))
+      if (window() && (useractivation & ::user::e_activation_under_mouse_cursor || rectangle.is_null()))
       {
 
          if (windowing()->display()->has_readily_gettable_absolute_pointer_position())
@@ -20720,7 +20784,7 @@ namespace user
          else
          {
 
-            warning() << "This windowing system !is_absolute_pointer_position_readily_gettable(). Is there a specific flag to set at window creation for enabling e_activation_under_mouse_cursor?";
+            warning() << "This windowing system !is_absolute_pointer_position_readily_gettable(). Is there a specific flag to set at window creation for enabling ::user::e_activation_under_mouse_cursor?";
 
             //throw ::exception(todo,
             //             "The window may not be visible yet so no mouse position in it."
@@ -20782,7 +20846,7 @@ namespace user
       {
 
          information() << "interaction::bestmonitor (" << rectangleNew.left() << ", " << rectangleNew.top() << ", "
-            << rectangleNew.right() << ", " << rectangleNew.bottom() << ") activation " << (int)eactivation;
+            << rectangleNew.right() << ", " << rectangleNew.bottom() << ") activation " << (int)useractivation.m_eactivation;
 
          order(zorderParam);
 
@@ -20790,7 +20854,7 @@ namespace user
 
          set_display(e_display_full_screen);
 
-         set_activation(eactivation);
+         set_activation(useractivation);
 
       }
 
@@ -20815,7 +20879,7 @@ namespace user
 
 
    ::collection::index interaction::best_workspace(::int_rectangle * prectangle, const ::int_rectangle & rectangle, bool bSet,
-                                     ::e_activation eactivation, ::zorder zorderParam)
+                                     const ::user::activation & useractivation, ::zorder zorderParam)
    {
 
       ::int_rectangle rectangleWindow;
@@ -20856,7 +20920,7 @@ namespace user
 
          auto pdisplay = pwindowing->display();
 
-         iMatchingMonitor = pdisplay->get_best_monitor(&rectangleMonitor, rectangleWindow, eactivation, this);
+         iMatchingMonitor = pdisplay->get_best_monitor(&rectangleMonitor, rectangleWindow, useractivation, this);
 
          pdisplay->get_zoomed_window_site(iMatchingMonitor, rectangleZoomedWindowSite);
 
@@ -20885,7 +20949,7 @@ namespace user
 
          place(rectangleZoomedWindowSite);
 
-         //display(e_display_zoomed, eactivation | e_activation_display_change);
+         //display(e_display_zoomed, useractivation | ::user::e_activation_display_change);
 
       }
 
@@ -21248,13 +21312,13 @@ namespace user
 
 
    ::collection::index interaction::make_zoneing(::int_rectangle * prectangle, const ::int_rectangle & rectangle, bool bSet,
-                                   ::e_display * pedisplay, ::e_activation eactivation, ::zorder zorderParam)
+                                   ::e_display * pedisplay, const ::user::activation & useractivation, ::zorder zorderParam)
    {
 
       if (pedisplay == nullptr || !is_docking_appearance(*pedisplay))
       {
 
-         return best_zoneing(prectangle, rectangle, bSet, pedisplay, eactivation, zorderParam);
+         return best_zoneing(prectangle, rectangle, bSet, pedisplay, useractivation, zorderParam);
 
 
       }
@@ -21287,7 +21351,7 @@ namespace user
 
          place(rectangleNew);
 
-         display(*pedisplay, eactivation);
+         display(*pedisplay, useractivation);
 
       }
 
@@ -21330,34 +21394,34 @@ namespace user
 
 
    ::collection::index interaction::get_best_workspace(::int_rectangle * prectangle, const ::int_rectangle & rectangle,
-                                         ::e_activation eactivation)
+                                         const ::user::activation & useractivation)
    {
 
       auto pwindowing = windowing();
 
       auto pdisplay = pwindowing->display();
 
-      return pdisplay->get_best_workspace(prectangle, rectangle, eactivation, this);
+      return pdisplay->get_best_workspace(prectangle, rectangle, useractivation, this);
 
    }
 
 
    ::collection::index
       interaction::get_best_monitor(::int_rectangle * prectangle, const ::int_rectangle & rectangle,
-                                    ::e_activation eactivation)
+                                    const ::user::activation & useractivation)
    {
 
       auto pwindowing = windowing();
 
       auto pdisplay = pwindowing->display();
 
-      return pdisplay->get_best_monitor(prectangle, rectangle, eactivation, this);
+      return pdisplay->get_best_monitor(prectangle, rectangle, useractivation, this);
 
    }
 
 
    ::collection::index interaction::best_zoneing(::int_rectangle * prectangle, const ::int_rectangle & rectangle, bool bSet,
-                                   ::e_display * pedisplay, ::e_activation eactivation, ::zorder zorderParam)
+                                   ::e_display * pedisplay, const ::user::activation & useractivation, ::zorder zorderParam)
    {
 
       ::e_display edisplay;
@@ -21401,7 +21465,7 @@ namespace user
 
          place(rectangleNew);
 
-         display(*pedisplay, eactivation);
+         display(*pedisplay, useractivation);
 
       }
 
@@ -21422,7 +21486,7 @@ namespace user
    /// which monitor or monitors the window restore should
    /// be positioned at.
    ::collection::index interaction::good_restore(::int_rectangle * prectangle, const ::int_rectangle & rectangle, bool bSet,
-                                   ::e_activation eactivation, ::zorder zorderParam, ::e_display edisplay)
+                                   const ::user::activation & useractivation, ::zorder zorderParam, ::e_display edisplay)
    {
 
       ::int_rectangle rectangleWindow;
@@ -21468,11 +21532,11 @@ namespace user
 
                ///set_restored_rectangle(rectangleNew);
 
-               //display(edisplay, eactivation);
+               //display(edisplay, useractivation);
 
                set_display(edisplay);
 
-               set_activation(eactivation);
+               set_activation(useractivation);
 
                information() << "interaction::good_restore : " << rectangleNew;
                information() << "interaction::good_restore : " << edisplay;
@@ -21485,7 +21549,7 @@ namespace user
 
                set_display(e_display_normal);
 
-               set_activation(eactivation);
+               set_activation(useractivation);
 
             }
 
@@ -21751,7 +21815,7 @@ namespace user
 
 
    ::collection::index interaction::good_iconify(::int_rectangle * prectangle, const ::int_rectangle & rectangle, bool bSet,
-                                   ::e_activation eactivation, ::zorder zorderParam)
+                                   const ::user::activation & useractivation, ::zorder zorderParam)
    {
 
       ::int_rectangle rectangleWindow;
@@ -21782,7 +21846,7 @@ namespace user
 
          _synchronous_lock slUserMutex(synchronization());
 
-         display(e_display_iconic, eactivation);
+         display(e_display_iconic, useractivation);
 
       }
 
@@ -21808,7 +21872,7 @@ namespace user
 
 
    ::collection::index
-      interaction::good_move(::int_rectangle * prectangle, const ::int_rectangle & rectangle, ::e_activation eactivation,
+      interaction::good_move(::int_rectangle * prectangle, const ::int_rectangle & rectangle, const ::user::activation & useractivation,
                              ::zorder zorderParam)
    {
 
@@ -21846,7 +21910,7 @@ namespace user
              || equivalence_sink(layout().layout().display()) != e_display_normal)
          {
 
-            display(e_display_normal, eactivation);
+            display(e_display_normal, useractivation);
 
          }
 
@@ -22454,7 +22518,7 @@ namespace user
 
                auto edisplayOwnedBeforeHidden = puserinteractionOwned->m_edisplayOwnedBeforeHidden;
 
-               puserinteractionOwned->display(edisplayOwnedBeforeHidden, e_activation_no_activate);
+               puserinteractionOwned->display(edisplayOwnedBeforeHidden, { ::user::e_activation_no_activate });
 
                puserinteractionOwned->set_need_redraw();
 
@@ -23121,14 +23185,6 @@ namespace user
    }
 
 
-   //item_pointer interaction::hover_item()
-   //{
-
-   //   return m_pitemHover;
-
-   //}
-
-
    void interaction::show_tooltip(const ::string & str, bool bError)
    {
 
@@ -23294,7 +23350,7 @@ namespace user
 
       //m_ptooltip->order(e_zorder_top_most);
       //m_ptooltip->place(rectangleWindow);
-      //m_ptooltip->display(e_display_normal, e_activation_no_activate);
+      //m_ptooltip->display(e_display_normal, ::user::e_activation_no_activate);
       ////m_ptooltip->show(show_no_activate);
       ////SWP_FRAMECHANGED | SWP_SHOWWINDOW | SWP_NOACTIVATE);
 
@@ -26327,18 +26383,18 @@ namespace user
 
             //bool bAvoidRedraw = !m_bDefaultMouseHoverHandling;
 
-            //auto pitemFront = update_hover(pmouse, e_zorder_front);
+            auto pitemFront = update_hover(pmouse, e_zorder_front);
 
-            //decltype(pitemFront) pitemBack;
+            decltype(pitemFront) pitemBack;
 
-            //if (!pitemFront)
-            //{
+            if (!pitemFront)
+            {
 
             //information() << "update_hover pmouse e_zorder_back";
 
-            auto pitemBack = update_hover(pmouse, e_zorder_back);
+               pitemBack = update_hover(pmouse, e_zorder_back);
 
-            //}
+            }
 
             //update_hover(pointCursorClient, false);
 

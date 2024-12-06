@@ -27,12 +27,15 @@ namespace graphics
    }
 
 
-   bool buffer::update_screen()
+   void buffer::update_screen()
    {
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto bOk = on_update_screen(get_screen_item());
+      //auto bOk =
+         
+      on_update_screen(get_screen_item());
+
       // 
       // 
       // 
@@ -40,7 +43,7 @@ namespace graphics
 //
       ipc_copy(m_pimageBuffer);
 
-      return bOk;
+      //return bOk;
 
    }
 

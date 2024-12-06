@@ -229,7 +229,7 @@ namespace account
 
             m_plogin->m_peditUser->set_keyboard_focus();
 
-            display(e_display_normal, e_activation_set_foreground);
+            display(e_display_normal, { ::user::e_activation_set_foreground });
 
             set_need_redraw();
 

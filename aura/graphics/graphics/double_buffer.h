@@ -53,7 +53,7 @@ namespace graphics
       ::collection::index get_screen_index() const;
 
       using graphics::update_screen;
-      bool update_screen() override;
+      void update_screen() override;
 
       //::particle * get_draw_lock() override;
       bool _on_begin_draw(buffer_item * pbufferitem) override;

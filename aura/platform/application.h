@@ -526,7 +526,8 @@ namespace aura
       //virtual bool Ex2OnAppInstall();
       //virtual bool Ex2OnAppUninstall();
 
-      bool on_application_menu_action(const ::atom & atom) override;
+      using ::aqua::application::on_command;
+      bool on_command(const ::atom & atom) override;
       //virtual void _001CloseApplication();
 
       //virtual string get_license_id();

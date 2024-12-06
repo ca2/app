@@ -508,6 +508,13 @@ void channel::command_handler(::message::command * pcommand)
          && !pcommand->m_bHasCommandHandler)
       {
 
+         if (on_command(pcommand->m_atom))
+         {
+
+            pcommand->m_bRet = true;
+
+         }
+
          return;
 
       }
@@ -585,6 +592,14 @@ void channel::on_command_probe(::message::command * pcommand)
       pcommand->m_bEnableChanged
       || pcommand->m_bRadioChanged
       || pcommand->echeck() != e_check_undefined;
+
+}
+
+
+bool channel::on_command(const ::atom & atom)
+{
+
+   return false;
 
 }
 

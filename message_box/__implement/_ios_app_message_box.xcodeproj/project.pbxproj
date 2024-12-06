@@ -44,6 +44,8 @@
 		9A882EEE2844ACAD004113D1 /* libaura_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882EED2844ACAD004113D1 /* libaura_ios.a */; };
 		9A882EEF2844ACF1004113D1 /* libios_folder_zip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882E4028449D59004113D1 /* libios_folder_zip.a */; };
 		9A882EF02844ACFA004113D1 /* libios_crypto_openssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882E4928449D59004113D1 /* libios_crypto_openssl.a */; };
+		9A97A7962CFBE1C7000A2F7C /* libios_acme_windowing_kit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A97A7952CFBE1C7000A2F7C /* libios_acme_windowing_kit.a */; };
+		9A97A7972CFBE1C7000A2F7C /* libios_acme_windowing_kit.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A97A7952CFBE1C7000A2F7C /* libios_acme_windowing_kit.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AAC2145247571180013AB72 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAC2144247571180013AB72 /* libbz2.tbd */; };
 		9AAC214B247571E10013AB72 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEB6A0B1F81DD0400F40B32 /* libiconv.tbd */; };
 		9AC3F2622CF7FC9E0061DCC0 /* liboperating_ambient_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F2612CF7FC8F0061DCC0 /* liboperating_ambient_ios.a */; };
@@ -222,6 +224,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				9AC3F2632CF7FC9F0061DCC0 /* liboperating_ambient_ios.a in Embed Libraries */,
+				9A97A7972CFBE1C7000A2F7C /* libios_acme_windowing_kit.a in Embed Libraries */,
 				9AC3F26C2CF7FD5F0061DCC0 /* libios_nano_graphics_quartz2d.a in Embed Libraries */,
 				9AC3F2672CF7FCAA0061DCC0 /* libnode_ios.a in Embed Libraries */,
 				9AC3F26F2CF7FD6A0061DCC0 /* libinnate_ui_uikit.a in Embed Libraries */,
@@ -281,6 +284,7 @@
 		9A882EBF2844A9B0004113D1 /* libwindowing_ios.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libwindowing_ios.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A882EC22844AA50004113D1 /* write_text_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = write_text_quartz2d.xcodeproj; path = "../../../../operating_system/operating_system-apple/write_text_quartz2d/write_text_quartz2d.xcodeproj"; sourceTree = "<group>"; };
 		9A882EED2844ACAD004113D1 /* libaura_ios.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura_ios.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A97A7952CFBE1C7000A2F7C /* libios_acme_windowing_kit.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_acme_windowing_kit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AAC2144247571180013AB72 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
 		9AC3F2572CF7FC700061DCC0 /* operating_ambient_ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = operating_ambient_ios.xcodeproj; path = "../../../../operating_system/operating_system-ios/operating_ambient_ios/operating_ambient_ios.xcodeproj"; sourceTree = "<group>"; };
 		9AC3F25A2CF7FC8D0061DCC0 /* operating_ambient_ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = operating_ambient_ios.xcodeproj; path = "/Users/camilo/workspace/main/operating_system/operating_system-ios/operating_ambient_ios/operating_ambient_ios.xcodeproj"; sourceTree = "<absolute>"; };
@@ -313,6 +317,7 @@
 				9A40BE582B6C5BC10077053E /* libios_darwin.a in Frameworks */,
 				9A882EF02844ACFA004113D1 /* libios_crypto_openssl.a in Frameworks */,
 				9A882EEF2844ACF1004113D1 /* libios_folder_zip.a in Frameworks */,
+				9A97A7962CFBE1C7000A2F7C /* libios_acme_windowing_kit.a in Frameworks */,
 				9A882EEE2844ACAD004113D1 /* libaura_ios.a in Frameworks */,
 				9A882EE72844AA9D004113D1 /* libios_write_text_quartz2d.a in Frameworks */,
 				9A882EC02844A9B0004113D1 /* libwindowing_ios.a in Frameworks */,
@@ -398,6 +403,7 @@
 		9A5752B516AAE1D2000CC4EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A97A7952CFBE1C7000A2F7C /* libios_acme_windowing_kit.a */,
 				9AC3F26D2CF7FD690061DCC0 /* libinnate_ui_uikit.a */,
 				9AC3F26A2CF7FD5F0061DCC0 /* libios_nano_graphics_quartz2d.a */,
 				9AC3F2652CF7FCA90061DCC0 /* libnode_ios.a */,

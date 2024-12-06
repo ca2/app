@@ -385,8 +385,7 @@ namespace graphics
    }
 
 
-
-   bool double_buffer::update_screen()
+   void double_buffer::update_screen()
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -397,7 +396,7 @@ namespace graphics
 
       synchronouslock.unlock();
 
-      return on_update_screen(pitemScreen);
+      on_update_screen(pitemScreen);
 
    }
 

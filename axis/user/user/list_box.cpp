@@ -1399,7 +1399,7 @@ namespace user
 
       auto & edisplaySketch = layout().m_statea[0].m_edisplay;
 
-      set_activation(e_activation_no_activate);
+      set_activation({ ::user::e_activation_no_activate });
 
       place(::int_rectangle(rectangleList));
 
@@ -1462,7 +1462,7 @@ namespace user
 //
 //         display(e_display_normal);
 //
-//         set_activation(e_activation_no_activate);
+//         set_activation(::user::e_activation_no_activate);
 //
 //         auto & window_state = const_layout().sketch();
 //

@@ -90,7 +90,7 @@ namespace user
       template < typename CONTROL_STYLE >
       void get(::pointer<CONTROL_STYLE>& pcontrolstyleImpl, ::draw2d::graphics_pointer & pgraphics, ::user::interaction * pinteraction);
 
-      virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::frame_interaction * pframe) override;
+      virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::interaction * pinteraction) override;
 
       virtual bool draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::int_rectangle & rectangle, ::draw2d::graphics_pointer & pgraphics) override;
 

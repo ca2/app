@@ -339,7 +339,7 @@ namespace experience
 
          information() << "rectangleNew " << pointReposition;
 
-         ///m_pframewindow->good_restore(nullptr, rectangleNew, true, e_activation_default, e_zorder_top, edisplayDock);
+         ///m_pframewindow->good_restore(nullptr, rectangleNew, true, ::user::e_activation_default, e_zorder_top, edisplayDock);
 
          m_pframewindow->place(rectangleWindow);
 
@@ -369,7 +369,7 @@ namespace experience
 
             //m_pframewindow->place(rectangleDock);
 
-            m_pframewindow->display_docked(edisplayDock, e_activation_default);
+            m_pframewindow->display_docked(edisplayDock, { ::user::e_activation_default });
 
             m_pframewindow->set_need_layout();
 

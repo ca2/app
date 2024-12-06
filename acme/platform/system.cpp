@@ -65,6 +65,9 @@
 //#endif
 
 
+CLASS_DECL_ACME ::string get_operating_system_name();
+
+
 CLASS_DECL_ACME void exception_message_box(::particle* pparticle, ::exception& exception,
                                            const ::string& strMoreDetails);
 
@@ -223,6 +226,8 @@ namespace platform
    {
 
       debug() << "platform::system::~system() (start)";
+
+      m_pparticleSynchronization.release();
 
       trace_category_static_term();
 
@@ -450,9 +455,9 @@ namespace platform
 
       __øconstruct(m_plogger);
 
-      __øconstruct(m_pmutexTask);
+      //__øconstruct(m_pmutexTask);
 
-      __øconstruct(m_pmutexTaskOn);
+      //__øconstruct(m_pmutexTaskOn);
 
       //::output_debug_string("output_debug_string : simple log created\n");
 
@@ -844,7 +849,7 @@ namespace platform
       //
       // }
 
-      __øconstruct(m_pmutexTask);
+      //__øconstruct(m_pmutexTask);
          
       __øconstruct(m_pmutexHttpDownload);
 
@@ -1269,7 +1274,7 @@ namespace platform
    ::task* system::get_task(itask_t itask)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexTask);
+      critical_section_lock criticalsectionlock(&m_criticalsectionTask);
 
       return m_taskmap[itask];
 
@@ -1279,7 +1284,7 @@ namespace platform
    itask_t system::get_task_id(const ::task* ptask)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexTask);
+      critical_section_lock criticalsectionlock(&m_criticalsectionTask);
 
       itask_t itask = null_itask;
 
@@ -1298,7 +1303,7 @@ namespace platform
    void system::set_task(itask_t itask, ::task* ptask)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexTask);
+      critical_section_lock criticalsectionlock(&m_criticalsectionTask);
 
       __refdbg_add_referer_for(ptask);
 
@@ -1312,7 +1317,7 @@ namespace platform
    void system::unset_task(itask_t itask, ::task* ptask)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexTask);
+      critical_section_lock criticalsectionlock(&m_criticalsectionTask);
 
       if(m_taskmap.has(itask)) m_taskmap.erase_item(itask);
 
@@ -1324,7 +1329,7 @@ namespace platform
    bool system::is_task_on(itask_t atom)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexTaskOn);
+      critical_section_lock criticalsectionlock(&m_criticalsectionTaskOn);
 
       return m_mapTaskOn.plookup(atom);
 
@@ -1349,7 +1354,7 @@ namespace platform
    void system::set_task_on(itask_t atom)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexTaskOn);
+      critical_section_lock criticalsectionlock(&m_criticalsectionTaskOn);
 
       m_mapTaskOn.set_at(atom, atom);
 
@@ -1359,7 +1364,7 @@ namespace platform
    void system::set_task_off(itask_t atom)
    {
 
-      _synchronous_lock synchronouslock(m_pmutexTaskOn);
+      critical_section_lock criticalsectionlock(&m_criticalsectionTaskOn);
 
       m_mapTaskOn.erase_item(atom);
 
@@ -3155,13 +3160,13 @@ particle* system::matter_mutex()
          if (ptopic->payload("wparam").is_true())
          {
 
-            background_color(::color::black);
+            set_background_color(::color::black);
 
          }
          else
          {
 
-            background_color(::color::white);
+            set_background_color(::color::white);
 
          }
 
@@ -4115,7 +4120,7 @@ particle* system::matter_mutex()
    }
 
 
-   void system::background_color(const ::color::color& color)
+   void system::set_background_color(const ::color::color& color)
    {
 
       if (m_colorBackground == color)
@@ -4216,9 +4221,11 @@ particle* system::matter_mutex()
       if (!m_bAcmeSystemDarkModeFetched)
       {
 
-         ((system *)this)->m_bAcmeSystemDarkMode = ((system *)this)->acme_windowing()->dark_mode();
-
          ((system *)this)->m_bAcmeSystemDarkModeFetched = true;
+
+         ((system *)this)->acme_windowing()->fetch_dark_mode();
+
+         ((system *)this)->m_bAcmeSystemDarkMode = ((system *)this)->acme_windowing()->dark_mode();
 
       }
 
@@ -4427,9 +4434,9 @@ particle* system::matter_mutex()
    void system::do_operating_ambient_factory()
    {
 
-      auto strOperatingAmbient = ::windowing::get_eoperating_ambient_name();
+      auto strOperatingSystem = ::get_operating_system_name();
 
-      auto & pfactory = factory("acme", strOperatingAmbient);
+      auto & pfactory = factory("acme", strOperatingSystem);
 
       pfactory->merge_to_global_factory();
 

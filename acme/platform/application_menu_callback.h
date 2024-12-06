@@ -18,7 +18,7 @@ public:
 //   virtual const char * _get_notification_area_action_label(int iIndex) = 0;
 //   virtual const char * _get_notification_area_action_accelerator(int iIndex) = 0;
 //   virtual const char * _get_notification_area_action_description(int iIndex) = 0;
-   virtual bool on_application_menu_action(const ::atom & atom) = 0;
+   virtual bool on_command(const ::atom & atom) = 0;
 
 
 };

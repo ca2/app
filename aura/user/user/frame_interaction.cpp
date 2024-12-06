@@ -86,7 +86,7 @@ namespace user
          ////
          ////               information() << "LoadFrame sketch !is_screen_visible going to display_normal (1)";
          ////
-         ////               display_normal(e_display_normal, e_activation_set_foreground);
+         ////               display_normal(e_display_normal, ::user::e_activation_set_foreground);
          ////
          ////            }
          //
@@ -438,7 +438,7 @@ namespace user
 
 
 
-      add_command_handler("app_exit", { this, &frame_interaction::on_message_application_exit });
+      add_command_handler("try_close_application", { this, &frame_interaction::on_message_application_exit });
       
 
       MESSAGE_LINK(e_message_destroy, pchannel, this, &frame_interaction::on_message_destroy);
@@ -1035,13 +1035,13 @@ namespace user
       if (!const_layout().sketch().is_screen_visible())
       {
 
-         display_normal(e_display_normal, e_activation_set_foreground);
+         display_normal(e_display_normal, { ::user::e_activation_set_foreground, ::get_task() });
 
       }
       else
       {
 
-         set_activation(e_activation_set_foreground);
+         set_activation({ ::user::e_activation_set_foreground, ::get_task() });
 
       }
 

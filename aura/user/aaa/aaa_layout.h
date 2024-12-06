@@ -249,7 +249,7 @@ namespace user
       inline eappearance appearance() const { return ui_state().m_eappearance; }
 
       virtual bool is_request_visible() const { return ::is_visible(display_request()); }
-      virtual bool display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default) override;
+      virtual bool display(::e_display edisplay = e_display_default, const ::user::activation & useractivation = {}) override;
       virtual bool window_do_display();
       inline bool hide() { return display(e_display_hide); }
 
@@ -262,46 +262,46 @@ namespace user
       virtual void set_reposition(bool bSetThis = true);
       virtual void _set_reposition(bool bSetThis = true);
 
-      inline bool set_window_position(::zorder zorder, int x, int y, int cx, int cy, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
+      inline bool set_window_position(::zorder zorder, int x, int y, int cx, int cy, edisplay edisplay = e_display_default, useractivation useractivation = ::user::e_activation_default)
       {
-         order(zorder); set_dim(x, y, cx, cy); display(edisplay, eactivation); set_need_redraw(); return true;
+         order(zorder); set_dim(x, y, cx, cy); display(edisplay, useractivation); set_need_redraw(); return true;
       }
-      inline bool window_order(::zorder zorder, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
+      inline bool window_order(::zorder zorder, edisplay edisplay = e_display_default, useractivation useractivation = ::user::e_activation_default)
       {
-         order(zorder); display(edisplay, eactivation); set_need_redraw(); return true;
+         order(zorder); display(edisplay, useractivation); set_need_redraw(); return true;
       }
       virtual bool window_move(int x, int y);
-      inline bool window_size(int cx, int cy, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
+      inline bool window_size(int cx, int cy, edisplay edisplay = e_display_default, useractivation useractivation = ::user::e_activation_default)
       {
-         set_size(cx, cy); display(edisplay, eactivation); set_need_redraw(); return true;
+         set_size(cx, cy); display(edisplay, useractivation); set_need_redraw(); return true;
       }
-      inline bool window_place(int x, int y, int cx, int cy, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
+      inline bool window_place(int x, int y, int cx, int cy, edisplay edisplay = e_display_default, useractivation useractivation = ::user::e_activation_default)
       {
-         set_dim(x, y, cx, cy); display(edisplay, eactivation); set_need_redraw(); return true;
+         set_dim(x, y, cx, cy); display(edisplay, useractivation); set_need_redraw(); return true;
       }
-      inline bool set_window_position(::zorder zorder, const ::int_point & point, const ::size & size, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
+      inline bool set_window_position(::zorder zorder, const ::int_point & point, const ::size & size, edisplay edisplay = e_display_default, useractivation useractivation = ::user::e_activation_default)
       {
-         return set_window_position(zorder, point.x(), point.y(), size.cx(), size.cy(), edisplay, eactivation);
+         return set_window_position(zorder, point.x(), point.y(), size.cx(), size.cy(), edisplay, useractivation);
       }
       inline bool window_move(const ::int_point & point)
       {
          return window_move(point.x(), point.y());
       }
-      inline bool window_size(const ::size & size, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
+      inline bool window_size(const ::size & size, edisplay edisplay = e_display_default, useractivation useractivation = ::user::e_activation_default)
       {
-         return window_size(size.cx(), size.cy(), edisplay, eactivation);
+         return window_size(size.cx(), size.cy(), edisplay, useractivation);
       }
-      inline bool window_place(const ::int_point & point, const ::size & size, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
+      inline bool window_place(const ::int_point & point, const ::size & size, edisplay edisplay = e_display_default, useractivation useractivation = ::user::e_activation_default)
       {
-         return window_place(point.x(), point.y(), size.cx(), size.cy(), edisplay, eactivation);
+         return window_place(point.x(), point.y(), size.cx(), size.cy(), edisplay, useractivation);
       }
-      inline bool set_window_position(::zorder zorder, const ::double_rectangle & rectangle, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
+      inline bool set_window_position(::zorder zorder, const ::double_rectangle & rectangle, edisplay edisplay = e_display_default, useractivation useractivation = ::user::e_activation_default)
       {
-         return set_window_position(zorder, rectangle.origin(), rectangle.size(), edisplay, eactivation);
+         return set_window_position(zorder, rectangle.origin(), rectangle.size(), edisplay, useractivation);
       }
-      inline bool window_place(const ::double_rectangle & rectangle, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
+      inline bool window_place(const ::double_rectangle & rectangle, edisplay edisplay = e_display_default, useractivation useractivation = ::user::e_activation_default)
       {
-         return window_place(rectangle.origin(), rectangle.size(), edisplay, eactivation);
+         return window_place(rectangle.origin(), rectangle.size(), edisplay, useractivation);
       }
 
 

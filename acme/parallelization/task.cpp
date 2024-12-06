@@ -127,10 +127,15 @@ task::~task()
 void task::on_initialize_particle()
 {
 
-   /*auto estatus =*/ ::object::on_initialize_particle();
+   /*auto estatus =*/ 
+   
+   ::object::on_initialize_particle();
+
    ::handler::handler::on_initialize_particle();
 
-   __on_update_handler_happening_unlocked();
+   m_synchronizationaMainLoop.add(new_main_loop_happening());
+
+   ///__on_update_handler_happening_unlocked();
 
    //m_pprintingformat);
 
@@ -146,51 +151,51 @@ void task::on_initialize_particle()
 }
 
 
-void task::__on_update_handler_happening_unlocked()
-{
-
-   if (m_bHandleRequest || m_requestaPosted.has_element())
-   {
-
-      m_synchronizationaMainLoop.add_item(new_request_posted());
-
-   }
-
-   if (m_bHandleProcedure || m_procedurea.has_element())
-   {
-
-      m_synchronizationaMainLoop.add_item(new_procedure_posted());
-
-   }
-
-   if (m_bHandleHappening || m_ehappeninga.has_element())
-   {
-
-      m_synchronizationaMainLoop.add_item(new_happening());
-
-   }
-
-}
-
-
-::manual_reset_happening * task::new_procedure_posted()
-{
-
-   __defer_construct_new(m_pmanualresethappeningNewProcedurePosted);
-
-   return m_pmanualresethappeningNewProcedurePosted;
-
-}
+//void task::__on_update_handler_happening_unlocked()
+//{
+//
+//   if (m_bHandleRequest || m_requestaPosted.has_element())
+//   {
+//
+//      m_synchronizationaMainLoop.add_item(new_request_posted());
+//
+//   }
+//
+//   if (m_bHandleProcedure || m_procedurea.has_element())
+//   {
+//
+//      m_synchronizationaMainLoop.add_item(new_procedure_posted());
+//
+//   }
+//
+//   if (m_bHandleHappening || m_ehappeninga.has_element())
+//   {
+//
+//      m_synchronizationaMainLoop.add_item(new_happening());
+//
+//   }
+//
+//}
 
 
-::manual_reset_happening* task::new_happening()
-{
+//::manual_reset_happening * task::new_procedure_posted()
+//{
+//
+//   __defer_construct_new(m_pmanualresethappeningNewProcedurePosted);
+//
+//   return m_pmanualresethappeningNewProcedurePosted;
+//
+//}
 
-   __defer_construct_new(m_pmanualresethappeningHappening);
 
-   return m_pmanualresethappeningHappening;
-
-}
+//::manual_reset_happening* task::new_happening()
+//{
+//
+//   __defer_construct_new(m_pmanualresethappeningHappening);
+//
+//   return m_pmanualresethappeningHappening;
+//
+//}
 
 
 string task::get_tag() const
@@ -222,6 +227,19 @@ const char * task::get_task_tag()
 {
 
    return m_strTaskTag.c_str();
+
+}
+
+
+
+bool task::has_main_loop_happening()
+{
+
+   _synchronous_lock synchronouslock(this->synchronization());
+
+   return m_requestaPosted.has_element()
+      || m_procedurea.has_element()
+      || m_ehappeninga.has_element();
 
 }
 
@@ -1056,11 +1074,11 @@ void task::destroy()
 
    m_phappeningFinished2.release();
 
-   m_pmanualresethappeningNewProcedurePosted.release();
+   //m_pmanualresethappeningNewProcedurePosted.release();
 
-   m_pmanualresethappeningNewRequestPosted.release();
+   //m_pmanualresethappeningNewRequestPosted.release();
 
-   m_pmanualresethappeningHappening.release();
+   //m_pmanualresethappeningHappening.release();
 
 }
 
@@ -1342,9 +1360,9 @@ void task::_post(const ::procedure & procedure)
 
       m_procedurea.add(procedure);
 
-      new_procedure_posted()->set_happening();
+      new_main_loop_happening()->set_happening();
 
-      __on_update_handler_happening_unlocked();
+      //__on_update_handler_happening_unlocked();
 
    }
 
@@ -1480,12 +1498,14 @@ procedure task::pick_next_posted_procedure()
 
    auto procedure = ::transfer(m_procedurea.pick_first());
 
-   if (m_procedurea.is_empty())
-   {
+   defer_reset_main_loop_happening();
 
-      new_procedure_posted()->reset_happening();
+   //if (m_procedurea.is_empty())
+   //{
 
-   }
+   //   new_procedure_posted()->reset_happening();
+
+   //}
 
    return ::transfer(procedure);
 
@@ -1506,12 +1526,7 @@ e_happening task::pick_happening()
 
    auto ehappening = ::transfer(m_ehappeninga.pick_first());
 
-   if (m_ehappeninga.is_empty())
-   {
-
-      m_pmanualresethappeningHappening->reset_happening();
-
-   }
+   defer_reset_main_loop_happening();
 
    return ehappening;
 
@@ -1598,9 +1613,9 @@ void task::set_happened(e_happening ehappening)
 
    m_ehappeninga.add(ehappening);
 
-   new_happening()->set_happening();
+   new_main_loop_happening()->set_happening();
 
-   __on_update_handler_happening_unlocked();
+   //__on_update_handler_happening_unlocked();
 
 }
 

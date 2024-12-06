@@ -569,7 +569,7 @@ menu::~menu()
 //
 //      //display();
 //
-//      display(e_display_normal, e_activation_set_foreground | e_activation_for_context_menu);
+//      display(e_display_normal, ::user::e_activation_set_foreground | ::user::e_activation_for_context_menu);
 //
 //      set_need_layout();
 //
@@ -618,7 +618,7 @@ menu::~menu()
 //
 //            }
 //
-//            display(e_display_normal, e_activation_set_foreground | e_activation_for_context_menu);
+//            display(e_display_normal, ::user::e_activation_set_foreground | ::user::e_activation_for_context_menu);
 //
 //            order(e_zorder_top_most);
 //
@@ -872,11 +872,11 @@ menu::~menu()
 //
 //   //   place(rectangleWindow);
 //
-//   //   //display(e_display_normal, e_activation_no_activate);
+//   //   //display(e_display_normal, ::user::e_activation_no_activate);
 //
 //   //   display(e_display_normal,
-//   //      e_activation_set_foreground |
-//   //   e_activation_set_popup);
+//   //      ::user::e_activation_set_foreground |
+//   //   ::user::e_activation_set_popup);
 //
 //   //   set_need_redraw();
 //
@@ -2288,7 +2288,7 @@ menu::~menu()
 //
 //            place(rectangleWindow, ::user::e_layout_layout, pgraphics);
 //
-//            //display(e_display_normal, e_activation_no_activate);
+//            //display(e_display_normal, ::user::e_activation_no_activate);
 //
 //
 //         }

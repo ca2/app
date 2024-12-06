@@ -373,7 +373,8 @@ namespace platform
 
       //virtual void discard_to_factory(::object * pca);
 
-      bool on_application_menu_action(const ::string & pszCommand);
+      
+      bool on_command(const ::string & pszCommand);
 
 
       //virtual void initialize_sockets();

@@ -18,10 +18,10 @@ CLASS_DECL_AURA enum_display equivalence_sink(enum_display edisplay)
 }
 
 
-CLASS_DECL_AURA int windows_show_window(enum_display edisplay, enum_activation eactivation)
+CLASS_DECL_AURA int windows_show_window(enum_display edisplay, enum_activation useractivation)
 {
 
-   auto bNoActivate = eactivation & e_activation_no_activate;
+   auto bNoActivate = useractivation & ::user::e_activation_no_activate;
 
    switch (edisplay)
    {
@@ -53,10 +53,10 @@ CLASS_DECL_AURA int windows_show_window(enum_display edisplay, enum_activation e
 
 
 
-CLASS_DECL_AURA enum_display windows_show_window_to_edisplay(int iShowWindow, enum_activation & eactivation)
+CLASS_DECL_AURA enum_display windows_show_window_to_edisplay(int iShowWindow, enum_activation & useractivation)
 {
 
-   eactivation = e_activation_default;
+   useractivation = ::user::e_activation_default;
 
    if (iShowWindow <= SW_HIDE)
    {
@@ -78,10 +78,10 @@ CLASS_DECL_AURA enum_display windows_show_window_to_edisplay(int iShowWindow, en
    case SW_MAXIMIZE:
       return e_display_zoomed;
    case SW_SHOWNA:
-      eactivation = e_activation_no_activate;
+      useractivation = ::user::e_activation_no_activate;
       return e_display_normal;
    case SW_SHOWMINNOACTIVE:
-      eactivation = e_activation_no_activate;
+      useractivation = ::user::e_activation_no_activate;
       return e_display_iconic;
    default:
          return e_display_normal;

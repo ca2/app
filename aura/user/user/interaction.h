@@ -11,6 +11,7 @@
 #include "acme/platform/flags.h"
 #include "acme/prototype/geometry2d/shift.h"
 #include "acme/prototype/time/frequency.h"
+#include "acme/user/user/activation.h"
 #include "acme/user/user/e_window_flag.h"
 //#include "apex/database/key.h"
 #include "apex/message/command.h"
@@ -489,6 +490,12 @@ namespace user
 
       virtual void _001Minimize();
 
+      virtual void on_display_restore();
+
+
+      virtual void on_display_task_list();
+
+
       //void enable_drag_move();
 
 //      virtual void set_restored_rectangle(const ::int_rectangle & rectangleRestored);
@@ -867,18 +874,18 @@ namespace user
 
 
       virtual void display_previous(bool bScreenVisible = false);
-      virtual void display_normal(::e_display edisplay, ::e_activation eactivation);
-      virtual void display_docked(::e_display edisplay, ::e_activation eactivation);
+      virtual void display_normal(::e_display edisplay, const ::user::activation & useractivation);
+      virtual void display_docked(::e_display edisplay, const ::user::activation & useractivation);
       virtual void display_zoomed();
       virtual void display_iconic();
-      virtual void display_full_screen(::collection::index iMonitor, ::e_activation eactivation);
+      virtual void display_full_screen(::collection::index iMonitor, const ::user::activation & useractivation);
       virtual void display_stored_state();
       virtual void display_notify_icon();
 
       
       virtual void design_window_stored_state();
       virtual void design_window_iconic();
-      virtual void design_window_minimize(::e_activation eactivation) override;
+      virtual void design_window_minimize(const ::user::activation & useractivation) override;
       virtual void design_window_maximize() override;
       virtual void design_window_full_screen(const ::int_rectangle& rectangleHint = {}) override;
       virtual void design_window_normal(::e_display edisplay) override;
@@ -942,9 +949,9 @@ namespace user
       
       virtual void set_layout_state(const layout_state & state, enum_layout elayout = e_layout_sketch);
 
-      virtual void set_activation(::e_activation eactivation, enum_layout elayout = e_layout_sketch);
+      virtual void set_activation(const ::user::activation & useractivation, enum_layout elayout = e_layout_sketch);
 
-      virtual void display(::e_display edisplay = e_display_normal, ::e_activation eactivation = ::e_activation_default) override;
+      virtual void display(::e_display edisplay = e_display_normal, const ::user::activation & useractivation = {}) override;
 
 
       virtual void sort_children_by_zorder(::user::interaction_array & interactiona);
@@ -970,7 +977,7 @@ namespace user
       //virtual void window_apply_visual(const class layout_state& windowstate) override;
 
 
-      virtual void frame_experience_restore(::e_activation eactivation = ::e_activation_default);
+      virtual void frame_experience_restore(const ::user::activation & useractivation = {});
       
       virtual ::user::notify_icon * notify_icon();
 
@@ -2120,7 +2127,7 @@ namespace user
       virtual void place_rate_or_size(const ::double_rectangle & rectangle);
 
 
-      virtual void activation(::e_activation eactivation);
+      virtual void activation(const ::user::activation & useractivation);
 
 
       virtual void display_child(const ::int_rectangle & rectangle, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
@@ -2152,19 +2159,23 @@ namespace user
 
        //virtual void reset_window_state();
 
-      virtual ::collection::index make_zoneing(::int_rectangle* prectangle, const ::int_rectangle& rectangleHint = {}, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual ::collection::index best_zoneing(::int_rectangle* prectangle, const ::int_rectangle& rectangleHint = {}, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual ::collection::index best_monitor(::int_rectangle* prectangle, const ::int_rectangle& rectangleHint = {}, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual ::collection::index best_workspace(::int_rectangle* prectangle, const ::int_rectangle& rectangleHint = {}, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual ::collection::index good_restore(::int_rectangle* prectangle, const ::int_rectangle& rectangleHint = {}, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top, ::e_display edisplay = e_display_normal);
-      virtual ::collection::index good_iconify(::int_rectangle* prectangle, const ::int_rectangle& rectangleHint = {}, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
 
-      virtual ::collection::index good_move(::int_rectangle* prectangle, const ::int_rectangle& rectangle = {}, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
+
+
+
+      virtual ::collection::index make_zoneing(::int_rectangle* prectangle, const ::int_rectangle& rectangleHint = {}, bool bSet = false, ::e_display* pedisplay = nullptr, const ::user::activation & useractivation = {}, ::zorder zorder = e_zorder_top);
+      virtual ::collection::index best_zoneing(::int_rectangle* prectangle, const ::int_rectangle& rectangleHint = {}, bool bSet = false, ::e_display* pedisplay = nullptr, const ::user::activation & useractivation = {}, ::zorder zorder = e_zorder_top);
+      virtual ::collection::index best_monitor(::int_rectangle* prectangle, const ::int_rectangle& rectangleHint = {}, bool bSet = false, const ::user::activation & useractivation = {}, ::zorder zorder = e_zorder_top);
+      virtual ::collection::index best_workspace(::int_rectangle* prectangle, const ::int_rectangle& rectangleHint = {}, bool bSet = false, const ::user::activation & useractivation = {}, ::zorder zorder = e_zorder_top);
+      virtual ::collection::index good_restore(::int_rectangle* prectangle, const ::int_rectangle& rectangleHint = {}, bool bSet = false, const ::user::activation & useractivation = {}, ::zorder zorder = e_zorder_top, ::e_display edisplay = e_display_normal);
+      virtual ::collection::index good_iconify(::int_rectangle* prectangle, const ::int_rectangle& rectangleHint = {}, bool bSet = false, const ::user::activation & useractivation = {}, ::zorder zorder = e_zorder_top);
+
+      virtual ::collection::index good_move(::int_rectangle* prectangle, const ::int_rectangle& rectangle = {}, const ::user::activation & useractivation = {}, ::zorder zorder = e_zorder_top);
       virtual ::collection::index get_best_zoneing(::e_display& edisplay, ::int_rectangle* prectangle, const ::int_rectangle& rectangleRequest = ::int_rectangle(), bool bPreserveSize = false);
-      virtual ::collection::index get_best_workspace(::int_rectangle* prectangle, const ::int_rectangle& rectangle, ::e_activation eactivation = e_activation_default);
+      virtual ::collection::index get_best_workspace(::int_rectangle* prectangle, const ::int_rectangle& rectangle, const ::user::activation & useractivation = {});
 
 
-      virtual ::collection::index get_best_monitor(::int_rectangle* prectangle, const ::int_rectangle& rectangle, ::e_activation eactivation = e_activation_default);
+      virtual ::collection::index get_best_monitor(::int_rectangle* prectangle, const ::int_rectangle& rectangle, const ::user::activation & useractivation = {});
 
 
       virtual void get_rect_normal(::int_rectangle* prectangle);

@@ -1347,7 +1347,7 @@ namespace user
 //
 //               information() << "LoadFrame sketch !is_screen_visible going to display_normal (1)";
 //
-//               display_normal(e_display_normal, e_activation_set_foreground);
+//               display_normal(e_display_normal, ::user::e_activation_set_foreground);
 //
 //            }
 //
@@ -2557,7 +2557,7 @@ namespace user
 
          set_size(rectangle.size());
 
-         display(e_display_normal, e_activation_no_activate);
+         display(e_display_normal, { ::user::e_activation_no_activate });
 
       }
       else

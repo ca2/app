@@ -82,29 +82,29 @@ namespace platform
       //m_edesktop = ::user::e_operating_ambient_none;
       //m_etoolkit = ::user::e_toolkit_none;
 
-      m_pAcmePosix = nullptr;
-      m_pApexPosix = nullptr;
-      m_pAuraPosix = nullptr;
+      //m_pAcmePosix = nullptr;
+      //m_pApexPosix = nullptr;
+      //m_pAuraPosix = nullptr;
 
-      m_pAcmePlatform = nullptr;
-      m_pApexPlatform = nullptr;
-      m_pAuraPlatform = nullptr;
+      //m_pAcmePlatform = nullptr;
+      //m_pApexPlatform = nullptr;
+      //m_pAuraPlatform = nullptr;
 
       //m_pNodeX11 = nullptr;
       //m_pNodeXcb = nullptr;
 
-      m_pNodeGtk3 = nullptr;
-      m_pNodeGtk4 = nullptr;
-      m_pNodeGtkBased = nullptr;
+      //m_pNodeGtk3 = nullptr;
+      //m_pNodeGtk4 = nullptr;
+      //m_pNodeGtkBased = nullptr;
 
-      m_pNodeXfce = nullptr;
+      //m_pNodeXfce = nullptr;
 
-      m_pNodeKDE5 = nullptr;
-      m_pNodeKDE6 = nullptr;
+      //m_pNodeKDE5 = nullptr;
+      //m_pNodeKDE6 = nullptr;
 
-      m_pNodeDesktopEnvironmentGtkBased = nullptr;
-      m_pNodeDesktopEnvironmentKDE = nullptr;
-      m_pNodeDesktopEnvironmentXfce = nullptr;
+      //m_pNodeDesktopEnvironmentGtkBased = nullptr;
+      //m_pNodeDesktopEnvironmentKDE = nullptr;
+      //m_pNodeDesktopEnvironmentXfce = nullptr;
 
 
       //m_pWindowingWin32Node = nullptr;

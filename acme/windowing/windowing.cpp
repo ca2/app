@@ -510,7 +510,7 @@ namespace acme
       if (colorBackground != ::color::transparent)
       {
          
-         system()->background_color(colorBackground);
+         system()->set_background_color(colorBackground);
          
       }
       else

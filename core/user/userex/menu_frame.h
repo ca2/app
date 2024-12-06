@@ -11,5 +11,7 @@ public:
 
 
    menu_frame();
+   ~menu_frame() override;
+
 
 };

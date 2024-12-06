@@ -209,9 +209,12 @@ void message_queue::kick_idle()
 
       {
 
+         m_happeningNewMessage.reset_happening();
+
          synchronouslock.unlock();
 
          auto bAcquired = m_happeningNewMessage._wait(time);
+
          if(m_eflagElement & (1ll << 36))
          {
           
@@ -226,8 +229,6 @@ void message_queue::kick_idle()
          }
 
          synchronouslock._lock();
-
-         m_happeningNewMessage.reset_happening();
 
       }
 

@@ -315,7 +315,7 @@ namespace acme
          //virtual long get_state();
          virtual bool is_iconic();
          //virtual bool is_window_visible() override;
-//         virtual bool _configure_window_unlocked(const class ::zorder & zorder, const ::e_activation & eactivation, bool bNoZorder, ::e_display edisplay);
+//         virtual bool _configure_window_unlocked(const class ::zorder & zorder, const ::user::e_activation & useractivation, bool bNoZorder, ::e_display edisplay);
          //virtual iptr get_window_long_ptr(int nIndex);
          //virtual iptr set_window_long_ptr(int nIndex, iptr l);
          virtual bool client_to_screen(::int_point* ppoint);

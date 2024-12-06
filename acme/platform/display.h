@@ -5,7 +5,6 @@
 
 
 DECLARE_ENUMERATION(e_display, enum_display);
-DECLARE_ENUMERATION(e_activation, enum_activation);
 DECLARE_ENUMERATION(e_appearance, enum_appearance);
 
 

@@ -8,6 +8,8 @@
 //#include "acme/prototype/prototype/pointer.h"
 
 
+
+
 namespace file
 {
 
@@ -203,7 +205,7 @@ namespace file
       //void construct() { *this = ::file::path(); }
       
       
-      ::string windows_path() const;
+      ::windows_path windows_path() const;
 
       
       void set_type(enum_path epath);
@@ -606,3 +608,6 @@ CLASS_DECL_ACME ::file::e_type file_type(const ::file::path& path);
 CLASS_DECL_ACME void create_directory(const ::file::path & path);
 CLASS_DECL_ACME void delete_file(const ::file::path & path);
 CLASS_DECL_ACME void erase_directory(const ::file::path & path);
+
+
+

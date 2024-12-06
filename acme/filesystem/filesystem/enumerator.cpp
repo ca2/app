@@ -146,6 +146,64 @@ namespace file
 
 
 
+   ::file::listing enumerator::folders(const ::file::path& path)
+   {
+      
+      ::file::listing listing;
+
+      listing.set_listing(path, e_depth_none, ::file::e_flag_folder);
+
+      if (!enumerate(listing))
+      {
+
+         return {};
+
+      }
+
+      return listing;
+
+   }
+
+
+   ::file::listing enumerator::files(const ::file::path& path)
+   {
+
+      ::file::listing listing;
+
+      listing.set_listing(path, e_depth_none, ::file::e_flag_file);
+
+      if (!enumerate(listing))
+      {
+
+         return {};
+
+      }
+
+      return listing;
+
+   }
+
+
+   ::file::listing enumerator::folders_and_files(const ::file::path& path)
+   {
+
+      ::file::listing listing;
+
+      listing.set_listing(path, e_depth_none, ::file::e_flag_file_or_folder);
+
+      if (!enumerate(listing))
+      {
+
+         return {};
+
+      }
+
+      return listing;
+
+   }
+
+
+
    //bool enumerator::enumerate_pattern(::file::listing & listing, const ::file::path & path, const ::string_array & straPattern, ::file::e_flag eflag, enum_depth edepth)
    //{
 

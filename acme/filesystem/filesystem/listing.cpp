@@ -21,11 +21,22 @@ namespace file
 
 
    listing::listing(const listing & listing) :
-      path_array(listing)
+      LISTING(listing),
+      path_array(listing),
+      ::string_array_base < ::file::path, string, e_type_string_array >(listing)
    {
       
       m_countAddUp = 128;
       
+   }
+
+
+   listing::listing(listing&& listing) :
+      LISTING(::transfer(listing)),
+      path_array(::transfer(listing)),
+      ::string_array_base < ::file::path, string, e_type_string_array >(::transfer(listing))
+   {
+
    }
 
 
@@ -370,15 +381,44 @@ namespace file
       *((LISTING *)this) = (const LISTING &)listing;
       m_pathUser = listing.m_pathUser;
       m_pathFinal = listing.m_pathFinal;
+      m_eflag = listing.m_eflag;
+      m_edepth = listing.m_edepth;
       m_straPattern = listing.m_straPattern;
       m_straIgnoreName = listing.m_straIgnoreName;
       //m_statusresult = listing.m_statusresult;
       m_straTitle = listing.m_straTitle;
+      m_functionOnNewPath = listing.m_functionOnNewPath;
 
       return *this;
 
    }
 
+   
+   listing& listing::operator = (listing&& listing)
+   {
+
+      if (this == &listing)
+      {
+
+         return *this;
+
+      }
+
+      path_array::operator         = (::transfer(listing));
+      *((LISTING*)this) = ::transfer((LISTING&&)listing);
+      m_pathUser = ::transfer(listing.m_pathUser);
+      m_pathFinal = ::transfer(listing.m_pathFinal);
+      m_eflag = listing.m_eflag;
+      m_edepth = listing.m_edepth;
+      m_straPattern = ::transfer(listing.m_straPattern);
+      m_straIgnoreName = ::transfer(listing.m_straIgnoreName);
+      //m_statusresult =::transfer( listing.m_statusresult;
+      m_straTitle = ::transfer(listing.m_straTitle);
+      m_functionOnNewPath = ::transfer(listing.m_functionOnNewPath);
+
+      return *this;
+
+   }
 
 } // namespace file
 

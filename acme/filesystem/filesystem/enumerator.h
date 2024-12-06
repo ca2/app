@@ -43,6 +43,10 @@ namespace file
 
       virtual listing get_folders(const ::scoped_string & scopedstr);
 
+      virtual ::file::listing folders(const ::file::path& path);
+      virtual ::file::listing files(const ::file::path& path);
+      virtual ::file::listing folders_and_files(const ::file::path& path);
+
       //virtual bool enumerate(::file::listing & listing, const ::file::path & path, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
       //virtual bool enumerate_pattern(::file::listing & listing, const ::file::path & path, const ::string_array & straPattern, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
 

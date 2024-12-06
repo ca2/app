@@ -18,3 +18,15 @@ namespace file
 
 
 
+
+
+{
+
+   ::wstring wstr("L\\\\?\\");
+
+   wstr.append(*this);
+
+   return wstr;
+
+}
+

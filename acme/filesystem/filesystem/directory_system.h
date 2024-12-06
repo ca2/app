@@ -238,6 +238,10 @@ public:
 
          bool list(::string_array & stra, const ::scoped_string & path, ::file::e_flag eflag = ::file::e_flag_file_or_folder) override;
 
+         virtual ::file::listing folders(const ::file::path & path);
+         virtual ::file::listing files(const ::file::path& path);
+         virtual ::file::listing folders_and_files(const ::file::path& path);
+
 
          //virtual void enumerate(::file::listing & listing, const ::file::path & path, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
          //virtual void enumerate_pattern(::file::listing & listing, const ::file::path & path, const ::string_array & straNamePattern, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);

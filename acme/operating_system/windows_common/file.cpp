@@ -56,7 +56,7 @@ namespace windows
 #else
 
       m_handle = CreateFileW(
-         m_windowspath,
+         m_windowspath.extended_path(),
          dwDesiredAccess,
          dwShareMode,
          lpSecurityAttributes,
@@ -492,15 +492,15 @@ namespace windows
 
       }
          
-      ::windows_path windowspathFinal;
+      ::wstring wstrFinal;
 
-      auto pwszFinalPath = windowspathFinal.get_buffer(nCharacterCount);
+      auto pwszFinalPath = wstrFinal.get_buffer(nCharacterCount);
 
       nCharacterCount = GetFinalPathNameByHandleW(m_handle, pwszFinalPath, nCharacterCount, VOLUME_NAME_DOS);
 
-      windowspathFinal.release_buffer(nCharacterCount);
+      wstrFinal.release_buffer(nCharacterCount);
 
-      return windowspathFinal;
+      return wstrFinal;
 
    }
 

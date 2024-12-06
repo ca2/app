@@ -21,11 +21,30 @@ namespace file
 
 
       path_array(){}
+      path_array(const ::file::path_array & array):
+         ::string_array_base < ::file::path, string, e_type_string_array >(array)
+      {}
+      path_array(::file::path_array&& array) :
+         ::string_array_base < ::file::path, string, e_type_string_array >(::transfer(array))
+      {
+      }
       ~path_array() override {}
 
 
       virtual void patch_base_path(const ::file::path & pathBase);
 
+
+      path_array& operator=(const ::file::path_array& array)
+      {
+         ::string_array_base < ::file::path, string, e_type_string_array >::operator =(array);
+            return *this;
+      }
+
+      path_array& operator=(::file::path_array&& array)
+      {
+         ::string_array_base < ::file::path, string, e_type_string_array >::operator =(::transfer(array));
+         return *this;
+      }
 
    };
 

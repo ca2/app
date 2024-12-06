@@ -876,14 +876,10 @@ namespace file
    }
 
 
-   inline ::string path::windows_path() const
+   inline ::windows_path path::windows_path() const
    {
 
-      ::string str(*this);
-
-      str.find_replace(L"/", L"\\");
-
-      return ::transfer(str);
+      return *this;
 
    }
 
@@ -1412,7 +1408,7 @@ namespace file
 //
 
 
-using windows_path = ::wstring;
+
 
 
 //namespace url
@@ -1464,3 +1460,20 @@ namespace file
 
 
 
+
+
+inline windows_path::windows_path(const ::file::path& path) :
+   wstring(path.c_str())
+{
+
+   this->find_replace(L"/", L"\\");
+
+}
+
+
+inline windows_path& windows_path::operator = (const ::file::path& path)
+{
+   this->assign(path.c_str());
+   this->find_replace(L"/", L"\\");
+   return *this;
+}

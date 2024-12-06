@@ -164,11 +164,7 @@ namespace windows
 
       auto windowspath = ::file::path(strPath).windows_path();
 
-      ::wstring wstrPath;
-
-      wstrPath = windowspath;
-
-      HMODULE hmodule = ::GetModuleHandleW(wstrPath);
+      HMODULE hmodule = ::GetModuleHandleW(windowspath.extended_path());
 
       auto plibrary = (library_t*)hmodule;
 

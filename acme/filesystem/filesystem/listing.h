@@ -55,6 +55,7 @@ namespace file
 
       listing();
       listing(const listing & listing);
+      listing(listing&& listing);
       ~listing() override;
 
 
@@ -172,7 +173,7 @@ namespace file
       void to_name();
 
 
-      listing & operator = (const listing & listing);
+      //listing & operator = (const listing & listing);
 
 
       ::collection::index case_insensitive_name_find_first(const path & pcsz,::collection::index find = 0,::collection::index last = -1) const;
@@ -245,6 +246,9 @@ namespace file
 
       }
 
+      listing& operator=(const ::file::listing& array);
+
+      listing& operator=(::file::listing&& array);
 
    };
 

@@ -1089,6 +1089,31 @@ bool directory_system::list(string_array & stra, const ::scoped_string & scopeds
 }
 
 
+::file::listing directory_system::folders(const ::file::path& path)
+{
+
+   return ::file::enumerator::folders(path);
+
+}
+
+
+::file::listing directory_system::files(const ::file::path& path)
+{
+
+    return ::file::enumerator::files(path);
+
+}
+
+
+::file::listing directory_system::folders_and_files(const ::file::path& path)
+{
+
+   return ::file::enumerator::folders_and_files(path);
+
+}
+
+
+
 //void directory_system::enumerate(::file::path_array & stra, const ::scoped_string & scopedstr)
 //{
 //
@@ -1204,7 +1229,25 @@ void directory_system::erase(const ::file::path & path)
 void directory_system::erase_recursively(const ::file::path &path)
 {
    
-   
+   auto folders = this->folders(path);
+
+   for (auto& folder : folders)
+   {
+
+      erase_recursively(folder);
+
+   }
+
+   auto files = this->files(path);
+
+   for (auto& file : files)
+   {
+
+      file_system()->erase(file);
+
+   }
+
+   erase(path);
 
 }
 

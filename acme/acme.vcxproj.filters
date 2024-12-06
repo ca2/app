@@ -4110,6 +4110,9 @@
     <ClInclude Include="windowing\sandbox\_.h">
       <Filter>Header Files\windowing\sandbox</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\filesystem\windows_path.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -5854,6 +5857,9 @@
     </ClCompile>
     <ClCompile Include="windowing\sandbox\windowing.cpp">
       <Filter>Source Files\windowing\sandbox</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\windows_path.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -940,6 +940,7 @@
     <ClCompile Include="filesystem\filesystem\path_array.cpp" />
     <ClCompile Include="filesystem\filesystem\path_object.cpp" />
     <ClCompile Include="filesystem\filesystem\path_system.cpp" />
+    <ClCompile Include="filesystem\filesystem\windows_path.cpp" />
     <ClCompile Include="filesystem\file\binary_stream.cpp" />
     <ClCompile Include="filesystem\file\buffered_buffer.cpp" />
     <ClCompile Include="filesystem\file\circular_buffer.cpp" />
@@ -1132,6 +1133,7 @@
     <ClInclude Include="filesystem\filesystem\folder_dialog.h" />
     <ClInclude Include="filesystem\filesystem\link.h" />
     <ClInclude Include="filesystem\filesystem\path_array.h" />
+    <ClInclude Include="filesystem\filesystem\windows_path.h" />
     <ClInclude Include="filesystem\filesystem\_.h" />
     <ClInclude Include="filesystem\filesystem\_2.h" />
     <ClInclude Include="filesystem\filesystem\_impl2.h" />

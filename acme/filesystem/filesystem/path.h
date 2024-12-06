@@ -8,6 +8,7 @@
 //#include "acme/prototype/prototype/pointer.h"
 
 
+class windows_path;
 
 
 namespace file

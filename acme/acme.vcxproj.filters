@@ -4115,6 +4115,7 @@
     </ClInclude>
     <ClInclude Include="operating_system\windows\windowing.h">
       <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
     <ClInclude Include="filesystem\filesystem\windows_path.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
@@ -5868,6 +5869,7 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows\windowing.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
     <ClCompile Include="filesystem\filesystem\windows_path.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>

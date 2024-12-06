@@ -19,6 +19,10 @@ public:
    windows_path& operator = (const ::file::path& path);
 
 
+   using ::wstring::clear;
+   using ::wstring::is_empty;
+
+
 };
 
 

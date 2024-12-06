@@ -4,6 +4,9 @@
 #pragma once
 
 
+#include "acme/filesystem/filesystem/windows_path.h"
+
+
 namespace file
 {
 
@@ -1462,18 +1465,3 @@ namespace file
 
 
 
-inline windows_path::windows_path(const ::file::path& path) :
-   wstring(path.c_str())
-{
-
-   this->find_replace(L"/", L"\\");
-
-}
-
-
-inline windows_path& windows_path::operator = (const ::file::path& path)
-{
-   this->assign(path.c_str());
-   this->find_replace(L"/", L"\\");
-   return *this;
-}

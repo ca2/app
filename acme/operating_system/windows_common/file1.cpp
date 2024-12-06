@@ -44,7 +44,9 @@ namespace windows
 
       ::windows_path windowspath = path.windows_path();
 
-      auto attributes = ::GetFileAttributesW(windowspath.extended_path());
+      ::wstring wstrExtendedPath = windowspath.extended_path();
+
+      auto attributes = ::GetFileAttributesW(wstrExtendedPath);
 
       auto dwLastError = ::GetLastError();
 

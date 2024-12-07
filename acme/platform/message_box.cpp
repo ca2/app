@@ -9,7 +9,7 @@
 #include "message_box.h"
 #include "acme/handler/sequence.h"
 #include "acme/platform/node.h"
-//#include "acme/platform/sequencer.h"
+//#include "acme/handler/sequence.h"
 #include "acme/nano/graphics/icon.h"
 
 //#include "acme/filesystem/file/string_buffer.h"

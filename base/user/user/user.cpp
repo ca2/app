@@ -12,7 +12,7 @@
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/parallelization/synchronous_lock.h"
-//#include "acme/platform/sequencer.h"
+//#include "acme/handler/sequence.h"
 #include "acme/platform/system_setup.h"
 #include "acme/handler/request.h"
 #include "acme/nano/nano.h"

@@ -8,7 +8,7 @@
 #include "acme/platform/application.h"
 #include "acme/filesystem/file/item.h"
 #include "acme/filesystem/filesystem/file_system.h"
-//#include "acme/platform/sequencer.h"
+//#include "acme/handler/sequence.h"
 #include "acme/platform/system.h"
 #include "acme/user/micro/user.h"
 #include "acme/filesystem/filesystem/directory_context.h"

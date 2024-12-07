@@ -724,7 +724,7 @@ namespace apex
          
          ::file::path pathOneDrive = m_papplication->defer_process_matter_path("onedrive://");
          
-         if(pathOneDrive.m_epath == ::e_path_file && directory()->is(pathOneDrive))
+         if(pathOneDrive.has_character() && directory()->is(pathOneDrive))
          {
             
             ::file::path & path = listing.insert_at(0, "onedrive://");

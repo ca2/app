@@ -12952,7 +12952,7 @@ void window::set_oswindow(::oswindow oswindow)
       for (auto & ppurpose : m_graphicaloutputpurposea)
       {
 
-         if (ppurpose->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_fps)
+         if (ppurpose && ppurpose->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_fps)
          {
 
             return true;

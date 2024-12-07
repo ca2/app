@@ -1925,7 +1925,7 @@ void string_range < ITERATOR_TYPE >::escape_skip_to_first_character_in(const cha
 
   ::std::strong_ordering order = ::std::strong_ordering::equal;
 
-  const char * prev_escape = nullptr;
+  const CHARACTER * prev_escape = nullptr;
 
   auto r = (*this)();
 
@@ -1943,7 +1943,7 @@ void string_range < ITERATOR_TYPE >::escape_skip_to_first_character_in(const cha
 
         prev_escape = nullptr;
 
-        order = __ansitolower(*r.m_begin) <=> __ansitolower(*rangeCompare.m_begin);
+        order = unicode_to_lower_case(unicode_index(r.m_begin)) <=> unicode_to_lower_case(unicode_index(rangeCompare.m_begin));
 
         if (order != 0)
         {

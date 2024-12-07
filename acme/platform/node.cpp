@@ -1752,6 +1752,14 @@ namespace platform
 #endif
 
 
+   ::string node::display_file_path(const ::file::path & path)
+   {
+
+      return path;
+
+   }
+
+
 #ifdef WINDOWS_DESKTOP
 
    

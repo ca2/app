@@ -1012,7 +1012,7 @@ public:
 
       auto p = this->metadata();
 
-      if (p->natural_is_shared() || nLength >= this->get_storage_length())
+      if (p->natural_is_shared() || nLength >= this->storage_character_count())
       {
 
          fork_string(nLength);
@@ -1034,7 +1034,7 @@ public:
    void reserve(character_count res_arg = 0);
 
 
-   string_base& erase_end(character_count start) { this->erase((::character_count)this->index_of(start), this->end()); }
+   string_base& erase_end(character_count start) { return this->erase(start, (::character_count)this->index_of(this->end())); }
 
 
    string_base & erase(character_count start, character_count count);
@@ -1158,19 +1158,19 @@ public:
    string_base Tokenize(const SCOPED_STRING & scopedstrTokens, character_count & iStart) const;
 
 
-   const_iterator begins_eat_any_character_in(const SCOPED_STRING & scopedstrCharacters = 0) const RELEASENOTHROW
+   const_iterator begins_eat_any_character_in(const SCOPED_STRING & scopedstrCharacters = 0) 
    {
 
-      auto i = skip_any_character_in(scopedstrCharacters);
+      auto range = this->skip_any_character_in(scopedstrCharacters);
 
-      if(i > 0)
+      if(range.begin() != this->begin())
       {
 
-         erase_beginning(i);
+         this->erase_beginning(range.begin());
 
       }
 
-      return i;
+      return range.begin();
 
    }
 
@@ -1279,7 +1279,7 @@ public:
    constexpr bool case_insensitive_starts_with_word(const SCOPED_STRING& range) const
    {
 
-      return case_insensitive_starts_with_word(range, ::string_get_word_separated_by_spaces < ITERATOR_TYPE >);
+      return case_insensitive_starts_with_word(range, &::string_get_word_separated_by_spaces < ITERATOR_TYPE >);
 
    }
 

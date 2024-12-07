@@ -27,7 +27,7 @@ public:
 
 
    /// in bytes, without meta, with null(s)
-   inline ::memsize storage_size() const { return (::memsize) this->m_sizeStorage; }
+   inline ::memsize storage_size() const { return (::memsize) this->m_sizeStorageInBytes; }
    /// storage_size expressed in number of characters
    inline ::character_count storage_character_count() const;
 

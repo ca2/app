@@ -900,6 +900,8 @@ namespace platform
 //
 //#endif
 
+      virtual ::string display_file_path(const ::file::path & path);
+
 
 #ifdef WINDOWS_DESKTOP
 

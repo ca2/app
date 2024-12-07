@@ -48,6 +48,7 @@ CLASS_DECL_ACME const ::wd16_character * string_find_character(const ::wd16_char
 CLASS_DECL_ACME const ::wd16_character * string_rear_find_character(const ::wd16_character * psz, ::wd16_character ch) noexcept;
 CLASS_DECL_ACME const ::wd16_character * string_find_string(const ::wd16_character * pszBlock, const ::wd16_character * pszMatch) noexcept;
 CLASS_DECL_ACME const ::wd16_character * string_rear_find_string(const ::wd16_character * psz, const ::wd16_character * pszFind, character_count iStart) noexcept;
+CLASS_DECL_ACME const ::wd16_character * case_insensitive_string_find_string(const ::wd16_character * pszBlock, const ::wd16_character * pszMatch) noexcept;
 
 
 CLASS_DECL_ACME ::wd16_character character_tolower(::wd16_character wd16ch) noexcept;

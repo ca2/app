@@ -1740,7 +1740,7 @@ character_count str::find_aww(const ::string & strOld, const ::string & strParam
 }
 
 
-string str::has_char(const ::string & strIfHasChar, const ::string & strBefore, const ::string & strAfter, const ::string & strDoesnt)
+string str::has_character(const ::string & strIfHasChar, const ::string & strBefore, const ::string & strAfter, const ::string & strDoesnt)
 {
 
    string str;

@@ -302,7 +302,7 @@ namespace sockets
 
             string strQuery = request.query();
 
-            //m_request.m_strRequestUri = ::url::decode(strScript) + ::str::has_char(strQuery, "?");
+            //m_request.m_strRequestUri = ::url::decode(strScript) + ::str::has_character(strQuery, "?");
             
             m_request.m_strRequestUri = strRequestUri;
             

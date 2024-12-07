@@ -1104,7 +1104,7 @@ string merge_colon_args(const array < string_array >& straa)
 
    }
 
-   strCommandLine += ::str::has_char(straBeforeColon.predicate_implode(&transform_to_c_arg, " "), " ");
+   strCommandLine += ::str::has_character(straBeforeColon.predicate_implode(&transform_to_c_arg, " "), " ");
 
    strCommandLine += " : ";
 

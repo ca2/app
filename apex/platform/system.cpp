@@ -3009,7 +3009,7 @@ pdirectorysystem->create("/ca2core");
 
    //      string strParam = straAccumul.surround_and_implode(" ", "\"", "\"");
 
-   //      pcreate->_001ParseCommandFork("app.exe " + strParam + " " + ::str::has_char(strExtra, " : "));
+   //      pcreate->_001ParseCommandFork("app.exe " + strParam + " " + ::str::has_character(strExtra, " : "));
 
    //   }
 
@@ -3075,7 +3075,7 @@ pdirectorysystem->create("/ca2core");
       //   else
       //   {
 
-      //      papp->request({"app.exe \"" + payloadFile.get_file_path() + "\" " + ::str::has_char(strExtra, " : ")});
+      //      papp->request({"app.exe \"" + payloadFile.get_file_path() + "\" " + ::str::has_character(strExtra, " : ")});
 
       //   }
 
@@ -3622,7 +3622,7 @@ pmessagebox->sync();
          }
 
 
-         //strOpenUrl = strUrl + ::str::has_char(strOpenUrl, ";");
+         //strOpenUrl = strUrl + ::str::has_character(strOpenUrl, ";");
 
          //if (strOpenUrl.has_character())
          {

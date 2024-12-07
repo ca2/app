@@ -2575,7 +2575,7 @@ void file_context::set_extension(::file::path & path, const ::scoped_string & sc
 
    }
 
-   path = path.left(iEnd) + ::str::has_char(scopedstrExtension, ".");
+   path = path.left(iEnd) + ::str::has_character(scopedstrExtension, ".");
 
 }
 

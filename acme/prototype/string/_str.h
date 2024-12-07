@@ -138,7 +138,7 @@ public:
    static character_count   find_wwci(const ::string & strFind, const ::string & str, character_count iStart = 0);
    static character_count   find_aww(const ::string & strFind, const ::string & str, character_count iStart = 0);
    static character_count   find_awwci(const ::string & strFind, const ::string & str, character_count iStart = 0);
-   static string   has_char(const ::string & strIfHasChar, const ::string & strBefore = nullptr, const ::string & strAfter = nullptr, const ::string & strDoesnt = nullptr);
+   static string   has_character(const ::string & strIfHasChar, const ::string & strBefore = nullptr, const ::string & strAfter = nullptr, const ::string & strDoesnt = nullptr);
    static bool   has_upper(const ::string & str);
    static bool   has_lower(const ::string & str);
    static bool   has_digit(const ::string & str);

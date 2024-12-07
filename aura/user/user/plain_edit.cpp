@@ -4591,7 +4591,7 @@ namespace user
 //
 //            daExtent.set_size(strLine.length() + 1);
 //
-//            while (::has_char(pszNext))
+//            while (::has_character(pszNext))
 //            {
 //
 //               pszNext = unicode_next(psz);

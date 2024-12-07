@@ -40,6 +40,7 @@ namespace acme
          ::pointer<::acme::windowing::display>              m_pacmedisplay;
          ::windowing::enum_windowing                        m_ewindowing;
          ::pointer<::acme::windowing::window>               m_pwindowMouseCapture;
+         class ::time                                       m_timeDarkMode;
 
 
          windowing();
@@ -175,9 +176,11 @@ namespace acme
                                                  const ::color::color & colorBackground = ::color::transparent);
 
          virtual void set_dark_mode(bool bDarkMode);
-
-
          virtual bool dark_mode();
+
+         virtual class ::time dark_mode_time() const;
+         virtual void set_dark_mode_time(const class ::time & time);
+
 
          virtual void fetch_system_background_color();
 

@@ -146,13 +146,13 @@ namespace platform
    system::system()
    {
 
-      m_bAcmeSystemDarkModeFetched = false;
-
       if (!s_p)
       {
+
          s_p = this;
 
       }
+
       m_psystem = this;
       // m_papexsystem = nullptr;
       // m_paquasystem = nullptr;
@@ -4218,20 +4218,44 @@ particle* system::matter_mutex()
    bool system::dark_mode() const
    {
 
-      if (!m_bAcmeSystemDarkModeFetched)
+      if (((system *)this)->acme_windowing()->dark_mode_time() != m_timeDarkMode)
       {
 
-         ((system *)this)->m_bAcmeSystemDarkModeFetched = true;
-
-         ((system *)this)->acme_windowing()->fetch_dark_mode();
+         //((system *)this)->acme_windowing()->fetch_dark_mode();
 
          ((system *)this)->m_bAcmeSystemDarkMode = ((system *)this)->acme_windowing()->dark_mode();
+
+         ((system *)this)->set_dark_mode_time(((system *)this)->acme_windowing()->dark_mode_time());
 
       }
 
       return m_bAcmeSystemDarkMode;
 
    }
+
+
+   class ::time system::dark_mode_time() const
+   {
+
+      if (m_timeDarkMode != ((system *)this)->acme_windowing()->dark_mode_time())
+      {
+
+         dark_mode();
+
+      }
+
+      return m_timeDarkMode;
+
+   }
+
+
+   void system::set_dark_mode_time(const class ::time & time)
+   {
+
+      m_timeDarkMode = time;
+
+   }
+
 
 
    void system::on_application_dark_mode_change()

@@ -594,6 +594,8 @@ namespace platform
 
 
       virtual bool dark_mode() const override;
+      virtual class ::time dark_mode_time() const;
+      virtual void set_dark_mode_time(const class ::time & time);
       virtual void on_application_dark_mode_change() override;
 
       //      virtual int get_simple_ui_darkness();

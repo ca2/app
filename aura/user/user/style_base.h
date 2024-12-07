@@ -16,8 +16,8 @@ namespace user
    public:
 
 
-      bool        m_bUserStyleBaseDarkModeFetched;
-      bool        m_bUserStyleBaseDarkMode;
+      class ::time      m_timeUserStyleBaseDarkMode;
+      bool              m_bUserStyleBaseDarkMode;
 
 
       style_base();

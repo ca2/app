@@ -14,8 +14,6 @@ namespace user
    style_base::style_base()
    {
 
-      //m_bDarkMode = true;
-      m_bUserStyleBaseDarkModeFetched = false;
 
    }
 
@@ -92,7 +90,7 @@ namespace user
    bool style_base::is_dark_mode() const
    { 
 
-      if (!m_bUserStyleBaseDarkModeFetched)
+      if (m_timeUserStyleBaseDarkMode != system()->dark_mode_time())
       {
 
          ((style_base *)this)->on_user_color();
@@ -115,14 +113,14 @@ namespace user
 
          //auto pnode = psystem->node();
 
-         if (!m_bUserStyleBaseDarkModeFetched)
+         if (m_timeUserStyleBaseDarkMode != psystem->dark_mode_time())
          {
 
             auto bDarkMode = psystem->dark_mode();
 
             m_bUserStyleBaseDarkMode = bDarkMode;
 
-            m_bUserStyleBaseDarkModeFetched = true;
+            m_timeUserStyleBaseDarkMode = psystem->dark_mode_time();
 
          }
 

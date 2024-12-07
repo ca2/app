@@ -4828,7 +4828,24 @@ return nullptr;
 
    bool acme_system_layer::dark_mode() const
    {
+      
       return false;
+
+   }
+
+
+   class ::time acme_system_layer::dark_mode_time() const
+   {
+      
+      return {};
+
+   }
+
+
+   void acme_system_layer::set_dark_mode_time(const class ::time & time) 
+   {
+
+
    }
 
 

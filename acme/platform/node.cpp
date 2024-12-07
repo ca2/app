@@ -3595,6 +3595,13 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
       for (auto & path : patha)
       {
 
+         if (pathSystem.case_insensitive_contains("SecurityHealthSSO"))
+         {
+
+            printf_line("SHSSO");
+
+         }
+
          if (path_system()->real_path_is_same(pathSystem, path))
          {
 

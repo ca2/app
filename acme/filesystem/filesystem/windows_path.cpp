@@ -21,6 +21,13 @@ windows_path::windows_path(const ::file::path& path) :
 wstring windows_path::extended_path() const
 {
 
+   if (this->begins(L"\\\\?\\"))
+   {
+
+      return *this;
+
+   }
+
    ::wstring wstr(L"\\\\?\\");
 
    wstr.append(*this);

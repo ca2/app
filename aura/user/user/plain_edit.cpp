@@ -1339,7 +1339,7 @@ namespace user
 
       interaction::on_timer(ptimer);
 
-      enum_timer etimer = (enum_timer)ptimer->m_uEvent;
+      auto etimer = ptimer->m_etimer;
 
       if (etimer == e_timer_overflow_scrolling_start)
       {
@@ -1436,10 +1436,10 @@ namespace user
          }
 
       }
-      else if (ptimer->m_uEvent == 500 || ptimer->m_uEvent == 501)
+      else if (ptimer->m_uTimer == 500 || ptimer->m_uTimer == 501)
       {
 
-         if (ptimer->m_uEvent == 500)
+         if (ptimer->m_uTimer == 500)
          {
 
             KillTimer(500);

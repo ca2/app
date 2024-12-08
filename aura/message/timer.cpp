@@ -11,7 +11,7 @@ namespace message
 
    //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-   //   m_uEvent = static_cast<unsigned int>(wparam);
+   //   m_uTimer = static_cast<unsigned int>(wparam);
 
    //}
 

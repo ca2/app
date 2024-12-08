@@ -1988,7 +1988,9 @@ bool directory_context::name_is(const ::file::path& strPath)
 void directory_context::create(const ::file::path& path)
 {
 
-   directory_system()->create(path);
+   auto pathProcessed = application()->defer_process_path(path);
+
+   directory_system()->create(pathProcessed);
 
 }
 

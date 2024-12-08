@@ -364,7 +364,7 @@ namespace filemanager
 
       ::userfs::list::on_timer(ptimer);
 
-      if (ptimer->m_uEvent == 888888)
+      if (ptimer->m_uTimer == 888888)
       {
 
          auto psession = session();

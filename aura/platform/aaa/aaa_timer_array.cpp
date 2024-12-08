@@ -140,7 +140,7 @@ namespace aura
       try
       {
 
-         uptr uEvent = ptimer->m_uEvent;
+         uptr uEvent = ptimer->m_uTimer;
 
          auto * ppair = m_map.plookup(uEvent);
 
@@ -185,7 +185,7 @@ namespace aura
       if (!m_bOk)
       {
 
-         delete_timer(ptimer->m_uEvent);
+         delete_timer(ptimer->m_uTimer);
 
          return false;
 
@@ -196,7 +196,7 @@ namespace aura
       if(!ptimer->m_bPeriodic)
       {
 
-         delete_timer(ptimer->m_uEvent);
+         delete_timer(ptimer->m_uTimer);
 
          return false;
 

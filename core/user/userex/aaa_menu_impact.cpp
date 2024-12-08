@@ -117,7 +117,7 @@
 //
 //      auto pextendedtopic = create_extended_topic(::id_timer);
 //
-//      pextendedtopic->m_uiEvent = ptimer->m_uEvent;
+//      pextendedtopic->m_uiEvent = ptimer->m_uTimer;
 //      
 //      pextendedtopic->m_etimer = ptimer->m_etimer;
 //
@@ -138,7 +138,7 @@
 //
 //   }
 //
-//   if(ptimer->m_uEvent == 24)
+//   if(ptimer->m_uTimer == 24)
 //   {
 //
 //      KillTimer(24);

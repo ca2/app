@@ -3758,6 +3758,8 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
       }
 
+      psz++;
+
    }
 
    return nullptr;

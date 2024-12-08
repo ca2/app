@@ -2317,38 +2317,38 @@ void image::blend(const ::int_point & pointDst,::image::image *pimageSrc, const 
 */
 
 
-//void image::set_rgb(int R, int G, int B)
-//{
-//
-//   huge_integer size = scan_area();
-//
-//   image32_t* pcr = data();
-//
-//   if (pcr == nullptr)
-//   {
-//
-//      //return false;
-//
-//      return;
-//
-//   }
-//
-//   sort_image_rgb(R, G, B);
-//
-//   for (int i = 0; i < size; i++)
-//   {
-//
-//      ((unsigned char*)pcr)[0] = R;
-//      ((unsigned char*)pcr)[1] = G;
-//      ((unsigned char*)pcr)[2] = B;
-//
-//      pcr++;
-//
-//   }
-//
-//   //return true;
-//
-//}
+void image::set_rgb(int R, int G, int B)
+{
+
+   huge_integer size = scan_area();
+
+   image32_t* pcr = data();
+
+   if (pcr == nullptr)
+   {
+
+      //return false;
+
+      return;
+
+   }
+
+   sort_image_rgb(R, G, B);
+
+   for (int i = 0; i < size; i++)
+   {
+
+      ((unsigned char*)pcr)[0] = R;
+      ((unsigned char*)pcr)[1] = G;
+      ((unsigned char*)pcr)[2] = B;
+
+      pcr++;
+
+   }
+
+   //return true;
+
+}
 
 
 /*   void image::Fill ( int R, int G, int B )
@@ -8463,12 +8463,12 @@ void image::set_rgb_pre_alpha(int R, int G, int B, int A)
 }
 
 
-//void image::set_rgb(image32_t cr)
-//{
-//
-//   return set_rgb(color32_byte_red(cr), color32_byte_green(cr), color32_byte_blue(cr));
-//
-//}
+void image::set_rgb(::color::color color)
+{
+
+   return set_rgb(color.byte_red(), color.byte_green(), color.byte_blue());
+
+}
 
 
 //void image::set_rgb(int R, int G, int B)

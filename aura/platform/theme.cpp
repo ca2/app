@@ -72,7 +72,7 @@ namespace aura
 
       auto iFind = m_straTheme.find_first(strTheme);
 
-      if (found(iFind))
+      if (not_found(iFind))
       {
 
          iFind = 0;

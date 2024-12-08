@@ -14,8 +14,8 @@ timer::timer()
 }
 
 
-timer::timer(uptr uEvent) :
-   m_uEvent(uEvent)
+timer::timer(uptr uTimer) :
+   m_uTimer(uTimer)
 {
 
    m_bPeriodic = false;

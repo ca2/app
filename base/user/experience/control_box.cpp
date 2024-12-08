@@ -219,7 +219,7 @@ namespace experience
 
       ::user::auto_hide::on_timer(ptimer);
 
-      if (ptimer->m_uEvent == e_timer_check_hover)
+      if (ptimer->m_uTimer == e_timer_check_hover)
       {
 
          if (top_level()->layout().is_moving())

@@ -56,7 +56,7 @@ namespace filehandler
 
       form_impact::on_timer(ptimer);;
 
-      if(ptimer->m_uEvent == 8888)
+      if(ptimer->m_uTimer == 8888)
       {
 
          refresh();

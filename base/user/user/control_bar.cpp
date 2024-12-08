@@ -253,7 +253,7 @@ namespace user
    void control_bar::on_timer(::timer * ptimer)
    {
       __UNREFERENCED_PARAMETER(ptimer);
-//      unsigned int uEvent = ptimer->m_uEvent;
+//      unsigned int uEvent = ptimer->m_uTimer;
 #ifdef WINDOWS_DESKTOP
       
 

@@ -17927,7 +17927,7 @@ namespace user
 
          _NEW_MESSAGE(::message::timer);
 
-         pmessage->m_uEvent = static_cast<unsigned int>(wparam);
+         pmessage->m_uTimer = static_cast<unsigned int>(wparam);
 
       }
       break;

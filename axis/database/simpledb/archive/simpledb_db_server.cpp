@@ -253,7 +253,7 @@ void db_server::on_timer(::timer * ptimer)
 
    //super::on_timer(ptimer);;
    //
-   //if(ptimer->m_uEvent == 1258477)
+   //if(ptimer->m_uTimer == 1258477)
    //{
 
    //}

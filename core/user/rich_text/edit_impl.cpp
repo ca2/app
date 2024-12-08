@@ -1414,19 +1414,19 @@ namespace user
 
          ::user::interaction::on_timer(ptimer);
 
-         if (ptimer->m_uEvent >= 100 && ptimer->m_uEvent <= 200)
+         if (ptimer->m_uTimer >= 100 && ptimer->m_uTimer <= 200)
          {
             if (has_keyboard_focus())
             {
 
-               //_001OnKeyboardFocusTimer(ptimer->m_uEvent - 100);
+               //_001OnKeyboardFocusTimer(ptimer->m_uTimer - 100);
 
             }
          }
-         else if (ptimer->m_uEvent == 500 || ptimer->m_uEvent == 501)
+         else if (ptimer->m_uTimer == 500 || ptimer->m_uTimer == 501)
          {
 
-            if (ptimer->m_uEvent == 500)
+            if (ptimer->m_uTimer == 500)
             {
 
                KillTimer(500);
@@ -1438,7 +1438,7 @@ namespace user
             key_to_char(m_pkeymessageLast);
 
          }
-         else if (ptimer->m_uEvent == e_timer_redraw)
+         else if (ptimer->m_uTimer == e_timer_redraw)
          {
 
             // Caret

@@ -220,7 +220,7 @@ namespace userstack
 
       BASE::on_timer(ptimer);
 
-      switch(ptimer->m_uEvent)
+      switch(ptimer->m_uTimer)
       {
       case e_timer_backimpact:
       {
@@ -229,11 +229,11 @@ namespace userstack
       break;
       }
 
-      if(ptimer->m_uEvent == 21977)
+      if(ptimer->m_uTimer == 21977)
       {
          check_apps();
       }
-      else if(ptimer->m_uEvent == 888888)
+      else if(ptimer->m_uTimer == 888888)
       {
          psession->check_topic_file_change();
       }

@@ -523,20 +523,28 @@ namespace user
 
                auto pdraw2d = psystem->draw2d();
 
-               //if (
+               m_pitem->m_pmesh->m_plist->__defer_construct_new(m_pitem->m_pmesh->m_plist->m_pfastblurIconText);
 
+               if (m_pcolumn->m_pdrawlistcolumn->m_ealign == e_align_none)
+               {
+
+                  m_pcolumn->m_pdrawlistcolumn->m_ealign = e_align_top_center;
+
+               }
+               //if (
                pdraw2d->embossed_text_out(
                   m_pitem->m_pdrawlistitem->m_pgraphics,
                   m_rectangleText,
                   m_strText,
-                  *m_pitem->m_pmesh->m_plist->m_pfastblur,
+                  *m_pitem->m_pmesh->m_plist->m_pfastblurIconText,
                   pimage2,
                   m_pitem->m_pdrawlistitem->m_pgraphics->m_pfont,
                   m_pcolumn->m_pdrawlistcolumn->m_ealign,
                   m_pcolumn->m_pdrawlistcolumn->m_edrawtext,
-                  m_colorText,
-                  m_colorTextBackground,
-                  m_pitem->m_pmesh->m_plist->m_iTextSpreadRadius, m_pitem->m_pmesh->m_plist->m_iTextBlurRadius,
+                  m_pitem->m_pmesh->m_plist->m_colorEmbossedText,
+                  m_pitem->m_pmesh->m_plist->m_colorEmbossedTextBackground,
+                  m_pitem->m_pmesh->m_plist->m_iTextSpreadRadius, 
+                  m_pitem->m_pmesh->m_plist->m_iTextBlurRadius,
                   m_pitem->m_pmesh->m_plist->m_iTextBlur,
                   m_strText != m_pitem->m_pmesh->m_plist->m_mapText[m_pitem->m_iItem] || m_colorTextBackground != m_pitem->m_pmesh->m_plist->m_mapBackColor[m_pitem->m_iItem]);
 

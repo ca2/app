@@ -529,7 +529,7 @@ namespace user
    //void list2::on_timer(::timer* ptimer)
    //{
    //   simple_user_list::on_timer(ptimer);
-   //   if (ptimer->m_uEvent == 123654)
+   //   if (ptimer->m_uTimer == 123654)
    //   {
    //      KillTimer(123654);
    //      m_bKickActive = false;

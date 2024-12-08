@@ -274,10 +274,10 @@ namespace userex
    void progress_impact::on_timer(::timer * ptimer)
    {
 
-            if (ptimer->m_uEvent == e_timer_update_current_area)
+            if (ptimer->m_uTimer == e_timer_update_current_area)
             {
       
-               KillTimer(ptimer->m_uEvent);
+               KillTimer(ptimer->m_uTimer);
       
                ::int_rectangle rectangle;
       

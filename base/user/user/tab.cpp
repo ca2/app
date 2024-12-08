@@ -2788,7 +2788,7 @@ namespace user
 
       ::user::auto_hide::on_timer(ptimer);
 
-      if (ptimer->m_uEvent == e_timer_drag_start)
+      if (ptimer->m_uTimer == e_timer_drag_start)
       {
          //auto elapsed = g_tickDragStart.elapsed();
          KillTimer(e_timer_drag_start);

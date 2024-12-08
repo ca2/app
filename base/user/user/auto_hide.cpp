@@ -395,7 +395,7 @@ namespace user
    void auto_hide::on_timer(::timer * ptimer)
    {
 
-      if (ptimer->m_uEvent == e_timer_defer_handle_auto_hide_tabs)
+      if (ptimer->m_uTimer == e_timer_defer_handle_auto_hide_tabs)
       {
 
          auto_hide_calculate_control_visibility();

@@ -378,7 +378,7 @@ namespace micro
    void message_box::on_timer(::timer* ptimer)
    {
 
-      if (ptimer->m_uEvent == 1021)
+      if (ptimer->m_uTimer == 1021)
       {
 
          m_pstillTimeout->m_strText.formatf("%0.2fs", m_prealizable->m_psequence->remaining_from_timeout().floating_second());

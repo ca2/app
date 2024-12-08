@@ -46,7 +46,7 @@ namespace console
 
       simple_frame_window::on_timer(ptimer);;
 
-//      unsigned int uEvent = ptimer->m_uEvent;
+//      unsigned int uEvent = ptimer->m_uTimer;
 //      static float theta;
 //      if(uEvent == 3)
 //      {

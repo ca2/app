@@ -628,7 +628,7 @@ namespace user
    void check_box::on_timer(::timer * ptimer)
    {
 
-      if (ptimer->m_uEvent == e_timer_check_toggle_animation)
+      if (ptimer->m_uTimer == e_timer_check_toggle_animation)
       {
 
          set_need_redraw();
@@ -638,12 +638,12 @@ namespace user
          if (m_timeAnimationStart.elapsed() > m_timeAnimationPeriod)
          {
 
-            KillTimer(ptimer->m_uEvent);
+            KillTimer(ptimer->m_uTimer);
 
          }
 
       }
-//      else if (ptimer->m_uEvent == e_timer_command_probe)
+//      else if (ptimer->m_uTimer == e_timer_command_probe)
 //      {
 //
 //         ::user::menu_command command(this);

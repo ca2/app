@@ -1509,7 +1509,7 @@ namespace user
 
       ::pointer<::menu::item_ptra>pmenuitema = pitemThis->m_pmenuitema;
 
-      if (ptimer->m_uEvent == e_timer_menu)
+      if (ptimer->m_etimer == e_timer_menu)
       {
 
          KillTimer(e_timer_menu);
@@ -1570,7 +1570,7 @@ namespace user
             //m_atomTimerMenu.is_empty();
 
       }
-      else if (ptimer->m_uEvent == ::e_timer_command_probe)
+      else if (ptimer->m_etimer == ::e_timer_command_probe)
       {
 
          {

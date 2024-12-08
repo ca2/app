@@ -11,6 +11,20 @@
 namespace image
 {
 
+   class CLASS_DECL_AURA pool_image
+   {
+   protected:
+      ::image::image_pointer                 m_pimage;
+      ::pointer < ::image::image_context >   m_pimagecontext;
+   public:
+
+
+      pool_image(image_context * pimagecontext, const ::image::image * pimage);
+      ~pool_image();
+
+      ::image::image * image();
+
+   };
 
    class CLASS_DECL_AURA image_context :
       virtual public ::object
@@ -23,6 +37,7 @@ namespace image
       string_map < ::image::image_pointer > m_mapPathImage;
       int         m_iImageSeed;
       ::particle_pointer         m_pparticleImageSynchronization;
+      map < int_size, ::pointer_array < ::image::image > > m_imagepool;
 
 
 
@@ -55,6 +70,10 @@ namespace image
 
 
       virtual ::image::image_pointer create_image(const ::int_size& size, const image32_t* pcolor = nullptr, int iScan = -1, ::enum_flag eflagFlag = DEFAULT_CREATE_IMAGE_FLAG);
+
+      virtual ::image::pool_image pool_image(const ::int_size & size);
+
+      virtual void release_pool_image(::image::pool_image * ppoolimage);
 
 
       virtual int image_integer(const ::file::path & path);

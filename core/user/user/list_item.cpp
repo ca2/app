@@ -292,7 +292,7 @@ namespace user
             {
                ///return true;
 
-               m_pitem->m_pmesh->m_plist->m_pimageTime = m_pitem->m_pmesh->image()->create_image(m_pitem->m_pmesh->m_plist->m_pimageSpot->size());
+               auto image1 = m_pitem->m_pmesh->image()->pool_image(m_pitem->m_pmesh->m_plist->m_pimageSpot->size());
 
                ::int_rectangle rectangle = rectangleI;
 
@@ -306,9 +306,9 @@ namespace user
 
                rect2.offset(-m_pitem->m_pmesh->m_plist->m_rectangleSpot.top_left());
 
-               m_pitem->m_pmesh->m_plist->m_pimageTime->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+               image1.image()->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-               get_image_list()->draw(m_pitem->m_pmesh->m_plist->m_pimageTime->get_graphics(), (int)m_iImage,
+               get_image_list()->draw(image1.image()->get_graphics(), (int)m_iImage,
                   rect2.top_left(),
                   rectangle.size(), rectangle.top_left(), 0);
 
@@ -316,7 +316,7 @@ namespace user
 
                //m_plist->m_pimageTime->div_alpha(rect2->top_left(), rect2->size());
 
-               m_pitem->m_pmesh->m_plist->m_pimageTime->channel_multiply(::color::e_channel_opacity, m_pitem->m_pmesh->m_plist->m_pimageSpot, rect2);
+               image1.image()->channel_multiply(::color::e_channel_opacity, m_pitem->m_pmesh->m_plist->m_pimageSpot, rect2);
 
                //m_plist->m_pimageTime->mult_alpha(rect2->top_left(), rect2->size());
 
@@ -324,7 +324,7 @@ namespace user
 
                {
 
-                  ::image::image_source imagesource(m_pitem->m_pmesh->m_plist->m_pimageTime, rect2);
+                  ::image::image_source imagesource(image1.image(), rect2);
 
                   ::image::image_drawing_options imagedrawingoptions(rectangleI);
 

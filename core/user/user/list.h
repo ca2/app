@@ -49,7 +49,7 @@ namespace user
       int                                          m_iTextBlur;
       ::int_rectangle                              m_rectangleSpot;
       ::image::image_pointer                              m_pimageSpot;
-      ::image::image_pointer                              m_pimageTime;
+      //::image::image_pointer                              m_pimageTime;
       bool                                         m_bHighHighLight;
       //::int_size                                   m_sizeIconItem;
       //::int_size                                   m_sizeIcon;

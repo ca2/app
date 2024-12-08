@@ -785,6 +785,7 @@ namespace windowing
       virtual bool has_particle_fps_purpose(::particle * pparticle);
       virtual ::graphics::enum_output_purpose most_demanding_graphical_output_purpose();
       virtual bool has_screen_output_purpose();
+      virtual bool has_offscreen_output_purpose();
       virtual bool has_graphical_output_purpose();
       virtual bool has_fps_output_purpose();
 

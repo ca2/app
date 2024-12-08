@@ -12936,6 +12936,30 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
+   bool window::has_offscreen_output_purpose()
+   {
+
+      //::graphics::enum_output_purpose epurposeMostDemanding = ::graphics::e_output_purpose_none;
+
+      for (auto & ppurpose : m_graphicaloutputpurposea)
+      {
+
+         if (ppurpose->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_offscreen)
+         {
+
+            return true;
+
+         }
+
+      }
+
+      //return epurposeMostDemanding;
+
+      return false;
+
+   }
+
+
    bool window::has_graphical_output_purpose()
    {
 

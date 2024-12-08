@@ -824,7 +824,10 @@ namespace user
 
             auto elapsed = m_puserinteraction->window()->m_timeLastDrawGuard1.elapsed();
 
-            if (elapsed > timeFrame)
+            if (elapsed > timeFrame
+               && (
+                  m_puserinteraction->const_layout().sketch().is_screen_visible()
+                  || m_puserinteraction->const_layout().window().is_screen_visible()))
             {
 
                return true;
@@ -1100,12 +1103,19 @@ namespace user
 
          }
             
+         if ((
+            m_puserinteraction->const_layout().sketch().is_screen_visible()
+            || m_puserinteraction->const_layout().window().is_screen_visible())
+            || pwindow->has_offscreen_output_purpose())
+         {
 
-         pwindow->do_graphics();
+            pwindow->do_graphics();
 
-         //m_puserinteraction->windowing_window()->do_graphics(e_graphics_draw);
+            //m_puserinteraction->windowing_window()->do_graphics(e_graphics_draw);
 
-         m_puserinteraction->on_after_graphical_update();
+            m_puserinteraction->on_after_graphical_update();
+
+         }
 
          m_puserinteraction->m_bNeedRedraw = false;
 

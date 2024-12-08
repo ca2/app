@@ -442,7 +442,7 @@ namespace fs_folder_sync_dropbox
          for (auto& line : lines)
          {
 
-            int iFind = stra.case_insensitive_find_first_begins(line + ":");
+            auto iFind = stra.case_insensitive_find_first_begins(line + ":");
 
             if (iFind < 0)
             {
@@ -591,7 +591,7 @@ namespace fs_folder_sync_dropbox
 
             }
 
-            int iFind = lines.case_insensitive_find_first_begins(str + ":");
+            auto iFind = lines.case_insensitive_find_first_begins(str + ":");
 
             if (iFind < 0)
             {

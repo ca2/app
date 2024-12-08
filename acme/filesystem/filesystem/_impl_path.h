@@ -805,7 +805,7 @@ namespace file
 
          auto p = scopedstrExtension.skip('.');
 
-         if (::has_char(p))
+         if (::has_character(p))
          {
 
             this->operator = (((::ansi_string &)*this) + "." + scopedstrExtension(p));

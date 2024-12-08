@@ -52,9 +52,9 @@ inline bool is_empty(const ::wd16_character * p) { return is_string_empty(p); }
 inline bool is_empty(const ::wd32_character * p) { return is_string_empty(p); }
 
 
-inline bool has_char(const ::ansi_character * p) { return !is_empty(p); }
-inline bool has_char(const ::wd16_character * p) { return !is_empty(p); }
-inline bool has_char(const ::wd32_character * p) { return !is_empty(p); }
+inline bool has_character(const ::ansi_character * p) { return !is_empty(p); }
+inline bool has_character(const ::wd16_character * p) { return !is_empty(p); }
+inline bool has_character(const ::wd32_character * p) { return !is_empty(p); }
 
 
 

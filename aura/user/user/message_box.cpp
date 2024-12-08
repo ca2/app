@@ -11,7 +11,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/handler/topic.h"
-//#include "acme/platform/sequencer.h"
+//#include "acme/handler/sequence.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/windowing/monitor.h"
 #include "aura/windowing/windowing.h"

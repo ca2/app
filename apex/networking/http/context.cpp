@@ -1904,7 +1904,7 @@ namespace http
 
             string strCookie = set["cookie"].as_string();
 
-            set["cookie"] = ::str::has_char(strCookie, "", "; ") + "sessid=" + strSessId;
+            set["cookie"] = ::str::has_character(strCookie, "", "; ") + "sessid=" + strSessId;
 
          }
 

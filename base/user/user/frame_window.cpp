@@ -18,7 +18,7 @@
 #include "acme/parallelization/task_flag.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
-//#include "acme/platform/sequencer.h"
+//#include "acme/handler/sequence.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/nano/nano.h"
 #include "acme/user/micro/user.h"

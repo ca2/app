@@ -1047,6 +1047,33 @@ namespace platform
    }
 
 
+   void application::user_confirm_close_application()
+   {
+
+      auto pmessagebox = __initialize_new::message_box("Are you sure you want to close application?", nullptr, e_message_box_yes_no);
+
+      pmessagebox->async()
+         << [this, pmessagebox]()
+         {
+
+            if (pmessagebox->m_payloadResult.as_int() == e_dialog_result_yes)
+            {
+
+               auto papp = get_app();
+
+               papp->_001TryCloseApplication();
+
+            }
+            else if (pmessagebox->m_payloadResult.as_int() == e_dialog_result_cancel)
+            {
+
+            }
+
+         };
+
+   }
+
+
    bool application::has_capability(enum_application_capability ecapability) const
    {
 

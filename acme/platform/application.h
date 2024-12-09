@@ -267,6 +267,9 @@ namespace platform
       void init_task() override;
       void term_task() override;
 
+      
+      virtual void user_confirm_close_application();
+
 
       virtual bool has_capability(enum_application_capability eapplicationcapability) const override;
       virtual void add_capability(enum_application_capability ecapability) override;

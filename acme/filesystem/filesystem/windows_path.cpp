@@ -13,7 +13,19 @@ windows_path::windows_path(const ::file::path& path) :
    wstring(path.c_str())
 {
 
+   normalize_path();
+
+}
+
+
+void windows_path::normalize_path()
+{
+
    this->find_replace(L"/", L"\\");
+
+   this->trim();
+
+   this->find_replace(L"\\\\", L"\\", 1);
 
 }
 
@@ -36,6 +48,7 @@ wstring windows_path::extended_path() const
 
 }
 
+
 wstring windows_path::path() const
 {
 
@@ -49,7 +62,7 @@ wstring windows_path::path() const
 
    this->assign(path.c_str());
 
-   this->find_replace(L"/", L"\\");
+   normalize_path();
 
    return *this;
 

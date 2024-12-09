@@ -6456,7 +6456,11 @@ inline ::collection::count string_base < ITERATOR_TYPE > ::_replace_with(const S
 
    RANGE rangeOld = *this;
 
+   memory_copy(pLastNewEnd, rangeOld.begin(), start * sizeof(CHARACTER));
+
    rangeOld.begin() += start;
+
+   pLastNewEnd += start;
 
    CHARACTER * pszTarget;
 

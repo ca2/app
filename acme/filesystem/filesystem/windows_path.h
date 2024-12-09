@@ -22,7 +22,8 @@ public:
    using ::wstring::clear;
    using ::wstring::is_empty;
 
-
+protected:
+   void normalize_path();
 };
 
 

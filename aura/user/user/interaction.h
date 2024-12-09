@@ -2233,6 +2233,8 @@ namespace user
       virtual void set_scroll_state_x(const scroll_state & scrollstate, ::user::enum_layout elayout = ::user::e_layout_sketch);
       virtual void set_scroll_state_y(const scroll_state & scrollstate, ::user::enum_layout elayout = ::user::e_layout_sketch);
 
+      virtual void set_scroll_dimension(const ::int_size & size, ::user::enum_layout elayout = ::user::e_layout_sketch);
+
       inline bool _001HasBarXDragScrolling() const { return m_pointBarDragScrollMax.x() > 0; }
       inline bool _001HasBarYDragScrolling() const { return m_pointBarDragScrollMax.y() > 0; }
 

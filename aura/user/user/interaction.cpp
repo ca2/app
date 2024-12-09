@@ -719,35 +719,43 @@ namespace user
 
       }
 
-      synchronous_lock synchronouslock(this->synchronization());
+      ::int_rectangle rectangleAfter;
 
-      auto & layoutstate = layout().m_statea[elayout];
+      ::int_rectangle rectangleBefore;
 
-      auto rectangleBefore = layoutstate.raw_rectangle();
-
-      layoutstate.m_size = sizeNew;
-
-      if (::is_set(pgraphics) && elayout == e_layout_layout)
       {
 
-         layout().sketch().m_size = sizeNew;
+         synchronous_lock synchronouslock(this->synchronization());
 
-         layout().lading().m_size = sizeNew;
+         auto & layoutstate = layout().m_statea[elayout];
+
+         rectangleBefore = layoutstate.raw_rectangle();
+
+         layoutstate.m_size = sizeNew;
+
+         if (::is_set(pgraphics) && elayout == e_layout_layout)
+         {
+
+            layout().sketch().m_size = sizeNew;
+
+            layout().lading().m_size = sizeNew;
+
+         }
+
+         if (windowing_window() && elayout == e_layout_sketch)
+         {
+
+            auto point = m_layout.m_statea[elayout].origin();
+
+            window()->placement_log()->add({ point, sizeNew });
+
+         }
+
+         rectangleAfter = layoutstate.raw_rectangle();
+
+         m_bNeedPerformLayout = true;
 
       }
-
-      if (windowing_window() && elayout == e_layout_sketch)
-      {
-
-         auto point = m_layout.m_statea[elayout].origin();
-
-         window()->placement_log()->add({ point, sizeNew });
-
-      }
-
-      auto rectangleAfter = layoutstate.raw_rectangle();
-
-      m_bNeedPerformLayout = true;
 
       set_need_layout();
 
@@ -16677,6 +16685,13 @@ namespace user
 
       layout().sketch().reset_pending();
 
+      if (layout().sketch().m_bImpactUpdateGoingOn)
+      {
+
+         layout().sketch().m_bImpactUpdateGoingOn = false;
+
+      }
+
       //layout().sketch().m_eactivation = ::user::e_activation_default;
       //layout().sketch().m_bImpactUpdateGoingOn = false;
 
@@ -16938,6 +16953,8 @@ namespace user
 
          layout().layout().m_bImpactUpdateGoingOn = true;
 
+         layout().lading().m_bImpactUpdateGoingOn = false;
+
       }
 
       layout().lading().reset_pending();
@@ -17057,6 +17074,8 @@ namespace user
                m_bLadingToLayout = true;
 
             }
+
+            layout().layout().m_bImpactUpdateGoingOn = false;
 
          }
 
@@ -22031,6 +22050,12 @@ namespace user
 
 
    void interaction::set_scroll_state_y(const scroll_state & scrollstate, ::user::enum_layout elayout)
+   {
+
+   }
+
+
+   void interaction::set_scroll_dimension(const ::int_size & size, ::user::enum_layout elayout)
    {
 
    }
@@ -27578,7 +27603,7 @@ namespace user
    ::item_pointer interaction::on_items_hit_test(const ::int_point & point, e_zorder ezorder, ::collection::index iIdContainer, ::item_array * pitema)
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization());
 
       //auto pointScroll = point + m_pointScroll + m_pointBarDragScroll;
 

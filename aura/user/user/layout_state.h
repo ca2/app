@@ -27,7 +27,7 @@ namespace user
 
          m_zorder.clear_request();
          m_activation.clear();
-         m_bImpactUpdateGoingOn = false;
+         //m_bImpactUpdateGoingOn = false;
 
       }
 

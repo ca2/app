@@ -165,6 +165,8 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
 #endif
 
+         iaSlash.add(0);
+
          iaSlash.add(1);
 
          p += 2;

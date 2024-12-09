@@ -86,14 +86,9 @@ namespace file
 
             bool bIsFileSystemObject = bIsDir || bIsFile;
 
-            if (bIsFileSystemObject)
-            {
+            m_pathTarget = pathNew;
 
-               m_pathTarget = pathNew;
-
-               elinkChanged |= ::file::e_link_target;
-
-            }
+            elinkChanged |= ::file::e_link_target;
 
          }
 
@@ -109,14 +104,9 @@ namespace file
 
             bool bIsDir = pparticle->directory_system()->is(pathNew);
 
-            if (bIsDir)
-            {
+            m_pathFolder = pathNew;
 
-               m_pathFolder = pathNew;
-
-               elinkChanged |= ::file::e_link_folder;
-
-            }
+            elinkChanged |= ::file::e_link_folder;
 
          }
 
@@ -154,6 +144,64 @@ namespace file
 
       return pathNew;
 
+
+   }
+
+
+   ::file::e_link link::check_link()
+   {
+
+      ::file::e_link elinkWithError = ::file::e_link_none;
+
+      auto pparticle = (::particle *)this;
+
+      if (m_pathTarget.has_character())
+      {
+
+         bool bIsDir = pparticle->directory_system()->is(m_pathTarget);
+
+         bool bIsFile = pparticle->file_system()->exists(m_pathTarget);
+
+         bool bIsFileSystemObject = bIsDir || bIsFile;
+
+         if (!bIsFileSystemObject)
+         {
+
+            elinkWithError |= ::file::e_link_target;
+
+         }
+
+      }
+
+      if (m_pathFolder.has_character())
+      {
+
+         bool bIsDir = pparticle->directory_system()->is(m_pathFolder);
+
+         if (!bIsDir)
+         {
+
+            elinkWithError |= ::file::e_link_folder;
+
+         }
+
+      }
+
+      if (m_pathIcon.has_character())
+      {
+
+         bool bIsFile = pparticle->file_system()->exists(m_pathTarget);
+
+         if (!bIsFile)
+         {
+
+            elinkWithError |= ::file::e_link_icon;
+
+         }
+
+      }
+
+      return elinkWithError;
 
    }
 

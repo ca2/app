@@ -1464,7 +1464,7 @@ void task::_send(const ::procedure & procedure)
    else
    {
 
-      fork([procedure]()
+      post([procedure]()
          {
 
             procedure();

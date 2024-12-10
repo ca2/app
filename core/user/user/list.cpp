@@ -1390,44 +1390,46 @@ namespace user
 
          rectangle = ::int_rectangle(0, 0, 0, 0);
 
-         auto pitemFirst = get_item(0);
+         //auto pitemFirst = get_item(0);
 
-         //draw_list_item itemFirst(this);
+         draw_list_item itemFirst;
+         
+         itemFirst.initialize_draw_list_item(this);
 
-         //itemFirst.m_iItem = 0;
+         itemFirst.m_iDisplayItem = 0;
 
-         //itemFirst.m_iDisplayItem = 0;
+         itemFirst.m_iItem = display_to_strict(itemFirst.m_iDisplayItem);
 
-         index_item_rectangle(*pitemFirst);
+         index_item_rectangle(itemFirst);
 
-         if (pitemFirst->m_bOk)
+         if (itemFirst.m_bOk)
          {
 
-            auto pitemLast = get_item(0);
+            //auto pitemLast = get_item(0);
+
+            draw_list_item itemLast;
+
+            itemLast.initialize_draw_list_item(this);
 
             if (m_nItemCount <= 0)
             {
 
-               pitemLast->m_iDisplayItem = 0;
-
-               pitemLast->m_iItem = 0;
+               itemLast.m_iDisplayItem = 0;
 
             }
             else
             {
 
-               pitemLast->m_iDisplayItem = m_nItemCount - 1;
-
-               pitemLast->m_iItem = m_nItemCount - 1;
+               itemLast.m_iDisplayItem = m_nItemCount - 1;
 
             }
 
-            index_item_rectangle(*pitemLast);
+            index_item_rectangle(itemLast);
 
-            if (pitemLast->m_bOk)
+            if (itemLast.m_bOk)
             {
 
-               rectangle.unite(pitemFirst->m_pdrawlistitem->m_rectangleItem, pitemLast->m_pdrawlistitem->m_rectangleItem);
+               rectangle.unite(itemFirst.m_pdrawlistitem->m_rectangleItem, itemLast.m_pdrawlistitem->m_rectangleItem);
 
             }
 

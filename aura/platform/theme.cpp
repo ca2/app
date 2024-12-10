@@ -94,36 +94,41 @@ namespace aura
    }
 
 
-   void theme::set_context_theme(string strTheme)
+   void theme::set_context_theme(const ::scoped_string & scopedstrTheme, const ::action_context & actioncontext)
    {
 
-
-      if (strTheme == m_strTheme)
+      if (scopedstrTheme == m_strTheme)
       {
 
          return;
 
       }
 
-      string strContextTheme;
-
-      strContextTheme = stored_theme();
-
-      if (strContextTheme != strTheme)
+      if (actioncontext.is_user_source())
       {
 
-         ::pointer<::aura::application>papp = get_app();
+         string strContextTheme;
 
-         papp->app_set("theme-" + get_current_weather(), strTheme);
+         strContextTheme = stored_theme();
+
+         if (strContextTheme != scopedstrTheme)
+         {
+
+            ::pointer<::aura::application>papp = get_app();
+
+            papp->app_set("theme-" + get_current_ambient(), scopedstrTheme);
+
+            //papp->app_set("theme-" + get_current_weather(), strTheme);
+
+         }
 
       }
 
-      m_strTheme = strTheme;
+      m_strTheme = scopedstrTheme;
 
       on_change_theme();
 
    }
-
 
 
    void theme::on_change_theme()
@@ -179,7 +184,62 @@ namespace aura
    }
 
 
-   string theme::get_current_weather()
+//   string theme::get_current_weather()
+//   {
+//
+//#ifdef UNIVERSAL_WINDOWS
+//
+//      return "";
+//
+//#endif
+//
+//      ::file::path pathWeatherState = directory_system()->config() / "weather_state.txt";
+//
+//      // auto pcontext = get_context();
+//
+//      string strState = file()->safe_get_string(pathWeatherState);
+//
+//      if (strState.is_empty())
+//      {
+//
+//         return "";
+//
+//      }
+//
+//      string strContext;
+//
+//      if (strState.case_insensitive_contains("night"))
+//      {
+//
+//         strContext += ".night";
+//
+//      }
+//      else
+//      {
+//
+//         strContext += ".day";
+//
+//      }
+//
+//      if (strState.case_insensitive_contains("cloud") && !strState.case_insensitive_contains("partly"))
+//      {
+//
+//         strContext += ".dampened";
+//
+//      }
+//      else if (strState.case_insensitive_contains("rain"))
+//      {
+//
+//         strContext += ".dampened";
+//
+//      }
+//
+//      return strContext;
+//
+//   }
+
+
+   string theme::get_current_ambient()
    {
 
 #ifdef UNIVERSAL_WINDOWS
@@ -188,11 +248,11 @@ namespace aura
 
 #endif
 
-      ::file::path pathWeatherState = directory_system()->config() / "weather_state.txt";
+      auto path = directory_system()->home() / ".ambient/ambient.txt";
 
       // auto pcontext = get_context();
 
-      string strState = file()->safe_get_string(pathWeatherState);
+      string strState = file()->safe_get_string(path);
 
       if (strState.is_empty())
       {
@@ -201,37 +261,58 @@ namespace aura
 
       }
 
-      string strContext;
-
-      if (strState.case_insensitive_contains("night"))
-      {
-
-         strContext += ".night";
-
-      }
-      else
-      {
-
-         strContext += ".day";
-
-      }
-
-      if (strState.case_insensitive_contains("cloud") && !strState.case_insensitive_contains("partly"))
-      {
-
-         strContext += ".dampened";
-
-      }
-      else if (strState.case_insensitive_contains("rain"))
-      {
-
-         strContext += ".dampened";
-
-      }
-
-      return strContext;
+      return strState;
 
    }
+
+
+   //string theme::get_default_theme()
+   //{
+
+   //   string strTheme;
+
+   //   string strWeather = get_current_weather();
+
+   //   if (strWeather.case_insensitive_contains(".night") && m_straTheme.case_insensitive_contains("dark"))
+   //   {
+
+   //      strTheme = "dark";
+
+   //   }
+   //   else if (strWeather.case_insensitive_contains(".dampened") && m_straTheme.case_insensitive_contains("blue"))
+   //   {
+
+   //      strTheme = "blue";
+
+   //   }
+   //   else if (strWeather.case_insensitive_contains(".day") && m_straTheme.case_insensitive_contains("lite"))
+   //   {
+
+   //      strTheme = "lite";
+
+   //   }
+   //   else if (m_straTheme.case_insensitive_contains("dark"))
+   //   {
+
+   //      strTheme = "dark";
+
+   //   }
+   //   else if (m_straTheme.case_insensitive_contains("lite"))
+   //   {
+
+   //      strTheme = "blue";
+
+   //   }
+   //   else if (m_straTheme.has_elements())
+   //   {
+
+   //      strTheme = m_straTheme[0];
+
+   //   }
+
+   //   return strTheme;
+
+   //}
 
 
    string theme::get_default_theme()
@@ -239,58 +320,45 @@ namespace aura
 
       string strTheme;
 
-      string strWeather = get_current_weather();
+      string strAmbient = get_current_ambient();
 
-      if (strWeather.case_insensitive_contains(".night") && m_straTheme.case_insensitive_contains("dark"))
-      {
-
-         strTheme = "dark";
-
-      }
-      else if (strWeather.case_insensitive_contains(".dampened") && m_straTheme.case_insensitive_contains("blue"))
-      {
-
-         strTheme = "blue";
-
-      }
-      else if (strWeather.case_insensitive_contains(".day") && m_straTheme.case_insensitive_contains("lite"))
-      {
-
-         strTheme = "lite";
-
-      }
-      else if (m_straTheme.case_insensitive_contains("dark"))
-      {
-
-         strTheme = "dark";
-
-      }
-      else if (m_straTheme.case_insensitive_contains("lite"))
-      {
-
-         strTheme = "blue";
-
-      }
-      else if (m_straTheme.has_elements())
-      {
-
-         strTheme = m_straTheme[0];
-
-      }
+      strTheme = strAmbient;
 
       return strTheme;
 
    }
 
 
+   //string theme::stored_theme()
+   //{
+
+   //   string strCurrentWeather = get_current_weather();
+
+   //   ::pointer<::aura::application>papp = get_app();
+
+   //   string strTheme = papp->app_get("theme-" + strCurrentWeather);
+
+   //   if (strTheme.is_empty())
+   //   {
+
+   //      strTheme = get_default_theme();
+
+   //   }
+
+   //   return strTheme;
+
+   //}
+
+
+
    string theme::stored_theme()
    {
 
-      string strCurrentWeather = get_current_weather();
+      string strCurrentAmbient = get_current_ambient();
 
       ::pointer<::aura::application>papp = get_app();
 
-      string strTheme = papp->app_get("theme-" + strCurrentWeather);
+      string strTheme = papp->app_get("theme-" + strCurrentAmbient);
 
       if (strTheme.is_empty())
       {
@@ -302,8 +370,6 @@ namespace aura
       return strTheme;
 
    }
-
-
 
 
    string theme::get_theme()
@@ -387,6 +453,7 @@ namespace aura
       }
 
    }
+
 
 
    string theme::get_weather_state()
@@ -481,9 +548,13 @@ namespace aura
 
       sync_with_stored_theme();
 
-      m_pfilewatchWeather = file_watcher()->add_watch(directory_system()->config(), this, false);
+      auto pathFolder = directory_system()->home() / ".ambient";
+
+      directory_system()->create(pathFolder);
+
+      m_pfilewatchWeather = file_watcher()->add_watch(pathFolder, this, false);
       
-      on_change_theme();
+      //on_change_theme();
 
       //return ::success;
 

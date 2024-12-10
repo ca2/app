@@ -84,12 +84,13 @@ namespace aura
       virtual void get_theme_text_color(::color::color & colorText, ::color::color & colorBack);
 
       virtual void sync_with_stored_theme();
-      virtual string get_current_weather();
+      //virtual string get_current_weather();
+      virtual string get_current_ambient();
       virtual string get_default_theme();
       virtual string stored_theme();
 
       virtual void switch_context_theme();
-      virtual void set_context_theme(string strTheme);
+      virtual void set_context_theme(const ::scoped_string & scopedstrTheme, const ::action_context & actioncontext);
       virtual void on_change_theme();
 
       virtual string get_theme();

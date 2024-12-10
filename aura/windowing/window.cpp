@@ -174,14 +174,14 @@ namespace windowing
 
          auto puserthread = m_puserthread.cast<::user::thread>();
 
-         if (puserthread->m_puserinteractionUserThread == m_puserinteraction)
+         if (puserthread->m_pwindow->m_puserinteraction == m_puserinteraction)
          {
 
             puserthread->set_finish();
 
          }
 
-         puserthread->m_puserinteractionUserThread.release();
+         puserthread->m_pwindow->m_puserinteraction.release();
 
          if (::is_set(m_puserthread->m_puserinteractionbaseaThread))
          {
@@ -201,7 +201,6 @@ namespace windowing
       m_pcursor.release();
       m_pcopydesk.release();
       m_picon.release();
-      m_pwindowParent.release();
       m_pmessagequeue.release();
       m_pdisplay.release();
       m_redrawitema.destroy();
@@ -683,9 +682,11 @@ namespace windowing
       if(!m_puserinteraction)
       {
 
-m_puserinteraction = m_pacmeuserinteraction;
+         m_puserinteraction = m_pacmeuserinteraction;
 
       }
+
+      auto pszType = typeid(*m_puserinteraction).name();
 
       //if (::is_window(get_handle()))
       //{
@@ -1088,9 +1089,9 @@ m_puserinteraction = m_pacmeuserinteraction;
 
       }
 
-      ::pointer<::windowing::window>pimplThis = this;
+      ::cast < ::windowing::window > pimplThis = this;
 
-      ::pointer<::user::interaction>puiThis = m_puserinteraction;
+      ::cast < ::user::interaction > puiThis = m_puserinteraction;
 
       if (puiThis)
       {
@@ -1119,24 +1120,12 @@ m_puserinteraction = m_pacmeuserinteraction;
 
       }
 
-      //return true;
-
-
-      //m_puserinteraction->m_ewindowflag -= e_window_flag_window_created;
-
-      //::destroy_window(get_handle());
-
-//      destroy_window();
-
-
       if (::is_set(this->windowing()))
       {
 
          this->windowing()->erase_window(this);
 
       }
-
-      m_pwindowParent.release();
 
    }
 

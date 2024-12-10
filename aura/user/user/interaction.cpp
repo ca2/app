@@ -1174,7 +1174,7 @@ namespace user
 
       }
 
-      auto pacmewindowingwindow = puserinteractionTopLevel->m_pacmewindowingwindow;
+      auto pacmewindowingwindow = puserinteractionTopLevel->m_pacmewindowingwindow.m_p;
 
       if (::is_null(pacmewindowingwindow))
       {
@@ -2093,7 +2093,7 @@ namespace user
 
       }
 
-      auto pacmewindowingwindow = pinteraction->m_pacmewindowingwindow;
+      auto pacmewindowingwindow = pinteraction->m_pacmewindowingwindow.m_p;
 
       if (::is_set(pacmewindowingwindow))
       {
@@ -2241,7 +2241,7 @@ namespace user
          //if (ptoplevel)
          {
 
-            auto pwindow = pinteraction->m_pacmewindowingwindow;
+            auto pwindow = pinteraction->m_pacmewindowingwindow.m_p;
 
             if (::is_set(pwindow))
             {
@@ -3818,6 +3818,28 @@ namespace user
 
       }
 
+      auto puserinteractiona = get_app()->m_puserinteractionaFrame;
+
+      if (puserinteractiona)
+      {
+
+         auto iErase = puserinteractiona->erase_interaction(this);
+
+         if (iErase >= 0)
+         {
+
+            information() << "erased interaction frame from aura application";
+
+         }
+         else
+         {
+
+            information() << "interaction frame to be erased not found in aura application";
+
+         }
+
+      }
+
       __UNREFERENCED_PARAMETER(pmessage);
 
       user_interaction_on_destroy();
@@ -4453,12 +4475,12 @@ namespace user
          if (::is_set(puserinteractionTopLevelHost) && puserinteractionTopLevelHost != this)
          {
 
-            auto pacmewindowingwindow = puserinteractionTopLevelHost->m_pacmewindowingwindow;
+            auto pacmewindowingwindow = puserinteractionTopLevelHost->m_pacmewindowingwindow.m_p;
 
             if (pacmewindowingwindow)
             {
 
-               ::pointer < ::windowing::window > pwindow;
+               ::cast < ::windowing::window > pwindow;
 
                pwindow = pacmewindowingwindow;
 
@@ -7504,14 +7526,16 @@ namespace user
    bool interaction::has_fps_output_purpose()
    {
 
-      //if(!window())
-      //{
+      auto pwindow = window();
 
-      //   return false;
+      if(::is_null(pwindow))
+      {
 
-      //}
+         return false;
 
-      return window()->has_fps_output_purpose();
+      }
+
+      return pwindow->has_fps_output_purpose();
 
    }
 
@@ -7606,7 +7630,7 @@ namespace user
       if (m_pacmewindowingwindow)
       {
 
-         ::pointer < ::windowing::window > pwindow;
+         ::cast < ::windowing::window > pwindow;
 
          pwindow = m_pacmewindowingwindow;
 
@@ -11914,7 +11938,7 @@ namespace user
       if (m_pacmewindowingwindow)
       {
 
-         auto pacmewindowingwindow = m_pacmewindowingwindow;
+         auto pacmewindowingwindow = m_pacmewindowingwindow.m_p;
 
          pacmewindowingwindow->destroy_window();
 
@@ -12253,7 +12277,7 @@ namespace user
 
       }
 
-      auto pacmewindowingwindow = puserinteraction->m_pacmewindowingwindow;
+      auto pacmewindowingwindow = puserinteraction->m_pacmewindowingwindow.m_p;
 
       if (!pacmewindowingwindow)
       {
@@ -12262,9 +12286,7 @@ namespace user
 
       }
 
-      ::pointer < ::windowing::window > pwindow;
-
-      pwindow = pacmewindowingwindow;
+      ::cast < ::windowing::window > pwindow = pacmewindowingwindow;
 
       if (!pwindow)
       {
@@ -12273,7 +12295,7 @@ namespace user
 
       }
 
-      auto puserthread = pwindow->m_puserthread;
+      auto puserthread = pwindow->m_puserthread.m_p;
 
       if (!puserthread)
       {
@@ -17851,7 +17873,7 @@ namespace user
    pmessage->m_pchannel = this; \
    pmessage->m_oswindow = oswindow; \
    pmessage->m_puserinteraction = this; \
-   pmessage->m_pwindow = pwindow; \
+   pmessage->m_pwindow = pwindow.m_p; \
    pmessage->m_atom = atom; \
    pmessage->m_wparam = wparam; \
    pmessage->m_lparam = lparam; \
@@ -17871,7 +17893,7 @@ namespace user
 
       }
 
-      ::pointer < ::windowing::window > pwindow;
+      ::cast < ::windowing::window > pwindow;
 
       if (m_pacmewindowingwindow)
       {
@@ -21737,7 +21759,7 @@ namespace user
 
       auto puserthread = __øcreate < ::user::thread >();
 
-      puserthread->initialize_user_thread(this);
+      puserthread->initialize_user_thread(window());
 
       puserthread->branch_synchronously();
 

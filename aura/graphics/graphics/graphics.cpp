@@ -109,7 +109,7 @@ namespace graphics
 
       object::destroy();
 
-      m_pwindow.release();
+      //m_pwindow.release();
 
       //m_pimpl.release();
 
@@ -388,7 +388,7 @@ namespace graphics
 
       statement << "buffer  ";
 
-      auto pwindow = m_pwindow;
+      auto pwindow = m_pwindow.m_p;
 
       if (pwindow)
       {

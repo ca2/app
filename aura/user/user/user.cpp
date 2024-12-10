@@ -294,7 +294,7 @@ namespace user
 
       }
 
-      ::pointer < ::windowing::window > pwindow = pwindowing->get_keyboard_focus(pthread);
+      ::cast < ::windowing::window > pwindow = pwindowing->get_keyboard_focus(pthread);
 
       if (::is_null(pwindow))
       {

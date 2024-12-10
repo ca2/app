@@ -1767,9 +1767,6 @@ pdirectorysystem->create("/ca2core");
    void system::term()
    {
 
-      m_psignalmap.release();
-
-      m_phistory.release();
 
    }
 
@@ -1808,6 +1805,10 @@ pdirectorysystem->create("/ca2core");
 
    void system::term2()
    {
+
+      m_psignalmap.release();
+
+      m_phistory.release();
 
       try
       {

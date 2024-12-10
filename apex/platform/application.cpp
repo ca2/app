@@ -5891,6 +5891,7 @@ namespace apex
 
    }
 
+
    bool application::can_close_application()
    {
 

@@ -127,10 +127,21 @@ void message_queue::kick_idle()
 ::e_status message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, const class time & time)
 {
 
-   if (wMsgFilterMax == 0)
+   ::huge_integer iFilterMinimum = wMsgFilterMin;
+
+   if (iFilterMinimum == 0)
    {
 
-      wMsgFilterMax = 0xffffffffu;
+      ::minimum(iFilterMinimum);
+
+   }
+
+   ::huge_integer iFilterMaximum = wMsgFilterMax;
+
+   if (iFilterMaximum == 0)
+   {
+
+      ::maximum(iFilterMaximum);
 
    }
 
@@ -185,7 +196,7 @@ void message_queue::kick_idle()
 
          auto iMessage = message.m_atom.as_huge_integer();
 
-         if ((oswindow == nullptr || message.oswindow == oswindow) && iMessage >= wMsgFilterMin && iMessage <= wMsgFilterMax)
+         if ((oswindow == nullptr || message.oswindow == oswindow) && iMessage >= iFilterMinimum && iMessage <= iFilterMaximum)
          {
 
             *pmessage = message;

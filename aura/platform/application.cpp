@@ -341,7 +341,8 @@ namespace aura
    }
 */
 
-   void application::destroy()
+
+   void application::close_application()
    {
 
       if (m_puserinteractionaFrame)
@@ -443,8 +444,16 @@ namespace aura
          }
 
          m_puserinteractionMain.release();
-       
+
       }
+
+      ::apex::application::close_application();
+
+   }
+
+
+   void application::destroy()
+   {
 
       ::aqua::application::destroy();
 

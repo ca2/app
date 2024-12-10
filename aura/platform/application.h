@@ -864,13 +864,16 @@ void initialize_context() override;
 
       //virtual void get_time(struct timeval *int_point) override;
 
-      virtual void close(::enum_exit eexit) override;
+      void close(::enum_exit eexit) override;
+
+
+      void close_application() override;
 
 
       //user virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom = nullptr);
 
 
-      virtual void HideApplication() override;
+      void HideApplication() override;
 
 
       //virtual void initialize(::particle * pparticle) override;

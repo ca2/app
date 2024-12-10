@@ -44,7 +44,7 @@ namespace graphics
 
 
       //::pointer<::windowing::window>          m_pimpl;
-      ::pointer<::windowing::window>               m_pwindow;
+      ::cast < ::windowing::window >               m_pwindow;
       bool                                         m_bNewBuffer;
 
       union

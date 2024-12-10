@@ -190,7 +190,9 @@ void matter::set_finish()
 void matter::destroy()
 {
 
-   for(auto & procedure : m_destroyinga)
+   auto destroyinga = ::transfer(m_destroyinga);
+
+   for(auto & procedure : destroyinga)
    {
        
        if(procedure)
@@ -202,7 +204,7 @@ void matter::destroy()
        
    }
     
-   m_destroyinga.erase_all();
+   //m_destroyinga.erase_all();
 
 }
 

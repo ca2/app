@@ -729,8 +729,8 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
       try
       {
 
-         user_send([this]()
-            {
+         //user_send([this]()
+           // {
 
                if (m_pnotifyicon)
                {
@@ -741,7 +741,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
                }
 
-            });
+            //});
 
       }
       catch (...)

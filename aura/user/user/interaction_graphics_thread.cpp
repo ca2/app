@@ -659,12 +659,12 @@ namespace user
       if(puserinteraction)
       {
 
-         auto pacmewindowingwindow = puserinteraction->m_pacmewindowingwindow;
+         auto pacmewindowingwindow = puserinteraction->m_pacmewindowingwindow.m_p;
 
          if (pacmewindowingwindow)
          {
 
-            ::pointer < ::windowing::window > pwindow = pacmewindowingwindow;
+            ::cast < ::windowing::window > pwindow = pacmewindowingwindow;
 
             if (pwindow)
             {

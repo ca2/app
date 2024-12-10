@@ -65,7 +65,7 @@ namespace windowing
       string                                    m_strDebug;
       ::pointer<::message_queue>                m_pmessagequeue;
       class ::time                              m_timeLastMouseMove;
-      ::pointer<::windowing::window>            m_pwindowParent;
+      ::cast < ::windowing::window >            m_pwindowParent;
       ::string                                  m_strBitmapSource;
       mouse_reposition_throttling               m_mouserepositionthrottling;
       

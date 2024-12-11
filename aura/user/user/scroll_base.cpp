@@ -503,7 +503,7 @@ namespace user
    void scroll_base::set_total_size(const ::double_size & size, ::user::enum_layout elayout)
    {
 
-      set_scroll_dimension(size);
+      set_scroll_dimension(size, elayout);
 
       on_change_scroll_state(elayout);
 

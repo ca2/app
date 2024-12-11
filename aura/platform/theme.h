@@ -17,7 +17,9 @@ namespace aura
    public:
 
 
-      virtual void on_change_weather_state();
+      //virtual void on_change_weather_state();
+
+      virtual void on_change_ambient();
 
 
    };
@@ -81,6 +83,7 @@ namespace aura
       //virtual string get_weather_state();
       //virtual string get_day_night();
       //virtual string get_day_night_theme();
+      virtual ::string get_ambient();
 
 
       virtual void get_theme_text_color(::color::color & colorText, ::color::color & colorBack);

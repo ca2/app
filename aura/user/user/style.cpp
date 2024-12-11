@@ -127,6 +127,14 @@ namespace user
    }
 
 
+   void style::increment_update_sequence()
+   {
+
+      m_iUpdate++;
+
+   }
+
+
    void style::initialize_style()
    {
 

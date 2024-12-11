@@ -17,8 +17,6 @@ namespace aura
    theme::theme()
    {
 
-      m_strTheme = "lite";
-
    }
 
 
@@ -471,7 +469,9 @@ namespace aura
                try
                {
 
-                  plistener->on_change_weather_state();
+                  //plistener->on_change_weather_state();
+
+                  plistener->on_change_ambient();
 
                }
                catch (...)
@@ -488,6 +488,14 @@ namespace aura
          }
 
       }
+
+   }
+
+
+   ::string theme::get_ambient()
+   {
+
+      return m_strAmbientState;
 
    }
 
@@ -617,7 +625,7 @@ namespace aura
    }
 
 
-   void theme_listener::on_change_weather_state()
+   void theme_listener::on_change_ambient()
    {
 
 

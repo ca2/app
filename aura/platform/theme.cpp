@@ -89,7 +89,7 @@ namespace aura
 
       strTheme = m_straTheme[iFind];
 
-      set_context_theme(strTheme);
+      set_context_theme(strTheme, ::e_source_user);
 
    }
 
@@ -179,7 +179,7 @@ namespace aura
    void theme::sync_with_stored_theme()
    {
 
-      set_context_theme(stored_theme());
+      set_context_theme(stored_theme(), ::e_source_sync);
 
    }
 

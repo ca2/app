@@ -660,7 +660,7 @@ namespace user
       character_count iSelEnd;
       character_count iSelBegOriginal;
       character_count iSelEndOriginal;
-      character_count lim = 0;
+      character_count lim = plain_edit_line_x_to_sel(pgraphics, m_iCurrentPageLineStart, 0);
 
       ::draw2d::pen_pointer & ppenCaret = m_pcontrolstyle->m_ppenCaret;
 
@@ -1844,7 +1844,7 @@ namespace user
                plain_edit_set_text_selection_begin(change.m_payload.as_iptr(), change.m_actioncontext);
                return;
             case id_text_selection_end:
-               plain_edit_set_text_selection_begin(change.m_payload.as_iptr(), change.m_actioncontext);
+               plain_edit_set_text_selection_end(change.m_payload.as_iptr(), change.m_actioncontext);
                return;
             default:
                break;
@@ -3844,20 +3844,20 @@ namespace user
 
                size = pgraphics->get_text_extent(strLineGraphics, pszNext - pszStart + iAddUp);
 
-               if (size.cx() > rectangleX.width() + 200)
-               {
+               //if (size.cx() > rectangleX.width() + 200)
+               //{
 
-                  while (*psz != '\0')
-                  {
+               //   while (*psz != '\0')
+               //   {
 
-                     daExtent[(::collection::index)(psz - pszStart)] = -1;
-                     psz++;
+               //      daExtent[(::collection::index)(psz - pszStart)] = -1;
+               //      psz++;
 
-                  }
+               //   }
 
-                  break;
+               //   break;
 
-               }
+               //}
 
                sizeLast.cx() = (int)size.cx();
 

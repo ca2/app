@@ -1203,14 +1203,14 @@ namespace user
       //   return nullptr;
 
       //}
-      
+
       ::cast < ::windowing::window > pwindow = pacmewindowingwindow;
-      
-      if(!pwindow)
+
+      if (!pwindow)
       {
-       
+
          return nullptr;
-         
+
       }
 
       return pwindow;
@@ -2522,14 +2522,14 @@ namespace user
    bool interaction::task_get_run() const
    {
 
-      if(!(is_top_level() || is_root()))
+      if (!(is_top_level() || is_root()))
       {
 
          return ::user::interaction_base::task_get_run();
 
       }
 
-      if(!(m_ewindowflag & e_window_flag_destroyed))
+      if (!(m_ewindowflag & e_window_flag_destroyed))
       {
 
          return false;
@@ -2752,35 +2752,31 @@ namespace user
       if (emessage == e_message_left_button_down)
       {
 
-         //         
-         //
-         //         try
-         //         {
-         //
-         //            psession->set_key_pressed(::user::e_key_left_button, true);
-         //
-         //         }
-         //         catch (...)
-         //         {
-         //
-         //         }
+         try
+         {
+
+            psession->set_key_pressed(::user::e_key_left_button, true);
+
+         }
+         catch (...)
+         {
+
+         }
 
       }
       else if (emessage == e_message_left_button_up)
       {
 
-         //         
-         //
-         //         try
-         //         {
-         //
-         //            psession->set_key_pressed(::user::e_key_left_button, false);
-         //
-         //         }
-         //         catch (...)
-         //         {
-         //
-         //         }
+         try
+         {
+
+            psession->set_key_pressed(::user::e_key_left_button, false);
+
+         }
+         catch (...)
+         {
+
+         }
 
       }
       else if (emessage == e_message_right_button_down)
@@ -2911,7 +2907,7 @@ namespace user
          else if (emessage == e_message_key_up || emessage == e_message_sys_key_up)
          {
 
-            
+
 
             try
             {
@@ -3084,9 +3080,9 @@ namespace user
    {
 
       __check_refdbg
-      MESSAGE_LINK(e_message_create, pchannel, this, &interaction::on_message_create);
+         MESSAGE_LINK(e_message_create, pchannel, this, &interaction::on_message_create);
       __check_refdbg
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction::on_message_destroy);
+         MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction::on_message_destroy);
       MESSAGE_LINK(e_message_non_client_destroy, pchannel, this, &interaction::on_message_non_client_destroy);
       MESSAGE_LINK(e_message_pos_create, pchannel, this, &interaction::on_message_after_create);
       MESSAGE_LINK(e_message_text_composition, pchannel, this, &interaction::_001OnTextComposition);
@@ -4135,7 +4131,7 @@ namespace user
 
             ::cast < ::thread > pthread = papplication;
 
-            if(pthread)
+            if (pthread)
             {
 
                pthread->m_puserprimitiveActive = nullptr;
@@ -4956,7 +4952,7 @@ namespace user
       while (::is_set(puserinteraction))
       {
 
-         auto pointChildScroll = puserinteraction->get_context_offset();
+         auto pointChildScroll = puserinteraction->get_context_offset(elayout);
 
          if (puserinteraction->m_bParentScrollX)
          {
@@ -6724,15 +6720,15 @@ namespace user
 
       __check_refdbg
 
-      _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
       __check_refdbg
 
-      __defer_construct_new(m_pgraphicscalla);
+         __defer_construct_new(m_pgraphicscalla);
 
       __check_refdbg
 
-      m_pgraphicscalla->add(__allocate::draw2d::graphics_call(function));
+         m_pgraphicscalla->add(__allocate::draw2d::graphics_call(function));
 
       __check_refdbg
 
@@ -7528,7 +7524,7 @@ namespace user
 
       auto pwindow = window();
 
-      if(::is_null(pwindow))
+      if (::is_null(pwindow))
       {
 
          return false;
@@ -7709,7 +7705,7 @@ namespace user
 
       element * pelement = keyboard_get_next_focusable(nullptr, bSkipChild, bSkipSiblings, bSkipParent);
 
-      
+
 
       if (pelement == nullptr || pelement == this)
       {
@@ -8076,7 +8072,7 @@ namespace user
 
       ::cast < ::manager > pmanager = psystem;
 
-      if(pmanager)
+      if (pmanager)
       {
 
          auto psignal = pmanager->get_signal(id_user_style_change);
@@ -10073,7 +10069,7 @@ namespace user
       //auto children = synchronized_get_children();
 
       for_user_interaction_children(puserinteraction, this)
-      //if (m_puserinteractionpointeraChild)
+         //if (m_puserinteractionpointeraChild)
       {
 
          //auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
@@ -10461,8 +10457,8 @@ namespace user
 
       //try
       //{
-      
-      
+
+
       m_bChild = true;
 
       m_bUserElementOk = true;
@@ -10685,32 +10681,32 @@ namespace user
 
       __check_refdbg
 
-      if (!_create_child(puserinteractionParent))
-      {
+         if (!_create_child(puserinteractionParent))
+         {
 
-         __check_refdbg
+            __check_refdbg
 
-         m_bUserElementOk = false;
+               m_bUserElementOk = false;
 
-         //window().release();
+            //window().release();
 
-         //if (user_thread())
-         //{
+            //if (user_thread())
+            //{
 
-         //   if (::is_set(user_thread()->m_puiptraThread))
-         //   {
+            //   if (::is_set(user_thread()->m_puiptraThread))
+            //   {
 
-         //      user_thread()->m_puiptraThread->erase(this);
+            //      user_thread()->m_puiptraThread->erase(this);
 
-         //   }
+            //   }
 
-         //   __release(user_thread() REFERENCING_DEBUGGING_COMMA_THIS);
+            //   __release(user_thread() REFERENCING_DEBUGGING_COMMA_THIS);
 
-         //}
+            //}
 
-         return;
+            return;
 
-      }
+         }
 
       //}
 
@@ -10797,61 +10793,61 @@ namespace user
 
       __check_refdbg
 
-      on_set_parent(puserinteractionParent);
+         on_set_parent(puserinteractionParent);
 
       __check_refdbg
 
-      on_after_set_parent();
+         on_after_set_parent();
 
       __check_refdbg
 
-      if (m_puserinteractionOwner)
-      {
+         if (m_puserinteractionOwner)
+         {
 
-         __check_refdbg
+            __check_refdbg
 
-         on_set_owner(m_puserinteractionOwner);
+               on_set_owner(m_puserinteractionOwner);
 
-         __check_refdbg
+            __check_refdbg
 
-         //::user::interaction_base * puiRet = set_owner(m_puserinteractionOwner);
+               //::user::interaction_base * puiRet = set_owner(m_puserinteractionOwner);
 
-         //if (m_ewindowflag & e_window_flag_satellite_window)
-         //{
+               //if (m_ewindowflag & e_window_flag_satellite_window)
+               //{
 
-         //   m_pthreadUserInteraction = m_puserinteractionOwner->m_pthreadUserInteraction;
+               //   m_pthreadUserInteraction = m_puserinteractionOwner->m_pthreadUserInteraction;
 
-         //}
+               //}
 
-      }
-
-      __check_refdbg
-
-      install_message_routing(this);
+         }
 
       __check_refdbg
 
-      if (m_ewindowflag & e_window_flag_load_window_rect_on_impl
-          && (!is_top_level()
-             || !windowing()->is_sandboxed()))
-      {
+         install_message_routing(this);
 
-         information() << "-------------------------------------------------------------------";
-         information() << "";
-         information() << "";
-         information() << "interaction_child::create_window_ex (rectangle)";
-         information() << "";
-         information() << "";
+      __check_refdbg
 
-         WindowDataLoadWindowRectangle();
+         if (m_ewindowflag & e_window_flag_load_window_rect_on_impl
+             && (!is_top_level()
+                || !windowing()->is_sandboxed()))
+         {
 
-      }
-      else
-      {
+            information() << "-------------------------------------------------------------------";
+            information() << "";
+            information() << "";
+            information() << "interaction_child::create_window_ex (rectangle)";
+            information() << "";
+            information() << "";
 
-         display(const_layout().sketch().m_edisplay);
+            WindowDataLoadWindowRectangle();
 
-      }
+         }
+         else
+         {
+
+            display(const_layout().sketch().m_edisplay);
+
+         }
 
       m_ewindowflag |= e_window_flag_is_window;
 
@@ -10925,7 +10921,7 @@ namespace user
 
          __check_refdbg
 
-         message_call(e_message_create);
+            message_call(e_message_create);
 
          __check_refdbg
 
@@ -12785,7 +12781,7 @@ namespace user
 
       //}
 
-      _raw_screen_to_client((::int_point &) sequence);
+      _raw_screen_to_client((::int_point &)sequence);
 
    }
 
@@ -13553,7 +13549,7 @@ namespace user
          //auto children = synchronized_get_children();
 
          for_user_interaction_children(puserinteraction, this)
-         //if (puserinteractionpointeraChild)
+            //if (puserinteractionpointeraChild)
          {
 
             //for (auto & pinteraction : children)
@@ -13970,7 +13966,7 @@ namespace user
       //}
 
       printf_line("interaction::message_handler pmessage->m_atom %lld", pmessage->m_atom.as_huge_integer());
-      
+
       if (pre_message_handler(pkey, bKeyMessage, pmessage))
       {
 
@@ -14892,7 +14888,7 @@ namespace user
       //auto children = synchronized_get_children();
 
       for_user_interaction_children(puserinteraction, this)
-      //if (m_puserinteractionpointeraChild)
+         //if (m_puserinteractionpointeraChild)
       {
 
          ///for (auto & puserinteraction : children)
@@ -15987,27 +15983,27 @@ namespace user
 
       __check_refdbg
 
-      if (!is_window())
-      {
+         if (!is_window())
+         {
 
-         return false;
+            return false;
 
-      }
-
-      __check_refdbg
-
-      auto pwindowThis = window();
+         }
 
       __check_refdbg
 
-      if (::is_null(pwindowThis))
-      {
+         auto pwindowThis = window();
 
-         information() << "has_keyboard_focus No Window";
+      __check_refdbg
 
-         return false;
+         if (::is_null(pwindowThis))
+         {
 
-      }
+            information() << "has_keyboard_focus No Window";
+
+            return false;
+
+         }
 
       //auto pwindow = pwindow->m_pwindow;
 
@@ -16025,74 +16021,74 @@ namespace user
 
          __check_refdbg
 
-         if (pwindowThis->m_puserinteraction->m_puserinteractionOwner)
-         {
-
-            __check_refdbg
-
-            auto pwindowOwner = pwindowThis->m_puserinteraction->m_puserinteractionOwner->window();
-
-            __check_refdbg
-
-            if (::is_null(pwindowOwner))
+            if (pwindowThis->m_puserinteraction->m_puserinteractionOwner)
             {
 
                __check_refdbg
 
-               information() << "has_keyboard_focus No Owner Window";
+                  auto pwindowOwner = pwindowThis->m_puserinteraction->m_puserinteractionOwner->window();
 
                __check_refdbg
 
-               return false;
+                  if (::is_null(pwindowOwner))
+                  {
 
-            }
+                     __check_refdbg
 
-            //auto pwindowOwner = pwindowOwner->m_pwindow;
+                        information() << "has_keyboard_focus No Owner Window";
 
-            //if (::is_null(pwindowOwner))
-            //{
+                     __check_refdbg
 
-            //   information() << "has_keyboard_focus No Owner Primitive Impl";
+                        return false;
 
-            //   return false;
+                  }
 
-            //}
+               //auto pwindowOwner = pwindowOwner->m_pwindow;
 
-            if (pwindowOwner->has_keyboard_focus())
-            {
+               //if (::is_null(pwindowOwner))
+               //{
 
-               __check_refdbg
+               //   information() << "has_keyboard_focus No Owner Primitive Impl";
 
-               //::string strType;
+               //   return false;
 
-               //strType = ::type(pwindowOwner->m_pwindow->m_puserinteraction.m_p);
+               //}
 
-               //information() << "pwindowOwner->has_keyboard_focus() : " << strType;
-
-               //::string strTypeOldFocus;
-
-               //strTypeOldFocus = ::type(pwindowOwner->m_pwindow->m_puserinteraction.m_p);
-
-               //information() << "old focus : " << strTypeOldFocus;
-
-               if (pwindowOwner->m_puserinteractionKeyboardFocus == this)
+               if (pwindowOwner->has_keyboard_focus())
                {
 
                   __check_refdbg
 
-                  return true;
+                     //::string strType;
 
-               }
-               else
-               {
+                     //strType = ::type(pwindowOwner->m_pwindow->m_puserinteraction.m_p);
 
-                  return false;
+                     //information() << "pwindowOwner->has_keyboard_focus() : " << strType;
+
+                     //::string strTypeOldFocus;
+
+                     //strTypeOldFocus = ::type(pwindowOwner->m_pwindow->m_puserinteraction.m_p);
+
+                     //information() << "old focus : " << strTypeOldFocus;
+
+                     if (pwindowOwner->m_puserinteractionKeyboardFocus == this)
+                     {
+
+                        __check_refdbg
+
+                           return true;
+
+                     }
+                     else
+                     {
+
+                        return false;
+
+                     }
 
                }
 
             }
-
-         }
 
 
          return false;
@@ -16107,18 +16103,18 @@ namespace user
       //}
       __check_refdbg
 
-      if (pwindowThis->m_puserinteractionKeyboardFocus != this)
-      {
+         if (pwindowThis->m_puserinteractionKeyboardFocus != this)
+         {
 
-         __check_refdbg
+            __check_refdbg
 
-         return false;
+               return false;
 
-      }
+         }
 
       __check_refdbg
 
-      return true;
+         return true;
 
    }
 
@@ -18141,9 +18137,9 @@ namespace user
 
             if (pwindow)
             {
-               
+
                ::cast < ::user::interaction > pinteraction = pwindow->m_pacmeuserinteraction;
-               
+
                pmessage->m_pWndOther = pinteraction;
 
             }
@@ -18735,7 +18731,7 @@ namespace user
    }
 
 
-   ::particle* interaction::children_synchronization()
+   ::particle * interaction::children_synchronization()
    {
 
       auto pwindowThis = window();
@@ -18831,13 +18827,13 @@ namespace user
 
          try
          {
-            
+
             pinteractionParent = get_parent();
 
          }
          catch (...)
          {
-            
+
             return nullptr;
 
          }
@@ -19166,7 +19162,7 @@ namespace user
    bool interaction::is_child(element * puiIsChild)
    {
 
-      if(!m_puserinteractionpointeraChild)
+      if (!m_puserinteractionpointeraChild)
       {
 
          return false;
@@ -20664,7 +20660,7 @@ namespace user
 
          information() << "interaction::frame_restore Screen Visible!!";
 
-         display(e_display_normal, 
+         display(e_display_normal,
             { ::user::e_activation_set_foreground
             | ::user::e_activation_set_active,
             ::get_task() });
@@ -21171,7 +21167,7 @@ namespace user
 
       ::int_rectangle rectangleMainMonitor;
 
-      
+
 
       auto puser = user();
 
@@ -21728,12 +21724,12 @@ namespace user
 
       ::user::interaction_base::create_window_object();
 
-      if(m_pacmewindowingwindow)
+      if (m_pacmewindowingwindow)
       {
 
          auto pwindow = window();
 
-         if(pwindow)
+         if (pwindow)
          {
 
             pwindow->m_puserinteraction = this;
@@ -26419,63 +26415,63 @@ namespace user
          //if (!m_pitemHover || !m_pitemHover->is_item_set())
          //{
 
-            auto type = ::type(this);
+         auto type = ::type(this);
 
-            if (type.name().contains("button"))
-            {
+         if (type.name().contains("button"))
+         {
 
-               //informationf("button");
+            //informationf("button");
 
-            }
+         }
 
-            //bool bAvoidRedraw = !m_bDefaultMouseHoverHandling;
+         //bool bAvoidRedraw = !m_bDefaultMouseHoverHandling;
 
-            auto pitemFront = update_hover(pmouse, e_zorder_front);
+         auto pitemFront = update_hover(pmouse, e_zorder_front);
 
-            decltype(pitemFront) pitemBack;
+         decltype(pitemFront) pitemBack;
 
-            if (!pitemFront)
-            {
+         if (!pitemFront)
+         {
 
             //information() << "update_hover pmouse e_zorder_back";
 
-               pitemBack = update_hover(pmouse, e_zorder_back);
+            pitemBack = update_hover(pmouse, e_zorder_back);
 
-            }
+         }
 
-            //update_hover(pointCursorClient, false);
+         //update_hover(pointCursorClient, false);
 
-            //if (::is_item_set(pitemBack))
-            //{
-   
-            //   if (!::is_item_set(m_pitemHover))
-            //   {
+         //if (::is_item_set(pitemBack))
+         //{
 
-   
-            //      track_mouse_leave();
-   
-            //      //auto pappearance = get_appearance();
-   
-            //      //if (::is_set(pappearance))
-            //      //{
-   
-            //      //   ::int_point pointClient;
-   
-            //      //   _screen_to_client(pointClient, pmouse->m_point);
-   
-            //      //   auto psession = session();
-   
-            //      //   auto ekeyModifiers = psession->key_modifiers();
-   
-            //      //   pappearance->on_mouse_enter(pointClient, ekeyModifiers);
-   
-            //      //}
-   
-            //   }
-   
-            //}
+         //   if (!::is_item_set(m_pitemHover))
+         //   {
+
+
+         //      track_mouse_leave();
+
+         //      //auto pappearance = get_appearance();
+
+         //      //if (::is_set(pappearance))
+         //      //{
+
+         //      //   ::int_point pointClient;
+
+         //      //   _screen_to_client(pointClient, pmouse->m_point);
+
+         //      //   auto psession = session();
+
+         //      //   auto ekeyModifiers = psession->key_modifiers();
+
+         //      //   pappearance->on_mouse_enter(pointClient, ekeyModifiers);
+
+         //      //}
+
+         //   }
 
          //}
+
+      //}
 
       }
 
@@ -27418,7 +27414,7 @@ namespace user
 
       puseritem->m_pointHost = pmouse->m_pointHost;
 
-      if(puseritem->m_pmouse)
+      if (puseritem->m_pmouse)
       {
 
          output_debug_string("123");

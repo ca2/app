@@ -58,9 +58,10 @@ namespace aura
       pointer_array < theme_listener >       m_listenera;
 
 
-      string                                 m_strWeatherState;
-      string                                 m_strDayNight;
-      string                                 m_strDayNightTheme;
+      //string                                 m_strWeatherState;
+      string                                 m_strAmbientState;
+      //string                                 m_strDayNight;
+      //string                                 m_strDayNightTheme;
 
 
       theme();
@@ -71,7 +72,8 @@ namespace aura
 
 
       virtual void initialize_contextualized_theme();
-      virtual void on_change_weather_state();
+      //virtual void on_change_weather_state();
+      virtual void defer_check_ambient_change();
 
 
 

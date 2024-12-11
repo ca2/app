@@ -6,6 +6,7 @@
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/watcher/watch.h"
 #include "acme/filesystem/watcher/watcher.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/platform/application.h"
 
 
@@ -31,27 +32,9 @@ namespace aura
    void theme::initialize(::particle * pparticle)
    {
 
-      //auto estatus = 
-      
       ::object::initialize(pparticle);
 
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //estatus = __construct_new(m_prunnerChangeWeatherState);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
+      defer_create_synchronization();
 
    }
 
@@ -380,80 +363,133 @@ namespace aura
    }
 
 
-   void theme::on_change_weather_state()
+   //void theme::on_change_weather_state()
+   //{
+
+   //   ::file::path pathWeatherState = directory_system()->config() / "weather_state.txt";
+
+   //   // auto pcontext = get_context();
+
+   //   string strWeatherState = file()->safe_get_string(pathWeatherState);
+
+   //   m_strWeatherState = strWeatherState;
+
+   //   bool bDay = m_strWeatherState.case_insensitive_contains(".day");
+
+   //   string strDayNight;
+
+   //   string strDayNightTheme;
+
+   //   if (bDay)
+   //   {
+
+   //      strDayNight = "day";
+
+   //      strDayNightTheme = "lite";
+
+   //   }
+   //   else
+   //   {
+
+   //      strDayNight = "night";
+
+   //      strDayNightTheme = "dark";
+
+   //   }
+
+   //   m_strDayNight = strDayNight;
+
+   //   m_strDayNightTheme = strDayNightTheme;
+
+   //   ::pointer<::aura::application>papp = get_app();
+
+   //   if (papp->m_bContextTheme)
+   //   {
+
+   //      sync_with_stored_theme();
+
+   //   }
+
+   //   try
+   //   {
+
+   //      for (auto plistener : m_listenera)
+   //      {
+
+   //         try
+   //         {
+
+   //            plistener->on_change_weather_state();
+
+   //         }
+   //         catch (...)
+   //         {
+
+   //         }
+
+   //      }
+
+   //   }
+   //   catch (...)
+   //   {
+
+   //   }
+
+   //}
+
+   void theme::defer_check_ambient_change()
    {
 
-      ::file::path pathWeatherState = directory_system()->config() / "weather_state.txt";
+      synchronous_lock synchronous_lock(this->synchronization());
 
-      // auto pcontext = get_context();
+      ::file::path pathAmbient = directory_system()->home() / ".ambient/ambient.txt";
 
-      string strWeatherState = file()->safe_get_string(pathWeatherState);
+      string strAmbientState = file()->safe_get_string(pathAmbient);
 
-      m_strWeatherState = strWeatherState;
-
-      bool bDay = m_strWeatherState.case_insensitive_contains(".day");
-
-      string strDayNight;
-
-      string strDayNightTheme;
-
-      if (bDay)
+      if (strAmbientState != m_strAmbientState)
       {
 
-         strDayNight = "day";
+         m_strAmbientState = strAmbientState;
 
-         strDayNightTheme = "lite";
+         synchronous_lock.unlock();
 
-      }
-      else
-      {
+         ::pointer<::aura::application>papp = get_app();
 
-         strDayNight = "night";
-
-         strDayNightTheme = "dark";
-
-      }
-
-      m_strDayNight = strDayNight;
-
-      m_strDayNightTheme = strDayNightTheme;
-
-      ::pointer<::aura::application>papp = get_app();
-
-      if (papp->m_bContextTheme)
-      {
-
-         sync_with_stored_theme();
-
-      }
-
-      try
-      {
-
-         for (auto plistener : m_listenera)
+         if (papp->m_bContextTheme)
          {
 
-            try
+            sync_with_stored_theme();
+
+         }
+
+         try
+         {
+
+            for (auto plistener : m_listenera)
             {
 
-               plistener->on_change_weather_state();
+               try
+               {
 
-            }
-            catch (...)
-            {
+                  plistener->on_change_weather_state();
+
+               }
+               catch (...)
+               {
+
+               }
 
             }
 
          }
+         catch (...)
+         {
 
-      }
-      catch (...)
-      {
+         }
 
       }
 
    }
-
 
 
    string theme::get_weather_state()
@@ -564,17 +600,19 @@ namespace aura
    void theme::operator()(::file::action* ptopic)
    {
 
-      //if (ptopic->m_pathFile.case_insensitive_ends("weather_state.txt"))
-      //{
+      if (ptopic->m_pathFile.case_insensitive_ends("ambient.txt"))
+      {
 
-      //   (*m_prunnerChangeWeatherState)(::time(300), [this]()
-      //      {
+         application()->fork([this]()
+            {
 
-      //         on_change_weather_state();
+               preempt(1_s);
 
-      //      });
+               defer_check_ambient_change();
 
-      //}
+            });
+
+      }
 
    }
 

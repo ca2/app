@@ -492,28 +492,28 @@ namespace aura
    }
 
 
-   string theme::get_weather_state()
-   {
+   //string theme::get_weather_state()
+   //{
 
-      return m_strWeatherState;
+   //   return m_strWeatherState;
 
-   }
-
-
-   string theme::get_day_night()
-   {
-
-      return m_strDayNight;
-
-   }
+   //}
 
 
-   string theme::get_day_night_theme()
-   {
+   //string theme::get_day_night()
+   //{
 
-      return m_strDayNightTheme;
+   //   return m_strDayNight;
 
-   }
+   //}
+
+
+   //string theme::get_day_night_theme()
+   //{
+
+   //   return m_strDayNightTheme;
+
+   //}
 
 
    void theme::initialize_contextualized_theme()

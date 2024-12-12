@@ -2488,10 +2488,14 @@ namespace user
             set_mouse_capture();
 
             bool bNewFocusSelectAll = is_new_focus_select_all();
+
+            auto psession = session();
+
+            bool bShiftKeyPressed = psession->is_key_pressed(::user::e_key_shift);
             
             ::pointer < ::message::message > pmessageHold = pmessage;
 
-            queue_graphics_call([this, point, bNewFocusSelectAll, pmessageHold](::draw2d::graphics_pointer & pgraphics)
+            queue_graphics_call([this, point, bShiftKeyPressed, bNewFocusSelectAll, pmessageHold](::draw2d::graphics_pointer & pgraphics)
             {
 
                ::character_count iBegNew = -1;
@@ -2504,7 +2508,20 @@ namespace user
 
                iBegNew = plain_edit_char_hit_test(pgraphics, point);
 
-               iEndNew = iBegNew;
+               if (bShiftKeyPressed)
+               {
+
+                  iEndNew = iBegNew;
+
+                  iBegNew = iBegOld;
+
+               }
+               else
+               {
+
+                  iEndNew = iBegNew;
+
+               }
 
                informationf("LeftButtonDown(%d,%d)-queue_graphics_call", iBegNew, iEndNew);
 
@@ -2528,7 +2545,6 @@ namespace user
                   m_iColumn = iColumnNew;
 
                }
-               
 
             });
 

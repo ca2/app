@@ -1895,4 +1895,11 @@ namespace platform
    }
 
 
+   ::string acme_node_layer::get_computer_name()
+   {
+
+      return {};
+
+   }
+
 }

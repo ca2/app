@@ -204,6 +204,12 @@ namespace platform
       ::pointer<BASE_TYPE> create(const ::string & strComponent, const ::string & strImplementation)
       {
 
+#if REFERENCING_DEBUGGING
+
+         auto preferer = ::allocator::pop_referer();
+
+#endif
+
          auto & pfactory = this->factory(strComponent, strImplementation);
 
          if (!pfactory)
@@ -212,6 +218,12 @@ namespace platform
             throw ::exception(error_resource);
 
          }
+
+#if REFERENCING_DEBUGGING
+
+         ::allocator::_push_referer(preferer);
+
+#endif
 
          auto p = pfactory->__call__create< BASE_TYPE >(this);
 

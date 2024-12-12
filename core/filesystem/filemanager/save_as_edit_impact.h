@@ -20,6 +20,7 @@ namespace filemanager
 
 
       save_as_edit_impact();
+      save_as_edit_impact(save_as_edit_impact&&)=delete;
 
 
       void install_message_routing(::channel * pchannel) override;

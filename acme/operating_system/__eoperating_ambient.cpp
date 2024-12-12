@@ -22,8 +22,9 @@ namespace windowing
          return "macos";
       case e_operating_ambient_windows:
          return "windows";
-      case e_operating_ambient_unity:
-         return "gtk_based";
+      //case e_operating_ambient_unity:
+        // return "gtk_based";
+         case e_operating_ambient_unity:
       case e_operating_ambient_gnome:
 #ifdef HAS_GTK4
          return "gtk4";

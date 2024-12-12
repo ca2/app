@@ -27414,12 +27414,16 @@ namespace user
 
       puseritem->m_pointHost = pmouse->m_pointHost;
 
+#ifdef DEEP_DEBUGGING
+
       if (puseritem->m_pmouse)
       {
 
-         output_debug_string("123");
+         output_debug_string("user::interaction::hit_test;");
 
       }
+
+#endif
 
       puseritem->m_pmouse = pmouse;
 

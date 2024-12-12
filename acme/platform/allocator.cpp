@@ -1021,7 +1021,7 @@ CLASS_DECL_ACME void check_refdbg()
 
       ::string strType = typeid(*psubparticleTrackAllocation).name();
 
-      output_debug_string("123");
+      output_debug_string("check_refdbg:track_allocation;");
 
    }
 
@@ -1031,7 +1031,7 @@ CLASS_DECL_ACME void check_refdbg()
 
       ::string strType = typeid(*prefererReleaser).name();
 
-      output_debug_string("345");
+      output_debug_string("check_refdbg:top_releaser;");
 
    }
 
@@ -1041,7 +1041,7 @@ CLASS_DECL_ACME void check_refdbg()
 
       ::string strType = typeid(*prefererReferer).name();
 
-      output_debug_string("345");
+      output_debug_string("check_refdbg:top_referer;");
 
    }
 

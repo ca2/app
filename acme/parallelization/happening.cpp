@@ -3,6 +3,9 @@
 #include "happening.h"
 
 ////#include "acme/exception/exception.h"
+#include <prototype/geometry2d/_function.h>
+
+#include "manual_reset_happening.h"
 #include "acme/prototype/time/timespec.h"
 #include "acme/_operating_system.h"
 
@@ -102,6 +105,40 @@ void clock_getrealtime(struct timespec * pts)
 
 
 int g_iHappeningSerialId = 1;
+
+bool happening::start_notify_lock(::notify_lock * pnotifylock)
+{
+
+   int rc1 = pthread_mutex_lock((pthread_mutex_t *)m_pmutex);
+
+   if (m_bSignaled)
+   {
+
+      return true;
+
+   }
+
+   add_notify_lock(pnotifylock);
+
+   int rc2 = pthread_mutex_unlock((pthread_mutex_t *)m_pmutex);
+
+   return false;
+
+}
+
+
+void happening::end_notify_lock(::notify_lock * pnotifylock)
+{
+
+   int rc1 = pthread_mutex_lock((pthread_mutex_t *)m_pmutex);
+
+   erase_notify_lock(pnotifylock);
+
+   int rc2 = pthread_mutex_unlock((pthread_mutex_t *)m_pmutex);
+
+
+}
+
 
 happening::happening(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bManualReset, security_attributes * psecurityattributes)
 {
@@ -542,6 +579,8 @@ bool happening::set_happening()
       m_bSignaled = true;
 
       m_iSignalId++;
+
+      notify_lock_notify_all();
 
       pthread_cond_broadcast((pthread_cond_t *) m_pcond);
 
@@ -1406,3 +1445,50 @@ void happening::unlock()
 
 
 
+notify_lock_notifier::~notify_lock_notifier()
+{
+
+   for (auto & pnotifylock : m_notifylocka)
+   {
+
+      pnotifylock->m_synca.erase(this);
+
+   }
+
+}
+
+
+void notify_lock_notifier::add_notify_lock(::notify_lock * pnotifylock)
+{
+
+   m_notifylocka.add(pnotifylock);
+
+   pnotifylock->m_synca.add(this);
+
+}
+
+
+void notify_lock_notifier::erase_notify_lock(::notify_lock * pnotifylock)
+{
+
+
+   m_notifylocka.erase(pnotifylock);
+
+   pnotifylock->m_synca.erase(this);
+
+}
+
+
+
+void notify_lock_notifier::notify_lock_notify_all()
+{
+
+
+   for (auto pnotifylock:m_notifylocka)
+   {
+
+      pnotifylock->m_manualresethappening.set_happening();
+
+   }
+
+}

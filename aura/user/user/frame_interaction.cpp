@@ -35,7 +35,7 @@ namespace user
 
       m_bDerivedHeight = false;
       m_bShowControlBox = true;
-      m_bDefaultNotifyIcon = false;
+      m_bDefaultNotifyIcon2 = false;
       m_bCloseApplicationIfLastVisibleFrame = true;
 
    }

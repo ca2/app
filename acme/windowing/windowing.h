@@ -198,6 +198,9 @@ namespace acme
          virtual bool shell_open(const ::file::path & path);
 
          virtual bool defer_realize(         ::pointer < ::reified < ::message_box > > & preifiedMessageBox, ::message_box * p);
+
+         virtual bool has_resizing();
+
          
       };
 

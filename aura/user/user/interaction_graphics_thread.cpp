@@ -1568,6 +1568,8 @@ namespace user
 
       //information() << node()->get_callstack();
 
+      //information() << "graphics_thread::post_redraw";
+
       post_message(e_message_redraw);
 
    }

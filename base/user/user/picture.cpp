@@ -9,6 +9,7 @@
 #include "picture.h"
 #include "acme/prototype/geometry2d/_binary_stream.h"
 #include "acme/prototype/collection/_array_binary_stream.h"
+#include "acme/_finish.h"
 
 
 property & operator << (property & property, const ::double_rectangle & rectangle)

@@ -1016,6 +1016,7 @@ CLASS_DECL_ACME void check_refdbg()
 {
 
    auto psubparticleTrackAllocation = refdbg_get_track_allocation();
+
    if (psubparticleTrackAllocation)
    {
 
@@ -1026,6 +1027,7 @@ CLASS_DECL_ACME void check_refdbg()
    }
 
    auto prefererReleaser = refdbg_get_top_releaser();
+
    if (prefererReleaser)
    {
 
@@ -1036,6 +1038,7 @@ CLASS_DECL_ACME void check_refdbg()
    }
 
    auto prefererReferer = refdbg_get_top_referer();
+
    if (prefererReferer)
    {
 

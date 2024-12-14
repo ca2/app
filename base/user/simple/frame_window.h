@@ -10,7 +10,7 @@ class CLASS_DECL_BASE simple_frame_window :
 public:
 
 
-   bool                                            m_bDefaultNotifyIcon : 1;
+   //bool                                            m_bDefaultNotifyIcon2 : 1;
    bool                                            m_bShowTask : 1;
    bool                                            m_bFramePayloadFlags : 1;
    bool                                            m_bProdevianFrame : 1;
@@ -46,7 +46,11 @@ public:
    
    ::user::notify_icon * notify_icon() override;
 
-   
+
+   virtual bool has_notify_icon();
+
+
+   virtual void enable_default_notification_icon(bool bEnableDefaultNotificationIcon = true);
 
 
    ::user::enum_translucency get_translucency(::user::style* pstyle) override;

@@ -5,8 +5,9 @@
 #include "pointer.h"
 #include "acme/prototype/prototype/interlocked_count.h"
 #include "acme/prototype/time/time/time.h"
+//#include "parallelization/manual_reset_happening.h"
 
-
+class notify_lock;
 #ifdef WINDOWS
 using hsynchronization = void*;
 #else
@@ -245,6 +246,10 @@ public:
 
 
    virtual void on_timed_out();
+
+
+   virtual bool start_notify_lock(::notify_lock * pnotifylock);
+   virtual void end_notify_lock(::notify_lock * pnotifylock);
 
 };
 

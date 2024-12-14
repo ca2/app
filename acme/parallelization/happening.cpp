@@ -106,6 +106,9 @@ void clock_getrealtime(struct timespec * pts)
 
 int g_iHappeningSerialId = 1;
 
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(__BSD__)
+
+
 bool happening::start_notify_lock(::notify_lock * pnotifylock)
 {
 
@@ -138,6 +141,8 @@ void happening::end_notify_lock(::notify_lock * pnotifylock)
 
 
 }
+
+#endif
 
 
 happening::happening(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bManualReset, security_attributes * psecurityattributes)

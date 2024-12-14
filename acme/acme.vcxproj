@@ -2429,6 +2429,7 @@
     <ClCompile Include="user\user\text.cpp" />
     <ClCompile Include="user\user\text_property.cpp" />
     <ClCompile Include="user\user\tool_item.cpp" />
+    <ClCompile Include="user\user\_.cpp" />
     <ClCompile Include="user\user\_string.cpp" />
     <ClCompile Include="windowing\display.cpp" />
     <ClCompile Include="windowing\sandbox\host_interaction.cpp" />

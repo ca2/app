@@ -34,7 +34,7 @@ namespace windows
       if (m_iDebugAtom == 123)
       {
 
-         printf_line("123");
+         printf_line("::windows::window::window_procedure");
 
       }
 

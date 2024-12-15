@@ -95,10 +95,20 @@ namespace user
    }
 
 
-   ::e_display box::window_previous_display()
+   ::e_display box::_window_previous_display()
    {
 
       auto edisplayPrevious = m_windowdisplayandlayout.m_edisplayPrevious;
+
+      return edisplayPrevious;
+
+   }
+
+
+   ::e_display box::window_previous_display()
+   {
+
+      auto edisplayPrevious = _window_previous_display();
 
       if (edisplayPrevious == const_layout().design().display()
          && edisplayPrevious == e_display_zoomed)

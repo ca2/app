@@ -1295,6 +1295,10 @@ namespace platform
 
       virtual void realize(::particle_pointer pparticle);
 
+
+      virtual ::string get_computer_name();
+
+
    };
 
 

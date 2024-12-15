@@ -262,6 +262,13 @@ namespace windowing
 
       virtual void windowing_application_main_loop() override;
 
+      virtual int system_metrics_get_cx_icon_spacing();
+      virtual int system_metrics_get_cy_icon_spacing();
+      virtual int system_metrics_get_cx_icon();
+      virtual int system_metrics_get_cy_icon();
+      virtual int system_metrics_get_cy_caption();
+
+
    };
 
 

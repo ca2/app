@@ -381,7 +381,7 @@ namespace acme
             else if (strActionName == "maximize")
             {
 
-               display(e_display_zoomed);
+               window_maximize();
 
             }
             else if (strActionName == "restore")

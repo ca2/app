@@ -877,15 +877,17 @@ namespace experience
 
             informationf("button_clicked : button_maximize");
 
-            display(e_display_zoomed);
+            window_maximize();
 
-            set_reposition(true);
-
-            set_need_layout();
-
-            set_need_redraw();
-
-            post_redraw();
+            // display(e_display_zoomed);
+            //
+            // set_reposition(true);
+            //
+            // set_need_layout();
+            //
+            // set_need_redraw();
+            //
+            // post_redraw();
 
             ptopic->m_bRet = true;
 

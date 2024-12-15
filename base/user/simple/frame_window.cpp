@@ -89,7 +89,7 @@ simple_frame_window::simple_frame_window()
 
    m_bShowTask = true;
 
-   m_bDefaultNotifyIcon = false;
+   //m_bDefaultNotifyIcon = false;
 
 #if defined(UNIVERSAL_WINDOWS)
 
@@ -163,6 +163,30 @@ void simple_frame_window::initialize(::particle * pparticle)
 {
 
    return m_pnotifyicon;
+
+}
+
+
+bool simple_frame_window::has_notify_icon()
+{
+
+#if defined(HAS_GTK4)
+
+   return false;
+
+#else
+
+   return m_bDefaultNotifyIcon2;
+
+#endif
+
+}
+
+
+void simple_frame_window::enable_default_notification_icon(bool bEnableDefaultNotificationIcon)
+{
+
+   m_bDefaultNotifyIcon2 = bEnableDefaultNotificationIcon;
 
 }
 
@@ -894,7 +918,7 @@ bool simple_frame_window::would_display_notify_icon()
 
 #else
 
-   return m_bDefaultNotifyIcon;
+   return has_notify_icon();
 
 #endif
 
@@ -1154,7 +1178,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
                            {
                               information() << "simple_frame_window::on_message_create Failed to create notify icon (1)!";
 
-                              m_bDefaultNotifyIcon = false;
+                              enable_default_notification_icon(false);
 
                               m_pnotifyicon.release();
 
@@ -1166,7 +1190,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
                               information() << "simple_frame_window::on_message_create Failed to create notify icon!";
 
-                              m_bDefaultNotifyIcon = false;
+                              enable_default_notification_icon(false);
 
                               m_pnotifyicon.release();
 
@@ -3108,7 +3132,7 @@ bool simple_frame_window::is_application_main_window()
 void simple_frame_window::defer_create_notification_icon()
 {
 
-   if (!m_bDefaultNotifyIcon)
+   if (!would_display_notify_icon())
    {
 
       return;
@@ -3163,10 +3187,10 @@ void simple_frame_window::defer_create_notification_icon()
          if (!m_piconNotify)
          {
 
-            if(m_bDefaultNotifyIcon)
+            if(would_display_notify_icon())
             {
 
-               m_bDefaultNotifyIcon = false;
+               enable_default_notification_icon(false);
 
             }
 
@@ -3187,10 +3211,10 @@ void simple_frame_window::defer_create_notification_icon()
          catch(...)
          {
 
-            if(m_bDefaultNotifyIcon)
+            if(would_display_notify_icon())
             {
 
-               m_bDefaultNotifyIcon = false;
+               enable_default_notification_icon(false);
 
             }
 
@@ -4364,7 +4388,7 @@ void simple_frame_window::on_timer(::timer * ptimer)
 void simple_frame_window::_001OnNotifyIconTopic(::message::message * pmessage)
 {
 
-   if (m_bDefaultNotifyIcon)
+   if (would_display_notify_icon())
    {
 
       default_notify_icon_topic();
@@ -4392,7 +4416,7 @@ void simple_frame_window::default_notify_icon_topic()
 void simple_frame_window::OnInitialFrameUpdate(bool bMakeVisible)
 {
 
-   if (!m_bDefaultNotifyIcon)
+   if (!would_display_notify_icon())
    {
 
       ::user::frame_window::OnInitialFrameUpdate(bMakeVisible);
@@ -4416,7 +4440,7 @@ void simple_frame_window::OnInitialFrameUpdate(bool bMakeVisible)
 void simple_frame_window::OnUpdateToolWindow(bool bVisible)
 {
 
-   if (!m_bDefaultNotifyIcon)
+   if (!would_display_notify_icon())
    {
 
       return;
@@ -4478,7 +4502,7 @@ void simple_frame_window::show_task(bool bShow)
 bool simple_frame_window::window_is_notify_icon_enabled()
 {
 
-   return m_bDefaultNotifyIcon;
+   return would_display_notify_icon();
 
 }
 

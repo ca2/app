@@ -1016,32 +1016,35 @@ CLASS_DECL_ACME void check_refdbg()
 {
 
    auto psubparticleTrackAllocation = refdbg_get_track_allocation();
+
    if (psubparticleTrackAllocation)
    {
 
       ::string strType = typeid(*psubparticleTrackAllocation).name();
 
-      output_debug_string("123");
+      output_debug_string("check_refdbg:track_allocation;");
 
    }
 
    auto prefererReleaser = refdbg_get_top_releaser();
+
    if (prefererReleaser)
    {
 
       ::string strType = typeid(*prefererReleaser).name();
 
-      output_debug_string("345");
+      output_debug_string("check_refdbg:top_releaser;");
 
    }
 
    auto prefererReferer = refdbg_get_top_referer();
+
    if (prefererReferer)
    {
 
       ::string strType = typeid(*prefererReferer).name();
 
-      output_debug_string("345");
+      output_debug_string("check_refdbg:top_referer;");
 
    }
 

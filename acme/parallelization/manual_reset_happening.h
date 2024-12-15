@@ -40,3 +40,30 @@ public:
    //void reuse() { reset_happening(); }
 
 };
+
+
+class CLASS_DECL_ACME notify_lock :
+   virtual public ::particle
+{
+public:
+
+
+   manual_reset_happening                 m_manualresethappening;
+
+
+   ::pointer_array < ::subparticle >      m_synca;
+
+   ~notify_lock() override
+   {
+
+      for (auto & psync : m_synca)
+      {
+
+         psync->end_notify_lock(this);
+
+      }
+
+   }
+
+};
+

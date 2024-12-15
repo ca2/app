@@ -933,3 +933,16 @@ void subparticle::on_timed_out()
 
 
 
+bool subparticle::start_notify_lock(::notify_lock * pnotifylock)
+{
+
+   return false;
+
+}
+
+
+void subparticle::end_notify_lock(::notify_lock * pnotifylock)
+{
+
+
+}

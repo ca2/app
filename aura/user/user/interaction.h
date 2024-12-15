@@ -693,6 +693,7 @@ namespace user
 
 
       virtual::e_display window_stored_display();
+      virtual::e_display _window_previous_display();
       virtual::e_display window_previous_display();
 
 
@@ -2800,6 +2801,9 @@ namespace user
       
       
       bool on_impact_update() override;
+
+
+      void window_maximize() override;
 
 
    };

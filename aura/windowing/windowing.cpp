@@ -957,7 +957,44 @@ namespace windowing
    }
 
 
+   int windowing::system_metrics_get_cx_icon_spacing()
+   {
 
+      return 76;
+
+   }
+
+
+   int windowing::system_metrics_get_cy_icon_spacing()
+   {
+
+      return 98;
+
+   }
+
+
+   int windowing::system_metrics_get_cx_icon()
+   {
+
+      return 32;
+
+   }
+
+
+   int windowing::system_metrics_get_cy_icon()
+   {
+
+      return 32;
+
+   }
+
+   
+   int windowing::system_metrics_get_cy_caption()
+   {
+
+      return 22;
+
+   }
 
 
 } // namespace windowing

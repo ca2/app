@@ -49,6 +49,7 @@ namespace user
       
 
       ::e_display window_stored_display() override;
+      ::e_display _window_previous_display() override;
       ::e_display window_previous_display() override;
 
       

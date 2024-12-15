@@ -696,6 +696,14 @@ namespace acme
          return false;
          
       }
+
+
+      bool windowing::has_resizing()
+      {
+
+         return true;
+
+      }
       
    
    } // namespace windowing

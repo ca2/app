@@ -120,6 +120,7 @@ public:
 
    }
 
+   application_pane_tab_impact(application_pane_tab_impact &&) = delete;
 
    void initialize(::particle * pparticle) override
    {

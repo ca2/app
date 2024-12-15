@@ -2412,8 +2412,6 @@ void window::set_oswindow(::oswindow oswindow)
    bool window::set_window_position_unlocked()
    {
 
-      information() << "windowing::window::set_window_position_unlocked";
-
       auto & stateDesign = m_puserinteraction->layout().m_statea[::user::e_layout_design];
 
       auto pointDesign = stateDesign.origin();
@@ -2446,6 +2444,13 @@ void window::set_oswindow(::oswindow oswindow)
       {
 
          //information() << "Design.size != Window.size " << sizeOutput << ", " << sizeWindow;
+
+         if(system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
+         {
+
+            bSize = false;
+
+         }
 
       }
 
@@ -2494,6 +2499,8 @@ void window::set_oswindow(::oswindow oswindow)
       if (bMove || bSize
          || bVisibilityChange || bZ || bActivate)
       {
+
+         information() << "windowing::window::set_window_position_unlocked there are changes to apply to window";
 
          ::int_rectangle r(pointDesign, sizeOutput);
 
@@ -13709,8 +13716,8 @@ void window::set_oswindow(::oswindow oswindow)
    void window::viewport_screen_to_client(::int_rectangle & rectangle)
    {
 
-      viewport_screen_to_client((::int_point &)rectangle.left());
-      viewport_screen_to_client((::int_point &)rectangle.right());
+      viewport_screen_to_client(rectangle.top_left());
+      viewport_screen_to_client(rectangle.bottom_right());
 
    }
 

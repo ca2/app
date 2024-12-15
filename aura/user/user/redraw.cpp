@@ -179,7 +179,7 @@ namespace user
 
          //information() << "Opting out from draw!! " << typeid(*this).name() << " " << m_atom.as_string();
 
-         information() << "no need to draw";
+         //information() << "no need to draw";
 
       }
 

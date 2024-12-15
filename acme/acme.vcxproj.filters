@@ -5873,6 +5873,9 @@
     <ClCompile Include="filesystem\filesystem\windows_path.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\_.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="prototype\string\_defer.h">

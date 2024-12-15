@@ -14,16 +14,10 @@ CLASS_DECL_ACME ::string as_string(::enum_display edisplay)
          return "e_display_undefined";
       case e_display_notify_icon:
          return "e_display_notify_icon";
-      case e_display_default:
-         return "e_display_default";
       case e_display_hide:
          return "e_display_hide";
       case e_display_none:
          return "e_display_none";
-      case e_display_current:
-         return "e_display_current";
-      case e_display_stored_state:
-         return "e_display_stored_state";
       case e_display_normal:
          return "e_display_normal";
       case e_display_compact:
@@ -42,10 +36,6 @@ CLASS_DECL_ACME ::string as_string(::enum_display edisplay)
          return "e_display_down";
       case e_display_minimal:
          return "e_display_minimal";
-      case e_display_fixed_size:
-         return "e_display_fixed_size";
-      case e_display_center:
-         return "e_display_center";
       case e_display_left:
          return "e_display_left";
       case e_display_top:
@@ -72,9 +62,18 @@ CLASS_DECL_ACME ::string as_string(::enum_display edisplay)
          return "e_display_full_bottom";
       case e_display_docking_mask:
          return "e_display_docking_mask";
-      case e_display_command_mask:
-         return "e_display_command_mask";
-
+      case e_display_default:
+         return "e_display_default";
+      case e_display_current:
+         return "e_display_current";
+      case e_display_stored_state:
+         return "e_display_stored_state";
+      case e_display_fixed_size:
+         return "e_display_fixed_size";
+      case e_display_center:
+         return "e_display_center";
+      case e_display_last_command:
+         return "e_display_last_command";
       default:
       {
          ::string str;

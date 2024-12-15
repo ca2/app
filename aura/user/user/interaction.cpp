@@ -67,7 +67,7 @@
 #include "acme/prototype/geometry2d/item.h"
 #include "acme/prototype/geometry2d/_defer_item.h"
 #include "acme/prototype/collection/_tuple.h"
-
+#include "acme/_finish.h"
 
 #ifdef WINDOWS_DESKTOP
 //#include "acme/_operating_system.h"
@@ -2206,7 +2206,7 @@ namespace user
       //         return;
       //
       //      }
-      //
+
       auto * pinteraction = get_host_user_interaction();
 
       if (::is_null(pinteraction))
@@ -2246,7 +2246,7 @@ namespace user
             if (::is_set(pwindow))
             {
 
-               information() << "pwindow->post_redraw();";
+               //information() << "pwindow->post_redraw();";
 
                pwindow->post_redraw();
 
@@ -3339,7 +3339,11 @@ namespace user
       else if (::type(this).as_string().contains("main_frame"))
       {
 
-         print_line("main_frame");
+         printf_line("main_frame %d %s", elayout, ::as_string(edisplay.m_eenum).c_str());
+
+         auto & edisplaySketch = m_layout.m_statea[elayout].m_edisplay;
+
+         printf_line("main_frame %d %s", elayout, ::as_string(edisplaySketch.m_eenum).c_str());
 
       }
 
@@ -3403,19 +3407,26 @@ namespace user
    void interaction::display_zoomed()
    {
 
-      informationf("\ne_display_zoomed\n");
+      //informationf("\ne_display_zoomed\n");
 
 #ifdef INFO_LAYOUT_DISPLAY
 
-      information() << "interaction_layout::display e_display_zoomed";
+      information() << "interaction_layout::display_zoomed";
 
 #endif
 
       set_display(e_display_zoomed, e_layout_sketch);
 
-      ::int_rectangle rectangleRequest = this->screen_rectangle(::user::e_layout_sketch);
+      auto bWindowingHasResizing = system()->acme_windowing()->has_resizing();
 
-      best_workspace(nullptr, rectangleRequest, true, layout().sketch().activation(), layout().sketch().zorder());
+      if (bWindowingHasResizing)
+      {
+
+         ::int_rectangle rectangleRequest = this->screen_rectangle(::user::e_layout_sketch);
+
+         best_workspace(nullptr, rectangleRequest, true, layout().sketch().activation(), layout().sketch().zorder());
+
+      }
 
    }
 
@@ -9891,14 +9902,20 @@ namespace user
 
       }
 
+      __check_refdbg;
+
       ::pointer<::user::message> pusermessage = pmessage;
 
       if (pusermessage)
       {
 
+         __check_refdbg;
+
          pusermessage->m_pchannel = this;
 
       }
+
+      __check_refdbg;
 
       auto p = __as_pointer pmessage;
 
@@ -12829,6 +12846,14 @@ namespace user
    }
 
 
+   ::e_display interaction::_window_previous_display()
+   {
+
+      return e_display_none;
+
+   }
+
+
    ::e_display interaction::window_previous_display()
    {
 
@@ -13093,14 +13118,36 @@ namespace user
 
       auto type = ::type(this);
 
+      auto edisplayLading = layout().lading().display();
+
+      ::string strType = ::type(this).name();
+
       auto edisplayLayout = layout().layout().display();
 
-      auto edisplayLading = layout().lading().display();
+      bool bIsDisplayEquivalent = ::is_equivalent(edisplayLayout, edisplayLading);
+
+      if(strType.contains("main_frame"))
+      {
+
+          if (edisplayLading == e_display_zoomed)
+          {
+
+             information() << "::user::interaction::display_lading_to_layout() lading(zoomed) layout : " << ::as_string(edisplayLayout.m_eenum);
+
+          }
+          else
+          {
+
+             information() << "::user::interaction::display_lading_to_layout() lading(" << ::as_string(edisplayLading.m_eenum) << ") layout : " << ::as_string(edisplayLayout.m_eenum);
+
+          }
+
+      }
 
       auto activationLading = layout().lading().activation();
 
       bool bDisplay =
-         edisplayLading != edisplayLayout
+         !bIsDisplayEquivalent
          || activationLading & ::user::e_activation_under_mouse_cursor
          || activationLading & ::user::e_activation_display_change;
 
@@ -13965,7 +14012,7 @@ namespace user
 
       //}
 
-      printf_line("interaction::message_handler pmessage->m_atom %lld", pmessage->m_atom.as_huge_integer());
+      //printf_line("interaction::message_handler pmessage->m_atom %lld", pmessage->m_atom.as_huge_integer());
 
       if (pre_message_handler(pkey, bKeyMessage, pmessage))
       {
@@ -16579,10 +16626,18 @@ namespace user
    void interaction::sketch_to_lading()
    {
 
-      if (::type(this) == "user::list_box")
+      ::string strType = ::type(this).name();
+
+      if (strType == "user::list_box")
       {
 
-         information() << "interaction::sketch_to_lading";
+         information() << "interaction sketch_to_lading user::list_box";
+
+      }
+      else if(strType.contains("main_frame"))
+      {
+
+         information() << "interaction sketch_to_lading main_frame sketch display : " << ::as_string(layout().sketch().m_edisplay.m_eenum);
 
       }
 
@@ -20035,12 +20090,19 @@ namespace user
    void interaction::_001OnAfterExitAppearance()
    {
 
-      if (layout().lading().display() != e_display_none && layout().lading().display() != e_display_current)
+      auto edisplay = layout().lading().display();
+
+      auto edisplayPrevious = _window_previous_display();
+
+      if (edisplayPrevious == e_display_zoomed)
       {
 
-         auto edisplay = layout().lading().display();
+         information() << "_001OnAfterExitAppearance previously : e_display_zoomed";
 
-         auto edisplayPrevious = window_previous_display();
+      }
+
+      if (layout().lading().display() != e_display_none && layout().lading().display() != e_display_current)
+      {
 
          if (edisplay != edisplayPrevious)
          {
@@ -25272,7 +25334,7 @@ namespace user
       else if (strType.contains("simple_scroll_bar"))
       {
 
-         information() << "interaction::on_message_parent_mouse_move simple_scroll_bar";
+         //information() << "interaction::on_message_parent_mouse_move simple_scroll_bar";
 
       }
       else if (strType.contains("simple_application::main_frame"))
@@ -26083,7 +26145,7 @@ namespace user
 
                      route(ptopic);
 
-                     information() << "interaction::on_message_left_button_up route_btn_clked=" << (int)ptopic->m_bRet;
+                     // information() << "interaction::on_message_left_button_up (1) route_btn_clked=" << (int)ptopic->m_bRet;
 
                      pmessage->m_bRet = ptopic->m_bRet;
 
@@ -26156,8 +26218,8 @@ namespace user
 
          pwindowimpl->m_puiLastLButtonDown = nullptr;
 
-         information() << "interaction::on_message_left_button_up last_button_down set to null";
-         information() << "m_pitemHover " << ::as_string((iptr)m_pitemHover.m_p);
+         // information() << "interaction::on_message_left_button_up last_button_down set to null";
+         // information() << "m_pitemHover " << ::as_string((iptr)m_pitemHover.m_p);
 
          set_need_redraw();
 
@@ -26675,7 +26737,7 @@ namespace user
 
                route(ptopic);
 
-               information() << "interaction::on_message_left_button_up route_btn_clked=" << (int)ptopic->m_bRet;
+               // information() << "interaction::on_message_left_button_up (2) route_btn_clked=" << (int)ptopic->m_bRet;
 
                pmessage->m_bRet = ptopic->m_bRet;
 
@@ -27171,12 +27233,12 @@ namespace user
 
             //informationf("user::interaction::update_hover set_need_redraw (%d rectangle(s))", rectanglea.size());
 
-            for (auto & rectangle : rectanglea)
-            {
-
-               information() << "user::interaction::update_hover set_need_redraw" << rectangle;
-
-            }
+            // for (auto & rectangle : rectanglea)
+            // {
+            //
+            //    information() << "user::interaction::update_hover set_need_redraw" << rectangle;
+            //
+            // }
 
             set_need_redraw(rectanglea);
 
@@ -27329,7 +27391,7 @@ namespace user
 
       ::string strType = ::type(this).name();
 
-      information() << "interaction::on_message_mouse_leave type : " << strType;
+      // information() << "interaction::on_message_mouse_leave type : " << strType;
 
       auto pappearance = get_appearance();
 
@@ -27354,7 +27416,7 @@ namespace user
          if (rectangle.is_set())
          {
 
-            information() << "interaction::on_message_mouse_leave : " << rectangle;
+            // information() << "interaction::on_message_mouse_leave : " << rectangle;
 
             set_need_redraw({ rectangle });
 
@@ -27364,7 +27426,7 @@ namespace user
          else if (puseritem->m_ppath.is_set())
          {
 
-            information() << "interaction::on_message_mouse_leave set_need_redraw()";
+            // information() << "interaction::on_message_mouse_leave set_need_redraw()";
 
             set_need_redraw();
 
@@ -27414,12 +27476,16 @@ namespace user
 
       puseritem->m_pointHost = pmouse->m_pointHost;
 
+#ifdef DEEP_DEBUGGING
+
       if (puseritem->m_pmouse)
       {
 
-         output_debug_string("123");
+         output_debug_string("user::interaction::hit_test;");
 
       }
+
+#endif
 
       puseritem->m_pmouse = pmouse;
 
@@ -30307,6 +30373,29 @@ namespace user
       //}
 
       //window()->set_opacity(dOpacity);
+
+   }
+
+
+   void interaction::window_maximize()
+   {
+
+      main_post([this]()
+      {
+
+          informationf("::user::interaction::window_maximize type:%s", typeid(*this).name());
+
+          display(e_display_zoomed);
+
+          set_reposition(true);
+
+          set_need_layout();
+
+          set_need_redraw();
+
+          post_redraw();
+
+      });
 
    }
 

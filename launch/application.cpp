@@ -15,6 +15,8 @@
 
 namespace launch
 {
+
+
    application::application()
    {
 
@@ -180,7 +182,7 @@ namespace launch
 
       print_line("Going to install dependencies: ");
 
-      auto lines = file_system()->lines(m_pathX64/"operating_system_packages.txt");
+      auto lines = file_system()->lines(m_pathBinaryFolder/"operating_system_packages.txt");
 
       if(lines.is_empty())
       {
@@ -244,7 +246,14 @@ namespace launch
 
          print_line(strCommand);
 
-         ::system(strCommand);
+         int iError = ::system(strCommand);
+
+         if (iError)
+         {
+
+            printf_line("\"%s\" Command failed with error code %d", strCommand.c_str(), iError);
+
+         }
 
 
       }
@@ -412,7 +421,7 @@ namespace launch
 
       m_pathLog = pathLogFolder / strDateTimeName;
 
-      m_pathX64 = pathStore / "x64";
+      m_pathBinaryFolder = pathStore / "binary";
       // char szX64[4096];
       //
       // strcpy(szX64, szStore);
@@ -423,9 +432,9 @@ namespace launch
       //
       // chdir(szX64);
 
-      directory_system()->create(m_pathX64);
+      directory_system()->create(m_pathBinaryFolder);
 
-      directory_system()->change_current(m_pathX64);
+      directory_system()->change_current(m_pathBinaryFolder);
 
 #if defined(LINUX) || defined(FREEBSD)
 
@@ -452,8 +461,7 @@ namespace launch
       //    }
       strExecutable.find_replace("-", "_");
 
-
-      auto pathExecutable = m_pathX64 / strExecutable;
+      auto pathExecutable = m_pathBinaryFolder / strExecutable;
 
       ::string strZipName;
 
@@ -462,7 +470,7 @@ namespace launch
       // sprintf(szZipName, "_%s.zip", szAppExeName);
       // char szDownloadCommand[2048];
 
-      auto pathZipName = m_pathX64 / strZipName;
+      auto pathZipName = m_pathBinaryFolder / strZipName;
 
       nano()->http()->download(pathZipName,strDownloadUrl );
       // if (!strcasecmp(m_pszDistro, "freebsd")) {
@@ -486,7 +494,7 @@ namespace launch
 
       //system(szDownloadCommand);
 
-      nano()->compress()->unzip(m_pathX64, pathZipName);
+      nano()->compress()->unzip(m_pathBinaryFolder, pathZipName);
 
       //char szUnzipCommand[2048];
 

@@ -60,6 +60,7 @@ enum enum_timer : ::iptr
    e_timer_caret_flashing,
 
    e_timer_main_impact_update,
+   e_timer_ambient_update,
 
 };
 

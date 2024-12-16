@@ -243,6 +243,8 @@ namespace user
       m_bAutoResize = false;
       m_bNeedAutoResizePerformLayout = false;
 
+      m_bTrackMouseLeave = false;
+
       //m_bVisualChanged = false;
 
 
@@ -4497,6 +4499,8 @@ namespace user
                   _synchronous_lock synchronouslock(pwindow->synchronization());
 
                   pwindow->m_userinteractionaMouseHover.erase(this);
+
+                  m_bTrackMouseLeave = false;
 
                }
 
@@ -8779,10 +8783,10 @@ namespace user
    }
 
 
-   bool interaction::_001IsPointInsideInline(const ::int_point & point)
+   bool interaction::_001IsPointInsideInline(const ::int_point & point, enum_layout elayout)
    {
 
-      return host_rectangle(e_layout_design).contains(point);
+      return host_rectangle(elayout).contains(point);
 
    }
 
@@ -15316,6 +15320,13 @@ namespace user
 
       }
 
+      if (is_top_level())
+      {
+
+         window()->defer_check_mouse_leave(::user::e_layout_window, ::user::e_layout_lading);
+
+      }
+
    }
 
 
@@ -16533,8 +16544,11 @@ namespace user
 
    void interaction::track_mouse_hover()
    {
+
 #ifdef MORE_LOG
+
       information() << "interaction::track_mouse_hover";
+
 #endif
 
       //      _synchronous_lock synchronouslock(this->synchronization());
@@ -26029,7 +26043,6 @@ namespace user
 
       }
 
-
       if (m_bDefaultClickHandling || m_bDefaultMouseHoverHandling)
       {
 
@@ -26288,7 +26301,6 @@ namespace user
 
       }
 
-
       ::string strType;
 
       strType = type(this).as_string();
@@ -26303,6 +26315,17 @@ namespace user
       {
 
          //information() << "interaction::on_message_mouse_move main_window";
+
+      }
+      else if (strType.contains("button"))
+      {
+
+         if (m_atom.as_string().contains("maximize"))
+         {
+          
+            information() << "interaction::on_message_mouse_move maximize button";
+
+         }
 
       }
 
@@ -27145,21 +27168,21 @@ namespace user
 
             }
 
-            if (!::is_item_set(pitemOldHover))
-            {
+            //if (!::is_item_set(pitemOldHover))
+            //{
 
-               try
-               {
+            //   try
+            //   {
 
-                  track_mouse_leave();
+            //      track_mouse_leave();
 
-               }
-               catch (...)
-               {
+            //   }
+            //   catch (...)
+            //   {
 
-               }
+            //   }
 
-            }
+            //}
 
          }
 
@@ -27236,6 +27259,13 @@ namespace user
             post_redraw();
 
          }
+
+      }
+
+      if (::is_item_set(m_pitemHover) && !m_bTrackMouseLeave)
+      {
+
+         track_mouse_leave();
 
       }
 

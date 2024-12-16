@@ -168,8 +168,9 @@ namespace user
       //::pointer < ::windowing::window >         m_pwindow;
 
 
-      bool m_bFocus : 1;
-      bool m_bDestroyOnHide : 1;
+      bool                                      m_bFocus : 1;
+      bool                                      m_bDestroyOnHide : 1;
+      bool                                      m_bTrackMouseLeave : 1;
 
       ::logic::boolean                          m_bExtendOnParent;
       ::logic::boolean                          m_bExtendOnParentIfOnlyClient;
@@ -1865,7 +1866,7 @@ namespace user
 
       bool _001IsPointInside(const ::int_point & point) override;
 
-      virtual bool _001IsPointInsideInline(const ::int_point & point);
+      virtual bool _001IsPointInsideInline(const ::int_point & point, enum_layout elayout = e_layout_design);
       virtual bool _001IsClientPointInsideInline(const ::int_point & point);
       virtual bool _001IsParentClientPointInsideInline(const ::int_point & point, enum_layout elayout = e_layout_design);
 

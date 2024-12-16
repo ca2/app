@@ -4912,6 +4912,13 @@ void window::set_oswindow(::oswindow oswindow)
 
          m_userinteractionaMouseHover.add_unique(pinterface);
 
+         if (!pinterface->m_bTrackMouseLeave)
+         {
+
+            pinterface->m_bTrackMouseLeave = true;
+
+         }
+
          if (bWasEmpty)
          {
 
@@ -4940,7 +4947,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::_on_mouse_move_step(const ::int_point & pointCursor, bool bMouseLeave)
+   void window::_on_mouse_move_step(const ::int_point & pointCursor, ::user::enum_layout elayoutChild, bool bMouseLeave)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -4956,7 +4963,7 @@ void window::set_oswindow(::oswindow oswindow)
          // i++;
 
          //}
-         if (!bMouseLeave && pinteraction->_001IsPointInsideInline(pointCursor))
+         if (!bMouseLeave && pinteraction->_001IsPointInsideInline(pointCursor, elayoutChild))
          {
 
             i++;
@@ -4966,9 +4973,9 @@ void window::set_oswindow(::oswindow oswindow)
          {
 
 
-            m_userinteractionaMouseHover.erase_at(i);
+            pinteraction->m_bTrackMouseLeave = false;
 
-            ///pinteraction->m_bTrackMouseLeave = false;
+            m_userinteractionaMouseHover.erase_at(i);
 
             synchronouslock.unlock();
 
@@ -4979,6 +4986,20 @@ void window::set_oswindow(::oswindow oswindow)
          }
 
       }
+
+   }
+
+
+   void window::defer_check_mouse_leave(::user::enum_layout elayoutWindow, ::user::enum_layout elayoutChild)
+   {
+
+      ::int_point pointCursor = m_pointCursor2;
+
+      m_puserinteraction->host_to_client(elayoutWindow)(pointCursor);
+
+      m_puserinteraction->client_to_screen(elayoutWindow)(pointCursor);
+
+      _on_mouse_move_step(pointCursor, elayoutChild);
 
    }
 
@@ -5051,7 +5072,11 @@ void window::set_oswindow(::oswindow oswindow)
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      return m_userinteractionaMouseHover.erase(pinterface) >= 0;
+      bool bErased = m_userinteractionaMouseHover.erase(pinterface) >= 0;
+
+      pinterface->m_bTrackMouseLeave = false;
+
+      return bErased;
 
    }
 
@@ -5138,6 +5163,23 @@ void window::set_oswindow(::oswindow oswindow)
          auto psync = synchronization();
 
          _synchronous_lock synchronouslock(this->synchronization());
+
+         for (auto & pinteraction : m_userinteractionaMouseHover)
+         {
+
+            try
+            {
+
+               pinteraction->m_bTrackMouseLeave = false;
+
+            }
+            catch (...)
+            {
+
+
+            }
+
+         }
 
          m_userinteractionaMouseHover.erase_all();
 
@@ -8325,6 +8367,23 @@ void window::set_oswindow(::oswindow oswindow)
 
          userinteractiona = m_userinteractionaMouseHover;
 
+         for (auto & pinteraction : m_userinteractionaMouseHover)
+         {
+
+            try
+            {
+
+               pinteraction->m_bTrackMouseLeave = false;
+
+            }
+            catch (...)
+            {
+
+
+            }
+
+         }
+
          m_userinteractionaMouseHover.erase_all();
 
       }
@@ -8717,6 +8776,23 @@ void window::set_oswindow(::oswindow oswindow)
                _synchronous_lock synchronouslock(this->synchronization());
 
                userinteractiona = m_userinteractionaMouseHover;
+
+               for (auto & pinteraction : m_userinteractionaMouseHover)
+               {
+
+                  try
+                  {
+
+                     pinteraction->m_bTrackMouseLeave = false;
+
+                  }
+                  catch (...)
+                  {
+
+
+                  }
+
+               }
 
                m_userinteractionaMouseHover.erase_all();
 

@@ -774,7 +774,11 @@ namespace windowing
       //virtual void track_mouse_hover() override;
       //virtual void track_mouse_leave() override;
 
-      virtual void _on_mouse_move_step(const ::int_point & pointCursor, bool bMouseLeave = false);
+      virtual void _on_mouse_move_step(const ::int_point & pointCursor, ::user::enum_layout elayoutChild = ::user::e_layout_design, bool bMouseLeave = false);
+
+
+      virtual void defer_check_mouse_leave(::user::enum_layout elayoutWindow, ::user::enum_layout elayoutChild);
+
 
       //virtual void mouse_hover_step(const __status < ::int_point > & statusPointCursor);
 

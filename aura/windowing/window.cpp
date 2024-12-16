@@ -4972,7 +4972,6 @@ void window::set_oswindow(::oswindow oswindow)
          else
          {
 
-
             pinteraction->m_bTrackMouseLeave = false;
 
             m_userinteractionaMouseHover.erase_at(i);
@@ -13427,7 +13426,30 @@ void window::set_oswindow(::oswindow oswindow)
    void window::on_reposition()
    {
 
+
    }
+
+
+   void window::on_layout_reposition()
+   {
+
+      m_timeHoverNoiseSuppression.Now();
+
+      if (system()->windowing()->has_readily_gettable_absolute_coordinates())
+      {
+
+         defer_check_mouse_leave(::user::e_layout_window, ::user::e_layout_lading);
+
+      }
+      else
+      {
+
+         _on_mouse_move_step({}, {}, true);
+
+      }
+
+   }
+
 
 
    void window::on_show_window()

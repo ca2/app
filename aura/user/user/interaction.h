@@ -180,7 +180,7 @@ namespace user
       ::logic::boolean                          m_bLockGraphicalUpdate;
 
       e_interaction                             m_einteraction;
-      
+
       bool                                      m_bCompositedFrameWindow;
       bool                                      m_bEdgeGestureDisableTouchWhenFullscreen;
       //bool                                      m_bScreenVisible;
@@ -2803,7 +2803,8 @@ namespace user
       
       bool on_impact_update() override;
 
-
+      void window_restore() override;
+      void window_minimize() override;
       void window_maximize() override;
 
 

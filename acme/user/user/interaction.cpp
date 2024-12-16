@@ -375,7 +375,9 @@ namespace acme
             if (strActionName == "minimize")
             {
 
-               display(e_display_iconic);
+               //display(e_display_iconic);
+
+               window_minimize();
 
             }
             else if (strActionName == "maximize")

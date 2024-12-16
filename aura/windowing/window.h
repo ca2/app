@@ -68,7 +68,7 @@ namespace windowing
       ::cast < ::windowing::window >            m_pwindowParent;
       ::string                                  m_strBitmapSource;
       mouse_reposition_throttling               m_mouserepositionthrottling;
-      
+
       ::pointer<::windowing::icon>              m_picon;
       //::pointer<::windowing::windowing>         m_pwindowing;
       ::pointer<::user::copydesk>               m_pcopydesk;
@@ -1406,11 +1406,13 @@ namespace windowing
       //virtual void clear_need_layout();
       virtual void set_need_layout();
       //virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
-      virtual void on_reposition() override;
+      void on_reposition() override;
+      virtual void on_layout_reposition();
+
       virtual void on_show_window();
 
 
-      virtual ::oswindow detach_window() override;
+      ::oswindow detach_window() override;
 
       //void destroy() override;
 

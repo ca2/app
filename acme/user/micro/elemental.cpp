@@ -1017,7 +1017,7 @@ void elemental::back_on_mouse_move(::user::mouse* pmouse)
 
       }
 
-      auto pitemClient = tool().defer_item(e_element_client);
+      auto pitemClient = stock_item(e_element_client);
 
       auto pdragClient = drag(pitemClient);
 

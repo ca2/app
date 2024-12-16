@@ -20,6 +20,17 @@ namespace user
    }
 
 
+   void drawable::destroy()
+   {
+
+      ::draw2d::host::destroy();
+
+      ::user::acme_container::destroy();
+
+
+   }
+
+
    void drawable::_000DrawImpl(::draw2d::graphics_pointer & pgraphics)
    {
 

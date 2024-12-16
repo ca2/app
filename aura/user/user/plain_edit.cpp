@@ -2429,7 +2429,7 @@ namespace user
 
             extend_selection_end(pointHost);
 
-            m_pitemHover = tool().item(e_element_client);
+            m_pitemHover = stock_item(e_element_client);
 
          }
 

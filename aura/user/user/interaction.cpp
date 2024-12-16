@@ -8029,7 +8029,7 @@ namespace user
       if (m_bEnableDragClient || m_bDefaultClickHandling)
       {
 
-         auto pitemClient = tool().defer_item(e_element_client);
+         auto pitemClient = stock_item(e_element_client);
 
          auto puseritem = user_item(pitemClient);
 
@@ -13118,9 +13118,9 @@ namespace user
 
       auto type = ::type(this);
 
-      auto edisplayLading = layout().lading().display();
-
       ::string strType = ::type(this).name();
+
+      auto edisplayLading = layout().lading().display();
 
       auto edisplayLayout = layout().layout().display();
 
@@ -20564,9 +20564,9 @@ namespace user
    void interaction::design_window_maximize()
    {
 
-      ::int_rectangle rectangleRequest = this->screen_rectangle(e_layout_lading);
+      //::int_rectangle rectangleRequest = this->screen_rectangle(e_layout_lading);
 
-      best_workspace(nullptr, rectangleRequest, true, layout().lading().activation(), layout().lading().zorder());
+      //best_workspace(nullptr, rectangleRequest, true, layout().lading().activation(), layout().lading().zorder());
 
    }
 
@@ -20613,17 +20613,17 @@ namespace user
    void interaction::design_window_dock(::e_display edisplay)
    {
 
-      ASSERT(is_docking_appearance(edisplay));
+      //ASSERT(is_docking_appearance(edisplay));
 
-      if (is_docking_appearance(edisplay))
-      {
+      //if (is_docking_appearance(edisplay))
+      //{
 
-         auto rectangleRequest = this->screen_rectangle(::user::e_layout_lading);
+      //   auto rectangleRequest = this->screen_rectangle(::user::e_layout_lading);
 
-         make_zoneing(nullptr, rectangleRequest, true, &edisplay, layout().lading().activation(),
-                      layout().lading().zorder());
+      //   make_zoneing(nullptr, rectangleRequest, true, &edisplay, layout().lading().activation(),
+      //                layout().lading().zorder());
 
-      }
+      //}
 
    }
 
@@ -23271,23 +23271,12 @@ namespace user
    }
 
 
-   ::item_pointer interaction::stock_item(enum_element eelement)
-   {
+   //::item_pointer interaction::stock_item(enum_element eelement)
+   //{
 
-      auto pitem = tool().item(eelement);
+   //   return ::user::interaction_base::stock_item(eelement);
 
-      if (!pitem)
-      {
-
-         tool().add_item(__allocate::item(eelement));
-
-         pitem = tool().item(eelement);
-
-      }
-
-      return pitem;
-
-   }
+   //}
 
 
    void interaction::show_tooltip(const ::string & str, bool bError)
@@ -26482,7 +26471,7 @@ namespace user
          if (type.name().contains("button"))
          {
 
-            //informationf("button");
+            informationf("button");
 
          }
 
@@ -27579,20 +27568,28 @@ namespace user
       //
       //      }
       //
+      
+      //{
       //
-      //      {
+      //   auto pitemHitTest = on_client_area_hit_test(point, ezorder);
       //
-      //         auto pitemHitTest = on_client_area_hit_test(point, ezorder);
+      //   if (::is_set(pitemHitTest))
+      //   {
       //
-      //         if (::is_set(pitemHitTest))
-      //         {
+      //      return pitemHitTest;
       //
-      //            return pitemHitTest;
+      //   }
       //
-      //         }
-      //
-      //      }
+      //}
 
+      if (m_bEmptyAreaIsClientArea)
+      {
+
+         auto pitemClient = stock_item(e_element_client);
+
+         return pitemClient;
+
+      }
 
       auto pitemNone = stock_item(e_element_none);
 
@@ -27831,7 +27828,7 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      auto pitemClient = tool().item(e_element_client);
+      auto pitemClient = stock_item(e_element_client);
 
       if (pitemClient)
       {
@@ -27859,7 +27856,7 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      auto pitemClient = tool().item(e_element_client);
+      auto pitemClient = stock_item(e_element_client);
 
       if (pitemClient)
       {
@@ -29707,7 +29704,13 @@ namespace user
    ::double_rectangle interaction::user_item_rectangle(::user::item * puseritem, ::user::enum_layout elayout)
    {
 
-      if (puseritem->m_euseritemflag & ::user::e_item_flag_rectangle_callback)
+      if (puseritem->m_pitem->m_item.m_eelement == e_element_client)
+      {
+
+         return this->raw_rectangle();
+
+      }
+      else if (puseritem->m_euseritemflag & ::user::e_item_flag_rectangle_callback)
       {
 
          return _user_item_rectangle(puseritem, elayout);
@@ -30380,7 +30383,7 @@ namespace user
    void interaction::window_maximize()
    {
 
-      main_post([this]()
+      window()->m_pgraphicsthread->post([this]()
       {
 
           informationf("::user::interaction::window_maximize type:%s", typeid(*this).name());

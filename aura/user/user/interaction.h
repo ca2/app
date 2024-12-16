@@ -1100,7 +1100,7 @@ namespace user
       virtual ::item_pointer current_item();
 
 
-      virtual ::item_pointer stock_item(::enum_element eelement);
+      //virtual ::item_pointer stock_item(::enum_element eelement);
 
 
       //virtual ::item_pointer hover_item();

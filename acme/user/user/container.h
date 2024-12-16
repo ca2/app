@@ -108,6 +108,10 @@ namespace user
       //virtual ::item_pointer get_child_as_item(::collection::index iIndex);
       //virtual ::collection::count get_child_as_item_count();
 
+      virtual ::item_pointer on_create_stock_item(enum_element eelement);
+      virtual ::item_pointer stock_item(enum_element eelement);
+
+
 
    };
 

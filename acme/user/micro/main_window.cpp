@@ -57,7 +57,7 @@ namespace micro
 
       m_efont = e_font_sans;
 
-      auto pitemClient = tool().defer_item(e_element_client);
+      auto pitemClient = stock_item(e_element_client);
 
       enable_drag(pitemClient, ::user::e_zorder_back);
 

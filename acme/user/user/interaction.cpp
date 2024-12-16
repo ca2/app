@@ -68,7 +68,7 @@ namespace acme
 
          //m_efont = e_font_sans;
          m_uFlagsAcmeUserInteraction = 0;
-         auto pitemClient = tool().defer_item(e_element_client);
+         auto pitemClient = stock_item(e_element_client);
 
          enable_drag(pitemClient, ::user::e_zorder_back);
 
@@ -676,6 +676,7 @@ namespace acme
             m_ptimerarray->delete_timer(uEvent);
 
          }
+
 
 
 

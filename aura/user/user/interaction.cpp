@@ -20130,6 +20130,8 @@ namespace user
             else if (edisplayPrevious == e_display_zoomed)
             {
 
+               information() << "_001OnAfterExitAppearance (exiting Zoomed)";
+
                _001OnAfterExitZoomed();
 
                auto ptopic = create_topic(id_on_after_exit_zoomed);

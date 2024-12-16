@@ -37,7 +37,7 @@ bool defer_finalize_operating_system_networking();
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(__BSD__)
 #undef USE_MISC
-
+#include <signal.h>
 #if defined(__APPLE__) || defined(__BSD__)
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -217,6 +217,21 @@ namespace networking_bsd
 
 
    }
+
+
+   void networking::on_socket_thread_start()
+   {
+
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(__BSD__)
+
+      sigset_t blockedSignal;
+      sigemptyset(&blockedSignal);
+      sigaddset(&blockedSignal, SIGPIPE);
+      pthread_sigmask(SIG_BLOCK, &blockedSignal, NULL);
+#endif
+
+   }
+
 
 
    bool networking::gudo_set()

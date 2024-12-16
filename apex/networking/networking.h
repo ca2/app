@@ -106,6 +106,8 @@ namespace networking
 
       virtual ::sockets::sockets * sockets() { return m_psockets; }
 
+      virtual void on_socket_thread_start();
+
       virtual bool gudo_set();
 
       ///virtual ::sockets::listen_socket * new_listen_socket(const ::type_atom & type);

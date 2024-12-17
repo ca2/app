@@ -2248,7 +2248,7 @@ namespace user
             if (::is_set(pwindow))
             {
 
-               //information() << "pwindow->post_redraw();";
+               information() << "pwindow->post_redraw();";
 
                pwindow->post_redraw();
 
@@ -25893,6 +25893,8 @@ namespace user
          if (::is_item_set(pitemLButtonDown))
          {
 
+            information() << "::is_item_set(pitemLButtonDown)";
+
             auto pwindowHost = window();
 
             pwindowHost->m_puiLastLButtonDown = this;
@@ -25913,6 +25915,13 @@ namespace user
             }
 
          }
+         else
+         {
+
+            information() << "!::is_item_set(pitemLButtonDown)";
+
+         }
+
 
       }
 
@@ -25973,12 +25982,12 @@ namespace user
 
       //}
 
-      if (pmouse->previous())
-      {
-
-         return;
-
-      }
+      // if (pmouse->previous())
+      // {
+      //
+      //    return;
+      //
+      // }
 
       //if (drag_on_button_up(pmouse))
       //{
@@ -26099,7 +26108,9 @@ namespace user
 
             auto puseritemLButtonDown = user_item(pwindowimpl->m_pitemLButtonDown);
 
-            auto puseritemLeftButtonUp = hit_test(pmouse, puseritemLButtonDown->m_ezorder);
+            auto puseritemLeftButtonUp= update_hover(pmouse, puseritemLButtonDown->m_ezorder);
+
+            //auto puseritemLeftButtonUp = hit_test(pmouse, puseritemLButtonDown->m_ezorder);
 
             bool bSameUserInteractionAsMouseDown = pwindowimpl->m_puiLastLButtonDown == this;
 
@@ -26506,12 +26517,12 @@ namespace user
 
             timeNoiseSuppressionElapsed = window()->m_timeHoverNoiseSuppression.elapsed();
 
-            if (window()->m_timeHoverNoiseSuppression.elapsed() < 2_s)
-            {
-
-               bUpdateHover = false;
-
-            }
+            // if (window()->m_timeHoverNoiseSuppression.elapsed() < 600_ms)
+            // {
+            //
+            //    bUpdateHover = false;
+            //
+            // }
 
          }
 
@@ -26533,7 +26544,7 @@ namespace user
             if (type.name().contains("button"))
             {
 
-               informationf("button");
+               //informationf("button");
 
             }
 
@@ -27154,6 +27165,8 @@ namespace user
       if (::is_item_set(pitemHitTest))
       {
 
+         information() << "::is_item_set(pitemHitTest)";
+
          bRet = drag_on_mouse_hover(pitemHitTest, pmouse);
 
          if (!user_mouse_get_cursor(pmouse))
@@ -27284,14 +27297,14 @@ namespace user
          if (rectanglea.has_element())
          {
 
-            //informationf("user::interaction::update_hover set_need_redraw (%d rectangle(s))", rectanglea.size());
+            informationf("user::interaction::update_hover set_need_redraw (%d rectangle(s))", rectanglea.size());
 
-            // for (auto & rectangle : rectanglea)
-            // {
-            //
-            //    information() << "user::interaction::update_hover set_need_redraw" << rectangle;
-            //
-            // }
+             for (auto & rectangle : rectanglea)
+             {
+
+                information() << "user::interaction::update_hover set_need_redraw" << rectangle;
+
+             }
 
             set_need_redraw(rectanglea);
 

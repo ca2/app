@@ -9023,6 +9023,8 @@ void window::set_oswindow(::oswindow oswindow)
    void window::do_graphics()
    {
 
+      information() << "windowing::window::do_graphics";
+
       if (!m_puserinteraction || has_destroying_flag())
       {
 
@@ -9150,7 +9152,6 @@ void window::set_oswindow(::oswindow oswindow)
 
       {*/
 
-
       //synchronouslock.unlock();
 
       ////if (!m_puserinteraction->is_sketch_to_design_locked())
@@ -9272,7 +9273,6 @@ void window::set_oswindow(::oswindow oswindow)
 
       }
 
-
       //::int_size sizeDrawn;
 
       //single_lock synchronouslockObjects(system()->draw2d()->get_object_list_mutex());
@@ -9308,19 +9308,15 @@ void window::set_oswindow(::oswindow oswindow)
 
       //m_puserinteraction->layout_to_design(m_bUpdateBuffer, m_bUpdateWindow);
 
-
 #ifdef MORE_LOG
 
       debug() << "do_graphics(B)";
 
 #endif
 
-
       ::draw2d::graphics_pointer pgraphics;
 
       m_puserinteraction->defer_do_graphics(pgraphics);
-
-
 
       //if (pgraphics)
       //{
@@ -9409,7 +9405,7 @@ void window::set_oswindow(::oswindow oswindow)
    void window::defer_do_graphics(::draw2d::graphics_pointer & pgraphics)
    {
 
-      debug() << "windowing::window::defer_do_graphics";
+      information() << "windowing::window::defer_do_graphics";
 
       //{
 

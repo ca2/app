@@ -129,7 +129,7 @@ public:
    bool _is_ok() const override;
 
 
-
+   virtual void on_notify(::particle * pparticle, enum_id eid);
 
 //   virtual void delete_this();
 

@@ -1564,6 +1564,8 @@ namespace user
 
       lresult message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0) override;
 
+      virtual lresult call_route_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
+
       virtual void on_default_window_procedure(::message::message * pmessage);
 
       void post_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0) override;

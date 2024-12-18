@@ -34,6 +34,15 @@ matter::~matter()
 //
 //   }
 
+   auto particleaNotify = ::transfer(m_particleaNotify);
+
+   for (auto pparticle : particleaNotify)
+   {
+
+      pparticle->on_notify(this, id_destroy);
+
+   }
+
 }
 
 
@@ -91,6 +100,12 @@ matter::~matter()
 }
 
 
+void matter::operator()(::topic * ptopic, ::context * pcontext)
+{
+
+   ::particle::operator ()(ptopic, pcontext);
+
+}
 
 
 void matter::operator()(::message::message * pmessage)
@@ -190,9 +205,9 @@ void matter::set_finish()
 void matter::destroy()
 {
 
-   auto destroyinga = ::transfer(m_destroyinga);
+   auto procedureaDestroy = ::transfer(m_procedureaDestroying);
 
-   for(auto & procedure : destroyinga)
+   for(auto & procedure : procedureaDestroy)
    {
        
        if(procedure)
@@ -202,6 +217,15 @@ void matter::destroy()
            
        }
        
+   }
+
+   auto particleaNotify = ::transfer(m_particleaNotify);
+
+   for (auto pparticle : particleaNotify)
+   {
+
+      pparticle->on_notify(this, id_destroy);
+
    }
     
    //m_destroyinga.erase_all();
@@ -225,6 +249,21 @@ void matter::on_set_finish()
 //   return nullptr;
 //
 //}
+
+void matter::on_notify(::particle * pparticle, enum_id eid)
+{
+
+   if (eid == id_destroy)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      m_particleaNotify.erase(pparticle);
+
+   }
+
+}
+
 
 
 bool matter::is_ready_to_quit() const

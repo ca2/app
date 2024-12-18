@@ -7,6 +7,7 @@
 #include "factory.h"
 #include "function.h"
 #include "acme/platform/tracer.h"
+#include "acme/prototype/collection/pointer_array.h"
 #include "acme/prototype/collection/procedure_array.h"
 
 
@@ -38,8 +39,8 @@ public:
 
    class ::atom                        m_atom;
 //   ::eobject                           m_eobject;
-
-   procedure_array   m_destroyinga;
+   ::procedure_array                   m_procedureaDestroying;
+   ::comparable_array< ::particle * >  m_particleaNotify;
 
 //#if REFERENCING_DEBUGGING
 //   inline matter() : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_uObject(0), system()(nullptr) { increment_reference_count( REFERENCING_DEBUGGING_COMMA_NOTE("Initial Reference")); }
@@ -81,7 +82,7 @@ public:
    virtual ::extended_topic_pointer create_extended_topic(const ::atom & atom);
 
 
-   //void operator()(::topic * ptopic, ::context * pcontext) override;
+   void operator()(::topic * ptopic, ::context * pcontext) override;
 
    virtual void operator()(::message::message * pmessage);
    virtual void operator()(const ::payload & payload);
@@ -100,7 +101,9 @@ public:
    //inline bool is_set() const { return ::is_set(this); }
 
 
-   procedure_array & destroying() { return m_destroyinga; }
+   procedure_array & destroyinga() { return m_procedureaDestroying; }
+   ::comparable_array< ::particle * > & notifya() { return m_particleaNotify; }
+   void on_notify(::particle * pparticle, enum_id eid) override;
 
 
    virtual bool is_ready_to_quit() const;

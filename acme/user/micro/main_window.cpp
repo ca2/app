@@ -1473,7 +1473,10 @@ namespace micro
       // ::user::drag_client::destroy();
       //::conversation::destroy();
 
-      system()->erase_signal_handler(this);
+
+      // ::cast < ::manager > pmanager = system();
+      //
+      // pmanager->erase_signal_handler(this);
 
    }
 

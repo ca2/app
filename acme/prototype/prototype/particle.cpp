@@ -679,6 +679,13 @@ bool particle::_is_ok() const
 }
 
 
+void particle::on_notify(::particle * pparticle, enum_id eid)
+{
+
+
+}
+
+
 void particle::delete_this()
 {
 

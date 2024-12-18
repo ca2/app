@@ -141,10 +141,13 @@ public:
    }
 
 };
-
+#define FUNCTION_DEBUGGING 1
 class function_common_base
 {
-
+#if FUNCTION_DEBUGGING
+   const char * m_pszDebug;
+   ::huge_integer m_iDebug;
+#endif
 };
 
 template < typename BASE_TYPE, typename COMPOSITE_TYPE >

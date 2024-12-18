@@ -400,7 +400,7 @@ namespace experience
 
       pframe->m_pframewindow = this;
 
-      auto psignal = get_signal(id_user_style_change);
+      auto psignal = signal(id_user_style_change);
 
       psignal->add_handler(pframe);
 

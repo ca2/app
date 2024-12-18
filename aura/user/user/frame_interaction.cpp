@@ -11,6 +11,7 @@
 #include "acme/parallelization/pool.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/constant/message.h"
+#include "apex/handler/signal.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/platform/application.h"
 #include "aura/platform/draw_context2.h"
@@ -445,7 +446,7 @@ namespace user
       MESSAGE_LINK(e_message_application_exit, pchannel, this, &frame_interaction::on_message_application_exit);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &frame_interaction::on_message_key_down);
 
-      system()->add_signal_handler(this, id_operating_system_user_color_change);
+      system()->signal(id_operating_system_user_color_change)->add_handler(this);
 //#ifdef WINDOWS_DESKTOP
 //
 //      if (is_frame_window())

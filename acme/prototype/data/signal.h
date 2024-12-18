@@ -19,6 +19,7 @@ public:
 
 };
 
+
 namespace data
 {
 
@@ -29,7 +30,7 @@ namespace data
    public:
 
 
-      ::comparable_array < FUNCTION > m_functiona;
+      ::comparable_array < FUNCTION >     m_functiona;
 
 
       signal & operator +=(const FUNCTION & function) { m_functiona += function; return *this; }
@@ -46,7 +47,7 @@ template < primitive_function FUNCTION >
 void matter::hold_signal_function(::data::signal<FUNCTION> * psignal, FUNCTION function)
 {
 
-   this->destroying() += [this, psignal, function]()
+   this->destroyinga() += [this, psignal, function]()
       {
 
          (*psignal) -= function;

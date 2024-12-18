@@ -145,6 +145,9 @@ namespace apex
 
       bool task_get_run() const override;
 
+
+         [[nodiscard]] class ::handler::signal * signal(const ::atom& atom) override;
+
       //void create_os_node() override;
 
       //::apex::node * node();
@@ -428,9 +431,9 @@ namespace apex
 
       //void add_handler(::particle * pmatter, bool bPriority = false) override;
 
-      void add_signal_handler(const ::signal_handler& signalhandler, const ::atom & atomSignal) override;
+      //void add_signal_handler(const ::signal_handler& signalhandler, const ::atom & atomSignal) override;
 
-      void erase_signal_handler(::signal_handler::base * pbase) override;
+      //void erase_signal_handler(::signal_handler::base * pbase) override;
 
       //void erase_signal_handlers(::particle * pparticle) override;
       

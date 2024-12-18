@@ -23,7 +23,6 @@ namespace handler
    signal::~signal()
    {
 
-
    }
 
 
@@ -136,7 +135,40 @@ namespace handler
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      for (auto & pair : m_signalhandlercontext)
+      for (auto & pair : m_mattercontext)
+      {
+
+         auto & pmatter = pair.m_element1;
+
+         auto & pcontext = pair.m_element2;
+
+         if (!pcontext)
+         {
+
+            pcontext = __allocate ::context();
+
+         }
+
+         //      if (pcontext->m_bFork)
+         //      {
+         //
+         //         branch_element(pmatter);
+         //
+         //      }
+         //      else
+         //      {
+
+         synchronouslock.unlock();
+
+         pmatter->operator()(this, pcontext);
+
+         synchronouslock._lock();
+
+         //      }
+
+      }
+
+      for (auto & pair : m_signalhandlercontext2)
       {
 
          auto & signalhandler = pair.m_element1;
@@ -159,7 +191,11 @@ namespace handler
          //      else
          //      {
 
+         synchronouslock.unlock();
+
          signalhandler(this, pcontext);
+
+         synchronouslock._lock();
 
          //      }
 
@@ -173,7 +209,7 @@ namespace handler
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      auto & pcontext = m_signalhandlercontext[signalhandler];
+      auto & pcontext = m_signalhandlercontext2[signalhandler];
 
       if (!pcontext)
       {
@@ -232,17 +268,52 @@ namespace handler
    }
 
 
+   void signal::on_notify(::particle * pparticle, enum_id eid)
+   {
+
+      ::matter::on_notify(pparticle, eid);
+
+      ::cast < ::matter > pmatter = pparticle;
+
+      if (pmatter)
+      {
+
+         _synchronous_lock synchronouslock(this->synchronization());
+
+         m_mattercontext.erase_item(pmatter);
+
+      }
+
+   }
+
+
    void signal::add_handler(::matter * pmatter)
    {
 
-      pmatter->destroying() += [this, pmatter]()
+      pmatter->notifya().add(this);
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      auto & pcontext = m_mattercontext[pmatter];
+
+      if (!pcontext)
       {
 
-         erase_signal_handler(::signal_handler(pmatter));
+         pcontext = __allocate ::context();
 
-      };
+      }
 
-      add_signal_handler(::signal_handler(pmatter));
+   }
+
+
+   void signal::erase_handler(::matter * pmatter)
+   {
+
+      pmatter->notifya().erase(this);
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      m_mattercontext.erase_item(pmatter);
 
    }
 
@@ -273,7 +344,7 @@ namespace handler
 
       //}
 
-      auto & pcontext = m_signalhandlercontext[signalhandler];
+      auto & pcontext = m_signalhandlercontext2[signalhandler];
 
       if (!pcontext)
       {
@@ -294,7 +365,7 @@ namespace handler
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      m_signalhandlercontext.erase_item(signalhandler);
+      m_signalhandlercontext2.erase_item(signalhandler);
 
    }
 
@@ -367,7 +438,16 @@ namespace handler
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      m_signalhandlercontext.erase_all();
+      m_signalhandlercontext2.erase_all();
+
+      for (auto & pair:m_mattercontext)
+      {
+
+         pair.m_element1->notifya().erase(this);
+
+      }
+
+      m_mattercontext.erase_all();
 
    }
 

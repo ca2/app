@@ -7352,18 +7352,14 @@ namespace user
          && !windowing()->is_screen_visible(edisplayOld))
          {
 
-            //ModifyStyle(0, WS_VISIBLE);
-
-            this->send_message(e_message_show_window, 1);
+            this->call_route_message(e_message_show_window, 1);
 
          }
          else if (!windowing()->is_screen_visible(edisplayNew)
              && windowing()->is_screen_visible(edisplayOld))
          {
 
-            ///ModifyStyle(WS_VISIBLE, 0);
-
-            this->send_message(e_message_show_window, 0);
+            this->call_route_message(e_message_show_window, 0);
 
          }
 
@@ -8090,7 +8086,7 @@ namespace user
       if (pmanager)
       {
 
-         auto psignal = pmanager->get_signal(id_user_style_change);
+         auto psignal = pmanager->signal(id_user_style_change);
 
          psignal->add_handler(this);
 
@@ -12435,7 +12431,7 @@ namespace user
          else
          {
 
-            pinteraction->send_message(e_message_size_parent, 0, (lparam)&sizeparentlayout);
+            pinteraction->call_route_message(e_message_size_parent, 0, (lparam)&sizeparentlayout);
 
          }
 
@@ -15892,6 +15888,37 @@ namespace user
       //return message_call(pmessage);
 
       message_handler(pmessage);
+
+      return pmessage->m_lresult;
+
+   }
+
+
+   lresult interaction::call_route_message(const ::atom & atom, wparam wparam, lparam lparam)
+   {
+
+      // if (::is_null(m_puserinteraction))
+      // {
+
+      //    throw ::exception(error_wrong_state);
+
+      // }
+
+      // this->interaction_post(__allocate call_message_handler_task(m_puserinteraction, atom, wparam, lparam));
+
+      //auto pmessage
+
+      //get_message()
+
+      ::pointer<::message::message>pmessage;
+
+      pmessage = get_message(atom, wparam, lparam);
+
+      pmessage->m_pchannel = this;
+
+      //return message_call(pmessage);
+
+      route_message(pmessage);
 
       return pmessage->m_lresult;
 
@@ -19442,28 +19469,32 @@ namespace user
    void interaction::hide_and_then_destroy()
    {
 
-      if (is_top_level())
+      window()->m_pgraphicsthread->post([this]()
       {
+         if (is_top_level())
+         {
 
-         window()->m_bQuitGraphicsOnHide = true;
-         window()->m_bDestroyWindowOnHide = true;
-         window()->m_bTryCloseApplicationOnHide = true;
+            window()->m_bQuitGraphicsOnHide = true;
+            window()->m_bDestroyWindowOnHide = true;
+            window()->m_bTryCloseApplicationOnHide = true;
 
-      }
-      else
-      {
+         }
+         else
+         {
 
-         m_bDestroyOnHide = true;
+            m_bDestroyOnHide = true;
 
-      }
+         }
 
-      display(e_display_hide);
+         display(e_display_hide);
 
-      set_need_layout();
+         set_need_layout();
 
-      set_need_redraw();
+         set_need_redraw();
 
-      post_redraw();
+         post_redraw();
+
+      });
 
    }
 
@@ -22610,7 +22641,7 @@ namespace user
          if (::type(this).name().contains("main_frame"))
          {
 
-            //information() << "on_message_show_window main_frame (B)";
+            information() << "on_message_show_window main_frame (B)";
 
          }
 

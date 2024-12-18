@@ -223,7 +223,7 @@ void subparticle::init_task()
 
 }
 
-
+int g_iSubparticleCallCount = 0;
 void subparticle::call()
 {
 
@@ -231,6 +231,8 @@ void subparticle::call()
 
    try
    {
+
+      g_iSubparticleCallCount++;
 
       run();
 

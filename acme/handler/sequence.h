@@ -98,6 +98,8 @@ class procedure_array_with_context;
 //
 //};
 
+class waiting_call_base;
+
 class CLASS_DECL_ACME sequence :
    virtual public ::subparticle_array
    //virtual public procedure_array_with_context<sequence>,

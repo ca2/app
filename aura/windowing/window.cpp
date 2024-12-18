@@ -80,7 +80,6 @@ namespace windowing
    }
 
 
-
    void window::user_common_construct()
    {
       m_bUserImplCreated = false;

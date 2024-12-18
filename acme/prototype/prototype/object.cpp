@@ -1143,8 +1143,6 @@ void object::transfer_tasks_from(::object* ptask)
 
    defer_create_synchronization();
 
-   _synchronous_lock synchronouslock(this->synchronization());
-
    if(is_ascendant_task(ptask))
    {
 
@@ -1159,17 +1157,23 @@ void object::transfer_tasks_from(::object* ptask)
    if(ptaskTask)
    {
 
-      if(ptaskTask->m_procedurea.has_element())
+      if(ptaskTask->m_procedurea2.has_element())
       {
 
-         ::pointer < ::task > ptaskTaskTarget = this;
+         ::cast < ::task > ptaskTaskTarget = this;
 
-         if(ptaskTaskTarget)
+         if (ptaskTaskTarget)
          {
 
-            auto procedurea = ::transfer(ptaskTask->m_procedurea);
+            _synchronous_lock synchronouslockTask(ptaskTask->synchronization());
 
-            ptaskTaskTarget->m_procedurea.append(procedurea);
+            auto procedurea = ::transfer(ptaskTask->m_procedurea2);
+
+            synchronouslockTask.unlock();
+
+            _synchronous_lock synchronouslock(this->synchronization());
+
+            ptaskTaskTarget->m_procedurea2.append(procedurea);
 
          }
 

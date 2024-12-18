@@ -11,10 +11,11 @@ class CLASS_DECL_ACME wait_for_end_of_sequence :
 public:
 
 
-   ::sequence * m_psequence;
+   ::sequence *               m_psequence;
+   ::waiting_call_base *      m_pwaitingcallbase;
 
 
-   explicit wait_for_end_of_sequence(manual_reset_happening * phappeningEndOfSequence, ::sequence * psequence);
+   explicit wait_for_end_of_sequence(manual_reset_happening * phappeningEndOfSequence, ::sequence * psequence, ::waiting_call_base * pwaitingcallbase);
 
    void on_before_set(const class ::time & wait = ::time::infinity());
    ::e_status on_set_or_timeout(::e_status estatus);

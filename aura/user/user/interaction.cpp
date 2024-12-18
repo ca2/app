@@ -16653,6 +16653,13 @@ namespace user
 
          information() << "interaction sketch_to_lading main_frame sketch display : " << ::as_string(layout().sketch().m_edisplay.m_eenum);
 
+         if (layout().sketch().m_edisplay.m_eenum == e_display_zoomed)
+         {
+
+            information() << "interaction sketch_to_lading main_frame sketch display zoom request";
+
+         }
+
       }
 
       _synchronous_lock synchronouslock(this->synchronization());

@@ -826,6 +826,8 @@ int thread::_GetMessage(MESSAGE* pmessage, ::windowing::window* pwindow, unsigne
 bool thread::task_iteration()
 {
 
+   ASSERT(m_itask == ::current_itask());
+
 #ifdef WINDOWS_DESKTOP
 
    if (m_messageaInitialQueue.has_element())

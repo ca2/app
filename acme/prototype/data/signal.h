@@ -8,9 +8,9 @@ class add_signal_function_to_holder
 public:
 
    ::data::signal < FUNCTION > * m_psignal;
-   ::matter * m_pmatterFunctionHolder;
-   add_signal_function_to_holder(::data::signal < FUNCTION > & signal, ::matter * pmatterFunctionHolder) :
-      m_psignal(&signal), m_pmatterFunctionHolder(pmatterFunctionHolder)
+   ::object * m_pobjectFunctionHolder;
+   add_signal_function_to_holder(::data::signal < FUNCTION > & signal, ::object * pobjectFunctionHolder) :
+      m_psignal(&signal), m_pobjectFunctionHolder(pobjectFunctionHolder)
    {
 
    }
@@ -42,9 +42,9 @@ namespace data
 
 } // namespace data
 
-
+CLASS_DECL_ACME ::huge_integer function_debugging_serial();
 template < primitive_function FUNCTION >
-void matter::hold_signal_function(::data::signal<FUNCTION> * psignal, FUNCTION function)
+void object::hold_signal_function(::data::signal<FUNCTION> * psignal, FUNCTION function)
 {
 
    this->destroyinga() += [this, psignal, function]()
@@ -53,6 +53,10 @@ void matter::hold_signal_function(::data::signal<FUNCTION> * psignal, FUNCTION f
          (*psignal) -= function;
 
       };
+#if FUNCTION_DEBUGGING
+   this->destroyinga().last().m_pszDebug = "hold signal function";
+   this->destroyinga().last().m_iDebug = function_debugging_serial();
+#endif
 
 }
 
@@ -63,7 +67,7 @@ add_signal_function_to_holder<FUNCTION> & add_signal_function_to_holder<FUNCTION
 
    (*m_psignal) += f;
 
-   m_pmatterFunctionHolder->hold_signal_function(m_psignal, f);
+   m_pobjectFunctionHolder->hold_signal_function(m_psignal, f);
 
    return *this;
 

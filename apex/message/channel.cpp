@@ -32,11 +32,13 @@ channel::~channel()
 void channel::install_message_routing(::channel * pchannel)
 {
 
-   ::object::install_message_routing(pchannel);
 
 }
+
+
 void channel::erase_handler(::particle * pparticle)
 {
+
    erase_handler(pparticle, false);
    erase_handler(pparticle, true);
 
@@ -418,7 +420,7 @@ void channel::destroy()
 
       //m_proceduremap.erase_all();
 
-   ::object::destroy();
+   ::particle::destroy();
 
    //return ::success;
 

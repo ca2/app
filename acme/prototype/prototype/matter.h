@@ -39,8 +39,6 @@ public:
 
    class ::atom                        m_atom;
 //   ::eobject                           m_eobject;
-   ::procedure_array                   m_procedureaDestroying;
-   ::comparable_array< ::particle * >  m_particleaNotify;
 
 //#if REFERENCING_DEBUGGING
 //   inline matter() : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_uObject(0), system()(nullptr) { increment_reference_count( REFERENCING_DEBUGGING_COMMA_NOTE("Initial Reference")); }
@@ -78,14 +76,12 @@ public:
 
 
 
-   virtual ::topic_pointer create_topic(const ::atom & atom);
-   virtual ::extended_topic_pointer create_extended_topic(const ::atom & atom);
 
 
    void operator()(::topic * ptopic, ::context * pcontext) override;
 
    virtual void operator()(::message::message * pmessage);
-   virtual void operator()(const ::payload & payload);
+   //virtual void operator()(const ::payload & payload);
 
 
     //// <3TBS_!! handle -> command_handler <3TBS_(I need to suck you)!!
@@ -101,9 +97,6 @@ public:
    //inline bool is_set() const { return ::is_set(this); }
 
 
-   procedure_array & destroyinga() { return m_procedureaDestroying; }
-   ::comparable_array< ::particle * > & notifya() { return m_particleaNotify; }
-   void on_notify(::particle * pparticle, enum_id eid) override;
 
 
    virtual bool is_ready_to_quit() const;
@@ -283,8 +276,6 @@ public:
    virtual ::string class_title();
 
    
-   template < primitive_function FUNCTION >
-   void hold_signal_function(::data::signal<FUNCTION> * psignal, FUNCTION f);
 
 };
 

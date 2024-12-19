@@ -93,7 +93,7 @@ namespace windowing
       m_bIgnoreSizeEvent = false;
       m_bIgnoreMoveEvent = false;
       //m_bUserElementOk = true;
-      m_uOnHide = false;
+      m_uOnHide = 0;
       //m_bQuitGraphicsOnHide = false;
       //m_bTryCloseApplicationOnHide = false;
       m_pImpl2 = nullptr;

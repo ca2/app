@@ -28,7 +28,7 @@ public:
    void channel_common_construct();
 
    
-   virtual void install_message_routing(::channel* pchannel) override;
+   virtual void install_message_routing(::channel* pchannel);
 
 
    virtual void destroy() override;

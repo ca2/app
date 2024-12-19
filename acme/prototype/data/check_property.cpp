@@ -280,18 +280,18 @@ namespace data
    //}
 
 
-   ::add_signal_function_to_holder < ::data::check_will_change > check_property::check_will_change(::matter * pmatterFunctionHolder)
+   ::add_signal_function_to_holder < ::data::check_will_change > check_property::check_will_change(::object * pobjectFunctionHolder)
    {
 
-      return { m_checkwillchangesignal, pmatterFunctionHolder };
+      return { m_checkwillchangesignal, pobjectFunctionHolder };
 
    }
 
 
-   ::add_signal_function_to_holder < ::data::check_changed > check_property::check_changed(::matter * pmatterFunctionHolder)
+   ::add_signal_function_to_holder < ::data::check_changed > check_property::check_changed(::object * pobjectFunctionHolder)
    {
 
-      return { m_checkchangedsignal, pmatterFunctionHolder };
+      return { m_checkchangedsignal, pobjectFunctionHolder };
 
    }
 

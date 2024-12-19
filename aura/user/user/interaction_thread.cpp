@@ -802,7 +802,7 @@ namespace user
 
       //auto estatus = 
       
-      ::channel::on_destroy();
+      ::manager::on_destroy();
 
       //return estatus;
 

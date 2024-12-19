@@ -7,7 +7,7 @@
 
 /// source is originator of subjects
 class CLASS_DECL_ACME source :
-   virtual public ::object
+   virtual public ::particle
 {
 public:
 

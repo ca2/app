@@ -12,21 +12,23 @@ class context;
 
 using signal_handler_context = map < ::signal_handler, ::pointer < ::context > >;
 
-using matter_context = map < ::matter *, ::pointer < ::context > >;
+using object_context = map < ::object *, ::pointer < ::context > >;
+
 
 namespace handler
 {
 
+
    class CLASS_DECL_APEX signal :
-      virtual public ::extended_topic,
-      virtual public ::object
+      virtual public ::extended_topic
+//      , virtual public ::object
    {
    public:
 
 
       ::manager * m_pmanager;
       ::signal_handler_context               m_signalhandlercontext2;
-      ::matter_context                       m_mattercontext;
+      ::object_context                       m_objectcontext;
 
 
       signal(const ::atom & atom, ::manager * pmanager = nullptr);
@@ -51,9 +53,9 @@ namespace handler
 
       void on_notify(::particle * pparticle, enum_id eid) override;
 
-      virtual void add_handler(::matter * pmatter);
+      virtual void add_handler(::object * pobject);
 
-      virtual void erase_handler(::matter * pmatter);
+      virtual void erase_handler(::object * pobject);
 
       virtual void add_signal_handler(const signal_handler & signalhandler);
 

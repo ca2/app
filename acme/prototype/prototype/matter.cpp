@@ -34,15 +34,6 @@ matter::~matter()
 //
 //   }
 
-   auto particleaNotify = ::transfer(m_particleaNotify);
-
-   for (auto pparticle : particleaNotify)
-   {
-
-      pparticle->on_notify(this, id_destroy);
-
-   }
-
 }
 
 
@@ -78,26 +69,6 @@ matter::~matter()
 //}
 
 
-::topic_pointer create_topic(::particle * pparticleCall, const ::atom & atom);
-
-
-::topic_pointer matter::create_topic(const ::atom & atom)
-{
-
-   return ::transfer(::create_topic(this, atom));
-
-}
-
-
-::extended_topic_pointer create_extended_topic(::particle * pparticleCall, const ::atom & atom);
-
-
-::extended_topic_pointer matter::create_extended_topic(const ::atom & atom)
-{
-
-   return ::transfer(::create_extended_topic(this, atom));
-
-}
 
 
 void matter::operator()(::topic * ptopic, ::context * pcontext)
@@ -115,10 +86,10 @@ void matter::operator()(::message::message * pmessage)
 }
 
 
-void matter::operator()(const ::payload & payload)
-{
-
-}
+// void matter::operator()(const ::payload & payload)
+// {
+//
+// }
 
 
 //// <3TBS_!! handle -> command_handler <3TBS_(I need to suck you)!!
@@ -205,30 +176,7 @@ void matter::set_finish()
 void matter::destroy()
 {
 
-   auto procedureaDestroy = ::transfer(m_procedureaDestroying);
-
-   for(auto & procedure : procedureaDestroy)
-   {
-       
-       if(procedure)
-       {
-           
-           procedure();
-           
-       }
-       
-   }
-
-   auto particleaNotify = ::transfer(m_particleaNotify);
-
-   for (auto pparticle : particleaNotify)
-   {
-
-      pparticle->on_notify(this, id_destroy);
-
-   }
-    
-   //m_destroyinga.erase_all();
+   ::particle::destroy();
 
 }
 
@@ -250,19 +198,7 @@ void matter::on_set_finish()
 //
 //}
 
-void matter::on_notify(::particle * pparticle, enum_id eid)
-{
 
-   if (eid == id_destroy)
-   {
-
-      _synchronous_lock synchronouslock(this->synchronization());
-
-      m_particleaNotify.erase(pparticle);
-
-   }
-
-}
 
 
 
@@ -966,4 +902,14 @@ void matter::__send_procedure(const ::function < void(const ::procedure &) > & f
 //}
 
 
+::huge_integer g_iFunctionDebuggingSerial = 0;
 
+
+CLASS_DECL_ACME ::huge_integer function_debugging_serial()
+{
+
+   g_iFunctionDebuggingSerial++;
+
+   return g_iFunctionDebuggingSerial;
+
+}

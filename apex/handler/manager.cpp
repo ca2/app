@@ -88,8 +88,7 @@ void manager::destroy()
 
    m_psignalmap.release();
 
-   ::object::destroy();
-
+   ::property_object::destroy();
 
 }
 
@@ -523,7 +522,7 @@ void manager::erase_signal_handler(const ::signal_handler::base * pbase)
 }
 
 
-void manager::erase_handler(::matter * pmatter)
+void manager::erase_handler(::object * pobject)
 {
 
    _synchronous_lock synchronouslock(this->synchronization());
@@ -542,7 +541,7 @@ void manager::erase_handler(::matter * pmatter)
    for (auto psignal : m_psignalmap->payloads())
    {
 
-      psignal->erase_handler(pmatter);
+      psignal->erase_handler(pobject);
 
    }
 

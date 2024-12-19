@@ -38,7 +38,7 @@ public:
    //virtual void add_handler(::matter * pmatter, const ::atom & atomSignal);
    //virtual void add_signal_handler(const ::signal_handler& signalhandler, const ::atom & atomSignal);
 
-   virtual void erase_handler(::matter * pmatter);
+   virtual void erase_handler(::object * pobject);
    virtual void erase_signal_handler(const ::signal_handler::base * pbase);
 
    //virtual void erase_signal_handlers(::particle * ppparticle);

@@ -117,12 +117,12 @@ public:
 
    ::payload & get_object(const ::atom & atom);
 
-   ::payload operator()(const ::atom & atom) const;
-   ::payload operator()(const ::atom & atom, const ::payload & varDefault) const;
+   //::payload operator()(const ::atom & atom) const;
+   //::payload operator()(const ::atom & atom, const ::payload & varDefault) const;
 
-   ::payload & operator[](const ::atom & atom);
+   //::payload & operator[](const ::atom & atom);
 
-   ::payload operator[](const ::atom & atom) const;
+   //::payload operator[](const ::atom & atom) const;
 
    ::payload & payload(const ::atom & atom);
 

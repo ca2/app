@@ -154,6 +154,11 @@ public:
    //virtual void initialize(::particle * pparticle);
    virtual void on_initialize_particle();
 
+
+   virtual ::topic_pointer create_topic(const ::atom & atom);
+   virtual ::extended_topic_pointer create_extended_topic(const ::atom & atom);
+
+
    //class ::platform::platform * platform() const;
    static class ::platform::platform * platform();
 

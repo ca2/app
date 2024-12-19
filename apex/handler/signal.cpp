@@ -135,10 +135,10 @@ namespace handler
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      for (auto & pair : m_mattercontext)
+      for (auto & pair : m_objectcontext)
       {
 
-         auto & pmatter = pair.m_element1;
+         auto & pobject = pair.m_element1;
 
          auto & pcontext = pair.m_element2;
 
@@ -160,7 +160,7 @@ namespace handler
 
          synchronouslock.unlock();
 
-         pmatter->operator()(this, pcontext);
+         pobject->operator()(this, pcontext);
 
          synchronouslock._lock();
 
@@ -273,28 +273,28 @@ namespace handler
 
       ::matter::on_notify(pparticle, eid);
 
-      ::cast < ::matter > pmatter = pparticle;
+      ::cast < ::object > pobject = pparticle;
 
-      if (pmatter)
+      if (pobject)
       {
 
          _synchronous_lock synchronouslock(this->synchronization());
 
-         m_mattercontext.erase_item(pmatter);
+         m_objectcontext.erase_item(pobject);
 
       }
 
    }
 
 
-   void signal::add_handler(::matter * pmatter)
+   void signal::add_handler(::object * pobject)
    {
 
-      pmatter->notifya().add(this);
+      pobject->notifya().add(this);
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      auto & pcontext = m_mattercontext[pmatter];
+      auto & pcontext = m_objectcontext[pobject];
 
       if (!pcontext)
       {
@@ -306,14 +306,14 @@ namespace handler
    }
 
 
-   void signal::erase_handler(::matter * pmatter)
+   void signal::erase_handler(::object * pobject)
    {
 
-      pmatter->notifya().erase(this);
+      pobject->notifya().erase(this);
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      m_mattercontext.erase_item(pmatter);
+      m_objectcontext.erase_item(pobject);
 
    }
 
@@ -411,11 +411,12 @@ namespace handler
       if (!should_poll(poll_time()))
       {
 
-         fork([this]() {call(); });
+         application()->post([this]() {call(); });
 
       }
 
    }
+
 
    void signal::clear_modified()
    {
@@ -440,14 +441,14 @@ namespace handler
 
       m_signalhandlercontext2.erase_all();
 
-      for (auto & pair:m_mattercontext)
+      for (auto & pair : m_objectcontext)
       {
 
          pair.m_element1->notifya().erase(this);
 
       }
 
-      m_mattercontext.erase_all();
+      m_objectcontext.erase_all();
 
    }
 

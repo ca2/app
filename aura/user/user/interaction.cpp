@@ -18,6 +18,7 @@
 #include "aura/windowing/placement_log.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/constant/timer.h"
 #include "acme/constant/message_prototype.h"
 #include "acme/constant/simple_command.h"
 #include "acme/exception/interface_only.h"
@@ -68,6 +69,7 @@
 #include "acme/prototype/geometry2d/_defer_item.h"
 #include "acme/prototype/collection/_tuple.h"
 #include "acme/_finish.h"
+#include "app-core/store/_.h"
 
 #ifdef WINDOWS_DESKTOP
 //#include "acme/_operating_system.h"
@@ -9464,6 +9466,18 @@ namespace user
 
    void interaction::on_timer(::timer * ptimer)
    {
+
+      if (ptimer->m_etimer == e_timer_configure_unlocked)
+      {
+
+         if (window()->on_configure_unlocked_timer())
+         {
+
+            KillTimer(ptimer->m_etimer);
+
+         }
+
+      }
 
    }
 

@@ -2623,6 +2623,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       if (bSize)
       {
+
          set_size_unlocked({ cx, cy });
 
       }
@@ -10688,7 +10689,7 @@ void window::set_oswindow(::oswindow oswindow)
    void window::set_mouse_capture(::user::interaction * puserinteraction)
    {
 
-      this->set_mouse_capture();
+      system()->windowing()->set_mouse_capture(nullptr, this);
 
       m_puserinteractionMouseCapture = puserinteraction;
 
@@ -16377,6 +16378,16 @@ void window::set_oswindow(::oswindow oswindow)
       return this;
 
    }
+
+
+   bool window::on_configure_unlocked_timer()
+   {
+
+      return true;
+
+   }
+
+
    //::trace_statement & window::trace_statement_prefix(::trace_statement & statement) const
    //{
 

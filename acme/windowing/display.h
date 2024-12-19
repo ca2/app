@@ -52,6 +52,8 @@ namespace acme
          virtual ::int_size get_main_screen_size();
 
          virtual void * raw_x11_display();
+
+         virtual void release_mouse_capture();
          
          
       };

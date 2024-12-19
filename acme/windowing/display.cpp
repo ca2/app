@@ -148,6 +148,13 @@ void * display::raw_x11_display()
 }
 
 
+      void display::release_mouse_capture()
+      {
+
+
+      }
+
+
    } // namespace windowing
 
 

@@ -213,6 +213,8 @@ void timer_task::run()
    while (true)
    {
 
+      task_iteration();
+
       for (::collection::index i = 0; i < countDecisecondSleep; i++)
       {
 

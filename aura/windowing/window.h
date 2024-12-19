@@ -1818,6 +1818,8 @@ namespace windowing
 
       ::windowing::window * windowing_window() override;
 
+         virtual bool on_configure_unlocked_timer();
+
    };
 
 

@@ -60,6 +60,14 @@ namespace windowing
    }
 
 
+   bool windowing::has_mouse_capture_capability()
+   {
+
+      return true;
+
+   }
+
+
    void windowing::initialize_windowing()
    {
 

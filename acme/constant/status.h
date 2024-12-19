@@ -129,6 +129,7 @@ enum enum_status : ::huge_integer
    error_debug_testing,
    error_xml_parsing,
    error_encoding,
+   error_codec_found,
 
 
 error_time_bag = INT_FAILURE_STATUS(STATUS_RANGE_EXCEPTION),

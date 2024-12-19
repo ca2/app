@@ -710,13 +710,13 @@ void particle::on_notify(::particle * pparticle, enum_id eid)
 void particle::delete_this()
 {
 
-   if (!has_flag(e_flag_destroyed))
-   {
-
-      destroy();
-
-   }
-
+   // if (!has_flag(e_flag_destroyed))
+   // {
+   //
+   //    destroy();
+   //
+   // }
+   //
    if (!(m_eflagElement & e_flag_statically_allocated))
    {
 

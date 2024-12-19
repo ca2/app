@@ -1151,14 +1151,23 @@ namespace user
    ::windowing::window * interaction::window()
    {
 
-      if (this == top_level())
+      auto ptoplevel = top_level();
+
+      if (::is_null(ptoplevel))
+      {
+
+         return nullptr;
+
+      }
+
+      if (this == ptoplevel)
       {
 
          return acme_windowing_window()->windowing_window();
 
       }
 
-      return top_level()->window();
+      return ptoplevel->window();
 
    }
 
@@ -2131,7 +2140,7 @@ namespace user
       //
       //      }
 
-      if (get_host_user_interaction()->windowing_window()->m_pgraphicsgraphics->is_single_buffer_mode())
+      if (windowing_window()->m_pgraphicsgraphics->is_single_buffer_mode())
       {
 
          auto * pinteraction = get_wnd();
@@ -11831,6 +11840,13 @@ namespace user
          puserinteractionParent = puserinteractionParent->get_parent();
 
       } while (puserinteractionParent != nullptr);
+
+      if (m_bChild && puiTopLevelParent == this)
+      {
+
+         return nullptr;
+
+      }
 
       return puiTopLevelParent;
 

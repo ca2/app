@@ -34,7 +34,7 @@ namespace user
 
       common_construct();
 
-      auto pitemClient = __allocate ::item(e_element_client);
+      auto pitemClient = stock_item(e_element_client);
 
       enable_drag(pitemClient, e_zorder_back);
 

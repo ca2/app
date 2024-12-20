@@ -72,6 +72,7 @@ namespace windowing
       //virtual void _initialize_windowing();
 
       virtual bool has_readily_gettable_absolute_coordinates() const;
+      virtual bool has_mouse_capture_capability();
 
 
       //virtual void initialize_windowing(::user::user * puser);

@@ -1565,7 +1565,7 @@ namespace nanoui
    ::int_size Screen::preferred_size(::draw2d::graphics_pointer& pgraphics)
    {
 
-      ::nano2d::draw2d_context context;
+      ::nano2d::draw2d_context context(this);
 
       context.set_graphics(pgraphics);
 
@@ -1581,7 +1581,7 @@ namespace nanoui
    void Screen::perform_layout(::draw2d::graphics_pointer& pgraphics)
    {
 
-      ::nano2d::draw2d_context context;
+      ::nano2d::draw2d_context context(this);
 
       context.set_graphics(pgraphics);
 
@@ -1609,7 +1609,7 @@ namespace nanoui
    void Screen::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
-      ::nano2d::draw2d_context context;
+      ::nano2d::draw2d_context context(this);
 
       context.set_graphics(pgraphics);
 

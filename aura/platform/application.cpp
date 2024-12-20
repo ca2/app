@@ -1771,7 +1771,7 @@ namespace aura
 
       if(pmanager)
       {
-         auto psignal = pmanager->get_signal(id_app_activated);
+         auto psignal = pmanager->signal(id_app_activated);
       
          psignal->add_handler(this);
       }

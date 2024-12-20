@@ -231,6 +231,36 @@ thread::~thread()
 }
 
 
+#ifdef _DEBUG
+
+
+huge_integer thread::increment_reference_count()
+{
+
+   return ::object::increment_reference_count();
+
+}
+
+
+huge_integer thread::decrement_reference_count()
+{
+
+   return ::object::decrement_reference_count();
+
+}
+
+
+huge_integer thread::release()
+{
+
+   return ::object::release();
+
+}
+
+
+#endif
+
+
 htask_t thread::get_os_handle() const
 {
 
@@ -825,6 +855,8 @@ int thread::_GetMessage(MESSAGE* pmessage, ::windowing::window* pwindow, unsigne
 
 bool thread::task_iteration()
 {
+
+   ASSERT(m_itask == ::current_itask());
 
 #ifdef WINDOWS_DESKTOP
 

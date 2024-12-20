@@ -69,28 +69,14 @@ matter::~matter()
 //}
 
 
-::topic_pointer create_topic(::particle * pparticleCall, const ::atom & atom);
 
 
-::topic_pointer matter::create_topic(const ::atom & atom)
+void matter::operator()(::topic * ptopic, ::context * pcontext)
 {
 
-   return ::transfer(::create_topic(this, atom));
+   ::particle::operator ()(ptopic, pcontext);
 
 }
-
-
-::extended_topic_pointer create_extended_topic(::particle * pparticleCall, const ::atom & atom);
-
-
-::extended_topic_pointer matter::create_extended_topic(const ::atom & atom)
-{
-
-   return ::transfer(::create_extended_topic(this, atom));
-
-}
-
-
 
 
 void matter::operator()(::message::message * pmessage)
@@ -100,10 +86,10 @@ void matter::operator()(::message::message * pmessage)
 }
 
 
-void matter::operator()(const ::payload & payload)
-{
-
-}
+// void matter::operator()(const ::payload & payload)
+// {
+//
+// }
 
 
 //// <3TBS_!! handle -> command_handler <3TBS_(I need to suck you)!!
@@ -190,21 +176,7 @@ void matter::set_finish()
 void matter::destroy()
 {
 
-   auto destroyinga = ::transfer(m_destroyinga);
-
-   for(auto & procedure : destroyinga)
-   {
-       
-       if(procedure)
-       {
-           
-           procedure();
-           
-       }
-       
-   }
-    
-   //m_destroyinga.erase_all();
+   ::particle::destroy();
 
 }
 
@@ -225,6 +197,9 @@ void matter::on_set_finish()
 //   return nullptr;
 //
 //}
+
+
+
 
 
 bool matter::is_ready_to_quit() const
@@ -927,4 +902,14 @@ void matter::__send_procedure(const ::function < void(const ::procedure &) > & f
 //}
 
 
+::huge_integer g_iFunctionDebuggingSerial = 0;
 
+
+CLASS_DECL_ACME ::huge_integer function_debugging_serial()
+{
+
+   g_iFunctionDebuggingSerial++;
+
+   return g_iFunctionDebuggingSerial;
+
+}

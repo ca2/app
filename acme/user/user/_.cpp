@@ -7,7 +7,7 @@
 CLASS_DECL_ACME bool is_docking(enum_display edisplay)
 {
 
-   return (edisplay & e_display_dock) == e_display_dock && (edisplay & e_display_docking_mask) != 0;
+   return (edisplay & e_display_docking_mask) && edisplay > 0;
 
 }
 
@@ -43,7 +43,7 @@ CLASS_DECL_ACME enum_display default_equivalence_sink(enum_display edisplay)
 
    }
 
-   if (edisplay < e_display_dock)
+   if (edisplay < e_display_left)
    {
 
       return e_display_default;

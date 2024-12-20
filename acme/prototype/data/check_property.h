@@ -249,8 +249,8 @@ namespace data
       bool on_check_will_change(::data::check_change & checkchange);
       void on_check_changed(::data::check_change & checkchange);
 
-      add_signal_function_to_holder < ::data::check_will_change > check_will_change(::matter * pmatterFunctionHolder);
-      add_signal_function_to_holder < ::data::check_changed > check_changed(::matter * pmatterFunctionHolder);
+      add_signal_function_to_holder < ::data::check_will_change > check_will_change(::object * pobjectFunctionHolder);
+      add_signal_function_to_holder < ::data::check_changed > check_changed(::object * pobjectFunctionHolder);
 
 
       bool operator == (const ::data::check_property & checkproperty) const;

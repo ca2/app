@@ -147,10 +147,12 @@ namespace networking_bsd
       ~networking() override;
 
 
-      virtual void initialize(::particle * pparticle) override;
-      virtual void destroy() override;
+      void initialize(::particle * pparticle) override;
+      void destroy() override;
 
-      virtual bool gudo_set() override;
+      void on_socket_thread_start() override;
+
+      bool gudo_set() override;
 
 
       virtual bool defer_initialize_operating_system_networking();

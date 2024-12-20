@@ -46,6 +46,10 @@ namespace acme
          //::pointer<::micro::window_implementation>     m_pnanouserwindowimplementation;
 
 
+         class ::time                              m_timeHoverNoiseSuppression;
+
+
+
          int_rectangle                             m_rectangle;
          ::int_rectangle                           m_rectanglePointingTo;
 
@@ -76,6 +80,8 @@ namespace acme
 
 
          ::pointer < ::acme::windowing::display >           m_pdisplay;
+
+
 
 
 

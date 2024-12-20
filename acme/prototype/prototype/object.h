@@ -17,6 +17,10 @@ protected:
    ::pointer < atom_map < ::pointer < ::parallelization::queue > > >    m_pqueuemap;
 
 
+   ::procedure_array                                                    m_procedureaDestroying;
+   ::comparable_array< ::particle * >                                   m_particleaNotify;
+
+
 public:
 
 
@@ -54,6 +58,12 @@ public:
 
 
 #endif
+
+
+   ::procedure_array & destroyinga() { return m_procedureaDestroying; }
+   ::comparable_array< ::particle * > & notifya() { return m_particleaNotify; }
+   void on_notify(::particle * pparticle, enum_id eid) override;
+
 
 
    template < typename BASE_TYPE >
@@ -170,7 +180,7 @@ public:
    virtual ::atom calc_default_object_id() const;
 
 
-   void install_message_routing(::channel* pchannel) override;
+   //void install_message_routing(::channel* pchannel) override;
 
    void message_receiver_destruct();
 
@@ -296,6 +306,11 @@ public:
 
    void single_fork(const ::procedure_array& routinea);
    void multiple_fork(const ::procedure_array& routinea);
+
+
+   template < primitive_function FUNCTION >
+      void hold_signal_function(::data::signal<FUNCTION> * psignal, FUNCTION f);
+
 
 };
 

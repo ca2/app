@@ -400,7 +400,7 @@ namespace experience
 
       pframe->m_pframewindow = this;
 
-      auto psignal = get_signal(id_user_style_change);
+      auto psignal = signal(id_user_style_change);
 
       psignal->add_handler(pframe);
 
@@ -865,9 +865,7 @@ namespace experience
 
             informationf("button_clicked : button_minimize");
 
-            display(e_display_iconic, { ::user::e_activation_no_activate });
-
-            set_need_redraw();
+            window_minimize();
 
             ptopic->m_bRet = true;
 
@@ -2852,7 +2850,7 @@ namespace experience
       if(system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
       {
 
-         display_normal(m_windowdisplayandlayout.m_edisplayLastNormal, useractivation);
+         window_restore();
 
          return;
 

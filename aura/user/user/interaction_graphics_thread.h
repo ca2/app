@@ -75,6 +75,7 @@ namespace user
       //bool                                      m_bUpdateBufferUpdateWindowPending;
 
       bool                                      m_bFps;
+      int m_iRedrawMessageCount;
 
 
       graphics_thread();
@@ -86,6 +87,9 @@ namespace user
       virtual huge_integer decrement_reference_count() override;
       virtual huge_integer release() override;
 #endif
+
+
+      void install_message_routing(::channel * pchannel) override;
 
 
       virtual void defer_create_graphics_thread();
@@ -118,6 +122,8 @@ namespace user
       
       virtual void profiling_on_before_update_screen();
       virtual void profiling_on_after_update_screen();
+
+      DECLARE_MESSAGE_HANDLER(on_message_redraw);
       
 
       void defer_graphics_thread_step();

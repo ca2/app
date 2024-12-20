@@ -1847,6 +1847,8 @@ list(APPEND library_source
    parallelization/tools.h
    parallelization/wait_for_end_of_sequence.cpp
    parallelization/wait_for_end_of_sequence.h
+   parallelization/waiting_call.cpp
+   parallelization/waiting_call.h
    platform/_features.h
    platform/_global.h
    platform/_impl.h

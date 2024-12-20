@@ -16,7 +16,7 @@ namespace user
 
 
    class CLASS_DECL_ACME text :
-      public ::user::control
+      virtual public ::user::control
    {
    public:
 

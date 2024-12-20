@@ -13,24 +13,23 @@ class list :
 {
 public:
 
+   using NODE = ::list_node < TYPE >;
 
-   using RANGE = ::range < ::list_iterator < ::list_node < TYPE > * > >;
+   using ITERATOR = ::list_iterator < NODE * >;
 
+   using RANGE = ::range < ITERATOR >;
 
-   using node = ::list_node < TYPE >;
+   using ITEM = typename NODE::ITEM;
 
-
-   using ITEM = typename node::ITEM;
-   using ARG_ITEM = typename node::ARG_ITEM;
-
+   using ARG_ITEM = ARG_TYPE;
 
    using this_iterator = typename RANGE::this_iterator;
+
    using iterator = typename RANGE::iterator;
+
    using const_iterator = typename RANGE::const_iterator;
 
-
    //__declare_iterator_struct_ok(list, iterator, m_pnode, ::is_set(this->m_pnode));
-
 
    //template < typename ITERATOR > struct make_iterator : ITERATOR
    //{
@@ -373,6 +372,9 @@ public:
 
    TYPE pick_head();
    TYPE pick_tail();
+
+   void _add_head_node(NODE * p);
+   void _add_tail_node(NODE * p);
 
    // add before head or after tail
    iterator add_head(ARG_TYPE newElement);
@@ -968,32 +970,55 @@ void list<TYPE, ARG_TYPE>::erase_head()
 
 }
 
+
 template<class TYPE, class ARG_TYPE>
 void list<TYPE, ARG_TYPE>::erase_tail()
 {
+
    ASSERT_VALID(this);
+   
    ASSERT(this->m_end.is_set());  // don't call on is_empty list !!!
 
-   auto old = this->m_end;
+   auto pnodeEnd = this->m_end.m_p;
 
-   this->m_end = old.back();
-
-   if (!this->m_end)
+   if (!pnodeEnd->m_next.m_p) // this->m_end.next() must be null,
+      // this is what is expected at the tail (this->m_end)
    {
 
-      this->m_end.next() = nullptr;
+      if (!pnodeEnd->m_back.m_p)
+      {
+
+         this->m_end.m_p = nullptr;
+
+         this->m_begin.m_p = nullptr;
+
+         ASSERT(this->m_count == 1);
+
+         this->m_count = 0;
+
+      }
+      else
+      {
+
+         ASSERT(pnodeEnd->m_back.m_p->m_next.m_p == pnodeEnd);
+
+         this->m_end.m_p = pnodeEnd->m_back.m_p;
+
+         this->m_end.m_p->m_next.m_p = nullptr;
+
+         this->m_count--;
+
+      }
+
+      delete pnodeEnd;
+
    }
-      
    else
    {
 
-      this->begin() = nullptr;
+      throw "this->m_end isn't pointing to the end of list?";
 
    }
-
-   this->m_count--;
-
-   delete old.get();
 
 }
 
@@ -1805,14 +1830,60 @@ list<TYPE, ARG_TYPE>::operator = (class list && l)
 
 
 
+template<class TYPE, class ARG_TYPE>
+void list<TYPE, ARG_TYPE>::_add_head_node(NODE * p)
+{
+
+   p->m_back.m_p = nullptr;
+
+   p->m_next.m_p = this->m_begin.m_p;
+
+   if (this->m_begin.m_p)
+   {
+
+      this->m_begin.m_p->m_back.m_p = p;
+
+   }
+   else
+   {
+
+      this->m_end.m_p = p;
+
+   }
+
+   this->m_begin.m_p = p;
+
+   this->m_count++;
+
+}
 
 
+template<class TYPE, class ARG_TYPE>
+void list<TYPE, ARG_TYPE>::_add_tail_node(NODE * p)
+{
 
+   p->m_back.m_p = this->m_end.m_p;
 
+   p->m_next.m_p = nullptr;
 
+   if (this->m_end.m_p)
+   {
 
+      this->m_end.m_p->m_next.m_p = p;
 
-#pragma once
+   }
+   else
+   {
+
+      this->m_begin.m_p = p;
+
+   }
+
+   this->m_end.m_p = p;
+
+   this->m_count++;
+
+}
 
 
 template<class TYPE, class ARG_TYPE>
@@ -1821,30 +1892,9 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::add_head(ARG_TYPE 
 
    ASSERT_VALID(this);
 
-   typename list < TYPE, ARG_TYPE >::iterator p;
+   auto p = __raw_new typename list < TYPE, ARG_TYPE >::NODE (newElement);
 
-   p = __raw_new typename list < TYPE, ARG_TYPE >::node (newElement);
-
-   p.back() = nullptr;
-
-   p.next() = this->begin();
-
-   if (this->begin())
-   {
-
-      this->begin().back() = p;
-
-   }
-   else
-   {
-
-      this->m_end = p;
-
-   }
-
-   this->begin() = p;
-
-   this->m_count++;
+   _add_head_node(p);
 
    return p;
 
@@ -1857,28 +1907,14 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::add_tail(ARG_TYPE 
 
    ASSERT_VALID(this);
 
-   typename list < TYPE, ARG_TYPE >::iterator p;
+   auto p = __raw_new typename list < TYPE, ARG_TYPE >::NODE(newElement);
 
-   p = __raw_new typename list < TYPE, ARG_TYPE >::node(newElement);
-
-   p.back() = this->m_end;
-
-   p.next() = nullptr;
-
-   //pnodeNew->m_element = newElement;
-
-   if (this->m_end)
-      this->m_end.next() = p;
-   else
-      this->begin() = p;
-
-   this->m_end = p;
-
-   this->m_count++;
+   _add_tail_node(p);
 
    return p;
 
 }
+
 
 template<class TYPE, class ARG_TYPE>
 typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::transfer_head(TYPE && newElement)
@@ -1886,30 +1922,9 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::transfer_head(TYPE
 
    ASSERT_VALID(this);
 
-   typename list < TYPE, ARG_TYPE >::iterator p;
+   auto p = __raw_new typename list < TYPE, ARG_TYPE >::NODE (::transfer(newElement));
 
-   p = __raw_new typename list < TYPE, ARG_TYPE >::node (::transfer(newElement));
-
-   p.back() = nullptr;
-
-   p.next() = this->begin();
-
-   if (this->begin())
-   {
-
-      this->begin().back() = p;
-
-   }
-   else
-   {
-
-      this->m_end = p;
-
-   }
-
-   this->begin() = p;
-
-   this->m_count++;
+   _add_head_node(p);
 
    return p;
 
@@ -1922,24 +1937,9 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::transfer_tail(TYPE
 
    ASSERT_VALID(this);
 
-   typename list < TYPE, ARG_TYPE >::iterator p;
+   auto p = __raw_new typename list < TYPE, ARG_TYPE >::NODE (::transfer(newElement));
 
-   p = __raw_new typename list < TYPE, ARG_TYPE >::node (::transfer(newElement));
-
-   p.back() = this->m_end;
-
-   p.next() = nullptr;
-
-   //pnodeNew->m_element = newElement;
-
-   if (this->m_end)
-      this->m_end.next() = p;
-   else
-      this->begin() = p;
-
-   this->m_end = p;
-
-   this->m_count++;
+   _add_tail_node(p);
 
    return p;
 
@@ -1961,7 +1961,7 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::insert_before(iter
    // Insert it before position
    auto old = position;
    iterator p;
-   p = __raw_new typename list < TYPE, ARG_TYPE >::node (newElement);
+   p = __raw_new typename list < TYPE, ARG_TYPE >::NODE (newElement);
    p.back() = old.back();
    p.next() = old;
    p.topic() = newElement;
@@ -1998,16 +1998,16 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::insert_after(itera
 
    // Insert it before position
    auto old = position;
-   ASSERT(is_memory_segment_ok(old.get(), sizeof(typename list < TYPE, ARG_TYPE >::node)));
+   ASSERT(is_memory_segment_ok(old.get(), sizeof(typename list < TYPE, ARG_TYPE >::NODE)));
    iterator p;
-   p = __raw_new typename list < TYPE, ARG_TYPE >::node (newElement);
+   p = __raw_new typename list < TYPE, ARG_TYPE >::NODE(newElement);
    p.back() = old;
    p.next() = old.next();
    p.topic() = newElement;
 
    if (old.next())
    {
-      ASSERT(is_memory_segment_ok(old.next().get(), sizeof(typename list < TYPE, ARG_TYPE >::node)));
+      ASSERT(is_memory_segment_ok(old.next().get(), sizeof(typename list < TYPE, ARG_TYPE >::NODE)));
       old.next().back() = p;
    }
    else

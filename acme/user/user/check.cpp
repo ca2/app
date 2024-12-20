@@ -126,18 +126,18 @@ namespace user
    }
 
 
-   add_signal_function_to_holder < ::data::check_will_change > check::check_will_change(::matter * pmatterFunctionContainer)
+   add_signal_function_to_holder < ::data::check_will_change > check::check_will_change(::object * pobjectFunctionContainer)
    {
 
-      return m_checkproperty.check_will_change(pmatterFunctionContainer);
+      return m_checkproperty.check_will_change(pobjectFunctionContainer);
 
    }
 
 
-   add_signal_function_to_holder < ::data::check_changed > check::check_changed(::matter * pmatterFunctionContainer)
+   add_signal_function_to_holder < ::data::check_changed > check::check_changed(::object * pobjectFunctionContainer)
    {
 
-      return m_checkproperty.check_changed(pmatterFunctionContainer);
+      return m_checkproperty.check_changed(pobjectFunctionContainer);
 
    }
 

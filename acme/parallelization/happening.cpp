@@ -117,6 +117,8 @@ bool happening::start_notify_lock(::notify_lock * pnotifylock)
    if (m_bSignaled)
    {
 
+      int rc3 = pthread_mutex_unlock((pthread_mutex_t *)m_pmutex);
+
       return true;
 
    }

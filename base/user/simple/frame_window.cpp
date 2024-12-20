@@ -810,7 +810,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
             if (::is_set(pframe))
             {
 
-               auto psignal = get_signal(id_user_style_change);
+               auto psignal = signal(id_user_style_change);
 
                psignal->add_handler(pframe);
 
@@ -830,7 +830,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
    strStyle = m_varFrame["style"];
 
-   auto psignal = get_signal(id_user_style_change);
+   auto psignal = signal(id_user_style_change);
 
    psignal->add_handler(pframe);
 

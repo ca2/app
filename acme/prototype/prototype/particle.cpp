@@ -263,6 +263,29 @@ void particle::on_initialize_particle()
 //}
 
 
+::topic_pointer create_topic(::particle * pparticleCall, const ::atom & atom);
+
+
+::topic_pointer particle::create_topic(const ::atom & atom)
+{
+
+   return ::transfer(::create_topic(this, atom));
+
+}
+
+
+::extended_topic_pointer create_extended_topic(::particle * pparticleCall, const ::atom & atom);
+
+
+::extended_topic_pointer particle::create_extended_topic(const ::atom & atom)
+{
+
+   return ::transfer(::create_extended_topic(this, atom));
+
+}
+
+
+
 ::platform::application * particle::application() const
 {
 
@@ -669,8 +692,6 @@ void particle::install_message_routing(::channel * pchannel)
 }
 
 
-
-
 bool particle::_is_ok() const
 {
 
@@ -679,9 +700,23 @@ bool particle::_is_ok() const
 }
 
 
+void particle::on_notify(::particle * pparticle, enum_id eid)
+{
+
+
+}
+
+
 void particle::delete_this()
 {
 
+   // if (!has_flag(e_flag_destroyed))
+   // {
+   //
+   //    destroy();
+   //
+   // }
+   //
    if (!(m_eflagElement & e_flag_statically_allocated))
    {
 
@@ -1687,7 +1722,7 @@ lresult particle::call(const ::atom & atom, wparam wparam, lparam lparam)
    else
    {
 
-      auto ptopic = create_topic(this, atom);
+      auto ptopic = create_topic(atom);
 
       ptopic->payload("wparam") = (huge_integer) wparam.m_number;
 

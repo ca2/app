@@ -24,7 +24,7 @@ void source::destroy()
 
    m_particlea.clear();
 
-   ::object::destroy();
+   ::particle::destroy();
 
 }
 

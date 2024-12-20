@@ -1,6 +1,7 @@
 #include "framework.h"
 //#include s.h"
 #include "sequence.h"
+#include "acme/parallelization/waiting_call.h"
 #include "acme/parallelization/synchronous_lock.h"
 
 //

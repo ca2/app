@@ -3291,17 +3291,17 @@ particle* system::matter_mutex()
    //   }
 
 
-   void system::add_signal_handler(const ::signal_handler& signalhandler, const ::atom& atomSignal)
-   {
-
-
-   }
-
-
-   void system::erase_signal_handler(::signal_handler::base* pbase)
-   {
-
-   }
+   // void system::add_signal_handler(const ::signal_handler& signalhandler, const ::atom& atomSignal)
+   // {
+   //
+   //
+   // }
+   //
+   //
+   // void system::erase_signal_handler(::signal_handler::base* pbase)
+   // {
+   //
+   // }
 
 
    //   void system::erase_signal_handlers(::particle * pparticle)

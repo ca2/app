@@ -77,7 +77,9 @@ namespace handler
 
       virtual void post_request(::request * prequest);
 
-      virtual ::request * pick_next_posted_request();
+      //virtual ::request * pick_next_posted_request();
+
+      virtual bool pick_next_posted_request();
 
       virtual bool handle_next_posted_request();
 

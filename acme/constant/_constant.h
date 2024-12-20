@@ -562,11 +562,10 @@ enum enum_display
    e_display_last_command,
 
 
-   e_display_dock = 0x8000,
-   e_display_left = 0x10000 | e_display_dock,
-   e_display_top = 0x20000 | e_display_dock,
-   e_display_right = 0x40000 | e_display_dock,
-   e_display_bottom = 0x80000 | e_display_dock,
+   e_display_left = 0x10000,
+   e_display_top = 0x20000,
+   e_display_right = 0x40000,
+   e_display_bottom = 0x80000,
    e_display_top_left = e_display_top | e_display_left,
    e_display_top_right = e_display_top | e_display_right,
    e_display_bottom_left = e_display_bottom | e_display_left,
@@ -580,6 +579,7 @@ enum enum_display
 
 
 };
+
 
 
 enum enum_layout_experience

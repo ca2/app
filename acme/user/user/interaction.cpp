@@ -68,7 +68,7 @@ namespace acme
 
          //m_efont = e_font_sans;
          m_uFlagsAcmeUserInteraction = 0;
-         auto pitemClient = tool().defer_item(e_element_client);
+         auto pitemClient = stock_item(e_element_client);
 
          enable_drag(pitemClient, ::user::e_zorder_back);
 
@@ -375,7 +375,9 @@ namespace acme
             if (strActionName == "minimize")
             {
 
-               display(e_display_iconic);
+               //display(e_display_iconic);
+
+               window_minimize();
 
             }
             else if (strActionName == "maximize")
@@ -676,6 +678,7 @@ namespace acme
             m_ptimerarray->delete_timer(uEvent);
 
          }
+
 
 
 
@@ -1511,7 +1514,7 @@ namespace acme
 
             ::source::destroy();
 
-            system()->erase_signal_handler(this);
+            //system()->erase_signal_handler(this);
 
             m_pacmeuserinteractionParent.release();
 

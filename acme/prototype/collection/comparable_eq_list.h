@@ -11,7 +11,7 @@ class comparable_eq_list :
 public:
 
 
-   using node = typename ::list < TYPE, ARG_TYPE >::node;
+   using node = typename ::list < TYPE, ARG_TYPE >::NODE;
    using base_list = LIST_TYPE;
    using iterator = typename base_list::iterator;
    using const_iterator = typename base_list::const_iterator;

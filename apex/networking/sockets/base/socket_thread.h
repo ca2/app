@@ -37,6 +37,8 @@ namespace sockets
 
       virtual base_socket* get_socket() const;
 
+      virtual void on_socket_thread_start();
+
       void run() override;
 
 #ifdef _DEBUG

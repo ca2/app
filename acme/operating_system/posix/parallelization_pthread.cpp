@@ -184,7 +184,17 @@ thread_local ::message_queue * t_pmessagequeue = nullptr;
 
          }
 
-   return notifylock.m_manualresethappening.wait(timeWait);
+   if (!notifylock.m_manualresethappening._wait(timeWait))
+   {
+
+      return error_wait_timeout;
+
+   }
+
+
+      auto estatus = signaled_base ;
+
+      return (enum_status)estatus;
 
       //    for (i = 0; comparison::lt(i, dwSize); i++)
       //    {

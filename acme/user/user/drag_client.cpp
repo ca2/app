@@ -129,6 +129,8 @@ namespace user
       if(::is_set(pdrag))
       {
 
+         information() << "::is_set(pdrag)";
+
          if (pitem->m_item.m_eelement == e_element_resize)
          {
 
@@ -140,6 +142,8 @@ namespace user
 
          if(drag_on_button_down(pitem, puseritem->m_pmouse))
          {
+
+            information() << "drag_on_button_down return true";
 
             return true;
 

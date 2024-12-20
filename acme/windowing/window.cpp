@@ -56,7 +56,6 @@ namespace acme
       window::window() :
          m_pointCursor2(I32_MINIMUM)
       {
-
          m_bRepositioningWindowFromCenter = false;
          m_bResizingWindowFromBottomRight = false;
 

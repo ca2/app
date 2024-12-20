@@ -57,7 +57,7 @@ namespace micro
 
       m_efont = e_font_sans;
 
-      auto pitemClient = tool().defer_item(e_element_client);
+      auto pitemClient = stock_item(e_element_client);
 
       enable_drag(pitemClient, ::user::e_zorder_back);
 
@@ -1473,7 +1473,10 @@ namespace micro
       // ::user::drag_client::destroy();
       //::conversation::destroy();
 
-      system()->erase_signal_handler(this);
+
+      // ::cast < ::manager > pmanager = system();
+      //
+      // pmanager->erase_signal_handler(this);
 
    }
 

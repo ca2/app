@@ -1017,7 +1017,7 @@ void elemental::back_on_mouse_move(::user::mouse* pmouse)
 
       }
 
-      auto pitemClient = tool().defer_item(e_element_client);
+      auto pitemClient = stock_item(e_element_client);
 
       auto pdragClient = drag(pitemClient);
 
@@ -1905,7 +1905,7 @@ void elemental::back_on_right_button_up(::user::mouse* pmouse)
       //::user::drag_client::destroy();
       //::conversation::destroy();
 
-      system()->erase_signal_handler(this);
+      //system()->erase_signal_handler(this);
 
    }
 

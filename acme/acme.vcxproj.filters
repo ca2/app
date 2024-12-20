@@ -4119,6 +4119,9 @@
     <ClInclude Include="filesystem\filesystem\windows_path.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
+    <ClInclude Include="parallelization\waiting_call.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -5875,6 +5878,9 @@
     </ClCompile>
     <ClCompile Include="user\user\_.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\waiting_call.cpp">
+      <Filter>Source Files\parallelization</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

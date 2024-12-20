@@ -68,7 +68,7 @@ namespace windowing
       ::cast < ::windowing::window >            m_pwindowParent;
       ::string                                  m_strBitmapSource;
       mouse_reposition_throttling               m_mouserepositionthrottling;
-      
+
       ::pointer<::windowing::icon>              m_picon;
       //::pointer<::windowing::windowing>         m_pwindowing;
       ::pointer<::user::copydesk>               m_pcopydesk;
@@ -380,10 +380,10 @@ namespace windowing
       bool screen_to_client(::int_point * ppoint) override;
 
 
-      virtual bool on_set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::e_activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay);
+      virtual bool on_set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay);
 
-      virtual bool set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::e_activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay);
-      virtual bool _set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::e_activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, unsigned int nOverrideFlags = 0);
+      virtual bool set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay);
+      virtual bool _set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, unsigned int nOverrideFlags = 0);
 
       virtual bool configure_window_unlocked();
       virtual bool strict_set_window_position_unlocked(bool & bChangedPosition, bool & bChangedSize);
@@ -774,7 +774,11 @@ namespace windowing
       //virtual void track_mouse_hover() override;
       //virtual void track_mouse_leave() override;
 
-      virtual void _on_mouse_move_step(const ::int_point & pointCursor, bool bMouseLeave = false);
+      virtual void _on_mouse_move_step(const ::int_point & pointCursor, ::user::enum_layout elayoutChild = ::user::e_layout_design, bool bMouseLeave = false);
+
+
+      virtual void defer_check_mouse_leave(::user::enum_layout elayoutWindow, ::user::enum_layout elayoutChild);
+
 
       //virtual void mouse_hover_step(const __status < ::int_point > & statusPointCursor);
 
@@ -1402,11 +1406,13 @@ namespace windowing
       //virtual void clear_need_layout();
       virtual void set_need_layout();
       //virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
-      virtual void on_reposition() override;
+      void on_reposition() override;
+      virtual void on_layout_reposition();
+
       virtual void on_show_window();
 
 
-      virtual ::oswindow detach_window() override;
+      ::oswindow detach_window() override;
 
       //void destroy() override;
 
@@ -1811,6 +1817,8 @@ namespace windowing
       //virtual void set_opacity(double dOpacity);
 
       ::windowing::window * windowing_window() override;
+
+         virtual bool on_configure_unlocked_timer();
 
    };
 

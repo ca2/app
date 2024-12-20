@@ -526,16 +526,24 @@ namespace platform
    }
 
 
+   [[nodiscard]] class ::handler::signal * apex_system_layer::signal(const ::atom& atom)
+   {
+
+      return nullptr;
+
+   }
+
+
    //void add_handler(::particle * pmatter, bool bPriority = false) override{}
 
-   void apex_system_layer::add_signal_handler(const ::signal_handler& signalhandler, const ::atom& atomSignal)
-   {
-   }
-
-
-   void apex_system_layer::erase_signal_handler(::signal_handler::base* pbase)
-   {
-   }
+   // void apex_system_layer::add_signal_handler(const ::signal_handler& signalhandler, const ::atom& atomSignal)
+   // {
+   // }
+   //
+   //
+   // void apex_system_layer::erase_signal_handler(::signal_handler::base* pbase)
+   // {
+   // }
 
 
    //void erase_signal_handlers(::particle * pparticle) override{}

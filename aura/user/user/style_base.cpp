@@ -69,9 +69,9 @@ namespace user
          if(pmanager)
          {
 
-            auto psignal = pmanager->get_signal(id_operating_system_user_color_change);
+            auto psignal = pmanager->signal(id_operating_system_user_color_change);
       
-            auto psignalDarkModeChange = pmanager->get_signal(id_application_dark_mode_change);
+            auto psignalDarkModeChange = pmanager->signal(id_application_dark_mode_change);
 
             psignal->add_handler(this);
 

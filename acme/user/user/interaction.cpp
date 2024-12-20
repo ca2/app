@@ -1514,7 +1514,7 @@ namespace acme
 
             ::source::destroy();
 
-            system()->erase_signal_handler(this);
+            //system()->erase_signal_handler(this);
 
             m_pacmeuserinteractionParent.release();
 

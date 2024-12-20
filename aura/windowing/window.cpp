@@ -93,7 +93,7 @@ namespace windowing
       m_bIgnoreSizeEvent = false;
       m_bIgnoreMoveEvent = false;
       //m_bUserElementOk = true;
-      m_uOnHide = false;
+      m_uOnHide = 0;
       //m_bQuitGraphicsOnHide = false;
       //m_bTryCloseApplicationOnHide = false;
       m_pImpl2 = nullptr;
@@ -2221,7 +2221,7 @@ void window::set_oswindow(::oswindow oswindow)
 
 
    bool window::on_set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy,
-                                       const ::user::e_activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize,
+                                       const ::user::activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize,
                                        ::e_display edisplay)
    {
 
@@ -2231,7 +2231,7 @@ void window::set_oswindow(::oswindow oswindow)
 
 
    bool window::set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy,
-                                    const ::user::e_activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize,
+                                    const ::user::activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize,
                                     ::e_display edisplay)
    {
 
@@ -2243,7 +2243,7 @@ void window::set_oswindow(::oswindow oswindow)
 
 
    bool window::_set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy,
-                                     const ::user::e_activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize,
+                                     const ::user::activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize,
                                      ::e_display edisplay, unsigned int nOverrideFlags)
    {
 
@@ -2623,6 +2623,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       if (bSize)
       {
+
          set_size_unlocked({ cx, cy });
 
       }
@@ -8724,6 +8725,13 @@ void window::set_oswindow(::oswindow oswindow)
    void window::on_message_show_window(::message::message * pmessage)
    {
 
+      if (has_destroying_flag())
+      {
+
+         return;
+
+      }
+
       ::pointer<::message::show_window> pshowwindow(pmessage);
 
       if (pshowwindow->m_bShow)
@@ -8802,7 +8810,7 @@ void window::set_oswindow(::oswindow oswindow)
                try
                {
 
-                  pinteraction->send_message(e_message_mouse_leave);
+                  pinteraction->call_route_message(e_message_mouse_leave);
 
                }
                catch (...)
@@ -8814,54 +8822,54 @@ void window::set_oswindow(::oswindow oswindow)
 
          }
 
-         {
-
-            //auto children = m_puserinteraction->synchronized_get_children();
-
-            // auto puserinteractionpointeraChild = m_puserinteraction->m_puserinteractionpointeraChild;
-
-            // if (puserinteractionpointeraChild)
-            for_user_interaction_children(puserinteraction, this)
-            {
-
-               //{
-
-               //   _synchronous_lock synchronouslock(this->synchronization());
-
-               //   if(!m_puserinteraction)
-               //   {
-
-               //      return;
-
-               //   }
-
-               //   uia = m_puserinteraction->m_puserinteractionpointeraChild;
-
-               //}
-
-               //for (auto & pinteraction : children)
-               {
-
-                  //synchronouslock.unlock();
-
-                  try
-                  {
-
-                     puserinteraction->send_message(e_message_show_window, 0, (huge_integer)e_show_window_parent_closing);
-
-                  }
-                  catch (...)
-                  {
-
-                  }
-
-                  //synchronouslock.lock();
-
-               }
-
-            }
-
-         }
+         // {
+         //
+         //    //auto children = m_puserinteraction->synchronized_get_children();
+         //
+         //    // auto puserinteractionpointeraChild = m_puserinteraction->m_puserinteractionpointeraChild;
+         //
+         //    // if (puserinteractionpointeraChild)
+         //    for_user_interaction_children(puserinteraction, this)
+         //    {
+         //
+         //       //{
+         //
+         //       //   _synchronous_lock synchronouslock(this->synchronization());
+         //
+         //       //   if(!m_puserinteraction)
+         //       //   {
+         //
+         //       //      return;
+         //
+         //       //   }
+         //
+         //       //   uia = m_puserinteraction->m_puserinteractionpointeraChild;
+         //
+         //       //}
+         //
+         //       //for (auto & pinteraction : children)
+         //       {
+         //
+         //          //synchronouslock.unlock();
+         //
+         //          try
+         //          {
+         //
+         //             puserinteraction->send_message(e_message_show_window, 0, (huge_integer)e_show_window_parent_closing);
+         //
+         //          }
+         //          catch (...)
+         //          {
+         //
+         //          }
+         //
+         //          //synchronouslock.lock();
+         //
+         //       }
+         //
+         //    }
+         //
+         //}
 
          //auto psequencer = __create_new < sequencer<sequence<window>>>();
 
@@ -10688,7 +10696,7 @@ void window::set_oswindow(::oswindow oswindow)
    void window::set_mouse_capture(::user::interaction * puserinteraction)
    {
 
-      this->set_mouse_capture();
+      system()->windowing()->set_mouse_capture(nullptr, this);
 
       m_puserinteractionMouseCapture = puserinteraction;
 
@@ -16377,6 +16385,16 @@ void window::set_oswindow(::oswindow oswindow)
       return this;
 
    }
+
+
+   bool window::on_configure_unlocked_timer()
+   {
+
+      return true;
+
+   }
+
+
    //::trace_statement & window::trace_statement_prefix(::trace_statement & statement) const
    //{
 

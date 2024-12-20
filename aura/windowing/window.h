@@ -380,10 +380,10 @@ namespace windowing
       bool screen_to_client(::int_point * ppoint) override;
 
 
-      virtual bool on_set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::e_activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay);
+      virtual bool on_set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay);
 
-      virtual bool set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::e_activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay);
-      virtual bool _set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::e_activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, unsigned int nOverrideFlags = 0);
+      virtual bool set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay);
+      virtual bool _set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, unsigned int nOverrideFlags = 0);
 
       virtual bool configure_window_unlocked();
       virtual bool strict_set_window_position_unlocked(bool & bChangedPosition, bool & bChangedSize);
@@ -1817,6 +1817,8 @@ namespace windowing
       //virtual void set_opacity(double dOpacity);
 
       ::windowing::window * windowing_window() override;
+
+         virtual bool on_configure_unlocked_timer();
 
    };
 

@@ -396,11 +396,19 @@ namespace platform
 
       virtual void system_id_update(huge_integer iUpdate, huge_integer iPayload);
 
-      //void add_handler(::particle * pmatter, bool bPriority = false) override;
 
-      virtual void add_signal_handler(const ::signal_handler& signalhandler, const ::atom & atomSignal);
+      [[nodiscard]] virtual class ::handler::signal * signal(const ::atom& atom);
 
-      virtual void erase_signal_handler(::signal_handler::base * pbase);
+
+      // virtual void add_handler(::particle * pmatter);
+      //
+      // virtual void add_signal_handler(::matter * pmatter, const ::atom & atomSignal);
+      //
+      // virtual void add_signal_handler(const ::signal_handler & signalhandler, const ::atom & atomSignal);
+      //
+      // virtual void erase_signal_handler(::matter * pmatter);
+      //
+      // virtual void erase_signal_handler(::signal_handler::base * pbase);
 
       //void erase_signal_handlers(::particle * pparticle) override;
 

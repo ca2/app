@@ -1905,7 +1905,7 @@ void elemental::back_on_right_button_up(::user::mouse* pmouse)
       //::user::drag_client::destroy();
       //::conversation::destroy();
 
-      system()->erase_signal_handler(this);
+      //system()->erase_signal_handler(this);
 
    }
 

@@ -1854,7 +1854,7 @@ namespace user
 
       }
 
-      ::user::interaction::on_set_property(change);
+      ::user::text::on_set_property(change);
 
    }
 
@@ -1912,7 +1912,7 @@ namespace user
 
       }
 
-      return ::user::interaction::on_get_property(atoma);
+      return ::user::text::on_get_property(atoma);
 
    }
 

@@ -55,22 +55,29 @@ namespace aura
    void context::defer_initialize_context_image()
    {
 
-      if (application()->m_bImaging)
+      if (!m_pimagecontext)
       {
 
-         auto pfactory = system()->imaging_factory();
-
-         pfactory->merge_to_global_factory();
-
-         try
+         if (application()->m_bImaging)
          {
 
-            __øconstruct(m_pimagecontext);
+            draw2d();
 
-         }
-         catch (...)
-         {
+            auto pfactory = system()->imaging_factory();
 
+            pfactory->merge_to_global_factory();
+
+            try
+            {
+
+               __øconstruct(m_pimagecontext);
+
+            }
+            catch (...)
+            {
+
+
+            }
 
          }
 

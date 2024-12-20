@@ -88,21 +88,20 @@ void manager::destroy()
 
    m_psignalmap.release();
 
-   ::object::destroy();
-
+   ::property_object::destroy();
 
 }
 
 
-class ::handler::signal * manager::get_signal(const ::atom & atom)
+class ::handler::signal * manager::signal(const ::atom & atom)
 {
 
-   return get_signal(atom, ::action_context());
+   return signal(atom, ::action_context());
 
 }
 
 
-class ::handler::signal * manager::get_signal(const ::atom & atom, const ::action_context& actioncontext)
+class ::handler::signal * manager::signal(const ::atom & atom, const ::action_context& actioncontext)
 {
 
    _synchronous_lock synchronouslock(this->synchronization());
@@ -173,21 +172,38 @@ class ::handler::signal * manager::get_signal(const ::atom & atom, const ::actio
 }
 
 
-void manager::add_signal_handler(const ::signal_handler& signalhandler, const ::atom& atomSignal)
-{
-
-   auto psignal = get_signal(atomSignal);
-
-   if (::is_null(psignal))
-   {
-
-      throw ::exception(error_resource);
-
-   }
-
-   psignal->add_signal_handler(signalhandler);
-
-}
+// void manager::add_handler(::matter * pmatter, const ::atom& atomSignal)
+// {
+//
+//    auto psignal = signal(atomSignal);
+//
+//    if (::is_null(psignal))
+//    {
+//
+//       throw ::exception(error_resource);
+//
+//    }
+//
+//    psignal->add_handler(pmatter);
+//
+// }
+//
+//
+// void manager::add_signal_handler(const ::signal_handler& signalhandler, const ::atom& atomSignal)
+// {
+//
+//    auto psignal = get_signal(atomSignal);
+//
+//    if (::is_null(psignal))
+//    {
+//
+//       throw ::exception(error_resource);
+//
+//    }
+//
+//    psignal->add_signal_handler(signalhandler);
+//
+// }
 
 
 //void manager::erase_signal_handler(const ::signal_handler& signalhandler)
@@ -300,18 +316,18 @@ void manager::add_signal_handler(const ::signal_handler& signalhandler, const ::
 //   }
 
 
-void manager::signal(const ::atom & atom)
+void manager::send_signal(const ::atom & atom)
 {
 
-   signal(atom, {});
+   send_signal(atom, {});
 
 }
 
    
-void manager::signal(const ::atom & atom, const ::action_context & actioncontext)
+void manager::send_signal(const ::atom & atom, const ::action_context & actioncontext)
 {
 
-   auto psignal = get_signal(atom, actioncontext);
+   auto psignal = signal(atom, actioncontext);
 
    psignal->notify();
 
@@ -484,7 +500,7 @@ void manager::erase_signal_handler(const ::signal_handler::base * pbase)
       while(true)
       {
       
-         auto p = psignal->m_signalhandlercontext.predicate_find([pbase](auto & iterator)
+         auto p = psignal->m_signalhandlercontext2.predicate_find([pbase](auto & iterator)
                                                                  {
             return iterator->m_element1.m_pbase == pbase;
             
@@ -497,7 +513,7 @@ void manager::erase_signal_handler(const ::signal_handler::base * pbase)
             
          }
          
-         psignal->m_signalhandlercontext.erase(p);
+         psignal->m_signalhandlercontext2.erase(p);
          
       }
 
@@ -505,6 +521,31 @@ void manager::erase_signal_handler(const ::signal_handler::base * pbase)
 
 }
 
+
+void manager::erase_handler(::object * pobject)
+{
+
+   _synchronous_lock synchronouslock(this->synchronization());
+
+   //auto values = m_psignalmap->values();
+
+   //auto & begin = values.begin();
+
+   if (!m_psignalmap)
+   {
+
+      return;
+
+   }
+
+   for (auto psignal : m_psignalmap->payloads())
+   {
+
+      psignal->erase_handler(pobject);
+
+   }
+
+}
 
 
 //} // namespace promise

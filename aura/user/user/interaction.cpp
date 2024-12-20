@@ -18,6 +18,7 @@
 #include "aura/windowing/placement_log.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
+#include "acme/constant/timer.h"
 #include "acme/constant/message_prototype.h"
 #include "acme/constant/simple_command.h"
 #include "acme/exception/interface_only.h"
@@ -68,6 +69,7 @@
 #include "acme/prototype/geometry2d/_defer_item.h"
 #include "acme/prototype/collection/_tuple.h"
 #include "acme/_finish.h"
+#include "app-core/store/_.h"
 
 #ifdef WINDOWS_DESKTOP
 //#include "acme/_operating_system.h"
@@ -1151,14 +1153,23 @@ namespace user
    ::windowing::window * interaction::window()
    {
 
-      if (this == top_level())
+      auto ptoplevel = top_level();
+
+      if (::is_null(ptoplevel))
+      {
+
+         return nullptr;
+
+      }
+
+      if (this == ptoplevel)
       {
 
          return acme_windowing_window()->windowing_window();
 
       }
 
-      return top_level()->window();
+      return ptoplevel->window();
 
    }
 
@@ -2131,7 +2142,7 @@ namespace user
       //
       //      }
 
-      if (get_host_user_interaction()->windowing_window()->m_pgraphicsgraphics->is_single_buffer_mode())
+      if (windowing_window()->m_pgraphicsgraphics->is_single_buffer_mode())
       {
 
          auto * pinteraction = get_wnd();
@@ -7352,18 +7363,29 @@ namespace user
          && !windowing()->is_screen_visible(edisplayOld))
          {
 
-            //ModifyStyle(0, WS_VISIBLE);
+         if(get_parent())
+         {
 
-            this->send_message(e_message_show_window, 1);
+            this->call_route_message(e_message_show_window, 1);
+            }
+            else
+            {
+            this->call_route_message(e_message_show_window, 1);
+            }
 
          }
          else if (!windowing()->is_screen_visible(edisplayNew)
              && windowing()->is_screen_visible(edisplayOld))
          {
 
-            ///ModifyStyle(WS_VISIBLE, 0);
-
-            this->send_message(e_message_show_window, 0);
+if(get_parent())
+{
+            this->call_route_message(e_message_show_window, 0);
+            }
+            else
+            {
+            this->call_route_message(e_message_show_window, 0);
+            }
 
          }
 
@@ -8090,7 +8112,7 @@ namespace user
       if (pmanager)
       {
 
-         auto psignal = pmanager->get_signal(id_user_style_change);
+         auto psignal = pmanager->signal(id_user_style_change);
 
          psignal->add_handler(this);
 
@@ -9459,6 +9481,18 @@ namespace user
 
    void interaction::on_timer(::timer * ptimer)
    {
+
+      if (ptimer->m_etimer == e_timer_configure_unlocked)
+      {
+
+         if (window()->on_configure_unlocked_timer())
+         {
+
+            KillTimer(ptimer->m_etimer);
+
+         }
+
+      }
 
    }
 
@@ -11836,6 +11870,13 @@ namespace user
 
       } while (puserinteractionParent != nullptr);
 
+      if (m_bChild && puiTopLevelParent == this)
+      {
+
+         return nullptr;
+
+      }
+
       return puiTopLevelParent;
 
    }
@@ -12435,7 +12476,7 @@ namespace user
          else
          {
 
-            pinteraction->send_message(e_message_size_parent, 0, (lparam)&sizeparentlayout);
+            pinteraction->call_route_message(e_message_size_parent, 0, (lparam)&sizeparentlayout);
 
          }
 
@@ -15892,6 +15933,37 @@ namespace user
       //return message_call(pmessage);
 
       message_handler(pmessage);
+
+      return pmessage->m_lresult;
+
+   }
+
+
+   lresult interaction::call_route_message(const ::atom & atom, wparam wparam, lparam lparam)
+   {
+
+      // if (::is_null(m_puserinteraction))
+      // {
+
+      //    throw ::exception(error_wrong_state);
+
+      // }
+
+      // this->interaction_post(__allocate call_message_handler_task(m_puserinteraction, atom, wparam, lparam));
+
+      //auto pmessage
+
+      //get_message()
+
+      ::pointer<::message::message>pmessage;
+
+      pmessage = get_message(atom, wparam, lparam);
+
+      pmessage->m_pchannel = this;
+
+      //return message_call(pmessage);
+
+      route_message(pmessage);
 
       return pmessage->m_lresult;
 
@@ -19442,28 +19514,32 @@ namespace user
    void interaction::hide_and_then_destroy()
    {
 
-      if (is_top_level())
+      window()->m_pgraphicsthread->post([this]()
       {
+         if (is_top_level())
+         {
 
-         window()->m_bQuitGraphicsOnHide = true;
-         window()->m_bDestroyWindowOnHide = true;
-         window()->m_bTryCloseApplicationOnHide = true;
+            window()->m_bQuitGraphicsOnHide = true;
+            window()->m_bDestroyWindowOnHide = true;
+            window()->m_bTryCloseApplicationOnHide = true;
 
-      }
-      else
-      {
+         }
+         else
+         {
 
-         m_bDestroyOnHide = true;
+            m_bDestroyOnHide = true;
 
-      }
+         }
 
-      display(e_display_hide);
+         display(e_display_hide);
 
-      set_need_layout();
+         set_need_layout();
 
-      set_need_redraw();
+         set_need_redraw();
 
-      post_redraw();
+         post_redraw();
+
+      });
 
    }
 
@@ -20577,9 +20653,9 @@ namespace user
    void interaction::design_window_minimize(const ::user::activation & useractivation)
    {
 
-      auto rectangleRequest = this->screen_rectangle(e_layout_lading);
-
-      good_iconify(nullptr, rectangleRequest, true, useractivation, layout().lading().zorder());
+      // auto rectangleRequest = this->screen_rectangle(e_layout_lading);
+      //
+      // good_iconify(nullptr, rectangleRequest, true, useractivation, layout().lading().zorder());
 
    }
 
@@ -22610,7 +22686,7 @@ namespace user
          if (::type(this).name().contains("main_frame"))
          {
 
-            //information() << "on_message_show_window main_frame (B)";
+            information() << "on_message_show_window main_frame (B)";
 
          }
 

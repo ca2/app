@@ -139,6 +139,13 @@ public:
    ~thread() override;
 
    
+#ifdef _DEBUG
+
+   huge_integer increment_reference_count() override;
+   huge_integer decrement_reference_count() override;
+   huge_integer release() override;
+
+#endif
 
 
    // void assert_ok() const override;

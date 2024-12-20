@@ -11,8 +11,8 @@ namespace user
 
 
    class CLASS_DECL_ACME control :
-      virtual public ::data::property_container,
-      virtual public ::data::property_listener
+      public ::data::property_container,
+      public ::data::property_listener
    {
    public:
 

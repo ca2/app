@@ -26,6 +26,15 @@ object::~object()
 
    ::acme::del(m_pmeta);
 
+   auto particleaNotify = ::transfer(m_particleaNotify);
+
+   for (auto pparticle : particleaNotify)
+   {
+
+      pparticle->on_notify(this, id_destroy);
+
+   }
+
 }
 
 
@@ -1409,10 +1418,53 @@ void object::destroy()
    ///*estatus = */ destroy_composites();
 
    ///*estatus = */ release_references();
+   ///
 
-   /*estatus = */ property_object::destroy();
+   auto procedureaDestroy = ::transfer(m_procedureaDestroying);
+
+   for (auto& procedure: procedureaDestroy)
+   {
+
+      if (procedure)
+      {
+
+         procedure();
+
+      }
+
+   }
+
+   auto particleaNotify = ::transfer(m_particleaNotify);
+
+   for (auto pparticle: particleaNotify)
+   {
+
+      pparticle->on_notify(this, id_destroy);
+
+   }
+
+   //m_destroyinga.erase_all();
+
+
+   /*estatus = */
+   property_object::destroy();
 
    //return ::success;
+
+}
+
+
+void object::on_notify(::particle * pparticle, enum_id eid)
+{
+
+   if (eid == id_destroy)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      m_particleaNotify.erase(pparticle);
+
+   }
 
 }
 
@@ -1440,8 +1492,6 @@ void object::set_finish()
 // please refer to object::finish verses/documentation
 void object::delete_this()
 {
-
-   destroy();
 
    property_object::delete_this();
 
@@ -2308,13 +2358,13 @@ void object::_001OnUpdate(::message::message* pmessage)
 
 
 
-//void receiver::install_message_routing(::channel * pchannel)
-void object::install_message_routing(::channel* pchannel)
-{
-
-   //pchannel->add_handler(e_message_system_update, this, &::object::_001OnUpdate);
-
-}
+// //void receiver::install_message_routing(::channel * pchannel)
+// void object::install_message_routing(::channel* pchannel)
+// {
+//
+//    //pchannel->add_handler(e_message_system_update, this, &::object::_001OnUpdate);
+//
+// }
 
 
 //::particle_pointerobject::running(const ::string & pszTag) const

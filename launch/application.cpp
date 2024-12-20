@@ -161,6 +161,14 @@ namespace launch
          m_strBranch = strBranch;
 
       }
+      else if (m_strDistro == "opensuse-leap")
+      {
+
+         print_line("This is openSUSE Leap System...\n");
+
+         m_strBranch = strBranch;
+
+      }
 
       m_strRelease = strRelease;
 

@@ -119,6 +119,8 @@ void subparticle::initialize(::particle* pparticle)
 void subparticle::destroy()
 {
 
+   set_flag(e_flag_destroyed);
+
 }
 
 

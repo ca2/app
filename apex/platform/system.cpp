@@ -1796,6 +1796,13 @@ pdirectorysystem->create("/ca2core");
 
    }
 
+   [[nodiscard]] class ::handler::signal * system::signal(const ::atom& atom)
+   {
+
+      return ::manager::signal(atom);
+
+   }
+
 
    void system::term1()
    {
@@ -4793,12 +4800,12 @@ namespace apex
    //
    //   }
 
-   void system::add_signal_handler(const ::signal_handler & signalhandler, const ::atom & atomSignal)
-   {
-
-      ::manager::add_signal_handler(signalhandler, atomSignal);
-
-   }
+   // void system::add_signal_handler(const ::signal_handler & signalhandler, const ::atom & atomSignal)
+   // {
+   //
+   //    ::manager::add_signal_handler(signalhandler, atomSignal);
+   //
+   // }
 
    //   void system::add_signal_handler(const ::signal_handler& signalhandler, const ::atom& atomSignal)
    //   {
@@ -4825,12 +4832,12 @@ namespace apex
    //   }
 
 
-   void system::erase_signal_handler(::signal_handler::base * pbase)
-   {
-
-      manager::erase_signal_handler(pbase);
-
-   }
+   // void system::erase_signal_handler(::signal_handler::base * pbase)
+   // {
+   //
+   //    manager::erase_signal_handler(pbase);
+   //
+   // }
 
 
    void system::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)

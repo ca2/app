@@ -933,23 +933,23 @@ bool property_object::is_true_or_empty(const ::atom & atom) const
 //}
 
 
-::payload & property_object::operator[](const ::atom & atom) { return payload(atom); }
-
-::payload property_object::operator[](const ::atom & atom) const
-{ 
-   
-   auto pproperty = find_property(atom); 
-
-   if (!pproperty)
-   {
-
-      return e_type_new;
-
-   }
-
-   return *pproperty;
-
-}
+// ::payload & property_object::operator[](const ::atom & atom) { return payload(atom); }
+//
+// ::payload property_object::operator[](const ::atom & atom) const
+// {
+//
+//    auto pproperty = find_property(atom);
+//
+//    if (!pproperty)
+//    {
+//
+//       return e_type_new;
+//
+//    }
+//
+//    return *pproperty;
+//
+// }
 
 
 ::payload property_object::payload(const ::atom & atom) const 
@@ -969,11 +969,11 @@ bool property_object::is_true_or_empty(const ::atom & atom) const
 }
 
 
-::payload property_object::payload(const ::atom & atom, const ::payload & varDefault) const { return operator()(atom, varDefault); }
+::payload property_object::payload(const ::atom & atom, const ::payload & varDefault) const { return find_payload(atom, varDefault); }
 
-::payload property_object::operator()(const ::atom & atom) const { return find_payload(atom, ::error_not_found); }
-
-::payload property_object::operator()(const ::atom & atom, const ::payload & varDefault) const { return find_payload(atom, varDefault); }
+// ::payload property_object::operator()(const ::atom & atom) const { return find_payload(atom, ::error_not_found); }
+//
+// ::payload property_object::operator()(const ::atom & atom, const ::payload & varDefault) const { return find_payload(atom, varDefault); }
 
 ::payload property_object::find_payload(const ::atom & atom) const { return find_payload(atom, ::error_not_found); }
 

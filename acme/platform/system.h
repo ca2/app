@@ -488,9 +488,9 @@ namespace platform
 
       //virtual void add_handler(::particle * pmatter, bool bPriority = false);
 
-      virtual void add_signal_handler(const ::signal_handler & signalhandler, const ::atom & atomSignal) override;
+      //virtual void add_signal_handler(const ::signal_handler & signalhandler, const ::atom & atomSignal) override;
 
-      virtual void erase_signal_handler(::signal_handler::base * pbase) override;
+      //virtual void erase_signal_handler(::signal_handler::base * pbase) override;
 
       //virtual void erase_signal_handlers(::particle * ppparticle);
 

@@ -4612,16 +4612,32 @@ return nullptr;
 
    //void acme_system_layer::handle(::topic * ptopic, ::context * pcontext) override{}
 
-   //void acme_system_layer::add_handler(::particle * pmatter, bool bPriority = false){}
-
-   void acme_system_layer::add_signal_handler(const ::signal_handler& signalhandler, const ::atom& atomSignal)
-   {
-   }
-
-
-   void acme_system_layer::erase_signal_handler(::signal_handler::base* pbase)
-   {
-   }
+   // void acme_system_layer::add_handler(::particle * pmatter)
+   // {
+   //
+   //
+   // }
+   //
+   //
+   // void acme_system_layer::add_signal_handler(const ::signal_handler& signalhandler, const ::atom& atomSignal)
+   // {
+   //
+   //
+   // }
+   //
+   //
+   // void acme_system_layer::erase_signal_handler(::matter * pmatter)
+   // {
+   //
+   //
+   // }
+   //
+   //
+   // void acme_system_layer::erase_signal_handler(::signal_handler::base* pbase)
+   // {
+   //
+   //
+   // }
 
 
    //void acme_system_layer::erase_signal_handlers(::particle * ppparticle){}

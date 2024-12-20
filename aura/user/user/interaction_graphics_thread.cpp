@@ -1199,10 +1199,24 @@ namespace user
 
       }
 
+      if (has_finishing_flag())
+      {
+
+         return false;
+
+      }
+
       if (m_puserinteraction->has_fps_output_purpose())
       {
 
          if(!wait_to_present())
+         {
+
+            return false;
+
+         }
+
+         if (has_finishing_flag())
          {
 
             return false;

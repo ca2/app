@@ -7363,14 +7363,29 @@ namespace user
          && !windowing()->is_screen_visible(edisplayOld))
          {
 
+         if(get_parent())
+         {
+
             this->call_route_message(e_message_show_window, 1);
+            }
+            else
+            {
+            this->call_route_message(e_message_show_window, 1);
+            }
 
          }
          else if (!windowing()->is_screen_visible(edisplayNew)
              && windowing()->is_screen_visible(edisplayOld))
          {
 
+if(get_parent())
+{
             this->call_route_message(e_message_show_window, 0);
+            }
+            else
+            {
+            this->call_route_message(e_message_show_window, 0);
+            }
 
          }
 
@@ -20638,9 +20653,9 @@ namespace user
    void interaction::design_window_minimize(const ::user::activation & useractivation)
    {
 
-      auto rectangleRequest = this->screen_rectangle(e_layout_lading);
-
-      good_iconify(nullptr, rectangleRequest, true, useractivation, layout().lading().zorder());
+      // auto rectangleRequest = this->screen_rectangle(e_layout_lading);
+      //
+      // good_iconify(nullptr, rectangleRequest, true, useractivation, layout().lading().zorder());
 
    }
 

@@ -85,8 +85,10 @@ namespace platform
    }
 
 
-   void acme_node_layer::on_app_activated()
+   void acme_node_layer::on_app_activated(::user::activation_token * puseractivationtoken)
    {
+
+
    }
 
 

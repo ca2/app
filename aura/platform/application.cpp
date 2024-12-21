@@ -8466,7 +8466,7 @@ namespace aura
          if(m_puserinteractionMain)
          {
 
-            m_puserinteractionMain->on_app_activated();
+            m_puserinteractionMain->on_app_activated(ptopic->m_puseractivationtoken);
             //m_puserinteractionMain->frame_toggle_restore();
 
          }

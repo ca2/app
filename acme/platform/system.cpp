@@ -3227,7 +3227,7 @@ particle* system::matter_mutex()
       else if (ptopic->m_atom == id_app_activated)
       {
 
-         node()->on_app_activated();
+         node()->on_app_activated(ptopic->m_puseractivationtoken);
 
          if (::is_set(application()))
          {

@@ -166,7 +166,7 @@ namespace platform
       virtual void node_implement_main();
 
 
-      virtual void on_app_activated();
+      virtual void on_app_activated(::user::activation_token * puseractivationtoken);
 
 
       virtual void on_system_main();

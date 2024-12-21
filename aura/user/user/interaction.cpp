@@ -20753,7 +20753,7 @@ if(get_parent())
    }
 
 
-   void interaction::on_app_activated()
+   void interaction::on_app_activated(::user::activation_token * puseractivationtoken)
    {
 
       //auto estatus =
@@ -20762,7 +20762,7 @@ if(get_parent())
 
       //frame_toggle_restore(bDisplayPreviousOnRestore);
 
-      frame_restore();
+      frame_restore(puseractivationtoken);
 
       //if(!estatus)
       //{
@@ -20796,7 +20796,7 @@ if(get_parent())
    }
 
 
-   void interaction::frame_restore()
+   void interaction::frame_restore(::user::activation_token * puseractivationtoken)
    {
 
       if (notify_icon())
@@ -20813,7 +20813,7 @@ if(get_parent())
 
          information() << "interaction::frame_restore Not Screen Visible!";
 
-         frame_experience_restore({ ::user::e_activation_set_foreground, ::get_task() });
+         frame_experience_restore({ ::user::e_activation_set_foreground, puseractivationtoken });
 
       }
       else
@@ -20824,7 +20824,7 @@ if(get_parent())
          display(e_display_normal,
             { ::user::e_activation_set_foreground
             | ::user::e_activation_set_active,
-            ::get_task() });
+            puseractivationtoken });
 
       }
 

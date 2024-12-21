@@ -441,7 +441,7 @@ namespace platform
    }
 
 
-   void node::on_app_activated()
+   void node::on_app_activated(::user::activation_token * puseractivationtoken)
    {
       
       

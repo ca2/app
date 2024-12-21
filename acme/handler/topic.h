@@ -26,6 +26,7 @@ public:
    ::pointer<::property_object>           m_psender;
    ::pointer<::user::element>             m_puserelement; // user::interaction
    ::pointer<::particle>                  m_pparticle;
+   ::pointer<::user::activation_token>    m_puseractivationtoken;
 
 
    topic(const ::atom & atom) 

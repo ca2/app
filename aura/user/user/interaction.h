@@ -985,9 +985,9 @@ namespace user
 
       virtual void on_update_notify_icon_menu(::collection::index & iNotifyIconIndex);
       
-      virtual void on_app_activated();
+      virtual void on_app_activated(::user::activation_token * puseractivationtoken);
 
-      virtual void frame_restore();
+      virtual void frame_restore(::user::activation_token * puseractivationtoken);
 
       virtual void frame_occlude();
       

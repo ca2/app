@@ -1036,13 +1036,13 @@ namespace user
       if (!const_layout().sketch().is_screen_visible())
       {
 
-         display_normal(e_display_normal, { ::user::e_activation_set_foreground, window()->initial_frame_display_activation_token() });
+         display_normal(e_display_normal, { ::user::e_activation_set_foreground, window()->get_initial_frame_display_activation_token() });
 
       }
       else
       {
 
-         set_activation({ ::user::e_activation_set_foreground, window()->initial_frame_display_activation_token() });
+         set_activation({ ::user::e_activation_set_foreground, window()->get_initial_frame_display_activation_token() });
 
       }
 

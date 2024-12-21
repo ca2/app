@@ -527,7 +527,7 @@ namespace aura
       //virtual bool Ex2OnAppUninstall();
 
       using ::aqua::application::on_command;
-      bool on_command(const ::atom & atom) override;
+      bool on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken) override;
       //virtual void _001CloseApplication();
 
       //virtual string get_license_id();

@@ -17,7 +17,13 @@ namespace user
 {
 
 
+   class activation_token;
+
+
    class user;
+
+
+
 
 
    class acme_content;

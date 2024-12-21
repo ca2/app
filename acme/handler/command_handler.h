@@ -3,6 +3,10 @@
 //
 // From user_notify_icon_bridge to application_menu_callback by
 // camilo on 2023-10-30 23:45 <3ThomasBorregaardSorensen!!
+//
+// Because I love Thomas mate( and Mummi mate and bilbo mate!!)
+// and because Thommmi likes handlers...
+// application_menu_callback as command_handler on 2024-12-21 02:42 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -13,7 +17,8 @@ namespace user
 
 }
 
-struct application_menu_callback :
+
+struct command_handler :
    virtual public ::particle
 {
 public:
@@ -25,10 +30,11 @@ public:
 //   virtual const char * _get_notification_area_action_label(int iIndex) = 0;
 //   virtual const char * _get_notification_area_action_accelerator(int iIndex) = 0;
 //   virtual const char * _get_notification_area_action_description(int iIndex) = 0;
-   virtual bool on_application_menu_command(const ::atom & atom, ::user::activation_token * puseractivationtoken) = 0;
+   virtual bool handle_command(const ::atom & atom, ::user::activation_token * puseractivationtoken) = 0;
 
 
 };
+
 
 //
 //

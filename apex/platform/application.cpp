@@ -2975,10 +2975,10 @@ namespace apex
    }
 
 
-   bool application::on_command(const ::atom & atom, ::user::activation_token * puseractivationtoken)
+   bool application::on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken)
    {
 
-      if (::platform::application::on_command(atom, puseractivationtoken))
+      if (::platform::application::on_command_final(atom, puseractivationtoken))
       {
 
          return true;

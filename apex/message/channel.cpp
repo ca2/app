@@ -511,7 +511,7 @@ void channel::command_handler(::message::command * pcommand)
          && !pcommand->m_bHasCommandHandler)
       {
 
-         if (on_command(pcommand->m_atom, pcommand->m_puseractivationtoken))
+         if (on_command_final(pcommand->m_atom, pcommand->m_puseractivationtoken))
          {
 
             pcommand->m_bRet = true;
@@ -599,7 +599,7 @@ void channel::on_command_probe(::message::command * pcommand)
 }
 
 
-bool channel::on_command(const ::atom & atom, ::user::activation_token * puseractivationtoken)
+bool channel::on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken)
 {
 
    return false;

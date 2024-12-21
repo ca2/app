@@ -1269,7 +1269,7 @@ namespace apex
 
       
       using ::channel::on_command;
-      bool on_command(const ::atom& atom, ::user::activation_token * puseractivationtoken) override;
+      bool on_command_final(const ::atom& atom, ::user::activation_token * puseractivationtoken) override;
 
 
    };

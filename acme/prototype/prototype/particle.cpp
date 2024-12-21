@@ -707,6 +707,14 @@ void particle::on_notify(::particle * pparticle, enum_id eid)
 }
 
 
+bool particle::on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken)
+{
+
+   return false;
+
+}
+
+
 void particle::delete_this()
 {
 

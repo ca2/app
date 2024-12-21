@@ -5669,7 +5669,7 @@ namespace aura
    //}
 
 
-   bool application::on_command(const ::atom & atom)
+   bool application::on_command_fn(const ::atom & atom, ::user::activation_token * puseractivationtoken)
    {
 
       //if (m_puserinteractionMain != nullptr)
@@ -5690,7 +5690,7 @@ namespace aura
 
       //}
 
-      return ::aqua::application::on_command(atom);
+      return ::aqua::application::on_command_final(atom, puseractivationtoken);
 
    }
 

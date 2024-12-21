@@ -395,7 +395,7 @@ namespace platform
    }
 
 
-   bool acme_application_layer::on_command(const ::atom& atom, ::user::activation_token * puseractivationtoken)
+   bool acme_application_layer::on_command_final(const ::atom& atom, ::user::activation_token * puseractivationtoken)
    {
 
       return false;

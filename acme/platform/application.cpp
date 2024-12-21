@@ -2221,15 +2221,22 @@ namespace platform
    }
 
 
-   bool application::on_application_menu_command(const ::atom& atom, ::user::activation_token * puseractivationtoken)
+   bool application::handle_command(const ::atom& atom, ::user::activation_token * puseractivationtoken)
    {
 
-      return on_command(atom, puseractivationtoken);
+      if (::command_handler::handle_command(atom, puseractivationtoken))
+      {
+
+         return true;
+
+      }
+
+      return false;
 
    }
 
 
-   bool application::on_command(const ::atom& atom, ::user::activation_token * puseractivationtoken)
+   bool application::on_command_final(const ::atom& atom, ::user::activation_token * puseractivationtoken)
    {
       
       if(atom == "show_about_box")
@@ -2380,7 +2387,7 @@ CLASS_DECL_ACME void application_send_status(::enum_status estatus, ::particle* 
 void application_on_command(::platform::application * papplication, const char * pszCommand, ::user::activation_token * puseractivationtoken)
 {
 
-   papplication->on_command(pszCommand, puseractivationtoken);
+   papplication->on_command_final(pszCommand, puseractivationtoken);
 
 }
 

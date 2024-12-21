@@ -357,7 +357,7 @@ namespace platform
    //void aura_system_layer::discard_to_factory(::object * pca){}
 
    
-   bool aura_system_layer::on_command(const ::string& pszCommand)
+   bool aura_system_layer::on_command_final(const ::string& pszCommand, ::user::activation_token * puseractivationtoken)
    {
 
       return false;

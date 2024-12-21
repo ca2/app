@@ -614,14 +614,14 @@ namespace user
       //auto estatus =
       ::acme::department::destroy();
 
-      if (m_pdesktopenvironment)
-      {
-
-         m_pdesktopenvironment->destroy();
-
-      }
-
-      m_pdesktopenvironment.release();
+      // if (m_pdesktopenvironment)
+      // {
+      //
+      //    m_pdesktopenvironment->destroy();
+      //
+      // }
+      //
+      // m_pdesktopenvironment.release();
 
       if (m_pshell)
       {
@@ -1664,20 +1664,20 @@ namespace user
    // }
 
 
-   ::windowing::desktop_environment * user::desktop_environment()
-   {
-
-      if (!m_pdesktopenvironment)
-      {
-
-         __øconstruct(m_pdesktopenvironment);
-
-
-      }
-
-      return m_pdesktopenvironment;
-
-   }
+   // ::windowing::desktop_environment * user::desktop_environment()
+   // {
+   //
+   //    if (!m_pdesktopenvironment)
+   //    {
+   //
+   //       __øconstruct(m_pdesktopenvironment);
+   //
+   //
+   //    }
+   //
+   //    return m_pdesktopenvironment;
+   //
+   // }
 
 
    //::aura::system * useracmesystem()

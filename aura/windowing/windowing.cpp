@@ -1005,6 +1005,14 @@ namespace windowing
    }
 
 
+   // ::pointer < ::graphics::graphics > windowing::create_graphics()
+   // {
+   //
+   //    return nullptr;
+   //
+   // }
+
+
 } // namespace windowing
 
 

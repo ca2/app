@@ -10353,7 +10353,7 @@ void window::set_oswindow(::oswindow oswindow)
 
          //auto estatus =
 
-         m_pgraphicsgraphics = user()->desktop_environment()->create_graphics();
+         __øconstruct(m_pgraphicsgraphics);
 
          //__raw_construct(m_pgraphicsgraphics);
 

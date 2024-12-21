@@ -270,6 +270,9 @@ namespace windowing
       virtual int system_metrics_get_cy_caption();
 
 
+//      virtual ::pointer < ::graphics::graphics > create_graphics();
+
+
    };
 
 

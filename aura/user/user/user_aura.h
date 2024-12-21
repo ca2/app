@@ -36,7 +36,7 @@ namespace user
 
       ::pointer<::user::shell>               m_pshell;
 
-      ::pointer<::windowing::desktop_environment> m_pdesktopenvironment;
+      //::pointer<::windowing::desktop_environment> m_pdesktopenvironment;
 
       bool                                      m_bOnInitializeWindowObject;
 
@@ -55,7 +55,7 @@ namespace user
       // inline ::aura::application* get_app();
       // inline ::aura::session * get_session();
       //inline ::aura::system* system();
-      virtual ::windowing::desktop_environment * desktop_environment();
+      //virtual ::windowing::desktop_environment * desktop_environment();
 
       virtual ::user::shell* shell();
 

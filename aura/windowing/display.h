@@ -29,7 +29,6 @@ namespace windowing
       double                           m_dpi;
 
       ::int_rectangle_array            m_rectangleaWorkAreas;
-      ::string                         m_strDarkModeAnnotation;
 
 
 
@@ -147,27 +146,7 @@ namespace windowing
 
 
 
-      virtual string get_wallpaper(::collection::index iScreen);
-      virtual bool set_wallpaper(::collection::index iScreen, string strWallpaper);
 
-
-      virtual string_array get_wallpaper();
-      virtual void set_wallpaper(const string_array & strWallpaper);
-
-
-      virtual string impl_get_wallpaper(::collection::index iScreen);
-      virtual bool impl_set_wallpaper(::collection::index iScreen, string strWallpaper);
-
-
-      virtual string os_get_user_theme();
-      virtual bool set_os_desktop_theme(string strTheme);
-
-
-      virtual string impl_get_os_desktop_theme();
-      virtual bool impl_set_os_desktop_theme(string strTheme);
-
-
-      virtual void enable_wallpaper_change_notification();
 
       virtual bool would_be_docked(const ::int_rectangle & rectangleWouldBeSnapped);
 

@@ -704,6 +704,14 @@ namespace acme
          return true;
 
       }
+
+
+      // bool windowing::is_dark_mode_through_theming()
+      // {
+      //
+      //    return false;
+      //
+      // }
       
    
    } // namespace windowing

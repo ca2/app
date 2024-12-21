@@ -182,6 +182,8 @@ namespace acme
          virtual void set_dark_mode_time(const class ::time & time);
 
 
+         //virtual bool is_dark_mode_through_theming();
+
          virtual void fetch_system_background_color();
 
 

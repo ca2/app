@@ -838,7 +838,7 @@ namespace apex
       DECLARE_MESSAGE_HANDLER(on_command_display_about);
 
 
-      bool on_application_menu_command(const ::atom & atom, ::user::activation_token * puseractivationtoken) override;
+      bool handle_command(const ::atom & atom, ::user::activation_token * puseractivationtoken) override;
 
       // //virtual bool _001OnAgreeExit();
 

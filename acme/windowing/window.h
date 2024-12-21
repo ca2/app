@@ -146,7 +146,7 @@ namespace acme
          virtual bool _is_window();
 
          
-         virtual void set_foreground_window();
+         virtual void set_foreground_window(::user::activation_token * puseractivationtoken);
          
          
          virtual bool has_keyboard_focus();

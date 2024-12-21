@@ -3665,7 +3665,7 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
 
          //OnNotifyIconLButtonDown(ptopic->user_interaction_id());
 
-         default_notify_icon_topic();
+         default_notify_icon_topic(ptopic->m_puseractivationtoken);
 
          ptopic->m_bRet = true;
 
@@ -4392,7 +4392,7 @@ void simple_frame_window::_001OnNotifyIconTopic(::message::message * pmessage)
    if (would_display_notify_icon())
    {
 
-      default_notify_icon_topic(pmessage);
+      default_notify_icon_topic(pmessage->m_puseractivationtoken);
 
    }
 
@@ -4406,10 +4406,10 @@ void simple_frame_window::_001OnNotifyIconTopic(::message::message * pmessage)
 }
 
 
-void simple_frame_window::default_notify_icon_topic()
+void simple_frame_window::default_notify_icon_topic(::user::activation_token * puseractivationtoken)
 {
 
-   frame_toggle_restore();
+   frame_toggle_restore(puseractivationtoken);
 
 }
 
@@ -4555,29 +4555,32 @@ void simple_frame_window::on_select_user_style()
 }
 
 
-void simple_frame_window::call_notification_area_action(const ::string & pszId)
+void simple_frame_window::call_notification_area_action(const ::atom & atom, ::user::activation_token * puseractivationtoken)
 {
 
-   ::atom atom(pszId);
 
-   host_post([this, atom]()
+   auto puseractivationtokenHold = as_pointer(puseractivationtoken);
+
+   auto atomHold = atom;
+
+   host_post([this, atomHold, puseractivationtokenHold]()
       {
 
-         handle_command(atom);
+         handle_command(atomHold, puseractivationtokenHold);
 
       });
 
 }
 
 
-void simple_frame_window::notification_area_action(const ::string & pszId)
+void simple_frame_window::notification_area_action(const ::atom & atom, ::user::activation_token * puseractivationtoken)
 {
 
-   ::pointer<::user::interaction>pinteraction = this;
+   auto pcommand = __allocate ::message::command (atom);
 
-   ::message::command command((::atom)pszId);
+   pcommand->m_puseractivationtoken = puseractivationtoken;
 
-   pinteraction->_001SendCommand(&command);
+   route_command(pcommand);
 
 }
 

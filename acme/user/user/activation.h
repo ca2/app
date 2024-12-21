@@ -48,17 +48,17 @@ namespace user
           m_eactivation(euseractivation)
       {
 
-         if (m_eactivation & ::user::e_activation_set_foreground)
-         {
+         //if (m_eactivation & ::user::e_activation_set_foreground)
+         //{
 
-            if (!m_pactivationtoken)
-            {
+           // if (!m_pactivationtoken)
+            //{
 
-               throw ::exception(error_wrong_state);
+              // throw ::exception(error_wrong_state);
 
-            }
+            //}
 
-         }
+         //}
 
       }
 
@@ -68,17 +68,17 @@ namespace user
          m_pactivationtoken(pactivationtoken)
       {
 
-         if (m_eactivation & ::user::e_activation_set_foreground)
-         {
+         //if (m_eactivation & ::user::e_activation_set_foreground)
+         //{
 
-            if (!m_pactivationtoken)
-            {
+           // if (!m_pactivationtoken)
+            //{
 
-               throw ::exception(error_wrong_state);
+              // throw ::exception(error_wrong_state);
 
-            }
+            //}
 
-         }
+         //}
 
       }
 

@@ -191,10 +191,12 @@ namespace user
    }
 
 
-   bool frame_window::on_application_menu_command(const ::atom & atom)
+   bool frame_window::handle_command(const ::atom & atom, ::user::activation_token * puseractivationtoken)
    {
 
       auto pcommand = __allocate ::message::command(atom);
+
+      pcommand->m_puseractivationtoken = puseractivationtoken;
 
       route_command(pcommand);
 

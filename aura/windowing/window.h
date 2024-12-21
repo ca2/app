@@ -474,8 +474,8 @@ namespace windowing
       virtual void _set_active_window_unlocked();
 
       // the foreground interaction_impl applies only to top-level windows (frame windows)
-      void set_foreground_window() override;
-      virtual void _set_foreground_window_unlocked();
+      void set_foreground_window(::user::activation_token * puseractivationtoken) override;
+      virtual void _set_foreground_window_unlocked(::user::activation_token * puseractivationtoken);
       virtual ::user::interaction * get_foreground_window();
 
       virtual bool is_active_window() override;

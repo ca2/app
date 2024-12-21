@@ -438,7 +438,7 @@ namespace user
             host_post([this]()
                {
 
-                  set_foreground_window();
+                  set_foreground_window(nullptr);
 
                   host_post([this]()
                      {
@@ -737,8 +737,7 @@ namespace user
       //display();
 
       display(e_display_normal,
-         { ::user::e_activation_set_foreground | ::user::e_activation_for_context_menu,
-         ::get_task() } );
+         { ::user::e_activation_set_foreground | ::user::e_activation_for_context_menu } );
 
       set_need_layout();
 
@@ -759,7 +758,7 @@ namespace user
 
             display(e_display_normal, 
                { ::user::e_activation_set_foreground | ::user::e_activation_for_context_menu,
-               ::get_task() } );
+               nullptr } );
 
             order(e_zorder_top_most);
 

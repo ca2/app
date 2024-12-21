@@ -974,7 +974,7 @@ namespace experience
       else if (ptopic->m_atom == id_app_activated)
       {
 
-         frame_toggle_restore();
+         frame_toggle_restore(ptopic->m_puseractivationtoken);
 
       }
 

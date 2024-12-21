@@ -1650,7 +1650,7 @@ namespace user
       void set_keyboard_focus() override;
       void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr) override;
 
-      virtual void set_foreground_window();
+      virtual void set_foreground_window(::user::activation_token * puseractivationtoken);
       virtual void set_active_window();
 
       virtual void bring_to_front();

@@ -149,7 +149,7 @@ namespace user
       void on_command(::message::command * pcommand) override;
 
 
-      bool on_application_menu_command(const ::atom & atom) override;
+      bool handle_command(const ::atom & atom, ::user::activation_token * puseractivationtoken) override;
 
 
       bool on_set_parent(::user::interaction_base * puiParent) override;

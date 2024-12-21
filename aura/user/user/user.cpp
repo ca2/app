@@ -415,32 +415,32 @@ namespace user
    }
 
 
-   void user::set_foreground_window(::user::interaction * puserinteraction)
-   {
-
-      ::windowing::window * pwindow = nullptr;
-
-      if (::is_set(puserinteraction))
-      {
-
-         pwindow = puserinteraction->window();
-
-      }
-
-      //auto estatus = 
-      
-      pwindow->set_foreground_window();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return ::success;
-
-   }
+   // void user::set_foreground_window(::user::interaction * puserinteraction)
+   // {
+   //
+   //    ::windowing::window * pwindow = nullptr;
+   //
+   //    if (::is_set(puserinteraction))
+   //    {
+   //
+   //       pwindow = puserinteraction->window();
+   //
+   //    }
+   //
+   //    //auto estatus =
+   //
+   //    pwindow->set_foreground_window();
+   //
+   //    //if (!estatus)
+   //    //{
+   //
+   //    //   return estatus;
+   //
+   //    //}
+   //
+   //    //return ::success;
+   //
+   // }
 
 
    ::user::style* user::user_style()

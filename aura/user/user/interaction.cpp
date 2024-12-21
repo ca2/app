@@ -16408,7 +16408,7 @@ if(get_parent())
    }
 
 
-   void interaction::set_foreground_window()
+   void interaction::set_foreground_window(::user::activation_token * puseractivationtoken)
    {
 
       auto phost = get_host_user_interaction();
@@ -16444,7 +16444,7 @@ if(get_parent())
 
       //}
 
-      return pwindow->set_foreground_window();
+      return pwindow->set_foreground_window(puseractivationtoken);
 
    }
 

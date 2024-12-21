@@ -114,7 +114,7 @@ public:
    virtual void SetInternalFocus();
    
    
-   void set_foreground_window() override;
+   void set_foreground_window(::user::activation_token * puseractivationtoken) override;
    
    
    bool has_mouse_capture() override;

@@ -115,7 +115,7 @@ namespace user
 
 
       virtual ::user::interaction * get_foreground_window() override;
-      virtual void set_foreground_window(::user::interaction *) override;
+      //virtual void set_foreground_window(::user::interaction *) override;
 
 
       virtual ::user::style* user_style() override;

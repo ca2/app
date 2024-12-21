@@ -61,7 +61,7 @@ public:
 
    virtual void defer_save_window_placement() override;
 
-   virtual void default_notify_icon_topic(::message::message * pmessage);
+   virtual void default_notify_icon_topic(::user::activation_token * puseractivationtoken);
    virtual bool would_display_notify_icon();
 
 
@@ -264,13 +264,13 @@ public:
 
    virtual void defer_create_notification_icon();
 
-   virtual void call_notification_area_action(const ::string & pszId);
+   virtual void call_notification_area_action(const ::atom & atom, ::user::activation_token * puseractivationtoken);
 
    //virtual void OnNotifyIconContextMenu(const ::atom & idNotifyIcon);
    //virtual void OnNotifyIconLButtonDblClk(const ::atom& idNotifyIcon);
    //virtual void OnNotifyIconLButtonDown(const ::atom& idNotifyIcon);
 
-   virtual void notification_area_action(const ::string & pszId);
+   virtual void notification_area_action(const ::atom & atom, ::user::activation_token * puseractivationtoken);
 
    //virtual string notification_area_get_xml_menu();
 

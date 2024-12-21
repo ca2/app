@@ -1600,7 +1600,7 @@ void window::set_oswindow(::oswindow oswindow)
 
 
    // the foreground interaction_impl applies only to top-level windows (frame windows)
-   void window::set_foreground_window()
+   void window::set_foreground_window(::user::activation_token * puseractivationtoken)
    {
 
       throw ::interface_only();
@@ -1608,7 +1608,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::_set_foreground_window_unlocked()
+   void window::_set_foreground_window_unlocked(::user::activation_token * puseractivationtoken)
    {
 
       throw ::interface_only();
@@ -2692,10 +2692,10 @@ void window::set_oswindow(::oswindow oswindow)
    //   }
 
 
-   void window::frame_toggle_restore()
+   void window::frame_toggle_restore(::user::activation_token * puseractivationtoken)
    {
 
-      m_puserinteraction->frame_toggle_restore();
+      m_puserinteraction->frame_toggle_restore(puseractivationtoken);
 
    }
 

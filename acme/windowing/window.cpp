@@ -684,7 +684,7 @@ namespace acme
    
    
    
-   void window::set_foreground_window()
+   void window::set_foreground_window(::user::activation_token * puseractivationtoken)
    {
       
       

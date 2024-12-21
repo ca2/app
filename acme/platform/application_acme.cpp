@@ -395,12 +395,12 @@ namespace platform
    }
 
 
-   bool acme_application_layer::on_command_final(const ::atom& atom, ::user::activation_token * puseractivationtoken)
-   {
-
-      return false;
-
-   }
+   // bool acme_application_layer::on_command_final(const ::atom& atom, ::user::activation_token * puseractivationtoken)
+   // {
+   //
+   //    return false;
+   //
+   // }
 
 
    void acme_application_layer::add_impact_system(const ::atom& atom,

@@ -2981,15 +2981,11 @@ namespace apex
       if (::platform::application::on_command(atom))
       {
 
-         return;
+         return true;
 
       }
 
-      auto pcommand = __allocate ::message::command(atom);
-
-      route_command(pcommand);
-
-      return pcommand->m_bRet;
+      return false;
 
    }
 

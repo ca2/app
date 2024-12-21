@@ -340,7 +340,7 @@ namespace experience
 
                      pkey->m_bRet = true;
 
-                     display_previous();
+                     display_previous(pmessage->m_puseractivationtoken);
 
                      set_reposition();
 

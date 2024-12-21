@@ -491,10 +491,9 @@ namespace user
 
       virtual void _001Minimize();
 
-      virtual void on_display_restore();
+      virtual void on_display_restore(::user::activation_token * puseractivationtoken);
 
-
-      virtual void on_display_task_list();
+      virtual void on_display_task_list(::user::activation_token * puseractivationtoken);
 
 
       //void enable_drag_move();
@@ -875,7 +874,7 @@ namespace user
       virtual bool layout_layout(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void display_previous(bool bScreenVisible = false);
+      virtual void display_previous(::user::activation_token * puseractivationtoken, bool bScreenVisible = false);
       virtual void display_normal(::e_display edisplay, const ::user::activation & useractivation);
       virtual void display_docked(::e_display edisplay, const ::user::activation & useractivation);
       virtual void display_zoomed();
@@ -2395,7 +2394,7 @@ namespace user
       virtual void on_after_graphical_update() override;
 
 
-      virtual void _001OnDeiconify(::e_display edisplay);
+      virtual void _001OnDeiconify(::user::activation_token * puseractivationtoken, ::e_display edisplay);
 
 
       virtual ::e_status is_edit_delete_enabled();

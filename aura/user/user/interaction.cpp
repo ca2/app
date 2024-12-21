@@ -591,7 +591,7 @@ namespace user
    }
 
 
-   void interaction::on_display_restore()
+   void interaction::on_display_restore(::user::activation_token * puseractivationtoken)
    {
 
 
@@ -615,7 +615,7 @@ namespace user
 
             //}
 
-      display_previous(true);
+      display_previous(puseractivationtoken, true);
 
       set_need_layout();
 
@@ -626,7 +626,7 @@ namespace user
    }
 
 
-   void interaction::on_display_task_list()
+   void interaction::on_display_task_list(::user::activation_token * puseractivationtoken)
    {
 
    }
@@ -3468,7 +3468,7 @@ namespace user
    }
 
 
-   void interaction::display_previous(bool bScreenVisible)
+   void interaction::display_previous(::user::activation_token * puseractivationtoken, bool bScreenVisible)
    {
 
       auto edisplayPrevious = window_previous_display();
@@ -20874,7 +20874,7 @@ if(get_parent())
          if (bDisplayPreviousOnRestore)
          {
 
-            display_previous();
+            display_previous(puseractivationtoken);
 
          }
          else
@@ -23926,7 +23926,7 @@ if(get_parent())
    }
 
 
-   void interaction::_001OnDeiconify(::e_display edisplayPrevious)
+   void interaction::_001OnDeiconify(::user::activation_token * puseractivationtoken, ::e_display edisplayPrevious)
    {
 
       if (!windowing()->is_screen_visible(edisplayPrevious))

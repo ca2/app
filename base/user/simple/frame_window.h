@@ -61,7 +61,7 @@ public:
 
    virtual void defer_save_window_placement() override;
 
-   virtual void default_notify_icon_topic();
+   virtual void default_notify_icon_topic(::message::message * pmessage);
    virtual bool would_display_notify_icon();
 
 

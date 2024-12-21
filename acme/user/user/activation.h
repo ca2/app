@@ -100,35 +100,12 @@ namespace user
       }
 
 
-      // ::std::strong_ordering operator <=> (const ::user::activation & useractivation) const
-      // {
-      //
-      //    if (m_eactivation == ::user::e_activation_set_foreground)
-      //    {
-      //
-      //       if (useractivation.m_eactivation == ::user::e_activation_set_foreground)
-      //       {
-      //
-      //          if (m_ptaskForeground == useractivation.m_ptaskForeground)
-      //          {
-      //
-      //             return m_iTime <=> useractivation.m_iTime;
-      //
-      //          }
-      //          else
-      //          {
-      //
-      //             return m_ptaskForeground <=> useractivation.m_ptaskForeground;
-      //
-      //          }
-      //
-      //       }
-      //
-      //    }
-      //
-      //    return m_eactivation <=> useractivation.m_eactivation;
-      //
-      // }
+      ::std::strong_ordering operator <=> (const ::user::activation & useractivation) const
+      {
+
+          return m_eactivation <=> useractivation.m_eactivation;
+
+      }
 
       ::user::activation & operator = (const ::user::activation & useractivation)
       {

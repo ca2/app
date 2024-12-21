@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/platform/application_menu_callback.h"
+#include "acme/handler/command_handler.h"
 #include "acme/platform/application_menu.h"
 
 
@@ -11,7 +11,7 @@ namespace user
 
    class CLASS_DECL_AURA notify_icon_listener :
       virtual public ::particle,
-      virtual public ::application_menu_callback
+      virtual public ::command_handler
    {
    public:
 
@@ -64,7 +64,7 @@ namespace user
       //virtual const char * _get_notification_area_action_label(int iIndex);
       //virtual const char * _get_notification_area_action_accelerator(int iIndex);
       //virtual const char * _get_notification_area_action_description(int iIndex);
-      bool on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken) override;
+      bool handle_command(const ::atom & atom, ::user::activation_token * puseractivationtoken) override;
 
 
       //virtual bool notify_icon_insert_item(bool bStockItem, ::collection::index & iIndex, string strName, string strId = "", string strLabel = "", string strAccelerator = "", string strDescription = "");

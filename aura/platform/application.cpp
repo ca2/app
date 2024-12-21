@@ -5669,7 +5669,7 @@ namespace aura
    //}
 
 
-   bool application::on_command_fn(const ::atom & atom, ::user::activation_token * puseractivationtoken)
+   bool application::on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken)
    {
 
       //if (m_puserinteractionMain != nullptr)
@@ -5910,7 +5910,7 @@ namespace aura
    void application::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
    {
 
-      command_handler(pcommand);
+      ::channel::command_handler(pcommand);
 
       if (pcommand->m_bRet)
       {

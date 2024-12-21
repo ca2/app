@@ -4392,7 +4392,7 @@ void simple_frame_window::_001OnNotifyIconTopic(::message::message * pmessage)
    if (would_display_notify_icon())
    {
 
-      default_notify_icon_topic();
+      default_notify_icon_topic(pmessage);
 
    }
 

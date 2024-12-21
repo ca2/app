@@ -626,6 +626,15 @@ public:
       }
 
 
+      void get_debug_title(char * sz, character_count c) const override
+      {
+
+         ::strncpy(sz, "a procedure", c);
+
+      }
+
+
+
       RETURN_TYPE operator()()
       {
 
@@ -1076,6 +1085,15 @@ public:
 
       
       }
+
+
+      void get_debug_title(char * sz, character_count c) const override
+      {
+
+         ::strncpy(sz, "function with argument(s) and no return type", c);
+
+      }
+
 
 
       void operator()(TYPES... args) override

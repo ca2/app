@@ -5325,7 +5325,7 @@ namespace apex
    }
 
 
-   bool application::on_application_menu_command(const ::atom & atom, ::user::activation_token * puseractivationtoken)
+   bool application::handle_command(const ::atom & atom, ::user::activation_token * puseractivationtoken)
    {
 
       auto pcommand = __allocate ::message::command (atom);

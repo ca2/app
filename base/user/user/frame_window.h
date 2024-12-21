@@ -2,6 +2,8 @@
 
 
 #include "aura/user/user/main_window.h"
+#include "aura/user/user/notify_icon_listener.h"
+
 
 
 namespace user
@@ -9,7 +11,8 @@ namespace user
 
 
    class CLASS_DECL_BASE frame_window :
-      virtual public ::user::main_window
+      virtual public ::user::main_window,
+      virtual public ::user::notify_icon_listener
    {
    public:
 
@@ -122,6 +125,9 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnSysCommand);
 
 
+
+
+
       virtual void enable_frame_experience(bool bEnable = true);
 
 
@@ -142,6 +148,8 @@ namespace user
       void on_simple_command(::message::simple_command * psimplecommand) override;
       void on_command(::message::command * pcommand) override;
 
+
+      bool on_application_menu_command(const ::atom & atom) override;
 
 
       bool on_set_parent(::user::interaction_base * puiParent) override;

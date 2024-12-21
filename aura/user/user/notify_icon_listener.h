@@ -64,7 +64,7 @@ namespace user
       //virtual const char * _get_notification_area_action_label(int iIndex);
       //virtual const char * _get_notification_area_action_accelerator(int iIndex);
       //virtual const char * _get_notification_area_action_description(int iIndex);
-      bool on_command(const ::atom & atom) override;
+      bool on_application_menu_command(const ::atom & atom) override;
 
 
       //virtual bool notify_icon_insert_item(bool bStockItem, ::collection::index & iIndex, string strName, string strId = "", string strLabel = "", string strAccelerator = "", string strDescription = "");

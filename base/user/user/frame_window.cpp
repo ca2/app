@@ -191,6 +191,18 @@ namespace user
    }
 
 
+   bool frame_window::on_application_menu_command(const ::atom & atom)
+   {
+
+      auto pcommand = __allocate ::message::command(atom);
+
+      route_command(pcommand);
+
+      return pcommand->m_bRet;
+
+   }
+
+
    void frame_window::install_message_routing(::channel * pchannel)
    {
 

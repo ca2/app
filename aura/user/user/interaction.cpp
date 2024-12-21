@@ -20852,11 +20852,10 @@ if(get_parent())
    }
 
 
-   void interaction::frame_toggle_restore(bool bDisplayPreviousOnRestore)
+   void interaction::frame_toggle_restore(::user::activation_token * puseractivationtoken, bool bDisplayPreviousOnRestore)
    {
 
-      bool bWindowVisible = is_window_visible()
-         && has_graphical_output_purpose();
+      bool bWindowVisible = is_window_visible() && has_graphical_output_purpose();
 
       double dOccludedOpaqueRate = _001GetTopLeftWeightedOccludedOpaqueRate();
 
@@ -20881,7 +20880,7 @@ if(get_parent())
          else
          {
 
-            frame_restore();
+            frame_restore(puseractivationtoken);
 
          }
 

@@ -991,7 +991,7 @@ namespace user
 
       virtual void frame_occlude();
       
-      virtual void frame_toggle_restore(bool bDisplayPreviousOnRestore = false);
+      virtual void frame_toggle_restore(::user::activation_token * puseractivationtoken, bool bDisplayPreviousOnRestore = false);
       
       virtual void display_previous_restore();
 

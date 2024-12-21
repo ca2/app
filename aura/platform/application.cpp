@@ -9142,7 +9142,7 @@ namespace aura
 
       prequest->_001ParseCommandLine(strCommandLine);
 
-      m_puserinteractionMain->frame_toggle_restore();
+      m_puserinteractionMain->frame_toggle_restore(nullptr);
 
       //::user::impact * pinteraction = m_ptemplateWeatherMain->get_document(0)->get_impact();
 

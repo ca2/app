@@ -563,7 +563,7 @@ namespace windowing
       //virtual void _window_request_presentation_locked();
       //virtual void _window_request_presentation_set_window_position_unlocked(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::e_activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide);
       
-      virtual void frame_toggle_restore();
+      virtual void frame_toggle_restore(::user::activation_token * puseractivationtoken);
 
       void _user_send(const ::procedure & procedure) override;
       void _user_post(const ::procedure & procedure) override;

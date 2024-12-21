@@ -133,7 +133,7 @@ namespace user
    //}
 
 
-   bool notify_icon::on_command(const ::atom &atom)
+   bool notify_icon::on_application_menu_command(const ::atom &atom)
    {
 
       auto pcommand = __allocate ::message::command(atom);

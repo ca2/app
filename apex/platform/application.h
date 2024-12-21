@@ -838,6 +838,8 @@ namespace apex
       DECLARE_MESSAGE_HANDLER(on_command_display_about);
 
 
+      bool on_application_menu_command(const ::atom & atom) override;
+
       // //virtual bool _001OnAgreeExit();
 
 

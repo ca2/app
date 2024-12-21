@@ -2985,11 +2985,11 @@ namespace apex
 
       }
 
-      ::message::command command(atom);
+      auto pcommand = __allocate ::message::command(atom);
 
-      route_command(&command);
+      route_command(pcommand);
 
-      return command.m_bRet;
+      return pcommand->m_bRet;
 
    }
 
@@ -5325,6 +5325,18 @@ namespace apex
       pmessage->m_bRet = true;
 
       show_about_box();
+
+   }
+
+
+   bool application::on_application_menu_command(const ::atom & atom)
+   {
+
+      auto pcommand = __allocate ::message::command (atom);
+
+      route_command(pcommand);
+
+      return pcommand->m_bRet;
 
    }
 

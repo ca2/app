@@ -2221,6 +2221,14 @@ namespace platform
    }
 
 
+   bool application::on_application_menu_command(const ::atom& atom)
+   {
+
+      return on_command(atom);
+
+   }
+
+
    bool application::on_command(const ::atom& atom)
    {
       

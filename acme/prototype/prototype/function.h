@@ -841,6 +841,14 @@ public:
       }
 
 
+      void get_debug_title(char * sz, character_count c) const override
+      {
+
+         ::strncpy(sz, "function with argument(s) and return type", c);
+
+      }
+
+
 
       RETURN_TYPE operator()(TYPES... args) override
       {

@@ -1960,7 +1960,8 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 
       auto edesktop = ::windowing::get_eoperating_ambient();
 
-      if (edesktop == ::windowing::e_operating_ambient_unity)
+      if (edesktop == ::windowing::e_operating_ambient_unity
+         || edesktop == ::windowing::e_operating_ambient_xfce)
       {
 
          display(e_display_none);

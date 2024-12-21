@@ -3547,20 +3547,20 @@ namespace user
 
 #endif
 
-      if (edisplayDesign == e_display_notify_icon
-          || edisplayDesign == e_display_iconic
-          || !windowing()->is_screen_visible(edisplayDesign))
-      {
+      // if (edisplayDesign == e_display_notify_icon
+      //     || edisplayDesign == e_display_iconic
+      //     || !windowing()->is_screen_visible(edisplayDesign))
+      // {
+      //
+      //    display_previous();
+      //
+      // }
+      // else
+      // {
 
-         display_previous();
+      set_display(e_display_notify_icon, e_layout_sketch);
 
-      }
-      else
-      {
-
-         set_display(e_display_notify_icon, e_layout_sketch);
-
-      }
+      // }
 
    }
 

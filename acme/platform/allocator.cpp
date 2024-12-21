@@ -812,7 +812,11 @@ namespace allocator
       if (psubparticle->m_preferenceitema)
       {
 
-         psubparticle->m_preferenceitema->m_strDebug = psubparticle->get_debug_title();
+         char sz[1024];
+
+         psubparticle->get_debug_title(sz, 1024);
+
+         psubparticle->m_preferenceitema->m_strDebug = sz;
 
          if (get_top_referer()
             && psubparticle->m_preferenceitema->m_itema[0]

@@ -191,7 +191,7 @@ public:
    }
 
 
-   ::string get_debug_title() const override;
+   void get_debug_title(char *sz, character_count c) const override;
 
    bool _is_set() const override;
 

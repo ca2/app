@@ -883,12 +883,12 @@ void subparticle::acquire_ownership()
 }
 
 
-::string subparticle::get_debug_title() const
+void subparticle::get_debug_title(char * sz, character_count c) const
 {
 
    auto psubparticle = (::subparticle *)this;
 
-   return ::type(*psubparticle).name();
+   ::strncpy(sz, ::type(*psubparticle).name(), c);
 
 }
 

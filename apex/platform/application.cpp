@@ -38,6 +38,7 @@
 #include "apex/innate_ui/innate_ui.h"
 #include "apex/innate_ui/still.h"
 #include "apex/message/application.h"
+#include "apex/message/command.h"
 #include "acme/platform/release_time.h"
 #include "apex/platform/machine_event_data.h"
 #include "apex/platform/machine_event.h"
@@ -2977,7 +2978,18 @@ namespace apex
    bool application::on_command(const ::atom & atom)
    {
 
-      return ::platform::application::on_command(atom);
+      if (::platform::application::on_command(atom))
+      {
+
+         return;
+
+      }
+
+      ::message::command command(atom);
+
+      route_command(&command);
+
+      return command.m_bRet;
 
    }
 

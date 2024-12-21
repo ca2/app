@@ -68,7 +68,7 @@ public:
 
    virtual void call();
 
-   virtual ::string get_debug_title() const;
+   virtual void get_debug_title(char * sz, character_count c) const;
 
    virtual ::string get_short_debug_text(int i) const;
 

@@ -2975,10 +2975,10 @@ namespace apex
    }
 
 
-   bool application::on_command(const ::atom & atom)
+   bool application::on_command(const ::atom & atom, ::user::activation_token * puseractivationtoken)
    {
 
-      if (::platform::application::on_command(atom))
+      if (::platform::application::on_command(atom, puseractivationtoken))
       {
 
          return true;
@@ -5325,10 +5325,12 @@ namespace apex
    }
 
 
-   bool application::on_application_menu_command(const ::atom & atom)
+   bool application::on_application_menu_command(const ::atom & atom, ::user::activation_token * puseractivationtoken)
    {
 
       auto pcommand = __allocate ::message::command (atom);
+
+      pcommand->m_puseractivationtoken = puseractivationtoken;
 
       route_command(pcommand);
 

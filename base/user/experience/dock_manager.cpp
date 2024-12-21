@@ -373,7 +373,7 @@ namespace experience
                   // m_pframewindow->order(e_zorder_top);
 
                   m_pframewindow->make_zoneing(nullptr, rectangleDock, true,
-                     &edisplayDock1, { ::user::e_activation_default }, e_zorder_top);
+                     &edisplayDock1, { ::user::e_activation_default, nullptr }, e_zorder_top);
 
                   //m_pframewindow->display_docked(edisplayDock, );
 

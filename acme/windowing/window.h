@@ -160,6 +160,7 @@ namespace acme
          ::pointer<::nano::graphics::device>create_device();
 
 
+         virtual ::pointer < ::user::activation_token > get_initial_frame_display_activation_token();
          //void run_modal_loop() override;
 
 

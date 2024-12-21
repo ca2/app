@@ -6,6 +6,13 @@
 #pragma once
 
 
+namespace user
+{
+
+   class activation_token;
+
+}
+
 struct application_menu_callback :
    virtual public ::particle
 {
@@ -18,7 +25,7 @@ public:
 //   virtual const char * _get_notification_area_action_label(int iIndex) = 0;
 //   virtual const char * _get_notification_area_action_accelerator(int iIndex) = 0;
 //   virtual const char * _get_notification_area_action_description(int iIndex) = 0;
-   virtual bool on_application_menu_command(const ::atom & atom) = 0;
+   virtual bool on_application_menu_command(const ::atom & atom, ::user::activation_token * puseractivationtoken) = 0;
 
 
 };

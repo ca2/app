@@ -327,9 +327,9 @@ namespace platform
 
       virtual void show_about_box() override;
 
-      bool on_application_menu_command(const ::atom & atom) override;
+      bool on_application_menu_command(const ::atom & atom, ::user::activation_token * puseractivationtoken) override;
 
-      bool on_command(const ::atom & atom) override;
+      bool on_command(const ::atom & atom, ::user::activation_token * puseractivationtoken) override;
 
 
       virtual void add_impact_system(const ::atom & atom, const ::pointer<::user::impact_system> & pimpactsystem) override;

@@ -3463,7 +3463,7 @@ namespace user
    void interaction::display_full_screen(::collection::index iMonitor, const ::user::activation & useractivation)
    {
 
-      best_monitor(nullptr, {}, true, { ::user::e_activation_default }, e_zorder_top);
+      best_monitor(nullptr, {}, true, { ::user::e_activation_default, nullptr }, e_zorder_top);
 
    }
 
@@ -20808,7 +20808,7 @@ if(get_parent())
 
       order_top();
 
-      if (!is_window_screen_visible())
+      if (!is_window_screen_visible() || !window()->is_window_visible())
       {
 
          information() << "interaction::frame_restore Not Screen Visible!";

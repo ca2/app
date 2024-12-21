@@ -759,6 +759,12 @@ namespace acme
       }
 
 
+      ::pointer < ::user::activation_token> window::get_initial_frame_display_activation_token()
+      {
+
+         return nullptr;
+
+      }
 
 
 

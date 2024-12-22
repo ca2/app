@@ -13,7 +13,7 @@
 ////#include "acme/exception/exception.h"
 #include "acme/platform/application.h"
 #include "acme/platform/library.h"
-//#include "acme/platform/sequencer.h"
+//#include "acme/handler/sequence.h"
 #include "acme/platform/system.h"
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/task.h"
@@ -70,16 +70,16 @@ namespace platform
 {
 
 
-   ::platform::platform * platform::s_p = nullptr;
+   ::platform::platform * platform::s_pplatform = nullptr;
 
 
    platform::platform()
    {
 
-      if (!s_p)
+      if (!s_pplatform)
       {
 
-         s_p = this;
+         s_pplatform = this;
 
       }
       

@@ -44,12 +44,12 @@ namespace nano
       //void http::sync(::nano::http::get* pget)
       //{
 
-      //   auto pevent = __create_new < ::manual_reset_happening >();
+      //   auto phappening = __create_new < ::manual_reset_happening >();
 
-      //   pget->m_functionOnFinished = [pevent](auto)
+      //   pget->m_functionOnFinished = [phappening](auto)
       //      {
 
-      //         pevent->set_happening();
+      //         phappening->set_happening();
 
       //      };
 
@@ -62,7 +62,7 @@ namespace nano
 
       //   async(pget);
 
-      //   if (!pevent->wait(pget->m_timeSyncTimeout))
+      //   if (!phappening->wait(pget->m_timeSyncTimeout))
       //   {
 
       //      throw ::exception(error_timeout);

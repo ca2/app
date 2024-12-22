@@ -2,6 +2,7 @@
 #pragma once
 
 
+#include "activation.h"
 #include "command_update_target.h"
 #include "acme/prototype/data/property_container.h"
 #include "acme/user/user/check.h"
@@ -41,6 +42,7 @@ namespace user
 
 
    class CLASS_DECL_ACME element :
+      virtual public ::object,
       virtual public ::user::command_update_target,
       virtual public ::timer_callback
    {
@@ -236,7 +238,7 @@ namespace user
       virtual void erase_fps_interest(::particle * pparticle);
       virtual bool is_fps_interest(::particle * pparticle);
 
-      virtual void display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default);
+      virtual void display(::e_display edisplay = e_display_default, const ::user::activation & useractivation = {});
 
 
       virtual string get_title();
@@ -411,7 +413,7 @@ namespace user
 
 #ifdef LINUX
 
-      virtual lresult send_x11_event(void * pevent); // pevent <= XEvent *
+      virtual lresult send_x11_event(void * phappening); // phappening <= XEvent *
 
 #endif
 
@@ -637,7 +639,7 @@ namespace user
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
-      //virtual void on_notify_control_event(control_event* pevent);
+      //virtual void on_notify_control_event(control_event* phappening);
 
 
 

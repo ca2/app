@@ -220,10 +220,16 @@ inline bool string_begins(const ::wd16_character * pz, const ::wd16_character * 
 inline bool string_begins(const ::wd32_character * pz, const ::wd32_character * pzPrefix)
 {   return null_terminated_begins_null_terminated(pz, pzPrefix, ::comparison::comparison<::wd32_character>());}
 
-//template < primitive_character CHARACTER >
-//inline bool _string_begins(const CHARACTER * psz, character_count len, const CHARACTER * pszPrefix, character_count & lenPrefix)
+
+template < primitive_character CHARACTER >
+inline bool _string_begins(const CHARACTER * psz, character_count len, const CHARACTER * pszPrefix, character_count & lenPrefix)
+{
+   return string_begins<const CHARACTER>({ psz, len }, { pszPrefix, (character_count)(lenPrefix = string_safe_length(pszPrefix)) });
+}
+
+//inline bool _string_begins(const ::wd16_character * psz, character_count len, const ::wd16_character * pszPrefix, character_count & lenPrefix)
 //{
-//   return string_begins<const CHARACTER>({ psz, len }, { pszPrefix, (character_count)(lenPrefix = string_safe_length(pszPrefix)) });
+//   return string_begins<const ::wd16_character>({ psz, len }, { pszPrefix, (character_count)(lenPrefix = string_safe_length(pszPrefix)) });
 //}
 //inline bool _string_begins(const ::wd16_character* psz, character_count len, const ::wd16_character* pszPrefix, character_count& lenPrefix)
 //{

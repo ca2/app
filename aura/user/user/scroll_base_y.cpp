@@ -104,6 +104,23 @@ namespace user
    }
 
 
+   void scroll_base_y::set_scroll_dimension(const ::int_size & size, ::user::enum_layout elayout)
+   {
+
+      auto iLayout = (int)elayout;
+
+      while (iLayout >= 0)
+      {
+
+         m_pscrolllayoutY->m_scrollstatea[iLayout].set_dimension(size.cy());
+
+         iLayout--;
+
+      }
+
+   }
+
+
    //void scroll_base_y::layout_scroll_bar(::draw2d::graphics_pointer & pgraphics)
    void scroll_base_y::layout_scroll_bar_y(::user::enum_layout elayout)
    {
@@ -268,6 +285,18 @@ namespace user
       {
 
          Δ = pscroll->m_dPosition - y;
+
+      }
+      else if (pscroll->m_ecommand == e_scroll_command_home)
+      {
+
+         Δ = -y;
+
+      }
+      else if (pscroll->m_ecommand == e_scroll_command_end)
+      {
+
+         Δ = m_pscrolllayoutY->m_scrollstatea[elayout].m_dMaximum - y;
 
       }
 

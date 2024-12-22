@@ -380,6 +380,23 @@ namespace user
 
 
 
+   enum enum_activation
+   {
+
+
+      e_activation_default = 0,
+      e_activation_no_activate = 1 << 0,
+      e_activation_set_active = 1 << 1,
+      e_activation_under_mouse_cursor = 1 << 3,
+      e_activation_display_change = 1 << 5,
+      e_activation_for_context_menu = 1 << 7,
+      e_activation_set_popup = 1 << 14,
+      e_activation_on_center_of_screen = 1 << 15,
+      e_activation_set_foreground = 1 << 16,
+
+   };
+
+
 } // namespace user
 
 

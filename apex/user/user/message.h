@@ -15,9 +15,8 @@ namespace user
    public:
 
 
-      //::channel *                         m_pchannel;
-      ::pointer < ::windowing::window >   m_pwindow;
-      ::pointer < ::user::interaction >   m_puserinteraction;
+      ::cast < ::windowing::window >      m_pwindow;
+      ::cast < ::user::interaction >      m_puserinteraction;
       bool                                m_bConditional;
       bool                                m_bReflect;
       bool                                m_bDestroyed;

@@ -35,7 +35,7 @@ namespace windows
 
       m_windowspathPattern = strPathPattern;
 
-      m_handleFindFile = ::FindFirstFileW(m_windowspathPattern, &m_finddata);
+      m_handleFindFile = ::FindFirstFileW(m_windowspathPattern.extended_path(), &m_finddata);
 
       if (m_handleFindFile == INVALID_HANDLE_VALUE)
       {

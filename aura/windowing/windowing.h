@@ -72,6 +72,7 @@ namespace windowing
       //virtual void _initialize_windowing();
 
       virtual bool has_readily_gettable_absolute_coordinates() const;
+      virtual bool has_mouse_capture_capability();
 
 
       //virtual void initialize_windowing(::user::user * puser);
@@ -151,7 +152,7 @@ namespace windowing
 
       virtual void handle_just_hooks();
       virtual void defer_handle_just_hooks();
-      virtual bool __hook_process_event(class display * pdisplay, void * pevent, void * cookie);
+      virtual bool __hook_process_event(class display * pdisplay, void * phappening, void * cookie);
 
 
 
@@ -261,6 +262,16 @@ namespace windowing
 
 
       virtual void windowing_application_main_loop() override;
+
+      virtual int system_metrics_get_cx_icon_spacing();
+      virtual int system_metrics_get_cy_icon_spacing();
+      virtual int system_metrics_get_cx_icon();
+      virtual int system_metrics_get_cy_icon();
+      virtual int system_metrics_get_cy_caption();
+
+
+//      virtual ::pointer < ::graphics::graphics > create_graphics();
+
 
    };
 

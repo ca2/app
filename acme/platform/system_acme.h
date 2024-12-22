@@ -70,8 +70,8 @@ namespace platform
 
       const char* m_pszMain;
 
-      bool                                                  m_bAcmeSystemDarkModeFetched;
       bool                                                  m_bAcmeSystemDarkMode;
+      class ::time                                          m_timeDarkMode;
       ::color::color                                        m_colorBackground;
       double                                                m_dLuminance;
       ::pointer < ::innate_ui::innate_ui >                  m_pinnateui;
@@ -598,11 +598,15 @@ namespace platform
 
       //void handle(::topic * ptopic, ::context * pcontext) override;
 
-      //virtual void add_handler(::particle * pmatter, bool bPriority = false);
+      //virtual void add_handler(::particle * pmatter);
 
-      virtual void add_signal_handler(const ::signal_handler & signalhandler, const ::atom & atomSignal);
-
-      virtual void erase_signal_handler(::signal_handler::base * pbase);
+      // virtual void signal_add_handler(::matter * pmatter, const ::atom & atomSignal);
+      //
+      // virtual void add_signal_handler(const ::signal_handler & signalhandler, const ::atom & atomSignal);
+      //
+      // virtual void signal_erase_handler(::matter * pmatter);
+      //
+      // virtual void erase_signal_handler(::signal_handler::base * pbase);
 
       //virtual void erase_signal_handlers(::particle * ppparticle);
 
@@ -711,10 +715,12 @@ namespace platform
 
       virtual double luminance() const;
 
-      virtual void background_color(const ::color::color & color);
+      virtual void set_background_color(const ::color::color & color);
 
 
       virtual bool dark_mode() const;
+      virtual class ::time dark_mode_time() const;
+      virtual void set_dark_mode_time(const class ::time & time);
       virtual void on_application_dark_mode_change();
 
       //      virtual int get_simple_ui_darkness();

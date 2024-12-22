@@ -1366,7 +1366,7 @@ _001SelectItem(pchild);
 
       ::userfs::tree_data::on_timer(ptimer);
 
-      if (ptimer->m_uEvent == 1234567)
+      if (ptimer->m_uTimer == 1234567)
       {
 
          m_iAnimate += 2;
@@ -1383,7 +1383,7 @@ _001SelectItem(pchild);
          ptimer->m_ptimercallback->get_user_interaction()->set_need_redraw();
 
       }
-      else if (ptimer->m_uEvent == 123)
+      else if (ptimer->m_uTimer == 123)
       {
 
          m_usertreea.predicate_each([](auto & ptree)

@@ -40,7 +40,7 @@
 #include "acme/operating_system/a_system_menu.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
-//#include "acme/platform/sequencer.h"
+//#include "acme/handler/sequence.h"
 #include "acme/platform/system.h"
 #include "acme/user/user/drag.h"
 #include "acme/user/user/mouse.h"
@@ -870,8 +870,8 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
             
             if(pmouse->m_bRet)
             {
-               
-               return true;
+
+               return;
                
             }
 
@@ -923,7 +923,7 @@ void elemental::back_on_mouse_move(::user::mouse* pmouse)
          if(pmouse->m_bRet)
          {
             
-            return true;
+            return;
             
          }
 
@@ -1017,7 +1017,7 @@ void elemental::back_on_mouse_move(::user::mouse* pmouse)
 
       }
 
-      auto pitemClient = tool().defer_item(e_element_client);
+      auto pitemClient = stock_item(e_element_client);
 
       auto pdragClient = drag(pitemClient);
 
@@ -1912,7 +1912,7 @@ void elemental::back_on_right_button_up(::user::mouse* pmouse)
       //::user::drag_client::destroy();
       //::conversation::destroy();
 
-      system()->erase_signal_handler(this);
+      //system()->erase_signal_handler(this);
 
    }
 

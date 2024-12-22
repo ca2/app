@@ -356,16 +356,16 @@ namespace windowing
 
    bool display::_get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle & rectangle)
    {
+      // if(user() && user()->m_pdesktopenvironment)
+      // {
+      //    if(user()->m_pdesktopenvironment->get_monitor_rectangle(iMonitor, rectangle))
+      //    {
+      //
+      //       return true;
+      //
+      //    }
+      // }
 
-      if(user() && user()->m_pdesktopenvironment)
-      {
-         if(user()->m_pdesktopenvironment->get_monitor_rectangle(iMonitor, rectangle))
-         {
-
-            return true;
-
-         }
-      }
 
       return false;
 
@@ -489,17 +489,17 @@ namespace windowing
    bool display::_get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle & rectangle)
    {
 
-      if(user() && user()->m_pdesktopenvironment)
-      {
-
-         if(node()->_get_workspace_rectangle(iWorkspace, rectangle))
-         {
-
-            return true;
-
-         }
-
-      }
+      // if(user() && user()->m_pdesktopenvironment)
+      // {
+      //
+      //    if(node()->_get_workspace_rectangle(iWorkspace, rectangle))
+      //    {
+      //
+      //       return true;
+      //
+      //    }
+      //
+      // }
 
       return false;
 
@@ -1055,7 +1055,7 @@ namespace windowing
    }
 
 
-   ::collection::index display::get_best_monitor(::int_rectangle * prectangle, const int_rectangle & rectangleParam, ::e_activation eactivation, ::user::interaction * puserinteractionCursorPosition)
+   ::collection::index display::get_best_monitor(::int_rectangle * prectangle, const int_rectangle & rectangleParam, const ::user::activation & useractivation, ::user::interaction * puserinteractionCursorPosition)
    {
 
       ::collection::index iMatchingMonitor = -1;
@@ -1066,7 +1066,7 @@ namespace windowing
 
       ::int_rectangle rectangle(rectangleParam);
 
-      if (eactivation & e_activation_under_mouse_cursor || rectangle.is_null())
+      if (useractivation & ::user::e_activation_under_mouse_cursor || rectangle.is_null())
       {
 
          if(has_readily_gettable_absolute_pointer_position())
@@ -1080,7 +1080,7 @@ namespace windowing
          else
          {
 
-            warning() << "This windowing system !is_absolute_pointer_position_readily_gettable(). Is there a specific flag to set at window creation for enabling e_activation_under_mouse_cursor?";
+            warning() << "This windowing system !is_absolute_pointer_position_readily_gettable(). Is there a specific flag to set at window creation for enabling ::user::e_activation_under_mouse_cursor?";
 
             //throw ::exception(todo,
             //             "The window may not be visible yet so no mouse position in it."
@@ -1174,7 +1174,7 @@ namespace windowing
    }
 
 
-   ::collection::index display::get_best_workspace(::int_rectangle * prectangle, const int_rectangle & rectangleParam, ::e_activation eactivation, ::user::interaction * puserinteractionCursorPosition)
+   ::collection::index display::get_best_workspace(::int_rectangle * prectangle, const int_rectangle & rectangleParam, const ::user::activation & useractivation, ::user::interaction * puserinteractionCursorPosition)
    {
 
       information() << "display::get_best_workspace";
@@ -1187,11 +1187,11 @@ namespace windowing
 
       ::int_rectangle rectangle(rectangleParam);
 
-      //if (eactivation & e_activation_under_mouse_cursor || rectangle.is_null())
-      if (eactivation & e_activation_under_mouse_cursor)
+      //if (useractivation & ::user::e_activation_under_mouse_cursor || rectangle.is_null())
+      if (useractivation & ::user::e_activation_under_mouse_cursor)
       {
 
-         information() << "get_best_workspace e_activation_under_mouse_cursor";
+         information() << "get_best_workspace ::user::e_activation_under_mouse_cursor";
 
          //::int_point pointCursor = pwindowCursorPosition->get_cursor_position();
 
@@ -1208,7 +1208,7 @@ namespace windowing
          else
          {
 
-            warning() << "This windowing system !is_absolute_pointer_position_readily_gettable(). Is there a specific flag to set at window creation for enabling e_activation_under_mouse_cursor?";
+            warning() << "This windowing system !is_absolute_pointer_position_readily_gettable(). Is there a specific flag to set at window creation for enabling ::user::e_activation_under_mouse_cursor?";
 
             //throw ::exception(todo,
             //             "The window may not be visible yet so no mouse position in it."
@@ -1788,170 +1788,6 @@ namespace windowing
    }
 
 
-
-   string_array display::get_wallpaper()
-   {
-
-      auto psession = session();
-
-      ::collection::count iMonitorCount = get_monitor_count();
-
-      string_array stra;
-
-      for (::collection::index iScreen = 0; iScreen < iMonitorCount; iScreen++)
-      {
-
-         stra.add(get_wallpaper(iScreen));
-
-      }
-
-      bool bAllEqual = true;
-
-      for (::collection::index iScreen = 1; iScreen < iMonitorCount; iScreen++)
-      {
-
-         if (stra[iScreen] != stra[iScreen - 1])
-         {
-
-            bAllEqual = false;
-
-         }
-
-      }
-
-      if (bAllEqual && stra.get_count() >= 2)
-      {
-
-         stra.set_size(1);
-
-      }
-
-      return stra;
-
-   }
-
-
-
-
-   void display::set_wallpaper(const string_array & straWallpaper)
-   {
-
-      if (straWallpaper.is_empty())
-      {
-
-         return;
-
-      }
-
-      auto psession = session();
-
-      ::collection::count iMonitorCount = get_monitor_count();
-
-#ifdef LINUX
-
-      if (iMonitorCount > 0)
-      {
-
-         set_wallpaper(0, straWallpaper[0]);
-
-      }
-
-#else
-
-      for (::collection::index iScreen = 0; iScreen < iMonitorCount; iScreen++)
-      {
-
-         string strWallpaper = iScreen % straWallpaper;
-
-         set_wallpaper(iScreen, strWallpaper);
-
-      }
-
-#endif
-
-   }
-
-
-   
-   string display::get_wallpaper(::collection::index iScreen)
-   {
-
-      return impl_get_wallpaper(iScreen);
-
-   }
-
-
-   string display::impl_get_wallpaper(::collection::index)
-   {
-
-      return "";
-
-   }
-
-   string display::os_get_user_theme()
-   {
-
-      return impl_get_os_desktop_theme();
-
-   }
-
-   string display::impl_get_os_desktop_theme()
-   {
-
-      return "";
-
-   }
-
-
-   bool display::set_os_desktop_theme(string strTheme)
-   {
-
-      return impl_set_os_desktop_theme(strTheme);
-
-   }
-
-
-   bool display::impl_set_os_desktop_theme(string strTheme)
-   {
-
-      return false;
-
-   }
-
-
-   // todo color:// gradient:// if the operating system doesn't have this, create the file, please.
-   bool display::impl_set_wallpaper(::collection::index iMonitorIndex, string strWallpaper)
-   {
-
-      if(node()->set_wallpaper(iMonitorIndex, strWallpaper, this))
-      {
-
-         return true;
-
-      }
-
-      //return "";
-      return false;
-
-   }
-
-
-   bool display::set_wallpaper(::collection::index iScreen, string strWallpaper)
-   {
-
-      //return "";
-      return impl_set_wallpaper(iScreen, strWallpaper);
-
-   }
-
-
-   void display::enable_wallpaper_change_notification()
-   {
-
-
-   }
-
-  
    bool display::would_be_docked(const ::int_rectangle & rectangleWouldBeSnapped)
    {
 

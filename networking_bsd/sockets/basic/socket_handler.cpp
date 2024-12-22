@@ -29,6 +29,7 @@
 #define FD_COPY(pfdsetSrc, pfdsetDst) (*(pfdsetDst)) = (*(pfdsetSrc))
 
 #endif
+#include "acme/_finish.h"
 
 
 namespace sockets_bsd

@@ -28,7 +28,7 @@ namespace apex
       string               m_strParameters;
       string               m_strDirectory;
       ::e_display          m_edisplay;
-      ::e_activation       m_eactivation;
+      ::user::e_activation       m_eactivation;
       class ::time         m_timeTimeout;
       ::e_status           m_estatus;
 

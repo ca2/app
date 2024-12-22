@@ -11,6 +11,7 @@
 #include "acme/parallelization/pool.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/constant/message.h"
+#include "apex/handler/signal.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/platform/application.h"
 #include "aura/platform/draw_context2.h"
@@ -35,7 +36,7 @@ namespace user
 
       m_bDerivedHeight = false;
       m_bShowControlBox = true;
-      m_bDefaultNotifyIcon = false;
+      m_bDefaultNotifyIcon2 = false;
       m_bCloseApplicationIfLastVisibleFrame = true;
 
    }
@@ -86,7 +87,7 @@ namespace user
          ////
          ////               information() << "LoadFrame sketch !is_screen_visible going to display_normal (1)";
          ////
-         ////               display_normal(e_display_normal, e_activation_set_foreground);
+         ////               display_normal(e_display_normal, ::user::e_activation_set_foreground);
          ////
          ////            }
          //
@@ -438,14 +439,14 @@ namespace user
 
 
 
-      add_command_handler("app_exit", { this, &frame_interaction::on_message_application_exit });
+      add_command_handler("try_close_application", { this, &frame_interaction::on_message_application_exit });
       
 
       MESSAGE_LINK(e_message_destroy, pchannel, this, &frame_interaction::on_message_destroy);
       MESSAGE_LINK(e_message_application_exit, pchannel, this, &frame_interaction::on_message_application_exit);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &frame_interaction::on_message_key_down);
 
-      system()->add_signal_handler(this, id_operating_system_user_color_change);
+      system()->signal(id_operating_system_user_color_change)->add_handler(this);
 //#ifdef WINDOWS_DESKTOP
 //
 //      if (is_frame_window())
@@ -1035,13 +1036,13 @@ namespace user
       if (!const_layout().sketch().is_screen_visible())
       {
 
-         display_normal(e_display_normal, e_activation_set_foreground);
+         display_normal(e_display_normal, { ::user::e_activation_set_foreground, window()->get_initial_frame_display_activation_token() });
 
       }
       else
       {
 
-         set_activation(e_activation_set_foreground);
+         set_activation({ ::user::e_activation_set_foreground, window()->get_initial_frame_display_activation_token() });
 
       }
 

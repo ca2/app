@@ -190,7 +190,7 @@ namespace experience
 
       ::experience::button::on_timer(ptimer);
       // TODO: add your message handler code here and/or call default
-      if (ptimer->m_uEvent == e_timer_check_focus)
+      if (ptimer->m_uTimer == e_timer_check_focus)
       {
          /*if(m_bFocus)
          {
@@ -208,14 +208,14 @@ namespace experience
 
          if(rectangleX.is_empty().contains(pointCursor))
          {
-         KillTimer(ptimer->m_uEvent);
+         KillTimer(ptimer->m_uTimer);
          m_bFocus = false;
          set_need_redraw();
          }
          }
          else
          {
-         KillTimer(ptimer->m_uEvent);
+         KillTimer(ptimer->m_uTimer);
          }*/
       }
       else
@@ -277,11 +277,11 @@ namespace experience
       if (!m_pregion->contains(point))
       {
 
-         return __allocate ::item(::e_element_none);
+         return stock_item(::e_element_none);
 
       }
 
-      return __allocate ::item(::e_element_client);
+      return stock_item(::e_element_client);
 
    }
 

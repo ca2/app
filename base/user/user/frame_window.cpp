@@ -18,7 +18,7 @@
 #include "acme/parallelization/task_flag.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
-//#include "acme/platform/sequencer.h"
+//#include "acme/handler/sequence.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/nano/nano.h"
 #include "acme/user/micro/user.h"
@@ -187,6 +187,20 @@ namespace user
       }
 
       ::user::interaction::on_command(pcommand);
+
+   }
+
+
+   bool frame_window::handle_command(const ::atom & atom, ::user::activation_token * puseractivationtoken)
+   {
+
+      auto pcommand = __allocate ::message::command(atom);
+
+      pcommand->m_puseractivationtoken = puseractivationtoken;
+
+      route_command(pcommand);
+
+      return pcommand->m_bRet;
 
    }
 
@@ -1347,7 +1361,7 @@ namespace user
 //
 //               information() << "LoadFrame sketch !is_screen_visible going to display_normal (1)";
 //
-//               display_normal(e_display_normal, e_activation_set_foreground);
+//               display_normal(e_display_normal, ::user::e_activation_set_foreground);
 //
 //            }
 //
@@ -2557,7 +2571,7 @@ namespace user
 
          set_size(rectangle.size());
 
-         display(e_display_normal, e_activation_no_activate);
+         display(e_display_normal, { ::user::e_activation_no_activate });
 
       }
       else

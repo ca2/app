@@ -133,10 +133,12 @@ namespace user
    //}
 
 
-   bool notify_icon::on_application_menu_action(const ::atom &atom)
+   bool notify_icon::handle_command(const ::atom &atom, ::user::activation_token * puseractivationtoken)
    {
 
       auto pcommand = __allocate ::message::command(atom);
+
+      pcommand->m_puseractivationtoken = puseractivationtoken;
 
       route_command(pcommand);
 

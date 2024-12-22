@@ -230,13 +230,13 @@ void reference_item_array::add_referer(::reference_referer * preferer, bool bInc
    if (iSerial == 148)
    {
 
-      output_debug_string("iSerial == 148");
+      //output_debug_string("iSerial == 148");
 
    }
    else if (pitem->m_iStep == 80)
    {
 
-      output_debug_string("iSerial == 80");
+      //output_debug_string("iSerial == 80");
 
    }
 

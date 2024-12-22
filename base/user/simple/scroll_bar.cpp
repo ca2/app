@@ -823,15 +823,15 @@ void simple_scroll_bar::on_timer(::timer * ptimer)
 
    //host_to_client()(pointCursor);
 
-   if (ptimer->m_uEvent == (uptr)this)
+   if (ptimer->m_uTimer == (uptr)this)
    {
 
-      KillTimer(ptimer->m_uEvent);
+      KillTimer(ptimer->m_uTimer);
 
       SetTimer(((uptr)this) + 1, 10_ms, nullptr);
 
    }
-   else if (ptimer->m_uEvent == ((uptr)this) + 1)
+   else if (ptimer->m_uTimer == ((uptr)this) + 1)
    {
 
       auto psystem = system();
@@ -843,7 +843,7 @@ void simple_scroll_bar::on_timer(::timer * ptimer)
       if (!scrollbar_action(main_content().m_pitemCurrent, ::user::e_layout_sketch))
       {
 
-         KillTimer(ptimer->m_uEvent);
+         KillTimer(ptimer->m_uTimer);
 
       }
 

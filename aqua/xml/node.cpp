@@ -1999,7 +1999,7 @@ namespace xml
 
       while(pnode != nullptr && pnode != this)
       {
-         str = pnode->attribute(scopedstrAttr) + ::str::has_char(str, "/");
+         str = pnode->attribute(scopedstrAttr) + ::str::has_character(str, "/");
          pnode = pnode->m_pnodeParent->get_xml_node();
       }
       if(pnode == nullptr)
@@ -2061,7 +2061,7 @@ namespace xml
       string str;
       while(pnode != nullptr && pnode != this)
       {
-         str = pnode->m_strName + ::str::has_char(str, "/");
+         str = pnode->m_strName + ::str::has_character(str, "/");
          pnode = pnode->m_pnodeParent->get_xml_node();
       }
       if(pnode == nullptr)

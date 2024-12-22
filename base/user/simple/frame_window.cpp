@@ -89,7 +89,7 @@ simple_frame_window::simple_frame_window()
 
    m_bShowTask = true;
 
-   m_bDefaultNotifyIcon = false;
+   //m_bDefaultNotifyIcon = false;
 
 #if defined(UNIVERSAL_WINDOWS)
 
@@ -167,6 +167,30 @@ void simple_frame_window::initialize(::particle * pparticle)
 }
 
 
+bool simple_frame_window::has_notify_icon()
+{
+
+#if defined(HAS_GTK4)
+
+   return false;
+
+#else
+
+   return m_bDefaultNotifyIcon2;
+
+#endif
+
+}
+
+
+void simple_frame_window::enable_default_notification_icon(bool bEnableDefaultNotificationIcon)
+{
+
+   m_bDefaultNotifyIcon2 = bEnableDefaultNotificationIcon;
+
+}
+
+
 void simple_frame_window::on_update_notify_icon_menu(::collection::index & iNotifyIconItem)
 {
 
@@ -219,7 +243,7 @@ void simple_frame_window::on_update_notify_icon_menu_header(::collection::index 
                {
 
                   if (ppopupApp->element_at(iIndexPopup)->is_separator()
-                     && ppopupApp->element_at(iIndexPopup + 1)->m_atom == "app_exit")
+                     && ppopupApp->element_at(iIndexPopup + 1)->m_atom == "try_close_application")
                   {
 
                      if (iIndexPopup + 1 == ppopupApp->upper_bound())
@@ -241,7 +265,7 @@ void simple_frame_window::on_update_notify_icon_menu_header(::collection::index 
 
                auto pitem = ppopupApp->element_at(iIndexPopup);
 
-               if (pitem->m_atom == "app_exit")
+               if (pitem->m_atom == "try_close_application")
                {
 
                   continue;
@@ -360,7 +384,7 @@ void simple_frame_window::on_update_notify_icon_menu_footer(::collection::index 
    m_pnotifyicon->menu()->separator_at(iNotifyIconItem);
 
    //m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Exit"), "app_exit");
-   m_pnotifyicon->menu()->stock_item_at(iNotifyIconItem, "Exit", "app_exit");
+   m_pnotifyicon->menu()->stock_item_at(iNotifyIconItem, "Exit", "try_close_application");
 
 }
 
@@ -418,7 +442,7 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
    add_command_handler("view_full_screen", { this,  &simple_frame_window::_001OnImpactFullScreen });
 
    add_command_handler("notify_icon_topic", { this,  &simple_frame_window::_001OnNotifyIconTopic });
-   add_command_handler("app_exit", { this,  &simple_frame_window::on_message_app_exit });
+   add_command_handler("try_close_application", { this,  &simple_frame_window::on_message_app_exit });
 
 #ifdef WINDOWS_DESKTOP
 
@@ -729,8 +753,8 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
       try
       {
 
-         user_send([this]()
-            {
+         //user_send([this]()
+           // {
 
                if (m_pnotifyicon)
                {
@@ -741,7 +765,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
                }
 
-            });
+            //});
 
       }
       catch (...)
@@ -786,7 +810,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
             if (::is_set(pframe))
             {
 
-               auto psignal = get_signal(id_user_style_change);
+               auto psignal = signal(id_user_style_change);
 
                psignal->add_handler(pframe);
 
@@ -806,7 +830,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
    strStyle = m_varFrame["style"];
 
-   auto psignal = get_signal(id_user_style_change);
+   auto psignal = signal(id_user_style_change);
 
    psignal->add_handler(pframe);
 
@@ -894,7 +918,7 @@ bool simple_frame_window::would_display_notify_icon()
 
 #else
 
-   return m_bDefaultNotifyIcon;
+   return has_notify_icon();
 
 #endif
 
@@ -1154,7 +1178,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
                            {
                               information() << "simple_frame_window::on_message_create Failed to create notify icon (1)!";
 
-                              m_bDefaultNotifyIcon = false;
+                              enable_default_notification_icon(false);
 
                               m_pnotifyicon.release();
 
@@ -1166,7 +1190,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
                               information() << "simple_frame_window::on_message_create Failed to create notify icon!";
 
-                              m_bDefaultNotifyIcon = false;
+                              enable_default_notification_icon(false);
 
                               m_pnotifyicon.release();
 
@@ -1269,7 +1293,7 @@ void simple_frame_window::on_message_display_change(::message::message * pmessag
 
       ::e_display edisplay = const_layout().sketch().display();
 
-      display(edisplay, e_activation_display_change);
+      display(edisplay, { ::user::e_activation_display_change });
 
       set_need_layout();
 
@@ -1510,9 +1534,9 @@ void simple_frame_window::show_control_bars(const ::e_display & edisplay, bool b
             if ((is_screen_visible(edisplay) || (!toolbartransport->m_bFullScreenBar || !bLeaveFullScreenBarsOnHide)))
             {
 
-               enum_activation eactivation = e_activation_default;
+               ::user::activation useractivationDefault;
 
-               toolbartransport->display(edisplay, eactivation);
+               toolbartransport->display(edisplay, useractivationDefault);
 
             }
             else
@@ -1936,7 +1960,8 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 
       auto edesktop = ::windowing::get_eoperating_ambient();
 
-      if (edesktop == ::windowing::e_operating_ambient_unity)
+      if (edesktop == ::windowing::e_operating_ambient_unity
+         || edesktop == ::windowing::e_operating_ambient_xfce)
       {
 
          display(e_display_none);
@@ -2415,7 +2440,7 @@ void simple_frame_window::pre_translate_message(::message::message * pmessage)
 void simple_frame_window::on_frame_position()
 {
 
-   display(e_display_default, e_activation_set_active);
+   display(e_display_default, { ::user::e_activation_set_active } );
 
    order_top();
 
@@ -3108,7 +3133,7 @@ bool simple_frame_window::is_application_main_window()
 void simple_frame_window::defer_create_notification_icon()
 {
 
-   if (!m_bDefaultNotifyIcon)
+   if (!would_display_notify_icon())
    {
 
       return;
@@ -3163,10 +3188,10 @@ void simple_frame_window::defer_create_notification_icon()
          if (!m_piconNotify)
          {
 
-            if(m_bDefaultNotifyIcon)
+            if(would_display_notify_icon())
             {
 
-               m_bDefaultNotifyIcon = false;
+               enable_default_notification_icon(false);
 
             }
 
@@ -3187,10 +3212,10 @@ void simple_frame_window::defer_create_notification_icon()
          catch(...)
          {
 
-            if(m_bDefaultNotifyIcon)
+            if(would_display_notify_icon())
             {
 
-               m_bDefaultNotifyIcon = false;
+               enable_default_notification_icon(false);
 
             }
 
@@ -3640,7 +3665,7 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
 
          //OnNotifyIconLButtonDown(ptopic->user_interaction_id());
 
-         default_notify_icon_topic();
+         default_notify_icon_topic(ptopic->m_puseractivationtoken);
 
          ptopic->m_bRet = true;
 
@@ -4364,10 +4389,10 @@ void simple_frame_window::on_timer(::timer * ptimer)
 void simple_frame_window::_001OnNotifyIconTopic(::message::message * pmessage)
 {
 
-   if (m_bDefaultNotifyIcon)
+   if (would_display_notify_icon())
    {
 
-      default_notify_icon_topic();
+      default_notify_icon_topic(pmessage->m_puseractivationtoken);
 
    }
 
@@ -4381,10 +4406,10 @@ void simple_frame_window::_001OnNotifyIconTopic(::message::message * pmessage)
 }
 
 
-void simple_frame_window::default_notify_icon_topic()
+void simple_frame_window::default_notify_icon_topic(::user::activation_token * puseractivationtoken)
 {
 
-   frame_toggle_restore();
+   frame_toggle_restore(puseractivationtoken);
 
 }
 
@@ -4392,7 +4417,7 @@ void simple_frame_window::default_notify_icon_topic()
 void simple_frame_window::OnInitialFrameUpdate(bool bMakeVisible)
 {
 
-   if (!m_bDefaultNotifyIcon)
+   if (!would_display_notify_icon())
    {
 
       ::user::frame_window::OnInitialFrameUpdate(bMakeVisible);
@@ -4416,7 +4441,7 @@ void simple_frame_window::OnInitialFrameUpdate(bool bMakeVisible)
 void simple_frame_window::OnUpdateToolWindow(bool bVisible)
 {
 
-   if (!m_bDefaultNotifyIcon)
+   if (!would_display_notify_icon())
    {
 
       return;
@@ -4478,7 +4503,7 @@ void simple_frame_window::show_task(bool bShow)
 bool simple_frame_window::window_is_notify_icon_enabled()
 {
 
-   return m_bDefaultNotifyIcon;
+   return would_display_notify_icon();
 
 }
 
@@ -4530,29 +4555,32 @@ void simple_frame_window::on_select_user_style()
 }
 
 
-void simple_frame_window::call_notification_area_action(const ::string & pszId)
+void simple_frame_window::call_notification_area_action(const ::atom & atom, ::user::activation_token * puseractivationtoken)
 {
 
-   ::atom atom(pszId);
 
-   host_post([this, atom]()
+   auto puseractivationtokenHold = as_pointer(puseractivationtoken);
+
+   auto atomHold = atom;
+
+   host_post([this, atomHold, puseractivationtokenHold]()
       {
 
-         handle_command(atom);
+         handle_command(atomHold, puseractivationtokenHold);
 
       });
 
 }
 
 
-void simple_frame_window::notification_area_action(const ::string & pszId)
+void simple_frame_window::notification_area_action(const ::atom & atom, ::user::activation_token * puseractivationtoken)
 {
 
-   ::pointer<::user::interaction>pinteraction = this;
+   auto pcommand = __allocate ::message::command (atom);
 
-   ::message::command command((::atom)pszId);
+   pcommand->m_puseractivationtoken = puseractivationtoken;
 
-   pinteraction->_001SendCommand(&command);
+   route_command(pcommand);
 
 }
 

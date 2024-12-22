@@ -4612,16 +4612,32 @@ return nullptr;
 
    //void acme_system_layer::handle(::topic * ptopic, ::context * pcontext) override{}
 
-   //void acme_system_layer::add_handler(::particle * pmatter, bool bPriority = false){}
-
-   void acme_system_layer::add_signal_handler(const ::signal_handler& signalhandler, const ::atom& atomSignal)
-   {
-   }
-
-
-   void acme_system_layer::erase_signal_handler(::signal_handler::base* pbase)
-   {
-   }
+   // void acme_system_layer::add_handler(::particle * pmatter)
+   // {
+   //
+   //
+   // }
+   //
+   //
+   // void acme_system_layer::add_signal_handler(const ::signal_handler& signalhandler, const ::atom& atomSignal)
+   // {
+   //
+   //
+   // }
+   //
+   //
+   // void acme_system_layer::erase_signal_handler(::matter * pmatter)
+   // {
+   //
+   //
+   // }
+   //
+   //
+   // void acme_system_layer::erase_signal_handler(::signal_handler::base* pbase)
+   // {
+   //
+   //
+   // }
 
 
    //void acme_system_layer::erase_signal_handlers(::particle * ppparticle){}
@@ -4821,14 +4837,31 @@ return nullptr;
    }
 
 
-   void acme_system_layer::background_color(const ::color::color& color)
+   void acme_system_layer::set_background_color(const ::color::color& color)
    {
    }
 
 
    bool acme_system_layer::dark_mode() const
    {
+      
       return false;
+
+   }
+
+
+   class ::time acme_system_layer::dark_mode_time() const
+   {
+      
+      return {};
+
+   }
+
+
+   void acme_system_layer::set_dark_mode_time(const class ::time & time) 
+   {
+
+
    }
 
 

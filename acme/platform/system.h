@@ -204,6 +204,12 @@ namespace platform
       ::pointer<BASE_TYPE> create(const ::string & strComponent, const ::string & strImplementation)
       {
 
+#if REFERENCING_DEBUGGING
+
+         auto preferer = ::allocator::pop_referer();
+
+#endif
+
          auto & pfactory = this->factory(strComponent, strImplementation);
 
          if (!pfactory)
@@ -212,6 +218,12 @@ namespace platform
             throw ::exception(error_resource);
 
          }
+
+#if REFERENCING_DEBUGGING
+
+         ::allocator::_push_referer(preferer);
+
+#endif
 
          auto p = pfactory->__call__create< BASE_TYPE >(this);
 
@@ -476,9 +488,9 @@ namespace platform
 
       //virtual void add_handler(::particle * pmatter, bool bPriority = false);
 
-      virtual void add_signal_handler(const ::signal_handler & signalhandler, const ::atom & atomSignal) override;
+      //virtual void add_signal_handler(const ::signal_handler & signalhandler, const ::atom & atomSignal) override;
 
-      virtual void erase_signal_handler(::signal_handler::base * pbase) override;
+      //virtual void erase_signal_handler(::signal_handler::base * pbase) override;
 
       //virtual void erase_signal_handlers(::particle * ppparticle);
 
@@ -590,10 +602,12 @@ namespace platform
 
       virtual double luminance() const override;
 
-      virtual void background_color(const ::color::color & color) override;
+      virtual void set_background_color(const ::color::color & color) override;
 
 
       virtual bool dark_mode() const override;
+      virtual class ::time dark_mode_time() const;
+      virtual void set_dark_mode_time(const class ::time & time);
       virtual void on_application_dark_mode_change() override;
 
       //      virtual int get_simple_ui_darkness();

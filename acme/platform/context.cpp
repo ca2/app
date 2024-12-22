@@ -675,6 +675,8 @@ namespace platform
 
       }
 
+      path = node()->expand_environment_variables(path);
+
       path = _defer_process_path(path);
 
       if (path.flags() & ::file::e_flag_resolve_alias)

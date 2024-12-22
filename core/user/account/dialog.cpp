@@ -171,7 +171,7 @@ namespace account
 
       ::user::interaction::on_timer(ptimer);
 
-      if(ptimer->m_uEvent == e_timer_check_cached_credentials)
+      if(ptimer->m_uTimer == e_timer_check_cached_credentials)
       {
 
          try
@@ -229,7 +229,7 @@ namespace account
 
             m_plogin->m_peditUser->set_keyboard_focus();
 
-            display(e_display_normal, e_activation_set_foreground);
+            display(e_display_normal, { ::user::e_activation_set_foreground });
 
             set_need_redraw();
 

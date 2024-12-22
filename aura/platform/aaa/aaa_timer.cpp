@@ -27,7 +27,7 @@ timer::timer(::aura::timer_array * ptimera, uptr uiTimer, PFN_TIMER pfnTimer, vo
 
    m_bHandling = false;
 
-   m_uEvent = uiTimer;
+   m_uTimer = uiTimer;
 
    m_pfnTimer = pfnTimer;
 

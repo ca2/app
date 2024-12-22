@@ -294,7 +294,7 @@ namespace user
 
       }
 
-      ::pointer < ::windowing::window > pwindow = pwindowing->get_keyboard_focus(pthread);
+      ::cast < ::windowing::window > pwindow = pwindowing->get_keyboard_focus(pthread);
 
       if (::is_null(pwindow))
       {
@@ -415,32 +415,32 @@ namespace user
    }
 
 
-   void user::set_foreground_window(::user::interaction * puserinteraction)
-   {
-
-      ::windowing::window * pwindow = nullptr;
-
-      if (::is_set(puserinteraction))
-      {
-
-         pwindow = puserinteraction->window();
-
-      }
-
-      //auto estatus = 
-      
-      pwindow->set_foreground_window();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return ::success;
-
-   }
+   // void user::set_foreground_window(::user::interaction * puserinteraction)
+   // {
+   //
+   //    ::windowing::window * pwindow = nullptr;
+   //
+   //    if (::is_set(puserinteraction))
+   //    {
+   //
+   //       pwindow = puserinteraction->window();
+   //
+   //    }
+   //
+   //    //auto estatus =
+   //
+   //    pwindow->set_foreground_window();
+   //
+   //    //if (!estatus)
+   //    //{
+   //
+   //    //   return estatus;
+   //
+   //    //}
+   //
+   //    //return ::success;
+   //
+   // }
 
 
    ::user::style* user::user_style()
@@ -614,14 +614,14 @@ namespace user
       //auto estatus =
       ::acme::department::destroy();
 
-      if (m_pdesktopenvironment)
-      {
-
-         m_pdesktopenvironment->destroy();
-
-      }
-
-      m_pdesktopenvironment.release();
+      // if (m_pdesktopenvironment)
+      // {
+      //
+      //    m_pdesktopenvironment->destroy();
+      //
+      // }
+      //
+      // m_pdesktopenvironment.release();
 
       if (m_pshell)
       {
@@ -1664,20 +1664,20 @@ namespace user
    // }
 
 
-   ::windowing::desktop_environment * user::desktop_environment()
-   {
-
-      if (!m_pdesktopenvironment)
-      {
-
-         __øconstruct(m_pdesktopenvironment);
-
-
-      }
-
-      return m_pdesktopenvironment;
-
-   }
+   // ::windowing::desktop_environment * user::desktop_environment()
+   // {
+   //
+   //    if (!m_pdesktopenvironment)
+   //    {
+   //
+   //       __øconstruct(m_pdesktopenvironment);
+   //
+   //
+   //    }
+   //
+   //    return m_pdesktopenvironment;
+   //
+   // }
 
 
    //::aura::system * useracmesystem()

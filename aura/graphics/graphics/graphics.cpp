@@ -109,7 +109,7 @@ namespace graphics
 
       object::destroy();
 
-      m_pwindow.release();
+      //m_pwindow.release();
 
       //m_pimpl.release();
 
@@ -195,10 +195,10 @@ namespace graphics
    }
 
 
-   bool graphics::update_screen()
+   void graphics::update_screen()
    {
 
-      return true;
+      //return true;
 
    }
 
@@ -282,13 +282,13 @@ namespace graphics
    }
 
 
-   bool graphics::on_update_screen(buffer_item * pitem)
+   void graphics::on_update_screen(buffer_item * pitem)
    {
 
       //__UNREFERENCED_PARAMETER(pitem);
 
 
-      return true;
+      //return true;
 
    }
 
@@ -374,7 +374,9 @@ namespace graphics
    huge_integer graphics::_001GetTopLeftWeightedOpaqueArea(const ::int_rectangle & rect)
    {
 
-      synchronous_lock synchronouslock(get_screen_item()->m_pmutex);
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      _synchronous_lock synchronouslockMutex(get_screen_item()->m_pmutex);
 
       return get_screen_item()->m_pimage2->_001GetTopLeftWeightedOpaqueArea(0, rect);
 
@@ -386,7 +388,7 @@ namespace graphics
 
       statement << "buffer  ";
 
-      auto pwindow = m_pwindow;
+      auto pwindow = m_pwindow.m_p;
 
       if (pwindow)
       {

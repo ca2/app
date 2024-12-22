@@ -503,17 +503,19 @@ namespace user
    void scroll_base::set_total_size(const ::double_size & size, ::user::enum_layout elayout)
    {
 
-      auto scrollstatex = get_scroll_state_x(elayout);
+      set_scroll_dimension(size, elayout);
 
-      auto scrollstatey = get_scroll_state_y(elayout);
+      on_change_scroll_state(elayout);
 
-      scrollstatex.set_dimension((int)size.cx());
+   }
 
-      scrollstatey.set_dimension((int)size.cy());
 
-      set_scroll_state_x(scrollstatex, elayout);
+   void scroll_base::set_scroll_dimension(const ::int_size & size, ::user::enum_layout elayout)
+   {
 
-      set_scroll_state_y(scrollstatey, elayout);
+      scroll_base_x::set_scroll_dimension(size, elayout);
+
+      scroll_base_y::set_scroll_dimension(size, elayout);
 
       on_change_scroll_state(elayout);
 

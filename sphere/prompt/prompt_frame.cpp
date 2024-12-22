@@ -48,7 +48,7 @@ namespace prompt
 
       simple_frame_window::on_timer(ptimer);;
 
-      auto uEvent = ptimer->m_uEvent;
+      auto uEvent = ptimer->m_uTimer;
 
       static float theta;
 

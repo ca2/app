@@ -5,6 +5,7 @@
 
 
 #include  "_style.h"
+#include "acme/constant/_constant.h"
 
 
 class item;
@@ -16,7 +17,13 @@ namespace user
 {
 
 
+   class activation_token;
+
+
    class user;
+
+
+
 
 
    class acme_content;
@@ -144,3 +151,12 @@ class main_frame;
 
 
 class form_document;
+
+
+CLASS_DECL_ACME bool is_docking(enum_display edisplay);
+
+
+CLASS_DECL_ACME enum_display default_equivalence_sink(enum_display edisplay);
+
+
+

@@ -152,7 +152,7 @@ namespace user
       index_array *                                m_piaFilterMesh;
 
       /// Are items selectable?
-      bool                                         m_bSelect;
+      bool                                         m_bMeshSelect;
 
 
       /// Is multiple selection of items enabled?

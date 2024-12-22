@@ -2995,7 +2995,7 @@ namespace user
          if (_001DisplayHitTest(point, iItemEnter, iSubItemEnter))
          {
 
-            if (m_bSelect && m_bHoverSelect2 &&
+            if (m_bMeshSelect && m_bHoverSelect2 &&
                   (m_iSubItemEnter != iSubItemEnter ||
                    m_iItemEnter != iItemEnter)
                   && !m_rangeSelection.has_item((::collection::index) iItemEnter))
@@ -3099,10 +3099,10 @@ namespace user
 
       auto psession = session();
 
-      if(m_bSelect)
+      if(m_bMeshSelect || does_drag_reorder())
       {
 
-         if(m_bHoverSelect2)
+         if(m_bHoverSelect2 && !does_drag_reorder())
          {
 
             if(_001DisplayHitTest(point,iItem))
@@ -3947,7 +3947,7 @@ namespace user
 
       ::user::interaction::on_timer(ptimer);
 
-      if (ptimer->m_uEvent == e_timer_hover_select)
+      if (ptimer->m_uTimer == e_timer_hover_select)
       {
 
          int iHoverSelectTimeout = 3;
@@ -3970,12 +3970,12 @@ namespace user
          
 
       }
-      else if(ptimer->m_uEvent == 12345679) // left click
+      else if(ptimer->m_uTimer == 12345679) // left click
       {
 
          KillTimer(12345679);
 
-         if(m_bSelect)
+         if(m_bMeshSelect)
          {
 
             if(m_bHoverSelect2)
@@ -3986,7 +3986,7 @@ namespace user
          }
 
       }
-      else if(ptimer->m_uEvent == 8477) // right click
+      else if(ptimer->m_uTimer == 8477) // right click
       {
 
          KillTimer(8477);
@@ -4020,21 +4020,21 @@ namespace user
             }*/
          }
       }
-      else if(ptimer->m_uEvent == 0xfffffffe)
+      else if(ptimer->m_uTimer == 0xfffffffe)
       {
 
          if(!Filter1Step())
          {
 
-            KillTimer(ptimer->m_uEvent);
+            KillTimer(ptimer->m_uTimer);
 
          }
 
       }
-      else if (ptimer->m_uEvent == 224455)
+      else if (ptimer->m_uTimer == 224455)
       {
 
-         KillTimer(ptimer->m_uEvent);
+         KillTimer(ptimer->m_uTimer);
 
          if (m_iItemLButtonDown >= 0)
          {
@@ -4056,10 +4056,10 @@ namespace user
          }
 
       }
-      else if(ptimer->m_uEvent == e_timer_drag_start) // 12345678
+      else if(ptimer->m_uTimer == e_timer_drag_start) // 12345678
       {
 
-         KillTimer(ptimer->m_uEvent);
+         KillTimer(ptimer->m_uTimer);
 
          if(!m_bHoverSelect2)
          {
@@ -4073,7 +4073,7 @@ namespace user
          }
 
       }
-      //else if(ptimer->m_uEvent == 12321)
+      //else if(ptimer->m_uTimer == 12321)
       //{
 
 

@@ -77,7 +77,7 @@ namespace linux
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
 
 
-      virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
+      virtual void window_show_change_visibility(::e_display edisplay, const ::user::activation & useractivation) override;
 
 
       virtual ::windowing::window * from_os_data(void * pdata) override;

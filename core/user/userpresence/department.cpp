@@ -150,7 +150,7 @@ namespace userpresence
          if(m_ppresence.is_set())
          {
 
-            if(ptimer->m_uEvent == 8888)
+            if(ptimer->m_uTimer == 8888)
             {
 
                m_ppresence->defer_pulse_user_presence();

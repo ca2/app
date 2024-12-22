@@ -28,6 +28,12 @@ class window;
 class CLASS_DECL_ACME windowing :
 virtual public ::acme::windowing::windowing
 {
+protected:
+
+
+   map < oswindow, ::pointer < ::acme::windowing::window> > m_oswindowmap;
+
+
 public:
    
    
@@ -39,7 +45,7 @@ public:
    ::pointer<::acme::sandbox_windowing::host_interaction>                    m_phostinteraction;
    
    ::pointer<::acme::windowing::window>                 m_pwindowApplicationHost;
-   
+
    itask_t                                         m_itask;
    
    ::procedure_list                                m_procedurelist;

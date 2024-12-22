@@ -17,7 +17,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "acme/platform/platform.h"
-//#include "acme/platform/sequencer.h"
+//#include "acme/handler/sequence.h"
 #include "acme/platform/system.h"
 #include "acme/platform/session.h"
 #include "acme/prototype/string/_str.h"
@@ -900,43 +900,46 @@ namespace platform
    void application::init()
    {
 
-      auto papplicationmenu = application_menu();
-
-      papplicationmenu->erase_all();
-
-      using namespace ::apex;
-
+      if (!system()->m_bConsole)
       {
+         auto papplicationmenu = application_menu();
 
-         auto ppopupApp = papplicationmenu->popup(application_title());
+         papplicationmenu->erase_all();
 
-         //pmenuMain->add(pmenuApp);
+         using namespace ::apex;
 
-         ppopupApp->item("About " + application_title(), "show_about_box", "", "");
+         {
 
-         ppopupApp->separator();
+            auto ppopupApp = papplicationmenu->popup(application_title());
 
-         ppopupApp->item("Quit " + application_title(), "try_close_application", "", "");
+            //pmenuMain->add(pmenuApp);
 
+            ppopupApp->item("About " + application_title(), "show_about_box", "", "");
+
+            ppopupApp->separator();
+
+            ppopupApp->item("Quit " + application_title(), "try_close_application", "", "");
+
+         }
+
+         //      {
+         //
+         //         auto ppopupView = papplicationmenu->popup("View");
+         //
+         //         //ppopupView->add(pmenuView);
+         //
+         //         ppopupView->item("Transparent Frame", "transparent_frame", "", "");
+         //
+         //      }
+         //
+         //      //applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
+         //
+         ////      applicationmenu()->add_item(i++, "About " + m_strAppName, "show_about", "", "Show About");
+         ////
+         ////      applicationmenu()->add_item(i++, "Transparent Frame", "transparent_frame", "Ctrl+Shift+T", "Toggle Transparent Frame");
+
+         application_menu_update();
       }
-
-      //      {
-      //
-      //         auto ppopupView = papplicationmenu->popup("View");
-      //
-      //         //ppopupView->add(pmenuView);
-      //
-      //         ppopupView->item("Transparent Frame", "transparent_frame", "", "");
-      //
-      //      }
-      //
-      //      //applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
-      //
-      ////      applicationmenu()->add_item(i++, "About " + m_strAppName, "show_about", "", "Show About");
-      ////
-      ////      applicationmenu()->add_item(i++, "Transparent Frame", "transparent_frame", "Ctrl+Shift+T", "Toggle Transparent Frame");
-
-      application_menu_update();
 
    }
 
@@ -1040,6 +1043,33 @@ namespace platform
       }
 
       ::task::term_task();
+
+   }
+
+
+   void application::user_confirm_close_application()
+   {
+
+      auto pmessagebox = __initialize_new::message_box("Are you sure you want to close application?", nullptr, e_message_box_yes_no);
+
+      pmessagebox->async()
+         << [this, pmessagebox]()
+         {
+
+            if (pmessagebox->m_payloadResult.as_int() == e_dialog_result_yes)
+            {
+
+               auto papp = get_app();
+
+               papp->_001TryCloseApplication();
+
+            }
+            else if (pmessagebox->m_payloadResult.as_int() == e_dialog_result_cancel)
+            {
+
+            }
+
+         };
 
    }
 
@@ -2191,19 +2221,38 @@ namespace platform
    }
 
 
-   bool application::on_application_menu_action(const ::atom& atom)
+   bool application::handle_command(const ::atom& atom, ::user::activation_token * puseractivationtoken)
+   {
+
+      if (::command_handler::handle_command(atom, puseractivationtoken))
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+   bool application::on_command_final(const ::atom& atom, ::user::activation_token * puseractivationtoken)
    {
       
       if(atom == "show_about_box")
       {
        
          show_about_box();
+
+         return true;
          
       }
       else if(atom == "try_close_application")
       {
        
          _001TryCloseApplication();
+
+         return true;
          
       }
 
@@ -2335,10 +2384,10 @@ CLASS_DECL_ACME void application_send_status(::enum_status estatus, ::particle* 
 }
 
 
-void application_on_menu_action(::platform::application * papplication, const char * pszCommand)
+void application_on_command(::platform::application * papplication, const char * pszCommand, ::user::activation_token * puseractivationtoken)
 {
 
-   papplication->on_application_menu_action(pszCommand);
+   papplication->on_command_final(pszCommand, puseractivationtoken);
 
 }
 

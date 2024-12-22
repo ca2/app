@@ -866,7 +866,7 @@ void simple_menu_bar::_001Hover()
 void simple_menu_bar::on_timer(::timer * ptimer)
 {
    simple_toolbar::on_timer(ptimer);
-//   if (ptimer->m_uEvent == TIMER_HOVER)
+//   if (ptimer->m_uTimer == TIMER_HOVER)
 //   {
 //      _001Hover();
 //   }

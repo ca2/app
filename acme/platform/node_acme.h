@@ -58,13 +58,13 @@ namespace platform
       //::apex::node* m_papexnode;
       //::aura::node* m_pauranode;
 
-      ::acme_posix::node* m_pAcmePosix;
-      ::apex_posix::node* m_pApexPosix;
-      ::aura_posix::node* m_pAuraPosix;
+      //::acme_posix::node* m_pAcmePosix;
+      //::apex_posix::node* m_pApexPosix;
+      //::aura_posix::node* m_pAuraPosix;
 
-      ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::node* m_pAcmePlatform;
-      ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(apex_)::node* m_pApexPlatform;
-      ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)::node* m_pAuraPlatform;
+      //::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::node* m_pAcmePlatform;
+      //::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(apex_)::node* m_pApexPlatform;
+      //::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)::node* m_pAuraPlatform;
 
 
       //::particle_pointer                              m_pparticleQuit;
@@ -94,15 +94,15 @@ namespace platform
 
       //::windowing_x11::node *                               m_pNodeX11;
       //::windowing_xcb::node *                               m_pNodeXcb;
-      ::node_gtk3::node* m_pNodeGtk3;
-      ::node_gtk4::node* m_pNodeGtk4;
-      ::node_gtk_based::node* m_pNodeGtkBased;
-      ::node_kde5::node* m_pNodeKDE5;
-      ::node_kde6::node* m_pNodeKDE6;
-      ::node_xfce::node* m_pNodeXfce;
-      ::operating_ambient_gtk_based::node* m_pNodeDesktopEnvironmentGtkBased;
-      ::desktop_environment_kde::node* m_pNodeDesktopEnvironmentKDE;
-      ::desktop_environment_xfce::node* m_pNodeDesktopEnvironmentXfce;
+      //::node_gtk3::node* m_pNodeGtk3;
+      //::node_gtk4::node* m_pNodeGtk4;
+      //::node_gtk_based::node* m_pNodeGtkBased;
+      //::node_kde5::node* m_pNodeKDE5;
+      //::node_kde6::node* m_pNodeKDE6;
+      //::node_xfce::node* m_pNodeXfce;
+      //::operating_ambient_gtk_based::node* m_pNodeDesktopEnvironmentGtkBased;
+      //::desktop_environment_kde::node* m_pNodeDesktopEnvironmentKDE;
+      //::desktop_environment_xfce::node* m_pNodeDesktopEnvironmentXfce;
 
       //bool                                                m_bUserDarkMode;
 
@@ -166,7 +166,7 @@ namespace platform
       virtual void node_implement_main();
 
 
-      virtual void on_app_activated();
+      virtual void on_app_activated(::user::activation_token * puseractivationtoken);
 
 
       virtual void on_system_main();
@@ -1294,6 +1294,10 @@ namespace platform
 
 
       virtual void realize(::particle_pointer pparticle);
+
+
+      virtual ::string get_computer_name();
+
 
    };
 

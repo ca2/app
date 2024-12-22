@@ -40,7 +40,7 @@
 #include "acme/operating_system/a_system_menu.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
-//#include "acme/platform/sequencer.h"
+//#include "acme/handler/sequence.h"
 #include "acme/platform/timer_array.h"
 #include "acme/platform/system.h"
 #include "acme/user/user/drag.h"
@@ -68,7 +68,7 @@ namespace acme
 
          //m_efont = e_font_sans;
          m_uFlagsAcmeUserInteraction = 0;
-         auto pitemClient = tool().defer_item(e_element_client);
+         auto pitemClient = stock_item(e_element_client);
 
          enable_drag(pitemClient, ::user::e_zorder_back);
 
@@ -375,13 +375,15 @@ namespace acme
             if (strActionName == "minimize")
             {
 
-               display(e_display_iconic);
+               //display(e_display_iconic);
+
+               window_minimize();
 
             }
             else if (strActionName == "maximize")
             {
 
-               display(e_display_zoomed);
+               window_maximize();
 
             }
             else if (strActionName == "restore")
@@ -684,6 +686,7 @@ namespace acme
             m_ptimerarray->delete_timer(uEvent);
 
          }
+
 
 
 
@@ -1519,7 +1522,7 @@ namespace acme
 
             ::source::destroy();
 
-            system()->erase_signal_handler(this);
+            //system()->erase_signal_handler(this);
 
             m_pacmeuserinteractionParent.release();
 
@@ -1570,7 +1573,7 @@ namespace acme
          int_rectangle interaction::get_window_rectangle()
          {
 
-            return {};
+            return m_pacmewindowingwindow->get_window_rectangle();
 
          }
 

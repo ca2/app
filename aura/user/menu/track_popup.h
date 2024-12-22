@@ -18,6 +18,7 @@ namespace menu
       e_track_popup_none,
       e_track_popup_inside_target = 1,
       e_track_popup_outside_target = 2,
+      e_track_popup_right = 4,
       
    };
 

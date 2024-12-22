@@ -940,6 +940,7 @@
     <ClCompile Include="filesystem\filesystem\path_array.cpp" />
     <ClCompile Include="filesystem\filesystem\path_object.cpp" />
     <ClCompile Include="filesystem\filesystem\path_system.cpp" />
+    <ClCompile Include="filesystem\filesystem\windows_path.cpp" />
     <ClCompile Include="filesystem\file\binary_stream.cpp" />
     <ClCompile Include="filesystem\file\buffered_buffer.cpp" />
     <ClCompile Include="filesystem\file\circular_buffer.cpp" />
@@ -1132,6 +1133,7 @@
     <ClInclude Include="filesystem\filesystem\folder_dialog.h" />
     <ClInclude Include="filesystem\filesystem\link.h" />
     <ClInclude Include="filesystem\filesystem\path_array.h" />
+    <ClInclude Include="filesystem\filesystem\windows_path.h" />
     <ClInclude Include="filesystem\filesystem\_.h" />
     <ClInclude Include="filesystem\filesystem\_2.h" />
     <ClInclude Include="filesystem\filesystem\_impl2.h" />
@@ -1230,6 +1232,7 @@
     <ClInclude Include="operating_system\windows\nano\http\_.h" />
     <ClInclude Include="operating_system\windows\nano\http\_http.h" />
     <ClInclude Include="operating_system\windows\window.h" />
+    <ClInclude Include="operating_system\windows\windowing.h" />
     <ClInclude Include="operating_system\windows_common\nano\idn\idn.h" />
     <ClInclude Include="operating_system\x11\display_lock.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -1389,6 +1392,7 @@
     <ClInclude Include="parallelization\queue.h" />
     <ClInclude Include="parallelization\task_context.h" />
     <ClInclude Include="parallelization\task_message_queue.h" />
+    <ClInclude Include="parallelization\waiting_call.h" />
     <ClInclude Include="parallelization\wait_for_end_of_sequence.h" />
     <ClInclude Include="platform\allocator.h" />
     <ClInclude Include="platform\application_acme.h" />
@@ -1478,6 +1482,7 @@
     <ClInclude Include="user\micro\theme.h" />
     <ClInclude Include="user\micro\user.h" />
     <ClInclude Include="user\micro\_.h" />
+    <ClInclude Include="user\user\activation.h" />
     <ClInclude Include="user\user\check.h" />
     <ClInclude Include="user\user\control.h" />
     <ClInclude Include="user\user\controller.h" />
@@ -1490,6 +1495,12 @@
     <ClInclude Include="user\user\text.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="windowing\display.h" />
+    <ClInclude Include="windowing\sandbox\aaa_node.h" />
+    <ClInclude Include="windowing\sandbox\host_interaction.h" />
+    <ClInclude Include="windowing\sandbox\window.h" />
+    <ClInclude Include="windowing\sandbox\windowing.h" />
+    <ClInclude Include="windowing\sandbox\_.h" />
+    <ClInclude Include="windowing\sandbox\_sandbox.h" />
     <ClInclude Include="windowing\window.h" />
     <ClInclude Include="windowing\windowing.h" />
     <ClInclude Include="windowing\_.h" />
@@ -1805,6 +1816,7 @@
     <ClCompile Include="operating_system\windows\thread.cpp" />
     <ClCompile Include="operating_system\windows\user.cpp" />
     <ClCompile Include="operating_system\windows\window.cpp" />
+    <ClCompile Include="operating_system\windows\windowing.cpp" />
     <ClCompile Include="operating_system\windows\windows.cpp" />
     <ClCompile Include="operating_system\windows\_factory.cpp" />
     <ClCompile Include="operating_system\windows_common\acme.cpp" />
@@ -1970,6 +1982,7 @@
     <ClCompile Include="operating_system\_.cpp" />
     <ClCompile Include="operating_system\_api.cpp" />
     <ClCompile Include="operating_system\__eoperating_ambient.cpp" />
+    <ClCompile Include="operating_system\__operating_system.cpp" />
     <ClCompile Include="parallelization\condition.cpp" />
     <ClCompile Include="parallelization\condition_variable.cpp" />
     <ClCompile Include="parallelization\create_task_attributes.cpp" />
@@ -1993,6 +2006,7 @@
     <ClCompile Include="parallelization\task.cpp" />
     <ClCompile Include="parallelization\task_message_queue.cpp" />
     <ClCompile Include="parallelization\tools.cpp" />
+    <ClCompile Include="parallelization\waiting_call.cpp" />
     <ClCompile Include="parallelization\wait_for_end_of_sequence.cpp" />
     <ClCompile Include="parallelization\_.cpp" />
     <ClCompile Include="platform\acme.cpp" />
@@ -2417,8 +2431,12 @@
     <ClCompile Include="user\user\text.cpp" />
     <ClCompile Include="user\user\text_property.cpp" />
     <ClCompile Include="user\user\tool_item.cpp" />
+    <ClCompile Include="user\user\_.cpp" />
     <ClCompile Include="user\user\_string.cpp" />
     <ClCompile Include="windowing\display.cpp" />
+    <ClCompile Include="windowing\sandbox\host_interaction.cpp" />
+    <ClCompile Include="windowing\sandbox\window.cpp" />
+    <ClCompile Include="windowing\sandbox\windowing.cpp" />
     <ClCompile Include="windowing\window.cpp" />
     <ClCompile Include="windowing\windowing.cpp" />
     <ClCompile Include="windowing\_windowing.cpp" />

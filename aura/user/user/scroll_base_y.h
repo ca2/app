@@ -41,7 +41,7 @@ namespace user
 
       scroll_state get_scroll_state_y(::user::enum_layout elayout = ::user::e_layout_sketch) override;
       void set_scroll_state_y(const scroll_state & scrollstate, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
-
+      void set_scroll_dimension(const ::int_size & size, ::user::enum_layout elayout) override;
 
       virtual void send_scroll_y_message(enum_scroll_command ecommand, double dPosition = DOUBLE_MOST_NEGATIVE);
 

@@ -586,7 +586,7 @@ namespace user
       //if (message == e_message_event)
       //{
 
-      //   ::user::control_event * pevent = pmessage->m_lparam.cast < ::user::control_event >();
+      //   ::user::control_event * phappening = pmessage->m_lparam.cast < ::user::control_event >();
 
       //   m_puserinteraction->handle(ptopic, pcontext);
 
@@ -676,7 +676,7 @@ namespace user
 //   }
 
 
-//   void interaction_child::_window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation)
+//   void interaction_child::_window_show_change_visibility_unlocked(::e_display edisplay, const ::user::activation & useractivation)
 //   {
 //
 //      try

@@ -31,12 +31,14 @@ namespace user
       ::pointer<simple_list_data>                 m_psimplelistdata;
 
 
-      ::pointer<::image::fastblur>               m_pfastblur;
-      index_map < ::image::image_pointer >                m_mapBlur;
+      ::pointer<::image::fastblur>                 m_pfastblurIconText;
+      index_map < ::image::image_pointer >         m_mapBlur;
       index_map < string >                         m_mapText;
       index_map < ::color::color >                 m_mapBackColor;
-      ::pointer<::image::fastblur>               m_pfastblurIcon;
-      index_map < ::image::image_pointer >                m_mapIconBlur;
+      ::pointer<::image::fastblur>                 m_pfastblurIcon;
+      index_map < ::image::image_pointer >         m_mapIconBlur;
+      ::color::color                               m_colorEmbossedText;
+      ::color::color                               m_colorEmbossedTextBackground;
       double                                       m_dIconSaturation;
       double                                       m_dIconLightness;
       double                                       m_dIconOpacity;
@@ -47,8 +49,10 @@ namespace user
       int                                          m_iTextBlur;
       ::int_rectangle                              m_rectangleSpot;
       ::image::image_pointer                              m_pimageSpot;
-      ::image::image_pointer                              m_pimageTime;
+      //::image::image_pointer                              m_pimageTime;
       bool                                         m_bHighHighLight;
+      //::int_size                                   m_sizeIconItem;
+      //::int_size                                   m_sizeIcon;
 
 
       list();
@@ -105,6 +109,8 @@ namespace user
       void _001OnSort() override;
 
 
+
+
       inline ::user::list_column_array & column_array() { return *m_pcolumna; }
 
       void _001OnBeforeDeleteRange(range & range) override;
@@ -122,6 +128,10 @@ namespace user
 
 
       ::int_size get_item_size() override;
+
+      virtual ::int_size get_list_icon_item_size();
+      virtual ::int_size get_list_icon_size();
+
 
       void _001OnSort(::collection::index iSubItem) override;
       virtual void _001OnListHeaderItemClick(::collection::index iHeaderItem);

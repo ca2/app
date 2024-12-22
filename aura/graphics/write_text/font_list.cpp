@@ -168,7 +168,7 @@ namespace write_text
 
             m_pfontenumerationAddRedrawHandler = m_pfontenumeration;
 
-            m_pfontenumerationAddRedrawHandler->get_signal(id_font_list_redraw)->add_handler(this);
+            m_pfontenumerationAddRedrawHandler->signal(id_font_list_redraw)->add_handler(this);
 
          }
 
@@ -726,7 +726,7 @@ namespace write_text
       if(pmanager)
       {
 
-         auto psignal = pmanager->get_signal(id_operating_system_user_color_change);
+         auto psignal = pmanager->signal(id_operating_system_user_color_change);
 
          if(psignal)
          {

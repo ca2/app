@@ -44,7 +44,7 @@ namespace graphics
 
 
       //::pointer<::windowing::window>          m_pimpl;
-      ::pointer<::windowing::window>               m_pwindow;
+      ::cast < ::windowing::window >               m_pwindow;
       bool                                         m_bNewBuffer;
 
       union
@@ -80,9 +80,9 @@ namespace graphics
 
       virtual bool buffer_lock_round_swap_key_buffers();
 
-      virtual bool update_screen();
+      virtual void update_screen();
 
-      virtual bool on_update_screen(buffer_item * pitem);
+      virtual void on_update_screen(buffer_item * pitem);
 
       virtual void buffer_size_and_position(buffer_item * pitem);
 

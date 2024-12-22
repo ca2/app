@@ -11,7 +11,13 @@ void quantum::set_finishing_flag()
    if (strType.contains("user::thread"))
    {
 
-      output_debug_string("123");
+      output_debug_string("quantum::set_finishing_flag user::thread");
+
+   }
+   else if (strType.contains("main_frame"))
+   {
+
+      output_debug_string("quantum::set_finishing_flag main_frame");
 
    }
 
@@ -20,5 +26,10 @@ void quantum::set_finishing_flag()
 
 void quantum::set_destroying_flag()
 {
+   
    set_flag(e_flag_destroying);
+
 }
+
+
+

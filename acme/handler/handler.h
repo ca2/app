@@ -22,9 +22,9 @@ namespace handler
    protected:
 
 
-      ::pointer_array < ::request >       m_requestaPosted;
-      ::pointer_array < ::request >       m_requestaHistory;
-      ::pointer < ::manual_reset_happening >  m_pmanualresethappeningNewRequestPosted;
+      ::pointer_array < ::request >             m_requestaPosted;
+      ::pointer_array < ::request >             m_requestaHistory;
+      ::pointer < ::manual_reset_happening >    m_pmanualresethappeningMainLoop;
 
 
    public:
@@ -65,15 +65,21 @@ namespace handler
 
       void on_initialize_particle() override;
 
-      virtual void __on_update_handler_happening_unlocked();
+      //virtual void __on_update_handler_happening_unlocked();
 
       void destroy() override;
 
-      virtual ::manual_reset_happening * new_request_posted();
+      virtual ::manual_reset_happening * new_main_loop_happening();
+
+      virtual bool has_main_loop_happening();
+
+      virtual void defer_reset_main_loop_happening();
 
       virtual void post_request(::request * prequest);
 
-      virtual ::request * pick_next_posted_request();
+      //virtual ::request * pick_next_posted_request();
+
+      virtual bool pick_next_posted_request();
 
       virtual bool handle_next_posted_request();
 

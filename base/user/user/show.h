@@ -150,7 +150,7 @@ namespace user
          //if (m_puserinteractionImpactNotify)
          //{
 
-         //   m_puserinteractionImpactNotify->handle(pevent);
+         //   m_puserinteractionImpactNotify->handle(phappening);
 
          //}
 
@@ -159,7 +159,7 @@ namespace user
          //if (puiParent != nullptr)
          //{
 
-         //   puiParent->handle(pevent);
+         //   puiParent->handle(phappening);
 
          //   if (ptopic->m_bRet)
          //   {

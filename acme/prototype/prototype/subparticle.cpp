@@ -119,6 +119,8 @@ void subparticle::initialize(::particle* pparticle)
 void subparticle::destroy()
 {
 
+   set_flag(e_flag_destroyed);
+
 }
 
 
@@ -223,7 +225,7 @@ void subparticle::init_task()
 
 }
 
-
+int g_iSubparticleCallCount = 0;
 void subparticle::call()
 {
 
@@ -231,6 +233,8 @@ void subparticle::call()
 
    try
    {
+
+      g_iSubparticleCallCount++;
 
       run();
 
@@ -879,12 +883,12 @@ void subparticle::acquire_ownership()
 }
 
 
-::string subparticle::get_debug_title() const
+void subparticle::get_debug_title(char * sz, character_count c) const
 {
 
    auto psubparticle = (::subparticle *)this;
 
-   return ::type(*psubparticle).name();
+   ::strncpy(sz, ::type(*psubparticle).name(), c);
 
 }
 
@@ -933,3 +937,16 @@ void subparticle::on_timed_out()
 
 
 
+bool subparticle::start_notify_lock(::notify_lock * pnotifylock)
+{
+
+   return false;
+
+}
+
+
+void subparticle::end_notify_lock(::notify_lock * pnotifylock)
+{
+
+
+}

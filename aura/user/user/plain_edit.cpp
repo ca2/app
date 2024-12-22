@@ -660,7 +660,7 @@ namespace user
       character_count iSelEnd;
       character_count iSelBegOriginal;
       character_count iSelEndOriginal;
-      character_count lim = 0;
+      character_count lim = plain_edit_line_x_to_sel(pgraphics, m_iCurrentPageLineStart, 0);
 
       ::draw2d::pen_pointer & ppenCaret = m_pcontrolstyle->m_ppenCaret;
 
@@ -1339,7 +1339,7 @@ namespace user
 
       interaction::on_timer(ptimer);
 
-      enum_timer etimer = (enum_timer)ptimer->m_uEvent;
+      auto etimer = ptimer->m_etimer;
 
       if (etimer == e_timer_overflow_scrolling_start)
       {
@@ -1436,10 +1436,10 @@ namespace user
          }
 
       }
-      else if (ptimer->m_uEvent == 500 || ptimer->m_uEvent == 501)
+      else if (ptimer->m_uTimer == 500 || ptimer->m_uTimer == 501)
       {
 
-         if (ptimer->m_uEvent == 500)
+         if (ptimer->m_uTimer == 500)
          {
 
             KillTimer(500);
@@ -1844,7 +1844,7 @@ namespace user
                plain_edit_set_text_selection_begin(change.m_payload.as_iptr(), change.m_actioncontext);
                return;
             case id_text_selection_end:
-               plain_edit_set_text_selection_begin(change.m_payload.as_iptr(), change.m_actioncontext);
+               plain_edit_set_text_selection_end(change.m_payload.as_iptr(), change.m_actioncontext);
                return;
             default:
                break;
@@ -1854,7 +1854,7 @@ namespace user
 
       }
 
-      ::user::interaction::on_set_property(change);
+      ::user::text::on_set_property(change);
 
    }
 
@@ -1912,7 +1912,7 @@ namespace user
 
       }
 
-      return ::user::interaction::on_get_property(atoma);
+      return ::user::text::on_get_property(atoma);
 
    }
 
@@ -2429,7 +2429,7 @@ namespace user
 
             extend_selection_end(pointHost);
 
-            m_pitemHover = tool().item(e_element_client);
+            m_pitemHover = stock_item(e_element_client);
 
          }
 
@@ -2488,10 +2488,14 @@ namespace user
             set_mouse_capture();
 
             bool bNewFocusSelectAll = is_new_focus_select_all();
+
+            auto psession = session();
+
+            bool bShiftKeyPressed = psession->is_key_pressed(::user::e_key_shift);
             
             ::pointer < ::message::message > pmessageHold = pmessage;
 
-            queue_graphics_call([this, point, bNewFocusSelectAll, pmessageHold](::draw2d::graphics_pointer & pgraphics)
+            queue_graphics_call([this, point, bShiftKeyPressed, bNewFocusSelectAll, pmessageHold](::draw2d::graphics_pointer & pgraphics)
             {
 
                ::character_count iBegNew = -1;
@@ -2504,7 +2508,20 @@ namespace user
 
                iBegNew = plain_edit_char_hit_test(pgraphics, point);
 
-               iEndNew = iBegNew;
+               if (bShiftKeyPressed)
+               {
+
+                  iEndNew = iBegNew;
+
+                  iBegNew = iBegOld;
+
+               }
+               else
+               {
+
+                  iEndNew = iBegNew;
+
+               }
 
                informationf("LeftButtonDown(%d,%d)-queue_graphics_call", iBegNew, iEndNew);
 
@@ -2528,7 +2545,6 @@ namespace user
                   m_iColumn = iColumnNew;
 
                }
-               
 
             });
 
@@ -3844,20 +3860,20 @@ namespace user
 
                size = pgraphics->get_text_extent(strLineGraphics, pszNext - pszStart + iAddUp);
 
-               if (size.cx() > rectangleX.width() + 200)
-               {
+               //if (size.cx() > rectangleX.width() + 200)
+               //{
 
-                  while (*psz != '\0')
-                  {
+               //   while (*psz != '\0')
+               //   {
 
-                     daExtent[(::collection::index)(psz - pszStart)] = -1;
-                     psz++;
+               //      daExtent[(::collection::index)(psz - pszStart)] = -1;
+               //      psz++;
 
-                  }
+               //   }
 
-                  break;
+               //   break;
 
-               }
+               //}
 
                sizeLast.cx() = (int)size.cx();
 
@@ -4591,7 +4607,7 @@ namespace user
 //
 //            daExtent.set_size(strLine.length() + 1);
 //
-//            while (::has_char(pszNext))
+//            while (::has_character(pszNext))
 //            {
 //
 //               pszNext = unicode_next(psz);

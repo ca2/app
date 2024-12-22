@@ -848,12 +848,14 @@ string_array_base < Type, RawType, t_etypeContainer > ::string_array_base(CHARAC
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::add_tokens(const SCOPED_STRING& str, const SCOPED_STRING& strSeparator, bool bAddEmpty)
+void string_array_base < Type, RawType, t_etypeContainer > ::add_tokens(const SCOPED_STRING& scopedstr, const SCOPED_STRING& strSeparator, bool bAddEmpty)
 {
+
+   ::string str(scopedstr);
 
    ::tokenizer strTokenizer(str);
 
-   Type strToken;
+   ::string strToken;
 
    if (bAddEmpty)
    {

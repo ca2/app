@@ -3240,41 +3240,30 @@ namespace aura
    //}
 
 
-   //bool system::on_application_menu_action(const ::string & pszCommand)
-   //{
+   bool system::on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken)
+   {
 
-   //   synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization());
 
-   //   
+      auto applicationa = session()->m_applicationa;
 
-   //   auto applicationa = psession->m_applicationa;
+      synchronouslock.unlock();
 
-   //   synchronouslock.unlock();
+      for(auto & papplication : applicationa)
+      {
 
-   //   for(auto & papp : applicationa)
-   //   {
+         if(papplication->on_command_final(atom, puseractivationtoken))
+         {
 
-   //      ASSERT(papp != this);
+            return true;
 
-   //      if(papp == this)
-   //      {
+         }
 
-   //         continue;
+      }
 
-   //      }
+      return false;
 
-   //      if(papp->on_application_menu_action(pszCommand))
-   //      {
-
-   //         return true;
-
-   //      }
-
-   //   }
-
-   //   return false;
-
-   //}
+   }
 
 
    //bool system::merge_accumulated_on_open_file(::request * prequest)
@@ -3310,7 +3299,7 @@ namespace aura
 
    //      string strParam = straAccumul.surround_and_implode(" ", "\"", "\"");
 
-   //      line->_001ParseCommandFork("app.exe " + strParam + " " + ::str::has_char(strExtra, " : "));
+   //      line->_001ParseCommandFork("app.exe " + strParam + " " + ::str::has_character(strExtra, " : "));
 
    //   }
 
@@ -3376,7 +3365,7 @@ namespace aura
    //      else
    //      {
 
-   //         papp->request({"app.exe \"" + payloadFile.get_file_path() + "\" " + ::str::has_char(strExtra, " : ")});
+   //         papp->request({"app.exe \"" + payloadFile.get_file_path() + "\" " + ::str::has_character(strExtra, " : ")});
 
    //      }
 
@@ -5287,8 +5276,8 @@ namespace aura
   //
   //      string strId;
   //      //strId = m_strAppName;
-  //      //strId += ::str::has_char(m_XstrAppId, ".");
-  //      //strId += ::str::has_char(m_strBaseSupportId, ".");
+  //      //strId += ::str::has_character(m_XstrAppId, ".");
+  //      //strId += ::str::has_character(m_strBaseSupportId, ".");
   //
   //
   //

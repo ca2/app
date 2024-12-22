@@ -476,11 +476,11 @@ namespace draw2d
 
       }
 
-      auto pred = [&](::draw2d::graphics * pgraphics)
+      auto pred = [&](::draw2d::graphics * pgraphicsParam)
       {
 
-         pgraphics->set(pfont);
-         pgraphics->_DrawText(strText, rectangle, ealign, edrawtext);
+            pgraphicsParam->set(pfont);
+            pgraphicsParam->_DrawText(strText, rectangle, ealign, edrawtext);
 
       };
 
@@ -600,7 +600,7 @@ void draw2d::emboss_predicate(
 
       blur.initialize(pimageBlur->size(), iEffectiveBlurRadius);
 
-      imaging()->channel_spread_set_color(pimageBlur->g(), {}, size, pimage->g(), {}, ::color::e_channel_opacity, iEffectiveSpreadRadius, argb(255, 255, 255, 255));
+      imaging()->channel_spread_set_color(pimageBlur->g(), {}, size, pimage->g(), {}, ::color::e_channel_red, iEffectiveSpreadRadius, argb(255, 255, 255, 255));
 
       for (iptr i = 0; i < iBlur; i++)
       {
@@ -609,7 +609,7 @@ void draw2d::emboss_predicate(
 
       }
 
-      pimageBlur->clear(crGlow);
+      pimageBlur->set_rgb(crGlow);
 
       pimageBlur->mult_alpha();
 

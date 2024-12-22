@@ -438,7 +438,7 @@ namespace user
             host_post([this]()
                {
 
-                  set_foreground_window();
+                  set_foreground_window(nullptr);
 
                   host_post([this]()
                      {
@@ -736,7 +736,8 @@ namespace user
 
       //display();
 
-      display(e_display_normal, e_activation_set_foreground | e_activation_for_context_menu);
+      display(e_display_normal,
+         { ::user::e_activation_set_foreground | ::user::e_activation_for_context_menu } );
 
       set_need_layout();
 
@@ -755,7 +756,9 @@ namespace user
       m_procedureOnAfterCreate = [this]()
          {
 
-            display(e_display_normal, e_activation_set_foreground | e_activation_for_context_menu);
+            display(e_display_normal, 
+               { ::user::e_activation_set_foreground | ::user::e_activation_for_context_menu,
+               nullptr } );
 
             order(e_zorder_top_most);
 
@@ -1013,11 +1016,11 @@ namespace user
 
    //   place(rectangleWindow);
 
-   //   //display(e_display_normal, e_activation_no_activate);
+   //   //display(e_display_normal, ::user::e_activation_no_activate);
 
    //   display(e_display_normal, 
-   //      e_activation_set_foreground |
-   //   e_activation_set_popup);
+   //      ::user::e_activation_set_foreground |
+   //   ::user::e_activation_set_popup);
 
    //   set_need_redraw();
 
@@ -1026,31 +1029,72 @@ namespace user
    //}
 
 
+   void menu::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      if (this == top_level())
+      {
+
+         auto pstyle = get_style(pgraphics);
+
+         //information() << "user::frame_window::_001OnNcDraw graphics offset (2) : " << pgraphics->get_origin();
+
+   //      ::int_rectangle rectangleX;
+   //
+   //      this->rectangle(rectangleX);
+
+         if (pstyle)
+         {
+
+            if (pstyle->_001OnDrawMainFrameBackground(pgraphics, this))
+            {
+
+               //_001DrawThis(pgraphics);
+
+               //_001DrawChildren(pgraphics);
+
+               //_008CallOnDraw(pgraphics);
+
+               return;
+
+            }
+
+         }
+
+      }
+
+      ::user::interaction::_001OnNcDraw(pgraphics);
+
+   }
+
+
    void menu::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
-      auto pstyle = m_puserinteractionOwner->get_style(pgraphics);
+      //auto pstyle = m_puserinteractionOwner->get_style(pgraphics);
+
+      ::pointer<::base::style>pstyle = get_style(pgraphics);
 
       auto crBackground = get_color(pstyle, e_element_background);
 
-      if (crBackground.is_translucent())
-      {
+      //if (crBackground.is_translucent())
+      //{
 
-         ::double_rectangle rectangleClip;
+      //   ::double_rectangle rectangleClip;
 
-         pgraphics->get_clip_box(rectangleClip);
+      //   pgraphics->get_clip_box(rectangleClip);
 
-         auto rectangleX = this->rectangle();
+      //   auto rectangleX = this->rectangle();
 
-         //pgraphics->reset_clip();
+      //   //pgraphics->reset_clip();
 
-         //auto pointOffset = pgraphics->get_origin();
+      //   //auto pointOffset = pgraphics->get_origin();
 
-         //::memory_set(pgraphics->m_pimage->m_pimage32, 80, pgraphics->m_pimage->scan_area_in_bytes());
+      //   //::memory_set(pgraphics->m_pimage->m_pimage32, 80, pgraphics->m_pimage->scan_area_in_bytes());
 
-         pgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
+      //   //pgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
 
-      }
+      //}
 
       ::user::interaction::_001OnDraw(pgraphics);
 
@@ -1327,6 +1371,8 @@ namespace user
 
                   }
 
+                  return true;
+
                }
 
             }
@@ -1361,7 +1407,8 @@ namespace user
          pmenuitem->m_puserinteraction,
          m_pchannelNotify,
          mouse_cursor_position(),
-         rectangle);
+         rectangle,
+         ::menu::e_track_popup_right);
 
       m_pmenuSubMenu->track_popup_menu(ptrackpopup);
 
@@ -1463,7 +1510,7 @@ namespace user
 
       ::pointer<::menu::item_ptra>pmenuitema = pitemThis->m_pmenuitema;
 
-      if (ptimer->m_uEvent == e_timer_menu)
+      if (ptimer->m_etimer == e_timer_menu)
       {
 
          KillTimer(e_timer_menu);
@@ -1524,7 +1571,7 @@ namespace user
             //m_atomTimerMenu.is_empty();
 
       }
-      else if (ptimer->m_uEvent == ::e_timer_command_probe)
+      else if (ptimer->m_etimer == ::e_timer_command_probe)
       {
 
          {
@@ -1573,6 +1620,14 @@ namespace user
       /// descriptor().set_control_type(e_control_type_menu);
 
       pmessage->previous();
+
+
+      if (this == top_level())
+      {
+
+         m_ewindowflag += e_window_flag_top_level;
+
+      }
 
       __UNREFERENCED_PARAMETER(pmessage);
 
@@ -2437,14 +2492,29 @@ namespace user
       if (get_parent() == nullptr)
       {
 
+         ::int_rectangle rectangleMonitor;
+
+         auto rectangleMonitorHint = rectangleScreenHint;
+
+         auto iMonitor = get_best_monitor(&rectangleMonitor, rectangleMonitorHint);
+
          ::int_rectangle rectangleWindow;
 
          rectangleWindow.left() = pointCursorHint.x();
+
          //rectangleWindow.top() = rectangleScreenHint.bottom();
+
          if (m_etrackpopup & ::menu::e_track_popup_outside_target)
          {
 
             rectangleWindow.top() = rectangleScreenHint.bottom();
+
+         }
+         else if (m_etrackpopup & ::menu::e_track_popup_right)
+         {
+
+            rectangleWindow.left() = rectangleScreenHint.right();
+            rectangleWindow.top() = rectangleScreenHint.top();
 
          }
          else if (m_etrackpopup & ::menu::e_track_popup_inside_target)
@@ -2460,17 +2530,52 @@ namespace user
          else
          {
 
+            bool bUp = false;
+
+            if (rectangleScreenHint.center_y() > rectangleMonitor.y_rate(0.75))
+            {
+
+               bUp = true;
+
+            }
+
+            bool bLeft = false;
+
+            if (rectangleScreenHint.center_x() > rectangleMonitor.x_rate(0.75))
+            {
+
+               bLeft = true;
+
+            }
+
+            if (bUp)
+            {
+
+               rectangleWindow.top() = rectangleScreenHint.top() - 32 - m_size.cy();
+
+            }
+            else
+            {
+
+               rectangleWindow.top() = rectangleScreenHint.top() + pointCursorHint.y() + 8;
+
+            }
+
             rectangleWindow.left() = rectangleScreenHint.left() + pointCursorHint.x() + 8;
-            rectangleWindow.top() = rectangleScreenHint.top() + pointCursorHint.y() + 8;
+            
+            if (bLeft)
+            {
+
+               rectangleWindow.left() -= m_size.cx();
+
+            }
 
          }
 
          rectangleWindow.right() = rectangleWindow.left() + m_size.cx();
          rectangleWindow.bottom() = rectangleWindow.top() + m_size.cy();
 
-         ::int_rectangle rectangleMonitor;
-
-         auto iMonitor = get_best_monitor(&rectangleMonitor, rectangleWindow);
+         iMonitor = get_best_monitor(&rectangleMonitor, rectangleWindow);
 
          if (iMonitor >= 0)
          {
@@ -2511,7 +2616,7 @@ namespace user
 
          place(rectangleWindow, ::user::e_layout_layout, pgraphics);
 
-         //display(e_display_normal, e_activation_no_activate);
+         //display(e_display_normal, ::user::e_activation_no_activate);
 
 
       }

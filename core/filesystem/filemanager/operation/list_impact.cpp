@@ -126,7 +126,7 @@ namespace filemanager
    void operation_list_impact::on_timer(::timer * ptimer)
    {
       BASE::on_timer(ptimer);
-      if(ptimer->m_uEvent == 123)
+      if(ptimer->m_uTimer == 123)
       {
          /*if(m_timeLastUpdate.elapsed() > 500)
          {

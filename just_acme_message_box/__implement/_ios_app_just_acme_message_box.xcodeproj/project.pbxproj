@@ -29,6 +29,8 @@
 		9A4753DD2CF543AB00ED30AE /* libios_darwin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4753DC2CF543AB00ED30AE /* libios_darwin.a */; };
 		9A4753DE2CF546B800ED30AE /* libios_app_just_acme_message_box.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4753D92CF542D300ED30AE /* libios_app_just_acme_message_box.a */; };
 		9A4753E02CF5484000ED30AE /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4753DF2CF5484000ED30AE /* libz.tbd */; };
+		9A97A7722CFBCE97000A2F7C /* libios_acme_windowing_kit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A97A7712CFBCE97000A2F7C /* libios_acme_windowing_kit.a */; };
+		9A97A7732CFBCE97000A2F7C /* libios_acme_windowing_kit.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A97A7712CFBCE97000A2F7C /* libios_acme_windowing_kit.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +113,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				9A97A7732CFBCE97000A2F7C /* libios_acme_windowing_kit.a in Embed Libraries */,
 			);
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,6 +150,7 @@
 		9A4753DA2CF5433E00ED30AE /* libios_app_just_message_box.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_app_just_message_box.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4753DC2CF543AB00ED30AE /* libios_darwin.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_darwin.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4753DF2CF5484000ED30AE /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		9A97A7712CFBCE97000A2F7C /* libios_acme_windowing_kit.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_acme_windowing_kit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +175,7 @@
 				9A4753B52CF540EF00ED30AE /* UniformTypeIdentifiers.framework in Frameworks */,
 				9A4753A12CF53D3900ED30AE /* libacme_ios.a in Frameworks */,
 				9A4753AE2CF5403400ED30AE /* libios_nano_graphics_quartz2d.a in Frameworks */,
+				9A97A7722CFBCE97000A2F7C /* libios_acme_windowing_kit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +272,7 @@
 		9A4753962CF53D3900ED30AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A97A7712CFBCE97000A2F7C /* libios_acme_windowing_kit.a */,
 				9A4753DF2CF5484000ED30AE /* libz.tbd */,
 				9A4753DC2CF543AB00ED30AE /* libios_darwin.a */,
 				9A4753DA2CF5433E00ED30AE /* libios_app_just_message_box.a */,

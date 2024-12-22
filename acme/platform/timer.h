@@ -13,7 +13,7 @@ public:
    union
    {
 
-      uptr                          m_uEvent;
+      uptr                          m_uTimer;
       enum_timer                    m_etimer;
 
    };

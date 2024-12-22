@@ -26,6 +26,15 @@ object::~object()
 
    ::acme::del(m_pmeta);
 
+   auto particleaNotify = ::transfer(m_particleaNotify);
+
+   for (auto pparticle : particleaNotify)
+   {
+
+      pparticle->on_notify(this, id_destroy);
+
+   }
+
 }
 
 
@@ -1143,8 +1152,6 @@ void object::transfer_tasks_from(::object* ptask)
 
    defer_create_synchronization();
 
-   _synchronous_lock synchronouslock(this->synchronization());
-
    if(is_ascendant_task(ptask))
    {
 
@@ -1159,17 +1166,23 @@ void object::transfer_tasks_from(::object* ptask)
    if(ptaskTask)
    {
 
-      if(ptaskTask->m_procedurea.has_element())
+      if(ptaskTask->m_procedurea2.has_element())
       {
 
-         ::pointer < ::task > ptaskTaskTarget = this;
+         ::cast < ::task > ptaskTaskTarget = this;
 
-         if(ptaskTaskTarget)
+         if (ptaskTaskTarget)
          {
 
-            auto procedurea = ::transfer(ptaskTask->m_procedurea);
+            _synchronous_lock synchronouslockTask(ptaskTask->synchronization());
 
-            ptaskTaskTarget->m_procedurea.append(procedurea);
+            auto procedurea = ::transfer(ptaskTask->m_procedurea2);
+
+            synchronouslockTask.unlock();
+
+            _synchronous_lock synchronouslock(this->synchronization());
+
+            ptaskTaskTarget->m_procedurea2.append(procedurea);
 
          }
 
@@ -1405,10 +1418,53 @@ void object::destroy()
    ///*estatus = */ destroy_composites();
 
    ///*estatus = */ release_references();
+   ///
 
-   /*estatus = */ property_object::destroy();
+   auto procedureaDestroy = ::transfer(m_procedureaDestroying);
+
+   for (auto& procedure: procedureaDestroy)
+   {
+
+      if (procedure)
+      {
+
+         procedure();
+
+      }
+
+   }
+
+   auto particleaNotify = ::transfer(m_particleaNotify);
+
+   for (auto pparticle: particleaNotify)
+   {
+
+      pparticle->on_notify(this, id_destroy);
+
+   }
+
+   //m_destroyinga.erase_all();
+
+
+   /*estatus = */
+   property_object::destroy();
 
    //return ::success;
+
+}
+
+
+void object::on_notify(::particle * pparticle, enum_id eid)
+{
+
+   if (eid == id_destroy)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      m_particleaNotify.erase(pparticle);
+
+   }
 
 }
 
@@ -1436,8 +1492,6 @@ void object::set_finish()
 // please refer to object::finish verses/documentation
 void object::delete_this()
 {
-
-   destroy();
 
    property_object::delete_this();
 
@@ -2088,7 +2142,7 @@ void object::sleep(const class time & time)
    {
 
 
-      ::pointer<manual_reset_happening>pevent;
+      ::pointer<manual_reset_happening>phappening;
 
       {
 
@@ -2103,7 +2157,7 @@ void object::sleep(const class time & time)
 
          }
 
-         pevent = ptask->m_pevSleep;
+         phappening = ptask->m_pevSleep;
 
       }
 
@@ -2128,12 +2182,12 @@ void object::sleep(const class time & time)
 
       //}
 
-      if (::is_set(pevent))
+      if (::is_set(phappening))
       {
 
-         pevent->wait(time);
+         phappening->wait(time);
 
-         pevent.release();
+         phappening.release();
 
          return;
          //return ::task_get_run();
@@ -2304,13 +2358,13 @@ void object::_001OnUpdate(::message::message* pmessage)
 
 
 
-//void receiver::install_message_routing(::channel * pchannel)
-void object::install_message_routing(::channel* pchannel)
-{
-
-   //pchannel->add_handler(e_message_system_update, this, &::object::_001OnUpdate);
-
-}
+// //void receiver::install_message_routing(::channel * pchannel)
+// void object::install_message_routing(::channel* pchannel)
+// {
+//
+//    //pchannel->add_handler(e_message_system_update, this, &::object::_001OnUpdate);
+//
+// }
 
 
 //::particle_pointerobject::running(const ::string & pszTag) const

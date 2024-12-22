@@ -457,6 +457,12 @@
     <Filter Include="Header Files\user\menu">
       <UniqueIdentifier>{c7713383-a8c1-44bc-af6e-484dcd48514c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\windowing\sandbox">
+      <UniqueIdentifier>{51f2bdc3-3500-4afb-b1ac-60835d34c30f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\windowing\sandbox">
+      <UniqueIdentifier>{8be78ae6-74c7-43db-8253-1ce3ebbfaf5d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -4086,6 +4092,36 @@
     <ClInclude Include="platform\application_menu_command.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="windowing\sandbox\windowing.h">
+      <Filter>Header Files\windowing\sandbox</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\sandbox\window.h">
+      <Filter>Header Files\windowing\sandbox</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\sandbox\host_interaction.h">
+      <Filter>Header Files\windowing\sandbox</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\sandbox\aaa_node.h">
+      <Filter>Header Files\windowing\sandbox</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\sandbox\_sandbox.h">
+      <Filter>Header Files\windowing\sandbox</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\sandbox\_.h">
+      <Filter>Header Files\windowing\sandbox</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\activation.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\windowing.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\windows_path.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\waiting_call.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -5821,6 +5857,30 @@
     </ClCompile>
     <ClCompile Include="platform\application_menu_command.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\sandbox\host_interaction.cpp">
+      <Filter>Source Files\windowing\sandbox</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\sandbox\window.cpp">
+      <Filter>Source Files\windowing\sandbox</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\sandbox\windowing.cpp">
+      <Filter>Source Files\windowing\sandbox</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\__operating_system.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\windowing.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\windows_path.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\_.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\waiting_call.cpp">
+      <Filter>Source Files\parallelization</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

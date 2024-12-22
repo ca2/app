@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "interaction_base.h"
+#include "apex/user/user/interaction_base.h"
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/exception/interface_only.h"
@@ -23,6 +23,36 @@ namespace user
    {
 
    }
+
+
+#ifdef _DEBUG
+
+
+   huge_integer interaction_base::increment_reference_count()
+   {
+
+      return ::object::increment_reference_count();
+
+   }
+
+
+   huge_integer interaction_base::decrement_reference_count()
+   {
+
+      return ::object::decrement_reference_count();
+
+   }
+
+
+   huge_integer interaction_base::release()
+   {
+
+      return ::object::release();
+
+   }
+
+
+#endif
 
 
    //::handler* interaction_base::get_user_callback()
@@ -1130,7 +1160,7 @@ namespace user
 #ifdef LINUX
 
 
-   lresult interaction_base::send_x11_event(void * pevent)
+   lresult interaction_base::send_x11_event(void * phappening)
    {
 
       throw ::interface_only();
@@ -2610,7 +2640,7 @@ namespace user
    // }
 
 
-   void interaction_base::design_window_minimize(::e_activation eactivation)
+   void interaction_base::design_window_minimize(const ::user::activation & useractivation)
    {
 
       throw ::interface_only();
@@ -4442,6 +4472,29 @@ namespace user
    void interaction_base::destroy()
    {
 
+      ::string strType = ::type(this).name();
+
+      // auto & procedureaDestroying1 = ::user::drag_client::m_procedureaDestroying;
+      //
+      // auto * p1 = &::user::drag_client::m_procedureaDestroying;
+      //
+      // auto & procedureaDestroyingBegin1 = procedureaDestroying1.m_begin;
+      //
+      // auto & procedureaDestroying2 = ::source::m_procedureaDestroying;
+      //
+      // auto * p2 = &::source::m_procedureaDestroying;
+      //
+      // auto & procedureaDestroyingBegin2 = procedureaDestroying2.m_begin;
+
+      if (strType.contains("main_frame"))
+      {
+
+         //information() << "main_frame interaction_base::destroy p1 " << (::huge_integer) p1;
+         //information() << "main_frame interaction_base::destroy p2 " << (::huge_integer) p2;
+         information() << "main_frame interaction_base::destroy";
+
+      }
+
       ::acme::user::interaction::destroy();
       ::channel::destroy();
       ::source::destroy();
@@ -4639,12 +4692,13 @@ namespace user
    //}
 
 
-   void interaction_base::display(::e_display edisplay, ::e_activation eactivation)
+   void interaction_base::display(::e_display edisplay, const ::user::activation & useractivation)
    {
 
       //return true;
 
    }
+
 
 } // namespace user
 

@@ -148,7 +148,7 @@ void window::create_window()
    //   wm_desktopwindow(true);
    
    //}
-   //else if (pimpl->m_puserinteraction->layout().sketch().activation() & e_activation_on_center_of_screen)
+   //else if (pimpl->m_puserinteraction->layout().sketch().activation() & ::user::e_activation_on_center_of_screen)
    //{
    
    //   wm_centerwindow(true);
@@ -1111,22 +1111,30 @@ void window::set_user_interaction(::windowing::window* pimpl)
 
 bool window::is_child(::oswindow oswindow)
 {
-   
+
+#if !defined(WINDOWS_DESKTOP)
+
    if (oswindow == nullptr || oswindow->m_pacmeuserinteraction == nullptr)
    {
-      
+
       return false;
-      
+
    }
-   
+
    if (m_pacmeuserinteraction == nullptr)
    {
-      
+
       return false;
-      
+
    }
-   
+
    return m_pacmeuserinteraction->is_child(oswindow->m_pacmeuserinteraction);
+
+#endif
+
+   return false;
+
+
    
 }
 
@@ -1346,13 +1354,13 @@ void window::set_parent(::acme::windowing::window* pwindowNewParent)
 
 
 
-//void window::show_window(const ::e_display& edisplay, const ::e_activation& eactivation)
+//void window::show_window(const ::e_display& edisplay, const ::user::e_activation& useractivation)
 //{
 
 //}
 
 
-//bool window::_configure_window_unlocked(const class ::zorder & zorder, const ::e_activation & eactivation, bool bNoZorder, ::e_display edisplay)
+//bool window::_configure_window_unlocked(const class ::zorder & zorder, const ::user::e_activation & useractivation, bool bNoZorder, ::e_display edisplay)
 //{
 //   
 //   return true;
@@ -1362,7 +1370,7 @@ void window::set_parent(::acme::windowing::window* pwindowNewParent)
 
 
 //
-//      user_post([this, edisplay, eactivation]()
+//      user_post([this, edisplay, useractivation]()
 //         {
 //
 //            windowing_output_debug_string("::window::show_window 1");
@@ -2101,8 +2109,8 @@ bool window::is_destroying()
 //}
 
 
-//bool window::set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
-//bool window::_set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy, const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, unsigned int nOverrideFlags)
+//bool window::set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::e_activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
+//bool window::_set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy, const ::user::e_activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, unsigned int nOverrideFlags)
 //{
 //   
 //   //synchronous_lock sl(user_synchronization());
@@ -2331,15 +2339,15 @@ bool window::is_destroying()
 
 //   int_bool window::show_window(
 //                        const ::e_display &edisplay,
-//                        const ::e_activation &eactivation
+//                        const ::user::e_activation &useractivation
 //   )
 //   {
 //
-//      x11_sync([oswindow, edisplay, eactivation]()
+//      x11_sync([oswindow, edisplay, useractivation]()
 //               {
 //
 //                  return oswindow->
-//                     show_window(edisplay, eactivation
+//                     show_window(edisplay, useractivation
 //                  );
 //
 //               });
@@ -3218,7 +3226,7 @@ bool window::is_window()
 
 
 /// should be run at user_thread
-void window::set_foreground_window()
+void window::set_foreground_window(::user::activation_token * puseractivationtoken)
 {
    
    //synchronous_lock synchronouslock(user_synchronization());

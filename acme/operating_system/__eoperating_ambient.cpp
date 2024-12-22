@@ -14,17 +14,23 @@ namespace windowing
       switch(eoperatingambient)
       {
       case e_operating_ambient_xfce:
-         return "xfce";
+         //return "xfce";
+         return "gtk3";
       case e_operating_ambient_ios:
          return "ios";
       case e_operating_ambient_macos:
          return "macos";
       case e_operating_ambient_windows:
          return "windows";
-      case e_operating_ambient_unity:
-         return "gtk_based";
+      //case e_operating_ambient_unity:
+        // return "gtk_based";
+         case e_operating_ambient_unity:
       case e_operating_ambient_gnome:
-         return "gtk_based";
+#ifdef HAS_GTK4
+         return "gtk4";
+#else
+         return "gtk3";
+#endif
       default:
          throw todo;
       };

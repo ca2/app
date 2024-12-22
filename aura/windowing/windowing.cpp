@@ -60,6 +60,14 @@ namespace windowing
    }
 
 
+   bool windowing::has_mouse_capture_capability()
+   {
+
+      return true;
+
+   }
+
+
    void windowing::initialize_windowing()
    {
 
@@ -353,7 +361,7 @@ namespace windowing
    }
 
 
-   bool windowing::__hook_process_event(class display * pdisplay, void * pevent, void * cookie)
+   bool windowing::__hook_process_event(class display * pdisplay, void * phappening, void * cookie)
    {
 
 
@@ -957,7 +965,52 @@ namespace windowing
    }
 
 
+   int windowing::system_metrics_get_cx_icon_spacing()
+   {
 
+      return 76;
+
+   }
+
+
+   int windowing::system_metrics_get_cy_icon_spacing()
+   {
+
+      return 98;
+
+   }
+
+
+   int windowing::system_metrics_get_cx_icon()
+   {
+
+      return 32;
+
+   }
+
+
+   int windowing::system_metrics_get_cy_icon()
+   {
+
+      return 32;
+
+   }
+
+   
+   int windowing::system_metrics_get_cy_caption()
+   {
+
+      return 22;
+
+   }
+
+
+   // ::pointer < ::graphics::graphics > windowing::create_graphics()
+   // {
+   //
+   //    return nullptr;
+   //
+   // }
 
 
 } // namespace windowing

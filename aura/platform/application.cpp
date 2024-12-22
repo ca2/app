@@ -341,7 +341,8 @@ namespace aura
    }
 */
 
-   void application::destroy()
+
+   void application::close_application()
    {
 
       if (m_puserinteractionaFrame)
@@ -443,8 +444,16 @@ namespace aura
          }
 
          m_puserinteractionMain.release();
-       
+
       }
+
+      ::apex::application::close_application();
+
+   }
+
+
+   void application::destroy()
+   {
 
       ::aqua::application::destroy();
 
@@ -1762,7 +1771,7 @@ namespace aura
 
       if(pmanager)
       {
-         auto psignal = pmanager->get_signal(id_app_activated);
+         auto psignal = pmanager->signal(id_app_activated);
       
          psignal->add_handler(this);
       }
@@ -5438,7 +5447,7 @@ retry_license:
    //}
 
 
-   //void application::on_notify_control_event(::user::control_event* pevent)
+   //void application::on_notify_control_event(::user::control_event* phappening)
    //{
 
 
@@ -5457,7 +5466,7 @@ retry_license:
 
    //   }
 
-   //   on_notify_control_event(pevent);
+   //   on_notify_control_event(phappening);
 
    //   if (ptopic->m_bRet)
    //   {
@@ -5660,28 +5669,28 @@ namespace aura
    //}
 
 
-   bool application::on_application_menu_action(const ::atom & atom)
+   bool application::on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken)
    {
 
-      if (m_puserinteractionMain != nullptr)
-      {
+      //if (m_puserinteractionMain != nullptr)
+      //{
 
-         ::message::command command(atom);
+      //   ::message::command command(atom);
 
-         auto puserinteractionMain = m_puserinteractionMain;
+      //   auto puserinteractionMain = m_puserinteractionMain;
 
-         puserinteractionMain->route_command(&command);
+      //   puserinteractionMain->route_command(&command);
 
-         if(command.m_bRet)
-         {
+      //   if(command.m_bRet)
+      //   {
 
-            return true;
+      //      return true;
 
-         }
+      //   }
 
-      }
+      //}
 
-      return ::aqua::application::on_application_menu_action(atom);
+      return ::aqua::application::on_command_final(atom, puseractivationtoken);
 
    }
 
@@ -5901,7 +5910,7 @@ namespace aura
    void application::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
    {
 
-      command_handler(pcommand);
+      ::channel::command_handler(pcommand);
 
       if (pcommand->m_bRet)
       {
@@ -8457,7 +8466,7 @@ namespace aura
          if(m_puserinteractionMain)
          {
 
-            m_puserinteractionMain->on_app_activated();
+            m_puserinteractionMain->on_app_activated(ptopic->m_puseractivationtoken);
             //m_puserinteractionMain->frame_toggle_restore();
 
          }
@@ -9133,7 +9142,7 @@ namespace aura
 
       prequest->_001ParseCommandLine(strCommandLine);
 
-      m_puserinteractionMain->frame_toggle_restore();
+      m_puserinteractionMain->frame_toggle_restore(nullptr);
 
       //::user::impact * pinteraction = m_ptemplateWeatherMain->get_document(0)->get_impact();
 

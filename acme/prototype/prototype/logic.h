@@ -14,10 +14,14 @@ inline bool is_different(bool b1, bool b2)
    return _xor(b1, b2);
 }
 
-inline bool is_equivalent(bool b1, bool b2)
+
+inline bool default_equivalence_sink(bool b)
 {
-   return (b1 && b2) || (!b1 && !b2);
+
+   return !!b;
+
 }
+
 
 inline bool is_lesser(bool b1, bool b2)
 {

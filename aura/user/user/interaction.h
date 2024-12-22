@@ -11,6 +11,7 @@
 #include "acme/platform/flags.h"
 #include "acme/prototype/geometry2d/shift.h"
 #include "acme/prototype/time/frequency.h"
+#include "acme/user/user/activation.h"
 #include "acme/user/user/e_window_flag.h"
 //#include "apex/database/key.h"
 #include "apex/message/command.h"
@@ -167,8 +168,9 @@ namespace user
       //::pointer < ::windowing::window >         m_pwindow;
 
 
-      bool m_bFocus : 1;
-      bool m_bDestroyOnHide : 1;
+      bool                                      m_bFocus : 1;
+      bool                                      m_bDestroyOnHide : 1;
+      bool                                      m_bTrackMouseLeave : 1;
 
       ::logic::boolean                          m_bExtendOnParent;
       ::logic::boolean                          m_bExtendOnParentIfOnlyClient;
@@ -178,7 +180,7 @@ namespace user
       ::logic::boolean                          m_bLockGraphicalUpdate;
 
       e_interaction                             m_einteraction;
-      
+
       bool                                      m_bCompositedFrameWindow;
       bool                                      m_bEdgeGestureDisableTouchWhenFullscreen;
       //bool                                      m_bScreenVisible;
@@ -489,6 +491,11 @@ namespace user
 
       virtual void _001Minimize();
 
+      virtual void on_display_restore(::user::activation_token * puseractivationtoken);
+
+      virtual void on_display_task_list(::user::activation_token * puseractivationtoken);
+
+
       //void enable_drag_move();
 
 //      virtual void set_restored_rectangle(const ::int_rectangle & rectangleRestored);
@@ -686,6 +693,7 @@ namespace user
 
 
       virtual::e_display window_stored_display();
+      virtual::e_display _window_previous_display();
       virtual::e_display window_previous_display();
 
 
@@ -866,19 +874,19 @@ namespace user
       virtual bool layout_layout(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void display_previous(bool bScreenVisible = false);
-      virtual void display_normal(::e_display edisplay, ::e_activation eactivation);
-      virtual void display_docked(::e_display edisplay, ::e_activation eactivation);
+      virtual void display_previous(::user::activation_token * puseractivationtoken, bool bScreenVisible = false);
+      virtual void display_normal(::e_display edisplay, const ::user::activation & useractivation);
+      virtual void display_docked(::e_display edisplay, const ::user::activation & useractivation);
       virtual void display_zoomed();
       virtual void display_iconic();
-      virtual void display_full_screen(::collection::index iMonitor, ::e_activation eactivation);
+      virtual void display_full_screen(::collection::index iMonitor, const ::user::activation & useractivation);
       virtual void display_stored_state();
       virtual void display_notify_icon();
 
       
       virtual void design_window_stored_state();
       virtual void design_window_iconic();
-      virtual void design_window_minimize(::e_activation eactivation) override;
+      virtual void design_window_minimize(const ::user::activation & useractivation) override;
       virtual void design_window_maximize() override;
       virtual void design_window_full_screen(const ::int_rectangle& rectangleHint = {}) override;
       virtual void design_window_normal(::e_display edisplay) override;
@@ -942,9 +950,9 @@ namespace user
       
       virtual void set_layout_state(const layout_state & state, enum_layout elayout = e_layout_sketch);
 
-      virtual void set_activation(::e_activation eactivation, enum_layout elayout = e_layout_sketch);
+      virtual void set_activation(const ::user::activation & useractivation, enum_layout elayout = e_layout_sketch);
 
-      virtual void display(::e_display edisplay = e_display_normal, ::e_activation eactivation = ::e_activation_default) override;
+      virtual void display(::e_display edisplay = e_display_normal, const ::user::activation & useractivation = {}) override;
 
 
       virtual void sort_children_by_zorder(::user::interaction_array & interactiona);
@@ -970,19 +978,19 @@ namespace user
       //virtual void window_apply_visual(const class layout_state& windowstate) override;
 
 
-      virtual void frame_experience_restore(::e_activation eactivation = ::e_activation_default);
+      virtual void frame_experience_restore(const ::user::activation & useractivation = {});
       
       virtual ::user::notify_icon * notify_icon();
 
       virtual void on_update_notify_icon_menu(::collection::index & iNotifyIconIndex);
       
-      virtual void on_app_activated();
+      virtual void on_app_activated(::user::activation_token * puseractivationtoken);
 
-      virtual void frame_restore();
+      virtual void frame_restore(::user::activation_token * puseractivationtoken);
 
       virtual void frame_occlude();
       
-      virtual void frame_toggle_restore(bool bDisplayPreviousOnRestore = false);
+      virtual void frame_toggle_restore(::user::activation_token * puseractivationtoken, bool bDisplayPreviousOnRestore = false);
       
       virtual void display_previous_restore();
 
@@ -1092,7 +1100,7 @@ namespace user
       virtual ::item_pointer current_item();
 
 
-      virtual ::item_pointer stock_item(::enum_element eelement);
+      //virtual ::item_pointer stock_item(::enum_element eelement);
 
 
       //virtual ::item_pointer hover_item();
@@ -1549,11 +1557,13 @@ namespace user
 
 #ifdef LINUX
 
-      lresult send_x11_event(void* pevent) override; // XEvent *
+      lresult send_x11_event(void* phappening) override; // XEvent *
 
 #endif
 
       lresult message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0) override;
+
+      virtual lresult call_route_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
 
       virtual void on_default_window_procedure(::message::message * pmessage);
 
@@ -1639,7 +1649,7 @@ namespace user
       void set_keyboard_focus() override;
       void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr) override;
 
-      virtual void set_foreground_window();
+      virtual void set_foreground_window(::user::activation_token * puseractivationtoken);
       virtual void set_active_window();
 
       virtual void bring_to_front();
@@ -1857,7 +1867,7 @@ namespace user
 
       bool _001IsPointInside(const ::int_point & point) override;
 
-      virtual bool _001IsPointInsideInline(const ::int_point & point);
+      virtual bool _001IsPointInsideInline(const ::int_point & point, enum_layout elayout = e_layout_design);
       virtual bool _001IsClientPointInsideInline(const ::int_point & point);
       virtual bool _001IsParentClientPointInsideInline(const ::int_point & point, enum_layout elayout = e_layout_design);
 
@@ -2120,7 +2130,7 @@ namespace user
       virtual void place_rate_or_size(const ::double_rectangle & rectangle);
 
 
-      virtual void activation(::e_activation eactivation);
+      virtual void activation(const ::user::activation & useractivation);
 
 
       virtual void display_child(const ::int_rectangle & rectangle, enum_layout elayout = e_layout_sketch, ::draw2d::graphics * pgraphics = nullptr);
@@ -2152,19 +2162,23 @@ namespace user
 
        //virtual void reset_window_state();
 
-      virtual ::collection::index make_zoneing(::int_rectangle* prectangle, const ::int_rectangle& rectangleHint = {}, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual ::collection::index best_zoneing(::int_rectangle* prectangle, const ::int_rectangle& rectangleHint = {}, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual ::collection::index best_monitor(::int_rectangle* prectangle, const ::int_rectangle& rectangleHint = {}, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual ::collection::index best_workspace(::int_rectangle* prectangle, const ::int_rectangle& rectangleHint = {}, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual ::collection::index good_restore(::int_rectangle* prectangle, const ::int_rectangle& rectangleHint = {}, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top, ::e_display edisplay = e_display_normal);
-      virtual ::collection::index good_iconify(::int_rectangle* prectangle, const ::int_rectangle& rectangleHint = {}, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
 
-      virtual ::collection::index good_move(::int_rectangle* prectangle, const ::int_rectangle& rectangle = {}, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
+
+
+
+      virtual ::collection::index make_zoneing(::int_rectangle* prectangle, const ::int_rectangle& rectangleHint = {}, bool bSet = false, ::e_display* pedisplay = nullptr, const ::user::activation & useractivation = {}, ::zorder zorder = e_zorder_top);
+      virtual ::collection::index best_zoneing(::int_rectangle* prectangle, const ::int_rectangle& rectangleHint = {}, bool bSet = false, ::e_display* pedisplay = nullptr, const ::user::activation & useractivation = {}, ::zorder zorder = e_zorder_top);
+      virtual ::collection::index best_monitor(::int_rectangle* prectangle, const ::int_rectangle& rectangleHint = {}, bool bSet = false, const ::user::activation & useractivation = {}, ::zorder zorder = e_zorder_top);
+      virtual ::collection::index best_workspace(::int_rectangle* prectangle, const ::int_rectangle& rectangleHint = {}, bool bSet = false, const ::user::activation & useractivation = {}, ::zorder zorder = e_zorder_top);
+      virtual ::collection::index good_restore(::int_rectangle* prectangle, const ::int_rectangle& rectangleHint = {}, bool bSet = false, const ::user::activation & useractivation = {}, ::zorder zorder = e_zorder_top, ::e_display edisplay = e_display_normal);
+      virtual ::collection::index good_iconify(::int_rectangle* prectangle, const ::int_rectangle& rectangleHint = {}, bool bSet = false, const ::user::activation & useractivation = {}, ::zorder zorder = e_zorder_top);
+
+      virtual ::collection::index good_move(::int_rectangle* prectangle, const ::int_rectangle& rectangle = {}, const ::user::activation & useractivation = {}, ::zorder zorder = e_zorder_top);
       virtual ::collection::index get_best_zoneing(::e_display& edisplay, ::int_rectangle* prectangle, const ::int_rectangle& rectangleRequest = ::int_rectangle(), bool bPreserveSize = false);
-      virtual ::collection::index get_best_workspace(::int_rectangle* prectangle, const ::int_rectangle& rectangle, ::e_activation eactivation = e_activation_default);
+      virtual ::collection::index get_best_workspace(::int_rectangle* prectangle, const ::int_rectangle& rectangle, const ::user::activation & useractivation = {});
 
 
-      virtual ::collection::index get_best_monitor(::int_rectangle* prectangle, const ::int_rectangle& rectangle, ::e_activation eactivation = e_activation_default);
+      virtual ::collection::index get_best_monitor(::int_rectangle* prectangle, const ::int_rectangle& rectangle, const ::user::activation & useractivation = {});
 
 
       virtual void get_rect_normal(::int_rectangle* prectangle);
@@ -2221,6 +2235,8 @@ namespace user
 
       virtual void set_scroll_state_x(const scroll_state & scrollstate, ::user::enum_layout elayout = ::user::e_layout_sketch);
       virtual void set_scroll_state_y(const scroll_state & scrollstate, ::user::enum_layout elayout = ::user::e_layout_sketch);
+
+      virtual void set_scroll_dimension(const ::int_size & size, ::user::enum_layout elayout = ::user::e_layout_sketch);
 
       inline bool _001HasBarXDragScrolling() const { return m_pointBarDragScrollMax.x() > 0; }
       inline bool _001HasBarYDragScrolling() const { return m_pointBarDragScrollMax.y() > 0; }
@@ -2378,7 +2394,7 @@ namespace user
       virtual void on_after_graphical_update() override;
 
 
-      virtual void _001OnDeiconify(::e_display edisplay);
+      virtual void _001OnDeiconify(::user::activation_token * puseractivationtoken, ::e_display edisplay);
 
 
       virtual ::e_status is_edit_delete_enabled();
@@ -2544,7 +2560,7 @@ namespace user
       //DECLARE_MESSAGE_HANDLER(on_message_set_focus);
       //DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
       //virtual void route(::topic * ptopic, ::context * pcontext) override;
-      //virtual void on_notify_control_event(control_event* pevent) override;
+      //virtual void on_notify_control_event(control_event* phappening) override;
       //void handle(::topic * ptopic, ::context * pcontext) override;
       //virtual bool simple_on_control_event(::message::message * pmessage, ::enum_topic etopic) override;
       //virtual void walk_pre_translate_tree(::message::message * pmessage,::pointer<::user::interaction>puiStop);
@@ -2787,6 +2803,10 @@ namespace user
       
       
       bool on_impact_update() override;
+
+      void window_restore() override;
+      void window_minimize() override;
+      void window_maximize() override;
 
 
    };

@@ -2,6 +2,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "frame_008.h"
+#include "aura/user/user/style.h"
 #include "base/user/experience/control_box.h"
 #include "base/user/experience/frame_window.h"
 #include "base/user/experience/size_manager.h"
@@ -349,7 +350,22 @@ namespace experience_tranquillum
 
             pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
-            pgraphics->draw_inset_rectangle(rectangleA, argb(255, 255, 255, 255), 1.0, eborder);
+            auto pframewindow = m_pframewindow;
+
+            auto pstyle = pframewindow->get_style(pgraphics);
+
+            if (pstyle->is_dark_mode())
+            {
+
+               pgraphics->draw_inset_rectangle(rectangleA, argb(255, 60, 60, 60), 1.0, eborder);
+
+            }
+            else
+            {
+
+               pgraphics->draw_inset_rectangle(rectangleA, argb(255, 255, 255, 255), 1.0, eborder);
+
+            }
 
          }
 

@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "task.h"
+#include "waiting_call.h"
 #include "manual_reset_happening.h"
 #include "wait_for_end_of_sequence.h"
 #include "acme/handler/sequence.h"
@@ -77,6 +78,9 @@ task::task()
    m_iExitCode = 0;
    m_hnTaskFlag = 0;
 
+   m_timeDefaultPostedProcedureTimeout = 500_ms;
+
+   m_bHandlingMessages = false;
    //m_bTaskPending = true;
 
    //m_bSetFinish = false;
@@ -127,10 +131,15 @@ task::~task()
 void task::on_initialize_particle()
 {
 
-   /*auto estatus =*/ ::object::on_initialize_particle();
+   /*auto estatus =*/ 
+   
+   ::object::on_initialize_particle();
+
    ::handler::handler::on_initialize_particle();
 
-   __on_update_handler_happening_unlocked();
+   m_synchronizationaMainLoop.add(new_main_loop_happening());
+
+   ///__on_update_handler_happening_unlocked();
 
    //m_pprintingformat);
 
@@ -146,51 +155,51 @@ void task::on_initialize_particle()
 }
 
 
-void task::__on_update_handler_happening_unlocked()
-{
-
-   if (m_bHandleRequest || m_requestaPosted.has_element())
-   {
-
-      m_synchronizationaMainLoop.add_item(new_request_posted());
-
-   }
-
-   if (m_bHandleProcedure || m_procedurea.has_element())
-   {
-
-      m_synchronizationaMainLoop.add_item(new_procedure_posted());
-
-   }
-
-   if (m_bHandleHappening || m_ehappeninga.has_element())
-   {
-
-      m_synchronizationaMainLoop.add_item(new_happening());
-
-   }
-
-}
-
-
-::manual_reset_happening * task::new_procedure_posted()
-{
-
-   __defer_construct_new(m_pmanualresethappeningNewProcedurePosted);
-
-   return m_pmanualresethappeningNewProcedurePosted;
-
-}
+//void task::__on_update_handler_happening_unlocked()
+//{
+//
+//   if (m_bHandleRequest || m_requestaPosted.has_element())
+//   {
+//
+//      m_synchronizationaMainLoop.add_item(new_request_posted());
+//
+//   }
+//
+//   if (m_bHandleProcedure || m_procedurea.has_element())
+//   {
+//
+//      m_synchronizationaMainLoop.add_item(new_procedure_posted());
+//
+//   }
+//
+//   if (m_bHandleHappening || m_ehappeninga.has_element())
+//   {
+//
+//      m_synchronizationaMainLoop.add_item(new_happening());
+//
+//   }
+//
+//}
 
 
-::manual_reset_happening* task::new_happening()
-{
+//::manual_reset_happening * task::new_procedure_posted()
+//{
+//
+//   __defer_construct_new(m_pmanualresethappeningNewProcedurePosted);
+//
+//   return m_pmanualresethappeningNewProcedurePosted;
+//
+//}
 
-   __defer_construct_new(m_pmanualresethappeningHappening);
 
-   return m_pmanualresethappeningHappening;
-
-}
+//::manual_reset_happening* task::new_happening()
+//{
+//
+//   __defer_construct_new(m_pmanualresethappeningHappening);
+//
+//   return m_pmanualresethappeningHappening;
+//
+//}
 
 
 string task::get_tag() const
@@ -222,6 +231,19 @@ const char * task::get_task_tag()
 {
 
    return m_strTaskTag.c_str();
+
+}
+
+
+
+bool task::has_main_loop_happening()
+{
+
+   _synchronous_lock synchronouslock(this->synchronization());
+
+   return m_requestaPosted.has_element()
+      || m_procedurea2.has_element()
+      || m_ehappeninga.has_element();
 
 }
 
@@ -326,6 +348,34 @@ bool task::task_get_run() const
 {
 
    if(!has_finishing_flag())
+   {
+
+      return true;
+
+   }
+
+   if (m_waitingcallstack.has_element())
+   {
+
+      return true;
+
+   }
+
+   if (m_procedurelistHandling.has_element())
+   {
+
+      return true;
+
+   }
+
+   if (m_procedurea2.has_element())
+   {
+
+      return true;
+
+   }
+
+   if (m_requestaPosted.has_element())
    {
 
       return true;
@@ -852,8 +902,19 @@ void task::run()
 bool task::task_iteration()
 {
 
-   if (m_bMessageThread)
+   ASSERT(is_current_task());
+
+   if (m_bMessageThread && !m_bHandlingMessages)
    {
+
+      m_bHandlingMessages = true;
+
+      at_end_of_scope
+      {
+
+         m_bHandlingMessages = false;
+
+      };
 
       if (!handle_messages())
       {
@@ -977,7 +1038,7 @@ void task::stop_task()
 
    //__defer_construct_new(m_phappeningFinished2);
 
-   //auto peventFinished = m_phappeningFinished2;
+   //auto phappeningFinished = m_phappeningFinished2;
 
    set_finish();
 
@@ -1048,19 +1109,21 @@ void task::destroy()
 
    m_ptask.release();
 
-   m_procedureNext.m_pbase.release();
+   //m_procedureNext.m_pbase.release();
 
-   m_procedurea.clear();
+   m_procedurea2.clear();
+
+   m_procedurelistHandling.clear();
 
    m_plocale.release();
 
    m_phappeningFinished2.release();
 
-   m_pmanualresethappeningNewProcedurePosted.release();
+   //m_pmanualresethappeningNewProcedurePosted.release();
 
-   m_pmanualresethappeningNewRequestPosted.release();
+   //m_pmanualresethappeningNewRequestPosted.release();
 
-   m_pmanualresethappeningHappening.release();
+   //m_pmanualresethappeningHappening.release();
 
 }
 
@@ -1340,11 +1403,11 @@ void task::_post(const ::procedure & procedure)
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      m_procedurea.add(procedure);
+      m_procedurea2.add(procedure);
 
-      new_procedure_posted()->set_happening();
+      new_main_loop_happening()->set_happening();
 
-      __on_update_handler_happening_unlocked();
+      //__on_update_handler_happening_unlocked();
 
    }
 
@@ -1417,13 +1480,15 @@ void task::_send(const ::procedure & procedure)
    else
    {
 
-      pmanualresethappeningOnEndOfSequence = __create_new < manual_reset_happening>();
+      __construct_new(pmanualresethappeningOnEndOfSequence);
 
       pmanualresethappeningOnEndOfSequenceToSetInProcedure = pmanualresethappeningOnEndOfSequence;
 
    }
 
-   wait_for_end_of_sequence waitforendofsequence(pmanualresethappeningOnEndOfSequence, psequence);
+   auto pwaitingcall = ::as_waiting_call(procedure);
+
+   wait_for_end_of_sequence waitforendofsequence(pmanualresethappeningOnEndOfSequence, psequence, pwaitingcall);
 
    if (pmanualresethappeningOnEndOfSequenceToSetInProcedure)
    {
@@ -1446,7 +1511,7 @@ void task::_send(const ::procedure & procedure)
    else
    {
 
-      fork([procedure]()
+      post([procedure]()
          {
 
             procedure();
@@ -1464,30 +1529,46 @@ void task::_send(const ::procedure & procedure)
 }
 
 
-
-
-procedure task::pick_next_posted_procedure()
+bool task::pick_next_posted_procedure()
 {
+
+   ASSERT(is_current_task());
 
    _synchronous_lock synchronouslock(this->synchronization());
 
-   if (m_procedurea.is_empty())
+   while (true)
    {
 
-      return {};
+      if (m_procedurea2.is_empty())
+      {
+
+         return false;
+
+      }
+
+      auto procedure = ::transfer(m_procedurea2.pick_first());
+
+      defer_reset_main_loop_happening();
+
+      if (!procedure)
+      {
+
+         continue;
+
+      }
+
+      //if (m_procedurea.is_empty())
+      //{
+
+      //   new_procedure_posted()->reset_happening();
+
+      //}
+
+      m_procedurelistHandling.transfer_tail(::transfer(procedure));
+
+      return true;
 
    }
-
-   auto procedure = ::transfer(m_procedurea.pick_first());
-
-   if (m_procedurea.is_empty())
-   {
-
-      new_procedure_posted()->reset_happening();
-
-   }
-
-   return ::transfer(procedure);
 
 }
 
@@ -1506,12 +1587,7 @@ e_happening task::pick_happening()
 
    auto ehappening = ::transfer(m_ehappeninga.pick_first());
 
-   if (m_ehappeninga.is_empty())
-   {
-
-      m_pmanualresethappeningHappening->reset_happening();
-
-   }
+   defer_reset_main_loop_happening();
 
    return ehappening;
 
@@ -1521,13 +1597,15 @@ e_happening task::pick_happening()
 void task::handle_posted_procedures()
 {
 
-   while (auto procedure = pick_next_posted_procedure())
+   ASSERT(is_current_task());
+
+   while (pick_next_posted_procedure())
    {
 
       try
       {
 
-         procedure();
+         m_procedurelistHandling.tail()();
 
       }
       catch (...)
@@ -1535,6 +1613,8 @@ void task::handle_posted_procedures()
 
 
       }
+
+      m_procedurelistHandling.erase_tail();
 
    }
 
@@ -1598,9 +1678,9 @@ void task::set_happened(e_happening ehappening)
 
    m_ehappeninga.add(ehappening);
 
-   new_happening()->set_happening();
+   new_main_loop_happening()->set_happening();
 
-   __on_update_handler_happening_unlocked();
+   //__on_update_handler_happening_unlocked();
 
 }
 
@@ -2240,9 +2320,9 @@ void task::on_before_branch()
 
       {
 
-         auto peventProtectionWhileWaiting = m_phappeningInitialization;
+         auto phappeningProtectionWhileWaiting = m_phappeningInitialization;
 
-         peventProtectionWhileWaiting->wait();
+         phappeningProtectionWhileWaiting->wait();
 
       }
 

@@ -1058,7 +1058,7 @@ namespace user
 #ifdef LINUX
 
 
-   lresult element::send_x11_event(void * pevent)
+   lresult element::send_x11_event(void * phappening)
    {
 
       throw ::interface_only();
@@ -2534,7 +2534,7 @@ namespace user
    // }
 
 
-   //void element::design_window_minimize(::e_activation eactivation)
+   //void element::design_window_minimize(const ::user::activation & useractivation)
    //{
 
    //   throw ::interface_only();
@@ -4296,10 +4296,10 @@ namespace user
    //}
 
 
-   //void element::handle_event(control_event * pevent)
+   //void element::handle_event(control_event * phappening)
    //{
 
-   //   __UNREFERENCED_PARAMETER(pevent);
+   //   __UNREFERENCED_PARAMETER(phappening);
 
    //}
 
@@ -4885,7 +4885,7 @@ namespace user
    //}
 
 
-   void element::display(::e_display edisplay, ::e_activation eactivation)
+   void element::display(::e_display edisplay, const ::user::activation & useractivation)
    {
 
       //return true;

@@ -311,6 +311,8 @@ namespace acme
       ::acme::department::on_initialize_particle();
       
       ::task::on_initialize_particle();
+
+      initialize_windowing();
       
    }
    
@@ -506,11 +508,11 @@ namespace acme
    
    void windowing::on_system_dark_mode_change(bool bDarkMode, const ::color::color & colorBackground)
    {
-      
+
       if (colorBackground != ::color::transparent)
       {
          
-         system()->background_color(colorBackground);
+         system()->set_background_color(colorBackground);
          
       }
       else
@@ -542,6 +544,23 @@ namespace acme
       return false;
       
    }
+
+
+   class ::time windowing::dark_mode_time() const
+   {
+
+      return m_timeDarkMode;
+
+   }
+
+
+   void windowing::set_dark_mode_time(const class ::time & time)
+   {
+
+      m_timeDarkMode = time;
+
+   }
+
    
    
    void windowing::set_dark_mode(bool bDarkMode)
@@ -677,6 +696,22 @@ namespace acme
          return false;
          
       }
+
+
+      bool windowing::has_resizing()
+      {
+
+         return true;
+
+      }
+
+
+      // bool windowing::is_dark_mode_through_theming()
+      // {
+      //
+      //    return false;
+      //
+      // }
       
    
    } // namespace windowing

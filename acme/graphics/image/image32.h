@@ -43,6 +43,9 @@ struct CLASS_DECL_ACME image32_t
    constexpr ::color::color color(color_indexes indexes) const;
    constexpr void assign(::color::color color, color_indexes indexes);
 
+   constexpr ::color::color raw_color(color_indexes indexes) const;
+   constexpr void raw_assign(::color::color color, color_indexes indexes);
+
    constexpr bool operator == (const image32_t & image) const { return m_ui == image.m_ui; }
 
    constexpr rgba_t rgb(color_indexes indexes) const { return { make_unsigned_int(byte_red(indexes), byte_green(indexes), byte_blue(indexes), 0) }; }
@@ -167,6 +170,25 @@ constexpr void image32_t::assign(::color::color color, color_indexes indexes)
 }
 
 
+constexpr ::color::color image32_t::raw_color(color_indexes indexes) const
+{
+
+   return rgba(byte_red(indexes), byte_green(indexes), byte_blue(indexes), byte_opacity(indexes));
+
+}
+
+
+constexpr void image32_t::raw_assign(::color::color color, color_indexes indexes)
+{
+
+   byte_red(indexes) = color.m_uchRed;
+   byte_green(indexes) = color.m_uchGreen;
+   byte_blue(indexes) = color.m_uchBlue;
+   byte_opacity(indexes) = color.m_uchOpacity;
+
+}
+
+
 
 
 
@@ -218,8 +240,57 @@ inline ::color::color image32_get_pixel(const ::image32_t * pdata, color_indexes
 
 }
 
+inline void image32_set_pixel(const ::image32_t * pdata, color_indexes indexes, int iScan, int iHeight, int x, int y, ::color::color color)
+{
+
+   //#ifdef __APPLE__
+   //
+   //      color = ((::image32_t*)&((unsigned char*)pdata)[iScan * (iHeight - y - 1)])[x];
+   //
+   //#else
+   //
+   ((::image32_t *)&((unsigned char *)pdata)[iScan * y])[x].assign(color, indexes);
+   //
+   //#endif
 
 
+}
+
+
+inline ::color::color image32_raw_pixel(const ::image32_t * pdata, color_indexes indexes, int iScan, int iHeight, int x, int y)
+{
+
+   ::color::color color;
+
+   //#ifdef __APPLE__
+   //
+   //      color = ((::image32_t*)&((unsigned char*)pdata)[iScan * (iHeight - y - 1)])[x];
+   //
+   //#else
+   //
+   color = ((::image32_t *)&((unsigned char *)pdata)[iScan * y])[x].raw_color(indexes);
+   //
+   //#endif
+
+   return color;
+
+}
+
+inline void image32_set_raw_pixel(const ::image32_t * pdata, color_indexes indexes, int iScan, int iHeight, int x, int y, ::color::color color)
+{
+
+   //#ifdef __APPLE__
+   //
+   //      color = ((::image32_t*)&((unsigned char*)pdata)[iScan * (iHeight - y - 1)])[x];
+   //
+   //#else
+   //
+   ((::image32_t *)&((unsigned char *)pdata)[iScan * y])[x].raw_assign(color, indexes);
+   //
+   //#endif
+
+
+}
 
 //CLASS_DECL_ACME void copy_image32(::image32_t * pimage32Dst, const ::int_point & point, const int_size & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc);
 //CLASS_DECL_ACME void copy_image32(::image32_t * pimage32Dst, const ::int_rectangle & rectangle, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc);

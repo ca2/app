@@ -177,11 +177,28 @@ public:
 
    }
 
+
+   inline UNIT_TYPE x_rate(double xRate) const
+   {
+
+      return (UNIT_TYPE)(xRate * (double)width() + (double)this->left());
+
+   }
+
+
+   inline UNIT_TYPE y_rate(double yRate) const
+   {
+
+      return (UNIT_TYPE)(yRate * (double)height() + (double)this->top());
+
+
+   }
+
+   
    inline POINT_TYPE from_point_rate(const ::double_point & point) const
    {
 
-      return POINT_TYPE((UNIT_TYPE)(point.x() * (double)width() + (double)this->left()),
-         (UNIT_TYPE)(point.y() * (double)height() + (double)this->top()));
+      return POINT_TYPE(x_rate(point.x()), y_rate(point.y()));
 
    }
 

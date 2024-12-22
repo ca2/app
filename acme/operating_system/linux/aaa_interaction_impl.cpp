@@ -504,7 +504,7 @@ namespace linux
                wm_desktopwindow(m_oswindow, true);
 
             }
-            else if(m_puserinteraction->layout().sketch().activation() & e_activation_on_center_of_screen)
+            else if(m_puserinteraction->layout().sketch().activation() & ::user::e_activation_on_center_of_screen)
             {
 
                wm_centerwindow(m_oswindow, true);
@@ -4726,16 +4726,16 @@ pmessagebox->sync();
    }
 
 
-   void interaction_impl::window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
+   void interaction_impl::window_show_change_visibility(::e_display edisplay, const ::user::activation & useractivation)
    {
 
       __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_show_window);
 
       //auto edisplay = m_puserinteraction->layout().design().display();
 
-      //auto eactivation = m_puserinteraction->layout().design().activation();
+      //auto useractivation = m_puserinteraction->layout().design().activation();
 
-      //if(eactivation &)
+      //if(useractivation &)
 //      {
 //
 //         wm_add_erase_state(m_oswindow, net_wm_state_hidden, false);
@@ -4762,7 +4762,7 @@ pmessagebox->sync();
       else
       {
 
-         ::windowing::window::window_show_change_visibility(edisplay, eactivation);
+         ::windowing::window::window_show_change_visibility(edisplay, useractivation);
 
       }
 

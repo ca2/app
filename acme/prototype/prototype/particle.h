@@ -129,7 +129,9 @@ public:
    bool _is_ok() const override;
 
 
+   virtual void on_notify(::particle * pparticle, enum_id eid);
 
+   virtual bool on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken);
 
 //   virtual void delete_this();
 
@@ -153,6 +155,11 @@ public:
 
    //virtual void initialize(::particle * pparticle);
    virtual void on_initialize_particle();
+
+
+   virtual ::topic_pointer create_topic(const ::atom & atom);
+   virtual ::extended_topic_pointer create_extended_topic(const ::atom & atom);
+
 
    //class ::platform::platform * platform() const;
    static class ::platform::platform * platform();
@@ -713,6 +720,8 @@ public:
 
    //template < typename BASE_TYPE, typename TYPE >
    //inline void __call__construct(::pointer<BASE_TYPE>& ptype, TYPE* p);
+
+
 
    template < typename BASE_TYPE >
    inline void __call__id_construct(::pointer<BASE_TYPE>& ptype, const ::atom& atom, ::factory::factory * pfactory = nullptr);

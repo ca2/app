@@ -44,7 +44,9 @@ namespace windows
 
       ::windows_path windowspath = path.windows_path();
 
-      auto attributes = ::GetFileAttributesW(windowspath);
+      ::wstring wstrExtendedPath = windowspath.extended_path();
+
+      auto attributes = ::GetFileAttributesW(wstrExtendedPath);
 
       auto dwLastError = ::GetLastError();
 
@@ -139,7 +141,7 @@ namespace windows
 
       ::windows_path windowspath = path.windows_path();
 
-      if (::SetFileAttributesW(windowspath, dwAttributes))
+      if (::SetFileAttributesW(windowspath.extended_path(), dwAttributes))
       {
 
          throw_last_error_exception();
@@ -157,7 +159,7 @@ void delete_file(const ::file::path & path)
 
    ::windows_path windowspath = path.windows_path();
 
-   if (!::DeleteFileW(windowspath))
+   if (!::DeleteFileW(windowspath.extended_path()))
    {
 
       throw_last_error_exception();
@@ -419,11 +421,9 @@ bool is_directory(const ::file::path & path)
 void create_directory(const ::file::path & path)
 {
 
-   auto strWindowsPath = path.windows_path();
+   auto windowspath = path.windows_path();
 
-   ::windows_path windowspath = strWindowsPath;
-
-   if (!::CreateDirectoryW(windowspath, nullptr))
+   if (!::CreateDirectoryW(windowspath.extended_path(), nullptr))
    {
 
       auto lasterror = ::GetLastError();
@@ -437,7 +437,7 @@ void create_directory(const ::file::path & path)
 
       string strDetails;
 
-      strDetails.formatf("Failed to create directory (2) \"%s\"", strWindowsPath.c_str());
+      strDetails.formatf("Failed to create directory (2) \"%s\"", windowspath.path().c_str());
 
       throw_last_error_exception(strDetails, lasterror);
 
@@ -490,22 +490,24 @@ void create_directory(const ::file::path & path)
 void erase_directory(const ::file::path & path)
 {
 
-   wstring wstr;
+   //wstring wstr;
 
-   if (file_path_is_absolute(path))
-   {
+   //if (file_path_is_absolute(path))
+   //{
 
-      wstr = L"\\\\?\\" + wstring(path);
+   //   wstr = L"\\\\?\\" + path;
 
-   }
-   else
-   {
+   //}
+   //else
+   //{
 
-      wstr = path;
+   //   wstr = path;
 
-   }
+   //}
 
-   if (!::RemoveDirectoryW(wstr))
+   ::windows_path windowspath = path.windows_path();
+
+   if (!::RemoveDirectoryW(windowspath.extended_path()))
    {
 
       auto lasterror = ::GetLastError();

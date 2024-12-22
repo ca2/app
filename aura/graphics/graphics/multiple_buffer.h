@@ -52,7 +52,7 @@ namespace graphics
       ::collection::index find_best_buffer(const ::int_size & size);
 
       using graphics::update_screen;
-      virtual bool update_screen() override;
+      void update_screen() override;
 
       //virtual ::particle * get_draw_lock() override;
       bool _on_begin_draw(buffer_item * pbufferitem) override;

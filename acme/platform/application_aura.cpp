@@ -195,7 +195,7 @@ namespace platform
    //void aura_application_layer::on_update_impact(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint){}
 
    //void handle(::topic * ptopic, ::context * pcontext) override{}
-   //void aura_application_layer::on_notify_control_event(::user::control_event* pevent){}
+   //void aura_application_layer::on_notify_control_event(::user::control_event* phappening){}
    //void aura_application_layer::route(::topic * ptopic, ::context * pcontext){}
 
 

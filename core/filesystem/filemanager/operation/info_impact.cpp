@@ -122,7 +122,7 @@ namespace filemanager
    void operation_info_impact::on_timer(::timer * ptimer)
    {
       ::user::impact::on_timer(ptimer);
-      if(ptimer->m_uEvent == 123)
+      if(ptimer->m_uTimer == 123)
       {
       }
    }

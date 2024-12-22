@@ -20,8 +20,7 @@ namespace acme
    {
 
 
-      display::display() :
-         m_pointCursor2(I32_MINIMUM)
+      display::display() : m_pointCursor2(I32_MINIMUM)
 
       {
 
@@ -47,6 +46,18 @@ namespace acme
       }
 
 
+      ::collection::count display::get_monitor_count()
+      {
+
+
+         return 1;
+
+
+      }
+
+
+
+
       void display::destroy()
       {
 
@@ -59,11 +70,10 @@ namespace acme
       {
 
 
-
       }
 
 
-      void display::display_post(const ::procedure & procedure)
+      void display::display_post(const ::procedure& procedure)
       {
 
          //      synchronous_lock synchronouslock(this->synchronization());
@@ -77,7 +87,7 @@ namespace acme
       }
 
 
-      void display::display_send(const ::procedure & procedure)
+      void display::display_send(const ::procedure& procedure)
       {
 
          //auto bIsCurrentBranch = is_branch_current();
@@ -120,38 +130,237 @@ namespace acme
       ::int_size display::get_main_screen_size()
       {
 
-         return { 800, 600 };
+         return {800, 600};
 
       }
 
 
-//      enum_display_type display::get_display_type()
-//      {
-//
-//         return m_edisplaytype;
-//
-//      }
-//
-//
-//      void display::initialize_display_type(enum_display_type edisplaytype)
-//      {
-//
-//         m_edisplaytype = edisplaytype;
-//
-//      }
+      //      enum_display_type display::get_display_type()
+      //      {
+      //
+      //         return m_edisplaytype;
+      //
+      //      }
+      //
+      //
+      //      void display::initialize_display_type(enum_display_type edisplaytype)
+      //      {
+      //
+      //         m_edisplaytype = edisplaytype;
+      //
+      //      }
 
 
-void * display::raw_x11_display()
-{
-   
-   return nullptr;
-}
+      void* display::raw_x11_display()
+      {
+
+         return nullptr;
+
+      }
+
+
+      void display::release_mouse_capture()
+      {
+
+
+      }
+
+
+      string_array display::get_wallpaper()
+      {
+
+         auto psession = session();
+
+         ::collection::count iMonitorCount = get_monitor_count();
+
+         string_array stra;
+
+         for (::collection::index iScreen = 0; iScreen < iMonitorCount; iScreen++)
+         {
+
+            stra.add(get_wallpaper(iScreen));
+
+         }
+
+         bool bAllEqual = true;
+
+         for (::collection::index iScreen = 1; iScreen < iMonitorCount; iScreen++)
+         {
+
+            if (stra[iScreen] != stra[iScreen - 1])
+            {
+
+               bAllEqual = false;
+
+            }
+
+         }
+
+         if (bAllEqual && stra.get_count() >= 2)
+         {
+
+            stra.set_size(1);
+
+         }
+
+         return stra;
+
+      }
+
+
+      void display::set_wallpaper(const string_array& straWallpaper)
+      {
+
+         if (straWallpaper.is_empty())
+         {
+
+            return;
+
+         }
+
+         auto psession = session();
+
+         ::collection::count iMonitorCount = get_monitor_count();
+
+#ifdef LINUX
+
+         if (iMonitorCount > 0)
+         {
+
+            set_wallpaper(0, straWallpaper[0]);
+
+         }
+
+#else
+
+      for (::collection::index iScreen = 0; iScreen < iMonitorCount; iScreen++)
+      {
+
+         string strWallpaper = iScreen % straWallpaper;
+
+         set_wallpaper(iScreen, strWallpaper);
+
+      }
+
+#endif
+
+      }
+
+
+      bool display::is_dark_mode_through_theming()
+      {
+
+         return false;
+
+      }
+
+
+      string display::theming_ui_name()
+      {
+
+         return "System Theme";
+
+      }
+
+
+
+      string display::get_wallpaper(::collection::index iScreen)
+      {
+
+         return impl_get_wallpaper(iScreen);
+
+      }
+
+
+      string display::impl_get_wallpaper(::collection::index)
+      {
+
+         return "";
+
+      }
+
+
+      string display::get_desktop_theme()
+      {
+
+         return impl_get_desktop_theme();
+
+      }
+
+
+      string display::impl_get_desktop_theme()
+      {
+
+         return "";
+
+      }
+
+
+      void display::set_desktop_theme(const ::scoped_string & scopedstrTheme)
+      {
+
+         impl_set_desktop_theme(scopedstrTheme);
+
+      }
+
+
+      void display::impl_set_desktop_theme(const ::scoped_string & scopedstrDesktopTheme)
+      {
+
+         //return false;
+
+      }
+
+
+      // todo color:// gradient:// if the operating system doesn't have this, create the file, please.
+      void display::impl_set_wallpaper(::collection::index iMonitorIndex, const ::scoped_string & scopedstrWallpaper)
+      {
+
+         // if (node()->set_wallpaper(iMonitorIndex, strWallpaper, this))
+         // {
+         //
+         //    return true;
+         //
+         // }
+         //
+         //return "";
+         //return false;
+
+      }
+
+
+      void display::set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrWallpaper)
+      {
+
+         //return "";
+         impl_set_wallpaper(iScreen,scopedstrWallpaper);
+
+      }
+
+
+      void display::enable_wallpaper_change_notification()
+      {
+
+
+      }
+
+
+      ::string display::get_desktop_icon_theme()
+      {
+
+         return {};
+
+      }
+
+
+      void display::set_desktop_icon_theme(const ::scoped_string& scopedtrDesktopIconTheme)
+      {
+
+
+      }
 
 
    } // namespace windowing
 
 
 } // namespace acme
-
-
-

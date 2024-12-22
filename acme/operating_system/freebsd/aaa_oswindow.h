@@ -242,7 +242,7 @@ public:
    long get_state();
    bool is_iconic();
    bool is_window_visible();
-   bool show_window(const ::e_display & edisplay, const ::e_activation & eactivation);
+   bool show_window(const ::e_display & edisplay, const ::user::e_activation & useractivation);
    iptr get_window_long_ptr(int nIndex);
    iptr set_window_long_ptr(int nIndex, iptr l);
    bool client_to_screen(::int_point * ppoint);

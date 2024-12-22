@@ -85,8 +85,10 @@ namespace platform
    }
 
 
-   void acme_node_layer::on_app_activated()
+   void acme_node_layer::on_app_activated(::user::activation_token * puseractivationtoken)
    {
+
+
    }
 
 
@@ -1894,5 +1896,12 @@ namespace platform
    {
    }
 
+
+   ::string acme_node_layer::get_computer_name()
+   {
+
+      return {};
+
+   }
 
 }

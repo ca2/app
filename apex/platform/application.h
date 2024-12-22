@@ -838,6 +838,8 @@ namespace apex
       DECLARE_MESSAGE_HANDLER(on_command_display_about);
 
 
+      bool handle_command(const ::atom & atom, ::user::activation_token * puseractivationtoken) override;
+
       // //virtual bool _001OnAgreeExit();
 
 
@@ -1265,7 +1267,9 @@ namespace apex
 
       //bool on_interprocess_handle(const ::scoped_string & scopedstrUri) override;
 
-      bool on_application_menu_action(const ::atom& atom) override;
+      
+      using ::channel::on_command;
+      bool on_command_final(const ::atom& atom, ::user::activation_token * puseractivationtoken) override;
 
 
    };

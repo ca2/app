@@ -57,10 +57,7 @@ namespace platform
    };
 
 
-
-
-
-      class CLASS_DECL_ACME aura_system_layer
+   class CLASS_DECL_ACME aura_system_layer
    {
    public:
 
@@ -373,7 +370,8 @@ namespace platform
 
       //virtual void discard_to_factory(::object * pca);
 
-      bool on_application_menu_action(const ::string & pszCommand);
+      
+      //bool on_command_final(const ::atom & atomCommand, ::user::activation_token * puseractivationtoken) override;
 
 
       //virtual void initialize_sockets();

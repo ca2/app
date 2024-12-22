@@ -2,6 +2,7 @@
 
 
 #include "aura/graphics/draw2d/host.h"
+#include "acme/user/user/container.h"
 #include "acme/user/user/item.h"
 //#include "acme/prototype/geometry2d/_geometry2d.h"
 
@@ -10,14 +11,18 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA drawable:
-      virtual public ::draw2d::host
+   class CLASS_DECL_AURA drawable :
+      virtual public ::draw2d::host,
+      virtual public ::user::acme_container
    {
    public:
 
 
       drawable();
       ~drawable() override;
+
+
+      void destroy() override;
 
 
       virtual void _000DrawImpl(::draw2d::graphics_pointer & pgraphics);

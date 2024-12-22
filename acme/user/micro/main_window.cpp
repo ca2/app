@@ -39,12 +39,13 @@
 #include "acme/operating_system/a_system_menu.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
-//#include "acme/platform/sequencer.h"
+//#include "acme/handler/sequence.h"
 #include "acme/platform/system.h"
 #include "acme/user/user/drag.h"
 #include "acme/user/user/mouse.h"
 #include "acme/user/user/tool.h"
 #include "acme/windowing/window.h"
+#include "acme/windowing/windowing.h"
 
 
 namespace micro
@@ -56,7 +57,7 @@ namespace micro
 
       m_efont = e_font_sans;
 
-      auto pitemClient = tool().defer_item(e_element_client);
+      auto pitemClient = stock_item(e_element_client);
 
       enable_drag(pitemClient, ::user::e_zorder_back);
 
@@ -82,7 +83,15 @@ namespace micro
 ::shift_int main_window::client_to_host()
 {
    
-   return ::micro::elemental::client_to_host();
+   if (system()->acme_windowing()->get_application_host_window())
+   {
+      return ::micro::elemental::client_to_host();
+   }
+   else
+   {
+      return {};
+
+   }
    
 
 }
@@ -1464,7 +1473,10 @@ namespace micro
       // ::user::drag_client::destroy();
       //::conversation::destroy();
 
-      system()->erase_signal_handler(this);
+
+      // ::cast < ::manager > pmanager = system();
+      //
+      // pmanager->erase_signal_handler(this);
 
    }
 

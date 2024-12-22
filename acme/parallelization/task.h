@@ -13,6 +13,7 @@
 #include "acme/parallelization/synchronization_array.h"
 #include "acme/platform/implementable.h"
 #include "acme/prototype/data/property_container.h"
+#include "acme/prototype/collection/comparable_eq_list.h"
 #include "acme/prototype/collection/procedure_array.h"
 
 
@@ -87,10 +88,16 @@ class locale;
 typedef pointer_array < ::matter > object_array;
 typedef map < itask_t, ::pointer<task >>task_map;
 typedef map < task *, itask_t > task_id_map;
-
+using procedure_list = ::list < procedure >;
 
 ::collection::index task_index(itask_t itask);
 ::collection::index task_index();
+
+
+class waiting_call_base;
+
+
+using waiting_call_stack = ::comparable_eq_list < ::waiting_call_base * >;
 
 
 class CLASS_DECL_ACME task :
@@ -127,6 +134,7 @@ public:
          bool                                            m_bHandleProcedure : 1;
          bool                                            m_bHandleHappening : 1;
          bool                                            m_bTaskToolsForIncreasedFps : 1;
+         bool                                            m_bHandlingMessages : 1;
 #ifdef PARALLELIZATION_PTHREAD
          bool                                            m_bJoinable : 1;
 #endif
@@ -149,7 +157,7 @@ public:
 
 #endif
 
-   ::pointer<::manual_reset_happening>                 m_pmanualresethappeningNewProcedurePosted;
+   //::pointer<::manual_reset_happening>                 m_pmanualresethappeningNewProcedurePosted;
 
    ::synchronization_array                         m_synchronizationaMainLoop;
    htask_t                                         m_htask;
@@ -163,7 +171,7 @@ public:
    ::procedure                                     m_procedure;
    ::pointer<manual_reset_happening>                   m_pevSleep;
    ::pointer<manual_reset_happening>                   m_phappeningFinished2;
-   ::pointer<manual_reset_happening>                   m_pmanualresethappeningHappening;
+   //::pointer<manual_reset_happening>                   m_pmanualresethappeningHappening;
    ::comparable_array<e_happening>                 m_ehappeninga;
 
 
@@ -176,13 +184,24 @@ public:
 #endif
    ::pointer < ::parallelization::counter >        m_pcounter;
    ::task_pointer                                  m_ptask;
-   ::procedure                                     m_procedureNext;
-   ::procedure_array                               m_procedurea;
+   
+   
+   // ::procedure                                     m_procedureNext;
+
+   
+   ::procedure_array                               m_procedurea2;
+   ::procedure_list                                m_procedurelistHandling;
    
    ::pointer < ::locale >                          m_plocale;
 
    class ::time                                    m_timeHeartBeat;
    ::procedure                                     m_procedureTaskEnded;
+   class ::time                                    m_timeLastPostedProcedureStart;
+   class ::time                                    m_timeDefaultPostedProcedureTimeout;
+   class ::time                                    m_timePostedProcedureTimeout;
+
+   
+   ::waiting_call_stack                            m_waitingcallstack;
 
 int m_iExitCode;
 
@@ -196,7 +215,7 @@ int m_iExitCode;
    virtual void on_pre_run_task();
 
    
-   void __on_update_handler_happening_unlocked() override;
+   ///void __on_update_handler_happening_unlocked() override;
 
 
    virtual void __priority_and_affinity();
@@ -210,13 +229,15 @@ int m_iExitCode;
    void task_osinit() override;
    void task_osterm() override;
 
+   bool has_main_loop_happening() override;
+
    //virtual bool os_on_init_task();
    //virtual void os_on_term_task();
-   virtual ::manual_reset_happening * new_procedure_posted();
+   //virtual ::manual_reset_happening * new_main_loop_happening();
 
-   virtual ::manual_reset_happening* new_happening();
+   //virtual ::manual_reset_happening* new_happening();
 
-   virtual procedure pick_next_posted_procedure();
+   virtual bool pick_next_posted_procedure();
 
    virtual e_happening pick_happening();
 

@@ -66,6 +66,9 @@ int file_put_contents(const ::file::path & path, const char * contents);;
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
 
 
+CLASS_DECL_ACME ::string get_operating_system_name();
+
+
 //extern ::apex::system* g_papexsystem;
 
 //CLASS_DECL_APEX void apex_generate_random_bytes(void* p, memsize s);
@@ -1764,9 +1767,6 @@ pdirectorysystem->create("/ca2core");
    void system::term()
    {
 
-      m_psignalmap.release();
-
-      m_phistory.release();
 
    }
 
@@ -1796,6 +1796,13 @@ pdirectorysystem->create("/ca2core");
 
    }
 
+   [[nodiscard]] class ::handler::signal * system::signal(const ::atom& atom)
+   {
+
+      return ::manager::signal(atom);
+
+   }
+
 
    void system::term1()
    {
@@ -1805,6 +1812,10 @@ pdirectorysystem->create("/ca2core");
 
    void system::term2()
    {
+
+      m_psignalmap.release();
+
+      m_phistory.release();
 
       try
       {
@@ -3006,7 +3017,7 @@ pdirectorysystem->create("/ca2core");
 
    //      string strParam = straAccumul.surround_and_implode(" ", "\"", "\"");
 
-   //      pcreate->_001ParseCommandFork("app.exe " + strParam + " " + ::str::has_char(strExtra, " : "));
+   //      pcreate->_001ParseCommandFork("app.exe " + strParam + " " + ::str::has_character(strExtra, " : "));
 
    //   }
 
@@ -3072,7 +3083,7 @@ pdirectorysystem->create("/ca2core");
       //   else
       //   {
 
-      //      papp->request({"app.exe \"" + payloadFile.get_file_path() + "\" " + ::str::has_char(strExtra, " : ")});
+      //      papp->request({"app.exe \"" + payloadFile.get_file_path() + "\" " + ::str::has_character(strExtra, " : ")});
 
       //   }
 
@@ -3619,7 +3630,7 @@ pmessagebox->sync();
          }
 
 
-         //strOpenUrl = strUrl + ::str::has_char(strOpenUrl, ";");
+         //strOpenUrl = strUrl + ::str::has_character(strOpenUrl, ";");
 
          //if (strOpenUrl.has_character())
          {
@@ -4789,12 +4800,12 @@ namespace apex
    //
    //   }
 
-   void system::add_signal_handler(const ::signal_handler & signalhandler, const ::atom & atomSignal)
-   {
-
-      ::manager::add_signal_handler(signalhandler, atomSignal);
-
-   }
+   // void system::add_signal_handler(const ::signal_handler & signalhandler, const ::atom & atomSignal)
+   // {
+   //
+   //    ::manager::add_signal_handler(signalhandler, atomSignal);
+   //
+   // }
 
    //   void system::add_signal_handler(const ::signal_handler& signalhandler, const ::atom& atomSignal)
    //   {
@@ -4821,12 +4832,12 @@ namespace apex
    //   }
 
 
-   void system::erase_signal_handler(::signal_handler::base * pbase)
-   {
-
-      manager::erase_signal_handler(pbase);
-
-   }
+   // void system::erase_signal_handler(::signal_handler::base * pbase)
+   // {
+   //
+   //    manager::erase_signal_handler(pbase);
+   //
+   // }
 
 
    void system::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
@@ -5177,9 +5188,9 @@ namespace apex
 //
 //#endif
 
-      auto strOperatingAmbient = ::windowing::get_eoperating_ambient_name();
+      auto strOperatingSystem = ::get_operating_system_name();
 
-      auto & pfactory = factory("apex", strOperatingAmbient);
+      auto & pfactory = factory("apex", strOperatingSystem);
 
       pfactory->merge_to_global_factory();
 

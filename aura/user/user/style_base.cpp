@@ -14,8 +14,6 @@ namespace user
    style_base::style_base()
    {
 
-      //m_bDarkMode = true;
-      m_bUserStyleBaseDarkModeFetched = false;
 
    }
 
@@ -71,13 +69,14 @@ namespace user
          if(pmanager)
          {
 
-            auto psignal = pmanager->get_signal(id_operating_system_user_color_change);
+            auto psignal = pmanager->signal(id_operating_system_user_color_change);
       
-            auto psignalDarkModeChange = pmanager->get_signal(id_application_dark_mode_change);
+            auto psignalDarkModeChange = pmanager->signal(id_application_dark_mode_change);
 
             psignal->add_handler(this);
 
             psignalDarkModeChange->add_handler(this);
+
          }
 
       }
@@ -92,8 +91,10 @@ namespace user
    bool style_base::is_dark_mode() const
    { 
 
-      if (!m_bUserStyleBaseDarkModeFetched)
+      if (m_timeUserStyleBaseDarkMode != system()->dark_mode_time())
       {
+
+         ((style_base *)this)->increment_update_sequence();
 
          ((style_base *)this)->on_user_color();
 
@@ -115,14 +116,14 @@ namespace user
 
          //auto pnode = psystem->node();
 
-         if (!m_bUserStyleBaseDarkModeFetched)
+         if (m_timeUserStyleBaseDarkMode != psystem->dark_mode_time())
          {
 
             auto bDarkMode = psystem->dark_mode();
 
             m_bUserStyleBaseDarkMode = bDarkMode;
 
-            m_bUserStyleBaseDarkModeFetched = true;
+            m_timeUserStyleBaseDarkMode = psystem->dark_mode_time();
 
          }
 
@@ -167,6 +168,12 @@ namespace user
 
    }
 
+   
+   void style_base::increment_update_sequence()
+   {
+
+
+   }
 
 
    bool style_base::_001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics, ::user::split_layout * psplitlayout)
@@ -177,7 +184,7 @@ namespace user
    }
 
 
-   bool style_base::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::frame_interaction * pframe)
+   bool style_base::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::interaction * pframe)
    {
 
       return false;

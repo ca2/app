@@ -363,7 +363,7 @@ namespace aura
 
       //virtual void discard_to_factory(::object * pca);
 
-      bool on_application_menu_action(const ::string & pszCommand);
+      bool on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken) override;
 
 
       //virtual void initialize_sockets();

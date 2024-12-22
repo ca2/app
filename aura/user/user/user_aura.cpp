@@ -23,14 +23,14 @@ namespace user
    }
 
 
-   //::windowing::windowing* windowing(){}
-   // inline ::aura::application* get_app(){}
-   // inline ::aura::session * get_session(){}
-   //inline ::aura::system* system(){}
-   ::windowing::desktop_environment* aura_user_layer::desktop_environment()
-   {
-      return nullptr;
-   }
+   // //::windowing::windowing* windowing(){}
+   // // inline ::aura::application* get_app(){}
+   // // inline ::aura::session * get_session(){}
+   // //inline ::aura::system* system(){}
+   // ::windowing::desktop_environment* aura_user_layer::desktop_environment()
+   // {
+   //    return nullptr;
+   // }
 
 
    ::user::shell* aura_user_layer::shell()

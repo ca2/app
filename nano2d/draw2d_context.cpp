@@ -15,8 +15,10 @@ namespace nano2d
 {
 
 
-   draw2d_context::draw2d_context() 
+   draw2d_context::draw2d_context(::particle * pparticle) 
    {
+
+      initialize(pparticle);
 
       m_iPaintImageSeed = 1;
 

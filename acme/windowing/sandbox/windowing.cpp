@@ -493,6 +493,18 @@ void windowing::_will_finish_launching()
 //   
 //}
 
+#if defined(WINDOWS_DESKTOP)
+
+::acme::windowing::window* windowing::window(oswindow oswindow)
+{
+
+   _synchronous_lock synchronouslock(this->synchronization());
+
+   return m_oswindowmap[oswindow];
+
+}
+
+#else
 
 ::acme::windowing::window* windowing::window(oswindow oswindow)
 {
@@ -500,6 +512,8 @@ void windowing::_will_finish_launching()
    return oswindow;
    
 }
+
+#endif
 
 
 void windowing::_message_handler(void* p)

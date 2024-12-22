@@ -18,7 +18,7 @@ namespace acme { class acme;  }
 #include "application_base.h"
 #include "application_exit.h"
 #include "application_flags.h"
-#include "application_menu_callback.h"
+#include "acme/handler/command_handler.h"
 #include "context.h"
 #include "release_time_for_project.h"
 #include "acme/prototype/data/client.h"
@@ -43,7 +43,7 @@ namespace platform
       virtual public ::platform::context,
       virtual public ::data::client,
       virtual public ::application_exit,
-      virtual public ::application_menu_callback,
+      virtual public ::command_handler,
       virtual public ::platform::acme_application_layer_t,
       virtual public ::platform::apex_application_layer_t,
       virtual public ::platform::aqua_application_layer_t,
@@ -267,6 +267,9 @@ namespace platform
       void init_task() override;
       void term_task() override;
 
+      
+      virtual void user_confirm_close_application();
+
 
       virtual bool has_capability(enum_application_capability eapplicationcapability) const override;
       virtual void add_capability(enum_application_capability ecapability) override;
@@ -324,9 +327,9 @@ namespace platform
 
       virtual void show_about_box() override;
 
-      bool on_application_menu_action(const ::atom & atom) override;
+      bool handle_command(const ::atom & atom, ::user::activation_token * puseractivationtoken) override;
 
-
+      bool on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken) override;
 
 
       virtual void add_impact_system(const ::atom & atom, const ::pointer<::user::impact_system> & pimpactsystem) override;

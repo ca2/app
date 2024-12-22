@@ -16,7 +16,7 @@ namespace message
    public:
 
 
-      unsigned int m_uEvent;
+      unsigned int m_uTimer;
 
 
       timer() {}

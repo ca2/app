@@ -886,7 +886,7 @@ namespace user
 
          _NEW_MESSAGE(::message::timer);
 
-         pmessage->m_uEvent = static_cast<unsigned int>(wparam);
+         pmessage->m_uTimer = static_cast<unsigned int>(wparam);
 
       }
       break;
@@ -2861,7 +2861,7 @@ namespace user
    // }
 
 
-//   void primitive_impl::_window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation)
+//   void primitive_impl::_window_show_change_visibility_unlocked(::e_display edisplay, const ::user::activation & useractivation)
 //   {
 //
 //   }
@@ -2991,7 +2991,7 @@ namespace user
 #ifdef LINUX
 
 
-   lresult primitive_impl::send_x11_event(void * pevent)
+   lresult primitive_impl::send_x11_event(void * phappening)
    {
 
       throw interface_only();

@@ -45,11 +45,11 @@ namespace handler
    }
 
 
-   void handler::__on_update_handler_happening_unlocked()
-   {
+   //void handler::__on_update_handler_happening_unlocked()
+   //{
 
 
-   }
+   //}
 
 
    void handler::destroy()
@@ -57,7 +57,7 @@ namespace handler
 
       m_requestaPosted.clear();
 
-      for (auto& r: m_requestaHistory)
+      for (auto & r : m_requestaHistory)
       {
 
          r.defer_destroy();
@@ -71,12 +71,37 @@ namespace handler
    }
 
 
-   ::manual_reset_happening * handler::new_request_posted()
+   ::manual_reset_happening * handler::new_main_loop_happening()
    {
 
-      __defer_construct_new(m_pmanualresethappeningNewRequestPosted);
+      __defer_construct_new(m_pmanualresethappeningMainLoop);
 
-      return m_pmanualresethappeningNewRequestPosted;
+      return m_pmanualresethappeningMainLoop;
+
+   }
+
+
+   bool handler::has_main_loop_happening()
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      return m_requestaPosted.has_element();
+
+   }
+
+
+   void handler::defer_reset_main_loop_happening()
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      if (!has_main_loop_happening())
+      {
+
+         m_pmanualresethappeningMainLoop->reset_happening();
+
+      }
 
    }
 
@@ -99,9 +124,9 @@ namespace handler
 
          m_requestaPosted.add(prequest);
 
-         new_request_posted()->set_happening();
+         new_main_loop_happening()->set_happening();
 
-         __on_update_handler_happening_unlocked();
+         //__on_update_handler_happening_unlocked();
 
       }
 
@@ -110,30 +135,46 @@ namespace handler
    }
 
 
-   ::request * handler::pick_next_posted_request()
+   bool handler::pick_next_posted_request()
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      if (m_requestaPosted.is_empty())
+      while (true)
       {
 
-         return nullptr;
+         if (m_requestaPosted.is_empty())
+         {
+
+            return false;
+
+         }
+
+         auto prequest = m_requestaPosted.pick_first();
+
+         defer_reset_main_loop_happening();
+
+         if (::is_null(prequest))
+         {
+
+            continue;
+
+         }
+
+         //if (m_requestaPosted.is_empty())
+         //{
+
+         //   new_request_posted()->reset_happening();
+
+         //}
+
+         //m_requestaHistory.add(prequest);
+
+         m_prequest = prequest;
+
+         return true;
 
       }
-
-      auto prequest = m_requestaPosted.pick_first();
-
-      if (m_requestaPosted.is_empty())
-      {
-
-         new_request_posted()->reset_happening();
-
-      }
-
-      m_requestaHistory.add(prequest);
-
-      return prequest;
 
    }
 
@@ -141,16 +182,16 @@ namespace handler
    bool handler::handle_next_posted_request()
    {
 
-      auto prequest = pick_next_posted_request();
-
-      if (!prequest)
+      while (pick_next_posted_request())
       {
 
-         return false;
+         handle(m_prequest);
+
+         m_requestaHistory.add(m_prequest);
+
+         m_prequest.release();
 
       }
-
-      handle(prequest);
 
       return true;
 

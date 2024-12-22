@@ -380,7 +380,7 @@ namespace graphics
 
 
 
-   bool multiple_buffer::update_screen()
+   void multiple_buffer::update_screen()
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -392,7 +392,7 @@ namespace graphics
       if (iImage < 0)
       {
 
-         return false;
+         throw ::exception(error_wrong_state);
 
       }
 
@@ -402,11 +402,11 @@ namespace graphics
 
       //auto bOk = update_screen(get_screen_item());
 
-      bool bOk = false;
+      //bool bOk = false;
 
       ipc_copy(pitem->m_pimage2);
 
-      return bOk;
+      //return bOk;
 
 
 

@@ -7,7 +7,7 @@
 CLASS_DECL_ACME ::string as_string(enum_display edisplay);
 
 
-CLASS_DECL_ACME ::string as_string(enum_activation eactivation);
+CLASS_DECL_ACME ::string as_string(::user::enum_activation useractivation);
 
 
 CLASS_DECL_ACME ::string as_string(enum_cursor ecursor);

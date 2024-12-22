@@ -16,8 +16,8 @@ namespace user
    public:
 
 
-      bool        m_bUserStyleBaseDarkModeFetched;
-      bool        m_bUserStyleBaseDarkMode;
+      class ::time      m_timeUserStyleBaseDarkMode;
+      bool              m_bUserStyleBaseDarkMode;
 
 
       style_base();
@@ -38,6 +38,10 @@ namespace user
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
+
+      virtual void increment_update_sequence();
+
+
       //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::menu::item * pitem) = 0;
       //virtual bool prepare_menu(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem) = 0;
       //virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem) = 0;
@@ -52,7 +56,7 @@ namespace user
       virtual bool is_dark_mode() const;
 
 
-      virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::frame_interaction * pframe);
+      virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::interaction * pframe);
       virtual bool draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::int_rectangle & rectangle, ::draw2d::graphics_pointer & pgraphics);
 
       virtual ::int_rectangle simple_ui_focus_rect_extra_margin(::user::interaction * pinteraction);

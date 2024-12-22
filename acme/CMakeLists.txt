@@ -398,8 +398,8 @@ list(APPEND library_source
    operating_system/_.cpp
    operating_system/_const_console.h
    operating_system/__eoperating_ambient.cpp
+   operating_system/__operating_system.cpp
    operating_system/ansi/_pthread.h
-   operating_system/__eoperating_ambient.cpp
    #operating_system/ansi/base.cpp
    operating_system/ansi/call_stack.cpp
    operating_system/ansi/call_stack.h
@@ -523,6 +523,12 @@ list(APPEND library_source
    prototype/data/client.h
    prototype/data/client.cpp
    user/menu/_.h
+   user/menu/menu.cpp
+   user/menu/menu.h
+   platform/application_menu.cpp
+   platform/application_menu.h
+   platform/application_menu_command.cpp
+   platform/application_menu_command.h
    platform/application.cpp
    platform/application.h
    platform/application_acme.cpp
@@ -1342,6 +1348,13 @@ list(APPEND library_source
    user/user/tool_item.cpp
    user/user/tool_item.h
    user/_.h
+   windowing/sandbox/_sandbox.h
+   windowing/sandbox/host_interaction.cpp
+   windowing/sandbox/host_interaction.h
+   windowing/sandbox/window.cpp
+   windowing/sandbox/window.h
+   windowing/sandbox/windowing.cpp
+   windowing/sandbox/windowing.h
    windowing/_.h
    windowing/_windowing.cpp
    windowing/display.cpp
@@ -1834,6 +1847,8 @@ list(APPEND library_source
    parallelization/tools.h
    parallelization/wait_for_end_of_sequence.cpp
    parallelization/wait_for_end_of_sequence.h
+   parallelization/waiting_call.cpp
+   parallelization/waiting_call.h
    platform/_features.h
    platform/_global.h
    platform/_impl.h
@@ -2903,10 +2918,6 @@ endif ()
 
 if (${LINUX} OR ${__BSD__} OR ${NETBSD} OR ${OPENBSD})
 
-list(APPEND library_source
-      operating_system/posix/dynamic_library_dl.cpp
-      operating_system/posix/dynamic_library_dl.h
-   )
 
 list(APPEND library_source
       operating_system/posix/__edesktop_calculate.cpp
@@ -2973,7 +2984,13 @@ endif ()
 
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   operating_system/posix/dynamic_library_dl.cpp
+   operating_system/posix/dynamic_library_dl.h
+   _finish.h
+   user/user/_.cpp
+   handler/command_handler.cpp
+)
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

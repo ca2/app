@@ -200,10 +200,10 @@ void media_player_command::OpenMediaItem(::aqua::media_item * pmediaitem)
    }
 
 
-//   void media_player_command::AttachEvent(happening *pevent)
+//   void media_player_command::AttachEvent(happening *phappening)
 //   {
 //
-//      m_evptra.add(pevent);
+//      m_evptra.add(phappening);
 //
 //   }
 //

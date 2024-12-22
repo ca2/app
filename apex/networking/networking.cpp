@@ -145,6 +145,14 @@ namespace networking
    //}
 
 
+   void networking::on_socket_thread_start()
+   {
+
+
+   }
+
+
+
    bool networking::gudo_set()
    {
 

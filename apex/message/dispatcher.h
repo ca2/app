@@ -25,7 +25,7 @@ namespace message
    public:
 
 
-      ::particle_pointer                     m_pparticleHandlerTarget;
+      ::cast < ::particle >                        m_pparticleHandlerTarget;
       ::function < void(::message::message *) >    m_functionHandler;
       chunk                                        m_chunkMemberFunction;
 

@@ -556,10 +556,10 @@ namespace apex
 
       // Enough condition to create shortcut
       bool bEnoughCondition1 = !plink;
-      bool bEnoughCondition2 = plink && !(plink->m_elink & ::file::e_link_target);
-      bool bEnoughCondition3 = plink && !path_system()->real_path_is_same(plink->m_pathTarget, path);
-      bool bEnoughCondition4 = plink && !(plink->m_elink & ::file::e_link_icon);
-      bool bEnoughCondition5 = plink && (plink->m_pathIcon.trimmed().is_empty() || !file_system()->exists(plink->m_pathIcon));
+      bool bEnoughCondition2 = bEnoughCondition1 || !(plink->m_elink & ::file::e_link_target);
+      bool bEnoughCondition3 = bEnoughCondition2 || !path_system()->real_path_is_same(plink->m_pathTarget, path);
+      bool bEnoughCondition4 = bEnoughCondition3 || !(plink->m_elink & ::file::e_link_icon);
+      bool bEnoughCondition5 = bEnoughCondition4 || (plink->m_pathIcon.trimmed().is_empty() || !file_system()->exists(plink->m_pathIcon));
 
       //bool bAtLeastIsPossibleHandlerForPossibleFileAssociations = true; // todo
 
@@ -724,7 +724,7 @@ namespace apex
          
          ::file::path pathOneDrive = m_papplication->defer_process_matter_path("onedrive://");
          
-         if(pathOneDrive.m_epath == ::e_path_file && directory()->is(pathOneDrive))
+         if(pathOneDrive.has_character() && directory()->is(pathOneDrive))
          {
             
             ::file::path & path = listing.insert_at(0, "onedrive://");

@@ -82,29 +82,29 @@ namespace platform
       //m_edesktop = ::user::e_operating_ambient_none;
       //m_etoolkit = ::user::e_toolkit_none;
 
-      m_pAcmePosix = nullptr;
-      m_pApexPosix = nullptr;
-      m_pAuraPosix = nullptr;
+      //m_pAcmePosix = nullptr;
+      //m_pApexPosix = nullptr;
+      //m_pAuraPosix = nullptr;
 
-      m_pAcmePlatform = nullptr;
-      m_pApexPlatform = nullptr;
-      m_pAuraPlatform = nullptr;
+      //m_pAcmePlatform = nullptr;
+      //m_pApexPlatform = nullptr;
+      //m_pAuraPlatform = nullptr;
 
       //m_pNodeX11 = nullptr;
       //m_pNodeXcb = nullptr;
 
-      m_pNodeGtk3 = nullptr;
-      m_pNodeGtk4 = nullptr;
-      m_pNodeGtkBased = nullptr;
+      //m_pNodeGtk3 = nullptr;
+      //m_pNodeGtk4 = nullptr;
+      //m_pNodeGtkBased = nullptr;
 
-      m_pNodeXfce = nullptr;
+      //m_pNodeXfce = nullptr;
 
-      m_pNodeKDE5 = nullptr;
-      m_pNodeKDE6 = nullptr;
+      //m_pNodeKDE5 = nullptr;
+      //m_pNodeKDE6 = nullptr;
 
-      m_pNodeDesktopEnvironmentGtkBased = nullptr;
-      m_pNodeDesktopEnvironmentKDE = nullptr;
-      m_pNodeDesktopEnvironmentXfce = nullptr;
+      //m_pNodeDesktopEnvironmentGtkBased = nullptr;
+      //m_pNodeDesktopEnvironmentKDE = nullptr;
+      //m_pNodeDesktopEnvironmentXfce = nullptr;
 
 
       //m_pWindowingWin32Node = nullptr;
@@ -441,7 +441,7 @@ namespace platform
    }
 
 
-   void node::on_app_activated()
+   void node::on_app_activated(::user::activation_token * puseractivationtoken)
    {
       
       
@@ -1382,18 +1382,18 @@ namespace platform
 
       }
 
-      auto pevent = __allocate manual_reset_happening();
+      auto phappening = __allocate manual_reset_happening();
 
-      user_post([ procedure, pevent ]
+      user_post([ procedure, phappening ]
       {
 
          procedure();
 
-         pevent->set_happening();
+         phappening->set_happening();
 
       });
 
-      if(!pevent->wait(procedure.timeout()))
+      if(!phappening->wait(procedure.timeout()))
       {
 
          throw ::exception(error_timeout);
@@ -1750,6 +1750,14 @@ namespace platform
 
 
 #endif
+
+
+   ::string node::display_file_path(const ::file::path & path)
+   {
+
+      return path;
+
+   }
 
 
 #ifdef WINDOWS_DESKTOP
@@ -3586,6 +3594,13 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
 
       for (auto & path : patha)
       {
+
+         if (pathSystem.case_insensitive_contains("SecurityHealthSSO"))
+         {
+
+            printf_line("SHSSO");
+
+         }
 
          if (path_system()->real_path_is_same(pathSystem, path))
          {

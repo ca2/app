@@ -23,6 +23,7 @@ namespace user
       bool                                         m_bSnapToBars : 1;
       bool                                         m_bAddToTitle : 1;
       bool                                         m_bPrefixTitle : 1;
+      bool                                         m_bDefaultNotifyIcon2 : 1;
 
 
       ::user::frame_window *                       m_puserframewindow;
@@ -32,7 +33,6 @@ namespace user
       enum_style                                   m_estyle;
       string                                       m_strStyle;
       enum_display                                 m_edisplayRestore;
-      bool                                         m_bDefaultNotifyIcon;
       string                                       m_strFrameTitle;
       ::int_size                                   m_sizeMinimum;
       bool                                         m_bCloseApplicationIfLastVisibleFrame;

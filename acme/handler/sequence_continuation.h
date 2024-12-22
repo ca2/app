@@ -151,9 +151,10 @@ class CLASS_DECL_ACME sequence_continuation
 {
 public:
 
+   
    ::procedure                                  m_procedure;
    ::pointer < sequence >                       m_psequence;
-   ::particle_pointer                           m_pparticleTarget;
+   ::cast < ::particle >                        m_pparticleTarget;
    enum_dispatch                                m_edispatch;
    
 

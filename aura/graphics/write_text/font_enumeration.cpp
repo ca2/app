@@ -39,7 +39,7 @@ namespace write_text
    {
 
       //auto estatus = 
-      ::object::initialize(pparticle);
+      ::manager::initialize(pparticle);
 
       //if (!estatus)
       //{

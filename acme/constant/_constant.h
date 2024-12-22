@@ -537,31 +537,35 @@ enum enum_display
 
 
    e_display_undefined = I32_MINIMUM,
-   e_display_notify_icon,
-   e_display_default,
-   //display_close,
    e_display_hide,
 
    e_display_none = 0,
-   e_display_current,
-   e_display_stored_state,
    e_display_normal,
    e_display_compact,
    e_display_broad,
+   e_display_minimal,
+   e_display_notify_icon,
    e_display_iconic,
    e_display_zoomed,
    e_display_full_screen,
    e_display_up,
    e_display_down,
-   e_display_minimal,
+   e_display_last_show,
+
+
+   // command default sink
+   e_display_default = 1024,
+   e_display_current,
+   e_display_stored_state,
    e_display_fixed_size,
    e_display_center,
+   e_display_last_command,
 
 
-   e_display_left = 0x1000,
-   e_display_top = 0x2000,
-   e_display_right = 0x4000,
-   e_display_bottom = 0x8000,
+   e_display_left = 0x10000,
+   e_display_top = 0x20000,
+   e_display_right = 0x40000,
+   e_display_bottom = 0x80000,
    e_display_top_left = e_display_top | e_display_left,
    e_display_top_right = e_display_top | e_display_right,
    e_display_bottom_left = e_display_bottom | e_display_left,
@@ -571,30 +575,11 @@ enum enum_display
    e_display_full_right = e_display_right | e_display_top | e_display_bottom,
    e_display_full_bottom = e_display_bottom | e_display_left | e_display_right,
 
-   e_display_docking_mask = 0xff00,
-
-   e_display_command_mask = 0xffff,
+   e_display_docking_mask = 0xf0000,
 
 
 };
 
-
-enum enum_activation
-{
-
-
-   e_activation_default = 0,
-   e_activation_no_activate = 1 << 0,
-   e_activation_set_active = 1 << 1,
-   e_activation_set_foreground = 1 << 2,
-   e_activation_under_mouse_cursor = 1 << 3,
-   e_activation_on_center_of_screen = 1 << 4,
-   e_activation_display_change = 1 << 5,
-   e_activation_set_popup = 1 << 6,
-   e_activation_for_context_menu = 1 << 7,
-
-
-};
 
 
 enum enum_layout_experience

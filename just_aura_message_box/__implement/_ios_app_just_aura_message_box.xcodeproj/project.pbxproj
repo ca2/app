@@ -25,6 +25,8 @@
 		9A4753DB2CF5433E00ED30AE /* libios_app_just_message_box.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4753DA2CF5433E00ED30AE /* libios_app_just_message_box.a */; };
 		9A4753DD2CF543AB00ED30AE /* libios_darwin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4753DC2CF543AB00ED30AE /* libios_darwin.a */; };
 		9A4753E02CF5484000ED30AE /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4753DF2CF5484000ED30AE /* libz.tbd */; };
+		9A97A7932CFBDDFB000A2F7C /* libios_acme_windowing_kit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A97A7922CFBDDFB000A2F7C /* libios_acme_windowing_kit.a */; };
+		9A97A7942CFBDDFB000A2F7C /* libios_acme_windowing_kit.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A97A7922CFBDDFB000A2F7C /* libios_acme_windowing_kit.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AC3F1182CF6B0560061DCC0 /* libios_apex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1172CF6B0560061DCC0 /* libios_apex.a */; };
 		9AC3F11A2CF6B0560061DCC0 /* libios_apex_apple.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1192CF6B0560061DCC0 /* libios_apex_apple.a */; };
 		9AC3F11C2CF6B0560061DCC0 /* libios_apex_darwin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F11B2CF6B0560061DCC0 /* libios_apex_darwin.a */; };
@@ -35,8 +37,8 @@
 		9AC3F12D2CF6B9130061DCC0 /* libios_nano_graphics_quartz2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F12C2CF6B9130061DCC0 /* libios_nano_graphics_quartz2d.a */; };
 		9AC3F1312CF6B9B60061DCC0 /* libacme_windowing_uikit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1302CF6B9B60061DCC0 /* libacme_windowing_uikit.a */; };
 		9AC3F18E2CF78A4F0061DCC0 /* libios_aqua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F18D2CF78A4F0061DCC0 /* libios_aqua.a */; };
-		9AC3F1E92CF7AFFF0061DCC0 /* libios_app_just_aura_message_box.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1CD2CF78DEB0061DCC0 /* libios_app_just_aura_message_box.dylib */; };
-		9AC3F1EA2CF7AFFF0061DCC0 /* libios_app_just_aura_message_box.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC3F1CD2CF78DEB0061DCC0 /* libios_app_just_aura_message_box.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AC3F1E92CF7AFFF0061DCC0 /* libios_app_just_aura_message_box.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1CD2CF78DEB0061DCC0 /* libios_app_just_aura_message_box.a */; };
+		9AC3F1EA2CF7AFFF0061DCC0 /* libios_app_just_aura_message_box.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC3F1CD2CF78DEB0061DCC0 /* libios_app_just_aura_message_box.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AC3F1F02CF7B0660061DCC0 /* libios_aura.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1EF2CF7B0650061DCC0 /* libios_aura.a */; };
 		9AC3F1F52CF7B08B0061DCC0 /* libios_aura_apple.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1F12CF7B08B0061DCC0 /* libios_aura_apple.a */; };
 		9AC3F1F62CF7B08B0061DCC0 /* libios_aura_apple.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC3F1F12CF7B08B0061DCC0 /* libios_aura_apple.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -145,10 +147,11 @@
 			dstSubfolderSpec = 10;
 			files = (
 				9AC3F1F82CF7B08B0061DCC0 /* libios_aura_darwin.a in Embed Libraries */,
-				9AC3F1EA2CF7AFFF0061DCC0 /* libios_app_just_aura_message_box.dylib in Embed Libraries */,
+				9AC3F1EA2CF7AFFF0061DCC0 /* libios_app_just_aura_message_box.a in Embed Libraries */,
 				9AC3F1FD2CF7B14C0061DCC0 /* libios_draw2d_quartz2d.a in Embed Libraries */,
 				9AC3F1FA2CF7B08B0061DCC0 /* libaura_ios.a in Embed Libraries */,
 				9AC3F2052CF7B21C0061DCC0 /* libwindowing_ios.a in Embed Libraries */,
+				9A97A7942CFBDDFB000A2F7C /* libios_acme_windowing_kit.a in Embed Libraries */,
 				9AC3F1F62CF7B08B0061DCC0 /* libios_aura_apple.a in Embed Libraries */,
 				9AC3F2022CF7B1DA0061DCC0 /* libnode_ios.a in Embed Libraries */,
 			);
@@ -183,6 +186,7 @@
 		9A4753DA2CF5433E00ED30AE /* libios_app_just_message_box.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_app_just_message_box.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4753DC2CF543AB00ED30AE /* libios_darwin.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_darwin.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4753DF2CF5484000ED30AE /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		9A97A7922CFBDDFB000A2F7C /* libios_acme_windowing_kit.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_acme_windowing_kit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC3F0CF2CF691670061DCC0 /* apex_ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex_ios.xcodeproj; path = "/Users/camilo/workspace/main/operating_system/operating_system-ios/apex_ios/apex_ios.xcodeproj"; sourceTree = "<absolute>"; };
 		9AC3F1172CF6B0560061DCC0 /* libios_apex.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_apex.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC3F1192CF6B0560061DCC0 /* libios_apex_apple.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_apex_apple.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,8 +232,9 @@
 				9AC3F2012CF7B1DA0061DCC0 /* libnode_ios.a in Frameworks */,
 				9AC3F1272CF6B2E60061DCC0 /* SystemConfiguration.framework in Frameworks */,
 				9AC3F1182CF6B0560061DCC0 /* libios_apex.a in Frameworks */,
-				9AC3F1E92CF7AFFF0061DCC0 /* libios_app_just_aura_message_box.dylib in Frameworks */,
+				9AC3F1E92CF7AFFF0061DCC0 /* libios_app_just_aura_message_box.a in Frameworks */,
 				9AC3F1F02CF7B0660061DCC0 /* libios_aura.a in Frameworks */,
+				9A97A7932CFBDDFB000A2F7C /* libios_acme_windowing_kit.a in Frameworks */,
 				9AC3F11A2CF6B0560061DCC0 /* libios_apex_apple.a in Frameworks */,
 				9AC3F11C2CF6B0560061DCC0 /* libios_apex_darwin.a in Frameworks */,
 				9AC3F11F2CF6B0560061DCC0 /* libapex_ios.a in Frameworks */,
@@ -330,6 +335,7 @@
 		9A4753962CF53D3900ED30AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A97A7922CFBDDFB000A2F7C /* libios_acme_windowing_kit.a */,
 				9AC3F20E2CF7B6B00061DCC0 /* libios_write_text_quartz2d.a */,
 				9AC3F20C2CF7B69A0061DCC0 /* libwrite_text_quartz2d.dylib */,
 				9AC3F2062CF7B3340061DCC0 /* libinnate_ui_uikit.a */,
@@ -385,7 +391,7 @@
 		9AC3F19A2CF78D910061DCC0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9AC3F1CD2CF78DEB0061DCC0 /* libios_app_just_aura_message_box.dylib */,
+				9AC3F1CD2CF78DEB0061DCC0 /* libios_app_just_aura_message_box.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -407,6 +413,27 @@
 			sourceTree = "<group>";
 		};
 		9AC3F2252CF7E15D0061DCC0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9AED89192CFB8F430078A45B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9AED893C2CFB8F440078A45B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9AED89762CFB8F450078A45B /* Products */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -486,6 +513,10 @@
 					ProjectRef = 9AC3F1D42CF78ECA0061DCC0 /* draw2d_quartz2d.xcodeproj */;
 				},
 				{
+					ProductGroup = 9AED89192CFB8F430078A45B /* Products */;
+					ProjectRef = 9AC3F1D12CF78EA80061DCC0 /* draw2d_quartz2d.xcodeproj */;
+				},
+				{
 					ProductGroup = 9A4753092CF515B500ED30AE /* Products */;
 					ProjectRef = 9A4753082CF515B500ED30AE /* folder_zip.xcodeproj */;
 				},
@@ -494,8 +525,16 @@
 					ProjectRef = 9AC3F1DF2CF78ED80061DCC0 /* operating_ambient_ios.xcodeproj */;
 				},
 				{
+					ProductGroup = 9AED89762CFB8F450078A45B /* Products */;
+					ProjectRef = 9AC3F1CE2CF78E9A0061DCC0 /* operating_ambient_ios.xcodeproj */;
+				},
+				{
 					ProductGroup = 9AC3F2252CF7E15D0061DCC0 /* Products */;
 					ProjectRef = 9AC3F2242CF7E15D0061DCC0 /* write_text_quartz2d.xcodeproj */;
+				},
+				{
+					ProductGroup = 9AED893C2CFB8F440078A45B /* Products */;
+					ProjectRef = 9AC3F2092CF7B67E0061DCC0 /* write_text_quartz2d.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -520,10 +559,10 @@
 			remoteRef = 9AC3F0D52CF691680061DCC0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9AC3F1CD2CF78DEB0061DCC0 /* libios_app_just_aura_message_box.dylib */ = {
+		9AC3F1CD2CF78DEB0061DCC0 /* libios_app_just_aura_message_box.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libios_app_just_aura_message_box.dylib;
+			path = libios_app_just_aura_message_box.a;
 			remoteRef = 9AC3F1CC2CF78DEB0061DCC0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

@@ -62,7 +62,7 @@ public:
    
    virtual ::e_status set_window_icon(const ::file::path& path);
    
-   virtual bool is_child(::acme::windowing::window* candidateChildOrDescendant); // or descendant
+   virtual bool is_child(::oswindow candidateChildOrDescendant); // or descendant
    
    //::windowing::window* get_parent() override;
    //virtual ::Window get_parent_handle();
@@ -80,7 +80,7 @@ public:
    //virtual long get_state();
    virtual bool is_iconic() override;
    virtual bool is_window_visible() override;
-//   bool _configure_window_unlocked(const class ::zorder & zorder, const ::e_activation & eactivation, bool bNoZorder, ::e_display edisplay) override;
+//   bool _configure_window_unlocked(const class ::zorder & zorder, const ::user::e_activation & useractivation, bool bNoZorder, ::e_display edisplay) override;
    //virtual iptr get_window_long_ptr(int nIndex);
    //virtual iptr set_window_long_ptr(int nIndex, iptr l);
    virtual bool client_to_screen(::int_point* ppoint) override;
@@ -114,7 +114,7 @@ public:
    virtual void SetInternalFocus();
    
    
-   void set_foreground_window() override;
+   void set_foreground_window(::user::activation_token * puseractivationtoken) override;
    
    
    bool has_mouse_capture() override;
@@ -155,9 +155,9 @@ public:
    void set_tool_window(bool bSet) override;
    
    
-   //bool set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide) override;
+   //bool set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::e_activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide) override;
    
-//   bool _set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy, const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, unsigned int nOverrideFlags = 0) override;
+//   bool _set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy, const ::user::e_activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, unsigned int nOverrideFlags = 0) override;
    
    
    //virtual comparable_array < Atom > wm_get_list_raw(windowing_android_WINDOW_MEMBER Atom atomList);

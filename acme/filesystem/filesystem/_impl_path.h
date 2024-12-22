@@ -4,6 +4,9 @@
 #pragma once
 
 
+#include "acme/filesystem/filesystem/windows_path.h"
+
+
 namespace file
 {
 
@@ -802,7 +805,7 @@ namespace file
 
          auto p = scopedstrExtension.skip('.');
 
-         if (::has_char(p))
+         if (::has_character(p))
          {
 
             this->operator = (((::ansi_string &)*this) + "." + scopedstrExtension(p));
@@ -876,14 +879,10 @@ namespace file
    }
 
 
-   inline ::string path::windows_path() const
+   inline ::windows_path path::windows_path() const
    {
 
-      ::string str(*this);
-
-      str.find_replace(L"/", L"\\");
-
-      return ::transfer(str);
+      return *this;
 
    }
 
@@ -1412,7 +1411,7 @@ namespace file
 //
 
 
-using windows_path = ::wstring;
+
 
 
 //namespace url
@@ -1461,6 +1460,8 @@ namespace file
 
 
 } // namespace file
+
+
 
 
 

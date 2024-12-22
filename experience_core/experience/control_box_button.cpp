@@ -237,7 +237,7 @@ namespace experience_core
 
       m_pregion->create_ellipse(ellipse);
 
-      auto pitemClient = tool().defer_item(e_element_client);
+      auto pitemClient = stock_item(e_element_client);
 
       auto puseritem = user_item(pitemClient);
 

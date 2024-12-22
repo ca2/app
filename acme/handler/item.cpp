@@ -24,16 +24,21 @@
    return str;
 }
 
-::string item::get_debug_title() const
+
+void item::get_debug_title(char * sz, character_count c) const
 {
 
-   auto strTitle = particle::get_debug_title();
+   char sz1[256];
+
+   particle::get_debug_title(sz1, 256);
+
+   ::string strTitle = sz1;
 
    strTitle.append_formatf("(%s, item=%lld)",
       get_e_element_text(m_item.m_eelement).c_str(),
       m_item.m_iItem);
 
-   return strTitle;
+   strncpy(sz, strTitle.c_str(), c);
 
 
 }

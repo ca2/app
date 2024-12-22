@@ -202,11 +202,11 @@ namespace user
       
       place(rectangle);
       
-      activation(e_activation_no_activate);
+      activation({ ::user::e_activation_no_activate });
 
       update_drawing_objects();
 
-      display(e_display_normal, e_activation_no_activate);
+      display(e_display_normal, { ::user::e_activation_no_activate });
    }
 
    ///////////////////////////////////////////////////////////

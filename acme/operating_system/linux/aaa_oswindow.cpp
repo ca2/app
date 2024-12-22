@@ -834,7 +834,7 @@ void oswindow_data::send_client_event(Atom atom, unsigned int numArgs, ...)
 }
 
 
-bool oswindow_data::show_window(const ::e_display & edisplay, const ::e_activation & eactivationi)
+bool oswindow_data::show_window(const ::e_display & edisplay, const ::user::e_activation & eactivationi)
 {
 
    windowing_output_debug_string("::oswindow_data::show_window 1");
@@ -1541,13 +1541,13 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, int x, int y, int cx,
 
 
 
-int_bool show_window(oswindow oswindow, const ::e_display & edisplay, const ::e_activation & eactivation)
+int_bool show_window(oswindow oswindow, const ::e_display & edisplay, const ::user::e_activation & useractivation)
 {
 
-   x11_sync([oswindow, edisplay, eactivation]()
+   x11_sync([oswindow, edisplay, useractivation]()
    {
 
-      return oswindow->show_window(edisplay, eactivation);
+      return oswindow->show_window(edisplay, useractivation);
 
    });
 

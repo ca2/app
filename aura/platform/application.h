@@ -352,7 +352,7 @@ namespace aura
       //virtual void on_update_impact(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint);
 
       void handle(::topic * ptopic, ::context * pcontext) override;
-      //virtual void on_notify_control_event(::user::control_event* pevent);
+      //virtual void on_notify_control_event(::user::control_event* phappening);
       //virtual void route(::topic * ptopic, ::context * pcontext);
 
 
@@ -526,7 +526,8 @@ namespace aura
       //virtual bool Ex2OnAppInstall();
       //virtual bool Ex2OnAppUninstall();
 
-      bool on_application_menu_action(const ::atom & atom) override;
+      using ::aqua::application::on_command;
+      bool on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken) override;
       //virtual void _001CloseApplication();
 
       //virtual string get_license_id();
@@ -863,13 +864,16 @@ void initialize_context() override;
 
       //virtual void get_time(struct timeval *int_point) override;
 
-      virtual void close(::enum_exit eexit) override;
+      void close(::enum_exit eexit) override;
+
+
+      void close_application() override;
 
 
       //user virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom = nullptr);
 
 
-      virtual void HideApplication() override;
+      void HideApplication() override;
 
 
       //virtual void initialize(::particle * pparticle) override;

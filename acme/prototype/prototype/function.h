@@ -141,10 +141,14 @@ public:
    }
 
 };
-
+#define FUNCTION_DEBUGGING 1
 class function_common_base
 {
-
+public:
+#if FUNCTION_DEBUGGING
+   const char * m_pszDebug;
+   ::huge_integer m_iDebug;
+#endif
 };
 
 template < typename BASE_TYPE, typename COMPOSITE_TYPE >
@@ -622,6 +626,15 @@ public:
       }
 
 
+      void get_debug_title(char * sz, character_count c) const override
+      {
+
+         ::strncpy(sz, "a procedure", c);
+
+      }
+
+
+
       RETURN_TYPE operator()()
       {
 
@@ -833,6 +846,14 @@ public:
          base_implementation(timeTimeout)
       {
 
+
+      }
+
+
+      void get_debug_title(char * sz, character_count c) const override
+      {
+
+         ::strncpy(sz, "function with argument(s) and return type", c);
 
       }
 
@@ -1064,6 +1085,15 @@ public:
 
       
       }
+
+
+      void get_debug_title(char * sz, character_count c) const override
+      {
+
+         ::strncpy(sz, "function with argument(s) and no return type", c);
+
+      }
+
 
 
       void operator()(TYPES... args) override

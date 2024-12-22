@@ -119,7 +119,7 @@ namespace userex
          if (m_timeLastChange.elapsed() > m_timeDelayedAfterChange)
          {
 
-            KillTimer(ptimer->m_uEvent);
+            KillTimer(ptimer->m_uTimer);
 
             bool bEnterKeyPressed = m_bEnterKeyPressed;
 

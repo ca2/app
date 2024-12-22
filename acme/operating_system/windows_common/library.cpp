@@ -13,7 +13,7 @@ namespace windows
 
 #ifdef WINDOWS_DESKTOP
 
-      auto hmodule = ::GetModuleHandleW(::wstring(pathLibrary.windows_path()));
+      auto hmodule = ::GetModuleHandleW(pathLibrary.windows_path().extended_path());
 
 #else
 

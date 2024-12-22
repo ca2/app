@@ -17,7 +17,7 @@
 #include "acme/platform/node.h"
 //#include "acme/platform/procedure_sequence.h"
 #include "acme/platform/scoped_restore.h"
-//#include "acme/platform/sequencer.h"
+//#include "acme/handler/sequence.h"
 #include "acme/platform/system.h"
 #include "acme/platform/timer_array.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
@@ -80,7 +80,6 @@ namespace windowing
    }
 
 
-
    void window::user_common_construct()
    {
       m_bUserImplCreated = false;
@@ -94,7 +93,7 @@ namespace windowing
       m_bIgnoreSizeEvent = false;
       m_bIgnoreMoveEvent = false;
       //m_bUserElementOk = true;
-      m_uOnHide = false;
+      m_uOnHide = 0;
       //m_bQuitGraphicsOnHide = false;
       //m_bTryCloseApplicationOnHide = false;
       m_pImpl2 = nullptr;
@@ -174,14 +173,14 @@ namespace windowing
 
          auto puserthread = m_puserthread.cast<::user::thread>();
 
-         if (puserthread->m_puserinteractionUserThread == m_puserinteraction)
+         if (puserthread->m_pwindow->m_puserinteraction == m_puserinteraction)
          {
 
             puserthread->set_finish();
 
          }
 
-         puserthread->m_puserinteractionUserThread.release();
+         puserthread->m_pwindow->m_puserinteraction.release();
 
          if (::is_set(m_puserthread->m_puserinteractionbaseaThread))
          {
@@ -201,7 +200,6 @@ namespace windowing
       m_pcursor.release();
       m_pcopydesk.release();
       m_picon.release();
-      m_pwindowParent.release();
       m_pmessagequeue.release();
       m_pdisplay.release();
       m_redrawitema.destroy();
@@ -683,9 +681,11 @@ namespace windowing
       if(!m_puserinteraction)
       {
 
-m_puserinteraction = m_pacmeuserinteraction;
+         m_puserinteraction = m_pacmeuserinteraction;
 
       }
+
+      auto pszType = typeid(*m_puserinteraction).name();
 
       //if (::is_window(get_handle()))
       //{
@@ -1088,9 +1088,9 @@ m_puserinteraction = m_pacmeuserinteraction;
 
       }
 
-      ::pointer<::windowing::window>pimplThis = this;
+      ::cast < ::windowing::window > pimplThis = this;
 
-      ::pointer<::user::interaction>puiThis = m_puserinteraction;
+      ::cast < ::user::interaction > puiThis = m_puserinteraction;
 
       if (puiThis)
       {
@@ -1119,24 +1119,12 @@ m_puserinteraction = m_pacmeuserinteraction;
 
       }
 
-      //return true;
-
-
-      //m_puserinteraction->m_ewindowflag -= e_window_flag_window_created;
-
-      //::destroy_window(get_handle());
-
-//      destroy_window();
-
-
       if (::is_set(this->windowing()))
       {
 
          this->windowing()->erase_window(this);
 
       }
-
-      m_pwindowParent.release();
 
    }
 
@@ -1612,7 +1600,7 @@ void window::set_oswindow(::oswindow oswindow)
 
 
    // the foreground interaction_impl applies only to top-level windows (frame windows)
-   void window::set_foreground_window()
+   void window::set_foreground_window(::user::activation_token * puseractivationtoken)
    {
 
       throw ::interface_only();
@@ -1620,7 +1608,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::_set_foreground_window_unlocked()
+   void window::_set_foreground_window_unlocked(::user::activation_token * puseractivationtoken)
    {
 
       throw ::interface_only();
@@ -1904,7 +1892,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::_window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
+   void window::_window_show_change_visibility(::e_display edisplay, const ::user::activation & useractivation)
    {
 
       throw ::interface_only();
@@ -2038,7 +2026,7 @@ void window::set_oswindow(::oswindow oswindow)
 
 
    //   /// this function should be called in user/main thread
-   //   void window::show_window(const ::e_display & edisplay, const ::e_activation & eactivation)
+   //   void window::show_window(const ::e_display & edisplay, const ::user::e_activation & useractivation)
    //   {
    //
    //      windowing_output_debug_string("::window::show_window 1");
@@ -2046,7 +2034,7 @@ void window::set_oswindow(::oswindow oswindow)
    //   }
    //
    //
-   //   void window::_show_window_unlocked(const ::e_display & edisplay, const ::e_activation & eactivation)
+   //   void window::_show_window_unlocked(const ::e_display & edisplay, const ::user::e_activation & useractivation)
    //   {
    //
    //
@@ -2233,17 +2221,17 @@ void window::set_oswindow(::oswindow oswindow)
 
 
    bool window::on_set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy,
-                                       const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize,
+                                       const ::user::activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize,
                                        ::e_display edisplay)
    {
 
-      return set_window_position(zorder, x, y, cx, cy, eactivation, bNoZorder, bNoMove, bNoSize, edisplay);
+      return set_window_position(zorder, x, y, cx, cy, useractivation, bNoZorder, bNoMove, bNoSize, edisplay);
 
    }
 
 
    bool window::set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy,
-                                    const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize,
+                                    const ::user::activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize,
                                     ::e_display edisplay)
    {
 
@@ -2255,7 +2243,7 @@ void window::set_oswindow(::oswindow oswindow)
 
 
    bool window::_set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy,
-                                     const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize,
+                                     const ::user::activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize,
                                      ::e_display edisplay, unsigned int nOverrideFlags)
    {
 
@@ -2282,9 +2270,9 @@ void window::set_oswindow(::oswindow oswindow)
 
       //}
 
-      auto eactivationOutput = stateOutput.activation();
+      auto activationOutput = stateOutput.activation();
 
-      auto eactivationWindow = stateWindow.activation();
+      auto activationWindow = stateWindow.activation();
 
       auto edisplayOutput = stateOutput.display();
 
@@ -2298,26 +2286,26 @@ void window::set_oswindow(::oswindow oswindow)
 
       bool bZ = zOutput.is_change_request();
 
-      if (bVisibilityChange || bZ || eactivationOutput != e_activation_default)
+      if (bVisibilityChange || bZ || activationOutput.is_change_request())
       {
 
          informationf("::windowing::window::configure_window_unlocked bVisibilityChange(%d) bZ(%d) bActivation(%d)",
                      (int)bVisibilityChange,
                      (int)bZ,
-                     (int)(eactivationOutput != e_activation_default));
+                     (int)(activationOutput.is_change_request()));
 
          information() << "::windowing::window::configure_window_unlocked displayRequest : " << edisplayOutput;
 
          if (_configure_window_unlocked(
             zOutput,
-            eactivationOutput,
+            activationOutput,
             !bZ,
             edisplayOutput))
          {
 
             stateWindow.display() = stateOutput.display();
 
-            stateOutput.m_eactivation.clear();
+            stateOutput.m_activation.clear();
 
             stateOutput.m_zorder.clear_request();
 
@@ -2437,9 +2425,10 @@ void window::set_oswindow(::oswindow oswindow)
          if(system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
          {
 
-bMove = false;
+            bMove = false;
 
          }
+         
          //information() << "Design.point != Window.point " << pointDesign << ", " << pointWindow;
 
       }
@@ -2454,6 +2443,13 @@ bMove = false;
       {
 
          //information() << "Design.size != Window.size " << sizeOutput << ", " << sizeWindow;
+
+         if(system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
+         {
+
+            bSize = false;
+
+         }
 
       }
 
@@ -2472,9 +2468,9 @@ bMove = false;
 
       //}
 
-      auto eactivationOutput = stateOutput.activation();
+      auto activationOutput = stateOutput.activation();
 
-      auto eactivationWindow = stateWindow.activation();
+      auto activationWindow = stateWindow.activation();
 
       auto edisplayOutput = stateOutput.display();
 
@@ -2497,11 +2493,22 @@ bMove = false;
 
       }
 
+      bool bActivate = activationOutput.is_change_request();
+
       if (bMove || bSize
-         || bVisibilityChange || bZ || eactivationOutput != e_activation_default)
+         || bVisibilityChange || bZ || bActivate)
       {
 
+         information() << "windowing::window::set_window_position_unlocked there are changes to apply to window";
+
          ::int_rectangle r(pointDesign, sizeOutput);
+
+         information()  << "bMove : " << bMove
+                        << ", bSize : " << bSize
+                        << ", bVisibilityChange : " << bVisibilityChange
+                        << ", bZ : " << bZ
+                        << ", bActivate : " << bActivate;
+
 
          //information() << "::windowing::window::_set_window_position_unlocked l:" << r.left() << ", t:" << r.top()
          //              << ", r:" << r.right() << ", b:" << r.bottom() << ", thrd:" << ::task_index();
@@ -2532,7 +2539,7 @@ bMove = false;
             pointDesign.y(),
             sizeOutput.cx(),
             sizeOutput.cy(),
-            eactivationOutput,
+            activationOutput,
             !bZ, !bMove, !bSize,
             edisplayOutput);
 
@@ -2549,9 +2556,15 @@ bMove = false;
 
          stateWindow.display() = stateOutput.display();
 
-         stateOutput.m_eactivation.clear();
+         stateOutput.m_activation.clear();
 
          stateOutput.m_zorder.clear_request();
+
+      }
+      else
+      {
+
+         _set_window_position_unchanged();
 
       }
 
@@ -2562,11 +2575,11 @@ bMove = false;
 
 
    bool window::_set_window_position_unlocked(const class ::zorder & zorder, int x, int y, int cx, int cy,
-                                              const ::e_activation & eactivation, bool bNoZorder, bool bNoMove,
+                                              const ::user::activation & useractivation, bool bNoZorder, bool bNoMove,
                                               bool bNoSize, ::e_display edisplay)
    {
 
-      bool bOk1 = _configure_window_unlocked(zorder, eactivation, bNoZorder, edisplay);
+      bool bOk1 = _configure_window_unlocked(zorder, useractivation, bNoZorder, edisplay);
 
       bool bOk2 = _strict_set_window_position_unlocked(x, y, cx, cy, bNoMove, bNoSize);
 
@@ -2575,8 +2588,15 @@ bMove = false;
    }
 
 
+   void window::_set_window_position_unchanged()
+   {
+
+
+   }
+
+
    bool
-      window::_configure_window_unlocked(const class ::zorder & zorder, const ::e_activation & eactivation, bool bNoZorder,
+      window::_configure_window_unlocked(const class ::zorder & zorder, const ::user::activation & useractivation, bool bNoZorder,
                                          ::e_display edisplay)
    {
 
@@ -2603,6 +2623,7 @@ bMove = false;
 
       if (bSize)
       {
+
          set_size_unlocked({ cx, cy });
 
       }
@@ -2664,17 +2685,17 @@ bMove = false;
       //}
 
 
-   //   void window::_window_request_presentation_set_window_position_unlocked(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
+   //   void window::_window_request_presentation_set_window_position_unlocked(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::e_activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
    //   {
    //
    //
    //   }
 
 
-   void window::frame_toggle_restore()
+   void window::frame_toggle_restore(::user::activation_token * puseractivationtoken)
    {
 
-      m_puserinteraction->frame_toggle_restore();
+      m_puserinteraction->frame_toggle_restore(puseractivationtoken);
 
    }
 
@@ -4161,9 +4182,9 @@ bMove = false;
    //
    //       //auto psynca = __allocate synchronization_array();
    //
-   //       //::pointer<manual_reset_happening>peventStartedUser;
+   //       //::pointer<manual_reset_happening>phappeningStartedUser;
    //
-   //       //::pointer<manual_reset_happening>peventStartedProdevian;
+   //       //::pointer<manual_reset_happening>phappeningStartedProdevian;
    //
    //       ::pointer<::user::thread> puserthread;
    //
@@ -4187,9 +4208,9 @@ bMove = false;
    //
    //          m_puserthread = m_puserthread;
    //
-   //          //peventStartedUser = __allocate manual_reset_happening();
+   //          //phappeningStartedUser = __allocate manual_reset_happening();
    //
-   //          //m_puserthread->m_phappeningStarted = peventStartedUser;
+   //          //m_puserthread->m_phappeningStarted = phappeningStartedUser;
    //
    //       }
    //
@@ -4267,7 +4288,7 @@ bMove = false;
    //
    //          //}
    //
-   // //         psynca->add(peventStartedUser);
+   // //         psynca->add(phappeningStartedUser);
    // //
    // //         auto proutine = __routine([this, psynca]()
    // //            {
@@ -4301,7 +4322,7 @@ bMove = false;
    // //
    // //               }
    // //
-   // //               //peventStartedUser.release();
+   // //               //phappeningStartedUser.release();
    // //
    // //               if (::is_set(m_pgraphicsthread))
    // //               {
@@ -4324,7 +4345,7 @@ bMove = false;
    // //
    // //                  }
    // //
-   // //                 // peventStartedProdevian.release();
+   // //                 // phappeningStartedProdevian.release();
    // //
    // //               }
    // //
@@ -4363,7 +4384,7 @@ bMove = false;
    //          //if (::is_set(m_pgraphicsthread))
    //          //{
    //
-   //          // peventStartedProdevian.release();
+   //          // phappeningStartedProdevian.release();
    //
    //          //}
    //
@@ -4891,6 +4912,13 @@ bMove = false;
 
          m_userinteractionaMouseHover.add_unique(pinterface);
 
+         if (!pinterface->m_bTrackMouseLeave)
+         {
+
+            pinterface->m_bTrackMouseLeave = true;
+
+         }
+
          if (bWasEmpty)
          {
 
@@ -4919,7 +4947,7 @@ bMove = false;
    }
 
 
-   void window::_on_mouse_move_step(const ::int_point & pointCursor, bool bMouseLeave)
+   void window::_on_mouse_move_step(const ::int_point & pointCursor, ::user::enum_layout elayoutChild, bool bMouseLeave)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -4935,7 +4963,7 @@ bMove = false;
          // i++;
 
          //}
-         if (!bMouseLeave && pinteraction->_001IsPointInsideInline(pointCursor))
+         if (!bMouseLeave && pinteraction->_001IsPointInsideInline(pointCursor, elayoutChild))
          {
 
             i++;
@@ -4944,10 +4972,9 @@ bMove = false;
          else
          {
 
+            pinteraction->m_bTrackMouseLeave = false;
 
             m_userinteractionaMouseHover.erase_at(i);
-
-            ///pinteraction->m_bTrackMouseLeave = false;
 
             synchronouslock.unlock();
 
@@ -4958,6 +4985,20 @@ bMove = false;
          }
 
       }
+
+   }
+
+
+   void window::defer_check_mouse_leave(::user::enum_layout elayoutWindow, ::user::enum_layout elayoutChild)
+   {
+
+      ::int_point pointCursor = m_pointCursor2;
+
+      m_puserinteraction->host_to_client(elayoutWindow)(pointCursor);
+
+      m_puserinteraction->client_to_screen(elayoutWindow)(pointCursor);
+
+      _on_mouse_move_step(pointCursor, elayoutChild);
 
    }
 
@@ -5030,7 +5071,11 @@ bMove = false;
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      return m_userinteractionaMouseHover.erase(pinterface) >= 0;
+      bool bErased = m_userinteractionaMouseHover.erase(pinterface) >= 0;
+
+      pinterface->m_bTrackMouseLeave = false;
+
+      return bErased;
 
    }
 
@@ -5117,6 +5162,23 @@ bMove = false;
          auto psync = synchronization();
 
          _synchronous_lock synchronouslock(this->synchronization());
+
+         for (auto & pinteraction : m_userinteractionaMouseHover)
+         {
+
+            try
+            {
+
+               pinteraction->m_bTrackMouseLeave = false;
+
+            }
+            catch (...)
+            {
+
+
+            }
+
+         }
 
          m_userinteractionaMouseHover.erase_all();
 
@@ -7189,10 +7251,10 @@ bMove = false;
    //#ifdef LINUX
    //
    //
-   //   lresult window::send_x11_event(void * pevent)
+   //   lresult window::send_x11_event(void * phappening)
    //   {
    //
-   //      __UNREFERENCED_PARAMETER(pevent);
+   //      __UNREFERENCED_PARAMETER(phappening);
    //
    //      throw ::interface_only();
    //
@@ -8304,6 +8366,23 @@ bMove = false;
 
          userinteractiona = m_userinteractionaMouseHover;
 
+         for (auto & pinteraction : m_userinteractionaMouseHover)
+         {
+
+            try
+            {
+
+               pinteraction->m_bTrackMouseLeave = false;
+
+            }
+            catch (...)
+            {
+
+
+            }
+
+         }
+
          m_userinteractionaMouseHover.erase_all();
 
       }
@@ -8646,6 +8725,13 @@ bMove = false;
    void window::on_message_show_window(::message::message * pmessage)
    {
 
+      if (has_destroying_flag())
+      {
+
+         return;
+
+      }
+
       ::pointer<::message::show_window> pshowwindow(pmessage);
 
       if (pshowwindow->m_bShow)
@@ -8697,6 +8783,23 @@ bMove = false;
 
                userinteractiona = m_userinteractionaMouseHover;
 
+               for (auto & pinteraction : m_userinteractionaMouseHover)
+               {
+
+                  try
+                  {
+
+                     pinteraction->m_bTrackMouseLeave = false;
+
+                  }
+                  catch (...)
+                  {
+
+
+                  }
+
+               }
+
                m_userinteractionaMouseHover.erase_all();
 
             }
@@ -8707,7 +8810,7 @@ bMove = false;
                try
                {
 
-                  pinteraction->send_message(e_message_mouse_leave);
+                  pinteraction->call_route_message(e_message_mouse_leave);
 
                }
                catch (...)
@@ -8719,54 +8822,54 @@ bMove = false;
 
          }
 
-         {
-
-            //auto children = m_puserinteraction->synchronized_get_children();
-
-            // auto puserinteractionpointeraChild = m_puserinteraction->m_puserinteractionpointeraChild;
-
-            // if (puserinteractionpointeraChild)
-            for_user_interaction_children(puserinteraction, this)
-            {
-
-               //{
-
-               //   _synchronous_lock synchronouslock(this->synchronization());
-
-               //   if(!m_puserinteraction)
-               //   {
-
-               //      return;
-
-               //   }
-
-               //   uia = m_puserinteraction->m_puserinteractionpointeraChild;
-
-               //}
-
-               //for (auto & pinteraction : children)
-               {
-
-                  //synchronouslock.unlock();
-
-                  try
-                  {
-
-                     puserinteraction->send_message(e_message_show_window, 0, (huge_integer)e_show_window_parent_closing);
-
-                  }
-                  catch (...)
-                  {
-
-                  }
-
-                  //synchronouslock.lock();
-
-               }
-
-            }
-
-         }
+         // {
+         //
+         //    //auto children = m_puserinteraction->synchronized_get_children();
+         //
+         //    // auto puserinteractionpointeraChild = m_puserinteraction->m_puserinteractionpointeraChild;
+         //
+         //    // if (puserinteractionpointeraChild)
+         //    for_user_interaction_children(puserinteraction, this)
+         //    {
+         //
+         //       //{
+         //
+         //       //   _synchronous_lock synchronouslock(this->synchronization());
+         //
+         //       //   if(!m_puserinteraction)
+         //       //   {
+         //
+         //       //      return;
+         //
+         //       //   }
+         //
+         //       //   uia = m_puserinteraction->m_puserinteractionpointeraChild;
+         //
+         //       //}
+         //
+         //       //for (auto & pinteraction : children)
+         //       {
+         //
+         //          //synchronouslock.unlock();
+         //
+         //          try
+         //          {
+         //
+         //             puserinteraction->send_message(e_message_show_window, 0, (huge_integer)e_show_window_parent_closing);
+         //
+         //          }
+         //          catch (...)
+         //          {
+         //
+         //          }
+         //
+         //          //synchronouslock.lock();
+         //
+         //       }
+         //
+         //    }
+         //
+         //}
 
          //auto psequencer = __create_new < sequencer<sequence<window>>>();
 
@@ -8927,6 +9030,8 @@ bMove = false;
    void window::do_graphics()
    {
 
+      information() << "windowing::window::do_graphics";
+
       if (!m_puserinteraction || has_destroying_flag())
       {
 
@@ -9054,7 +9159,6 @@ bMove = false;
 
       {*/
 
-
       //synchronouslock.unlock();
 
       ////if (!m_puserinteraction->is_sketch_to_design_locked())
@@ -9176,7 +9280,6 @@ bMove = false;
 
       }
 
-
       //::int_size sizeDrawn;
 
       //single_lock synchronouslockObjects(system()->draw2d()->get_object_list_mutex());
@@ -9212,19 +9315,15 @@ bMove = false;
 
       //m_puserinteraction->layout_to_design(m_bUpdateBuffer, m_bUpdateWindow);
 
-
 #ifdef MORE_LOG
 
       debug() << "do_graphics(B)";
 
 #endif
 
-
       ::draw2d::graphics_pointer pgraphics;
 
       m_puserinteraction->defer_do_graphics(pgraphics);
-
-
 
       //if (pgraphics)
       //{
@@ -9313,7 +9412,7 @@ bMove = false;
    void window::defer_do_graphics(::draw2d::graphics_pointer & pgraphics)
    {
 
-      debug() << "windowing::window::defer_do_graphics";
+      information() << "windowing::window::defer_do_graphics";
 
       //{
 
@@ -9738,6 +9837,15 @@ bMove = false;
          pgraphics->m_pgraphicsgraphics = m_pgraphicsgraphics;
 
          pgraphics->m_pgraphicsbufferitem = pbufferitem;
+
+         ::string strType = type(m_pacmeuserinteraction).name();
+
+         if (strType.case_insensitive_contains("menu"))
+         {
+
+            printf_line("menu");
+
+         }
 
          pgraphics->on_begin_draw();
 
@@ -10245,7 +10353,7 @@ bMove = false;
 
          //auto estatus =
 
-         m_pgraphicsgraphics = user()->desktop_environment()->create_graphics();
+         __øconstruct(m_pgraphicsgraphics);
 
          //__raw_construct(m_pgraphicsgraphics);
 
@@ -10336,7 +10444,7 @@ bMove = false;
 
    //   pinteraction->place(rectangle);
 
-   //   pinteraction->display(e_display_normal, e_activation_no_activate);
+   //   pinteraction->display(e_display_normal, ::user::e_activation_no_activate);
 
    //}
 
@@ -10588,7 +10696,7 @@ bMove = false;
    void window::set_mouse_capture(::user::interaction * puserinteraction)
    {
 
-      this->set_mouse_capture();
+      system()->windowing()->set_mouse_capture(nullptr, this);
 
       m_puserinteractionMouseCapture = puserinteraction;
 
@@ -11435,7 +11543,7 @@ bMove = false;
    //
    //      //}
    //
-   //      //if (eactivationOutput & e_activation_no_activate)
+   //      //if (eactivationOutput & ::user::e_activation_no_activate)
    //      //{
    //
    //      //   uFlags |= SWP_NOACTIVATE;
@@ -11524,7 +11632,7 @@ bMove = false;
    //
    //      }
    //
-   //      //if (eactivationOutput & e_activation_no_activate)
+   //      //if (eactivationOutput & ::user::e_activation_no_activate)
    //      //{
    //
    //      //   uFlags |= SWP_NOACTIVATE;
@@ -11768,7 +11876,7 @@ bMove = false;
    //
    //      }
    //
-   //      if (eactivationOutput & e_activation_set_foreground)
+   //      if (eactivationOutput & ::user::e_activation_set_foreground)
    //      {
    //
    //         //throw ::exception(todo);
@@ -11778,7 +11886,7 @@ bMove = false;
    //
    //      }
    //
-   //      if (eactivationOutput & e_activation_set_active)
+   //      if (eactivationOutput & ::user::e_activation_set_active)
    //      {
    //
    //         //throw ::exception(todo);
@@ -11896,10 +12004,10 @@ bMove = false;
    }
 
 
-   //   void window::_window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation)
+   //   void window::_window_show_change_visibility_unlocked(::e_display edisplay, const ::user::activation & useractivation)
    //   {
    //
-   //      //m_puserthread->post_procedure([this, edisplay, eactivation]()
+   //      //m_puserthread->post_procedure([this, edisplay, useractivation]()
    //        // {
    //
    //      if (!m_puserinteraction)
@@ -11914,16 +12022,16 @@ bMove = false;
    //      if (edisplay == e_display_iconic)
    //      {
    //
-   //         if (eactivation == e_activation_no_activate)
+   //         if (useractivation == ::user::e_activation_no_activate)
    //         {
    //
-   //            _show_window_unlocked(edisplay, eactivation);
+   //            _show_window_unlocked(edisplay, useractivation);
    //
    //         }
    //         else
    //         {
    //
-   //            _show_window_unlocked(edisplay, eactivation);
+   //            _show_window_unlocked(edisplay, useractivation);
    //
    //         }
    //
@@ -11931,14 +12039,14 @@ bMove = false;
    //      else
    //      {
    //
-   //         _show_window_unlocked(edisplay, eactivation);
+   //         _show_window_unlocked(edisplay, useractivation);
    //
    //      }
    //
    //      if (m_puserinteraction)
    //      {
    //
-   //         m_puserinteraction->set_activation(e_activation_default, e_layout_design);
+   //         m_puserinteraction->set_activation(::user::e_activation_default, e_layout_design);
    //
    //      }
    //
@@ -12419,6 +12527,7 @@ bMove = false;
       m_sizeSetWindowSizeRequest = psize->m_size;
 
       if (!placement_log()->has_recent(psize->m_size)
+         && m_puserinteraction->is_this_screen_visible()
           && !m_puserinteraction->is_window_resizing()
           && !m_puserinteraction->is_window_repositioning()
           && !m_puserinteraction->is_window_docking())
@@ -12686,11 +12795,13 @@ bMove = false;
    huge_integer window::opaque_area(const ::int_rectangle & rect)
    {
 
+      _synchronous_lock synchronouslock(this->synchronization());
+
       auto pitem = m_pgraphicsgraphics->get_screen_item();
 
-      _synchronous_lock synchronouslock(pitem->m_pmutex);
+      _synchronous_lock synchronouslockScreen(pitem->m_pmutex);
 
-      ::color::color colorTransparent(0);
+      ::color::color colorTransparent(::color::transparent);
 
       ::int_rectangle rectangle(rect);
 
@@ -12716,11 +12827,13 @@ bMove = false;
    huge_integer window::opaque_area()
    {
 
+      _synchronous_lock synchronouslock(this->synchronization());
+
       auto pitem = m_pgraphicsgraphics->get_screen_item();
 
-      _synchronous_lock synchronouslock(pitem->m_pmutex);
+      _synchronous_lock synchronouslockScreen(pitem->m_pmutex);
 
-      ::color::color colorTransparent(0);
+      ::color::color colorTransparent(::color::transparent);
 
       ::int_rectangle rectangle;
 
@@ -12734,11 +12847,13 @@ bMove = false;
    huge_integer window::_001GetTopLeftWeightedArea()
    {
 
+      _synchronous_lock synchronouslock(this->synchronization());
+
       auto pitem = m_pgraphicsgraphics->get_screen_item();
 
-      _synchronous_lock synchronouslock(pitem->m_pmutex);
+      _synchronous_lock synchronouslockScreen(pitem->m_pmutex);
 
-      ::color::color colorTransparent(0);
+      ::color::color colorTransparent(::color::transparent);
 
       ::int_rectangle rectangle;
 
@@ -12895,6 +13010,30 @@ bMove = false;
    }
 
 
+   bool window::has_offscreen_output_purpose()
+   {
+
+      //::graphics::enum_output_purpose epurposeMostDemanding = ::graphics::e_output_purpose_none;
+
+      for (auto & ppurpose : m_graphicaloutputpurposea)
+      {
+
+         if (ppurpose->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_offscreen)
+         {
+
+            return true;
+
+         }
+
+      }
+
+      //return epurposeMostDemanding;
+
+      return false;
+
+   }
+
+
    bool window::has_graphical_output_purpose()
    {
 
@@ -12911,7 +13050,7 @@ bMove = false;
       for (auto & ppurpose : m_graphicaloutputpurposea)
       {
 
-         if (ppurpose->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_fps)
+         if (ppurpose && ppurpose->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_fps)
          {
 
             return true;
@@ -13290,7 +13429,30 @@ bMove = false;
    void window::on_reposition()
    {
 
+
    }
+
+
+   void window::on_layout_reposition()
+   {
+
+      m_timeHoverNoiseSuppression.Now();
+
+      if (system()->windowing()->has_readily_gettable_absolute_coordinates())
+      {
+
+         defer_check_mouse_leave(::user::e_layout_window, ::user::e_layout_lading);
+
+      }
+      else
+      {
+
+         _on_mouse_move_step({}, {}, true);
+
+      }
+
+   }
+
 
 
    void window::on_show_window()
@@ -13655,8 +13817,8 @@ bMove = false;
    void window::viewport_screen_to_client(::int_rectangle & rectangle)
    {
 
-      viewport_screen_to_client((::int_point &)rectangle.left());
-      viewport_screen_to_client((::int_point &)rectangle.right());
+      viewport_screen_to_client(rectangle.top_left());
+      viewport_screen_to_client(rectangle.bottom_right());
 
    }
 
@@ -14017,7 +14179,7 @@ bMove = false;
 //
 //         _NEW_MESSAGE(::message::timer);
 //
-//         pmessage->m_uEvent = static_cast<unsigned int>(wparam);
+//         pmessage->m_uTimer = static_cast<unsigned int>(wparam);
 //
 //      }
 //      break;
@@ -16006,7 +16168,7 @@ bMove = false;
    // }
 
 
-   //   void window::_window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation)
+   //   void window::_window_show_change_visibility_unlocked(::e_display edisplay, const ::user::activation & useractivation)
    //   {
    //
    //   }
@@ -16136,7 +16298,7 @@ bMove = false;
 #ifdef LINUX
 
 
-   lresult window::send_x11_event(void * pevent)
+   lresult window::send_x11_event(void * phappening)
    {
 
       throw interface_only();
@@ -16223,6 +16385,16 @@ bMove = false;
       return this;
 
    }
+
+
+   bool window::on_configure_unlocked_timer()
+   {
+
+      return true;
+
+   }
+
+
    //::trace_statement & window::trace_statement_prefix(::trace_statement & statement) const
    //{
 

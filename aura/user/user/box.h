@@ -49,6 +49,7 @@ namespace user
       
 
       ::e_display window_stored_display() override;
+      ::e_display _window_previous_display() override;
       ::e_display window_previous_display() override;
 
       
@@ -90,8 +91,8 @@ namespace user
 
       void set_window_normal_stored_rectangle(const ::int_rectangle & rectangle) override;
 
-      void display_normal(::e_display edisplay, ::e_activation eactivation) override;
-      void display_full_screen(::collection::index iMonitor, ::e_activation eactivation) override;
+      void display_normal(::e_display edisplay, const ::user::activation & useractivation) override;
+      void display_full_screen(::collection::index iMonitor, const ::user::activation & useractivation) override;
 
       void on_simple_command(::message::simple_command * psimplecommand) override;
       void on_command(::message::command * pcommand) override;

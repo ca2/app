@@ -46,6 +46,10 @@ namespace acme
          //::pointer<::micro::window_implementation>     m_pnanouserwindowimplementation;
 
 
+         class ::time                              m_timeHoverNoiseSuppression;
+
+
+
          int_rectangle                             m_rectangle;
          ::int_rectangle                           m_rectanglePointingTo;
 
@@ -80,6 +84,8 @@ namespace acme
 
 
 
+
+
          window();
          ~window() override;
 
@@ -93,7 +99,7 @@ namespace acme
 
          void on_initialize_particle() override;
 
-
+         virtual ::oswindow oswindow();
 
          virtual void set_user_interaction(::acme::user::interaction * pacmeuserinteraction);
          virtual void set_user_thread(::user::thread * puserthread);
@@ -140,7 +146,7 @@ namespace acme
          virtual bool _is_window();
 
          
-         virtual void set_foreground_window();
+         virtual void set_foreground_window(::user::activation_token * puseractivationtoken);
          
          
          virtual bool has_keyboard_focus();
@@ -154,6 +160,7 @@ namespace acme
          ::pointer<::nano::graphics::device>create_device();
 
 
+         virtual ::pointer < ::user::activation_token > get_initial_frame_display_activation_token();
          //void run_modal_loop() override;
 
 
@@ -315,7 +322,7 @@ namespace acme
          //virtual long get_state();
          virtual bool is_iconic();
          //virtual bool is_window_visible() override;
-//         virtual bool _configure_window_unlocked(const class ::zorder & zorder, const ::e_activation & eactivation, bool bNoZorder, ::e_display edisplay);
+//         virtual bool _configure_window_unlocked(const class ::zorder & zorder, const ::user::e_activation & useractivation, bool bNoZorder, ::e_display edisplay);
          //virtual iptr get_window_long_ptr(int nIndex);
          //virtual iptr set_window_long_ptr(int nIndex, iptr l);
          virtual bool client_to_screen(::int_point* ppoint);

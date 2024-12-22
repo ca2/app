@@ -40,6 +40,7 @@ namespace acme
          ::pointer<::acme::windowing::display>              m_pacmedisplay;
          ::windowing::enum_windowing                        m_ewindowing;
          ::pointer<::acme::windowing::window>               m_pwindowMouseCapture;
+         class ::time                                       m_timeDarkMode;
 
 
          windowing();
@@ -175,9 +176,13 @@ namespace acme
                                                  const ::color::color & colorBackground = ::color::transparent);
 
          virtual void set_dark_mode(bool bDarkMode);
-
-
          virtual bool dark_mode();
+
+         virtual class ::time dark_mode_time() const;
+         virtual void set_dark_mode_time(const class ::time & time);
+
+
+         //virtual bool is_dark_mode_through_theming();
 
          virtual void fetch_system_background_color();
 
@@ -195,6 +200,9 @@ namespace acme
          virtual bool shell_open(const ::file::path & path);
 
          virtual bool defer_realize(         ::pointer < ::reified < ::message_box > > & preifiedMessageBox, ::message_box * p);
+
+         virtual bool has_resizing();
+
          
       };
 

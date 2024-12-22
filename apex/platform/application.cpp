@@ -38,6 +38,7 @@
 #include "apex/innate_ui/innate_ui.h"
 #include "apex/innate_ui/still.h"
 #include "apex/message/application.h"
+#include "apex/message/command.h"
 #include "acme/platform/release_time.h"
 #include "apex/platform/machine_event_data.h"
 #include "apex/platform/machine_event.h"
@@ -644,9 +645,9 @@ namespace apex
 
       MESSAGE_LINK(e_message_close, pchannel, this, &application::on_message_close);
 
-      add_command_handler("app_exit", { this, &application::on_message_app_exit });
+      add_command_handler("try_close_application", { this, &application::on_message_app_exit });
       add_command_handler("switch_context_theme", { this, &application::_001OnSwitchContextTheme });
-      add_command_handler("display_about", { this, &application::on_command_display_about });
+      add_command_handler("show_about_box", { this, &application::on_command_display_about });
 
    }
 
@@ -2974,19 +2975,17 @@ namespace apex
    }
 
 
-   bool application::on_application_menu_action(const ::atom & atom)
+   bool application::on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken)
    {
 
-      if(atom == "display_about")
+      if (::platform::application::on_command_final(atom, puseractivationtoken))
       {
-
-         show_about_box();
 
          return true;
 
       }
 
-      return ::platform::application::on_application_menu_action(atom);
+      return false;
 
    }
 
@@ -5326,6 +5325,20 @@ namespace apex
    }
 
 
+   bool application::handle_command(const ::atom & atom, ::user::activation_token * puseractivationtoken)
+   {
+
+      auto pcommand = __allocate ::message::command (atom);
+
+      pcommand->m_puseractivationtoken = puseractivationtoken;
+
+      route_command(pcommand);
+
+      return pcommand->m_bRet;
+
+   }
+
+
    bool application::is_equal_file_path(const ::file::path & path1Param, const ::file::path & path2Param)
    {
 
@@ -5899,6 +5912,7 @@ namespace apex
       return true;
 
    }
+
 
    bool application::can_close_application()
    {
@@ -7242,7 +7256,7 @@ namespace apex
    //}
 
 
-   //void application::on_notify_control_event(::user::control_event* pevent)
+   //void application::on_notify_control_event(::user::control_event* phappening)
    //{
 
 
@@ -7261,7 +7275,7 @@ namespace apex
 
    //   }
 
-   //   on_notify_control_event(pevent);
+   //   on_notify_control_event(phappening);
 
    //   if (ptopic->m_bRet)
    //   {

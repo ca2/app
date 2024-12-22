@@ -54,7 +54,7 @@ namespace user
 
       ::user::interaction::on_timer(ptimer);;
 
-      if(ptimer->m_uEvent == 333)
+      if(ptimer->m_uTimer == 333)
       {
 
          double dScalar = CalcScalar();

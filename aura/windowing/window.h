@@ -65,16 +65,17 @@ namespace windowing
       string                                    m_strDebug;
       ::pointer<::message_queue>                m_pmessagequeue;
       class ::time                              m_timeLastMouseMove;
-      ::pointer<::windowing::window>            m_pwindowParent;
+      ::cast < ::windowing::window >            m_pwindowParent;
       ::string                                  m_strBitmapSource;
       mouse_reposition_throttling               m_mouserepositionthrottling;
-      
+
       ::pointer<::windowing::icon>              m_picon;
       //::pointer<::windowing::windowing>         m_pwindowing;
       ::pointer<::user::copydesk>               m_pcopydesk;
       ::pointer<::windowing::cursor>            m_pcursor;
       //::oswindow                                m_oswindow;
       bool                                      m_bUpdateScreenSynchronously;
+      class ::time                              m_timeLastDrawGuard1;
       
       bool                                      m_bActiveWindow;
       bool                                      m_bKeyboardFocus;
@@ -342,9 +343,9 @@ namespace windowing
 
       void on_destroy() override;
 
-      //virtual void show_window(const ::e_display & edisplay, const ::e_activation & eactivation);
+      //virtual void show_window(const ::e_display & edisplay, const ::user::e_activation & useractivation);
 
-      //virtual void _show_window_unlocked(const ::e_display & edisplay, const ::e_activation & eactivation);
+      //virtual void _show_window_unlocked(const ::e_display & edisplay, const ::user::e_activation & useractivation);
 
       //void set_user_interaction(::acme::user::interaction *pinteraction) override;
 
@@ -379,17 +380,18 @@ namespace windowing
       bool screen_to_client(::int_point * ppoint) override;
 
 
-      virtual bool on_set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::e_activation & eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay);
+      virtual bool on_set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay);
 
-      virtual bool set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay);
-      virtual bool _set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, unsigned int nOverrideFlags = 0);
+      virtual bool set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay);
+      virtual bool _set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, unsigned int nOverrideFlags = 0);
 
       virtual bool configure_window_unlocked();
       virtual bool strict_set_window_position_unlocked(bool & bChangedPosition, bool & bChangedSize);
       virtual bool strict_set_window_position_unlocked(bool & bChangedPosition, bool & bChangedSize, const ::int_rectangle & rectangle);
       virtual bool set_window_position_unlocked();
-      virtual bool _set_window_position_unlocked(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay);
-      virtual bool _configure_window_unlocked(const class ::zorder& zorder, const ::e_activation& eactivation, bool bNoZorder, ::e_display edisplay);
+      virtual bool _set_window_position_unlocked(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay);
+      virtual void _set_window_position_unchanged();
+      virtual bool _configure_window_unlocked(const class ::zorder& zorder, const ::user::activation& useractivation, bool bNoZorder, ::e_display edisplay);
       virtual bool _strict_set_window_position_unlocked(int x, int y, int cx, int cy, bool bNoMove, bool bNoSize);
 
       bool is_destroying() override;
@@ -472,8 +474,8 @@ namespace windowing
       virtual void _set_active_window_unlocked();
 
       // the foreground interaction_impl applies only to top-level windows (frame windows)
-      void set_foreground_window() override;
-      virtual void _set_foreground_window_unlocked();
+      void set_foreground_window(::user::activation_token * puseractivationtoken) override;
+      virtual void _set_foreground_window_unlocked(::user::activation_token * puseractivationtoken);
       virtual ::user::interaction * get_foreground_window();
 
       virtual bool is_active_window() override;
@@ -522,7 +524,7 @@ namespace windowing
 
 
       virtual bool get_rect_normal(::int_rectangle * prectangle);
-      virtual void _window_show_change_visibility(::e_display edisplay, ::e_activation eactivation);
+      virtual void _window_show_change_visibility(::e_display edisplay, const ::user::activation & useractivation);
 
 
       virtual void non_top_most_upper_window_rects(::int_rectangle_array & recta);
@@ -559,9 +561,9 @@ namespace windowing
       //virtual void window_request_presentation();
 
       //virtual void _window_request_presentation_locked();
-      //virtual void _window_request_presentation_set_window_position_unlocked(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide);
+      //virtual void _window_request_presentation_set_window_position_unlocked(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::e_activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide);
       
-      virtual void frame_toggle_restore();
+      virtual void frame_toggle_restore(::user::activation_token * puseractivationtoken);
 
       void _user_send(const ::procedure & procedure) override;
       void _user_post(const ::procedure & procedure) override;
@@ -772,7 +774,11 @@ namespace windowing
       //virtual void track_mouse_hover() override;
       //virtual void track_mouse_leave() override;
 
-      virtual void _on_mouse_move_step(const ::int_point & pointCursor, bool bMouseLeave = false);
+      virtual void _on_mouse_move_step(const ::int_point & pointCursor, ::user::enum_layout elayoutChild = ::user::e_layout_design, bool bMouseLeave = false);
+
+
+      virtual void defer_check_mouse_leave(::user::enum_layout elayoutWindow, ::user::enum_layout elayoutChild);
+
 
       //virtual void mouse_hover_step(const __status < ::int_point > & statusPointCursor);
 
@@ -783,6 +789,7 @@ namespace windowing
       virtual bool has_particle_fps_purpose(::particle * pparticle);
       virtual ::graphics::enum_output_purpose most_demanding_graphical_output_purpose();
       virtual bool has_screen_output_purpose();
+      virtual bool has_offscreen_output_purpose();
       virtual bool has_graphical_output_purpose();
       virtual bool has_fps_output_purpose();
 
@@ -910,7 +917,7 @@ namespace windowing
 
       //#ifdef LINUX
       //
-      //      virtual lresult send_x11_event(void * pevent) override; // XEvent *
+      //      virtual lresult send_x11_event(void * phappening) override; // XEvent *
       //
       //#endif
 
@@ -1295,7 +1302,7 @@ namespace windowing
 
       //virtual bool is_this_visible(enum_layout elayout) override;
 
-      //void _window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation) override;
+      //void _window_show_change_visibility_unlocked(::e_display edisplay, const ::user::activation & useractivation) override;
 
       //void _window_request_presentation_locked() override;
       //void _window_request_presentation_unlocked() override;
@@ -1399,16 +1406,18 @@ namespace windowing
       //virtual void clear_need_layout();
       virtual void set_need_layout();
       //virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
-      virtual void on_reposition() override;
+      void on_reposition() override;
+      virtual void on_layout_reposition();
+
       virtual void on_show_window();
 
 
-      virtual ::oswindow detach_window() override;
+      ::oswindow detach_window() override;
 
       //void destroy() override;
 
       //virtual void _window_show_change_visibility_locked();
-      //virtual void _window_show_change_visibility_unlocked(::e_display edisplay, ::e_activation eactivation);
+      //virtual void _window_show_change_visibility_unlocked(::e_display edisplay, const ::user::activation & useractivation);
       //virtual void _window_request_presentation_locked();
       //virtual void _window_request_presentation_unlocked();
 
@@ -1786,7 +1795,7 @@ namespace windowing
 #ifdef LINUX
 
 
-      virtual lresult send_x11_event(void * pevent);
+      virtual lresult send_x11_event(void * phappening);
 
 
 #endif
@@ -1808,6 +1817,8 @@ namespace windowing
       //virtual void set_opacity(double dOpacity);
 
       ::windowing::window * windowing_window() override;
+
+         virtual bool on_configure_unlocked_timer();
 
    };
 

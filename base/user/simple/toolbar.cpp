@@ -1626,14 +1626,14 @@ void simple_toolbar::on_timer(::timer * ptimer)
 
    ::user::toolbar::on_timer(ptimer);
 
-//   if (ptimer->m_uEvent == TIMER_HOVER)
+//   if (ptimer->m_uTimer == TIMER_HOVER)
 //   {
 //
 //      _001Hover();
 //
 //   }
 
-   // trans ::user::control_bar::OnTimer(ptimer->m_uEvent);
+   // trans ::user::control_bar::OnTimer(ptimer->m_uTimer);
 
 }
 

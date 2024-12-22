@@ -127,6 +127,14 @@ namespace user
    }
 
 
+   void style::increment_update_sequence()
+   {
+
+      m_iUpdate++;
+
+   }
+
+
    void style::initialize_style()
    {
 
@@ -213,7 +221,7 @@ namespace user
    }
 
 
-   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame_interaction * pframe)
+   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::interaction * pframe)
    {
 
       return false;

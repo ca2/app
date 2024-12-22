@@ -213,8 +213,8 @@ namespace image
       virtual void e_rotate_270_flip_horizontally();
 
 
-      //virtual void set_rgb(::color::color color);
-      //virtual void set_rgb(int R, int G, int B);
+      virtual void set_rgb(::color::color color);
+      virtual void set_rgb(int R, int G, int B);
       virtual void tint(::image::image *pimage, ::color::color color);
       virtual void set_rgb_pre_alpha(int R, int G, int B, int A);
       virtual void rgb_from(::image::image *pimage);

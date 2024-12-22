@@ -4,6 +4,7 @@
 #include "text_box.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "acme/_finish.h"
 
 
 namespace write_text

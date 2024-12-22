@@ -17,6 +17,29 @@
 
 namespace image
 {
+   pool_image::pool_image(image_context * pimagecontext, const ::image::image * pimage) :
+      m_pimagecontext(pimagecontext),
+      m_pimage(pimage)
+   {
+
+      
+   }
+
+
+   pool_image::~pool_image()
+   {
+
+      m_pimagecontext->release_pool_image(this);
+
+   }
+
+
+   ::image::image * pool_image::image()
+   {
+
+      return m_pimage;
+
+   }
 
 
    image_context::image_context()
@@ -106,6 +129,37 @@ namespace image
       }
 
       return ::transfer(pimage);
+
+   }
+
+
+   ::image::pool_image image_context::pool_image(const ::int_size & size)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      auto &imagea = m_imagepool[size];
+
+      if (imagea.has_element())
+      {
+
+         return { this, imagea.pop() };
+
+      }
+
+      return { this, create_image(size) };
+
+   }
+
+   
+   void image_context::release_pool_image(::image::pool_image * ppoolimage)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      auto & imagea = m_imagepool[ppoolimage->image()->size()];
+
+      imagea.add(ppoolimage->image());
 
    }
 

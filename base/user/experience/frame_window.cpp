@@ -340,7 +340,7 @@ namespace experience
 
                      pkey->m_bRet = true;
 
-                     display_previous();
+                     display_previous(pmessage->m_puseractivationtoken);
 
                      set_reposition();
 
@@ -400,7 +400,7 @@ namespace experience
 
       pframe->m_pframewindow = this;
 
-      auto psignal = get_signal(id_user_style_change);
+      auto psignal = signal(id_user_style_change);
 
       psignal->add_handler(pframe);
 
@@ -865,9 +865,7 @@ namespace experience
 
             informationf("button_clicked : button_minimize");
 
-            display(e_display_iconic, e_activation_no_activate);
-
-            set_need_redraw();
+            window_minimize();
 
             ptopic->m_bRet = true;
 
@@ -877,15 +875,17 @@ namespace experience
 
             informationf("button_clicked : button_maximize");
 
-            display(e_display_zoomed);
+            window_maximize();
 
-            set_reposition(true);
-
-            set_need_layout();
-
-            set_need_redraw();
-
-            post_redraw();
+            // display(e_display_zoomed);
+            //
+            // set_reposition(true);
+            //
+            // set_need_layout();
+            //
+            // set_need_redraw();
+            //
+            // post_redraw();
 
             ptopic->m_bRet = true;
 
@@ -974,7 +974,7 @@ namespace experience
       else if (ptopic->m_atom == id_app_activated)
       {
 
-         frame_toggle_restore();
+         frame_toggle_restore(ptopic->m_puseractivationtoken);
 
       }
 
@@ -1005,7 +1005,7 @@ namespace experience
 
          case e_button_minimize:
 
-            display(e_display_iconic, e_activation_no_activate);
+            display(e_display_iconic, { ::user::e_activation_no_activate } );
 
             set_need_redraw();
 
@@ -1125,7 +1125,7 @@ namespace experience
    void frame_window::display_system_minimize()
    {
 
-      display(e_display_iconic, e_activation_no_activate);
+      display(e_display_iconic, { ::user::e_activation_no_activate } );
 
    }
 
@@ -2098,7 +2098,7 @@ namespace experience
       //if(m_pframe != nullptr)
       //{
 
-      //   if(!m_pframe->on_timer((unsigned int) ptimer->m_uEvent))
+      //   if(!m_pframe->on_timer((unsigned int) ptimer->m_uTimer))
       //   {
 
       //      ptimer->destroy();
@@ -2232,7 +2232,7 @@ namespace experience
 
       auto edisplay = const_layout().sketch().display();
 
-      //auto eactivation = layout().sketch().activation();
+      //auto useractivation = layout().sketch().activation();
 
       if (edisplay == e_display_iconic)
       {
@@ -2281,7 +2281,7 @@ namespace experience
    }
 
 
-   void frame_window::display_docked(::e_display edisplay, ::e_activation eactivation)
+   void frame_window::display_docked(::e_display edisplay, const ::user::activation & useractivation)
    {
 
       if (!is_docking_appearance(edisplay))
@@ -2293,7 +2293,7 @@ namespace experience
 
       set_display(edisplay);
 
-      set_activation(eactivation);
+      set_activation(useractivation);
 
    }
 
@@ -2844,13 +2844,13 @@ namespace experience
    }
 
 
-   void frame_window::frame_experience_restore(::e_activation eactivation)
+   void frame_window::frame_experience_restore(const ::user::activation & useractivation)
    {
 
       if(system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
       {
 
-         display_normal(m_windowdisplayandlayout.m_edisplayLastNormal, eactivation);
+         window_restore();
 
          return;
 
@@ -2868,13 +2868,13 @@ namespace experience
          if (equivalence_sink(m_windowdisplayandlayout.m_edisplayPrevious) == e_display_normal)
          {
 
-            display_normal(m_windowdisplayandlayout.m_edisplayPrevious, eactivation);
+            display_normal(m_windowdisplayandlayout.m_edisplayPrevious, useractivation);
 
          }
          else
          {
 
-            display_normal(m_windowdisplayandlayout.m_edisplayLastNormal, eactivation);
+            display_normal(m_windowdisplayandlayout.m_edisplayLastNormal, useractivation);
 
          }
 
@@ -2885,9 +2885,9 @@ namespace experience
          //if (m_windowdisplayandlayout.m_rectangleRestored.size() == m_sizeRestore)
          //{
 
-         //good_restore(nullptr, m_windowdisplayandlayout.m_rectangleCompact, true, e_activation_default, e_zorder_top, e_display_compact);
+         //good_restore(nullptr, m_windowdisplayandlayout.m_rectangleCompact, true, ::user::e_activation_default, e_zorder_top, e_display_compact);
 
-         display_normal(e_display_compact, eactivation);
+         display_normal(e_display_compact, useractivation);
 
          //}
 //         else
@@ -2906,17 +2906,17 @@ namespace experience
          if (sizeRectangleNormal == m_rectangleRestoreCompact.size())
          {
 
-            display_normal(e_display_broad, eactivation);
+            display_normal(e_display_broad, useractivation);
 
-            //good_restore(nullptr, m_windowdisplayandlayout.m_rectangleBroad, true, e_activation_default, e_zorder_top, e_display_broad);
+            //good_restore(nullptr, m_windowdisplayandlayout.m_rectangleBroad, true, ::user::e_activation_default, e_zorder_top, e_display_broad);
 
          }
          else
          {
 
-            //good_restore(nullptr, m_windowdisplayandlayout.m_rectangleNormal, true, e_activation_default, e_zorder_top, e_display_normal);
+            //good_restore(nullptr, m_windowdisplayandlayout.m_rectangleNormal, true, ::user::e_activation_default, e_zorder_top, e_display_normal);
 
-            display_normal(e_display_normal, eactivation);
+            display_normal(e_display_normal, useractivation);
 
          }
 
@@ -2924,9 +2924,9 @@ namespace experience
       else
       {
 
-         //good_restore(nullptr, m_windowdisplayandlayout.m_rectangleBroad, true, e_activation_default, e_zorder_top, e_display_broad);
+         //good_restore(nullptr, m_windowdisplayandlayout.m_rectangleBroad, true, ::user::e_activation_default, e_zorder_top, e_display_broad);
 
-         display_normal(e_display_broad, eactivation);
+         display_normal(e_display_broad, useractivation);
 
       }
 

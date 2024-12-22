@@ -119,9 +119,9 @@ namespace acme
       try
       {
 
-         uptr uEvent = ptimer->m_uEvent;
+         uptr uTimer = ptimer->m_uTimer;
 
-         auto pair = m_timermap.plookup(uEvent);
+         auto pair = m_timermap.plookup(uTimer);
 
          if (pair.is_null())
          {
@@ -135,7 +135,7 @@ namespace acme
          if(ptimerMapped == ptimer)
          {
 
-            m_timermap.erase_item(uEvent);
+            m_timermap.erase_item(uTimer);
 
          }
 
@@ -162,7 +162,7 @@ namespace acme
       if (!m_bOk)
       {
 
-         delete_timer(ptimer->m_uEvent);
+         delete_timer(ptimer->m_uTimer);
 
          return;
 
@@ -173,7 +173,7 @@ namespace acme
       if(!ptimer->m_bPeriodic)
       {
 
-         delete_timer(ptimer->m_uEvent);
+         delete_timer(ptimer->m_uTimer);
 
          return;
 

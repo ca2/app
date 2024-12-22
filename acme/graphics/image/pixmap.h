@@ -140,6 +140,26 @@ struct pixmap
 
    }
 
+   inline void set_pixel(int x, int y, ::color::color color) 
+   {
+
+      return ::image32_set_pixel(image32(), m_colorindexes, scan_size(), height(), x, y, color);
+
+   }
+
+   inline ::color::color raw_pixel(int x, int y) const
+   {
+
+      return ::image32_raw_pixel(image32(), m_colorindexes, scan_size(), height(), x, y);
+
+   }
+
+   inline void set_raw_pixel(int x, int y, ::color::color color)
+   {
+
+      return ::image32_set_raw_pixel(image32(), m_colorindexes, scan_size(), height(), x, y, color);
+
+   }
 
    inline ::color::color get_pixel(const ::int_point & point) const { return get_pixel(point.x(), point.y()); }
 

@@ -14,16 +14,10 @@ CLASS_DECL_ACME ::string as_string(::enum_display edisplay)
          return "e_display_undefined";
       case e_display_notify_icon:
          return "e_display_notify_icon";
-      case e_display_default:
-         return "e_display_default";
       case e_display_hide:
          return "e_display_hide";
       case e_display_none:
          return "e_display_none";
-      case e_display_current:
-         return "e_display_current";
-      case e_display_stored_state:
-         return "e_display_stored_state";
       case e_display_normal:
          return "e_display_normal";
       case e_display_compact:
@@ -42,10 +36,6 @@ CLASS_DECL_ACME ::string as_string(::enum_display edisplay)
          return "e_display_down";
       case e_display_minimal:
          return "e_display_minimal";
-      case e_display_fixed_size:
-         return "e_display_fixed_size";
-      case e_display_center:
-         return "e_display_center";
       case e_display_left:
          return "e_display_left";
       case e_display_top:
@@ -72,9 +62,18 @@ CLASS_DECL_ACME ::string as_string(::enum_display edisplay)
          return "e_display_full_bottom";
       case e_display_docking_mask:
          return "e_display_docking_mask";
-      case e_display_command_mask:
-         return "e_display_command_mask";
-
+      case e_display_default:
+         return "e_display_default";
+      case e_display_current:
+         return "e_display_current";
+      case e_display_stored_state:
+         return "e_display_stored_state";
+      case e_display_fixed_size:
+         return "e_display_fixed_size";
+      case e_display_center:
+         return "e_display_center";
+      case e_display_last_command:
+         return "e_display_last_command";
       default:
       {
          ::string str;
@@ -88,42 +87,42 @@ CLASS_DECL_ACME ::string as_string(::enum_display edisplay)
 }
 
 
-CLASS_DECL_ACME ::string as_string(::enum_activation eactivation)
+CLASS_DECL_ACME ::string as_string(::user::enum_activation useractivation)
 {
 
-   if(eactivation == e_activation_default)
+   if(useractivation == ::user::e_activation_default)
    {
 
-   return "e_activation_default";
+   return "::user::e_activation_default";
 }
    ::string str;
-   if(eactivation & e_activation_no_activate)
+   if(useractivation & ::user::e_activation_no_activate)
    {
       str += "no_activate;";
    }
-   if(eactivation & e_activation_set_active)
+   if(useractivation & ::user::e_activation_set_active)
    {
       str += "set_active;";
    }
-   if(eactivation & e_activation_set_foreground)
+   if(useractivation & ::user::e_activation_set_foreground)
    {
       str += "set_foreground;";
    }
-   if(eactivation & e_activation_under_mouse_cursor)
+   if(useractivation & ::user::e_activation_under_mouse_cursor)
    {
       str += "under_mouse_cursor;";
    }
-   if(eactivation & e_activation_on_center_of_screen)
+   if(useractivation & ::user::e_activation_on_center_of_screen)
    {
       str += "on_center_of_screen;";
    }
-   if(eactivation & e_activation_display_change)
+   if(useractivation & ::user::e_activation_display_change)
    {
       str += "display_change;";
    }
    if(str.is_empty())
    {
-      str.formatf("unknown e_display %d", (iptr) eactivation);
+      str.formatf("unknown e_display %d", (iptr) useractivation);
    }
    else
    {

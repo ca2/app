@@ -1,12 +1,17 @@
 // Created by camilo on 2024-09-13 15:58 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "window.h"
+#include "windowing.h"
 #include "acme/platform/application.h"
 #include "acme/user/user/mouse.h"
 
 
 namespace windows
 {
+
+
+   extern windowing * g_pwindowing;
+
 
    window::window()
    {
@@ -25,6 +30,13 @@ namespace windows
 
    bool window::on_window_procedure(LRESULT & lresult, UINT message, WPARAM wparam, LPARAM lparam)
    {
+
+      if (m_iDebugAtom == 123)
+      {
+
+         printf_line("::windows::window::window_procedure");
+
+      }
 
       if (message == WM_ENTERSIZEMOVE)
       {
@@ -405,6 +417,79 @@ namespace windows
          0,
          m_hwnd, NULL);
       //PostMessage(hwnd, WM_NULL, 0, 0);
+
+   }
+
+
+   // Step 4: the Window Procedure
+   LRESULT CALLBACK window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+   {
+
+      ::windows::window * pwindow = nullptr;
+
+      if (msg == WM_NCCREATE)
+      {
+
+         CREATESTRUCT * pcreatestruct = (CREATESTRUCT *)lParam;
+
+         pwindow = (::windows::window *)pcreatestruct->lpCreateParams;
+
+         ///SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pwindow);
+
+         ::windows::g_pwindowing->m_windowmap[(::oswindow)hwnd] = pwindow;
+
+         pwindow->m_hwnd = hwnd;
+
+      }
+      else
+      {
+
+         pwindow = ::windows::g_pwindowing->m_windowmap[(::oswindow)hwnd];
+
+         //pwindow = (::windows::window *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+
+      }
+
+      if (!pwindow)
+      {
+
+         return DefWindowProc(hwnd, msg, wParam, lParam);
+
+      }
+
+      LRESULT lresult = 0;
+
+      if (pwindow->on_window_procedure(lresult, msg, wParam, lParam))
+      {
+
+         return lresult;
+
+      }
+      else
+      {
+
+         lresult = DefWindowProc(hwnd, msg, wParam, lParam);
+
+      }
+
+      return lresult;
+
+   }
+
+
+   CLASS_DECL_ACME HINSTANCE get_window_procedure_hinstance()
+   {
+
+      HINSTANCE hinstanceWndProc = (HINSTANCE) ::GetModuleHandleA("acme.dll");
+
+      if (hinstanceWndProc == nullptr)
+      {
+
+         hinstanceWndProc = (HINSTANCE)::GetModuleHandleA(NULL);
+
+      }
+
+      return hinstanceWndProc;
 
    }
 

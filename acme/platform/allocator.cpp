@@ -812,7 +812,11 @@ namespace allocator
       if (psubparticle->m_preferenceitema)
       {
 
-         psubparticle->m_preferenceitema->m_strDebug = psubparticle->get_debug_title();
+         char sz[1024];
+
+         psubparticle->get_debug_title(sz, 1024);
+
+         psubparticle->m_preferenceitema->m_strDebug = sz;
 
          if (get_top_referer()
             && psubparticle->m_preferenceitema->m_itema[0]
@@ -1016,32 +1020,35 @@ CLASS_DECL_ACME void check_refdbg()
 {
 
    auto psubparticleTrackAllocation = refdbg_get_track_allocation();
+
    if (psubparticleTrackAllocation)
    {
 
       ::string strType = typeid(*psubparticleTrackAllocation).name();
 
-      output_debug_string("123");
+      output_debug_string("check_refdbg:track_allocation;");
 
    }
 
    auto prefererReleaser = refdbg_get_top_releaser();
+
    if (prefererReleaser)
    {
 
       ::string strType = typeid(*prefererReleaser).name();
 
-      output_debug_string("345");
+      output_debug_string("check_refdbg:top_releaser;");
 
    }
 
    auto prefererReferer = refdbg_get_top_referer();
+
    if (prefererReferer)
    {
 
       ::string strType = typeid(*prefererReferer).name();
 
-      output_debug_string("345");
+      output_debug_string("check_refdbg:top_referer;");
 
    }
 

@@ -711,7 +711,7 @@ namespace acme
 
       virtual double luminance() const;
 
-      virtual void background_color(const ::color::color & color);
+      virtual void set_background_color(const ::color::color & color);
       
       
       virtual bool dark_mode() const;

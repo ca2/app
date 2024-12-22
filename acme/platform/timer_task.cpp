@@ -57,7 +57,7 @@ void timer_task::initialize_timer(::particle * pparticle, ::acme::timer_array * 
 
    m_bHandling = false;
 
-   m_uEvent = uiTimer;
+   m_uTimer = uiTimer;
 
    m_pfnTimer = pfnTimer;
 
@@ -87,7 +87,7 @@ void timer_task::start_timer_task(const class time & timeWait, bool bPeriodic)
    //try
    //{
 
-      m_strDebugNote.formatf("uEvent=%d", m_uEvent);
+      m_strDebugNote.formatf("uTimer-%d", m_uTimer);
 
       //auto pparent = m_ptimera->m_pobject;
 
@@ -212,6 +212,8 @@ void timer_task::run()
 
    while (true)
    {
+
+      task_iteration();
 
       for (::collection::index i = 0; i < countDecisecondSleep; i++)
       {

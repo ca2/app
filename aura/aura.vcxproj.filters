@@ -1400,12 +1400,6 @@
     <ClInclude Include="graphics\image\palette.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\image\pixmap.h">
-      <Filter>Header Files\graphics\image</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\image\save_image.h">
-      <Filter>Header Files\graphics\image</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\image\source.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>

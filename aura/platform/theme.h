@@ -17,7 +17,9 @@ namespace aura
    public:
 
 
-      virtual void on_change_weather_state();
+      //virtual void on_change_weather_state();
+
+      virtual void on_change_ambient();
 
 
    };
@@ -58,9 +60,10 @@ namespace aura
       pointer_array < theme_listener >       m_listenera;
 
 
-      string                                 m_strWeatherState;
-      string                                 m_strDayNight;
-      string                                 m_strDayNightTheme;
+      //string                                 m_strWeatherState;
+      string                                 m_strAmbientState;
+      //string                                 m_strDayNight;
+      //string                                 m_strDayNightTheme;
 
 
       theme();
@@ -71,25 +74,28 @@ namespace aura
 
 
       virtual void initialize_contextualized_theme();
-      virtual void on_change_weather_state();
+      //virtual void on_change_weather_state();
+      virtual void defer_check_ambient_change();
 
 
 
 
-      virtual string get_weather_state();
-      virtual string get_day_night();
-      virtual string get_day_night_theme();
+      //virtual string get_weather_state();
+      //virtual string get_day_night();
+      //virtual string get_day_night_theme();
+      virtual ::string get_ambient();
 
 
       virtual void get_theme_text_color(::color::color & colorText, ::color::color & colorBack);
 
       virtual void sync_with_stored_theme();
-      virtual string get_current_weather();
+      //virtual string get_current_weather();
+      virtual string get_current_ambient();
       virtual string get_default_theme();
       virtual string stored_theme();
 
       virtual void switch_context_theme();
-      virtual void set_context_theme(string strTheme);
+      virtual void set_context_theme(const ::scoped_string & scopedstrTheme, const ::action_context & actioncontext);
       virtual void on_change_theme();
 
       virtual string get_theme();

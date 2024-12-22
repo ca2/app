@@ -99,7 +99,7 @@ namespace message
 
       }
 
-      bool bSameHandler = m_pparticleHandlerTarget == dispatcher.m_pparticleHandlerTarget;
+      bool bSameHandler = m_pparticleHandlerTarget.m_p == dispatcher.m_pparticleHandlerTarget.m_p;
 
       bool bExactlySamePredicateHolder = m_functionHandler == dispatcher.m_functionHandler;
 

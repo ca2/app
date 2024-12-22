@@ -4,6 +4,9 @@
 
 #include "visual_state.h"
 #include "zorder.h"
+#include "acme/user/user/activation.h"
+
+
 
 namespace user
 {
@@ -16,15 +19,15 @@ namespace user
 
 
       ::zorder                            m_zorder;
-      ::e_activation                      m_eactivation;
+      ::user::activation                  m_activation;
 
 
       void reset_pending()
       {
 
          m_zorder.clear_request();
-         m_eactivation = e_activation_default;
-         m_bImpactUpdateGoingOn = false;
+         m_activation.clear();
+         //m_bImpactUpdateGoingOn = false;
 
       }
 
@@ -39,23 +42,24 @@ namespace user
 
       void _patch_order(int iOrder) { m_zorder.m_iZOrder = iOrder; }
 
-      ::e_activation activation() const { return m_eactivation; }
+      ::user::activation activation() const { return m_activation; }
       bool has_activation_request() const
       {
 
-         return m_eactivation != e_activation_default ||
+         return m_activation.is_change_request() ||
             m_zorder.is_change_request();
 
 
       }
-      layout_state& operator = (const enum_activation& eactivation) { m_eactivation = eactivation; return *this; }
-      layout_state& operator += (const enum_activation& eactivation) { m_eactivation |= eactivation; return *this; }
+      
+      layout_state& operator = (const ::user::activation & useractivation) { m_activation = useractivation; return *this; }
+      layout_state& operator += (const ::user::activation & useractivation) { m_activation |= useractivation; return *this; }
 
       bool operator == (const layout_state & state) const
       {
          return
          this->m_zorder == state.m_zorder
-         && this->m_eactivation == state.m_eactivation
+         && this->m_activation == state.m_activation
          && visual_state::operator == (state);
       }
       //bool operator != (const layout_state & layoutstate) const { return !operator == (layoutstate); }
@@ -87,23 +91,25 @@ namespace user
 
       }
 
+
       layout_state & copy_display(const layout_state & layoutstate)
       {
 
          m_edisplay = layoutstate.m_edisplay;
          m_eappearance = layoutstate.m_eappearance;
-         m_eactivation = layoutstate.m_eactivation;
+         m_activation = layoutstate.m_activation;
 
          return *this;
 
       }
+
 
       layout_state & operator = (const layout_state & layoutstate)
       {
 
          visual_state::operator=(layoutstate);
          m_zorder = layoutstate.m_zorder;
-         m_eactivation = layoutstate.m_eactivation;
+         m_activation = layoutstate.m_activation;
 
          return *this;
 

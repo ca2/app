@@ -175,7 +175,7 @@ namespace account
 
       ::user::interaction::on_timer(ptimer);
 
-      if (ptimer->m_uEvent == e_timer_check_cached_credentials && !m_plogin->m_bCred)
+      if (ptimer->m_uTimer == e_timer_check_cached_credentials && !m_plogin->m_bCred)
       {
 
          try

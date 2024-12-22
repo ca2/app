@@ -101,6 +101,7 @@ namespace acme
 
          void destroy_window() override;
 
+         bool is_host_top_level() override;
 
          virtual void SetTimer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pdata = nullptr);
          virtual void KillTimer(uptr uEvent);

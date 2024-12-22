@@ -299,7 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				9A5243C92CD5B6AE006ED868 /* libapp_just_acme_message_box.dylib */,
-				9A47536E2CF516A800ED30AE /* libios_app_just_acme_message_box.dylib */,
+				9A47536E2CF516A800ED30AE /* libios_app_just_acme_message_box.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -506,7 +506,7 @@
 			remoteRef = 9A3865B02CD381330027E907 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A47536E2CF516A800ED30AE /* libios_app_just_acme_message_box.dylib */ = {
+		9A47536E2CF516A800ED30AE /* libios_app_just_acme_message_box.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libios_app_just_acme_message_box.a;

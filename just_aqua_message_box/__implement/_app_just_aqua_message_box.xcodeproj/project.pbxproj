@@ -109,6 +109,13 @@
 			remoteGlobalIDString = 9AC09A2C274DFC67008B042E;
 			remoteInfo = folder_zip;
 		};
+		9AA1FA582D18B91700DB0C45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA8278A2CAF78FF00DA11E9 /* app_just_aqua_message_box.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AC3F17B2CF785830061DCC0;
+			remoteInfo = ios_app_just_aqua_message_box;
+		};
 		9AA3F98C2A95606F004283CA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A1FB52C28713C0A0042849A /* folder_zip.xcodeproj */;
@@ -321,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				9AA827922CAF790100DA11E9 /* libapp_just_aqua_message_box.dylib */,
+				9AA1FA592D18B91700DB0C45 /* libios_app_just_aqua_message_box.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -499,6 +507,13 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libios_folder_zip.a;
 			remoteRef = 9A1FB53328713C0A0042849A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AA1FA592D18B91700DB0C45 /* libios_app_just_aqua_message_box.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_app_just_aqua_message_box.a;
+			remoteRef = 9AA1FA582D18B91700DB0C45 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9AA3F98D2A95606F004283CA /* libstatic_folder_zip.a */ = {

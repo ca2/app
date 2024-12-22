@@ -1543,6 +1543,13 @@ void elemental::back_on_right_button_up(::user::mouse* pmouse)
 
    ::shift_int elemental::client_to_host()
    {
+      
+      if(is_host_top_level())
+      {
+       
+         return {};
+         
+      }
 
       auto p = m_rectangle.top_left();
       

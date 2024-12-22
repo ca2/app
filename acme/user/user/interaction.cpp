@@ -631,6 +631,14 @@ namespace acme
 //            destroy();
 
          }
+   
+         
+         bool interaction::is_host_top_level()
+         {
+            
+            return m_pacmewindowingwindow.is_set();
+            
+         }
 
 
          void interaction::SetTimer(uptr uEvent, const class ::time & timeEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pdata)

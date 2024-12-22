@@ -705,7 +705,7 @@ namespace micro
          };
 
       //post(psequence);
-
+      pmouse->m_bRet = true;
       
    }
 

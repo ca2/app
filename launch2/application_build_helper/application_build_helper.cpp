@@ -105,7 +105,7 @@ namespace application_build_helper
 
 //         pathUrlBase = "https://fedora.camilothomas.com";
 
-         if (acmesystem()->m_pnode->get_eoperating_ambient() & ::user::e_operating_ambient_kde)
+         if (acmesystem()->m_pnode->get_eoperating_ambient() == ::user::e_operating_ambient_kde)
          {
 
             //pathUrlBase /= "kde";

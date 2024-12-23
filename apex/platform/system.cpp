@@ -5164,7 +5164,7 @@ namespace apex
    void system::on_application_dark_mode_change()
    {
 
-      this->signal(id_application_dark_mode_change);
+      send_signal(id_application_dark_mode_change);
 
       ::platform::system::on_application_dark_mode_change();
 

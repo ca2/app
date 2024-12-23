@@ -2384,11 +2384,11 @@ CLASS_DECL_ACME void application_send_status(::enum_status estatus, ::particle* 
 }
 
 
-void application_on_command(::platform::application * papplication, const char * pszCommand, ::user::activation_token * puseractivationtoken)
+void application_handle_command(::platform::application * papplication, const char * pszCommand, ::user::activation_token * puseractivationtoken)
 {
-
+   
    papplication->on_command_final(pszCommand, puseractivationtoken);
-
+   
 }
 
 

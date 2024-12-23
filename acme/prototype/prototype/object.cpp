@@ -1083,11 +1083,11 @@ void object::erase_task_and_set_task_new_parent(::object* pobjectTask, ::object 
 
    _synchronous_lock synchronouslockObject(pobjectTask->synchronization());
 
-#if REFERENCING_DEBUGGING
-
-   critical_section_lock criticalsectionlock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
-
-#endif
+//#if REFERENCING_DEBUGGING
+//
+//   critical_section_lock criticalsectionlock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
+//
+//#endif
 
 
    if (!m_pparticleaChildrenTask)

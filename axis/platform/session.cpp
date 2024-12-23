@@ -1293,7 +1293,7 @@ namespace axis
             if(pmanager)
             {
 
-               pmanager->signal(id_change_user);
+               pmanager->send_signal(id_change_user);
 
             }
 

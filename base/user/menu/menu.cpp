@@ -1075,7 +1075,7 @@ namespace user
 
       ::pointer<::base::style>pstyle = get_style(pgraphics);
 
-      auto crBackground = get_color(pstyle, e_element_background);
+      //auto crBackground = get_color(pstyle, e_element_background);
 
       //if (crBackground.is_translucent())
       //{

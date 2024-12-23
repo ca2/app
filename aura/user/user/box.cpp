@@ -297,7 +297,7 @@ namespace user
 
          m_bLoadingWindowRectangle = true;
 
-         ::collection::index iDisplay = good_restore(nullptr, {}, true, { ::user::e_activation_default, nullptr}, e_zorder_top, initial_restore_display());
+         ::collection::index iDisplay = good_restore(nullptr, {}, true, { ::user::e_activation_set_foreground, nullptr}, e_zorder_top, initial_restore_display());
 
          bool bRestore = iDisplay >= 0;
 
@@ -344,7 +344,7 @@ namespace user
 
          m_bLoadingWindowRectangle = true;
 
-         ::collection::index iDisplay = good_restore(nullptr, {}, true, { ::user::e_activation_default, nullptr }, e_zorder_top, initial_restore_display());
+         ::collection::index iDisplay = good_restore(nullptr, {}, true, { ::user::e_activation_set_foreground, nullptr }, e_zorder_top, initial_restore_display());
 
          bool bRestore = iDisplay >= 0;
 

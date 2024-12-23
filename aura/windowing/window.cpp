@@ -685,7 +685,7 @@ namespace windowing
 
       }
 
-      auto pszType = typeid(*m_puserinteraction).name();
+      auto pszType = ::type(m_puserinteraction).name();
 
       //if (::is_window(get_handle()))
       //{

@@ -73,7 +73,7 @@ namespace write_text
 
          ::pointer<::manager>psystem = system();
 
-         psystem->signal(id_operating_system_font_list_change);
+         psystem->send_signal(id_operating_system_font_list_change);
 
          update();
 

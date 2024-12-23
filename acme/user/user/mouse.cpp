@@ -9,11 +9,8 @@ namespace user
 
 #ifdef _DEBUG
 
-//<<<<<<< HEAD
-//=======
 
-//>>>>>>> origin/main
-   huge_integer mouse::increment_reference_count()
+huge_integer mouse::increment_reference_count()
    {
 
       return ::acme::message::increment_reference_count();

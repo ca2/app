@@ -3,7 +3,7 @@
 #include "happening.h"
 
 ////#include "acme/exception/exception.h"
-#include <prototype/geometry2d/_function.h>
+#include "acme/prototype/geometry2d/_function.h"
 
 #include "manual_reset_happening.h"
 #include "acme/prototype/time/timespec.h"
@@ -1489,7 +1489,6 @@ void notify_lock_notifier::erase_notify_lock(::notify_lock * pnotifylock)
 
 void notify_lock_notifier::notify_lock_notify_all()
 {
-
 
    for (auto pnotifylock:m_notifylocka)
    {

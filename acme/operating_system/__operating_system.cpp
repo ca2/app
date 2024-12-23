@@ -10,15 +10,15 @@ CLASS_DECL_ACME ::string get_operating_system_name()
    return "linux";
 #elif defined(WINDOWS_DESKTOP)
    return "windows";
-#elif defined(MACOS))
+#elif defined(MACOS)
    return "macos";
-#elif defined(APPLE_IOS))
+#elif defined(APPLE_IOS)
    return "ios";
-#elif defined(FREEBSD))
+#elif defined(FREEBSD)
    return "freebsd";
-#elif defined(NETBSD))
+#elif defined(NETBSD)
    return "netbsd";
-#elif defined(OPENBSD))
+#elif defined(OPENBSD)
    return "openbsd";
 #endif
 

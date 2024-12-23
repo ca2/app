@@ -2474,12 +2474,12 @@ file_pointer file_context::time_square_file(const string &pszPrefix, const strin
 }
 
 
-file_pointer file_context::get(const ::file::path &name)
+file_pointer file_context::get(const ::file::path &path)
 {
 
-   directory()->create(name.name());
+   directory()->create(path.folder());
 
-   file_pointer fileOut = get_file(name, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
+   file_pointer fileOut = get_file(path, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 
 //   if (fileOut.is_null())
 //   {

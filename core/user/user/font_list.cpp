@@ -724,7 +724,7 @@ namespace user
 
             ::cast < ::manager > pmanager = psystem;
 
-            pmanager->signal(id_font_enumeration);
+            pmanager->send_signal(id_font_enumeration);
 
          }
 

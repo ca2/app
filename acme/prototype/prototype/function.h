@@ -635,7 +635,7 @@ public:
 
 
 
-      RETURN_TYPE operator()()
+      RETURN_TYPE operator()() override
       {
 
          return m_predicate();

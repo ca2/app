@@ -153,7 +153,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		070533CB1C90B2A100F31B3F /* gcom.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gcom.xcodeproj; path = ../gcom/gcom.xcodeproj; sourceTree = "<group>"; };
+		070533CB1C90B2A100F31B3F /* gcom.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gcom.xcodeproj; path = ../gcom/gcom.xcodeproj; sourceTree = SOURCE_ROOT; };
 		076D09F11A3FC72C007432B6 /* hellobase_switcher_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hellobase_switcher_impact.cpp; sourceTree = "<group>"; };
 		076D09F21A3FC72C007432B6 /* hellobase_switcher_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase_switcher_impact.h; sourceTree = "<group>"; };
 		07A684E617F0E06700C41DE6 /* hellobase_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hellobase_application.h; sourceTree = "<group>"; };
@@ -174,7 +174,7 @@
 		9A920FD71F3BF68500CD9D94 /* libcore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcore.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libcore.dylib; sourceTree = "<group>"; };
 		9A920FD91F3BF68B00CD9D94 /* libmultimedia.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmultimedia.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libmultimedia.dylib; sourceTree = "<group>"; };
 		9A920FDB1F3BF69300CD9D94 /* libsphere.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsphere.dylib; path = ../../../../Volumes/apple/archive/Xcode/DerivedData/Build/Products/Debug/libsphere.dylib; sourceTree = "<group>"; };
-		9A9578481F62217C00623508 /* sphere.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = sphere.xcodeproj; path = ../../app/sphere/sphere.xcodeproj; sourceTree = "<group>"; };
+		9A9578481F62217C00623508 /* sphere.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = sphere.xcodeproj; path = ../../app/sphere/sphere.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A986CDE1D22629C001F4C04 /* libios_base.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_base.dylib; path = "../../app/base/build/Debug-iphoneos/libios_base.dylib"; sourceTree = "<group>"; };
 		9A986CE01D2262BA001F4C04 /* libios_axis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axis.dylib; path = "../../app/axis/build/Debug-iphoneos/libios_axis.dylib"; sourceTree = "<group>"; };
 		9A986CE21D2262CB001F4C04 /* libios_aura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_aura.dylib; path = "../../app/aura/build/Debug-iphoneos/libios_aura.dylib"; sourceTree = "<group>"; };

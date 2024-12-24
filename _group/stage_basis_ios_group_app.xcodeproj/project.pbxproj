@@ -205,17 +205,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9A001AAC2304CFF70004D603 /* experience_lite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = experience_lite.xcodeproj; path = ../experience_lite/experience_lite.xcodeproj; sourceTree = "<group>"; };
-		9A204A8C2433CA6700D45614 /* coreimage_imaging.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = coreimage_imaging.xcodeproj; path = ../coreimage_imaging/coreimage_imaging.xcodeproj; sourceTree = "<group>"; };
-		9A247CE02452C41600F23D28 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
-		9A3E0B2B2309FA7F00B5459B /* experience_tranquillum.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = experience_tranquillum.xcodeproj; path = ../experience_tranquillum/experience_tranquillum.xcodeproj; sourceTree = "<group>"; };
+		9A001AAC2304CFF70004D603 /* experience_lite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = experience_lite.xcodeproj; path = ../experience_lite/experience_lite.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A204A8C2433CA6700D45614 /* coreimage_imaging.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = coreimage_imaging.xcodeproj; path = ../coreimage_imaging/coreimage_imaging.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A247CE02452C41600F23D28 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A3E0B2B2309FA7F00B5459B /* experience_tranquillum.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = experience_tranquillum.xcodeproj; path = ../experience_tranquillum/experience_tranquillum.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A415C9B2473953100EF2BCD /* Info-browser-def.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-browser-def.plist"; sourceTree = "<group>"; };
 		9A415C9C2473953100EF2BCD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9A415C9D2473953100EF2BCD /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9A415C9E2473953100EF2BCD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A415C9F2473953100EF2BCD /* Info-browser-bot.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-browser-bot.plist"; sourceTree = "<group>"; };
-		9A6FAB872304797D00340A3D /* experience_anthill.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = experience_anthill.xcodeproj; path = ../experience_anthill/experience_anthill.xcodeproj; sourceTree = "<group>"; };
-		9A6FABCC2304797E00340A3D /* draw2d_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = draw2d_quartz2d.xcodeproj; path = ../draw2d_quartz2d/draw2d_quartz2d.xcodeproj; sourceTree = "<group>"; };
+		9A6FAB872304797D00340A3D /* experience_anthill.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = experience_anthill.xcodeproj; path = ../experience_anthill/experience_anthill.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A6FABCC2304797E00340A3D /* draw2d_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = draw2d_quartz2d.xcodeproj; path = ../draw2d_quartz2d/draw2d_quartz2d.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9AFC0DA524737B6C00AF47B7 /* __app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = __app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AFC0DA624737B6C00AF47B7 /* group_app copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "group_app copy-Info.plist"; path = "/Users/camilo/__archive/basis/app/_group/group_app copy-Info.plist"; sourceTree = "<absolute>"; };
 		9AFC0E722473859C00AF47B7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };

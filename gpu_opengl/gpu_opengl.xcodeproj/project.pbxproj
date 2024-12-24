@@ -141,7 +141,7 @@
 		9A6A479A2660E6E2004ED97A /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A6A479C2660E6E2004ED97A /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A775D4A29AAAB28008FE15C /* libassimp.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.dylib; path = "/Users/camilo/solution/main/source/app-simple/shader/__implement/../../../../../operating_system/storage-macos/Debug/library/libassimp.dylib"; sourceTree = "<absolute>"; };
-		9A797F412A53A11900261F46 /* assimp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = assimp.xcodeproj; path = ../../../port/graphics3d/assimp/assimp.xcodeproj; sourceTree = "<group>"; };
+		9A797F412A53A11900261F46 /* assimp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = assimp.xcodeproj; path = ../../../port/graphics3d/assimp/assimp.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A866073296689DD000C82F0 /* object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = object.h; sourceTree = "<group>"; };
 		9A866074296689DE000C82F0 /* object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = object.cpp; sourceTree = "<group>"; };
 		9A8B645024CBE90000A93185 /* program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = program.h; sourceTree = "<group>"; };
@@ -155,7 +155,7 @@
 		9A8B645C24CBE90100A93185 /* program.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = program.cpp; sourceTree = "<group>"; };
 		9A8B645F24CBE90100A93185 /* cpu_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cpu_buffer.h; sourceTree = "<group>"; };
 		9A8B646024CBE90100A93185 /* context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
-		9A8B647224CBEAE400A93185 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
+		9A8B647224CBEAE400A93185 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A8B648424CBF59300A93185 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		9A8B64E424CCAAFC00A93185 /* context_fbo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = context_fbo.cpp; sourceTree = "<group>"; };
 		9A8B64E524CCAAFC00A93185 /* context_fbo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = context_fbo.h; sourceTree = "<group>"; };
@@ -167,7 +167,7 @@
 		9ABBB6F92AEB9F58007611C5 /* context_cgl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = context_cgl.h; sourceTree = "<group>"; };
 		9ADD666526B6264900D11298 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		9ADD666926B6266800D11298 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
-		9ADDBC122A41594200C53EEB /* glad.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = glad.xcodeproj; path = ../../../port/graphics3d/glad/glad.xcodeproj; sourceTree = "<group>"; };
+		9ADDBC122A41594200C53EEB /* glad.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = glad.xcodeproj; path = ../../../port/graphics3d/glad/glad.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

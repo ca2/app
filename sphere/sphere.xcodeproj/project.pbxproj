@@ -237,7 +237,7 @@
 		07B657FC190F3CCC002DAADE /* sphere_iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "sphere_iosTests-Info.plist"; sourceTree = "<group>"; };
 		07B657FE190F3CCC002DAADE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		07B65800190F3CCC002DAADE /* sphere_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sphere_iosTests.m; sourceTree = "<group>"; };
-		07DA476E1B71ED0F006F27E6 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/.xcodeproj; sourceTree = "<group>"; };
+		07DA476E1B71ED0F006F27E6 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/.xcodeproj; sourceTree = SOURCE_ROOT; };
 		07DA47D71B71F03B006F27E6 /* console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = console.h; sourceTree = "<group>"; };
 		07DA47DB1B71F03B006F27E6 /* console_prompt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = console_prompt.h; sourceTree = "<group>"; };
 		07DA47DD1B71F03B006F27E6 /* console_prompt_document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = console_prompt_document.h; sourceTree = "<group>"; };
@@ -409,7 +409,7 @@
 		9AD186E21F9C3FB5001CEA8E /* auracharguess.vcxproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = auracharguess.vcxproj; sourceTree = "<group>"; };
 		9AD186E31F9C3FB5001CEA8E /* auracharguess.vcxproj.filters */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = auracharguess.vcxproj.filters; sourceTree = "<group>"; };
 		9AD186E41F9C3FB5001CEA8E /* auracharguess.vcxproj.user */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = auracharguess.vcxproj.user; sourceTree = "<group>"; };
-		9AD186E51F9C3FB5001CEA8E /* auracharguess.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = auracharguess.xcodeproj; sourceTree = "<group>"; };
+		9AD186E51F9C3FB5001CEA8E /* auracharguess.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = auracharguess.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9AD186E91F9C3FB6001CEA8E /* charguess.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = charguess.def; sourceTree = "<group>"; };
 		9AD186EA1F9C3FB6001CEA8E /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		9AD186EB1F9C3FB6001CEA8E /* m_auracharguess.vcxproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = m_auracharguess.vcxproj; sourceTree = "<group>"; };

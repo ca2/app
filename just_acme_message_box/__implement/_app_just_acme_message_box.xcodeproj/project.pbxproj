@@ -208,7 +208,7 @@
 		9AA3F98F2A95608D004283CA /* libacme_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA3F9902A95608D004283CA /* libapex_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA3F9912A95608D004283CA /* libaura_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AA828A82CAF860100DA11E9 /* acme_macos.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = acme_macos.xcodeproj; path = "../../../../operating_system/operating_system-macos/acme_macos/acme_macos.xcodeproj"; sourceTree = "<group>"; };
+		9AA828A82CAF860100DA11E9 /* acme_macos.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = acme_macos.xcodeproj; path = "../../../../operating_system/operating_system-macos/acme_macos/acme_macos.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		9AC396F925195DAB0036B92A /* libapex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapex.dylib; path = ../../time/macos/libapex.dylib; sourceTree = "<group>"; };
 		9AC396FA25195DAB0036B92A /* libacme.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme.dylib; path = ../../time/macos/libacme.dylib; sourceTree = "<group>"; };
 		9AC396FF25195DEB0036B92A /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };

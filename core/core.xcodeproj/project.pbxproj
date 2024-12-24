@@ -1056,7 +1056,7 @@
 		9AE65599252A6E7A00BED5B8 /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE6559B252A6E7A00BED5B8 /* libbase.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libbase.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE6559D252A6E7A00BED5B8 /* libbred.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libbred.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AE655A2252A734400BED5B8 /* bred.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = bred.xcodeproj; path = ../bred/bred.xcodeproj; sourceTree = "<group>"; };
+		9AE655A2252A734400BED5B8 /* bred.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = bred.xcodeproj; path = ../bred/bred.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9AFC6C1B28CBF28E00E3CA82 /* still.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = still.h; sourceTree = "<group>"; };
 		9AFC6C1C28CBF28E00E3CA82 /* still.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = still.cpp; sourceTree = "<group>"; };
 		9AFC6C1F28CBF30B00E3CA82 /* network_configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = network_configuration.cpp; sourceTree = "<group>"; };

@@ -54,7 +54,7 @@
 
 /* Begin PBXFileReference section */
 		9A8C4E0E2783D18D000C8587 /* __acme.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = __acme.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A8C4E182783D21A000C8587 /* acme.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = acme.xcodeproj; sourceTree = "<group>"; };
+		9A8C4E182783D21A000C8587 /* acme.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = acme.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A8C4E282783D293000C8587 /* libidn.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libidn.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 

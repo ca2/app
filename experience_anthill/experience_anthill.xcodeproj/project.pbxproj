@@ -106,7 +106,7 @@
 		9A6716831D1558630069A961 /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = "../../app/base/build/Debug-iphoneos/libbase.dylib"; sourceTree = "<group>"; };
 		9A6716861D15586E0069A961 /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = "../../app/axis/build/Debug-iphoneos/libaxis.dylib"; sourceTree = "<group>"; };
 		9A6716881D1558770069A961 /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-ios-hcjyrbebieoraofrrypdpkveyzyc/Build/Products/Debug-iphonesimulator/libaura.dylib"; sourceTree = "<group>"; };
-		9A833BA624F5423900C079FB /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../base/base.xcodeproj; sourceTree = "<group>"; };
+		9A833BA624F5423900C079FB /* base.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = base.xcodeproj; path = ../base/base.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A8C7DE427D1449200025329 /* _factory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
 		9A8EB48B24498E390056E362 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A8F890E240C031B0097E249 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };

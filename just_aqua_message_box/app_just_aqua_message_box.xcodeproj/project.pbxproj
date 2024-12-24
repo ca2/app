@@ -125,7 +125,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9A1CC43E2CF30B06004A00CB /* aqua.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aqua.xcodeproj; path = ../aqua/aqua.xcodeproj; sourceTree = "<group>"; };
+		9A1CC43E2CF30B06004A00CB /* aqua.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aqua.xcodeproj; path = ../aqua/aqua.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A1CC4432CF30BA3004A00CB /* aqua.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aqua.xcodeproj; path = /Users/camilo/workspace/main/source/app/aqua/aqua.xcodeproj; sourceTree = "<absolute>"; };
 		9A1CC4582CF30DF9004A00CB /* app_just_message_box.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = app_just_message_box.xcodeproj; path = ../just_message_box/app_just_message_box.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A1CC45B2CF30E06004A00CB /* app_just_message_box.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = app_just_message_box.xcodeproj; path = /Users/camilo/workspace/main/source/app/just_message_box/app_just_message_box.xcodeproj; sourceTree = "<absolute>"; };

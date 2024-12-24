@@ -100,14 +100,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07A371601B25DE2A00E4F888 /* axisfreeimage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreeimage.xcodeproj; path = ../freeimage/axisfreeimage.xcodeproj; sourceTree = "<group>"; };
+		07A371601B25DE2A00E4F888 /* axisfreeimage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreeimage.xcodeproj; path = ../freeimage/axisfreeimage.xcodeproj; sourceTree = SOURCE_ROOT; };
 		07A371891B25E34D00E4F888 /* PluginPNG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginPNG.cpp; sourceTree = "<group>"; };
 		07B65764190F3CA2002DAADE /* libios_image_decode_png.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_image_decode_png.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B65773190F3CA2002DAADE /* axispng_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = axispng_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A331C4A1D4BC84C00255105 /* libaxispng.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxispng.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/aura-osx-dyhrstllhpqabhamryoxyuxzxxbr/Build/Products/Debug/libaxispng.dylib"; sourceTree = "<group>"; };
 		9A574B9816AAB906000CC4EF /* libimage_decode_png.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libimage_decode_png.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A986D011D226812001F4C04 /* libios_axispng.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axispng.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-bmuegusfgbffmoeixicbxhlnbzop/Build/Products/Debug-iphonesimulator/libios_axispng.dylib"; sourceTree = "<group>"; };
-		9A9F0A551D7F346600ED6D8A /* axispng.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axispng.xcodeproj; path = ../../third/png/axispng.xcodeproj; sourceTree = "<group>"; };
+		9A9F0A551D7F346600ED6D8A /* axispng.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axispng.xcodeproj; path = ../../third/png/axispng.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

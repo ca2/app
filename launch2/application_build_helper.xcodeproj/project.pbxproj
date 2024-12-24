@@ -282,13 +282,13 @@
 		9A1049D927795239008570C4 /* libapex_apple.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex_apple.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1049DE27795257008570C4 /* libacme_macos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_macos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1049DF27795257008570C4 /* libapex_posix.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex_posix.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A1BD6B72A0079A300152CD1 /* folder_zip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = folder_zip.xcodeproj; path = ../../app/folder_zip/folder_zip.xcodeproj; sourceTree = "<group>"; };
+		9A1BD6B72A0079A300152CD1 /* folder_zip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = folder_zip.xcodeproj; path = ../../app/folder_zip/folder_zip.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A1BD6E72A007AE800152CD1 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		9A2D758E2AAB6C4700DFCE25 /* openssl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = openssl.h; sourceTree = "<group>"; };
 		9A2D758F2AAB6C4700DFCE25 /* openssl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = openssl.cpp; sourceTree = "<group>"; };
 		9A2D75902AAB6C4700DFCE25 /* ffmpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffmpeg.h; sourceTree = "<group>"; };
 		9A2D75912AAB6C4800DFCE25 /* ffmpeg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ffmpeg.cpp; sourceTree = "<group>"; };
-		9A2D759C2AAB77C900DFCE25 /* compress_zlib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = compress_zlib.xcodeproj; path = ../../app/compress_zlib/compress_zlib.xcodeproj; sourceTree = "<group>"; };
+		9A2D759C2AAB77C900DFCE25 /* compress_zlib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = compress_zlib.xcodeproj; path = ../../app/compress_zlib/compress_zlib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A3BFB9F29C83328005DE2BF /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
 		9A3BFBA129C83328005DE2BF /* project_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = project_list.h; sourceTree = "<group>"; };
 		9A3BFBA229C83328005DE2BF /* project_list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = project_list.cpp; sourceTree = "<group>"; };
@@ -379,7 +379,7 @@
 		9AE47B142A73DBA000AA37BC /* lame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
 		9AE47B152A73DBA000AA37BC /* fdk_aac.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fdk_aac.cpp; sourceTree = "<group>"; };
 		9AE6DED92962A36D008A1335 /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
-		9AE6DEDB2962A69E008A1335 /* acme_macos.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = acme_macos.xcodeproj; path = "../../../operating_system/operating_system-macos/acme_macos/acme_macos.xcodeproj"; sourceTree = "<group>"; };
+		9AE6DEDB2962A69E008A1335 /* acme_macos.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = acme_macos.xcodeproj; path = "../../../operating_system/operating_system-macos/acme_macos/acme_macos.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		9AE6DEE32962A799008A1335 /* libacme_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AFD8066297B55A700BAD9DD /* lib_idn.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = lib_idn.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AFD8068297B55AE00BAD9DD /* lib_acme_posix.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = lib_acme_posix.a; sourceTree = BUILT_PRODUCTS_DIR; };

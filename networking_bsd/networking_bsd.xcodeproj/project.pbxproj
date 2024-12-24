@@ -227,7 +227,7 @@
 		9ABBFE992B3FFC760036DF8C /* listen_socket_impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = listen_socket_impl.h; sourceTree = "<group>"; };
 		9ABBFE9A2B3FFC770036DF8C /* listen_socket_impl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = listen_socket_impl.cpp; sourceTree = "<group>"; };
 		9AC019342748A002006BEBCC /* libnetworking_bsd.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libnetworking_bsd.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AC019DC2748A7D4006BEBCC /* apex.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex.xcodeproj; path = ../apex/apex.xcodeproj; sourceTree = "<group>"; };
+		9AC019DC2748A7D4006BEBCC /* apex.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex.xcodeproj; path = ../apex/apex.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

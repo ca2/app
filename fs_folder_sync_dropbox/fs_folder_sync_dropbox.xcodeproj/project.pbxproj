@@ -60,7 +60,7 @@
 		9A668F042C5829610068BD50 /* fs_folder_sync.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fs_folder_sync.cpp; sourceTree = "<group>"; };
 		9A668F052C5829610068BD50 /* fs_folder_sync.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fs_folder_sync.h; sourceTree = "<group>"; };
 		9A668F092C5829610068BD50 /* resource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = resource.h; sourceTree = "<group>"; };
-		9A668F1E2C582A520068BD50 /* apex.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex.xcodeproj; path = ../apex/apex.xcodeproj; sourceTree = "<group>"; };
+		9A668F1E2C582A520068BD50 /* apex.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex.xcodeproj; path = ../apex/apex.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A668F2D2C582A690068BD50 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A668F322C582B9B0068BD50 /* fs_folder_sync_other.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fs_folder_sync_other.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */

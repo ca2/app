@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -305,6 +305,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1520;
+				ORGANIZATIONNAME = "ca2 Software Development";
 				TargetAttributes = {
 					9AE12E8C2661E9B4009F476A = {
 						CreatedOnToolsVersion = 12.5;
@@ -312,7 +313,7 @@
 				};
 			};
 			buildConfigurationList = 9AE12E882661E9B4009F476A /* Build configuration list for PBXProject "regular_expression_pcre2" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (

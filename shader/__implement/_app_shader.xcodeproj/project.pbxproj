@@ -25,7 +25,6 @@
 		9A46D3D926785E7E000B22D0 /* libaura_posix.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A46D3BD26785E7D000B22D0 /* libaura_posix.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A46D3DB26785E7E000B22D0 /* libdraw2d_quartz2d.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC2D0F126540F9700CC8096 /* libdraw2d_quartz2d.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A46D3DF26785E7E000B22D0 /* libidn.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A46D3BE26785E7D000B22D0 /* libidn.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		9A46D3E126785E7E000B22D0 /* libnode_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A6A475F2660E531004ED97A /* libnode_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A46D3E326785E7E000B22D0 /* libwindowing_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A46D3BF26785E7D000B22D0 /* libwindowing_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A46D3E526785E7E000B22D0 /* libwrite_text_quartz2d.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A6A47852660E5DE004ED97A /* libwrite_text_quartz2d.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A4E96B12785387B00B74C76 /* libfolder_zip.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A4E96AA278537A900B74C76 /* libfolder_zip.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -45,6 +44,8 @@
 		9AB15BE729A87A0B00DFDF90 /* libacme_darwin.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AB15BE329A87A0B00DFDF90 /* libacme_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AB15BE929A87A0B00DFDF90 /* libapex_darwin.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AB15BE429A87A0B00DFDF90 /* libapex_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AB15BEB29A87A0B00DFDF90 /* libaura_darwin.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AB15BE529A87A0B00DFDF90 /* libaura_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AEC3EB22D1AA00300F9E621 /* liboperating_ambient_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A0CCDC82D1A87AB001FD7FE /* liboperating_ambient_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AEC3EBD2D1AA00C00F9E621 /* libnode_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AEC3EBB2D1AA00C00F9E621 /* libnode_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 070B8EE91B6E53F900D26137;
 			remoteInfo = "Hello Multiverse!!";
+		};
+		9A0CCDC72D1A87AB001FD7FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A499D0A2D1A60E600FB4C3D /* operating_ambient_macos.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A1CC36C2CF2BE37004A00CB;
+			remoteInfo = operating_ambient_macos;
+		};
+		9A0CCDCB2D1A897F001FD7FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A499D0A2D1A60E600FB4C3D /* operating_ambient_macos.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A1CC36B2CF2BE37004A00CB;
+			remoteInfo = operating_ambient_macos;
 		};
 		9A1FB54528713D350042849A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -111,13 +126,6 @@
 			remoteGlobalIDString = 9AC97ECF2A71B2A700B1BCF3;
 			remoteInfo = static_crypto_openssl;
 		};
-		9A6A475E2660E531004ED97A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AC2D0F626540F9700CC8096 /* node_macos.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AC2D16F26542E1000CC8096;
-			remoteInfo = node_macos;
-		};
 		9A6A47632660E578004ED97A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AC2D0EA26540F9700CC8096 /* draw2d_quartz2d.xcodeproj */;
@@ -152,13 +160,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9A574B9716AAB906000CC4EF;
 			remoteInfo = gpu_opengl;
-		};
-		9A8C4DED2783BEC7000C8587 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AC2D0F626540F9700CC8096 /* node_macos.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9AC2D16E26542E1000CC8096;
-			remoteInfo = node_macos;
 		};
 		9A8C4DF82783BEEC000C8587 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -220,6 +221,7 @@
 			files = (
 				9A4E96B12785387B00B74C76 /* libfolder_zip.dylib in Embed Libraries */,
 				9A842C55271BD6BD00C64F6F /* libapp_shader.dylib in Embed Libraries */,
+				9AEC3EB22D1AA00300F9E621 /* liboperating_ambient_macos.dylib in Embed Libraries */,
 				9AB15BEB29A87A0B00DFDF90 /* libaura_darwin.dylib in Embed Libraries */,
 				9A90BA352B549617002BFC9E /* libarchive.dylib in Embed Libraries */,
 				9A46D3DF26785E7E000B22D0 /* libidn.dylib in Embed Libraries */,
@@ -232,10 +234,10 @@
 				9A46D3C126785E7D000B22D0 /* libacme.dylib in Embed Libraries */,
 				9A46D3D726785E7E000B22D0 /* libaura_macos.dylib in Embed Libraries */,
 				9A46D3D326785E7E000B22D0 /* libaura.dylib in Embed Libraries */,
-				9A46D3E126785E7E000B22D0 /* libnode_macos.dylib in Embed Libraries */,
 				9A46D3C326785E7D000B22D0 /* libacme_apple.dylib in Embed Libraries */,
 				9A8C4E022783C27D000C8587 /* libcrypto.dylib in Embed Libraries */,
 				9A8C4E032783C287000C8587 /* libssl.dylib in Embed Libraries */,
+				9AEC3EBD2D1AA00C00F9E621 /* libnode_macos.dylib in Embed Libraries */,
 				9A46D3CB26785E7D000B22D0 /* libapex_apple.dylib in Embed Libraries */,
 				9A46D3CF26785E7E000B22D0 /* libapex_posix.dylib in Embed Libraries */,
 				9AB15BE929A87A0B00DFDF90 /* libapex_darwin.dylib in Embed Libraries */,
@@ -276,6 +278,7 @@
 		9A46D3BD26785E7D000B22D0 /* libaura_posix.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura_posix.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A46D3BE26785E7D000B22D0 /* libidn.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libidn.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A46D3BF26785E7D000B22D0 /* libwindowing_macos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libwindowing_macos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A499D0A2D1A60E600FB4C3D /* operating_ambient_macos.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = operating_ambient_macos.xcodeproj; path = "../../../../operating_system/operating_system-macos/operating_ambient_macos/operating_ambient_macos.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		9A4E96A3278537A900B74C76 /* folder_zip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = folder_zip.xcodeproj; path = ../../folder_zip/folder_zip.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A6A47712660E5B3004ED97A /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A6A47852660E5DE004ED97A /* libwrite_text_quartz2d.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libwrite_text_quartz2d.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -297,7 +300,7 @@
 		9AB15BE529A87A0B00DFDF90 /* libaura_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC01D6D2748C477006BEBCC /* crypto_openssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = crypto_openssl.xcodeproj; path = ../../crypto_openssl/crypto_openssl.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9AC2D0EA26540F9700CC8096 /* draw2d_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = draw2d_quartz2d.xcodeproj; path = "../../../../operating_system/operating_system-apple/draw2d_quartz2d/draw2d_quartz2d.xcodeproj"; sourceTree = SOURCE_ROOT; };
-		9AC2D0F626540F9700CC8096 /* node_macos.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = node_macos.xcodeproj; path = "../../../../operating_system/operating_system-macos/node_macos/node_macos.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		9AEC3EBB2D1AA00C00F9E621 /* libnode_macos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libnode_macos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,7 +335,7 @@
 				9AC2D0EA26540F9700CC8096 /* draw2d_quartz2d.xcodeproj */,
 				9A4E96A3278537A900B74C76 /* folder_zip.xcodeproj */,
 				9A8AC30A28B320F0003CA265 /* gpu_opengl.xcodeproj */,
-				9AC2D0F626540F9700CC8096 /* node_macos.xcodeproj */,
+				9A499D0A2D1A60E600FB4C3D /* operating_ambient_macos.xcodeproj */,
 				9A8C4DF42783BEEC000C8587 /* write_text_quartz2d.xcodeproj */,
 				9A8C5BD62783E7A9000C8587 /* __implement */,
 				070B8EEB1B6E53F900D26137 /* Products */,
@@ -347,6 +350,14 @@
 			children = (
 				070B8EEA1B6E53F900D26137 /* _app_shader.app */,
 				070B8EFD1B6E53FA00D26137 /* Hello Multiverse!!Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A0CCD2F2D1A87AB001FD7FE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A0CCDC82D1A87AB001FD7FE /* liboperating_ambient_macos.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -449,17 +460,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9AC2D0F726540F9700CC8096 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A6A475F2660E531004ED97A /* libnode_macos.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9ADF1D2922C16DBB00456537 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9AEC3EBB2D1AA00C00F9E621 /* libnode_macos.dylib */,
 				9A3276042C6DAEC200EB43C5 /* libnano_dynamic_library_dyld.dylib */,
 				9A90BA332B549617002BFC9E /* libarchive.dylib */,
 				9A9A15962AFC240600FA9BEB /* libdarwin.dylib */,
@@ -510,12 +514,12 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A0CCDCC2D1A897F001FD7FE /* PBXTargetDependency */,
 				9A8AC31728B3211A003CA265 /* PBXTargetDependency */,
 				9A4E96D62785447200B74C76 /* PBXTargetDependency */,
 				9A4E96D4278542B100B74C76 /* PBXTargetDependency */,
 				9A8C4DFD2783BF25000C8587 /* PBXTargetDependency */,
 				9A8C4DFB2783BF07000C8587 /* PBXTargetDependency */,
-				9A8C4DEE2783BEC7000C8587 /* PBXTargetDependency */,
 				9A6A47642660E578004ED97A /* PBXTargetDependency */,
 			);
 			name = _app_shader;
@@ -549,7 +553,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1540;
-				ORGANIZATIONNAME = "ca2 Desenvolvimento de Software Ltdal";
+				ORGANIZATIONNAME = "ca2 Software Development";
 				TargetAttributes = {
 					070B8EE91B6E53F900D26137 = {
 						CreatedOnToolsVersion = 6.4;
@@ -563,7 +567,7 @@
 				};
 			};
 			buildConfigurationList = 070B8EE51B6E53F900D26137 /* Build configuration list for PBXProject "_app_shader" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -595,8 +599,8 @@
 					ProjectRef = 9A8AC30A28B320F0003CA265 /* gpu_opengl.xcodeproj */;
 				},
 				{
-					ProductGroup = 9AC2D0F726540F9700CC8096 /* Products */;
-					ProjectRef = 9AC2D0F626540F9700CC8096 /* node_macos.xcodeproj */;
+					ProductGroup = 9A0CCD2F2D1A87AB001FD7FE /* Products */;
+					ProjectRef = 9A499D0A2D1A60E600FB4C3D /* operating_ambient_macos.xcodeproj */;
 				},
 				{
 					ProductGroup = 9A8C4DF52783BEEC000C8587 /* Products */;
@@ -612,6 +616,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		9A0CCDC82D1A87AB001FD7FE /* liboperating_ambient_macos.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = liboperating_ambient_macos.dylib;
+			remoteRef = 9A0CCDC72D1A87AB001FD7FE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9A1FB54628713D350042849A /* libios_crypto_openssl.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -652,13 +663,6 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libstatic_crypto_openssl.dylib;
 			remoteRef = 9A4EF46E2AE348610048F22F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A6A475F2660E531004ED97A /* libnode_macos.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libnode_macos.dylib;
-			remoteRef = 9A6A475E2660E531004ED97A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9A8AC31128B320F0003CA265 /* libgpu_opengl.dylib */ = {
@@ -763,6 +767,11 @@
 			target = 070B8EE91B6E53F900D26137 /* _app_shader */;
 			targetProxy = 070B8EFE1B6E53FA00D26137 /* PBXContainerItemProxy */;
 		};
+		9A0CCDCC2D1A897F001FD7FE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = operating_ambient_macos;
+			targetProxy = 9A0CCDCB2D1A897F001FD7FE /* PBXContainerItemProxy */;
+		};
 		9A4E96D4278542B100B74C76 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = app_shader;
@@ -782,11 +791,6 @@
 			isa = PBXTargetDependency;
 			name = gpu_opengl;
 			targetProxy = 9A8AC31628B3211A003CA265 /* PBXContainerItemProxy */;
-		};
-		9A8C4DEE2783BEC7000C8587 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = node_macos;
-			targetProxy = 9A8C4DED2783BEC7000C8587 /* PBXContainerItemProxy */;
 		};
 		9A8C4DFB2783BF07000C8587 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

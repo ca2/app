@@ -45,7 +45,6 @@
 		9AE4728229A13F3E00F2269A /* libapp_app.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A46D31D2678453B000B22D0 /* libapp_app.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AE6DF282962ADEF008A1335 /* application_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6DF272962ADEE008A1335 /* application_main.cpp */; };
 		9AEA1C692760261D006437A3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AEA1C652760261D006437A3 /* Images.xcassets */; };
-		9AEC3EA22D1A9F2300F9E621 /* liboperating_ambient_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A462DB62CF37AA100426444 /* liboperating_ambient_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AEC3EA52D1A9F2D00F9E621 /* libnode_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AEC3EA32D1A9F2D00F9E621 /* libnode_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -206,7 +205,6 @@
 				9A4E9687278532DD00B74C76 /* libapex_posix.dylib in Embed Libraries */,
 				9A1CF4FE276161C900802DB8 /* libacme.dylib in Embed Libraries */,
 				9A4E966A278531FF00B74C76 /* libaqua.dylib in Embed Libraries */,
-				9AEC3EA22D1A9F2300F9E621 /* liboperating_ambient_macos.dylib in Embed Libraries */,
 				9A8B170829A10AAE00D14979 /* libapex_darwin.dylib in Embed Libraries */,
 			);
 			name = "Embed Libraries";

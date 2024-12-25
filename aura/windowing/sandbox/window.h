@@ -76,7 +76,7 @@ namespace sandbox_windowing
       //virtual long get_state();
       virtual bool is_iconic() override;
       virtual bool is_window_visible() override;
-      bool _configure_window_unlocked(const class ::zorder & zorder, const ::user::e_activation & useractivation, bool bNoZorder, ::e_display edisplay) override;
+      bool _configure_window_unlocked(const class ::zorder & zorder, const ::user::activation & useractivation, bool bNoZorder, ::e_display edisplay) override;
       //virtual iptr get_window_long_ptr(int nIndex);
       //virtual iptr set_window_long_ptr(int nIndex, iptr l);
       virtual bool client_to_screen(::int_point* ppoint) override;
@@ -110,7 +110,7 @@ namespace sandbox_windowing
       void SetInternalFocus() override;
 
 
-      void set_foreground_window() override;
+      void set_foreground_window(::user::activation_token * puseractivationtoken) override;
 
 
       bool has_mouse_capture() override;
@@ -153,7 +153,7 @@ namespace sandbox_windowing
 
       //bool set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::e_activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide) override;
 
-      bool _set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy, const ::user::e_activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, unsigned int nOverrideFlags = 0) override;
+      bool _set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy, const ::user::activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, unsigned int nOverrideFlags = 0) override;
 
 
       //virtual comparable_array < Atom > wm_get_list_raw(windowing_android_WINDOW_MEMBER Atom atomList);

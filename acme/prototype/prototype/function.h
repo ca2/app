@@ -629,7 +629,7 @@ public:
       void get_debug_title(char * sz, character_count c) const override
       {
 
-         ::strncpy(sz, "a procedure", c);
+         ::string_count_copy(sz, "a procedure", c);
 
       }
 
@@ -853,7 +853,7 @@ public:
       void get_debug_title(char * sz, character_count c) const override
       {
 
-         ::strncpy(sz, "function with argument(s) and return type", c);
+         ::string_count_copy(sz, "function with argument(s) and return type", c);
 
       }
 
@@ -1090,7 +1090,7 @@ public:
       void get_debug_title(char * sz, character_count c) const override
       {
 
-         ::strncpy(sz, "function with argument(s) and no return type", c);
+         ::string_count_copy(sz, "function with argument(s) and no return type", c);
 
       }
 

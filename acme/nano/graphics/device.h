@@ -6,7 +6,7 @@
 
 #include "acme/operating_system/x11/_.h"
 #include "acme/prototype/prototype/particle.h"
-
+#include "acme/prototype/geometry2d/size.h"
 
 
 namespace nano
@@ -21,6 +21,9 @@ namespace nano
          virtual public ::particle
       {
       public:
+         
+         
+         ::int_size     m_size;
 
 
          device();
@@ -34,7 +37,7 @@ namespace nano
 
          virtual void resize(const ::int_size & size);
 
-         virtual void attach(void * posdata);
+         virtual void attach(void * posdata, const ::int_size & size);
 
 
          virtual void on_begin_draw();

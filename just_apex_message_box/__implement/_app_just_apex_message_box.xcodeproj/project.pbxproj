@@ -90,6 +90,20 @@
 			remoteGlobalIDString = 9A1BD6E12A0079D400152CD1;
 			remoteInfo = static_folder_zip;
 		};
+		9AE7F6692D1BF7EB001633B5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A52443E2CDAD3F8006ED868 /* app_just_apex_message_box.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A48898524EB48DE00119EC4;
+			remoteInfo = app_just_apex_message_box;
+		};
+		9AE7F66B2D1BF7FE001633B5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A5244512CDADB7B006ED868 /* innate_ui_appkit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A2FCE042C9D3ADC000CF701;
+			remoteInfo = innate_ui_appkit;
+		};
 		9AEC3B722D1A8B1D00F9E621 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A5244512CDADB7B006ED868 /* innate_ui_appkit.xcodeproj */;
@@ -364,6 +378,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				9AE7F66C2D1BF7FE001633B5 /* PBXTargetDependency */,
+				9AE7F66A2D1BF7EB001633B5 /* PBXTargetDependency */,
 				9A0CCDDC2D1A8A83001FD7FE /* PBXTargetDependency */,
 				9A866051296671ED000C82F0 /* PBXTargetDependency */,
 			);
@@ -560,6 +576,16 @@
 			isa = PBXTargetDependency;
 			name = folder_zip;
 			targetProxy = 9A866050296671ED000C82F0 /* PBXContainerItemProxy */;
+		};
+		9AE7F66A2D1BF7EB001633B5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = app_just_apex_message_box;
+			targetProxy = 9AE7F6692D1BF7EB001633B5 /* PBXContainerItemProxy */;
+		};
+		9AE7F66C2D1BF7FE001633B5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = innate_ui_appkit;
+			targetProxy = 9AE7F66B2D1BF7FE001633B5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

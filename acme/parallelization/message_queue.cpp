@@ -97,6 +97,13 @@ void message_queue::post_message(const MESSAGE & message)
    _synchronous_lock synchronouslock(this->synchronization());
 
    m_messagea.add(message);
+   
+   if(m_messagea.size() > 100)
+   {
+      
+      information() << "Why m_messagea.size() > 100, let's figure out...";
+      
+   }
 
    if(m_eflagElement & (1ll << 36))
    {

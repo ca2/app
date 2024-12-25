@@ -282,7 +282,7 @@ public:
    virtual void system_pre_translate_message(::message::message * pmessage);
    //virtual void thread_loop(); // low level thread loop
    bool handle_messages() override;     // low level step
-   virtual bool handle_message();     // low level message pump
+   virtual bool handle_message(bool & bContinue);     // low level message pump
    //virtual bool pump_runnable();
    bool task_iteration() override;
    using channel::get_message;

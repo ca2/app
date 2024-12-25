@@ -589,11 +589,15 @@ bool thread::handle_messages()
 
    //}
    //else
+   
+   bool bContinue = true;
+   
+   while(handle_message(bContinue))
    {
 
-      return handle_message();
-
    }
+   
+   return bContinue;
 
 }
 
@@ -1258,7 +1262,7 @@ bool thread::process_thread_message(::message::message* pmessage)
 //}
 
 
-bool thread::handle_message()
+bool thread::handle_message(bool & bContinue)
 {
 
    if (peek_message(&m_message, nullptr, 0, 0, true))
@@ -1271,6 +1275,8 @@ bool thread::handle_message()
             "\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " +
             ::as_string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" +
             ::as_string((huge_natural)::current_itask()) + ")\n\n\n");
+         
+         bContinue = false;
 
          return false;
 
@@ -1282,7 +1288,7 @@ bool thread::handle_message()
 
    }
 
-   return true;
+   return false;
 
 }
 

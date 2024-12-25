@@ -1147,7 +1147,7 @@ namespace user
 
          m_iRedrawMessageCount = 0;
 
-         information() << "graphics_thread_iteration (A2)";
+         //information() << "graphics_thread_iteration (A2)";
 
          //information() << "graphics_thread_iteration has_graphical_output_purpose";
 
@@ -1163,7 +1163,7 @@ namespace user
 
          }
 
-         information() << "graphics_thread_iteration (A4)";
+         //information() << "graphics_thread_iteration (A4)";
             
          if ((
             m_puserinteraction->const_layout().sketch().is_screen_visible()
@@ -1245,7 +1245,7 @@ namespace user
 
 #endif
 
-                  information() << "pwindow->window_update_screen();";
+                  //information() << "pwindow->window_update_screen();";
 
                   pwindow->window_update_screen();
 

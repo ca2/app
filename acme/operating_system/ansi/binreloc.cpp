@@ -185,7 +185,7 @@ _br_find_exe (BrInitError *error)
       return nullptr;
    }
 
-   path = strdup (path);
+   path = ::c::strdup (path);
    free (line);
    fclose (f);
    return path;
@@ -299,7 +299,7 @@ _br_find_exe_for_symbol (const void *symbol, BrInitError *error)
    if (found == nullptr)
       return (char *) nullptr;
    else
-      return strdup (found);
+      return ::c::strdup (found);
 #endif /* ENABLE_BINRELOC */
 }
 
@@ -378,11 +378,11 @@ br_find_exe (const char *default_exe)
    {
       /* BinReloc is not initialized. */
       if (default_exe != (const char *) nullptr)
-         return strdup (default_exe);
+         return ::c::strdup (default_exe);
       else
          return (char *) nullptr;
    }
-   return strdup (exe);
+   return ::c::strdup (exe);
 }
 
 
@@ -407,7 +407,7 @@ br_find_exe_dir (const char *default_dir)
    {
       /* BinReloc not initialized. */
       if (default_dir != nullptr)
-         return strdup (default_dir);
+         return ::c::strdup (default_dir);
       else
          return (char *) nullptr;
    }
@@ -438,7 +438,7 @@ br_find_prefix (const char *default_prefix)
    {
       /* BinReloc not initialized. */
       if (default_prefix != (const char *) nullptr)
-         return strdup (default_prefix);
+         return ::c::strdup (default_prefix);
       else
          return (char *) nullptr;
    }
@@ -473,7 +473,7 @@ br_find_bin_dir (const char *default_bin_dir)
    {
       /* BinReloc not initialized. */
       if (default_bin_dir != (const char *) nullptr)
-         return strdup (default_bin_dir);
+         return ::c::strdup (default_bin_dir);
       else
          return (char *) nullptr;
    }
@@ -507,7 +507,7 @@ br_find_sbin_dir (const char *default_sbin_dir)
    {
       /* BinReloc not initialized. */
       if (default_sbin_dir != (const char *) nullptr)
-         return strdup (default_sbin_dir);
+         return ::c::strdup (default_sbin_dir);
       else
          return (char *) nullptr;
    }
@@ -542,7 +542,7 @@ br_find_data_dir (const char *default_data_dir)
    {
       /* BinReloc not initialized. */
       if (default_data_dir != (const char *) nullptr)
-         return strdup (default_data_dir);
+         return ::c::strdup (default_data_dir);
       else
          return (char *) nullptr;
    }
@@ -576,7 +576,7 @@ br_find_locale_dir (const char *default_locale_dir)
    {
       /* BinReloc not initialized. */
       if (default_locale_dir != (const char *) nullptr)
-         return strdup (default_locale_dir);
+         return ::c::strdup (default_locale_dir);
       else
          return (char *) nullptr;
    }
@@ -610,7 +610,7 @@ br_find_lib_dir (const char *default_lib_dir)
    {
       /* BinReloc not initialized. */
       if (default_lib_dir != (const char *) nullptr)
-         return strdup (default_lib_dir);
+         return ::c::strdup (default_lib_dir);
       else
          return (char *) nullptr;
    }
@@ -644,7 +644,7 @@ br_find_libexec_dir (const char *default_libexec_dir)
    {
       /* BinReloc not initialized. */
       if (default_libexec_dir != (const char *) nullptr)
-         return strdup (default_libexec_dir);
+         return ::c::strdup (default_libexec_dir);
       else
          return (char *) nullptr;
    }
@@ -678,7 +678,7 @@ br_find_etc_dir (const char *default_etc_dir)
    {
       /* BinReloc not initialized. */
       if (default_etc_dir != (const char *) nullptr)
-         return strdup (default_etc_dir);
+         return ::c::strdup (default_etc_dir);
       else
          return (char *) nullptr;
    }
@@ -710,8 +710,8 @@ br_strcat (const char *str1, const char *str2)
    if (str2 == nullptr)
       str2 = "";
 
-   len1 = strlen (str1);
-   len2 = strlen (str2);
+   len1 = string_get_length(str1);
+   len2 = string_get_length(str2);
 
    result = (char *) malloc (len1 + len2 + 1);
    ::memory_copy (result, str1, len1);
@@ -729,7 +729,7 @@ br_build_path (const char *dir, const char *file)
    size_t len;
    int must_free = 0;
 
-   len = strlen (dir);
+   len = string_get_length (dir);
    if (len > 0 && dir[len - 1] != '/')
    {
       dir2 = br_strcat (dir, "/");
@@ -755,9 +755,9 @@ br_strndup (const char *str, size_t size)
    if (str == (const char *) nullptr)
       return (char *) nullptr;
 
-   len = strlen (str);
+   len = string_get_length (str);
    if (len == 0)
-      return strdup ("");
+      return ::c::strdup ("");
    if (size > len)
       size = len;
 
@@ -788,9 +788,9 @@ br_dirname (const char *path)
    if (path == (const char *) nullptr)
       return (char *) nullptr;
 
-   end = strrchr ((char *) path, '/');
+   end = (char *) string_find_character((char *) path, '/');
    if (end == (const char *) nullptr)
-      return strdup (".");
+      return ::c::strdup (".");
 
    while (end > path && *end == '/')
       end--;
@@ -798,7 +798,7 @@ br_dirname (const char *path)
    if (result[0] == 0)
    {
       free (result);
-      return strdup ("/");
+      return ::c::strdup ("/");
    }
    else
       return result;

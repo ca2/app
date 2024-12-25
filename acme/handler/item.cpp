@@ -38,7 +38,7 @@ void item::get_debug_title(char * sz, character_count c) const
       get_e_element_text(m_item.m_eelement).c_str(),
       m_item.m_iItem);
 
-   strncpy(sz, strTitle.c_str(), c);
+   ::string_count_copy(sz, strTitle.c_str(), c);
 
 
 }

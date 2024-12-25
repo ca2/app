@@ -142,7 +142,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		074BD0CA1B5F406300219723 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../aura/.xcodeproj; sourceTree = "<group>"; };
+		074BD0CA1B5F406300219723 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../aura/.xcodeproj; sourceTree = SOURCE_ROOT; };
 		07B098071B848AA9002AC4F0 /* client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = client.cpp; sourceTree = "<group>"; };
 		07B098081B848AA9002AC4F0 /* cmdline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cmdline.cpp; sourceTree = "<group>"; };
 		07B098091B848AA9002AC4F0 /* compatibility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compatibility.cpp; sourceTree = "<group>"; };
@@ -164,9 +164,9 @@
 		07FACBA71B84BB660035DF9D /* cf_client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cf_client.cpp; sourceTree = "<group>"; };
 		07FACBA81B84BB660035DF9D /* cf_client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cf_client.h; sourceTree = "<group>"; };
 		9A1B358C16A2D7A500875A94 /* libaxisrdpclient.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisrdpclient.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A97F3051D80E66C000B4EC2 /* axisclientchannels.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisclientchannels.xcodeproj; path = ../../third/clientchannels/axisclientchannels.xcodeproj; sourceTree = "<group>"; };
-		9A97F30E1D80E672000B4EC2 /* axisfreerdp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreerdp.xcodeproj; path = ../../third/freerdp/axisfreerdp.xcodeproj; sourceTree = "<group>"; };
-		9A97F3171D80E679000B4EC2 /* axiswinpr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiswinpr.xcodeproj; path = ../../third/winpr/axiswinpr.xcodeproj; sourceTree = "<group>"; };
+		9A97F3051D80E66C000B4EC2 /* axisclientchannels.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisclientchannels.xcodeproj; path = ../../third/clientchannels/axisclientchannels.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A97F30E1D80E672000B4EC2 /* axisfreerdp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreerdp.xcodeproj; path = ../../third/freerdp/axisfreerdp.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A97F3171D80E679000B4EC2 /* axiswinpr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiswinpr.xcodeproj; path = ../../third/winpr/axiswinpr.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

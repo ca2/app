@@ -662,24 +662,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9A269DC01D7ED19E001F47A8 /* welsprocessing.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsprocessing.xcodeproj; path = ../../third/openh264/codec/build/iOS/processing/welsprocessing.xcodeproj; sourceTree = "<group>"; };
-		9A269DC91D7ED1B5001F47A8 /* welsenc.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsenc.xcodeproj; path = ../../third/openh264/codec/build/iOS/enc/welsenc/welsenc.xcodeproj; sourceTree = "<group>"; };
-		9A269DD21D7ED1BD001F47A8 /* welsdec.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsdec.xcodeproj; path = ../../third/openh264/codec/build/iOS/dec/welsdec/welsdec.xcodeproj; sourceTree = "<group>"; };
-		9A269DDB1D7ED1DE001F47A8 /* welscommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welscommon.xcodeproj; path = ../../third/openh264/codec/build/iOS/common/welscommon.xcodeproj; sourceTree = "<group>"; };
-		9A269DE41D7ED1F3001F47A8 /* strophe.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = strophe.xcodeproj; path = ../../third/strophe/strophe.xcodeproj; sourceTree = "<group>"; };
-		9A269DF31D7ED255001F47A8 /* basempg123.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = basempg123.xcodeproj; path = ../../third/libmpg123/basempg123.xcodeproj; sourceTree = "<group>"; };
-		9A269DFF1D7ED263001F47A8 /* axiswinpr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiswinpr.xcodeproj; path = ../../third/winpr/axiswinpr.xcodeproj; sourceTree = "<group>"; };
-		9A269E081D7ED26B001F47A8 /* axispng.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axispng.xcodeproj; path = ../../third/png/axispng.xcodeproj; sourceTree = "<group>"; };
-		9A269E141D7ED274001F47A8 /* axisopenssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisopenssl.xcodeproj; path = ../../third/openssl/axisopenssl.xcodeproj; sourceTree = "<group>"; };
-		9A269E201D7ED27C001F47A8 /* axisjpeg.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisjpeg.xcodeproj; path = ../../third/jpeg/axisjpeg.xcodeproj; sourceTree = "<group>"; };
-		9A269E2C1D7ED285001F47A8 /* axisidn.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisidn.xcodeproj; path = ../../third/idn/axisidn.xcodeproj; sourceTree = "<group>"; };
-		9A269E351D7ED28D001F47A8 /* axisfreetype.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreetype.xcodeproj; path = ../../third/freetype/axisfreetype.xcodeproj; sourceTree = "<group>"; };
-		9A269E3E1D7ED295001F47A8 /* axisclientchannels.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisclientchannels.xcodeproj; path = ../../third/clientchannels/axisclientchannels.xcodeproj; sourceTree = "<group>"; };
-		9A269E471D7ED29F001F47A8 /* axiscrypto.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiscrypto.xcodeproj; path = ../../third/crypto/axiscrypto.xcodeproj; sourceTree = "<group>"; };
-		9A269E531D7ED2A8001F47A8 /* aurapcre.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aurapcre.xcodeproj; path = ../../third/pcre/aurapcre.xcodeproj; sourceTree = "<group>"; };
-		9A269E5C1D7ED2B3001F47A8 /* auraexpat.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = auraexpat.xcodeproj; path = ../../third/expat/auraexpat.xcodeproj; sourceTree = "<group>"; };
-		9A269E6E1D7ED2D2001F47A8 /* ace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ace.xcodeproj; path = ../../app/ace/ace.xcodeproj; sourceTree = "<group>"; };
-		9A26A0991D7EE078001F47A8 /* axisfreerdp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreerdp.xcodeproj; path = ../../third/freerdp/axisfreerdp.xcodeproj; sourceTree = "<group>"; };
+		9A269DC01D7ED19E001F47A8 /* welsprocessing.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsprocessing.xcodeproj; path = ../../third/openh264/codec/build/iOS/processing/welsprocessing.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A269DC91D7ED1B5001F47A8 /* welsenc.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsenc.xcodeproj; path = ../../third/openh264/codec/build/iOS/enc/welsenc/welsenc.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A269DD21D7ED1BD001F47A8 /* welsdec.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsdec.xcodeproj; path = ../../third/openh264/codec/build/iOS/dec/welsdec/welsdec.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A269DDB1D7ED1DE001F47A8 /* welscommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welscommon.xcodeproj; path = ../../third/openh264/codec/build/iOS/common/welscommon.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A269DE41D7ED1F3001F47A8 /* strophe.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = strophe.xcodeproj; path = ../../third/strophe/strophe.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A269DF31D7ED255001F47A8 /* basempg123.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = basempg123.xcodeproj; path = ../../third/libmpg123/basempg123.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A269DFF1D7ED263001F47A8 /* axiswinpr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiswinpr.xcodeproj; path = ../../third/winpr/axiswinpr.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A269E081D7ED26B001F47A8 /* axispng.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axispng.xcodeproj; path = ../../third/png/axispng.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A269E141D7ED274001F47A8 /* axisopenssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisopenssl.xcodeproj; path = ../../third/openssl/axisopenssl.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A269E201D7ED27C001F47A8 /* axisjpeg.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisjpeg.xcodeproj; path = ../../third/jpeg/axisjpeg.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A269E2C1D7ED285001F47A8 /* axisidn.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisidn.xcodeproj; path = ../../third/idn/axisidn.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A269E351D7ED28D001F47A8 /* axisfreetype.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreetype.xcodeproj; path = ../../third/freetype/axisfreetype.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A269E3E1D7ED295001F47A8 /* axisclientchannels.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisclientchannels.xcodeproj; path = ../../third/clientchannels/axisclientchannels.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A269E471D7ED29F001F47A8 /* axiscrypto.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiscrypto.xcodeproj; path = ../../third/crypto/axiscrypto.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A269E531D7ED2A8001F47A8 /* aurapcre.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aurapcre.xcodeproj; path = ../../third/pcre/aurapcre.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A269E5C1D7ED2B3001F47A8 /* auraexpat.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = auraexpat.xcodeproj; path = ../../third/expat/auraexpat.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A269E6E1D7ED2D2001F47A8 /* ace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ace.xcodeproj; path = ../../app/ace/ace.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A26A0991D7EE078001F47A8 /* axisfreerdp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreerdp.xcodeproj; path = ../../third/freerdp/axisfreerdp.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */

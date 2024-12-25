@@ -111,7 +111,7 @@
 		07B65773190F3CA2002DAADE /* math_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = math_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B65774190F3CA2002DAADE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		07B65777190F3CA2002DAADE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		9A325686271F89FA004A4955 /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../axis/axis.xcodeproj; sourceTree = "<group>"; };
+		9A325686271F89FA004A4955 /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../axis/axis.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A50E1492B50D50300DAD9CF /* httpd_incoming_socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = httpd_incoming_socket.h; sourceTree = "<group>"; };
 		9A50E14A2B50D50400DAD9CF /* httpd_listen_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = httpd_listen_socket.cpp; sourceTree = "<group>"; };
 		9A50E14B2B50D50400DAD9CF /* httpd_incoming_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = httpd_incoming_socket.cpp; sourceTree = "<group>"; };
@@ -419,7 +419,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1540;
-				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
+				ORGANIZATIONNAME = "ca2 Software Development";
 				TargetAttributes = {
 					07B65772190F3CA2002DAADE = {
 						TestTargetID = 9A574B9716AAB906000CC4EF;
@@ -427,7 +427,7 @@
 				};
 			};
 			buildConfigurationList = 9A574B9216AAB906000CC4EF /* Build configuration list for PBXProject "programming" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (

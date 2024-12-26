@@ -1153,7 +1153,7 @@ namespace user
    ::windowing::window * interaction::window()
    {
 
-      auto ptoplevel = top_level();
+      auto ptoplevel = _top_level();
 
       if (::is_null(ptoplevel))
       {
@@ -2112,6 +2112,13 @@ namespace user
       {
 
          auto pwindow = window();
+         
+         if(!pwindow)
+         {
+          
+            auto pwindow2 = window();
+            
+         }
 
          pwindow->set_need_redraw(rectanglea, function);
 
@@ -4158,7 +4165,7 @@ namespace user
             if (pthread)
             {
 
-               pthread->m_puserprimitiveActive = nullptr;
+               pthread->m_puserinteractionbaseActive = nullptr;
 
             }
 
@@ -4530,10 +4537,10 @@ namespace user
          if (pthread != nullptr)
          {
 
-            if (pthread->get_active_user_prototype() == this)
+            if (pthread->get_active_user_interaction_base() == this)
             {
 
-               pthread->set_active_user_prototype(nullptr);
+               pthread->set_active_user_interaction_base(nullptr);
 
             }
 
@@ -11806,10 +11813,38 @@ if(get_parent())
    }
 
 
+   /// this top_level uses get_parent to get the parent
    ::user::interaction * interaction::top_level()
    {
 
-      return _top_level();
+      ::user::interaction * puserinteractionParent = (::user::interaction *)this;
+
+      ::user::interaction * puiTopLevelParent;
+
+      if (puserinteractionParent == nullptr)
+      {
+
+         return nullptr;
+
+      }
+
+      do
+      {
+
+         puiTopLevelParent = puserinteractionParent;
+
+         puserinteractionParent = puserinteractionParent->get_parent();
+
+      } while (puserinteractionParent != nullptr);
+
+      if (m_bChild && puiTopLevelParent == this)
+      {
+
+         return nullptr;
+
+      }
+
+      return puiTopLevelParent;
 
    }
 
@@ -11846,7 +11881,7 @@ if(get_parent())
 
    }
 
-
+   /// this _top_level uses m_puserinteractionParent to get the parent
    ::user::interaction * interaction::_top_level()
    {
 
@@ -11866,7 +11901,7 @@ if(get_parent())
 
          puiTopLevelParent = puserinteractionParent;
 
-         puserinteractionParent = puserinteractionParent->get_parent();
+         puserinteractionParent = puserinteractionParent->m_puserinteractionParent;
 
       } while (puserinteractionParent != nullptr);
 
@@ -28213,7 +28248,7 @@ if(get_parent())
 
       //   }
 
-      if (m_flagNonClient.has(e_non_client_background) && !top_level()->frame_is_transparent())
+      if (m_flagNonClient.has(e_non_client_background) && (!top_level() || !top_level()->frame_is_transparent()))
       {
 
          draw_control_background(pgraphics);

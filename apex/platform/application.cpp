@@ -56,6 +56,7 @@
 #include "acme/windowing/windowing.h"
 #include "apex/networking/application/application.h"
 #include "apex/networking/http/context.h"
+#include "apex/user/user/interaction_base.h"
 #include "apex/user/user/language_map.h"
 
 
@@ -5331,8 +5332,19 @@ namespace apex
       auto pcommand = __allocate ::message::command (atom);
 
       pcommand->m_puseractivationtoken = puseractivationtoken;
-
-      route_command(pcommand);
+       
+      if(m_puserinteractionbaseMain)
+      {
+         
+         m_puserinteractionbaseMain->route_command(pcommand);
+         
+      }
+      else
+      {
+         
+         route_command(pcommand);
+         
+      }
 
       return pcommand->m_bRet;
 

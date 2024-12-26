@@ -1346,7 +1346,7 @@ namespace sandbox_windowing
    //}
 
 
-   bool window::_configure_window_unlocked(const class ::zorder & zorder, const ::user::e_activation & useractivation, bool bNoZorder, ::e_display edisplay)
+   bool window::_configure_window_unlocked(const class ::zorder & zorder, const ::user::activation & useractivation, bool bNoZorder, ::e_display edisplay)
    {
 
       return true;
@@ -2096,7 +2096,7 @@ namespace sandbox_windowing
 
 
    //bool window::set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::e_activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, bool bShow, bool bHide)
-   bool window::_set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy, const ::user::e_activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, unsigned int nOverrideFlags)
+   bool window::_set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy, const ::user::activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay, unsigned int nOverrideFlags)
    {
 
       //synchronous_lock sl(user_synchronization());
@@ -3212,7 +3212,7 @@ namespace sandbox_windowing
 
 
    /// should be run at user_thread
-   void window::set_foreground_window()
+   void window::set_foreground_window(::user::activation_token * puseractivationtoken)
    {
 
       //synchronous_lock synchronouslock(user_synchronization());

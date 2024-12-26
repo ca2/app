@@ -1301,18 +1301,18 @@ void thread::on_thread_on_idle(thread* pimpl, int lCount)
 }
 
 
-::user::interaction_base* thread::get_active_user_prototype()
+::user::interaction_base* thread::get_active_user_interaction_base()
 {
 
-   return m_puserprimitiveActive;
+   return m_puserinteractionbaseActive;
 
 }
 
 
-void thread::set_active_user_prototype(::user::interaction_base* puserprimitive)
+void thread::set_active_user_interaction_base(::user::interaction_base* puserinteractionbase)
 {
 
-   m_puserprimitiveActive = puserprimitive;
+   m_puserinteractionbaseActive = puserinteractionbase;
 
 }
 
@@ -1741,9 +1741,9 @@ void thread::destroy()
 
    m_pfileinfo.release();
 
-   m_puserprimitiveActive.release();
+   m_puserinteractionbaseActive.release();
 
-   m_puserprimitiveMain.release();
+   m_puserinteractionbaseMain.release();
 
    m_phappeningReady.release();
 

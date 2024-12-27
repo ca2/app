@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -51,7 +51,6 @@
 		9A94DED6282C4ACB00F5C1CA /* libacme_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A94DED5282C4ACB00F5C1CA /* libacme_ios.a */; };
 		9A97A7692CFBCE3D000A2F7C /* libios_acme_windowing_kit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A97A7682CFBCE3D000A2F7C /* libios_acme_windowing_kit.a */; };
 		9A97A76A2CFBCE3D000A2F7C /* libios_acme_windowing_kit.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A97A7682CFBCE3D000A2F7C /* libios_acme_windowing_kit.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		9AC3F24B2CF7F8FF0061DCC0 /* libios_folder_zip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F2482CF7F8C40061DCC0 /* libios_folder_zip.a */; };
 		9AC3F2522CF7F9A70061DCC0 /* libios_nano_graphics_quartz2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F2512CF7F9A70061DCC0 /* libios_nano_graphics_quartz2d.a */; };
 		9AC3F2552CF7FAE00061DCC0 /* libinnate_ui_uikit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F2542CF7FAE00061DCC0 /* libinnate_ui_uikit.a */; };
 		9AC3F2FA2CF8B8980061DCC0 /* libios_acme_windowing_kit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F2F72CF8B8970061DCC0 /* libios_acme_windowing_kit.a */; };
@@ -74,6 +73,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9A3105972CE781E60067398D;
 			remoteInfo = operating_ambient_ios;
+		};
+		9A45ED652D1E7F66008CC280 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A8E99B0282A2AF3005FF778 /* folder_zip.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AA14DBD282A17D900B1621E;
+			remoteInfo = ios_folder_zip;
 		};
 		9A490C2B2B69D3CE00990DB8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -180,34 +186,6 @@
 			remoteGlobalIDString = 9A1BD6E12A0079D400152CD1;
 			remoteInfo = static_folder_zip;
 		};
-		9AC3F2402CF7F8C30061DCC0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AC3F23D2CF7F8C30061DCC0 /* folder_zip.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9AA14DBD282A17D900B1621E;
-			remoteInfo = ios_folder_zip;
-		};
-		9AC3F2452CF7F8C40061DCC0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AC3F23D2CF7F8C30061DCC0 /* folder_zip.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AC09A2D274DFC67008B042E;
-			remoteInfo = folder_zip;
-		};
-		9AC3F2472CF7F8C40061DCC0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AC3F23D2CF7F8C30061DCC0 /* folder_zip.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AA14DDC282A17D900B1621E;
-			remoteInfo = ios_folder_zip;
-		};
-		9AC3F2492CF7F8C40061DCC0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AC3F23D2CF7F8C30061DCC0 /* folder_zip.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A1BD6E12A0079D400152CD1;
-			remoteInfo = static_folder_zip;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -281,7 +259,6 @@
 		9AA14F5E282A2A6200B1621E /* _ios_app_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = _ios_app_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA14F79282A2A6600B1621E /* _ios_app_appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = _ios_app_appTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA14F83282A2A6700B1621E /* _ios_app_appUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = _ios_app_appUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AC3F23D2CF7F8C30061DCC0 /* folder_zip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = folder_zip.xcodeproj; path = /Users/camilo/workspace/main/source/app/folder_zip/folder_zip.xcodeproj; sourceTree = "<absolute>"; };
 		9AC3F24E2CF7F9350061DCC0 /* libnano_graphics_quartz2d.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libnano_graphics_quartz2d.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC3F2512CF7F9A70061DCC0 /* libios_nano_graphics_quartz2d.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_nano_graphics_quartz2d.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC3F2542CF7FAE00061DCC0 /* libinnate_ui_uikit.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libinnate_ui_uikit.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -319,7 +296,6 @@
 				9A94DECF282C4ABB00F5C1CA /* libaura_ios.a in Frameworks */,
 				9A750E4D282B5C2000C4861B /* libios_idn.a in Frameworks */,
 				9A750F48282B8A9C00C4861B /* libcrypto.a in Frameworks */,
-				9AC3F24B2CF7F8FF0061DCC0 /* libios_folder_zip.a in Frameworks */,
 				9AC3F2552CF7FAE00061DCC0 /* libinnate_ui_uikit.a in Frameworks */,
 				9A750F4C282B8F4E00C4861B /* Foundation.framework in Frameworks */,
 				9A28CBD62CF415AB00C6D8B1 /* libacme_windowing_uikit.a in Frameworks */,
@@ -482,7 +458,6 @@
 				9A8E99CF282A2B85005FF778 /* __implement */,
 				9AA14F5F282A2A6200B1621E /* Products */,
 				9A8E9D9B282A2DAA005FF778 /* Frameworks */,
-				9AC3F23D2CF7F8C30061DCC0 /* folder_zip.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -506,16 +481,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9AC3F23E2CF7F8C30061DCC0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9AC3F2462CF7F8C40061DCC0 /* libfolder_zip.dylib */,
-				9AC3F2482CF7F8C40061DCC0 /* libios_folder_zip.a */,
-				9AC3F24A2CF7F8C40061DCC0 /* libstatic_folder_zip.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -531,7 +496,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9AC3F2412CF7F8C30061DCC0 /* PBXTargetDependency */,
+				9A45ED662D1E7F66008CC280 /* PBXTargetDependency */,
 				9A3109052CE7E2B90067398D /* PBXTargetDependency */,
 				9A8E9D87282A2CC2005FF778 /* PBXTargetDependency */,
 				9A8E9D89282A2CC2005FF778 /* PBXTargetDependency */,
@@ -586,6 +551,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1610;
+				ORGANIZATIONNAME = "ca2 Software Development";
 				TargetAttributes = {
 					9AA14F5D282A2A6200B1621E = {
 						CreatedOnToolsVersion = 13.3.1;
@@ -601,7 +567,7 @@
 				};
 			};
 			buildConfigurationList = 9AA14F59282A2A6200B1621E /* Build configuration list for PBXProject "_ios_app_app" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -623,10 +589,6 @@
 				{
 					ProductGroup = 9A8E99A8282A2AE6005FF778 /* Products */;
 					ProjectRef = 9A8E99A7282A2AE6005FF778 /* draw2d_quartz2d.xcodeproj */;
-				},
-				{
-					ProductGroup = 9AC3F23E2CF7F8C30061DCC0 /* Products */;
-					ProjectRef = 9AC3F23D2CF7F8C30061DCC0 /* folder_zip.xcodeproj */;
 				},
 				{
 					ProductGroup = 9AB674E72D1B94AA001AB250 /* Products */;
@@ -724,27 +686,6 @@
 			remoteRef = 9AB674F72D1B94AD001AB250 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9AC3F2462CF7F8C40061DCC0 /* libfolder_zip.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libfolder_zip.dylib;
-			remoteRef = 9AC3F2452CF7F8C40061DCC0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9AC3F2482CF7F8C40061DCC0 /* libios_folder_zip.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libios_folder_zip.a;
-			remoteRef = 9AC3F2472CF7F8C40061DCC0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9AC3F24A2CF7F8C40061DCC0 /* libstatic_folder_zip.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libstatic_folder_zip.a;
-			remoteRef = 9AC3F2492CF7F8C40061DCC0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -807,6 +748,11 @@
 			name = operating_ambient_ios;
 			targetProxy = 9A3109042CE7E2B90067398D /* PBXContainerItemProxy */;
 		};
+		9A45ED662D1E7F66008CC280 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_folder_zip;
+			targetProxy = 9A45ED652D1E7F66008CC280 /* PBXContainerItemProxy */;
+		};
 		9A8E9D87282A2CC2005FF778 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ios_app_app;
@@ -831,11 +777,6 @@
 			isa = PBXTargetDependency;
 			target = 9AA14F5D282A2A6200B1621E /* _ios_app_app */;
 			targetProxy = 9AA14F84282A2A6700B1621E /* PBXContainerItemProxy */;
-		};
-		9AC3F2412CF7F8C30061DCC0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ios_folder_zip;
-			targetProxy = 9AC3F2402CF7F8C30061DCC0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

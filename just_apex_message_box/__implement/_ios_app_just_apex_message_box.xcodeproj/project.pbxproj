@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -43,6 +43,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9A45EAE92D1E7E8D008CC280 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A4752DB2CF5135C00ED30AE /* app_just_apex_message_box.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A48898624EB48DE00119EC4;
+			remoteInfo = app_just_apex_message_box;
+		};
 		9A47530B2CF515B500ED30AE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A4753082CF515B500ED30AE /* folder_zip.xcodeproj */;
@@ -297,6 +304,7 @@
 		9AC3F0C72CF690A70061DCC0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				9A45EAEA2D1E7E8D008CC280 /* libapp_just_apex_message_box.dylib */,
 				9AC3F1162CF692F60061DCC0 /* libios_app_just_apex_message_box.a */,
 			);
 			name = Products;
@@ -360,6 +368,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1610;
+				ORGANIZATIONNAME = "ca2 Software Development";
 				TargetAttributes = {
 					9A4752BD2CF5124100ED30AE = {
 						CreatedOnToolsVersion = 16.1;
@@ -367,6 +376,7 @@
 				};
 			};
 			buildConfigurationList = 9A4752B92CF5124000ED30AE /* Build configuration list for PBXProject "_ios_app_just_apex_message_box" */;
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -374,8 +384,6 @@
 				Base,
 			);
 			mainGroup = 9A4752B52CF5124000ED30AE;
-			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			productRefGroup = 9A4752BF2CF5124100ED30AE /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -412,6 +420,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		9A45EAEA2D1E7E8D008CC280 /* libapp_just_apex_message_box.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libapp_just_apex_message_box.dylib;
+			remoteRef = 9A45EAE92D1E7E8D008CC280 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9A4753132CF515B500ED30AE /* libios_folder_zip.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";

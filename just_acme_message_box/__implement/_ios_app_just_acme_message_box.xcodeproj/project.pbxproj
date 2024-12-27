@@ -122,6 +122,13 @@
 			remoteGlobalIDString = 9A1BD6E12A0079D400152CD1;
 			remoteInfo = static_folder_zip;
 		};
+		9AF8A23A2D1E8F0D00F03530 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A45ED732D1E800D008CC280 /* folder_zip.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AA14DBD282A17D900B1621E;
+			remoteInfo = ios_folder_zip;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -331,6 +338,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9AF8A23B2D1E8F0D00F03530 /* PBXTargetDependency */,
 				9A8DBAED2D1E849D00D72458 /* PBXTargetDependency */,
 				9A8DBADD2D1E847900D72458 /* PBXTargetDependency */,
 				9A8DBADB2D1E846B00D72458 /* PBXTargetDependency */,
@@ -510,6 +518,11 @@
 			isa = PBXTargetDependency;
 			name = ios_nano_graphics_quartz2d;
 			targetProxy = 9A8DBAEC2D1E849D00D72458 /* PBXContainerItemProxy */;
+		};
+		9AF8A23B2D1E8F0D00F03530 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_folder_zip;
+			targetProxy = 9AF8A23A2D1E8F0D00F03530 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

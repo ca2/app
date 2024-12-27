@@ -103,6 +103,20 @@
 			remoteGlobalIDString = 9AC3F0F02CF692320061DCC0;
 			remoteInfo = ios_app_just_apex_message_box;
 		};
+		9AD909D42D1E8DBA00FF6604 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A8DC2B52D1E85CD00D72458 /* innate_ui_uikit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A2FCE052C9D3ADC000CF701;
+			remoteInfo = innate_ui_uikit;
+		};
+		9AF8A23C2D1E8F2200F03530 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A8DC2B52D1E85CD00D72458 /* innate_ui_uikit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A2FCE042C9D3ADC000CF701;
+			remoteInfo = innate_ui_uikit;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -303,6 +317,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9AD909C92D1E8DBA00FF6604 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AD909D52D1E8DBA00FF6604 /* libinnate_ui_uikit.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -318,6 +340,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9AF8A23D2D1E8F2200F03530 /* PBXTargetDependency */,
 				9A8DC2BB2D1E86CD00D72458 /* PBXTargetDependency */,
 				9A8DC2B92D1E86C000D72458 /* PBXTargetDependency */,
 				9AC3F1222CF6B1030061DCC0 /* PBXTargetDependency */,
@@ -367,6 +390,10 @@
 				{
 					ProductGroup = 9A8DBD942D1E857400D72458 /* Products */;
 					ProjectRef = 9A8DBAF12D1E852600D72458 /* folder_zip.xcodeproj */;
+				},
+				{
+					ProductGroup = 9AD909C92D1E8DBA00FF6604 /* Products */;
+					ProjectRef = 9A8DC2B52D1E85CD00D72458 /* innate_ui_uikit.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -419,6 +446,13 @@
 			remoteRef = 9AC3F1152CF692F60061DCC0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		9AD909D52D1E8DBA00FF6604 /* libinnate_ui_uikit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libinnate_ui_uikit.a;
+			remoteRef = 9AD909D42D1E8DBA00FF6604 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -462,6 +496,11 @@
 			isa = PBXTargetDependency;
 			name = ios_app_just_apex_message_box;
 			targetProxy = 9AC3F1212CF6B1030061DCC0 /* PBXContainerItemProxy */;
+		};
+		9AF8A23D2D1E8F2200F03530 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = innate_ui_uikit;
+			targetProxy = 9AF8A23C2D1E8F2200F03530 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

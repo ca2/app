@@ -81,6 +81,7 @@ namespace acme
 
 
          interaction();
+         interaction(const interaction &) = delete;
          ~interaction();
 
          //::payload do_synchronously(const class time & timeWait = ::time::infinity()) override;

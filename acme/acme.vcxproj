@@ -981,6 +981,7 @@
     <ClCompile Include="graphics\image\image32_array.cpp" />
     <ClCompile Include="graphics\image\pixmap.cpp" />
     <ClCompile Include="graphics\image\image32.cpp" />
+    <ClCompile Include="handler\command_handler.cpp" />
     <ClCompile Include="handler\extended_topic.cpp" />
     <ClCompile Include="handler\handler.cpp" />
     <ClCompile Include="handler\item.cpp" />

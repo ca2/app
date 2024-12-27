@@ -5882,6 +5882,9 @@
     <ClCompile Include="parallelization\waiting_call.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
+    <ClCompile Include="handler\command_handler.cpp">
+      <Filter>Source Files\handler</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="prototype\string\_defer.h">

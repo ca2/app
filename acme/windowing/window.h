@@ -208,6 +208,8 @@ namespace acme
          ::string get_window_text() override;
 
 
+         virtual itask_t get_itask() const;
+
          //virtual ::int_rectangle get_window_rectangle();
 
          ///::pointer < ::operating_system::a_system_menu > create_system_menu(bool bContextual = true) override;

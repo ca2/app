@@ -998,6 +998,13 @@ namespace acme
       }
 
 
+      ::itask_t window::get_itask() const
+      {
+
+         return system()->acme_windowing()->m_itask;
+
+      }
+
       // ::pointer < ::operating_system::a_system_menu > window::create_system_menu(bool bContextual)
       // {
       //

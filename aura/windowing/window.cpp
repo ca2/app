@@ -2830,7 +2830,7 @@ void window::set_oswindow(::oswindow oswindow)
       else
       {
 
-         itask = current_itask();
+         itask = ::windowing::window_base::get_itask();
 
       }
 
@@ -10696,7 +10696,7 @@ void window::set_oswindow(::oswindow oswindow)
    void window::set_mouse_capture(::user::interaction * puserinteraction)
    {
 
-      system()->windowing()->set_mouse_capture(nullptr, this);
+      this->set_mouse_capture();
 
       m_puserinteractionMouseCapture = puserinteraction;
 

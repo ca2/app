@@ -13,18 +13,6 @@ namespace user
    DECLARE_ENUMERATION(e_activation, enum_activation);
 
 
-   class activation_token :
-      virtual public ::particle
-   {
-   public:
-
-
-      virtual bool matches(const activation_token * pactivationtoken) const { return false; }
-
-
-   };
-
-
    class CLASS_DECL_ACME activation
    {
    public:
@@ -36,151 +24,32 @@ namespace user
       // ::huge_integer                         m_iTime;
 
 
-      activation() :
-         m_eactivation(::user::e_activation_default)
-      {
+      activation();
 
+      activation(const ::user::e_activation & euseractivation);
 
-      }
+      activation(const ::user::e_activation & useractivation, ::user::activation_token * pactivationtoken);
 
 
-      activation(const ::user::e_activation & euseractivation) :
-          m_eactivation(euseractivation)
-      {
+      activation(const ::user::activation & useractivation);
 
-         //if (m_eactivation & ::user::e_activation_set_foreground)
-         //{
+      bool operator == (const ::user::activation & useractivation) const;
 
-           // if (!m_pactivationtoken)
-            //{
 
-              // throw ::exception(error_wrong_state);
+      ::std::strong_ordering operator <=> (const ::user::activation & useractivation) const;
 
-            //}
 
-         //}
+      ::user::activation & operator = (const ::user::activation & useractivation);
 
-      }
+      ::user::activation & operator |= (const ::user::activation & useractivation);
 
+      bool is_change_request() const;
 
-      activation(const ::user::e_activation & useractivation, ::user::activation_token * pactivationtoken) :
-         m_eactivation(useractivation),
-         m_pactivationtoken(pactivationtoken)
-      {
 
-         //if (m_eactivation & ::user::e_activation_set_foreground)
-         //{
+      bool operator & (const ::user::e_activation & useractivation) const;
+      
 
-           // if (!m_pactivationtoken)
-            //{
-
-              // throw ::exception(error_wrong_state);
-
-            //}
-
-         //}
-
-      }
-
-
-      activation(const ::user::activation & useractivation) :
-         m_eactivation(useractivation.m_eactivation),
-         m_pactivationtoken(useractivation.m_pactivationtoken)
-      {
-
-
-      }
-
-
-      bool operator == (const ::user::activation & useractivation) const
-      {
-
-         if (m_eactivation & ::user::e_activation_set_foreground)
-         {
-
-            if (useractivation.m_eactivation & ::user::e_activation_set_foreground)
-            {
-
-               return m_pactivationtoken->matches(useractivation.m_pactivationtoken);
-
-            }
-
-         }
-
-         return m_eactivation == useractivation.m_eactivation;
-
-      }
-
-
-      ::std::strong_ordering operator <=> (const ::user::activation & useractivation) const
-      {
-
-          return m_eactivation <=> useractivation.m_eactivation;
-
-      }
-
-
-      ::user::activation & operator = (const ::user::activation & useractivation)
-      {
-
-         if (this != &useractivation)
-         {
-
-            m_eactivation = useractivation.m_eactivation;
-            m_pactivationtoken = useractivation.m_pactivationtoken;
-
-         }
-
-         return *this;
-
-      }
-
-
-      ::user::activation & operator |= (const ::user::activation & useractivation)
-      {
-
-         if (this != &useractivation)
-         {
-
-            m_eactivation |= useractivation.m_eactivation;
-
-            if (useractivation.m_pactivationtoken)
-            {
-
-               m_pactivationtoken = useractivation.m_pactivationtoken;
-
-            }
-
-         }
-
-         return *this;
-
-      }
-
-
-      bool is_change_request() const
-      {
-
-         return m_eactivation != ::user::e_activation_default;
-
-      }
-
-
-      bool operator & (const ::user::e_activation & useractivation) const
-      {
-
-         return m_eactivation & useractivation;
-
-      }
-
-
-      void clear()
-      {
-
-         m_eactivation = ::user::e_activation_default;
-         m_pactivationtoken = nullptr;
-
-      }
+      void clear();
 
 
    };

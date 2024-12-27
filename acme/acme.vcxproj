@@ -1234,6 +1234,7 @@
     <ClInclude Include="operating_system\windows\nano\http\_http.h" />
     <ClInclude Include="operating_system\windows\window.h" />
     <ClInclude Include="operating_system\windows\windowing.h" />
+    <ClInclude Include="operating_system\windows\windows.h" />
     <ClInclude Include="operating_system\windows_common\nano\idn\idn.h" />
     <ClInclude Include="operating_system\x11\display_lock.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -1484,6 +1485,7 @@
     <ClInclude Include="user\micro\user.h" />
     <ClInclude Include="user\micro\_.h" />
     <ClInclude Include="user\user\activation.h" />
+    <ClInclude Include="user\user\activation_token.h" />
     <ClInclude Include="user\user\check.h" />
     <ClInclude Include="user\user\control.h" />
     <ClInclude Include="user\user\controller.h" />
@@ -2398,6 +2400,8 @@
     <ClCompile Include="user\micro\still.cpp" />
     <ClCompile Include="user\micro\theme.cpp" />
     <ClCompile Include="user\micro\user.cpp" />
+    <ClCompile Include="user\user\activation.cpp" />
+    <ClCompile Include="user\user\activation_token.cpp" />
     <ClCompile Include="user\user\check.cpp" />
     <ClCompile Include="user\user\check_property.cpp" />
     <ClCompile Include="user\user\container.cpp" />

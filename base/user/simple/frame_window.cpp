@@ -18,6 +18,7 @@
 #include "apex/platform/savings.h"
 #include "apex/platform/system.h"
 #include "acme/platform/application_menu.h"
+#include "acme/user/user/activation_token.h"
 #include "aqua/xml/document.h"
 #include "aura/user/user/interaction_array.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -26,7 +27,6 @@
 #include "aura/graphics/image/fastblur.h"
 #include "aura/user/menu/track_popup.h"
 #include "aura/user/user/alpha_source.h"
-//#include "aura/user/user/primitive_impl.h"
 #include "aura/windowing/display.h"
 #include "aura/windowing/icon.h"
 #include "aura/windowing/window.h"
@@ -4557,7 +4557,6 @@ void simple_frame_window::on_select_user_style()
 
 void simple_frame_window::call_notification_area_action(const ::atom & atom, ::user::activation_token * puseractivationtoken)
 {
-
 
    auto puseractivationtokenHold = as_pointer(puseractivationtoken);
 

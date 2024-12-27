@@ -12020,50 +12020,55 @@ if(get_parent())
       set_destroying_flag();
 
 
-      //
-      //   if (!window())
-      //   {
-      //
-      //      throw ::exception(error_wrong_state);
-      //
-      //   }
-
-      if (m_pacmewindowingwindow)
-      {
-
-         auto pacmewindowingwindow = m_pacmewindowingwindow.m_p;
-
-         pacmewindowingwindow->destroy_window();
-
-         try
+      main_send([this]()
          {
 
-            pacmewindowingwindow->destroy();
+            //
+            //   if (!window())
+            //   {
+            //
+            //      throw ::exception(error_wrong_state);
+            //
+            //   }
 
-         }
-         catch (...)
-         {
+            if (m_pacmewindowingwindow)
+            {
 
-         }
+               auto pacmewindowingwindow = m_pacmewindowingwindow.m_p;
 
-      }
-      else
-      {
+               pacmewindowingwindow->destroy_window();
 
-         _destroy_window();
+               try
+               {
 
-      }
+                  pacmewindowingwindow->destroy();
 
-      try
-      {
+               }
+               catch (...)
+               {
 
-         destroy();
+               }
 
-      }
-      catch (...)
-      {
+            }
+            else
+            {
 
-      }
+               _destroy_window();
+
+            }
+
+            try
+            {
+
+               destroy();
+
+            }
+            catch (...)
+            {
+
+            }
+
+      });
 
    }
 

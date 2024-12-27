@@ -144,6 +144,10 @@ namespace acme
 namespace user
 {
 
+   class activation;
+
+   class activation_token;
+
 class main_frame;
 
 }

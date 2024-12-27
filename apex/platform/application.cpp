@@ -52,6 +52,7 @@
 #include "apex/database/_binary_stream.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "acme/user/user/activation_token.h"
 #include "acme/windowing/display.h"
 #include "acme/windowing/windowing.h"
 #include "apex/networking/application/application.h"

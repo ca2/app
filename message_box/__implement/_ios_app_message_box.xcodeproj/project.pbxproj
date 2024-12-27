@@ -49,8 +49,6 @@
 		9AAC2145247571180013AB72 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAC2144247571180013AB72 /* libbz2.tbd */; };
 		9AAC214B247571E10013AB72 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEB6A0B1F81DD0400F40B32 /* libiconv.tbd */; };
 		9AB67DE72D1E3CF5001AB250 /* _static_factory_.inl in Resources */ = {isa = PBXBuildFile; fileRef = 9AB67DE62D1E3CF5001AB250 /* _static_factory_.inl */; };
-		9AC3F2622CF7FC9E0061DCC0 /* liboperating_ambient_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F2612CF7FC8F0061DCC0 /* liboperating_ambient_ios.a */; };
-		9AC3F2632CF7FC9F0061DCC0 /* liboperating_ambient_ios.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC3F2612CF7FC8F0061DCC0 /* liboperating_ambient_ios.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AC3F2662CF7FCA90061DCC0 /* libnode_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F2652CF7FCA90061DCC0 /* libnode_ios.a */; };
 		9AC3F2672CF7FCAA0061DCC0 /* libnode_ios.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC3F2652CF7FCA90061DCC0 /* libnode_ios.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AC3F26B2CF7FD5F0061DCC0 /* libios_nano_graphics_quartz2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F26A2CF7FD5F0061DCC0 /* libios_nano_graphics_quartz2d.a */; };
@@ -200,18 +198,11 @@
 			remoteGlobalIDString = 9A882EC82844AA66004113D1;
 			remoteInfo = ios_write_text_quartz2d;
 		};
-		9AC3F25D2CF7FC8E0061DCC0 /* PBXContainerItemProxy */ = {
+		9A8DC2EE2D1E886600D72458 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9AC3F25A2CF7FC8D0061DCC0 /* operating_ambient_ios.xcodeproj */;
+			containerPortal = 9AC3F2572CF7FC700061DCC0 /* operating_ambient_ios.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9A3105972CE781E60067398D;
-			remoteInfo = operating_ambient_ios;
-		};
-		9AC3F2602CF7FC8F0061DCC0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AC3F25A2CF7FC8D0061DCC0 /* operating_ambient_ios.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A3105982CE781E60067398D;
 			remoteInfo = operating_ambient_ios;
 		};
 /* End PBXContainerItemProxy section */
@@ -223,7 +214,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				9AC3F2632CF7FC9F0061DCC0 /* liboperating_ambient_ios.a in Embed Libraries */,
 				9A97A7972CFBE1C7000A2F7C /* libios_acme_windowing_kit.a in Embed Libraries */,
 				9AC3F26C2CF7FD5F0061DCC0 /* libios_nano_graphics_quartz2d.a in Embed Libraries */,
 				9AC3F2672CF7FCAA0061DCC0 /* libnode_ios.a in Embed Libraries */,
@@ -288,7 +278,6 @@
 		9AAC2144247571180013AB72 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
 		9AB67DE62D1E3CF5001AB250 /* _static_factory_.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = _static_factory_.inl; sourceTree = "<group>"; };
 		9AC3F2572CF7FC700061DCC0 /* operating_ambient_ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = operating_ambient_ios.xcodeproj; path = "../../../../operating_system/operating_system-ios/operating_ambient_ios/operating_ambient_ios.xcodeproj"; sourceTree = SOURCE_ROOT; };
-		9AC3F25A2CF7FC8D0061DCC0 /* operating_ambient_ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = operating_ambient_ios.xcodeproj; path = "/Users/camilo/workspace/main/operating_system/operating_system-ios/operating_ambient_ios/operating_ambient_ios.xcodeproj"; sourceTree = "<absolute>"; };
 		9AC3F2652CF7FCA90061DCC0 /* libnode_ios.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libnode_ios.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC3F26A2CF7FD5F0061DCC0 /* libios_nano_graphics_quartz2d.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_nano_graphics_quartz2d.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC3F26D2CF7FD690061DCC0 /* libinnate_ui_uikit.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libinnate_ui_uikit.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -307,7 +296,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AC3F2622CF7FC9E0061DCC0 /* liboperating_ambient_ios.a in Frameworks */,
 				9A0E4EF52BF4FF44007C7253 /* SystemConfiguration.framework in Frameworks */,
 				9A50CDFE2B6CB8C000FDB101 /* libios_archive.a in Frameworks */,
 				9A40BE5C2B6C5CD90077053E /* UniformTypeIdentifiers.framework in Frameworks */,
@@ -387,7 +375,6 @@
 				9AE8673828588B4A00F88364 /* __implement */,
 				9A5752B516AAE1D2000CC4EF /* Frameworks */,
 				9A5752B316AAE1D2000CC4EF /* Products */,
-				9AC3F25A2CF7FC8D0061DCC0 /* operating_ambient_ios.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -508,14 +495,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9AC3F25B2CF7FC8E0061DCC0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9AC3F2612CF7FC8F0061DCC0 /* liboperating_ambient_ios.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9AE8673828588B4A00F88364 /* __implement */ = {
 			isa = PBXGroup;
 			children = (
@@ -556,7 +535,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9AC3F25E2CF7FC8E0061DCC0 /* PBXTargetDependency */,
+				9A8DC2EF2D1E886600D72458 /* PBXTargetDependency */,
 				9A882E8728449E0E004113D1 /* PBXTargetDependency */,
 				9A882E8328449DFF004113D1 /* PBXTargetDependency */,
 				9A1FBB8E2872ADDC0042849A /* PBXTargetDependency */,
@@ -642,10 +621,6 @@
 				{
 					ProductGroup = 9A882E3528449D58004113D1 /* Products */;
 					ProjectRef = 9A882E3428449D58004113D1 /* folder_zip.xcodeproj */;
-				},
-				{
-					ProductGroup = 9AC3F25B2CF7FC8E0061DCC0 /* Products */;
-					ProjectRef = 9AC3F25A2CF7FC8D0061DCC0 /* operating_ambient_ios.xcodeproj */;
 				},
 				{
 					ProductGroup = 9A3E31F32CF81C66007DC9EE /* Products */;
@@ -756,13 +731,6 @@
 			remoteRef = 9A882EE52844AA9D004113D1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9AC3F2612CF7FC8F0061DCC0 /* liboperating_ambient_ios.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = liboperating_ambient_ios.a;
-			remoteRef = 9AC3F2602CF7FC8F0061DCC0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -835,10 +803,10 @@
 			name = ios_write_text_quartz2d;
 			targetProxy = 9A882EEB2844AB5C004113D1 /* PBXContainerItemProxy */;
 		};
-		9AC3F25E2CF7FC8E0061DCC0 /* PBXTargetDependency */ = {
+		9A8DC2EF2D1E886600D72458 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = operating_ambient_ios;
-			targetProxy = 9AC3F25D2CF7FC8E0061DCC0 /* PBXContainerItemProxy */;
+			targetProxy = 9A8DC2EE2D1E886600D72458 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

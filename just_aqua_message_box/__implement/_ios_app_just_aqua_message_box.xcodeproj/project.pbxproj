@@ -19,7 +19,6 @@
 		9A4753A82CF53DC200ED30AE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4753A72CF53DC200ED30AE /* Foundation.framework */; };
 		9A4753AA2CF53DD700ED30AE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4753A92CF53DD700ED30AE /* UIKit.framework */; };
 		9A4753AC2CF53E6800ED30AE /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4753AB2CF53E0D00ED30AE /* libiconv.tbd */; };
-		9A4753B02CF5404C00ED30AE /* libios_folder_zip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4753132CF515B500ED30AE /* libios_folder_zip.a */; };
 		9A4753B32CF540A200ED30AE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4753B22CF540A200ED30AE /* CoreGraphics.framework */; };
 		9A4753B52CF540EF00ED30AE /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4753B42CF540EF00ED30AE /* UniformTypeIdentifiers.framework */; };
 		9A4753DB2CF5433E00ED30AE /* libios_app_just_message_box.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4753DA2CF5433E00ED30AE /* libios_app_just_message_box.a */; };
@@ -33,10 +32,8 @@
 		9AC3F11A2CF6B0560061DCC0 /* libios_apex_apple.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1192CF6B0560061DCC0 /* libios_apex_apple.a */; };
 		9AC3F11C2CF6B0560061DCC0 /* libios_apex_darwin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F11B2CF6B0560061DCC0 /* libios_apex_darwin.a */; };
 		9AC3F11E2CF6B0560061DCC0 /* libios_apex_posix.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F11D2CF6B0560061DCC0 /* libios_apex_posix.a */; };
-		9AC3F11F2CF6B0560061DCC0 /* libapex_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F0D62CF691680061DCC0 /* libapex_ios.a */; };
 		9AC3F1242CF6B2810061DCC0 /* libacme_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1232CF6B2810061DCC0 /* libacme_ios.a */; };
 		9AC3F1272CF6B2E60061DCC0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1262CF6B2E60061DCC0 /* SystemConfiguration.framework */; };
-		9AC3F1282CF6B57E0061DCC0 /* libinnate_ui_uikit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F0E02CF691FC0061DCC0 /* libinnate_ui_uikit.a */; };
 		9AC3F12D2CF6B9130061DCC0 /* libios_nano_graphics_quartz2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F12C2CF6B9130061DCC0 /* libios_nano_graphics_quartz2d.a */; };
 		9AC3F1312CF6B9B60061DCC0 /* libacme_windowing_uikit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1302CF6B9B60061DCC0 /* libacme_windowing_uikit.a */; };
 		9AC3F1882CF788AA0061DCC0 /* libios_app_just_aqua_message_box.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1872CF786D50061DCC0 /* libios_app_just_aqua_message_box.a */; };
@@ -50,48 +47,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9A48898624EB48DE00119EC4;
 			remoteInfo = app_just_aqua_message_box;
-		};
-		9A47530B2CF515B500ED30AE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A4753082CF515B500ED30AE /* folder_zip.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9AA14DBD282A17D900B1621E;
-			remoteInfo = ios_folder_zip;
-		};
-		9A4753122CF515B500ED30AE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A4753082CF515B500ED30AE /* folder_zip.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AA14DDC282A17D900B1621E;
-			remoteInfo = ios_folder_zip;
-		};
-		9AC3F0D22CF691670061DCC0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AC3F0CF2CF691670061DCC0 /* apex_ios.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A0C1694264A2AA700B5CC33;
-			remoteInfo = apex_ios;
-		};
-		9AC3F0D52CF691680061DCC0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AC3F0CF2CF691670061DCC0 /* apex_ios.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A0C1695264A2AA700B5CC33;
-			remoteInfo = apex_ios;
-		};
-		9AC3F0DF2CF691FC0061DCC0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AC3F0D72CF691FC0061DCC0 /* innate_ui_uikit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A2FCE052C9D3ADC000CF701;
-			remoteInfo = innate_ui_appkit;
-		};
-		9AC3F1122CF692F60061DCC0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AC3F0D72CF691FC0061DCC0 /* innate_ui_uikit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A2FCE042C9D3ADC000CF701;
-			remoteInfo = innate_ui_appkit;
 		};
 		9AC3F1862CF786D50061DCC0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -125,7 +80,6 @@
 
 /* Begin PBXFileReference section */
 		9A4752BE2CF5124100ED30AE /* _ios_app_just_aqua_message_box.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = _ios_app_just_aqua_message_box.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A4753082CF515B500ED30AE /* folder_zip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = folder_zip.xcodeproj; path = /Users/camilo/workspace/main/source/app/folder_zip/folder_zip.xcodeproj; sourceTree = "<absolute>"; };
 		9A47537F2CF5174A00ED30AE /* application_main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = application_main.cpp; sourceTree = "<group>"; };
 		9A4753832CF517F300ED30AE /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = _matter.zip; path = ../_matter.zip; sourceTree = SOURCE_ROOT; };
 		9A4753852CF5184A00ED30AE /* _____debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "_____debug.xcconfig"; path = "../_____debug.xcconfig"; sourceTree = SOURCE_ROOT; };
@@ -144,16 +98,15 @@
 		9A4753B22CF540A200ED30AE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		9A4753B42CF540EF00ED30AE /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
 		9A4753B62CF5413900ED30AE /* libios_app_just_acme_message_box.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_app_just_acme_message_box.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A4753CF2CF542D300ED30AE /* app_just_acme_message_box.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = app_just_acme_message_box.xcodeproj; path = /Users/camilo/workspace/main/source/app/just_acme_message_box/app_just_acme_message_box.xcodeproj; sourceTree = "<absolute>"; };
 		9A4753DA2CF5433E00ED30AE /* libios_app_just_message_box.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_app_just_message_box.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4753DC2CF543AB00ED30AE /* libios_darwin.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_darwin.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4753DF2CF5484000ED30AE /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		9A8DC2C42D1E872100D72458 /* apex_ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex_ios.xcodeproj; path = "../../../../operating_system/operating_system-ios/apex_ios/apex_ios.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		9A8DC2C72D1E875600D72458 /* folder_zip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = folder_zip.xcodeproj; path = ../../folder_zip/folder_zip.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A8DC2CA2D1E878100D72458 /* innate_ui_uikit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = innate_ui_uikit.xcodeproj; path = "../../../../operating_system/operating_system-ios/innate_ui_uikit/innate_ui_uikit.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		9A97A78E2CFBDA3E000A2F7C /* libios_acme_windowing_kit.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_acme_windowing_kit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB67D032D1C4AA1001AB250 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		9AB67E072D1E3DCB001AB250 /* _static_factory_.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = _static_factory_.inl; sourceTree = "<group>"; };
-		9AC3F0CC2CF690FF0061DCC0 /* apex_ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex_ios.xcodeproj; path = "/Users/camilo/workspace/main/operating_system/operating_system-ios/apex_ios/apex_ios.xcodeproj"; sourceTree = "<absolute>"; };
-		9AC3F0CF2CF691670061DCC0 /* apex_ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex_ios.xcodeproj; path = "/Users/camilo/workspace/main/operating_system/operating_system-ios/apex_ios/apex_ios.xcodeproj"; sourceTree = "<absolute>"; };
-		9AC3F0D72CF691FC0061DCC0 /* innate_ui_uikit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = innate_ui_uikit.xcodeproj; path = "/Users/camilo/workspace/main/operating_system/operating_system-ios/innate_ui_uikit/innate_ui_uikit.xcodeproj"; sourceTree = "<absolute>"; };
 		9AC3F1172CF6B0560061DCC0 /* libios_apex.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_apex.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC3F1192CF6B0560061DCC0 /* libios_apex_apple.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_apex_apple.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC3F11B2CF6B0560061DCC0 /* libios_apex_darwin.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_apex_darwin.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,13 +132,11 @@
 				9AC3F1182CF6B0560061DCC0 /* libios_apex.a in Frameworks */,
 				9AC3F11A2CF6B0560061DCC0 /* libios_apex_apple.a in Frameworks */,
 				9AC3F11C2CF6B0560061DCC0 /* libios_apex_darwin.a in Frameworks */,
-				9AC3F11F2CF6B0560061DCC0 /* libapex_ios.a in Frameworks */,
 				9AC3F1312CF6B9B60061DCC0 /* libacme_windowing_uikit.a in Frameworks */,
 				9AC3F1882CF788AA0061DCC0 /* libios_app_just_aqua_message_box.a in Frameworks */,
 				9AC3F11E2CF6B0560061DCC0 /* libios_apex_posix.a in Frameworks */,
 				9A4753E02CF5484000ED30AE /* libz.tbd in Frameworks */,
 				9AC3F1242CF6B2810061DCC0 /* libacme_ios.a in Frameworks */,
-				9AC3F1282CF6B57E0061DCC0 /* libinnate_ui_uikit.a in Frameworks */,
 				9A4753DD2CF543AB00ED30AE /* libios_darwin.a in Frameworks */,
 				9A4753DB2CF5433E00ED30AE /* libios_app_just_message_box.a in Frameworks */,
 				9A4753B32CF540A200ED30AE /* CoreGraphics.framework in Frameworks */,
@@ -193,7 +144,6 @@
 				9A47539D2CF53D3900ED30AE /* libios_acme_apple.a in Frameworks */,
 				9A4753A32CF53D3900ED30AE /* libios_acme_posix.a in Frameworks */,
 				9A47539F2CF53D3900ED30AE /* libios_acme_darwin.a in Frameworks */,
-				9A4753B02CF5404C00ED30AE /* libios_folder_zip.a in Frameworks */,
 				9A47539B2CF53D3900ED30AE /* libios_acme.a in Frameworks */,
 				9A4753AC2CF53E6800ED30AE /* libiconv.tbd in Frameworks */,
 				9A4753A82CF53DC200ED30AE /* Foundation.framework in Frameworks */,
@@ -207,15 +157,13 @@
 		9A4752B52CF5124000ED30AE = {
 			isa = PBXGroup;
 			children = (
-				9AC3F0CC2CF690FF0061DCC0 /* apex_ios.xcodeproj */,
+				9A8DC2C42D1E872100D72458 /* apex_ios.xcodeproj */,
 				9AC3F1522CF7853B0061DCC0 /* app_just_aqua_message_box.xcodeproj */,
-				9A4753082CF515B500ED30AE /* folder_zip.xcodeproj */,
-				9AC3F0D72CF691FC0061DCC0 /* innate_ui_uikit.xcodeproj */,
+				9A8DC2C72D1E875600D72458 /* folder_zip.xcodeproj */,
+				9A8DC2CA2D1E878100D72458 /* innate_ui_uikit.xcodeproj */,
 				9A47537E2CF5170A00ED30AE /* __implement */,
 				9A4753962CF53D3900ED30AE /* Frameworks */,
 				9A4752BF2CF5124100ED30AE /* Products */,
-				9A4753CF2CF542D300ED30AE /* app_just_acme_message_box.xcodeproj */,
-				9AC3F0CF2CF691670061DCC0 /* apex_ios.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -223,14 +171,6 @@
 			isa = PBXGroup;
 			children = (
 				9A4752BE2CF5124100ED30AE /* _ios_app_just_aqua_message_box.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9A4753092CF515B500ED30AE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A4753132CF515B500ED30AE /* libios_folder_zip.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -298,41 +238,11 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9A4753D02CF542D300ED30AE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9AC3F0D02CF691670061DCC0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9AC3F0D62CF691680061DCC0 /* libapex_ios.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9AC3F0DC2CF691FC0061DCC0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9AC3F0E02CF691FC0061DCC0 /* libinnate_ui_uikit.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9AC3F1582CF7853C0061DCC0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				9A45ED1F2D1E7E90008CC280 /* libapp_just_aqua_message_box.dylib */,
 				9AC3F1872CF786D50061DCC0 /* libios_app_just_aqua_message_box.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9AED897D2CFB8F450078A45B /* Products */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -353,9 +263,6 @@
 			);
 			dependencies = (
 				9AC3F18C2CF7890E0061DCC0 /* PBXTargetDependency */,
-				9AC3F1132CF692F60061DCC0 /* PBXTargetDependency */,
-				9AC3F0D32CF691670061DCC0 /* PBXTargetDependency */,
-				9A47530C2CF515B500ED30AE /* PBXTargetDependency */,
 			);
 			name = _ios_app_just_aqua_message_box;
 			packageProductDependencies = (
@@ -392,28 +299,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9AED897D2CFB8F450078A45B /* Products */;
-					ProjectRef = 9AC3F0CC2CF690FF0061DCC0 /* apex_ios.xcodeproj */;
-				},
-				{
-					ProductGroup = 9AC3F0D02CF691670061DCC0 /* Products */;
-					ProjectRef = 9AC3F0CF2CF691670061DCC0 /* apex_ios.xcodeproj */;
-				},
-				{
-					ProductGroup = 9A4753D02CF542D300ED30AE /* Products */;
-					ProjectRef = 9A4753CF2CF542D300ED30AE /* app_just_acme_message_box.xcodeproj */;
-				},
-				{
 					ProductGroup = 9AC3F1582CF7853C0061DCC0 /* Products */;
 					ProjectRef = 9AC3F1522CF7853B0061DCC0 /* app_just_aqua_message_box.xcodeproj */;
-				},
-				{
-					ProductGroup = 9A4753092CF515B500ED30AE /* Products */;
-					ProjectRef = 9A4753082CF515B500ED30AE /* folder_zip.xcodeproj */;
-				},
-				{
-					ProductGroup = 9AC3F0DC2CF691FC0061DCC0 /* Products */;
-					ProjectRef = 9AC3F0D72CF691FC0061DCC0 /* innate_ui_uikit.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -429,27 +316,6 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libapp_just_aqua_message_box.dylib;
 			remoteRef = 9A45ED1E2D1E7E90008CC280 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A4753132CF515B500ED30AE /* libios_folder_zip.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libios_folder_zip.a;
-			remoteRef = 9A4753122CF515B500ED30AE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9AC3F0D62CF691680061DCC0 /* libapex_ios.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libapex_ios.a;
-			remoteRef = 9AC3F0D52CF691680061DCC0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9AC3F0E02CF691FC0061DCC0 /* libinnate_ui_uikit.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libinnate_ui_uikit.a;
-			remoteRef = 9AC3F0DF2CF691FC0061DCC0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9AC3F1872CF786D50061DCC0 /* libios_app_just_aqua_message_box.a */ = {
@@ -488,21 +354,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9A47530C2CF515B500ED30AE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ios_folder_zip;
-			targetProxy = 9A47530B2CF515B500ED30AE /* PBXContainerItemProxy */;
-		};
-		9AC3F0D32CF691670061DCC0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = apex_ios;
-			targetProxy = 9AC3F0D22CF691670061DCC0 /* PBXContainerItemProxy */;
-		};
-		9AC3F1132CF692F60061DCC0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = innate_ui_appkit;
-			targetProxy = 9AC3F1122CF692F60061DCC0 /* PBXContainerItemProxy */;
-		};
 		9AC3F18C2CF7890E0061DCC0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ios_app_just_aqua_message_box;

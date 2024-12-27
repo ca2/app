@@ -28,6 +28,7 @@
 		9A97A78F2CFBDA3E000A2F7C /* libios_acme_windowing_kit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A97A78E2CFBDA3E000A2F7C /* libios_acme_windowing_kit.a */; };
 		9A97A7902CFBDA3E000A2F7C /* libios_acme_windowing_kit.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A97A78E2CFBDA3E000A2F7C /* libios_acme_windowing_kit.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AB67D042D1C4AA1001AB250 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB67D032D1C4AA1001AB250 /* CoreText.framework */; };
+		9AB67E082D1E3DCB001AB250 /* _static_factory_.inl in Resources */ = {isa = PBXBuildFile; fileRef = 9AB67E072D1E3DCB001AB250 /* _static_factory_.inl */; };
 		9AC3F1182CF6B0560061DCC0 /* libios_apex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1172CF6B0560061DCC0 /* libios_apex.a */; };
 		9AC3F11A2CF6B0560061DCC0 /* libios_apex_apple.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1192CF6B0560061DCC0 /* libios_apex_apple.a */; };
 		9AC3F11C2CF6B0560061DCC0 /* libios_apex_darwin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F11B2CF6B0560061DCC0 /* libios_apex_darwin.a */; };
@@ -122,7 +123,6 @@
 		9A4753832CF517F300ED30AE /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = _matter.zip; path = ../_matter.zip; sourceTree = SOURCE_ROOT; };
 		9A4753852CF5184A00ED30AE /* _____debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "_____debug.xcconfig"; path = "../_____debug.xcconfig"; sourceTree = SOURCE_ROOT; };
 		9A4753862CF5184A00ED30AE /* _____release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "_____release.xcconfig"; path = "../_____release.xcconfig"; sourceTree = SOURCE_ROOT; };
-		9A4753872CF5184A00ED30AE /* _static_factory_.inl */ = {isa = PBXFileReference; lastKnownFileType = text; name = _static_factory_.inl; path = ../_static_factory_.inl; sourceTree = SOURCE_ROOT; };
 		9A47538C2CF51A0400ED30AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		9A47538F2CF51A0400ED30AE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9A4753902CF51A0400ED30AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -143,6 +143,7 @@
 		9A4753DF2CF5484000ED30AE /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		9A97A78E2CFBDA3E000A2F7C /* libios_acme_windowing_kit.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_acme_windowing_kit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB67D032D1C4AA1001AB250 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		9AB67E072D1E3DCB001AB250 /* _static_factory_.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = _static_factory_.inl; sourceTree = "<group>"; };
 		9AC3F0CC2CF690FF0061DCC0 /* apex_ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex_ios.xcodeproj; path = "/Users/camilo/workspace/main/operating_system/operating_system-ios/apex_ios/apex_ios.xcodeproj"; sourceTree = "<absolute>"; };
 		9AC3F0CF2CF691670061DCC0 /* apex_ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex_ios.xcodeproj; path = "/Users/camilo/workspace/main/operating_system/operating_system-ios/apex_ios/apex_ios.xcodeproj"; sourceTree = "<absolute>"; };
 		9AC3F0D72CF691FC0061DCC0 /* innate_ui_uikit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = innate_ui_uikit.xcodeproj; path = "/Users/camilo/workspace/main/operating_system/operating_system-ios/innate_ui_uikit/innate_ui_uikit.xcodeproj"; sourceTree = "<absolute>"; };
@@ -230,12 +231,12 @@
 		9A47537E2CF5170A00ED30AE /* __implement */ = {
 			isa = PBXGroup;
 			children = (
-				9A47538B2CF5199800ED30AE /* ios */,
 				9A4753852CF5184A00ED30AE /* _____debug.xcconfig */,
 				9A4753862CF5184A00ED30AE /* _____release.xcconfig */,
-				9A4753872CF5184A00ED30AE /* _static_factory_.inl */,
 				9A4753832CF517F300ED30AE /* _matter.zip */,
+				9AB67E072D1E3DCB001AB250 /* _static_factory_.inl */,
 				9A47537F2CF5174A00ED30AE /* application_main.cpp */,
+				9A47538B2CF5199800ED30AE /* ios */,
 			);
 			name = __implement;
 			sourceTree = "<group>";
@@ -451,6 +452,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A4753922CF51A0400ED30AE /* InfoPlist.strings in Resources */,
+				9AB67E082D1E3DCB001AB250 /* _static_factory_.inl in Resources */,
 				9A4753932CF51A0400ED30AE /* Launch Screen.storyboard in Resources */,
 				9A4753942CF51A0400ED30AE /* Images.xcassets in Resources */,
 				9A4753842CF517F300ED30AE /* _matter.zip in Resources */,

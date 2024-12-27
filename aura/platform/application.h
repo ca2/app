@@ -53,7 +53,7 @@ namespace aura
 //       //::pointer<::application_menu>            m_pappmenu;
 //
 //       //::pointer<::game::game>                      m_pgame;
-//       ::pointer<::user::interaction>               m_puserinteractionMain;
+//       ::pointer<::user::interaction>               m_pacmeuserinteractionMain;
 //
 //       ::pointer<shell_open>                        m_pshellopen;
 //

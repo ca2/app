@@ -77,8 +77,6 @@ public:
 
    bool                                               m_bAuraMessageQueue;
    bool                                               m_bReady;
-   ::pointer<::user::interaction_base>                       m_puserinteractionbaseMain;           // Main interaction_impl (usually same psystem->m_puiMain)
-   ::pointer<::user::interaction_base>                       m_puserinteractionbaseActive;         // Active Main interaction_impl (may not be m_puiMain)
    //bool                                               m_bSimpleMessageLoop;
    bool                                               m_bZipIsDir2;
 
@@ -322,8 +320,8 @@ public:
    //virtual void set_timer(::user::interaction_base * pinteraction, uptr uEvent, unsigned int nEllapse);
    //virtual void unset_timer(::user::interaction_base * pinteraction, uptr uEvent);
    //virtual void set_auto_delete(bool bAutoDelete = true);
-   virtual ::user::interaction_base * get_active_user_interaction_base();
-   virtual void set_active_user_interaction_base(::user::interaction_base * pinteraction);
+//   virtual ::user::interaction_base * get_active_user_interaction_base();
+//   virtual void set_active_user_interaction_base(::user::interaction_base * pinteraction);
    //virtual void step_timer();
    //virtual bool on_run_step();
 

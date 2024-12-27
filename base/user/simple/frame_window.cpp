@@ -792,10 +792,10 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
    auto papp = get_app();
 
-   if (papp->m_puserinteractionMain != nullptr)
+   if (papp->m_pacmeuserinteractionMain != nullptr)
    {
 
-      ::pointer<::simple_frame_window>pframe = papp->m_puserinteractionMain.get();
+      ::pointer<::simple_frame_window>pframe = papp->m_pacmeuserinteractionMain.get();
 
       if (pframe.is_set())
       {
@@ -3123,7 +3123,7 @@ bool simple_frame_window::is_application_main_window()
 
    auto papp = get_app();
 
-   return papp->m_puserinteractionMain == this;
+   return papp->m_pacmeuserinteractionMain == this;
 
 }
 
@@ -3590,7 +3590,7 @@ void simple_frame_window::_001OnQueryEndSession(::message::message * pmessage)
 
    auto papp = get_app();
 
-   if (::is_set(papp) && papp->m_puserinteractionMain == this)
+   if (::is_set(papp) && papp->m_pacmeuserinteractionMain == this)
    {
 
       pusermessage->m_lresult = papp->save_all_modified();

@@ -165,6 +165,10 @@ public:
    string                                          m_strTaskName;
    string                                          m_strTaskTag;
 
+   
+   ::pointer < ::acme::user::interaction >                       m_pacmeuserinteractionMain; // Main user interaction (usually same psystem->m_puiMain)
+   ::pointer < ::acme::user::interaction >                       m_pacmeuserinteractionActive; // Active user interaction (may not be m_puiMain)
+
    ::particle_array                                m_particleaHold;
    ::pointer<manual_reset_happening>                   m_phappeningInitialization;
 
@@ -247,8 +251,11 @@ int m_iExitCode;
 
    ::task * get_task() override;
    const char * get_task_tag() override;
-
    
+   
+   virtual ::acme::user::interaction * get_active_user_interaction();
+   virtual void set_active_user_interaction(::acme::user::interaction * pacmeuserinteraction);
+
    void add_task(::object* pobjectTask) override;
 
    virtual bool is_current_task() const;

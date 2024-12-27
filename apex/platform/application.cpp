@@ -5191,14 +5191,14 @@ namespace apex
    //::user::interaction * application::main_window()
    //{
 
-   //   if (!m_puserinteractionMain)
+   //   if (!m_pacmeuserinteractionMain)
    //   {
 
    //      return nullptr;
 
    //   }
 
-   //   return m_puserinteractionMain->m_puiThis;
+   //   return m_pacmeuserinteractionMain->m_puiThis;
 
    //}
 
@@ -5334,10 +5334,17 @@ namespace apex
 
       pcommand->m_puseractivationtoken = puseractivationtoken;
        
-      if(m_puserinteractionbaseMain)
+      if(m_pacmeuserinteractionMain)
       {
          
-         m_puserinteractionbaseMain->route_command(pcommand);
+         ::cast < ::user::interaction_base > puserinteractionbase = m_pacmeuserinteractionMain;
+         
+         if(puserinteractionbase)
+         {
+            
+            puserinteractionbase->route_command(pcommand);
+            
+         }
          
       }
       else
@@ -5666,14 +5673,14 @@ namespace apex
       //{
       throw ::exception(todo, "interaction");
 
-      //   if (m_puserinteractionMain)
+      //   if (m_pacmeuserinteractionMain)
       //   {
 
-      //      m_puserinteractionMain->display(::e_display_hide);
+      //      m_pacmeuserinteractionMain->display(::e_display_hide);
 
-      //      m_puserinteractionMain->set_need_redraw();
+      //      m_pacmeuserinteractionMain->set_need_redraw();
 
-      //      m_puserinteractionMain->post_redraw();
+      //      m_pacmeuserinteractionMain->post_redraw();
 
       //   }
 
@@ -8593,9 +8600,9 @@ namespace apex
    //
    //// same as double-clicking on main window close box
    //
-   ////ASSERT(m_puserinteractionMain != nullptr);
+   ////ASSERT(m_pacmeuserinteractionMain != nullptr);
    //
-   ////m_puserinteractionMain->m_puiThis->send_message(e_message_close);
+   ////m_pacmeuserinteractionMain->m_puiThis->send_message(e_message_close);
    //
    //}
    //
@@ -8606,7 +8613,7 @@ namespace apex
    //   try
    //   {
 
-   //      if (m_puserinteractionMain == nullptr)
+   //      if (m_pacmeuserinteractionMain == nullptr)
    //      {
 
    //         return;
@@ -8614,18 +8621,18 @@ namespace apex
    //      }
 
    //      // hide the application's windows before closing all the documents
-   //      m_puserinteractionMain->m_puiThis->display(e_display_none);
+   //      m_pacmeuserinteractionMain->m_puiThis->display(e_display_none);
    //      // trans    m_puiMain->ShowOwnedPopups(false);
 
 
-   //      m_puserinteractionMain->m_puiThis->order(e_zorder_bottom);
+   //      m_pacmeuserinteractionMain->m_puiThis->order(e_zorder_bottom);
    //      //m_puiMain->m_puiThis->m_bZ = true;
    //      // put the window at the bottom of zorder, so it isn't activated
    //      // m_puiMain->m_puiThis->zorder();
 
    //      //m_puiMain->m_puiThis->wait_redraw();
 
-   //      m_puserinteractionMain->m_puiThis->display(e_display_none);
+   //      m_pacmeuserinteractionMain->m_puiThis->display(e_display_none);
 
 
    //   }
@@ -9161,10 +9168,10 @@ namespace apex
    bool application::activate_app()
    {
 
-      //if (m_puserinteractionMain != nullptr)
+      //if (m_pacmeuserinteractionMain != nullptr)
       //{
 
-      //   m_puserinteractionMain->m_puiThis->display(SW_SHOWNORMAL);
+      //   m_pacmeuserinteractionMain->m_puiThis->display(SW_SHOWNORMAL);
 
       //}
 
@@ -9180,7 +9187,7 @@ namespace apex
    //   try
    //   {
 
-   //      if (m_puserinteractionMain == nullptr)
+   //      if (m_pacmeuserinteractionMain == nullptr)
    //      {
 
    //         return;
@@ -9188,18 +9195,18 @@ namespace apex
    //      }
 
    //      // hide the application's windows before closing all the documents
-   //      m_puserinteractionMain->m_puiThis->display(e_display_none);
+   //      m_pacmeuserinteractionMain->m_puiThis->display(e_display_none);
    //      // trans    m_puiMain->ShowOwnedPopups(false);
 
 
-   //      m_puserinteractionMain->m_puiThis->order(e_zorder_bottom);
+   //      m_pacmeuserinteractionMain->m_puiThis->order(e_zorder_bottom);
    //      //m_puiMain->m_puiThis->m_bZ = true;
    //      // put the window at the bottom of zorder, so it isn't activated
    //      // m_puiMain->m_puiThis->zorder();
 
    //      //m_puiMain->m_puiThis->wait_redraw();
 
-   //      m_puserinteractionMain->m_puiThis->display(e_display_none);
+   //      m_pacmeuserinteractionMain->m_puiThis->display(e_display_none);
 
 
    //   }

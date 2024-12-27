@@ -4162,10 +4162,10 @@ namespace user
 
             ::cast < ::thread > pthread = papplication;
 
-            if (pthread)
+            if (pthread->m_pacmeuserinteractionActive == this)
             {
 
-               pthread->m_puserinteractionbaseActive = nullptr;
+               pthread->m_pacmeuserinteractionActive = nullptr;
 
             }
 
@@ -4537,10 +4537,10 @@ namespace user
          if (pthread != nullptr)
          {
 
-            if (pthread->get_active_user_interaction_base() == this)
+            if (pthread->get_active_user_interaction() == this)
             {
 
-               pthread->set_active_user_interaction_base(nullptr);
+               pthread->set_active_user_interaction(nullptr);
 
             }
 

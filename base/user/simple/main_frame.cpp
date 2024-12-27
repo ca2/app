@@ -54,10 +54,10 @@ void simple_main_frame::on_message_create(::message::message * pmessage)
 
    auto papp = get_app();
 
-   if (papp->m_puserinteractionMain.is_null())
+   if (papp->m_pacmeuserinteractionMain.is_null())
    {
 
-      papp->m_puserinteractionMain = this;
+      papp->m_pacmeuserinteractionMain = this;
 
    }
    

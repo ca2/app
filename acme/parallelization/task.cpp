@@ -13,6 +13,7 @@
 #include "acme/exception/translator.h"
 #include "acme/handler/request.h"
 #include "acme/nano/nano.h"
+#include "acme/user/user/interaction.h"
 #include "acme/windowing/window.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/multiple_lock.h"
@@ -233,6 +234,23 @@ const char * task::get_task_tag()
    return m_strTaskTag.c_str();
 
 }
+
+
+::acme::user::interaction * task::get_active_user_interaction()
+{
+
+   return m_pacmeuserinteractionActive;
+
+}
+
+
+void task::set_active_user_interaction(::acme::user::interaction * pacmeuserinteraction)
+{
+
+   m_pacmeuserinteractionActive = pacmeuserinteraction;
+
+}
+
 
 
 
@@ -1118,6 +1136,10 @@ void task::destroy()
    m_plocale.release();
 
    m_phappeningFinished2.release();
+   
+   m_pacmeuserinteractionActive.release();
+   
+   m_pacmeuserinteractionMain.release();
 
    //m_pmanualresethappeningNewProcedurePosted.release();
 

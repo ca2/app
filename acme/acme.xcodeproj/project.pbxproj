@@ -4795,6 +4795,18 @@
 		9ADD655126B5CFE700D11298 /* memory_management.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADD652F26B5CFE200D11298 /* memory_management.cpp */; };
 		9ADD655A26B5CFE700D11298 /* _____heap_namespace.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADD653526B5CFE500D11298 /* _____heap_namespace.h */; };
 		9ADD655B26B5CFE700D11298 /* _____heap_namespace.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADD653526B5CFE500D11298 /* _____heap_namespace.h */; };
+		9ADF75032D1F0B690003083D /* activation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADF74FF2D1F0B690003083D /* activation.h */; };
+		9ADF75042D1F0B690003083D /* activation_token.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADF75012D1F0B690003083D /* activation_token.h */; };
+		9ADF75052D1F0B690003083D /* activation_token.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF75022D1F0B690003083D /* activation_token.cpp */; };
+		9ADF75062D1F0B690003083D /* activation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF75002D1F0B690003083D /* activation.cpp */; };
+		9ADF75072D1F0B690003083D /* activation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADF74FF2D1F0B690003083D /* activation.h */; };
+		9ADF75082D1F0B690003083D /* activation_token.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADF75012D1F0B690003083D /* activation_token.h */; };
+		9ADF75092D1F0B690003083D /* activation_token.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF75022D1F0B690003083D /* activation_token.cpp */; };
+		9ADF750A2D1F0B690003083D /* activation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF75002D1F0B690003083D /* activation.cpp */; };
+		9ADF750B2D1F0B690003083D /* activation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADF74FF2D1F0B690003083D /* activation.h */; };
+		9ADF750C2D1F0B690003083D /* activation_token.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADF75012D1F0B690003083D /* activation_token.h */; };
+		9ADF750D2D1F0B690003083D /* activation_token.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF75022D1F0B690003083D /* activation_token.cpp */; };
+		9ADF750E2D1F0B690003083D /* activation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF75002D1F0B690003083D /* activation.cpp */; };
 		9AE41EAD28E65CD500C6A830 /* _api.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE41EAC28E65CD400C6A830 /* _api.h */; };
 		9AE41EAE28E65CD500C6A830 /* _api.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE41EAC28E65CD400C6A830 /* _api.h */; };
 		9AE41EB128E65D6800C6A830 /* _api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE41EAF28E65D6800C6A830 /* _api.cpp */; };
@@ -6652,6 +6664,10 @@
 		9ADD653126B5CFE300D11298 /* namespace_heap.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = namespace_heap.inl; sourceTree = "<group>"; };
 		9ADD653526B5CFE500D11298 /* _____heap_namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "_____heap_namespace.h"; sourceTree = "<group>"; };
 		9ADD656126B5DB7D00D11298 /* heap_namespace.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = heap_namespace.inl; sourceTree = "<group>"; };
+		9ADF74FF2D1F0B690003083D /* activation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = activation.h; sourceTree = "<group>"; };
+		9ADF75002D1F0B690003083D /* activation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = activation.cpp; sourceTree = "<group>"; };
+		9ADF75012D1F0B690003083D /* activation_token.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = activation_token.h; sourceTree = "<group>"; };
+		9ADF75022D1F0B690003083D /* activation_token.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = activation_token.cpp; sourceTree = "<group>"; };
 		9AE41EAC28E65CD400C6A830 /* _api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _api.h; sourceTree = "<group>"; };
 		9AE41EAF28E65D6800C6A830 /* _api.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _api.cpp; sourceTree = "<group>"; };
 		9AE4665E2AB1000200FE0DE4 /* matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matrix.cpp; sourceTree = "<group>"; };
@@ -8775,13 +8791,17 @@
 		9AA8F8B827BA7268008FF9AA /* user */ = {
 			isa = PBXGroup;
 			children = (
-				9AA1FE562D19078500DB0C45 /* _.cpp */,
 				9AA8F8CC27BA7268008FF9AA /* _.h */,
+				9AA1FE562D19078500DB0C45 /* _.cpp */,
 				9A72EF012A3D5C31009743AD /* _constant.h */,
 				9AA1C9692A4BA18800B3D831 /* _string.h */,
 				9AA1C96B2A4BA18800B3D831 /* _string.cpp */,
 				9AA8F8C927BA7268008FF9AA /* _style.h */,
 				9AA1C96A2A4BA18800B3D831 /* _text_stream.h */,
+				9ADF74FF2D1F0B690003083D /* activation.h */,
+				9ADF75002D1F0B690003083D /* activation.cpp */,
+				9ADF75012D1F0B690003083D /* activation_token.h */,
+				9ADF75022D1F0B690003083D /* activation_token.cpp */,
 				9AA8F8C127BA7268008FF9AA /* check.h */,
 				9AA8F8C727BA7268008FF9AA /* check.cpp */,
 				9ACD71462C172AC100E392FF /* check_property.h */,
@@ -9420,6 +9440,8 @@
 				9A68ADF925114435008DABD2 /* address_array.h in Headers */,
 				9AE6DE5829621577008A1335 /* application_exit.h in Headers */,
 				9AD7D6F1284DAA8F00AD3796 /* aaa_plane_system.h in Headers */,
+				9ADF750B2D1F0B690003083D /* activation.h in Headers */,
+				9ADF750C2D1F0B690003083D /* activation_token.h in Headers */,
 				9A3BFBBC29C83393005DE2BF /* write_text_stream.h in Headers */,
 				9A0843BC29366D8F009F7FF4 /* _u32hash.h in Headers */,
 				9A0842792935E694009F7FF4 /* allocator.h in Headers */,
@@ -11106,6 +11128,8 @@
 				9AC1037B2B6AC9BD0053DB45 /* io.h in Headers */,
 				9AC1037D2B6AC9BD0053DB45 /* string_stream.h in Headers */,
 				9AC1037E2B6AC9BD0053DB45 /* e_flag.h in Headers */,
+				9ADF75072D1F0B690003083D /* activation.h in Headers */,
+				9ADF75082D1F0B690003083D /* activation_token.h in Headers */,
 				9AC103802B6AC9BD0053DB45 /* install_mutex.h in Headers */,
 				9AC103812B6AC9BD0053DB45 /* _types.h in Headers */,
 				9AC103822B6AC9BD0053DB45 /* point_array.h in Headers */,
@@ -12204,6 +12228,8 @@
 				9A523FCB2CD433B0006ED868 /* http_acme.h in Headers */,
 				9A523FCC2CD433B0006ED868 /* application_axis.h in Headers */,
 				9A523FCD2CD433B0006ED868 /* application_aqua.h in Headers */,
+				9ADF75032D1F0B690003083D /* activation.h in Headers */,
+				9ADF75042D1F0B690003083D /* activation_token.h in Headers */,
 				9A523FCE2CD433B0006ED868 /* context_aura.h in Headers */,
 				9A523FCF2CD433B0006ED868 /* session_aqua.h in Headers */,
 				9A523FD02CD433B0006ED868 /* tracing.h in Headers */,
@@ -12701,6 +12727,8 @@
 				9A5241472CD47440006ED868 /* parallelization_pthread.cpp in Sources */,
 				9A5241482CD47440006ED868 /* parallelization.cpp in Sources */,
 				9A5241492CD47440006ED868 /* process.cpp in Sources */,
+				9ADF750D2D1F0B690003083D /* activation_token.cpp in Sources */,
+				9ADF750E2D1F0B690003083D /* activation.cpp in Sources */,
 				9A52414A2CD47440006ED868 /* c_error_number.cpp in Sources */,
 				9A52414B2CD47440006ED868 /* debug.cpp in Sources */,
 				9A52414C2CD47440006ED868 /* earth_time_shift.cpp in Sources */,
@@ -13367,6 +13395,8 @@
 				9AC105652B6AC9BD0053DB45 /* translator.cpp in Sources */,
 				9AC105662B6AC9BD0053DB45 /* vld.cpp in Sources */,
 				9A5240532CD44809006ED868 /* subparticle_flags.cpp in Sources */,
+				9ADF75092D1F0B690003083D /* activation_token.cpp in Sources */,
+				9ADF750A2D1F0B690003083D /* activation.cpp in Sources */,
 				9AC105672B6AC9BD0053DB45 /* parallelization.cpp in Sources */,
 				9AC105682B6AC9BD0053DB45 /* memory.cpp in Sources */,
 				9AC105692B6AC9BD0053DB45 /* directory_system.cpp in Sources */,
@@ -14162,6 +14192,8 @@
 				9A523FAD2CD433B0006ED868 /* system_core.cpp in Sources */,
 				9A523FAE2CD433B0006ED868 /* release_time_for_project.cpp in Sources */,
 				9A523FAF2CD433B0006ED868 /* session_aqua.cpp in Sources */,
+				9ADF75052D1F0B690003083D /* activation_token.cpp in Sources */,
+				9ADF75062D1F0B690003083D /* activation.cpp in Sources */,
 				9A523FB02CD433B0006ED868 /* c.cpp in Sources */,
 				9A7C315E2CFBBD79003F2883 /* debug.cpp in Sources */,
 				9A523FB12CD433B0006ED868 /* session_apex.cpp in Sources */,

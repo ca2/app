@@ -1016,8 +1016,9 @@ namespace user
    void frame_interaction::initial_frame_placement()
    {
 
-#if defined(SANDBOXED_PLATFORM)
+#if defined(SANDBOXED_WINDOWING)
 
+      display_zoomed();
 
 #else
 

@@ -186,9 +186,9 @@ namespace user
    void main_window::initial_frame_placement()
    {
 
+#if defined(SANDBOXED_WINDOWING)
 
-#if defined(SANDBOXED_PLATFORM)
-
+      display_zoomed();
 
 #else
 

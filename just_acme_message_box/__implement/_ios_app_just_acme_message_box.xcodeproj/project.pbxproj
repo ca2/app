@@ -31,6 +31,7 @@
 		9A4753E02CF5484000ED30AE /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4753DF2CF5484000ED30AE /* libz.tbd */; };
 		9A97A7722CFBCE97000A2F7C /* libios_acme_windowing_kit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A97A7712CFBCE97000A2F7C /* libios_acme_windowing_kit.a */; };
 		9A97A7732CFBCE97000A2F7C /* libios_acme_windowing_kit.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A97A7712CFBCE97000A2F7C /* libios_acme_windowing_kit.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AB67CFF2D1C31FC001AB250 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB67CEC2D1C31FC001AB250 /* CoreText.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,6 +152,7 @@
 		9A4753DC2CF543AB00ED30AE /* libios_darwin.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_darwin.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4753DF2CF5484000ED30AE /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		9A97A7712CFBCE97000A2F7C /* libios_acme_windowing_kit.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_acme_windowing_kit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AB67CEC2D1C31FC001AB250 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AB67CFF2D1C31FC001AB250 /* CoreText.framework in Frameworks */,
 				9A4753E02CF5484000ED30AE /* libz.tbd in Frameworks */,
 				9A4753DE2CF546B800ED30AE /* libios_app_just_acme_message_box.a in Frameworks */,
 				9A4753DD2CF543AB00ED30AE /* libios_darwin.a in Frameworks */,
@@ -272,6 +275,7 @@
 		9A4753962CF53D3900ED30AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9AB67CEC2D1C31FC001AB250 /* CoreText.framework */,
 				9A97A7712CFBCE97000A2F7C /* libios_acme_windowing_kit.a */,
 				9A4753DF2CF5484000ED30AE /* libz.tbd */,
 				9A4753DC2CF543AB00ED30AE /* libios_darwin.a */,

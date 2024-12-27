@@ -307,7 +307,7 @@ namespace account
 
       m_plogin->display();
 
-      set_foreground_window();
+      set_foreground_window(nullptr);
 
       //BringWindowToTop();
 

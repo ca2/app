@@ -200,7 +200,11 @@ namespace platform
       if (iThis != iComputed)
       {
 
+#ifndef RASPBERRYPIOS
+
          throw 0;
+
+#endif
 
       }
 #endif

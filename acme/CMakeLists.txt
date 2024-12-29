@@ -246,6 +246,7 @@ list(APPEND library_source
    graphics/image/image32_array.cpp
    graphics/image/image32_array.h
    graphics/image/pixmap.cpp
+   handler/command_handler.cpp
    handler/extended_topic.cpp
    handler/extended_topic.h
    handler/handler.cpp
@@ -341,13 +342,6 @@ list(APPEND library_source
    nano/http/http.cpp
    nano/http/http.h
    _static_factory.h
-   windowing/_.h
-   user/micro/
-   user/user/element.cpp
-   user/user/element.h
-   #nano/user/console.cpp
-   #nano/user/console.h
-
    nano/idn/_.h
    nano/idn/idn.cpp
    nano/idn/idn.h
@@ -1296,11 +1290,17 @@ list(APPEND library_source
    #   user/nano/window_implementation.h
    #   user/nano/window_interface.cpp
    #   user/nano/window_interface.h
+   user/micro/
    user/user/_string.cpp
    user/user/_string.h
    user/user/_text_stream.h
    #user/user/check.cpp
    #user/user/check.h
+   user/user/_.cpp
+   user/user/activation.cpp
+   user/user/activation.h
+   user/user/activation_token.cpp
+   user/user/activation_token.h
    user/user/check.cpp
    user/user/check.h
    user/user/check_property.cpp
@@ -1348,6 +1348,9 @@ list(APPEND library_source
    user/user/tool_item.cpp
    user/user/tool_item.h
    user/_.h
+   windowing/_.h
+   #nano/user/console.cpp
+   #nano/user/console.h
    windowing/sandbox/_sandbox.h
    windowing/sandbox/host_interaction.cpp
    windowing/sandbox/host_interaction.h
@@ -2988,8 +2991,6 @@ add_library(${PROJECT_NAME} SHARED ${library_source}
    operating_system/posix/dynamic_library_dl.cpp
    operating_system/posix/dynamic_library_dl.h
    _finish.h
-   user/user/_.cpp
-   handler/command_handler.cpp
 )
 
 

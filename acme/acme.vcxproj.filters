@@ -5621,9 +5621,6 @@
     <ClCompile Include="platform\logger.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows\calculate_etoolkit.cpp">
-      <Filter>Source Files\operating_system\windows</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\windows\calculate_ewindowing.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
@@ -5896,6 +5893,9 @@
     </ClCompile>
     <ClCompile Include="user\user\activation_token.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\calculate_etoolkit.cpp">
+      <Filter>Source Files\operating_system</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -182,7 +182,11 @@ namespace platform
       if (iThis != iComputed)
       {
 
+         #if !defined(RASPBERRYPIOS)
+
          throw 0;
+
+         #endif
 
       }
 #endif

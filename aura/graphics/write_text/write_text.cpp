@@ -2,6 +2,7 @@
 #include "write_text.h"
 #include "font_enumeration_item.h"
 #include "fonts.h"
+#include "internal_font.h"
 #include "true_type_font_utilities.h"
 #include "acme/constant/id.h"
 #include "acme/filesystem/filesystem/directory_system.h"
@@ -25,6 +26,8 @@ namespace write_text
 
    write_text::~write_text()
    {
+
+      m_mapInternalFont.clear();
 
 
    }
@@ -188,7 +191,7 @@ namespace write_text
       
       fontdescriptor.m_strFace = face;
 
-      fontdescriptor.m_fSize = floorf(size * 10.f) / 10.f;
+      fontdescriptor.m_iSize = (int) ceilf(size * 1000.0f);
       
       return fontdescriptor;
       
@@ -425,6 +428,34 @@ namespace write_text
    //   }
 
    //}
+
+
+::write_text::internal_font * write_text::internal_font_from_file(::platform::context * pcontext, const ::file::path & path)
+{
+
+   auto & pinternalfont = m_mapInternalFont[path];
+
+   if (::is_set(pinternalfont))
+   {
+
+      return pinternalfont;
+
+   }
+
+   __øconstruct(pinternalfont);
+
+   auto pmemory = get_file_memory(pcontext, path);
+
+   if (pmemory->has_data())
+   {
+
+      pinternalfont->load_from_memory(pmemory);
+
+   }
+
+   return pinternalfont;
+
+}
 
 
 } // namespace write_text

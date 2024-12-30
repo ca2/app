@@ -239,7 +239,7 @@ namespace windowing
 
       //m_pthreadMouseLeave.release();
 
-      m_messagelist.clear();
+      //m_messagelist.clear();
 
       m_pelementSoftwareKeyboard.release();
 
@@ -10260,53 +10260,53 @@ void window::set_oswindow(::oswindow oswindow)
    //   }
 
 
-   void window::process_message()
-   {
+   //void window::process_message()
+   //{
 
-      while (true)
-      {
+   //   while (true)
+   //   {
 
-         ::pointer<::message::message> pmessage;
+   //      ::pointer<::message::message> pmessage;
 
-         {
+   //      {
 
-            _synchronous_lock synchronouslock(this->synchronization());
+   //         _synchronous_lock synchronouslock(this->synchronization());
 
-            if (m_messagelist.is_empty())
-            {
+   //         if (m_messagelist.is_empty())
+   //         {
 
-               return;
+   //            return;
 
-            }
+   //         }
 
-            pmessage = ::transfer(m_messagelist.pick_head());
+   //         pmessage = ::transfer(m_messagelist.pick_head());
 
-         }
+   //      }
 
-         message_handler(pmessage);
+   //      message_handler(pmessage);
 
-      }
+   //   }
 
-   }
+   //}
 
 
-   void window::queue_message_handler(::message::message * pmessage)
-   {
+   //void window::queue_message_handler(::message::message * pmessage)
+   //{
 
-      _synchronous_lock synchronouslock(this->synchronization());
+   //   //_synchronous_lock synchronouslock(this->synchronization());
 
-      bool bWasEmpty = m_messagelist.is_empty();
+   //   //bool bWasEmpty = m_messagelist.is_empty();
 
-      m_messagelist.add_tail(pmessage);
+   //   //m_messagelist.add_tail(pmessage);
 
-      if (bWasEmpty)
-      {
+   //   //if (bWasEmpty)
+   //   //{
 
-         m_puserthread->kick_idle();
+   //   //   m_puserthread->kick_idle();
 
-      }
+   //   //}
 
-   }
+   //}
 
 
    void window::set_bitmap_source(const string & strBitmapSource)

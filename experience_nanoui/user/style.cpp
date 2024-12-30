@@ -4,6 +4,7 @@
 #include "acme/platform/node.h"
 #include "apex/platform/savings.h"
 #include "acme/prototype/mathematics/_random.h"
+#include "acme/prototype/mathematics/mathematics.h"
 #include "acme/user/user/content.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -50,9 +51,7 @@ namespace experience_nanoui
       if (::is_null(m_pfont))
       {
 
-         m_pfont.create(this);
-
-         auto pnode = node();
+         __øconstruct(m_pfont);
 
          m_pfont->create_font(e_font_sans_ui, 12_pt, e_font_weight_normal);
 
@@ -633,8 +632,8 @@ namespace experience_nanoui
       {
          int iTabWidth = 16;
          int iTabHeight = 8;
-         int cx;
-         int cy;
+         double cx;
+         double cy;
          for(int iPane = 0; iPane < ptab->get_data()->m_tabpanea.get_size(); iPane++)
          {
 
@@ -656,21 +655,21 @@ namespace experience_nanoui
                size.cx() += ppane->m_pimage->width() + 2;
                size.cy() = maximum(size.cy(),ppane->m_pimage->height());
             }
-            cx = size.cx() + 2;
+            cx = size.cx() + 2.0;
 
             if(!ppane->m_bPermanent)
             {
-               cx += 2 + 16 + 2;
+               cx += 2.0 +16.0 + 2.0;
             }
 
             if(cx > iTabWidth)
             {
-               iTabWidth = cx;
+               iTabWidth =(int) cx;
             }
             cy = size.cy() + 2;
             if(cy > iTabHeight)
             {
-               iTabHeight = cy;
+               iTabHeight =(int) cy;
             }
          }
 
@@ -678,7 +677,7 @@ namespace experience_nanoui
          cy = 2 + 16 + 2;
          if(cy > iTabHeight)
          {
-            iTabHeight = cy;
+            iTabHeight =(int) cy;
          }
 
          iTabWidth += ptab->get_data()->m_rectangleBorder.left() + ptab->get_data()->m_rectangleBorder.right() +
@@ -755,7 +754,7 @@ namespace experience_nanoui
 
             }
 
-            cy = size.cy() + 2;
+            cy = (int) ( size.cy() + 2.0);
 
             if(cy > iTabHeight)
             {
@@ -786,10 +785,10 @@ namespace experience_nanoui
 
 
 
-            ppane->m_size.cx() = size.cx() + ixAdd
+            ppane->m_size.cx() = (int) ( size.cx() + ixAdd
                                  + ptab->get_data()->m_rectangleBorder.left() + ptab->get_data()->m_rectangleBorder.right()
                                  + ptab->get_data()->m_rectangleMargin.left() + ptab->get_data()->m_rectangleMargin.right()
-                                 + ptab->get_data()->m_rectangleTextMargin.left() + ptab->get_data()->m_rectangleTextMargin.right();
+                                 + ptab->get_data()->m_rectangleTextMargin.left() + ptab->get_data()->m_rectangleTextMargin.right());
 
             x += ppane->m_size.cx();
          }
@@ -1531,7 +1530,7 @@ namespace experience_nanoui
                pbar->payload("tracking_start_time") = ::time::now() + dRate * periodFadeIn;
                pbar->payload("tracking_fade_in") = true;
                pbar->payload("tracking_fade_out") = false;
-               pbar->payload("tracking_simple") = random(1, 2) == 1;
+               pbar->payload("tracking_simple") = mathematics()->random(1, 2) == 1;
 
             }
 
@@ -1573,7 +1572,7 @@ namespace experience_nanoui
          if (pbar->is_true("tracking_fade_in"))
          {
 
-            auto elapsed = pbar->payload("tracking_start_time").time().elapsed();
+            auto elapsed = pbar->payload("tracking_start_time").as_time().elapsed();
 
             if (elapsed < periodFadeIn)
             {
@@ -1594,7 +1593,7 @@ namespace experience_nanoui
          else if (pbar->is_true("tracking_fade_out"))
          {
 
-            auto elapsed = pbar->payload("tracking_start_time").time().elapsed();
+            auto elapsed = pbar->payload("tracking_start_time").as_time().elapsed();
 
             if (elapsed < periodFadeOut)
             {
@@ -1626,7 +1625,7 @@ namespace experience_nanoui
          if (bSimple)
          {
 
-            int iSize = rectangleTrack.size().get_normal_dimension(pbar->m_eorientation) * 6 / 8;
+            int iSize = (int) (rectangleTrack.size().get_normal_dimension(pbar->m_eorientation) * 6 / 8);
 
             rectangleMachineThumb.top_left() = rectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::int_size(iSize / 2, iSize / 2);
 
@@ -1646,7 +1645,7 @@ namespace experience_nanoui
          else
          {
 
-            int iSize = rectangleTrack.size().get_normal_dimension(pbar->m_eorientation);
+            int iSize = (int) rectangleTrack.size().get_normal_dimension(pbar->m_eorientation);
 
             rectangleMachineThumb.top_left() = rectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::int_size(iSize / 2, iSize / 2);
 

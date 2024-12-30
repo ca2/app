@@ -35,6 +35,7 @@ namespace draw2d
    public:
 
 
+
       static double g_dEmboss;
       void * m_pimpl;
 

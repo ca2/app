@@ -103,6 +103,11 @@ namespace write_text
       
       
       virtual ::string family_name();
+
+
+      virtual bool defer_load_internal_font(::draw2d::graphics * pgraphics);
+
+      virtual void on_create_internal_font(::draw2d::graphics * pgraphics, ::write_text::internal_font * pinternalfont);
       
 
       //virtual bool create_point_font(

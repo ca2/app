@@ -1764,6 +1764,7 @@
     <ClCompile Include="operating_system\argcargv.cpp" />
     <ClCompile Include="operating_system\a_system_menu.cpp" />
     <ClCompile Include="operating_system\bidirectional_pipe.cpp" />
+    <ClCompile Include="operating_system\calculate_etoolkit.cpp" />
     <ClCompile Include="operating_system\chronometer.cpp" />
     <ClCompile Include="operating_system\console.cpp" />
     <ClCompile Include="operating_system\console_client.cpp" />
@@ -1794,7 +1795,6 @@
     <ClCompile Include="operating_system\time.cpp" />
     <ClCompile Include="operating_system\windowing.cpp" />
     <ClCompile Include="operating_system\windows\calculate_edesktop.cpp" />
-    <ClCompile Include="operating_system\windows\calculate_etoolkit.cpp" />
     <ClCompile Include="operating_system\windows\calculate_ewindowing.cpp" />
     <ClCompile Include="operating_system\windows\callstack.cpp" />
     <ClCompile Include="operating_system\windows\dynamic_library.cpp" />

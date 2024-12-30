@@ -2,6 +2,7 @@
 #include "frame.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/graphics/image/image.h"
@@ -77,7 +78,7 @@ namespace experience_nanoui
 
       auto psystem = system();
 
-      auto imaging = psystem->imaging();
+      auto pimaging = psystem->imaging();
 
       ::int_rectangle rectangleX(rectangleParam);
 
@@ -141,7 +142,7 @@ namespace experience_nanoui
 
       //b = 
          
-      imaging.blur(pimage2, 2);
+      pimaging->blur(pimage2, 2);
 
       {
 
@@ -563,7 +564,7 @@ namespace experience_nanoui
       if(eborder & e_border_top || eborder & e_border_left)
       {
 
-         ppen.create(this);
+         __øconstruct(ppen);
 
          ppen->create_solid(1.0, colorTopLeft);
 
@@ -592,7 +593,7 @@ namespace experience_nanoui
       if((eborder & e_border_right || eborder & e_border_bottom) && (!ppen || ppen->m_color != colorBottomRight))
       {
 
-         ppen.create(this);
+         __øconstruct(ppen);
 
          ppen->create_solid(1.0,colorBottomRight);
 

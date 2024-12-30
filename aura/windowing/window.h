@@ -128,7 +128,7 @@ namespace windowing
       //::int_rectangle                           m_rectangleUpdateBuffer;
       ::thread_pointer                          m_pthreadMouseLeave;
 
-      ::list < ::pointer<::message::message >> m_messagelist;
+      //::list < ::pointer<::message::message >> m_messagelist;
 
       ::int_point                               m_pointInside;
       //::user::interaction_base *                       m_pprimitiveFocus;
@@ -696,7 +696,7 @@ namespace windowing
       //void queue_message_handler(::message::message * pmessage) override;
 
 
-      void process_message();
+      //void process_message();
 
 
       //bool is_there_graphics_output_interest() const override;
@@ -1381,7 +1381,7 @@ namespace windowing
 
       //virtual void default_message_handler(::message::message * pusermessage);
 
-      virtual void queue_message_handler(::message::message * pmessage);
+      //virtual void queue_message_handler(::message::message * pmessage);
 
 
       virtual ::pointer<::message::message>get_message(const ::atom & atom, wparam wparam, lparam lparam, ::message::enum_prototype eprototype = ::message::e_prototype_none) override;

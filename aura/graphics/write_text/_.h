@@ -25,6 +25,8 @@ namespace write_text
    class font_family;
    class font_family_pointer;
 
+   class internal_font;
+
 
 } // namespace write_text
 

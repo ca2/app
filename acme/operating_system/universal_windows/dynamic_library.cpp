@@ -467,9 +467,16 @@ namespace universal_windows
                try
                {
 
-                  wstring wstrPath(directory_system()->module() / strPath);
+                  auto pdirectorysystem = directory_system();
 
-                  plibrary = (::library_t *)(void *)::LoadPackagedLibrary(wstrPath, 0);
+                  if (pdirectorysystem)
+                  {
+
+                     wstring wstrPath(directory_system()->module() / strPath);
+
+                     plibrary = (::library_t *)(void *)::LoadPackagedLibrary(wstrPath, 0);
+
+                  }
 
                }
                catch (...)
@@ -485,9 +492,16 @@ namespace universal_windows
                try
                {
 
-                  wstring wstrPath(("\\\\?\\" + directory_system()->module()) / strPath);
+                  auto pdirectorysystem = directory_system();
 
-                  plibrary = (::library_t *)(void *)::LoadPackagedLibrary(wstrPath, 0);
+                  if (pdirectorysystem)
+                  {
+
+                     wstring wstrPath(("\\\\?\\" + pdirectorysystem->module()) / strPath);
+
+                     plibrary = (::library_t *)(void *)::LoadPackagedLibrary(wstrPath, 0);
+
+                  }
 
                }
                catch (...)

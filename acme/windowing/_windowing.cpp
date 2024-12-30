@@ -22,7 +22,13 @@
    case ::windowing::e_toolkit_appkit:   str = "appkit"; break;
    case ::windowing::e_toolkit_uikit:    str = "uikit"; break;
    case ::windowing::e_toolkit_android:  str = "android"; break;
-   default:break;
+   case ::windowing::e_toolkit_universal_windows:  str = "universal_windows"; break;
+   default:
+   {
+      throw "currently unknonw toolkit";
+         break;
+
+   }
    }
 
 

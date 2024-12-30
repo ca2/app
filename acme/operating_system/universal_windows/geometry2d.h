@@ -24,8 +24,8 @@ inline ::int_rectangle as_int_rectangle(const ::winrt::Windows::Foundation::Rect
 
    rectangle.left() = (int)rect.X;
    rectangle.top() = (int)rect.Y;
-   rectangle.right() = (float)(rect.X + rect.Width);
-   rectangle.bottom() = (float)(rect.Y + rect.Height);
+   rectangle.right() = (int)(rect.X + rect.Width);
+   rectangle.bottom() = (int)(rect.Y + rect.Height);
 
    return rectangle;
 

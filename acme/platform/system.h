@@ -354,6 +354,9 @@ namespace platform
       virtual void open_url(string strUrl, string strProfile, string strTarget) override;
 
 
+      bool _handle_uri(const ::block & block) override;
+
+
       //void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const override;
 
 

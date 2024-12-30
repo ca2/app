@@ -416,7 +416,7 @@ namespace platform
 
       virtual void handle(::topic * ptopic, ::context * pcontext);
 
-      virtual bool _handle_uri(const ::string & str);
+      virtual bool _handle_uri(const ::block & block);
 
       virtual void application_main(int argc, char *argv[], const ::string & pszCommandLine);
 

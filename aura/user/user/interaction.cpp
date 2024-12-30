@@ -21945,7 +21945,7 @@ if(get_parent())
    void interaction::on_create_window_object()
    {
 
-      __øconstruct(m_pacmewindowingwindow);
+      system()->windowing()->on_create_window_object(this);
 
    }
 

@@ -68,7 +68,7 @@ namespace windowing
 
       ::windowing::windowing * windowing_windowing() override;
 
-
+      virtual void on_create_window_object(::user::interaction * puserinteraction);
       //virtual void _initialize_windowing();
 
       virtual bool has_readily_gettable_absolute_coordinates() const;

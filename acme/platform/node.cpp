@@ -3005,7 +3005,15 @@ return false;
          return strUserToolkit;
 
       }
-      
+      else if (scopedstrComponentName == "nano_graphics")
+      {
+
+#if defined(UNIVERSAL_WINDOWS)
+         return "direct2d";
+#endif
+
+      }
+
       return {};
 
    }

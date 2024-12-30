@@ -558,9 +558,11 @@ namespace platform
    }
 
 
-   bool apex_system_layer::_handle_uri(const ::string& str)
+   bool apex_system_layer::_handle_uri(const ::block & block)
    {
+
       return false;
+
    }
 
 

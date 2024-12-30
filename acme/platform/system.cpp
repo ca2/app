@@ -1666,6 +1666,21 @@ particle* system::matter_mutex()
    }
 
 
+   bool system::_handle_uri(const ::block & block)
+   {
+
+      if (::handler::handler::_handle_uri(block))
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
    //void system::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const
    //{
 

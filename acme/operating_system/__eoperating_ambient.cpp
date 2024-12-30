@@ -32,6 +32,8 @@ namespace windowing
 #else
          return "gtk3";
 #endif
+      case e_operating_ambient_universal_windows:
+         return "universal_windows";
       default:
          throw todo;
       };

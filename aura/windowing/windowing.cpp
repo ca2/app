@@ -51,6 +51,14 @@ namespace windowing
 
    }
 
+   
+   void windowing::on_create_window_object(::user::interaction * puserinteraction)
+   {
+
+      puserinteraction->__øconstruct(puserinteraction->m_pacmewindowingwindow);
+
+   }
+
 
    bool windowing::has_readily_gettable_absolute_coordinates() const
    {

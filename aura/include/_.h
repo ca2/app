@@ -57,29 +57,29 @@ namespace aura
 #if defined UNIVERSAL_WINDOWS
 
 
-namespace aura_universal_windows
-{
-
-
-   //ref class directx_framework_impact;
-   //ref class directx_application_source;
-   class interaction_impl;
-
-
-} // namespace universal_windows
+//namespace aura_universal_windows
+//{
+//
+//
+//   //ref class directx_framework_impact;
+//   //ref class directx_application_source;
+//   class interaction_impl;
+//
+//
+//} // namespace universal_windows
 
 
 #endif
 
 
-namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
-{
-
-
-   class interaction_impl;
-
-
-} // namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
+//namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
+//{
+//
+//
+//   class interaction_impl;
+//
+//
+//} // namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 
 
 

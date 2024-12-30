@@ -29,7 +29,7 @@ namespace universal_windows
             ~http() override;
 
 
-            void sync(::nano::http::get * pget) override;
+            void perform(::nano::http::get * pget) override;
 
 
          };

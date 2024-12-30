@@ -105,7 +105,7 @@ namespace windowing
       bool                                      m_bPadding2;
       bool                                      m_bPadding3;
 
-      ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)::interaction_impl * m_pImpl2;
+      //::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)::interaction_impl * m_pImpl2;
       ::int_rectangle                           m_rectangleWindowScreen;
       ::int_rectangle                           m_rectangleXScreen;
       int                                       m_iState1;

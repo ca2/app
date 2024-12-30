@@ -263,11 +263,11 @@ void _on_os_htask_end()
 //}
 
 
-namespace acme
+namespace platform
 {
 
 
-   void node::user_post(const ::procedure & procedure)
+   void node::_user_post(const ::procedure & procedure)
    {
 
       //m_pnode->windowing_post(procedure);

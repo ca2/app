@@ -191,6 +191,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\networking\sockets\http">
+      <UniqueIdentifier>{b916c6ac-8663-4d55-a99c-5f08e89b5e5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\windowing">
+      <UniqueIdentifier>{4291a710-4db2-4143-bbf4-b8961e4ee3d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\innate_ui">
+      <UniqueIdentifier>{93c2cc85-d507-40f8-b1ec-d394110fe240}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -270,39 +279,6 @@
     </ClCompile>
     <ClCompile Include="message\_.cpp">
       <Filter>Source Files\message</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\http\client_socket.cpp">
-      <Filter>Source Files\networking\http</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\http\debug_socket.cpp">
-      <Filter>Source Files\networking\http</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\http\get_socket.cpp">
-      <Filter>Source Files\networking\http</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\http\base_socket.cpp">
-      <Filter>Source Files\networking\http</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\http\post_socket.cpp">
-      <Filter>Source Files\networking\http</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\http\put_socket.cpp">
-      <Filter>Source Files\networking\http</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\http\session.cpp">
-      <Filter>Source Files\networking\http</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\http\socket.cpp">
-      <Filter>Source Files\networking\http</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\http\tunnel.cpp">
-      <Filter>Source Files\networking\http</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\base\socket.cpp">
-      <Filter>Source Files\networking\sockets\base</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\base\socket_handler.cpp">
-      <Filter>Source Files\networking\sockets\base</Filter>
     </ClCompile>
     <ClCompile Include="networking\sockets\base\socket_thread.cpp">
       <Filter>Source Files\networking\sockets\base</Filter>
@@ -393,33 +369,6 @@
     </ClCompile>
     <ClCompile Include="progress\real.cpp">
       <Filter>Source Files\progress</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\http\request.cpp">
-      <Filter>Source Files\networking\http</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\http\context.cpp">
-      <Filter>Source Files\networking\http</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\http\cookie.cpp">
-      <Filter>Source Files\networking\http</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\http\form.cpp">
-      <Filter>Source Files\networking\http</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\http\get_socket.cpp">
-      <Filter>Source Files\networking\http</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\http\response.cpp">
-      <Filter>Source Files\networking\http</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\http\message.cpp">
-      <Filter>Source Files\networking\http</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\http\status.cpp">
-      <Filter>Source Files\networking\http</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\http\transaction.cpp">
-      <Filter>Source Files\networking\http</Filter>
     </ClCompile>
     <ClCompile Include="networking\sockets\http_batch_buffer.cpp">
       <Filter>Source Files\networking\sockets</Filter>
@@ -559,9 +508,6 @@
     <ClCompile Include="platform\_synchronization.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="networking\http\listener.cpp">
-      <Filter>Source Files\networking\http</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\department.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
@@ -577,20 +523,11 @@
     <ClCompile Include="user\user\message.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\primitive.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="input\input.cpp">
       <Filter>Source Files\input</Filter>
     </ClCompile>
     <ClCompile Include="user\menu\shared.cpp">
       <Filter>Source Files\user\menu</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\application_menu.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\application_menu_command.cpp">
-      <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="networking\sockets\httpd\incoming_socket.cpp">
       <Filter>Source Files\networking\sockets\httpd</Filter>
@@ -625,11 +562,107 @@
     <ClCompile Include="filesystem\fs\folder_sync.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
-    <ClCompile Include="user\menu\menu.cpp">
-      <Filter>Source Files\user\menu</Filter>
-    </ClCompile>
     <ClCompile Include="interprocess\handler.cpp">
       <Filter>Source Files\interprocess</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\base\base_socket.cpp">
+      <Filter>Source Files\networking\sockets\base</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\base\base_socket_handler.cpp">
+      <Filter>Source Files\networking\sockets\base</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\http\http_session.cpp">
+      <Filter>Source Files\networking\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\http\http_socket.cpp">
+      <Filter>Source Files\networking\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\http\http_tunnel.cpp">
+      <Filter>Source Files\networking\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\http\context.cpp">
+      <Filter>Source Files\networking\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\http\cookie.cpp">
+      <Filter>Source Files\networking\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\http\form.cpp">
+      <Filter>Source Files\networking\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\http\get_socket.cpp">
+      <Filter>Source Files\networking\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\http\listener.cpp">
+      <Filter>Source Files\networking\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\http\message.cpp">
+      <Filter>Source Files\networking\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\http\pac.cpp">
+      <Filter>Source Files\networking\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\http\proxy.cpp">
+      <Filter>Source Files\networking\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\http\request.cpp">
+      <Filter>Source Files\networking\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\http\response.cpp">
+      <Filter>Source Files\networking\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\http\status.cpp">
+      <Filter>Source Files\networking\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\http\transaction.cpp">
+      <Filter>Source Files\networking\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\http\base_socket.cpp">
+      <Filter>Source Files\networking\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\http\client_socket.cpp">
+      <Filter>Source Files\networking\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\http\debug_socket.cpp">
+      <Filter>Source Files\networking\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\http\get_socket.cpp">
+      <Filter>Source Files\networking\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\http\post_socket.cpp">
+      <Filter>Source Files\networking\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\http\put_socket.cpp">
+      <Filter>Source Files\networking\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\interaction_base.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\window_base.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\internet.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\application\application_incoming_socket_thread.cpp">
+      <Filter>Source Files\networking\application</Filter>
+    </ClCompile>
+    <ClCompile Include="innate_ui\button.cpp">
+      <Filter>Source Files\innate_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="innate_ui\dialog.cpp">
+      <Filter>Source Files\innate_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="innate_ui\icon.cpp">
+      <Filter>Source Files\innate_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="innate_ui\innate_ui.cpp">
+      <Filter>Source Files\innate_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="innate_ui\still.cpp">
+      <Filter>Source Files\innate_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="innate_ui\window.cpp">
+      <Filter>Source Files\innate_ui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

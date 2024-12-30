@@ -2,6 +2,12 @@
 #pragma once
 
 
+#include "acme/prototype/prototype/function.h"
+#include "acme/prototype/collection/array.h"
+#include "acme/prototype/collection/comparable_eq_array.h"
+#include "acme/prototype/collection/comparable_array.h"
+
+
 class CLASS_DECL_ACME procedure_array :
    virtual public ::comparable_array < ::procedure >
 {

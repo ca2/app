@@ -47,7 +47,7 @@ namespace windows
       }
 
       m_handle = ::CreateFile2(
-         m_windowspath,
+         m_windowspath.extended_path(),
          dwDesiredAccess,
          dwShareMode,
          dwCreationDisposition,

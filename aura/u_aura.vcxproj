@@ -464,7 +464,7 @@
     <ClCompile Include="graphics\graphics\graphics.cpp" />
     <ClCompile Include="graphics\graphics\multiple_buffer.cpp" />
     <ClCompile Include="graphics\image\array.cpp" />
-    <ClCompile Include="graphics\image\image_context.cpp" />
+    <ClCompile Include="graphics\image\context.cpp" />
     <ClCompile Include="graphics\image\cursor.cpp" />
     <ClCompile Include="graphics\image\drawer.cpp" />
     <ClCompile Include="graphics\image\drawing.cpp" />
@@ -531,13 +531,12 @@
     <ClCompile Include="user\user\form.cpp" />
     <ClCompile Include="user\user\form_callback.cpp" />
     <ClCompile Include="user\user\form_handler.cpp" />
-    <ClCompile Include="user\user\frame.cpp" />
+    <ClCompile Include="user\user\frame_interaction.cpp" />
+    <ClCompile Include="user\user\interaction_listener.cpp" />
     <ClCompile Include="user\user\scroll_base.cpp" />
     <ClCompile Include="user\user\scroll_base_x.cpp" />
     <ClCompile Include="user\user\interaction.cpp" />
     <ClCompile Include="user\user\interaction_array.cpp" />
-    <ClCompile Include="user\user\interaction_child.cpp" />
-    <ClCompile Include="user\user\interaction_impl.cpp" />
     <ClCompile Include="user\user\interaction_layout.cpp" />
     <ClCompile Include="user\user\interaction_graphics_thread.cpp" />
     <ClCompile Include="user\user\interaction_scaler.cpp" />
@@ -552,7 +551,6 @@
     <ClCompile Include="user\user\plain_edit.cpp" />
     <ClCompile Include="user\user\plain_text_data.cpp" />
     <ClCompile Include="user\user\plain_text_tree.cpp" />
-    <ClCompile Include="user\user\primitive_impl.cpp" />
     <ClCompile Include="user\user\progress.cpp" />
     <ClCompile Include="user\user\range.cpp" />
     <ClCompile Include="user\user\redraw.cpp" />
@@ -569,6 +567,11 @@
     <ClCompile Include="user\user\tool_window.cpp" />
     <ClCompile Include="user\user\user.cpp" />
     <ClCompile Include="user\user\scroll_base_y.cpp" />
+    <ClCompile Include="user\user\user_aura.cpp" />
+    <ClCompile Include="user\user\user_axis.cpp" />
+    <ClCompile Include="user\user\user_base.cpp" />
+    <ClCompile Include="user\user\user_bred.cpp" />
+    <ClCompile Include="user\user\user_core.cpp" />
     <ClCompile Include="user\user\visual_state.cpp" />
     <ClCompile Include="user\user\wait_cursor.cpp" />
     <ClCompile Include="user\user\windowing.cpp" />

@@ -797,6 +797,12 @@
     <ClCompile Include="handler\manager.cpp" />
     <ClCompile Include="handler\manager_room.cpp" />
     <ClCompile Include="handler\signal.cpp" />
+    <ClCompile Include="innate_ui\button.cpp" />
+    <ClCompile Include="innate_ui\dialog.cpp" />
+    <ClCompile Include="innate_ui\icon.cpp" />
+    <ClCompile Include="innate_ui\innate_ui.cpp" />
+    <ClCompile Include="innate_ui\still.cpp" />
+    <ClCompile Include="innate_ui\window.cpp" />
     <ClCompile Include="input\input.cpp" />
     <ClCompile Include="interprocess\base.cpp" />
     <ClCompile Include="interprocess\call.cpp" />
@@ -818,6 +824,7 @@
     <ClCompile Include="networking\application\application.cpp" />
     <ClCompile Include="networking\application\application_handler.cpp" />
     <ClCompile Include="networking\application\application_incoming_socket.cpp" />
+    <ClCompile Include="networking\application\application_incoming_socket_thread.cpp" />
     <ClCompile Include="networking\application\application_socket.cpp" />
     <ClCompile Include="networking\email.cpp" />
     <ClCompile Include="networking\email_address.cpp" />
@@ -826,11 +833,14 @@
     <ClCompile Include="networking\http\form.cpp" />
     <ClCompile Include="networking\http\get_socket.cpp" />
     <ClCompile Include="networking\http\listener.cpp" />
+    <ClCompile Include="networking\http\message.cpp" />
+    <ClCompile Include="networking\http\pac.cpp" />
+    <ClCompile Include="networking\http\proxy.cpp" />
     <ClCompile Include="networking\http\request.cpp" />
     <ClCompile Include="networking\http\response.cpp" />
-    <ClCompile Include="networking\http\message.cpp" />
     <ClCompile Include="networking\http\status.cpp" />
     <ClCompile Include="networking\http\transaction.cpp" />
+    <ClCompile Include="networking\internet.cpp" />
     <ClCompile Include="networking\ip_enum.cpp" />
     <ClCompile Include="networking\netserver\incoming_socket.cpp" />
     <ClCompile Include="networking\netserver\incoming_socket_thread.cpp" />
@@ -840,8 +850,8 @@
     <ClCompile Include="networking\networking.cpp" />
     <ClCompile Include="networking\port_forward.cpp" />
     <ClCompile Include="networking\sockets.cpp" />
-    <ClCompile Include="networking\sockets\base\socket.cpp" />
-    <ClCompile Include="networking\sockets\base\socket_handler.cpp" />
+    <ClCompile Include="networking\sockets\base\base_socket.cpp" />
+    <ClCompile Include="networking\sockets\base\base_socket_handler.cpp" />
     <ClCompile Include="networking\sockets\base\socket_thread.cpp" />
     <ClCompile Include="networking\sockets\basic\listen_socket.cpp" />
     <ClCompile Include="networking\sockets\basic\listen_socket_impl.cpp" />
@@ -858,15 +868,15 @@
     <ClCompile Include="networking\sockets\httpd\incoming_socket_thread.cpp" />
     <ClCompile Include="networking\sockets\httpd\socket.cpp" />
     <ClCompile Include="networking\sockets\httpd\socket_thread.cpp" />
+    <ClCompile Include="networking\sockets\http\base_socket.cpp" />
     <ClCompile Include="networking\sockets\http\client_socket.cpp" />
     <ClCompile Include="networking\sockets\http\debug_socket.cpp" />
     <ClCompile Include="networking\sockets\http\get_socket.cpp" />
-    <ClCompile Include="networking\sockets\http\base_socket.cpp" />
+    <ClCompile Include="networking\sockets\http\http_session.cpp" />
+    <ClCompile Include="networking\sockets\http\http_socket.cpp" />
+    <ClCompile Include="networking\sockets\http\http_tunnel.cpp" />
     <ClCompile Include="networking\sockets\http\post_socket.cpp" />
     <ClCompile Include="networking\sockets\http\put_socket.cpp" />
-    <ClCompile Include="networking\sockets\http\session.cpp" />
-    <ClCompile Include="networking\sockets\http\socket.cpp" />
-    <ClCompile Include="networking\sockets\http\tunnel.cpp" />
     <ClCompile Include="networking\sockets\http_batch_buffer.cpp" />
     <ClCompile Include="networking\sockets\link_in_socket.cpp" />
     <ClCompile Include="networking\sockets\link_out_socket.cpp" />
@@ -884,8 +894,6 @@
     <ClCompile Include="platform\api_client.cpp" />
     <ClCompile Include="platform\api_client_base.cpp" />
     <ClCompile Include="platform\application.cpp" />
-    <ClCompile Include="platform\application_menu.cpp" />
-    <ClCompile Include="platform\application_menu_command.cpp" />
     <ClCompile Include="platform\app_launcher.cpp" />
     <ClCompile Include="platform\assert_running_task.cpp" />
     <ClCompile Include="platform\console_application.cpp" />
@@ -910,12 +918,12 @@
     <ClCompile Include="progress\listener.cpp" />
     <ClCompile Include="progress\progress.cpp" />
     <ClCompile Include="progress\real.cpp" />
-    <ClCompile Include="user\menu\menu.cpp" />
     <ClCompile Include="user\menu\shared.cpp" />
+    <ClCompile Include="user\user\interaction_base.cpp" />
     <ClCompile Include="user\user\language.cpp" />
     <ClCompile Include="user\user\language_map.cpp" />
     <ClCompile Include="user\user\message.cpp" />
-    <ClCompile Include="user\user\primitive.cpp" />
+    <ClCompile Include="windowing\window_base.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>

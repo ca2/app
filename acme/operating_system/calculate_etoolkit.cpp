@@ -4,7 +4,6 @@
 #include "framework.h"
 
 
-
 namespace windowing
 {
 
@@ -17,6 +16,8 @@ namespace windowing
 
 #if defined(WINDOWS_DESKTOP)
       return ::windowing::e_toolkit_win32;
+#elif defined(UNIVERSAL_WINDOWS)
+      return ::windowing::e_toolkit_universal_windows;
 #elif defined(HAS_KDE5)
       return ::windowing::e_toolkit_kde5;
 #elif defined(HAS_KDE6)

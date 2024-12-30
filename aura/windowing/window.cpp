@@ -96,7 +96,7 @@ namespace windowing
       m_uOnHide = 0;
       //m_bQuitGraphicsOnHide = false;
       //m_bTryCloseApplicationOnHide = false;
-      m_pImpl2 = nullptr;
+      //m_pImpl2 = nullptr;
 
       //m_pinteractionimpl = this;
 

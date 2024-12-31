@@ -744,6 +744,9 @@ pstate->m_ppen->m_color = color;
 
       auto size = m_pgraphics->get_text_extent(scopedstr);
 
+      size.cx() *= 1.01;
+      size.cy() *= 1.01;
+
       if (m_pstate->m_ealignText & ::e_align_right)
       {
 

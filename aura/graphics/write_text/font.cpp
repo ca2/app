@@ -786,6 +786,7 @@ namespace write_text
 
    }
 
+
    void font::on_create_internal_font(::draw2d::graphics * pgraphics, ::write_text::internal_font * pinternalfont)
    {
 

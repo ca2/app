@@ -449,6 +449,8 @@ namespace write_text
    if (pmemory->has_data())
    {
 
+      auto size = pmemory->size();
+
       pinternalfont->load_from_memory(pmemory);
 
    }

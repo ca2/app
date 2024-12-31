@@ -1585,6 +1585,9 @@
     <ClCompile Include="user\user\user_core.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\write_text\internal_font.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="aura.rc">

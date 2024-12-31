@@ -496,6 +496,7 @@
     <ClCompile Include="graphics\write_text\font_list.cpp" />
     <ClCompile Include="graphics\write_text\glyph.cpp" />
     <ClCompile Include="graphics\write_text\glyph_set.cpp" />
+    <ClCompile Include="graphics\write_text\internal_font.cpp" />
     <ClCompile Include="graphics\write_text\text_box.cpp" />
     <ClCompile Include="graphics\write_text\text_out.cpp" />
     <ClCompile Include="graphics\write_text\text_out_array.cpp" />

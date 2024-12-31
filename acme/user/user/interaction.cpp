@@ -1526,6 +1526,8 @@ namespace acme
 
             m_pacmeuserinteractionParent.release();
 
+            m_pacmeuserinteractionOwner.release();
+
             m_pacmeuserinteractionaChildren.release();
 
             m_pacmewindowingwindow.release();
@@ -1812,6 +1814,32 @@ namespace acme
          {
 
             return m_pacmeuserinteractionParent;
+
+         }
+
+
+         ::acme::windowing::window * interaction::owner_window()
+         {
+
+            auto pacmeuserinteractionOwner = m_pacmeuserinteractionOwner;
+
+            if (::is_null(pacmeuserinteractionOwner))
+            {
+
+               return nullptr;
+
+            }
+
+            auto pacmewindowingwindowOwner = pacmeuserinteractionOwner->m_pacmewindowingwindow;
+
+            if (::is_null(pacmewindowingwindowOwner))
+            {
+
+               return nullptr;
+
+            }
+
+            return pacmewindowingwindowOwner;
 
          }
 

@@ -1721,6 +1721,57 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
+   ::user::interaction * window::owner_interaction()
+   {
+
+      auto pacmeuserinteractionOwner = ::acme::windowing::window::owner_interaction();
+
+      if (::is_null(pacmeuserinteractionOwner))
+      {
+
+         return nullptr;
+
+      }
+
+      ::cast < ::user::interaction > puserinteractionOwner = pacmeuserinteractionOwner;
+
+      if (!puserinteractionOwner)
+      {
+
+         return nullptr;
+
+      }
+
+      return puserinteractionOwner;
+
+   }
+
+
+   ::windowing::window * window::owner_window()
+   {
+
+      auto pacmewindowingwindowOwner = ::acme::windowing::window::owner_window();
+
+      if (::is_null(pacmewindowingwindowOwner))
+      {
+
+         return nullptr;
+
+      }
+
+      ::cast < ::windowing::window > pwindowingwindowOwner = pacmewindowingwindowOwner;
+
+      if (!pwindowingwindowOwner)
+      {
+
+         return nullptr;
+
+      }
+
+      return pwindowingwindowOwner;
+
+   }
+
    ::windowing::window * window::window_get_owner()
    {
 
@@ -3216,7 +3267,7 @@ void window::set_oswindow(::oswindow oswindow)
    bool window::is_windowing_popup()
    {
 
-      return ::is_set(m_puserinteraction->m_puserinteractionOwner);
+      return ::is_set(owner_interaction());
 
    }
 
@@ -3269,12 +3320,12 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::acme::windowing::window * window::owner_window()
-   {
+   //::acme::windowing::window * window::owner_window()
+   //{
 
-      return m_puserinteraction->m_puserinteractionOwner->window();
+   //   return m_puserinteraction->m_puserinteractionOwner->window();
 
-   }
+   //}
 
 
    ::string window::get_window_text()
@@ -15133,7 +15184,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       }
 
-      return m_puserinteraction->m_puserinteractionOwner;
+      return m_puserinteraction->get_owner();
 
    }
 

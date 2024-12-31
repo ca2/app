@@ -10863,12 +10863,14 @@ if(get_parent())
 
       __check_refdbg
 
-         if (m_puserinteractionOwner)
+         ::cast < ::user::interaction > puserinteractionOwner = m_pacmeuserinteractionOwner;
+
+         if (puserinteractionOwner)
          {
 
             __check_refdbg
 
-               on_set_owner(m_puserinteractionOwner);
+               on_set_owner(puserinteractionOwner);
 
             __check_refdbg
 
@@ -12248,7 +12250,6 @@ if(get_parent())
       m_puserinteractionParent.release();
       m_pupdowntarget.release();
       m_ptaskModal.release();
-      m_puserinteractionOwner.release();
       //m_pwindow.release();
       //return ::success;
       ::user::interaction_base::destroy();
@@ -12405,6 +12406,10 @@ if(get_parent())
       return puserthread;
 
    }
+
+
+
+
 
 
    //void interaction::CalcWindowRect(::int_rectangle * prectangle, unsigned int nAdjustType)
@@ -12585,13 +12590,13 @@ if(get_parent())
    }
 
 
-   ::user::interaction_base * interaction::set_owner(::user::interaction_base * pprimitive)
+   ::user::interaction_base * interaction::set_owner(::user::interaction_base * puserinteractionbaseNewOwner)
    {
 
-      auto puserinteractionOwnerOld = m_puserinteractionOwner;
+      auto puserinteractionOwnerOld = owner_interaction();
 
       if (::is_set(puserinteractionOwnerOld)
-         && puserinteractionOwnerOld != pprimitive)
+         && puserinteractionOwnerOld != puserinteractionbaseNewOwner)
       {
 
          auto puserinteractionpointeraOwned = puserinteractionOwnerOld->m_puserinteractionpointeraOwned;
@@ -12614,9 +12619,9 @@ if(get_parent())
 
       }
 
-      m_puserinteractionOwner = pprimitive;
+      m_pacmeuserinteractionOwner = puserinteractionbaseNewOwner;
 
-      m_puserinteractionOwner->on_add_owned(this);
+      m_pacmeuserinteractionOwner->on_add_owned(this);
 
       //__defer_set_owner_to_impl();
 
@@ -12669,7 +12674,7 @@ if(get_parent())
 
       }
 
-      auto powner = ptoplevel->m_puserinteractionOwner;
+      auto powner = ptoplevel->owner_interaction();
 
       if (!powner)
       {
@@ -12831,6 +12836,58 @@ if(get_parent())
       } while (puiOwner.is_set());
 
       return puiTopLevelOwner;
+
+   }
+
+
+   ::user::interaction * interaction::owner_interaction()
+   {
+
+      auto pacmeuserinteractionOwner = m_pacmeuserinteractionOwner.get();
+
+      if (::is_null(pacmeuserinteractionOwner))
+      {
+
+         return nullptr;
+
+      }
+
+      ::cast < ::user::interaction > puserinteractionOwner = pacmeuserinteractionOwner;
+
+      if (!puserinteractionOwner)
+      {
+
+         return nullptr;
+
+      }
+
+      return puserinteractionOwner;
+
+   }
+
+
+   ::windowing::window * interaction::owner_window()
+   {
+
+      auto pacmewindowingwindowOwner = ::user::interaction_base::owner_window();
+
+      if (::is_null(pacmewindowingwindowOwner))
+      {
+
+         return nullptr;
+
+      }
+
+      ::cast < ::windowing::window > pwindowingwindowOwner = pacmewindowingwindowOwner;
+
+      if (!pwindowingwindowOwner)
+      {
+
+         return nullptr;
+
+      }
+
+      return pwindowingwindowOwner;
 
    }
 
@@ -16191,12 +16248,12 @@ if(get_parent())
 
          __check_refdbg
 
-            if (pwindowThis->m_puserinteraction->m_puserinteractionOwner)
+            //if (pwindowThis->m_puserinteraction->owner_interaction())
             {
 
                __check_refdbg
 
-                  auto pwindowOwner = pwindowThis->m_puserinteraction->m_puserinteractionOwner->window();
+                  auto pwindowOwner = pwindowThis->owner_window();
 
                __check_refdbg
 
@@ -16335,10 +16392,10 @@ if(get_parent())
       else
       {
 
-         if (pwindowThis->m_puserinteraction->m_puserinteractionOwner)
+         //if (pwindowThis->owner_window())
          {
 
-            auto pwindowOwner = pwindowThis->m_puserinteraction->m_puserinteractionOwner->window();
+            auto pwindowOwner = pwindowThis->owner_window();
 
             if (::is_null(pwindowOwner))
             {
@@ -21827,10 +21884,12 @@ if(get_parent())
       if (m_ewindowflag & e_window_flag_satellite_window)
       {
 
-         if (m_puserinteractionOwner)
+         auto puserinteractionOwner = owner_interaction();
+
+         if (::is_set(puserinteractionOwner))
          {
 
-            puserthread = m_puserinteractionOwner->user_thread();
+            puserthread = puserinteractionOwner->user_thread();
 
          }
 

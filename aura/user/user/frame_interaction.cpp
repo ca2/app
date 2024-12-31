@@ -401,7 +401,6 @@ namespace user
       m_puserinteractionParent.release();
       m_pupdowntarget.release();
       m_ptaskModal.release();
-      m_puserinteractionOwner.release();
       //windowing_window().release();
       //return ::success;
       ::user::box::destroy();

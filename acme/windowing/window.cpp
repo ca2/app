@@ -173,8 +173,8 @@ namespace acme
          m_pacmeuserinteractionHover.release();
          __check_refdbg
          m_pacmeuserinteractionCapture.release();
-         __check_refdbg
-         m_pacmeuserinteractionOwner.release();
+         //__check_refdbg
+         //m_pacmeuserinteractionOwner.release();
          __check_refdbg
 
          m_pdisplay.release();
@@ -1580,17 +1580,45 @@ namespace acme
       }
 
 
-      ::acme::windowing::window * window::owner_window()
+      ::acme::user::interaction * window::owner_interaction()
       {
 
-         if(!m_pacmeuserinteractionOwner)
+         auto puserinteraction = m_pacmeuserinteraction.get();
+
+         if (::is_null(puserinteraction))
          {
 
             return nullptr;
 
          }
 
-         return m_pacmeuserinteractionOwner->acme_windowing_window();
+         auto puserinteractionOwner = puserinteraction->m_pacmeuserinteractionOwner.get();
+
+         if (::is_null(puserinteractionOwner))
+         {
+
+            return nullptr;
+
+         }
+
+         return puserinteractionOwner;
+
+      }
+
+
+      ::acme::windowing::window * window::owner_window()
+      {
+
+         auto puserinteractionOwner = owner_interaction();
+
+         if(::is_null(puserinteractionOwner))
+         {
+
+            return nullptr;
+
+         }
+
+         return puserinteractionOwner->acme_windowing_window();
 
       }
 

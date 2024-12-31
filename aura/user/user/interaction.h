@@ -419,7 +419,6 @@ namespace user
       ::pointer<::user::interaction>            m_puserinteractionParent;
       ::pointer<::user::interaction>            m_pupdowntarget;
       ::task_pointer                            m_ptaskModal;
-      ::pointer<interaction>                    m_puserinteractionOwner;
 
       // ownership
       ::pointer<::user::system>                    m_pusersystem;
@@ -472,6 +471,8 @@ namespace user
 
 
       ::user::thread * user_thread();
+
+
 
       //class control_descriptor& descriptor();
       //const class control_descriptor& descriptor();
@@ -1929,6 +1930,11 @@ namespace user
       ::user::interaction* get_parent_or_owner() override;
       ::user::interaction* get_top_level_owner() override;
       
+
+      ::user::interaction * owner_interaction();
+      ::windowing::window * owner_window();
+
+
       //virtual bool is_host_top_level();
 
       //virtual ::user::frame_interaction* get_parent_frame() override;

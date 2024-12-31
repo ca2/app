@@ -3275,6 +3275,13 @@ namespace sandbox_windowing
 
       }
 
+      if (pwindowing->targeted_keyboard_messages())
+      {
+
+         return true;
+
+      }
+
       auto pwindowKeyboardFocus = pwindowing->m_pwindowKeyboardFocus;
 
       if (::is_null(pwindowKeyboardFocus))

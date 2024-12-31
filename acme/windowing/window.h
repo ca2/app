@@ -76,7 +76,7 @@ namespace acme
          ::pointer<::acme::user::interaction>               m_pacmeuserinteractionFocus;
          ::pointer<::acme::user::interaction>               m_pacmeuserinteractionHover;
          ::pointer<::acme::user::interaction>               m_pacmeuserinteractionCapture;
-         ::pointer<::acme::user::interaction>               m_pacmeuserinteractionOwner;
+         //::pointer<::acme::user::interaction>               m_pacmeuserinteractionOwner;
 
 
          ::pointer < ::acme::windowing::display >           m_pdisplay;
@@ -204,7 +204,8 @@ namespace acme
          virtual ::int_size windowing_popup_size();
          virtual void _on_windowing_close_window();
          virtual bool is_satellite_window();
-         virtual ::acme::windowing::window * owner_window();
+         ::acme::user::interaction * owner_interaction();
+         ::acme::windowing::window * owner_window();
          ::string get_window_text() override;
 
 

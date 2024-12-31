@@ -91,7 +91,7 @@ namespace micro
    void popup_button::initialize_popup_button(const ::string & strText, int x, int y, ::acme::user::interaction * pacmeuserinteractionOwner)
    {
 
-      acme_windowing_window()->m_pacmeuserinteractionOwner = pacmeuserinteractionOwner;
+      m_pacmeuserinteractionOwner = pacmeuserinteractionOwner;
 
       calculate_size_and_position(x, y);
 

@@ -51,6 +51,13 @@ namespace windowing
 
    }
 
+   bool windowing::combo_box_list_box_is_top_level()
+   {
+
+      return true;
+
+   }
+
    
    void windowing::on_create_window_object(::user::interaction * puserinteraction)
    {

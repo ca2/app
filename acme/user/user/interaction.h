@@ -58,6 +58,7 @@ namespace acme
 
          ::pointer < ::acme::windowing::window >       m_pacmewindowingwindow;
          ::pointer < ::acme::user::interaction >       m_pacmeuserinteractionParent;
+         ::pointer < ::acme::user::interaction >       m_pacmeuserinteractionOwner;
          ::pointer <::pointer_array < ::acme::user::interaction >> m_pacmeuserinteractionaChildren;
 
          ////string                                    m_strText;
@@ -240,10 +241,12 @@ namespace acme
 
          virtual bool is_child_interaction();
 
-               ::acme::user::interaction * acme_user_interaction() override;
-               ::acme::windowing::window * acme_windowing_window() override;
+         ::acme::user::interaction * acme_user_interaction() override;
+         ::acme::windowing::window * acme_windowing_window() override;
 
-               virtual ::acme::user::interaction * acme_user_parent();
+         virtual ::acme::user::interaction * acme_user_parent();
+
+         ::acme::windowing::window * owner_window();
 
 
                //virtual ::collection::count nano_user_button_count();

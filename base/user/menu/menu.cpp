@@ -283,11 +283,13 @@ namespace user
 
          }
 
-         if (::is_set(m_puserinteractionOwner)
-            && m_puserinteractionOwner != puserinteractionHost)
+         auto puserinteractionOwner = owner_interaction();
+
+         if (::is_set(puserinteractionOwner)
+            && puserinteractionOwner != puserinteractionHost)
          {
 
-            bool bErased = m_puserinteractionOwner->m_menua.erase(this);
+            bool bErased = puserinteractionOwner->m_menua.erase(this);
 
             if (bErased && m_pmenuitem->m_pmenuitemParent.is_null())
             {
@@ -298,12 +300,12 @@ namespace user
 
          }
 
-         if (::is_set(m_puserinteractionOwner)
-   && ::is_set(m_puserinteractionOwner->get_wnd())
-            && m_puserinteractionOwner->get_wnd() != puserinteractionHost)
+         if (::is_set(puserinteractionOwner)
+   && ::is_set(puserinteractionOwner->get_wnd())
+            && puserinteractionOwner->get_wnd() != puserinteractionHost)
          {
 
-            bool bErased = m_puserinteractionOwner->get_wnd()->m_menua.erase(this);
+            bool bErased = puserinteractionOwner->get_wnd()->m_menua.erase(this);
 
             if (bErased && m_pmenuitem->m_pmenuitemParent.is_null())
             {
@@ -597,21 +599,21 @@ namespace user
 
       }
 
-      m_puserinteractionOwner = puiParent;
+      set_owner(puiParent);
 
-      information() << "::user::menu::create_menu parent window: " << (::iptr)m_puserinteractionOwner.m_p;
+      information() << "::user::menu::create_menu parent window: " << (::iptr)owner_window();
 
       ::string strType;
 
-      strType = ::type(m_puserinteractionOwner).name();
+      strType = ::type(owner_interaction()).name();
 
       information() << "::user::menu::create_menu parent window type: " << strType;
 
 #if defined(UNIVERSAL_WINDOWS) || defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(FREEBSD) || defined(MACOS)
 
-      auto pwindow = m_puserinteractionOwner->get_wnd();
+      auto puserinteractionTopOwner = get_owner();
 
-      pwindow->m_menua.add(this);
+      puserinteractionTopOwner->m_menua.add(this);
 
 #else
 
@@ -619,12 +621,12 @@ namespace user
 
 #endif
 
-      m_pmenuitem->m_puserinteractionHost = m_puserinteractionOwner;
+      m_pmenuitem->m_puserinteractionHost = get_owner();
 
       if (::is_null(pchannelNotify))
       {
 
-         pchannelNotify = m_puserinteractionOwner;
+         pchannelNotify = owner_interaction();
 
       }
 
@@ -2014,7 +2016,7 @@ namespace user
    {
 
       //auto pstyle =
-      m_puserinteractionOwner->get_style(pgraphics);
+      //get->get_style(pgraphics);
 
       ::pointer<::base::session>psession = session();
 
@@ -2146,10 +2148,12 @@ namespace user
          else
          {
 
-            if (m_puserinteractionOwner)
+            auto puserinteractionOwner = owner_interaction();
+
+            if (puserinteractionOwner)
             {
 
-               rectangleScreenHint = m_puserinteractionOwner->window_rectangle();
+               rectangleScreenHint = puserinteractionOwner->window_rectangle();
 
             }
             else

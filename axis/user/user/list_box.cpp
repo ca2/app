@@ -22,6 +22,7 @@
 #include "aura/user/user/user.h"
 #include "aura/platform/session.h"
 #include "aura/windowing/window.h"
+#include "aura/windowing/windowing.h"
 #include "aura/graphics/image/image.h"
 
 
@@ -44,6 +45,15 @@ namespace user
    {
 
    }
+
+
+   void list_box::on_initialize_particle()
+   {
+
+      ::user::scroll_base::on_initialize_particle();
+
+   }
+
 
 
    void list_box::destroy()
@@ -1381,13 +1391,18 @@ namespace user
 
       //m_bNeedPerformLayout = true;
 
-      m_puserinteractionOwner = m_pcombo;
+      set_owner(m_pcombo);
 
       information() << "on_drop_down (8) : " << rectangleList;
 
       order_top_most();
 
-      set_tool_window();
+      if (is_top_level())
+      {
+
+         set_tool_window();
+
+      }
 
       m_bTransparent = true;
 
@@ -1428,15 +1443,26 @@ namespace user
 
       add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
 
-
       if(!is_window())
       {
 
-         window()->m_pacmeuserinteractionOwner = m_pcombo;
 
-         window()->m_rectanglePointingTo = m_pcombo->window_rectangle();
+         //window()->m_pacmeuserinteractionOwner = m_pcombo;
 
-         create_window();
+         if (system()->windowing()->combo_box_list_box_is_top_level())
+         {
+
+            window()->m_rectanglePointingTo = m_pcombo->window_rectangle();
+
+            create_window();
+
+         }
+         else
+         {
+
+            create_child(m_pcombo->get_parent());
+
+         }
 
       }
 

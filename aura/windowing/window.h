@@ -134,7 +134,7 @@ namespace windowing
       //::user::interaction_base *                       m_pprimitiveFocus;
       ::pointer<::user::element>               m_pelementSoftwareKeyboard;
 
-      ::pointer<::user::interaction>            m_puserinteractionOwner;
+      //::pointer<::user::interaction>            m_puserinteractionOwner;
 
       int_point                                 m_point;
       int_size                                  m_size;
@@ -358,6 +358,8 @@ namespace windowing
       //virtual ::oswindow get_parent_oswindow();
       virtual void set_parent(::windowing::window * pwindowNewParent);
 
+      ::user::interaction * owner_interaction();
+      ::windowing::window * owner_window();
 
 
       
@@ -619,7 +621,7 @@ namespace windowing
       ::int_point windowing_popup_origin() override;
       ::int_size windowing_popup_size() override;
       void _on_windowing_close_window() override;
-      ::acme::windowing::window * owner_window() override;
+      //::acme::windowing::window * owner_window() override;
       ::string get_window_text() override;
 
 

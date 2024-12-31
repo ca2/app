@@ -68,6 +68,8 @@ namespace windowing
 
       ::windowing::windowing * windowing_windowing() override;
 
+      virtual bool combo_box_list_box_is_top_level();
+
       virtual void on_create_window_object(::user::interaction * puserinteraction);
       //virtual void _initialize_windowing();
 

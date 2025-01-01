@@ -146,6 +146,10 @@ namespace acme
 
          virtual void finalize_windowing();
 
+
+         virtual void on_create_window_object(::acme::user::interaction * puserinteraction);
+
+
          //virtual void * get_display();
 
          //void main_send(const ::procedure & procedure) override;

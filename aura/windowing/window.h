@@ -61,7 +61,7 @@ namespace windowing
       //void *                                    m_pWindow4;
 
       //::pointer<::windowing::display>           m_pdisplay;
-      ::pointer<::user::interaction>            m_puserinteraction;
+      //::pointer<::user::interaction>            m_puserinteraction;
       string                                    m_strDebug;
       ::pointer<::message_queue>                m_pmessagequeue;
       class ::time                              m_timeLastMouseMove;
@@ -325,7 +325,7 @@ namespace windowing
       virtual ::windowing::windowing * windowing();
 
 
-      ::user::interaction * user_interaction() override;
+//      ::user::interaction * user_interaction() override;
 
 
       //inline ::windowing::windowing * windowing() const { return m_pwindowing.m_p; }
@@ -358,6 +358,8 @@ namespace windowing
       //virtual ::oswindow get_parent_oswindow();
       virtual void set_parent(::windowing::window * pwindowNewParent);
 
+      ::user::interaction * user_interaction() override;
+      ::user::interaction * user_interaction() const;
       ::user::interaction * owner_interaction();
       ::windowing::window * owner_window();
 

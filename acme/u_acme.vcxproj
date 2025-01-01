@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\..\..\operating_system\operating_system-universal_windows\_seed\packages\Microsoft.Windows.CppWinRT.2.0.210806.1\build\native\Microsoft.Windows.CppWinRT.props" Condition="Exists('..\..\..\operating_system\operating_system-universal_windows\_seed\packages\Microsoft.Windows.CppWinRT.2.0.210806.1\build\native\Microsoft.Windows.CppWinRT.props')" />
   <ItemGroup Label="ProjectConfigurations">
@@ -928,6 +928,20 @@
     <ClInclude Include="regular_expression\result.h" />
     <ClInclude Include="regular_expression\topic.h" />
     <ClInclude Include="regular_expression\_regular_expression.h" />
+    <ClInclude Include="user\micro\button.h" />
+    <ClInclude Include="user\micro\console.h" />
+    <ClInclude Include="user\micro\details_window.h" />
+    <ClInclude Include="user\micro\dialog.h" />
+    <ClInclude Include="user\micro\elemental.h" />
+    <ClInclude Include="user\micro\main_window.h" />
+    <ClInclude Include="user\micro\message_box.h" />
+    <ClInclude Include="user\micro\popup_button.h" />
+    <ClInclude Include="user\micro\still.h" />
+    <ClInclude Include="user\micro\theme.h" />
+    <ClInclude Include="user\micro\user.h" />
+    <ClInclude Include="user\micro\_.h" />
+    <ClInclude Include="user\user\activation.h" />
+    <ClInclude Include="user\user\activation_token.h" />
     <ClInclude Include="user\user\check.h" />
     <ClInclude Include="user\user\check_property.h" />
     <ClInclude Include="user\user\command_update_target.h" />
@@ -942,9 +956,13 @@
     <ClInclude Include="user\user\element.h" />
     <ClInclude Include="user\user\ewindowflag.h" />
     <ClInclude Include="user\user\e_window_flag.h" />
+    <ClInclude Include="user\user\frame_interaction.h" />
+    <ClInclude Include="user\user\interaction.h" />
     <ClInclude Include="user\user\item.h" />
+    <ClInclude Include="user\user\key.h" />
     <ClInclude Include="user\user\keyboard.h" />
     <ClInclude Include="user\user\key_state.h" />
+    <ClInclude Include="user\user\message_box.h" />
     <ClInclude Include="user\user\mouse.h" />
     <ClInclude Include="user\user\os_colors.h" />
     <ClInclude Include="user\user\os_theme_colors.h" />
@@ -2180,6 +2198,7 @@
     <ClCompile Include="user\user\element.cpp" />
     <ClCompile Include="user\user\frame_interaction.cpp" />
     <ClCompile Include="user\user\interaction.cpp" />
+    <ClCompile Include="user\user\key.cpp" />
     <ClCompile Include="user\user\keyboard.cpp" />
     <ClCompile Include="user\user\key_state.cpp" />
     <ClCompile Include="user\user\message_box.cpp" />

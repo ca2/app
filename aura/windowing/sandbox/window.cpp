@@ -39,8 +39,8 @@ namespace sandbox_windowing
       bool bOk = true;
       
       auto pwindow = this;
-      
-      auto puserinteraction = pwindow->m_puserinteraction;
+
+      auto puserinteraction = user_interaction();
       
       auto pusersystem = puserinteraction->m_pusersystem;
       
@@ -1794,7 +1794,9 @@ namespace sandbox_windowing
 
       }
 
-      if (!m_puserinteraction->m_bUserElementOk)
+      auto puserinteraction = user_interaction();
+
+      if (!puserinteraction->m_bUserElementOk)
       {
 
          return true;
@@ -2919,16 +2921,16 @@ namespace sandbox_windowing
       //if (::is_set(m_pwindow))
       {
 
-         ::pointer<::user::interaction>pinteraction = m_puserinteraction;
+         auto puserinteraction = user_interaction();
 
-         if (pinteraction.is_set())
+         if (::is_set(puserinteraction))
          {
 
-            pinteraction->send_message(e_message_destroy, 0, 0);
+            puserinteraction->send_message(e_message_destroy, 0, 0);
 
             //mq_remove_window_from_all_queues();
 
-            pinteraction->send_message(e_message_non_client_destroy, 0, 0);
+            puserinteraction->send_message(e_message_non_client_destroy, 0, 0);
 
          }
          else

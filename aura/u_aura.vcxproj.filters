@@ -822,9 +822,6 @@
     <ClInclude Include="user\user\interaction_thread.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\key.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\keyboard.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -1370,9 +1367,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\keyboard.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\key.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\interaction_thread.cpp">

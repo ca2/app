@@ -3,12 +3,23 @@
 #include "string_buffer.h"
 #include "write_text_stream.h"
 #include "acme/parallelization/task.h"
+#include "acme/platform/application.h"
+#include "acme/platform/system.h"
 
 
 write_text_stream_struct::write_text_stream_struct()
 {
 
-   m_pprintingformat = ::get_task();
+   auto pcontext = ::get_task();
+
+   if (!pcontext)
+   {
+
+      pcontext = ::system()->application();
+
+   }
+
+   m_pprintingformat = pcontext;
 
 }
 

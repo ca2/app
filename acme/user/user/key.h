@@ -1,15 +1,15 @@
 #pragma once
 
 
-#include "apex/user/user/message.h"
+#include "acme/platform/message.h"
 
 
 namespace user
 {
 
 
-   class CLASS_DECL_AURA key :
-      public ::user::message
+   class CLASS_DECL_ACME key :
+      virtual public ::acme::message
    {
    public:
 
@@ -28,7 +28,7 @@ namespace user
       key();
       key(const ::user::key & key);
 
-      void copy_this(const key & key);
+      key & operator = (const key & key);
 
    };
 

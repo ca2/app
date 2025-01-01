@@ -101,6 +101,8 @@ namespace acme
 
          virtual void on_create_window_object();
 
+         virtual void set_window(::acme::windowing::window * pwindow);
+
          void destroy_window() override;
 
          bool is_host_top_level() override;
@@ -451,7 +453,7 @@ namespace acme
 
          //} // user
 
-
+         void _main_post(const ::procedure & procedure) override;
 
 
       };

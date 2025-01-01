@@ -70,7 +70,7 @@ namespace windowing
 
       virtual bool combo_box_list_box_is_top_level();
 
-      virtual void on_create_window_object(::user::interaction * puserinteraction);
+      void on_create_window_object(::acme::user::interaction * puserinteraction) override;
       //virtual void _initialize_windowing();
 
       virtual bool has_readily_gettable_absolute_coordinates() const;

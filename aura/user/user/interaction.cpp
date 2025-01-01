@@ -16418,13 +16418,17 @@ if(get_parent())
 
                ::string strType;
 
-               strType = ::type(pwindowOwner->m_puserinteraction.m_p);
+               auto puserinteraction = pwindowOwner->user_interaction();
+
+               strType = ::type(puserinteraction);
 
                information() << "pwindowOwner->has_keyboard_focus() : " << strType;
 
                ::string strTypeOldFocus;
 
-               strTypeOldFocus = ::type(pwindowOwner->m_puserinteraction.m_p);
+               //auto puserinteraction = pwindowOwner->user_interaction();
+
+               strTypeOldFocus = ::type(puserinteraction);
 
                information() << "old focus : " << strTypeOldFocus;
 
@@ -21991,7 +21995,7 @@ if(get_parent())
          if (pwindow)
          {
 
-            pwindow->m_puserinteraction = this;
+            pwindow->m_pacmeuserinteraction = this;
 
          }
 
@@ -27859,7 +27863,7 @@ if(get_parent())
       //
       //}
 
-      if (m_bEmptyAreaIsClientArea)
+      if (m_bEmptyAreaIsClientArea && ezorder & e_zorder_back)
       {
 
          auto pitemClient = stock_item(e_element_client);

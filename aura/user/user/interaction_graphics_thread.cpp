@@ -1086,11 +1086,13 @@ namespace user
          return false;
 
       }
+
+      auto puserinteraction = m_puserinteraction;
       
-      if (!(pwindow->m_puserinteraction->m_ewindowflag & e_window_flag_window_created))
+      if (!(puserinteraction->m_ewindowflag & e_window_flag_window_created))
       {
 
-         if (::type(pwindow->m_puserinteraction.m_p) == "user::list_box")
+         if (::type(puserinteraction) == "user::list_box")
          {
 
             information() << "user::list_box graphics_thread_iteration !e_window_flag_window_created";
@@ -1224,8 +1226,6 @@ namespace user
          }
 
       }
-
-      auto puserinteraction = m_puserinteraction;
 
       if(::is_set(puserinteraction))
       {

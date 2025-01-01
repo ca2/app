@@ -114,7 +114,9 @@ namespace user
             
             ::cast < ::windowing::window > pwindowingwindowHost = pwindowHost;
 
-            create_child(pwindowingwindowHost->m_puserinteraction);
+            auto puserinteraction = pwindowingwindowHost->user_interaction();
+
+            create_child(puserinteraction);
 
             //         pwindowHost->windowing_window()->this->set_need_layout();
             //

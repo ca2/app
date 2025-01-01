@@ -59,7 +59,7 @@ namespace windowing
    }
 
    
-   void windowing::on_create_window_object(::user::interaction * puserinteraction)
+   void windowing::on_create_window_object(::acme::user::interaction * puserinteraction)
    {
 
       puserinteraction->__øconstruct(puserinteraction->m_pacmewindowingwindow);

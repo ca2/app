@@ -383,6 +383,9 @@
     <Filter Include="Header Files\nano\graphics">
       <UniqueIdentifier>{3be1e131-c76a-4dd2-866c-1b2b4b0e6e14}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\user\micro">
+      <UniqueIdentifier>{ffd440d1-3372-441b-8be2-593044751026}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -2055,6 +2058,9 @@
     </ClCompile>
     <ClCompile Include="operating_system\calculate_etoolkit.cpp">
       <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\key.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -4692,6 +4698,50 @@
     </ClInclude>
     <ClInclude Include="operating_system\universal_windows\geometry2d.h">
       <Filter>Header Files\operating_system\universal_windows</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\activation.h" />
+    <ClInclude Include="user\user\activation_token.h" />
+    <ClInclude Include="user\user\frame_interaction.h" />
+    <ClInclude Include="user\user\interaction.h" />
+    <ClInclude Include="user\user\message_box.h" />
+    <ClInclude Include="user\user\key.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\_.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\button.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\console.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\details_window.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\dialog.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\elemental.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\main_window.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\message_box.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\popup_button.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\still.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\theme.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\user.h">
+      <Filter>Header Files\user\micro</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

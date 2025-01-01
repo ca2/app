@@ -11,6 +11,7 @@
 #include "framework.h"
 #include "display.h"
 //#include "user.h"
+#include "acme/user/user/interaction.h"
 #include "window.h"
 #include "windowing.h"
 //#include "windowing_gtk4/windowing.h"
@@ -383,6 +384,14 @@ namespace acme
    {
       
       
+   }
+
+
+   void windowing::on_create_window_object(::acme::user::interaction * puserinteraction)
+   {
+
+      puserinteraction->__defer_construct(puserinteraction->m_pacmewindowingwindow);
+
    }
    
    

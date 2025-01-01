@@ -347,7 +347,7 @@ namespace user
 
       //}
 
-      return pwindow->m_puserinteraction;
+      return pwindow->user_interaction();
 
    }
 
@@ -410,7 +410,7 @@ namespace user
 
       //}
 
-      return pwindow->m_puserinteraction;
+      return pwindow->user_interaction();
 
    }
 
@@ -1509,10 +1509,12 @@ namespace user
 
             }
 
+            auto puserinteraction = pmouse->m_pwindow->user_interaction();
+
             for (auto & pinteraction : uiptraToolWindow)
             {
 
-               if (pinteraction != pmouse->m_pwindow->m_puserinteraction)
+               if (pinteraction != puserinteraction)
                {
 
                   if (pinteraction->m_ewindowflag & e_window_flag_focus)

@@ -1808,6 +1808,19 @@ namespace acme
             __øconstruct(m_pacmewindowingwindow, ::system()->m_pfactoryAcmeWindowing);
 
          }
+
+
+         void interaction::set_window(::acme::windowing::window * pwindow)
+         {
+
+            m_pacmewindowingwindow = pwindow;
+
+            pwindow->m_pacmeuserinteraction = this;   
+
+
+
+
+         }
          
          
          ::acme::user::interaction * interaction::acme_user_parent()
@@ -1935,7 +1948,37 @@ namespace acme
          }
 
 
+         void interaction::_main_post(const ::procedure & procedure)
+         {
 
+            if (m_pacmewindowingwindow)
+            {
+
+               m_pacmewindowingwindow->_main_post(procedure);
+
+            }
+            else
+            {
+
+               auto pacmewindowingwindow = acme_windowing_window();
+
+               if (pacmewindowingwindow)
+               {
+
+                  pacmewindowingwindow->_main_post(procedure);
+
+               }
+               else
+               {
+
+                  ::user::element::_main_post(procedure);
+
+               }
+
+            }
+
+
+         }
 
 
    } // namespace user

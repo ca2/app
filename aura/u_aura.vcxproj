@@ -294,7 +294,6 @@
     <ClInclude Include="user\user\interaction_graphics_thread.h" />
     <ClInclude Include="user\user\interaction_scaler.h" />
     <ClInclude Include="user\user\interaction_thread.h" />
-    <ClInclude Include="user\user\key.h" />
     <ClInclude Include="user\user\keyboard.h" />
     <ClInclude Include="user\user\main_window.h" />
     <ClInclude Include="user\user\message_box.h" />
@@ -542,7 +541,6 @@
     <ClCompile Include="user\user\interaction_graphics_thread.cpp" />
     <ClCompile Include="user\user\interaction_scaler.cpp" />
     <ClCompile Include="user\user\interaction_thread.cpp" />
-    <ClCompile Include="user\user\key.cpp" />
     <ClCompile Include="user\user\keyboard.cpp" />
     <ClCompile Include="user\user\layout_state.cpp" />
     <ClCompile Include="user\user\main_window.cpp" />

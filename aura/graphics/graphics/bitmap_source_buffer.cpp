@@ -235,7 +235,7 @@ namespace graphics
 
       }
 
-      if (!m_pwindow->m_puserinteraction)
+      if (!m_pwindow->user_interaction())
       {
 
          return false;

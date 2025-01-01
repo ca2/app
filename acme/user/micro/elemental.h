@@ -342,6 +342,9 @@ namespace micro
       virtual void fore_on_right_button_up(::user::mouse * pmouse);
       virtual void on_right_click(const ::payload & payload, ::user::mouse * pmouse);
       virtual void on_context_menu(::user::mouse * pmouse);
+      virtual void on_character(::user::key * pkey);
+      virtual void on_key_down(::user::key * pkey);
+      virtual void on_key_up(::user::key * pkey);
 
       //virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
 

@@ -1456,6 +1456,30 @@ void elemental::back_on_right_button_up(::user::mouse* pmouse)
    }
 
 
+   void elemental::on_character(::user::key * pkey)
+   {
+
+
+
+   }
+
+
+   void elemental::on_key_down(::user::key * pkey)
+   {
+
+
+
+   }
+
+
+   void elemental::on_key_up(::user::key * pkey)
+   {
+
+
+   }
+
+
+
    void elemental::on_click(const ::payload& payload, ::user::mouse* pmouse)
    {
 

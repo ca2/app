@@ -47,6 +47,9 @@ namespace user
 
    //class interaction_base;
 
+   class mouse;
+   class key;
+
 
 } // namespace user
 

@@ -609,7 +609,13 @@ namespace user
 
       information() << "::user::menu::create_menu parent window type: " << strType;
 
-#if defined(UNIVERSAL_WINDOWS) || defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(FREEBSD) || defined(MACOS)
+#if defined(UNIVERSAL_WINDOWS)
+
+      auto puserinteractionOwner = owner_interaction();
+
+      puserinteractionOwner->m_menua.add(this);
+
+#elif defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(FREEBSD) || defined(MACOS)
 
       auto puserinteractionTopOwner = get_owner();
 

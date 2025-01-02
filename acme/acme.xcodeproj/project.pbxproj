@@ -1179,7 +1179,6 @@
 		9A52415F2CD47440006ED868 /* memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7992F52A53D9D300261F46 /* memory.cpp */; };
 		9A5241602CD47440006ED868 /* message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABBFE7B2B3FF1C10036DF8C /* message_box.cpp */; };
 		9A5241612CD47440006ED868 /* message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A08441E29367B71009F7FF4 /* message.cpp */; };
-		9A5241622CD47440006ED868 /* operating_system_summary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7992F92A53D9D400261F46 /* operating_system_summary.cpp */; };
 		9A5241632CD47440006ED868 /* parallelization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8FAE327BA7296008FF9AA /* parallelization.cpp */; };
 		9A5241642CD47440006ED868 /* pipe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A08441629367B6E009F7FF4 /* pipe.cpp */; };
 		9A5241652CD47440006ED868 /* process.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A08441429367B6D009F7FF4 /* process.cpp */; };
@@ -6119,7 +6118,6 @@
 		9A797B702A538A8F00261F46 /* rectangle_array.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rectangle_array.cpp; sourceTree = "<group>"; };
 		9A7992F52A53D9D300261F46 /* memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = memory.cpp; sourceTree = "<group>"; };
 		9A7992F82A53D9D300261F46 /* string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string.cpp; sourceTree = "<group>"; };
-		9A7992F92A53D9D400261F46 /* operating_system_summary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = operating_system_summary.cpp; sourceTree = "<group>"; };
 		9A79935A2A57940500261F46 /* stdio_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stdio_file.cpp; sourceTree = "<group>"; };
 		9A79935B2A57940500261F46 /* c_error_number.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_error_number.h; sourceTree = "<group>"; };
 		9A79935C2A57940500261F46 /* stdio_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdio_file.h; sourceTree = "<group>"; };
@@ -8933,7 +8931,6 @@
 				9A08441E29367B71009F7FF4 /* message.cpp */,
 				9A08441829367B6F009F7FF4 /* message.h */,
 				9AA8FC0227BA7297008FF9AA /* microsecond_sleep.h */,
-				9A7992F92A53D9D400261F46 /* operating_system_summary.cpp */,
 				9AA8FB7927BA7297008FF9AA /* os_windowing2.h */,
 				9AA8FAE327BA7296008FF9AA /* parallelization.cpp */,
 				9AA8FB7A27BA7297008FF9AA /* parallelization.h */,
@@ -12768,7 +12765,6 @@
 				9A5242F62CD48D41006ED868 /* _apple.mm in Sources */,
 				9A5241602CD47440006ED868 /* message_box.cpp in Sources */,
 				9A5241612CD47440006ED868 /* message.cpp in Sources */,
-				9A5241622CD47440006ED868 /* operating_system_summary.cpp in Sources */,
 				9A5241632CD47440006ED868 /* parallelization.cpp in Sources */,
 				9A5241642CD47440006ED868 /* pipe.cpp in Sources */,
 				9A5241652CD47440006ED868 /* process.cpp in Sources */,

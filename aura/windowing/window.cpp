@@ -11304,10 +11304,10 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::erase_keyboard_focus(::user::interaction * puserinteraction)
+   void window::erase_keyboard_focus(::user::interaction * puserinteractionEraseFocus)
    {
 
-      if (puserinteraction == nullptr)
+      if (puserinteractionEraseFocus == nullptr)
       {
 
          impl_erase_keyboard_focus(nullptr);
@@ -11315,8 +11315,10 @@ void window::set_oswindow(::oswindow oswindow)
          return;
 
       }
+      
+      auto puserinteraction = user_interaction();
 
-      if (puserinteraction == puserinteraction)
+      if (puserinteractionEraseFocus == puserinteraction)
       {
 
          impl_erase_keyboard_focus(puserinteraction);
@@ -11325,23 +11327,14 @@ void window::set_oswindow(::oswindow oswindow)
 
       }
 
-      ::user::interaction * pinteraction = puserinteraction;
-
-      if (pinteraction == nullptr)
+      if (!puserinteraction->is_ascendant_of(puserinteractionEraseFocus, true))
       {
 
          return;
 
       }
 
-      if (!puserinteraction->is_ascendant_of(puserinteraction, true))
-      {
-
-         return;
-
-      }
-
-      impl_erase_keyboard_focus(puserinteraction);
+      impl_erase_keyboard_focus(puserinteractionEraseFocus);
 
       //return true;
 

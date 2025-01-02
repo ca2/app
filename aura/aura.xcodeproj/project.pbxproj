@@ -238,7 +238,6 @@
 		9A750F7E282B90B700C4861B /* interaction_scaler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92305127EACA3B00B5A78D /* interaction_scaler.h */; };
 		9A750F7F282B90B700C4861B /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92306327EACA3B00B5A78D /* _.h */; };
 		9A750F80282B90B700C4861B /* tool_window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92302827EACA3B00B5A78D /* tool_window.h */; };
-		9A750F81282B90B700C4861B /* key.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92301C27EACA3A00B5A78D /* key.h */; };
 		9A750F82282B90B700C4861B /* interaction_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92305627EACA3B00B5A78D /* interaction_array.h */; };
 		9A750F84282B90B700C4861B /* button.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92304527EACA3B00B5A78D /* button.h */; };
 		9A750F85282B90B700C4861B /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A922FFB27EACA3A00B5A78D /* _impl.h */; };
@@ -273,7 +272,6 @@
 		9A750FAE282B913600C4861B /* interaction_scaler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92303427EACA3B00B5A78D /* interaction_scaler.cpp */; };
 		9A750FAF282B913A00C4861B /* interaction_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92303E27EACA3B00B5A78D /* interaction_thread.cpp */; };
 		9A750FB0282B913F00C4861B /* interaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92301627EACA3A00B5A78D /* interaction.cpp */; };
-		9A750FB1282B914300C4861B /* key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92305C27EACA3B00B5A78D /* key.cpp */; };
 		9A750FB2282B914700C4861B /* keyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92305A27EACA3B00B5A78D /* keyboard.cpp */; };
 		9A750FB3282B914C00C4861B /* main_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92304D27EACA3B00B5A78D /* main_window.cpp */; };
 		9A750FB4282B915100C4861B /* message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A922FFC27EACA3A00B5A78D /* message_box.cpp */; };
@@ -436,7 +434,6 @@
 		9A92316027EAE40F00B5A78D /* interaction_scaler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92303427EACA3B00B5A78D /* interaction_scaler.cpp */; };
 		9A92316127EAE40F00B5A78D /* interaction_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92303E27EACA3B00B5A78D /* interaction_thread.cpp */; };
 		9A92316227EAE40F00B5A78D /* interaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92301627EACA3A00B5A78D /* interaction.cpp */; };
-		9A92316327EAE40F00B5A78D /* key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92305C27EACA3B00B5A78D /* key.cpp */; };
 		9A92316427EAE40F00B5A78D /* keyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92305A27EACA3B00B5A78D /* keyboard.cpp */; };
 		9A92316527EAE40F00B5A78D /* main_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92304D27EACA3B00B5A78D /* main_window.cpp */; };
 		9A92316627EAE40F00B5A78D /* message_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A922FFC27EACA3A00B5A78D /* message_box.cpp */; };
@@ -884,7 +881,6 @@
 		9A92301727EACA3A00B5A78D /* main_window.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main_window.h; sourceTree = "<group>"; };
 		9A92301827EACA3A00B5A78D /* interaction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = interaction.h; sourceTree = "<group>"; };
 		9A92301B27EACA3A00B5A78D /* notify_icon_mm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = notify_icon_mm.h; sourceTree = "<group>"; };
-		9A92301C27EACA3A00B5A78D /* key.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = key.h; sourceTree = "<group>"; };
 		9A92301D27EACA3A00B5A78D /* plain_text_data.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = plain_text_data.cpp; sourceTree = "<group>"; };
 		9A92301E27EACA3A00B5A78D /* call_message_handler_task.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = call_message_handler_task.cpp; sourceTree = "<group>"; };
 		9A92301F27EACA3A00B5A78D /* still.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = still.h; sourceTree = "<group>"; };
@@ -928,7 +924,6 @@
 		9A92305827EACA3B00B5A78D /* plain_edit.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = plain_edit.cpp; sourceTree = "<group>"; };
 		9A92305A27EACA3B00B5A78D /* keyboard.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = keyboard.cpp; sourceTree = "<group>"; };
 		9A92305B27EACA3B00B5A78D /* shell.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shell.cpp; sourceTree = "<group>"; };
-		9A92305C27EACA3B00B5A78D /* key.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = key.cpp; sourceTree = "<group>"; };
 		9A92305E27EACA3B00B5A78D /* interaction_layout.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = interaction_layout.cpp; sourceTree = "<group>"; };
 		9A92306127EACA3B00B5A78D /* windowing.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = windowing.cpp; sourceTree = "<group>"; };
 		9A92306327EACA3B00B5A78D /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
@@ -1540,8 +1535,6 @@
 				9A979D6A28C82ACD0013DC54 /* interaction_style.h */,
 				9A92300C27EACA3A00B5A78D /* interaction_thread.h */,
 				9A92303E27EACA3B00B5A78D /* interaction_thread.cpp */,
-				9A92301C27EACA3A00B5A78D /* key.h */,
-				9A92305C27EACA3B00B5A78D /* key.cpp */,
 				9A92303D27EACA3B00B5A78D /* keyboard.h */,
 				9A92305A27EACA3B00B5A78D /* keyboard.cpp */,
 				9A92302427EACA3B00B5A78D /* layout_state.h */,
@@ -1895,7 +1888,6 @@
 				9A92312727EACF2100B5A78D /* palette.h in Headers */,
 				9A1FB51528712FAC0042849A /* path_shape.h in Headers */,
 				9A92313C27EACF2100B5A78D /* fastblur.h in Headers */,
-				9A750F81282B90B700C4861B /* key.h in Headers */,
 				9AE382A828B1844A007EA867 /* desktop_environment.h in Headers */,
 				9A750F96282B90B700C4861B /* main_window.h in Headers */,
 				9A2488D22452C4F200F23D28 /* _.h in Headers */,
@@ -2299,7 +2291,6 @@
 				9A750F4E282B8FC400C4861B /* text_out.cpp in Sources */,
 				9A40BDBB2B6B66130077053E /* path_optimization.cpp in Sources */,
 				9A750FD7282B929E00C4861B /* dynamic.cpp in Sources */,
-				9A750FB1282B914300C4861B /* key.cpp in Sources */,
 				9AC88B252B6B518F008F1C20 /* placement_log.cpp in Sources */,
 				9A750FA1282B90FA00C4861B /* box.cpp in Sources */,
 				9A750FDF282B929E00C4861B /* cursor.cpp in Sources */,
@@ -2455,7 +2446,6 @@
 				9A92316027EAE40F00B5A78D /* interaction_scaler.cpp in Sources */,
 				9A92316127EAE40F00B5A78D /* interaction_thread.cpp in Sources */,
 				9A92316227EAE40F00B5A78D /* interaction.cpp in Sources */,
-				9A92316327EAE40F00B5A78D /* key.cpp in Sources */,
 				9A92316427EAE40F00B5A78D /* keyboard.cpp in Sources */,
 				9A92316527EAE40F00B5A78D /* main_window.cpp in Sources */,
 				9A92316627EAE40F00B5A78D /* message_box.cpp in Sources */,

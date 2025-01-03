@@ -348,6 +348,7 @@ namespace platform
          
       void application_menu_update() override;
 
+      virtual void on_system_main();
 
    };
 

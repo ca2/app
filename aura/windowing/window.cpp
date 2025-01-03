@@ -360,6 +360,28 @@ namespace windowing
 
       }
 
+      ::cast < ::user::message > pusermessage = pmessage;
+
+      if (pusermessage)
+      {
+
+         if (pusermessage->m_puserinteraction)
+         {
+
+            if (pusermessage->m_puserinteraction->is_message_only_window())
+            {
+
+               pusermessage->m_puserinteraction->message_handler(pmessage);
+
+               return;
+
+            }
+
+
+         }
+
+      }
+
       //m_puserinteraction->message_handler(pmessage);
 
       bool bKeyMessage = false;

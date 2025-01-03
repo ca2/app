@@ -453,7 +453,7 @@ namespace platform
 
       ///system()->main();
 
-      system()->acme_windowing()->windowing_application_main_loop();
+      application()->on_system_main();
 
    }
 

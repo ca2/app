@@ -2313,6 +2313,14 @@ namespace platform
    }
 
 
+   void application::on_system_main()
+   {
+
+
+      system()->acme_windowing()->windowing_application_main_loop();
+
+
+   }
 
 
 } // namespace platform

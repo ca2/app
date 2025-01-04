@@ -1820,9 +1820,11 @@ namespace windowing
 
       //virtual void set_opacity(double dOpacity);
 
+      virtual void _on_mouse_move_step(const ::int_point & pointCursor, bool bMouseLeave);
+
       ::windowing::window * windowing_window() override;
 
-         virtual bool on_configure_unlocked_timer();
+      virtual bool on_configure_unlocked_timer();
 
    };
 

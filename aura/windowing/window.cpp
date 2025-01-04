@@ -2277,7 +2277,7 @@ void window::set_oswindow(::oswindow oswindow)
 
 
    bool window::_set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy,
-                                     const ::user::e_activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize,
+                                     const ::user::activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize,
                                      ::e_display edisplay, unsigned int nOverrideFlags)
    {
 
@@ -2718,10 +2718,10 @@ void window::set_oswindow(::oswindow oswindow)
    //   }
 
 
-   void window::frame_toggle_restore(::user::activation_token * puseractivationtokens)
+   void window::frame_toggle_restore(::user::activation_token * puseractivationtoken)
    {
 
-      user_interaction()->frame_toggle_restore(puseractivationtokesn);
+      user_interaction()->frame_toggle_restore(puseractivationtoken);
 
    }
 
@@ -3217,6 +3217,39 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
+
+   ::user::interaction * window::user_interaction() const
+   {
+
+      return const_cast < window * >(this)->user_interaction();
+
+   }
+
+
+   ::user::interaction * window::owner_interaction()
+   {
+
+      ::cast < ::user::interaction > pinteraction = user_interaction();
+
+      if (!pinteraction)
+      {
+
+         return nullptr;
+
+      }
+
+      auto pwindowingwindow = pinteraction->owner_window();
+
+      if (!pwindowingwindow)
+      {
+         return nullptr;
+      }  
+
+      return pwindowingwindow->user_interaction();
+
+   }
+
+
    ::trace_statement & window::trace_statement_prefix(::trace_statement & statement) const
    {
 
@@ -3295,10 +3328,19 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::acme::windowing::window * window::owner_window()
+   ::windowing::window * window::owner_window()
    {
 
-      return user_interaction()->m_puserinteractionOwner->window();
+      ::cast < ::windowing::window  > pwindowingwindow = user_interaction()->owner_window();
+
+      if (!pwindowingwindow)
+      {
+         
+         return nullptr;
+
+      }
+
+      return pwindowingwindow;
 
    }
 
@@ -3554,7 +3596,7 @@ void window::set_oswindow(::oswindow oswindow)
 
          m_pacmeuserinteraction = pinteraction;
 
-         user_interaction() = pinteraction;
+         //user_interaction() = pinteraction;
 
          //create_host(pinteraction, e_parallelization_synchronous);
          //create_host(pinteraction);
@@ -5082,6 +5124,21 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
+   void window::_on_mouse_move_step(const ::int_point & pointCursor, ::user::enum_layout elayoutChild, bool bMouseLeave)
+   {
+
+
+   }
+
+
+   void window::defer_check_mouse_leave(::user::enum_layout elayoutWindow, ::user::enum_layout elayoutChild)
+   {
+
+
+   }
+
+
+
    void window::_task_transparent_mouse_event()
    {
 
@@ -5310,7 +5367,7 @@ void window::set_oswindow(::oswindow oswindow)
 
          //user_interaction()->m_pinteractionimpl.release();
 
-         user_interaction().release();
+         //user_interaction().release();
 
          post_message(e_message_destroy_window, 0, 0);
 
@@ -5859,10 +5916,12 @@ void window::set_oswindow(::oswindow oswindow)
    void window::_message_handler(::message::message * pmessage)
    {
 
-      if (user_interaction())
+      auto puserinteraction = user_interaction();
+
+      if (puserinteraction)
       {
 
-         m_bDestroyImplOnly ? route_message(pmessage) : user_interaction().m_p->route_message(pmessage);
+         m_bDestroyImplOnly ? route_message(pmessage) : puserinteraction->route_message(pmessage);
 
       }
 
@@ -10208,53 +10267,53 @@ void window::set_oswindow(::oswindow oswindow)
    //   }
 
 
-   void window::process_message()
-   {
+   //void window::process_message()
+   //{
 
-      while (true)
-      {
+   //   while (true)
+   //   {
 
-         ::pointer<::message::message> pmessage;
+   //      ::pointer<::message::message> pmessage;
 
-         {
+   //      {
 
-            _synchronous_lock synchronouslock(this->synchronization());
+   //         _synchronous_lock synchronouslock(this->synchronization());
 
-            if (m_messagelist.is_empty())
-            {
+   //         if (m_messagelist.is_empty())
+   //         {
 
-               return;
+   //            return;
 
-            }
+   //         }
 
-            pmessage = ::transfer(m_messagelist.pick_head());
+   //         pmessage = ::transfer(m_messagelist.pick_head());
 
-         }
+   //      }
 
-         message_handler(pmessage);
+   //      message_handler(pmessage);
 
-      }
+   //   }
 
-   }
+   //}
 
 
-   void window::queue_message_handler(::message::message * pmessage)
-   {
+   //void window::queue_message_handler(::message::message * pmessage)
+   //{
 
-      _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization());
 
-      bool bWasEmpty = m_messagelist.is_empty();
+   //   bool bWasEmpty = m_messagelist.is_empty();
 
-      m_messagelist.add_tail(pmessage);
+   //   m_messagelist.add_tail(pmessage);
 
-      if (bWasEmpty)
-      {
+   //   if (bWasEmpty)
+   //   {
 
-         m_puserthread->kick_idle();
+   //      m_puserthread->kick_idle();
 
-      }
+   //   }
 
-   }
+   //}
 
 
    void window::set_bitmap_source(const string & strBitmapSource)
@@ -10301,9 +10360,9 @@ void window::set_oswindow(::oswindow oswindow)
 
          //auto estatus =
 
-         m_pgraphicsgraphics = user()->desktop_environment()->create_graphics();
+         //m_pgraphicsgraphics = system()->windowing()->create_graphics();
 
-         //__raw_construct(m_pgraphicsgraphics);
+         __øconstruct(m_pgraphicsgraphics);
 
          //if (!estatus)
          //{
@@ -13380,6 +13439,12 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
+   void window::on_layout_reposition()
+   {
+
+
+   }
+
    void window::on_show_window()
    {
 
@@ -14967,10 +15032,12 @@ void window::set_oswindow(::oswindow oswindow)
 
       }
 
+      auto puserinteraction = user_interaction();
+
       do
       {
 
-         if (puiProbe == user_interaction().m_p)
+         if (puiProbe == puserinteraction)
          {
 
             return true;
@@ -15058,7 +15125,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       }
 
-      return user_interaction()->m_puserinteractionOwner;
+      return user_interaction()->owner_interaction();
 
    }
 
@@ -15879,7 +15946,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       ::windowing::window_base::set_user_interaction(pacmeuserinteraction);
 
-      user_interaction() = pacmeuserinteraction;
+      //user_interaction() = pacmeuserinteraction;
 
    }
 
@@ -16404,6 +16471,14 @@ void window::set_oswindow(::oswindow oswindow)
 
 
    //}
+
+
+   bool window::on_configure_unlocked_timer()
+   {
+
+      return false;
+
+   }
 
 
 } // namespace windowing

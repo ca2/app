@@ -21,7 +21,7 @@ template < primitive_character CHARACTER >
 CLASS_DECL_ACME constexpr memsize character_count_to_byte_length_constrain_source_length(const CHARACTER * pszTrigger, character_count nCharLength)
 {
 
-   return (::memsize)::minimum(((nCharLength) * sizeof(CHARACTER), (string_get_length(pszTrigger) + 1) * sizeof(CHARACTER)));
+   return (::memsize)::minimum((nCharLength) * sizeof(CHARACTER), (string_get_length(pszTrigger) + 1) * sizeof(CHARACTER));
 
 }
 

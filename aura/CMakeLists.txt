@@ -231,6 +231,8 @@ list(APPEND library_source
    graphics/write_text/glyph.h
    graphics/write_text/glyph_set.cpp
    graphics/write_text/glyph_set.h
+   graphics/write_text/internal_font.cpp
+   graphics/write_text/internal_font.h
    graphics/write_text/text.h
    graphics/write_text/text_box.cpp
    graphics/write_text/text_box.h
@@ -424,8 +426,6 @@ list(APPEND library_source
    user/user/interaction_thread.h
    user/user/interaction_scaler.cpp
    user/user/interaction_scaler.h
-   user/user/key.cpp
-   user/user/key.h
    user/user/keyboard.cpp
    user/user/keyboard.h
    user/user/layout_state.cpp

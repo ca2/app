@@ -1326,6 +1326,8 @@ list(APPEND library_source
    user/user/interaction.cpp
    user/user/interaction.h
    user/user/item.h
+   user/user/key.cpp
+   user/user/key.h
    user/user/key_state.cpp
    user/user/key_state.h
    user/user/message_box.cpp

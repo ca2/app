@@ -9,6 +9,7 @@
 #include "acme/platform/acme.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
+#include "acme/windowing/windowing.h"
 
 
 bool __os_init_thread();
@@ -270,7 +271,7 @@ namespace platform
    void node::_user_post(const ::procedure & procedure)
    {
 
-      //m_pnode->windowing_post(procedure);
+      system()->acme_windowing()->_user_post(procedure);
 
    }
 

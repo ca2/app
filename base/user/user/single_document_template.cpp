@@ -291,115 +291,120 @@ namespace user
       //
       //      }
 
-      ::payload payloadFile = prequest->get_file();
-
-      if (payloadFile.is_empty() || payloadFile.is_numeric())
-      {
-
-         // create a ___new ::user::document
-         set_default_title(pdocument);
-
-         // avoid creating temporary compound file when starting up invisible
-         if (!(prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen))
+      application()->post([this, pdocument, pframe, prequest]()
          {
 
-            pdocument->m_bEmbedded = true;
+            ::payload payloadFile = prequest->get_file();
 
-         }
-
-         if (!pdocument->on_new_document())
-         {
-            // user has been alerted to what failed in on_new_document
-            warning()(e_trace_category_appmsg) << "::user::document::on_new_document returned false.\n";
-
-            if (prequest->m_bDocumentAndFrameCreated)
+            if (payloadFile.is_empty() || payloadFile.is_numeric())
             {
 
-               pframe->destroy_window();    // will destroy ::user::document
-
-            }
-
-            return;
-
-         }
-
-         pdocument->m_bOpened = true;
-
-         pdocument->id_update_all_impacts(id_initial_update);
-
-      }
-      else
-      {
-
-         wait_cursor wait(prequest);
-
-         // open an existing ::user::document
-         prequest->m_bDocumentWasModified = pdocument->is_modified();
-         pdocument->set_modified_flag(false);  // not dirty for open
-
-         if (!on_open_document(pdocument, prequest))
-         {
-            // user has been alerted to what failed in on_open_document
-            warning()(e_trace_category_appmsg) << "::user::document::on_open_document returned false.\n";
-
-            if (prequest->m_bDocumentAndFrameCreated)
-            {
-
-               pframe->destroy_window();    // will destroy ::user::document
-
-            }
-            else if (!pdocument->is_modified())
-            {
-               // original ::user::document is untouched
-               pdocument->set_modified_flag(prequest->m_bDocumentWasModified);
-            }
-            else
-            {
-               // we corrupted the original ::user::document
+               // create a ___new ::user::document
                set_default_title(pdocument);
+
+               // avoid creating temporary compound file when starting up invisible
+               if (!(prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen))
+               {
+
+                  pdocument->m_bEmbedded = true;
+
+               }
 
                if (!pdocument->on_new_document())
                {
-                  warning()(e_trace_category_appmsg) << "Error: on_new_document failed after trying "
-                     "to open a ::user::document - trying to continue.\n";
-                  // assume we can continue
+                  // user has been alerted to what failed in on_new_document
+                  warning()(e_trace_category_appmsg) << "::user::document::on_new_document returned false.\n";
+
+                  if (prequest->m_bDocumentAndFrameCreated)
+                  {
+
+                     pframe->destroy_window();    // will destroy ::user::document
+
+                  }
+
+                  return;
+
                }
+
+               pdocument->m_bOpened = true;
+
+               pdocument->id_update_all_impacts(id_initial_update);
+
             }
-            return;        // open failed
-         }
-         pdocument->m_bOpened = true;
-         pdocument->set_path_name(payloadFile);
-         pdocument->update_title();
-         pdocument->id_update_all_impacts(id_initial_update);
+            else
+            {
+
+               wait_cursor wait(prequest);
+
+               // open an existing ::user::document
+               prequest->m_bDocumentWasModified = pdocument->is_modified();
+               pdocument->set_modified_flag(false);  // not dirty for open
+
+               if (!on_open_document(pdocument, prequest))
+               {
+                  // user has been alerted to what failed in on_open_document
+                  warning()(e_trace_category_appmsg) << "::user::document::on_open_document returned false.\n";
+
+                  if (prequest->m_bDocumentAndFrameCreated)
+                  {
+
+                     pframe->destroy_window();    // will destroy ::user::document
+
+                  }
+                  else if (!pdocument->is_modified())
+                  {
+                     // original ::user::document is untouched
+                     pdocument->set_modified_flag(prequest->m_bDocumentWasModified);
+                  }
+                  else
+                  {
+                     // we corrupted the original ::user::document
+                     set_default_title(pdocument);
+
+                     if (!pdocument->on_new_document())
+                     {
+                        warning()(e_trace_category_appmsg) << "Error: on_new_document failed after trying "
+                           "to open a ::user::document - trying to continue.\n";
+                        // assume we can continue
+                     }
+                  }
+                  return;        // open failed
+               }
+               pdocument->m_bOpened = true;
+               pdocument->set_path_name(payloadFile);
+               pdocument->update_title();
+               pdocument->id_update_all_impacts(id_initial_update);
 
 
-      }
+            }
 
-      //      thread* pThread = ::get_task();
+            //      thread* pThread = ::get_task();
 
-      if (!prequest->m_bHold)
-      {
+            if (!prequest->m_bHold)
+            {
 
-         pframe->payload("should_not_be_automatically_holded_on_initial_update_frame") = true;
+               pframe->payload("should_not_be_automatically_holded_on_initial_update_frame") = true;
 
-      }
+            }
 
-      prepare_frame(pframe, pdocument, prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen);
-      //      if(bCreated)
-      //      {
-      //
-      //         prepare_frame(pFrame,pdocument,bMakeVisible);
-      //
-      //      }
+            prepare_frame(pframe, pdocument, prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen);
+            //      if(bCreated)
+            //      {
+            //
+            //         prepare_frame(pFrame,pdocument,bMakeVisible);
+            //
+            //      }
 
-            /*     auto papp = get_app();
+                  /*     auto papp = get_app();
 
-                 if (papp)
-                 {
+                       if (papp)
+                       {
 
-                    papp->defer_process_activation_message();
+                          papp->defer_process_activation_message();
 
-                 }*/
+                       }*/
+
+      });
 
       if (prequest)
       {

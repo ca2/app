@@ -89,13 +89,13 @@
     <ClCompile Include="ip_enum.cpp" />
     <ClCompile Include="networking.cpp" />
     <ClCompile Include="port_forward.cpp" />
+    <ClCompile Include="sockets\base\base_socket.cpp" />
+    <ClCompile Include="sockets\base\base_socket_handler.cpp" />
     <ClCompile Include="sockets\basic\listen_socket_impl.cpp" />
     <ClCompile Include="winsock2\list_computers.cpp" />
     <ClCompile Include="winsock2\list_network_interfaces.cpp" />
     <ClCompile Include="winsock2\_.cpp" />
     <ClCompile Include="_.cpp" />
-    <ClCompile Include="sockets\base\socket.cpp" />
-    <ClCompile Include="sockets\base\socket_handler.cpp" />
     <ClCompile Include="sockets\basic\sctp_socket.cpp" />
     <ClCompile Include="sockets\basic\socket.cpp" />
     <ClCompile Include="sockets\basic\socket_handler.cpp" />

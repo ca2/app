@@ -559,7 +559,7 @@ namespace user
 
                         m_pcolorselectorpopupForeground->m_procedureOnAfterCreate = set_color_and_show;
 
-                        m_pcolorselectorpopupForeground->m_puserinteractionOwner = this;
+                        m_pcolorselectorpopupForeground->set_owner(this);
 
                         //m_pcolorselectorpopupForeground->create_host(::e_parallelization_asynchronous);
 

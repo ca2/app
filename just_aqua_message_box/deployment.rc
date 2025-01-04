@@ -25,8 +25,8 @@ LANGUAGE LANG_NEUTRAL, SUBLANG_DEFAULT
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2024,0921,2315,13
- PRODUCTVERSION 2024,0921,2315,13
+ FILEVERSION 1900,0132759,-1117375417422,1697197400
+ PRODUCTVERSION 1900,0132759,-1117375417422,1697197400
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -42,10 +42,10 @@ BEGIN
         BLOCK "040904b0"
         BEGIN
 			VALUE "CompanyName", "app"
-			VALUE "FileDescription", "app_just_message_box"
-            VALUE "FileVersion", "2024.0921.2315.13"
-            VALUE "LegalCopyright", "Copyright (C) 2024-09-21-23-15-13"
-            VALUE "ProductVersion", "2024.0921.2315.13"
+			VALUE "FileDescription", "app_just_aqua_message_box"
+            VALUE "FileVersion", "1900.0132759.-1117375417422.1697197400"
+            VALUE "LegalCopyright", "Copyright (C) 1900-01-32759--1117375417-422-1697197400"
+            VALUE "ProductVersion", "1900.0132759.-1117375417422.1697197400"
         END
     END
     BLOCK "VarFileInfo"

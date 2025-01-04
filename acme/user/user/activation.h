@@ -18,128 +18,38 @@ namespace user
    public:
 
 
-      ::user::e_activation       m_eactivation;
-      ::task *                   m_ptaskForeground;
-
-      activation() :m_eactivation(::user::e_activation_default),
-         m_ptaskForeground{nullptr} {
-      }
-
-      activation(const ::user::e_activation & useractivation) :
-         m_eactivation(useractivation),
-         m_ptaskForeground{nullptr}
-      {
-         if (m_eactivation == ::user::e_activation_set_foreground)
-         {
-            if (::is_null(m_ptaskForeground))
-            {
-               m_ptaskForeground = ::get_task();
-            }
-         }
-      }
-
-      activation(const ::user::e_activation & useractivation, ::task * ptaskForeground) :
-         m_eactivation(useractivation),
-         m_ptaskForeground(ptaskForeground)
-      {
-         if (m_eactivation == ::user::e_activation_set_foreground)
-         {
-            if (::is_null(m_ptaskForeground))
-            {
-               m_ptaskForeground = ::get_task();
-            }
-         }
-      }
+      ::user::e_activation                      m_eactivation;
+      ::pointer < ::user::activation_token >    m_pactivationtoken;
+      // ::task *                               m_ptaskForeground;
+      // ::huge_integer                         m_iTime;
 
 
-      activation(const ::user::activation & useractivation) :
-         m_eactivation(useractivation.m_eactivation),
-         m_ptaskForeground(useractivation.m_ptaskForeground)
-      {
+      activation();
+
+      activation(const ::user::e_activation & euseractivation);
+
+      activation(const ::user::e_activation & useractivation, ::user::activation_token * pactivationtoken);
 
 
-      }
+      activation(const ::user::activation & useractivation);
 
-      bool operator == (const ::user::activation & useractivation) const
-      {
-         if (m_eactivation == ::user::e_activation_set_foreground)
-         {
-
-            if (useractivation.m_eactivation == ::user::e_activation_set_foreground)
-            {
-
-               return m_ptaskForeground == useractivation.m_ptaskForeground;
-
-            }
-
-         }
-
-         return m_eactivation == useractivation.m_eactivation;
-
-      }
+      bool operator == (const ::user::activation & useractivation) const;
 
 
-      ::std::strong_ordering operator <=> (const ::user::activation & useractivation) const
-      {
+      ::std::strong_ordering operator <=> (const ::user::activation & useractivation) const;
 
-         if (m_eactivation == ::user::e_activation_set_foreground)
-         {
 
-            if (useractivation.m_eactivation == ::user::e_activation_set_foreground)
-            {
+      ::user::activation & operator = (const ::user::activation & useractivation);
 
-               return m_ptaskForeground <=> useractivation.m_ptaskForeground;
+      ::user::activation & operator |= (const ::user::activation & useractivation);
 
-            }
+      bool is_change_request() const;
 
-         }
 
-         return m_eactivation <=> useractivation.m_eactivation;
-
-      }
-
-      ::user::activation & operator = (const ::user::activation & useractivation)
-      {
-         if (this != &useractivation)
-         {
-            m_eactivation = useractivation.m_eactivation;
-            m_ptaskForeground = useractivation.m_ptaskForeground;
-         }
-         return *this;
-
-      }
+      bool operator & (const ::user::e_activation & useractivation) const;
       
-      ::user::activation & operator |= (const ::user::activation & useractivation)
-      {
-         if (this != &useractivation)
-         {
-            m_eactivation |= useractivation.m_eactivation;
-            m_ptaskForeground = useractivation.m_ptaskForeground;
-         }
-         return *this;
 
-      }
-
-      bool is_change_request() const
-      {
-         return m_eactivation != ::user::e_activation_default;
-      }
-
-      bool operator & (const ::user::e_activation & useractivation) const
-      {
-
-         return m_eactivation & useractivation;
-
-      }
-
-
-      void clear()
-      {
-
-         m_eactivation = ::user::e_activation_default;
-         m_ptaskForeground = nullptr;
-
-      }
+      void clear();
 
 
    };

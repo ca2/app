@@ -168,8 +168,9 @@ namespace user
       //::pointer < ::windowing::window >         m_pwindow;
 
 
-      bool m_bFocus : 1;
-      bool m_bDestroyOnHide : 1;
+      bool                                      m_bFocus : 1;
+      bool                                      m_bDestroyOnHide : 1;
+      bool                                      m_bTrackMouseLeave : 1;
 
       ::logic::boolean                          m_bExtendOnParent;
       ::logic::boolean                          m_bExtendOnParentIfOnlyClient;
@@ -179,7 +180,7 @@ namespace user
       ::logic::boolean                          m_bLockGraphicalUpdate;
 
       e_interaction                             m_einteraction;
-      
+
       bool                                      m_bCompositedFrameWindow;
       bool                                      m_bEdgeGestureDisableTouchWhenFullscreen;
       //bool                                      m_bScreenVisible;
@@ -418,7 +419,6 @@ namespace user
       ::pointer<::user::interaction>            m_puserinteractionParent;
       ::pointer<::user::interaction>            m_pupdowntarget;
       ::task_pointer                            m_ptaskModal;
-      ::pointer<interaction>                    m_puserinteractionOwner;
 
       // ownership
       ::pointer<::user::system>                    m_pusersystem;
@@ -472,6 +472,8 @@ namespace user
 
       ::user::thread * user_thread();
 
+
+
       //class control_descriptor& descriptor();
       //const class control_descriptor& descriptor();
       // ::aura::application * get_app();
@@ -490,10 +492,9 @@ namespace user
 
       virtual void _001Minimize();
 
-      virtual void on_display_restore();
+      virtual void on_display_restore(::user::activation_token * puseractivationtoken);
 
-
-      virtual void on_display_task_list();
+      virtual void on_display_task_list(::user::activation_token * puseractivationtoken);
 
 
       //void enable_drag_move();
@@ -693,6 +694,7 @@ namespace user
 
 
       virtual::e_display window_stored_display();
+      virtual::e_display _window_previous_display();
       virtual::e_display window_previous_display();
 
 
@@ -873,7 +875,7 @@ namespace user
       virtual bool layout_layout(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void display_previous(bool bScreenVisible = false);
+      virtual void display_previous(::user::activation_token * puseractivationtoken, bool bScreenVisible = false);
       virtual void display_normal(::e_display edisplay, const ::user::activation & useractivation);
       virtual void display_docked(::e_display edisplay, const ::user::activation & useractivation);
       virtual void display_zoomed();
@@ -983,13 +985,13 @@ namespace user
 
       virtual void on_update_notify_icon_menu(::collection::index & iNotifyIconIndex);
       
-      virtual void on_app_activated();
+      virtual void on_app_activated(::user::activation_token * puseractivationtoken);
 
-      virtual void frame_restore();
+      virtual void frame_restore(::user::activation_token * puseractivationtoken);
 
       virtual void frame_occlude();
       
-      virtual void frame_toggle_restore(bool bDisplayPreviousOnRestore = false);
+      virtual void frame_toggle_restore(::user::activation_token * puseractivationtoken, bool bDisplayPreviousOnRestore = false);
       
       virtual void display_previous_restore();
 
@@ -1099,7 +1101,7 @@ namespace user
       virtual ::item_pointer current_item();
 
 
-      virtual ::item_pointer stock_item(::enum_element eelement);
+      //virtual ::item_pointer stock_item(::enum_element eelement);
 
 
       //virtual ::item_pointer hover_item();
@@ -1562,6 +1564,8 @@ namespace user
 
       lresult message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0) override;
 
+      virtual lresult call_route_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
+
       virtual void on_default_window_procedure(::message::message * pmessage);
 
       void post_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0) override;
@@ -1646,7 +1650,7 @@ namespace user
       void set_keyboard_focus() override;
       void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr) override;
 
-      virtual void set_foreground_window();
+      virtual void set_foreground_window(::user::activation_token * puseractivationtoken);
       virtual void set_active_window();
 
       virtual void bring_to_front();
@@ -1864,7 +1868,7 @@ namespace user
 
       bool _001IsPointInside(const ::int_point & point) override;
 
-      virtual bool _001IsPointInsideInline(const ::int_point & point);
+      virtual bool _001IsPointInsideInline(const ::int_point & point, enum_layout elayout = e_layout_design);
       virtual bool _001IsClientPointInsideInline(const ::int_point & point);
       virtual bool _001IsParentClientPointInsideInline(const ::int_point & point, enum_layout elayout = e_layout_design);
 
@@ -1926,6 +1930,11 @@ namespace user
       ::user::interaction* get_parent_or_owner() override;
       ::user::interaction* get_top_level_owner() override;
       
+
+      ::user::interaction * owner_interaction();
+      ::windowing::window * owner_window();
+
+
       //virtual bool is_host_top_level();
 
       //virtual ::user::frame_interaction* get_parent_frame() override;
@@ -2233,6 +2242,8 @@ namespace user
       virtual void set_scroll_state_x(const scroll_state & scrollstate, ::user::enum_layout elayout = ::user::e_layout_sketch);
       virtual void set_scroll_state_y(const scroll_state & scrollstate, ::user::enum_layout elayout = ::user::e_layout_sketch);
 
+      virtual void set_scroll_dimension(const ::int_size & size, ::user::enum_layout elayout = ::user::e_layout_sketch);
+
       inline bool _001HasBarXDragScrolling() const { return m_pointBarDragScrollMax.x() > 0; }
       inline bool _001HasBarYDragScrolling() const { return m_pointBarDragScrollMax.y() > 0; }
 
@@ -2389,7 +2400,7 @@ namespace user
       virtual void on_after_graphical_update() override;
 
 
-      virtual void _001OnDeiconify(::e_display edisplay);
+      virtual void _001OnDeiconify(::user::activation_token * puseractivationtoken, ::e_display edisplay);
 
 
       virtual ::e_status is_edit_delete_enabled();
@@ -2798,6 +2809,10 @@ namespace user
       
       
       bool on_impact_update() override;
+
+      void window_restore() override;
+      void window_minimize() override;
+      void window_maximize() override;
 
 
    };

@@ -23,6 +23,9 @@ namespace acme
 
          //enum_display_type       m_edisplaytype;
 
+         ::string                         m_strDarkModeAnnotation;
+
+
 
          display();
          ~display() override;
@@ -34,6 +37,7 @@ namespace acme
          void destroy() override;
 
 
+         ::collection::count get_monitor_count();
          //virtual enum_display_type get_display_type();
 
 
@@ -52,7 +56,39 @@ namespace acme
          virtual ::int_size get_main_screen_size();
 
          virtual void * raw_x11_display();
-         
+
+         virtual void release_mouse_capture();
+
+
+         virtual bool is_dark_mode_through_theming();
+         virtual ::string theming_ui_name();
+
+
+         virtual string get_wallpaper(::collection::index iScreen);
+         virtual void set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrWallpaper);
+
+
+         virtual string_array get_wallpaper();
+         virtual void set_wallpaper(const string_array & straWallpaper);
+
+
+         virtual ::string impl_get_wallpaper(::collection::index iScreen);
+         virtual void impl_set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrWallpaper);
+
+
+         virtual ::string get_desktop_theme();
+         virtual void set_desktop_theme(const ::scoped_string & scopedstrDesktopTheme);
+
+
+         virtual string impl_get_desktop_theme();
+         virtual void impl_set_desktop_theme(const ::scoped_string & scopedstrDesktopTheme);
+
+
+         virtual ::string get_desktop_icon_theme();
+         virtual void set_desktop_icon_theme(const ::scoped_string & scopedtrDesktopIconTheme);
+
+
+         virtual void enable_wallpaper_change_notification();
          
       };
 

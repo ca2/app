@@ -40,6 +40,10 @@ namespace user
       void lading_to_layout(bool & bUpdateBuffer, bool & bUpdateWindow) override;
       void layout_to_design() override;
 
+      void set_scroll_dimension(const ::int_size & size, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
+
+
+
       //virtual bool on_drag_shift_element_client(::item * pitem, ::user::mouse * pmouse);
 
       void on_change_scroll_state(::user::enum_layout elayout = ::user::e_layout_sketch) override;

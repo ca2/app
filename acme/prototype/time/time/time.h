@@ -169,6 +169,7 @@ public:
    //inline bool is_infinity() const;
    constexpr bool is_infinite() const;
    constexpr bool is_null() const;
+   constexpr bool is_set() const {return ! is_null();}
    //constexpr bool is_zero() const;
    //constexpr bool is_set() const { return (m_iSecond >= 0 && m_iNanosecond > 0) || (m_iSecond > 0 && m_iNanosecond >= 0); }
    constexpr static class ::time infinity();

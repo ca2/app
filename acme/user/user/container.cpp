@@ -692,7 +692,42 @@ namespace user
    }
 
 
+   ::item_pointer acme_container::on_create_stock_item(enum_element eelement)
+   {
 
+      auto pitem = __allocate::item(eelement);
+
+      tool().add_item(pitem);
+
+      pitem = tool().item(eelement);
+
+      if (eelement == e_element_client)
+      {
+
+         pitem->m_item.m_iItem = 0;
+
+      }
+
+      return pitem;
+
+   }
+
+
+   ::item_pointer acme_container::stock_item(enum_element eelement)
+   {
+
+      auto pitem = tool().item(eelement);
+
+      if (!pitem)
+      {
+
+         pitem = on_create_stock_item(eelement);
+
+      }
+
+      return pitem;
+
+   }
 
 
 } // namespace user

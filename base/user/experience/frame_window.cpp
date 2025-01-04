@@ -340,7 +340,7 @@ namespace experience
 
                      pkey->m_bRet = true;
 
-                     display_previous();
+                     display_previous(pmessage->m_puseractivationtoken);
 
                      set_reposition();
 
@@ -400,7 +400,7 @@ namespace experience
 
       pframe->m_pframewindow = this;
 
-      auto psignal = get_signal(id_user_style_change);
+      auto psignal = signal(id_user_style_change);
 
       psignal->add_handler(pframe);
 
@@ -865,9 +865,7 @@ namespace experience
 
             informationf("button_clicked : button_minimize");
 
-            display(e_display_iconic, { ::user::e_activation_no_activate });
-
-            set_need_redraw();
+            window_minimize();
 
             ptopic->m_bRet = true;
 
@@ -877,15 +875,17 @@ namespace experience
 
             informationf("button_clicked : button_maximize");
 
-            display(e_display_zoomed);
+            window_maximize();
 
-            set_reposition(true);
-
-            set_need_layout();
-
-            set_need_redraw();
-
-            post_redraw();
+            // display(e_display_zoomed);
+            //
+            // set_reposition(true);
+            //
+            // set_need_layout();
+            //
+            // set_need_redraw();
+            //
+            // post_redraw();
 
             ptopic->m_bRet = true;
 
@@ -974,7 +974,7 @@ namespace experience
       else if (ptopic->m_atom == id_app_activated)
       {
 
-         frame_toggle_restore();
+         frame_toggle_restore(ptopic->m_puseractivationtoken);
 
       }
 
@@ -2850,7 +2850,7 @@ namespace experience
       if(system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
       {
 
-         display_normal(m_windowdisplayandlayout.m_edisplayLastNormal, useractivation);
+         window_restore();
 
          return;
 

@@ -68,7 +68,7 @@ namespace acme
 
          //m_efont = e_font_sans;
          m_uFlagsAcmeUserInteraction = 0;
-         auto pitemClient = tool().defer_item(e_element_client);
+         auto pitemClient = stock_item(e_element_client);
 
          enable_drag(pitemClient, ::user::e_zorder_back);
 
@@ -375,13 +375,15 @@ namespace acme
             if (strActionName == "minimize")
             {
 
-               display(e_display_iconic);
+               //display(e_display_iconic);
+
+               window_minimize();
 
             }
             else if (strActionName == "maximize")
             {
 
-               display(e_display_zoomed);
+               window_maximize();
 
             }
             else if (strActionName == "restore")
@@ -631,6 +633,14 @@ namespace acme
 //            destroy();
 
          }
+   
+         
+         bool interaction::is_host_top_level()
+         {
+            
+            return m_pacmewindowingwindow.is_set();
+            
+         }
 
 
          void interaction::SetTimer(uptr uEvent, const class ::time & timeEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pdata)
@@ -676,6 +686,7 @@ namespace acme
             m_ptimerarray->delete_timer(uEvent);
 
          }
+
 
 
 
@@ -1511,9 +1522,11 @@ namespace acme
 
             ::source::destroy();
 
-            system()->erase_signal_handler(this);
+            //system()->erase_signal_handler(this);
 
             m_pacmeuserinteractionParent.release();
+
+            m_pacmeuserinteractionOwner.release();
 
             m_pacmeuserinteractionaChildren.release();
 
@@ -1795,12 +1808,51 @@ namespace acme
             __øconstruct(m_pacmewindowingwindow, ::system()->m_pfactoryAcmeWindowing);
 
          }
+
+
+         void interaction::set_window(::acme::windowing::window * pwindow)
+         {
+
+            m_pacmewindowingwindow = pwindow;
+
+            pwindow->m_pacmeuserinteraction = this;   
+
+
+
+
+         }
          
          
          ::acme::user::interaction * interaction::acme_user_parent()
          {
 
             return m_pacmeuserinteractionParent;
+
+         }
+
+
+         ::acme::windowing::window * interaction::owner_window()
+         {
+
+            auto pacmeuserinteractionOwner = m_pacmeuserinteractionOwner;
+
+            if (::is_null(pacmeuserinteractionOwner))
+            {
+
+               return nullptr;
+
+            }
+
+            auto pacmewindowingwindowOwner = pacmeuserinteractionOwner->m_pacmewindowingwindow;
+
+            if (::is_null(pacmewindowingwindowOwner))
+            {
+
+               return nullptr;
+
+            }
+
+            return pacmewindowingwindowOwner;
 
          }
 
@@ -1896,7 +1948,37 @@ namespace acme
          }
 
 
+         void interaction::_main_post(const ::procedure & procedure)
+         {
 
+            if (m_pacmewindowingwindow)
+            {
+
+               m_pacmewindowingwindow->_main_post(procedure);
+
+            }
+            else
+            {
+
+               auto pacmewindowingwindow = acme_windowing_window();
+
+               if (pacmewindowingwindow)
+               {
+
+                  pacmewindowingwindow->_main_post(procedure);
+
+               }
+               else
+               {
+
+                  ::user::element::_main_post(procedure);
+
+               }
+
+            }
+
+
+         }
 
 
    } // namespace user

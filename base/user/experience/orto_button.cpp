@@ -277,11 +277,11 @@ namespace experience
       if (!m_pregion->contains(point))
       {
 
-         return __allocate ::item(::e_element_none);
+         return stock_item(::e_element_none);
 
       }
 
-      return __allocate ::item(::e_element_client);
+      return stock_item(::e_element_client);
 
    }
 

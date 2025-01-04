@@ -1,5 +1,6 @@
 // Created by camilo on 2024-11-16 15:49 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "acme/windowing/_.h"
 
 
 namespace windowing
@@ -22,14 +23,17 @@ namespace windowing
          return "macos";
       case e_operating_ambient_windows:
          return "windows";
-      case e_operating_ambient_unity:
-         return "gtk_based";
+      //case e_operating_ambient_unity:
+        // return "gtk_based";
+         case e_operating_ambient_unity:
       case e_operating_ambient_gnome:
 #ifdef HAS_GTK4
          return "gtk4";
 #else
          return "gtk3";
 #endif
+      case e_operating_ambient_universal_windows:
+         return "universal_windows";
       default:
          throw todo;
       };

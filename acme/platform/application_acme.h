@@ -269,7 +269,7 @@ namespace platform
 
       virtual void show_about_box();
 
-      virtual bool on_command(const ::atom & atom);
+      //bool on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken) override;
 
 
 

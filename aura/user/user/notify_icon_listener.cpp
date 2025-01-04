@@ -174,7 +174,7 @@ namespace user
    }
 
 
-   bool notify_icon_listener::on_command(const ::atom &atom)
+   bool notify_icon_listener::handle_command(const ::atom &atom, ::user::activation_token * puseractivationtoken)
    {
 
       return false;

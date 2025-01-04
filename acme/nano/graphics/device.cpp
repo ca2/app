@@ -51,7 +51,7 @@ namespace nano
 
       }
 
-      void device::attach(void * posdata)
+      void device::attach(void * posdata, const ::int_size & size)
       {
 
 

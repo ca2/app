@@ -848,8 +848,20 @@
     <None Include="uwp_app_app_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\operating_system\operating_system-universal_windows\acme_windowing_universal_windows\u_acme_windowing_universal_windows.vcxproj">
+      <Project>{4a17f27f-30d9-4af6-a2cc-66125ee771e8}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\operating_system\operating_system-universal_windows\innate_ui_universal_windows\u_innate_ui_universal_windows.vcxproj">
+      <Project>{e5d448ac-386a-43a9-a461-dd8c733e13b4}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\operating_system\operating_system-universal_windows\operating_ambient_universal_windows\u_operating_ambient_universal_windows.vcxproj">
+      <Project>{0d13127b-5a04-4aa5-a153-726f6b1e8b9c}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\operating_system\operating_system-windows_common\direct2d\u_direct2d.vcxproj">
       <Project>{91608259-0b1f-4deb-a867-873618075395}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\operating_system\operating_system-windows_common\nano_graphics_direct2d\u_nano_graphics_direct2d.vcxproj">
+      <Project>{463b4c35-d4ae-46ca-906d-593c17ae7a5a}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\acme\u_acme.vcxproj">
       <Project>{74a3ea71-9358-4441-a0cc-d5771df8dfbd}</Project>

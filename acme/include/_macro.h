@@ -62,6 +62,10 @@ release_time_for_project  application::release_time() { return __RELEASE_TIME(li
 #define SANDBOXED_PLATFORM
 #endif
 
+#if defined(ANDROID) || defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS)
+#define SANDBOXED_WINDOWING
+#endif
+
 
 #define _MAKE_STRING(identifier) #identifier
 #define MAKE_STRING(identifier) _MAKE_STRING(identifier)

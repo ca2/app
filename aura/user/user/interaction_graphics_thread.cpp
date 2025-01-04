@@ -71,6 +71,9 @@ namespace user
 
       //m_bRedraw = false;
 
+
+      m_iRedrawMessageCount = 0;
+
       m_bAuraMessageQueue = true;
 
       m_bUpdatingScreen = false;
@@ -126,6 +129,16 @@ namespace user
 
 
 #endif
+
+
+   void graphics_thread::install_message_routing(::channel * pchannel)
+   {
+
+      ::thread::install_message_routing(pchannel);
+
+      MESSAGE_LINK(e_message_redraw, pchannel, this, &graphics_thread::on_message_redraw);
+
+   }
 
 
    void graphics_thread::defer_create_graphics_thread()
@@ -353,16 +366,9 @@ namespace user
 
             }
 
-            if(!defer_process_redraw_message())
-            {
-
-               information() << "graphics_thread::run !defer_process_redraw_message()";
-
-               break;
-
-            }
-
             task_iteration();
+
+            defer_process_redraw_message();
 
          }
 
@@ -393,6 +399,14 @@ namespace user
       //}
 
       //return m_estatus;
+
+   }
+
+
+   void graphics_thread::on_message_redraw(::message::message * pmessage)
+   {
+
+      m_iRedrawMessageCount++;
 
    }
 
@@ -558,53 +572,72 @@ namespace user
 
       }
 
-      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child))
-      {
+      //if (!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child))
+      //{
 
          //if (!m_bAutoRefresh)
-         if (m_puserinteraction->has_fps_output_purpose())
-         {
-
-            if(!clear_message_queue())
-            {
-
-               return false;
-
-            }
-
-         }
-         else //if(!m_bAutoRefresh)
-         {
-
-            wait_for_redraw_message();
-
-//            while (peek_message(&m_message, NULL, 0, 0, true))
-//            {
+//          if (m_puserinteraction->has_fps_output_purpose())
+//          {
 //
-////               if (m_message.m_atom == e_message_null)
-////               {
-////
-////                  return true;
-////
-////               }
-////               else if (m_message.m_atom != e_message_redraw)
-////               {
-////
-////                  return true;
-////
-////               }
+//             if(!clear_message_queue())
+//             {
 //
-//            }
-
-         }
-
-      }
+//                return false;
+//
+//             }
+//
+//          }
+//          // else if(m_iRedrawMessageCount <= 0)
+//          // {
+//          //    return true;
+//          // }
+//
+//             //if (!wait_for_redraw_message())
+//             //{
+//
+//               // information() << "defer_process_redraw_message exit (1)";
+//
+//                //return true;
+//
+//             //}
+//
+//             //while (peek_message(&m_message, nullptr, e_message_redraw, e_message_redraw, true))
+//             //{
+//
+//
+//             //}
+//
+// //            while (peek_message(&m_message, NULL, 0, 0, true))
+// //            {
+// //
+// ////               if (m_message.m_atom == e_message_null)
+// ////               {
+// ////
+// ////                  return true;
+// ////
+// ////               }
+// ////               else if (m_message.m_atom != e_message_redraw)
+// ////               {
+// ////
+// ////                  return true;
+// ////
+// ////               }
+// //
+// //            }
+//
+//         // }
+//
+//       //}
+//
+//       m_iRedrawMessageCount = 0;
 
       if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
       {
 
          if(m_puserinteraction->windowing_window()->m_bPendingRedraw && m_puserinteraction->windowing_window()->m_timeLastRedraw.elapsed() < 100_ms)
          {
+
+            information() << "defer_process_redraw_message exit (2)";
 
             return true;
 
@@ -659,12 +692,12 @@ namespace user
       if(puserinteraction)
       {
 
-         auto pacmewindowingwindow = puserinteraction->m_pacmewindowingwindow;
+         auto pacmewindowingwindow = puserinteraction->m_pacmewindowingwindow.m_p;
 
          if (pacmewindowingwindow)
          {
 
-            ::pointer < ::windowing::window > pwindow = pacmewindowingwindow;
+            ::cast < ::windowing::window > pwindow = pacmewindowingwindow;
 
             if (pwindow)
             {
@@ -993,6 +1026,8 @@ namespace user
    bool graphics_thread::graphics_thread_iteration()
    {
 
+      //information() << "graphics_thread_iteration (A0)";
+
       if (!m_puserinteraction ||
          m_puserinteraction->has_finishing_flag()
          || m_puserinteraction->has_destroying_flag()
@@ -1051,11 +1086,13 @@ namespace user
          return false;
 
       }
+
+      auto puserinteraction = m_puserinteraction;
       
-      if (!(pwindow->m_puserinteraction->m_ewindowflag & e_window_flag_window_created))
+      if (!(puserinteraction->m_ewindowflag & e_window_flag_window_created))
       {
 
-         if (::type(pwindow->m_puserinteraction.m_p) == "user::list_box")
+         if (::type(puserinteraction) == "user::list_box")
          {
 
             information() << "user::list_box graphics_thread_iteration !e_window_flag_window_created";
@@ -1073,6 +1110,8 @@ namespace user
 
       }
 
+      //information() << "graphics_thread_iteration (A1)";
+
       if (m_puserinteraction->has_graphical_output_purpose())
       {
 
@@ -1089,6 +1128,29 @@ namespace user
 
 #endif
 
+         if (!m_puserinteraction->has_fps_output_purpose())
+         {
+
+            if(!wait_to_present())
+            {
+
+               return false;
+
+            }
+
+            if (m_iRedrawMessageCount <= 0)
+            {
+
+               return true;
+
+            }
+
+         }
+
+         m_iRedrawMessageCount = 0;
+
+         //information() << "graphics_thread_iteration (A2)";
+
          //information() << "graphics_thread_iteration has_graphical_output_purpose";
 
          if(m_puserinteraction->has_flag(e_flag_destroying)
@@ -1102,6 +1164,8 @@ namespace user
             return false;
 
          }
+
+         //information() << "graphics_thread_iteration (A4)";
             
          if ((
             m_puserinteraction->const_layout().sketch().is_screen_visible()
@@ -1137,14 +1201,31 @@ namespace user
 
       }
 
-      if(!wait_to_present())
+      if (has_finishing_flag())
       {
 
          return false;
 
       }
 
-      auto puserinteraction = m_puserinteraction;
+      if (m_puserinteraction->has_fps_output_purpose())
+      {
+
+         if(!wait_to_present())
+         {
+
+            return false;
+
+         }
+
+         if (has_finishing_flag())
+         {
+
+            return false;
+
+         }
+
+      }
 
       if(::is_set(puserinteraction))
       {
@@ -1163,6 +1244,8 @@ namespace user
                   debug() << "graphics_thread_iteration has_screen_output_purpose before window_update_screen";
 
 #endif
+
+                  //information() << "pwindow->window_update_screen();";
 
                   pwindow->window_update_screen();
 
@@ -1567,6 +1650,8 @@ namespace user
    {
 
       //information() << node()->get_callstack();
+
+      //information() << "graphics_thread::post_redraw";
 
       post_message(e_message_redraw);
 

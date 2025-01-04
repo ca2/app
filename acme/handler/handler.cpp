@@ -135,32 +135,46 @@ namespace handler
    }
 
 
-   ::request * handler::pick_next_posted_request()
+   bool handler::pick_next_posted_request()
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      if (m_requestaPosted.is_empty())
+      while (true)
       {
 
-         return nullptr;
+         if (m_requestaPosted.is_empty())
+         {
+
+            return false;
+
+         }
+
+         auto prequest = m_requestaPosted.pick_first();
+
+         defer_reset_main_loop_happening();
+
+         if (::is_null(prequest))
+         {
+
+            continue;
+
+         }
+
+         //if (m_requestaPosted.is_empty())
+         //{
+
+         //   new_request_posted()->reset_happening();
+
+         //}
+
+         //m_requestaHistory.add(prequest);
+
+         m_prequest = prequest;
+
+         return true;
 
       }
-
-      auto prequest = m_requestaPosted.pick_first();
-
-      defer_reset_main_loop_happening();
-
-      //if (m_requestaPosted.is_empty())
-      //{
-
-      //   new_request_posted()->reset_happening();
-
-      //}
-
-      m_requestaHistory.add(prequest);
-
-      return prequest;
 
    }
 
@@ -168,16 +182,16 @@ namespace handler
    bool handler::handle_next_posted_request()
    {
 
-      auto prequest = pick_next_posted_request();
-
-      if (!prequest)
+      while (pick_next_posted_request())
       {
 
-         return false;
+         handle(m_prequest);
+
+         m_requestaHistory.add(m_prequest);
+
+         m_prequest.release();
 
       }
-
-      handle(prequest);
 
       return true;
 

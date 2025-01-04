@@ -46,6 +46,10 @@ namespace acme
          //::pointer<::micro::window_implementation>     m_pnanouserwindowimplementation;
 
 
+         class ::time                              m_timeHoverNoiseSuppression;
+
+
+
          int_rectangle                             m_rectangle;
          ::int_rectangle                           m_rectanglePointingTo;
 
@@ -72,10 +76,12 @@ namespace acme
          ::pointer<::acme::user::interaction>               m_pacmeuserinteractionFocus;
          ::pointer<::acme::user::interaction>               m_pacmeuserinteractionHover;
          ::pointer<::acme::user::interaction>               m_pacmeuserinteractionCapture;
-         ::pointer<::acme::user::interaction>               m_pacmeuserinteractionOwner;
+         //::pointer<::acme::user::interaction>               m_pacmeuserinteractionOwner;
 
 
          ::pointer < ::acme::windowing::display >           m_pdisplay;
+
+
 
 
 
@@ -140,7 +146,7 @@ namespace acme
          virtual bool _is_window();
 
          
-         virtual void set_foreground_window();
+         virtual void set_foreground_window(::user::activation_token * puseractivationtoken);
          
          
          virtual bool has_keyboard_focus();
@@ -154,6 +160,7 @@ namespace acme
          ::pointer<::nano::graphics::device>create_device();
 
 
+         virtual ::pointer < ::user::activation_token > get_initial_frame_display_activation_token();
          //void run_modal_loop() override;
 
 
@@ -197,9 +204,12 @@ namespace acme
          virtual ::int_size windowing_popup_size();
          virtual void _on_windowing_close_window();
          virtual bool is_satellite_window();
-         virtual ::acme::windowing::window * owner_window();
+         ::acme::user::interaction * owner_interaction();
+         ::acme::windowing::window * owner_window();
          ::string get_window_text() override;
 
+
+         virtual itask_t get_itask() const;
 
          //virtual ::int_rectangle get_window_rectangle();
 

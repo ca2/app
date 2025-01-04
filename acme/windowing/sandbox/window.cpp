@@ -3226,7 +3226,7 @@ bool window::is_window()
 
 
 /// should be run at user_thread
-void window::set_foreground_window()
+void window::set_foreground_window(::user::activation_token * puseractivationtoken)
 {
    
    //synchronous_lock synchronouslock(user_synchronization());

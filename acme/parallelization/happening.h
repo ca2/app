@@ -8,11 +8,32 @@
 #endif
 
 
-#include "acme/operating_system/security_attributes.h"
+//#include "acme/operating_system/security_attributes.h"
+#include "acme/prototype/prototype/subparticle.h"
+
+class notify_lock;
+
+class notify_lock_notifier :
+   virtual public ::subparticle
+{
+public:
+
+
+   ::pointer_array < ::notify_lock > m_notifylocka;
+
+
+   ~notify_lock_notifier() override;
+
+   void add_notify_lock(::notify_lock * pnotifylock);
+   void erase_notify_lock(::notify_lock * pnotifylock);
+
+   void notify_lock_notify_all();
+
+};
 
 
 class CLASS_DECL_ACME happening :
-   virtual public ::subparticle
+   virtual public ::notify_lock_notifier
 {
 public:
 
@@ -34,6 +55,10 @@ public:
    int               m_iSignalId;  // meaningful only when m_bManualEvent
    void *            m_pcond; // pthread_cond_t
    void *            m_pmutex; // pthread_mutex_t;
+
+   //notify_lock_notifier m_notifylocknotifier;
+   bool start_notify_lock(::notify_lock * pnotifylock) override;
+   void end_notify_lock(::notify_lock * pnotifylock) override;
 
 
 #endif
@@ -80,6 +105,7 @@ public:
    bool _wait (const class time & timeWait) override;
 
    bool is_signaled() const;
+
 
 };
 

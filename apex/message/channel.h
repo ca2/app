@@ -28,7 +28,7 @@ public:
    void channel_common_construct();
 
    
-   virtual void install_message_routing(::channel* pchannel) override;
+   void install_message_routing(::channel* pchannel) override;
 
 
    virtual void destroy() override;
@@ -145,7 +145,7 @@ public:
    virtual void on_command(::message::command * pcommand);
    virtual bool has_command_handler(::message::command * pcommand);
    virtual void on_command_probe(::message::command * pcommand);
-   virtual bool on_command(const ::atom & atom);
+   bool on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken) override;
 
 
    virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false);

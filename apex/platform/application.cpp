@@ -38,6 +38,7 @@
 #include "apex/innate_ui/innate_ui.h"
 #include "apex/innate_ui/still.h"
 #include "apex/message/application.h"
+#include "apex/message/command.h"
 #include "acme/platform/release_time.h"
 #include "apex/platform/machine_event_data.h"
 #include "apex/platform/machine_event.h"
@@ -51,10 +52,12 @@
 #include "apex/database/_binary_stream.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "acme/user/user/activation_token.h"
 #include "acme/windowing/display.h"
 #include "acme/windowing/windowing.h"
 #include "apex/networking/application/application.h"
 #include "apex/networking/http/context.h"
+#include "apex/user/user/interaction_base.h"
 #include "apex/user/user/language_map.h"
 
 
@@ -2974,10 +2977,17 @@ namespace apex
    }
 
 
-   bool application::on_command(const ::atom & atom)
+   bool application::on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken)
    {
 
-      return ::platform::application::on_command(atom);
+      if (::platform::application::on_command_final(atom, puseractivationtoken))
+      {
+
+         return true;
+
+      }
+
+      return false;
 
    }
 
@@ -5181,14 +5191,14 @@ namespace apex
    //::user::interaction * application::main_window()
    //{
 
-   //   if (!m_puserinteractionMain)
+   //   if (!m_pacmeuserinteractionMain)
    //   {
 
    //      return nullptr;
 
    //   }
 
-   //   return m_puserinteractionMain->m_puiThis;
+   //   return m_pacmeuserinteractionMain->m_puiThis;
 
    //}
 
@@ -5313,6 +5323,38 @@ namespace apex
       pmessage->m_bRet = true;
 
       show_about_box();
+
+   }
+
+
+   bool application::handle_command(const ::atom & atom, ::user::activation_token * puseractivationtoken)
+   {
+
+      auto pcommand = __allocate ::message::command (atom);
+
+      pcommand->m_puseractivationtoken = puseractivationtoken;
+       
+      if(m_pacmeuserinteractionMain)
+      {
+         
+         ::cast < ::user::interaction_base > puserinteractionbase = m_pacmeuserinteractionMain;
+         
+         if(puserinteractionbase)
+         {
+            
+            puserinteractionbase->route_command(pcommand);
+            
+         }
+         
+      }
+      else
+      {
+         
+         route_command(pcommand);
+         
+      }
+
+      return pcommand->m_bRet;
 
    }
 
@@ -5631,14 +5673,14 @@ namespace apex
       //{
       throw ::exception(todo, "interaction");
 
-      //   if (m_puserinteractionMain)
+      //   if (m_pacmeuserinteractionMain)
       //   {
 
-      //      m_puserinteractionMain->display(::e_display_hide);
+      //      m_pacmeuserinteractionMain->display(::e_display_hide);
 
-      //      m_puserinteractionMain->set_need_redraw();
+      //      m_pacmeuserinteractionMain->set_need_redraw();
 
-      //      m_puserinteractionMain->post_redraw();
+      //      m_pacmeuserinteractionMain->post_redraw();
 
       //   }
 
@@ -5890,6 +5932,7 @@ namespace apex
       return true;
 
    }
+
 
    bool application::can_close_application()
    {
@@ -8557,9 +8600,9 @@ namespace apex
    //
    //// same as double-clicking on main window close box
    //
-   ////ASSERT(m_puserinteractionMain != nullptr);
+   ////ASSERT(m_pacmeuserinteractionMain != nullptr);
    //
-   ////m_puserinteractionMain->m_puiThis->send_message(e_message_close);
+   ////m_pacmeuserinteractionMain->m_puiThis->send_message(e_message_close);
    //
    //}
    //
@@ -8570,7 +8613,7 @@ namespace apex
    //   try
    //   {
 
-   //      if (m_puserinteractionMain == nullptr)
+   //      if (m_pacmeuserinteractionMain == nullptr)
    //      {
 
    //         return;
@@ -8578,18 +8621,18 @@ namespace apex
    //      }
 
    //      // hide the application's windows before closing all the documents
-   //      m_puserinteractionMain->m_puiThis->display(e_display_none);
+   //      m_pacmeuserinteractionMain->m_puiThis->display(e_display_none);
    //      // trans    m_puiMain->ShowOwnedPopups(false);
 
 
-   //      m_puserinteractionMain->m_puiThis->order(e_zorder_bottom);
+   //      m_pacmeuserinteractionMain->m_puiThis->order(e_zorder_bottom);
    //      //m_puiMain->m_puiThis->m_bZ = true;
    //      // put the window at the bottom of zorder, so it isn't activated
    //      // m_puiMain->m_puiThis->zorder();
 
    //      //m_puiMain->m_puiThis->wait_redraw();
 
-   //      m_puserinteractionMain->m_puiThis->display(e_display_none);
+   //      m_pacmeuserinteractionMain->m_puiThis->display(e_display_none);
 
 
    //   }
@@ -9125,10 +9168,10 @@ namespace apex
    bool application::activate_app()
    {
 
-      //if (m_puserinteractionMain != nullptr)
+      //if (m_pacmeuserinteractionMain != nullptr)
       //{
 
-      //   m_puserinteractionMain->m_puiThis->display(SW_SHOWNORMAL);
+      //   m_pacmeuserinteractionMain->m_puiThis->display(SW_SHOWNORMAL);
 
       //}
 
@@ -9144,7 +9187,7 @@ namespace apex
    //   try
    //   {
 
-   //      if (m_puserinteractionMain == nullptr)
+   //      if (m_pacmeuserinteractionMain == nullptr)
    //      {
 
    //         return;
@@ -9152,18 +9195,18 @@ namespace apex
    //      }
 
    //      // hide the application's windows before closing all the documents
-   //      m_puserinteractionMain->m_puiThis->display(e_display_none);
+   //      m_pacmeuserinteractionMain->m_puiThis->display(e_display_none);
    //      // trans    m_puiMain->ShowOwnedPopups(false);
 
 
-   //      m_puserinteractionMain->m_puiThis->order(e_zorder_bottom);
+   //      m_pacmeuserinteractionMain->m_puiThis->order(e_zorder_bottom);
    //      //m_puiMain->m_puiThis->m_bZ = true;
    //      // put the window at the bottom of zorder, so it isn't activated
    //      // m_puiMain->m_puiThis->zorder();
 
    //      //m_puiMain->m_puiThis->wait_redraw();
 
-   //      m_puserinteractionMain->m_puiThis->display(e_display_none);
+   //      m_pacmeuserinteractionMain->m_puiThis->display(e_display_none);
 
 
    //   }

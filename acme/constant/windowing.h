@@ -21,6 +21,7 @@ namespace windowing
       e_operating_ambient_lxde,
       e_operating_ambient_mate,
       e_operating_ambient_ubuntu,
+      e_operating_ambient_universal_windows,
       e_operating_ambient_windows,
       e_operating_ambient_cinnamon,
       e_operating_ambient_ios,
@@ -40,6 +41,8 @@ namespace windowing
       e_toolkit_appkit,
       e_toolkit_uikit,
       e_toolkit_android,
+      e_toolkit_universal_windows,
+
 
    };
 

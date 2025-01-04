@@ -18,6 +18,7 @@
 #include "apex/platform/savings.h"
 #include "apex/platform/system.h"
 #include "acme/platform/application_menu.h"
+#include "acme/user/user/activation_token.h"
 #include "aqua/xml/document.h"
 #include "aura/user/user/interaction_array.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -26,7 +27,6 @@
 #include "aura/graphics/image/fastblur.h"
 #include "aura/user/menu/track_popup.h"
 #include "aura/user/user/alpha_source.h"
-//#include "aura/user/user/primitive_impl.h"
 #include "aura/windowing/display.h"
 #include "aura/windowing/icon.h"
 #include "aura/windowing/window.h"
@@ -89,7 +89,7 @@ simple_frame_window::simple_frame_window()
 
    m_bShowTask = true;
 
-   m_bDefaultNotifyIcon = false;
+   //m_bDefaultNotifyIcon = false;
 
 #if defined(UNIVERSAL_WINDOWS)
 
@@ -163,6 +163,30 @@ void simple_frame_window::initialize(::particle * pparticle)
 {
 
    return m_pnotifyicon;
+
+}
+
+
+bool simple_frame_window::has_notify_icon()
+{
+
+#if defined(HAS_GTK4)
+
+   return false;
+
+#else
+
+   return m_bDefaultNotifyIcon2;
+
+#endif
+
+}
+
+
+void simple_frame_window::enable_default_notification_icon(bool bEnableDefaultNotificationIcon)
+{
+
+   m_bDefaultNotifyIcon2 = bEnableDefaultNotificationIcon;
 
 }
 
@@ -729,8 +753,8 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
       try
       {
 
-         user_send([this]()
-            {
+         //user_send([this]()
+           // {
 
                if (m_pnotifyicon)
                {
@@ -741,7 +765,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
                }
 
-            });
+            //});
 
       }
       catch (...)
@@ -768,10 +792,10 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
    auto papp = get_app();
 
-   if (papp->m_puserinteractionMain != nullptr)
+   if (papp->m_pacmeuserinteractionMain != nullptr)
    {
 
-      ::pointer<::simple_frame_window>pframe = papp->m_puserinteractionMain.get();
+      ::pointer<::simple_frame_window>pframe = papp->m_pacmeuserinteractionMain.get();
 
       if (pframe.is_set())
       {
@@ -786,7 +810,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
             if (::is_set(pframe))
             {
 
-               auto psignal = get_signal(id_user_style_change);
+               auto psignal = signal(id_user_style_change);
 
                psignal->add_handler(pframe);
 
@@ -806,7 +830,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
    strStyle = m_varFrame["style"];
 
-   auto psignal = get_signal(id_user_style_change);
+   auto psignal = signal(id_user_style_change);
 
    psignal->add_handler(pframe);
 
@@ -894,7 +918,7 @@ bool simple_frame_window::would_display_notify_icon()
 
 #else
 
-   return m_bDefaultNotifyIcon;
+   return has_notify_icon();
 
 #endif
 
@@ -1154,7 +1178,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
                            {
                               information() << "simple_frame_window::on_message_create Failed to create notify icon (1)!";
 
-                              m_bDefaultNotifyIcon = false;
+                              enable_default_notification_icon(false);
 
                               m_pnotifyicon.release();
 
@@ -1166,7 +1190,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
                               information() << "simple_frame_window::on_message_create Failed to create notify icon!";
 
-                              m_bDefaultNotifyIcon = false;
+                              enable_default_notification_icon(false);
 
                               m_pnotifyicon.release();
 
@@ -1936,7 +1960,8 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 
       auto edesktop = ::windowing::get_eoperating_ambient();
 
-      if (edesktop == ::windowing::e_operating_ambient_unity)
+      if (edesktop == ::windowing::e_operating_ambient_unity
+         || edesktop == ::windowing::e_operating_ambient_xfce)
       {
 
          display(e_display_none);
@@ -3098,7 +3123,7 @@ bool simple_frame_window::is_application_main_window()
 
    auto papp = get_app();
 
-   return papp->m_puserinteractionMain == this;
+   return papp->m_pacmeuserinteractionMain == this;
 
 }
 
@@ -3108,7 +3133,7 @@ bool simple_frame_window::is_application_main_window()
 void simple_frame_window::defer_create_notification_icon()
 {
 
-   if (!m_bDefaultNotifyIcon)
+   if (!would_display_notify_icon())
    {
 
       return;
@@ -3163,10 +3188,10 @@ void simple_frame_window::defer_create_notification_icon()
          if (!m_piconNotify)
          {
 
-            if(m_bDefaultNotifyIcon)
+            if(would_display_notify_icon())
             {
 
-               m_bDefaultNotifyIcon = false;
+               enable_default_notification_icon(false);
 
             }
 
@@ -3187,10 +3212,10 @@ void simple_frame_window::defer_create_notification_icon()
          catch(...)
          {
 
-            if(m_bDefaultNotifyIcon)
+            if(would_display_notify_icon())
             {
 
-               m_bDefaultNotifyIcon = false;
+               enable_default_notification_icon(false);
 
             }
 
@@ -3565,7 +3590,7 @@ void simple_frame_window::_001OnQueryEndSession(::message::message * pmessage)
 
    auto papp = get_app();
 
-   if (::is_set(papp) && papp->m_puserinteractionMain == this)
+   if (::is_set(papp) && papp->m_pacmeuserinteractionMain == this)
    {
 
       pusermessage->m_lresult = papp->save_all_modified();
@@ -3640,7 +3665,7 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
 
          //OnNotifyIconLButtonDown(ptopic->user_interaction_id());
 
-         default_notify_icon_topic();
+         default_notify_icon_topic(ptopic->m_puseractivationtoken);
 
          ptopic->m_bRet = true;
 
@@ -4364,10 +4389,10 @@ void simple_frame_window::on_timer(::timer * ptimer)
 void simple_frame_window::_001OnNotifyIconTopic(::message::message * pmessage)
 {
 
-   if (m_bDefaultNotifyIcon)
+   if (would_display_notify_icon())
    {
 
-      default_notify_icon_topic();
+      default_notify_icon_topic(pmessage->m_puseractivationtoken);
 
    }
 
@@ -4381,10 +4406,10 @@ void simple_frame_window::_001OnNotifyIconTopic(::message::message * pmessage)
 }
 
 
-void simple_frame_window::default_notify_icon_topic()
+void simple_frame_window::default_notify_icon_topic(::user::activation_token * puseractivationtoken)
 {
 
-   frame_toggle_restore();
+   frame_toggle_restore(puseractivationtoken);
 
 }
 
@@ -4392,7 +4417,7 @@ void simple_frame_window::default_notify_icon_topic()
 void simple_frame_window::OnInitialFrameUpdate(bool bMakeVisible)
 {
 
-   if (!m_bDefaultNotifyIcon)
+   if (!would_display_notify_icon())
    {
 
       ::user::frame_window::OnInitialFrameUpdate(bMakeVisible);
@@ -4416,7 +4441,7 @@ void simple_frame_window::OnInitialFrameUpdate(bool bMakeVisible)
 void simple_frame_window::OnUpdateToolWindow(bool bVisible)
 {
 
-   if (!m_bDefaultNotifyIcon)
+   if (!would_display_notify_icon())
    {
 
       return;
@@ -4478,7 +4503,7 @@ void simple_frame_window::show_task(bool bShow)
 bool simple_frame_window::window_is_notify_icon_enabled()
 {
 
-   return m_bDefaultNotifyIcon;
+   return would_display_notify_icon();
 
 }
 
@@ -4530,29 +4555,31 @@ void simple_frame_window::on_select_user_style()
 }
 
 
-void simple_frame_window::call_notification_area_action(const ::string & pszId)
+void simple_frame_window::call_notification_area_action(const ::atom & atom, ::user::activation_token * puseractivationtoken)
 {
 
-   ::atom atom(pszId);
+   auto puseractivationtokenHold = as_pointer(puseractivationtoken);
 
-   host_post([this, atom]()
+   auto atomHold = atom;
+
+   host_post([this, atomHold, puseractivationtokenHold]()
       {
 
-         handle_command(atom);
+         handle_command(atomHold, puseractivationtokenHold);
 
       });
 
 }
 
 
-void simple_frame_window::notification_area_action(const ::string & pszId)
+void simple_frame_window::notification_area_action(const ::atom & atom, ::user::activation_token * puseractivationtoken)
 {
 
-   ::pointer<::user::interaction>pinteraction = this;
+   auto pcommand = __allocate ::message::command (atom);
 
-   ::message::command command((::atom)pszId);
+   pcommand->m_puseractivationtoken = puseractivationtoken;
 
-   pinteraction->_001SendCommand(&command);
+   route_command(pcommand);
 
 }
 

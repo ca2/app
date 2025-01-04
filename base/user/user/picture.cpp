@@ -9,6 +9,7 @@
 #include "picture.h"
 #include "acme/prototype/geometry2d/_binary_stream.h"
 #include "acme/prototype/collection/_array_binary_stream.h"
+#include "acme/_finish.h"
 
 
 property & operator << (property & property, const ::double_rectangle & rectangle)
@@ -159,11 +160,11 @@ namespace user
       if (m_ppictureimpl->m_rectangle.contains(point))
       {
 
-         return __allocate ::item(e_element_client);
+         return stock_item(e_element_client);
 
       }
 
-      auto pitemNone = __allocate ::item(e_element_none);
+      auto pitemNone = stock_item(e_element_none);
 
       return pitemNone;
 

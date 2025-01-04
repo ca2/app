@@ -77,8 +77,6 @@ public:
 
    bool                                               m_bAuraMessageQueue;
    bool                                               m_bReady;
-   ::pointer<::user::interaction_base>                       m_puserprimitiveMain;           // Main interaction_impl (usually same psystem->m_puiMain)
-   ::pointer<::user::interaction_base>                       m_puserprimitiveActive;         // Active Main interaction_impl (may not be m_puiMain)
    //bool                                               m_bSimpleMessageLoop;
    bool                                               m_bZipIsDir2;
 
@@ -139,6 +137,13 @@ public:
    ~thread() override;
 
    
+#ifdef _DEBUG
+
+   huge_integer increment_reference_count() override;
+   huge_integer decrement_reference_count() override;
+   huge_integer release() override;
+
+#endif
 
 
    // void assert_ok() const override;
@@ -275,7 +280,7 @@ public:
    virtual void system_pre_translate_message(::message::message * pmessage);
    //virtual void thread_loop(); // low level thread loop
    bool handle_messages() override;     // low level step
-   virtual bool handle_message();     // low level message pump
+   virtual bool handle_message(bool & bContinue);     // low level message pump
    //virtual bool pump_runnable();
    bool task_iteration() override;
    using channel::get_message;
@@ -315,8 +320,8 @@ public:
    //virtual void set_timer(::user::interaction_base * pinteraction, uptr uEvent, unsigned int nEllapse);
    //virtual void unset_timer(::user::interaction_base * pinteraction, uptr uEvent);
    //virtual void set_auto_delete(bool bAutoDelete = true);
-   virtual ::user::interaction_base * get_active_user_prototype();
-   virtual void set_active_user_prototype(::user::interaction_base * pinteraction);
+//   virtual ::user::interaction_base * get_active_user_interaction_base();
+//   virtual void set_active_user_interaction_base(::user::interaction_base * pinteraction);
    //virtual void step_timer();
    //virtual bool on_run_step();
 

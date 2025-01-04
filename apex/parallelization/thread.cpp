@@ -231,6 +231,36 @@ thread::~thread()
 }
 
 
+#ifdef _DEBUG
+
+
+huge_integer thread::increment_reference_count()
+{
+
+   return ::object::increment_reference_count();
+
+}
+
+
+huge_integer thread::decrement_reference_count()
+{
+
+   return ::object::decrement_reference_count();
+
+}
+
+
+huge_integer thread::release()
+{
+
+   return ::object::release();
+
+}
+
+
+#endif
+
+
 htask_t thread::get_os_handle() const
 {
 
@@ -559,11 +589,15 @@ bool thread::handle_messages()
 
    //}
    //else
+   
+   bool bContinue = true;
+   
+   while(handle_message(bContinue))
    {
 
-      return handle_message();
-
    }
+   
+   return bContinue;
 
 }
 
@@ -825,6 +859,8 @@ int thread::_GetMessage(MESSAGE* pmessage, ::windowing::window* pwindow, unsigne
 
 bool thread::task_iteration()
 {
+
+   ASSERT(m_itask == ::current_itask());
 
 #ifdef WINDOWS_DESKTOP
 
@@ -1226,7 +1262,7 @@ bool thread::process_thread_message(::message::message* pmessage)
 //}
 
 
-bool thread::handle_message()
+bool thread::handle_message(bool & bContinue)
 {
 
    if (peek_message(&m_message, nullptr, 0, 0, true))
@@ -1239,6 +1275,8 @@ bool thread::handle_message()
             "\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " +
             ::as_string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" +
             ::as_string((huge_natural)::current_itask()) + ")\n\n\n");
+         
+         bContinue = false;
 
          return false;
 
@@ -1250,7 +1288,7 @@ bool thread::handle_message()
 
    }
 
-   return true;
+   return false;
 
 }
 
@@ -1262,21 +1300,21 @@ void thread::on_thread_on_idle(thread* pimpl, int lCount)
 
 }
 
-
-::user::interaction_base* thread::get_active_user_prototype()
-{
-
-   return m_puserprimitiveActive;
-
-}
-
-
-void thread::set_active_user_prototype(::user::interaction_base* puserprimitive)
-{
-
-   m_puserprimitiveActive = puserprimitive;
-
-}
+//
+//::user::interaction_base* thread::get_active_user_interaction_base()
+//{
+//
+//   return m_puserinteractionbaseActive;
+//
+//}
+//
+//
+//void thread::set_active_user_interaction_base(::user::interaction_base* puserinteractionbase)
+//{
+//
+//   m_puserinteractionbaseActive = puserinteractionbase;
+//
+//}
 
 
 void thread::Delete()
@@ -1703,9 +1741,9 @@ void thread::destroy()
 
    m_pfileinfo.release();
 
-   m_puserprimitiveActive.release();
-
-   m_puserprimitiveMain.release();
+//   m_puserinteractionbaseActive.release();
+//
+//   m_puserinteractionbaseMain.release();
 
    m_phappeningReady.release();
 

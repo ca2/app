@@ -56,7 +56,6 @@ namespace acme
       window::window() :
          m_pointCursor2(I32_MINIMUM)
       {
-
          m_bRepositioningWindowFromCenter = false;
          m_bResizingWindowFromBottomRight = false;
 
@@ -174,8 +173,8 @@ namespace acme
          m_pacmeuserinteractionHover.release();
          __check_refdbg
          m_pacmeuserinteractionCapture.release();
-         __check_refdbg
-         m_pacmeuserinteractionOwner.release();
+         //__check_refdbg
+         //m_pacmeuserinteractionOwner.release();
          __check_refdbg
 
          m_pdisplay.release();
@@ -685,7 +684,7 @@ namespace acme
    
    
    
-   void window::set_foreground_window()
+   void window::set_foreground_window(::user::activation_token * puseractivationtoken)
    {
       
       
@@ -760,6 +759,12 @@ namespace acme
       }
 
 
+      ::pointer < ::user::activation_token> window::get_initial_frame_display_activation_token()
+      {
+
+         return nullptr;
+
+      }
 
 
 
@@ -992,6 +997,13 @@ namespace acme
 
       }
 
+
+      ::itask_t window::get_itask() const
+      {
+
+         return system()->acme_windowing()->m_itask;
+
+      }
 
       // ::pointer < ::operating_system::a_system_menu > window::create_system_menu(bool bContextual)
       // {
@@ -1568,17 +1580,45 @@ namespace acme
       }
 
 
-      ::acme::windowing::window * window::owner_window()
+      ::acme::user::interaction * window::owner_interaction()
       {
 
-         if(!m_pacmeuserinteractionOwner)
+         auto puserinteraction = m_pacmeuserinteraction.get();
+
+         if (::is_null(puserinteraction))
          {
 
             return nullptr;
 
          }
 
-         return m_pacmeuserinteractionOwner->acme_windowing_window();
+         auto puserinteractionOwner = puserinteraction->m_pacmeuserinteractionOwner.get();
+
+         if (::is_null(puserinteractionOwner))
+         {
+
+            return nullptr;
+
+         }
+
+         return puserinteractionOwner;
+
+      }
+
+
+      ::acme::windowing::window * window::owner_window()
+      {
+
+         auto puserinteractionOwner = owner_interaction();
+
+         if(::is_null(puserinteractionOwner))
+         {
+
+            return nullptr;
+
+         }
+
+         return puserinteractionOwner->acme_windowing_window();
 
       }
 

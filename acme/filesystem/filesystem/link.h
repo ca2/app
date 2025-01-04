@@ -49,7 +49,8 @@ namespace file
 
       virtual ::file::path path_find_replace(const ::file::path & path, const ::scoped_string & scopedstrSource, const ::scoped_string & scopedstrTarget) const;
 
-      
+      virtual ::file::e_link check_link();
+
    };
 
 

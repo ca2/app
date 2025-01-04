@@ -441,7 +441,7 @@ namespace platform
    }
 
 
-   void node::on_app_activated()
+   void node::on_app_activated(::user::activation_token * puseractivationtoken)
    {
       
       
@@ -3005,7 +3005,15 @@ return false;
          return strUserToolkit;
 
       }
-      
+      else if (scopedstrComponentName == "nano_graphics")
+      {
+
+#if defined(UNIVERSAL_WINDOWS)
+         return "direct2d";
+#endif
+
+      }
+
       return {};
 
    }

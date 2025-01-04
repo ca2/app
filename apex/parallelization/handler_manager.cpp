@@ -112,17 +112,19 @@ void handler_manager::handle_asynchronously(const ::procedure & procedure)
    if (!m_pthread)
    {
 
-      application()->send([this]()
+      auto phandlermanager = as_pointer(this);
+
+      application()->send([phandlermanager]()
          {
 
-            m_pthread = fork([this]()
+            phandlermanager->m_pthread = phandlermanager->application()->fork([phandlermanager]()
                {
 
-                  ::get_task()->task_set_name(m_strThreadName);
+                  ::get_task()->task_set_name(phandlermanager->m_strThreadName);
 
-                  loop();
+                  phandlermanager->loop();
 
-                  informationf("handler_manager::async fork finished!!");
+                  phandlermanager->informationf("handler_manager::async fork finished!!");
 
                });
          });

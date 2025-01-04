@@ -5,12 +5,12 @@ HTTPGET="";
 detect_http_get()
 {
 
-   if which wget >/dev/null ; then
-      echo "Downloading via wget."
-      HTTPGET="wget -O"
-   elif which curl >/dev/null ; then
+   if which curl >/dev/null ; then
       echo "Downloading via curl."
       HTTPGET="curl -o"
+   elif which wget >/dev/null ; then
+      echo "Downloading via wget."
+      HTTPGET="wget -O"
    else
       echo "Cannot download, neither wget nor curl is available."
       HTTPGET=""

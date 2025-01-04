@@ -1681,5 +1681,8 @@
     <ClCompile Include="filesystem\filemanager\filemanager.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
+    <ClCompile Include="user\rich_text\_factory.cpp">
+      <Filter>Source Files\user\rich_text</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

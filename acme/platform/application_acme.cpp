@@ -8,10 +8,12 @@
 namespace platform
 {
 
+
    ::release_time_for_project acme_application_layer::release_time()
    {
 
       return {};
+
    }
 
 
@@ -19,6 +21,8 @@ namespace platform
 
    void acme_application_layer::initialize_application()
    {
+
+
    }
 
 
@@ -386,15 +390,17 @@ namespace platform
 
    void acme_application_layer::show_about_box()
    {
+
+
    }
 
 
-   bool acme_application_layer::on_command(const ::atom& atom)
-   {
-
-      return false;
-
-   }
+   // bool acme_application_layer::on_command_final(const ::atom& atom, ::user::activation_token * puseractivationtoken)
+   // {
+   //
+   //    return false;
+   //
+   // }
 
 
    void acme_application_layer::add_impact_system(const ::atom& atom,

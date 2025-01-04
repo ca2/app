@@ -460,7 +460,7 @@ namespace user
    ::string document::get_topic_impact_id()
    {
 
-      auto psignal = get_signal(id_get_topic_impact_id);
+      auto psignal = signal(id_get_topic_impact_id);
 
       update_all_impacts(psignal);
 
@@ -472,7 +472,7 @@ namespace user
    bool document::set_topic_impact_by_id(::atom atom)
    {
 
-      auto psignal = get_signal(id_get_topic_impact_id);
+      auto psignal = signal(id_get_topic_impact_id);
 
       psignal->payload(id_id) = atom;
 

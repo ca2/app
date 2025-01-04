@@ -38,6 +38,10 @@ namespace user
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
+
+      virtual void increment_update_sequence();
+
+
       //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::menu::item * pitem) = 0;
       //virtual bool prepare_menu(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem) = 0;
       //virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem) = 0;

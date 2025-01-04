@@ -8,6 +8,7 @@
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "apex/parallelization/thread.h"
 #include "aura/user/user/interaction_thread.h"
+#include "aura/user/user/interaction_graphics_thread.h"
 #include "aura/windowing/placement_log.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
@@ -363,19 +364,26 @@ namespace experience
          if (edisplayDock != edisplayOld || rectangleDock != rectangleWindow)
          {
 
-            m_pframewindow->window()->placement_log()->clear();
+            m_pframewindow->window()->m_pgraphicsthread->post([this, rectangleDock, edisplayDock]()
+               {
 
-            m_pframewindow->order(e_zorder_top);
+                  ::e_display edisplayDock1 = edisplayDock;
+                  m_pframewindow->window()->placement_log()->clear();
 
-            //m_pframewindow->place(rectangleDock);
+                  // m_pframewindow->order(e_zorder_top);
 
-            m_pframewindow->display_docked(edisplayDock, { ::user::e_activation_default });
+                  m_pframewindow->make_zoneing(nullptr, rectangleDock, true,
+                     &edisplayDock1, { ::user::e_activation_default, nullptr }, e_zorder_top);
 
-            m_pframewindow->set_need_layout();
+                  //m_pframewindow->display_docked(edisplayDock, );
 
-            m_pframewindow->set_need_redraw();
+                  m_pframewindow->set_need_layout();
 
-            m_pframewindow->post_redraw();
+                  m_pframewindow->set_need_redraw();
+
+                  m_pframewindow->post_redraw();
+
+            });
 
             m_bPendingCursorPos = true;
 

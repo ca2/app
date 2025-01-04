@@ -104,6 +104,23 @@ namespace user
    }
 
 
+   void scroll_base_x::set_scroll_dimension(const ::int_size & size, ::user::enum_layout elayout)
+   {
+
+      auto iLayout = (int)elayout;
+
+      while (iLayout >= 0)
+      {
+
+         m_pscrolllayoutX->m_scrollstatea[iLayout].set_dimension(size.cx());
+
+         iLayout--;
+
+      }
+
+   }
+
+
    void scroll_base_x::layout_scroll_bar_x(::user::enum_layout elayout)
    {
 

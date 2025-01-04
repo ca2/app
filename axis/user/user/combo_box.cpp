@@ -977,6 +977,13 @@ namespace user
 
          m_plistbox->m_pcombo = this;
 
+         if(!system()->windowing()->combo_box_list_box_is_top_level())
+         {
+
+            m_plistbox->m_bChild = true;
+
+         }
+
       }
 
       auto rectangleX = this->rectangle();

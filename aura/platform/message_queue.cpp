@@ -64,7 +64,9 @@ CLASS_DECL_AURA void mq_erase_window_from_all_queues(::windowing::window * pwind
 
    //auto pwindow = pwindowing->window(oswindow);
 
-   auto puserframe = pwindow->m_puserinteraction;
+   auto puserinteraction = pwindow->user_interaction();
+
+   auto puserframe = puserinteraction;
 
    if(!puserframe)
    {

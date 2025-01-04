@@ -65,7 +65,7 @@ namespace nano2d
       int_map < paint_image >          m_mapPaintImage;
 
 
-      draw2d_context();
+      draw2d_context(::particle * pparticle);
       ~draw2d_context() override;
 
 

@@ -39,6 +39,8 @@ namespace user
       list_box();
       ~list_box() override;
 
+      void on_initialize_particle() override;
+
       void destroy() override;
 
       void user_combo_list_common_construct();

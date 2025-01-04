@@ -53,7 +53,7 @@ namespace aura
 //       //::pointer<::application_menu>            m_pappmenu;
 //
 //       //::pointer<::game::game>                      m_pgame;
-//       ::pointer<::user::interaction>               m_puserinteractionMain;
+//       ::pointer<::user::interaction>               m_pacmeuserinteractionMain;
 //
 //       ::pointer<shell_open>                        m_pshellopen;
 //
@@ -527,7 +527,7 @@ namespace aura
       //virtual bool Ex2OnAppUninstall();
 
       using ::aqua::application::on_command;
-      bool on_command(const ::atom & atom) override;
+      bool on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken) override;
       //virtual void _001CloseApplication();
 
       //virtual string get_license_id();
@@ -864,13 +864,16 @@ void initialize_context() override;
 
       //virtual void get_time(struct timeval *int_point) override;
 
-      virtual void close(::enum_exit eexit) override;
+      void close(::enum_exit eexit) override;
+
+
+      void close_application() override;
 
 
       //user virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction * puiParent, e_window_flag ewindowflag, const ::atom & atom = nullptr);
 
 
-      virtual void HideApplication() override;
+      void HideApplication() override;
 
 
       //virtual void initialize(::particle * pparticle) override;

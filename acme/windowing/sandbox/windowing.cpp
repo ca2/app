@@ -247,6 +247,16 @@ void windowing::_will_finish_launching()
    
 }
 
+
+bool windowing::targeted_keyboard_messages()
+{
+
+   return false;
+
+}
+
+
+
 //   void windowing::start()
 //   {
 //

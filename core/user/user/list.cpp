@@ -33,11 +33,12 @@
 #include "aura/user/user/scroll_state.h"
 #include "aura/message/user.h"
 #include "aura/windowing/window.h"
+#include "aura/windowing/windowing.h"
 #include "axis/platform/system.h"
 #include "base/user/user/user.h"
 #include "core/user/simple/list_data.h"
 #include "core/platform/session.h"
-#include "acme/_operating_system.h"
+//#include "acme/_operating_system.h"
 
 #define DBLCLKMS 500_ms
 
@@ -1390,44 +1391,46 @@ namespace user
 
          rectangle = ::int_rectangle(0, 0, 0, 0);
 
-         auto pitemFirst = get_item(0);
+         //auto pitemFirst = get_item(0);
 
-         //draw_list_item itemFirst(this);
+         draw_list_item itemFirst;
+         
+         itemFirst.initialize_draw_list_item(this);
 
-         //itemFirst.m_iItem = 0;
+         itemFirst.m_iDisplayItem = 0;
 
-         //itemFirst.m_iDisplayItem = 0;
+         itemFirst.m_iItem = display_to_strict(itemFirst.m_iDisplayItem);
 
-         index_item_rectangle(*pitemFirst);
+         index_item_rectangle(itemFirst);
 
-         if (pitemFirst->m_bOk)
+         if (itemFirst.m_bOk)
          {
 
-            auto pitemLast = get_item(0);
+            //auto pitemLast = get_item(0);
+
+            draw_list_item itemLast;
+
+            itemLast.initialize_draw_list_item(this);
 
             if (m_nItemCount <= 0)
             {
 
-               pitemLast->m_iDisplayItem = 0;
-
-               pitemLast->m_iItem = 0;
+               itemLast.m_iDisplayItem = 0;
 
             }
             else
             {
 
-               pitemLast->m_iDisplayItem = m_nItemCount - 1;
-
-               pitemLast->m_iItem = m_nItemCount - 1;
+               itemLast.m_iDisplayItem = m_nItemCount - 1;
 
             }
 
-            index_item_rectangle(*pitemLast);
+            index_item_rectangle(itemLast);
 
-            if (pitemLast->m_bOk)
+            if (itemLast.m_bOk)
             {
 
-               rectangle.unite(pitemFirst->m_pdrawlistitem->m_rectangleItem, pitemLast->m_pdrawlistitem->m_rectangleItem);
+               rectangle.unite(itemFirst.m_pdrawlistitem->m_rectangleItem, itemLast.m_pdrawlistitem->m_rectangleItem);
 
             }
 
@@ -7434,9 +7437,11 @@ namespace user
 
       ::int_size sizeIconItem;
 
-      int cxSpacing = ::GetSystemMetrics(SM_CXICONSPACING);
+      auto pwindowing = system()->windowing();
 
-      int cx = ::GetSystemMetrics(SM_CXICON) / 2 * 3;
+      int cxSpacing = pwindowing->system_metrics_get_cx_icon_spacing();
+
+      int cx = pwindowing->system_metrics_get_cx_icon() / 2 * 3;
 
       int cxIcon = sizeIcon.cx() * cxSpacing / cx;
 
@@ -7459,13 +7464,13 @@ namespace user
    
       sizeIconItem.cx() = cxIconSpacing;
 
-      int cySpacing = ::GetSystemMetrics(SM_CYICONSPACING);
+      int cySpacing = pwindowing->system_metrics_get_cy_icon_spacing();
 
-      int cy = ::GetSystemMetrics(SM_CYICON) /2*3;
+      int cy = pwindowing->system_metrics_get_cy_icon() /2*3;
 
       sizeIconItem.cy() = sizeIcon.cy() * cySpacing / cy;
 
-      int cyCaption = ::GetSystemMetrics(SM_CYCAPTION);
+      int cyCaption = pwindowing->system_metrics_get_cy_caption();
 
       int cyCaptionScaled = sizeIcon.cy() * cyCaption / cy;
 

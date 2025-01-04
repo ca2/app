@@ -726,6 +726,7 @@
     <ClCompile Include="graphics\write_text\font_list.cpp" />
     <ClCompile Include="graphics\write_text\glyph.cpp" />
     <ClCompile Include="graphics\write_text\glyph_set.cpp" />
+    <ClCompile Include="graphics\write_text\internal_font.cpp" />
     <ClCompile Include="graphics\write_text\text_box.cpp" />
     <ClCompile Include="graphics\write_text\text_out.cpp" />
     <ClCompile Include="graphics\write_text\text_out_array.cpp" />
@@ -968,8 +969,6 @@
     <ClInclude Include="graphics\image\map_ex1.h" />
     <ClInclude Include="graphics\image\meta.h" />
     <ClInclude Include="graphics\image\palette.h" />
-    <ClInclude Include="graphics\image\pixmap.h" />
-    <ClInclude Include="graphics\image\save_image.h" />
     <ClInclude Include="graphics\image\source.h" />
     <ClInclude Include="graphics\image\_.h" />
     <ClInclude Include="graphics\image\_image.h" />
@@ -992,6 +991,7 @@
     <ClInclude Include="graphics\write_text\font_size.h" />
     <ClInclude Include="graphics\write_text\glyph.h" />
     <ClInclude Include="graphics\write_text\glyph_set.h" />
+    <ClInclude Include="graphics\write_text\internal_font.h" />
     <ClInclude Include="graphics\write_text\text.h" />
     <ClInclude Include="graphics\write_text\text_box.h" />
     <ClInclude Include="graphics\write_text\text_metric.h" />

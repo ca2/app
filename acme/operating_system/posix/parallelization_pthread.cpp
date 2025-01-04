@@ -38,7 +38,18 @@
 //CLASS_DECL_ACME::enum_priority thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 //
 //CLASS_DECL_ACME::enum_priority process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
+thread_local ::message_queue * t_pmessagequeue = nullptr;
+::message_queue * task_message_queue()
+{
+   if (!t_pmessagequeue)
+   {
+      itask_t idthread = ::current_itask();
 
+
+      t_pmessagequeue=  system()->m_ptaskmessagequeue->get_message_queue(idthread, false);
+   }
+   return t_pmessagequeue;
+}
 
 ::e_status MsgWaitForMultipleObjectsEx(unsigned int dwSize, hsynchronization * pparticle, const class ::time & timeWait, unsigned int dwWakeMask, unsigned int dwFlags)
 {
@@ -61,9 +72,7 @@
 //
 //   }
    
-   itask_t idthread = ::current_itask();
-
-   message_queue * pmq = ::system()->m_ptaskmessagequeue->get_message_queue(idthread, false);
+   message_queue * pmq = ::task_message_queue();
 
    int_bool bWaitForAll = dwFlags & MWMO_WAITALL;
    //   int_bool bAlertable         = dwFlags & MWMO_ALERTABLE;
@@ -142,13 +151,15 @@
 
       int i;
 
-      while (true)
-      {
+      notify_lock notifylock;
+
+      //while (true)
+      //{
 
          if (::is_set(pmq))
          {
 
-            if (pmq->m_happeningNewMessage._wait(0_s))
+            if (pmq->m_happeningNewMessage.start_notify_lock(&notifylock))
             {
 
                return (enum_status)(((int) signaled_base) + dwSize);
@@ -162,7 +173,7 @@
 
             auto psync = pparticle[i];
 
-            if (psync->_wait(0_ms))
+            if (psync->start_notify_lock(&notifylock))
             {
 
                auto estatus = signaled_base + i;
@@ -173,16 +184,44 @@
 
          }
 
-         nanosleep(&delay, nullptr);
+   if (!notifylock.m_manualresethappening._wait(timeWait))
+   {
 
-         if (!timeWait.is_infinite() && start.elapsed() > timeWait)
-         {
+      return error_wait_timeout;
 
-            return error_wait_timeout;
+   }
 
-         }
 
-      }
+      auto estatus = signaled_base ;
+
+      return (enum_status)estatus;
+
+      //    for (i = 0; comparison::lt(i, dwSize); i++)
+      //    {
+      //
+      //       auto psync = pparticle[i];
+      //
+      //       if (psync->_wait(0_ms))
+      //       {
+      //
+      //          auto estatus = signaled_base + i;
+      //
+      //          return (enum_status)estatus;
+      //
+      //       }
+      //
+      //    }
+      //
+      //    nanosleep(&delay, nullptr);
+      //
+      //    if (!timeWait.is_infinite() && start.elapsed() > timeWait)
+      //    {
+      //
+      //       return error_wait_timeout;
+      //
+      //    }
+      //
+      // }
 
    }
 

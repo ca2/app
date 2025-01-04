@@ -18,11 +18,11 @@
 #include "acme/parallelization/task_flag.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
-//#include "acme/handler/sequence.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/nano/nano.h"
 #include "acme/user/micro/user.h"
 #include "acme/user/user/_text_stream.h"
+#include "acme/user/user/activation_token.h"
 #include "apex/message/simple_command.h"
 #include "apex/platform/savings.h"
 #include "aura/graphics/graphics/graphics.h"
@@ -187,6 +187,20 @@ namespace user
       }
 
       ::user::interaction::on_command(pcommand);
+
+   }
+
+
+   bool frame_window::handle_command(const ::atom & atom, ::user::activation_token * puseractivationtoken)
+   {
+
+      auto pcommand = __allocate ::message::command(atom);
+
+      pcommand->m_puseractivationtoken = puseractivationtoken;
+
+      route_command(pcommand);
+
+      return pcommand->m_bRet;
 
    }
 

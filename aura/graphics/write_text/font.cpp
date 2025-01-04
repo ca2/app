@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "font.h"
+#include "fonts.h"
+#include "internal_font.h"
 #include "acme/exception/bad_unit_exception.h"
 #include "acme/exception/interface_only.h"
 #include "acme/platform/node.h"
@@ -752,6 +754,46 @@ namespace write_text
       return m_pfontfamily->family_name(this);
       
    }
+
+
+   bool font::defer_load_internal_font(::draw2d::graphics * pgraphics)
+   {
+
+      if (m_path.has_character())
+      {
+
+         if (m_pfontfamily && m_pfontfamily->m_strBranch.has_character())
+         {
+
+            write_text()->fonts()->enumeration(m_pfontfamily->m_strBranch)->defer_download_font(m_path);
+
+         }
+
+         auto pinternalfont = write_text()->internal_font_from_file(pgraphics->m_papplication, m_path);
+
+         if (pinternalfont)
+         {
+
+            on_create_internal_font(pgraphics, pinternalfont);
+
+         }
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+   void font::on_create_internal_font(::draw2d::graphics * pgraphics, ::write_text::internal_font * pinternalfont)
+   {
+
+      pinternalfont->on_create_font(pgraphics, this);
+
+   }
+
 
    void font::destroy()
    {

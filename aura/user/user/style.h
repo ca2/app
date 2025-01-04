@@ -14,7 +14,7 @@ namespace user
    public:
 
 
-      ::collection::index                                    m_iUpdate;
+      ::collection::index                       m_iUpdate;
       ::pointer<::factory::factory>             m_pfactory;
       map < ::user::enum_control_type, ::pointer<control_style >>m_controlstyle;
       //::pointer<::user::plain_edit_style>   m_pplaineditstyel;
@@ -80,6 +80,8 @@ namespace user
       virtual bool _001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox);
 
       void handle(::topic * ptopic, ::context * pcontext) override;
+
+      void increment_update_sequence() override;
 
       virtual void initialize_style();
 

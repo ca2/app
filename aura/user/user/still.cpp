@@ -1273,13 +1273,13 @@ namespace user
       if(!m_ptextouta || ::not_found(iItem = m_ptextouta->hit_test(point, ezorder)))
       {
 
-         auto pitemNone = __allocate ::item(e_element_none);
+         auto pitemNone = stock_item(e_element_none);
 
          return pitemNone;
 
       }
 
-      return __allocate ::item(e_element_client);
+      return stock_item(e_element_client);
 
    }
 

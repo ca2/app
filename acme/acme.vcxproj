@@ -981,6 +981,7 @@
     <ClCompile Include="graphics\image\image32_array.cpp" />
     <ClCompile Include="graphics\image\pixmap.cpp" />
     <ClCompile Include="graphics\image\image32.cpp" />
+    <ClCompile Include="handler\command_handler.cpp" />
     <ClCompile Include="handler\extended_topic.cpp" />
     <ClCompile Include="handler\handler.cpp" />
     <ClCompile Include="handler\item.cpp" />
@@ -1233,6 +1234,7 @@
     <ClInclude Include="operating_system\windows\nano\http\_http.h" />
     <ClInclude Include="operating_system\windows\window.h" />
     <ClInclude Include="operating_system\windows\windowing.h" />
+    <ClInclude Include="operating_system\windows\windows.h" />
     <ClInclude Include="operating_system\windows_common\nano\idn\idn.h" />
     <ClInclude Include="operating_system\x11\display_lock.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -1392,6 +1394,7 @@
     <ClInclude Include="parallelization\queue.h" />
     <ClInclude Include="parallelization\task_context.h" />
     <ClInclude Include="parallelization\task_message_queue.h" />
+    <ClInclude Include="parallelization\waiting_call.h" />
     <ClInclude Include="parallelization\wait_for_end_of_sequence.h" />
     <ClInclude Include="platform\allocator.h" />
     <ClInclude Include="platform\application_acme.h" />
@@ -1482,6 +1485,7 @@
     <ClInclude Include="user\micro\user.h" />
     <ClInclude Include="user\micro\_.h" />
     <ClInclude Include="user\user\activation.h" />
+    <ClInclude Include="user\user\activation_token.h" />
     <ClInclude Include="user\user\check.h" />
     <ClInclude Include="user\user\control.h" />
     <ClInclude Include="user\user\controller.h" />
@@ -1760,6 +1764,7 @@
     <ClCompile Include="operating_system\argcargv.cpp" />
     <ClCompile Include="operating_system\a_system_menu.cpp" />
     <ClCompile Include="operating_system\bidirectional_pipe.cpp" />
+    <ClCompile Include="operating_system\calculate_etoolkit.cpp" />
     <ClCompile Include="operating_system\chronometer.cpp" />
     <ClCompile Include="operating_system\console.cpp" />
     <ClCompile Include="operating_system\console_client.cpp" />
@@ -1790,7 +1795,6 @@
     <ClCompile Include="operating_system\time.cpp" />
     <ClCompile Include="operating_system\windowing.cpp" />
     <ClCompile Include="operating_system\windows\calculate_edesktop.cpp" />
-    <ClCompile Include="operating_system\windows\calculate_etoolkit.cpp" />
     <ClCompile Include="operating_system\windows\calculate_ewindowing.cpp" />
     <ClCompile Include="operating_system\windows\callstack.cpp" />
     <ClCompile Include="operating_system\windows\dynamic_library.cpp" />
@@ -2005,6 +2009,7 @@
     <ClCompile Include="parallelization\task.cpp" />
     <ClCompile Include="parallelization\task_message_queue.cpp" />
     <ClCompile Include="parallelization\tools.cpp" />
+    <ClCompile Include="parallelization\waiting_call.cpp" />
     <ClCompile Include="parallelization\wait_for_end_of_sequence.cpp" />
     <ClCompile Include="parallelization\_.cpp" />
     <ClCompile Include="platform\acme.cpp" />
@@ -2395,6 +2400,8 @@
     <ClCompile Include="user\micro\still.cpp" />
     <ClCompile Include="user\micro\theme.cpp" />
     <ClCompile Include="user\micro\user.cpp" />
+    <ClCompile Include="user\user\activation.cpp" />
+    <ClCompile Include="user\user\activation_token.cpp" />
     <ClCompile Include="user\user\check.cpp" />
     <ClCompile Include="user\user\check_property.cpp" />
     <ClCompile Include="user\user\container.cpp" />
@@ -2429,6 +2436,7 @@
     <ClCompile Include="user\user\text.cpp" />
     <ClCompile Include="user\user\text_property.cpp" />
     <ClCompile Include="user\user\tool_item.cpp" />
+    <ClCompile Include="user\user\_.cpp" />
     <ClCompile Include="user\user\_string.cpp" />
     <ClCompile Include="windowing\display.cpp" />
     <ClCompile Include="windowing\sandbox\host_interaction.cpp" />

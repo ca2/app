@@ -146,6 +146,10 @@ namespace acme
 
          virtual void finalize_windowing();
 
+
+         virtual void on_create_window_object(::acme::user::interaction * puserinteraction);
+
+
          //virtual void * get_display();
 
          //void main_send(const ::procedure & procedure) override;
@@ -182,6 +186,8 @@ namespace acme
          virtual void set_dark_mode_time(const class ::time & time);
 
 
+         //virtual bool is_dark_mode_through_theming();
+
          virtual void fetch_system_background_color();
 
 
@@ -198,6 +204,9 @@ namespace acme
          virtual bool shell_open(const ::file::path & path);
 
          virtual bool defer_realize(         ::pointer < ::reified < ::message_box > > & preifiedMessageBox, ::message_box * p);
+
+         virtual bool has_resizing();
+
          
       };
 

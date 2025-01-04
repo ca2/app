@@ -1017,7 +1017,7 @@ void elemental::back_on_mouse_move(::user::mouse* pmouse)
 
       }
 
-      auto pitemClient = tool().defer_item(e_element_client);
+      auto pitemClient = stock_item(e_element_client);
 
       auto pdragClient = drag(pitemClient);
 
@@ -1456,6 +1456,30 @@ void elemental::back_on_right_button_up(::user::mouse* pmouse)
    }
 
 
+   void elemental::on_character(::user::key * pkey)
+   {
+
+
+
+   }
+
+
+   void elemental::on_key_down(::user::key * pkey)
+   {
+
+
+
+   }
+
+
+   void elemental::on_key_up(::user::key * pkey)
+   {
+
+
+   }
+
+
+
    void elemental::on_click(const ::payload& payload, ::user::mouse* pmouse)
    {
 
@@ -1543,6 +1567,13 @@ void elemental::back_on_right_button_up(::user::mouse* pmouse)
 
    ::shift_int elemental::client_to_host()
    {
+      
+      if(is_host_top_level())
+      {
+       
+         return {};
+         
+      }
 
       auto p = m_rectangle.top_left();
       
@@ -1905,7 +1936,7 @@ void elemental::back_on_right_button_up(::user::mouse* pmouse)
       //::user::drag_client::destroy();
       //::conversation::destroy();
 
-      system()->erase_signal_handler(this);
+      //system()->erase_signal_handler(this);
 
    }
 

@@ -8,37 +8,34 @@
     <Filter Include="Header Files">
       <UniqueIdentifier>{1d6dbf47-3c24-4390-9dc4-842e65264cba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive">
+    <Filter Include="Header Files\prototype">
       <UniqueIdentifier>{2f34e287-8682-4d1b-acf6-e0d672ea3604}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\datetime">
+    <Filter Include="Header Files\prototype\datetime">
       <UniqueIdentifier>{7b9d2f1d-3704-40d8-a850-0980e932a4d3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\collection">
+    <Filter Include="Header Files\prototype\collection">
       <UniqueIdentifier>{bd99819c-80da-45bc-8f44-dc6566b82c6f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\math">
+    <Filter Include="Header Files\prototype\math">
       <UniqueIdentifier>{63f07a3b-1468-4e62-b8c9-a06437cfe860}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\comparison">
+    <Filter Include="Header Files\prototype\comparison">
       <UniqueIdentifier>{74b678d8-c334-47ee-8ebe-5ec917584231}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\api">
+    <Filter Include="Header Files\prototype\api">
       <UniqueIdentifier>{63abe4af-00b0-4b2a-a799-11f4e406c0f9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\geometry2d">
+    <Filter Include="Header Files\prototype\geometry2d">
       <UniqueIdentifier>{f39dcd6a-5316-462c-bdbf-ca628ce29a68}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\geometry3d">
+    <Filter Include="Header Files\prototype\geometry3d">
       <UniqueIdentifier>{49a762ba-0188-40d5-a577-71cf6535ea7b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\primitive">
-      <UniqueIdentifier>{65ff613e-9d57-4525-a81d-76da1f05367f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\string">
+    <Filter Include="Header Files\prototype\string">
       <UniqueIdentifier>{00285122-6c36-4075-92c4-f122bf8aac8d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\string\x">
+    <Filter Include="Header Files\prototype\string\x">
       <UniqueIdentifier>{f38803b0-3c23-4fa9-836f-01019e1a7ca5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\filesystem">
@@ -77,28 +74,28 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{a881019a-6638-412f-be58-afaae5d287d3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive">
+    <Filter Include="Source Files\prototype">
       <UniqueIdentifier>{2c086ac3-bb3d-4354-ba51-ca198c734cf0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\comparison">
+    <Filter Include="Source Files\prototype\comparison">
       <UniqueIdentifier>{cb117900-ef64-4911-a3d8-4fbf89e0ad59}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\datetime">
+    <Filter Include="Source Files\prototype\datetime">
       <UniqueIdentifier>{e20a4cc2-a26d-4468-9685-f9d98276ed34}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\collection">
+    <Filter Include="Source Files\prototype\collection">
       <UniqueIdentifier>{f0f268a1-ab80-4b3d-8501-1f556db76406}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\geometry2d">
+    <Filter Include="Source Files\prototype\geometry2d">
       <UniqueIdentifier>{e781e3a8-477d-415c-a489-0f13853b4203}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\geometry3d">
+    <Filter Include="Source Files\prototype\geometry3d">
       <UniqueIdentifier>{9f170ca8-7294-4993-b822-afcb20bf3fb3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\primitive">
+    <Filter Include="Source Files\prototype\prototype">
       <UniqueIdentifier>{29e0960c-2f48-4322-82cd-42813a299e60}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\string">
+    <Filter Include="Source Files\prototype\string">
       <UniqueIdentifier>{102726c5-9d57-4574-9d7b-592361e98c50}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\filesystem">
@@ -149,10 +146,10 @@
     <Filter Include="Header Files\constant">
       <UniqueIdentifier>{2e5d8132-44fa-4147-bf82-2973b5663ea0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\mathematics">
+    <Filter Include="Source Files\prototype\mathematics">
       <UniqueIdentifier>{59751917-b747-432c-90c4-ddcc5788a784}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\data">
+    <Filter Include="Source Files\prototype\data">
       <UniqueIdentifier>{473ffb83-cbb3-4fb2-8435-3d28232a4732}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\regular_expression">
@@ -200,40 +197,40 @@
     <Filter Include="Header Files\operating_system\universal_windows\nano">
       <UniqueIdentifier>{3a66f7bd-42dd-48d9-be03-0d11d15224a1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\text">
+    <Filter Include="Source Files\prototype\text">
       <UniqueIdentifier>{cccd16b2-7827-4d43-8365-73e547beb55e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\media_library">
+    <Filter Include="Source Files\prototype\media_library">
       <UniqueIdentifier>{59f102d3-b172-4ffe-9a43-9836c6bc49c0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\media_library">
+    <Filter Include="Header Files\prototype\media_library">
       <UniqueIdentifier>{82ba40bf-dcc9-432b-82fb-311781d2fc74}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\memory">
       <UniqueIdentifier>{a60ae170-0db0-4bb0-854d-de36583c6607}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\duration">
+    <Filter Include="Header Files\prototype\duration">
       <UniqueIdentifier>{6cec939f-9b78-4c5e-bb30-a516f0368ed0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\duration\duration">
+    <Filter Include="Header Files\prototype\duration\duration">
       <UniqueIdentifier>{86efffae-efd9-4e81-a773-32c8c13006b1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\time">
+    <Filter Include="Source Files\prototype\time">
       <UniqueIdentifier>{881c9292-2e02-419b-9b57-fdafb10e5b91}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\memory\os_impl">
       <UniqueIdentifier>{d13e4c7a-f361-472d-9567-a5f1b50293ab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\string\sz">
+    <Filter Include="Source Files\prototype\string\sz">
       <UniqueIdentifier>{35066103-ea19-49ce-9c17-1a55c7688a79}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\string\c">
+    <Filter Include="Source Files\prototype\string\c">
       <UniqueIdentifier>{654dbdba-cd63-4e64-b01c-7b4991d946bd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\string\c\ancient">
+    <Filter Include="Source Files\prototype\string\c\ancient">
       <UniqueIdentifier>{44cb85c4-d479-4747-babc-6071f31bfdd0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\string\c\extension">
+    <Filter Include="Source Files\prototype\string\c\extension">
       <UniqueIdentifier>{e052dc09-343f-40ca-a40a-9bf418aba0d0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\operating_system\shared_posix">
@@ -242,7 +239,7 @@
     <Filter Include="Header Files\operating_system\shared_posix">
       <UniqueIdentifier>{26e4ee20-4366-43ee-849d-5ece4d839983}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\time\time">
+    <Filter Include="Source Files\prototype\time\time">
       <UniqueIdentifier>{5da65cd5-e479-4833-a68d-223b0257d317}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\crypto">
@@ -278,9 +275,6 @@
     <Filter Include="Source Files\memory\allocator">
       <UniqueIdentifier>{ea76a24e-cf5e-4d9e-ab1d-e1ffc3841912}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\operating_system\universal_windows\nano\user">
-      <UniqueIdentifier>{ad917fe0-6fe9-408b-b3e3-2eda124edcc4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\operating_system\universal_windows\nano\http">
       <UniqueIdentifier>{686383b8-a61e-405b-807c-5eb7d8e6bc63}</UniqueIdentifier>
     </Filter>
@@ -302,9 +296,6 @@
     <Filter Include="Source Files\nano\http">
       <UniqueIdentifier>{d77e0b8d-a965-45a2-af5e-fe9040667efb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\nano\user">
-      <UniqueIdentifier>{b4266df5-39c0-4407-a38a-1d04f9e0c336}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\nano\speech">
       <UniqueIdentifier>{bf0a0821-2633-441b-ae53-636747d8f66d}</UniqueIdentifier>
     </Filter>
@@ -320,9 +311,6 @@
     <Filter Include="Header Files\nano\user">
       <UniqueIdentifier>{e919c976-2b21-4647-9cb7-09ec738962c7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\operating_system\universal_windows\nano\dynamic_library">
-      <UniqueIdentifier>{35046f85-3728-4cd1-bcf0-1507067f98ea}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\operating_system\universal_windows\nano\dynamic_library">
       <UniqueIdentifier>{903943ad-f305-4245-8735-9805cd509bf6}</UniqueIdentifier>
     </Filter>
@@ -335,7 +323,7 @@
     <Filter Include="Header Files\operating_system\windows_common\nano\idn">
       <UniqueIdentifier>{1ad9ea33-74e0-4fde-b2d6-bc4268a1154d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\data">
+    <Filter Include="Header Files\prototype\data">
       <UniqueIdentifier>{81039af6-ed51-4728-b61a-cd2fefe55235}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\nano\account">
@@ -371,8 +359,32 @@
     <Filter Include="Header Files\nano\dynamic_library">
       <UniqueIdentifier>{6cc33873-f2f8-4e43-916c-4d1c39860005}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\nano\dynamic_library">
-      <UniqueIdentifier>{db6c6f60-3c10-4757-9900-a102e3f0c527}</UniqueIdentifier>
+    <Filter Include="Header Files\prototype\prototype">
+      <UniqueIdentifier>{65ff613e-9d57-4525-a81d-76da1f05367f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\micro">
+      <UniqueIdentifier>{495d811d-3c04-4a17-b585-9e40276009a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\menu">
+      <UniqueIdentifier>{a72c8846-6c9a-454f-a8ac-42b708485a8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\windowing\sandbox">
+      <UniqueIdentifier>{7a7ac49e-f34f-45cc-a65b-7eb40c71cd3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\windowing\sandbox\NewFilter1">
+      <UniqueIdentifier>{2ff3695b-efc7-4857-b401-219e0e218208}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\prototype\collection\NewFilter1">
+      <UniqueIdentifier>{08e64c4c-efee-4c84-a1b2-68e87d1688b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nano\graphics">
+      <UniqueIdentifier>{626678c6-c64f-4132-ae8f-a9dfa468e2a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nano\graphics">
+      <UniqueIdentifier>{3be1e131-c76a-4dd2-866c-1b2b4b0e6e14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\micro">
+      <UniqueIdentifier>{ffd440d1-3372-441b-8be2-593044751026}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -382,71 +394,71 @@
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\comparison\var_strict.cpp">
-      <Filter>Source Files\primitive\comparison</Filter>
+    <ClCompile Include="prototype\comparison\var_strict.cpp">
+      <Filter>Source Files\prototype\comparison</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\geometry3d\box.cpp">
-      <Filter>Source Files\primitive\geometry3d</Filter>
+    <ClCompile Include="prototype\geometry3d\box.cpp">
+      <Filter>Source Files\prototype\geometry3d</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\geometry3d\location.cpp">
-      <Filter>Source Files\primitive\geometry3d</Filter>
+    <ClCompile Include="prototype\geometry3d\location.cpp">
+      <Filter>Source Files\prototype\geometry3d</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\base64.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\base64.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\ch.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\ch.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\ch_class.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\ch_class.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\from_integer.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\from_integer.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\hex.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\hex.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\international.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\international.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\parse.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\parse.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\_str.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\_str.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\stringtow.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\stringtow.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\string_ansi.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\string_ansi.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\string_wide.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\string_wide.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\strw.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\strw.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\strx.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\strx.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\sz.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\sz.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\tokenizer.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\tokenizer.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\to_integer.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\to_integer.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\_.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\_.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\_c_trait_ansi.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\_c_trait_ansi.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\_c_trait_wide.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\_c_trait_wide.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
     <ClCompile Include="memory\inline\heap_bare.cpp">
       <Filter>Source Files\memory\inline</Filter>
@@ -589,10 +601,10 @@
     <ClCompile Include="parallelization\critical_section.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
-    <ClCompile Include="parallelization\event.cpp">
+    <ClCompile Include="parallelization\happening.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
-    <ClCompile Include="parallelization\manual_reset_event.cpp">
+    <ClCompile Include="parallelization\manual_reset_happening.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\message_queue.cpp">
@@ -730,160 +742,160 @@
     <ClCompile Include="platform\_.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\string_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
+    <ClCompile Include="prototype\collection\string_array.cpp">
+      <Filter>Source Files\prototype\collection</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\strdup_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
+    <ClCompile Include="prototype\collection\strdup_array.cpp">
+      <Filter>Source Files\prototype\collection</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\sort.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
+    <ClCompile Include="prototype\collection\sort.cpp">
+      <Filter>Source Files\prototype\collection</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\map_test_51778915.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
+    <ClCompile Include="prototype\collection\map_test_51778915.cpp">
+      <Filter>Source Files\prototype\collection</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\bit_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
+    <ClCompile Include="prototype\collection\bit_array.cpp">
+      <Filter>Source Files\prototype\collection</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
+    <ClCompile Include="prototype\collection\array.cpp">
+      <Filter>Source Files\prototype\collection</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\date_span.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
+    <ClCompile Include="prototype\datetime\date_span.cpp">
+      <Filter>Source Files\prototype\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
+    <ClCompile Include="prototype\datetime\datetime.cpp">
+      <Filter>Source Files\prototype\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\microsecond_sleep.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
+    <ClCompile Include="prototype\datetime\microsecond_sleep.cpp">
+      <Filter>Source Files\prototype\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\mktime.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
+    <ClCompile Include="prototype\datetime\mktime.cpp">
+      <Filter>Source Files\prototype\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\result.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
+    <ClCompile Include="prototype\datetime\result.cpp">
+      <Filter>Source Files\prototype\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\system_time.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
+    <ClCompile Include="prototype\datetime\system_time.cpp">
+      <Filter>Source Files\prototype\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\geometry2d\_.cpp">
-      <Filter>Source Files\primitive\geometry2d</Filter>
+    <ClCompile Include="prototype\geometry2d\_.cpp">
+      <Filter>Source Files\prototype\geometry2d</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\geometry2d\geometry.cpp">
-      <Filter>Source Files\primitive\geometry2d</Filter>
+    <ClCompile Include="prototype\geometry2d\geometry.cpp">
+      <Filter>Source Files\prototype\geometry2d</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\mathematics\_.cpp">
-      <Filter>Source Files\primitive\mathematics</Filter>
+    <ClCompile Include="prototype\mathematics\_.cpp">
+      <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\mathematics\binary_operation.cpp">
-      <Filter>Source Files\primitive\mathematics</Filter>
+    <ClCompile Include="prototype\mathematics\binary_operation.cpp">
+      <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\mathematics\cvt.cpp">
-      <Filter>Source Files\primitive\mathematics</Filter>
+    <ClCompile Include="prototype\mathematics\cvt.cpp">
+      <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\mathematics\cvt_g.cpp">
-      <Filter>Source Files\primitive\mathematics</Filter>
+    <ClCompile Include="prototype\mathematics\cvt_g.cpp">
+      <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\mathematics\int_biunique.cpp">
-      <Filter>Source Files\primitive\mathematics</Filter>
+    <ClCompile Include="prototype\mathematics\int_biunique.cpp">
+      <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\mathematics\mathematics.cpp">
-      <Filter>Source Files\primitive\mathematics</Filter>
+    <ClCompile Include="prototype\mathematics\mathematics.cpp">
+      <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\mathematics\mkint_c.cpp">
-      <Filter>Source Files\primitive\mathematics</Filter>
+    <ClCompile Include="prototype\mathematics\mkint_c.cpp">
+      <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\mathematics\natural.cpp">
-      <Filter>Source Files\primitive\mathematics</Filter>
+    <ClCompile Include="prototype\mathematics\natural.cpp">
+      <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\mathematics\number.cpp">
-      <Filter>Source Files\primitive\mathematics</Filter>
+    <ClCompile Include="prototype\mathematics\number.cpp">
+      <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\mathematics\number_double.cpp">
-      <Filter>Source Files\primitive\mathematics</Filter>
+    <ClCompile Include="prototype\mathematics\number_double.cpp">
+      <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\mathematics\number_float.cpp">
-      <Filter>Source Files\primitive\mathematics</Filter>
+    <ClCompile Include="prototype\mathematics\number_float.cpp">
+      <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\mathematics\number_integer.cpp">
-      <Filter>Source Files\primitive\mathematics</Filter>
+    <ClCompile Include="prototype\mathematics\number_integer.cpp">
+      <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\mathematics\random_number_generator.cpp">
-      <Filter>Source Files\primitive\mathematics</Filter>
+    <ClCompile Include="prototype\mathematics\random_number_generator.cpp">
+      <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\mathematics\scalar.cpp">
-      <Filter>Source Files\primitive\mathematics</Filter>
+    <ClCompile Include="prototype\mathematics\scalar.cpp">
+      <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\mathematics\value.cpp">
-      <Filter>Source Files\primitive\mathematics</Filter>
+    <ClCompile Include="prototype\mathematics\value.cpp">
+      <Filter>Source Files\prototype\mathematics</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\work.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\work.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\paged_memory.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\paged_memory.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\var_element.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\var_element.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\type.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\type.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\property_set.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\property_set.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\property_object.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\property_object.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\property.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\property.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\payload.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\payload.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\object.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\object.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\memory_container.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\memory_container.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\memory_base.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\memory_base.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\memory.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\memory.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\matter.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\matter.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\match.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\match.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\interlocked_long.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\interlocked_long.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\factory.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\factory.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\e_status.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\e_status.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\block.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\block.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\bit.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\bit.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\_.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\_.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filesystem\acme_directory.cpp">
+    <ClCompile Include="filesystem\filesystem\directory_system.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filesystem\acme_file.cpp">
+    <ClCompile Include="filesystem\filesystem\file_system.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filesystem\acme_path.cpp">
+    <ClCompile Include="filesystem\filesystem\path_system.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\file_path.cpp">
@@ -898,29 +910,29 @@
     <ClCompile Include="filesystem\filesystem\path_object.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\container.cpp">
-      <Filter>Source Files\primitive\data</Filter>
+    <ClCompile Include="prototype\data\container.cpp">
+      <Filter>Source Files\prototype\data</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\data.cpp">
-      <Filter>Source Files\primitive\data</Filter>
+    <ClCompile Include="prototype\data\data.cpp">
+      <Filter>Source Files\prototype\data</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
+    <ClCompile Include="prototype\data\item.cpp">
+      <Filter>Source Files\prototype\data</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\listener.cpp">
-      <Filter>Source Files\primitive\data</Filter>
+    <ClCompile Include="prototype\data\listener.cpp">
+      <Filter>Source Files\prototype\data</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\node.cpp">
-      <Filter>Source Files\primitive\data</Filter>
+    <ClCompile Include="prototype\data\node.cpp">
+      <Filter>Source Files\prototype\data</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\simple_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
+    <ClCompile Include="prototype\data\simple_item.cpp">
+      <Filter>Source Files\prototype\data</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\tree.cpp">
-      <Filter>Source Files\primitive\data</Filter>
+    <ClCompile Include="prototype\data\tree.cpp">
+      <Filter>Source Files\prototype\data</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\tree_item.cpp">
-      <Filter>Source Files\primitive\data</Filter>
+    <ClCompile Include="prototype\data\tree_item.cpp">
+      <Filter>Source Files\prototype\data</Filter>
     </ClCompile>
     <ClCompile Include="regular_expression\context.cpp">
       <Filter>Source Files\regular_expression</Filter>
@@ -939,9 +951,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\file\streamable_composite.cpp">
       <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\sequence.cpp">
-      <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="exception\interface_only.cpp">
       <Filter>Source Files\exception</Filter>
@@ -1060,11 +1069,11 @@
     <ClCompile Include="operating_system\universal_windows\user.cpp">
       <Filter>Source Files\operating_system\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\file_time.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
+    <ClCompile Include="prototype\datetime\file_time.cpp">
+      <Filter>Source Files\prototype\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\file_time_span.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
+    <ClCompile Include="prototype\datetime\file_time_span.cpp">
+      <Filter>Source Files\prototype\datetime</Filter>
     </ClCompile>
     <ClCompile Include="regular_expression\result.cpp">
       <Filter>Source Files\regular_expression</Filter>
@@ -1111,23 +1120,23 @@
     <ClCompile Include="platform\acme.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\text\context.cpp">
-      <Filter>Source Files\primitive\text</Filter>
+    <ClCompile Include="prototype\text\context.cpp">
+      <Filter>Source Files\prototype\text</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\text\data.cpp">
-      <Filter>Source Files\primitive\text</Filter>
+    <ClCompile Include="prototype\text\data.cpp">
+      <Filter>Source Files\prototype\text</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\text\international.cpp">
-      <Filter>Source Files\primitive\text</Filter>
+    <ClCompile Include="prototype\text\international.cpp">
+      <Filter>Source Files\prototype\text</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\text\international_locale_schema.cpp">
-      <Filter>Source Files\primitive\text</Filter>
+    <ClCompile Include="prototype\text\international_locale_schema.cpp">
+      <Filter>Source Files\prototype\text</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\text\text.cpp">
-      <Filter>Source Files\primitive\text</Filter>
+    <ClCompile Include="prototype\text\text.cpp">
+      <Filter>Source Files\prototype\text</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\text\translator.cpp">
-      <Filter>Source Files\primitive\text</Filter>
+    <ClCompile Include="prototype\text\translator.cpp">
+      <Filter>Source Files\prototype\text</Filter>
     </ClCompile>
     <ClCompile Include="platform\application.cpp">
       <Filter>Source Files\platform</Filter>
@@ -1144,38 +1153,35 @@
     <ClCompile Include="filesystem\filesystem\path_array.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\wildcard.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\wildcard.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\unicode32.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\unicode32.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\unicode16_32.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\unicode16_32.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\unicode16.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\unicode16.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\unicode.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\unicode.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\command_line.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\command_line.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\media_library\item.cpp">
-      <Filter>Source Files\primitive\media_library</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\conversation.cpp">
-      <Filter>Source Files\user\user</Filter>
+    <ClCompile Include="prototype\media_library\item.cpp">
+      <Filter>Source Files\prototype\media_library</Filter>
     </ClCompile>
     <ClCompile Include="user\user\drag.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\character.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\character.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\_string.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\_string.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
     <ClCompile Include="platform\_main_hold_base.cpp">
       <Filter>Source Files\platform</Filter>
@@ -1183,11 +1189,8 @@
     <ClCompile Include="operating_system\console_client.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\particle.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\conversation_message.cpp">
-      <Filter>Source Files\platform</Filter>
+    <ClCompile Include="prototype\prototype\particle.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\error_code.cpp">
       <Filter>Source Files\operating_system</Filter>
@@ -1246,56 +1249,56 @@
     <ClCompile Include="operating_system\security_attributes.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\url_domain.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\url_domain.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\url.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\url.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\read_only_memory.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\read_only_memory.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\object_meta.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\object_meta.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\integral_byte.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\integral_byte.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\get_memory.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\get_memory.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\atom.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\atom.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\action_context.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\action_context.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\as_string.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\as_string.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\encoding_exception.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\encoding_exception.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\str_to.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\str_to.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\string.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\string.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\string_base.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\string_base.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\whole_word.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\whole_word.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\__payload_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
+    <ClCompile Include="prototype\collection\__payload_array.cpp">
+      <Filter>Source Files\prototype\collection</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\str_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
+    <ClCompile Include="prototype\collection\str_array.cpp">
+      <Filter>Source Files\prototype\collection</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\string_list.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
+    <ClCompile Include="prototype\collection\string_list.cpp">
+      <Filter>Source Files\prototype\collection</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\create_task_attributes.cpp">
       <Filter>Source Files\parallelization</Filter>
@@ -1324,23 +1327,23 @@
     <ClCompile Include="memory\os_alloc.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\earth_gregorian_time.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
+    <ClCompile Include="prototype\datetime\earth_gregorian_time.cpp">
+      <Filter>Source Files\prototype\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\datetime1.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
+    <ClCompile Include="prototype\datetime\datetime1.cpp">
+      <Filter>Source Files\prototype\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\earth_time.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
+    <ClCompile Include="prototype\datetime\earth_time.cpp">
+      <Filter>Source Files\prototype\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\earth_time_span.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
+    <ClCompile Include="prototype\datetime\earth_time_span.cpp">
+      <Filter>Source Files\prototype\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\time\__string.cpp">
-      <Filter>Source Files\primitive\time</Filter>
+    <ClCompile Include="prototype\time\__string.cpp">
+      <Filter>Source Files\prototype\time</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\time\time.cpp">
-      <Filter>Source Files\primitive\time</Filter>
+    <ClCompile Include="prototype\time\time.cpp">
+      <Filter>Source Files\prototype\time</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\universal_windows\callstack.cpp">
       <Filter>Source Files\operating_system\universal_windows</Filter>
@@ -1399,14 +1402,14 @@
     <ClCompile Include="operating_system\main_window.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\geometry2d\size.cpp">
-      <Filter>Source Files\primitive\geometry2d</Filter>
+    <ClCompile Include="prototype\geometry2d\size.cpp">
+      <Filter>Source Files\prototype\geometry2d</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\geometry2d\region.cpp">
-      <Filter>Source Files\primitive\geometry2d</Filter>
+    <ClCompile Include="prototype\geometry2d\region.cpp">
+      <Filter>Source Files\prototype\geometry2d</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\geometry2d\item.cpp">
-      <Filter>Source Files\primitive\geometry2d</Filter>
+    <ClCompile Include="prototype\geometry2d\item.cpp">
+      <Filter>Source Files\prototype\geometry2d</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\color_array.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
@@ -1426,65 +1429,65 @@
     <ClCompile Include="user\user\_string.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\earth_zone_time.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
+    <ClCompile Include="prototype\datetime\earth_zone_time.cpp">
+      <Filter>Source Files\prototype\datetime</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\string.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\__wide.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\__wide.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\_str_impl.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\_str_impl.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\network_payload.cpp">
-      <Filter>Source Files\primitive\string</Filter>
+    <ClCompile Include="prototype\string\network_payload.cpp">
+      <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\sz\ansi.cpp">
-      <Filter>Source Files\primitive\string\sz</Filter>
+    <ClCompile Include="prototype\string\sz\ansi.cpp">
+      <Filter>Source Files\prototype\string\sz</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\sz\ansi_impl.cpp">
-      <Filter>Source Files\primitive\string\sz</Filter>
+    <ClCompile Include="prototype\string\sz\ansi_impl.cpp">
+      <Filter>Source Files\prototype\string\sz</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\sz\wd16.cpp">
-      <Filter>Source Files\primitive\string\sz</Filter>
+    <ClCompile Include="prototype\string\sz\wd16.cpp">
+      <Filter>Source Files\prototype\string\sz</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\sz\wd16_impl.cpp">
-      <Filter>Source Files\primitive\string\sz</Filter>
+    <ClCompile Include="prototype\string\sz\wd16_impl.cpp">
+      <Filter>Source Files\prototype\string\sz</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\sz\wd32.cpp">
-      <Filter>Source Files\primitive\string\sz</Filter>
+    <ClCompile Include="prototype\string\sz\wd32.cpp">
+      <Filter>Source Files\prototype\string\sz</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\sz\wd32_impl.cpp">
-      <Filter>Source Files\primitive\string\sz</Filter>
+    <ClCompile Include="prototype\string\sz\wd32_impl.cpp">
+      <Filter>Source Files\prototype\string\sz</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\c\coupling_impl.cpp">
-      <Filter>Source Files\primitive\string\c</Filter>
+    <ClCompile Include="prototype\string\c\coupling_impl.cpp">
+      <Filter>Source Files\prototype\string\c</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\c\unicode_impl.cpp">
-      <Filter>Source Files\primitive\string\c</Filter>
+    <ClCompile Include="prototype\string\c\unicode_impl.cpp">
+      <Filter>Source Files\prototype\string\c</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\c\ancient\wd16_impl.cpp">
-      <Filter>Source Files\primitive\string\c\ancient</Filter>
+    <ClCompile Include="prototype\string\c\ancient\wd16_impl.cpp">
+      <Filter>Source Files\prototype\string\c\ancient</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\c\ancient\wd32_impl.cpp">
-      <Filter>Source Files\primitive\string\c\ancient</Filter>
+    <ClCompile Include="prototype\string\c\ancient\wd32_impl.cpp">
+      <Filter>Source Files\prototype\string\c\ancient</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\c\extension\ansi_impl.cpp">
-      <Filter>Source Files\primitive\string\c\extension</Filter>
+    <ClCompile Include="prototype\string\c\extension\ansi_impl.cpp">
+      <Filter>Source Files\prototype\string\c\extension</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\c\extension\wd16_impl.cpp">
-      <Filter>Source Files\primitive\string\c\extension</Filter>
+    <ClCompile Include="prototype\string\c\extension\wd16_impl.cpp">
+      <Filter>Source Files\prototype\string\c\extension</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\c\extension\wd32_impl.cpp">
-      <Filter>Source Files\primitive\string\c\extension</Filter>
+    <ClCompile Include="prototype\string\c\extension\wd32_impl.cpp">
+      <Filter>Source Files\prototype\string\c\extension</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\memory.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\c\ancient\ansi_impl.cpp">
-      <Filter>Source Files\primitive\string\c\ancient</Filter>
+    <ClCompile Include="prototype\string\c\ancient\ansi_impl.cpp">
+      <Filter>Source Files\prototype\string\c\ancient</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\string_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
@@ -1501,17 +1504,17 @@
     <ClCompile Include="operating_system\shared_posix\earth_time_shift.cpp">
       <Filter>Source Files\operating_system\shared_posix</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\geometry2d\rectangle_array.cpp">
-      <Filter>Source Files\primitive\geometry2d</Filter>
+    <ClCompile Include="prototype\geometry2d\rectangle_array.cpp">
+      <Filter>Source Files\prototype\geometry2d</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\shared_posix\windows_time.cpp">
       <Filter>Source Files\operating_system\shared_posix</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\time\time\time.cpp">
-      <Filter>Source Files\primitive\time\time</Filter>
+    <ClCompile Include="prototype\time\time\time.cpp">
+      <Filter>Source Files\prototype\time\time</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\time\time\posix_time.cpp">
-      <Filter>Source Files\primitive\time\time</Filter>
+    <ClCompile Include="prototype\time\time\posix_time.cpp">
+      <Filter>Source Files\prototype\time\time</Filter>
     </ClCompile>
     <ClCompile Include="platform\muldiv64.cpp">
       <Filter>Source Files\platform</Filter>
@@ -1543,16 +1546,10 @@
     <ClCompile Include="compress\not_dir.cpp">
       <Filter>Source Files\compress</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filesystem\dir_context.cpp">
-      <Filter>Source Files\filesystem\filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filesystem\dir_system.cpp">
+    <ClCompile Include="filesystem\filesystem\directory_context.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\file_context.cpp">
-      <Filter>Source Files\filesystem\filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filesystem\file_system.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\watcher\action.cpp">
@@ -1564,13 +1561,13 @@
     <ClCompile Include="filesystem\watcher\watcher.cpp">
       <Filter>Source Files\filesystem\watcher</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\geometry2d\matrix.cpp">
-      <Filter>Source Files\primitive\geometry2d</Filter>
+    <ClCompile Include="prototype\geometry2d\matrix.cpp">
+      <Filter>Source Files\prototype\geometry2d</Filter>
     </ClCompile>
     <ClCompile Include="graphics\image\pixmap.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
-    <ClCompile Include="windowing\window_base.cpp">
+    <ClCompile Include="windowing\window.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
     <ClCompile Include="graphics\image\image32.cpp">
@@ -1579,8 +1576,8 @@
     <ClCompile Include="graphics\image\image32_array.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\c\ancient\_c.cpp">
-      <Filter>Source Files\primitive\string\c\ancient</Filter>
+    <ClCompile Include="prototype\string\c\ancient\_c.cpp">
+      <Filter>Source Files\prototype\string\c\ancient</Filter>
     </ClCompile>
     <ClCompile Include="graphics\graphics\output_purpose.cpp">
       <Filter>Source Files\graphics\graphics</Filter>
@@ -1627,8 +1624,8 @@
     <ClCompile Include="memory\simple_memory_allocate.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\subparticle.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\subparticle.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
     <ClCompile Include="exception\call_stack.cpp">
       <Filter>Source Files\exception</Filter>
@@ -1639,8 +1636,8 @@
     <ClCompile Include="parallelization\task_message_queue.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\primitive.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\prototype.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\shared_posix\errno.cpp">
       <Filter>Source Files\operating_system\shared_posix</Filter>
@@ -1657,11 +1654,11 @@
     <ClCompile Include="operating_system\windows_common\acme.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\c\strdup.cpp">
-      <Filter>Source Files\primitive\string\c</Filter>
+    <ClCompile Include="prototype\string\c\strdup.cpp">
+      <Filter>Source Files\prototype\string\c</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\quantum.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
+    <ClCompile Include="prototype\prototype\quantum.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
     <ClCompile Include="exception\runtime_check.cpp">
       <Filter>Source Files\exception</Filter>
@@ -1675,9 +1672,6 @@
     <ClCompile Include="parallelization\queue.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\nano\user\window.cpp">
-      <Filter>Source Files\operating_system\universal_windows\nano\user</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\universal_windows\nano\http\_http.cpp">
       <Filter>Source Files\operating_system\universal_windows\nano\http</Filter>
     </ClCompile>
@@ -1686,57 +1680,6 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\nano\user\_user.cpp">
       <Filter>Source Files\operating_system\windows_common\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\_user.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\brush.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\button.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\child.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\details_window.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\device.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\display.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\font.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\message_box.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\object.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\pen.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\popup_button.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\still.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\user.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\window.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\window_implementation.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\window_interface.cpp">
-      <Filter>Source Files\nano\user</Filter>
     </ClCompile>
     <ClCompile Include="nano\speech\speech.cpp">
       <Filter>Source Files\nano\speech</Filter>
@@ -1750,32 +1693,26 @@
     <ClCompile Include="nano\nano.cpp">
       <Filter>Source Files\nano</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\nano\dynamic_library\_dynamic_library.cpp">
-      <Filter>Source Files\operating_system\universal_windows\nano\dynamic_library</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\nano\dynamic_library\dynamic_library.cpp">
-      <Filter>Source Files\operating_system\universal_windows\nano\dynamic_library</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\windows_common\nano\idn\_idn.cpp">
       <Filter>Source Files\operating_system\windows_common\nano\idn</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\nano\idn\idn.cpp">
       <Filter>Source Files\operating_system\windows_common\nano\idn</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\check_property.cpp">
-      <Filter>Source Files\primitive\data</Filter>
+    <ClCompile Include="prototype\data\check_property.cpp">
+      <Filter>Source Files\prototype\data</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\property.cpp">
-      <Filter>Source Files\primitive\data</Filter>
+    <ClCompile Include="prototype\data\property.cpp">
+      <Filter>Source Files\prototype\data</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\property_container.cpp">
-      <Filter>Source Files\primitive\data</Filter>
+    <ClCompile Include="prototype\data\property_container.cpp">
+      <Filter>Source Files\prototype\data</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\property_listener.cpp">
-      <Filter>Source Files\primitive\data</Filter>
+    <ClCompile Include="prototype\data\property_listener.cpp">
+      <Filter>Source Files\prototype\data</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\text_property.cpp">
-      <Filter>Source Files\primitive\data</Filter>
+    <ClCompile Include="prototype\data\text_property.cpp">
+      <Filter>Source Files\prototype\data</Filter>
     </ClCompile>
     <ClCompile Include="user\user\check_property.cpp">
       <Filter>Source Files\user\user</Filter>
@@ -1813,9 +1750,6 @@
     <ClCompile Include="nano\shell\shell.cpp">
       <Filter>Source Files\nano\shell</Filter>
     </ClCompile>
-    <ClCompile Include="nano\dynamic_library\dynamic_library.cpp">
-      <Filter>Source Files\nano\dynamic_library</Filter>
-    </ClCompile>
     <ClCompile Include="platform\factory_function.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -1828,14 +1762,305 @@
     <ClCompile Include="operating_system\shared_posix\debug.cpp">
       <Filter>Source Files\operating_system\shared_posix</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\nano\user\_user.cpp">
-      <Filter>Source Files\operating_system\universal_windows\nano\user</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\console_message_box.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\message_box.cpp">
       <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\button.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\console.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\details_window.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\dialog.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\elemental.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\main_window.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\message_box.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\popup_button.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\still.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\theme.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\user.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\menu.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\_windowing.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\display.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\windowing.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\sandbox\host_interaction.cpp">
+      <Filter>Source Files\windowing\sandbox</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\sandbox\window.cpp">
+      <Filter>Source Files\windowing\sandbox</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\sandbox\windowing.cpp">
+      <Filter>Source Files\windowing\sandbox</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\collection\procedure_array.cpp">
+      <Filter>Source Files\prototype\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\allocator.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\application_acme.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\application_apex.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\application_aqua.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\application_aura.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\application_axis.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\application_bred.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\application_core.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\application_menu.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\application_menu_command.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\c.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\context_acme.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\context_apex.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\context_aqua.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\context_aura.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\http.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\http_acme.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\http_apex.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\integration_context.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\logger.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\message_box.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\node_acme.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\node_apex.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\node_aqua.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\node_aura.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\reference_item.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\reference_item_array.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\reference_referer.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\referencing_debugging.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\release_time_for_project.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\session_acme.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\session_apex.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\session_aqua.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\session_aura.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\session_axis.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\system_acme.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\system_apex.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\system_aqua.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\system_aura.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\system_axis.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\system_core.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\tracing.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\transport_payload.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\url_context.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\data\client.cpp">
+      <Filter>Source Files\prototype\data</Filter>
+    </ClCompile>
+    <ClCompile Include="handler\command_handler.cpp">
+      <Filter>Source Files\handler</Filter>
+    </ClCompile>
+    <ClCompile Include="handler\sequence.cpp">
+      <Filter>Source Files\handler</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\_.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\activation.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\activation_token.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\frame_interaction.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\interaction.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\message_box.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\prototype\sequence_continuation.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\file_system.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\windows_path.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\wait_for_end_of_sequence.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\waiting_call.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\graphics\_graphics.cpp">
+      <Filter>Source Files\nano\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\graphics\brush.cpp">
+      <Filter>Source Files\nano\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\graphics\device.cpp">
+      <Filter>Source Files\nano\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\graphics\font.cpp">
+      <Filter>Source Files\nano\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\graphics\graphics.cpp">
+      <Filter>Source Files\nano\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\graphics\icon.cpp">
+      <Filter>Source Files\nano\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\graphics\object.cpp">
+      <Filter>Source Files\nano\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\graphics\pen.cpp">
+      <Filter>Source Files\nano\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\universal_windows\thread.cpp">
+      <Filter>Source Files\operating_system\universal_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\prototype\subparticle_flags.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\__eoperating_ambient.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\__operating_system.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\a_system_menu.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\dynamic_library.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\environment.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\path.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\summary.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\universal_windows\calculate_edesktop.cpp">
+      <Filter>Source Files\operating_system\universal_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\universal_windows\dynamic_library.cpp">
+      <Filter>Source Files\operating_system\universal_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\calculate_etoolkit.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\key.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1875,737 +2100,734 @@
     <ClInclude Include="_defer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\_.h">
-      <Filter>Header Files\primitive\datetime</Filter>
+    <ClInclude Include="prototype\datetime\_.h">
+      <Filter>Header Files\prototype\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\date_span.h">
-      <Filter>Header Files\primitive\datetime</Filter>
+    <ClInclude Include="prototype\datetime\date_span.h">
+      <Filter>Header Files\prototype\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\duration.h">
-      <Filter>Header Files\primitive\datetime</Filter>
+    <ClInclude Include="prototype\datetime\duration.h">
+      <Filter>Header Files\prototype\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\filetime.h">
-      <Filter>Header Files\primitive\datetime</Filter>
+    <ClInclude Include="prototype\datetime\filetime.h">
+      <Filter>Header Files\prototype\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\filetime_span.h">
-      <Filter>Header Files\primitive\datetime</Filter>
+    <ClInclude Include="prototype\datetime\filetime_span.h">
+      <Filter>Header Files\prototype\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\time.h">
-      <Filter>Header Files\primitive\datetime</Filter>
+    <ClInclude Include="prototype\datetime\time.h">
+      <Filter>Header Files\prototype\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\time_span.h">
-      <Filter>Header Files\primitive\datetime</Filter>
+    <ClInclude Include="prototype\datetime\time_span.h">
+      <Filter>Header Files\prototype\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\value.h">
-      <Filter>Header Files\primitive\datetime</Filter>
+    <ClInclude Include="prototype\datetime\value.h">
+      <Filter>Header Files\prototype\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\_c.h">
-      <Filter>Header Files\primitive\datetime</Filter>
+    <ClInclude Include="prototype\datetime\_c.h">
+      <Filter>Header Files\prototype\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\std_iterator.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\std_iterator.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\address_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\address_array.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\array.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\array.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\array_base.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\array_base.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\attrib_map.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\attrib_map.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\base_2array.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\base_2array.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\base_enum.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\base_enum.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\bitset.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\bitset.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\bit_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\bit_array.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\composite_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\composite_array.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\ptr_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\ptr_array.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\runnable_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\runnable_array.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\string_array_base.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\string_array_base.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\_.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\_.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\common.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\common.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\comparable_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\comparable_array.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\comparable_eq_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\comparable_eq_array.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\comparable_eq_list.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\comparable_eq_list.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\comparable_list.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\comparable_list.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\comparable_primitive_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\comparable_raw_array.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\comparable_raw_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\decl.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\decl.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\deque.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\deque.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\fifo_map.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\fifo_map.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\file_path_map.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\file_path_map.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\forward.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\forward.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\int_map.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\int_map.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\iterable.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\iterable.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\iterator.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\iterator.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\list.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\list.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\logic_array.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\logic_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\map.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\map.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\set_node.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\set_node.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\map_to_smart_pointer.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\map_to_smart_pointer.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\numeric_array.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\numeric_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\numeric_array_range.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\numeric_array_range.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\packset.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\packset.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\pair.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\pair.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\pointer_array.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\pointer_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\priority_queue.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\priority_queue.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\queue.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\queue.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\raw_array_decl.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\raw_array_decl.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\set.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\set.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\sort.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\sort.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\sort_array.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\sort_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\sort_list.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\sort_list.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\sort_map.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\sort_map.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\spreadset.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\spreadset.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\stack.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\stack.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\strid_map.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\strid_map.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\stringl.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\stringl.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\string_iterable.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\string_iterable.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\string_list.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\string_list.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\string_map.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\string_map.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\string_to_string_map.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\string_to_string_map.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\template.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\template.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\unique_array.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\unique_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\var_array.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\var_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\_array_base_impl.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\_array_base_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\collection\_papaya_array.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\_papaya_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <ClInclude Include="prototype\math\_.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\_.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\binary_operation.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\binary_operation.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\cast.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\cast.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\classes.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\classes.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\complex.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\complex.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\count.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\count.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\c_number.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\c_number.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\filestream.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\filestream.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\index.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\index.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\math_clip.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\math_clip.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\math_int_biunique.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\math_int_biunique.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\mkint_c.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\mkint_c.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\natural.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\natural.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\number.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\number.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\number_double.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\number_double.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\number_float.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\number_float.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\number_integer.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\number_integer.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\numeric_info.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\numeric_info.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\objects.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\objects.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\random_number_generator.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\random_number_generator.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\scalar.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\scalar.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\scalar_enum.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\scalar_enum.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\static_numeric_info.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\static_numeric_info.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\std_template.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\std_template.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\value.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\value.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\math\_math.h">
+      <Filter>Header Files\prototype\math</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\math\_math.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <ClInclude Include="prototype\comparison\sign.h">
+      <Filter>Header Files\prototype\comparison</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\comparison\sign.h">
-      <Filter>Header Files\primitive\comparison</Filter>
+    <ClInclude Include="prototype\comparison\_c.h">
+      <Filter>Header Files\prototype\comparison</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\comparison\_c.h">
-      <Filter>Header Files\primitive\comparison</Filter>
+    <ClInclude Include="prototype\comparison\_.h">
+      <Filter>Header Files\prototype\comparison</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\comparison\_.h">
-      <Filter>Header Files\primitive\comparison</Filter>
+    <ClInclude Include="prototype\comparison\binary.h">
+      <Filter>Header Files\prototype\comparison</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\comparison\binary.h">
-      <Filter>Header Files\primitive\comparison</Filter>
+    <ClInclude Include="prototype\comparison\compare.h">
+      <Filter>Header Files\prototype\comparison</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\comparison\compare.h">
-      <Filter>Header Files\primitive\comparison</Filter>
+    <ClInclude Include="prototype\comparison\equals.h">
+      <Filter>Header Files\prototype\comparison</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\comparison\equals.h">
-      <Filter>Header Files\primitive\comparison</Filter>
+    <ClInclude Include="prototype\comparison\hash.h">
+      <Filter>Header Files\prototype\comparison</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\comparison\hash.h">
-      <Filter>Header Files\primitive\comparison</Filter>
+    <ClInclude Include="prototype\comparison\less.h">
+      <Filter>Header Files\prototype\comparison</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\comparison\less.h">
-      <Filter>Header Files\primitive\comparison</Filter>
+    <ClInclude Include="prototype\comparison\md5.h">
+      <Filter>Header Files\prototype\comparison</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\comparison\md5.h">
-      <Filter>Header Files\primitive\comparison</Filter>
+    <ClInclude Include="prototype\comparison\var_strict.h">
+      <Filter>Header Files\prototype\comparison</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\comparison\var_strict.h">
-      <Filter>Header Files\primitive\comparison</Filter>
+    <ClInclude Include="prototype\api\api.h">
+      <Filter>Header Files\prototype\api</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\api\api.h">
-      <Filter>Header Files\primitive\api</Filter>
+    <ClInclude Include="prototype\api\api_rotate.h">
+      <Filter>Header Files\prototype\api</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\api\api_rotate.h">
-      <Filter>Header Files\primitive\api</Filter>
+    <ClInclude Include="prototype\geometry2d\_struct.h">
+      <Filter>Header Files\prototype\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\_struct.h">
-      <Filter>Header Files\primitive\geometry2d</Filter>
+    <ClInclude Include="prototype\geometry2d\align.h">
+      <Filter>Header Files\prototype\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\align.h">
-      <Filter>Header Files\primitive\geometry2d</Filter>
+    <ClInclude Include="prototype\geometry2d\collection.h">
+      <Filter>Header Files\prototype\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\collection.h">
-      <Filter>Header Files\primitive\geometry2d</Filter>
+    <ClInclude Include="prototype\geometry2d\geometry.h">
+      <Filter>Header Files\prototype\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\geometry.h">
-      <Filter>Header Files\primitive\geometry2d</Filter>
+    <ClInclude Include="prototype\geometry2d\point.h">
+      <Filter>Header Files\prototype\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\point.h">
-      <Filter>Header Files\primitive\geometry2d</Filter>
+    <ClInclude Include="prototype\geometry2d\point_array.h">
+      <Filter>Header Files\prototype\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\point_array.h">
-      <Filter>Header Files\primitive\geometry2d</Filter>
+    <ClInclude Include="prototype\geometry2d\polygon.h">
+      <Filter>Header Files\prototype\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\polygon.h">
-      <Filter>Header Files\primitive\geometry2d</Filter>
+    <ClInclude Include="prototype\geometry2d\rect.h">
+      <Filter>Header Files\prototype\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\rect.h">
-      <Filter>Header Files\primitive\geometry2d</Filter>
+    <ClInclude Include="prototype\geometry2d\rectangle_i32_array.h">
+      <Filter>Header Files\prototype\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\rectangle_i32_array.h">
-      <Filter>Header Files\primitive\geometry2d</Filter>
+    <ClInclude Include="prototype\geometry2d\size.h">
+      <Filter>Header Files\prototype\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\size.h">
-      <Filter>Header Files\primitive\geometry2d</Filter>
+    <ClInclude Include="prototype\geometry2d\size_array.h">
+      <Filter>Header Files\prototype\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\size_array.h">
-      <Filter>Header Files\primitive\geometry2d</Filter>
+    <ClInclude Include="prototype\geometry2d\types.h">
+      <Filter>Header Files\prototype\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\types.h">
-      <Filter>Header Files\primitive\geometry2d</Filter>
+    <ClInclude Include="prototype\geometry2d\_.h">
+      <Filter>Header Files\prototype\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\_.h">
-      <Filter>Header Files\primitive\geometry2d</Filter>
+    <ClInclude Include="prototype\geometry3d\box.h">
+      <Filter>Header Files\prototype\geometry3d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry3d\box.h">
-      <Filter>Header Files\primitive\geometry3d</Filter>
+    <ClInclude Include="prototype\geometry3d\dimension.h">
+      <Filter>Header Files\prototype\geometry3d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry3d\dimension.h">
-      <Filter>Header Files\primitive\geometry3d</Filter>
+    <ClInclude Include="prototype\geometry3d\location.h">
+      <Filter>Header Files\prototype\geometry3d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry3d\location.h">
-      <Filter>Header Files\primitive\geometry3d</Filter>
+    <ClInclude Include="prototype\geometry3d\quaternions.h">
+      <Filter>Header Files\prototype\geometry3d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry3d\quaternions.h">
-      <Filter>Header Files\primitive\geometry3d</Filter>
+    <ClInclude Include="prototype\geometry3d\_.h">
+      <Filter>Header Files\prototype\geometry3d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry3d\_.h">
-      <Filter>Header Files\primitive\geometry3d</Filter>
+    <ClInclude Include="prototype\prototype\block.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\block.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\estatus.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\estatus.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\match.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\match.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\member.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\member.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\atomic.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\atomic.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\bit.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\bit.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\collection_file.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\collection_file.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\action_context.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\action_context.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\eobject.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\eobject.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\factory.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\factory.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\papaya.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\papaya.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\logic.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\logic.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\malloc.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\malloc.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\map.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\map.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\memory.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\memory.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\memory_base.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\memory_base.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\memory_container.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\memory_container.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\natural.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\natural.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\number.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\number.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\pointer.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\pointer.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\pointer2.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\pointer2.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\_.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\_.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\property.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\property.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\property_set.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\property_set.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\request_interface.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\request_interface.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\type.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\type.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\uid.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\uid.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\util.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\util.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\value.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\value.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\virtual_memory.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\virtual_memory.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\property_set_papaya.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\property_set_papaya.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\_defer.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\_defer.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\_papaya.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\_papaya.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\_papaya_impl.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\_papaya_impl.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\string\_c_trait_wd32.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_wd32.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_c_trait_wd32_impl.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_wd32_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_c_trait.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_c_trait_impl.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_trait_wd16.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_trait_wd16.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\base64.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\base64.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\bstring.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\bstring.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\c.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\c.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\ch.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\ch.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\ch_class.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\ch_class.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\composite.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\composite.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\from_integer.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\from_integer.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\hex.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\hex.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\interface.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\interface.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\international.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\international.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\international2.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\international2.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\international_locale_schema.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\international_locale_schema.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\parse.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\parse.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\static_string.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\static_string.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\str.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\str.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\stdstring.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\stdstring.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_base_impl.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_base_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\string_buffer.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\string_buffer.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\string_inst.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\string_inst.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\string_wide_conversion.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\string_wide_conversion.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\aaa_want_to_remove_str_ch_class.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_ch_class.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\aaa_want_to_remove_str_str.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_str.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\aaa_want_to_remove_str_str3.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_str3.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\aaa_want_to_remove_str_tokenizer.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_tokenizer.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\aaa_want_to_remove_str_wstring.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_wstring.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\aaa_want_to_remove_str_x.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_x.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_c_impl.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_c_trait_ansi.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_ansi.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_c_trait_ansi_impl.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_ansi_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_c_trait_wd16.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_wd16.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_c_trait_wd16_impl.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c_trait_wd16_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_base.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_base.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_c.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_conv_ansi.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_conv_ansi.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_c_inline.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c_inline.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_c_str_impl.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c_str_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_c_unicode.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c_unicode.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_impl.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_impl_prio.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_impl_prio.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_natural.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_natural.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_international.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_international.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\string.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\string.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\stringtow.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\stringtow.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_str.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_str.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_c_str.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_c_str.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\sz.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\sz.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\tokenizer.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\tokenizer.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\to_integer.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\to_integer.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\wstring.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\wstring.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\wtostring.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\wtostring.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\x.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\x.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_string_wide.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_string_wide.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_str_impl.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_str_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_trait.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_trait.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_trait_ansi.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_trait_ansi.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_trait_ansi_impl.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_trait_ansi_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_trait_CHAR_TYPE.template">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_trait_CHAR_TYPE.template">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_trait_impl.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_trait_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_trait_wd16_impl.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_trait_wd16_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_trait_wd32.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_trait_wd32.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_trait_wd32_impl.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_trait_wd32_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_uhash.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_uhash.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_unicode.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_unicode.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_unicode_impl.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_unicode_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\__c_ansi.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\__c_ansi.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\__c_ansi_impl.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\__c_ansi_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\__c_wd16.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\__c_wd16.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\__c_wd16_impl.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\__c_wd16_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\__c_wd32.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\__c_wd32.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\__c_wd32_impl.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\__c_wd32_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\__c_wide.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\__c_wide.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\__c_wide_impl.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\__c_wide_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\___ch_impl.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\___ch_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\x\x_charcategory.h">
+      <Filter>Header Files\prototype\string\x</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\x\x_charcategory.h">
-      <Filter>Header Files\primitive\string\x</Filter>
+    <ClInclude Include="prototype\string\x\x_charcategory2.h">
+      <Filter>Header Files\prototype\string\x</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\x\x_charcategory2.h">
-      <Filter>Header Files\primitive\string\x</Filter>
+    <ClInclude Include="prototype\string\x\x_charcategory_names.h">
+      <Filter>Header Files\prototype\string\x</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\x\x_charcategory_names.h">
-      <Filter>Header Files\primitive\string\x</Filter>
+    <ClInclude Include="prototype\string\x\x_defines.h">
+      <Filter>Header Files\prototype\string\x</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\x\x_defines.h">
-      <Filter>Header Files\primitive\string\x</Filter>
+    <ClInclude Include="prototype\string\x\x_encodings.h">
+      <Filter>Header Files\prototype\string\x</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\x\x_encodings.h">
-      <Filter>Header Files\primitive\string\x</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\x\x_tables.h">
-      <Filter>Header Files\primitive\string\x</Filter>
+    <ClInclude Include="prototype\string\x\x_tables.h">
+      <Filter>Header Files\prototype\string\x</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filesystem.h">
       <Filter>Header Files\filesystem</Filter>
@@ -2697,7 +2919,7 @@
     <ClInclude Include="filesystem\file\text_stream.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\primitive.h">
+    <ClInclude Include="filesystem\file\prototype.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\serializable.h">
@@ -3003,8 +3225,8 @@
     <ClInclude Include="platform\_impl.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\matter.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\matter.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
     <ClInclude Include="platform\timer.h">
       <Filter>Header Files\platform</Filter>
@@ -3387,8 +3609,8 @@
     <ClInclude Include="include\_forward_declaration.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\payload_type.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\payload_type.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
     <ClInclude Include="constant\exception.h">
       <Filter>Header Files\constant</Filter>
@@ -3402,11 +3624,11 @@
     <ClInclude Include="filesystem\file\translatable.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\payload.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\payload.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\_geometry2d.h">
-      <Filter>Header Files\primitive\geometry2d</Filter>
+    <ClInclude Include="prototype\geometry2d\_geometry2d.h">
+      <Filter>Header Files\prototype\geometry2d</Filter>
     </ClInclude>
     <ClInclude Include="parallelization\synchronously_keep_bit.h">
       <Filter>Header Files\parallelization</Filter>
@@ -3414,8 +3636,8 @@
     <ClInclude Include="parallelization\synchronously_set_bit.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\set_bit.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\set_bit.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filesystem\file_path.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
@@ -3603,23 +3825,23 @@
     <ClInclude Include="operating_system\universal_windows\_c.h">
       <Filter>Header Files\operating_system\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\file_time.h">
-      <Filter>Header Files\primitive\datetime</Filter>
+    <ClInclude Include="prototype\datetime\file_time.h">
+      <Filter>Header Files\prototype\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\file_time_span.h">
-      <Filter>Header Files\primitive\datetime</Filter>
+    <ClInclude Include="prototype\datetime\file_time_span.h">
+      <Filter>Header Files\prototype\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\system_time.h">
-      <Filter>Header Files\primitive\datetime</Filter>
+    <ClInclude Include="prototype\datetime\system_time.h">
+      <Filter>Header Files\prototype\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\atom.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\atom.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\atom_array.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\atom_array.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\atom_space.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\atom_space.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
     <ClInclude Include="regular_expression\result.h">
       <Filter>Header Files\regular_expression</Filter>
@@ -3792,8 +4014,8 @@
     <ClInclude Include="platform\user_parent.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\media_library\item.h">
-      <Filter>Header Files\primitive\media_library</Filter>
+    <ClInclude Include="prototype\media_library\item.h">
+      <Filter>Header Files\prototype\media_library</Filter>
     </ClInclude>
     <ClInclude Include="user\user\_constant.h">
       <Filter>Header Files\user\user</Filter>
@@ -3810,20 +4032,20 @@
     <ClInclude Include="user\user\mouse.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_str_compare_impl.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_str_compare_impl.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_str_compare.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\_str_compare.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\utf8_char.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <ClInclude Include="prototype\string\utf8_char.h">
+      <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\shape.h">
-      <Filter>Header Files\primitive\geometry2d</Filter>
+    <ClInclude Include="prototype\geometry2d\shape.h">
+      <Filter>Header Files\prototype\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\_defer.h">
-      <Filter>Header Files\primitive\geometry2d</Filter>
+    <ClInclude Include="prototype\geometry2d\_defer.h">
+      <Filter>Header Files\prototype\geometry2d</Filter>
     </ClInclude>
     <ClInclude Include="constant\geometry2d.h">
       <Filter>Header Files\constant</Filter>
@@ -3831,8 +4053,8 @@
     <ClInclude Include="platform\_main_hold_base.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\_defer_shape.h">
-      <Filter>Header Files\primitive\geometry2d</Filter>
+    <ClInclude Include="prototype\geometry2d\_defer_shape.h">
+      <Filter>Header Files\prototype\geometry2d</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\universal_windows\_winrt_foundation.h">
       <Filter>Header Files\operating_system\universal_windows</Filter>
@@ -3993,50 +4215,50 @@
     <ClInclude Include="platform\_c.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\_c_memory.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\_c_memory.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\duration\time.h">
-      <Filter>Header Files\primitive\duration</Filter>
+    <ClInclude Include="prototype\duration\time.h">
+      <Filter>Header Files\prototype\duration</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\duration\duration\second.h">
-      <Filter>Header Files\primitive\duration\duration</Filter>
+    <ClInclude Include="prototype\duration\duration\second.h">
+      <Filter>Header Files\prototype\duration\duration</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\duration\duration\nanosecond.h">
-      <Filter>Header Files\primitive\duration\duration</Filter>
+    <ClInclude Include="prototype\duration\duration\nanosecond.h">
+      <Filter>Header Files\prototype\duration\duration</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\duration\duration\minute.h">
-      <Filter>Header Files\primitive\duration\duration</Filter>
+    <ClInclude Include="prototype\duration\duration\minute.h">
+      <Filter>Header Files\prototype\duration\duration</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\duration\duration\millisecond.h">
-      <Filter>Header Files\primitive\duration\duration</Filter>
+    <ClInclude Include="prototype\duration\duration\millisecond.h">
+      <Filter>Header Files\prototype\duration\duration</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\duration\duration\microsecond.h">
-      <Filter>Header Files\primitive\duration\duration</Filter>
+    <ClInclude Include="prototype\duration\duration\microsecond.h">
+      <Filter>Header Files\prototype\duration\duration</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\duration\duration\hour.h">
-      <Filter>Header Files\primitive\duration\duration</Filter>
+    <ClInclude Include="prototype\duration\duration\hour.h">
+      <Filter>Header Files\prototype\duration\duration</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\duration\duration\duration.h">
-      <Filter>Header Files\primitive\duration\duration</Filter>
+    <ClInclude Include="prototype\duration\duration\duration.h">
+      <Filter>Header Files\prototype\duration\duration</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\duration\duration\day.h">
-      <Filter>Header Files\primitive\duration\duration</Filter>
+    <ClInclude Include="prototype\duration\duration\day.h">
+      <Filter>Header Files\prototype\duration\duration</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\duration\duration\_impl.h">
-      <Filter>Header Files\primitive\duration\duration</Filter>
+    <ClInclude Include="prototype\duration\duration\_impl.h">
+      <Filter>Header Files\prototype\duration\duration</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\duration\duration\_.h">
-      <Filter>Header Files\primitive\duration\duration</Filter>
+    <ClInclude Include="prototype\duration\duration\_.h">
+      <Filter>Header Files\prototype\duration\duration</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\windows\_.h">
       <Filter>Header Files\operating_system\windows</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\earth_time.h">
-      <Filter>Header Files\primitive\datetime</Filter>
+    <ClInclude Include="prototype\datetime\earth_time.h">
+      <Filter>Header Files\prototype\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\earth_gregorian_time.h">
-      <Filter>Header Files\primitive\datetime</Filter>
+    <ClInclude Include="prototype\datetime\earth_gregorian_time.h">
+      <Filter>Header Files\prototype\datetime</Filter>
     </ClInclude>
     <ClInclude Include="handler\request.h">
       <Filter>Header Files\handler</Filter>
@@ -4062,8 +4284,8 @@
     <ClInclude Include="platform\application_base.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\earth_zone_time.h">
-      <Filter>Header Files\primitive\datetime</Filter>
+    <ClInclude Include="prototype\datetime\earth_zone_time.h">
+      <Filter>Header Files\prototype\datetime</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\shared_posix\stdio_file.h">
       <Filter>Header Files\operating_system\shared_posix</Filter>
@@ -4116,9 +4338,6 @@
     <ClInclude Include="graphics\image\pixmap.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
-    <ClInclude Include="windowing\window_base.h">
-      <Filter>Header Files\windowing</Filter>
-    </ClInclude>
     <ClInclude Include="platform\platform.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -4140,8 +4359,8 @@
     <ClInclude Include="operating_system\windows_common\heap_allocator.h">
       <Filter>Header Files\operating_system\windows_common</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\quantum.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <ClInclude Include="prototype\prototype\quantum.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
     <ClInclude Include="exception\runtime_check.h">
       <Filter>Header Files\exception</Filter>
@@ -4242,56 +4461,56 @@
     <ClInclude Include="operating_system\windows_common\nano\idn\_.h">
       <Filter>Header Files\operating_system\windows_common\nano\idn</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\_.h">
-      <Filter>Header Files\primitive\data</Filter>
+    <ClInclude Include="prototype\data\_.h">
+      <Filter>Header Files\prototype\data</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\_impl.h">
-      <Filter>Header Files\primitive\data</Filter>
+    <ClInclude Include="prototype\data\_impl.h">
+      <Filter>Header Files\prototype\data</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\_tree.h">
-      <Filter>Header Files\primitive\data</Filter>
+    <ClInclude Include="prototype\data\_tree.h">
+      <Filter>Header Files\prototype\data</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\check_property.h">
-      <Filter>Header Files\primitive\data</Filter>
+    <ClInclude Include="prototype\data\check_property.h">
+      <Filter>Header Files\prototype\data</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\container.h">
-      <Filter>Header Files\primitive\data</Filter>
+    <ClInclude Include="prototype\data\container.h">
+      <Filter>Header Files\prototype\data</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\data.h">
-      <Filter>Header Files\primitive\data</Filter>
+    <ClInclude Include="prototype\data\data.h">
+      <Filter>Header Files\prototype\data</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\item.h">
-      <Filter>Header Files\primitive\data</Filter>
+    <ClInclude Include="prototype\data\item.h">
+      <Filter>Header Files\prototype\data</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\listener.h">
-      <Filter>Header Files\primitive\data</Filter>
+    <ClInclude Include="prototype\data\listener.h">
+      <Filter>Header Files\prototype\data</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\node.h">
-      <Filter>Header Files\primitive\data</Filter>
+    <ClInclude Include="prototype\data\node.h">
+      <Filter>Header Files\prototype\data</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\property.h">
-      <Filter>Header Files\primitive\data</Filter>
+    <ClInclude Include="prototype\data\property.h">
+      <Filter>Header Files\prototype\data</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\property_container.h">
-      <Filter>Header Files\primitive\data</Filter>
+    <ClInclude Include="prototype\data\property_container.h">
+      <Filter>Header Files\prototype\data</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\property_listener.h">
-      <Filter>Header Files\primitive\data</Filter>
+    <ClInclude Include="prototype\data\property_listener.h">
+      <Filter>Header Files\prototype\data</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\signal.h">
-      <Filter>Header Files\primitive\data</Filter>
+    <ClInclude Include="prototype\data\signal.h">
+      <Filter>Header Files\prototype\data</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\simple_item.h">
-      <Filter>Header Files\primitive\data</Filter>
+    <ClInclude Include="prototype\data\simple_item.h">
+      <Filter>Header Files\prototype\data</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\text_property.h">
-      <Filter>Header Files\primitive\data</Filter>
+    <ClInclude Include="prototype\data\text_property.h">
+      <Filter>Header Files\prototype\data</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\tree.h">
-      <Filter>Header Files\primitive\data</Filter>
+    <ClInclude Include="prototype\data\tree.h">
+      <Filter>Header Files\prototype\data</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\tree_item.h">
-      <Filter>Header Files\primitive\data</Filter>
+    <ClInclude Include="prototype\data\tree_item.h">
+      <Filter>Header Files\prototype\data</Filter>
     </ClInclude>
     <ClInclude Include="user\user\_string.h">
       <Filter>Header Files\user\user</Filter>
@@ -4389,76 +4608,211 @@
     <ClInclude Include="operating_system\console_message_box.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
+    <ClInclude Include="prototype\collection\comparable_primitive_array.h" />
+    <ClInclude Include="nano\http\http.h">
+      <Filter>Header Files\nano\http</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\_2.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\_format.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\_impl_path.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\_impl2.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\dir_system_heap.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\directory_context.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\directory_system.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\file_context.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\file_dialog.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\file_system.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\file_system_options.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\folder_dialog.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\path_system.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\windows_path.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\graphics\_.h">
+      <Filter>Header Files\nano\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\graphics\brush.h">
+      <Filter>Header Files\nano\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\graphics\device.h">
+      <Filter>Header Files\nano\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\graphics\font.h">
+      <Filter>Header Files\nano\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\graphics\graphics.h">
+      <Filter>Header Files\nano\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\graphics\icon.h">
+      <Filter>Header Files\nano\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\graphics\object.h">
+      <Filter>Header Files\nano\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\graphics\pen.h">
+      <Filter>Header Files\nano\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\universal_windows\dynamic_library.h">
+      <Filter>Header Files\operating_system\universal_windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\dynamic_library.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\windowing.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\window.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\display.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\_.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\universal_windows\geometry2d.h">
+      <Filter>Header Files\operating_system\universal_windows</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\activation.h" />
+    <ClInclude Include="user\user\activation_token.h" />
+    <ClInclude Include="user\user\frame_interaction.h" />
+    <ClInclude Include="user\user\interaction.h" />
+    <ClInclude Include="user\user\message_box.h" />
+    <ClInclude Include="user\user\key.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\_.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\button.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\console.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\details_window.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\dialog.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\elemental.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\main_window.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\message_box.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\popup_button.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\still.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\theme.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\user.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="primitive\datetime\_impl.h">
-      <Filter>Header Files\primitive\datetime</Filter>
+    <None Include="prototype\datetime\_impl.h">
+      <Filter>Header Files\prototype\datetime</Filter>
     </None>
-    <None Include="primitive\collection\_array_impl2.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <None Include="prototype\collection\_array_impl2.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </None>
-    <None Include="primitive\collection\_collection_impl1.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <None Include="prototype\collection\_collection_impl1.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </None>
-    <None Include="primitive\collection\_collection_impl2.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <None Include="prototype\collection\_collection_impl2.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </None>
-    <None Include="primitive\collection\_array_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <None Include="prototype\collection\_array_impl.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </None>
-    <None Include="primitive\collection\_raw_array_impl2.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <None Include="prototype\collection\_raw_array_impl2.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </None>
-    <None Include="primitive\collection\_fifo_map_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <None Include="prototype\collection\_fifo_map_impl.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </None>
-    <None Include="primitive\collection\_papaya_array_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <None Include="prototype\collection\_papaya_array_impl.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </None>
-    <None Include="primitive\collection\_list_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <None Include="prototype\collection\_list_impl.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </None>
-    <None Include="primitive\collection\_map_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <None Include="prototype\collection\_map_impl.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </None>
-    <None Include="primitive\collection\_point_array.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <None Include="prototype\collection\_point_array.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </None>
-    <None Include="primitive\collection\_raw_array_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <None Include="prototype\collection\_raw_array_impl.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </None>
-    <None Include="primitive\collection\_sort_array_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <None Include="prototype\collection\_sort_array_impl.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </None>
-    <None Include="primitive\collection\_sort_map_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <None Include="prototype\collection\_sort_map_impl.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </None>
-    <None Include="primitive\collection\_string_array_impl.h">
-      <Filter>Header Files\primitive\collection</Filter>
+    <None Include="prototype\collection\_string_array_impl.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </None>
-    <None Include="primitive\math\cast.inl">
-      <Filter>Header Files\primitive\math</Filter>
+    <None Include="prototype\math\cast.inl">
+      <Filter>Header Files\prototype\math</Filter>
     </None>
-    <None Include="primitive\math\_impl.h">
-      <Filter>Header Files\primitive\math</Filter>
+    <None Include="prototype\math\_impl.h">
+      <Filter>Header Files\prototype\math</Filter>
     </None>
-    <None Include="primitive\primitive\_factory_impl.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <None Include="prototype\prototype\_factory_impl.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </None>
-    <None Include="primitive\primitive\_impl.h">
-      <Filter>Header Files\primitive\primitive</Filter>
+    <None Include="prototype\prototype\_impl.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </None>
-    <None Include="primitive\string\aaa_want_to_remove_str.inl">
-      <Filter>Header Files\primitive\string</Filter>
+    <None Include="prototype\string\aaa_want_to_remove_str.inl">
+      <Filter>Header Files\prototype\string</Filter>
     </None>
-    <None Include="primitive\string\_defer.h">
-      <Filter>Header Files\primitive\string</Filter>
+    <None Include="prototype\string\_defer.h">
+      <Filter>Header Files\prototype\string</Filter>
     </None>
-    <None Include="primitive\string\x\x_encodings.pl">
-      <Filter>Header Files\primitive\string\x</Filter>
+    <None Include="prototype\string\x\x_encodings.pl">
+      <Filter>Header Files\prototype\string\x</Filter>
     </None>
-    <None Include="primitive\string\x\x_tables_generator.pl">
-      <Filter>Header Files\primitive\string\x</Filter>
+    <None Include="prototype\string\x\x_tables_generator.pl">
+      <Filter>Header Files\prototype\string\x</Filter>
     </None>
     <None Include="filesystem\_impl.h">
       <Filter>Header Files\filesystem</Filter>

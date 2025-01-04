@@ -396,29 +396,34 @@ namespace user
 
       pmouse->previous();
 
-      ::menu::item * pmenuitemPopup = nullptr;
-
-      if (m_pmenuitem->m_bPopup)
+      if (m_pmenuitem)
       {
 
-         pmenuitemPopup = m_pmenuitem;
+         ::menu::item * pmenuitemPopup = nullptr;
 
-      }
-
-      if (!m_pmenuitem->m_pmenu->m_pmenuSubMenu
-         || m_pmenuitem->m_pmenu->m_pmenuSubMenu->m_pmenuitem != m_pmenuitem)
-      {
-
-         if (::is_set(pmenuitemPopup))
+         if (m_pmenuitem->m_bPopup)
          {
 
-            m_pmenuitem->m_pmenu->show_sub_menu_delayed(pmenuitemPopup);
+            pmenuitemPopup = m_pmenuitem;
 
          }
-         else
+
+         if (!m_pmenuitem->m_pmenu->m_pmenuSubMenu
+            || m_pmenuitem->m_pmenu->m_pmenuSubMenu->m_pmenuitem != m_pmenuitem)
          {
 
-            m_pmenuitem->m_pmenu->hide_sub_menu_delayed();
+            if (::is_set(pmenuitemPopup))
+            {
+
+               m_pmenuitem->m_pmenu->show_sub_menu_delayed(pmenuitemPopup);
+
+            }
+            else
+            {
+
+               m_pmenuitem->m_pmenu->hide_sub_menu_delayed();
+
+            }
 
          }
 

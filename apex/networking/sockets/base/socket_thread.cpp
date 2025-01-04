@@ -30,6 +30,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
 #include "socket_thread.h"
+#include "apex/networking/networking.h"
 #include "apex/networking/sockets/basic/socket_handler.h"
 #include "apex/networking/sockets/basic/listen_socket.h"
 //#ifdef _WIN32
@@ -177,8 +178,18 @@ namespace sockets
    }
 
 
+   void socket_thread::on_socket_thread_start()
+   {
+
+      system()->networking()->on_socket_thread_start();
+
+   }
+
+
    void socket_thread::run()
    {
+
+      on_socket_thread_start();
 
       try
       {

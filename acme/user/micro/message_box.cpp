@@ -697,7 +697,7 @@ namespace micro
                system()->acme_windowing()->set_clipboard_text(
                   m_prealizable->m_strMessage + "\n\n"
                   + m_prealizable->m_strDetails);
-
+               
 #else
 
                display_temporary_file_with_text(
@@ -711,8 +711,8 @@ namespace micro
          };
 
       //post(psequence);
-
-
+      pmouse->m_bRet = true;
+      
    }
 
    bool message_box::is_popup_window() const

@@ -49,7 +49,7 @@ namespace message
       ::int_point                   m_pointMessage;
       bool m_bProbing = false;
       bool m_bCommand = false;
-
+      ::pointer < ::user::activation_token > m_puseractivationtoken;
 
 
       message(const ::atom & atom = ::atom());

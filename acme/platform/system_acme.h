@@ -598,11 +598,15 @@ namespace platform
 
       //void handle(::topic * ptopic, ::context * pcontext) override;
 
-      //virtual void add_handler(::particle * pmatter, bool bPriority = false);
+      //virtual void add_handler(::particle * pmatter);
 
-      virtual void add_signal_handler(const ::signal_handler & signalhandler, const ::atom & atomSignal);
-
-      virtual void erase_signal_handler(::signal_handler::base * pbase);
+      // virtual void signal_add_handler(::matter * pmatter, const ::atom & atomSignal);
+      //
+      // virtual void add_signal_handler(const ::signal_handler & signalhandler, const ::atom & atomSignal);
+      //
+      // virtual void signal_erase_handler(::matter * pmatter);
+      //
+      // virtual void erase_signal_handler(::signal_handler::base * pbase);
 
       //virtual void erase_signal_handlers(::particle * ppparticle);
 

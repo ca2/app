@@ -7,6 +7,7 @@
 #include "factory.h"
 #include "function.h"
 #include "acme/platform/tracer.h"
+#include "acme/prototype/collection/pointer_array.h"
 #include "acme/prototype/collection/procedure_array.h"
 
 
@@ -38,8 +39,6 @@ public:
 
    class ::atom                        m_atom;
 //   ::eobject                           m_eobject;
-
-   procedure_array   m_destroyinga;
 
 //#if REFERENCING_DEBUGGING
 //   inline matter() : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_uObject(0), system()(nullptr) { increment_reference_count( REFERENCING_DEBUGGING_COMMA_NOTE("Initial Reference")); }
@@ -77,14 +76,12 @@ public:
 
 
 
-   virtual ::topic_pointer create_topic(const ::atom & atom);
-   virtual ::extended_topic_pointer create_extended_topic(const ::atom & atom);
 
 
-   //void operator()(::topic * ptopic, ::context * pcontext) override;
+   void operator()(::topic * ptopic, ::context * pcontext) override;
 
    virtual void operator()(::message::message * pmessage);
-   virtual void operator()(const ::payload & payload);
+   //virtual void operator()(const ::payload & payload);
 
 
     //// <3TBS_!! handle -> command_handler <3TBS_(I need to suck you)!!
@@ -100,7 +97,6 @@ public:
    //inline bool is_set() const { return ::is_set(this); }
 
 
-   procedure_array & destroying() { return m_destroyinga; }
 
 
    virtual bool is_ready_to_quit() const;
@@ -280,8 +276,6 @@ public:
    virtual ::string class_title();
 
    
-   template < primitive_function FUNCTION >
-   void hold_signal_function(::data::signal<FUNCTION> * psignal, FUNCTION f);
 
 };
 

@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "acme/user/user/key.h"
 #include "acme/user/user/mouse.h"
 //#include "acme/prototype/geometry2d/_geometry2d.h"
 #include "acme/prototype/geometry2d/size.h"
@@ -8,7 +9,7 @@
 //#include "acme/prototype/prototype/pointer.h"
 #include "apex/user/user/message.h"
 //#include "aura/user/user/message.h"
-#include "aura/user/user/key.h"
+#include "acme/user/user/key.h"
 
 
 namespace message
@@ -338,7 +339,8 @@ namespace message
 
 
    class CLASS_DECL_AURA key :
-      public ::user::key
+      virtual public ::user::message,
+      virtual public ::user::key
    {
    public:
 

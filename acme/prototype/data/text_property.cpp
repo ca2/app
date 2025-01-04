@@ -435,7 +435,9 @@ namespace data
 
       auto strFull = as_text();
 
-      auto str = strFull(iBegin, iEnd);
+      __sort(iBegin, iEnd);
+
+      auto str = strFull(iBegin, iEnd - iBegin);
 
       return str;
 

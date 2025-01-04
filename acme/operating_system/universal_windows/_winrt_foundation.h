@@ -14,6 +14,7 @@ inline winrt::hstring as_hstring(const ::scoped_string & scopedstr)
 
 }
 
+
 inline ::winrt::Windows::Foundation::Rect ScaleRect(::winrt::Windows::Foundation::Rect rectangle, double scale)
 {
 

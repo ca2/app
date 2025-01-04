@@ -463,3 +463,27 @@ CLASS_DECL_ACME int get_processor_count()
 
 
 
+
+
+
+CLASS_DECL_ACME class ::time default_run_timeout()
+{
+
+   class ::time timeDefaultTimeout;
+
+#ifdef DEBUG
+
+   timeDefaultTimeout = 5_min;
+
+#else
+
+   timeDefaultTimeout = 15_s;
+
+#endif
+
+   return timeDefaultTimeout;
+
+}
+
+
+

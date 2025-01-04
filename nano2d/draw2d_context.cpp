@@ -15,8 +15,10 @@ namespace nano2d
 {
 
 
-   draw2d_context::draw2d_context() 
+   draw2d_context::draw2d_context(::particle * pparticle) 
    {
+
+      initialize(pparticle);
 
       m_iPaintImageSeed = 1;
 
@@ -741,6 +743,9 @@ pstate->m_ppen->m_color = color;
       double offsety = 0.0;
 
       auto size = m_pgraphics->get_text_extent(scopedstr);
+
+      size.cx() *= 1.01;
+      size.cy() *= 1.01;
 
       if (m_pstate->m_ealignText & ::e_align_right)
       {

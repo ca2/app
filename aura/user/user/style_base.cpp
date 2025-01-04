@@ -69,13 +69,14 @@ namespace user
          if(pmanager)
          {
 
-            auto psignal = pmanager->get_signal(id_operating_system_user_color_change);
+            auto psignal = pmanager->signal(id_operating_system_user_color_change);
       
-            auto psignalDarkModeChange = pmanager->get_signal(id_application_dark_mode_change);
+            auto psignalDarkModeChange = pmanager->signal(id_application_dark_mode_change);
 
             psignal->add_handler(this);
 
             psignalDarkModeChange->add_handler(this);
+
          }
 
       }
@@ -92,6 +93,8 @@ namespace user
 
       if (m_timeUserStyleBaseDarkMode != system()->dark_mode_time())
       {
+
+         ((style_base *)this)->increment_update_sequence();
 
          ((style_base *)this)->on_user_color();
 
@@ -165,6 +168,12 @@ namespace user
 
    }
 
+   
+   void style_base::increment_update_sequence()
+   {
+
+
+   }
 
 
    bool style_base::_001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics, ::user::split_layout * psplitlayout)

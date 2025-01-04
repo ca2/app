@@ -711,6 +711,9 @@
     <ClCompile Include="user\user\user_core.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\write_text\internal_font.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windowing\_.h">
@@ -1400,12 +1403,6 @@
     <ClInclude Include="graphics\image\palette.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\image\pixmap.h">
-      <Filter>Header Files\graphics\image</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\image\save_image.h">
-      <Filter>Header Files\graphics\image</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\image\source.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
@@ -1717,6 +1714,9 @@
     </ClInclude>
     <ClInclude Include="user\user\user_core.h">
       <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\internal_font.h">
+      <Filter>Header Files\graphics\write_text</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -355,7 +355,9 @@ namespace graphics
    buffer_item * multiple_buffer::get_screen_item()
    {
 
-      auto size = m_pwindow->m_puserinteraction->const_layout().design().size();
+      auto puserinteraction = m_pwindow->user_interaction();
+
+      auto size = puserinteraction->const_layout().design().size();
 
       m_iScreen = find_best_buffer(size);
 
@@ -385,7 +387,9 @@ namespace graphics
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto size = m_pwindow->m_puserinteraction->const_layout().design().size();
+      auto puserinteraction = m_pwindow->user_interaction();
+
+      auto size = puserinteraction->const_layout().design().size();
 
       auto iImage = find_best_buffer(size);
 

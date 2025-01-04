@@ -222,7 +222,7 @@ CLASS_DECL_ACME ::reference_referer* refdbg_get_top_releaser();
 #define __refdbg_add_referer_for(p)
 #define __refdbg_assign_referer_for(p)
 #define __refdbg_add_releaser(preferer)
-
+#define __refdbg_this(pparticle)
 //#define 
 //#define
 //#define

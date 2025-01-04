@@ -8,6 +8,11 @@
 #include "acme/_operating_system.h"
 
 
+#include <TlHelp32.h>
+#include <DbgHelp.h>
+
+
+
 //#include <TlHelp32.h>
 //#include <DbgHelp.h>
 //
@@ -77,7 +82,7 @@
 //
 //::critical_section * sym_dbg_help_critical_section() { return &g_criticalsectionSymDbgHelp; }
 
-namespace acme
+namespace platform
 {
 
 
@@ -157,18 +162,6 @@ namespace acme
    //}
 
    // Created by camilo on 2022-02-11 09:27 PM <3ThomasBorregaardSorensen!!
-#include "framework.h"
-#include "acme/prototype/prototype/memory.h"
-#include "acme/platform/_synchronization.h"
-#include "acme/platform/node.h"
-
-
-#include "acme/_operating_system.h"
-
-
-#include <TlHelp32.h>
-#include <DbgHelp.h>
-
 
 //#include "acme/parallelization/mutex.h"
 //#include "acme/parallelization/synchronous_lock.h"
@@ -397,7 +390,7 @@ namespace acme
 
 
 
-} // namespace acme
+} // namespace platform
 
 
 

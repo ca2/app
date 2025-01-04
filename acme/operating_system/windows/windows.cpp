@@ -5,6 +5,7 @@
 
 
 #include "acme/_operating_system.h"
+#include "acme/operating_system/windows/windows.h"
 
 
 #include <Shlobj.h>
@@ -527,6 +528,154 @@ CLASS_DECL_ACME ::file::path windows_bash_path(const ::file::path& path)
 
 }
 
+
+namespace windows
+{
+
+
+   HWND get_mouse_capture(itask_t itask)
+   {
+
+      GUITHREADINFO info = {};
+
+      info.cbSize = sizeof(GUITHREADINFO);
+
+      HWND hwndCapture = nullptr;
+
+      if (GetGUIThreadInfo((DWORD)itask, &info))
+      {
+
+         hwndCapture = info.hwndCapture;
+
+      }
+
+      if (!hwndCapture)
+      {
+
+         hwndCapture = ::GetCapture();
+
+      }
+
+      return hwndCapture;
+
+   }
+
+
+   bool set_mouse_capture(itask_t itask, HWND hwnd)
+   {
+
+      GUITHREADINFO info = {};
+
+      info.cbSize = sizeof(GUITHREADINFO);
+
+      if (::GetGUIThreadInfo((DWORD)itask, &info))
+      {
+
+         if (info.hwndCapture == hwnd)
+         {
+
+            return false;
+
+         }
+
+         DWORD currentThreadId = ::GetCurrentThreadId();
+
+         if ((DWORD)itask != currentThreadId)
+         {
+
+            ::AttachThreadInput(currentThreadId, (DWORD)itask, TRUE);
+
+         }
+
+         ::SetCapture(hwnd);
+
+         if ((DWORD)itask != currentThreadId)
+         {
+
+            ::AttachThreadInput(currentThreadId, (DWORD)itask, FALSE);
+
+         }
+
+      }
+      else
+      {
+
+         auto hwndCapture = ::GetCapture();
+
+         if (hwndCapture == hwnd)
+         {
+
+            return false;
+
+         }
+
+         ::SetCapture(hwnd);
+
+      }
+
+      return true;
+
+   }
+
+
+   bool defer_release_mouse_capture(itask_t itask, HWND hwnd)
+   {
+
+      GUITHREADINFO info = {};
+
+      info.cbSize = sizeof(GUITHREADINFO);
+
+      if (::GetGUIThreadInfo((DWORD)itask, &info))
+      {
+
+         if (info.hwndCapture != hwnd)
+         {
+
+            return false;
+
+         }
+
+         DWORD currentThreadId = ::GetCurrentThreadId();
+
+         if ((DWORD)itask != currentThreadId)
+         {
+
+            ::AttachThreadInput(currentThreadId, (DWORD)itask, TRUE);
+
+         }
+
+         ::ReleaseCapture();
+
+         if ((DWORD)itask != currentThreadId)
+         {
+
+            ::AttachThreadInput(currentThreadId, (DWORD)itask, FALSE);
+
+         }
+
+      }
+      else
+      {
+
+         auto hwndCapture = ::GetCapture();
+
+         if (hwndCapture == hwnd)
+         {
+
+            return false;
+
+         }
+
+         ::ReleaseCapture();
+
+      }
+
+      return true;
+
+   }
+
+
+} // namespace windows
 
 
 

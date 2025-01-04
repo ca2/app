@@ -17,7 +17,7 @@ namespace user
 
 
    class CLASS_DECL_ACME check :
-      public ::user::control
+      virtual public ::user::control
    {
    public:
 
@@ -57,8 +57,8 @@ namespace user
       bool set_check(::e_check echeck, const ::action_context & actioncontext);
       bool toggle_check(const ::action_context & actioncontext);
 
-      add_signal_function_to_holder < ::data::check_will_change > check_will_change(::matter * pmatterFunctionContainer);
-      add_signal_function_to_holder < ::data::check_changed > check_changed(::matter * pmatterFunctionContainer);
+      add_signal_function_to_holder < ::data::check_will_change > check_will_change(::object * pobjectFunctionContainer);
+      add_signal_function_to_holder < ::data::check_changed > check_changed(::object * pobjectFunctionContainer);
 
 
    };

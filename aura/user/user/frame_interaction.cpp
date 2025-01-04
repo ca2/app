@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "frame_interaction.h"
-#include "key.h"
+//#include "key.h"
 #include "style.h"
 #include "interaction_thread.h"
 #include "user.h"
@@ -11,7 +11,10 @@
 #include "acme/parallelization/pool.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/constant/message.h"
+#include "acme/user/user/key.h"
+#include "apex/handler/signal.h"
 #include "aura/graphics/image/icon.h"
+#include "aura/message/user.h"
 #include "aura/platform/application.h"
 #include "aura/platform/draw_context2.h"
 #include "aura/platform/session.h"
@@ -35,7 +38,7 @@ namespace user
 
       m_bDerivedHeight = false;
       m_bShowControlBox = true;
-      m_bDefaultNotifyIcon = false;
+      m_bDefaultNotifyIcon2 = false;
       m_bCloseApplicationIfLastVisibleFrame = true;
 
    }
@@ -113,7 +116,9 @@ namespace user
             
             ::cast < ::windowing::window > pwindowingwindowHost = pwindowHost;
 
-            create_child(pwindowingwindowHost->m_puserinteraction);
+            auto puserinteraction = pwindowingwindowHost->user_interaction();
+
+            create_child(puserinteraction);
 
             //         pwindowHost->windowing_window()->this->set_need_layout();
             //
@@ -400,7 +405,6 @@ namespace user
       m_puserinteractionParent.release();
       m_pupdowntarget.release();
       m_ptaskModal.release();
-      m_puserinteractionOwner.release();
       //windowing_window().release();
       //return ::success;
       ::user::box::destroy();
@@ -445,7 +449,7 @@ namespace user
       MESSAGE_LINK(e_message_application_exit, pchannel, this, &frame_interaction::on_message_application_exit);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &frame_interaction::on_message_key_down);
 
-      system()->add_signal_handler(this, id_operating_system_user_color_change);
+      system()->signal(id_operating_system_user_color_change)->add_handler(this);
 //#ifdef WINDOWS_DESKTOP
 //
 //      if (is_frame_window())
@@ -1015,8 +1019,9 @@ namespace user
    void frame_interaction::initial_frame_placement()
    {
 
-#if defined(SANDBOXED_PLATFORM)
+#if defined(SANDBOXED_WINDOWING)
 
+      display_zoomed();
 
 #else
 
@@ -1035,13 +1040,13 @@ namespace user
       if (!const_layout().sketch().is_screen_visible())
       {
 
-         display_normal(e_display_normal, { ::user::e_activation_set_foreground, ::get_task() });
+         display_normal(e_display_normal, { ::user::e_activation_set_foreground, window()->get_initial_frame_display_activation_token() });
 
       }
       else
       {
 
-         set_activation({ ::user::e_activation_set_foreground, ::get_task() });
+         set_activation({ ::user::e_activation_set_foreground, window()->get_initial_frame_display_activation_token() });
 
       }
 

@@ -3240,7 +3240,7 @@ namespace aura
    //}
 
 
-   bool system::on_command(const ::atom & atom)
+   bool system::on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -3252,7 +3252,7 @@ namespace aura
       for(auto & papplication : applicationa)
       {
 
-         if(papplication->on_command(atom))
+         if(papplication->on_command_final(atom, puseractivationtoken))
          {
 
             return true;

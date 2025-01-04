@@ -27,6 +27,8 @@ namespace write_text
       string_map < int_to_string >                    m_mapFontKeyFaceName;
 
       ::particle_pointer                        m_pparticleFontTextMapSynchronization;
+      string_map < ::pointer<internal_font >>m_mapInternalFont;
+
 
 
       write_text();
@@ -58,6 +60,8 @@ namespace write_text
 
       
       //virtual void enum_write_text_fonts(::write_text::font_enumeration_item_array& itema);
+
+      virtual ::write_text::internal_font * internal_font_from_file(::platform::context * pcontext, const ::file::path & path);
 
 
    };

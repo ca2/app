@@ -445,7 +445,11 @@ class CLASS_DECL_ACME numeric_info < unsigned long long > :
 
    };
 
-#if !defined(GNU_COMPILER) && !defined(FREEBSD) && !defined(WINDOWS_DESKTOP) && !defined(__APPLE__)
+#if !defined(GNU_COMPILER) \
+   && !defined(FREEBSD) \
+      && !defined(WINDOWS_DESKTOP) \
+      && !defined(__APPLE__) \
+      && !defined(UNIVERSAL_WINDOWS)
 
    template < >
    class CLASS_DECL_ACME numeric_info < huge_integer > :

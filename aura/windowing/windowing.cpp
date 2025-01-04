@@ -51,8 +51,31 @@ namespace windowing
 
    }
 
+   bool windowing::combo_box_list_box_is_top_level()
+   {
+
+      return true;
+
+   }
+
+   
+   void windowing::on_create_window_object(::acme::user::interaction * puserinteraction)
+   {
+
+      puserinteraction->__øconstruct(puserinteraction->m_pacmewindowingwindow);
+
+   }
+
 
    bool windowing::has_readily_gettable_absolute_coordinates() const
+   {
+
+      return true;
+
+   }
+
+
+   bool windowing::has_mouse_capture_capability()
    {
 
       return true;
@@ -957,7 +980,52 @@ namespace windowing
    }
 
 
+   int windowing::system_metrics_get_cx_icon_spacing()
+   {
 
+      return 76;
+
+   }
+
+
+   int windowing::system_metrics_get_cy_icon_spacing()
+   {
+
+      return 98;
+
+   }
+
+
+   int windowing::system_metrics_get_cx_icon()
+   {
+
+      return 32;
+
+   }
+
+
+   int windowing::system_metrics_get_cy_icon()
+   {
+
+      return 32;
+
+   }
+
+   
+   int windowing::system_metrics_get_cy_caption()
+   {
+
+      return 22;
+
+   }
+
+
+   // ::pointer < ::graphics::graphics > windowing::create_graphics()
+   // {
+   //
+   //    return nullptr;
+   //
+   // }
 
 
 } // namespace windowing

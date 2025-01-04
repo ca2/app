@@ -138,25 +138,6 @@ void _do_tasks()
 }
 
 
-CLASS_DECL_ACME class ::time default_run_timeout()
-{
-
-   class ::time timeDefaultTimeout;
-
-#ifdef DEBUG
-
-   timeDefaultTimeout = 5_min;
-
-#else
-
-   timeDefaultTimeout = 15_s;
-
-#endif
-
-   return timeDefaultTimeout;
-
-}
-
 
 CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach)
 {

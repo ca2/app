@@ -61,10 +61,10 @@ int_size Label::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSiz
          else {
             m_ptextbox.release();
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
-            int iSize = (int) pcontext->text_bounds(0.f, 0.f, m_strCaption, &bounds);
+            float fSize = (float) pcontext->text_bounds(0.f, 0.f, m_strCaption, &bounds);
             m_sizePreferred = int_size (
-               iSize +2 ,
-               (int)(int)(bounds[3] - bounds[1])
+               (int) ceilf(fSize +2.0f),
+               (int) ceilf(bounds[3] - bounds[1])
             );
          }
       }

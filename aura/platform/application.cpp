@@ -341,7 +341,8 @@ namespace aura
    }
 */
 
-   void application::destroy()
+
+   void application::close_application()
    {
 
       if (m_puserinteractionaFrame)
@@ -417,15 +418,15 @@ namespace aura
 
       }
 
-      if (m_puserinteractionMain)
+      if (m_pacmeuserinteractionMain)
       {
 
          auto timeStartDestroying = ::time::now();
 
-         while (m_puserinteractionMain)
+         while (m_pacmeuserinteractionMain)
          {
 
-            m_puserinteractionMain->destroy_window();
+            m_pacmeuserinteractionMain->destroy_window();
 
 #ifdef DEBUG
             if (timeStartDestroying.elapsed() > 10_min)
@@ -442,9 +443,17 @@ namespace aura
 
          }
 
-         m_puserinteractionMain.release();
-       
+         m_pacmeuserinteractionMain.release();
+
       }
+
+      ::apex::application::close_application();
+
+   }
+
+
+   void application::destroy()
+   {
 
       ::aqua::application::destroy();
 
@@ -1762,7 +1771,7 @@ namespace aura
 
       if(pmanager)
       {
-         auto psignal = pmanager->get_signal(id_app_activated);
+         auto psignal = pmanager->signal(id_app_activated);
       
          psignal->add_handler(this);
       }
@@ -3550,10 +3559,10 @@ retry_license:
 
          }
 
-         if (m_puserinteractionMain == nullptr)
+         if (m_pacmeuserinteractionMain == nullptr)
          {
 
-            m_puserinteractionMain = puserinteraction;
+            m_pacmeuserinteractionMain = puserinteraction;
 
          }
 
@@ -3588,10 +3597,10 @@ retry_license:
 
       _synchronous_lock synchronouslock(m_pmutexFrame); // recursive lock (on m_framea.erase(puserinteraction)) but m_puiMain is "cared" by m_frame.m_pmutex
 
-      if (m_puserinteractionMain == puserinteraction)
+      if (m_pacmeuserinteractionMain == puserinteraction)
       {
 
-         m_puserinteractionMain.release();
+         m_pacmeuserinteractionMain.release();
 
       }
 
@@ -3774,14 +3783,23 @@ retry_license:
    ::user::interaction * application::main_window()
    {
 
-      if (!m_puserinteractionMain)
+      if (!m_pacmeuserinteractionMain)
       {
 
          return nullptr;
 
       }
+      
+      ::cast < ::user::interaction > puserinteraction = m_pacmeuserinteractionMain;
+      
+      if(!puserinteraction)
+      {
+       
+         return nullptr;
+         
+      }
 
-      return m_puserinteractionMain;
+      return puserinteraction;
 
    }
 
@@ -4290,10 +4308,10 @@ retry_license:
       {
 
 
-         if (m_puserinteractionMain)
+         if (m_pacmeuserinteractionMain)
          {
 
-            auto puserinteractionMain = m_puserinteractionMain;
+            auto puserinteractionMain = m_pacmeuserinteractionMain;
 
             if (::is_null(puserinteractionMain))
             {
@@ -5660,15 +5678,15 @@ namespace aura
    //}
 
 
-   bool application::on_command(const ::atom & atom)
+   bool application::on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken)
    {
 
-      //if (m_puserinteractionMain != nullptr)
+      //if (m_pacmeuserinteractionMain != nullptr)
       //{
 
       //   ::message::command command(atom);
 
-      //   auto puserinteractionMain = m_puserinteractionMain;
+      //   auto puserinteractionMain = m_pacmeuserinteractionMain;
 
       //   puserinteractionMain->route_command(&command);
 
@@ -5681,7 +5699,7 @@ namespace aura
 
       //}
 
-      return ::aqua::application::on_command(atom);
+      return ::aqua::application::on_command_final(atom, puseractivationtoken);
 
    }
 
@@ -5901,7 +5919,7 @@ namespace aura
    void application::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
    {
 
-      command_handler(pcommand);
+      ::channel::command_handler(pcommand);
 
       if (pcommand->m_bRet)
       {
@@ -6805,9 +6823,9 @@ namespace aura
 
    //   // same as double-clicking on main window close box
 
-   //   ASSERT(m_puserinteractionMain != nullptr);
+   //   ASSERT(m_pacmeuserinteractionMain != nullptr);
 
-   //   auto puserinteractionMain = __user_interaction(m_puserinteractionMain);
+   //   auto puserinteractionMain = __user_interaction(m_pacmeuserinteractionMain);
 
    //   puserinteractionMain->m_puiThis->send_message(e_message_close);
 
@@ -6820,7 +6838,7 @@ namespace aura
    //   try
    //   {
 
-   //      if (m_puserinteractionMain == nullptr)
+   //      if (m_pacmeuserinteractionMain == nullptr)
    //      {
 
    //         return;
@@ -6828,18 +6846,18 @@ namespace aura
    //      }
 
    //      // hide the application's windows before closing all the documents
-   //      m_puserinteractionMain->m_puiThis->display(e_display_none);
+   //      m_pacmeuserinteractionMain->m_puiThis->display(e_display_none);
    //      // trans    m_puiMain->ShowOwnedPopups(false);
 
 
-   //      m_puserinteractionMain->m_puiThis->order(e_zorder_bottom);
+   //      m_pacmeuserinteractionMain->m_puiThis->order(e_zorder_bottom);
    //      //m_puiMain->m_puiThis->m_bZ = true;
    //      // put the window at the bottom of zorder, so it isn't activated
    //      // m_puiMain->m_puiThis->zorder();
 
    //      //m_puiMain->m_puiThis->wait_redraw();
 
-   //      m_puserinteractionMain->m_puiThis->display(e_display_none);
+   //      m_pacmeuserinteractionMain->m_puiThis->display(e_display_none);
 
 
    //   }
@@ -7376,10 +7394,10 @@ namespace aura
    bool application::activate_app()
    {
 
-      if (m_puserinteractionMain != nullptr)
+      if (m_pacmeuserinteractionMain != nullptr)
       {
 
-         auto puserinteractionMain = m_puserinteractionMain;
+         auto puserinteractionMain = m_pacmeuserinteractionMain;
 
          puserinteractionMain->display(e_display_normal);
 
@@ -7397,7 +7415,7 @@ namespace aura
    //   try
    //   {
 
-   //      if (m_puserinteractionMain == nullptr)
+   //      if (m_pacmeuserinteractionMain == nullptr)
    //      {
 
    //         return;
@@ -7405,18 +7423,18 @@ namespace aura
    //      }
 
    //      // hide the application's windows before closing all the documents
-   //      m_puserinteractionMain->m_puiThis->display(e_display_none);
+   //      m_pacmeuserinteractionMain->m_puiThis->display(e_display_none);
    //      // trans    m_puiMain->ShowOwnedPopups(false);
 
 
-   //      m_puserinteractionMain->m_puiThis->order(e_zorder_bottom);
+   //      m_pacmeuserinteractionMain->m_puiThis->order(e_zorder_bottom);
    //      //m_puiMain->m_puiThis->m_bZ = true;
    //      // put the window at the bottom of zorder, so it isn't activated
    //      // m_puiMain->m_puiThis->zorder();
 
    //      //m_puiMain->m_puiThis->wait_redraw();
 
-   //      m_puserinteractionMain->m_puiThis->display(e_display_none);
+   //      m_pacmeuserinteractionMain->m_puiThis->display(e_display_none);
 
 
    //   }
@@ -8236,7 +8254,7 @@ namespace aura
 
       strMessage += e.get_message();
 
-      auto puserinteractionMain = m_puserinteractionMain;
+      auto puserinteractionMain = m_pacmeuserinteractionMain;
 
       //puserinteractionMain->message_box(strMessage, nullptr, ::enum_message_box(iMessageFlags));
 
@@ -8454,11 +8472,18 @@ namespace aura
       if(ptopic->m_atom == id_app_activated)
       {
 
-         if(m_puserinteractionMain)
+         if(m_pacmeuserinteractionMain)
          {
-
-            m_puserinteractionMain->on_app_activated();
-            //m_puserinteractionMain->frame_toggle_restore();
+            
+            ::cast < ::user::interaction > puserinteraction = m_pacmeuserinteractionMain;
+            
+            if(puserinteraction)
+            {
+               
+               puserinteraction->on_app_activated(ptopic->m_puseractivationtoken);
+               //m_pacmeuserinteractionMain->frame_toggle_restore();
+               
+            }
 
          }
 
@@ -9069,14 +9094,14 @@ namespace aura
    //bool application::on_application_menu_action(const ::string & pszCommand)
    //{
 
-   //   if (m_puserinteractionMain != nullptr)
+   //   if (m_pacmeuserinteractionMain != nullptr)
    //   {
 
    //      ::message::command command;
 
    //      command.m_atom = ::atom(pszCommand);
 
-   //      __channel(m_puserinteractionMain)->route_command_message(&command);
+   //      __channel(m_pacmeuserinteractionMain)->route_command_message(&command);
 
    //      if (command.m_bRet)
    //      {
@@ -9133,7 +9158,14 @@ namespace aura
 
       prequest->_001ParseCommandLine(strCommandLine);
 
-      m_puserinteractionMain->frame_toggle_restore();
+      ::cast < ::user::interaction > puserinteraction = m_pacmeuserinteractionMain;
+      
+      if(puserinteraction)
+      {
+         
+         puserinteraction->frame_toggle_restore(nullptr);
+         
+      }
 
       //::user::impact * pinteraction = m_ptemplateWeatherMain->get_document(0)->get_impact();
 
@@ -9216,7 +9248,7 @@ namespace aura
    void application::pick_browse(const ::function < void(const ::file::path &) > & callback)
    {
 
-      auto puserinteraction = m_puserinteractionMain;
+      auto puserinteraction = m_pacmeuserinteractionMain;
 
       if(!puserinteraction)
       {
@@ -9242,7 +9274,7 @@ namespace aura
    void application::pick_media(const char *pszMediaType)
    {
 
-      auto puserinteraction = m_puserinteractionMain;
+      auto puserinteraction = m_pacmeuserinteractionMain;
 
       if(!puserinteraction)
       {
@@ -9268,7 +9300,7 @@ namespace aura
    void application::on_prompt_write_file(::user::controller *pusercontroller)
    {
 
-      auto puserinteraction = m_puserinteractionMain;
+      auto puserinteraction = m_pacmeuserinteractionMain;
 
       if(!puserinteraction)
       {

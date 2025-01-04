@@ -42,6 +42,7 @@ namespace user
 
 
    class CLASS_DECL_ACME element :
+      virtual public ::object,
       virtual public ::user::command_update_target,
       virtual public ::timer_callback
    {

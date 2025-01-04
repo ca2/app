@@ -244,7 +244,7 @@ namespace hi5
 
          m_ptabimpact->parent_frame()->place(rectangleOpen);
 
-         m_pviewAuth->parent_frame()->set_foreground_window();
+         m_pviewAuth->parent_frame()->set_foreground_window(nullptr);
 
          m_ptabimpact->top_level_frame()->display(e_display_normal, { ::user::e_activation_set_foreground });
 

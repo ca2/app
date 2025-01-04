@@ -628,7 +628,7 @@ namespace draw2d_cairo
    void bitmap::destroy_os_data()
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      _synchronous_lock ml(::draw2d_cairo::mutex());
 
       if (m_psurface == nullptr)
       {

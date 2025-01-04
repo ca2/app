@@ -136,7 +136,7 @@
 		9A42341A2BAE448000428532 /* in_place_edit.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = in_place_edit.cpp; sourceTree = "<group>"; };
 		9A54985D2A2BCE800052BAB6 /* _____debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
 		9A54985E2A2BCE800052BAB6 /* _____release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
-		9A9E579229F8600F001559E9 /* nano2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = nano2d.xcodeproj; path = ../nano2d/nano2d.xcodeproj; sourceTree = "<group>"; };
+		9A9E579229F8600F001559E9 /* nano2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = nano2d.xcodeproj; path = ../nano2d/nano2d.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

@@ -200,7 +200,11 @@ namespace platform
       if (iThis != iComputed)
       {
 
+#ifndef RASPBERRYPIOS
+
          throw 0;
+
+#endif
 
       }
 #endif
@@ -1658,6 +1662,21 @@ particle* system::matter_mutex()
    {
 
       throw ::exception(::error_interface_only);
+
+   }
+
+
+   bool system::_handle_uri(const ::block & block)
+   {
+
+      if (::handler::handler::_handle_uri(block))
+      {
+
+         return true;
+
+      }
+
+      return false;
 
    }
 
@@ -3227,7 +3246,7 @@ particle* system::matter_mutex()
       else if (ptopic->m_atom == id_app_activated)
       {
 
-         node()->on_app_activated();
+         node()->on_app_activated(ptopic->m_puseractivationtoken);
 
          if (::is_set(application()))
          {
@@ -3291,17 +3310,17 @@ particle* system::matter_mutex()
    //   }
 
 
-   void system::add_signal_handler(const ::signal_handler& signalhandler, const ::atom& atomSignal)
-   {
-
-
-   }
-
-
-   void system::erase_signal_handler(::signal_handler::base* pbase)
-   {
-
-   }
+   // void system::add_signal_handler(const ::signal_handler& signalhandler, const ::atom& atomSignal)
+   // {
+   //
+   //
+   // }
+   //
+   //
+   // void system::erase_signal_handler(::signal_handler::base* pbase)
+   // {
+   //
+   // }
 
 
    //   void system::erase_signal_handlers(::particle * pparticle)

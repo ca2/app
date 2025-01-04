@@ -272,7 +272,7 @@ namespace user
       if (m_puserinteractionOwner != nullptr)
       {
 
-         pframe->m_puserinteractionOwner = m_puserinteractionOwner;
+         pframe->set_owner(m_puserinteractionOwner);
 
       }
 

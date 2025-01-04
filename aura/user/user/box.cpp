@@ -95,10 +95,20 @@ namespace user
    }
 
 
-   ::e_display box::window_previous_display()
+   ::e_display box::_window_previous_display()
    {
 
       auto edisplayPrevious = m_windowdisplayandlayout.m_edisplayPrevious;
+
+      return edisplayPrevious;
+
+   }
+
+
+   ::e_display box::window_previous_display()
+   {
+
+      auto edisplayPrevious = _window_previous_display();
 
       if (edisplayPrevious == const_layout().design().display()
          && edisplayPrevious == e_display_zoomed)
@@ -287,7 +297,7 @@ namespace user
 
          m_bLoadingWindowRectangle = true;
 
-         ::collection::index iDisplay = good_restore(nullptr, {}, true, { ::user::e_activation_default }, e_zorder_top, initial_restore_display());
+         ::collection::index iDisplay = good_restore(nullptr, {}, true, { ::user::e_activation_set_foreground, nullptr}, e_zorder_top, initial_restore_display());
 
          bool bRestore = iDisplay >= 0;
 
@@ -334,7 +344,7 @@ namespace user
 
          m_bLoadingWindowRectangle = true;
 
-         ::collection::index iDisplay = good_restore(nullptr, {}, true, { ::user::e_activation_default }, e_zorder_top, initial_restore_display());
+         ::collection::index iDisplay = good_restore(nullptr, {}, true, { ::user::e_activation_set_foreground, nullptr }, e_zorder_top, initial_restore_display());
 
          bool bRestore = iDisplay >= 0;
 
@@ -586,7 +596,7 @@ namespace user
 
             information() << "FancyLoadWindowRectangle windowrectangle.m_rectangleNormal " << windowdisplayandlayout.m_rectangleNormal;
 
-            good_restore(nullptr, windowdisplayandlayout.m_rectangleNormal, true, { ::user::e_activation_default }, e_zorder_top, windowdisplayandlayout.m_edisplay);
+            good_restore(nullptr, windowdisplayandlayout.m_rectangleNormal, true, { ::user::e_activation_default, nullptr}, e_zorder_top, windowdisplayandlayout.m_edisplay);
                
          };
          
@@ -836,7 +846,7 @@ namespace user
    void box::display_full_screen(::collection::index iMonitor, const ::user::activation & useractivation)
    {
 
-      best_monitor(nullptr, const_layout().sketch().parent_raw_rectangle(), true, { ::user::e_activation_default }, e_zorder_top);
+      best_monitor(nullptr, const_layout().sketch().parent_raw_rectangle(), true, { ::user::e_activation_default, nullptr }, e_zorder_top);
 
    }
 

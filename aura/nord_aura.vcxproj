@@ -210,7 +210,7 @@
     <ClInclude Include="graphics\draw2d\image.h" />
     <ClInclude Include="graphics\draw2d\image_array.h" />
     <ClInclude Include="graphics\draw2d\image_drawer.h" />
-    <ClInclude Include="graphics\draw2d\::image::image_drawing.h" />
+    <ClInclude Include="graphics\draw2d\image_drawing.h" />
     <ClInclude Include="graphics\draw2d\image_dynamic.h" />
     <ClInclude Include="graphics\draw2d\image_extension.h" />
     <ClInclude Include="graphics\draw2d\image_frame.h" />
@@ -220,7 +220,7 @@
     <ClInclude Include="graphics\draw2d\image_map.h" />
     <ClInclude Include="graphics\draw2d\image_map_ex1.h" />
     <ClInclude Include="graphics\draw2d\image_palette.h" />
-    <ClInclude Include="graphics\draw2d\::image::image_source.h" />
+    <ClInclude Include="graphics\draw2d\image_source.h" />
     <ClInclude Include="graphics\draw2d\imaging.h" />
     <ClInclude Include="graphics\draw2d\keep.h" />
     <ClInclude Include="graphics\draw2d\load_image.h" />

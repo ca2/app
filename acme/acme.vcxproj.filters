@@ -4128,6 +4128,9 @@
     <ClInclude Include="operating_system\windows\windows.h">
       <Filter>Header Files\operating_system\windows</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\key.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -5896,6 +5899,9 @@
     </ClCompile>
     <ClCompile Include="operating_system\calculate_etoolkit.cpp">
       <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\key.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

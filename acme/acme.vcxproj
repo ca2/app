@@ -1492,6 +1492,7 @@
     <ClInclude Include="user\user\aaa_interaction_base.h" />
     <ClInclude Include="user\user\frame_interaction.h" />
     <ClInclude Include="user\user\interaction.h" />
+    <ClInclude Include="user\user\key.h" />
     <ClInclude Include="user\user\key_state.h" />
     <ClInclude Include="user\user\message_box.h" />
     <ClInclude Include="user\user\property.h" />
@@ -2408,6 +2409,7 @@
     <ClCompile Include="user\user\control.cpp" />
     <ClCompile Include="user\user\frame_interaction.cpp" />
     <ClCompile Include="user\user\interaction.cpp" />
+    <ClCompile Include="user\user\key.cpp" />
     <ClCompile Include="user\user\message_box.cpp" />
     <ClCompile Include="user\user\property.cpp" />
     <ClCompile Include="user\user\controller.cpp" />

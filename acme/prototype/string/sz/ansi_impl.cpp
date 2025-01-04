@@ -10,9 +10,9 @@
 
 
 
-CLASS_DECL_ACME void string_count_copy(::ansi_character * pchDest, const ::ansi_character * pchSrc, character_count nChars) noexcept { memory_copy(pchDest, pchSrc, character_count_to_byte_length(pchSrc, nChars)); }
-CLASS_DECL_ACME void string_count_copy(::ansi_character * pchDest, size_t nDestLen, const ::ansi_character * pchSrc, character_count nChars) noexcept { ::memory_copy(pchDest, pchSrc, character_count_to_byte_length(pchSrc, nChars)); }
-CLASS_DECL_ACME void overlapped_string_count_copy(::ansi_character * pchDest, const ::ansi_character * pchSrc, character_count nChars) noexcept { memory_transfer(pchDest, pchSrc, character_count_to_byte_length(pchSrc, nChars)); }
+CLASS_DECL_ACME void string_count_copy(::ansi_character * pchDest, const ::ansi_character * pchSrc, character_count nChars) noexcept { memory_copy(pchDest, pchSrc, character_count_to_byte_length_constrain_source_length(pchSrc, nChars)); }
+CLASS_DECL_ACME void string_count_copy(::ansi_character * pchDest, size_t nDestLen, const ::ansi_character * pchSrc, character_count nChars) noexcept { ::memory_copy(pchDest, pchSrc, character_count_to_byte_length_constrain_source_length(pchSrc, nChars)); }
+CLASS_DECL_ACME void overlapped_string_count_copy(::ansi_character * pchDest, const ::ansi_character * pchSrc, character_count nChars) noexcept { memory_transfer(pchDest, pchSrc, character_count_to_byte_length_constrain_source_length(pchSrc, nChars)); }
 
 
 CLASS_DECL_ACME ::std::strong_ordering as_strong_ordering(int i)

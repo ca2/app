@@ -3212,7 +3212,16 @@ void window::set_oswindow(::oswindow oswindow)
    ::user::interaction * window::user_interaction()
    {
 
-      return user_interaction();
+      ::cast < ::user::interaction > puserinteraction = m_pacmeuserinteraction;
+
+      if (!puserinteraction)
+      {
+         
+         return nullptr;
+
+      }
+
+      return puserinteraction;
 
    }
 

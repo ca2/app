@@ -51,7 +51,7 @@ class eimpact;
 
 enum enum_simple_command : int;
 enum enum_message : int;
-enum enum_impact : ::iptr;
+enum enum_impact : ::huge_integer;
 enum enum_id : ::uptr;
 enum enum_check : int;
 enum enum_happening : int;

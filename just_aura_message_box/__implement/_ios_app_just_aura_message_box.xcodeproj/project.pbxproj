@@ -25,7 +25,6 @@
 		9A4753DD2CF543AB00ED30AE /* libios_darwin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4753DC2CF543AB00ED30AE /* libios_darwin.a */; };
 		9A4753E02CF5484000ED30AE /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4753DF2CF5484000ED30AE /* libz.tbd */; };
 		9A97A7932CFBDDFB000A2F7C /* libios_acme_windowing_kit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A97A7922CFBDDFB000A2F7C /* libios_acme_windowing_kit.a */; };
-		9A97A7942CFBDDFB000A2F7C /* libios_acme_windowing_kit.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A97A7922CFBDDFB000A2F7C /* libios_acme_windowing_kit.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AC3F1182CF6B0560061DCC0 /* libios_apex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1172CF6B0560061DCC0 /* libios_apex.a */; };
 		9AC3F11A2CF6B0560061DCC0 /* libios_apex_apple.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1192CF6B0560061DCC0 /* libios_apex_apple.a */; };
 		9AC3F11C2CF6B0560061DCC0 /* libios_apex_darwin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F11B2CF6B0560061DCC0 /* libios_apex_darwin.a */; };
@@ -36,20 +35,14 @@
 		9AC3F1312CF6B9B60061DCC0 /* libacme_windowing_uikit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1302CF6B9B60061DCC0 /* libacme_windowing_uikit.a */; };
 		9AC3F18E2CF78A4F0061DCC0 /* libios_aqua.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F18D2CF78A4F0061DCC0 /* libios_aqua.a */; };
 		9AC3F1E92CF7AFFF0061DCC0 /* libios_app_just_aura_message_box.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1CD2CF78DEB0061DCC0 /* libios_app_just_aura_message_box.a */; };
-		9AC3F1EA2CF7AFFF0061DCC0 /* libios_app_just_aura_message_box.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC3F1CD2CF78DEB0061DCC0 /* libios_app_just_aura_message_box.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AC3F1F02CF7B0660061DCC0 /* libios_aura.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1EF2CF7B0650061DCC0 /* libios_aura.a */; };
 		9AC3F1F52CF7B08B0061DCC0 /* libios_aura_apple.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1F12CF7B08B0061DCC0 /* libios_aura_apple.a */; };
-		9AC3F1F62CF7B08B0061DCC0 /* libios_aura_apple.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC3F1F12CF7B08B0061DCC0 /* libios_aura_apple.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AC3F1F72CF7B08B0061DCC0 /* libios_aura_darwin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1F22CF7B08B0061DCC0 /* libios_aura_darwin.a */; };
-		9AC3F1F82CF7B08B0061DCC0 /* libios_aura_darwin.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC3F1F22CF7B08B0061DCC0 /* libios_aura_darwin.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AC3F1F92CF7B08B0061DCC0 /* libaura_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1F32CF7B08B0061DCC0 /* libaura_ios.a */; };
-		9AC3F1FA2CF7B08B0061DCC0 /* libaura_ios.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC3F1F32CF7B08B0061DCC0 /* libaura_ios.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AC3F1FB2CF7B08B0061DCC0 /* libios_aura_posix.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1F42CF7B08B0061DCC0 /* libios_aura_posix.a */; };
 		9AC3F1FF2CF7B1960061DCC0 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1FE2CF7B1960061DCC0 /* CoreText.framework */; };
 		9AC3F2012CF7B1DA0061DCC0 /* libnode_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F2002CF7B1DA0061DCC0 /* libnode_ios.a */; };
-		9AC3F2022CF7B1DA0061DCC0 /* libnode_ios.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC3F2002CF7B1DA0061DCC0 /* libnode_ios.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AC3F2042CF7B21C0061DCC0 /* libwindowing_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F2032CF7B21C0061DCC0 /* libwindowing_ios.a */; };
-		9AC3F2052CF7B21C0061DCC0 /* libwindowing_ios.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC3F2032CF7B21C0061DCC0 /* libwindowing_ios.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AC3F2072CF7B3340061DCC0 /* libinnate_ui_uikit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F2062CF7B3340061DCC0 /* libinnate_ui_uikit.a */; };
 		9AC3F20F2CF7B6B00061DCC0 /* libios_write_text_quartz2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F20E2CF7B6B00061DCC0 /* libios_write_text_quartz2d.a */; };
 		9AF8A2452D1E8F8400F03530 /* _static_factory_.inl in Resources */ = {isa = PBXBuildFile; fileRef = 9AF8A2442D1E8F8400F03530 /* _static_factory_.inl */; };
@@ -134,26 +127,6 @@
 			remoteInfo = ios_write_text_quartz2d;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		9AC3F1EB2CF7B0000061DCC0 /* Embed Libraries */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				9AC3F1F82CF7B08B0061DCC0 /* libios_aura_darwin.a in Embed Libraries */,
-				9AC3F1EA2CF7AFFF0061DCC0 /* libios_app_just_aura_message_box.a in Embed Libraries */,
-				9AC3F1FA2CF7B08B0061DCC0 /* libaura_ios.a in Embed Libraries */,
-				9AC3F2052CF7B21C0061DCC0 /* libwindowing_ios.a in Embed Libraries */,
-				9A97A7942CFBDDFB000A2F7C /* libios_acme_windowing_kit.a in Embed Libraries */,
-				9AC3F1F62CF7B08B0061DCC0 /* libios_aura_apple.a in Embed Libraries */,
-				9AC3F2022CF7B1DA0061DCC0 /* libnode_ios.a in Embed Libraries */,
-			);
-			name = "Embed Libraries";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9A4752BE2CF5124100ED30AE /* _ios_app_just_aura_message_box.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = _ios_app_just_aura_message_box.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -389,7 +362,6 @@
 				9A4752BA2CF5124100ED30AE /* Sources */,
 				9A4752BB2CF5124100ED30AE /* Frameworks */,
 				9A4752BC2CF5124100ED30AE /* Resources */,
-				9AC3F1EB2CF7B0000061DCC0 /* Embed Libraries */,
 			);
 			buildRules = (
 			);

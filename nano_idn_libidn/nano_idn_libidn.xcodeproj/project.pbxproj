@@ -15,8 +15,6 @@
 		9AC1B6EF2C32171500B503A1 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8350B2C1CCF9900096100 /* _.cpp */; };
 		9AC1B6F02C32171500B503A1 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE835082C1CCF8900096100 /* framework.cpp */; };
 		9AC1B6F12C32171500B503A1 /* nano_idn_libidn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE834F52C1CCEF900096100 /* nano_idn_libidn.cpp */; };
-		9AC1B6F32C32171500B503A1 /* libidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE8352D2C1CD12500096100 /* libidn.dylib */; };
-		9AC1B6F42C32171500B503A1 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE8351D2C1CD0D200096100 /* libacme.dylib */; };
 		9AE834F62C1CCEF900096100 /* nano_idn_libidn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE834F52C1CCEF900096100 /* nano_idn_libidn.cpp */; };
 		9AE835032C1CCF6F00096100 /* resource.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE835022C1CCF6F00096100 /* resource.h */; };
 		9AE835062C1CCF7F00096100 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE835042C1CCF7F00096100 /* framework.h */; };
@@ -30,19 +28,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9AC1B6E52C32171500B503A1 /* PBXContainerItemProxy */ = {
+		9AB54FD82D2BDC3500AFBCB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AE835262C1CD12500096100 /* idn.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
-			remoteInfo = idn;
+			remoteGlobalIDString = 077A00881B4D4F9E001C85FF;
+			remoteInfo = ios_idn;
 		};
-		9AC1B6E72C32171500B503A1 /* PBXContainerItemProxy */ = {
+		9AB54FDA2D2BDC4100AFBCB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AE835162C1CD0D200096100 /* acme.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 9A68A41325114352008DABD2;
-			remoteInfo = acme;
+			remoteGlobalIDString = 9AC100A72B6AC9BD0053DB45;
+			remoteInfo = ios_acme;
 		};
 		9AE8351C2C1CD0D200096100 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -120,15 +118,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9AC1B6F22C32171500B503A1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9AC1B6F32C32171500B503A1 /* libidn.dylib in Frameworks */,
-				9AC1B6F42C32171500B503A1 /* libacme.dylib in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9AE834EC2C1CCEF900096100 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -239,13 +228,12 @@
 			buildPhases = (
 				9AC1B6E82C32171500B503A1 /* Headers */,
 				9AC1B6ED2C32171500B503A1 /* Sources */,
-				9AC1B6F22C32171500B503A1 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9AC1B6E42C32171500B503A1 /* PBXTargetDependency */,
-				9AC1B6E62C32171500B503A1 /* PBXTargetDependency */,
+				9AB54FDB2D2BDC4100AFBCB1 /* PBXTargetDependency */,
+				9AB54FD92D2BDC3500AFBCB1 /* PBXTargetDependency */,
 			);
 			name = ios_nano_idn_libidn;
 			productName = nano_idn_libidn;
@@ -386,15 +374,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9AC1B6E42C32171500B503A1 /* PBXTargetDependency */ = {
+		9AB54FD92D2BDC3500AFBCB1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = idn;
-			targetProxy = 9AC1B6E52C32171500B503A1 /* PBXContainerItemProxy */;
+			name = ios_idn;
+			targetProxy = 9AB54FD82D2BDC3500AFBCB1 /* PBXContainerItemProxy */;
 		};
-		9AC1B6E62C32171500B503A1 /* PBXTargetDependency */ = {
+		9AB54FDB2D2BDC4100AFBCB1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = acme;
-			targetProxy = 9AC1B6E72C32171500B503A1 /* PBXContainerItemProxy */;
+			name = ios_acme;
+			targetProxy = 9AB54FDA2D2BDC4100AFBCB1 /* PBXContainerItemProxy */;
 		};
 		9AE835232C1CD0E100096100 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

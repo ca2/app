@@ -17,10 +17,6 @@
 		9AC3F1702CF785830061DCC0 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCB8C2651A84F00C0D8A1 /* _.cpp */; };
 		9AC3F1712CF785830061DCC0 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCBA62651A84F00C0D8A1 /* application.cpp */; };
 		9AC3F1722CF785830061DCC0 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8FCAFC2651A84D00C0D8A1 /* framework.cpp */; };
-		9AC3F1742CF785830061DCC0 /* libapp_just_message_box.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1CC4622CF30E06004A00CB /* libapp_just_message_box.dylib */; };
-		9AC3F1752CF785830061DCC0 /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2E626425258C4E0001CC7E /* libaqua.dylib */; };
-		9AC3F1762CF785830061DCC0 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3970325195DFA0036B92A /* libacme.dylib */; };
-		9AC3F1772CF785830061DCC0 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3970525195DFA0036B92A /* libapex.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,17 +153,6 @@
 				9A2E626525258C4E0001CC7E /* libaqua.dylib in Frameworks */,
 				9AC3970425195DFA0036B92A /* libacme.dylib in Frameworks */,
 				9AC3970625195DFA0036B92A /* libapex.dylib in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9AC3F1732CF785830061DCC0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9AC3F1742CF785830061DCC0 /* libapp_just_message_box.dylib in Frameworks */,
-				9AC3F1752CF785830061DCC0 /* libaqua.dylib in Frameworks */,
-				9AC3F1762CF785830061DCC0 /* libacme.dylib in Frameworks */,
-				9AC3F1772CF785830061DCC0 /* libapex.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,7 +293,6 @@
 			buildPhases = (
 				9AC3F16E2CF785830061DCC0 /* Headers */,
 				9AC3F16F2CF785830061DCC0 /* Sources */,
-				9AC3F1732CF785830061DCC0 /* Frameworks */,
 			);
 			buildRules = (
 			);

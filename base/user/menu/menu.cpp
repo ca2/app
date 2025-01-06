@@ -623,7 +623,9 @@ namespace user
 
 #else
 
-      m_puserinteractionOwner->m_menua.add(this);
+      auto puserinteractionTopOwner = get_owner();
+
+      puserinteractionTopOwner->m_menua.add(this);
 
 #endif
 

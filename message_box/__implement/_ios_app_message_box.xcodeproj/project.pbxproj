@@ -45,16 +45,13 @@
 		9A882EEF2844ACF1004113D1 /* libios_folder_zip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882E4028449D59004113D1 /* libios_folder_zip.a */; };
 		9A882EF02844ACFA004113D1 /* libios_crypto_openssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A882E4928449D59004113D1 /* libios_crypto_openssl.a */; };
 		9A97A7962CFBE1C7000A2F7C /* libios_acme_windowing_kit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A97A7952CFBE1C7000A2F7C /* libios_acme_windowing_kit.a */; };
-		9A97A7972CFBE1C7000A2F7C /* libios_acme_windowing_kit.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A97A7952CFBE1C7000A2F7C /* libios_acme_windowing_kit.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AAC2145247571180013AB72 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AAC2144247571180013AB72 /* libbz2.tbd */; };
 		9AAC214B247571E10013AB72 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEB6A0B1F81DD0400F40B32 /* libiconv.tbd */; };
+		9AB54BCA2D2B65EE00AFBCB1 /* liboperating_ambient_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3E31FD2CF81C66007DC9EE /* liboperating_ambient_ios.a */; };
 		9AB67DE72D1E3CF5001AB250 /* _static_factory_.inl in Resources */ = {isa = PBXBuildFile; fileRef = 9AB67DE62D1E3CF5001AB250 /* _static_factory_.inl */; };
 		9AC3F2662CF7FCA90061DCC0 /* libnode_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F2652CF7FCA90061DCC0 /* libnode_ios.a */; };
-		9AC3F2672CF7FCAA0061DCC0 /* libnode_ios.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC3F2652CF7FCA90061DCC0 /* libnode_ios.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AC3F26B2CF7FD5F0061DCC0 /* libios_nano_graphics_quartz2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F26A2CF7FD5F0061DCC0 /* libios_nano_graphics_quartz2d.a */; };
-		9AC3F26C2CF7FD5F0061DCC0 /* libios_nano_graphics_quartz2d.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC3F26A2CF7FD5F0061DCC0 /* libios_nano_graphics_quartz2d.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AC3F26E2CF7FD690061DCC0 /* libinnate_ui_uikit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F26D2CF7FD690061DCC0 /* libinnate_ui_uikit.a */; };
-		9AC3F26F2CF7FD6A0061DCC0 /* libinnate_ui_uikit.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC3F26D2CF7FD690061DCC0 /* libinnate_ui_uikit.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AE8692D28588CF400F88364 /* _matter.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9AE867E428588B4B00F88364 /* _matter.zip */; };
 		9AE8692E28588CF800F88364 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AE867EF28588B4C00F88364 /* Images.xcassets */; };
 		9AE8692F28588CFB00F88364 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AE8692C28588BC700F88364 /* Launch Screen.storyboard */; };
@@ -207,23 +204,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		9AC3F2642CF7FC9F0061DCC0 /* Embed Libraries */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				9A97A7972CFBE1C7000A2F7C /* libios_acme_windowing_kit.a in Embed Libraries */,
-				9AC3F26C2CF7FD5F0061DCC0 /* libios_nano_graphics_quartz2d.a in Embed Libraries */,
-				9AC3F2672CF7FCAA0061DCC0 /* libnode_ios.a in Embed Libraries */,
-				9AC3F26F2CF7FD6A0061DCC0 /* libinnate_ui_uikit.a in Embed Libraries */,
-			);
-			name = "Embed Libraries";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		077A02081B4D5758001C85FF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		078C352F1921758500354453 /* _ios_app_message_box.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = _ios_app_message_box.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -308,6 +288,7 @@
 				9A97A7962CFBE1C7000A2F7C /* libios_acme_windowing_kit.a in Frameworks */,
 				9A882EEE2844ACAD004113D1 /* libaura_ios.a in Frameworks */,
 				9A882EE72844AA9D004113D1 /* libios_write_text_quartz2d.a in Frameworks */,
+				9AB54BCA2D2B65EE00AFBCB1 /* liboperating_ambient_ios.a in Frameworks */,
 				9A882EC02844A9B0004113D1 /* libwindowing_ios.a in Frameworks */,
 				9A882EBD2844A8EE004113D1 /* libios_draw2d_quartz2d.a in Frameworks */,
 				9A882EBB2844A82C004113D1 /* libios_idn.a in Frameworks */,
@@ -530,7 +511,6 @@
 				078C352B1921758500354453 /* Sources */,
 				078C352C1921758500354453 /* Frameworks */,
 				078C352D1921758500354453 /* Resources */,
-				9AC3F2642CF7FC9F0061DCC0 /* Embed Libraries */,
 			);
 			buildRules = (
 			);
@@ -831,8 +811,12 @@
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/ios/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Message Box!!";
+				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2015-2023 ca2 Desenvolvimento de Software Ltda. All rights reserved.";
+				INFOPLIST_KEY_NSPrincipalClass = UIApplication;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				MACH_O_TYPE = mh_execute;
 				MARKETING_VERSION = 0.1;
 				PLATFORM_MODIFIER = ios;
@@ -850,8 +834,12 @@
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/ios/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Message Box!!";
+				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2015-2023 ca2 Desenvolvimento de Software Ltda. All rights reserved.";
+				INFOPLIST_KEY_NSPrincipalClass = UIApplication;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				MACH_O_TYPE = mh_execute;
 				MARKETING_VERSION = 0.1;
 				PLATFORM_MODIFIER = ios;

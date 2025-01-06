@@ -87,13 +87,6 @@
 			remoteGlobalIDString = 9A7E17662C9DFBB600EE8CA6;
 			remoteInfo = acme_windowing_uikit;
 		};
-		9A8DBADC2D1E847900D72458 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A4752DB2CF5135C00ED30AE /* app_just_acme_message_box.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A48898524EB48DE00119EC4;
-			remoteInfo = app_just_acme_message_box;
-		};
 		9A8DBAEC2D1E849D00D72458 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A45ED762D1E803C008CC280 /* nano_graphics_quartz2d.xcodeproj */;
@@ -121,6 +114,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9A1BD6E12A0079D400152CD1;
 			remoteInfo = static_folder_zip;
+		};
+		9AB54F202D2BC85F00AFBCB1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A4752DB2CF5135C00ED30AE /* app_just_acme_message_box.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A4753162CF515CA00ED30AE;
+			remoteInfo = ios_app_just_acme_message_box;
 		};
 		9AF8A23A2D1E8F0D00F03530 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -338,9 +338,9 @@
 			buildRules = (
 			);
 			dependencies = (
+				9AB54F212D2BC85F00AFBCB1 /* PBXTargetDependency */,
 				9AF8A23B2D1E8F0D00F03530 /* PBXTargetDependency */,
 				9A8DBAED2D1E849D00D72458 /* PBXTargetDependency */,
-				9A8DBADD2D1E847900D72458 /* PBXTargetDependency */,
 				9A8DBADB2D1E846B00D72458 /* PBXTargetDependency */,
 				9A8DBAD92D1E846000D72458 /* PBXTargetDependency */,
 			);
@@ -509,15 +509,15 @@
 			name = acme_windowing_uikit;
 			targetProxy = 9A8DBADA2D1E846B00D72458 /* PBXContainerItemProxy */;
 		};
-		9A8DBADD2D1E847900D72458 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = app_just_acme_message_box;
-			targetProxy = 9A8DBADC2D1E847900D72458 /* PBXContainerItemProxy */;
-		};
 		9A8DBAED2D1E849D00D72458 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ios_nano_graphics_quartz2d;
 			targetProxy = 9A8DBAEC2D1E849D00D72458 /* PBXContainerItemProxy */;
+		};
+		9AB54F212D2BC85F00AFBCB1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_app_just_acme_message_box;
+			targetProxy = 9AB54F202D2BC85F00AFBCB1 /* PBXContainerItemProxy */;
 		};
 		9AF8A23B2D1E8F0D00F03530 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

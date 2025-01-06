@@ -57,6 +57,13 @@
 			remoteGlobalIDString = 9AE63E9A252A5B7800BED5B8;
 			remoteInfo = axis;
 		};
+		9AB54FA82D2BD79900AFBCB1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1FB599287147220042849A /* axis.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A93B5822846EA94005ACD11;
+			remoteInfo = ios_axis;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -93,13 +100,6 @@
 				9A1FB5A9287147E00042849A /* libapex.dylib in Frameworks */,
 				9A1FB5A7287147D80042849A /* libacme.dylib in Frameworks */,
 				9A1FB5A5287147580042849A /* libaxis.dylib in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9A0DB3E42864314500D061F7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,11 +221,11 @@
 			buildPhases = (
 				9A0DB3D72864314500D061F7 /* Headers */,
 				9A0DB3DF2864314500D061F7 /* Sources */,
-				9A0DB3E42864314500D061F7 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9AB54FA92D2BD79900AFBCB1 /* PBXTargetDependency */,
 			);
 			name = ios_database_sqlite3;
 			productName = database_sqlite3;
@@ -319,6 +319,11 @@
 			isa = PBXTargetDependency;
 			name = axis;
 			targetProxy = 9A1FB5A22871473B0042849A /* PBXContainerItemProxy */;
+		};
+		9AB54FA92D2BD79900AFBCB1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_axis;
+			targetProxy = 9AB54FA82D2BD79900AFBCB1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

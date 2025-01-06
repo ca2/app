@@ -45,6 +45,13 @@
 			remoteGlobalIDString = 9A68A41325114352008DABD2;
 			remoteInfo = acme;
 		};
+		9AB54F1C2D2BC82D00AFBCB1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A67B9DD2D1BD18D00C29153 /* acme.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AC100A72B6AC9BD0053DB45;
+			remoteInfo = ios_acme;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -148,6 +155,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9AB54F1D2D2BC82D00AFBCB1 /* PBXTargetDependency */,
 			);
 			name = ios_app_just_message_box;
 			packageProductDependencies = (
@@ -268,6 +276,11 @@
 			isa = PBXTargetDependency;
 			name = acme;
 			targetProxy = 9A78477C2D1BD22700459856 /* PBXContainerItemProxy */;
+		};
+		9AB54F1D2D2BC82D00AFBCB1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_acme;
+			targetProxy = 9AB54F1C2D2BC82D00AFBCB1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

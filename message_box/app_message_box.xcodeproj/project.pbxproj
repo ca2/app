@@ -72,6 +72,7 @@
 		9A8FCBA42651A84F00C0D8A1 /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		9A8FCBA62651A84F00C0D8A1 /* application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
 		9A8FCC162651A85000C0D8A1 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9AB54BA12D2B0B0200AFBCB1 /* crypto_openssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = crypto_openssl.xcodeproj; path = ../crypto_openssl/crypto_openssl.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9AC01A492748C20F006BEBCC /* app_app.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = app_app.xcodeproj; path = ../app/app_app.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9AF1159D2844E496006B2424 /* _factory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,19 +90,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9A882E6E28449DBC004113D1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		9A48897D24EB48DE00119EC4 = {
 			isa = PBXGroup;
 			children = (
+				9AB54BA12D2B0B0200AFBCB1 /* crypto_openssl.xcodeproj */,
 				9AC01A492748C20F006BEBCC /* app_app.xcodeproj */,
 				9A8FCADA2651A84D00C0D8A1 /* message_box */,
 				9A48898724EB48DE00119EC4 /* Products */,
@@ -200,7 +195,6 @@
 			buildPhases = (
 				9A882E6828449DBC004113D1 /* Headers */,
 				9A882E6928449DBC004113D1 /* Sources */,
-				9A882E6E28449DBC004113D1 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -543,6 +537,7 @@
 		9A882E7528449DBC004113D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
 				EXECUTABLE_PREFIX = lib;
 				MACH_O_TYPE = staticlib;
@@ -554,6 +549,7 @@
 		9A882E7628449DBC004113D1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
 				EXECUTABLE_PREFIX = lib;
 				MACH_O_TYPE = staticlib;

@@ -25,7 +25,6 @@
 		9A4753DD2CF543AB00ED30AE /* libios_darwin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4753DC2CF543AB00ED30AE /* libios_darwin.a */; };
 		9A4753E02CF5484000ED30AE /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4753DF2CF5484000ED30AE /* libz.tbd */; };
 		9A97A78F2CFBDA3E000A2F7C /* libios_acme_windowing_kit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A97A78E2CFBDA3E000A2F7C /* libios_acme_windowing_kit.a */; };
-		9A97A7902CFBDA3E000A2F7C /* libios_acme_windowing_kit.a in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A97A78E2CFBDA3E000A2F7C /* libios_acme_windowing_kit.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AB67D042D1C4AA1001AB250 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB67D032D1C4AA1001AB250 /* CoreText.framework */; };
 		9AB67E082D1E3DCB001AB250 /* _static_factory_.inl in Resources */ = {isa = PBXBuildFile; fileRef = 9AB67E072D1E3DCB001AB250 /* _static_factory_.inl */; };
 		9AC3F1182CF6B0560061DCC0 /* libios_apex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F1172CF6B0560061DCC0 /* libios_apex.a */; };
@@ -119,20 +118,6 @@
 			remoteInfo = innate_ui_uikit;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		9A97A7912CFBDA3E000A2F7C /* Embed Libraries */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				9A97A7902CFBDA3E000A2F7C /* libios_acme_windowing_kit.a in Embed Libraries */,
-			);
-			name = "Embed Libraries";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9A4752BE2CF5124100ED30AE /* _ios_app_just_aqua_message_box.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = _ios_app_just_aqua_message_box.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -339,7 +324,6 @@
 				9A4752BA2CF5124100ED30AE /* Sources */,
 				9A4752BB2CF5124100ED30AE /* Frameworks */,
 				9A4752BC2CF5124100ED30AE /* Resources */,
-				9A97A7912CFBDA3E000A2F7C /* Embed Libraries */,
 			);
 			buildRules = (
 			);

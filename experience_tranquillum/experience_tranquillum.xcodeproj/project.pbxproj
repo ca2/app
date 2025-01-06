@@ -150,13 +150,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9AE24E571904CFE2001AEFFB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9AE24E661904CFE2001AEFFB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -318,7 +311,6 @@
 			buildConfigurationList = 9AE24E841904CFE2001AEFFB /* Build configuration list for PBXNativeTarget "ios_experience_tranquillum" */;
 			buildPhases = (
 				9AE24E561904CFE2001AEFFB /* Sources */,
-				9AE24E571904CFE2001AEFFB /* Frameworks */,
 			);
 			buildRules = (
 			);

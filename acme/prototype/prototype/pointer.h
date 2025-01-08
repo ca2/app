@@ -1343,7 +1343,7 @@ template < primitive_subparticle SUBPARTICLE >
 ::pointer < SUBPARTICLE > as_pointer(SUBPARTICLE* p)
 {
 
-   return { place_t{}, p };
+   return { p };
 
 }
 

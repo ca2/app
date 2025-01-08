@@ -8,7 +8,7 @@
 #pragma once
 
 
-#include "acme/platform/department.h"
+#include "acme/platform/http.h"
 #include "get.h"
 
 
@@ -21,7 +21,7 @@ namespace nano
    
    
       class CLASS_DECL_ACME http :
-            virtual public ::acme::department
+            virtual public ::platform::http
       {
       public:
          
@@ -43,11 +43,11 @@ namespace nano
          //
          //virtual void async(::nano::http::get * pget);
 
-         virtual void perform(::nano::http::get * pget);
+         virtual void perform(::nano::http::get * pget) override;
 
 
          // Follow redirects and find final resource.
-         virtual ::url::url get_effective_url(const ::url::url & url);
+         virtual ::url::url get_effective_url(const ::url::url & url) override;
 
          virtual bool check_url_ok(const ::url::url & url);
 

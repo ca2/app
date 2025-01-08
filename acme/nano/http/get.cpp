@@ -17,7 +17,18 @@ namespace nano
    namespace http
    {
    
+   get::get()
+   {
+      
+      
+   }
    
+   get::~get()
+   {
+      
+   }
+   
+
       void get::set_out_header(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrPayload)
       {
          
@@ -50,6 +61,7 @@ namespace nano
       void get::set_response(long http_status, const void * data, long size)
       {
          
+         
          get_memory_response()->assign(data, size);
          
          payload("http_status_code") = (huge_integer) http_status;
@@ -57,6 +69,22 @@ namespace nano
          //passynchronoushttpdata->m_function(passynchronoushttpdata);
          
       }
+
+   
+   void get::append_response(const void * data, long size)
+   {
+      
+      get_memory_response()->append(data, size);
+      
+   }
+
+   
+   void get::set_status(long http_status)
+   {
+      
+      payload("http_status_code") = (huge_integer) http_status;
+      
+   }
 
 
       get * get::this_transport_payload()

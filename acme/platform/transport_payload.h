@@ -44,8 +44,13 @@ public:
 
     virtual void on_finished()
     {
-
-        m_functionOnFinished(this_transport_payload());
+       
+       if(m_functionOnFinished)
+       {
+          
+          m_functionOnFinished(this_transport_payload());
+          
+       }
 
     }
 

@@ -54,7 +54,7 @@ namespace user
       ::color::color _001GetButtonBackgroundColor() override;
 
 
-      bool on_click(::item * pitem) override;
+      bool on_click(::item * pitem, ::user::mouse * pmouse) override;
 
    };
 

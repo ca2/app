@@ -3,6 +3,7 @@
 //
 #include "framework.h"
 #include "action_context.h"
+#include "acme/user/user/activation_token.h"
 //#include "acme/prototype/collection/pointer_array.h"
 
 
@@ -33,5 +34,40 @@ bool action_context::contains(const ::particle * pparticle) const
 {
 
    return !m_pparticlea ? false : m_pparticlea->contains(pparticle);
+
+}
+
+
+::user::activation_token * action_context::user_activation_token()
+{
+
+   auto puseractivationtoken = m_puseractivationtoken;
+
+   if (::is_set(puseractivationtoken))
+   {
+
+      return puseractivationtoken;
+
+   }
+
+   auto pmessage = m_pmessage;
+
+   if (::is_null(pmessage))
+   {
+
+      return nullptr;
+
+   }
+
+   puseractivationtoken = pmessage->user_activation_token();
+
+   if (::is_null(puseractivationtoken))
+   {
+
+      return nullptr;
+
+   }
+
+   return puseractivationtoken;
 
 }

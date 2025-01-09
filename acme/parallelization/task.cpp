@@ -128,7 +128,6 @@ task::~task()
 }
 
 
-
 void task::on_initialize_particle()
 {
 
@@ -140,7 +139,7 @@ void task::on_initialize_particle()
 
    m_synchronizationaMainLoop.add(new_main_loop_happening());
 
-   ///__on_update_handler_happening_unlocked();
+   update_new_main_loop_happening();
 
    //m_pprintingformat);
 
@@ -156,29 +155,37 @@ void task::on_initialize_particle()
 }
 
 
-//void task::__on_update_handler_happening_unlocked()
+//bool task::has_main_loop_happening()
 //{
 //
 //   if (m_bHandleRequest || m_requestaPosted.has_element())
 //   {
 //
-//      m_synchronizationaMainLoop.add_item(new_request_posted());
+//     // m_synchronizationaMainLoop.add_item(new_request_posted());
+//
+//      return true;
 //
 //   }
 //
 //   if (m_bHandleProcedure || m_procedurea.has_element())
 //   {
 //
-//      m_synchronizationaMainLoop.add_item(new_procedure_posted());
+//      //m_synchronizationaMainLoop.add_item(new_procedure_posted());
+//
+//      return true;
 //
 //   }
 //
 //   if (m_bHandleHappening || m_ehappeninga.has_element())
 //   {
 //
-//      m_synchronizationaMainLoop.add_item(new_happening());
+//      //m_synchronizationaMainLoop.add_item(new_happening());
+//
+//      return true;
 //
 //   }
+//
+//   return false;
 //
 //}
 
@@ -259,12 +266,19 @@ bool task::has_main_loop_happening()
 
    _synchronous_lock synchronouslock(this->synchronization());
 
+   return _has_main_loop_happening_unlocked();
+
+}
+
+
+bool task::_has_main_loop_happening_unlocked()
+{
+
    return m_requestaPosted.has_element()
       || m_procedurea2.has_element()
       || m_ehappeninga.has_element();
 
 }
-
 
 
 void task::add_task(::object * pobjectTask)
@@ -969,23 +983,7 @@ bool task::task_run(const class ::time & time)
    while (true)
    {
 
-      ::multiple_lock multiplelock(m_synchronizationaMainLoop);
-
-      auto estatus = multiplelock.lock(remaining, false, QS_ALLINPUT);
-
-      if (estatus == error_wait_timeout)
-      {
-
-         return true;
-
-      }
-      else if (estatus.failed())
-      {
-
-         throw ::exception(error_failed);
-
-      }
-      else
+      if(task_wait(remaining))
       {
 
          while(auto ehappening = pick_happening())
@@ -1021,6 +1019,31 @@ bool task::task_run(const class ::time & time)
       remaining = time - elapsed;
 
    }
+
+}
+
+
+bool task::task_wait(const class ::time & timeRemaining)
+{
+
+   ::multiple_lock multiplelock(m_synchronizationaMainLoop);
+
+   auto estatus = multiplelock.lock(timeRemaining, false, QS_ALLINPUT);
+
+   if (estatus == error_wait_timeout)
+   {
+
+      return false;
+
+   }
+   else if (estatus.failed())
+   {
+
+      throw ::exception(error_failed);
+
+   }
+   
+   return true;
 
 }
 
@@ -1429,7 +1452,7 @@ void task::_post(const ::procedure & procedure)
 
       new_main_loop_happening()->set_happening();
 
-      //__on_update_handler_happening_unlocked();
+      //update_new_main_loop_happening();
 
    }
 
@@ -1702,7 +1725,7 @@ void task::set_happened(e_happening ehappening)
 
    new_main_loop_happening()->set_happening();
 
-   //__on_update_handler_happening_unlocked();
+   //update_new_main_loop_happening();
 
 }
 

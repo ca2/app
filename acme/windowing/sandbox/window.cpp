@@ -3639,7 +3639,7 @@ void window::set_keyboard_focus()
    if (pwindowing->m_pwindowKeyboardFocus && pwindowing->m_pwindowKeyboardFocus != this)
    {
       
-//      pwindowing->clear_keyboard_focus(pwindow ? pwindow->m_puserinteractionKeyboardFocusRequest : nullptr);
+//      pwindowing->aaa_clear_keyboard_focus(pwindow ? pwindow->m_pacmeuserinteractionKeyboardFocusRequest : nullptr);
       
    }
    
@@ -3715,7 +3715,7 @@ void window::set_keyboard_focus()
 //      if (pwindowing->m_pwindowKeyboardFocus && pwindowing->m_pwindowKeyboardFocus != this)
 //      {
 //
-//         pwindowing->clear_keyboard_focus(this);
+//         pwindowing->aaa_clear_keyboard_focus(this);
 //
 //      }
 //
@@ -3785,10 +3785,10 @@ void window::set_keyboard_focus()
 void window::SetInternalFocus()
 {
    
-   //if (m_pwindow->m_puserinteractionKeyboardFocusRequest != nullptr)
+   //if (m_pwindow->m_pacmeuserinteractionKeyboardFocusRequest != nullptr)
    //{
    
-   //   m_pwindow->on_final_set_keyboard_focus(m_pwindow->m_puserinteractionKeyboardFocusRequest);
+   //   m_pwindow->on_final_set_keyboard_focus(m_pwindow->m_pacmeuserinteractionKeyboardFocusRequest);
    
    //}
    

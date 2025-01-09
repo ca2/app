@@ -55,7 +55,7 @@ namespace user
    }
 
 
-   bool form_mesh::on_click(::item * pitem)
+   bool form_mesh::on_click(::item * pitem, ::user::mouse * pmouse)
    {
       
       if (!::is_set(pitem))

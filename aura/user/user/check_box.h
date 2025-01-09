@@ -68,7 +68,7 @@ namespace user
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
-      bool on_click(::item * pitem) override;
+      bool on_click(::item * pitem, ::user::mouse * pmouse) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);

@@ -56,7 +56,7 @@ namespace filemanager
    }
 
 
-   bool save_as_button_impact::on_click(::item * pitem)
+   bool save_as_button_impact::on_click(::item * pitem, ::user::mouse * pmouse)
    {
 
       ASSERT(filemanager_data()->m_pdocumentTopic != nullptr);

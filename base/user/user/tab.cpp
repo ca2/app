@@ -1952,7 +1952,7 @@ namespace user
    }
 
 
-   bool tab::on_click(::item * pitem)
+   bool tab::on_click(::item * pitem, ::user::mouse * pmouse)
    {
 
       if (::is_element(pitem, e_element_close_tab_button))

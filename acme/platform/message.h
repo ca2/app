@@ -30,6 +30,9 @@ namespace acme
       bool                 m_bRet = false;
 
 
+      virtual ::user::activation_token * user_activation_token();
+
+
    };
 
 

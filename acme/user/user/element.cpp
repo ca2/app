@@ -8,6 +8,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/file_dialog.h"
 #include "acme/operating_system/a_system_menu.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/user/user/interaction.h"
@@ -3001,16 +3002,16 @@ namespace user
    //}
 
 
-   void element::on_set_keyboard_focus()
-   {
+   //void element::on_set_keyboard_focus()
+   //{
 
-   }
+   //}
 
 
-   void element::on_kill_keyboard_focus()
-   {
+   //void element::on_kill_keyboard_focus()
+   //{
 
-   }
+   //}
 
 
    bool element::GetFocusRect(::int_rectangle & rectangle)
@@ -4339,7 +4340,7 @@ namespace user
       //      if (pprimitive == nullptr || pprimitive == this)
       //      {
       //
-      //         clear_keyboard_focus();
+      //         aaa_clear_keyboard_focus();
       //
       //      }
       //      else
@@ -4506,27 +4507,61 @@ namespace user
    void element::set_keyboard_focus()
    {
 
-      throw ::interface_only();
+      auto pwindow = acme_windowing_window();
 
-      //return false;
+      if (::is_null(pwindow))
+      {
+
+         return;
+
+      }
+
+      ::cast < ::acme::user::interaction > pacmeuserinteractionFocus = this;
+
+      if (::is_null(pacmeuserinteractionFocus))
+      {
+
+         throw ::exception(error_wrong_state, "element should be at least a acme::user::interaction to get focus");
+
+      }
+
+      pwindow->set_keyboard_focus(pacmeuserinteractionFocus);
 
    }
 
 
-   void element::erase_keyboard_focus()
-   {
+   //void element::erase_keyboard_focus()
+   //{
 
-      throw ::interface_only();
+   //   auto pwindow = acme_windowing_window();
 
-   }
+   //   if (::is_null(pwindow))
+   //   {
+
+   //      return;
+
+   //   }
+
+   //   ::cast < ::acme::user::interaction > pacmeuserinteractionFocus = this;
+
+   //   if (::is_null(pacmeuserinteractionFocus))
+   //   {
+
+   //      throw ::exception(error_wrong_state, "element should be at least a acme::user::interaction to get focus (and then to loose it)");
+
+   //   }
+
+   //   pwindow->erase_keyboard_focus(pacmeuserinteractionFocus);
+
+   //}
 
 
-   void element::clear_keyboard_focus(::user::element * pelementGainingFocusIfAny)
-   {
+   //void element::clear_keyboard_focus(::user::element * pelementGainingFocusIfAny)
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-   }
+   //}
 
 
    void element::mouse_focus_OnLButtonUp(::message::message * pmessage)

@@ -539,7 +539,7 @@ void windowing::_message_handler(void* p)
    
    //auto pwindowApplicationHost = get_application_host_window();
    
-   //if (!pwindowApplicationHost->m_pwindow->m_puserinteractionKeyboardFocus)
+   //if (!pwindowApplicationHost->m_pwindow->aaa_m_pacmeuserinteractionKeyboardFocus)
    //{
    
    //   return nullptr;
@@ -598,82 +598,82 @@ bool windowing::defer_release_mouse_capture(::thread * pthread, ::acme::windowin
 }
 
 
-void windowing::clear_keyboard_focus(::user::element* pelementGainingFocusIfAny)
-{
-   
-   if (!m_pwindowKeyboardFocus)
-   {
-      
-      return;
-      
-   }
-   
-   auto pwindow = m_pwindowKeyboardFocus;
-   
-   if (pwindow)
-   {
-      
-      pwindow->clear_keyboard_focus();
-      
-      //pwindow->on_fin
-      //         auto puserinteractionKeyboardFocus = pwindow->m_puserinteractionKeyboardFocus;
-      //
-      //         if (puserinteractionKeyboardFocus)
-      //         {
-      //
-      //            pwindow->m_puserinteractionKeyboardGainingFocusIfAny = pwindowGainingFocusIfAny;
-      //
-      //            //pwindow->m_puserinteractionKeyboardFocus->post_message(e_message_kill_focus);
-      //
-      //            pwindow->m_puserinteractionKeyboardFocus.release();
-      
-      //}
-      //auto puserinteraction =
-      
-      //         if (puserinteraction)
-      //         {
-      //
-      //            puserinteraction->post_message(e_message_kill_focus);
-      //
-      //         }
-      //
-      //         //if (pwindow->m_puserinteractionKeyboardFocus)
-      //         //{
-      //
-      //         //   pwindow->m_puserinteractionKeyboardGainingFocusIfAny = pwindowGainingFocusIfAny;
-      //
-      //         //   pwindow->m_puserinteractionKeyboardFocus->post_message(e_message_kill_focus);
-      //
-      //         //}
-      //
-      //         pwindow->m_puserinteractionKeyboardFocus.release();
-      
-      //}
-      
-      if(!pelementGainingFocusIfAny || pelementGainingFocusIfAny->acme_windowing_window() !=
-         m_pwindowKeyboardFocus)
-      {
-         
-         m_pwindowKeyboardFocus.release();
-         
-      }
-      
-      //auto estatus =
-      //
-      //m_pdisplay->release_mouse_capture();
-      
-      //      if(!estatus)
-      //      {
-      //
-      //         return estatus;
-      //
-      //      }
-      //
-      //      return estatus;
-      
-   }
-   
-}
+//void windowing::clear_keyboard_focus(::user::element* pelementGainingFocusIfAny)
+//{
+//   
+//   if (!m_pwindowKeyboardFocus)
+//   {
+//      
+//      return;
+//      
+//   }
+//   
+//   auto pwindow = m_pwindowKeyboardFocus;
+//   
+//   if (pwindow)
+//   {
+//      
+//      pwindow->clear_keyboard_focus();
+//      
+//      //pwindow->on_fin
+//      //         auto puserinteractionKeyboardFocus = pwindow->aaa_m_pacmeuserinteractionKeyboardFocus;
+//      //
+//      //         if (puserinteractionKeyboardFocus)
+//      //         {
+//      //
+//      //            pwindow->m_puserinteractionKeyboardGainingFocusIfAny = pwindowGainingFocusIfAny;
+//      //
+//      //            //pwindow->aaa_m_pacmeuserinteractionKeyboardFocus->post_message(e_message_kill_focus);
+//      //
+//      //            pwindow->aaa_m_pacmeuserinteractionKeyboardFocus.release();
+//      
+//      //}
+//      //auto puserinteraction =
+//      
+//      //         if (puserinteraction)
+//      //         {
+//      //
+//      //            puserinteraction->post_message(e_message_kill_focus);
+//      //
+//      //         }
+//      //
+//      //         //if (pwindow->aaa_m_pacmeuserinteractionKeyboardFocus)
+//      //         //{
+//      //
+//      //         //   pwindow->m_puserinteractionKeyboardGainingFocusIfAny = pwindowGainingFocusIfAny;
+//      //
+//      //         //   pwindow->aaa_m_pacmeuserinteractionKeyboardFocus->post_message(e_message_kill_focus);
+//      //
+//      //         //}
+//      //
+//      //         pwindow->aaa_m_pacmeuserinteractionKeyboardFocus.release();
+//      
+//      //}
+//      
+//      if(!pelementGainingFocusIfAny || pelementGainingFocusIfAny->acme_windowing_window() !=
+//         m_pwindowKeyboardFocus)
+//      {
+//         
+//         m_pwindowKeyboardFocus.release();
+//         
+//      }
+//      
+//      //auto estatus =
+//      //
+//      //m_pdisplay->release_mouse_capture();
+//      
+//      //      if(!estatus)
+//      //      {
+//      //
+//      //         return estatus;
+//      //
+//      //      }
+//      //
+//      //      return estatus;
+//      
+//   }
+//   
+//}
 
 //
 //::pointer<::windowing::cursor>windowing::get_cursor(enum_cursor ecursor)

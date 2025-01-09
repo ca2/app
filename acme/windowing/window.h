@@ -73,7 +73,7 @@ namespace acme
          ::pointer < ::operating_system::a_system_menu >    m_psystemmenu;
 
          ::pointer<::acme::user::interaction>               m_pacmeuserinteraction;
-         ::pointer<::acme::user::interaction>               m_pacmeuserinteractionFocus;
+         ::pointer<::acme::user::interaction>               m_pacmeuserinteractionKeyboardFocus;
          ::pointer<::acme::user::interaction>               m_pacmeuserinteractionHover;
          ::pointer<::acme::user::interaction>               m_pacmeuserinteractionCapture;
          //::pointer<::acme::user::interaction>               m_pacmeuserinteractionOwner;
@@ -150,6 +150,8 @@ namespace acme
          
          
          virtual bool has_keyboard_focus();
+         virtual void set_keyboard_focus(::acme::user::interaction * pacmeuserinteractionFocus);
+         //virtual void erase_keyboard_focus(::acme::user::interaction * pacmeuserinteractionFocus);
 
          virtual bool is_window();
          //virtual int_bool is_window( windowing_android_WINDOW_MEMBER );

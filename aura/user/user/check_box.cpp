@@ -700,7 +700,7 @@ namespace user
    }
 
 
-   bool check_box::on_click(::item * pitem)
+   bool check_box::on_click(::item * pitem, ::user::mouse * pmouse)
    {
 
       m_dPosition = 0.0;

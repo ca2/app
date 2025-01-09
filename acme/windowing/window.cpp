@@ -36,6 +36,7 @@
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/operating_system/a_system_menu.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
@@ -168,7 +169,7 @@ namespace acme
          __check_refdbg
 
          //m_pacmeuserinteraction.release();
-         m_pacmeuserinteractionFocus.release();
+         m_pacmeuserinteractionKeyboardFocus.release();
          __check_refdbg
          m_pacmeuserinteractionHover.release();
          __check_refdbg
@@ -698,6 +699,28 @@ namespace acme
        
    
     }
+
+
+    void window::set_keyboard_focus(::acme::user::interaction * pacmeuserinteractionFocus)
+    {
+
+       m_pacmeuserinteractionKeyboardFocus = pacmeuserinteractionFocus;
+
+    }
+
+    //void window::erase_keyboard_focus(::acme::user::interaction * pacmeuserinteractionFocus)
+    //{
+
+    //   _synchronous_lock synchronouslock(this->synchronization());
+
+    //   if (pacmeuserinteractionFocus == m_pacmeuserinteractionKeyboardFocus)
+    //   {
+
+    //      set_keyboard_focus(nullptr);
+
+    //   }
+
+    //}
 
     bool window::is_window()
    {

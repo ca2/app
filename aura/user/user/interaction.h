@@ -496,7 +496,7 @@ namespace user
 
       virtual void on_display_task_list(::user::activation_token * puseractivationtoken);
 
-
+      virtual void on_system_command(const ::e_system_command & esystemcommand);
       //void enable_drag_move();
 
 //      virtual void set_restored_rectangle(const ::int_rectangle & rectangleRestored);
@@ -1645,10 +1645,14 @@ namespace user
       bool defer_release_mouse_capture() override;
 
 
-      virtual bool has_keyboard_focus();
+      //virtual bool has_keyboard_focus();
       virtual bool should_show_keyboard_focus();
       void set_keyboard_focus() override;
-      void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr) override;
+      //void clear_keyboard_focus() override;
+      //void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr) override;
+      virtual void on_set_keyboard_focus();
+      virtual void on_kill_keyboard_focus();
+
 
       virtual void set_foreground_window(::user::activation_token * puseractivationtoken);
       virtual void set_active_window();
@@ -2407,12 +2411,12 @@ namespace user
       virtual bool on_edit_delete(const ::action_context& action_context);
 
 
-      virtual bool on_click_generation(::item * pitem);
-      virtual bool on_right_click_generation(::item * pitem);
+      virtual bool on_click_generation(::item * pitem, ::user::mouse * pmouse);
+      virtual bool on_right_click_generation(::item * pitem, ::user::mouse * pmouse);
 
 
-      virtual bool on_click(::item * pitem);
-      virtual bool on_right_click(::item * pitem);
+      virtual bool on_click(::item * pitem, ::user::mouse * pmouse);
+      virtual bool on_right_click(::item * pitem, ::user::mouse * pmouse);
 
 
       virtual int width(enum_layout elayout = e_layout_design);

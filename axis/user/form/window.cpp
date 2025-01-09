@@ -1453,7 +1453,7 @@ throw_todo();
    {
       ::user::form_control::install_message_routing(pchannel);
       MESSAGE_LINK(e_message_create, pchannel, this, &form_window::on_message_create);
-      MESSAGE_LINK(e_message_pos_create, pchannel, this, &form_window::_000OnPosCreate);
+      MESSAGE_LINK(e_message_after_create, pchannel, this, &form_window::_000OnPosCreate);
       MESSAGE_LINK(e_message_language, pchannel, this, &form_window::_001OnAppLanguage);
       //MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::on_message_key_down);
       //MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::on_message_key_up);

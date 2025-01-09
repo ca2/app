@@ -169,6 +169,13 @@ namespace message
    }
 
 
+   ::user::activation_token * message::user_activation_token()
+   {
+
+      return m_actioncontext.user_activation_token();
+
+   }
+
 } // namespace message
 
 

@@ -133,7 +133,7 @@ namespace windowing
 
       virtual void set_mouse_cursor2(::windowing::cursor * pcursor);
 
-      virtual void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr) override;
+      //virtual void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr) override;
 
       void term1() override;
 

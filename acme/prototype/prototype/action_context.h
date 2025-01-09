@@ -14,6 +14,7 @@ public:
    e_source                                  m_esource;
    pointer< pointer_array < ::particle > >   m_pparticlea;
    ::pointer<::acme::message>                m_pmessage;
+   ::pointer < ::user::activation_token >    m_puseractivationtoken;
 
 
    action_context() { }
@@ -50,6 +51,10 @@ public:
    }
 
    IMPL_OPERATOR_PLUS(action_context);
+
+
+   virtual ::user::activation_token * user_activation_token();
+
 
 };
 

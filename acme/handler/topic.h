@@ -26,7 +26,7 @@ public:
    ::pointer<::property_object>           m_psender;
    ::pointer<::user::element>             m_puserelement; // user::interaction
    ::pointer<::particle>                  m_pparticle;
-   ::pointer<::user::activation_token>    m_puseractivationtoken;
+   //::pointer<::user::activation_token>    m_puseractivationtoken;
 
 
    topic(const ::atom & atom) 
@@ -75,6 +75,8 @@ public:
    virtual ::user::interaction * user_interaction();
 
    virtual ::acme::user::interaction * acme_user_interaction();
+
+   virtual ::user::activation_token * user_activation_token();
 
    ::atom user_interaction_id() const;
 

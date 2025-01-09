@@ -94,7 +94,7 @@ public:
    bool defer_release_mouse_capture(::thread * pthread, ::acme::windowing::window * pwindow) override;
    
    
-   void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr) override;
+   //void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr) override;
    
    
    //void windowing_post(const ::procedure& procedure) override;

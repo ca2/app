@@ -219,7 +219,8 @@ int m_iExitCode;
    virtual void on_pre_run_task();
 
    
-   ///void __on_update_handler_happening_unlocked() override;
+   //void update_new_main_loop_happening() override;
+   //bool has_main_loop_happening() override;
 
 
    virtual void __priority_and_affinity();
@@ -234,6 +235,7 @@ int m_iExitCode;
    void task_osterm() override;
 
    bool has_main_loop_happening() override;
+   virtual bool _has_main_loop_happening_unlocked();
 
    //virtual bool os_on_init_task();
    //virtual void os_on_term_task();
@@ -382,6 +384,11 @@ int m_iExitCode;
    void run() override;
 
    virtual bool task_run(const class ::time & time = 0_s);
+
+   /// @brief  
+   /// @param time 
+   /// @return true if there are pending happenings
+   virtual bool task_wait(const class ::time & timeRemaining = 0_s);
 
    virtual bool task_iteration();
 

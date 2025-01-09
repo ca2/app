@@ -81,7 +81,7 @@ namespace user
       void _001SetEditControl(::user::interaction * pinteraction);
       virtual void _001PlaceControl(::user::interaction * pinteraction, ::collection::index iEditItem, bool bClick = false, bool bOnlySizeAndPosition = false);
       virtual ::user::interaction * _001GetControl(::collection::index iItem, ::collection::index iSubItem);
-      bool on_click(::item * pitem) override;
+      bool on_click(::item * pitem, ::user::mouse * pmouse) override;
       void on_timer(::timer * ptimer) override;
 
       

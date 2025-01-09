@@ -1413,6 +1413,7 @@
     <ClInclude Include="platform\context_aqua.h" />
     <ClInclude Include="platform\context_aura.h" />
     <ClInclude Include="platform\get_file_extension_mime_type.h" />
+    <ClInclude Include="platform\uuid.h" />
     <ClInclude Include="platform\reference_referer.h" />
     <ClInclude Include="platform\referencing_debugging.h" />
     <ClInclude Include="platform\reference_item.h" />
@@ -2041,6 +2042,7 @@
     <ClCompile Include="platform\http.cpp" />
     <ClCompile Include="platform\http_acme.cpp" />
     <ClCompile Include="platform\http_apex.cpp" />
+    <ClCompile Include="platform\message.cpp" />
     <ClCompile Include="platform\message_box.cpp" />
     <ClCompile Include="platform\c_class.cpp" />
     <ClCompile Include="platform\Debug.cpp" />
@@ -2118,6 +2120,7 @@
     <ClCompile Include="platform\tracing.cpp" />
     <ClCompile Include="platform\transport_payload.cpp" />
     <ClCompile Include="platform\url_context.cpp" />
+    <ClCompile Include="platform\uuid.cpp" />
     <ClCompile Include="platform\version.cpp" />
     <ClCompile Include="platform\_.cpp" />
     <ClCompile Include="platform\_main_hold_base.cpp" />

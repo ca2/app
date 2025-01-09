@@ -176,8 +176,8 @@ namespace user
       //virtual ::user::interaction_base * get_keyboard_focus();
 
 
-      void on_set_keyboard_focus() override;
-      void on_kill_keyboard_focus() override;
+      //void on_set_keyboard_focus() override;
+      //void on_kill_keyboard_focus() override;
 
 
 
@@ -612,8 +612,9 @@ namespace user
       ::user::element * keyboard_get_next_focusable(::user::element * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       //virtual interaction_base * get_keyboard_focus() const;
       void set_keyboard_focus() override;
-      void erase_keyboard_focus() override;
-      void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr) override;
+      //void erase_keyboard_focus() override;
+      // void clear_keyboard_focus() override;
+      //void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr) override;
       ::user::element * get_keyboard_focus() override;
       ::user::element * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       //virtual bool has_keyboard_focus();

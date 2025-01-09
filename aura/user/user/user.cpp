@@ -294,9 +294,27 @@ namespace user
 
       }
 
-      ::cast < ::windowing::window > pwindow = pwindowing->get_keyboard_focus(pthread);
+      auto pwindowFocus = pwindowing->get_keyboard_focus(pthread);
 
-      if (::is_null(pwindow))
+      if (::is_null(pwindowFocus))
+      {
+
+         return nullptr;
+
+      }
+
+      auto puserelementFocus = pwindowFocus->get_keyboard_focus();
+
+      if (::is_null(puserelementFocus))
+      {
+
+         return nullptr;
+
+      }
+
+      ::cast < ::user::interaction > puserinteractionFocus = puserelementFocus;
+
+      if (::is_null(puserinteractionFocus))
       {
 
          return nullptr;
@@ -312,7 +330,9 @@ namespace user
 
       //}
 
-      return pwindow->m_puserinteractionKeyboardFocus;
+      //return pwindow->aaa_m_pacmeuserinteractionKeyboardFocus;
+
+      return puserinteractionFocus;
 
    }
 

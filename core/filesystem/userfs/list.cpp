@@ -115,7 +115,7 @@ namespace userfs
    }
 
 
-   bool list::on_click(::item * pitem)
+   bool list::on_click(::item * pitem, ::user::mouse * pmouse)
    {
 
       ::user::range range;

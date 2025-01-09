@@ -290,12 +290,12 @@ namespace user
    //         if (get_wnd()->m_pinteractionimpl)
    //         {
 
-   //            ::pointer<::user::interaction>puiFocus = get_wnd()->m_pinteractionimpl->m_puserinteractionKeyboardFocus;
+   //            ::pointer<::user::interaction>puiFocus = get_wnd()->m_pinteractionimpl->aaa_m_pacmeuserinteractionKeyboardFocus;
 
    //            if (puiFocus.is_null() || !is_ascendant_of(puiFocus, true))
    //            {
 
-   //               get_wnd()->m_pinteractionimpl->m_puserinteractionKeyboardFocus = this;
+   //               get_wnd()->m_pinteractionimpl->aaa_m_pacmeuserinteractionKeyboardFocus = this;
 
    //            }
 

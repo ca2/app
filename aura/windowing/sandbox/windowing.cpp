@@ -502,7 +502,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
 
       //auto pwindowApplicationHost = get_application_host_window();
 
-      //if (!pwindowApplicationHost->m_pwindow->m_puserinteractionKeyboardFocus)
+      //if (!pwindowApplicationHost->m_pwindow->aaa_m_pacmeuserinteractionKeyboardFocus)
       //{
 
       //   return nullptr;
@@ -581,16 +581,16 @@ auto      pwindow = ::windowing::windowing::get_new_window();
          pwindow->clear_keyboard_focus();
 
          //pwindow->on_fin
-//         auto puserinteractionKeyboardFocus = pwindow->m_puserinteractionKeyboardFocus;
+//         auto puserinteractionKeyboardFocus = pwindow->aaa_m_pacmeuserinteractionKeyboardFocus;
 //
 //         if (puserinteractionKeyboardFocus)
 //         {
 //
 //            pwindow->m_puserinteractionKeyboardGainingFocusIfAny = pwindowGainingFocusIfAny;
 //
-//            //pwindow->m_puserinteractionKeyboardFocus->post_message(e_message_kill_focus);
+//            //pwindow->aaa_m_pacmeuserinteractionKeyboardFocus->post_message(e_message_kill_focus);
 //
-//            pwindow->m_puserinteractionKeyboardFocus.release();
+//            pwindow->aaa_m_pacmeuserinteractionKeyboardFocus.release();
 
          //}
             //auto puserinteraction =
@@ -602,16 +602,16 @@ auto      pwindow = ::windowing::windowing::get_new_window();
 //
 //         }
 //
-//         //if (pwindow->m_puserinteractionKeyboardFocus)
+//         //if (pwindow->aaa_m_pacmeuserinteractionKeyboardFocus)
 //         //{
 //
 //         //   pwindow->m_puserinteractionKeyboardGainingFocusIfAny = pwindowGainingFocusIfAny;
 //
-//         //   pwindow->m_puserinteractionKeyboardFocus->post_message(e_message_kill_focus);
+//         //   pwindow->aaa_m_pacmeuserinteractionKeyboardFocus->post_message(e_message_kill_focus);
 //
 //         //}
 //
-//         pwindow->m_puserinteractionKeyboardFocus.release();
+//         pwindow->aaa_m_pacmeuserinteractionKeyboardFocus.release();
 
       //}
 

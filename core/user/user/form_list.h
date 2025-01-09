@@ -64,8 +64,8 @@ namespace user
       virtual void _001OnShowControl(::user::interaction * pinteraction);
       ::user::interaction * _001GetControl(::collection::index iItem, ::collection::index iSubItem) override;
       virtual ::user::interaction * _001GetControl(draw_list_subitem * psubitem);
-      bool on_click(::item * pitem) override;
-      bool on_right_click(::item * pitem) override;
+      bool on_click(::item * pitem, ::user::mouse * pmouse) override;
+      bool on_right_click(::item * pitem, ::user::mouse * pmouse) override;
       void on_timer(::timer * ptimer) override;
 
       using list::get_selection;

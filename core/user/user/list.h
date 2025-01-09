@@ -324,8 +324,8 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnListImpactAutoArrange);
 
 
-      bool on_click(::item * pitem) override;
-      bool on_right_click(::item * pitem) override;
+      bool on_click(::item * pitem, ::user::mouse * pmouse) override;
+      bool on_right_click(::item * pitem, ::user::mouse * pmouse) override;
 
       void get_selection(range & selection) override;
       virtual ::collection::index _001GetCurItem();

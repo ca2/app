@@ -80,7 +80,7 @@ public:
    //enumeration < ::enum_tool_item_style > GetItemStyle(::collection::index iItem);
    void _001SetImageList(::image::image_list_pointer imagelist);
    void _001DiscardImageList();
-   bool on_click(::item * pitem) override;
+   bool on_click(::item * pitem, ::user::mouse * pmouse) override;
    virtual ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
    //void _001Hover(const ::int_point & point, bool bRedraw = true);
    //void _001Hover(bool bRedraw = true);

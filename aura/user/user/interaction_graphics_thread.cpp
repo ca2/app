@@ -852,7 +852,8 @@ namespace user
 
 
          if (
-            m_puserinteraction->m_pacmewindowingwindow)
+            m_puserinteraction->m_pacmewindowingwindow
+            && m_puserinteraction->has_fps_output_purpose())
          {
 
             auto elapsed = m_puserinteraction->window()->m_timeLastDrawGuard1.elapsed();
@@ -964,9 +965,41 @@ namespace user
 //
 //                     }
 //                     else
+
+                     while(true)
                      {
 
-                        ::preempt(timeToWaitForNextFrame);
+                        if (task_wait(timeToWaitForNextFrame))
+                        {
+
+                           task_iteration();
+                         
+                           break;
+
+                        }
+
+                        if (m_iRedrawMessageCount > 0)
+                        {
+
+                           break;
+
+                        }
+
+                        if (m_puserinteraction->has_fps_output_purpose())
+                        {
+
+                           break;
+
+                        }
+
+                        if (!::task_get_run())
+                        {
+
+                           return false;
+
+                        }
+
+                        timeToWaitForNextFrame = timeFrame;
 
                      }
 

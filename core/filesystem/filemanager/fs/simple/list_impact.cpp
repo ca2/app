@@ -319,7 +319,7 @@ namespace filemanager
          }
 
 
-         bool list_impact::on_click(::item * pitem)
+         bool list_impact::on_click(::item * pitem, ::user::mouse * pmouse)
          {
 
             if(m_itema[pitem->m_item.m_iItem]->IsFolder())

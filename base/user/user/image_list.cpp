@@ -131,12 +131,10 @@ namespace user
    }
 
 
-   bool image_list::on_click(::item * pitem)
+   bool image_list::on_click(::item * pitem, ::user::mouse * pmouse)
    {
 
       index_array iaSel = m_iaSel;
-
-      
 
       if (!session()->is_key_pressed(::user::e_key_control) || !m_bMultiSel)
       {

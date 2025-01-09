@@ -3629,14 +3629,14 @@ namespace sandbox_windowing
 
    }
 
-      auto pwindow = this;
+   auto pwindow = this;
 
-   if (pwindowing->m_pwindowKeyboardFocus && pwindowing->m_pwindowKeyboardFocus != this)
-   {
+   // if (pwindowing->m_pwindowKeyboardFocus && pwindowing->m_pwindowKeyboardFocus != this)
+   // {
 
-      pwindowing->clear_keyboard_focus(pwindow ? pwindow->m_puserinteractionKeyboardFocusRequest : nullptr);
+   //    pwindowing->aaa_clear_keyboard_focus(pwindow ? pwindow->m_pacmeuserinteractionKeyboardFocusRequest : nullptr);
 
-   }
+   // }
 
    pwindowing->m_pwindowKeyboardFocus = this;
 
@@ -3710,7 +3710,7 @@ namespace sandbox_windowing
 //      if (pwindowing->m_pwindowKeyboardFocus && pwindowing->m_pwindowKeyboardFocus != this)
 //      {
 //
-//         pwindowing->clear_keyboard_focus(this);
+//         pwindowing->aaa_clear_keyboard_focus(this);
 //
 //      }
 //
@@ -3780,10 +3780,10 @@ namespace sandbox_windowing
    void window::SetInternalFocus()
    {
 
-      //if (m_pwindow->m_puserinteractionKeyboardFocusRequest != nullptr)
+      //if (m_pwindow->m_pacmeuserinteractionKeyboardFocusRequest != nullptr)
       //{
 
-      //   m_pwindow->on_final_set_keyboard_focus(m_pwindow->m_puserinteractionKeyboardFocusRequest);
+      //   m_pwindow->on_final_set_keyboard_focus(m_pwindow->m_pacmeuserinteractionKeyboardFocusRequest);
 
       //}
 

@@ -135,7 +135,7 @@ namespace user
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
-      bool on_click(::item * pitem) override;
+      bool on_click(::item * pitem, ::user::mouse * pmouse) override;
 
       bool pre_create_window(::user::system * pusersystem) override;
 

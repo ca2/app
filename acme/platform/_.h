@@ -56,6 +56,8 @@ namespace platform
 
    class platform;
 
+   class uuid;
+
 
 } // namespace platform
 

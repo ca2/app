@@ -117,7 +117,7 @@ namespace filemanager
 ////   }
 
 
-   bool file_list::on_click(::item * pitem)
+   bool file_list::on_click(::item * pitem, ::user::mouse * pmouse)
    {
 
       if (::is_item(pitem, m_iNameSubItem) ||
@@ -138,12 +138,12 @@ namespace filemanager
 
       }
 
-      return ::user::list::on_click(pitem);
+      return ::user::list::on_click(pitem, pmouse);
 
    }
 
 
-   bool file_list::on_right_click(::item * pitem)
+   bool file_list::on_right_click(::item * pitem, ::user::mouse * pmouse)
    {
 
       if(::is_set(pitem))

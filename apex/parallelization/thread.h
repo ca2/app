@@ -340,7 +340,7 @@ public:
 
    virtual iptr item() const;
 
-
+   bool _has_main_loop_happening_unlocked() override;
 
    virtual void verb();
 

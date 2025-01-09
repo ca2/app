@@ -183,6 +183,28 @@ bool simple_frame_window::has_notify_icon()
 }
 
 
+void simple_frame_window::on_system_command(const ::e_system_command & esystemcommand)
+{
+
+   if (has_notify_icon() && esystemcommand == e_system_command_minimize)
+   {
+
+      hide();
+
+      set_need_redraw();
+
+      post_redraw();
+
+      return;
+
+   }
+
+   on_system_command(esystemcommand);
+
+}
+
+
+
 void simple_frame_window::enable_default_notification_icon(bool bEnableDefaultNotificationIcon)
 {
 
@@ -1988,7 +2010,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 
 #endif // LINUX
 
-      set_tool_window();
+      //set_tool_window();
 
       return;
 
@@ -3665,7 +3687,7 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
 
          //OnNotifyIconLButtonDown(ptopic->user_interaction_id());
 
-         default_notify_icon_topic(ptopic->m_puseractivationtoken);
+         default_notify_icon_topic(ptopic->user_activation_token());
 
          ptopic->m_bRet = true;
 
@@ -4392,7 +4414,7 @@ void simple_frame_window::_001OnNotifyIconTopic(::message::message * pmessage)
    if (would_display_notify_icon())
    {
 
-      default_notify_icon_topic(pmessage->m_puseractivationtoken);
+      default_notify_icon_topic(pmessage->user_activation_token());
 
    }
 
@@ -4462,8 +4484,12 @@ void simple_frame_window::OnUpdateToolWindow(bool bVisible)
 
 #else
 
-   show_task(bVisible && m_bShowTask
-      && !layout().is_iconic());
+   if (!m_bShowTask)
+   {
+
+      show_task(false);
+
+   }
 
 #endif
 
@@ -4575,9 +4601,7 @@ void simple_frame_window::call_notification_area_action(const ::atom & atom, ::u
 void simple_frame_window::notification_area_action(const ::atom & atom, ::user::activation_token * puseractivationtoken)
 {
 
-   auto pcommand = __allocate ::message::command (atom);
-
-   pcommand->m_puseractivationtoken = puseractivationtoken;
+   auto pcommand = __initialize_new::message::command(atom, puseractivationtoken);
 
    route_command(pcommand);
 

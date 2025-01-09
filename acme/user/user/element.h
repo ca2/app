@@ -311,8 +311,6 @@ namespace user
       //virtual ::user::element * get_keyboard_focus();
 
 
-      virtual void on_set_keyboard_focus();
-      virtual void on_kill_keyboard_focus();
 
 
 
@@ -807,8 +805,8 @@ namespace user
       virtual element * keyboard_get_next_focusable(element * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false);
       //virtual element * get_keyboard_focus() const;
       virtual void set_keyboard_focus();
-      virtual void erase_keyboard_focus();
-      virtual void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr);
+      //virtual void erase_keyboard_focus();
+      //virtual void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr);
       virtual ::user::element * get_keyboard_focus();
       virtual element * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false);
       //virtual bool has_keyboard_focus();

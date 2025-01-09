@@ -36,20 +36,19 @@ namespace message
       //::message::key *              m_pkey;
       //::message::mouse *            m_pmouse;
 
-      dispatcher_array *            m_pdispatchera;
-      channel *                     m_pchannel;
-      oswindow                      m_oswindow;
-      enumeration < enum_flag >     m_eflagMessage;
-      ::collection::index                         m_iRouteIndex;
-      ::collection::index                         m_iParam;
-      //bool                          m_bRet;
-      unsigned int                  m_uiMessageFlags;
-      ::e_status                     m_estatus;
-      ::action_context              m_actioncontext;
-      ::int_point                   m_pointMessage;
+      dispatcher_array *               m_pdispatchera;
+      channel *                        m_pchannel;
+      oswindow                         m_oswindow;
+      enumeration < enum_flag >        m_eflagMessage;
+      ::collection::index              m_iRouteIndex;
+      ::collection::index              m_iParam;
+      //bool                           m_bRet;
+      unsigned int                     m_uiMessageFlags;
+      ::e_status                       m_estatus;
+      ::action_context                 m_actioncontext;
+      ::int_point                      m_pointMessage;
       bool m_bProbing = false;
       bool m_bCommand = false;
-      ::pointer < ::user::activation_token > m_puseractivationtoken;
 
 
       message(const ::atom & atom = ::atom());
@@ -83,6 +82,8 @@ namespace message
 
 
       message & operator = (const message & message);
+
+      ::user::activation_token * user_activation_token() override;
 
 
    };

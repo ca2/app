@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "command.h"
 #include "channel.h"
+#include "acme/user/user/activation_token.h"
 #include "acme/user/user/interaction.h"
 
 
@@ -22,12 +23,14 @@ namespace message
    }
 
 
-   command::command(const ::atom & atom)
+   command::command(const ::atom & atom, ::user::activation_token * puseractivationtoken)
    {
+
+      common_construct();
 
       m_atom = atom;
 
-      common_construct();
+      m_actioncontext.m_puseractivationtoken = puseractivationtoken;
 
       //m_atom.set_compounded_type(::atom::e_type_command);
       m_bRadioChanged = false;

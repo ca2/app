@@ -212,15 +212,15 @@ namespace windowing
 
       //user_interaction().release();
 
-      m_puserinteractionKeyboardFocus.release();
+      //m_pacmeuserinteractionKeyboardFocus.release();
 
-      m_puserinteractionKeyboardFocusRequest.release();
+      //m_pacmeuserinteractionKeyboardFocusRequest.release();
 
-      m_puserinteractionKeyboardGainingFocusIfAny.release();
+      //m_pacmeuserinteractionKeyboardGainingFocusIfAny.release();
 
       m_puserinteractionMouseCapture.release();
 
-      m_puserinteractionToKillKeyboardFocus.release();
+      //m_pacmeuserinteractionToKillKeyboardFocus.release();
 
       m_puserthread.release();
 
@@ -592,7 +592,7 @@ namespace windowing
 
             information() << "key message";
 
-            ::pointer<::user::interaction> puiKeyboardFocus = m_puserinteractionKeyboardFocus;
+            ::pointer<::user::interaction> puiKeyboardFocus = m_pacmeuserinteractionKeyboardFocus;
 
             if (puiKeyboardFocus)
             {
@@ -670,7 +670,7 @@ namespace windowing
          //if (user_interaction()->m_procedureOnAfterCreate)
          //{
 
-         //   user_interaction()->post_message(e_message_pos_create);
+         //   user_interaction()->post_message(e_message_after_create);
 
          //}
 
@@ -849,7 +849,7 @@ namespace windowing
 
       auto puserinteraction = user_interaction();
 
-      puserinteraction->send_message(e_message_pos_create, 0, 0);
+      puserinteraction->send_message(e_message_after_create, 0, 0);
 
    }
 
@@ -1926,6 +1926,14 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
+   bool window::is_tool_window()
+   {
+
+      return false;
+
+   }
+
+
    void window::_window_show_change_visibility(::e_display edisplay, const ::user::activation & useractivation)
    {
 
@@ -2935,7 +2943,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       ::string strTextToInsert(pansisz, length);
 
-      m_puserinteractionKeyboardFocus->insert_text(strTextToInsert, true, ::e_source_user);
+      m_pacmeuserinteractionKeyboardFocus->insert_text(strTextToInsert, true, ::e_source_user);
 
    }
 
@@ -4575,15 +4583,10 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-
-
-
-
    void window::last_install_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &window::on_message_create);
-      MESSAGE_LINK(e_message_pos_create, pchannel, this, &window::on_message_pos_create);
+      ///MESSAGE_LINK(e_message_create, pchannel, this, &window::on_message_create);
 
       //::windowing::window_base::last_install_message_routing(pchannel);
 
@@ -4601,8 +4604,8 @@ void window::set_oswindow(::oswindow oswindow)
          //#endif
 
          MESSAGE_LINK(e_message_show_window, pchannel, this, &window::on_message_show_window);
-         MESSAGE_LINK(e_message_kill_focus, pchannel, this, &window::on_message_kill_focus);
          //MESSAGE_LINK(e_message_set_focus, pchannel, this, &window::on_message_set_focus);
+         MESSAGE_LINK(e_message_kill_focus, pchannel, this, &window::on_message_kill_focus);
 
       }
 
@@ -5289,15 +5292,15 @@ void window::set_oswindow(::oswindow oswindow)
 
    //   user_interaction().release();
 
-   //   m_puserinteractionKeyboardFocus.release();
+   //   aaa_m_pacmeuserinteractionKeyboardFocus.release();
 
-   //   m_puserinteractionKeyboardFocusRequest.release();
+   //   m_pacmeuserinteractionKeyboardFocusRequest.release();
 
    //   m_puserinteractionKeyboardGainingFocusIfAny.release();
 
    //   m_puserinteractionMouseCapture.release();
 
-   //   m_puserinteractionToKillKeyboardFocus.release();
+   //   m_pacmeuserinteractionToKillKeyboardFocus.release();
 
    //   m_puserthread.release();
 
@@ -5817,7 +5820,7 @@ void window::set_oswindow(::oswindow oswindow)
 
             information() << "key message";
 
-            ::pointer<::user::interaction> puiKeyboardFocus = m_puserinteractionKeyboardFocus;
+            ::pointer<::user::interaction> puiKeyboardFocus = m_pacmeuserinteractionKeyboardFocus;
 
             if (puiKeyboardFocus)
             {
@@ -5895,7 +5898,7 @@ void window::set_oswindow(::oswindow oswindow)
          //if (user_interaction()->m_procedureOnAfterCreate)
          //{
 
-         //   user_interaction()->post_message(e_message_pos_create);
+         //   user_interaction()->post_message(e_message_after_create);
 
          //}
 
@@ -8517,14 +8520,14 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   void window::on_message_create(::message::message * pmessage)
-   {
+   //void window::on_message_create(::message::message * pmessage)
+   //{
 
 
-   }
+   //}
 
 
-   void window::on_message_pos_create(::message::message * pmessage)
+   void window::_001OnPrioAfterCreate(::message::message * pmessage)
    {
 
       if (user_interaction())
@@ -8534,7 +8537,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       }
 
-      information() << "on_message_pos_create";
+      information() << "on_message_after_create";
 
       if (m_pgraphicsthread)
       {
@@ -10683,7 +10686,14 @@ void window::set_oswindow(::oswindow oswindow)
    ::user::element * window::get_keyboard_focus()
    {
 
-      return m_puserinteractionKeyboardFocus;
+      if(!has_keyboard_focus())
+      {
+
+         return nullptr;
+
+      }
+
+      return m_pacmeuserinteractionKeyboardFocus;
 
    }
 
@@ -10704,7 +10714,16 @@ void window::set_oswindow(::oswindow oswindow)
       //
       //user_interaction()->m_ewindowflag |= e_window_flag_focus;
 
-      on_final_set_keyboard_focus();
+      ::cast < ::user::interaction > puserinteractionFocus = m_pacmeuserinteractionKeyboardFocus;
+
+      if (puserinteractionFocus)
+      {
+
+         puserinteractionFocus->on_set_keyboard_focus();
+
+      }
+
+      //on_final_set_keyboard_focus();
 
    }
 
@@ -10780,79 +10799,79 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   //   void window::on_final_set_keyboard_focus(::message::set_keyboard_focus * psetkeyboardfocus)
-   void window::on_final_set_keyboard_focus()
-   {
+   ////   void window::on_final_set_keyboard_focus(::message::set_keyboard_focus * psetkeyboardfocus)
+   //void window::on_final_set_keyboard_focus()
+   //{
 
-      _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization());
 
-      if (m_puserinteractionKeyboardFocusRequest)
-      {
+   //   //if (m_pacmeuserinteractionKeyboardFocusRequest)
+   //   //{
 
-         if (m_puserinteractionKeyboardFocusRequest == m_puserinteractionToKillKeyboardFocus)
-         {
+   //   //   if (m_pacmeuserinteractionKeyboardFocusRequest == m_pacmeuserinteractionToKillKeyboardFocus)
+   //   //   {
 
-            m_puserinteractionToKillKeyboardFocus.release();
+   //   //      m_pacmeuserinteractionToKillKeyboardFocus.release();
 
-         }
+   //   //   }
 
-         information() << "on_final_set_keyboard_focus : "
-            << ::string(::type(m_puserinteractionKeyboardFocusRequest.m_p));
+   //      information() << "on_final_set_keyboard_focus : "
+   //         << ::string(::type(m_pacmeuserinteractionKeyboardFocusRequest.m_p));
 
-         if (m_puserinteractionKeyboardFocusRequest != m_puserinteractionKeyboardFocus)
-         {
+   //      if (m_pacmeuserinteractionKeyboardFocusRequest != m_pacmeuserinteractionKeyboardFocus)
+   //      {
 
-            information() << "on_final_set_keyboard_focus : (2)";
+   //         information() << "on_final_set_keyboard_focus : (2)";
 
-            auto puserinteractionKeyboardFocusOld = m_puserinteractionKeyboardFocus;
+   //         auto puserinteractionKeyboardFocusOld = m_pacmeuserinteractionKeyboardFocus;
 
-            m_puserinteractionKeyboardFocus = m_puserinteractionKeyboardFocusRequest;
+   //         m_pacmeuserinteractionKeyboardFocus = m_pacmeuserinteractionKeyboardFocusRequest;
 
-            m_puserinteractionKeyboardFocusRequest = nullptr;
+   //         m_pacmeuserinteractionKeyboardFocusRequest = nullptr;
 
-            auto puserinteractionKeyboardFocus = m_puserinteractionKeyboardFocus;
+   //         auto puserinteractionKeyboardFocus = m_pacmeuserinteractionKeyboardFocus;
 
-            if (puserinteractionKeyboardFocusOld)
-            {
+   //         if (puserinteractionKeyboardFocusOld)
+   //         {
 
-               puserinteractionKeyboardFocusOld->on_kill_keyboard_focus();
+   //            puserinteractionKeyboardFocusOld->on_kill_keyboard_focus();
 
-            }
+   //         }
 
-            if (puserinteractionKeyboardFocus)
-            {
+   //         if (puserinteractionKeyboardFocus)
+   //         {
 
-               synchronouslock.unlock();
+   //            synchronouslock.unlock();
 
-               puserinteractionKeyboardFocus->on_set_keyboard_focus();
+   //            puserinteractionKeyboardFocus->on_set_keyboard_focus();
 
-            }
+   //         }
 
-            on_set_focus_to_child();
+   //         on_set_focus_to_child();
 
-         }
-         //         else if(m_puserinteractionKeyboardFocus)
-         //         {
-         //
-         //            synchronouslock.unlock();
-         //
-         //            m_puserinteractionKeyboardFocus->on_set_keyboard_focus();
-         //
-         //         }
+   //      }
+   //      //         else if(aaa_m_pacmeuserinteractionKeyboardFocus)
+   //      //         {
+   //      //
+   //      //            synchronouslock.unlock();
+   //      //
+   //      //            aaa_m_pacmeuserinteractionKeyboardFocus->on_set_keyboard_focus();
+   //      //
+   //      //         }
 
-      }
-      //      else
-      //      {
-      //
-      //         m_puserinteractionToKillKeyboardFocus = m_puserinteractionKeyboardFocus;
-      //
-      //         synchronouslock.unlock();
-      //
-      //         on_final_kill_keyboard_focus();
-      //
-      //      }
+   //   }
+   //   //      else
+   //   //      {
+   //   //
+   //   //         m_pacmeuserinteractionToKillKeyboardFocus = aaa_m_pacmeuserinteractionKeyboardFocus;
+   //   //
+   //   //         synchronouslock.unlock();
+   //   //
+   //   //         aaa_on_final_kill_keyboard_focus();
+   //   //
+   //   //      }
 
-   }
+   //}
 
 
    bool window::keyboard_focus_OnKillFocus(::oswindow oswindowNew)
@@ -10874,12 +10893,12 @@ void window::set_oswindow(::oswindow oswindow)
 
       //      _synchronous_lock synchronouslock(this->synchronization());
       //
-      //      auto puserinteractionKeyboardFocus = m_puserinteractionKeyboardFocus;
+      //      auto puserinteractionKeyboardFocus = aaa_m_pacmeuserinteractionKeyboardFocus;
       //
       //      if (puserinteractionKeyboardFocus)
       //      {
       //
-      //         m_puserinteractionKeyboardFocus.release();
+      //         aaa_m_pacmeuserinteractionKeyboardFocus.release();
       //
       //         synchronouslock.unlock();
       //
@@ -10912,6 +10931,45 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
+   //void window::on_message_set_focus(::message::message * pmessage)
+   //{
+
+   //   ::pointer<::message::set_keyboard_focus> psetkeyboardfocus(pmessage);
+
+   //   //if (!(user_interaction()->m_ewindowflag & e_window_flag_focus))
+   //   //{
+
+   //   //   return;
+
+   //   //}
+
+   //   //user_interaction()->m_ewindowflag -= e_window_flag_focus;
+
+   //   if (psetkeyboardfocus->m_oswindow != oswindow())
+   //   {
+
+   //      psetkeyboardfocus->m_bRet = true;
+
+   //      ::output_debug_string("set keyboard focus isn't setting keyboard focus to this windows");
+
+   //      return;
+
+   //   }
+
+   //   //on_final_set_keyboard_focus();
+
+   //   ::cast < ::user::interaction > puserinteractionFocus = m_pacmeuserinteractionKeyboardFocus;
+
+   //   if (puserinteractionFocus)
+   //   {
+
+   //      puserinteractionFocus->on_set_keyboard_focus();
+
+   //   }
+
+   //}
+
+
    void window::on_message_kill_focus(::message::message * pmessage)
    {
 
@@ -10938,203 +10996,225 @@ void window::set_oswindow(::oswindow oswindow)
 
       }
 
-      on_final_kill_keyboard_focus();
+      ::cast < ::user::interaction > puserinteractionFocus = m_pacmeuserinteractionKeyboardFocus;
 
-   }
-
-   //void window::on_final_kill_keyboard_focus(::message::kill_keyboard_focus * pkillkeyboardfocus)
-
-   void window::on_final_kill_keyboard_focus()
-   {
-
-      _synchronous_lock synchronouslock(this->synchronization());
-
-      information() << "on_final_kill_keyboard_focus";
-
-      auto puserinteractionKeyboardFocus = m_puserinteractionKeyboardFocus;
-
-      m_puserinteractionKeyboardFocusRequest.release();
-
-      m_puserinteractionKeyboardFocus.release();
-
-      synchronouslock.unlock();
-
-      if (puserinteractionKeyboardFocus)
+      if (puserinteractionFocus)
       {
 
-         puserinteractionKeyboardFocus->on_kill_keyboard_focus();
+         puserinteractionFocus->on_kill_keyboard_focus();
 
       }
 
+      //on_final_kill_keyboard_focus();
+
    }
 
+   //void window::aaa_on_final_kill_keyboard_focus(::message::kill_keyboard_focus * pkillkeyboardfocus)
 
-   void window::impl_set_keyboard_focus(::user::interaction * puserinteractionFocusNew)
+   //void window::on_final_kill_keyboard_focus()
+   //{
+
+   //   _synchronous_lock synchronouslock(this->synchronization());
+
+   //   information() << "on_final_kill_keyboard_focus";
+
+   //   auto puserinteractionKeyboardFocus = m_pacmeuserinteractionKeyboardFocus;
+
+   //   m_pacmeuserinteractionKeyboardFocusRequest.release();
+
+   //   //aaa_m_pacmeuserinteractionKeyboardFocus.release();
+
+   //   synchronouslock.unlock();
+
+   //   if (puserinteractionKeyboardFocus)
+   //   {
+
+   //      puserinteractionKeyboardFocus->on_kill_keyboard_focus();
+
+   //   }
+
+   //}
+
+
+   //void window::impl_set_keyboard_focus(::user::interaction * puserinteractionFocusNew)
+   //{
+
+   //   ::cast < ::user::interaction > puserinteractionFocusOld = m_pacmeuserinteractionKeyboardFocus;
+
+   //   if (puserinteractionFocusOld == puserinteractionFocusNew)
+   //   {
+
+   //      return;
+
+   //   }
+
+   //   //auto oswindow = get_handle();
+
+   //   //auto oswindowPrevious = ::set_keyboard_focus(oswindow);
+
+   //   window_set_keyboard_focus();
+
+   //   m_pacmeuserinteractionKeyboardFocus = puserinteractionFocusNew;
+
+   //   try
+   //   {
+
+   //      if (::is_set(puserinteractionFocusOld))
+   //      {
+
+   //         if (puserinteractionFocusOld->m_bFocus)
+   //         {
+
+   //            puserinteractionFocusOld->send_message(e_message_kill_focus);
+
+   //         }
+
+   //         puserinteractionFocusOld->set_need_redraw();
+
+   //      }
+
+   //   }
+   //   catch (...)
+   //   {
+
+   //   }
+
+   //   try
+   //   {
+
+   //      if (::is_set(puserinteractionFocusOld))
+   //      {
+
+   //         if (!puserinteractionFocusOld->m_bFocus)
+   //         {
+
+   //            puserinteractionFocusOld->send_message(e_message_set_focus);
+
+   //         }
+
+   //         puserinteractionFocusOld->set_need_redraw();
+
+   //      }
+
+   //   }
+   //   catch (...)
+   //   {
+
+   //   }
+
+   //   //return true;
+
+   //}
+
+
+   //void window::impl_erase_keyboard_focus(::user::interaction * puserinteractionFocusErase)
+   //{
+
+   //   if (::is_null(puserinteractionFocusErase))
+   //   {
+
+   //      return;
+
+   //   }
+
+   //   ::cast < ::user::interaction > puserinteractionFocusKillFocus = m_pacmeuserinteractionKeyboardFocus;
+
+   //   if (puserinteractionFocusKillFocus != puserinteractionFocusErase)
+   //   {
+
+   //      return;
+
+   //   }
+
+   //   m_pacmeuserinteractionKeyboardFocus = nullptr;
+
+   //   try
+   //   {
+
+   //      if (::is_set(puserinteractionFocusKillFocus))
+   //      {
+
+   //         if (puserinteractionFocusKillFocus->m_bFocus)
+   //         {
+
+   //            puserinteractionFocusKillFocus->send_message(e_message_kill_focus);
+
+   //         }
+
+   //         puserinteractionFocusKillFocus->set_need_redraw();
+
+   //      }
+
+   //   }
+   //   catch (...)
+   //   {
+
+   //   }
+
+   //   //return true;
+
+   //}
+
+
+   // void window::aaa_impl_clear_keyboard_focus()
+   // {
+
+   //    ::user::interaction * puserinteractionFocusKillFocus = aaa_m_pacmeuserinteractionKeyboardFocus;
+
+   //    aaa_m_pacmeuserinteractionKeyboardFocus = nullptr;
+
+   //    try
+   //    {
+
+   //       if (::is_set(puserinteractionFocusKillFocus))
+   //       {
+
+   //          if (puserinteractionFocusKillFocus->m_bFocus)
+   //          {
+
+   //             puserinteractionFocusKillFocus->send_message(e_message_kill_focus);
+
+   //          }
+
+   //          puserinteractionFocusKillFocus->set_need_redraw();
+
+   //       }
+
+   //    }
+   //    catch (...)
+   //    {
+
+   //    }
+
+   //    //return true;
+
+   // }
+
+
+   void window::set_keyboard_focus(::acme::user::interaction * pacmeuserinteraction)
    {
 
-      ::user::interaction * puserinteractionFocusOld = m_puserinteractionKeyboardFocus;
+      ::cast < ::user::interaction > puserinteraction = pacmeuserinteraction;
 
-      if (puserinteractionFocusOld == puserinteractionFocusNew)
+      if (!puserinteraction)
       {
+
+         ::windowing::window_base::set_keyboard_focus(pacmeuserinteraction);
 
          return;
 
       }
 
-      //auto oswindow = get_handle();
+      //if (::is_null(puserinteraction))
+      //{
 
-      //auto oswindowPrevious = ::set_keyboard_focus(oswindow);
+      //   //aaa_impl_clear_keyboard_focus();
 
-      window_set_keyboard_focus();
+      //   clear_keyboard_focus();
 
-      m_puserinteractionKeyboardFocus = puserinteractionFocusNew;
+      //   return;
 
-      try
-      {
-
-         if (::is_set(puserinteractionFocusOld))
-         {
-
-            if (puserinteractionFocusOld->m_bFocus)
-            {
-
-               puserinteractionFocusOld->send_message(e_message_kill_focus);
-
-            }
-
-            puserinteractionFocusOld->set_need_redraw();
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         if (::is_set(puserinteractionFocusOld))
-         {
-
-            if (!puserinteractionFocusOld->m_bFocus)
-            {
-
-               puserinteractionFocusOld->send_message(e_message_set_focus);
-
-            }
-
-            puserinteractionFocusOld->set_need_redraw();
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-
-      //return true;
-
-   }
-
-
-   void window::impl_erase_keyboard_focus(::user::interaction * puserinteractionFocusErase)
-   {
-
-      if (::is_null(puserinteractionFocusErase))
-      {
-
-         return;
-
-      }
-
-      ::user::interaction * puserinteractionFocusKillFocus = m_puserinteractionKeyboardFocus;
-
-      if (puserinteractionFocusKillFocus != puserinteractionFocusErase)
-      {
-
-         return;
-
-      }
-
-      m_puserinteractionKeyboardFocus = nullptr;
-
-      try
-      {
-
-         if (::is_set(puserinteractionFocusKillFocus))
-         {
-
-            if (puserinteractionFocusKillFocus->m_bFocus)
-            {
-
-               puserinteractionFocusKillFocus->send_message(e_message_kill_focus);
-
-            }
-
-            puserinteractionFocusKillFocus->set_need_redraw();
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-
-      //return true;
-
-   }
-
-
-   void window::impl_clear_keyboard_focus()
-   {
-
-      ::user::interaction * puserinteractionFocusKillFocus = m_puserinteractionKeyboardFocus;
-
-      m_puserinteractionKeyboardFocus = nullptr;
-
-      try
-      {
-
-         if (::is_set(puserinteractionFocusKillFocus))
-         {
-
-            if (puserinteractionFocusKillFocus->m_bFocus)
-            {
-
-               puserinteractionFocusKillFocus->send_message(e_message_kill_focus);
-
-            }
-
-            puserinteractionFocusKillFocus->set_need_redraw();
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-
-      //return true;
-
-   }
-
-
-   void window::set_keyboard_focus(::user::interaction * puserinteraction)
-   {
-
-      if (::is_null(puserinteraction))
-      {
-
-         impl_clear_keyboard_focus();
-
-         return;
-
-      }
+      //}
 
       auto pinteraction = user_interaction();
 
@@ -11152,139 +11232,174 @@ void window::set_oswindow(::oswindow oswindow)
 
       }
 
-      impl_set_keyboard_focus(puserinteraction);
+      ::cast < ::user::interaction > puserinteractionKeyboardFocusOld = m_pacmeuserinteractionKeyboardFocus;
+
+      if (puserinteractionKeyboardFocusOld != puserinteraction)
+      {
+
+         ::acme::windowing::window::set_keyboard_focus(puserinteraction);
+
+         if (::is_set(puserinteractionKeyboardFocusOld))
+         {
+
+            puserinteractionKeyboardFocusOld->on_kill_keyboard_focus();
+
+         }
+
+         if (::is_set(puserinteraction))
+         {
+
+
+            if (has_keyboard_focus())
+            {
+
+               puserinteraction->on_set_keyboard_focus();
+
+            }
+            else
+            {
+
+               set_keyboard_focus();
+
+            }
+
+         }
+
+      }
+
+      // impl_set_keyboard_focus(puserinteraction);
 
    }
 
 
-   void window::erase_keyboard_focus(::user::interaction * puserinteraction)
-   {
+   //void window::erase_keyboard_focus(::user::interaction * puserinteraction)
+   //{
 
-      if (puserinteraction == nullptr)
-      {
+   //   if (puserinteraction == nullptr)
+   //   {
 
-         impl_erase_keyboard_focus(nullptr);
+   //      impl_erase_keyboard_focus(nullptr);
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      if (puserinteraction == user_interaction())
-      {
+   //   if (puserinteraction == user_interaction())
+   //   {
 
-         impl_erase_keyboard_focus(puserinteraction);
+   //      impl_erase_keyboard_focus(puserinteraction);
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      ::user::interaction * pinteraction = user_interaction();
+   //   ::user::interaction * pinteraction = user_interaction();
 
-      if (pinteraction == nullptr)
-      {
+   //   if (pinteraction == nullptr)
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      if (!user_interaction()->is_ascendant_of(puserinteraction, true))
-      {
+   //   if (!user_interaction()->is_ascendant_of(puserinteraction, true))
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      impl_erase_keyboard_focus(puserinteraction);
+   //   impl_erase_keyboard_focus(puserinteraction);
 
-      //return true;
+   //   //return true;
 
-   }
+   //}
 
 
-   void window::clear_keyboard_focus(::user::interaction * puserinteractionGainingFocusIfAny)
-   {
+   //void window::clear_keyboard_focus(::user::interaction * puserinteractionGainingFocusIfAny)
+   //{
 
-      auto puserinteraction = user_interaction();
+   //   auto puserinteraction = user_interaction();
 
-      if (!puserinteraction)
-      {
+   //   if (!puserinteraction)
+   //   {
 
-         throw ::exception(error_failed);
+   //      throw ::exception(error_failed);
 
-      }
+   //   }
 
-      auto pwindow = puserinteraction->window();
+   //   auto pwindow = puserinteraction->window();
 
-      if (!pwindow)
-      {
+   //   if (!pwindow)
+   //   {
 
-         throw ::exception(error_failed);
+   //      throw ::exception(error_failed);
 
-      }
+   //   }
 
-      auto pwindowing = pwindow->windowing();
+   //   auto pwindowing = pwindow->windowing();
 
-      if (!pwindowing)
-      {
+   //   if (!pwindowing)
+   //   {
 
-         throw ::exception(error_failed);
+   //      throw ::exception(error_failed);
 
-      }
+   //   }
 
-      //::windowing::window* pwindowGainingFocusIfAny = nullptr;
+   //   //::windowing::window* pwindowGainingFocusIfAny = nullptr;
 
-      //if (pprimitiveimplGainingFocusIfAny)
-      //{
+   //   //if (pprimitiveimplGainingFocusIfAny)
+   //   //{
 
-      //   pwindowGainingFocusIfAny = pprimitiveimplGainingFocusIfAny->window();
+   //   //   pwindowGainingFocusIfAny = pprimitiveimplGainingFocusIfAny->window();
 
-      //}
+   //   //}
 
-      if (m_puserinteractionKeyboardFocusRequest == m_puserinteractionKeyboardFocus)
-      {
+   //   if (m_pacmeuserinteractionKeyboardFocusRequest == m_pacmeuserinteractionKeyboardFocus)
+   //   {
 
-         m_puserinteractionKeyboardFocusRequest.release();
+   //      m_pacmeuserinteractionKeyboardFocusRequest.release();
 
-      }
+   //   }
 
-      m_puserinteractionToKillKeyboardFocus = m_puserinteractionKeyboardFocus;
+   //   m_pacmeuserinteractionToKillKeyboardFocus = m_pacmeuserinteractionKeyboardFocus;
 
-      on_final_kill_keyboard_focus();
+   //   on_final_kill_keyboard_focus();
 
-      //pwindowing->clear_keyboard_focus(pwindowGainingFocusIfAny);
+   //   //pwindowing->aaa_clear_keyboard_focus(pwindowGainingFocusIfAny);
 
-      //auto puserinteraction = user_interaction();
+   //   //auto puserinteraction = user_interaction();
 
-      //if (::is_null(puserinteraction))
-      //{
+   //   //if (::is_null(puserinteraction))
+   //   //{
 
-      //   return false;
+   //   //   return false;
 
-      //}
+   //   //}
 
-      //::user::interaction * pinteractionHost = puserinteraction->get_host_user_interaction();
+   //   //::user::interaction * pinteractionHost = puserinteraction->get_host_user_interaction();
 
-      //if (::is_null(pinteractionHost))
-      //{
+   //   //if (::is_null(pinteractionHost))
+   //   //{
 
-      //   return false;
+   //   //   return false;
 
-      //}
+   //   //}
 
-      //auto pimplHost = pinteractionHost->m_pimpl;
+   //   //auto pimplHost = pinteractionHost->m_pimpl;
 
-      //if (::is_null(pimplHost))
-      //{
+   //   //if (::is_null(pimplHost))
+   //   //{
 
-      //   return false;
+   //   //   return false;
 
-      //}
+   //   //}
 
-      //pimplHost->impl_clear_keyboard_focus();
+   //   //pimplHost->aaa_impl_clear_keyboard_focus();
 
-      //return false;
+   //   //return false;
 
-   }
+   //}
 
 
    //void window::post_message(::message::message * pmessage)
@@ -15695,7 +15810,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   //void window::clear_keyboard_focus(::windowing::window * pprimitiveimplGainingFocusIfAny)
+   //void window::aaa_clear_keyboard_focus(::windowing::window * pprimitiveimplGainingFocusIfAny)
    //{
 
 
@@ -15716,7 +15831,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   //void window::impl_clear_keyboard_focus()
+   //void window::aaa_impl_clear_keyboard_focus()
    //{
 
 
@@ -16005,6 +16120,7 @@ void window::set_oswindow(::oswindow oswindow)
       MESSAGE_LINK(e_message_destroy, pchannel, this, &window::on_message_destroy);
       MESSAGE_LINK(e_message_non_client_destroy, pchannel, this, &window::on_message_non_client_destroy);
       MESSAGE_LINK(e_message_create, pchannel, this, &window::_001OnPrioCreate);
+      MESSAGE_LINK(e_message_after_create, pchannel, this, &window::_001OnPrioAfterCreate);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &window::on_prio_message_set_focus);
 
       if (user_interaction() && ::type(user_interaction()).name().contains("notify_icon"))

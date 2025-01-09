@@ -525,10 +525,10 @@ namespace user
    }
 
 
-   bool menu_button::on_click(::item * pitem)
+   bool menu_button::on_click(::item * pitem, ::user::mouse * pmouse)
    {
 
-      if (get_parent()->on_click(m_pmenuitem))
+      if (get_parent()->on_click(m_pmenuitem, pmouse))
       {
 
          return true;

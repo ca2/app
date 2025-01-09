@@ -8480,7 +8480,7 @@ namespace aura
             if(puserinteraction)
             {
                
-               puserinteraction->on_app_activated(ptopic->m_puseractivationtoken);
+               puserinteraction->on_app_activated(ptopic->user_activation_token());
                //m_pacmeuserinteractionMain->frame_toggle_restore();
                
             }

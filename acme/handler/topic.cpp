@@ -4,8 +4,8 @@
 #include "topic.h"
 //#include "acme/user/user/check.h"
 //#include "acme/user/user/text.h"
+#include "acme/user/user/activation_token.h"
 #include "acme/user/user/command_update_target.h"
-//#include "acme/user/user/element.h"
 #include "acme/user/user/interaction.h"
 
 
@@ -89,6 +89,23 @@
    }
 
    return m_puserelement.cast < ::acme::user::interaction >();
+
+}
+
+
+::user::activation_token * topic::user_activation_token()
+{
+
+   auto puseractivationtoken = m_actioncontext.user_activation_token();
+
+   if (::is_null(puseractivationtoken))
+   {
+
+      return nullptr;
+
+   }
+
+   return puseractivationtoken;
 
 }
 

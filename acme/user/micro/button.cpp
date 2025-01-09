@@ -32,7 +32,7 @@ namespace micro
 
       ::pointer<::nano::graphics::pen>ppenBorder;
 
-      if (acme_windowing_window()->m_pacmeuserinteractionFocus == this)
+      if (has_keyboard_focus())
       {
 
          ppenBorder = micro_theme()->m_ppenBorderFocus;

@@ -166,12 +166,13 @@ namespace acme
          //virtual void on_char(int iChar);
          virtual void set_focus();
          virtual bool is_focusable();
+         virtual bool has_keyboard_focus();
          //virtual void on_mouse_move(::user::mouse * pmouse);
          void set_capture() override;
          bool has_capture() override;
          void release_capture() override;
 
-
+         
          //virtual void resize_to_fit();
 
 

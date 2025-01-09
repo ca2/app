@@ -23,7 +23,7 @@ namespace filemanager
       void install_message_routing(::channel * pchannel) override;
 
 
-      bool on_click(::item * pitem) override;
+      bool on_click(::item * pitem, ::user::mouse * pmouse) override;
       void handle(::topic * ptopic, ::context * pcontext) override;
 
 

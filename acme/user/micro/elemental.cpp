@@ -108,7 +108,7 @@ namespace micro
    void elemental::set_focus()
    {
 
-      acme_windowing_window()->m_pacmeuserinteractionFocus = this;
+      acme_windowing_window()->m_pacmeuserinteractionKeyboardFocus = this;
 
       acme_windowing_window()->redraw();
 
@@ -690,19 +690,19 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
       //if (iChar == '\t' && m_pacmeuserinteractionaChildren.has_element())
       //{
 
-      //   auto iFind = m_pacmeuserinteractionaChildren.find_first(acme_windowing_window()->m_pacmeuserinteractionFocus);
+      //   auto iFind = m_pacmeuserinteractionaChildren.find_first(acme_windowing_window()->aaa_m_pacmeuserinteractionKeyboardFocus);
 
       //   iFind++;
 
-      //   acme_windowing_window()->m_pacmeuserinteractionFocus = m_pacmeuserinteractionaChildren % iFind;
+      //   acme_windowing_window()->aaa_m_pacmeuserinteractionKeyboardFocus = m_pacmeuserinteractionaChildren % iFind;
 
       //   redraw();
 
       //}
-      //else if (acme_windowing_window()->m_pacmeuserinteractionFocus)
+      //else if (acme_windowing_window()->aaa_m_pacmeuserinteractionKeyboardFocus)
       //{
 
-      //   acme_windowing_window()->m_pacmeuserinteractionFocus->on_char(iChar);
+      //   acme_windowing_window()->aaa_m_pacmeuserinteractionKeyboardFocus->on_char(iChar);
 
       //}
 

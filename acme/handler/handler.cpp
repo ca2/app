@@ -45,11 +45,23 @@ namespace handler
    }
 
 
-   //void handler::__on_update_handler_happening_unlocked()
-   //{
+   void handler::update_new_main_loop_happening()
+   {
 
+      if (has_main_loop_happening())
+      {
 
-   //}
+         new_main_loop_happening()->set_happening();
+
+      }
+      else
+      {
+
+         new_main_loop_happening()->reset_happening();
+
+      }
+
+   }
 
 
    void handler::destroy()
@@ -126,7 +138,7 @@ namespace handler
 
          new_main_loop_happening()->set_happening();
 
-         //__on_update_handler_happening_unlocked();
+         //update_new_main_loop_happening();
 
       }
 

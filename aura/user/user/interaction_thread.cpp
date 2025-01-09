@@ -1039,12 +1039,14 @@ namespace user
    void thread::term_task()
    {
 
-      auto puserinteraction = m_pwindow->user_interaction();
+      //if(m_p)
 
-      if (puserinteraction && puserinteraction->m_strName.contains("notify_icon"))
-      {
-         information() << "notify_icon";
-      }
+      //auto puserinteraction = m_pwindow->user_interaction();
+
+      //if (puserinteraction && puserinteraction->m_strName.contains("notify_icon"))
+      //{
+      //   information() << "notify_icon";
+      //}
 
       //_synchronous_lock synchronouslock(this->synchronization());
 

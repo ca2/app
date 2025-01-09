@@ -223,12 +223,12 @@ namespace acme
    }
    
    
-   void windowing::clear_keyboard_focus(::user::element * pelementGainingFocusIfAny)
-   {
-      
-      
-      
-   }
+   //void windowing::clear_keyboard_focus(::user::element * pelementGainingFocusIfAny)
+   //{
+   //   
+   //   
+   //   
+   //}
    
 
    void windowing::handle(::topic * ptopic, ::context * pcontext)

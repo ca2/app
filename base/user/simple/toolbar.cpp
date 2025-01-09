@@ -1638,7 +1638,7 @@ void simple_toolbar::on_timer(::timer * ptimer)
 }
 
 
-bool simple_toolbar::on_click(::item * pitem)
+bool simple_toolbar::on_click(::item * pitem, ::user::mouse * pmouse)
 {
 
    if (!::is_set(pitem))
@@ -1657,11 +1657,11 @@ bool simple_toolbar::on_click(::item * pitem)
 
    }
 
-   ::message::command command(pitem->m_atom);
+   auto pcommand = __initialize_new::message::command(pitem->m_atom, pmouse->user_activation_token());
 
-   puserinteraction->_001SendCommand(&command);
+   puserinteraction->_001SendCommand(pcommand);
 
-   return command.m_bRet;
+   return pcommand->m_bRet;
 
 }
 

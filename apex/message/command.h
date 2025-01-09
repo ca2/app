@@ -51,7 +51,7 @@ namespace message
 
 
       command(::particle * pparticle = nullptr);
-      command(const ::atom & atom);
+      command(const ::atom & atom, ::user::activation_token * puseractivationtoken);
 
 
       void common_construct();

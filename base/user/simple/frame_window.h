@@ -49,6 +49,9 @@ public:
 
    virtual bool has_notify_icon();
 
+   
+   void on_system_command(const ::e_system_command & esystemcommand) override;
+
 
    virtual void enable_default_notification_icon(bool bEnableDefaultNotificationIcon = true);
 

@@ -184,6 +184,9 @@ namespace platform
       string veriwell_multimedia_music_midi_get_default_implementation_name() override;
 
 
+      virtual void defer_register_server_library(const ::platform::uuid & uuid, const ::file::path & path);
+
+
       void _launch_macos_app(const ::string & pszAppFolder) override;
 
       void _launch_macos_app_args(const ::string & pszAppFolder, const ::string & pszArgs) override;

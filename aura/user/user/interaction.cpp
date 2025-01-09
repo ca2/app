@@ -632,6 +632,19 @@ namespace user
    }
 
 
+   void interaction::on_system_command(const ::e_system_command & esystemcommand)
+   {
+
+      if (esystemcommand == e_system_command_minimize)
+      {
+
+         _001Minimize();
+
+      }
+
+   }
+
+
    //   void interaction::set_restored_rectangle(const ::int_rectangle & rectangleRestored)
    //   {
    //
@@ -3104,7 +3117,7 @@ namespace user
       __check_refdbg
          MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction::on_message_destroy);
       MESSAGE_LINK(e_message_non_client_destroy, pchannel, this, &interaction::on_message_non_client_destroy);
-      MESSAGE_LINK(e_message_pos_create, pchannel, this, &interaction::on_message_after_create);
+      MESSAGE_LINK(e_message_after_create, pchannel, this, &interaction::on_message_after_create);
       MESSAGE_LINK(e_message_text_composition, pchannel, this, &interaction::_001OnTextComposition);
 
       ::user::interaction_base::install_message_routing(pchannel);
@@ -7749,12 +7762,10 @@ if(get_parent())
 
       element * pelement = keyboard_get_next_focusable(nullptr, bSkipChild, bSkipSiblings, bSkipParent);
 
-
-
       if (pelement == nullptr || pelement == this)
       {
 
-         clear_keyboard_focus();
+         window()->set_keyboard_focus(nullptr);
 
       }
       else
@@ -9038,7 +9049,7 @@ if(get_parent())
             if (m_bDefaultEditHandling && pkey->m_ekey == ::user::e_key_delete)
             {
 
-               auto pcommand = __allocate::message::command("edit_delete");
+               auto pcommand = __initialize_new ::message::command("edit_delete", pkey->user_activation_token());
 
                pcommand->initialize(this);
 
@@ -11078,7 +11089,7 @@ if(get_parent())
 
          information() << "on_finished_window_creation of Top Level Window";
 
-         post_message(e_message_pos_create);
+         post_message(e_message_after_create);
 
          if (!defer_post_pending_set_need_redraw())
          {
@@ -14353,7 +14364,7 @@ if(get_parent())
 
             information() << "key message";
 
-            ::pointer<::user::interaction> puiKeyboardFocus = window()->m_puserinteractionKeyboardFocus;
+            ::pointer<::user::interaction> puiKeyboardFocus = window()->m_pacmeuserinteractionKeyboardFocus;
 
             if (puiKeyboardFocus)
             {
@@ -14431,7 +14442,7 @@ if(get_parent())
          //if (m_puserinteraction->m_procedureOnAfterCreate)
          //{
 
-         //   m_puserinteraction->post_message(e_message_pos_create);
+         //   m_puserinteraction->post_message(e_message_after_create);
 
          //}
 
@@ -16205,145 +16216,152 @@ if(get_parent())
    //}
 
 
-   bool interaction::has_keyboard_focus()
-   {
+   //bool interaction::has_keyboard_focus()
+   //{
 
-      __check_refdbg
+   //   __check_refdbg
 
-         if (!is_window())
-         {
+   //      if (!is_window())
+   //      {
 
-            return false;
+   //         return false;
 
-         }
+   //      }
 
-      __check_refdbg
+   //   __check_refdbg
 
-         auto pwindowThis = window();
+   //      auto pwindowThis = window();
 
-      __check_refdbg
+   //   __check_refdbg
 
-         if (::is_null(pwindowThis))
-         {
+   //      if (::is_null(pwindowThis))
+   //      {
 
-            information() << "has_keyboard_focus No Window";
+   //         information() << "has_keyboard_focus No Window";
 
-            return false;
+   //         return false;
 
-         }
+   //      }
 
-      //auto pwindow = pwindow->m_pwindow;
+   //   //auto pwindow = pwindow->m_pwindow;
 
-      //if (::is_null(pwindow))
-      //{
+   //   //if (::is_null(pwindow))
+   //   //{
 
-      //   information() << "has_keyboard_focus No Primitive Impl";
+   //   //   information() << "has_keyboard_focus No Primitive Impl";
 
-      //   return false;
+   //   //   return false;
 
-      //}
+   //   //}
 
-      if (!pwindowThis->has_keyboard_focus())
-      {
+   //   if (pwindowThis->get_keyboard_focus() == this)
+   //   {
 
-         __check_refdbg
+   //      return true;
 
-            //if (pwindowThis->m_puserinteraction->owner_interaction())
-            {
+   //   }
+   //   else
+   //   {
+   //      __check_refdbg
 
-               __check_refdbg
+   //         //if (pwindowThis->m_puserinteraction->owner_interaction())
+   //         {
 
-                  auto pwindowOwner = pwindowThis->owner_window();
+   //            __check_refdbg
 
-               __check_refdbg
+   //               auto pwindowOwner = pwindowThis->owner_window();
 
-                  if (::is_null(pwindowOwner))
-                  {
+   //            __check_refdbg
 
-                     __check_refdbg
+   //               if (::is_null(pwindowOwner))
+   //               {
 
-                        information() << "has_keyboard_focus No Owner Window";
+   //                  __check_refdbg
 
-                     __check_refdbg
+   //                     information() << "has_keyboard_focus No Owner Window";
 
-                        return false;
+   //                  __check_refdbg
 
-                  }
+   //                     return false;
 
-               //auto pwindowOwner = pwindowOwner->m_pwindow;
+   //               }
 
-               //if (::is_null(pwindowOwner))
-               //{
+   //            //auto pwindowOwner = pwindowOwner->m_pwindow;
 
-               //   information() << "has_keyboard_focus No Owner Primitive Impl";
+   //            //if (::is_null(pwindowOwner))
+   //            //{
 
-               //   return false;
+   //            //   information() << "has_keyboard_focus No Owner Primitive Impl";
 
-               //}
+   //            //   return false;
 
-               if (pwindowOwner->has_keyboard_focus())
-               {
+   //            //}
 
-                  __check_refdbg
+   //            if (pwindowOwner->get_keyboard_focus() == this)
+   //            {
 
-                     //::string strType;
+   //               __check_refdbg
 
-                     //strType = ::type(pwindowOwner->m_pwindow->m_puserinteraction.m_p);
+   //                  //::string strType;
 
-                     //information() << "pwindowOwner->has_keyboard_focus() : " << strType;
+   //                  //strType = ::type(pwindowOwner->m_pwindow->m_puserinteraction.m_p);
 
-                     //::string strTypeOldFocus;
+   //                  //information() << "pwindowOwner->has_keyboard_focus() : " << strType;
 
-                     //strTypeOldFocus = ::type(pwindowOwner->m_pwindow->m_puserinteraction.m_p);
+   //                  //::string strTypeOldFocus;
 
-                     //information() << "old focus : " << strTypeOldFocus;
+   //                  //strTypeOldFocus = ::type(pwindowOwner->m_pwindow->m_puserinteraction.m_p);
 
-                     if (pwindowOwner->m_puserinteractionKeyboardFocus == this)
-                     {
+   //                  //information() << "old focus : " << strTypeOldFocus;
 
-                        __check_refdbg
+   //                  // if (pwindowOwner->aaa_m_pacmeuserinteractionKeyboardFocus == this)
+   //                  // {
 
-                           return true;
+   //                  //    __check_refdbg
 
-                     }
-                     else
-                     {
+   //                        return true;
 
-                        return false;
+   //                  // }
+   //                  // else
+   //                  // {
 
-                     }
+   //                  //    return false;
 
-               }
+   //                  // }
 
-            }
+   //            }
+
+   //         }
 
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      //if (::is_null(pwindow))
-      //{
+   //   //if (::is_null(pwindow))
+   //   //{
 
-      //   return false;
+   //   //   return false;
 
-      //}
-      __check_refdbg
+   //   //}
+   //   // __check_refdbg
 
-         if (pwindowThis->m_puserinteractionKeyboardFocus != this)
-         {
+   //   //    if (pwindowThis->aaa_m_pacmeuserinteractionKeyboardFocus != this)
+   //   //    {
 
-            __check_refdbg
+   //   //       __check_refdbg
 
-               return false;
+   //   //          return false;
 
-         }
+   //   //    }
 
-      __check_refdbg
+   //   // __check_refdbg
 
-         return true;
+   //   //    return true;
 
-   }
+   //   return false;
+
+   //}
 
 
    bool interaction::should_show_keyboard_focus()
@@ -16370,85 +16388,108 @@ if(get_parent())
 
       }
 
-      if (pwindowThis->has_keyboard_focus())
-      {
+      pwindowThis->set_keyboard_focus(this);
 
-         information() << "pwindowThis->has_keyboard_focus()";
+      ////if (pwindowThis->has_keyboard_focus())
+      //{
 
-         if (pwindowThis->m_puserinteractionToKillKeyboardFocus == this)
-         {
+      //   //information() << "pwindowThis->has_keyboard_focus()";
 
-            pwindowThis->m_puserinteractionToKillKeyboardFocus.release();
+      //   //if (pwindowThis->m_pacmeuserinteractionToKillKeyboardFocus == this)
+      //   //{
 
-         }
+      //   //   pwindowThis->m_pacmeuserinteractionToKillKeyboardFocus.release();
 
-         pwindowThis->m_puserinteractionKeyboardFocusRequest = this;
+      //   //}
 
-         pwindowThis->on_final_set_keyboard_focus();
+      //   //pwindowThis->m_pacmeuserinteractionKeyboardFocusRequest = this;
 
-         return;
+      //   pwindowThis->on_final_set_keyboard_focus();
 
-      }
-      else
-      {
+      //   return;
 
-         //if (pwindowThis->owner_window())
-         {
+      //}
+      //else
+      //{
 
-            auto pwindowOwner = pwindowThis->owner_window();
+      //   //if (pwindowThis->owner_window())
+      //   {
 
-            if (::is_null(pwindowOwner))
-            {
+      //      auto pwindowOwner = pwindowThis->owner_window();
 
-               return;
+      //      if (::is_null(pwindowOwner))
+      //      {
 
-            }
+      //         return;
 
-            //auto pwindowOwner = pwindowOwner->m_pwindow;
+      //      }
 
-            //if (::is_null(pwindowOwner))
-            //{
+      //      //auto pwindowOwner = pwindowOwner->m_pwindow;
 
-            //   return;
+      //      //if (::is_null(pwindowOwner))
+      //      //{
 
-            //}
+      //      //   return;
 
-            if (pwindowOwner->has_keyboard_focus())
-            {
+      //      //}
 
-               ::string strType;
+      //      if (pwindowOwner->has_keyboard_focus())
+      //      {
 
-               auto puserinteraction = pwindowOwner->user_interaction();
+      //         ::string strType;
 
-               strType = ::type(puserinteraction);
+      //         auto puserinteraction = pwindowOwner->user_interaction();
 
-               information() << "pwindowOwner->has_keyboard_focus() : " << strType;
+      //         strType = ::type(puserinteraction);
 
-               ::string strTypeOldFocus;
+      //         information() << "pwindowOwner->has_keyboard_focus() : " << strType;
 
-               //auto puserinteraction = pwindowOwner->user_interaction();
+      //         ::string strTypeOldFocus;
 
-               strTypeOldFocus = ::type(puserinteraction);
+      //         //auto puserinteraction = pwindowOwner->user_interaction();
 
-               information() << "old focus : " << strTypeOldFocus;
+      //         strTypeOldFocus = ::type(puserinteraction);
 
-               pwindowOwner->m_puserinteractionKeyboardFocusRequest = this;
+      //         information() << "old focus : " << strTypeOldFocus;
 
-               pwindowOwner->on_final_set_keyboard_focus();
+      //         pwindowOwner->m_pacmeuserinteractionKeyboardFocusRequest = this;
 
-               return;
+      //         pwindowOwner->on_final_set_keyboard_focus();
 
-            }
+      //         return;
 
-         }
+      //      }
 
-      }
+      //   }
 
-      pwindowThis->m_puserinteractionKeyboardFocusRequest = this;
+      //}
 
-      pwindowThis->set_keyboard_focus();
+      //pwindowThis->m_pacmeuserinteractionKeyboardFocusRequest = this;
+
+      //pwindowThis->set_keyboard_focus();
 
    }
+
+
+   void interaction::on_set_keyboard_focus()
+   {
+
+      set_need_redraw();
+
+      post_redraw();
+
+   }
+
+
+   void interaction::on_kill_keyboard_focus()
+   {
+
+      set_need_redraw();
+
+      post_redraw();
+
+   }
+
 
 
    bool interaction::has_mouse_capture()
@@ -20900,12 +20941,12 @@ if(get_parent())
    void interaction::frame_restore(::user::activation_token * puseractivationtoken)
    {
 
-      if (notify_icon())
-      {
+      //if (notify_icon())
+      //{
 
-         set_tool_window(false);
+      //   set_tool_window(false);
 
-      }
+      //}
 
       order_top();
 
@@ -20938,7 +20979,7 @@ if(get_parent())
       if (notify_icon())
       {
 
-         set_tool_window();
+         //set_tool_window();
 
          hide();
 
@@ -23259,68 +23300,77 @@ if(get_parent())
    //}
 
 
-   void interaction::clear_keyboard_focus(::user::element * pelementGainingFocusIfAny)
-   {
-
-      auto pwindowThis = window();
-
-      if (::is_null(pwindowThis))
-      {
-
-         return;
-
-      }
-
-      //auto pwindow = pwindow->m_pwindow;
-
-      //if (::is_null(pwindow))
-      //{
-
-      //   return;
-
-      //}
-
-      pwindowThis->m_puserinteractionToKillKeyboardFocus = pwindowThis->m_puserinteractionKeyboardFocus;
-
-
-      //      if (pwindow->has_keyboard_focus())
-      //      {
-      //
-      //         pwindow->m_puserinteractionToKillKeyboardFocus->clear_keyboard_focus(pelementGainingFocusIfAny);
-      //
-      //      }
-      //      else
-      //      {
-
-      pwindowThis->on_final_kill_keyboard_focus();
-
-      //}
-
-//      auto puserinteractionHost = get_host_user_interaction();
+//   void interaction::clear_keyboard_focus(::user::element * pelementGainingFocusIfAny)
+//   {
 //
-//      if (this == puserinteractionHost)
-//      {
+//      //auto pwindowThis = window();
 //
-//         ::user::primitive_impl* pwindowGainingFocusIfAny = nullptr;
+//      //if (::is_null(pwindowThis))
+//      //{
 //
-//         if (pelementGainingFocusIfAny)
-//         {
+//      //   return;
 //
-//            pwindowGainingFocusIfAny = pelementGainingFocusIfAny->get_primitive_impl();
+//      //}
 //
-//         }
+//      //auto pwindow = pwindow->m_pwindow;
 //
-//         return window()->clear_keyboard_focus(pwindowGainingFocusIfAny);
+//      //if (::is_null(pwindow))
+//      //{
 //
-//      }
-//      else
-//      {
+//      //   return;
 //
-//         return puserinteractionHost->clear_keyboard_focus(pelementGainingFocusIfAny);
+//      //}
 //
-//      }
-
-   }
+//      set_keyboard_focus(nullptr);
+//
+////
+////      auto pacmeuserinteractionKeyboardFocusOld = pwindowThis->m_pacmeuserinteractionKeyboardFocus;
+////
+////      pwindowThis->m_pacmeuserinteractionKeyboardFocus.release();
+////
+////      if(::is_set(pacmeuse)
+////
+////      pwindowThis->on_final_kill_keyboard_focus(pacmeuserinteractionKeyboardFocusOld);
+////
+////
+////      //      if (pwindow->has_keyboard_focus())
+////      //      {
+////      //
+////      //         pwindow->m_pacmeuserinteractionToKillKeyboardFocus->aaa_clear_keyboard_focus(pelementGainingFocusIfAny);
+////      //
+////      //      }
+////      //      else
+////      //      {
+////
+////      pwindowThis->on_final_kill_keyboard_focus();
+////
+////      //}
+////
+//////      auto puserinteractionHost = get_host_user_interaction();
+//////
+//////      if (this == puserinteractionHost)
+//////      {
+//////
+//////         ::user::primitive_impl* pwindowGainingFocusIfAny = nullptr;
+//////
+//////         if (pelementGainingFocusIfAny)
+//////         {
+//////
+//////            pwindowGainingFocusIfAny = pelementGainingFocusIfAny->get_primitive_impl();
+//////
+//////         }
+//////
+//////         return window()->aaa_clear_keyboard_focus(pwindowGainingFocusIfAny);
+//////
+//////      }
+//////      else
+//////      {
+//////
+//////         return puserinteractionHost->aaa_clear_keyboard_focus(pelementGainingFocusIfAny);
+//////
+//////      }
+//
+//   }
 
 
    bool interaction::is_ascendant_of(::user::element * puiDescendantCandidate, bool bIncludeSelf)
@@ -24066,7 +24116,7 @@ if(get_parent())
    }
 
 
-   bool interaction::on_click_generation(::item * pitem)
+   bool interaction::on_click_generation(::item * pitem, ::user::mouse * pmouse)
    {
 
       auto pappearance = get_appearance();
@@ -24112,12 +24162,12 @@ if(get_parent())
 
       }
 
-      return on_click(pitem);
+      return on_click(pitem, pmouse);
 
    }
 
 
-   bool interaction::on_click(::item * pitem)
+   bool interaction::on_click(::item * pitem, ::user::mouse * pmouse)
    {
 
       if (::is_set(pitem))
@@ -24198,15 +24248,15 @@ if(get_parent())
    }
 
 
-   bool interaction::on_right_click_generation(::item * pitem)
+   bool interaction::on_right_click_generation(::item * pitem, ::user::mouse * pmouse)
    {
 
-      return on_right_click(pitem);
+      return on_right_click(pitem, pmouse);
 
    }
 
 
-   bool interaction::on_right_click(::item * pitem)
+   bool interaction::on_right_click(::item * pitem, ::user::mouse * pmouse)
    {
 
       return false;
@@ -24930,7 +24980,7 @@ if(get_parent())
       //   else
       //   {
 
-      //      clear_keyboard_focus();
+      //      aaa_clear_keyboard_focus();
 
       //   }
 
@@ -25830,10 +25880,10 @@ if(get_parent())
             }
 
          }
-         else
+         else if(has_keyboard_focus())
          {
 
-            clear_keyboard_focus();
+            window()->set_keyboard_focus(nullptr);
 
          }
 
@@ -26306,7 +26356,7 @@ if(get_parent())
             if (bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
             {
 
-               pmessage->m_bRet = on_click_generation(pwindowimpl->m_pitemLButtonDown);
+               pmessage->m_bRet = on_click_generation(pwindowimpl->m_pitemLButtonDown, pmouse);
 
                information() << "interaction::on_message_left_button_up on_click_generation ret="
                   << (int)pmessage->m_bRet;
@@ -26370,17 +26420,17 @@ if(get_parent())
                   if (!pmessage->m_bRet)
                   {
 
-                     ::message::command command(atom);
+                     auto pcommand = __initialize_new ::message::command(atom, pmouse->user_activation_token());
 
-                     command.m_puiOther = this;
+                     pcommand->m_puiOther = this;
 
                      //route_command_message(&command);
 
-                     route_command(&command);
+                     route_command(pcommand);
 
-                     information() << "interaction::on_message_left_button_up route_cmd_msg=" << (int)command.m_bRet;
+                     information() << "interaction::on_message_left_button_up route_cmd_msg=" << (int)pcommand->m_bRet;
 
-                     pmessage->m_bRet = command.m_bRet;
+                     pmessage->m_bRet = pcommand->m_bRet;
 
                   }
 
@@ -26940,7 +26990,7 @@ if(get_parent())
 
          //psession->m_puiLastLButtonDown = nullptr;
 
-         pmessage->m_bRet = on_click_generation(pwindowimpl->m_pitemLButtonDown);
+         pmessage->m_bRet = on_click_generation(pwindowimpl->m_pitemLButtonDown, pmouse);
 
          information() << "interaction::on_message_left_button_up on_click_generation ret=" << (int)pmessage->m_bRet;
 
@@ -27004,17 +27054,17 @@ if(get_parent())
             if (!pmessage->m_bRet)
             {
 
-               ::message::command command(atom);
+               auto pcommand = __initialize_new ::message::command(atom, pmouse->user_activation_token());
 
-               command.m_puiOther = this;
+               pcommand->m_puiOther = this;
 
                //route_command_message(&command);
 
-               route_command(&command);
+               route_command(pcommand);
 
-               information() << "interaction::on_message_left_button_up route_cmd_msg=" << (int)command.m_bRet;
+               information() << "interaction::on_message_left_button_up route_cmd_msg=" << (int)pcommand->m_bRet;
 
-               pmessage->m_bRet = command.m_bRet;
+               pmessage->m_bRet = pcommand->m_bRet;
 
             }
 
@@ -27965,7 +28015,7 @@ if(get_parent())
    ::item_pointer interaction::on_items_hit_test(const ::int_point & point, e_zorder ezorder, ::collection::index iIdContainer, ::item_array * pitema)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       //auto pointScroll = point + m_pointScroll + m_pointBarDragScroll;
 
@@ -29347,26 +29397,27 @@ if(get_parent())
 
          }
 
-         auto puserinteractionHost = get_host_user_interaction();
+         // auto puserinteractionHost = get_host_user_interaction();
 
-         if (::is_set(puserinteractionHost) && puserinteractionHost->has_keyboard_focus())
-         {
+         // if (::is_set(puserinteractionHost) && puserinteractionHost->has_keyboard_focus())
+         // {
 
-            auto pwindow = puserinteractionHost->windowing_window();
+         //    auto pwindow = puserinteractionHost->windowing_window();
 
-            if (::is_set(pwindow))
-            {
+         //    if (::is_set(pwindow))
+         //    {
 
-               if (pwindow->m_puserinteractionKeyboardFocus == this)
+         //       if (pwindow->aaa_m_pacmeuserinteractionKeyboardFocus == this)
+         if(has_keyboard_focus())
                {
 
                   estate |= e_state_focused;
 
                }
 
-            }
+            //}
 
-         }
+         //}
 
          //         auto pprimitiveFocus = puser->get_keyboard_focus(user_thread());
          //

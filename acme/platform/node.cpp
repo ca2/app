@@ -549,6 +549,14 @@ namespace platform
    }
 
 
+   void node::defer_register_server_library(const ::platform::uuid & uuid, const ::file::path & path)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
    void node::_launch_macos_app(const ::string & pszAppFolder)
    {
       

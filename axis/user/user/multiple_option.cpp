@@ -47,7 +47,10 @@ namespace user
 
 
 
-   } bool multiple_option::on_click(::item* pitem)
+   }
+   
+   
+   bool multiple_option::on_click(::item* pitem, ::user::mouse * pmouse)
    {
 
       if (!::is_item_set(pitem))

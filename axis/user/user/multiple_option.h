@@ -37,7 +37,7 @@ namespace user
 
       ::subparticle_pointer clone() override;
 
-      bool on_click(::item* pitem) override;
+      bool on_click(::item* pitem, ::user::mouse * pmouse) override;
 
 
       ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) override;

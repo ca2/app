@@ -340,7 +340,7 @@ namespace experience
 
                      pkey->m_bRet = true;
 
-                     display_previous(pmessage->m_puseractivationtoken);
+                     display_previous(pmessage->user_activation_token());
 
                      set_reposition();
 
@@ -974,7 +974,7 @@ namespace experience
       else if (ptopic->m_atom == id_app_activated)
       {
 
-         frame_toggle_restore(ptopic->m_puseractivationtoken);
+         frame_toggle_restore(ptopic->m_actioncontext.user_activation_token());
 
       }
 
@@ -1439,9 +1439,11 @@ namespace experience
 
       }
 
-      pactivate->m_bRet = false;
-
       SetActiveFlag(pactivate->m_eactivate == e_activate_active || pactivate->m_eactivate == e_activate_click_active);
+
+      pactivate->m_bRet = true;
+
+      pactivate->m_lresult = 0;
 
    }
 

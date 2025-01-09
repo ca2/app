@@ -3033,16 +3033,16 @@ namespace user
    //}
 
 
-   void interaction_base::on_set_keyboard_focus()
-   {
+   //void interaction_base::on_set_keyboard_focus()
+   //{
 
-   }
+   //}
 
 
-   void interaction_base::on_kill_keyboard_focus()
-   {
+   //void interaction_base::on_kill_keyboard_focus()
+   //{
 
-   }
+   //}
 
 
    bool interaction_base::GetFocusRect(::int_rectangle & rectangle)
@@ -4194,7 +4194,7 @@ namespace user
 //      if (pprimitive == nullptr || pprimitive == this)
 //      {
 //
-//         clear_keyboard_focus();
+//         aaa_clear_keyboard_focus();
 //
 //      }
 //      else
@@ -4366,20 +4366,20 @@ namespace user
    }
 
 
-   void interaction_base::erase_keyboard_focus()
-   {
+   //void interaction_base::erase_keyboard_focus()
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-   }
+   //}
 
 
-   void interaction_base::clear_keyboard_focus(::user::element * pelementGainingFocusIfAny)
-   {
+   //void interaction_base::clear_keyboard_focus(::user::element * pelementGainingFocusIfAny)
+   //{
 
-      //throw ::interface_only();
+   //   //throw ::interface_only();
 
-   }
+   //}
 
 
    // mouse focus

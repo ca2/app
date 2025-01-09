@@ -415,7 +415,9 @@ CLASS_DECL_ACME bool _hsynchronization_wait(::hsynchronization h, const class ::
 
 #endif
 
-   DWORD dwResult = ::WaitForSingleObjectEx(handle, ::windows::wait(timeWait), false);
+   DWORD dwWait = ::windows::wait(timeWait);
+
+   DWORD dwResult = ::WaitForSingleObjectEx(handle, dwWait, false);
 
    auto estatus = ::windows::wait_result_status(dwResult, 1);
 

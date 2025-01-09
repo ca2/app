@@ -13,6 +13,9 @@ class item;
 struct os_theme_colors;
 
 
+DECLARE_ENUMERATION(e_system_command, enum_system_command);
+
+
 namespace user
 {
 

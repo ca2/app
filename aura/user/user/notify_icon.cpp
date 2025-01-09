@@ -137,9 +137,9 @@ namespace user
    bool notify_icon::handle_command(const ::atom &atom, ::user::activation_token * puseractivationtoken)
    {
 
-      auto pcommand = __allocate ::message::command(atom);
+      auto pcommand = __initialize_new ::message::command(atom, puseractivationtoken);
 
-      pcommand->m_puseractivationtoken = puseractivationtoken;
+      //pcommand->m_actioncontext.m_puseractivationtoken = puseractivationtoken;
 
       route_command(pcommand);
 

@@ -452,11 +452,11 @@ namespace user
 
       virtual ::user::element * get_keyboard_focus();
       virtual void set_keyboard_focus(::user::primitive_impl * pprimitiveimpl);
-      virtual void erase_keyboard_focus(::user::primitive_impl* pprimitiveimpl);
-      virtual void clear_keyboard_focus(::user::primitive_impl* pprimitiveimplGainingFocusIfAny = nullptr);
+      //virtual void erase_keyboard_focus(::user::primitive_impl* pprimitiveimpl);
+      virtual void aaa_clear_keyboard_focus(::user::primitive_impl* pprimitiveimplGainingFocusIfAny = nullptr);
       virtual void impl_set_keyboard_focus(::user::primitive_impl* pprimitiveimpl);
       virtual void impl_erase_keyboard_focus(::user::primitive_impl * pprimitiveimpl);
-      virtual void impl_clear_keyboard_focus();
+      virtual void aaa_impl_clear_keyboard_focus();
 
 
       //virtual void post_message(const ::atom & atom, ::wparam wparam = 0, lparam lparam = 0);

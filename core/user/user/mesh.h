@@ -528,7 +528,7 @@ namespace user
       virtual void  on_enable_hover_select();
 
 
-      bool on_click(::item * pitem) override;
+      bool on_click(::item * pitem, ::user::mouse * pmouse) override;
       virtual bool  _001OnRightClick(uptr uFlags,const ::int_point & point);
 
       virtual void  get_selection(range& selection);

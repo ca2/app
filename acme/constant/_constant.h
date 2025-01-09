@@ -581,6 +581,14 @@ enum enum_display
 };
 
 
+enum enum_system_command
+{
+
+   e_system_command_none,
+   e_system_command_minimize,
+
+};
+
 
 enum enum_layout_experience
 {

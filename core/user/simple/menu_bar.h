@@ -66,7 +66,7 @@ protected:
 
    //virtual ::collection::index _001GetHoverItem() override;
    //virtual void OnUpdateHover() override;
-   bool on_click(::item * pitem) override;
+   bool on_click(::item * pitem, ::user::mouse * pmouse) override;
    void _001OnDropDown(::collection::index iItem);
    //index _001GetHoverItem();
    //void _001Hover(const ::int_point & point);

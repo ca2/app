@@ -84,7 +84,7 @@ namespace user
    }
 
 
-   bool menu_impact::on_click(::item * pitem)
+   bool menu_impact::on_click(::item * pitem, ::user::mouse * pmouse)
    {
 
       if (!is_window_enabled())
@@ -103,11 +103,11 @@ namespace user
 
       }
 
-      ::message::command command(pmenuitem->m_atom);
+      auto pcommand = __initialize_new::message::command(pmenuitem->m_atom, pmouse->user_activation_token());
 
-      route_command(&command);
+      route_command(pcommand);
 
-      return command.m_bRet;
+      return pcommand->m_bRet;
 
    //}
 

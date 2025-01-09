@@ -4279,7 +4279,7 @@ namespace user
                   if(m_iClick == 1)
                   {
 
-                     if (!on_click(new_item_with_index(display_to_strict(iDisplayItemLButtonUp))))
+                     if (!on_click(new_item_with_index(display_to_strict(iDisplayItemLButtonUp)), pmouse))
                      {
 
                         //index iItem = display_to_strict(iDisplayItemLButtonUp);
@@ -4409,11 +4409,11 @@ namespace user
 
 
       pmessage->m_bRet = true;
+
    }
 
 
-
-   bool list::on_click(::item * pitem)
+   bool list::on_click(::item * pitem, ::user::mouse * pmouse)
    {
 
       auto ptopic = create_topic(::id_list_clicked);
@@ -4446,7 +4446,7 @@ namespace user
    }
 
 
-   bool list::on_right_click(::item * pitem)
+   bool list::on_right_click(::item * pitem, ::user::mouse * pmouse)
    {
 
       __UNREFERENCED_PARAMETER(pitem);
@@ -4653,7 +4653,7 @@ namespace user
                {
 
                   //_001OnItemClick(iItem);
-                  on_click(new_item_with_index(iItem));
+                  on_click(new_item_with_index(iItem), pmouse);
 
                }
 

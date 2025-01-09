@@ -20,7 +20,6 @@ namespace micro
    }
 
 
-
    void still::on_draw(::nano::graphics::device * pmicrodevice)
    {
 
@@ -37,7 +36,7 @@ namespace micro
       ::pointer<::nano::graphics::pen>ppenBorder;
 
       if (acme_windowing_window()->m_pacmeuserinteractionHover == this
-         || acme_windowing_window()->m_pacmeuserinteractionFocus == this)
+         || has_keyboard_focus())
       {
 
          ppenBorder = micro_theme()->m_ppenBorderFocus;

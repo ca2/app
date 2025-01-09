@@ -154,11 +154,11 @@ namespace user
       bool                                      m_bUpdateBufferPending;
 
       ::pointer<::user::interaction>            m_puserinteractionMouseCapture;
-      ::pointer<::user::interaction>            m_puserinteractionKeyboardFocus;
-      ::pointer<::user::interaction>            m_puserinteractionKeyboardFocusRequest;
-      /// message handling helper besides (possibly duplicate of) m_puserinteractionKeyboardFocusRequest
+      ::pointer<::user::interaction>            aaa_m_pacmeuserinteractionKeyboardFocus;
+      ::pointer<::user::interaction>            m_pacmeuserinteractionKeyboardFocusRequest;
+      /// message handling helper besides (possibly duplicate of) m_pacmeuserinteractionKeyboardFocusRequest
       ::pointer<::user::interaction>            m_puserinteractionKeyboardGainingFocusIfAny;
-      ::pointer<::user::interaction>            m_puserinteractionToKillKeyboardFocus;
+      ::pointer<::user::interaction>            m_pacmeuserinteractionToKillKeyboardFocus;
 
       class ::time                              m_timeLastRedraw;
       ::user::interaction_array                 m_userinteractionaHideOnConfigurationChange;
@@ -260,11 +260,11 @@ namespace user
       virtual bool keyboard_focus_OnChildKillFocus() override;
 
 //      virtual void on_final_set_keyboard_focus(::message::set_keyboard_focus * psetkeyboardfocus);
-//      virtual void on_final_kill_keyboard_focus(::message::kill_keyboard_focus * pkillkeyboardfocus);
+//      virtual void aaa_on_final_kill_keyboard_focus(::message::kill_keyboard_focus * pkillkeyboardfocus);
 
       virtual void on_final_set_keyboard_focus();
 
-      virtual void on_final_kill_keyboard_focus();
+      virtual void aaa_on_final_kill_keyboard_focus();
 
       virtual bool has_pending_focus();
 
@@ -698,7 +698,7 @@ namespace user
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      DECLARE_MESSAGE_HANDLER(on_message_pos_create);
+      DECLARE_MESSAGE_HANDLER(on_message_after_create);
       DECLARE_MESSAGE_HANDLER(_001OnPaint);
       DECLARE_MESSAGE_HANDLER(_001OnPrint);
       DECLARE_MESSAGE_HANDLER(_001OnCaptureChanged);
@@ -813,10 +813,10 @@ namespace user
       ::user::element * get_keyboard_focus() override;
       //virtual void set_keyboard_focus(::user::interaction_base * pprimitive) override;
       //virtual void erase_keyboard_focus(::user::interaction_base * pprimitive) override;
-      void clear_keyboard_focus(::user::primitive_impl* pprimitiveimplGainingFocusIfAny = nullptr) override;
+      void aaa_clear_keyboard_focus(::user::primitive_impl* pprimitiveimplGainingFocusIfAny = nullptr) override;
       //virtual void impl_set_keyboard_focus(::user::interaction_base * pprimitive) override;
       //virtual void impl_erase_keyboard_focus(::user::interaction_base * pprimitive) override;
-      //virtual void impl_clear_keyboard_focus() override;
+      //virtual void aaa_impl_clear_keyboard_focus() override;
 
       virtual void redraw_add(::particle * pparticle) override;
       virtual void redraw_erase(::particle * pparticle) override;

@@ -324,12 +324,12 @@ void html_form::on_message_left_button_down(::message::message * pmessage)
       m_pelementLButtonDown->OnLButtonDown(&htmlmessage);
 
    }
-   else
-   {
+   //else
+   //{
 
-      clear_keyboard_focus();
+   //   clear_keyboard_focus();
 
-   }
+   //}
 
    pmouse->m_bRet = true;
 

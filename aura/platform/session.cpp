@@ -659,7 +659,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 
    //   }
 
-   //   puserinteraction->clear_keyboard_focus();
+   //   puserinteraction->aaa_clear_keyboard_focus();
 
    //   set_keyboard_focus(nullptr);
 
@@ -1057,7 +1057,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 //   }
 
 
-//   bool session::clear_keyboard_focus()
+//   bool session::aaa_clear_keyboard_focus()
 //   {
 //
 //      auto pprimitive = get_focus_ui();
@@ -1091,7 +1091,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 //
 //      bool bHasFocus = puiImpl->has_keyboard_focus();
 //
-//      if (!pimpl->clear_keyboard_focus())
+//      if (!pimpl->aaa_clear_keyboard_focus())
 //      {
 //
 //         return false;

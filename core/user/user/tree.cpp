@@ -917,7 +917,7 @@ namespace user
    }
 
 
-   bool tree::on_click(::item * pitem)
+   bool tree::on_click(::item * pitem, ::user::mouse * pmouse)
    {
 
       return false;
@@ -925,7 +925,7 @@ namespace user
    }
 
 
-   bool tree::on_right_click(::item * pitem)
+   bool tree::on_right_click(::item * pitem, ::user::mouse * pmouse)
    {
 
       return false;

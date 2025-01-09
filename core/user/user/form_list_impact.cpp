@@ -317,12 +317,12 @@ namespace user
             if(get_wnd()->windowing_window())
             {
 
-               ::pointer<::user::interaction>puiFocus = get_wnd()->windowing_window()->m_puserinteractionKeyboardFocus;
+               ::pointer<::user::interaction>puiFocus = get_wnd()->windowing_window()->m_pacmeuserinteractionKeyboardFocus;
 
                if (puiFocus.is_null() || !is_ascendant_of(puiFocus, true))
                {
 
-                  get_wnd()->windowing_window()->m_puserinteractionKeyboardFocus = this;
+                  get_wnd()->windowing_window()->m_pacmeuserinteractionKeyboardFocus = this;
 
                }
 

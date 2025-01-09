@@ -43,7 +43,7 @@ CLASS_DECL_ACME void preempt(const class time & time)
       preempt_second(time.integral_second());
 
    }
-   else if (time >= 20_ms)
+   else if (time >= 1_ms)
    {
 
       preempt_millisecond(time.integral_millisecond());

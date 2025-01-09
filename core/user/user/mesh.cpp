@@ -3311,7 +3311,7 @@ namespace user
                   if(m_iClick == 1)
                   {
 
-                     on_click(__allocate ::item(::e_element_item, iDisplayItemLButtonUp));
+                     on_click(__allocate ::item(::e_element_item, iDisplayItemLButtonUp), pmouse);
 
                   }
                   else
@@ -3426,10 +3426,12 @@ namespace user
    }
 
 
-   bool mesh::on_click(::item * pitem)
+   bool mesh::on_click(::item * pitem, ::user::mouse * pmouse)
    {
 
       auto ptopic = create_topic(::id_list_clicked);
+
+      ptopic->m_actioncontext.m_pmessage = pmouse;
 
       ptopic->m_puserelement = this;
 
@@ -3570,7 +3572,7 @@ namespace user
 
       auto item = hit_test(pmouse, ::user::e_zorder_any);
 
-      on_click(item);
+      on_click(item, pmouse);
 
       //   on_click(item);
       set_need_redraw();

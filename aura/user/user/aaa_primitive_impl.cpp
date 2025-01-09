@@ -2422,15 +2422,15 @@ namespace user
    }
 
 
-   void primitive_impl::erase_keyboard_focus(::user::primitive_impl * pprimitiveimpl)
-   {
+   //void primitive_impl::erase_keyboard_focus(::user::primitive_impl * pprimitiveimpl)
+   //{
 
-      __UNREFERENCED_PARAMETER(pprimitiveimpl);
+   //   __UNREFERENCED_PARAMETER(pprimitiveimpl);
 
-   }
+   //}
 
 
-   void primitive_impl::clear_keyboard_focus(::user::primitive_impl * pprimitiveimplGainingFocusIfAny)
+   void primitive_impl::aaa_clear_keyboard_focus(::user::primitive_impl * pprimitiveimplGainingFocusIfAny)
    {
 
 
@@ -2451,7 +2451,7 @@ namespace user
    }
 
 
-   void primitive_impl::impl_clear_keyboard_focus()
+   void primitive_impl::aaa_impl_clear_keyboard_focus()
    {
 
 

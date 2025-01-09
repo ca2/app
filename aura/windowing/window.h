@@ -157,11 +157,11 @@ namespace windowing
       bool                                      m_bUpdateBufferPending;
 
       ::pointer<::user::interaction>            m_puserinteractionMouseCapture;
-      ::pointer<::user::interaction>            m_puserinteractionKeyboardFocus;
-      ::pointer<::user::interaction>            m_puserinteractionKeyboardFocusRequest;
-      /// message handling helper besides (possibly duplicate of) m_puserinteractionKeyboardFocusRequest
-      ::pointer<::user::interaction>            m_puserinteractionKeyboardGainingFocusIfAny;
-      ::pointer<::user::interaction>            m_puserinteractionToKillKeyboardFocus;
+      //::pointer<::user::interaction>            aaa_m_pacmeuserinteractionKeyboardFocus;
+      //::pointer<::acme::user::interaction>      m_pacmeuserinteractionKeyboardFocusRequest;
+      /// message handling helper besides (possibly duplicate of) m_pacmeuserinteractionKeyboardFocusRequest
+      //::pointer<::acme::user::interaction>      m_pacmeuserinteractionKeyboardGainingFocusIfAny;
+      //::pointer<::acme::user::interaction>      m_pacmeuserinteractionToKillKeyboardFocus;
 
       class ::time                              m_timeLastRedraw;
       ::user::interaction_array                 m_userinteractionaHideOnConfigurationChange;
@@ -560,6 +560,10 @@ namespace windowing
 
       virtual void show_task(bool bShowTask);
 
+      /// @brief a tool window doesn't show at the task bar
+      /// @return true if the window is being displayed as a tool window 
+      virtual bool is_tool_window();
+
 
       virtual void __update_graphics_buffer();
       //virtual void window_request_presentation();
@@ -731,11 +735,11 @@ namespace windowing
       virtual bool keyboard_focus_OnChildKillFocus() override;
 
       //      virtual void on_final_set_keyboard_focus(::message::set_keyboard_focus * psetkeyboardfocus);
-      //      virtual void on_final_kill_keyboard_focus(::message::kill_keyboard_focus * pkillkeyboardfocus);
+      //      virtual void aaa_on_final_kill_keyboard_focus(::message::kill_keyboard_focus * pkillkeyboardfocus);
 
-      virtual void on_final_set_keyboard_focus();
+      //virtual void on_final_set_keyboard_focus();
 
-      virtual void on_final_kill_keyboard_focus();
+      //virtual void on_final_kill_keyboard_focus(::acme::user::interaction * pacmeuserinteractionLostFocus);
 
       virtual bool has_pending_focus();
 
@@ -817,6 +821,7 @@ namespace windowing
 
       DECLARE_MESSAGE_HANDLER(_002OnDraw);
 
+      //DECLARE_MESSAGE_HANDLER(on_message_set_focus);
       DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
       DECLARE_MESSAGE_HANDLER(on_prio_message_set_focus);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
@@ -1173,12 +1178,12 @@ namespace windowing
       void CenterWindow(::user::interaction * pAlternateOwner = nullptr) override;
 
 
-      DECLARE_MESSAGE_HANDLER(on_message_create);
-      DECLARE_MESSAGE_HANDLER(on_message_pos_create);
+      //DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(_001OnPaint);
       DECLARE_MESSAGE_HANDLER(_001OnPrint);
       DECLARE_MESSAGE_HANDLER(_001OnCaptureChanged);
       DECLARE_MESSAGE_HANDLER(_001OnPrioCreate);
+      DECLARE_MESSAGE_HANDLER(_001OnPrioAfterCreate);
 
 #ifdef WINDOWS_DESKTOP
 
@@ -1288,10 +1293,10 @@ namespace windowing
       ::user::element * get_keyboard_focus() override;
       //virtual void set_keyboard_focus(::user::interaction_base * pprimitive) override;
       //virtual void erase_keyboard_focus(::user::interaction_base * pprimitive) override;
-      //void clear_keyboard_focus(::user::primitive_impl * pprimitiveimplGainingFocusIfAny = nullptr) override;
+      //void aaa_clear_keyboard_focus(::user::primitive_impl * pprimitiveimplGainingFocusIfAny = nullptr) override;
       //virtual void impl_set_keyboard_focus(::user::interaction_base * pprimitive) override;
       //virtual void impl_erase_keyboard_focus(::user::interaction_base * pprimitive) override;
-      //virtual void impl_clear_keyboard_focus() override;
+      //virtual void aaa_impl_clear_keyboard_focus() override;
 
       //virtual void redraw_add(::particle * pparticle) override;
       //virtual void redraw_erase(::particle * pparticle) override;
@@ -1767,12 +1772,12 @@ namespace windowing
 
 
       //virtual ::user::element * get_keyboard_focus();
-      virtual void set_keyboard_focus(::user::interaction * puserinteraction);
-      virtual void erase_keyboard_focus(::user::interaction * puserinteraction);
-      virtual void clear_keyboard_focus(::user::interaction * puserinteractionGainingFocusIfAny = nullptr);
-      virtual void impl_set_keyboard_focus(::user::interaction * puserinteraction);
-      virtual void impl_erase_keyboard_focus(::user::interaction * puserinteraction);
-      virtual void impl_clear_keyboard_focus();
+      void set_keyboard_focus(::acme::user::interaction * puserinteraction) override;
+      //virtual void erase_keyboard_focus(::user::interaction * puserinteraction);
+      //virtual void clear_keyboard_focus(::user::interaction * puserinteractionGainingFocusIfAny = nullptr);
+      //virtual void impl_set_keyboard_focus(::user::interaction * puserinteraction);
+      //virtual void impl_erase_keyboard_focus(::user::interaction * puserinteraction);
+      //virtual void aaa_impl_clear_keyboard_focus();
 
 
       //virtual void post_message(const ::atom & atom, ::wparam wparam = 0, lparam lparam = 0);

@@ -94,7 +94,7 @@ namespace acme
          virtual bool defer_release_mouse_capture(::thread * pthread, ::acme::windowing::window * pwindow);
          
          
-         virtual void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr);
+         //         virtual void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr);
          
 
          

@@ -99,7 +99,7 @@ namespace user
 
 
 
-   bool form_list::on_right_click(::item * pitem)
+   bool form_list::on_right_click(::item * pitem, ::user::mouse * pmouse)
    {
 
       if (!::is_set(pitem))
@@ -187,7 +187,7 @@ namespace user
 
 
 
-   bool form_list::on_click(::item * pitem)
+   bool form_list::on_click(::item * pitem, ::user::mouse * pmouse)
    {
 
       if (!::is_set(pitem))
@@ -374,7 +374,7 @@ namespace user
             //   m_rangeSelection.add_item(rectangle);
 
             //}
-            return ::user::list::on_click(pitem);
+            return ::user::list::on_click(pitem, pmouse);
 
          }
 

@@ -596,6 +596,8 @@ bool thread::handle_messages()
    {
 
    }
+
+   update_new_main_loop_happening();
    
    return bContinue;
 
@@ -3127,6 +3129,8 @@ void thread::post_message(const ::atom& atom, wparam wparam, lparam lparam)
 
    pmessagequeue->post_message(nullptr, atom, wparam, lparam);
 
+   new_main_loop_happening()->set_happening();
+
 }
 
 
@@ -4626,6 +4630,15 @@ void thread::kick_thread()
    //}
 
    //return true;
+
+}
+
+
+bool thread::_has_main_loop_happening_unlocked()
+{
+
+   return ::task::_has_main_loop_happening_unlocked()
+      || (m_pmessagequeue && m_pmessagequeue->m_messagea.has_element());
 
 }
 

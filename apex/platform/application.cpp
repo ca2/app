@@ -5330,9 +5330,7 @@ namespace apex
    bool application::handle_command(const ::atom & atom, ::user::activation_token * puseractivationtoken)
    {
 
-      auto pcommand = __allocate ::message::command (atom);
-
-      pcommand->m_puseractivationtoken = puseractivationtoken;
+      auto pcommand = __initialize_new ::message::command (atom, puseractivationtoken);
        
       if(m_pacmeuserinteractionMain)
       {

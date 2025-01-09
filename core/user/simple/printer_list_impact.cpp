@@ -83,7 +83,7 @@ void simple_printer_list_impact::on_message_create(::message::message * pmessage
 }
 
 
-bool simple_printer_list_impact::on_click(::item * pitem)
+bool simple_printer_list_impact::on_click(::item * pitem, ::user::mouse * pmouse)
 {
 
    if (!::is_set(pitem))

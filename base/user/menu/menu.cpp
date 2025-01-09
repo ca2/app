@@ -1292,7 +1292,7 @@ namespace user
    }
 
 
-   bool menu::on_click(::item* pitem)
+   bool menu::on_click(::item* pitem, ::user::mouse * pmouse)
    {
 
       ::pointer<::menu::item>pmenuitem = pitem;
@@ -1364,17 +1364,17 @@ namespace user
                if (::is_set(pchannelNotify))
                {
 
-                  ::message::command command(idCommand);
+                  auto pcommand = __initialize_new ::message::command(idCommand, pmouse->user_activation_token());
 
                   //auto puseritem = user_item(pitem);
 
                   //command.m_actioncontext = puseritem->M_ac
 
-                  pchannelNotify->_001SendCommand(&command);
+                  pchannelNotify->_001SendCommand(pcommand);
 
                   //ptopic->m_bRet = command.m_bRet;
 
-                  if (command.m_bRet)
+                  if (pcommand->m_bRet)
                   {
 
                      return true;

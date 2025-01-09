@@ -895,7 +895,7 @@ void simple_menu_bar::_001OnDropDown(::collection::index iItem)
 }
 
 
-bool simple_menu_bar::on_click(::item * pitem)
+bool simple_menu_bar::on_click(::item * pitem, ::user::mouse * pmouse)
 {
    
    return false;

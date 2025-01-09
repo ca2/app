@@ -74,7 +74,7 @@ namespace user
       ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
 
 
-      bool on_click(::item * pitem) override;
+      bool on_click(::item * pitem, ::user::mouse * pmouse) override;
 
 
       virtual void draw_border_rectangle(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);

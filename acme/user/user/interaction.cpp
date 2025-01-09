@@ -111,7 +111,7 @@ namespace acme
       void interaction::set_focus()
       {
 
-         acme_windowing_window()->m_pacmeuserinteractionFocus = this;
+         acme_windowing_window()->m_pacmeuserinteractionKeyboardFocus = this;
 
          acme_windowing_window()->redraw();
 
@@ -125,6 +125,52 @@ namespace acme
 
       }
 
+
+      bool interaction::has_keyboard_focus()
+      {
+
+         auto pwindow = acme_windowing_window();
+
+         if (::is_null(pwindow))
+         {
+
+            return false;
+
+         }
+
+         if (pwindow->get_keyboard_focus() == this)
+         {
+
+            return true;
+
+         }
+
+         while (true)
+         {
+
+            auto pwindowOwner = pwindow->owner_window();
+
+            if (::is_null(pwindowOwner))
+            {
+
+               break;
+
+            }
+
+            if (pwindowOwner->get_keyboard_focus() == this)
+            {
+
+               return true;
+
+            }
+
+            pwindow = pwindowOwner;
+
+         }
+
+         return false;
+
+      }
 
 
       void interaction::set_capture()
@@ -814,19 +860,19 @@ namespace acme
          //   if (iChar == '\t' && m_nanouserinteractionaChildren.has_element())
          //   {
 
-         //      auto iFind = m_nanouserinteractionaChildren.find_first(acme_windowing_window()->m_pacmeuserinteractionFocus);
+         //      auto iFind = m_nanouserinteractionaChildren.find_first(acme_windowing_window()->aaa_m_pacmeuserinteractionKeyboardFocus);
 
          //      iFind++;
 
-         //      acme_windowing_window()->m_pacmeuserinteractionFocus = m_nanouserinteractionaChildren % iFind;
+         //      acme_windowing_window()->aaa_m_pacmeuserinteractionKeyboardFocus = m_nanouserinteractionaChildren % iFind;
 
          //      redraw();
 
          //   }
-         //   else if (acme_windowing_window()->m_pacmeuserinteractionFocus)
+         //   else if (acme_windowing_window()->aaa_m_pacmeuserinteractionKeyboardFocus)
          //   {
 
-         //      acme_windowing_window()->m_pacmeuserinteractionFocus->on_char(iChar);
+         //      acme_windowing_window()->aaa_m_pacmeuserinteractionKeyboardFocus->on_char(iChar);
 
          //   }
 

@@ -92,7 +92,7 @@ namespace userfs
       bool do_drop(::collection::index iDisplayDrop, ::collection::index iDisplayDrag) override;*/
 
 
-      bool on_click(::item * pitem) override;
+      bool on_click(::item * pitem, ::user::mouse * pmouse) override;
 
 
       void handle(::topic * ptopic, ::context * pcontext) override;

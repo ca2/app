@@ -157,7 +157,7 @@ namespace user
 
       virtual void _001OnRemoveTab(tab_pane * ptab);
 
-      bool on_click(::item * pitem) override;
+      bool on_click(::item * pitem, ::user::mouse * pmouse) override;
 
       int auto_hide_threshold_height() override;
 

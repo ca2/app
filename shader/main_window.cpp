@@ -277,10 +277,10 @@ namespace app_shader
    }
 
 
-   bool main_window::on_click(::item * pitem)
+   bool main_window::on_click(::item * pitem, ::user::mouse * pmouse)
    {
 
-      if (::user::interaction::on_click(pitem))
+      if (::user::interaction::on_click(pitem, pmouse))
       {
 
          return true;

@@ -672,6 +672,8 @@ list(APPEND library_source
    platform/tracer.cpp
    platform/tracer.h
    platform/trace_category.cpp
+   platform/uuid.cpp
+   platform/uuid.h
    platform/url_context.cpp
    platform/url_context.h
    platform/version.cpp

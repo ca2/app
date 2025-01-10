@@ -2751,9 +2751,9 @@ namespace user
             if (ppane->m_pplaceholder == ptopic->m_puserelement)
             {
 
-               auto puserinteractionpointeraChild = ppane->m_pplaceholder->m_puserinteractionpointeraChild;
+               auto pacmeuserinteractionaChildren = ppane->m_pplaceholder->m_pacmeuserinteractionaChildren;
 
-               auto pchild = puserinteractionpointeraChild->first_interaction();
+               ::cast < ::user::interaction > pchild = pacmeuserinteractionaChildren->first();
 
                if (pchild)
                {

@@ -309,11 +309,11 @@ namespace user
       if (ptabpane->m_pplaceholder.is_set())
       {
 
-         ::pointer<::user::interaction>puiChild;
+         //::pointer<::user::interaction>puiChild;
 
-         ptabpane->m_pplaceholder->get_child(puiChild);
+         auto puiChild = ptabpane->m_pplaceholder->first_child();
 
-         if (puiChild.is_set())
+         if (::is_set(puiChild))
          {
 
             puiChild->display(e_display_none);
@@ -424,13 +424,9 @@ namespace user
 
          psplitview->initialize_split_layout();
 
-         ::pointer<::user::interaction>puserinteraction1;
+         auto puserinteraction1 = ppane1->m_pplaceholder->first_child();
 
-         ::pointer<::user::interaction>puserinteraction2;
-
-         ppane1->m_pplaceholder->get_child(puserinteraction1);
-
-         ppane2->m_pplaceholder->get_child(puserinteraction2);
+         auto puserinteraction2 = ppane2->m_pplaceholder->first_child();
 
          if (eposition == e_position_top || eposition == e_position_left)
          {
@@ -666,7 +662,7 @@ namespace user
 
                   __check_refdbg
 
-                  get_data()->m_tabpanea[iTab]->m_pplaceholder->m_puserinteractionpointeraChild.release();
+                  get_data()->m_tabpanea[iTab]->m_pplaceholder->m_pacmeuserinteractionaChildren.release();
 
                   __check_refdbg
 
@@ -1418,15 +1414,17 @@ namespace user
       if (::is_set(pplaceholder))
       {
 
-         auto puserinteractionpointeraChild = pplaceholder->m_puserinteractionpointeraChild;
+         auto pacmeuserinteractionaChildren = pplaceholder->m_pacmeuserinteractionaChildren;
 
-         if (::is_set(puserinteractionpointeraChild))
+         if (::is_set(pacmeuserinteractionaChildren))
          {
 
-            if (puserinteractionpointeraChild->interaction_count() == 1)
+            if (pacmeuserinteractionaChildren->count() == 1)
             {
 
-               return puserinteractionpointeraChild->first_interaction();
+               ::cast < ::user::interaction > puserinteractionFirst = pacmeuserinteractionaChildren->first();
+
+               return puserinteractionFirst;
 
             }
 
@@ -1698,18 +1696,18 @@ namespace user
                if (strType.case_insensitive_contains("place_holder"))
                {
 
-                  if (pchild->m_puserinteractionpointeraChild
-                     && pchild->m_puserinteractionpointeraChild->has_interaction())
+                  if (pchild->m_pacmeuserinteractionaChildren
+                     && pchild->m_pacmeuserinteractionaChildren->has_elements())
                   {
 
-                     auto puserinteractionChild = pchild->m_puserinteractionpointeraChild->first_interaction();
+                     ::cast <::user::interaction> puserinteractionChild = pchild->m_pacmeuserinteractionaChildren->first();
 
                      ::string strTypePlaceHolderChild = ::type(puserinteractionChild).name();
 
                      if (strTypePlaceHolderChild.case_insensitive_contains("simple_frame_window"))
                      {
 
-                        auto puserinteractionChild2 = puserinteractionChild->m_puserinteractionpointeraChild->first_interaction();
+                        ::cast <::user::interaction> puserinteractionChild2 = puserinteractionChild->m_pacmeuserinteractionaChildren->first();
 
                         ::string strTypePlaceHolderChild2 = ::type(puserinteractionChild2).name();
 
@@ -1718,7 +1716,7 @@ namespace user
 
                            information() << "going to display " << strTypePlaceHolderChild2;
 
-                           if (m_puserinteractionpointeraChild->contains_interaction(pchild))
+                           if (m_pacmeuserinteractionaChildren->contains(pchild))
                            {
 
                               //information() << "tab impact has font_list place_holder as child window";

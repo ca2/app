@@ -81,6 +81,7 @@ namespace windowing
       bool                                      m_bKeyboardFocus;
       ::pointer < class placement_log >         m_pplacementlog;
       ::particle_pointer                        m_pparticleChildrenSynchronization;
+         ::pointer < ::particle >               m_pmutexGraphics;
 
 #if defined(WINDOWS_DESKTOP) && !defined(ENABLE_TEXT_SERVICES_FRAMEWORK)
       //HIMC                                    m_himc;

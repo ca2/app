@@ -79,8 +79,8 @@ namespace user
          _synchronous_lock synchronouslock(this->synchronization());
 
          if (::is_set(pimpactdata->m_pplaceholder)
-            && ::is_set(pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild)
-            && pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild->has_interaction())
+            && ::is_set(pimpactdata->m_pplaceholder->m_pacmeuserinteractionaChildren)
+            && pimpactdata->m_pplaceholder->m_pacmeuserinteractionaChildren->has_element())
          {
 
             pimpactdata->m_bOk = true;

@@ -679,7 +679,29 @@ namespace acme
 //            destroy();
 
          }
-   
+
+
+      void interaction::set_children_to_destroy_unlocked()
+      {
+
+         m_pacmeuserinteractionaChildrenToDestroy = ::transfer(m_pacmeuserinteractionaChildren);
+
+         if(m_pacmeuserinteractionaChildrenToDestroy)
+         {
+
+            for (auto & pacmeuserinteraction : *m_pacmeuserinteractionaChildrenToDestroy)
+            {
+
+               pacmeuserinteraction->set_children_to_destroy_unlocked();
+
+            }
+
+         }
+
+      }
+
+
+
          
          bool interaction::is_host_top_level()
          {

@@ -3575,7 +3575,7 @@ retry_license:
 
                _synchronous_lock synchronouslock(puserinteractionHost->synchronization());
 
-               puserinteractionHost->m_puserinteractionpointeraChild->add_unique_interaction(puserinteraction);
+               puserinteractionHost->m_pacmeuserinteractionaChildren->add_unique(puserinteraction);
 
             }
 

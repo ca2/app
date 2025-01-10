@@ -60,6 +60,7 @@ namespace acme
          ::pointer < ::acme::user::interaction >       m_pacmeuserinteractionParent;
          ::pointer < ::acme::user::interaction >       m_pacmeuserinteractionOwner;
          ::pointer <::pointer_array < ::acme::user::interaction >> m_pacmeuserinteractionaChildren;
+         ::pointer <::pointer_array < ::acme::user::interaction >> m_pacmeuserinteractionaChildrenToDestroy;
 
          ////string                                    m_strText;
          ////::atom                                    m_atom;
@@ -104,6 +105,8 @@ namespace acme
          virtual void set_window(::acme::windowing::window * pwindow);
 
          void destroy_window() override;
+
+         virtual void set_children_to_destroy_unlocked();
 
          bool is_host_top_level() override;
 

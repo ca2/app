@@ -1727,7 +1727,7 @@ namespace user
 
       _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
-      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+      auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 
       for (::collection::index iIdSuffix = 1; iIdSuffix <= 1000; iIdSuffix++)
       {
@@ -1736,7 +1736,7 @@ namespace user
 
          bDuplicate = false;
 
-         for (auto & pinteractionChild : puserinteractionpointeraChild->interactiona())
+         for (auto & pinteractionChild : *pacmeuserinteractionaChildren)
          {
 
             if (pinteractionChild->m_atom == strCandidateId)
@@ -4371,19 +4371,31 @@ namespace user
    void interaction::destroy_children()
    {
 
-      for_user_interaction_children(puserinteraction, this)
+      if (m_pacmeuserinteractionaChildren)
       {
 
-         try
-         {
+         m_pacmeuserinteractionaChildrenToDestroy = ::transfer(m_pacmeuserinteractionaChildren);
 
-            puserinteraction->m_bLockSketchToDesign = true;
+      }
 
-         }
-         catch (...)
-         {
+      auto puserinteractionpointeraChildrenToDestroy = ::transfer(m_pacmeuserinteractionaChildrenToDestroy);
 
-         }
+      if(puserinteractionpointeraChildrenToDestroy)
+      {
+
+      for (auto & puserinteraction : *puserinteractionpointeraChildrenToDestroy)
+      {
+
+         // try
+         // {
+         //
+         //    puserinteraction->m_bLockSketchToDesign = true;
+         //
+         // }
+         // catch (...)
+         // {
+         //
+         // }
 
          try
          {
@@ -4397,6 +4409,7 @@ namespace user
          }
 
       }
+      }
 
    }
 
@@ -4404,27 +4417,27 @@ namespace user
    void interaction::destroy_child(::user::interaction * puserinteraction)
    {
 
-      ::pointer < ::user::interaction> p = puserinteraction;
-
-      {
-
-         _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
-
-         if (!m_puserinteractionpointeraChild)
-         {
-
-            return;
-
-         }
-
-         m_puserinteractionpointeraChild->erase_interaction(puserinteraction);
-
-      }
+      // ::pointer < ::user::interaction> p = puserinteraction;
+      //
+      // {
+      //
+      //    _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+      //
+      //    if (!m_pacmeuserinteractionaChildren)
+      //    {
+      //
+      //       return;
+      //
+      //    }
+      //
+      //    m_pacmeuserinteractionaChildren->erase_interaction(puserinteraction);
+      //
+      // }
 
       try
       {
 
-         p->destroy_window();
+         puserinteraction->destroy_window();
 
       }
       catch (...)
@@ -4561,21 +4574,23 @@ namespace user
 
       }
 
-      for_user_interaction_children(puserinteraction, this)
-      {
+      destroy_children();
 
-         try
-         {
-
-            puserinteraction->destroy_window();
-
-         }
-         catch (...)
-         {
-
-         }
-
-      }
+      // for_user_interaction_children(puserinteraction, this)
+      // {
+      //
+      //    try
+      //    {
+      //
+      //       puserinteraction->destroy_window();
+      //
+      //    }
+      //    catch (...)
+      //    {
+      //
+      //    }
+      //
+      // }
 
       ::user::interaction * puserinteractionParent = m_puserinteractionParent;
 
@@ -9593,19 +9608,19 @@ if(get_parent())
 
       _synchronous_lock synchronouslock(pwindow ? pwindow->m_pparticleChildrenSynchronization : nullptr);
 
-      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+      auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 
-      if (!puserinteractionpointeraChild)
+      if (!pacmeuserinteractionaChildren)
       {
 
          return nullptr;
 
       }
 
-      for (::collection::index i = puserinteractionpointeraChild->interaction_last_index(); i >= 0; i--)
+      for (::collection::index i = pacmeuserinteractionaChildren->last_index(); i >= 0; i--)
       {
 
-         auto pinteraction = puserinteractionpointeraChild->get_interaction(i);
+         ::cast < ::user::interaction > pinteraction = pacmeuserinteractionaChildren->element_at(i);
 
          if (pinteraction->GetDlgCtrlId() == atom)
          {
@@ -9634,10 +9649,10 @@ if(get_parent())
 
       }
 
-      for (::collection::index i = puserinteractionpointeraChild->interaction_last_index(); i >= 0; i--)
+      for (::collection::index i = pacmeuserinteractionaChildren->last_index(); i >= 0; i--)
       {
 
-         auto pinteraction = puserinteractionpointeraChild->get_interaction(i);
+         ::cast < ::user::interaction > pinteraction = pacmeuserinteractionaChildren->element_at(i);
 
          ::user::interaction * puiChild = pinteraction->get_child_by_id(atom, -1, iLevel);
 
@@ -9705,9 +9720,9 @@ if(get_parent())
 
          _synchronous_lock synchronouslock(puserinteractionParent->window()->m_pparticleChildrenSynchronization);
 
-         auto puserinteractionpointeraChild = puserinteractionParent->m_puserinteractionpointeraChild;
+         auto pacmeuserinteractionaChildren = puserinteractionParent->m_pacmeuserinteractionaChildren;
 
-         if (!puserinteractionpointeraChild)
+         if (!pacmeuserinteractionaChildren)
          {
 
             break;
@@ -9716,11 +9731,11 @@ if(get_parent())
 
          puserinteractionSearchChildren = nullptr;
 
-         for (::collection::index iChild = puserinteractionpointeraChild->interaction_last_index();
+         for (::collection::index iChild = pacmeuserinteractionaChildren->last_index();
               iChild >= 0; iChild--)
          {
 
-            auto & puserinteractionChild = puserinteractionpointeraChild->interaction_at(iChild);
+            ::cast < ::user::interaction > puserinteractionChild = pacmeuserinteractionaChildren->element_at(iChild);
 
             if (::is_null(pinteractionaExclude) || !pinteractionaExclude->contains_interaction(puserinteractionChild))
             {
@@ -11297,16 +11312,18 @@ if(get_parent())
 
       _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
-      auto pchildren = m_puserinteractionpointeraChild;
+      auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 
-      if (::is_null(pchildren) || pchildren->has_no_interaction())
+      if (::is_null(pacmeuserinteractionaChildren) || pacmeuserinteractionaChildren->is_empty())
       {
 
          return nullptr;
 
       }
 
-      return pchildren->get_first_interaction();
+      ::cast < ::user::interaction > pinteraction = pacmeuserinteractionaChildren->get_first_pointer();
+
+      return pinteraction;
 
    }
 
@@ -11325,18 +11342,20 @@ if(get_parent())
 
       _synchronous_lock synchronouslock(pparent->window()->m_pparticleChildrenSynchronization);
 
-      auto puserinteractionpointeraChild = pparent->m_puserinteractionpointeraChild;
+      auto pacmeuserinteractionaChildren = pparent->m_pacmeuserinteractionaChildren;
 
-      auto iFind = puserinteractionpointeraChild->find_first_interaction(this);
+      auto iFind = pacmeuserinteractionaChildren->find_first(this);
 
-      if (iFind + 1 >= puserinteractionpointeraChild->interaction_count())
+      if (iFind + 1 >= pacmeuserinteractionaChildren->count())
       {
 
          return nullptr;
 
       }
 
-      return puserinteractionpointeraChild->interaction_at(iFind + 1);
+      ::cast < ::user::interaction > pinteraction = pacmeuserinteractionaChildren->element_at(iFind + 1);
+
+      return pinteraction;
 
    }
 
@@ -11351,12 +11370,12 @@ if(get_parent())
          if (!bIgnoreChildren)
          {
 
-            auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+            auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 
-            if (puserinteractionpointeraChild && puserinteractionpointeraChild->has_interaction())
+            if (pacmeuserinteractionaChildren && pacmeuserinteractionaChildren->has_element())
             {
 
-               auto puserinteractionFirstChild = puserinteractionpointeraChild->first_interaction();
+               ::cast < ::user::interaction > puserinteractionFirstChild = pacmeuserinteractionaChildren->first();
 
                if (puserinteractionFirstChild)
                {
@@ -11368,7 +11387,9 @@ if(get_parent())
 
                   }
 
-                  return puserinteractionpointeraChild->first_interaction();
+                  ::cast < ::user::interaction > pinteraction = pacmeuserinteractionaChildren->first();
+
+                  return pinteraction;
 
                }
 
@@ -11391,16 +11412,16 @@ if(get_parent())
 
          _synchronous_lock synchronouslockParent(puserinteractionParent->window()->m_pparticleChildrenSynchronization);
 
-         auto puserinteractionpointeraChild = puserinteractionParent->m_puserinteractionpointeraChild;
+         auto pacmeuserinteractionaChildren = puserinteractionParent->m_pacmeuserinteractionaChildren;
 
-         if (!puserinteractionpointeraChild)
+         if (!pacmeuserinteractionaChildren)
          {
 
             return nullptr;
 
          }
 
-         auto iFind = puserinteractionpointeraChild->find_first_interaction(this);
+         auto iFind = pacmeuserinteractionaChildren->find_first(this);
 
          if (::not_found(iFind))
          {
@@ -11409,7 +11430,7 @@ if(get_parent())
 
          }
 
-         if (iFind >= puserinteractionpointeraChild->interaction_count())
+         if (iFind >= pacmeuserinteractionaChildren->count())
          {
 
             if (puserinteractionParent == puserinteractionStop)
@@ -11423,7 +11444,7 @@ if(get_parent())
 
          }
 
-         auto puserinteractionNextSibling = puserinteractionpointeraChild->interaction_at(iFind + 1);
+         auto puserinteractionNextSibling = pacmeuserinteractionaChildren->element_at(iFind + 1);
 
          if (puserinteractionNextSibling == puserinteractionStop)
          {
@@ -11432,7 +11453,9 @@ if(get_parent())
 
          }
 
-         return puserinteractionNextSibling;
+         ::cast < ::user::interaction > puserinteraction = puserinteractionNextSibling;
+
+         return puserinteraction;
 
       }
 
@@ -12013,7 +12036,6 @@ if(get_parent())
 
    void interaction::destroy_window()
    {
-
       //   m_bUserElementOk = false;
       //
       if (!(m_ewindowflag & e_window_flag_is_window))
@@ -12032,9 +12054,38 @@ if(get_parent())
 
       set_destroying_flag();
 
+      {
+
+         _synchronous_lock synchronouslock(window()->m_pmutexGraphics);
+
+         auto pwindow = this->window();
+
+         _synchronous_lock synchronouslockChildren(pwindow ? pwindow->m_pparticleChildrenSynchronization : nullptr);
+
+         auto pacmeuserinteractionParent = m_pacmeuserinteractionParent;
+
+         if (pacmeuserinteractionParent)
+         {
+
+            auto pacmeuserinteractionaParentChildren = pacmeuserinteractionParent->m_pacmeuserinteractionaChildren;
+
+            if(pacmeuserinteractionaParentChildren)
+            {
+
+               pacmeuserinteractionaParentChildren->erase(this);
+
+            }
+
+         }
+
+         set_children_to_destroy_unlocked();
+
+      }
 
       main_send([this]()
          {
+
+         _synchronous_lock synchronouslock(window()->m_pmutexGraphics);
 
             //
             //   if (!window())
@@ -12516,23 +12567,23 @@ if(get_parent())
 
       }
 
-      ::pointer<::user::interaction> pinteraction;
+      //::pointer<::user::interaction> pinteraction;
 
-      while (this->get_child(pinteraction))
+      for_user_interaction_children(puserinteraction, this)
       {
 
-         atom atom = pinteraction->GetDlgCtrlId();
+         atom atom = puserinteraction->GetDlgCtrlId();
 
          if (atom == idLeft)
          {
 
-            puiLeft = pinteraction;
+            puiLeft = puserinteraction;
 
          }
          else
          {
 
-            pinteraction->call_route_message(e_message_size_parent, 0, (lparam)&sizeparentlayout);
+            puserinteraction->call_route_message(e_message_size_parent, 0, (lparam)&sizeparentlayout);
 
          }
 
@@ -13118,14 +13169,14 @@ if(get_parent())
 
       _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
-      if (!m_puserinteractionpointeraChild)
+      if (!m_pacmeuserinteractionaChildren)
       {
 
          return -1;
 
       }
 
-      auto iZorderIndex = m_puserinteractionpointeraChild->find_first_interaction(puserinteraction);
+      auto iZorderIndex = m_pacmeuserinteractionaChildren->find_first(puserinteraction);
 
       return iZorderIndex;
 
@@ -13144,15 +13195,17 @@ if(get_parent())
 
       _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
-      if (m_puserinteractionpointeraChild)
+      if (m_pacmeuserinteractionaChildren)
       {
 
-         auto puserinteractionpointeraChild = m_puserinteractionpointeraChild.get();
+         auto puserinteractionpointeraChild = m_pacmeuserinteractionaChildren.get();
 
-         for (auto & pchild : puserinteractionpointeraChild->interactiona())
+         for (auto & pchild : *puserinteractionpointeraChild)
          {
 
-            if (pchild && pchild->layout().sketch().zorder().is_change_request())
+            ::cast <::user::interaction> puserinteractionChild = pchild;
+
+            if (puserinteractionChild && puserinteractionChild->layout().sketch().zorder().is_change_request())
             {
 
                //::string strType = ::type(pchild).name();
@@ -13279,23 +13332,23 @@ if(get_parent())
 
       bool bIsDisplayEquivalent = ::is_equivalent(edisplayLayout, edisplayLading);
 
-      if(strType.contains("main_frame"))
-      {
-
-          if (edisplayLading == e_display_zoomed)
-          {
-
-             information() << "::user::interaction::display_lading_to_layout() lading(zoomed) layout : " << ::as_string(edisplayLayout.m_eenum);
-
-          }
-          else
-          {
-
-             information() << "::user::interaction::display_lading_to_layout() lading(" << ::as_string(edisplayLading.m_eenum) << ") layout : " << ::as_string(edisplayLayout.m_eenum);
-
-          }
-
-      }
+      // if(strType.contains("main_frame"))
+      // {
+      //
+      //     if (edisplayLading == e_display_zoomed)
+      //     {
+      //
+      //        information() << "::user::interaction::display_lading_to_layout() lading(zoomed) layout : " << ::as_string(edisplayLayout.m_eenum);
+      //
+      //     }
+      //     else
+      //     {
+      //
+      //        information() << "::user::interaction::display_lading_to_layout() lading(" << ::as_string(edisplayLading.m_eenum) << ") layout : " << ::as_string(edisplayLayout.m_eenum);
+      //
+      //     }
+      //
+      // }
 
       auto activationLading = layout().lading().activation();
 
@@ -13594,7 +13647,7 @@ if(get_parent())
 #undef false
 
 
-   CLASS_DECL_AURA void zorder_sort(::user::interaction_array & uia, ::user::enum_layout elayout)
+   CLASS_DECL_AURA void zorder_sort(::pointer_array < ::acme::user::interaction > & uia, ::user::enum_layout elayout)
    {
 
       auto predZ = [elayout](auto & pui1, auto & pui2)
@@ -13607,11 +13660,15 @@ if(get_parent())
 
             }
 
-            return (bool)(pui1->const_layout().state(elayout).zorder() < pui2->const_layout().state(elayout).zorder());
+         ::cast < ::user::interaction > p1 = pui1;
+
+         ::cast < ::user::interaction > p2 = pui2;
+
+            return (bool)(p1->const_layout().state(elayout).zorder() < p2->const_layout().state(elayout).zorder());
 
          };
 
-      uia.interactiona().predicate_sort(predZ);
+      uia.predicate_sort(predZ);
 
    }
 
@@ -13623,20 +13680,22 @@ if(get_parent())
 
       _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
-      auto puiptraChildNew = __allocate::user::interaction_array(*m_puserinteractionpointeraChild);
+      auto puiptraChildNew = __allocate::pointer_array < ::acme::user::interaction >(*m_pacmeuserinteractionaChildren);
 
       zorder_sort(*puiptraChildNew, e_layout_sketch);
 
-      m_puserinteractionpointeraChild = puiptraChildNew;
+      m_pacmeuserinteractionaChildren = puiptraChildNew;
 
       int iZOrder = 1024;
 
-      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+      auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 
       ::string strType = ::type(this).name();
 
-      for (auto & pchild : puserinteractionpointeraChild->interactiona())
+      for (auto & pacmeuserinteractionChild  : *pacmeuserinteractionaChildren)
       {
+
+         ::cast < ::user::interaction> pchild = pacmeuserinteractionChild;
 
          pchild->layout().sketch()._patch_order(iZOrder);
 
@@ -13935,17 +13994,19 @@ if(get_parent())
 
          _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
-         auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+         auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 
-         if (puserinteractionpointeraChild)
+         if (pacmeuserinteractionaChildren)
          {
 
             auto rectangleX = this->rectangle();
 
-            auto children = puserinteractionpointeraChild->m_interactiona;
+            auto children = *pacmeuserinteractionaChildren;
 
-            for (auto & pinteraction : children)
+            for (auto & pacmeuserinteraction : children)
             {
+
+               ::cast < ::user::interaction > pinteraction = pacmeuserinteraction;
 
                try
                {
@@ -14888,19 +14949,19 @@ if(get_parent())
    }
 
 
-   pointer_array<interaction> * interaction::children()
+   pointer_array<::acme::user::interaction> * interaction::children()
    {
 
       _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
-      if (::is_null(m_puserinteractionpointeraChild))
+      if (::is_null(m_pacmeuserinteractionaChildren))
       {
 
          return nullptr;
 
       }
 
-      return &m_puserinteractionpointeraChild->interactiona();
+      return m_pacmeuserinteractionaChildren;
 
    }
 
@@ -16862,19 +16923,19 @@ if(get_parent())
          information() << "interaction sketch_to_lading user::list_box";
 
       }
-      else if(strType.contains("main_frame"))
-      {
-
-         information() << "interaction sketch_to_lading main_frame sketch display : " << ::as_string(layout().sketch().m_edisplay.m_eenum);
-
-         if (layout().sketch().m_edisplay.m_eenum == e_display_zoomed)
-         {
-
-            information() << "interaction sketch_to_lading main_frame sketch display zoom request";
-
-         }
-
-      }
+      // else if(strType.contains("main_frame"))
+      // {
+      //
+      //    information() << "interaction sketch_to_lading main_frame sketch display : " << ::as_string(layout().sketch().m_edisplay.m_eenum);
+      //
+      //    if (layout().sketch().m_edisplay.m_eenum == e_display_zoomed)
+      //    {
+      //
+      //       information() << "interaction sketch_to_lading main_frame sketch display zoom request";
+      //
+      //    }
+      //
+      // }
 
       _synchronous_lock synchronouslock(this->synchronization());
 
@@ -17814,7 +17875,7 @@ if(get_parent())
             _synchronous_lock synchronouslock(m_puserinteractionParent->window()->m_pparticleChildrenSynchronization);
             //auto puiptraChildNew = __allocate(
 //                    ::user::interaction_array(*m_puserinteractionParent->m_puserinteractionpointeraChild));
-            m_puserinteractionParent->m_puserinteractionpointeraChild->erase_interaction(this);
+            m_puserinteractionParent->m_pacmeuserinteractionaChildren->erase(this);
             //m_puserinteractionParent->m_puserinteractionpointeraChild = puiptraChildNew;
 
          }
@@ -17898,11 +17959,11 @@ if(get_parent())
       // else
       // {
 
-      __defer_construct_new(m_puserinteractionpointeraChild);
+      __defer_construct_new(m_pacmeuserinteractionaChildren);
 
       // }
 
-      m_puserinteractionpointeraChild->add_unique_interaction(puserinteractionChild);
+      m_pacmeuserinteractionaChildren->add_unique(puserinteractionChild);
 
       //m_puserinteractionpointeraChild = puserinteractionpointeraChildNew;
 
@@ -18560,16 +18621,16 @@ if(get_parent())
 
       _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
-      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+      auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 
-      if (::is_null(puserinteractionpointeraChild))
+      if (::is_null(pacmeuserinteractionaChildren))
       {
 
          return false;
 
       }
 
-      if (puserinteractionpointeraChild->contains_interaction(pinteraction))
+      if (pacmeuserinteractionaChildren->contains(pinteraction))
       {
 
          return true;
@@ -18583,8 +18644,10 @@ if(get_parent())
 
       }
 
-      for (auto & puiChild : puserinteractionpointeraChild->interactiona())
+      for (auto & pacmeuserinteractionChild : *pacmeuserinteractionaChildren)
       {
+
+         ::cast < ::user::interaction > puiChild = pacmeuserinteractionChild;
 
          if (puiChild->contains_user_interaction(pinteraction))
          {
@@ -19039,9 +19102,9 @@ if(get_parent())
       try
       {
 
-         auto puserinteractionpointeraChild = m_puserinteractionpointeraChild.m_p;
+         auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren.m_p;
 
-         if (!puserinteractionpointeraChild || puserinteractionpointeraChild->has_no_interaction())
+         if (!pacmeuserinteractionaChildren || pacmeuserinteractionaChildren->is_empty())
          {
 
             return nullptr;
@@ -19050,7 +19113,9 @@ if(get_parent())
          else
          {
 
-            return puserinteractionpointeraChild->first_interaction().m_p;
+            ::cast < ::user::interaction > puserinteractionFirst = pacmeuserinteractionaChildren->first();
+
+            return puserinteractionFirst;
 
          }
 
@@ -19073,11 +19138,15 @@ if(get_parent())
       try
       {
 
-         auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
-         if (!puserinteractionpointeraChild || puserinteractionpointeraChild->has_no_interaction())
+         auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
+         if (!pacmeuserinteractionaChildren || pacmeuserinteractionaChildren->is_empty())
             return nullptr;
          else
-            return puserinteractionpointeraChild->last_interaction();
+         {
+            ::cast < ::user::interaction > puserinteractionLast = pacmeuserinteractionaChildren->last();
+
+            return puserinteractionLast;
+         }
       }
       catch (...)
       {
@@ -19108,52 +19177,16 @@ if(get_parent())
    ::user::interaction * interaction::next_sibling()
    {
 
-      _synchronous_lock synchronouslock(children_synchronization());
+      ::cast < ::user::interaction > puserinteractionParent = m_pacmeuserinteractionParent;
 
-      try
+      if (::is_null(puserinteractionParent))
       {
 
-         ::user::interaction * pinteractionParent = nullptr;
-
-         try
-         {
-
-            pinteractionParent = get_parent();
-
-         }
-         catch (...)
-         {
-
-            return nullptr;
-
-         }
-
-         if (pinteractionParent == nullptr)
-            return nullptr;
-         auto puserinteractionpointeraChild = pinteractionParent->m_puserinteractionpointeraChild;
-
-         if (!puserinteractionpointeraChild)
-         {
-
-            return nullptr;
-
-         }
-
-         ::collection::index i = puserinteractionpointeraChild->interactiona().find_first(this);
-         if (i < 0)
-            return nullptr;
-         i++;
-         if (i >= puserinteractionpointeraChild->interaction_count())
-            return nullptr;
-         else
-            return puserinteractionpointeraChild->interaction_at(i);
+         return nullptr;
 
       }
-      catch (...)
-      {
-      }
-      return nullptr;
 
+      return puserinteractionParent->next_sibling(this);
 
    }
 
@@ -19166,9 +19199,16 @@ if(get_parent())
       try
       {
 
-         auto puserinteractionpointeraChild = m_puserinteractionpointeraChild.m_p;
+         auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren.m_p;
 
-         ::collection::index i = puserinteractionpointeraChild->find_first_interaction(pinteraction);
+         if (::is_null(pacmeuserinteractionaChildren))
+         {
+
+            return nullptr;
+
+         }
+
+         ::collection::index i = pacmeuserinteractionaChildren->find_first(pinteraction);
 
          if (i < 0)
          {
@@ -19181,7 +19221,7 @@ if(get_parent())
 
       restart:
 
-         if (i >= puserinteractionpointeraChild->interaction_count())
+         if (i >= pacmeuserinteractionaChildren->count())
          {
 
             return nullptr;
@@ -19193,7 +19233,9 @@ if(get_parent())
             try
             {
 
-               return puserinteractionpointeraChild->interaction_at(i).m_p;
+               ::cast< ::user::interaction> puserinteraction=  pacmeuserinteractionaChildren->element_at(i);
+
+               return puserinteraction;
 
             }
             catch (...)
@@ -19219,49 +19261,47 @@ if(get_parent())
    ::user::interaction * interaction::previous_sibling()
    {
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      ::cast < ::user::interaction > puserinteractionParent = m_pacmeuserinteractionParent;
 
-      try
+      if (::is_null(puserinteractionParent))
       {
 
-         ::user::interaction * pinteractionParent = nullptr;
+         return nullptr;
+
+      }
+
+      return puserinteractionParent->previous_sibling(this);
+
+   }
+
+
+   ::user::interaction * interaction::previous_sibling(::user::interaction * pinteraction)
+   {
+
+      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+
+      auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
+
+      ::collection::index i = pacmeuserinteractionaChildren->find_first(pinteraction);
+      if (i < 0)
+         return nullptr;
+      restart:
+         i--;
+      if (i < 0)
+         return nullptr;
+      else
+      {
          try
          {
-            pinteractionParent = get_parent();
+            ::cast < ::user::interaction> puserinteraction= pacmeuserinteractionaChildren->element_at(i);
+
+            return puserinteraction;
          }
          catch (...)
          {
-            return nullptr;
+            goto restart;
          }
-         if (pinteractionParent == nullptr)
-            return nullptr;
-
-         auto puserinteractionpointeraChild = pinteractionParent->m_puserinteractionpointeraChild;
-
-         if (!puserinteractionpointeraChild)
-         {
-
-            return nullptr;
-
-         }
-
-         ::collection::index i = puserinteractionpointeraChild->find_first_interaction(this);
-         if (i < 0)
-            return nullptr;
-         i--;
-         if (i < 0)
-            return nullptr;
-         else
-            return puserinteractionpointeraChild->interaction_at(i);
-
       }
-      catch (...)
-      {
-
-      }
-
-      return nullptr;
-
    }
 
    ::user::interaction * interaction::last_sibling()
@@ -19370,32 +19410,7 @@ if(get_parent())
    }
 
 
-   ::user::interaction * interaction::previous_sibling(::user::interaction * pinteraction)
-   {
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
-
-      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
-
-      ::collection::index i = puserinteractionpointeraChild->find_first_interaction(pinteraction);
-      if (i < 0)
-         return nullptr;
-   restart:
-      i--;
-      if (i < 0)
-         return nullptr;
-      else
-      {
-         try
-         {
-            return m_puserinteractionpointeraChild->interaction_at(i);
-         }
-         catch (...)
-         {
-            goto restart;
-         }
-      }
-   }
 
 
    void interaction::get_child_rect(::int_rectangle & rectangle)
@@ -19452,7 +19467,7 @@ if(get_parent())
    bool interaction::is_child(element * puiIsChild)
    {
 
-      if (!m_puserinteractionpointeraChild)
+      if (!m_pacmeuserinteractionaChildren)
       {
 
          return false;
@@ -19461,7 +19476,7 @@ if(get_parent())
 
       ::cast < ::user::interaction > puserinteractionIsChild = puiIsChild;
 
-      return m_puserinteractionpointeraChild->contains_interaction(puserinteractionIsChild);
+      return m_pacmeuserinteractionaChildren->contains(puserinteractionIsChild);
 
    }
 
@@ -23181,42 +23196,42 @@ if(get_parent())
    }
 
 
-   bool interaction::get_child(::pointer<::user::interaction> & pinteraction)
-   {
-
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
-
-      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
-
-      if (!puserinteractionpointeraChild)
-      {
-
-         return false;
-
-      }
-
-      return puserinteractionpointeraChild->get_child(pinteraction);
-
-   }
-
-
-   bool interaction::rget_child(::pointer<::user::interaction> & pinteraction)
-   {
-
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
-
-      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
-
-      if (!puserinteractionpointeraChild)
-      {
-
-         return false;
-
-      }
-
-      return puserinteractionpointeraChild->rget_child(pinteraction);
-
-   }
+   // bool interaction::get_child(::pointer<::user::interaction> & pinteraction)
+   // {
+   //
+   //    _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+   //
+   //    auto pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
+   //
+   //    if (!pacmeuserinteractionaChildren)
+   //    {
+   //
+   //       return false;
+   //
+   //    }
+   //
+   //    return pacmeuserinteractionaChildren->get_child(pinteraction);
+   //
+   // }
+   //
+   //
+   // bool interaction::rget_child(::pointer<::user::interaction> & pinteraction)
+   // {
+   //
+   //    _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
+   //
+   //    auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+   //
+   //    if (!puserinteractionpointeraChild)
+   //    {
+   //
+   //       return false;
+   //
+   //    }
+   //
+   //    return puserinteractionpointeraChild->rget_child(pinteraction);
+   //
+   // }
 
 
    enum_input_type interaction::preferred_input_type()
@@ -26759,14 +26774,15 @@ if(get_parent())
             //
             // }
 
+            if (window()->m_timeHoverNoiseSuppression.elapsed().m_iSecond > 10000)
+            {
+
+               information() << "AiAiAi";
+
+            }
+
          }
 
-         if (window()->m_timeHoverNoiseSuppression.elapsed().m_iSecond > 10000)
-         {
-
-            information() << "AiAiAi";
-
-         }
 
          //if (!m_pitemHover || !m_pitemHover->is_item_set())
          //{
@@ -28902,14 +28918,16 @@ if(get_parent())
 
       _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
-      if (::is_null(m_puserinteractionpointeraChild))
+      if (::is_null(m_pacmeuserinteractionaChildren))
       {
 
          return nullptr;
 
       }
 
-      return m_puserinteractionpointeraChild->interaction_at(iIndex);
+      ::cast < ::user::interaction > puserinteraction = m_pacmeuserinteractionaChildren->element_at(iIndex);
+
+      return puserinteraction;
 
 
    }

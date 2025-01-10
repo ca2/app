@@ -435,7 +435,7 @@ namespace user
       //::pointer<primitive_impl>                    m_pprimitiveimpl;
       //::pointer<interaction_impl>                  m_pinteractionimpl;
       ::pointer<interaction_array>                 m_puserinteractionpointeraOwned;
-      ::pointer<interaction_array>                 m_puserinteractionpointeraChild;
+      //::pointer<interaction_array>                 m_puserinteractionpointeraChild;
       ::pointer<interaction>                       m_ptooltip;
       ::pointer<::object>                          m_pmenuitem;
       pointer_array < interaction >                m_menua;
@@ -583,7 +583,7 @@ namespace user
 
       virtual bool has_link();
 
-      virtual pointer_array < interaction > * children();
+      virtual pointer_array < ::acme::user::interaction > * children();
 
 
       inline iterator proper_children() { return {this, e_next_proper, this}; }
@@ -1185,8 +1185,10 @@ namespace user
 
          }
 
-         for (auto & pinteraction : *puserinteractionpointeraChild)
+         for (auto & pacmeuserinteraction : *puserinteractionpointeraChild)
          {
+
+            ::cast < ::user::interaction> pinteraction = pacmeuserinteraction;
 
             if (::is_null(pinteraction))
             {
@@ -1253,8 +1255,10 @@ namespace user
          if (iLevel < 0 || iLevel > 0)
          {
 
-            for (auto & pinteraction : *puserinteractionpointeraChild)
+            for (auto & pacmeuserinteraction : *puserinteractionpointeraChild)
             {
+
+               ::cast < ::user::interaction > pinteraction = pacmeuserinteraction;
 
                if (pinteraction != puiExclude)
                {
@@ -1482,6 +1486,8 @@ namespace user
       virtual void _destroy_window();
 
       virtual void destroy_children();
+
+      //virtual void set_children_to_destroy_unlocked();
 
       //virtual void erase_children();
       virtual void destroy_child(::user::interaction * puserinteraction);
@@ -2316,8 +2322,8 @@ namespace user
       //void keyboard_focus_OnKillFocus(oswindow oswindowNew) override;
       //void keyboard_focus_OnChildKillFocus() override;
 
-      virtual bool get_child(::pointer<::user::interaction> & pinteraction);
-      virtual bool rget_child(::pointer<::user::interaction> & pinteraction);
+      //virtual bool get_child(::pointer<::user::interaction> & pinteraction);
+      //virtual bool rget_child(::pointer<::user::interaction> & pinteraction);
 
 
       

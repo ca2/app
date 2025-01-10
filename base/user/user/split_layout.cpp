@@ -769,23 +769,25 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      auto puserinteractionpointeraChild = pholder->m_puserinteractionpointeraChild;
+      auto pacmeuserinteractionaChildren = pholder->m_pacmeuserinteractionaChildren;
 
-      if (!puserinteractionpointeraChild)
+      if (!pacmeuserinteractionaChildren)
       {
 
          return true;
 
       }
 
-      if (puserinteractionpointeraChild->has_no_interaction())
+      if (pacmeuserinteractionaChildren->is_empty())
       {
 
          return true; // assume future child by default is visible
 
       }
 
-      if (!puserinteractionpointeraChild->first_interaction()->const_layout().sketch().is_visible())
+      ::cast < ::user::interaction > puserinteractionFirst = pacmeuserinteractionaChildren->first();
+
+      if (!puserinteractionFirst->const_layout().sketch().is_visible())
       {
 
          return false;

@@ -27,6 +27,7 @@ namespace windowing
         // return "gtk_based";
          case e_operating_ambient_unity:
       case e_operating_ambient_gnome:
+      case e_operating_ambient_cinnamon:
 #ifdef HAS_GTK4
          return "gtk4";
 #else

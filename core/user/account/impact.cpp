@@ -526,10 +526,10 @@ namespace account
 
       //int i = 5;
 
-      ::pointer<::user::interaction>pinteraction;
+      //::pointer<::user::interaction>pinteraction;
 
       //while((pinteraction = get_child(pinteraction)).is_set() && i > 0)
-      while (get_child(pinteraction))
+      for_user_interaction_children(puserinteraction, this)
       {
 
          //i--;
@@ -537,10 +537,10 @@ namespace account
          try
          {
 
-            if (pinteraction->is_this_visible() && !pinteraction->is_custom_draw())
+            if (puserinteraction->is_this_visible() && !puserinteraction->is_custom_draw())
             {
 
-               pinteraction->_000CallOnDraw(pgraphics);
+               puserinteraction->_000CallOnDraw(pgraphics);
 
             }
 

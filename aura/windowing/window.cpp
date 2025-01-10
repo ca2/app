@@ -163,6 +163,8 @@ namespace windowing
 
       m_pparticleChildrenSynchronization = node()->create_mutex();
 
+      m_pmutexGraphics = node()->create_mutex();
+
    }
 
 
@@ -1081,7 +1083,9 @@ namespace windowing
 
       auto pthread = m_puserthread;
 
-      return windowing()->defer_release_mouse_capture(pthread, this);
+      auto pwindowing = windowing();
+
+      return pwindowing->defer_release_mouse_capture(pthread, this);
 
    }
 
@@ -2453,8 +2457,6 @@ void window::set_oswindow(::oswindow oswindow)
    bool window::set_window_position_unlocked()
    {
 
-      information() << "windowing::window::set_window_position_unlocked";
-
       auto & stateDesign = user_interaction()->layout().m_statea[::user::e_layout_design];
 
       auto pointDesign = stateDesign.origin();
@@ -2535,6 +2537,8 @@ void window::set_oswindow(::oswindow oswindow)
       if (bMove || bSize
          || bVisibilityChange || bZ || bActivate)
       {
+
+         information() << "windowing::window::set_window_position_unlocked";
 
          ::int_rectangle r(pointDesign, sizeOutput);
 
@@ -9531,9 +9535,10 @@ void window::set_oswindow(::oswindow oswindow)
 
          }
 
-
          pgraphics->do_on_context([this, &pgraphics, &pbufferitem]()
             {
+
+               _synchronous_lock synchronous_lock(m_pmutexGraphics);
 
                {
 
@@ -9841,6 +9846,9 @@ void window::set_oswindow(::oswindow oswindow)
 
          pgraphics->do_on_context([this, &pgraphics, &pbufferitem]()
    {
+
+            _synchronous_lock synchronous_lock(m_pmutexGraphics);
+
 
 
       {

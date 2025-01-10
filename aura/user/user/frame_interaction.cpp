@@ -338,7 +338,7 @@ namespace user
 
          _synchronous_lock synchronouslock(pwindow ? pwindow->m_pparticleChildrenSynchronization : nullptr);
 
-         if (m_puserinteractionpointeraChild) m_puserinteractionpointeraChild->destroy();
+         if (m_pacmeuserinteractionaChildren) m_pacmeuserinteractionaChildren->destroy();
 
       }
 
@@ -390,7 +390,7 @@ namespace user
 
          _synchronous_lock synchronouslock(pwindow2 ? pwindow2->m_pparticleChildrenSynchronization : nullptr);
 
-         m_puserinteractionpointeraChild.release();
+         m_pacmeuserinteractionaChildren.release();
 
       }
 

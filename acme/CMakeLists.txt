@@ -591,6 +591,7 @@ list(APPEND library_source
    #platform/main.cpp
    #platform/main.h
    platform/math.cpp
+   platform/message.cpp
    platform/message.h
    platform/message_box.cpp
    platform/message_box.h

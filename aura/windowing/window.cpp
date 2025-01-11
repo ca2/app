@@ -13939,8 +13939,8 @@ void window::set_oswindow(::oswindow oswindow)
    void window::viewport_screen_to_client(::int_rectangle & rectangle)
    {
 
-      viewport_screen_to_client((::int_point &)rectangle.left());
-      viewport_screen_to_client((::int_point &)rectangle.right());
+      viewport_screen_to_client((::int_point &)rectangle.top_left());
+      viewport_screen_to_client((::int_point &)rectangle.bottom_right());
 
    }
 

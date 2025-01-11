@@ -9,6 +9,7 @@
 #include "acme/platform/system.h"
 #include "acme/nano/nano.h"
 #include "acme/user/micro/user.h"
+#include "acme/platform/node.h"
 #include "acme/windowing/windowing.h"
 
 
@@ -316,12 +317,13 @@ namespace acme
       void display::impl_set_wallpaper(::collection::index iMonitorIndex, const ::scoped_string & scopedstrWallpaper)
       {
 
-         // if (node()->set_wallpaper(iMonitorIndex, strWallpaper, this))
-         // {
-         //
+         node()->set_wallpaper(iMonitorIndex, scopedstrWallpaper, this);
+//         if ()
+          //{
+
          //    return true;
-         //
-         // }
+
+          //}
          //
          //return "";
          //return false;

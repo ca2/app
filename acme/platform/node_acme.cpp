@@ -400,13 +400,13 @@ namespace platform
    //void acme_node_layer::os_process_user_icon_theme(string strIconTheme){}
 
    bool acme_node_layer::set_wallpaper(::collection::index iScreen, string strLocalImagePath,
-                                       ::windowing::display* pwindowingdisplay)
+                                       ::acme::windowing::display* pwindowingdisplay)
    {
       return false;
    }
 
 
-   ::string acme_node_layer::get_wallpaper(::collection::index iScreen, ::windowing::display* pwindowingdisplay)
+   ::string acme_node_layer::get_wallpaper(::collection::index iScreen, ::acme::windowing::display* pwindowingdisplay)
    {
       return{};
    }

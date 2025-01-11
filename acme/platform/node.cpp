@@ -1301,7 +1301,7 @@ namespace platform
    // }
 
 
-   bool node::set_wallpaper(::collection::index iScreen, string strLocalImagePath, ::windowing::display * pwindowingdisplay)
+   bool node::set_wallpaper(::collection::index iScreen, string strLocalImagePath, ::acme::windowing::display * pwindowingdisplay)
    {
 
       throw interface_only();
@@ -1313,7 +1313,7 @@ namespace platform
    }
 
 
-   string node::get_wallpaper(::collection::index iScreen, ::windowing::display * pwindowingdisplay)
+   string node::get_wallpaper(::collection::index iScreen, ::acme::windowing::display * pwindowingdisplay)
    {
 
       return "";

@@ -69,7 +69,7 @@
 #include "acme/prototype/geometry2d/_defer_item.h"
 #include "acme/prototype/collection/_tuple.h"
 #include "acme/_finish.h"
-#include "app-core/store/_.h"
+//#include "app-core/store/_.h"
 
 #ifdef WINDOWS_DESKTOP
 //#include "acme/_operating_system.h"

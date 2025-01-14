@@ -2522,7 +2522,7 @@ size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddr
 
    clear_finishing_flag();
 
-   ENSURE(m_htask == (htask_t) nullptr);
+   ENSURE(!m_htask);
 
    defer_create_synchronization();
 
@@ -2596,7 +2596,7 @@ size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddr
 
    auto ptask = ::task::branch(eparallelization, createtaskattributes);
 
-   //   if(m_htask == 0)
+   //   if(!m_htask)
    //   {
    //
    //      if (::is_set(this))
@@ -3158,7 +3158,7 @@ void thread::send_element(const ::atom& atom, wparam wparam, ::particle* ppartic
 
    //}
 
-   if (m_htask == (htask_t)nullptr || !task_get_run())
+   if (!m_htask || !task_get_run())
    {
 
 

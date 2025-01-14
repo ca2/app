@@ -4274,7 +4274,7 @@ retry_license:
 //      if (bSynch)
 //      {
 //
-//         if (m_htask == nullptr)
+//         if (!m_htask)
 //         {
 //
 //            if (!begin_synch())

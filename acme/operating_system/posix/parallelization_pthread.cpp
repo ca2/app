@@ -673,19 +673,87 @@ string task_get_name()
 #endif
 
 
-
-CLASS_DECL_ACME int itask_equals(itask_t a, itask_t b)
+bool itask_t::operator == (const itask_t & i) const
 {
    
-   return pthread_equal((pthread_t) a, (pthread_t) b);
+   if(!i)
+   {
+      
+      if(!this->operator!())
+      {
+         
+         return true;
+         
+      }
+      else
+      {
+         
+         return false;
+         
+      }
+      
+   }
+   else if(!this->operator!())
+   {
+      
+      return false;
+      
+   }
+   
+   return pthread_equal(m_i, i.m_i);
    
 }
 
 
-CLASS_DECL_ACME int htask_equals(itask_t a, itask_t b)
+bool htask_t::operator == (const htask_t & h) const
 {
    
-   return pthread_equal((pthread_t) a, (pthread_t) b);
+   if(!h)
+   {
+      
+      if(!this->operator!())
+      {
+         
+         return true;
+         
+      }
+      else
+      {
+         
+         return false;
+         
+      }
+      
+   }
+   else if(!this->operator!())
+   {
+      
+      return false;
+      
+   }
+   
+   return pthread_equal(m_h, i.m_h);
+   
+}
+
+
+bool itask_t::operator !() const
+{
+   
+   itask_t iNull;
+   
+   return memcmp(&m_i, &iNull, sizeof(m_i)) == 0;
+   
+}
+
+
+bool htask_t::operator ! () const
+{
+   
+   htask_t hNull;
+   
+   return memcmp(&m_h, &hNull, sizeof(m_h)) == 0;
+   
    
 }
 

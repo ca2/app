@@ -102,8 +102,8 @@ task::task()
 
 #endif
 
-   m_htask = null_htask;
-   m_itask = 0;
+   m_htask = nullptr;
+   m_itask = nullptr;
 
    m_bKeepRunningPostedProcedures = false;
 
@@ -439,7 +439,7 @@ bool task::is_ready_to_quit() const
 bool task::task_active() const
 {
 
-   return m_htask != (htask_t)0;
+   return m_htask.is_set();
 
 }
 
@@ -1269,7 +1269,7 @@ void task::_os_task(::procedure & procedureTaskEnded)
       __check_refdbg
 
          os_task_init_term ostaskinitterm;
-
+         
       __check_refdbg
 
          ::set_task(this);
@@ -1384,7 +1384,7 @@ void task::_os_task(::procedure & procedureTaskEnded)
 
    m_htask = nullptr;
 
-   m_itask = 0;
+   m_itask = nullptr;
 
    ::task_release();
 
@@ -1396,7 +1396,7 @@ void task::_os_task(::procedure & procedureTaskEnded)
 bool task::is_task_registered() const
 {
 
-   return ::system()->get_task_id(this) != 0;
+   return ::system()->get_task_id(this).is_set();
 
 }
 
@@ -2252,7 +2252,7 @@ void task::on_before_branch()
 
    clear_finishing_flag();
 
-   ENSURE(m_htask == (htask_t) nullptr);
+   ENSURE(!m_htask);
 
    //if(m_atom.is_empty())
    //{
@@ -2333,7 +2333,7 @@ void task::on_before_branch()
 
    branch(e_parallelization_asynchronous, createtaskattributes);
 
-   if (m_htask == 0)
+   if (!m_htask)
    {
 
       //if (::is_set(this))
@@ -2349,16 +2349,16 @@ void task::on_before_branch()
 
    }
 
-#ifndef WINDOWS
+//#ifndef WINDOWS
 
-   if (pthread_equal((pthread_t)m_htask, (pthread_t)m_itask))
-   {
+  // if (pthread_equal((pthread_t)m_htask, (pthread_t)m_itask))
+   //{
 
-      information() << "create_thread success";
+     // information() << "create_thread success";
 
-   }
+   //}
 
-#endif
+//#endif
 
    if (m_phappeningInitialization)
    {
@@ -3324,46 +3324,53 @@ void preempt()
 //
 //}
 
-
+/*
 namespace platform
 {
 
 
-   ::collection::index platform::task_index(itask_t itask, bool bAddIfNotInList)
+   ::collection::index platform::new_task_index()
    {
+	   
+	  return m_iNewTaskIndex++;
 
-      critical_section_lock sl(&m_criticalsectionTask);
+//      critical_section_lock sl(&m_criticalsectionTask);
 
-      auto iTaskIndex = m_iaTaskIndex.find_first(itask);
+//      auto iTaskIndex = m_itaska.find_first(itask);
 
-      if (bAddIfNotInList && iTaskIndex < 0)
-      {
+//      if (bAddIfNotInList && iTaskIndex < 0)
+//      {
 
-         iTaskIndex = m_iaTaskIndex.add(itask);
+//         iTaskIndex = m_itaska.add(itask);
 
-      }
+//      }
 
-      return iTaskIndex;
+//      return iTaskIndex;
 
    }
 
 }
+*/
 
+::interlocked_huge_integer g_iNewTaskIndex = 1;
+
+thread_local ::huge_integer t_iThreadIndex = g_iNewTaskIndex++;
 
 ::collection::index task_index(itask_t itask)
 {
 
-   return ::system()->task_index(itask);
+//   return ::system()->task_index(itask);
+	return t_iThreadIndex;
 
 }
 
 
-::collection::index task_index()
-{
+//::collection::index task_index()
+//{
 
-   return task_index(::current_itask());
+//   return task_index(::current_itask());
 
-}
+//}
 
 
 void task_iteration()
@@ -3429,9 +3436,9 @@ CLASS_DECL_ACME::string get_task_object_debug()
 
 
 
-static htask_t g_htaskMain = (htask_t) nullptr;
+static htask_t g_htaskMain;
 
-static itask_t g_itaskMain = (itask_t)0;
+static itask_t g_itaskMain;
 
 
 CLASS_DECL_ACME void set_main_htask(htask_t htask)

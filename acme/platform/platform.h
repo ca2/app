@@ -6,6 +6,7 @@
 #include "acme/constant/windowing.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/task.h"
+#include "acme/parallelization/types.h"
 #include "acme/platform/library.h"
 #include "acme/platform/release_time_for_project.h"
 #include "acme/prototype/collection/atom_map.h"
@@ -45,7 +46,7 @@ namespace factory
 
 namespace platform
 {
-
+   
 
    class CLASS_DECL_ACME platform :
       virtual public ::acme::acme,
@@ -178,13 +179,18 @@ namespace platform
       ::factory::component_factory_map                      m_componentfactorymap;
       ::pointer < ::operating_system::dynamic_library >     m_pdynamiclibrary;
       int                                                   m_iProcessStatus = 0;
-
-      ::index_array                                         m_iaTaskIndex;
+      //::interlocked_huge_integer                            m_iNewTaskIndex;
+      //::comparable_array < itask_t >                        m_itaska;
       bool                                                  m_bVerboseLog;
       ::windowing::enum_windowing                           m_ewindowing;
       ::windowing::enum_operating_ambient                   m_edesktop;
       ::windowing::enum_toolkit                             m_etoolkit;
+      
+      
+      ::map < class ::task_index, ::thread_storage >        m_mapThreadStorage;
 
+
+      ::critical_section                                    m_criticalsectionThreadStorage;
 
       ::critical_section   m_criticalsectionSystemHeap;
 
@@ -289,7 +295,6 @@ namespace platform
 
       int get_status();
       void set_status(int iStatus);
-
 
 
 
@@ -424,7 +429,10 @@ namespace platform
       //pass_through_function m_passthroughfunction;
 
 
-      ::collection::index task_index(itask_t itask, bool bAddIfNotInList = false);
+      //::collection::index task_index(itask_t itask, bool bAddIfNotInList = false);
+      //::collection::index new_task_index();
+      ::thread_storage & thread_storage(const class ::task_index & taskindex);
+
 
 
       //pass_through_function &  __call__allocate_pass_through_function() { return m_passthroughfunction; }

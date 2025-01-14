@@ -1390,7 +1390,17 @@ g_bWindowingOutputDebugString = true;
       return releasetimeforproject;
 
    }
-
+   
+   
+   ::thread_storage & platform::thread_storage(const ::task_index & taskindex)
+   {
+      
+      critical_section_lock lock(&m_criticalsectionThreadStorage);
+      
+      return m_mapThreadStorage[taskindex];
+      
+      
+   }
 
 
    //::operating_system::dynamic_library* platform::dynamic_library()

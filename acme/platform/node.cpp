@@ -431,7 +431,7 @@ namespace platform
 
          system()->m_htask = nullptr;
 
-         system()->m_itask = 0;
+         system()->m_itask = nullptr;
 
          system()->branch_synchronously();
          //system()->acme_windowing()->on_start_system();

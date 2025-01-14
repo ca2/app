@@ -11,6 +11,7 @@
 #include "acme/handler/handler.h"
 #include "acme/handler/source.h"
 #include "acme/parallelization/synchronization_array.h"
+#include "acme/parallelization/types.h"
 #include "acme/platform/implementable.h"
 #include "acme/prototype/data/property_container.h"
 #include "acme/prototype/collection/comparable_eq_list.h"
@@ -160,6 +161,7 @@ public:
    //::pointer<::manual_reset_happening>                 m_pmanualresethappeningNewProcedurePosted;
 
    ::synchronization_array                         m_synchronizationaMainLoop;
+   class ::task_index                              m_taskindex;
    htask_t                                         m_htask;
    itask_t                                         m_itask;
    string                                          m_strTaskName;

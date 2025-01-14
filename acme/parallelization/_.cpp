@@ -761,6 +761,8 @@ CLASS_DECL_ACME void set_task(task * ptask)
 
    if (::is_set(ptask))
    {
+      
+      ptask->m_taskindex = ::task_index();
 
       ptask->m_itask = ::current_itask();
 

@@ -125,7 +125,7 @@ namespace file
       //if (m_bCreateWatchThread)
       //{
 
-      //   if (m_htask == nullptr)
+      //   if (!m_htask)
       //   {
 
       //      branch();
@@ -146,7 +146,7 @@ namespace file
       if (m_bCreateWatchThread)
       {
 
-         if (m_htask == nullptr)
+         if (!m_htask)
          {
 
             application()->post([this]()

@@ -26,10 +26,10 @@ task_message_queue::~task_message_queue()
 }
 
 
-message_queue * task_message_queue::get_message_queue(itask_t itask, bool bCreate)
+message_queue * task_message_queue::get_message_queue(class ::task_index & taskindex, bool bCreate)
 {
 
-   if (itask == 0)
+   if (!itask)
    {
 
       ASSERT(false);
@@ -40,7 +40,7 @@ message_queue * task_message_queue::get_message_queue(itask_t itask, bool bCreat
 
    critical_section_lock criticalsectionlock(&m_criticalsection);
 
-   auto & pmessagequeue = m_map[itask];
+   auto & pmessagequeue = system()->thread_storage(taskindex).m_pmessagequeue;
 
    if (!pmessagequeue)
    {

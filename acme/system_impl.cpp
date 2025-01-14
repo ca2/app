@@ -571,7 +571,7 @@ namespace platform
    void system::on_branch_system_from_main_thread_startup()
    {
 
-      m_itask = 0;
+      m_itask = nullptr;
 
       m_htask = nullptr;
 

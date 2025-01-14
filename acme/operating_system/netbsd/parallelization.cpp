@@ -24,7 +24,7 @@
 #include <errno.h>
 
 
-//void task_set_name(htask_t htask, const char * psz)
+//void task_set_name(htask htask, const char * psz)
 //{
 
 //   string strName(psz);
@@ -44,7 +44,7 @@
 //void task_set_name(const char * psz)
 //{
 
-  // return task_set_name((htask_t) pthread_self(), psz);
+  // return task_set_name((htask) pthread_self(), psz);
 
 //}
 

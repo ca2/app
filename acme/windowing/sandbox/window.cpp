@@ -185,7 +185,7 @@ void window::create_window()
    
    //}
    
-   //htask_t htask = ::current_htask();
+   //htask htask = ::current_htask();
    
    //m_htask = htask;
    
@@ -2084,7 +2084,7 @@ bool window::is_destroying()
 
 //   }
 
-//   itask_t idthread = pinteraction->get_app()->get_itask();
+//   itask idthread = pinteraction->get_app()->get_itask();
 
 //   message_queue * pmq = get_message_queue(idthread, false);
 

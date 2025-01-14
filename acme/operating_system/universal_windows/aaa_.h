@@ -28,10 +28,10 @@ CLASS_DECL_ACME int_bool main_initialize();
 CLASS_DECL_ACME int_bool main_finalize();
 
 
-CLASS_DECL_ACME void set_main_htask(htask_t htask);
-CLASS_DECL_ACME void set_main_itask(itask_t itask);
-CLASS_DECL_ACME htask_t main_htask();
-CLASS_DECL_ACME itask_t main_itask();
+CLASS_DECL_ACME void set_main_htask(htask htask);
+CLASS_DECL_ACME void set_main_itask(itask itask);
+CLASS_DECL_ACME htask main_htask();
+CLASS_DECL_ACME itask main_itask();
 
 //CLASS_DECL_ACME oswindow get_focus();
 //CLASS_DECL_ACME oswindow set_focus(oswindow oswindow);

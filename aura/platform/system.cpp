@@ -4503,7 +4503,7 @@ namespace aura
    //}
 
 //
-//   ::thread* system::get_task(itask_t itask)
+//   ::thread* system::get_task(itask itask)
 //   {
 //
 //      synchronous_lock synchronouslock(m_pmutexTask);
@@ -4513,12 +4513,12 @@ namespace aura
 //   }
 //
 //
-//   itask_t system::get_thread_id(::thread* pthread)
+//   itask system::get_thread_id(::thread* pthread)
 //   {
 //
 //      synchronous_lock synchronouslock(m_pmutexTask);
 //
-//      itask_t itask = null_itask;
+//      itask itask = null_itask;
 //
 //      if (!m_threadidmap.lookup(pthread, itask))
 //      {
@@ -4532,7 +4532,7 @@ namespace aura
 //   }
 //
 //
-//   void system::set_thread(itask_t itask, ::thread* pthread)
+//   void system::set_thread(itask itask, ::thread* pthread)
 //   {
 //
 //      synchronous_lock synchronouslock(m_pmutexTask);
@@ -4560,7 +4560,7 @@ namespace aura
 //
 //   }
 //
-//   void system::unset_thread(itask_t itask, ::thread * pthread)
+//   void system::unset_thread(itask itask, ::thread * pthread)
 //   {
 //
 //      synchronous_lock synchronouslock(m_pmutexTask);

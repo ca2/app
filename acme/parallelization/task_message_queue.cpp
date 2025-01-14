@@ -26,10 +26,10 @@ task_message_queue::~task_message_queue()
 }
 
 
-message_queue * task_message_queue::get_message_queue(class ::task_index & taskindex, bool bCreate)
+message_queue * task_message_queue::get_message_queue(const class ::task_index & taskindex, bool bCreate)
 {
 
-   if (!itask)
+   if (!taskindex)
    {
 
       ASSERT(false);
@@ -38,9 +38,11 @@ message_queue * task_message_queue::get_message_queue(class ::task_index & taski
 
    }
 
-   critical_section_lock criticalsectionlock(&m_criticalsection);
+   critical_section_lock criticalsectionlock(&system()->m_criticalsectionThreadStorage);
 
-   auto & pmessagequeue = system()->thread_storage(taskindex).m_pmessagequeue;
+   auto pthreadstorage = system()->_thread_storage_unlocked(taskindex);
+
+   auto & pmessagequeue = pthreadstorage->m_pmessagequeue;
 
    if (!pmessagequeue)
    {
@@ -50,7 +52,7 @@ message_queue * task_message_queue::get_message_queue(class ::task_index & taski
 
          pmessagequeue = __allocate message_queue();
 
-         pmessagequeue->m_itask = itask;
+         pmessagequeue->m_itask = pthreadstorage->m_itask;
 
       }
 
@@ -61,24 +63,30 @@ message_queue * task_message_queue::get_message_queue(class ::task_index & taski
 }
 
 
-void task_message_queue::erase_message_queue(itask_t idthread)
+void task_message_queue::erase_message_queue(const class ::task_index & taskindex)
 {
 
-   critical_section_lock synchronouslock(&m_criticalsection);
+   critical_section_lock synchronouslock(&system()->m_criticalsectionThreadStorage);
 
-   m_map.erase_item(idthread);
+   auto pthreadstorage = system()->_thread_storage_unlocked(taskindex);
+
+   auto & pmessagequeue = pthreadstorage->m_pmessagequeue;
+
+   pmessagequeue.release();
 
 }
 
 
-void task_message_queue::clear_message_queue(itask_t itask)
+void task_message_queue::clear_message_queue(const class ::task_index & taskindex)
 {
    
-   critical_section_lock ml(&m_criticalsection);
+   critical_section_lock synchronouslock(&system()->m_criticalsectionThreadStorage);
 
-   auto pmessagequeue = m_map[itask];
-   
-   if (pmessagequeue == nullptr)
+   auto pthreadstorage = system()->_thread_storage_unlocked(taskindex);
+
+   auto & pmessagequeue = pthreadstorage->m_pmessagequeue;
+
+   if (!pmessagequeue)
    {
    
       return;
@@ -93,7 +101,7 @@ void task_message_queue::clear_message_queue(itask_t itask)
 ::message_queue * task_message_queue::current_task_message_queue(bool bCreate)
 {
 
-   return get_message_queue(current_itask(), bCreate);
+   return get_message_queue(task_index(), bCreate);
 
 }
 

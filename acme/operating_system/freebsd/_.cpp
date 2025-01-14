@@ -38,7 +38,7 @@ CLASS_DECL_ACME void __node_acme_pos_init()
 }
 
 
-//void __clear_mq(const ::scoped_string & scopedstrDebug, itask_t atom, bool bClose);
+//void __clear_mq(const ::scoped_string & scopedstrDebug, itask atom, bool bClose);
 //void __clear_mq(const ::scoped_string & scopedstrDebug, bool bClose);
 
 

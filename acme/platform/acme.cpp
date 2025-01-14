@@ -450,7 +450,7 @@ namespace acme
 #endif
 
 
-   //map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
+   //map < itask, itask, itask, itask > * g_pmapThreadOn;
 
 
 
@@ -973,7 +973,7 @@ namespace acme
 
       //g_criticalsectionThreadOn = ___new ::critical_section ();
 
-      //g_pmapThreadOn = aaa_memory_new ::map < itask_t, itask_t, itask_t, itask_t >;
+      //g_pmapThreadOn = aaa_memory_new ::map < itask, itask, itask, itask >;
 
       //g_criticalsectionSystemHeap = ___new critical_section();
 

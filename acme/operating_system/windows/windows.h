@@ -6,9 +6,9 @@ namespace windows
 {
 
 
-   CLASS_DECL_ACME HWND get_mouse_capture(itask_t itask);
-   CLASS_DECL_ACME bool set_mouse_capture(itask_t itask, HWND hwnd);
-   CLASS_DECL_ACME bool defer_release_mouse_capture(itask_t itask, HWND hwnd);
+   CLASS_DECL_ACME HWND get_mouse_capture(itask itask);
+   CLASS_DECL_ACME bool set_mouse_capture(itask itask, HWND hwnd);
+   CLASS_DECL_ACME bool defer_release_mouse_capture(itask itask, HWND hwnd);
 
 
 } // namespace windows

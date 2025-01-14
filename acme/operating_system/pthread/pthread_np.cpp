@@ -29,7 +29,7 @@
 
 #if defined(FREEBSD) || defined(OPENBSD) || defined(NETBSD)
 
-int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask)
+int SetThreadAffinityMask(htask h, unsigned int dwThreadAffinityMask)
 {
 
 #if defined(OPENBSD)
@@ -107,7 +107,7 @@ int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask)
 
 #else
 
-int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask)
+int SetThreadAffinityMask(htask h, unsigned int dwThreadAffinityMask)
 {
 
    cpu_set_t c;
@@ -135,7 +135,7 @@ int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask)
 #endif
 
 
-string task_get_name(htask_t htask)
+string task_get_name(htask htask)
 {
 
    char szThreadName[32];
@@ -167,7 +167,7 @@ string task_get_name(htask_t htask)
 
 
 
-void task_set_name(htask_t htask, const char * psz)
+void task_set_name(htask htask, const char * psz)
 {
 
    //auto pthread = pthread_self();

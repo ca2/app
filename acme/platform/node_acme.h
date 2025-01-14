@@ -54,7 +54,7 @@ namespace platform
       };
 
 
-      htask_t m_htaskSystem;
+      htask m_htaskSystem;
       //::apex::node* m_papexnode;
       //::aura::node* m_pauranode;
 

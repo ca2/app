@@ -197,15 +197,15 @@ public:
 //      unsigned int dwCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
 
 
-   virtual htask_t get_htask() const;
-   virtual itask_t get_itask() const;
+   virtual htask get_htask() const;
+   virtual itask get_itask() const;
 
 
    virtual bool task_active() const override;
 
 
 
-   virtual htask_t get_os_handle() const;
+   virtual htask get_os_handle() const;
 
    //virtual bool thread_active() const;
    virtual bool is_dedicated_thread() const;
@@ -214,7 +214,7 @@ public:
    //virtual bool is_running() const override;
 
    //virtual void set_os_data(void * pvoidOsData);
-   //virtual void set_os_int(itask_t iData);
+   //virtual void set_os_int(itask iData);
 
 
    //static ::pointer<thread>start(
@@ -405,7 +405,7 @@ public:
    void on_task_term() override;
    //virtual void     on_thread_end();
    //virtual void thread_delete();
-   operator htask_t() const;
+   operator htask() const;
 
 
    void initialize(::particle * pparticle) override;
@@ -457,13 +457,13 @@ protected:
    virtual void __priority_and_affinity() override;
    void __os_initialize() override;
 //   virtual void __os_thread_start();
-   void __set_thread_on() override;
+   //void __set_thread_on() override;
    void __os_finalize() override;
   // virtual void __os_thread_end();
 
    // last called function for the thread lifetime.
    // after its call, the thread object must considered invalid/destroyed
-   void __set_thread_off() override;
+   //void __set_thread_off() override;
 
 
 };
@@ -536,9 +536,9 @@ using id_thread_map = atom_map < ::pointer<thread > >;
 
 
 
-//CLASS_DECL_APEX bool is_thread_on(itask_t atom);
-//CLASS_DECL_APEX void set_thread_on(itask_t atom);
-//CLASS_DECL_APEX void set_thread_off(itask_t atom);
+//CLASS_DECL_APEX bool is_thread_on(itask atom);
+//CLASS_DECL_APEX void set_thread_on(itask atom);
+//CLASS_DECL_APEX void set_thread_off(itask atom);
 
 
 

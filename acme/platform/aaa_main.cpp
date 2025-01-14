@@ -132,7 +132,7 @@ extern locale_t g_localeC;
 
 #endif
 
-//extern map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
+//extern map < itask, itask, itask, itask > * g_pmapThreadOn;
 
 
 extern ::nanosecond g_nanosecondFirst;
@@ -502,7 +502,7 @@ extern thread_local ::task_pointer t_pthread;
 #endif
 
 
-   //map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
+   //map < itask, itask, itask, itask > * g_pmapThreadOn;
 
 
 
@@ -1020,7 +1020,7 @@ extern thread_local ::task_pointer t_pthread;
 
       //g_criticalsectionThreadOn = aaa_primitive_new ::critical_section();
 
-      //g_pmapThreadOn = aaa_primitive_new ::map < itask_t, itask_t, itask_t, itask_t >;
+      //g_pmapThreadOn = aaa_primitive_new ::map < itask, itask, itask, itask >;
 
       //g_criticalsectionSystemHeap = aaa_primitive_new critical_section();
 

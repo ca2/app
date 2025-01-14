@@ -39,7 +39,7 @@ namespace sandbox_windowing
 //
 //      ::pointer<::windowing::window>                 m_pwindowApplicationHost;
 //
-//      itask_t                                         m_itask;
+//      itask                                         m_itask;
 //
 //      ::procedure_list                                m_procedurelist;
 

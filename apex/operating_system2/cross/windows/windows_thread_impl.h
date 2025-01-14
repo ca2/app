@@ -1,13 +1,13 @@
 #pragma once
 
 //
-//CLASS_DECL_APEX itask_t current_itask();
+//CLASS_DECL_APEX itask current_itask();
 //
 //
 //#ifdef __cplusplus
 //
-//CLASS_DECL_APEX void * __thread_get_data(itask_t thread,unsigned int dwIndex);
-//CLASS_DECL_APEX int_bool __thread_set_data(itask_t thread,unsigned int dwIndex,void * lpTlsValue);
+//CLASS_DECL_APEX void * __thread_get_data(itask thread,unsigned int dwIndex);
+//CLASS_DECL_APEX int_bool __thread_set_data(itask thread,unsigned int dwIndex,void * lpTlsValue);
 //
 //#endif
 

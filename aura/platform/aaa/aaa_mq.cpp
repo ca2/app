@@ -9,7 +9,7 @@
 #if defined(LINUX) // || defined(ANDROID)
 
 
-bool aura_defer_process_x_message(htask_t htask,LPMESSAGE pMsg,oswindow oswindow,bool bPeek);
+bool aura_defer_process_x_message(htask htask,LPMESSAGE pMsg,oswindow oswindow,bool bPeek);
 
 
 #endif
@@ -220,7 +220,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,unsigned i
 }
 
 
-//::pointer<message_queue>get_message_queue(itask_t idthread, bool bCreate)
+//::pointer<message_queue>get_message_queue(itask idthread, bool bCreate)
 //{
 //
 //   ::thread * pthread = ::auraacmesystem()->get_task(idthread);
@@ -348,7 +348,7 @@ CLASS_DECL_AURA int_bool post_ui_message(const MESSAGE & message)
 //
 //   }
 //
-//   itask_t idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
+//   itask idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
 //
 //   auto pmq = ::get_message_queue(idthread, message.message != e_message_quit);
 //
@@ -383,7 +383,7 @@ CLASS_DECL_AURA int_bool mq_erase_window_from_all_queues(oswindow oswindow)
 //
 //   }
 //
-//   itask_t idthread = pinteraction->get_app()->get_os_int();
+//   itask idthread = pinteraction->get_app()->get_os_int();
 //
 //   message_queue * pmq = __get_mq(idthread, false);
 //
@@ -408,10 +408,10 @@ CLASS_DECL_AURA int_bool mq_erase_window_from_all_queues(oswindow oswindow)
 }
 
 
-CLASS_DECL_AURA void mq_clear(itask_t idthread)
+CLASS_DECL_AURA void mq_clear(class ::task_index & taskindex)
 {
 
-   auto pmq = ::get_message_queue(idthread, false);
+   auto pmq = ::get_message_queue(taskindex, false);
 
    if (pmq == nullptr)
    {
@@ -427,10 +427,10 @@ CLASS_DECL_AURA void mq_clear(itask_t idthread)
 }
 
 
-int_bool mq_post_thread_message(itask_t idthread, const ::atom & atom, WPARAM wparam, LPARAM lparam)
+int_bool mq_post_thread_message(class ::task_index & taskindex, const ::atom & atom, WPARAM wparam, LPARAM lparam)
 {
 
-   auto pmq = get_message_queue(idthread, true);
+   auto pmq = get_message_queue(taskindex, true);
 
    if (::is_null(pmq))
    {

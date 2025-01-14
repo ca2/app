@@ -4134,6 +4134,9 @@
     <ClInclude Include="platform\uuid.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="parallelization\types.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">

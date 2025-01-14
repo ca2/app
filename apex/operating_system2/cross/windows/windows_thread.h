@@ -8,7 +8,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME unsigned int ResumeThread(htask_t htask);
+CLASS_DECL_ACME unsigned int ResumeThread(htask htask);
 
 
 

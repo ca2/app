@@ -31,7 +31,7 @@
 //////   if (!thread_name_buffer[0])
 //////      prctl(PR_GET_NAME, thread_name_buffer, 0L, 0L, 0L);
 ////
-////message_queue * get_message_queue(itask_t idthread, bool bCreate);
+////message_queue * get_message_queue(itask idthread, bool bCreate);
 ////
 ////
 //CLASS_DECL_APEX void thread_get_os_priority(int * piOsPolicy, sched_param * pparam, ::enum_priority epriority);
@@ -261,18 +261,18 @@
 ////}
 //
 //
-//CLASS_DECL_APEX htask_t current_htask()
+//CLASS_DECL_APEX htask current_htask()
 //{
 //
-//   return (htask_t) ::pthread_self();
+//   return (htask) ::pthread_self();
 //
 //}
 //
 //
-//CLASS_DECL_APEX itask_t current_itask()
+//CLASS_DECL_APEX itask current_itask()
 //{
 //
-//   return (itask_t) ::pthread_self();
+//   return (itask) ::pthread_self();
 //
 //}
 //
@@ -295,10 +295,10 @@
 //
 //#if defined(LINUX) // || defined(ANDROID)
 //
-//bool (*g_pfn_defer_process_x_message)(htask_t htask, MESSAGE * pMsg, oswindow oswindow, bool bPeek) = nullptr;
+//bool (*g_pfn_defer_process_x_message)(htask htask, MESSAGE * pMsg, oswindow oswindow, bool bPeek) = nullptr;
 //
 //
-//bool apex_defer_process_x_message(htask_t htask, MESSAGE * pMsg, oswindow oswindow, bool bPeek)
+//bool apex_defer_process_x_message(htask htask, MESSAGE * pMsg, oswindow oswindow, bool bPeek)
 //
 //{
 //
@@ -310,7 +310,7 @@
 //
 //}
 //
-//void set_defer_process_x_message(bool (*pfn)(htask_t htask, MESSAGE * pMsg, oswindow oswindow, bool bPeek))
+//void set_defer_process_x_message(bool (*pfn)(htask htask, MESSAGE * pMsg, oswindow oswindow, bool bPeek))
 //
 //{
 //
@@ -339,7 +339,7 @@
 ////{
 ////
 ////
-////   bool set_priority(htask_t htask, ::enum_priority epriority)
+////   bool set_priority(htask htask, ::enum_priority epriority)
 ////   {
 ////
 ////      int iPolicy;
@@ -355,7 +355,7 @@
 ////   }
 ////
 ////
-////   enum_priority get_priority(htask_t  htask)
+////   enum_priority get_priority(htask  htask)
 ////   {
 ////
 ////      int iOsPolicy = SCHED_OTHER;
@@ -385,12 +385,12 @@
 //
 //
 //
-//static htask_t g_hMainThread = (htask_t) nullptr;
+//static htask g_hMainThread = (htask) nullptr;
 //
-//static itask_t g_uiMainThread = (itask_t)-1;
+//static itask g_uiMainThread = (itask)-1;
 //
 //
-//CLASS_DECL_APEX void set_main_user_htask(htask_t htask)
+//CLASS_DECL_APEX void set_main_user_htask(htask htask)
 //{
 //
 //   // MESSAGE msg;
@@ -403,7 +403,7 @@
 //}
 //
 //
-//CLASS_DECL_APEX void set_main_user_itask(itask_t itask)
+//CLASS_DECL_APEX void set_main_user_itask(itask itask)
 //{
 //
 //   //   MESSAGE msg;
@@ -416,7 +416,7 @@
 //}
 //
 //
-//CLASS_DECL_APEX htask_t main_user_htask()
+//CLASS_DECL_APEX htask main_user_htask()
 //{
 //
 //   return g_hMainThread;
@@ -424,7 +424,7 @@
 //}
 //
 //
-//CLASS_DECL_APEX itask_t main_user_itask()
+//CLASS_DECL_APEX itask main_user_itask()
 //{
 //
 //   return g_uiMainThread;
@@ -439,10 +439,10 @@
 //
 //
 //
-//// LPVOID WINAPI thread_get_data(htask_t htask, unsigned int dwIndex);
+//// LPVOID WINAPI thread_get_data(htask htask, unsigned int dwIndex);
 //
 //
-//// int_bool WINAPI thread_set_data(htask_t htask, unsigned int dwIndex, LPVOID pTlsValue);
+//// int_bool WINAPI thread_set_data(htask htask, unsigned int dwIndex, LPVOID pTlsValue);
 //
 //
 //

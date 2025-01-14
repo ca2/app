@@ -10,7 +10,7 @@ int_bool SetThreadName(unsigned int dwThreadID, const char * threadName);
 typedef HRESULT WINAPI FN_GetThreadDescription(HANDLE htask, PWSTR* ppszThreadDescription);
 
 
-string get_task_name(htask_t htask)
+string get_task_name(htask htask)
 {
 
    HRESULT hr;
@@ -30,7 +30,7 @@ string get_task_name(htask_t htask)
    if (pfn_get_thread_description)
    {
 
-      hr = pfn_get_thread_description((HANDLE) htask, &lpwsz);
+      hr = pfn_get_thread_description((HANDLE) htask.m_h, &lpwsz);
 
    }
 
@@ -65,10 +65,10 @@ string get_task_name(htask_t htask)
 }
 
 
-typedef HRESULT WINAPI FN_SetThreadDescription(_In_ htask_t htask, _In_ PCWSTR pThreadDescription);
+typedef HRESULT WINAPI FN_SetThreadDescription(_In_ htask htask, _In_ PCWSTR pThreadDescription);
 
 
-CLASS_DECL_ACME void task_set_name(htask_t htask, const char * pszName)
+CLASS_DECL_ACME void task_set_name(htask htask, const char * pszName)
 {
 
    bool bOk1 = false;
@@ -91,7 +91,7 @@ CLASS_DECL_ACME void task_set_name(htask_t htask, const char * pszName)
    if (!bOk1 && ::is_debugger_attached())
    {
 
-      bOk1 = SetThreadName(GetThreadId((HANDLE) htask), pszName) != false;
+      bOk1 = SetThreadName(GetThreadId((HANDLE) htask.m_h), pszName) != false;
 
    }
 
@@ -112,7 +112,7 @@ CLASS_DECL_ACME void task_set_name(htask_t htask, const char * pszName)
 
 
 
-typedef HRESULT WINAPI FN_SetThreadDescription(_In_ htask_t htask, _In_ PCWSTR pThreadDescription);
+typedef HRESULT WINAPI FN_SetThreadDescription(_In_ htask htask, _In_ PCWSTR pThreadDescription);
 
 
 int get_os_thread_priority(::enum_priority epriority)
@@ -260,10 +260,10 @@ namespace parallelization
    }
 
 
-   bool set_priority(htask_t htask, ::enum_priority epriority)
+   bool set_priority(htask htask, ::enum_priority epriority)
    {
 
-      return (::SetThreadPriority(htask, get_os_thread_priority(epriority)) != 0);
+      return (::SetThreadPriority((HANDLE)htask.m_h, get_os_thread_priority(epriority)) != 0);
 
    }
 
@@ -276,10 +276,10 @@ namespace parallelization
    }
 
 
-   ::enum_priority get_priority(htask_t htask)
+   ::enum_priority get_priority(htask htask)
    {
 
-      return get_os_thread_scheduling_priority(::GetThreadPriority(htask));
+      return get_os_thread_scheduling_priority(::GetThreadPriority((HANDLE) htask.m_h));
 
    }
 
@@ -299,7 +299,7 @@ void task_set_name(const char * pszThreadName)
 
    }
 
-   /*return*/ task_set_name((htask_t) ::GetCurrentThread(), pszThreadName);
+   /*return*/ task_set_name((htask)(::uptr) ::GetCurrentThread(), pszThreadName);
 
 }
 
@@ -343,7 +343,7 @@ int_bool SetThreadName(unsigned int dwThreadID, const char* threadName)
 CLASS_DECL_ACME string task_get_name()
 {
 
-   return get_task_name((htask_t)::GetCurrentThread());
+   return get_task_name((htask)(::uptr)::GetCurrentThread());
 
 }
 
@@ -487,5 +487,26 @@ CLASS_DECL_ACME class ::time default_run_timeout()
 
 }
 
+
+
+bool htask::operator==(const htask & htask) const
+{
+
+   DWORD dw1 = ::GetThreadId((HANDLE) m_h);
+
+   DWORD dw2 = ::GetThreadId((HANDLE) htask.m_h);
+
+   return dw1 == dw2;
+
+}
+
+
+
+bool itask::operator==(const itask & itask) const
+{
+
+   return m_i == itask.m_i;
+
+}
 
 

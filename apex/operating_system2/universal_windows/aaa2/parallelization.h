@@ -20,7 +20,7 @@ typedef struct tag_MSG
 
 //CLASS_DECL_APEX int_bool WINAPI PeekMessage(MESSAGE * lpMsg, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax,unsigned int wRemoveMsg);
 
-//CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(itask_t idthread, unsigned int Msg, WPARAM wParam, LPARAM lParam);
+//CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(itask idthread, unsigned int Msg, WPARAM wParam, LPARAM lParam);
 
 
 //CLASS_DECL_APEX void WINAPI TlsShutdown();
@@ -28,9 +28,9 @@ typedef struct tag_MSG
 
 #ifndef UNIVERSAL_WINDOWS
 
-CLASS_DECL_APEX BOOL WINAPI SetThreadPriority(htask_t htask,int iPriority);
+CLASS_DECL_APEX BOOL WINAPI SetThreadPriority(htask htask,int iPriority);
 
-CLASS_DECL_APEX int WINAPI GetThreadPriority(htask_t htask);
+CLASS_DECL_APEX int WINAPI GetThreadPriority(htask htask);
 
 #endif
 

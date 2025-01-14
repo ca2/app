@@ -31,7 +31,7 @@ struct CLASS_DECL_ACME oswindow_data
 
    bool                          m_bMessageOnlyWindow;
    ::user::interaction_base *         m_puserinteraction;
-   htask_t                       m_htask;
+   htask                       m_htask;
    color32_t *                    m_pcolorref;
    RECT32                          m_rect;
    int_map < int > *            m_plongmap;

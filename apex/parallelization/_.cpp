@@ -16,7 +16,7 @@ namespace parallelization
 {
 
 
-   //CLASS_DECL_APEX comparable_eq_array<itask_t> * s_piaThread2 = nullptr;
+   //CLASS_DECL_APEX comparable_eq_array<itask> * s_piaThread2 = nullptr;
    //CLASS_DECL_APEX pointer_array < thread > * s_pthreadptra2 = nullptr;
    //CLASS_DECL_APEXcritical_section * s_pcs2 = nullptr;
 
@@ -26,7 +26,7 @@ namespace parallelization
 
       //s_pcs2 = ___new critical_section();
 
-      //s_piaThread2 = aaa_memory_new comparable_eq_array<itask_t>;
+      //s_piaThread2 = aaa_memory_new comparable_eq_array<itask>;
 
       //s_pthreadptra2 = aaa_memory_new pointer_array < thread >;
 
@@ -50,7 +50,7 @@ namespace parallelization
 
    }
 
-   //CLASS_DECL_APEX bool thread_id_registered(itask_t atom)
+   //CLASS_DECL_APEX bool thread_id_registered(itask atom)
    //{
 
    //   //critical_section_lock lock(s_pcs2);
@@ -72,7 +72,7 @@ namespace parallelization
    //}
 
 
-   //void thread_register(itask_t itask, ::task * ptask)
+   //void thread_register(itask itask, ::task * ptask)
    //{
 
    //   psystem->set_task(itask, ptask);
@@ -80,7 +80,7 @@ namespace parallelization
    //}
 
 
-   //void thread_unregister(itask_t itask, ::task * ptask)
+   //void thread_unregister(itask itask, ::task * ptask)
    //{
 
    //   auto psystem = system();
@@ -142,15 +142,15 @@ namespace parallelization
    void post_quit_to_all_threads()
    {
 
-      critical_section_lock criticalsectionlock(&::platform::get()->m_criticalsectionTask);
+      critical_section_lock criticalsectionlock(&::platform::get()->m_criticalsectionThreadStorage);
 
-      for (auto& pair : ::system()->m_taskidmap)
+      for (auto& pair : ::system()->m_mapThreadStorage)
       {
 
          try
          {
 
-            pair.element1()->destroy();
+            pair.element2().m_ptask->set_finish();
 
          }
          catch (...)
@@ -166,15 +166,15 @@ namespace parallelization
    CLASS_DECL_APEX void post_to_all_threads(const ::atom & atom, wparam wparam, lparam lparam)
    {
 
-      critical_section_lock criticalsectionlock(&::platform::get()->m_criticalsectionTask);
+      critical_section_lock criticalsectionlock(&::platform::get()->m_criticalsectionThreadStorage);
 
-      for (auto& pair : ::system()->m_taskidmap)
+      for (auto& pair : ::system()->m_mapThreadStorage)
       {
 
          try
          {
 
-            ::pointer<::thread>pthread = pair.element1();
+            ::pointer<::thread>pthread = pair.element2().m_ptask;
 
             pthread->post_message(atom, wparam, lparam);
 

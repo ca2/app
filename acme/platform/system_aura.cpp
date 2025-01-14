@@ -46,10 +46,10 @@ namespace platform
 
    //::url::url                           & url()     { return m_urldepartment{} }
 
-   //::thread * get_task(itask_t itask){}
-   //itask_t get_thread_id(::thread * pthread){}
-   //void set_thread(itask_t itask, ::thread * pthread){}
-   //void unset_thread(itask_t itask, ::thread * pthread){}
+   //::thread * get_task(itask itask){}
+   //itask get_thread_id(::thread * pthread){}
+   //void set_thread(itask itask, ::thread * pthread){}
+   //void unset_thread(itask itask, ::thread * pthread){}
 
     ::aura::estamira* aura_system_layer::estamira()
    {

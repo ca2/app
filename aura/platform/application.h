@@ -609,7 +609,7 @@ namespace aura
       //virtual void SetCurrentHandles();
 
       //virtual void set_env_var(const string & payload,const string & value);
-      //virtual itask_t get_thread_id();
+      //virtual itask get_thread_id();
 
 
       //virtual bool _001OnDDECommand(const ::string & pcsz) override;

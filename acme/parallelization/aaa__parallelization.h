@@ -237,7 +237,7 @@ class synchronous_lock;
 //#endif
 //
 //
-//string get_task_name(htask_t htask);
+//string get_task_name(htask htask);
 //
 //
 //typedef string GET_THREAD_NAME(::thread* pthread);

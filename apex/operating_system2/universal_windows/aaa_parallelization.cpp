@@ -67,7 +67,7 @@ WorkItemPriority GetWorkItemPriority(int nPriority)
 }
 
 //
-//htask_t start_thread(unsigned int ( * pfn)(void *), void * pv, int iPriority)
+//htask start_thread(unsigned int ( * pfn)(void *), void * pv, int iPriority)
 //{
 //
 //   __UNREFERENCED_PARAMETER(iPriority);
@@ -206,7 +206,7 @@ void _on_os_htask_end()
 }
 
 
-//itask_t current_itask()
+//itask current_itask()
 //{
 //
 //   return ::GetCurrentThreadId();
@@ -214,7 +214,7 @@ void _on_os_htask_end()
 //}
 //
 //
-//htask_t current_htask()
+//htask current_htask()
 //{
 //
 //   return ::GetCurrentThread();
@@ -222,11 +222,11 @@ void _on_os_htask_end()
 //}
 
 
-htask_t g_hMainThread = nullptr;
+htask g_hMainThread = nullptr;
 unsigned int g_iMainThread = -1;
 
 
-void set_main_user_htask(htask_t htask)
+void set_main_user_htask(htask htask)
 {
 
    g_hMainThread = htask;
@@ -234,7 +234,7 @@ void set_main_user_htask(htask_t htask)
 }
 
 
-void set_main_user_itask(itask_t itask)
+void set_main_user_itask(itask itask)
 {
 
    g_iMainThread = itask;
@@ -242,7 +242,7 @@ void set_main_user_itask(itask_t itask)
 }
 
 
-htask_t main_user_htask()
+htask main_user_htask()
 {
 
    return g_hMainThread;

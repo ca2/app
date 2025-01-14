@@ -234,7 +234,7 @@ namespace apex
       virtual void open_profile_link(string strUrl, string strProfile, string strTarget) override;
 
 
-      virtual void __set_thread_on() override;
+      //virtual void __set_thread_on() override;
 
       //virtual string get_local_mutex_name(const ::string & pszAppName);
       //virtual string get_local_id_mutex_name(const ::string & pszAppName, const ::string & pszId);

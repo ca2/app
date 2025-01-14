@@ -28,7 +28,7 @@ namespace sandbox_windowing
       //::int_point                               m_pointCursor;
 
 
-      htask_t                                   m_htask;
+      htask                                   m_htask;
 
 
       window();

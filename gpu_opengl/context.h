@@ -16,7 +16,7 @@ namespace opengl
    public:
 
 
-      itask_t									m_itaskGpu;
+      itask									m_itaskGpu;
 
 
       unsigned int                     m_VAO;

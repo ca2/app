@@ -9,7 +9,7 @@ namespace windows
 
 
    file::file(::file::path & path, ::windows_path & windowspath, ::file::e_open & eopen, HANDLE handleFile) :
-      handle(handleFile),
+      handle((::uptr) handleFile),
       m_path(path),
       m_windowspath(windowspath),
       m_eopen(eopen)
@@ -55,7 +55,7 @@ namespace windows
 
 #else
 
-      m_handle = CreateFileW(
+      m_u = (::uptr) CreateFileW(
          m_windowspath.extended_path(),
          dwDesiredAccess,
          dwShareMode,
@@ -66,7 +66,7 @@ namespace windows
 
 #endif
 
-      return m_handle != INVALID_HANDLE_VALUE;
+      return m_u != (::uptr) INVALID_HANDLE_VALUE;
 
    }
 
@@ -195,7 +195,7 @@ namespace windows
 
       auto bytesToWrite = natural_minimum(s, MAXDWORD);
 
-      if (!::WriteFile(m_handle, p, bytesToWrite, &dwWritten, lpOverlapped))
+      if (!::WriteFile((HANDLE) m_u, p, bytesToWrite, &dwWritten, lpOverlapped))
       {
 
          throw_last_error_exception();
@@ -247,7 +247,7 @@ namespace windows
 
          DWORD amountRead{};
 
-         if (!::ReadFile(m_handle, p, amountToRead, &amountRead, lpOverlapped))
+         if (!::ReadFile((HANDLE)m_u, p, amountToRead, &amountRead, lpOverlapped))
          {
 
             throw_last_error_exception();
@@ -277,7 +277,7 @@ namespace windows
    void file::flush_file_buffers()
    {
 
-      if (!::FlushFileBuffers(m_handle))
+      if (!::FlushFileBuffers((HANDLE)m_u))
       {
 
          auto lasterror = ::GetLastError();
@@ -309,7 +309,7 @@ namespace windows
 
       LARGE_INTEGER largeintegerFileSize{};
 
-      if (!::GetFileSizeEx(m_handle, &largeintegerFileSize))
+      if (!::GetFileSizeEx((HANDLE)m_u, &largeintegerFileSize))
       {
 
          throw_last_error_exception();
@@ -351,7 +351,7 @@ namespace windows
 
       LARGE_INTEGER largeinteger{.QuadPart = iOffset };
 
-      if (!::SetFilePointerEx(m_handle, largeinteger, lpNewFilePointer, dwMoveMethod))
+      if (!::SetFilePointerEx((HANDLE)m_u, largeinteger, lpNewFilePointer, dwMoveMethod))
       {
 
          throw_last_error_exception();
@@ -384,7 +384,7 @@ namespace windows
    void file::set_end_of_file()
    {
 
-      if (!::SetEndOfFile(m_handle))
+      if (!::SetEndOfFile((HANDLE)m_u))
       {
 
          throw_last_error_exception();
@@ -397,7 +397,7 @@ namespace windows
    void file::lock_file(huge_integer iOffset, huge_integer iCount)
    {
 
-      if (!::LockFile(m_handle, lower_unsigned_int(iOffset), upper_unsigned_int(iOffset), lower_unsigned_int(iCount), upper_unsigned_int(iCount)))
+      if (!::LockFile((HANDLE)m_u, lower_unsigned_int(iOffset), upper_unsigned_int(iOffset), lower_unsigned_int(iCount), upper_unsigned_int(iCount)))
       {
 
          throw_last_error_exception();
@@ -410,7 +410,7 @@ namespace windows
    void file::unlock_file(huge_integer iOffset, huge_integer iCount)
    {
 
-      if (!::UnlockFile(m_handle, lower_unsigned_int(iOffset), upper_unsigned_int(iOffset), lower_unsigned_int(iCount), upper_unsigned_int(iCount)))
+      if (!::UnlockFile((HANDLE)m_u, lower_unsigned_int(iOffset), upper_unsigned_int(iOffset), lower_unsigned_int(iCount), upper_unsigned_int(iCount)))
       {
 
          throw_last_error_exception();
@@ -423,7 +423,7 @@ namespace windows
    void file::set_file_time(const FILETIME * lpCreationTime, const FILETIME * lpLastAccessTime, const FILETIME * lpLastWriteTime)
    {
 
-      if (!::SetFileTime(m_handle, lpCreationTime, lpLastAccessTime, lpLastWriteTime))
+      if (!::SetFileTime((HANDLE)m_u, lpCreationTime, lpLastAccessTime, lpLastWriteTime))
       {
 
          throw_last_error_exception();
@@ -436,7 +436,7 @@ namespace windows
    void file::get_file_time(LPFILETIME lpCreationTime, LPFILETIME lpLastAccessTime, LPFILETIME lpLastWriteTime)
    {
 
-      if (!::GetFileTime(m_handle, lpCreationTime, lpLastAccessTime, lpLastWriteTime))
+      if (!::GetFileTime((HANDLE)m_u, lpCreationTime, lpLastAccessTime, lpLastWriteTime))
       {
 
          throw_last_error_exception();
@@ -449,7 +449,7 @@ namespace windows
    void file::get_file_information(BY_HANDLE_FILE_INFORMATION & information) const
    {
 
-      if (!::GetFileInformationByHandle(m_handle, &information))
+      if (!::GetFileInformationByHandle((HANDLE)m_u, &information))
       {
 
          throw_last_error_exception();
@@ -483,7 +483,7 @@ namespace windows
    [[nodiscard]] ::file::path file::get_final_path_by_handle() const
    {
       
-      DWORD nCharacterCount = GetFinalPathNameByHandleW(m_handle, nullptr, 0, VOLUME_NAME_DOS);
+      DWORD nCharacterCount = GetFinalPathNameByHandleW((HANDLE)m_u, nullptr, 0, VOLUME_NAME_DOS);
 
       if (nCharacterCount <= 0)
       {
@@ -496,7 +496,7 @@ namespace windows
 
       auto pwszFinalPath = wstrFinal.get_buffer(nCharacterCount);
 
-      nCharacterCount = GetFinalPathNameByHandleW(m_handle, pwszFinalPath, nCharacterCount, VOLUME_NAME_DOS);
+      nCharacterCount = GetFinalPathNameByHandleW((HANDLE)m_u, pwszFinalPath, nCharacterCount, VOLUME_NAME_DOS);
 
       wstrFinal.release_buffer(nCharacterCount);
 

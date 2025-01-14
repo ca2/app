@@ -168,8 +168,8 @@ namespace platform
       string                                                m_strCommandLine;
 
 
-      ::critical_section                                    m_criticalsectionTask;
-      ::critical_section                                    m_criticalsectionTaskOn;
+      //::critical_section                                    m_criticalsectionTask;
+      //::critical_section                                    m_criticalsectionTaskOn;
 
 
       ::block                                               m_blockMatter;
@@ -180,7 +180,7 @@ namespace platform
       ::pointer < ::operating_system::dynamic_library >     m_pdynamiclibrary;
       int                                                   m_iProcessStatus = 0;
       //::interlocked_huge_integer                            m_iNewTaskIndex;
-      //::comparable_array < itask_t >                        m_itaska;
+      //::comparable_array < itask >                        m_itaska;
       bool                                                  m_bVerboseLog;
       ::windowing::enum_windowing                           m_ewindowing;
       ::windowing::enum_operating_ambient                   m_edesktop;
@@ -429,9 +429,10 @@ namespace platform
       //pass_through_function m_passthroughfunction;
 
 
-      //::collection::index task_index(itask_t itask, bool bAddIfNotInList = false);
+      //::collection::index task_index(itask itask, bool bAddIfNotInList = false);
       //::collection::index new_task_index();
-      ::thread_storage & thread_storage(const class ::task_index & taskindex);
+      ::thread_storage * thread_storage(const class ::task_index & taskindex);
+      ::thread_storage * _thread_storage_unlocked(const class ::task_index & taskindex);
 
 
 

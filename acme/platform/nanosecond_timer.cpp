@@ -17,7 +17,7 @@ nanosecond_timer::nanosecond_timer()
 
 #ifdef WINDOWS
 
-   m_handleTimer = ::CreateWaitableTimer(nullptr, true, nullptr);
+   m_handleTimer = (::uptr) ::CreateWaitableTimer(nullptr, true, nullptr);
 
 #endif
 
@@ -41,7 +41,7 @@ void nanosecond_timer::wait(const class time & time)
 
    li.QuadPart = -time.integral_nanosecond() / 100LL;
 
-   if (!SetWaitableTimer(m_handleTimer, &li, 0, nullptr, nullptr, false))
+   if (!SetWaitableTimer((HANDLE) m_handleTimer.m_u, &li, 0, nullptr, nullptr, false))
    {
 
       ::preempt(time);
@@ -50,7 +50,7 @@ void nanosecond_timer::wait(const class time & time)
    else
    {
 
-      WaitForSingleObject(m_handleTimer, INFINITE);
+      WaitForSingleObject((HANDLE) m_handleTimer.m_u, INFINITE);
 
    }
 

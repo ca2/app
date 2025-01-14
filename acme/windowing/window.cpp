@@ -1021,7 +1021,7 @@ namespace acme
       }
 
 
-      ::itask_t window::get_itask() const
+      ::itask window::get_itask() const
       {
 
          return system()->acme_windowing()->m_itask;

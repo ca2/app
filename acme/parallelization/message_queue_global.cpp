@@ -16,7 +16,7 @@
 #if defined(LINUX) // || defined(ANDROID)
 
 
-bool apex_defer_process_x_message(htask_t htask,MESSAGE * pMsg,oswindow oswindow,bool bPeek);
+bool apex_defer_process_x_message(htask htask,MESSAGE * pMsg,oswindow oswindow,bool bPeek);
 
 
 #endif
@@ -51,7 +51,7 @@ bool apex_defer_process_x_message(htask_t htask,MESSAGE * pMsg,oswindow oswindow
 ////
 ////   }
 ////
-////   itask_t idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
+////   itask idthread = pinteraction->m_pthreadUserInteraction->get_os_int();
 ////
 ////   auto pmessagequeue = ::aaa_get_message_queue(idthread, message.message != e_message_quit);
 ////
@@ -86,7 +86,7 @@ bool apex_defer_process_x_message(htask_t htask,MESSAGE * pMsg,oswindow oswindow
 ////
 ////   }
 ////
-////   itask_t idthread = pinteraction->get_app()->get_os_int();
+////   itask idthread = pinteraction->get_app()->get_os_int();
 ////
 ////   message_queue * pmessagequeue = __get_mq(idthread, false);
 ////
@@ -111,7 +111,7 @@ bool apex_defer_process_x_message(htask_t htask,MESSAGE * pMsg,oswindow oswindow
 //}
 //
 //
-//CLASS_DECL_ACME void mq_clear(itask_t idthread)
+//CLASS_DECL_ACME void mq_clear(itask idthread)
 //{
 //
 //   auto pmessagequeue = ::aaa_get_message_queue(idthread, false);
@@ -130,7 +130,7 @@ bool apex_defer_process_x_message(htask_t htask,MESSAGE * pMsg,oswindow oswindow
 //}
 //
 
-void mq_post_thread_message(itask_t idthread, const ::atom & atom, wparam wparam, lparam lparam)
+void mq_post_thread_message(class ::task_index & taskindex, const ::atom & atom, wparam wparam, lparam lparam)
 {
 
    if (atom.m_etype != ::atom::e_type_message)
@@ -140,7 +140,7 @@ void mq_post_thread_message(itask_t idthread, const ::atom & atom, wparam wparam
 
    }
 
-   auto pmessagequeue = ::system()->task_message_queue()->get_message_queue(idthread, true);
+   auto pmessagequeue = ::system()->task_message_queue()->get_message_queue(taskindex, true);
 
    if (::is_null(pmessagequeue))
    {

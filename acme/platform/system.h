@@ -95,15 +95,15 @@ namespace platform
       virtual void destroy_task_message_queue();
 
 
-      ::task* get_task(itask_t itask);
-      itask_t get_task_id(const ::task* ptask);
-      void set_task(itask_t itask, ::task* ptask);
-      void unset_task(itask_t itask, ::task* ptask);
+      ::task* get_task(const class ::task_index & taskindex);
+      //itask get_task_id(const ::task* ptask);
+      void set_task(const class ::task_index & taskindex, ::task* ptask);
+      void unset_task(const class ::task_index & taskindex, ::task* ptask);
 
-      virtual bool is_task_on(itask_t atom);
-      virtual bool is_active(::task * ptask);
-      virtual void set_task_on(itask_t atom);
-      virtual void set_task_off(itask_t atom);
+      virtual bool is_task_set(const class ::task_index & taskindex);
+      //virtual bool is_active(::task * ptask);
+      //virtual void set_task_on(const class ::task_index & taskindex);
+      //virtual void set_task_off(const class ::task_index & taskindex);
 
 
       virtual ::mathematics::mathematics * mathematics() override;
@@ -685,10 +685,10 @@ namespace platform
 //
 //       //::url::url                           & url()     { return m_urldepartment; }
 //
-//       //::thread * get_task(itask_t itask);
-//       //itask_t get_thread_id(::thread * pthread);
-//       //void set_thread(itask_t itask, ::thread * pthread);
-//       //void unset_thread(itask_t itask, ::thread * pthread);
+//       //::thread * get_task(itask itask);
+//       //itask get_thread_id(::thread * pthread);
+//       //void set_thread(itask itask, ::thread * pthread);
+//       //void unset_thread(itask itask, ::thread * pthread);
 //
 //       virtual ::aura::estamira * estamira();
 //

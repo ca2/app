@@ -38,9 +38,9 @@
 
 
 #ifdef _WIN32
-typedef unsigned int itask_t;
+typedef unsigned int itask;
 #else
-typedef pthread_t itask_t;
+typedef pthread_t itask;
 #endif
 
 

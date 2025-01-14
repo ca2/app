@@ -121,7 +121,7 @@
 ////
 ////#endif
 //
-//   //extern map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
+//   //extern map < itask, itask, itask, itask > * g_pmapThreadOn;
 //
 ////#ifdef WINDOWS
 ////

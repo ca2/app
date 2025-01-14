@@ -14,26 +14,24 @@ namespace windows
    public:
 
 
-      HANDLE m_handle;
+      ::uptr      m_u;
 
 
-      handle(HANDLE handle = INVALID_HANDLE_VALUE);
+      handle(::uptr u = ULLONG_MAX);
       ~handle();
 
 
-      handle & operator = (HANDLE handle);
+      handle & operator = (::uptr u);
 
       void close_handle();
 
 
-      operator HANDLE() const { return m_handle; }
-      operator HANDLE & () { return m_handle; }
+      operator ::uptr() const { return m_u; }
+      operator ::uptr & () { return m_u; }
 
 
-      bool nok() const { return m_handle == INVALID_HANDLE_VALUE || m_handle == NULL; }
+      bool nok() const { return m_u == ULLONG_MAX || m_u == NULL; }
       bool is_ok() const { return !nok(); }
-
-
 
 
    };

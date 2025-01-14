@@ -42,7 +42,7 @@ CLASS_DECL_ACME void TRACELASTERROR();
 #endif
 
 
-//CLASS_DECL_ACME message_queue * aaa_get_message_queue(itask_t idthread, bool bCreate);
+//CLASS_DECL_ACME message_queue * aaa_get_message_queue(itask idthread, bool bCreate);
 
 
 #ifdef WINDOWS_DESKTOP
@@ -261,7 +261,7 @@ huge_integer thread::release()
 #endif
 
 
-htask_t thread::get_os_handle() const
+htask thread::get_os_handle() const
 {
 
    return get_htask();
@@ -872,7 +872,7 @@ bool thread::task_iteration()
       for (auto & m : m_messageaInitialQueue)
       {
 
-         ::PostThreadMessage((DWORD)m_itask, m.m_atom.as_emessage(), m.wParam, m.lParam);
+         ::PostThreadMessage((DWORD)m_itask.m_i, m.m_atom.as_emessage(), m.wParam, m.lParam);
 
       }
 
@@ -1276,7 +1276,7 @@ bool thread::handle_message(bool & bContinue)
          informationf(
             "\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " +
             ::as_string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" +
-            ::as_string((huge_natural)::current_itask()) + ")\n\n\n");
+            ::as_string((huge_natural)::current_itask().m_i) + ")\n\n\n");
          
          bContinue = false;
 
@@ -1366,9 +1366,10 @@ void thread::kick_idle()
          //   m_bCertainlyTheresWindowsMessageQueue = true;
          //}
 
-         ::PostThreadMessage((DWORD)m_itask, e_message_kick_idle, 0, 0);
+         ::PostThreadMessage((DWORD)m_itask.m_i, e_message_kick_idle, 0, 0);
 
       }
+
 #endif
 
    }
@@ -2239,7 +2240,7 @@ void thread::dispatch_thread_message(::message::message* pusermessage)
 //synchronization_result thread::wait(const class time & time)
 //{
 //
-//   itask_t itask = m_itask;
+//   itask itask = m_itask;
 //
 //   try
 //   {
@@ -2248,7 +2249,7 @@ void thread::dispatch_thread_message(::message::message* pusermessage)
 //
 //      unsigned int timeout = time.u32_millis();
 //
-//      htask_t htask = m_htask;
+//      htask htask = m_htask;
 //
 //      if (htask == NULL || htask == INVALID_HANDLE_VALUE)
 //      {
@@ -2752,7 +2753,7 @@ void thread::inline_term()
 }
 
 
-htask_t thread::get_htask() const
+htask thread::get_htask() const
 {
 
    return m_htask;
@@ -2760,7 +2761,7 @@ htask_t thread::get_htask() const
 }
 
 
-itask_t thread::get_itask() const
+itask thread::get_itask() const
 {
 
    return m_itask;
@@ -2771,7 +2772,7 @@ itask_t thread::get_itask() const
 bool thread::task_active() const
 {
 
-   return !m_bThreadClosed && m_htask != (htask_t)0;
+   return !m_bThreadClosed && m_htask.is_set();
 
 }
 
@@ -2779,7 +2780,7 @@ bool thread::task_active() const
 iptr thread::item() const
 {
 
-   return (iptr)m_htask;
+   return m_taskindex.m_i;
 
 }
 
@@ -2887,20 +2888,20 @@ void thread::task_osinit()
 }
 
 
-void thread::__set_thread_on()
-{
+//void thread::__set_thread_on()
+//{
+//
+//   ::task::__set_thread_on();
+//
+//}
 
-   ::task::__set_thread_on();
 
-}
-
-
-void thread::__set_thread_off()
-{
-
-   ::task::__set_thread_off();
-
-}
+//void thread::__set_thread_off()
+//{
+//
+//   ::task::__set_thread_off();
+//
+//}
 
 
 //
@@ -3033,7 +3034,7 @@ void thread::post_message(const ::atom& atom, wparam wparam, lparam lparam)
 
 #ifdef WINDOWS_DESKTOP
 
-   if (m_htask && !m_bAuraMessageQueue && m_bMessageThread)
+   if (m_htask.is_set() && !m_bAuraMessageQueue && m_bMessageThread)
    {
 
       if (atom == e_message_quit)
@@ -3095,7 +3096,7 @@ void thread::post_message(const ::atom& atom, wparam wparam, lparam lparam)
 
       UINT message = atom.as_emessage();
 
-      int_bool bOk = ::PostThreadMessageW((DWORD)m_itask, message, wparam, lparam) != false;
+      int_bool bOk = ::PostThreadMessageW((DWORD)m_itask.m_i, message, wparam, lparam) != false;
 
       if (!bOk)
       {
@@ -3255,14 +3256,14 @@ void thread::send_message(const ::atom& atom, wparam wparam, lparam lparam, cons
 //
 //#else
 //
-//   m_htask = (htask_t)pvoidOsData;
+//   m_htask = (htask)pvoidOsData;
 //
 //#endif
 //
 //}
 
 
-//void thread::set_os_int(itask_t itask)
+//void thread::set_os_int(itask itask)
 //{
 //
 //#ifdef WINDOWS_DESKTOP
@@ -3271,7 +3272,7 @@ void thread::send_message(const ::atom& atom, wparam wparam, lparam lparam, cons
 //
 //#else
 //
-//   m_uThread = (itask_t) itask;
+//   m_uThread = (itask) itask;
 //
 //#endif
 //
@@ -3435,16 +3436,16 @@ message_queue* thread::_get_message_queue()
 
    }
 
-   if (m_itask == 0)
+   if (!m_itask)
    {
 
       return nullptr;
 
    }
 
-   auto pmq = ::system()->m_ptaskmessagequeue->get_message_queue(m_itask, true);
+   auto pmessagequeue = ::system()->m_ptaskmessagequeue->get_message_queue(m_taskindex, true);
 
-   if (pmq->m_bQuit)
+   if (pmessagequeue->m_bQuit)
    {
 
       informationf("WHAT?!?!WHAT?!?!WHAT?!?!BornQuitting?!?!");
@@ -3452,7 +3453,7 @@ message_queue* thread::_get_message_queue()
    }
 
    //auto estatus =
-   m_pmessagequeue = pmq;
+   m_pmessagequeue = pmessagequeue;
 
    /*if (!estatus)
    {
@@ -3493,7 +3494,7 @@ bool thread::peek_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFil
 
 #ifdef WINDOWS_DESKTOP
 
-   if (m_htask && !m_bAuraMessageQueue)
+   if (m_htask.is_set() && !m_bAuraMessageQueue)
    {
 
       MSG msg;
@@ -3852,7 +3853,7 @@ void thread::get_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFilt
 
    }
 
-   if (m_htask)
+   if (m_htask.is_set())
    {
 
       MSG msg{};
@@ -3949,7 +3950,7 @@ void thread::post_message(oswindow oswindow, const ::atom& atom, wparam wparam, 
 
 #ifdef WINDOWS_DESKTOP
 
-   if (m_htask && !m_bAuraMessageQueue)
+   if (m_htask.is_set() && !m_bAuraMessageQueue)
    {
 
       if (::PostMessage(as_hwnd(oswindow), atom.as_unsigned_int(), wparam, lparam))
@@ -4051,7 +4052,7 @@ void thread::on_task_term()
 }
 
 
-thread::operator htask_t() const
+thread::operator htask() const
 {
 
    return is_set() ? m_htask : nullptr;
@@ -4513,7 +4514,7 @@ bool thread::set_thread_priority(::enum_priority epriority)
 ::enum_priority thread::thread_priority()
 {
 
-   ASSERT(m_htask != null_htask);
+   ASSERT(m_htask.is_set());
 
    auto epriority = ::parallelization::get_priority(m_htask);
 

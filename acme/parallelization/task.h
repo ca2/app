@@ -87,12 +87,12 @@ DECLARE_ENUMERATION(e_happening, enum_happening);
 class locale;
 
 typedef pointer_array < ::matter > object_array;
-typedef map < itask_t, ::pointer<task >>task_map;
-typedef map < task *, itask_t > task_id_map;
+//typedef map < class ::task_index, ::pointer<task >>task_map;
+//typedef map < task *, class ::task_index > task_id_map;
 using procedure_list = ::list < procedure >;
 
-::collection::index task_index(itask_t itask);
-::collection::index task_index();
+//class ::task_index task_index(itask itask);
+CLASS_DECL_ACME class ::task_index task_index();
 
 
 class waiting_call_base;
@@ -162,8 +162,8 @@ public:
 
    ::synchronization_array                         m_synchronizationaMainLoop;
    class ::task_index                              m_taskindex;
-   htask_t                                         m_htask;
-   itask_t                                         m_itask;
+   htask                                           m_htask;
+   itask                                           m_itask;
    string                                          m_strTaskName;
    string                                          m_strTaskTag;
 
@@ -209,7 +209,7 @@ public:
    
    ::waiting_call_stack                            m_waitingcallstack;
 
-int m_iExitCode;
+   int m_iExitCode;
 
    task();
    ~task() override;
@@ -229,9 +229,9 @@ int m_iExitCode;
    void set_finish() override;
    virtual void __os_initialize();
    //   virtual void __os_thread_start();
-   virtual void __set_thread_on();
+   virtual void set_task();
    virtual void __os_finalize();
-   virtual void __set_thread_off();
+   virtual void unset_task();
 
    void task_osinit() override;
    void task_osterm() override;
@@ -282,9 +282,9 @@ int m_iExitCode;
 
    void _os_task(::procedure & procedureTaskEnded);
 
-   virtual bool is_task_registered() const;
-   virtual void register_task();
-   virtual void unregister_task();
+   virtual bool is_task_set() const;
+   //virtual void register_task();
+   //virtual void unregister_task();
    
    
    virtual ::locale * locale();
@@ -477,16 +477,16 @@ typedef string GET_TASK_NAME(::task * ptask);
 using LPFN_GET_TASK_NAME = GET_TASK_NAME *;
 
 
-CLASS_DECL_ACME string get_task_name(htask_t htask);
+CLASS_DECL_ACME string get_task_name(htask htask);
 
 CLASS_DECL_ACME void set_get_task_name(LPFN_GET_TASK_NAME);
 
 CLASS_DECL_ACME void task_set_name(const char * pszName);
-CLASS_DECL_ACME void task_set_name(htask_t htask, const char * pszName);
+CLASS_DECL_ACME void task_set_name(htask htask, const char * pszName);
 
 
 CLASS_DECL_ACME string task_get_name();
-CLASS_DECL_ACME string task_get_name(htask_t htask);
+CLASS_DECL_ACME string task_get_name(htask htask);
 
 
 CLASS_DECL_ACME void thread_name_abbreviate(string & strName, int len);

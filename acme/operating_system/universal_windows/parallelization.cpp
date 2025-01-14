@@ -75,7 +75,7 @@ bool __os_term_thread();
 //}
 
 //
-//htask_t start_thread(unsigned int ( * pfn)(void *), void * pv, int iPriority)
+//htask start_thread(unsigned int ( * pfn)(void *), void * pv, int iPriority)
 //{
 //
 //   __UNREFERENCED_PARAMETER(iPriority);
@@ -212,7 +212,7 @@ void _on_os_htask_end()
 }
 
 
-//itask_t current_itask()
+//itask current_itask()
 //{
 //
 //   return ::GetCurrentThreadId();
@@ -220,7 +220,7 @@ void _on_os_htask_end()
 //}
 //
 //
-//htask_t current_htask()
+//htask current_htask()
 //{
 //
 //   return ::GetCurrentThread();
@@ -228,11 +228,11 @@ void _on_os_htask_end()
 //}
 
 //
-//htask_t g_hMainThread = nullptr;
-//itask_t g_iMainThread = -1;
+//htask g_hMainThread = nullptr;
+//itask g_iMainThread = -1;
 //
 //
-//void set_main_user_htask(htask_t htask)
+//void set_main_user_htask(htask htask)
 //{
 //
 //   g_hMainThread = htask;
@@ -240,7 +240,7 @@ void _on_os_htask_end()
 //}
 //
 //
-//void set_main_user_itask(itask_t itask)
+//void set_main_user_itask(itask itask)
 //{
 //
 //   g_iMainThread = itask;
@@ -248,7 +248,7 @@ void _on_os_htask_end()
 //}
 //
 //
-//htask_t main_user_htask()
+//htask main_user_htask()
 //{
 //
 //   return g_hMainThread;
@@ -256,7 +256,7 @@ void _on_os_htask_end()
 //}
 //
 //
-//itask_t main_user_itask()
+//itask main_user_itask()
 //{
 //
 //   return g_iMainThread;

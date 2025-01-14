@@ -680,7 +680,7 @@ namespace platform
    //void apex_application_layer::SetCurrentHandles(){}
 
    //void apex_application_layer::set_env_var(const string & payload,const string & value){}
-   //virtual itask_t get_thread_id(){}
+   //virtual itask get_thread_id(){}
 
 
    bool apex_application_layer::_001OnDDECommand(const ::string& pcsz)

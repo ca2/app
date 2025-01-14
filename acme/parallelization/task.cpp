@@ -27,7 +27,7 @@
 
 #ifdef LINUX
 
-int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask);
+int SetThreadAffinityMask(htask h, unsigned int dwThreadAffinityMask);
 
 #endif
 
@@ -38,7 +38,7 @@ int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask);
 #include "acme/_operating_system.h"
 
 
-CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h);
+CLASS_DECL_ACME ::uptr duplicate_handle(const ::uptr & u);
 
 #elif defined(__BSD__)
 #include <errno.h>
@@ -64,7 +64,7 @@ extern bool g_bIntermediateThreadReferencingDebugging;
 #endif
 
 
-//CLASS_DECL_ACME void aaa_clear_message_queue(itask_t idthread);
+//CLASS_DECL_ACME void aaa_clear_message_queue(itask idthread);
 
 
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
@@ -510,7 +510,7 @@ void task::__priority_and_affinity()
 
 #if defined(WINDOWS_DESKTOP) || defined(LINUX)
 
-      int_bool bOk = ::SetThreadAffinityMask(m_htask, (unsigned int)m_uThreadAffinityMask) != 0;
+      int_bool bOk = ::SetThreadAffinityMask((HANDLE) m_htask.m_h, (unsigned int)m_uThreadAffinityMask) != 0;
 
       if (bOk)
       {
@@ -624,7 +624,7 @@ void task::task_osinit()
 
    m_estatus = ::success;
    __check_refdbg
-      __set_thread_on();
+      set_task();
    __check_refdbg
       //{
 
@@ -725,12 +725,12 @@ void task::task_osterm()
 
    __os_finalize();
 
-   __set_thread_off();
+   unset_task();
 
 }
 
 
-void task::__set_thread_on()
+void task::set_task()
 {
 
    //SetCurrentHandles();
@@ -741,7 +741,10 @@ void task::__set_thread_on()
 
    //task_register();
    __check_refdbg
-      register_task();
+      //register_task();
+
+      system()->set_task(m_taskindex, this);
+
    __check_refdbg
 
       // apex commented
@@ -765,39 +768,41 @@ void task::__set_thread_on()
 }
 
 
-void task::__set_thread_off()
+void task::unset_task()
 {
 
-   //   try
-   //   {
-   //
-   //      // apex commented
-   //      //if (g_axisontermthread)
-   //      //{
-   //
-   //      //   g_axisontermthread();
-   //
-   //      //}
-   //
-   //      os_on_term_task();
-   //
-   //   }
-   //   catch (...)
-   //   {
-   //
-   //   }
+   ////   try
+   ////   {
+   ////
+   ////      // apex commented
+   ////      //if (g_axisontermthread)
+   ////      //{
+   ////
+   ////      //   g_axisontermthread();
+   ////
+   ////      //}
+   ////
+   ////      os_on_term_task();
+   ////
+   ////   }
+   ////   catch (...)
+   ////   {
+   ////
+   ////   }
 
-   ::task * ptask = this;
+   //::task * ptask = this;
 
-   //::parallelization::task_unregister(m_itask, pthread);
+   ////::parallelization::task_unregister(m_itask, pthread);
+
+   ////unregister_task();
 
    //unregister_task();
 
-   unregister_task();
+   //auto atom = ::current_itask();
 
-   auto atom = ::current_itask();
+   //::system()->set_task_off(::task_index());
 
-   ::system()->set_task_off(::current_itask());
+   system()->unset_task(m_taskindex, this);
 
    //::set_task(nullptr);
 
@@ -872,7 +877,7 @@ void task::main()
 
    __task_term();
 
-   task_osterm();
+   //task_osterm();
 
 }
 
@@ -1170,6 +1175,8 @@ void task::destroy()
 
    //m_pmanualresethappeningHappening.release();
 
+   task_osterm();
+
 }
 
 
@@ -1337,7 +1344,7 @@ void task::_os_task(::procedure & procedureTaskEnded)
          if (ptaskmessagequeue)
          {
 
-            ptaskmessagequeue->clear_message_queue(m_itask);
+            ptaskmessagequeue->clear_message_queue(m_taskindex);
 
          }
 
@@ -1393,28 +1400,28 @@ void task::_os_task(::procedure & procedureTaskEnded)
 }
 
 
-bool task::is_task_registered() const
+bool task::is_task_set() const
 {
 
-   return ::system()->get_task_id(this).is_set();
+   return system()->is_task_set(m_taskindex);
 
 }
 
 
-void task::register_task()
-{
-
-   ::system()->set_task(m_itask, this);
-
-}
-
-
-void task::unregister_task()
-{
-
-   ::system()->unset_task(m_itask, this);
-
-}
+//void task::register_task()
+//{
+//
+//   ::system()->set_task(m_taskindex, this);
+//
+//}
+//
+//
+//void task::unregister_task()
+//{
+//
+//   ::system()->unset_task(m_taskindex, this);
+//
+//}
 
 
 ::locale * task::locale()
@@ -2155,7 +2162,7 @@ void task::on_before_branch()
 
    DWORD dwThread = 0;
 
-   m_htask = ::CreateThread(
+   m_htask = (::uptr) ::CreateThread(
       (LPSECURITY_ATTRIBUTES)(createtaskattributes.m_psecurityattributes ? createtaskattributes.m_psecurityattributes->get_os_security_attributes() : nullptr),
       createtaskattributes.m_uStackSize,
       (LPTHREAD_START_ROUTINE) & ::task::s_os_task,
@@ -2701,7 +2708,7 @@ void task::set_current_handles()
 
 #ifdef WINDOWS_DESKTOP
 
-   m_htask = duplicate_handle(::current_htask());
+   m_htask = (::uptr) duplicate_handle(::current_htask().m_h);
 
 #else
 
@@ -3220,13 +3227,13 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 //
 
 
-//CLASS_DECL_ACME void set_main_itask(itask_t itask);
+//CLASS_DECL_ACME void set_main_itask(itask itask);
 //
 //
-//CLASS_DECL_ACME void set_main_htask(htask_t htask);
+//CLASS_DECL_ACME void set_main_htask(htask htask);
 
 
-//CLASS_DECL_ACME itask_t main_user_itask();
+//CLASS_DECL_ACME itask main_user_itask();
 
 
 CLASS_DECL_ACME bool predicate_Sleep(int iTime, ::function < bool(void) > functionOkToSleep)
@@ -3356,7 +3363,7 @@ namespace platform
 
 thread_local ::huge_integer t_iThreadIndex = g_iNewTaskIndex++;
 
-::collection::index task_index(itask_t itask)
+class ::task_index task_index()
 {
 
 //   return ::system()->task_index(itask);
@@ -3436,12 +3443,12 @@ CLASS_DECL_ACME::string get_task_object_debug()
 
 
 
-static htask_t g_htaskMain;
+static htask g_htaskMain;
 
-static itask_t g_itaskMain;
+static itask g_itaskMain;
 
 
-CLASS_DECL_ACME void set_main_htask(htask_t htask)
+CLASS_DECL_ACME void set_main_htask(htask htask)
 {
 
    // MESSAGE msg;
@@ -3454,7 +3461,7 @@ CLASS_DECL_ACME void set_main_htask(htask_t htask)
 }
 
 
-CLASS_DECL_ACME void set_main_itask(itask_t itask)
+CLASS_DECL_ACME void set_main_itask(itask itask)
 {
 
    //   MESSAGE msg;
@@ -3467,7 +3474,7 @@ CLASS_DECL_ACME void set_main_itask(itask_t itask)
 }
 
 
-CLASS_DECL_ACME htask_t main_htask()
+CLASS_DECL_ACME htask main_htask()
 {
 
    return g_htaskMain;
@@ -3475,7 +3482,7 @@ CLASS_DECL_ACME htask_t main_htask()
 }
 
 
-CLASS_DECL_ACME itask_t main_itask()
+CLASS_DECL_ACME itask main_itask()
 {
 
    return g_itaskMain;
@@ -3499,7 +3506,7 @@ CLASS_DECL_ACME void set_main_thread()
 }
 
 
-CLASS_DECL_ACME void set_main_thread(htask_t htask)
+CLASS_DECL_ACME void set_main_thread(htask htask)
 {
 
    set_main_itask(::as_itask(htask));

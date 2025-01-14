@@ -7,9 +7,9 @@
 
 
 //static HANDLE g_hMainThread = nullptr;
-//static itask_t g_iMainThread = -1;
+//static itask g_iMainThread = -1;
 //
-//void set_main_user_htask(htask_t htask)
+//void set_main_user_htask(htask htask)
 //{
 //
 //   MSG msg;
@@ -21,7 +21,7 @@
 //}
 //
 
-//void set_main_user_itask(itask_t itask)
+//void set_main_user_itask(itask itask)
 //{
 //
 //   MSG msg;
@@ -33,35 +33,35 @@
 //}
 //
 
-//htask_t main_user_htask()
+//htask main_user_htask()
 //{
 //
-//   return (htask_t)g_hMainThread;
+//   return (htask)g_hMainThread;
 //
 //}
 //
 //
-//itask_t main_user_itask()
+//itask main_user_itask()
 //{
 //
-//   return (itask_t)g_iMainThread;
+//   return (itask)g_iMainThread;
 //
 //}
 
 
 //
-//htask_t current_htask()
+//htask current_htask()
 //{
 //
-//   return (htask_t) ::GetCurrentThread();
+//   return (htask) ::GetCurrentThread();
 //
 //}
 //
 //
-//itask_t current_itask()
+//itask current_itask()
 //{
 //
-//   return (itask_t) ::GetCurrentThreadId();
+//   return (itask) ::GetCurrentThreadId();
 //
 //}
 //
@@ -151,9 +151,9 @@ CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach)
 
    }
 
-   auto idAttach = (DWORD) current_itask();
+   auto idAttach = (DWORD) current_itask().m_i;
 
-   auto idAttachTo = (DWORD) main_itask();
+   auto idAttachTo = (DWORD) main_itask().m_i;
 
    BOOL bOk = ::AttachThreadInput(idAttach, idAttachTo, bAttach ? TRUE : FALSE);
 

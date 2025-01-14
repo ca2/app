@@ -2854,10 +2854,10 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   itask_t window::get_itask() const
+   itask window::get_itask() const
    {
 
-      itask_t itask = nullptr;
+      itask itask = nullptr;
 
       if (m_puserthread)
       {

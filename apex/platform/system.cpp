@@ -2174,12 +2174,12 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   void system::__set_thread_on()
-   {
+   //void system::__set_thread_on()
+   //{
 
-      ::thread::__set_thread_on();
+   //   ::thread::__set_thread_on();
 
-   }
+   //}
 
 
    //   ::pointer< ::mutex > system::get_openweather_city_mutex()

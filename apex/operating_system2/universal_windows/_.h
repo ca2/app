@@ -28,11 +28,11 @@
 //CLASS_DECL_APEX int_bool main_finalize();
 
 
-//CLASS_DECL_APEX void set_main_user_htask(htask_t htask);
-//CLASS_DECL_APEX void set_main_user_itask(itask_t itask);
+//CLASS_DECL_APEX void set_main_user_htask(htask htask);
+//CLASS_DECL_APEX void set_main_user_itask(itask itask);
 
 
-//CLASS_DECL_APEX htask_t main_user_htask();
+//CLASS_DECL_APEX htask main_user_htask();
 //CLASS_DECL_APEX unsigned int main_user_itask();
 
 //CLASS_DECL_APEX oswindow get_focus();

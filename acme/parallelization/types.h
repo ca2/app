@@ -5,14 +5,22 @@
 #include "acme/prototype/prototype/hash32.h"
 
 
+#ifdef WINDOWS
+
+
+#include "acme/operating_system/windows_common/handle.h"
+
+
+#endif
+
 
 class message_queue;
 
 
-//using htask_t = void *;
+//using htask = void *;
 
 // insight by listening lastmiles (Dennis Clarke) talk about pthread_equal (it may end up not to be an int but a pointer in some implementations ?, so should use pthread_equal...)
-class CLASS_DECL_ACME htask_t
+class CLASS_DECL_ACME htask
 {
 public:
 
@@ -20,31 +28,31 @@ public:
 
 	pthread_t	m_h;
 	
-	htask_t(pthread_t h):m_h(h) {}
+	htask(pthread_t h):m_h(h) {}
 	
 #elif defined(WINDOWS)
 
-	HANDLE	m_h;
+   ::uptr      m_h;
 	
-	htask_t(HANDLE h):m_h(h) {}
+	htask(const ::uptr & h):m_h(h) {}
 	
 #else
 
 	void * m_h;
 	
-	htask_t(void * h):m_h(h) {}
+	htask(void * h):m_h(h) {}
 	
 #endif
 
-	htask_t():m_h{} {}
+	htask():m_h{} {}
 	
-	htask_t(nullptr_t):m_h{} {}
+	htask(nullptr_t):m_h{} {}
 
-	htask_t(const htask_t & h):m_h(h.m_h) {}	
+	htask(const htask & h):m_h(h.m_h) {}	
 	
-	htask_t & operator = (const htask_t & h) {m_h = h.m_h; return *this;}
+	htask & operator = (const htask & h) {m_h = h.m_h; return *this;}
 
-	bool operator == (const htask_t & h) const;
+	bool operator == (const htask & h) const;
 	
 	bool is_null() const  { return operator==(nullptr); }
 	
@@ -55,10 +63,10 @@ public:
 	
 };
 
-//using itask_t = iptr;
+//using itask = iptr;
 
 // insight by listening lastmiles (Dennis Clarke) talk about pthread_equal (it may end up not to be an int but a pointer in some implementations ?, so should use pthread_equal...)
-class CLASS_DECL_ACME itask_t
+class CLASS_DECL_ACME itask
 {
 public:
 
@@ -66,25 +74,25 @@ public:
 
 	pthread_t	m_i;
 	
-	itask_t(pthread_t i):m_i(i) {}
+	itask(pthread_t i):m_i(i) {}
 	
 #else
 
 	iptr		m_i;
 	
-	itask_t(iptr i):m_i(i) {}
+	itask(iptr i):m_i(i) {}
 	
 #endif
 
-	itask_t():m_i{} {}
+	itask():m_i{} {}
 	
-	itask_t(nullptr_t):m_i{} {}
+	itask(nullptr_t):m_i{} {}
 
-	itask_t(const itask_t & i):m_i(i.m_i) {}	
+	itask(const itask & i):m_i(i.m_i) {}	
 	
-	itask_t & operator = (const itask_t & i) {m_i = i.m_i; return *this;}
+	itask & operator = (const itask & i) {m_i = i.m_i; return *this;}
 
-	bool operator == (const itask_t & i) const;
+	bool operator == (const itask & i) const;
 	
 	bool is_null() const  { return operator==(nullptr); }
 	
@@ -138,11 +146,11 @@ class CLASS_DECL_ACME thread_storage
 {
 public:
   
-  task_index  	                  m_taskindex;
-  htask_t     	                  m_htask;
-  itask_t     	                  m_itask;
-  ::task *		                  m_ptask;
-  ::pointer < ::message_queue >  m_pmessagequeue;
+   class ::task_index               m_taskindex;
+   htask     	                     m_htask;
+   itask     	                     m_itask;
+   ::pointer < ::task >             m_ptask;
+   ::pointer < ::message_queue >    m_pmessagequeue;
   
 };
 

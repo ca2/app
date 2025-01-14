@@ -221,7 +221,7 @@ void thread_data::set(void * p)
 }
 
 
-CLASS_DECL_APEX htask_t current_htask()
+CLASS_DECL_APEX htask current_htask()
 {
 
    return ::GetCurrentThread();
@@ -229,7 +229,7 @@ CLASS_DECL_APEX htask_t current_htask()
 }
 
 
-CLASS_DECL_APEX itask_t current_itask()
+CLASS_DECL_APEX itask current_itask()
 {
 
    return ::GetCurrentThreadId();
@@ -255,9 +255,9 @@ CLASS_DECL_APEX itask_t current_itask()
 
 #if defined(LINUX) // || defined(ANDROID)
 
-bool (* g_pfn_defer_process_x_message)(htask_t htask,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek) = nullptr;
+bool (* g_pfn_defer_process_x_message)(htask htask,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek) = nullptr;
 
-bool apex_defer_process_x_message(htask_t htask,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek)
+bool apex_defer_process_x_message(htask htask,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek)
 {
 
    if(g_pfn_defer_process_x_message == nullptr)
@@ -267,7 +267,7 @@ bool apex_defer_process_x_message(htask_t htask,LPMESSAGE lpMsg,oswindow oswindo
 
 }
 
-void set_defer_process_x_message(bool (* pfn)(htask_t htask,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek))
+void set_defer_process_x_message(bool (* pfn)(htask htask,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek))
 {
 
    g_pfn_defer_process_x_message = pfn;
@@ -281,7 +281,7 @@ extern "C"
 void * os_thread_thread_proc(LPVOID lpparameter);
 
 
-int_bool WINAPI SetThreadPriority(htask_t htask,int32_t nCa2Priority)
+int_bool WINAPI SetThreadPriority(htask htask,int32_t nCa2Priority)
 {
 
    int32_t iPolicy;
@@ -297,7 +297,7 @@ int_bool WINAPI SetThreadPriority(htask_t htask,int32_t nCa2Priority)
 }
 
 
-int32_t WINAPI GetThreadPriority(htask_t  htask)
+int32_t WINAPI GetThreadPriority(htask  htask)
 {
 
    int iOsPolicy = SCHED_OTHER;
@@ -306,19 +306,19 @@ int32_t WINAPI GetThreadPriority(htask_t  htask)
 
    schedparam.sched_priority = 0;
 
-   pthread_getschedparam((itask_t) htask,&iOsPolicy,&schedparam);
+   pthread_getschedparam((itask) htask,&iOsPolicy,&schedparam);
 
    return thread_get_scheduling_priority(iOsPolicy,&schedparam);
 
 }
 
 
-static htask_t g_hMainThread = nullptr;
+static htask g_hMainThread = nullptr;
 
-static itask_t g_iMainThread = (itask_t) -1;
+static itask g_iMainThread = (itask) -1;
 
 
-CLASS_DECL_APEX void set_main_htask(htask_t htask)
+CLASS_DECL_APEX void set_main_htask(htask htask)
 {
 
    g_hMainThread = htask;
@@ -326,7 +326,7 @@ CLASS_DECL_APEX void set_main_htask(htask_t htask)
 }
 
 
-CLASS_DECL_APEX void set_main_itask(itask_t itask)
+CLASS_DECL_APEX void set_main_itask(itask itask)
 {
 
    g_iMainThread = itask;
@@ -334,7 +334,7 @@ CLASS_DECL_APEX void set_main_itask(itask_t itask)
 }
 
 
-CLASS_DECL_APEX htask_t main_htask()
+CLASS_DECL_APEX htask main_htask()
 {
 
    return g_hMainThread;
@@ -342,7 +342,7 @@ CLASS_DECL_APEX htask_t main_htask()
 }
 
 
-CLASS_DECL_APEX itask_t main_itask()
+CLASS_DECL_APEX itask main_itask()
 {
 
    return g_iMainThread;
@@ -356,15 +356,15 @@ CLASS_DECL_APEX void attach_thread_input_to_main_thread(bool bAttach)
 }
 
 
-// LPVOID WINAPI thread_get_data(htask_t htask,unsigned int dwIndex);
+// LPVOID WINAPI thread_get_data(htask htask,unsigned int dwIndex);
 
-// int_bool WINAPI thread_set_data(htask_t htask,unsigned int dwIndex,LPVOID lpTlsValue);
+// int_bool WINAPI thread_set_data(htask htask,unsigned int dwIndex,LPVOID lpTlsValue);
 
 unsigned int g_dwDebug_post_thread_msg_time;
 
 int g_iDebug_post_thread_msg_time;
 
-CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(itask_t iThreadId,unsigned int Msg,WPARAM wParam,LPARAM lParam)
+CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(itask iThreadId,unsigned int Msg,WPARAM wParam,LPARAM lParam)
 {
 
    ::pointer<message_queue>pmq = __get_mq(iThreadId);
@@ -403,7 +403,7 @@ CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(itask_t iThreadId,unsigned int
 }
 
 
-CLASS_DECL_APEX htask_t GetCurrentThread()
+CLASS_DECL_APEX htask GetCurrentThread()
 {
 
    return pthread_self();
@@ -411,7 +411,7 @@ CLASS_DECL_APEX htask_t GetCurrentThread()
 }
 
 
-CLASS_DECL_APEX itask_t GetCurrentThreadId()
+CLASS_DECL_APEX itask GetCurrentThreadId()
 {
 
    return pthread_self();

@@ -77,7 +77,7 @@ pdirectorysystem->system() / "config\\plugin\\npca2_beg_sleep.txt"))
 
 // #ifdef WINDOWS
 
-//         set_main_user_htask((htask_t) GetCurrentThread());
+//         set_main_user_htask((htask) GetCurrentThread());
 
 //         set_main_user_itask(GetCurrentThreadId());
 

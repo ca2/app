@@ -12,12 +12,14 @@
 #include <Shellapi.h>
 
 
-CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h)
+CLASS_DECL_ACME ::uptr duplicate_handle(const ::uptr & u)
 {
+
+   auto h = (HANDLE) u;
 
    DuplicateHandle(GetCurrentProcess(), ::GetCurrentThread(), GetCurrentProcess(), &h, 0, false, DUPLICATE_SAME_ACCESS);
 
-   return h;
+   return (::uptr) h;
 
 }
 
@@ -533,7 +535,7 @@ namespace windows
 {
 
 
-   HWND get_mouse_capture(itask_t itask)
+   HWND get_mouse_capture(itask itask)
    {
 
       GUITHREADINFO info = {};
@@ -542,7 +544,7 @@ namespace windows
 
       HWND hwndCapture = nullptr;
 
-      if (GetGUIThreadInfo((DWORD)itask, &info))
+      if (GetGUIThreadInfo((DWORD)itask.m_i, &info))
       {
 
          hwndCapture = info.hwndCapture;
@@ -561,14 +563,14 @@ namespace windows
    }
 
 
-   bool set_mouse_capture(itask_t itask, HWND hwnd)
+   bool set_mouse_capture(itask itask, HWND hwnd)
    {
 
       GUITHREADINFO info = {};
 
       info.cbSize = sizeof(GUITHREADINFO);
 
-      if (::GetGUIThreadInfo((DWORD)itask, &info))
+      if (::GetGUIThreadInfo((DWORD)itask.m_i, &info))
       {
 
          if (info.hwndCapture == hwnd)
@@ -580,19 +582,19 @@ namespace windows
 
          DWORD currentThreadId = ::GetCurrentThreadId();
 
-         if ((DWORD)itask != currentThreadId)
+         if ((DWORD)itask.m_i != currentThreadId)
          {
 
-            ::AttachThreadInput(currentThreadId, (DWORD)itask, TRUE);
+            ::AttachThreadInput(currentThreadId, (DWORD)itask.m_i, TRUE);
 
          }
 
          ::SetCapture(hwnd);
 
-         if ((DWORD)itask != currentThreadId)
+         if ((DWORD)itask.m_i != currentThreadId)
          {
 
-            ::AttachThreadInput(currentThreadId, (DWORD)itask, FALSE);
+            ::AttachThreadInput(currentThreadId, (DWORD)itask.m_i, FALSE);
 
          }
 
@@ -618,14 +620,14 @@ namespace windows
    }
 
 
-   bool defer_release_mouse_capture(itask_t itask, HWND hwnd)
+   bool defer_release_mouse_capture(itask itask, HWND hwnd)
    {
 
       GUITHREADINFO info = {};
 
       info.cbSize = sizeof(GUITHREADINFO);
 
-      if (::GetGUIThreadInfo((DWORD)itask, &info))
+      if (::GetGUIThreadInfo((DWORD)itask.m_i, &info))
       {
 
          if (info.hwndCapture != hwnd)
@@ -637,19 +639,19 @@ namespace windows
 
          DWORD currentThreadId = ::GetCurrentThreadId();
 
-         if ((DWORD)itask != currentThreadId)
+         if ((DWORD)itask.m_i != currentThreadId)
          {
 
-            ::AttachThreadInput(currentThreadId, (DWORD)itask, TRUE);
+            ::AttachThreadInput(currentThreadId, (DWORD)itask.m_i, TRUE);
 
          }
 
          ::ReleaseCapture();
 
-         if ((DWORD)itask != currentThreadId)
+         if ((DWORD)itask.m_i != currentThreadId)
          {
 
-            ::AttachThreadInput(currentThreadId, (DWORD)itask, FALSE);
+            ::AttachThreadInput(currentThreadId, (DWORD)itask.m_i, FALSE);
 
          }
 

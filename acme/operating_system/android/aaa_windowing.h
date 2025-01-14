@@ -71,7 +71,7 @@ struct CLASS_DECL_ACME oswindow_data
 
    bool                          m_bMessageOnlyWindow;
    ::windowing::window *    m_pimpl;
-   htask_t                       m_htask;
+   htask                       m_htask;
    color32_t *                    m_pcolorref;
    //RECT32                          m_rect;
    bool                          m_bDestroying;

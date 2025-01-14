@@ -387,7 +387,7 @@ inline int_bool critical_section::Unlock()
 //}
 //
 //
-//inline ::thread* get_task(itask_t idthread)
+//inline ::thread* get_task(itask idthread)
 //{
 //
 //   return (::thread*) psystem->get_task(idthread);

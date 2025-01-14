@@ -1,6 +1,6 @@
 #include "framework.h"
 
-bool defer_process_x_message(htask_t htask, MESSAGE * lpMsg, oswindow window, bool bPeek)
+bool defer_process_x_message(htask htask, MESSAGE * lpMsg, oswindow window, bool bPeek)
 {
 
    if(htask == nullptr || htask->m_pthread == nullptr || htask->m_pthread->get_x_window_count() <= 0)

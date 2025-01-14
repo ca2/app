@@ -5,6 +5,7 @@
 #undef USUAL_OPERATING_SYSTEM_SUPPRESSIONS
 #include "acme/_operating_system.h"
 #include "acme/operating_system/windows_common/_string.h"
+#include "acme/operating_system/windows_common/handle.h"
 
 
 int __node_is_debugger_attached()
@@ -139,15 +140,15 @@ void output_debug_string_flush()
 }
 
 
-CLASS_DECL_ACME htask_t current_htask()
+CLASS_DECL_ACME htask current_htask()
 {
 
-   return ::GetCurrentThread();
+   return (::uptr) ::GetCurrentThread();
 
 }
 
 
-CLASS_DECL_ACME itask_t current_itask()
+CLASS_DECL_ACME itask current_itask()
 {
 
    return ::GetCurrentThreadId();
@@ -155,10 +156,10 @@ CLASS_DECL_ACME itask_t current_itask()
 }
 
 
-CLASS_DECL_ACME itask_t as_itask(htask_t htask)
+CLASS_DECL_ACME itask as_itask(htask htask)
 {
 
-   return ::GetThreadId(htask);
+   return ::GetThreadId((HANDLE) htask.m_h);
 
 }
 

@@ -211,7 +211,7 @@ namespace acme
          ::string get_window_text() override;
 
 
-         virtual itask_t get_itask() const;
+         virtual itask get_itask() const;
 
          //virtual ::int_rectangle get_window_rectangle();
 

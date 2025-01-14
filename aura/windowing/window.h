@@ -580,7 +580,7 @@ namespace windowing
       bool is_branch_current() const override;
 
       
-      itask_t get_itask() const override;
+      itask get_itask() const override;
 
 
       virtual void on_touch_down(int xHost, int yHost, int xAbsolute, int yAbsolute);

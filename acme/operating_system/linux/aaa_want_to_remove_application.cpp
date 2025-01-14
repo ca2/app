@@ -424,7 +424,7 @@ namespace acme
    }
 
 
-   itask_t application::get_thread_id()
+   itask application::get_thread_id()
    {
 
       return ::pthread_self();

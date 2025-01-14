@@ -71,7 +71,7 @@
 
 
 //template <  >
-//inline bool EqualElements<itask_t>(itask_t r1, itask_t r2)
+//inline bool EqualElements<itask>(itask r1, itask r2)
 //{
 //
 //   return itask_equals(r1, r2) != 0;
@@ -82,7 +82,7 @@
 
 #endif
 
-//CLASS_DECL_APEX ::pointer<message_queue>__get_mq(itask_t atom, bool bCreate);
+//CLASS_DECL_APEX ::pointer<message_queue>__get_mq(itask atom, bool bCreate);
 
 
 

@@ -44,7 +44,7 @@ namespace hotplugin
       string                        m_strStatus;
       string                        m_strStatus2;
 
-      itask_t                      m_nCa2StarterStartThreadID;
+      itask                      m_nCa2StarterStartThreadID;
       bool                          m_bReload;
       bool                          m_bInstalling;
       const char *                  m_pszReloadCommandLine;

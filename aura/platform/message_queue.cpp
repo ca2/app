@@ -84,20 +84,20 @@ CLASS_DECL_AURA void mq_erase_window_from_all_queues(::windowing::window * pwind
 
    ::cast < ::thread > pthread = puserframe->application();
 
-   itask_t idthread = pthread->get_itask();
+   auto taskindex = pthread->m_taskindex;
 
-   message_queue * pmq = ::system()->m_ptaskmessagequeue->get_message_queue(idthread, false);
+   message_queue * pmessagequeue = ::system()->m_ptaskmessagequeue->get_message_queue(taskindex, false);
 
-   if(pmq == nullptr)
+   if(pmessagequeue == nullptr)
    {
 
       throw ::exception(error_wrong_state);
 
    }
 
-   synchronous_lock ml(pmq->synchronization());
+   synchronous_lock ml(pmessagequeue->synchronization());
 
-   pmq->m_messagea.predicate_erase([=](MESSAGE & message)
+   pmessagequeue->m_messagea.predicate_erase([=](MESSAGE & message)
    {
 
       return message.oswindow == pwindow->oswindow();

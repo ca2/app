@@ -6,7 +6,7 @@
 #include "acme/prototype/collection/map.h"
 
 
-//using task_message_queue_map = ::map < itask_t, ::pointer < message_queue > >;
+//using task_message_queue_map = ::map < class ::task_index, ::pointer < message_queue > >;
 
 
 class CLASS_DECL_ACME task_message_queue :

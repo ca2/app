@@ -183,7 +183,7 @@ namespace aura
 
 #endif
 
-   //map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
+   //map < itask, itask, itask, itask > * g_pmapThreadOn;
 
    // aura commented
 //#ifdef WINDOWS
@@ -351,7 +351,7 @@ namespace aura
 ////
 ////#endif
 //
-//      //map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
+//      //map < itask, itask, itask, itask > * g_pmapThreadOn;
 //
 ////#ifdef WINDOWS
 ////
@@ -540,7 +540,7 @@ namespace aura
 //
 //      //g_pmutexThreadOn = aaa_primitive_new ::pointer < ::mutex >();
 //
-//      //g_pmapThreadOn = aaa_primitive_new ::map < itask_t, itask_t, itask_t, itask_t >;
+//      //g_pmapThreadOn = aaa_primitive_new ::map < itask, itask, itask, itask >;
 //
 //      //g_pmutexSystemHeap = aaa_primitive_new critical_section();
 //

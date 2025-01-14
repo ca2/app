@@ -7,7 +7,7 @@
 
 #if defined(LINUX) // || defined(ANDROID)
 
-void set_defer_process_x_message(bool (* pfn)(htask_t htask,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek));
+void set_defer_process_x_message(bool (* pfn)(htask htask,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek));
 
 #endif
 

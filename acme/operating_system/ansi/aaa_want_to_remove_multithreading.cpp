@@ -164,7 +164,7 @@
 //
 //
 //
-//CLASS_DECL_ACME htask_t current_htask()
+//CLASS_DECL_ACME htask current_htask()
 //{
 //
 //   return ::GetCurrentThread();
@@ -195,10 +195,10 @@
 ////mutex * g_pmutexTlsData = NULL;
 //
 //
-////map < htask_t,htask_t,htask_t,htask_t > * s_pmapHthreadHthread = NULL;
-////map < unsigned int,unsigned int,htask_t,htask_t > * s_pmapDwordHthread = NULL;
-////map < htask_t,htask_t,unsigned int,unsigned int > * s_pmapHthreadDword = NULL;
-////map < htask_t,htask_t,ThreadLocalData *,ThreadLocalData * > * allthreaddata = NULL;
+////map < htask,htask,htask,htask > * s_pmapHthreadHthread = NULL;
+////map < unsigned int,unsigned int,htask,htask > * s_pmapDwordHthread = NULL;
+////map < htask,htask,unsigned int,unsigned int > * s_pmapHthreadDword = NULL;
+////map < htask,htask,ThreadLocalData *,ThreadLocalData * > * allthreaddata = NULL;
 //
 //
 //
@@ -208,13 +208,13 @@
 //void __node_init_multitasking()
 //{
 //
-//   //s_pmapHthreadHthread = aaa_primitive_new map < htask_t,htask_t,htask_t,htask_t >();
+//   //s_pmapHthreadHthread = aaa_primitive_new map < htask,htask,htask,htask >();
 //
-//   //s_pmapDwordHthread = aaa_primitive_new map < unsigned int,unsigned int,htask_t,htask_t >();
+//   //s_pmapDwordHthread = aaa_primitive_new map < unsigned int,unsigned int,htask,htask >();
 //
-//   //s_pmapHthreadDword = aaa_primitive_new map < htask_t,htask_t,unsigned int,unsigned int >();
+//   //s_pmapHthreadDword = aaa_primitive_new map < htask,htask,unsigned int,unsigned int >();
 //
-//   //allthreaddata = aaa_primitive_new map < htask_t,htask_t,ThreadLocalData *,ThreadLocalData * >();
+//   //allthreaddata = aaa_primitive_new map < htask,htask,ThreadLocalData *,ThreadLocalData * >();
 //
 //   //freeTlsIndices = aaa_primitive_new raw_array<unsigned int>();
 //
@@ -259,7 +259,7 @@
 //
 //#if defined(LINUX) // || defined(ANDROID)
 //
-//bool axis_defer_process_x_message(htask_t htask,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek);
+//bool axis_defer_process_x_message(htask htask,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek);
 //
 //#endif
 //
@@ -279,7 +279,7 @@
 //
 //
 //
-////map < htask_t,htask_t,PendingThreadInfo,PendingThreadInfo > * g_ppendingThreads = NULL;
+////map < htask,htask,PendingThreadInfo,PendingThreadInfo > * g_ppendingThreads = NULL;
 ////
 ////mutex * g_pmutexPendingThreadsLock = NULL;
 ////
@@ -289,7 +289,7 @@
 ////
 ////mutex * g_pmutexThreadIdLock = NULL;
 ////
-////map < htask_t,htask_t,PendingThreadInfo,PendingThreadInfo > & pendingThreads()
+////map < htask,htask,PendingThreadInfo,PendingThreadInfo > & pendingThreads()
 ////{
 ////
 ////   return * g_ppendingThreads;
@@ -298,14 +298,14 @@
 //
 //
 //
-////map < htask_t,htask_t,htask_t,htask_t > & thread_handle_map()
+////map < htask,htask,htask,htask > & thread_handle_map()
 ////{
 ////
 ////   return *s_pmapHthreadHthread;
 ////
 ////}
 ////
-////map < unsigned int,unsigned int,htask_t,htask_t > & thread_id_handle_map()
+////map < unsigned int,unsigned int,htask,htask > & thread_id_handle_map()
 ////{
 ////
 ////   return *s_pmapDwordHthread;
@@ -313,7 +313,7 @@
 ////}
 ////
 ////
-////map < htask_t,htask_t,unsigned int,unsigned int > & thread_id_map()
+////map < htask,htask,unsigned int,unsigned int > & thread_id_map()
 ////{
 ////
 ////   return *s_pmapHthreadDword;
@@ -351,7 +351,7 @@
 //
 //
 //// Helper shared between CreateThread and ResumeThread.
-////thread * StartThread(LPTHREAD_START_ROUTINE pfn,LPVOID pv,htask_t htask,int nPriority,SIZE_T cbStack)
+////thread * StartThread(LPTHREAD_START_ROUTINE pfn,LPVOID pv,htask htask,int nPriority,SIZE_T cbStack)
 ////{
 ////
 ////   os_thread * pthread = aaa_primitive_new os_thread(pfn,pv);
@@ -393,7 +393,7 @@
 ////
 //
 //
-////htask_t WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes,uptr cbStack,LPTHREAD_START_ROUTINE lpStartAddress,LPVOID lpParameter,unsigned int dwCreationFlags,unsigned int * lpdwThreadId)
+////htask WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes,uptr cbStack,LPTHREAD_START_ROUTINE lpStartAddress,LPVOID lpParameter,unsigned int dwCreationFlags,unsigned int * lpdwThreadId)
 ////{
 ////   // Validate parameters.
 ////   //   assert(unusedThreadAttributes == nullptr);
@@ -402,7 +402,7 @@
 ////   //assert(unusedThreadId == nullptr);
 ////
 ////   // Create a handle that will be signalled when the thread has completed
-////   htask_t threadHandle = aaa_primitive_new htask();
+////   htask threadHandle = aaa_primitive_new htask();
 ////
 ////   if(threadHandle == NULL)
 ////      return NULL;
@@ -492,12 +492,12 @@
 ////}
 ////
 ////
-////unsigned int WINAPI ResumeThread(htask_t htask)
+////unsigned int WINAPI ResumeThread(htask htask)
 ////{
 ////   synchronous_lock lock(g_pmutexPendingThreadsLock);
 ////
 ////   // Look up the requested thread.
-////   map < htask_t,htask_t,PendingThreadInfo,PendingThreadInfo >::pair * threadInfo = pendingThreads().plookup(htask);
+////   map < htask,htask,PendingThreadInfo,PendingThreadInfo >::pair * threadInfo = pendingThreads().plookup(htask);
 ////
 ////   if(threadInfo == NULL)
 ////   {
@@ -573,7 +573,7 @@
 ////   while(pos != NULL)
 ////   {
 ////
-////      htask_t htask;
+////      htask htask;
 ////
 ////      ThreadLocalData * pdata;
 ////
@@ -615,7 +615,7 @@
 ////}
 ////
 ////
-////LPVOID WINAPI TlsGetValue(htask_t htask,unsigned int dwTlsIndex)
+////LPVOID WINAPI TlsGetValue(htask htask,unsigned int dwTlsIndex)
 ////{
 ////
 ////   try
@@ -688,7 +688,7 @@
 ////   return true;
 ////}
 ////
-////int_bool WINAPI TlsSetValue(htask_t htask,unsigned int dwTlsIndex,LPVOID lpTlsValue)
+////int_bool WINAPI TlsSetValue(htask htask,unsigned int dwTlsIndex,LPVOID lpTlsValue)
 ////{
 ////
 ////   synchronous_lock lock(g_pmutexTlsData);
@@ -778,13 +778,13 @@
 ////
 ////
 ////
-////int WINAPI GetThreadPriority(htask_t  htask)
+////int WINAPI GetThreadPriority(htask  htask)
 ////{
 ////
 ////   synchronous_lock lock(g_pmutexPendingThreadsLock);
 ////
 ////   // Look up the requested thread.
-////   map < htask_t,htask_t,PendingThreadInfo,PendingThreadInfo >::pair * threadInfo = pendingThreads().plookup(htask);
+////   map < htask,htask,PendingThreadInfo,PendingThreadInfo >::pair * threadInfo = pendingThreads().plookup(htask);
 ////
 ////   if(threadInfo == NULL)
 ////   {
@@ -977,7 +977,7 @@
 ////}
 ////
 ////
-////htask_t start_thread(unsigned int(WINAPI * pfn)(LPVOID),LPVOID pv,int iPriority)
+////htask start_thread(unsigned int(WINAPI * pfn)(LPVOID),LPVOID pv,int iPriority)
 ////{
 ////
 ////   __UNREFERENCED_PARAMETER(iPriority);
@@ -986,7 +986,7 @@
 ////
 ////}
 ////
-////htask_t create_thread(LPSECURITY_ATTRIBUTES lpsa,uptr cbStack,LPTHREAD_START_ROUTINE pfn,LPVOID pv,unsigned int f,unsigned int * lpdwId)
+////htask create_thread(LPSECURITY_ATTRIBUTES lpsa,uptr cbStack,LPTHREAD_START_ROUTINE pfn,LPVOID pv,unsigned int f,unsigned int * lpdwId)
 ////{
 ////
 ////   return ::CreateThread(lpsa,cbStack,pfn,pv,f,lpdwId);
@@ -1002,7 +1002,7 @@
 ////static HANDLE g_hMainThread = NULL;
 ////static unsigned int g_iMainThread = -1;
 ////
-////CLASS_DECL_ACME void set_main_user_htask(htask_t htask)
+////CLASS_DECL_ACME void set_main_user_htask(htask htask)
 ////{
 ////
 ////   //   MESSAGE msg;
@@ -1015,7 +1015,7 @@
 ////
 ////}
 ////
-////CLASS_DECL_ACME void set_main_user_itask(itask_t itask)
+////CLASS_DECL_ACME void set_main_user_itask(itask itask)
 ////{
 ////
 ////   //   MESSAGE msg;
@@ -1066,7 +1066,7 @@
 ////
 ////}
 ////
-////message_queue * aaa_get_message_queue(htask_t  h);
+////message_queue * aaa_get_message_queue(htask  h);
 ////
 ////
 ////message_queue * aaa_get_message_queue()
@@ -1076,12 +1076,12 @@
 ////
 ////}
 ////
-////bool is_thread(htask_t h)
+////bool is_thread(htask h)
 ////{
 ////   return GetThreadId(h) != 0;
 ////}
 ////
-////message_queue * aaa_get_message_queue(htask_t  h)
+////message_queue * aaa_get_message_queue(htask  h)
 ////{
 ////
 ////
@@ -1106,12 +1106,12 @@
 ////
 /////*
 ////
-////CLASS_DECL_ACME unsigned int WINAPI GetThreadId(htask_t Thread)
+////CLASS_DECL_ACME unsigned int WINAPI GetThreadId(htask Thread)
 ////{
 ////
 ////   synchronous_lock mlThreadId(g_pmutexThreadIdLock);
 ////
-////   map < htask_t,htask_t,unsigned int,unsigned int >::pair * p = thread_id_map().plookup(Thread);
+////   map < htask,htask,unsigned int,unsigned int >::pair * p = thread_id_map().plookup(Thread);
 ////
 ////   if(p == NULL)
 ////      return -1;
@@ -1121,12 +1121,12 @@
 ////
 ////}
 ////
-////CLASS_DECL_ACME htask_t  WINAPI get_thread_handle(unsigned int dw)
+////CLASS_DECL_ACME htask  WINAPI get_thread_handle(unsigned int dw)
 ////{
 ////
 ////   synchronous_lock mlThreadIdHandle(g_pmutexThreadIdHandleLock);
 ////
-////   map < unsigned int,unsigned int,htask_t,htask_t >::pair * p = thread_id_handle_map().plookup(dw);
+////   map < unsigned int,unsigned int,htask,htask >::pair * p = thread_id_handle_map().plookup(dw);
 ////
 ////   if(p == NULL)
 ////      return NULL;
@@ -1142,7 +1142,7 @@
 ////CLASS_DECL_ACME int_bool WINAPI PostThreadMessageW(unsigned int idThread,unsigned int Msg,WPARAM wParam,LPARAM lParam)
 ////{
 ////
-////   htask_t h = ::get_thread_handle(idThread);
+////   htask h = ::get_thread_handle(idThread);
 ////
 ////   if(h == NULL)
 ////      return false;
@@ -1180,7 +1180,7 @@
 ////CLASS_DECL_ACME int_bool WINAPI PostMessageW(oswindow oswindow,unsigned int Msg,WPARAM wParam,LPARAM lParam)
 ////{
 ////
-////   htask_t  h = oswindow->get_user_interaction()->m_papp->get_os_handle();
+////   htask  h = oswindow->get_user_interaction()->m_papp->get_os_handle();
 ////
 ////   if(h == NULL)
 ////      return false;
@@ -1294,7 +1294,7 @@
 ////
 ////
 ////
-////CLASS_DECL_ACME htask_t GetCurrentThread()
+////CLASS_DECL_ACME htask GetCurrentThread()
 ////{
 ////
 ////   return currentThread;

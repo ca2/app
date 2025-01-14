@@ -22,7 +22,7 @@ namespace parallelization
 
 
 
-   //CLASS_DECL_ACME comparable_eq_array<itask_t> * s_piaThread2 = nullptr;
+   //CLASS_DECL_ACME comparable_eq_array<itask> * s_piaThread2 = nullptr;
    //CLASS_DECL_ACME pointer_array < thread > * s_pthreadptra2 = nullptr;
    //CLASS_DECL_ACMEcritical_section * s_pcs2 = nullptr;
 
@@ -32,7 +32,7 @@ namespace parallelization
 
    //   //s_pcs2 = ___new critical_section();
 
-   //   //s_piaThread2 = aaa_memory_new comparable_eq_array<itask_t>;
+   //   //s_piaThread2 = aaa_memory_new comparable_eq_array<itask>;
 
    //   //s_pthreadptra2 = aaa_memory_new pointer_array < thread >;
 
@@ -54,7 +54,7 @@ namespace parallelization
 
    //}
 
-   //CLASS_DECL_ACME bool thread_id_registered(itask_t atom)
+   //CLASS_DECL_ACME bool thread_id_registered(itask atom)
    //{
 
    //   //cslock lock(s_pcs2);
@@ -74,7 +74,7 @@ namespace parallelization
    //}
 
 
-   //void thread_register(itask_t itask, ::thread * pthread)
+   //void thread_register(itask itask, ::thread * pthread)
    //{
 
    //   system()->set_thread(itask, pthread);
@@ -82,7 +82,7 @@ namespace parallelization
    //}
 
 
-   //void thread_unregister(itask_t itask, ::thread * pthread)
+   //void thread_unregister(itask itask, ::thread * pthread)
    //{
 
    //   auto psystem = ::get_context_system();

@@ -9,10 +9,10 @@ namespace windows
 {
 
 
-   handle::handle(HANDLE handle) 
+   handle::handle(::uptr u) 
    {
       
-      m_handle = handle; 
+      m_u = u; 
    
    }
 
@@ -25,12 +25,12 @@ namespace windows
    }
 
 
-   handle & handle::operator = (HANDLE handle)
+   handle & handle::operator = (::uptr u)
    {
 
       close_handle();
 
-      m_handle = handle;
+      m_u = u;
 
       return *this;
 
@@ -43,9 +43,9 @@ namespace windows
       if (is_ok())
       {
 
-         ::CloseHandle(m_handle);
+         ::CloseHandle((HANDLE) m_u);
 
-         m_handle = INVALID_HANDLE_VALUE;
+         m_u = (::uptr) INVALID_HANDLE_VALUE;
 
       }
 

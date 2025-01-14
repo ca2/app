@@ -28,7 +28,7 @@
 #endif
 
 
-//message_queue * aaa_get_message_queue(itask_t idthread, bool bCreate);
+//message_queue * aaa_get_message_queue(itask idthread, bool bCreate);
 
 
 //CLASS_DECL_ACME void thread_get_os_priority(int * piOsPolicy, sched_param * pparam, ::enum_priority epriority);
@@ -43,7 +43,7 @@ thread_local ::message_queue * t_pmessagequeue = nullptr;
 {
    if (!t_pmessagequeue)
    {
-      itask_t idthread = ::current_itask();
+      itask idthread = ::current_itask();
 
 
       t_pmessagequeue=  system()->m_ptaskmessagequeue->get_message_queue(idthread, false);
@@ -298,26 +298,26 @@ thread_local ::message_queue * t_pmessagequeue = nullptr;
 //}
 
 
-CLASS_DECL_ACME htask_t current_htask()
+CLASS_DECL_ACME htask current_htask()
 {
 
-   return (htask_t) ::pthread_self();
+   return (htask) ::pthread_self();
 
 }
 
 
-CLASS_DECL_ACME itask_t current_itask()
+CLASS_DECL_ACME itask current_itask()
 {
 
-   return (itask_t) ::pthread_self();
+   return (itask) ::pthread_self();
 
 }
 
 
-CLASS_DECL_ACME itask_t as_itask(htask_t htask)
+CLASS_DECL_ACME itask as_itask(htask htask)
 {
 
-   return (itask_t) (::iptr) htask;
+   return (itask) (::iptr) htask;
 
 }
 
@@ -346,10 +346,10 @@ void __node_term_multitasking()
 
 #if defined(LINUX) // || defined(ANDROID)
 
-bool (*g_pfn_defer_process_x_message)(htask_t htask, MESSAGE * pMsg, oswindow oswindow, bool bPeek) = nullptr;
+bool (*g_pfn_defer_process_x_message)(htask htask, MESSAGE * pMsg, oswindow oswindow, bool bPeek) = nullptr;
 
 
-bool aura_defer_process_x_message(htask_t htask, MESSAGE * pMsg, oswindow oswindow, bool bPeek)
+bool aura_defer_process_x_message(htask htask, MESSAGE * pMsg, oswindow oswindow, bool bPeek)
 
 {
 
@@ -361,7 +361,7 @@ bool aura_defer_process_x_message(htask_t htask, MESSAGE * pMsg, oswindow oswind
 
 }
 
-void set_defer_process_x_message(bool (*pfn)(htask_t htask, MESSAGE * pMsg, oswindow oswindow, bool bPeek))
+void set_defer_process_x_message(bool (*pfn)(htask htask, MESSAGE * pMsg, oswindow oswindow, bool bPeek))
 
 {
 
@@ -397,10 +397,10 @@ int get_os_thread_priority(::enum_priority epriority)
 
 
 
-// LPVOID WINAPI thread_get_data(htask_t htask, unsigned int dwIndex);
+// LPVOID WINAPI thread_get_data(htask htask, unsigned int dwIndex);
 
 
-// int_bool WINAPI thread_set_data(htask_t htask, unsigned int dwIndex, LPVOID pTlsValue);
+// int_bool WINAPI thread_set_data(htask htask, unsigned int dwIndex, LPVOID pTlsValue);
 
 
 
@@ -443,14 +443,14 @@ int g_iDebug_post_thread_msg_time;
 //}
 
 
-// CLASS_DECL_ACME htask_t GetCurrentThread()
+// CLASS_DECL_ACME htask GetCurrentThread()
 // {
 
 //    return pthread_self();
 
 // }
 
-// CLASS_DECL_ACME itask_t GetCurrentThreadId()
+// CLASS_DECL_ACME itask GetCurrentThreadId()
 // {
 
 //    return pthread_self();
@@ -603,22 +603,22 @@ string task_get_name()
 
    auto pthread = pthread_self();
 
-   auto strTaskName = task_get_name((htask_t) pthread);
+   auto strTaskName = task_get_name((htask) pthread);
 
    return strTaskName;
    
 }
 
 
-using htask_t = void *;
+using htask = void *;
 
-using htask_t = void *;
+using htask = void *;
 
 //extern "C"
 //int   imp_stubs_pthread_setname_np(pthread_t,const char*);
 
 //
-//void task_set_name(htask_t htask, const ::scoped_string & scopedstrTaskName)
+//void task_set_name(htask htask, const ::scoped_string & scopedstrTaskName)
 //{
 //
 //   int error = imp_stubs_pthread_setname_np((pthread_t)htask, pszTaskName);
@@ -641,7 +641,7 @@ using htask_t = void *;
 void task_set_name(const char * psz)
 {
 
-   return task_set_name((htask_t) pthread_self(), psz);
+   return task_set_name((htask) pthread_self(), psz);
 
 }
 
@@ -673,7 +673,7 @@ string task_get_name()
 #endif
 
 
-bool itask_t::operator == (const itask_t & i) const
+bool itask::operator == (const itask & i) const
 {
    
    if(!i)
@@ -705,7 +705,7 @@ bool itask_t::operator == (const itask_t & i) const
 }
 
 
-bool htask_t::operator == (const htask_t & h) const
+bool htask::operator == (const htask & h) const
 {
    
    if(!h)
@@ -737,20 +737,20 @@ bool htask_t::operator == (const htask_t & h) const
 }
 
 
-bool itask_t::operator !() const
+bool itask::operator !() const
 {
    
-   itask_t iNull;
+   itask iNull;
    
    return memcmp(&m_i, &iNull, sizeof(m_i)) == 0;
    
 }
 
 
-bool htask_t::operator ! () const
+bool htask::operator ! () const
 {
    
-   htask_t hNull;
+   htask hNull;
    
    return memcmp(&m_h, &hNull, sizeof(m_h)) == 0;
    
@@ -771,7 +771,7 @@ namespace parallelization
    }
 
 
-   CLASS_DECL_ACME bool set_priority(htask_t htask, enum_priority epriority)
+   CLASS_DECL_ACME bool set_priority(htask htask, enum_priority epriority)
    {
 
       int iPolicy;
@@ -796,7 +796,7 @@ namespace parallelization
    }
 
 
-   ::enum_priority get_priority(htask_t htask)
+   ::enum_priority get_priority(htask htask)
    {
 
       int iOsPolicy = SCHED_OTHER;

@@ -1275,104 +1275,139 @@ namespace platform
    //   }
 
 
-   ::task* system::get_task(itask_t itask)
+   ::task* system::get_task(const class ::task_index & taskindex)
    {
 
-      critical_section_lock criticalsectionlock(&m_criticalsectionTask);
+      //critical_section_lock criticalsectionlock(&m_criticalsectionTask);
 
-      return m_taskmap[itask];
+      auto pthreadstorage = thread_storage(taskindex);
+
+      return pthreadstorage->m_ptask;
 
    }
 
 
-   itask_t system::get_task_id(const ::task* ptask)
+   //itask system::get_task_id(const ::task* ptask)
+   //{
+
+   //   critical_section_lock criticalsectionlock(&m_criticalsectionTask);
+
+   //   itask itask;
+
+   //   if (!m_taskidmap.lookup((::task* const)ptask, itask))
+   //   {
+
+   //      return 0;
+
+   //   }
+
+   //   return itask;
+
+   //}
+
+
+   void system::set_task(const class ::task_index & taskindex, ::task* ptask)
    {
 
-      critical_section_lock criticalsectionlock(&m_criticalsectionTask);
-
-      itask_t itask = null_itask;
-
-      if (!m_taskidmap.lookup((::task* const)ptask, itask))
-      {
-
-         return 0;
-
-      }
-
-      return itask;
-
-   }
-
-
-   void system::set_task(itask_t itask, ::task* ptask)
-   {
-
-      critical_section_lock criticalsectionlock(&m_criticalsectionTask);
+      critical_section_lock criticalsectionlock(&m_criticalsectionThreadStorage);
 
       __refdbg_add_referer_for(ptask);
 
-      m_taskmap[itask] = ptask;
+      auto & threadstorage = m_mapThreadStorage[taskindex];
 
-      m_taskidmap[ptask] = itask;
+      threadstorage.m_ptask = ptask;
 
-   }
+      threadstorage.m_htask = ptask->m_htask;
 
+      threadstorage.m_itask = ptask->m_itask;
 
-   void system::unset_task(itask_t itask, ::task* ptask)
-   {
+      //if (pthreadstorage->m_ptask)
+      //{
 
-      critical_section_lock criticalsectionlock(&m_criticalsectionTask);
+      //   throw ::exception(error_wrong_state);
 
-      if(m_taskmap.has(itask)) m_taskmap.erase_item(itask);
+      //}
 
-      if(m_taskidmap.has(ptask)) m_taskidmap.erase_item(ptask);
+      //pthreadstorage->m_ptask = ptask;
 
-   }
+      ////m_taskmap[itask] = ptask;
 
-
-   bool system::is_task_on(itask_t atom)
-   {
-
-      critical_section_lock criticalsectionlock(&m_criticalsectionTaskOn);
-
-      return m_mapTaskOn.plookup(atom);
+      ////m_taskidmap[ptask] = itask;
 
    }
 
 
-   bool system::is_active(::task* ptask)
+   void system::unset_task(const class ::task_index & taskindex, ::task* ptask)
    {
 
-      if (::is_null(ptask))
+      critical_section_lock criticalsectionlock(&m_criticalsectionThreadStorage);
+
+      auto ppairThreadStorage = m_mapThreadStorage.plookup(taskindex);
+
+      if (!ppairThreadStorage->m_element2.m_ptask)
       {
 
-         return false;
+         throw ::exception(error_wrong_state);
 
       }
 
-      return is_task_on(ptask->m_itask);
+      if (ppairThreadStorage->m_element2.m_ptask != ptask)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      m_mapThreadStorage.erase(ppairThreadStorage);
 
    }
 
 
-   void system::set_task_on(itask_t atom)
+   bool system::is_task_set(const class ::task_index & taskindex)
    {
 
-      critical_section_lock criticalsectionlock(&m_criticalsectionTaskOn);
+      critical_section_lock criticalsectionlock(&m_criticalsectionThreadStorage);
 
-      m_mapTaskOn.set_at(atom, atom);
+      auto pthreadstorage = _thread_storage_unlocked(taskindex);
 
-   }
-
-
-   void system::set_task_off(itask_t atom)
-   {
-
-      critical_section_lock criticalsectionlock(&m_criticalsectionTaskOn);
-
-      m_mapTaskOn.erase_item(atom);
+      return ::is_set(pthreadstorage->m_ptask);
 
    }
+
+
+   //bool system::is_active(::task* ptask)
+   //{
+
+   //   if (::is_null(ptask))
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   return is_task_on(ptask->m_itask);
+
+   //}
+
+
+   //void system::set_task_on(itask atom)
+   //{
+
+   //   critical_section_lock criticalsectionlock(&m_criticalsectionTaskOn);
+
+   //   m_mapTaskOn.set_at(atom, atom);
+
+   //}
+
+
+   //void system::set_task_off(itask atom)
+   //{
+
+   //   critical_section_lock criticalsectionlock(&m_criticalsectionTaskOn);
+
+   //   m_mapTaskOn.erase_item(atom);
+
+   //}
 
 
 

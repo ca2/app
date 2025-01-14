@@ -124,7 +124,7 @@
 
 
 //CLASS_DECL_APEX bool task_set_name(const ::scoped_string & scopedstr);
-//CLASS_DECL_APEX bool task_set_name(htask_t htask, const ::scoped_string & scopedstrName);
+//CLASS_DECL_APEX bool task_set_name(htask htask, const ::scoped_string & scopedstrName);
 
 // Use instead of PostQuitMessage in OLE server applications
 //CLASS_DECL_APEX void __post_quit_message(int nExitCode);
@@ -268,7 +268,7 @@ class thread_startup;
 
 
 //CLASS_DECL_APEX ::thread* get_task();
-//CLASS_DECL_APEX ::thread * get_task(itask_t idthread);
+//CLASS_DECL_APEX ::thread * get_task(itask idthread);
 //CLASS_DECL_APEX void set_thread(thread * pthread);
 
 
@@ -281,7 +281,7 @@ class thread_startup;
 //#endif
 
 
-CLASS_DECL_ACME string get_task_name(htask_t htask);
+CLASS_DECL_ACME string get_task_name(htask htask);
 
 
 // Use instead of PostQuitMessage in OLE server applications

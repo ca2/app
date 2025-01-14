@@ -54,21 +54,21 @@ CLASS_DECL_ACME bool is_single_main_user_thread();
 
 CLASS_DECL_ACME bool is_main_thread();
 
-CLASS_DECL_ACME itask_t main_itask();
+CLASS_DECL_ACME itask main_itask();
 
-CLASS_DECL_ACME htask_t main_htask();
+CLASS_DECL_ACME htask main_htask();
 
-CLASS_DECL_ACME itask_t current_itask();
+CLASS_DECL_ACME itask current_itask();
 
-CLASS_DECL_ACME htask_t current_htask();
+CLASS_DECL_ACME htask current_htask();
 
-CLASS_DECL_ACME itask_t as_itask(htask_t htask);
+CLASS_DECL_ACME itask as_itask(htask htask);
 
 CLASS_DECL_ACME void set_main_thread();
 
-CLASS_DECL_ACME void set_main_htask(htask_t htask);
+CLASS_DECL_ACME void set_main_htask(htask htask);
 
-CLASS_DECL_ACME void set_main_itask(itask_t itask);
+CLASS_DECL_ACME void set_main_itask(itask itask);
 
 CLASS_DECL_ACME void preempt();
 
@@ -92,11 +92,11 @@ namespace parallelization
 
    CLASS_DECL_ACME bool set_priority(enum_priority epriority);
 
-   CLASS_DECL_ACME bool set_priority(htask_t htask, enum_priority epriority);
+   CLASS_DECL_ACME bool set_priority(htask htask, enum_priority epriority);
 
    CLASS_DECL_ACME enum_priority get_priority();
 
-   CLASS_DECL_ACME enum_priority get_priority(htask_t htask);
+   CLASS_DECL_ACME enum_priority get_priority(htask htask);
 
 
    //inline int get_priority_none()

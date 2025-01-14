@@ -3,7 +3,7 @@
 
 //#if !defined(WINDOWS_DESKTOP)
 //
-//void set_defer_process_x_message(bool (* pfn)(htask_t htask,MESSAGE * pMsg,oswindow oswindow,bool bPeek));
+//void set_defer_process_x_message(bool (* pfn)(htask htask,MESSAGE * pMsg,oswindow oswindow,bool bPeek));
 //
 //
 //#ifdef __cplusplus
@@ -76,18 +76,18 @@
 //
 //// CLASS_DECL_APEX int_bool WINAPI PeekMessage(MESSAGE * pMsg, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, unsigned int wRemoveMsg);
 //
-//// CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(itask_t idthread, unsigned int Msg, WPARAM wParam, LPARAM lParam);
+//// CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(itask idthread, unsigned int Msg, WPARAM wParam, LPARAM lParam);
 //
-//// CLASS_DECL_APEX void mq_clear(itask_t htask);
+//// CLASS_DECL_APEX void mq_clear(itask htask);
 //
 //
 //// #ifndef UNIVERSAL_WINDOWS
 //
-//// CLASS_DECL_APEX unsigned int WINAPI GetThreadId(htask_t Thread);
+//// CLASS_DECL_APEX unsigned int WINAPI GetThreadId(htask Thread);
 //
-//// CLASS_DECL_APEX htask_t GetCurrentThread();
+//// CLASS_DECL_APEX htask GetCurrentThread();
 //
-//// CLASS_DECL_APEX itask_t GetCurrentThreadId();
+//// CLASS_DECL_APEX itask GetCurrentThreadId();
 //
 //// #endif
 //

@@ -19,7 +19,7 @@ public:
 
    message_array           m_messagea;
    manual_reset_happening      m_happeningNewMessage;
-   itask_t                 m_itask;
+   itask                 m_itask;
    bool                    m_bQuit;
 
 
@@ -41,8 +41,8 @@ public:
 };
 
 
-//CLASS_DECL_ACME message_queue * aaa_get_message_queue(itask_t atom, bool bCreate);
-//CLASS_DECL_ACME void aaa_clear_message_queue(itask_t idthread);
+//CLASS_DECL_ACME message_queue * aaa_get_message_queue(itask atom, bool bCreate);
+//CLASS_DECL_ACME void aaa_clear_message_queue(itask idthread);
 
 void _c_simple_message_loop();
 

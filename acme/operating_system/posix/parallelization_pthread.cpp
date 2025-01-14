@@ -38,18 +38,27 @@
 //CLASS_DECL_ACME::enum_priority thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 //
 //CLASS_DECL_ACME::enum_priority process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
+
+
 thread_local ::message_queue * t_pmessagequeue = nullptr;
+
+
 ::message_queue * task_message_queue()
 {
+
    if (!t_pmessagequeue)
    {
-      itask idthread = ::current_itask();
 
+      auto taskindex = ::task_index();
 
-      t_pmessagequeue=  system()->m_ptaskmessagequeue->get_message_queue(idthread, false);
+      t_pmessagequeue=  system()->m_ptaskmessagequeue->get_message_queue(taskindex, false);
+
    }
+
    return t_pmessagequeue;
+
 }
+
 
 ::e_status MsgWaitForMultipleObjectsEx(unsigned int dwSize, hsynchronization * pparticle, const class ::time & timeWait, unsigned int dwWakeMask, unsigned int dwFlags)
 {
@@ -317,7 +326,7 @@ CLASS_DECL_ACME itask current_itask()
 CLASS_DECL_ACME itask as_itask(htask htask)
 {
 
-   return (itask) (::iptr) htask;
+   return htask.m_h;
 
 }
 
@@ -610,9 +619,9 @@ string task_get_name()
 }
 
 
-using htask = void *;
+//using htask = void *;
 
-using htask = void *;
+//using htask = void *;
 
 //extern "C"
 //int   imp_stubs_pthread_setname_np(pthread_t,const char*);
@@ -679,7 +688,7 @@ bool itask::operator == (const itask & i) const
    if(!i)
    {
       
-      if(!this->operator!())
+      if(this->is_null())
       {
          
          return true;
@@ -693,7 +702,7 @@ bool itask::operator == (const itask & i) const
       }
       
    }
-   else if(!this->operator!())
+   else if(this->is_null())
    {
       
       return false;
@@ -711,7 +720,7 @@ bool htask::operator == (const htask & h) const
    if(!h)
    {
       
-      if(!this->operator!())
+      if(this->is_null())
       {
          
          return true;
@@ -725,19 +734,19 @@ bool htask::operator == (const htask & h) const
       }
       
    }
-   else if(!this->operator!())
+   else if(this->is_null())
    {
       
       return false;
       
    }
    
-   return pthread_equal(m_h, i.m_h);
+   return pthread_equal(m_h, h.m_h);
    
 }
 
 
-bool itask::operator !() const
+bool itask::is_null() const
 {
    
    itask iNull;
@@ -747,7 +756,7 @@ bool itask::operator !() const
 }
 
 
-bool htask::operator ! () const
+bool htask::is_null() const
 {
    
    htask hNull;
@@ -780,7 +789,7 @@ namespace parallelization
 
       thread_get_os_priority(&iPolicy, &schedparam, epriority);
 
-      pthread_setschedparam((pthread_t)htask, iPolicy, &schedparam);
+      pthread_setschedparam(htask.m_h, iPolicy, &schedparam);
 
       return true;
 
@@ -805,7 +814,7 @@ namespace parallelization
 
       schedparam.sched_priority = 0;
 
-      pthread_getschedparam((pthread_t)htask, &iOsPolicy, &schedparam);
+      pthread_getschedparam(htask.m_h, &iOsPolicy, &schedparam);
 
       return thread_get_scheduling_priority(iOsPolicy, &schedparam);
 

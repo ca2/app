@@ -508,9 +508,26 @@ void task::__priority_and_affinity()
    if (m_uThreadAffinityMask != 0)
    {
 
-#if defined(WINDOWS_DESKTOP) || defined(LINUX)
+#if defined(WINDOWS_DESKTOP)
 
       int_bool bOk = ::SetThreadAffinityMask((HANDLE) m_htask.m_h, (unsigned int)m_uThreadAffinityMask) != 0;
+
+      if (bOk)
+      {
+
+         //informationf("successfully set thread affinity mask");
+
+      }
+      else
+      {
+
+         informationf("failed to set thread affinity mask");
+
+      }
+
+#elif defined(LINUX)
+
+      int_bool bOk = ::SetThreadAffinityMask(m_htask, (unsigned int)m_uThreadAffinityMask) != 0;
 
       if (bOk)
       {

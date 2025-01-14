@@ -54,7 +54,7 @@ public:
 
 	bool operator == (const htask & h) const;
 	
-	bool is_null() const  { return operator==(nullptr); }
+	bool is_null() const;
 	
 	bool is_set() const { return !is_null(); }
 	
@@ -94,7 +94,7 @@ public:
 
 	bool operator == (const itask & i) const;
 	
-	bool is_null() const  { return operator==(nullptr); }
+	bool is_null() const;
 	
 	bool is_set() const { return !is_null(); }
 	

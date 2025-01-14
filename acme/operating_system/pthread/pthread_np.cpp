@@ -126,7 +126,7 @@ int SetThreadAffinityMask(htask h, unsigned int dwThreadAffinityMask)
 
    }
 
-   pthread_setaffinity_np((pthread_t) h, sizeof(c), &c);
+   pthread_setaffinity_np(h.m_h, sizeof(c), &c);
 
    return 1;
 
@@ -148,7 +148,7 @@ string task_get_name(htask htask)
 
 #else
 
-   int error = pthread_getname_np((pthread_t) htask, szThreadName, sizeof(szThreadName));
+   int error = pthread_getname_np(htask.m_h, szThreadName, sizeof(szThreadName));
 
 #endif
 
@@ -180,7 +180,7 @@ void task_set_name(htask htask, const char * psz)
 
 #else
 
-   auto pthread = (pthread_t) htask;
+   auto pthread = htask.m_h;
 
    string strName(psz);
 

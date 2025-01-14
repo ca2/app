@@ -14,7 +14,7 @@ namespace opengl
    {
 
       m_emode = e_mode_none;
-      m_itaskGpu = 0;
+      //m_itaskGpu = 0;
       m_iLastBitmap1Scan = -1;
 
       m_gluTextureBitmap1 = 0;

@@ -57,7 +57,7 @@ namespace acme
 
          virtual void * raw_x11_display();
 
-         virtual void release_mouse_capture();
+         //virtual void release_mouse_capture();
 
 
          virtual bool is_dark_mode_through_theming();

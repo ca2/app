@@ -35,7 +35,13 @@ namespace windowing
 #endif
       case e_operating_ambient_universal_windows:
          return "universal_windows";
-      default:
+         case e_operating_ambient_kde:
+   #ifdef HAS_KDE6
+            return "kde6";
+#else
+         return "kde5";
+#endif
+         default:
          throw todo;
       };
       

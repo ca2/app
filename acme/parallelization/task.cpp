@@ -3464,6 +3464,8 @@ static htask g_htaskMain;
 
 static itask g_itaskMain;
 
+static class ::task_index g_taskindexMain;
+
 
 CLASS_DECL_ACME void set_main_htask(htask htask)
 {
@@ -3491,6 +3493,19 @@ CLASS_DECL_ACME void set_main_itask(itask itask)
 }
 
 
+CLASS_DECL_ACME void set_main_task_index(const class ::task_index & taskindex)
+{
+
+   //   MESSAGE msg;
+
+   // PeekMessage function used to create message queue Windows Desktop
+   // PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
+
+   g_taskindexMain = taskindex;
+
+}
+
+
 CLASS_DECL_ACME htask main_htask()
 {
 
@@ -3507,6 +3522,40 @@ CLASS_DECL_ACME itask main_itask()
 }
 
 
+CLASS_DECL_ACME class ::task_index main_task_index()
+{
+
+   return g_taskindexMain;
+
+}
+
+
+CLASS_DECL_ACME ::task * main_task()
+{
+	
+	auto pthreadstorage = ::system()->thread_storage(main_task_index());
+	
+	if(::is_null(pthreadstorage))
+	{
+		
+		return nullptr;
+		
+	}
+	
+	auto ptask = pthreadstorage->m_ptask;
+	
+	if(::is_null(ptask))
+	{
+		
+		return nullptr;
+		
+	}
+	
+	return ptask;
+	
+}
+
+
 //CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach)
 //{
 //
@@ -3519,24 +3568,28 @@ CLASS_DECL_ACME void set_main_thread()
    set_main_htask(current_htask());
 
    set_main_itask(current_itask());
+   
+   set_main_task_index(task_index());
 
 }
 
 
-CLASS_DECL_ACME void set_main_thread(htask htask)
-{
+//CLASS_DECL_ACME void set_main_thread(htask htask)
+//{
 
-   set_main_itask(::as_itask(htask));
+//   set_main_itask(::as_itask(htask));
 
-   set_main_htask(htask);
+//   set_main_htask(htask);
 
-}
+//}
 
 
 CLASS_DECL_ACME bool is_main_thread()
 {
 
-   return current_itask() == main_itask();
+	return task_index() == main_task_index();
+
+//   return current_itask() == main_itask();
 
 }
 

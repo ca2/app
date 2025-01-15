@@ -71,7 +71,7 @@ int SetThreadAffinityMask(htask h, unsigned int dwThreadAffinityMask)
     if(iCpuSetErrorCount <= 0)
     {
 
-       pthread_setaffinity_np((pthread_t) h, cpuset_size(pcpuset), pcpuset);
+       pthread_setaffinity_np(h.m_h, cpuset_size(pcpuset), pcpuset);
 
     }
 

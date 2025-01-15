@@ -639,6 +639,8 @@ namespace platform
 
    void system::on_branch_system_from_main_thread_startup()
    {
+      
+      information() << "platform::system::on_branch_system_from_main_thread_startup START";
 
       m_itask = nullptr;
 
@@ -651,6 +653,8 @@ namespace platform
       // because just above system() has begin_synch()
       // so the running thread is holding references to the system() thread.
       //release();
+      
+      information() << "platform::system::on_branch_system_from_main_thread_startup END";
 
    }
 

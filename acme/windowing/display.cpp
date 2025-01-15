@@ -160,11 +160,11 @@ namespace acme
       }
 
 
-      void display::release_mouse_capture()
-      {
-
-
-      }
+      // void display::release_mouse_capture()
+      // {
+      //
+      //
+      // }
 
 
       string_array display::get_wallpaper()

@@ -1192,7 +1192,7 @@ void task::destroy()
 
    //m_pmanualresethappeningHappening.release();
 
-   task_osterm();
+   //task_osterm();
 
 }
 
@@ -1267,6 +1267,8 @@ void * task::s_os_task(void * p)
       ::pointer < ::task > ptask(transfer_t{}, (::task *)p);
 
       ptask->_os_task(procedureTaskEnded);
+
+      ptask->task_osterm();
 
    }
 

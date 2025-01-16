@@ -807,3 +807,96 @@ unsigned int get_current_process_id()
 //
 //
 //
+
+
+#include <sys/audioio.h>
+#include <util.h>
+#include <sys/ioctl.h>
+#include <stdio.h>
+#include <signal.h>
+
+
+static int g_iAudioFd = -1;
+static int g_iExitCode = 0;
+static audio_info_t g_audioinfoInitial;
+
+int get_global_audio_fd()
+{
+   return g_iAudioFd;
+}
+void set_global_audio_fd(int iAudioFd)
+{
+   g_iAudioFd = iAudioFd;
+}
+int get_global_exit_code()
+{
+   return g_iExitCode;
+}
+void set_global_exit_code(int iExitCode)
+{
+   g_iExitCode = iExitCode;
+}
+audio_info_t * get_global_initial_audio_info()
+{
+   return &g_audioinfoInitial;
+}
+
+extern "C" void netbsd_cleanup(int signo)
+{
+   
+   if (signo == 0) 
+   {
+      
+      print_line("netbsd_cleanup Exiting Application");
+      
+   }
+   else if(signo == SIGINT)
+   {
+      
+      print_line("netbsd_cleanup got SIGINT");
+      
+   }
+   else if(signo == SIGHUP)
+   {
+      
+      print_line("netbsd_cleanup got SIGHUP");
+      
+   }
+   else if(signo == SIGTERM)
+   {
+      
+      print_line("netbsd_cleanup got SIGTERM");
+      
+   }
+   else
+   {
+      
+      printf_line("netbsd_cleanup got %d", signo);
+      
+   }
+
+	if (get_global_audio_fd() != -1) 
+   {
+		
+      (void)ioctl(get_global_audio_fd(), AUDIO_FLUSH, NULL);
+      
+		(void)ioctl(get_global_audio_fd(), AUDIO_SETINFO, get_global_initial_audio_info());
+      
+		close(get_global_audio_fd());
+      
+		set_global_audio_fd(-1);
+      
+	}
+   
+	if (signo != 0) 
+   {
+      
+		(void)raise_default_signal(signo);
+      
+	}
+   
+	exit(get_global_exit_code());
+   
+}
+
+

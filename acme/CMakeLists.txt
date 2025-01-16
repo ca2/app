@@ -2872,7 +2872,7 @@ if (${NETBSD})
       operating_system/netbsd/exception.cpp
       operating_system/netbsd/exception_engine.cpp
       operating_system/netbsd/exception_engine.h
-      #            operating_system/netbsd/get_module_path.cpp
+      #operating_system/netbsd/get_module_path.cpp
       operating_system/netbsd/file.cpp
       operating_system/netbsd/file.h
       operating_system/netbsd/file_lock.cpp
@@ -3057,8 +3057,8 @@ elseif (${LINUX} OR ${__BSD__})
       list(APPEND static_this_system_libraries z dl pthread iconv execinfo elf)
       message(STATUS "FREEBSD acme this_system_libraries ${this_system_libraries}")
    elseif (${NETBSD})
-      list(APPEND this_system_libraries z pthread iconv execinfo c)
-      list(APPEND static_this_system_libraries z pthread iconv execinfo elf)
+      list(APPEND this_system_libraries util z pthread iconv execinfo c)
+      list(APPEND static_this_system_libraries util z pthread iconv execinfo elf)
       message(STATUS "NETBSD acme this_system_libraries ${this_system_libraries}")
    else ()
       list(APPEND this_system_libraries z pthread idn)

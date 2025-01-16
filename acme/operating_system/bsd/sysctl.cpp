@@ -47,7 +47,7 @@ string get_current_directory_name();
    
    }
 
-   informationf("exe:%s", strName.c_str());
+   informationf("get_module_path: exe:%s", strName.c_str());
 
    if(strName.begins("/"))
    {
@@ -55,10 +55,19 @@ string get_current_directory_name();
       return strName;
 
    }
+   
+   if(strName.is_empty())
+   {
+      
+      strName = ::system()->m_args[0];
+      
+   }
   
    auto pathCurrentFolder = get_current_directory_name();
    
    auto path = pathCurrentFolder / strName;
+   
+   informationf("get_module_path (2): %s", path.c_str());
    
    if(!file_exists(path))
    {
@@ -66,6 +75,8 @@ string get_current_directory_name();
       return {};
 
    }
+   
+   informationf("get_module_path (3): OK!!: %s", path.c_str());
    
    return path;
 

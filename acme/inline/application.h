@@ -76,6 +76,13 @@ void set_argc_argv_envp(int argc, char ** argv, char ** envp);
 #endif
 
 
+#ifdef NETBSD
+#include <signal.h>
+void set_global_exit_code(int iExitCode);
+extern "C" void netbsd_cleanup(int signo);
+#endif
+	
+	
 int __implement();
 
 #if defined(WINDOWS)
@@ -88,6 +95,18 @@ int main(int argc, char * argv[], char * envp[])
 {
 
    ::PLATFORM_LAYER_NAME::system system;
+   
+#ifdef NETBSD
+
+	::print_line("NETBSD SIGINT installation");
+ 	::signal(SIGINT, netbsd_cleanup);
+	::print_line("NETBSD SIGTERM installation");
+	::signal(SIGTERM, netbsd_cleanup);
+	::print_line("NETBSD SIGHUP installation");
+	::signal(SIGHUP, netbsd_cleanup);
+	
+#endif
+
 
    //if (this->platform()->m_papplication->has_finishing_flag())
    //{
@@ -124,7 +143,18 @@ int main(int argc, char * argv[], char * envp[])
 
    system.on_system_before_destroy();
 
+#ifdef NETBSD
+
+set_global_exit_code(system.m_iExitCode);
+
+netbsd_cleanup(0);
+
+#else
+
+
    return system.m_iExitCode;
+   
+   #endif
    //::acme::sub_application::g_p->m_pacmeapplicationSub->m_bConsole = true;
 
    ////   application.m_applicationflags.m_bConsole = true;

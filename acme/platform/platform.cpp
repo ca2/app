@@ -1182,6 +1182,12 @@ g_bWindowingOutputDebugString = true;
          throw ::exception(error_failed, "Library wasn't opened (\"" + strLibrary + "\")", strMessage);
 
       }
+      
+      #ifdef DEBUG
+      
+      information() << "Library was opened: \"" << strLibrary << "\".";
+      
+      #endif
 
       return plibrary;
 

@@ -14,109 +14,109 @@
 #include <kvm.h>
 #include <unistd.h>
 
-class kvm_type
-{
-public:
+//class kvm_type
+//{
+//public:
 
-   char m_errbuf[_POSIX2_LINE_MAX];
+   //char m_errbuf[_POSIX2_LINE_MAX];
 
-   kvm_t * m_pkvm;
+   //kvm_t * m_pkvm;
    
-   kvm_type()
-   {
+   //kvm_type()
+   //{
    
-      m_pkvm = nullptr;
+      //m_pkvm = nullptr;
    
-   }
+   //}
    
-   ~kvm_type()
-   {
+   //~kvm_type()
+   //{
    
-      if(m_pkvm)
-      {
+      //if(m_pkvm)
+      //{
 
-         kvm_close(m_pkvm);
+         //kvm_close(m_pkvm);
 
-         m_pkvm = nullptr;
+         //m_pkvm = nullptr;
          
-      }
+      //}
    
-   }
+   //}
    
    
-   bool kvm_openfiles()
-   {
+   //bool kvm_openfiles()
+   //{
    
-      m_pkvm = ::kvm_openfiles(nullptr, 0, 0, KVM_NO_FILES, m_errbuf);
+      //m_pkvm = ::kvm_openfiles(nullptr, 0, 0, KVM_NO_FILES, m_errbuf);
       
-      if(!m_pkvm)
-      {
+      //if(!m_pkvm)
+      //{
       
-         return false;
+         //return false;
       
-      }
+      //}
       
-      return true;
+      //return true;
    
-   }
+   //}
    
 
-   kinfo_file * kvm_getfiles_by_pid(pid_t pid, int * piCount)
-   {
+   //kinfo_file * kvm_getfiles_by_pid(pid_t pid, int * piCount)
+   //{
 
-       auto pinfofile = kvm_getfiles(m_pkvm, KERN_FILE_BYPID, pid, sizeof(struct kinfo_file), piCount); 
+       //auto pinfofile = kvm_getfiles(m_pkvm, KERN_FILE_BYPID, pid, sizeof(struct kinfo_file), piCount); 
        
-       return pinfofile;
+       //return pinfofile;
 
-   }
+   //}
 
-};
+//};
 
 
-bool process_contains_module(pid_t pid, const ::file::path & path)
-{
+//bool process_contains_module(pid_t pid, const ::file::path & path)
+//{
    
-   struct stat st;
+   //struct stat st;
 
-   if(stat(path.c_str(), &st))
-   {
+   //if(stat(path.c_str(), &st))
+   //{
    
-      return false;
+      //return false;
    
-   }
+   //}
    
-   kvm_type kvm;
+   //kvm_type kvm;
    
-   if (kvm.kvm_openfiles()) 
-   {
+   //if (kvm.kvm_openfiles()) 
+   //{
    
-      int iCount = 0;
+      //int iCount = 0;
    
-      auto pfile = kvm.kvm_getfiles_by_pid(getpid(), &iCount);
+      //auto pfile = kvm.kvm_getfiles_by_pid(getpid(), &iCount);
 	
-      for (int i = 0; i < iCount; i++) 
-      {
+      //for (int i = 0; i < iCount; i++) 
+      //{
       
-         if (pfile[i].fd_fd == KERN_FILE_TEXT) 
-         {
+         //if (pfile[i].fd_fd == KERN_FILE_TEXT) 
+         //{
 
-            if (st.st_dev == (dev_t)pfile[i].va_fsid 
-             || st.st_ino == (ino_t)pfile[i].va_fileid)
-            {
+            //if (st.st_dev == (dev_t)pfile[i].va_fsid 
+             //|| st.st_ino == (ino_t)pfile[i].va_fileid)
+            //{
 
-               return true;
+               //return true;
 
-            }
+            //}
 
-         }
+         //}
 
-      }
+      //}
       
-   }
+   //}
    
-   return false;
+   //return false;
 
-}
+//}
 
 
 ::pointer < ::operating_system::environment > operating_system_get_environment();
@@ -129,26 +129,26 @@ bool process_contains_module(pid_t pid, const ::file::path & path)
    
    auto penvironment = ::operating_system_get_environment();
    
-//   printf("\n\nnetbsd arg0 : %s\n", strArg0.c_str());
+   printf("\n\nnetbsd arg0 : %s\n", strArg0.c_str());
    
    auto path = path_get_path(strArg0, penvironment);
    
-//   printf("\n\nnetbsd path : %s\n", path.c_str());
+   printf("\n\nnetbsd path : %s\n", path.c_str());
    
    if ((path.m_etype & ::file::e_type_existent_file) != ::file::e_type_existent_file)
    {
    
-//      printf("\n\nnetbsd file exists\n");
+      printf("\n\nnetbsd file exists\n");
       
-      if (process_contains_module(getpid(), path)) 
+      //if (process_contains_module(getpid(), path)) 
       {
       
-//         printf("\n\nnetbsd process_contains_module\n");
+         printf("\n\nnetbsd process_contains_module\n");
          
          return path;
       	
       }
-      else
+      //else
       {
       
 //         printf("\n\nnetbsd process doesn't contain module\n");

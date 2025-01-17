@@ -309,7 +309,7 @@ public:
 
 
    virtual void run() override;
-   virtual void main() override;
+   //virtual void main() override;
    virtual bool on_idle() override;
 
    //virtual void on_pos_run_thread();

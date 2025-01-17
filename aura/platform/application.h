@@ -276,7 +276,7 @@ namespace aura
 
       //virtual ::pointer<::aura::application>assert_running(const ::string & pszAppId) override;
 
-      bool is_task_set() const override;
+      //bool is_task_set() const override;
 
 
 

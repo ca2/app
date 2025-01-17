@@ -298,13 +298,13 @@ namespace platform
       virtual void process_init() override;
 
 
-      virtual void call_init_system() override;
+      ///virtual void call_init_system() override;
 
 
       virtual void init_system() override;
 
 
-       virtual void on_start_system() override;
+       //virtual void on_start_system() override;
 
 
       virtual void defer_post_initial_request() override;
@@ -315,7 +315,7 @@ namespace platform
       virtual void system_main() override;
 
 
-      void on_pre_run_task() override;
+      //void on_pre_run_task() override;
 
 
       virtual void on_branch_system_from_main_thread_startup() override;
@@ -363,8 +363,6 @@ namespace platform
       //virtual void main_user_async(const ::procedure & procedure, ::enum_priority epriority = e_priority_normal);
 
       //virtual void main_user_sync(const ::procedure & procedure, const class time & time = one_minute(), enum_priority epriority = e_priority_normal);
-
-
 
 
       void init_task() override;

@@ -1573,7 +1573,7 @@ namespace aura
    void system::init()
    {
 
-      m_timeHeartBeat.Now();
+      ping();
 
       ::pointer<::aura::session>psession = session();
 

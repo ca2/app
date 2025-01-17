@@ -183,7 +183,7 @@ namespace platform
       virtual ::enum_id key_command(::user::enum_key ekey, ::user::key_state * pkeystate);
 
       virtual void on_before_launching();
-      virtual void os_native_bergedge_start();
+      //virtual void os_native_bergedge_start();
 
       // virtual void init1();
       // virtual void init2();
@@ -255,11 +255,11 @@ namespace platform
       virtual void process_init();
       virtual void process_term();
 
-      virtual void pre_run();
-      virtual void application_pre_run();
+      //virtual void pre_run();
+      //virtual void application_pre_run();
 
-      virtual void pos_run();
-      virtual void application_pos_run();
+      //virtual void pos_run();
+      //virtual void application_pos_run();
 
       virtual void init_application();
 

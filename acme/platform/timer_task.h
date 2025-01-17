@@ -16,7 +16,7 @@ public:
    ::pointer<::acme::timer_array>      m_ptimera;
    PFN_TIMER                           m_pfnTimer;
    void *                              m_pvoidData;
-   bool                                m_bRunning;
+   //bool                                m_bRunning;
 
    //
    //#ifdef UNIVERSAL_WINDOWS
@@ -84,7 +84,7 @@ public:
    inline bool is_timer_ok() const { return is_ok(); }
 
 
-   bool task_active() const override;
+   //bool is_task_set() const override;
 
 
 };

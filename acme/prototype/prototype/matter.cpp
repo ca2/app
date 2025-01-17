@@ -513,16 +513,16 @@ void matter::notify_on_destroy(::property_object * pparticle)
 
 
 
-void matter::__task_main()
-{
-
-   //::e_status estatus = operator()();
-
-   call();
-
-   //return estatus;
-
-}
+//void matter::__task_main()
+//{
+//
+//   //::e_status estatus = operator()();
+//
+//   call();
+//
+//   //return estatus;
+//
+//}
 
 
 
@@ -594,35 +594,35 @@ void matter::__task_main()
 //}
 
 
-void matter::task_osinit()
-{
+// void matter::task_osinit()
+// {
 
 
-}
+// }
 
 
-void matter::__task_init()
-{
+// void matter::__task_init()
+// {
 
-   //return ::success;
+//    //return ::success;
 
-}
-
-
-void matter::__task_term()
-{
-
-   //return ::success;
-
-}
+// }
 
 
-void matter::task_osterm()
-{
+// void matter::__task_term()
+// {
 
-   //return ::success;
+//    //return ::success;
 
-}
+// }
+
+
+// void matter::task_osterm()
+// {
+
+//    //return ::success;
+
+// }
 
 
 //void matter::to_string(const class string_exchange & str) const

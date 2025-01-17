@@ -136,11 +136,11 @@ public:
    //virtual void on_task();
 
 
-   virtual void task_osinit();
-   virtual void __task_init();
-   virtual void __task_main();
-   virtual void __task_term();
-   virtual void task_osterm();
+   // virtual void task_osinit();
+   // virtual void __task_init();
+   // virtual void __task_main();
+   // virtual void __task_term();
+   // virtual void task_osterm();
 
 
 //   virtual void add_composite(::particle * pparticle);

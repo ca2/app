@@ -532,7 +532,7 @@ namespace user
 
       //void show_keyboard(bool bShow = true) override;
 
-      void keep_alive(::object * pliveobject = nullptr) override;
+      //void ping(::object * pobjectPinger = nullptr) override;
 
 
       //bool has_pending_graphical_update() override;

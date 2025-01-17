@@ -242,10 +242,10 @@ namespace platform
 
    //virtual ::pointer<::apex::application>assert_running(const ::string apex_application_layer::& pszAppId) override{}
 
-   bool apex_application_layer::is_running()
-   {
-      return false;
-   }
+   //bool apex_application_layer::is_taskrunning()
+   //{
+   //   return false;
+   //}
 
 
    //bool pump_runnable(){}

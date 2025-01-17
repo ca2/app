@@ -276,7 +276,7 @@ namespace aura
 
       //virtual ::pointer<::aura::application>assert_running(const ::string & pszAppId) override;
 
-      virtual bool is_running() override;
+      bool is_task_set() const override;
 
 
 
@@ -592,12 +592,12 @@ namespace aura
       //virtual void pre_run() override;
       //virtual void application_pre_run();
 
-      virtual void on_pos_run_thread() override;
-      virtual void pos_run() override;
-      virtual void application_pos_run() override;
+      ////virtual void on_pos_run_thread() override;
+      //virtual void pos_run() override;
+      //virtual void application_pos_run() override;
 
-      //virtual bool InitApplication();
-      //virtual void TermApplication() override;
+      ////virtual bool InitApplication();
+      ////virtual void TermApplication() override;
 
       //virtual bool on_install();
       //virtual bool on_uninstall();

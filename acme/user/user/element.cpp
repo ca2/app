@@ -3706,12 +3706,12 @@ namespace user
 
 
 
-   void element::keep_alive(::object * pliveobject)
-   {
+   //void element::ping(::object * pobjectPinger)
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-   }
+   //}
 
 
    //bool element::set_window_position(class zorder zorder, int x, int y, int cx, int cy, unsigned int nFlags)

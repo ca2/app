@@ -704,13 +704,21 @@ bool object::task_get_run() const
 }
 
 
-bool object::is_running() const
+bool object::is_task_set() const
 {
 
-   return false;
+   return true;
 
 }
 
+
+//bool object::is_running() const
+//{
+//
+//   return false;
+//
+//}
+//
 
 void object::branch_send(const ::procedure & procedure, manual_reset_happening * phappening)
 {
@@ -1789,7 +1797,7 @@ void object::branch_each(const ::procedure_array& routinea)
 
    auto ptask = get_property_set()["thread"][atom].cast < ::task>();
 
-   if(ptask && ptask->is_running())
+   if(ptask && ptask->is_task_set())
    {
 
       return ptask;

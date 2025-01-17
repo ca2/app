@@ -180,6 +180,7 @@ public:
 
 
    virtual void init_task();
+   virtual void term_task();
 
 
    virtual void destroy();

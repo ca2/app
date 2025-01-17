@@ -1494,7 +1494,7 @@ namespace aura
 
    //   information() << "aura::application::term_thread";
 
-   //   m_timeHeartBeat.Now();
+   //   ping();
 
    //   try
    //   {
@@ -1520,7 +1520,7 @@ namespace aura
 //      try
 //      {
 //
-//         m_timeHeartBeat.Now();
+//         ping();
 //
 //         if(!application_pre_run())
 //         {
@@ -1562,7 +1562,7 @@ namespace aura
 //
 //         }
 //
-//         m_timeHeartBeat.Now();
+//         ping();
 //
 //         if (!os_native_bergedge_start())
 //         {
@@ -1717,39 +1717,39 @@ namespace aura
 //
 //   }
 
+   //void application::on_pos_run_thread()
+   //{
 
-   void application::on_pos_run_thread()
-   {
+   //   ::aqua::application::on_pos_run_thread();
 
-      ::aqua::application::on_pos_run_thread();
-
-   }
-
+   //}
 
 
-   void application::pos_run()
-   {
 
-      information() << "aura::application::pos_run";
 
-      try
-      {
+   //void application::pos_run()
+   //{
 
-         m_timeHeartBeat.Now();
+   //   information() << "aura::application::pos_run";
 
-         application_pos_run();
+   //   try
+   //   {
 
-         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
+   //      ping();
 
-      }
-      catch (...)
-      {
+   //      application_pos_run();
 
-         information() << "aura::application::pos_run exception.4";
+   //      //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
 
-      }
+   //   }
+   //   catch (...)
+   //   {
 
-   }
+   //      information() << "aura::application::pos_run exception.4";
+
+   //   }
+
+   //}
 
 
    void application::init_instance()
@@ -1838,63 +1838,63 @@ namespace aura
 
    }
 
-   void application::application_pos_run()
-   {
+   //void application::application_pos_run()
+   //{
 
-      try
-      {
+   //   try
+   //   {
 
-         //if (!is_installing() && !is_unstalling())
-         {
+   //      //if (!is_installing() && !is_unstalling())
+   //      {
 
-            term_instance();
+   //         term_instance();
 
-         }
+   //      }
 
-      }
-      catch (...)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
-      }
+   //   }
 
-      try
-      {
+   //   try
+   //   {
 
-         term_application();
+   //      term_application();
 
-      }
-      catch (...)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
-      }
+   //   }
 
-      m_timeHeartBeat.Now();
+   //   ping();
 
-      try
-      {
+   //   try
+   //   {
 
-         process_term();
+   //      process_term();
 
-      }
-      catch (...)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
-      }
+   //   }
 
-      //try
-      //{
+   //   //try
+   //   //{
 
-      //   TermApplication();
+   //   //   TermApplication();
 
-      //}
-      //catch (...)
-      //{
+   //   //}
+   //   //catch (...)
+   //   //{
 
-      //}
+   //   //}
 
 
 
-   }
+   //}
 
  
    void application::do_install()
@@ -2125,7 +2125,7 @@ retry_license:
 //
 //      //m_bAuraInitializeInstanceResult = false;
 //
-//      m_timeHeartBeat.Now();
+//      ping();
 //
 //      if (!init1())
 //      {
@@ -2140,7 +2140,7 @@ retry_license:
 //
 //      //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
 //
-//      m_timeHeartBeat.Now();
+//      ping();
 //
 //      if (!init2())
 //      {
@@ -2155,7 +2155,7 @@ retry_license:
 //
 //      //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
 //
-//      m_timeHeartBeat.Now();
+//      ping();
 //
 //      if (!init3())
 //      {
@@ -2170,7 +2170,7 @@ retry_license:
 //
 //      //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
 //
-//      m_timeHeartBeat.Now();
+//      ping();
 //
 //      //dappy(::type(this).name() + " : init3 ok : " + as_string(m_iErrorCode));
 //
@@ -2291,7 +2291,7 @@ retry_license:
 
       information() << "apex::application::init1 end";
 
-      m_timeHeartBeat.Now();
+      ping();
 
       //return ::success;
 
@@ -4857,12 +4857,12 @@ retry_license:
    }
 
 
-   bool application::is_running()
-   {
+   //bool application::is_running()
+   //{
 
-      return is_alive();
+   //   return is_alive();
 
-   }
+   //}
 
 
    //bool application::Ex2OnAppInstall()

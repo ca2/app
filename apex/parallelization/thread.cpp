@@ -120,6 +120,8 @@ thread::file_info::~file_info()
 thread::thread()
 {
 
+   m_timePingTimeout = 5_minutes;
+
    //m_bBranchHandling = false;
 
    m_bMessageThread = true;
@@ -134,7 +136,7 @@ thread::thread()
 
    //m_pthread = this;
 
-   m_bThreadClosed = false;
+   // m_bThreadClosed = false;
 
    m_bIsPredicate = false;
 
@@ -170,7 +172,7 @@ thread::thread()
 
    m_uThreadAffinityMask = 0;
 
-   m_timeHeartBeat.Now();
+   ping();
 
    m_bReady = false;
 
@@ -293,15 +295,198 @@ bool thread::is_dedicated_thread() const
 }
 
 
-void thread::on_pos_run_thread()
+//void thread::on_pos_run_thread()
+//{
+//
+//
+//}
+
+//
+//void thread::term_task()
+//{
+//
+//   if (m_pcounter.is_set())
+//   {
+//
+//      (*m_pcounter)++;
+//
+//   }
+//
+//   switch (m_atomContextReference)
+//   {
+//      case id_application:
+//      {
+//
+//         //auto papp = get_app();
+//
+//         //if (papp)
+//         //{
+//
+//         //   papp->release_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(papp));
+//
+//         //}
+//
+//      }
+//      break;
+//
+//      case id_session:
+//      {
+//
+//         //auto pcontextsession = get_session();
+//
+//         //if (pcontextsession)
+//         //{
+//
+//         //   pcontextsession->release_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(pcontextsession));
+//
+//         //}
+//
+//      }
+//      break;
+//      case id_system:
+//      {
+//
+//         //auto psystem = system();
+//
+//         //if (psystem)
+//         //{
+//
+//         //   psystem->release_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(pcontextsystem));
+//
+//         //}
+//
+//      }
+//      break;
+//      case id_thread:
+//      {
+//
+//         //auto pthread = get_task();
+//         //
+//         //if (pthread)
+//         //{
+//
+//         //   pthread->release_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(pcontextthread));
+//
+//         //}
+//
+//      }
+//      break;
+//      default:
+//         break;
+//
+//   }
+//
+//   //   channel::on_finish();
+//
+//   task::term_task();
+//
+//   //if (this)
+//   //{
+//
+//   // this->release_reference(this REFERENCING_DEBUGGING_COMMA_THIS);
+//
+//   //}
+//
+//
+//   //if (get_session())
+//   //{
+//
+//   //
+//
+//   //}
+//
+//   //if (psystem)
+//   //{
+//
+//   //   psystem->release_reference(this REFERENCING_DEBUGGING_COMMA_THIS);
+//
+//   //}
+//
+//   //if (get_context_thread())
+//   //{
+//
+//   //   get_context_thread()->release_reference(this REFERENCING_DEBUGGING_COMMA_THIS);
+//
+//   //}
+//
+//
+//   {
+//
+//      _synchronous_lock synchronouslock(this->synchronization());
+//
+//      if (m_phappeningaWait)
+//      {
+//
+//         for (auto& pmanualresethappening: *m_phappeningaWait)
+//         {
+//
+//            try
+//            {
+//
+//               pmanualresethappening->set_happening();
+//
+//            }
+//            catch (...)
+//            {
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//   }
+//
+//}
+
+
+void thread::__task_term()
 {
 
 
-}
 
+   {
 
-void thread::term_task()
-{
+      _synchronous_lock synchronouslock(m_pmutexThreadUiPtra);
+
+      if (::is_set(m_puserinteractionbaseaThread))
+      {
+
+         m_puserinteractionbaseaThread->erase_all();
+
+      }
+
+   }
+
+   //try
+   //{
+
+   //   on_pos_run_thread();
+
+   //}
+   //catch (...)
+   //{
+
+   //   //m_result.add(error_failed);
+   //   m_estatus = error_exception;
+
+   //}
+
+   //try
+   //{
+
+   //   term_task();
+
+   //}
+   //catch (...)
+   //{
+
+   //   //m_result.add(error_failed);
+   //   m_estatus = error_exception;
+
+   //}
+
+   //return ::error_failed;
 
    if (m_pcounter.is_set())
    {
@@ -312,65 +497,65 @@ void thread::term_task()
 
    switch (m_atomContextReference)
    {
-      case id_application:
-      {
+   case id_application:
+   {
 
-         //auto papp = get_app();
+      //auto papp = get_app();
 
-         //if (papp)
-         //{
+      //if (papp)
+      //{
 
-         //   papp->release_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(papp));
+      //   papp->release_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(papp));
 
-         //}
+      //}
 
-      }
+   }
+   break;
+
+   case id_session:
+   {
+
+      //auto pcontextsession = get_session();
+
+      //if (pcontextsession)
+      //{
+
+      //   pcontextsession->release_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(pcontextsession));
+
+      //}
+
+   }
+   break;
+   case id_system:
+   {
+
+      //auto psystem = system();
+
+      //if (psystem)
+      //{
+
+      //   psystem->release_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(pcontextsystem));
+
+      //}
+
+   }
+   break;
+   case id_thread:
+   {
+
+      //auto pthread = get_task();
+      //
+      //if (pthread)
+      //{
+
+      //   pthread->release_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(pcontextthread));
+
+      //}
+
+   }
+   break;
+   default:
       break;
-
-      case id_session:
-      {
-
-         //auto pcontextsession = get_session();
-
-         //if (pcontextsession)
-         //{
-
-         //   pcontextsession->release_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(pcontextsession));
-
-         //}
-
-      }
-      break;
-      case id_system:
-      {
-
-         //auto psystem = system();
-
-         //if (psystem)
-         //{
-
-         //   psystem->release_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(pcontextsystem));
-
-         //}
-
-      }
-      break;
-      case id_thread:
-      {
-
-         //auto pthread = get_task();
-         //
-         //if (pthread)
-         //{
-
-         //   pthread->release_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(pcontextthread));
-
-         //}
-
-      }
-      break;
-      default:
-         break;
 
    }
 
@@ -415,7 +600,7 @@ void thread::term_task()
       if (m_phappeningaWait)
       {
 
-         for (auto& pmanualresethappening: *m_phappeningaWait)
+         for (auto & pmanualresethappening : *m_phappeningaWait)
          {
 
             try
@@ -434,12 +619,6 @@ void thread::term_task()
       }
 
    }
-
-}
-
-
-void thread::task_osterm()
-{
 
 #ifndef WINDOWS_DESKTOP
 
@@ -482,7 +661,7 @@ void thread::task_osterm()
    {
 
    }
-   ::task::task_osterm();
+   ::task::__task_term();
 
 
    //system()->thread_finalize(this);
@@ -494,10 +673,10 @@ void thread::task_osterm()
 }
 
 
-void thread::on_keep_alive()
+void thread::on_ping()
 {
 
-   m_timeHeartBeat.Now();
+   m_timeLastPing.Now();
 
 }
 
@@ -512,7 +691,7 @@ void thread::on_keep_alive()
 }
 
 
-bool thread::is_alive()
+bool thread::is_pinging() const
 {
 
    //if (!m_bRun)
@@ -521,7 +700,7 @@ bool thread::is_alive()
    //if ((m_timeHeartBeat.elapsed()) > ((5000) * 91))
    // return false;
 
-   return true;
+   return m_timeLastPing.elapsed() < m_timePingTimeout;
 
 }
 
@@ -1331,14 +1510,7 @@ void thread::Delete()
 void thread::kick_idle()
 {
 
-   if (m_bThreadClosed)
-   {
-
-      return;
-
-   }
-
-   if (!task_active())
+   if (!is_task_set())
    {
 
       return;
@@ -1403,7 +1575,7 @@ void thread::post_quit()
 
    }
 
-   if (m_bThreadClosed)
+   if (!is_task_set())
    {
 
       return;
@@ -1422,7 +1594,7 @@ void thread::post_quit()
    try
    {
 
-      if (task_active() && !m_bAuraMessageQueue)
+      if (is_task_set() && !m_bAuraMessageQueue)
       {
 
          if (m_bMessageThread)
@@ -1752,7 +1924,7 @@ void thread::destroy()
 
    m_phappeningSync.release();
 
-   m_phappeningStarted.release();
+   //m_phappeningStarted.release();
 
    m_pmutexThreadUiPtra.release();
 
@@ -1968,151 +2140,148 @@ bool thread::on_idle()
 }
 
 
-void thread::main()
-{
-
-   unsigned int u = -1;
-
-   //::e_status estatus = error_failed;
-
-   //::e_status estatusOs = error_failed;
-
-   //::e_status estatusStart = error_failed;
-
-   try
-   {
-
-      //estatusOs = osthread_init();
-
-      task_osinit();
-
-      try
-      {
-
-         __check_refdbg
-         //if (::succeeded(estatusOs))
-
-         __task_init();
-         //estatusStart = __thread_init();
-
-         //}
-
-         //}
-
-         //if (::succeeded(estatusStart))
-         //{
-
-         if (m_phappeningStarted.is_set())
-         {
-
-            m_phappeningStarted->set_happening();
-
-            m_phappeningStarted.release();
-
-         }
-
-         if (defer_implement(m_papplication))
-         {
-
-            //estatus = system()->m_estatus;
-
-         }
-
-         // !!!!This should be done in ::platform::node!!!!
-         //else if (application()->m_bConsole)
-         // !!!!This should be done in ::platform::node!!!!
-         //{ // !!!!This should be done in ::platform::node!!!!
-         // !!!!This should be done in ::platform::node!!!!
-         //   application()->main();
-         // !!!!This should be done in ::platform::node!!!!
-         //}// !!!!This should be done in ::platform::node!!!!
-         // !!!!This should be done in ::platform::node!!!!
-         else
-         {
-
-            //estatus = run();
-
-            run();
-
-         }
-
-         m_bThreadClosed = true;
-
-         try
-         {
-
-            if (m_phappeningReady)
-            {
-
-               m_phappeningReady->set_happening();
-
-            }
-
-         }
-         catch (...)
-         {
-
-         }
-
-      }
-      catch (const ::exception& exception)
-      {
-
-         //if(is_verbose_log())
-         //{
-
-         //   error() <<"thread::main : " << exception.m_strMessage;
-
-         //}
-
-         m_estatus = exception.m_estatus;
-
-      }
-
-      destroy_tasks();
-
-      __task_term();
-
-      task_osterm();
-
-
-   }
-   catch (...)
-   {
-
-
-   }
-
-
-   //#if REFERENCING_DEBUGGING
-   //
-   //   //release(REFERENCING_DEBUGGING_P_NOTE(this, nullptr));
-   //
-   //   //try
-   //   //{
-   //
-   //   //   if (m_countReference > 1)
-   //   //   {
-   //
-   //   //      __check_pending_releases(this);
-   //
-   //   //   }
-   //
-   //   //}
-   //   //catch (...)
-   //   //{
-   //
-   //   //}
-   //
-   //#endif
-
-   m_htask = nullptr;
-
-   m_bIsRunning = false;
-
-   //return estatus;
-
-}
+//void thread::main()
+//{
+//
+//   unsigned int u = -1;
+//
+//   //::e_status estatus = error_failed;
+//
+//   //::e_status estatusOs = error_failed;
+//
+//   //::e_status estatusStart = error_failed;
+//
+//   try
+//   {
+//
+//      //estatusOs = osthread_init();
+//
+//      //task_osinit();
+//
+//      try
+//      {
+//
+//         //__check_refdbg
+//         //if (::succeeded(estatusOs))
+//
+//         //__task_init();
+//         //estatusStart = __thread_init();
+//
+//         //}
+//
+//         //}
+//
+//         //if (::succeeded(estatusStart))
+//         //{
+//
+//         //if (m_phappeningStarted.is_set())
+//         //{
+//
+//         //   m_phappeningStarted->set_happening();
+//
+//         //   m_phappeningStarted.release();
+//
+//         //}
+//
+//         if (defer_implement(m_papplication))
+//         {
+//
+//            //estatus = system()->m_estatus;
+//
+//         }
+//
+//         // !!!!This should be done in ::platform::node!!!!
+//         //else if (application()->m_bConsole)
+//         // !!!!This should be done in ::platform::node!!!!
+//         //{ // !!!!This should be done in ::platform::node!!!!
+//         // !!!!This should be done in ::platform::node!!!!
+//         //   application()->main();
+//         // !!!!This should be done in ::platform::node!!!!
+//         //}// !!!!This should be done in ::platform::node!!!!
+//         // !!!!This should be done in ::platform::node!!!!
+//         else
+//         {
+//
+//            //estatus = run();
+//
+//            run();
+//
+//         }
+//
+//         m_bThreadClosed = true;
+//
+//         try
+//         {
+//
+//            if (m_phappeningReady)
+//            {
+//
+//               m_phappeningReady->set_happening();
+//
+//            }
+//
+//         }
+//         catch (...)
+//         {
+//
+//         }
+//
+//      }
+//      catch (const ::exception& exception)
+//      {
+//
+//         //if(is_verbose_log())
+//         //{
+//
+//         //   error() <<"thread::main : " << exception.m_strMessage;
+//
+//         //}
+//
+//         m_estatus = exception.m_estatus;
+//
+//      }
+//
+//      //destroy_tasks();
+//
+//      //__task_term();
+//
+//   }
+//   catch (...)
+//   {
+//
+//
+//   }
+//
+//
+//   //#if REFERENCING_DEBUGGING
+//   //
+//   //   //release(REFERENCING_DEBUGGING_P_NOTE(this, nullptr));
+//   //
+//   //   //try
+//   //   //{
+//   //
+//   //   //   if (m_countReference > 1)
+//   //   //   {
+//   //
+//   //   //      __check_pending_releases(this);
+//   //
+//   //   //   }
+//   //
+//   //   //}
+//   //   //catch (...)
+//   //   //{
+//   //
+//   //   //}
+//   //
+//   //#endif
+//
+//   m_htask = nullptr;
+//
+//   m_bIsRunning = false;
+//
+//   //return estatus;
+//
+//}
 
 
 //void thread::construct(thread_procedure routine, thread_parameter parameter)
@@ -2126,90 +2295,90 @@ void thread::main()
 //
 //}
 
-
-void thread::init_task()
-{
-
-   ::task::init_task();
-
-   //if (get_app() && get_app() != this)
-   //{
-
-   //   try
-   //   {
-
-   //      get_app()->add_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(get_app()));
-
-   //      m_atomContextReference = id_application;
-
-   //   }
-   //   catch (...)
-   //   {
-
-   //   }
-
-   //}
-
-   //if(m_atomContextReference == id_none && get_session() && get_session() != this)
-   //{
-
-   //   try
-   //   {
-
-   //      get_session()->add_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(get_session()));
-
-   //      m_atomContextReference = id_session;
-
-   //   }
-   //   catch (...)
-   //   {
-
-   //   }
-
-   //}
-
-   //auto psystem = system();
-
-   //if (m_atomContextReference == id_none && psystem && psystem != this)
-   //{
-
-   //   try
-   //   {
-
-   //      psystem->add_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(psystem));
-
-   //      m_atomContextReference = id_system;
-
-   //   }
-   //   catch (...)
-   //   {
-
-   //   }
-
-   //}
-
-   //if (m_atomContextReference == id_none && get_task() && get_task() != this)
-   //{
-
-   //   try
-   //   {
-
-   //      get_task()->add_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(get_context_thread()));
-
-   //      m_atomContextReference = id_thread;
-
-   //   }
-   //   catch (...)
-   //   {
-
-   //   }
-
-   //}
-
-   //return true;
-
-}
-
+//
+//void thread::init_task()
+//{
+//
+//   ::task::init_task();
+//
+//   //if (get_app() && get_app() != this)
+//   //{
+//
+//   //   try
+//   //   {
+//
+//   //      get_app()->add_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(get_app()));
+//
+//   //      m_atomContextReference = id_application;
+//
+//   //   }
+//   //   catch (...)
+//   //   {
+//
+//   //   }
+//
+//   //}
+//
+//   //if(m_atomContextReference == id_none && get_session() && get_session() != this)
+//   //{
+//
+//   //   try
+//   //   {
+//
+//   //      get_session()->add_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(get_session()));
+//
+//   //      m_atomContextReference = id_session;
+//
+//   //   }
+//   //   catch (...)
+//   //   {
+//
+//   //   }
+//
+//   //}
+//
+//   //auto psystem = system();
+//
+//   //if (m_atomContextReference == id_none && psystem && psystem != this)
+//   //{
+//
+//   //   try
+//   //   {
+//
+//   //      psystem->add_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(psystem));
+//
+//   //      m_atomContextReference = id_system;
+//
+//   //   }
+//   //   catch (...)
+//   //   {
+//
+//   //   }
+//
+//   //}
+//
+//   //if (m_atomContextReference == id_none && get_task() && get_task() != this)
+//   //{
+//
+//   //   try
+//   //   {
+//
+//   //      get_task()->add_reference(this REFERENCING_DEBUGGING_COMMA_P_FUNCTION_LINE(get_context_thread()));
+//
+//   //      m_atomContextReference = id_thread;
+//
+//   //   }
+//   //   catch (...)
+//   //   {
+//
+//   //   }
+//
+//   //}
+//
+//   //return true;
+//
+//}
+//
 
 //
 //void thread::on_pre_run_thread()
@@ -2704,53 +2873,53 @@ void thread::stop_task()
 //   //return estatus;
 //
 //}
+//
+//void thread::inline_init()
+//{
+//
+//   set_current_handles();
+//
+//   m_bDedicated = true;
+//
+//   //::e_status estatus =
+//
+//   __task_init();
+//
+//   //if (!estatus)
+//   //{
+//
+//   //   return estatus;
+//
+//   //}
+//
+//   //return estatus;
+//
+//}
 
-void thread::inline_init()
-{
-
-   set_current_handles();
-
-   m_bDedicated = true;
-
-   //::e_status estatus =
-
-   __task_init();
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //return estatus;
-
-}
-
-
-void thread::inline_term()
-{
-
-   //::e_status estatus = ::error_none;
-
-   //try
-   //{
-
-   //estatus = __thread_term();
-
-   __task_term();
-
-   //}
-   //catch (...)
-   //{
-
-   //   estatus = ::error_exception;
-
-   //}
-
-   //return estatus;
-
-}
+//
+//void thread::inline_term()
+//{
+//
+//   //::e_status estatus = ::error_none;
+//
+//   //try
+//   //{
+//
+//   //estatus = __thread_term();
+//
+//   __task_term();
+//
+//   //}
+//   //catch (...)
+//   //{
+//
+//   //   estatus = ::error_exception;
+//
+//   //}
+//
+//   //return estatus;
+//
+//}
 
 
 htask thread::get_htask() const
@@ -2769,12 +2938,12 @@ itask thread::get_itask() const
 }
 
 
-bool thread::task_active() const
-{
-
-   return !m_bThreadClosed && m_htask.is_set();
-
-}
+//bool thread::is_task_set() const
+//{
+//
+//   return !is_task_set() && m_htask.is_set();
+//
+//}
 
 
 iptr thread::item() const
@@ -2834,20 +3003,20 @@ void thread::__priority_and_affinity()
 }
 
 
-void thread::__os_initialize()
-{
+//void thread::__os_initialize()
+//{
+//
+//   ::task::__os_initialize();
+//
+//}
 
-   ::task::__os_initialize();
 
-}
-
-
-void thread::__os_finalize()
-{
-
-   ::task::__os_finalize();
-
-}
+//void thread::__os_finalize()
+//{
+//
+//   ::task::__os_finalize();
+//
+//}
 
 
 //::object* thread::calc_parent_thread()
@@ -2858,8 +3027,10 @@ void thread::__os_finalize()
 //}
 
 
-void thread::task_osinit()
+void thread::__task_init()
 {
+
+   ::task::__task_init();
 
 #ifdef WINDOWS_DESKTOP
 
@@ -2883,7 +3054,19 @@ void thread::task_osinit()
 
 #endif
 
-   ::task::task_osinit();
+   //::task::task_osinit();
+
+
+
+   //::task::init_task();
+
+   install_message_routing(this);
+
+   //init_task();
+
+   //on_pre_run_task();
+
+   //m_estatus = ::success;
 
 }
 
@@ -3145,12 +3328,12 @@ void thread::send_element(const ::atom& atom, wparam wparam, ::particle* ppartic
 
    }
 
-   if (m_bThreadClosed)
-   {
+   //if (m_bThreadClosed)
+   //{
 
-      throw ::exception(error_wrong_state);
+   //   throw ::exception(error_wrong_state);
 
-   }
+   //}
 
    //if (atom == e_message_quit)
    //{
@@ -3184,12 +3367,12 @@ void thread::send_message(const ::atom& atom, wparam wparam, lparam lparam, cons
 
    }
 
-   if (m_bThreadClosed)
-   {
+   //if (m_bThreadClosed)
+   //{
 
-      throw ::exception(error_wrong_state);
+   //   throw ::exception(error_wrong_state);
 
-   }
+   //}
 
    //if (atom == e_message_quit)
    //{
@@ -3278,44 +3461,44 @@ void thread::send_message(const ::atom& atom, wparam wparam, lparam lparam, cons
 //
 //}
 
+//
+//void thread::__task_init()
+//{
+//
+//   task::__task_init();
+//   //   //m_estatus =
+//   //
+//   //   on_thread_init();
+//   //
+//   //   if (m_phappeningInitialization)
+//   //   {
+//   //
+//   //      m_phappeningInitialization->set_happening();
+//   //
+//   //   }
+//
+//   //m_result = m_estatus;
+//
+//   //return m_estatus;
+//
+//}
 
-void thread::__task_init()
-{
-
-   task::__task_init();
-   //   //m_estatus =
-   //
-   //   on_thread_init();
-   //
-   //   if (m_phappeningInitialization)
-   //   {
-   //
-   //      m_phappeningInitialization->set_happening();
-   //
-   //   }
-
-   //m_result = m_estatus;
-
-   //return m_estatus;
-
-}
-
-
-void thread::on_task_init()
-{
-
-   init_task();
-
-   install_message_routing(this);
-
-   //init_task();
-
-   on_pre_run_task();
-
-   m_estatus = ::success;
-
-}
-
+//
+//void thread::init_task()
+//{
+//   
+//   ::task::init_task();
+//
+//   install_message_routing(this);
+//
+//   //init_task();
+//
+//   //on_pre_run_task();
+//
+//   //m_estatus = ::success;
+//
+//}
+//
 
 //void thread::main()
 //{
@@ -3415,7 +3598,8 @@ message_queue* thread::_get_message_queue()
 
    _synchronous_lock synchronouslock(this->synchronization());
 
-   if (has_finishing_flag() || m_bThreadClosed)
+   //if (has_finishing_flag() || m_bThreadClosed)
+   if (has_finishing_flag())
    {
 
       if (m_pmessagequeue)
@@ -3533,7 +3717,7 @@ bool thread::peek_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFil
 //
 //   //}
 //
-//   //if (task_active())
+//   //if (is_task_set())
 //   //{
 //
 //   //   if (::is_set(pcontextobjectFinish))
@@ -3784,7 +3968,7 @@ bool thread::peek_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFil
 //
 //   }
 //
-//   if (task_active())
+//   if (is_task_set())
 //   {
 //
 //      set_finish_bit();
@@ -3941,12 +4125,12 @@ void thread::post_message(oswindow oswindow, const ::atom& atom, wparam wparam, 
 
    }
 
-   if (m_bThreadClosed)
-   {
+   //if (m_bThreadClosed)
+   //{
 
-      throw ::exception(error_wrong_state);
+   //   throw ::exception(error_wrong_state);
 
-   }
+   //}
 
 #ifdef WINDOWS_DESKTOP
 
@@ -3995,61 +4179,63 @@ void thread::add_task(::object* pobjectTask)
 }
 
 
-void thread::__task_term()
-{
+//void thread::__task_term()
+//{
+//
+//   return on_task_term();
+//
+//}
 
-   return on_task_term();
-
-}
-
-
-void thread::on_task_term()
-{
-
-   {
-
-      _synchronous_lock synchronouslock(m_pmutexThreadUiPtra);
-
-      if (::is_set(m_puserinteractionbaseaThread))
-      {
-
-         m_puserinteractionbaseaThread->erase_all();
-
-      }
-
-   }
-
-   try
-   {
-
-      on_pos_run_thread();
-
-   }
-   catch (...)
-   {
-
-      //m_result.add(error_failed);
-      m_estatus = error_exception;
-
-   }
-
-   try
-   {
-
-      term_task();
-
-   }
-   catch (...)
-   {
-
-      //m_result.add(error_failed);
-      m_estatus = error_exception;
-
-   }
-
-   //return ::error_failed;
-
-}
+//
+//void thread::__task_term()
+//{
+//
+//   {
+//
+//      _synchronous_lock synchronouslock(m_pmutexThreadUiPtra);
+//
+//      if (::is_set(m_puserinteractionbaseaThread))
+//      {
+//
+//         m_puserinteractionbaseaThread->erase_all();
+//
+//      }
+//
+//   }
+//
+//   //try
+//   //{
+//
+//   //   on_pos_run_thread();
+//
+//   //}
+//   //catch (...)
+//   //{
+//
+//   //   //m_result.add(error_failed);
+//   //   m_estatus = error_exception;
+//
+//   //}
+//
+//   //try
+//   //{
+//
+//   //   term_task();
+//
+//   //}
+//   //catch (...)
+//   //{
+//
+//   //   //m_result.add(error_failed);
+//   //   m_estatus = error_exception;
+//
+//   //}
+//
+//   //return ::error_failed;
+//
+//   ::task::__task_term();
+//
+//}
 
 
 thread::operator htask() const
@@ -4915,12 +5101,12 @@ class ::time thread::set_file_sharing_violation_timeout(const class time& time)
 }
 
 
-bool thread::is_running() const
-{
-
-   return ::task::is_running();
-
-}
+//bool thread::is_task_set() const
+//{
+//
+//   return ::task::is_task_set();
+//
+//}
 
 
 //::pointer<::task>thread::branch(

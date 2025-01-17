@@ -69,7 +69,7 @@ public:
    static bool                                        s_bAllocReady;
 
 
-   ::pointer<manual_reset_happening>                      m_phappeningStarted;
+   //pointer<manual_reset_happening>                      m_phappeningStarted;
    ::pointer<manual_reset_happening>                      m_phappeningSync;
    ::pointer<manual_reset_happening>                      m_phappeningReady;
 
@@ -91,7 +91,7 @@ public:
    unsigned int                                              m_nDisablePumpCount;
 
    unsigned int                                              m_dwFinishTimeout;
-   bool                                               m_bThreadClosed;
+   //bool                                               m_bThreadClosed;
 
 
    ::pointer<manual_reset_happening>                      m_phappening1;
@@ -187,7 +187,7 @@ public:
    class ::time get_file_sharing_violation_timeout();
    class ::time set_file_sharing_violation_timeout(const class time & time);
 
-   virtual bool is_running() const override;
+   //virtual bool is_running() const override;
 
 
 //   virtual void branch(
@@ -201,7 +201,9 @@ public:
    virtual itask get_itask() const;
 
 
-   virtual bool task_active() const override;
+   //virtual bool task_active() const override;
+
+
 
 
 
@@ -230,8 +232,8 @@ public:
 
    void thread_common_construct();
 
-   virtual void on_keep_alive() override;
-   virtual bool is_alive() override;
+   virtual void on_ping() override;
+   virtual bool is_pinging() const override;
 
    virtual int get_x_window_count() const;
 
@@ -299,15 +301,19 @@ public:
    virtual bool is_idle_message(::message::message * pmessage);  // checks for special messages
    virtual bool is_idle_message();  // checks for special messages
 
-   void init_task() override;
+   //void init_task() override;
    //virtual void on_pre_run_task();
+
+   void __task_init() override;
+   void __task_term() override;
+
 
    virtual void run() override;
    virtual void main() override;
    virtual bool on_idle() override;
 
-   virtual void on_pos_run_thread();
-   void term_task() override;
+   //virtual void on_pos_run_thread();
+   //void term_task() override;
 
    virtual void process_window_procedure_exception(const ::exception & e, ::message::message * pmessage);
 
@@ -400,11 +406,11 @@ public:
 
    //virtual void delete_this();
 
-   /// thread implementation
-   void on_task_init() override;
-   void on_task_term() override;
-   //virtual void     on_thread_end();
-   //virtual void thread_delete();
+   ///// thread implementation
+   //void __task_init() override;
+   //void __task_term() override;
+   ////virtual void     on_thread_end();
+   ////virtual void thread_delete();
    operator htask() const;
 
 
@@ -414,11 +420,11 @@ public:
    //virtual void run() override;
 
 
-   void task_osinit() override;
-   void __task_init() override;
-   //virtual void __thread_main() override;
-   void __task_term() override;
-   void task_osterm() override;
+   // void task_osinit() override;
+   // void __task_init() override;
+   // //virtual void __thread_main() override;
+   // void __task_term() override;
+   // void task_osterm() override;
 
 
    ::pointer<::task>branch(enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes & createtaskattributes = nullptr) override;
@@ -428,8 +434,8 @@ public:
 
    virtual void stop_task() override;
 
-   virtual void inline_init();
-   virtual void inline_term();
+   // virtual void inline_init();
+   // virtual void inline_term();
    
    using task::post;
    virtual void post(::message::message * pmessage);
@@ -455,11 +461,11 @@ protected:
 
 
    virtual void __priority_and_affinity() override;
-   void __os_initialize() override;
-//   virtual void __os_thread_start();
-   //void __set_thread_on() override;
-   void __os_finalize() override;
-  // virtual void __os_thread_end();
+//   void __os_initialize() override;
+////   virtual void __os_thread_start();
+//   //void __set_thread_on() override;
+//   void __os_finalize() override;
+//  // virtual void __os_thread_end();
 
    // last called function for the thread lifetime.
    // after its call, the thread object must considered invalid/destroyed

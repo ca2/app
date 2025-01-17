@@ -619,11 +619,20 @@ namespace platform
    }
 
 
-   void system::on_pre_run_task()
+   void system::init_task()
    {
 
+
+      __check_refdbg
+
+         task::init_task();
+
+      __check_refdbg
+
+         //call_init_system();
+
       /*auto estatus =*/
-      on_start_system();
+      init_system();
 
       //if (!estatus)
       //{
@@ -685,13 +694,13 @@ namespace platform
       else
       {
 
-         __check_refdbg
+         //__check_refdbg
 
-         task_osinit();
+         //task_osinit();
 
-         __check_refdbg
+         //__check_refdbg
 
-         __task_init();
+         //__task_init();
 
          run();
 
@@ -1766,18 +1775,18 @@ particle* system::matter_mutex()
    //   }
 
 
-   void system::init_task()
-   {
+   //void system::init_task()
+   //{
 
-      __check_refdbg
+   //   __check_refdbg
 
-      task::init_task();
+   //   task::init_task();
 
-      __check_refdbg
+   //   __check_refdbg
 
-      call_init_system();
+   //   call_init_system();
 
-   }
+   //}
 
 
    void system::term_task()
@@ -1875,43 +1884,43 @@ particle* system::matter_mutex()
    }
 
 
-   void system::call_init_system()
-   {
+   //void system::call_init_system()
+   //{
 
-      try
-      {
+   //   try
+   //   {
 
-         init_system();
+   //      init_system();
 
-      }
-      catch (::exception& exception)
-      {
+   //   }
+   //   catch (::exception& exception)
+   //   {
 
-         //auto pmessagebox = __initialize_new ::message_box(exception.m_strMessage, m_strAppId, e_message_box_ok, exception.m_strDetails);
+   //      //auto pmessagebox = __initialize_new ::message_box(exception.m_strMessage, m_strAppId, e_message_box_ok, exception.m_strDetails);
 
-         //pmessagebox->sync();
+   //      //pmessagebox->sync();
 
-         string strMoreDetails;
+   //      string strMoreDetails;
 
-         strMoreDetails = "caught at system::call_init_system";
+   //      strMoreDetails = "caught at system::call_init_system";
 
-         m_pnode->report_exception_to_user(this, exception, strMoreDetails);
+   //      m_pnode->report_exception_to_user(this, exception, strMoreDetails);
 
-         m_estatus = exception.m_estatus;
+   //      m_estatus = exception.m_estatus;
 
-      }
+   //   }
 
-   }
+   //}
 
 
    void system::init_system()
    {
 
-      __check_refdbg
+      //__check_refdbg
 
-      set_current_handles();
+      //set_current_handles();
 
-      __check_refdbg
+      //__check_refdbg
 
       //::platform::application * pappStartup = ::platform::application::g_p;
 
@@ -2764,21 +2773,21 @@ particle* system::matter_mutex()
    }
 
 
-   void system::on_start_system()
-   {
+   //void system::on_start_system()
+   //{
 
-      ////*auto estatus =*/ m_pnode->on_start_system();
+   //   ////*auto estatus =*/ m_pnode->on_start_system();
 
-      //if (!estatus)
-      //{
+   //   //if (!estatus)
+   //   //{
 
-      //   return estatus;
+   //   //   return estatus;
 
-      //}
+   //   //}
 
-      //return estatus;
+   //   //return estatus;
 
-   }
+   //}
 
 
    void system::defer_post_initial_request()

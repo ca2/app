@@ -633,23 +633,23 @@ namespace axis
    }
 
 
-   void application::application_pre_run()
-   {
+   //void application::application_pre_run()
+   //{
 
-      //auto estatus = 
-      
-      ::aura::application::application_pre_run();
+   //   //auto estatus = 
+   //   
+   //   ::aura::application::application_pre_run();
 
-      //if (!estatus)
-      //{
+   //   //if (!estatus)
+   //   //{
 
-      //   return estatus;
+   //   //   return estatus;
 
-      //}
+   //   //}
 
-      //return estatus;
+   //   //return estatus;
 
-   }
+   //}
 
 
    //bool application::InitApplication()
@@ -670,12 +670,12 @@ namespace axis
 
 
 
-   void application::os_native_bergedge_start()
-   {
+   //void application::os_native_bergedge_start()
+   //{
 
-      return ::aura::application::os_native_bergedge_start();
+   //   return ::aura::application::os_native_bergedge_start();
 
-   }
+   //}
 
 
    void     application::run()

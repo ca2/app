@@ -120,7 +120,7 @@ namespace user
       void on_destroy() override;
 
 
-      void on_task_quit() override;
+      //void on_task_quit() override;
 
       // deprecated schedule window visual
       //void start_window_visual();

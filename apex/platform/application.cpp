@@ -1665,7 +1665,7 @@ namespace apex
    //   try
    //   {
 
-   //      m_timeHeartBeat.Now();
+   //      ping();
 
    //      application_pre_run();
 
@@ -1711,7 +1711,7 @@ namespace apex
 
    //      //}
 
-   //      m_timeHeartBeat.Now();
+   //      ping();
 
    //      os_native_bergedge_start();
    //      //{
@@ -1871,80 +1871,80 @@ namespace apex
    //   }
 
 
-   void application::on_pos_run_thread()
-   {
+   //void application::on_pos_run_thread()
+   //{
 
-      ::thread::on_pos_run_thread();
+   //   ::thread::on_pos_run_thread();
 
-      _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization());
 
-      //try
-      //{
+   //   //try
+   //   //{
 
-      //   for (auto & papp : m_applicationa)
-      //   {
+   //   //   for (auto & papp : m_applicationa)
+   //   //   {
 
-      //      try
-      //      {
+   //   //      try
+   //   //      {
 
-      //         if (papp != this && papp->get_app() == this)
-      //         {
+   //   //         if (papp != this && papp->get_app() == this)
+   //   //         {
 
-      //            set_object(nullptr);
+   //   //            set_object(nullptr);
 
-      //         }
+   //   //         }
 
-      //         if (is_session())
-      //         {
+   //   //         if (is_session())
+   //   //         {
 
-      //            ::apex::session * psessionThis = dynamic_cast <::apex::session *>(this);
+   //   //            ::apex::session * psessionThis = dynamic_cast <::apex::session *>(this);
 
-      //            if (papp->get_session() == psessionThis && papp != this)
-      //            {
+   //   //            if (papp->get_session() == psessionThis && papp != this)
+   //   //            {
 
-      //               papp->get_session() = nullptr;
+   //   //               papp->get_session() = nullptr;
 
-      //            }
+   //   //            }
 
-      //         }
+   //   //         }
 
-      //         if (is_system())
-      //         {
+   //   //         if (is_system())
+   //   //         {
 
-      //            ::apex::system * psystemThis = dynamic_cast <::apex::system *>(this);
+   //   //            ::apex::system * psystemThis = dynamic_cast <::apex::system *>(this);
 
-      //            if (papp->psystem == psystemThis && papp != this)
-      //            {
+   //   //            if (papp->psystem == psystemThis && papp != this)
+   //   //            {
 
-      //               papp->psystem = nullptr;
+   //   //               papp->psystem = nullptr;
 
-      //            }
+   //   //            }
 
-      //         }
+   //   //         }
 
-      //      }
-      //      catch (...)
-      //      {
+   //   //      }
+   //   //      catch (...)
+   //   //      {
 
-      //      }
+   //   //      }
 
-      //   }
+   //   //   }
 
-      //}
-      //catch (...)
-      //{
+   //   //}
+   //   //catch (...)
+   //   //{
 
-      //}
+   //   //}
 
-   }
+   //}
 
 
-   void application::pos_run()
-   {
+   //void application::pos_run()
+   //{
 
-      ::platform::application::pos_run();
+   //   ::platform::application::pos_run();
 
-   }
+   //}
 
 
    void application::init_instance()
@@ -2474,7 +2474,7 @@ namespace apex
    //   //
    //   //#endif
 
-   //   m_timeHeartBeat.Now();
+   //   ping();
 
    //   //try
    //   //{
@@ -2512,7 +2512,7 @@ namespace apex
    //   //
    //   //}
 
-   //   m_timeHeartBeat.Now();
+   //   ping();
 
    //   //::e_status estatus = ::success;
 
@@ -2558,7 +2558,7 @@ namespace apex
    //   //
    //   //      psystem->install_progress_add_up();
 
-   //   m_timeHeartBeat.Now();
+   //   ping();
 
    //   try
    //   {
@@ -2595,7 +2595,7 @@ namespace apex
 
    //   }
 
-   //   m_timeHeartBeat.Now();
+   //   ping();
 
    //   try
    //   {
@@ -2667,12 +2667,12 @@ namespace apex
    //}
 
 
-   void application::application_pos_run()
-   {
+   //void application::application_pos_run()
+   //{
 
-      ::platform::application::application_pos_run();
+   //   ::platform::application::application_pos_run();
 
-   }
+   //}
 
    //bool application::InitApplication()
    //{
@@ -2969,12 +2969,12 @@ namespace apex
    }
 
 
-   void application::os_native_bergedge_start()
-   {
+   //void application::os_native_bergedge_start()
+   //{
 
-      //return true;
+   //   //return true;
 
-   }
+   //}
 
 
    bool application::on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken)
@@ -3239,7 +3239,7 @@ namespace apex
 
    //   information() << "apex::application::init_application";
 
-   //   m_timeHeartBeat.Now();
+   //   ping();
 
    //   init1();
 
@@ -3256,7 +3256,7 @@ namespace apex
 
    //   //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
 
-   //   m_timeHeartBeat.Now();
+   //   ping();
 
    //   init2();
 
@@ -3273,7 +3273,7 @@ namespace apex
 
    //   //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
 
-   //   m_timeHeartBeat.Now();
+   //   ping();
 
    //   init3();
 
@@ -3290,7 +3290,7 @@ namespace apex
 
    //   //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
 
-   //   m_timeHeartBeat.Now();
+   //   ping();
 
    //   //dappy(::type(this).name() + " : init3 ok : " + as_string(m_iErrorCode));
 
@@ -3405,7 +3405,7 @@ namespace apex
 
       }
 
-      m_timeHeartBeat.Now();
+      ping();
 
       notify_init1();
       //if (!notify_init1())
@@ -3491,7 +3491,7 @@ namespace apex
 
       information() << "apex::application::init1 end";
 
-      m_timeHeartBeat.Now();
+      ping();
 
       //return ::success;
 
@@ -6377,7 +6377,7 @@ namespace apex
 
    //   //m_bAxisInitialize1Result = false;
 
-   //   m_timeHeartBeat.Now();
+   //   ping();
 
    //   if (!::application::init1())
    //   {
@@ -6435,7 +6435,7 @@ namespace apex
       
       ::platform::application::init();
 
-      m_timeHeartBeat.Now();
+      ping();
 
       if (has_property("install"))
       {
@@ -6488,7 +6488,7 @@ namespace apex
          //#endif
       }
 
-      m_timeHeartBeat.Now();
+      ping();
 
       ensure_app_interest();
 
@@ -6541,10 +6541,10 @@ namespace apex
    }
 
 
-   bool application::is_running()
+   bool application::is_task_set() const
    {
 
-      return is_alive();
+      return is_pinging() && ::thread::is_task_set();
 
    }
 

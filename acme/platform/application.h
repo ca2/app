@@ -238,7 +238,7 @@ namespace platform
       virtual ::enum_id key_command(::user::enum_key ekey, ::user::key_state * pkeystate) override;
 
       virtual void on_before_launching() override;
-      virtual void os_native_bergedge_start() override;
+      //virtual void os_native_bergedge_start() override;
 
       virtual void init1();
       virtual void init2();
@@ -313,11 +313,11 @@ namespace platform
       virtual void process_init() override;
       virtual void process_term() override;
 
-      virtual void pre_run() override;
-      virtual void application_pre_run() override;
+      //virtual void pre_run() override;
+      //virtual void application_pre_run() override;
 
-      virtual void pos_run() override;
-      virtual void application_pos_run() override;
+      //virtual void pos_run() override;
+      //virtual void application_pos_run() override;
 
       virtual void init_application() override;
 

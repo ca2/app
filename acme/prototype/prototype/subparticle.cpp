@@ -225,6 +225,14 @@ void subparticle::init_task()
 
 }
 
+
+
+void subparticle::term_task()
+{
+
+
+}
+
 int g_iSubparticleCallCount = 0;
 void subparticle::call()
 {

@@ -34,9 +34,9 @@ public:
    virtual void notify_on_destroy(::property_object * pcontextobjectFinish) override;
 
 
-   virtual void keep_alive();
-   virtual void on_keep_alive();
-   virtual bool is_alive();
+   virtual void ping();
+   virtual void on_ping();
+   virtual bool is_pinging() const;
 
 
    //void call() override;

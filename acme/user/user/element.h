@@ -668,7 +668,7 @@ namespace user
 
       //virtual void show_keyboard(bool bShow = true);
 
-      virtual void keep_alive(::object * pliveobject = nullptr);
+      //virtual void ping();
 
 
       //virtual bool has_pending_graphical_update();

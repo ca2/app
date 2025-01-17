@@ -123,7 +123,7 @@ public:
 
    virtual bool is_thread() const override;
    virtual bool task_get_run() const;
-   virtual bool is_running() const;
+   virtual bool is_task_set() const;
    //virtual void child_post_quit(const ::scoped_string & scopedstrTag);
    //virtual void child_post_quit_and_wait(const ::scoped_string & scopedstrTag, const time& time);
 

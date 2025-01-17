@@ -93,7 +93,7 @@ task::task()
 #ifdef WINDOWS
    m_bCoInitialize = false;
 #endif
-   m_bIsRunning = false;
+   //m_bIsRunning = false;
    m_bIsPredicate = true;
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -436,18 +436,19 @@ bool task::is_ready_to_quit() const
 }
 
 
-bool task::task_active() const
+//bool task::task_active() const
+//{
+//
+//   return m_htask.is_set();
+//
+//}
+//
+
+
+bool task::is_task_set() const
 {
 
-   return m_htask.is_set();
-
-}
-
-
-bool task::is_running() const
-{
-
-   return m_bIsRunning;
+   return has_flag(e_flag_running) && m_htask.is_set();
 
 }
 
@@ -481,12 +482,12 @@ void task::kick_thread()
 }
 
 
-void task::on_pre_run_task()
-{
-
-   //return ::success;
-
-}
+//void task::on_pre_run_task()
+//{
+//
+//   //return ::success;
+//
+//}
 
 
 
@@ -548,51 +549,51 @@ void task::__priority_and_affinity()
 
 }
 
+//
+//void task::__os_initialize()
+//{
+//
+//   //#ifdef WINDOWS_DESKTOP
+//   //
+//   //   DuplicateHandle(GetCurrentProcess(), ::GetCurrentThread(), GetCurrentProcess(), &m_htask, 0, false, DUPLICATE_SAME_ACCESS);
+//   //
+//   //#else
+//   //
+//   //   m_htask = ::current_htask();
+//   //
+//   //#endif
+//   //
+//   //   m_uThread = ::current_itask();
+//
+//   try
+//   {
+//
+//      __priority_and_affinity();
+//
+//   }
+//   catch (...)
+//   {
+//
+//      // affinity isn't critical
+//
+//   }
+//
+//   //#ifndef WINDOWS
+//   //
+//   //   information() << "init_thread : " << ::type(this).name();
+//   //
+//   //#endif
+//
+//   //system()->node_thread_initialize(this);
+//
+//}
+//
 
-void task::__os_initialize()
-{
-
-   //#ifdef WINDOWS_DESKTOP
-   //
-   //   DuplicateHandle(GetCurrentProcess(), ::GetCurrentThread(), GetCurrentProcess(), &m_htask, 0, false, DUPLICATE_SAME_ACCESS);
-   //
-   //#else
-   //
-   //   m_htask = ::current_htask();
-   //
-   //#endif
-   //
-   //   m_uThread = ::current_itask();
-
-   try
-   {
-
-      __priority_and_affinity();
-
-   }
-   catch (...)
-   {
-
-      // affinity isn't critical
-
-   }
-
-   //#ifndef WINDOWS
-   //
-   //   information() << "init_thread : " << ::type(this).name();
-   //
-   //#endif
-
-   //system()->node_thread_initialize(this);
-
-}
-
-
-void task::__os_finalize()
-{
-
-
-}
+//void task::__os_finalize()
+//{
+//
+//
+//}
 
 //bool task::os_on_init_task()
 //{
@@ -617,134 +618,134 @@ void task::__os_finalize()
 //}
 
 
-void task::on_task_quit()
-{
+//void task::on_task_quit()
+//{
+//
+//
+//}
 
 
-}
+//void task::task_osinit()
+//{
+//
+//
+//   set_current_handles();
+//
+//   if (has_finishing_flag())
+//   {
+//
+//      clear_finishing_flag();
+//
+//   }
+//
+//
+//
+//   m_estatus = ::success;
+//   __check_refdbg
+//      set_task();
+//   __check_refdbg
+//      //{
+//
+//      //   auto pthreadParent = ::parallelization::calc_parent(this);
+//
+//      //   if (pthreadParent)
+//      //   {
+//
+//      //      if (!pthreadParent->task_add(this))
+//      //      {
+//
+//      //         if (pthreadParent->m_atom.case_insensitive_begins("predicate_thread") && m_atom.case_insensitive_begins("predicate_thread"))
+//      //         {
+//
+//      //            pthreadParent->task_erase(this);
+//
+//      //            pthreadParent = ::parallelization::calc_parent(pthreadParent);
+//
+//      //            if (!pthreadParent->task_add(this))
+//      //            {
+//
+//      //               return ::error_failed;
+//
+//      //            }
+//
+//      //         }
+//      //         else
+//      //         {
+//
+//      //            return ::error_failed;
+//
+//      //         }
+//
+//      //      }
+//
+//      //   }
+//
+//      //}
+//
+//   {
+//
+//      __check_refdbg
+//      if (::_get_task() != this)
+//      {
+//         __check_refdbg
+//         ::set_task(this);
+//         __check_refdbg
+//      }
+//      __check_refdbg
+//      processor_cache_oriented_set_thread_memory_pool(0);
+//      // set default handler cache oriented thread memory pool index to 0 ("zero") (The First One)
+//
+//      //system()->parallelization_initialize();
+//
+//   }
+//
+//      //try
+//      //{
+//      __check_refdbg
+//
+//      __os_initialize();
+//
+//   __check_refdbg
+//      //}
+//      //catch (const ::exception & e)
+//      //{
+//
+//      //   m_estatus = e.m_estatus;
+//
+//      //   if (succeeded(m_estatus))
+//      //   {
+//
+//      //      m_estatus = error_failed;
+//
+//      //   }
+//
+//      //   m_result.add(e);
+//
+//      //   top_handle_exception(e);
+//
+//      //}
+//      //catch (...)
+//      //{
+//
+//      //   m_estatus = error_failed;
+//
+//      //   m_result.add(error_failed);
+//
+//      //}
+//
+//      //return m_estatus;
+//
+//}
 
 
-void task::task_osinit()
-{
-
-
-   set_current_handles();
-
-   if (has_finishing_flag())
-   {
-
-      clear_finishing_flag();
-
-   }
-
-
-
-   m_estatus = ::success;
-   __check_refdbg
-      set_task();
-   __check_refdbg
-      //{
-
-      //   auto pthreadParent = ::parallelization::calc_parent(this);
-
-      //   if (pthreadParent)
-      //   {
-
-      //      if (!pthreadParent->task_add(this))
-      //      {
-
-      //         if (pthreadParent->m_atom.case_insensitive_begins("predicate_thread") && m_atom.case_insensitive_begins("predicate_thread"))
-      //         {
-
-      //            pthreadParent->task_erase(this);
-
-      //            pthreadParent = ::parallelization::calc_parent(pthreadParent);
-
-      //            if (!pthreadParent->task_add(this))
-      //            {
-
-      //               return ::error_failed;
-
-      //            }
-
-      //         }
-      //         else
-      //         {
-
-      //            return ::error_failed;
-
-      //         }
-
-      //      }
-
-      //   }
-
-      //}
-
-   {
-
-      __check_refdbg
-      if (::_get_task() != this)
-      {
-         __check_refdbg
-         ::set_task(this);
-         __check_refdbg
-      }
-      __check_refdbg
-      processor_cache_oriented_set_thread_memory_pool(0);
-      // set default handler cache oriented thread memory pool index to 0 ("zero") (The First One)
-
-      //system()->parallelization_initialize();
-
-   }
-
-      //try
-      //{
-      __check_refdbg
-
-      __os_initialize();
-
-   __check_refdbg
-      //}
-      //catch (const ::exception & e)
-      //{
-
-      //   m_estatus = e.m_estatus;
-
-      //   if (succeeded(m_estatus))
-      //   {
-
-      //      m_estatus = error_failed;
-
-      //   }
-
-      //   m_result.add(e);
-
-      //   top_handle_exception(e);
-
-      //}
-      //catch (...)
-      //{
-
-      //   m_estatus = error_failed;
-
-      //   m_result.add(error_failed);
-
-      //}
-
-      //return m_estatus;
-
-}
-
-
-void task::task_osterm()
-{
-
-   __os_finalize();
-
-   unset_task();
-
-}
+//void task::task_osterm()
+//{
+//
+//   __os_finalize();
+//
+//   unset_task();
+//
+//}
 
 
 void task::set_task()
@@ -830,9 +831,20 @@ void task::unset_task()
 void task::main()
 {
 
-   task_osinit();
+   //m_estatus = ::success;
 
-   __task_init();
+   //task_osinit();
+
+   //__task_init();
+
+   init_task();
+
+   if (m_phappeningInitialization)
+   {
+
+      m_phappeningInitialization->set_happening();
+
+   }
 
    if (defer_implement(application()))
    {
@@ -871,7 +883,7 @@ void task::main()
 
    }
 
-   on_pre_run_task();
+   //on_pre_run_task();
 
    try
    {
@@ -890,9 +902,11 @@ void task::main()
 
    }
 
-   on_task_quit();
+   term_task();
 
-   __task_term();
+   //on_task_quit();
+
+   //__task_term();
 
    //task_osterm();
 
@@ -1197,51 +1211,31 @@ void task::destroy()
 }
 
 
-void task::__task_init()
-{
-
-   __check_refdbg
-
-      on_task_init();
-
-   if (m_phappeningInitialization)
-   {
-
-      m_phappeningInitialization->set_happening();
-
-   }
-
-
-}
-
-
-void task::__task_term()
-{
-
-   on_task_term();
-
-}
+//void task::__task_init()
+//{
+//
+//   __check_refdbg
+//
+//      on_task_init();
+//
+//   if (m_phappeningInitialization)
+//   {
+//
+//      m_phappeningInitialization->set_happening();
+//
+//   }
+//
+//
+//}
 
 
-void task::on_task_init()
-{
+// void task::__task_term()
+// {
 
-   __check_refdbg
+//    on_task_term();
 
-      init_task();
+// }
 
-   m_estatus = ::success;
-
-}
-
-
-
-void task::on_task_term()
-{
-
-   term_task();
-
-}
 
 
 
@@ -1266,9 +1260,7 @@ void * task::s_os_task(void * p)
 
       ::pointer < ::task > ptask(transfer_t{}, (::task *)p);
 
-      ptask->_os_task(procedureTaskEnded);
-
-      ptask->task_osterm();
+      ptask->__task_main(procedureTaskEnded);
 
    }
 
@@ -1284,23 +1276,201 @@ void * task::s_os_task(void * p)
 }
 
 
-void task::_os_task(::procedure & procedureTaskEnded)
+void task::__task_init()
 {
 
-   ::pointer < manual_reset_happening > pmanualresethappeningFinished;
+   m_estatus = ::success;
+
+   set_flag(e_flag_running);
+
+   //if (has_finishing_flag())
+   //{
+
+   //   clear_finishing_flag();
+
+   //}
+
+   __check_refdbg
+
+      set_task();
+
+   __check_refdbg
+
+      set_current_handles();
+
+
+#if defined(WINDOWS)
+
+   {
+
+      REFDBG_THIS(this);
+
+      __defer_construct(m_pexceptiontranslator);
+
+      m_pexceptiontranslator->attach();
+
+   }
+
+#endif
+
+
+   //#ifdef WINDOWS_DESKTOP
+//
+//   DuplicateHandle(GetCurrentProcess(), ::GetCurrentThread(), GetCurrentProcess(), &m_htask, 0, false, DUPLICATE_SAME_ACCESS);
+//
+//#else
+//
+//   m_htask = ::current_htask();
+//
+//#endif
+//
+//   m_uThread = ::current_itask();
+
+   try
+   {
+
+      __priority_and_affinity();
+
+   }
+   catch (...)
+   {
+
+      // affinity isn't critical
+
+   }
+
+   //#ifndef WINDOWS
+   //
+   //   information() << "init_thread : " << ::type(this).name();
+   //
+   //#endif
+
+   //system()->node_thread_initialize(this);
+
+
+
+      //{
+
+      //   auto pthreadParent = ::parallelization::calc_parent(this);
+
+      //   if (pthreadParent)
+      //   {
+
+      //      if (!pthreadParent->task_add(this))
+      //      {
+
+      //         if (pthreadParent->m_atom.case_insensitive_begins("predicate_thread") && m_atom.case_insensitive_begins("predicate_thread"))
+      //         {
+
+      //            pthreadParent->task_erase(this);
+
+      //            pthreadParent = ::parallelization::calc_parent(pthreadParent);
+
+      //            if (!pthreadParent->task_add(this))
+      //            {
+
+      //               return ::error_failed;
+
+      //            }
+
+      //         }
+      //         else
+      //         {
+
+      //            return ::error_failed;
+
+      //         }
+
+      //      }
+
+      //   }
+
+      //}
+
+   {
+
+      __check_refdbg
+         if (::_get_task() != this)
+         {
+            __check_refdbg
+               ::set_task(this);
+            __check_refdbg
+         }
+      __check_refdbg
+         processor_cache_oriented_set_thread_memory_pool(0);
+      // set default handler cache oriented thread memory pool index to 0 ("zero") (The First One)
+
+      //system()->parallelization_initialize();
+
+   }
+
+   //   //try
+   //   //{
+   //   __check_refdbg
+
+   //   __os_initialize();
+
+   //__check_refdbg
+   //   //}
+   //   //catch (const ::exception & e)
+   //   //{
+
+   //   //   m_estatus = e.m_estatus;
+
+   //   //   if (succeeded(m_estatus))
+   //   //   {
+
+   //   //      m_estatus = error_failed;
+
+   //   //   }
+
+   //   //   m_result.add(e);
+
+   //   //   top_handle_exception(e);
+
+   //   //}
+   //   //catch (...)
+   //   //{
+
+   //   //   m_estatus = error_failed;
+
+   //   //   m_result.add(error_failed);
+
+   //   //}
+
+   //   //return m_estatus;
+
+
+
+   //__check_refdbg
+
+   //   init_task();
+
+
+
+
+}
+
+
+void task::__task_main(::procedure & procedureTaskEnded)
+{
+
+   //::pointer < manual_reset_happening > pmanualresethappeningFinished;
 
    try
    {
 
       __check_refdbg
 
-         os_task_init_term ostaskinitterm;
+      os_task_init_term ostaskinitterm;
+
+      __task_init();
          
-      __check_refdbg
+      //__check_refdbg
 
-         ::set_task(this);
+         //::set_task(this);
 
-      __check_refdbg
+      //__check_refdbg
 
          //      ptask->_os_task();
 
@@ -1311,20 +1481,6 @@ void task::_os_task(::procedure & procedureTaskEnded)
 #endif
 
       //ptask->release(REFERENCING_DEBUGGING_P_FUNCTION_LINE(ptask));
-
-#if defined(WINDOWS)
-
-      {
-
-         REFDBG_THIS(this);
-
-         __defer_construct(m_pexceptiontranslator);
-
-         m_pexceptiontranslator->attach();
-
-      }
-
-#endif
 
       try
       {
@@ -1353,21 +1509,21 @@ void task::_os_task(::procedure & procedureTaskEnded)
 
       }
 
-      auto psystem = system();
+      //auto psystem = system();
 
-      if (psystem)
-      {
+      //if (psystem)
+      //{
 
-         auto ptaskmessagequeue = psystem->m_ptaskmessagequeue;
+      //   auto ptaskmessagequeue = psystem->m_ptaskmessagequeue;
 
-         if (ptaskmessagequeue)
-         {
+      //   if (ptaskmessagequeue)
+      //   {
 
-            ptaskmessagequeue->clear_message_queue(m_taskindex);
+      //      ptaskmessagequeue->clear_message_queue(m_taskindex);
 
-         }
+      //   }
 
-      }
+      //}
 
       ///release();
 
@@ -1389,18 +1545,20 @@ void task::_os_task(::procedure & procedureTaskEnded)
 
 #endif
 
-      try
-      {
+      //try
+      //{
 
-         on_before_destroy_task();
+      //   on_before_destroy_task();
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
-      }
+      //}
 
-      destroy();
+      procedureTaskEnded = ::transfer(m_procedureTaskEnded);
+
+      __task_term();
 
    }
    catch (...)
@@ -1408,23 +1566,85 @@ void task::_os_task(::procedure & procedureTaskEnded)
 
    }
 
+}
+
+
+
+
+void task::__task_term()
+{
+
+   auto psystem = system();
+
+   if (psystem)
+   {
+
+      auto ptaskmessagequeue = psystem->m_ptaskmessagequeue;
+
+      if (ptaskmessagequeue)
+      {
+
+         ptaskmessagequeue->clear_message_queue(m_taskindex);
+
+      }
+
+   }
+
+   //term_task();
+
+   //__os_finalize();
+
+   unset_task();
+
+   ::pointer<::object>pparentTask = m_pobjectParentTask;
+
+   if (::is_set(pparentTask))
+   {
+
+      try
+      {
+
+         pparentTask->transfer_tasks_from(this);
+
+      }
+      catch (...)
+      {
+
+      }
+
+      try
+      {
+
+         pparentTask->erase_task_and_set_task_new_parent(this, nullptr);
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+
+   destroy();
+
    m_htask = nullptr;
 
    m_itask = nullptr;
 
    ::task_release();
 
-   procedureTaskEnded = ::transfer(m_procedureTaskEnded);
-
 }
 
 
-bool task::is_task_set() const
-{
 
-   return system()->is_task_set(m_taskindex);
-
-}
+//bool task::is_task_set() const
+//{
+//
+//   //return system()->is_task_set(m_taskindex);
+//
+//   return m_htask.is_set() && has_flag(e_flag_running);
+//
+//}
 
 
 //void task::register_task()
@@ -2163,7 +2383,7 @@ void task::on_before_branch()
    // __task_procedure() should release this (pelement)
    //increment_reference_count(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
 
-   m_bIsRunning = true;
+   //m_bIsRunning = true;
 
    set_flag(e_flag_task_started);
 
@@ -2648,39 +2868,39 @@ bool task::task_sleep(const class time & timeWait)
 }
 
 
-void task::on_before_destroy_task()
-{
-
-   ::pointer<::object>pparentTask = m_pobjectParentTask;
-
-   if (::is_set(pparentTask))
-   {
-
-      try
-      {
-
-         pparentTask->transfer_tasks_from(this);
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         pparentTask->erase_task_and_set_task_new_parent(this, nullptr);
-
-      }
-      catch (...)
-      {
-
-      }
-
-   }
-
-}
+//void task::on_before_destroy_task()
+//{
+//
+//   ::pointer<::object>pparentTask = m_pobjectParentTask;
+//
+//   if (::is_set(pparentTask))
+//   {
+//
+//      try
+//      {
+//
+//         pparentTask->transfer_tasks_from(this);
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//
+//      try
+//      {
+//
+//         pparentTask->erase_task_and_set_task_new_parent(this, nullptr);
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//
+//   }
+//
+//}
 
 
 //void task::branch(::particle * pparticle, ::enum_priority epriority, unsigned int nStackSize, unsigned int uCreateFlags ARG_SEC_ATTRS)

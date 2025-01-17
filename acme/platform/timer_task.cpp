@@ -53,7 +53,7 @@ void timer_task::initialize_timer(::particle * pparticle, ::acme::timer_array * 
 
    ::task::initialize(pparticle);
 
-   m_bRunning = false;
+   clear_flag(e_flag_running);
 
    m_bHandling = false;
 
@@ -130,7 +130,7 @@ void timer_task::start_timer_task(const class time & timeWait, bool bPeriodic)
 
       m_atom = m_strDebugNote;
 
-      m_bRunning = true;
+      set_flag(e_flag_running);
 
       branch();
 
@@ -193,12 +193,12 @@ void timer_task::term_task()
 }
 
 
-bool timer_task::task_active() const
-{
-
-   return m_bRunning && ::task::task_active();
-
-}
+//bool timer_task::is_task_set() const
+//{
+//
+//   return ::task::is_task_set();
+//
+//}
 
 
 void timer_task::run()
@@ -258,7 +258,9 @@ void timer_task::run()
 
    }
 
-   m_bRunning = false;
+   //m_bRunning = false;
+
+   clear_flag(e_flag_running);
 
 }
 
@@ -270,7 +272,7 @@ void timer_task::stop_timer_task()
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      if (m_bRunning)
+      if (is_task_set())
       {
 
          set_finish();

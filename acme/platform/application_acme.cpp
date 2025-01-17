@@ -175,9 +175,9 @@ namespace platform
    }
 
 
-   void acme_application_layer::os_native_bergedge_start()
-   {
-   }
+   //void acme_application_layer::os_native_bergedge_start()
+   //{
+   //}
 
 
    // void acme_application_layer::init1(){}
@@ -352,24 +352,24 @@ namespace platform
    }
 
 
-   void acme_application_layer::pre_run()
-   {
-   }
+   //void acme_application_layer::pre_run()
+   //{
+   //}
 
 
-   void acme_application_layer::application_pre_run()
-   {
-   }
+   //void acme_application_layer::application_pre_run()
+   //{
+   //}
 
 
-   void acme_application_layer::pos_run()
-   {
-   }
+   //void acme_application_layer::pos_run()
+   //{
+   //}
 
 
-   void acme_application_layer::application_pos_run()
-   {
-   }
+   //void acme_application_layer::application_pos_run()
+   //{
+   //}
 
 
    void acme_application_layer::init_application()

@@ -982,69 +982,69 @@ namespace platform
    }
 
 
-   void application::init_task()
-   {
+   //void application::init_task()
+   //{
 
-      ::task::init_task();
+   //   ::task::init_task();
 
-      try
-      {
+   //   //try
+   //   //{
 
-         pre_run();
-         //{
+   //   //   pre_run();
+   //   //   //{
 
-         //   return false;
+   //   //   //   return false;
 
-         //}
+   //   //   //}
 
-      }
-      catch (const ::exception& e)
-      {
+   //   //}
+   //   //catch (const ::exception& e)
+   //   //{
 
-         informationf("application::init_task exception!!");
+   //   //   informationf("application::init_task exception!!");
 
-         handle_exception(e);
+   //   //   handle_exception(e);
 
-         session()->set_finish();
+   //   //   session()->set_finish();
 
-         throw e;
+   //   //   throw e;
 
-      }
-      catch (...)
-      {
+   //   //}
+   //   //catch (...)
+   //   //{
 
-         //      return false;
+   //   //   //      return false;
 
-         throw ::exception(error_exception);
+   //   //   throw ::exception(error_exception);
 
-      }
+   //   //}
 
-      //return true;
+   //   //return true;
 
-   }
+   //}
 
 
-   void application::term_task()
-   {
+   //void application::term_task()
+   //{
 
-      debug() << "::platform::applicationterm_task";
+   //   debug() << "::platform::applicationterm_task";
 
-      m_timeHeartBeat.Now();
+   //   ping();
 
-      try
-      {
+   //   //try
+   //   //{
 
-         pos_run();
+   //   //   pos_run();
 
-      }
-      catch (...)
-      {
+   //   //}
+   //   //catch (...)
+   //   //{
 
-      }
+   //   //}
 
-      ::task::term_task();
+   //   ::task::term_task();
 
-   }
+   //}
 
 
    void application::user_confirm_close_application()
@@ -1455,11 +1455,11 @@ namespace platform
    }
 
 
-   void application::os_native_bergedge_start()
-   {
+   //void application::os_native_bergedge_start()
+   //{
 
 
-   }
+   //}
 
 
    void application::process_init()
@@ -1485,8 +1485,10 @@ namespace platform
    }
 
 
-   void application::application_pre_run()
+   void application::init_task()
    {
+
+      ::task::init_task();
       //
       //information() << "apex::application::application_pre_run";
       //
@@ -1512,7 +1514,7 @@ namespace platform
       //
       //#endif
 
-      m_timeHeartBeat.Now();
+      ping();
 
       //try
       //{
@@ -1550,7 +1552,7 @@ namespace platform
       //
       //}
 
-      m_timeHeartBeat.Now();
+      ping();
 
       //::e_status estatus = ::success;
 
@@ -1596,7 +1598,7 @@ namespace platform
       //
       //      psystem->install_progress_add_up();
 
-      m_timeHeartBeat.Now();
+      ping();
 
       try
       {
@@ -1639,7 +1641,7 @@ namespace platform
 
       }
 
-      m_timeHeartBeat.Now();
+      ping();
 
       try
       {
@@ -1707,98 +1709,98 @@ namespace platform
    }
 
 
-   void application::pre_run()
-   {
+   //void application::pre_run()
+   //{
 
-      //information() << "apex::application::pre_run";
+   //   //information() << "apex::application::pre_run";
 
-      try
-      {
+   //   try
+   //   {
 
-         m_timeHeartBeat.Now();
+   //      ping();
 
-         application_pre_run();
+   //      application_pre_run();
 
-         //{
+   //      //{
 
-         //   m_bReady = true;
+   //      //   m_bReady = true;
 
-         //   return false;
+   //      //   return false;
 
-         //}
+   //      //}
 
-         //    if(!check_install())
-         //    {
+   //      //    if(!check_install())
+   //      //    {
 
-         //       m_bReady = true;
+   //      //       m_bReady = true;
 
-         //       return false;
+   //      //       return false;
 
-         //    }
+   //      //    }
 
-         //         if(!is_system() && !is_session())
-         //         {
-         //
-         //            if(!is_installed())
-         //            {
-         //
-         //
-         //            }
-         //
-         //         }
+   //      //         if(!is_system() && !is_session())
+   //      //         {
+   //      //
+   //      //            if(!is_installed())
+   //      //            {
+   //      //
+   //      //
+   //      //            }
+   //      //
+   //      //         }
 
-         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
+   //      //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
 
-         //auto estatus =
-         on_before_launching();
+   //      //auto estatus =
+   //      on_before_launching();
 
-         //if(!estatus)
-         //{
+   //      //if(!estatus)
+   //      //{
 
-         //   m_bReady = true;
+   //      //   m_bReady = true;
 
-         //   return estatus;
+   //      //   return estatus;
 
-         //}
+   //      //}
 
-         m_timeHeartBeat.Now();
+   //      ping();
 
-         os_native_bergedge_start();
-         //{
+   //      os_native_bergedge_start();
+   //      //{
 
-         //   m_bReady = true;
+   //      //   m_bReady = true;
 
-         //   return false;
+   //      //   return false;
 
-         //}
+   //      //}
 
-         //information() << "apex::application::pre_run success";
+   //      //information() << "apex::application::pre_run success";
 
-         //return true;
+   //      //return true;
 
-      }
-      catch (const ::exception& e)
-      {
+   //   }
+   //   catch (const ::exception& e)
+   //   {
 
-         informationf("application::pre_run exception!!");
+   //      informationf("application::pre_run exception!!");
 
-         handle_exception(e);
+   //      handle_exception(e);
 
-         throw e;
+   //      throw e;
 
-      }
-      catch (...)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
-         information() << "apex::application::pre_run exception.4";
+   //      information() << "apex::application::pre_run exception.4";
 
-         throw ::exception(error_exception);
+   //      throw ::exception(error_exception);
 
-      }
+   //   }
 
-      //return false;
+   //   //return false;
 
-   }
+   //}
 
 
    void application::init_application()
@@ -1808,7 +1810,7 @@ namespace platform
 
       //information() << "apex::application::init_application";
 
-      m_timeHeartBeat.Now();
+      ping();
 
       init1();
 
@@ -1825,7 +1827,7 @@ namespace platform
 
       //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
 
-      m_timeHeartBeat.Now();
+      ping();
 
       init2();
 
@@ -1842,7 +1844,7 @@ namespace platform
 
       //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
 
-      m_timeHeartBeat.Now();
+      ping();
 
       init3();
 
@@ -1859,7 +1861,7 @@ namespace platform
 
       //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
 
-      m_timeHeartBeat.Now();
+      ping();
 
       //dappy(::type(this).name() + " : init3 ok : " + as_string(m_iErrorCode));
 
@@ -1899,32 +1901,32 @@ namespace platform
    }
 
 
-   void application::pos_run()
-   {
+   //void application::pos_run()
+   //{
 
-      debug() << "::platform::applicationpos_run";
+   //   debug() << "::platform::applicationpos_run";
 
-      try
-      {
+   //   try
+   //   {
 
-         m_timeHeartBeat.Now();
+   //      ping();
 
-         application_pos_run();
+   //      application_pos_run();
 
-         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
+   //      //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
 
-      }
-      catch (...)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
-         information() << "::platform::applicationpos_run exception.4";
+   //      information() << "::platform::applicationpos_run exception.4";
 
-      }
+   //   }
 
-   }
+   //}
 
 
-   void application::application_pos_run()
+   void application::term_task()
    {
 
       try
@@ -1954,7 +1956,7 @@ namespace platform
 
       }
 
-      m_timeHeartBeat.Now();
+      ping();
 
       try
       {
@@ -1978,6 +1980,7 @@ namespace platform
       //
       //}
 
+      ::task::term_task();
 
    }
 

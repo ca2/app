@@ -2125,7 +2125,7 @@ namespace user
       //virtual void show_keyboard(bool bShow = true) override;
 
 
-      virtual void keep_alive(::object* pliveobject = nullptr) override;
+      void ping() override;
 
       //virtual void move_to(const ::int_point& point);
       //virtual void set_size(const ::int_size& size);

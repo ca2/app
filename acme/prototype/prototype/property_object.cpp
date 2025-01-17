@@ -197,13 +197,13 @@ CLASS_DECL_ACME void debug_debug_reference()
 //
 //}
 
-void property_object::keep_alive()
+void property_object::ping()
 {
 
    try
    {
 
-      on_keep_alive();
+      on_ping();
 
    }
    catch (...)
@@ -214,13 +214,13 @@ void property_object::keep_alive()
 }
 
 
-void property_object::on_keep_alive()
+void property_object::on_ping()
 {
 
 }
 
 
-bool property_object::is_alive()
+bool property_object::is_pinging() const
 {
 
    return true;

@@ -471,7 +471,7 @@ namespace platform
 
       //virtual ::pointer<::apex::application>assert_running(const ::string & pszAppId) override;
 
-      virtual bool is_running();
+      //virtual bool is_running();
 
 
       //bool pump_runnable();

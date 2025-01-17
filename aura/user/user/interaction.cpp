@@ -20472,22 +20472,17 @@ if(get_parent())
    //}
 
 
-   void interaction::keep_alive(::object * pliveobject)
+   void interaction::ping()
    {
 
-      get_app()->keep_alive();
+      get_app()->ping();
 
-      if (::get_task() != nullptr)
+      auto puserthread = user_thread();
+
+      if (puserthread)
       {
 
-         ::get_task()->keep_alive();
-
-      }
-
-      if (pliveobject != nullptr)
-      {
-
-         pliveobject->keep_alive();
+         puserthread->ping();
 
       }
 

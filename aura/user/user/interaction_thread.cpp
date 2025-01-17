@@ -382,7 +382,7 @@ namespace user
 
    //}
 
-   void thread::on_task_quit()
+   void thread::term_task()
    {
 
       auto puserinteraction = m_pwindow->user_interaction();
@@ -396,7 +396,7 @@ namespace user
 
       }
 
-      ::thread::on_task_quit();
+      ::thread::term_task();
 
    }
 
@@ -1036,33 +1036,33 @@ namespace user
    }
 
 
-   void thread::term_task()
-   {
+   //void thread::term_task()
+   //{
 
-      //if(m_p)
+   //   //if(m_p)
 
-      //auto puserinteraction = m_pwindow->user_interaction();
+   //   //auto puserinteraction = m_pwindow->user_interaction();
 
-      //if (puserinteraction && puserinteraction->m_strName.contains("notify_icon"))
-      //{
-      //   information() << "notify_icon";
-      //}
+   //   //if (puserinteraction && puserinteraction->m_strName.contains("notify_icon"))
+   //   //{
+   //   //   information() << "notify_icon";
+   //   //}
 
-      //_synchronous_lock synchronouslock(this->synchronization());
+   //   //_synchronous_lock synchronouslock(this->synchronization());
 
-      //m_pwindow->m_puserinteraction.release();
+   //   //m_pwindow->m_puserinteraction.release();
 
-      //if (m_pthreadmgr)
-      //{
-      //   m_pthreadmgr->Deactivate();
+   //   //if (m_pthreadmgr)
+   //   //{
+   //   //   m_pthreadmgr->Deactivate();
 
-      //   m_pthreadmgr->Release();
-      //   m_pthreadmgr = NULL;
-      //}
+   //   //   m_pthreadmgr->Release();
+   //   //   m_pthreadmgr = NULL;
+   //   //}
 
-      ::thread::term_task();
+   //   ::thread::term_task();
 
-   }
+   //}
 
 
 } // namespace user

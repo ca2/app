@@ -125,7 +125,7 @@ public:
 
 
          bool                                            m_bAvoidProcedureFork : 1;
-         bool                                            m_bIsRunning : 1;
+         //bool                                            m_bIsRunning : 1;
          bool                                            m_bIsPredicate : 1; // Is helper thread (as opposite to a "main" thread)
 #ifdef WINDOWS
          bool                                            m_bCoInitialize : 1;
@@ -200,7 +200,8 @@ public:
    
    ::pointer < ::locale >                          m_plocale;
 
-   class ::time                                    m_timeHeartBeat;
+   class ::time                                    m_timeLastPing;
+   class ::time                                    m_timePingTimeout;
    ::procedure                                     m_procedureTaskEnded;
    class ::time                                    m_timeLastPostedProcedureStart;
    class ::time                                    m_timeDefaultPostedProcedureTimeout;
@@ -218,7 +219,7 @@ public:
    void on_initialize_particle() override;
 
    
-   virtual void on_pre_run_task();
+   //virtual void on_pre_run_task();
 
    
    //void update_new_main_loop_happening() override;
@@ -227,14 +228,14 @@ public:
 
    virtual void __priority_and_affinity();
    void set_finish() override;
-   virtual void __os_initialize();
+   //virtual void __os_initialize();
    //   virtual void __os_thread_start();
    virtual void set_task();
-   virtual void __os_finalize();
+   //virtual void __os_finalize();
    virtual void unset_task();
 
-   void task_osinit() override;
-   void task_osterm() override;
+   //void task_osinit() override;
+   //void task_osterm() override;
 
    bool has_main_loop_happening() override;
    virtual bool _has_main_loop_happening_unlocked();
@@ -280,8 +281,6 @@ public:
 #endif
 
 
-   void _os_task(::procedure & procedureTaskEnded);
-
    virtual bool is_task_set() const;
    //virtual void register_task();
    //virtual void unregister_task();
@@ -311,8 +310,15 @@ public:
 
    virtual bool on_happening(e_happening ehappening);
 
+
+   virtual void __task_init();
+   virtual void __task_main(::procedure & procedureTaskEnded);
+   virtual void __task_term();
+
+  
    void init_task() override;
-   virtual void term_task();
+   void term_task() override;
+
    //virtual void do_task() override;
    //virtual void on_task() override;
 
@@ -332,7 +338,7 @@ public:
 
    virtual bool task_sleep(const class time & timeWait);
 
-   virtual void on_before_destroy_task();
+   //virtual void on_before_destroy_task();
 
 
    //template < typename METHOD >
@@ -357,12 +363,9 @@ public:
 
    //virtual ::property_object * thread_parent();
 
-   void __task_init() override;
-   void __task_term() override;
+   //void __task_init() override;
+   //void __task_term() override;
 
-
-   virtual void on_task_init();
-   virtual void on_task_term();
 
 
    virtual bool is_thread() const override;
@@ -370,14 +373,14 @@ public:
 
    bool is_ready_to_quit() const override;
 
-   virtual bool task_active() const;
-   virtual bool is_running() const override;
+   //virtual bool task_active() const;
+   //virtual bool is_running() const override;
 
    bool set_children_to_finish_and_check_them_finished() override;
 
    virtual void update_task_ready_to_quit();
 
-   virtual void on_task_quit();
+   //virtual void on_task_quit();
 
    virtual void kick_thread();
 

@@ -3381,12 +3381,12 @@ namespace user
 
 
 
-   void interaction_base::keep_alive(::object * pliveobject)
-   {
+   //void interaction_base::ping(::object * pobjectPinger)
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-   }
+   //}
 
 
    //bool interaction_base::set_window_position(class zorder zorder, int x, int y, int cx, int cy, unsigned int nFlags)

@@ -294,8 +294,8 @@ namespace apex
       void destroy() override;
 
 
-      //virtual bool initial_check_directrix() override;
-      void os_native_bergedge_start() override;
+      ////virtual bool initial_check_directrix() override;
+      //void os_native_bergedge_start() override;
 
 
       //virtual bool on_application_menu_action(const ::string & pszCommand);
@@ -354,7 +354,7 @@ namespace apex
 
       //virtual ::pointer<::apex::application>assert_running(const ::string & pszAppId) override;
 
-      virtual bool is_running() override;
+      virtual bool is_task_set() const override;
 
 
       //bool pump_runnable() override;
@@ -656,9 +656,9 @@ namespace apex
       // virtual void pre_run();
       //virtual void application_pre_run();
 
-      virtual void on_pos_run_thread() override;
-      virtual void pos_run() override;
-      virtual void application_pos_run() override;
+      //virtual void on_pos_run_thread() override;
+      //virtual void pos_run() override;
+      //virtual void application_pos_run() override;
 
 
       //virtual bool InitApplication();

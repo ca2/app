@@ -89,8 +89,8 @@ namespace axis
       //void     main() override;
       void on_run() override;
 
-      void application_pre_run() override;
-      void os_native_bergedge_start() override;
+      //void application_pre_run() override;
+      //void os_native_bergedge_start() override;
 
 
 

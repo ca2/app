@@ -2191,13 +2191,20 @@ namespace user
 
          }
 
-         bool bNeedsToDraw = pgraphics->user_redraw()->needs_to_draw(rectangle);
+         auto puserredraw = pgraphics->user_redraw();
 
-         if (!bNeedsToDraw)
+         if (::is_set(puserredraw))
          {
 
-            return false;
-            //information() << "Opting out from draw!! " << typeid(*this).name() << " " << m_atom.as_string();
+            bool bNeedsToDraw = puserredraw->needs_to_draw(rectangle);
+
+            if (!bNeedsToDraw)
+            {
+
+               return false;
+               //information() << "Opting out from draw!! " << typeid(*this).name() << " " << m_atom.as_string();
+
+            }
 
          }
 
@@ -5105,7 +5112,14 @@ namespace user
       try
       {
 
-         pgraphics->user_redraw()->apply_clip(host_to_client());
+         auto puserredraw = pgraphics->user_redraw();
+
+         if (::is_set(puserredraw))
+         {
+
+            puserredraw->apply_clip(host_to_client());
+
+         }
 
          //pgraphics->reset_clip();
 

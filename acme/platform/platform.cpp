@@ -1418,7 +1418,7 @@ g_bWindowingOutputDebugString = true;
       if (!ppairThreadStorage)
       {
 
-         throw ::exception(error_wrong_state);
+         return nullptr;
 
       }
 

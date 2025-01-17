@@ -40,9 +40,9 @@ namespace platform
 
       str.formatf(
                "%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x",
-               *((int*)p),
-               *((short*)(p + 4)), 
-               *((short*)(p + 6)),
+               *((unsigned int*)p),
+               *((unsigned short*)(p + 4)), 
+               *((unsigned short*)(p + 6)),
                p[8], p[9], 
                p[10], p[11], p[12], p[13], p[14], p[15]);
 

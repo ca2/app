@@ -1689,29 +1689,29 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   void system::__task_init()
-   {
+   //void system::__task_init()
+   //{
 
-      try
-      {
+   //   try
+   //   {
 
-         ::thread::__task_init();
+   //      ::thread::__task_init();
 
-      }
-      catch (exception & exception)
-      {
+   //   }
+   //   catch (exception & exception)
+   //   {
 
-         string strMoreDetails;
+   //      string strMoreDetails;
 
-         strMoreDetails = "command line: " + string(this->m_strCommandLine) + "\n\n";
+   //      strMoreDetails = "command line: " + string(this->m_strCommandLine) + "\n\n";
 
-         auto pmessagebox = __initialize_new ::message_box(exception, strMoreDetails);
+   //      auto pmessagebox = __initialize_new ::message_box(exception, strMoreDetails);
 
-         throw exception;
+   //      throw exception;
 
-      }
+   //   }
 
-   }
+   //}
 
 
    ::platform::application * system::get_main_app()

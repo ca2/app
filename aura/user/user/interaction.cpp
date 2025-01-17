@@ -10120,6 +10120,8 @@ if(get_parent())
 
       //window()->enable_window(bEnable);
 
+      m_ewindowflag.set(e_window_flag_enable, bEnable);
+
    }
 
 

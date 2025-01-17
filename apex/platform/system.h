@@ -114,7 +114,7 @@ namespace apex
       void do_operating_ambient_factory() override;
 
 
-      virtual void __task_init() override;
+      //virtual void __task_init() override;
 
 
       class ::manager_room * manager_room() override;

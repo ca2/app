@@ -34,7 +34,12 @@ void waiting_call_base::on_start_call()
       if (m_ptask)
       {
 
-         ASSERT(m_ptask->is_current_task());
+         if (!m_ptask->is_current_task())
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
 
          _synchronous_lock synchronous_lock(m_ptask->synchronization());
 

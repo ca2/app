@@ -413,7 +413,7 @@ public:
 
    //virtual void finish() override;
 
-   virtual void set_current_handles();
+   //virtual void set_current_handles();
 
    void kick_idle() override;
 
@@ -495,7 +495,7 @@ CLASS_DECL_ACME string task_get_name(htask htask);
 CLASS_DECL_ACME void thread_name_abbreviate(string & strName, int len);
 
 
-CLASS_DECL_ACME ::task * _get_task();
+//CLASS_DECL_ACME ::task * _get_task();
 
 
 CLASS_DECL_ACME ::task * get_task();

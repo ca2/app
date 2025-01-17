@@ -155,12 +155,17 @@ CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach)
 
    auto idAttachTo = (DWORD) main_itask().m_i;
 
-   BOOL bOk = ::AttachThreadInput(idAttach, idAttachTo, bAttach ? TRUE : FALSE);
-
-   if (!bOk)
+   if (idAttachTo != 0)
    {
 
-      throw ::exception(error_failed);
+      BOOL bOk = ::AttachThreadInput(idAttach, idAttachTo, bAttach ? TRUE : FALSE);
+
+      if (!bOk)
+      {
+
+         throw ::exception(error_failed);
+
+      }
 
    }
 

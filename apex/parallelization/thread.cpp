@@ -1041,7 +1041,14 @@ int thread::_GetMessage(MESSAGE* pmessage, ::windowing::window* pwindow, unsigne
 bool thread::task_iteration()
 {
 
-   ASSERT(m_itask == ::current_itask());
+   auto itaskCurrent = ::current_itask();
+
+   if (m_itask != itaskCurrent)
+   {
+
+      throw ::exception(error_wrong_state);
+
+   }
 
 #ifdef WINDOWS_DESKTOP
 
@@ -2086,7 +2093,7 @@ void thread::initialize(::particle* pparticle)
 
    }
 
-   auto ptask = ::_get_task();
+   auto ptask = ::get_task();
 
    if (::is_set(ptask))
    {

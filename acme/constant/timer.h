@@ -63,6 +63,7 @@ enum enum_timer : ::iptr
    e_timer_ambient_update,
 
    e_timer_configure_unlocked,
+   e_timer_update_registered,
 
 };
 

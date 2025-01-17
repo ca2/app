@@ -69,6 +69,9 @@ namespace aura
 
 #endif
 
+
+      virtual void initialize_user();
+
 //      inline ::aura::system* system();
 
       //virtual void finish(::property_object * pcontextobjectFinish = nullptr) override;

@@ -1319,20 +1319,23 @@ namespace platform
    //}
 
 
-   void system::set_task(const class ::task_index & taskindex, ::task* ptask)
+   void system::set_task(::task* ptask)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsectionThreadStorage);
 
       __refdbg_add_referer_for(ptask);
 
-      auto & threadstorage = m_mapThreadStorage[taskindex];
+      auto & threadstorage = m_mapThreadStorage[ptask->m_taskindex];
 
       threadstorage.m_ptask = ptask;
+
+      threadstorage.m_taskindex = ptask->m_taskindex;
 
       threadstorage.m_htask = ptask->m_htask;
 
       threadstorage.m_itask = ptask->m_itask;
+
 
       //if (pthreadstorage->m_ptask)
       //{
@@ -1350,12 +1353,12 @@ namespace platform
    }
 
 
-   void system::unset_task(const class ::task_index & taskindex, ::task* ptask)
+   void system::unset_task(::task* ptask)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsectionThreadStorage);
 
-      auto ppairThreadStorage = m_mapThreadStorage.plookup(taskindex);
+      auto ppairThreadStorage = m_mapThreadStorage.plookup(ptask->m_taskindex);
 
       if (!ppairThreadStorage->m_element2.m_ptask)
       {
@@ -2133,11 +2136,11 @@ particle* system::matter_mutex()
    }
 
 
-   void system::set_current_handles()
-   {
+   //void system::set_current_handles()
+   //{
 
 
-   }
+   //}
 
 
    //::pointer<::acme::library> system::library(const ::string& strComponent, const ::string& strImplementationParam)

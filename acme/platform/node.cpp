@@ -557,6 +557,24 @@ namespace platform
    }
 
 
+
+   void node::defer_unregister_server_library(const ::platform::uuid & uuid, const ::file::path & path)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   bool node::is_server_library_registered(::file::path & path, const ::platform::uuid & uuid)
+   {
+
+      throw ::interface_only();
+
+      return false;
+
+   }
+
    void node::_launch_macos_app(const ::string & pszAppFolder)
    {
       

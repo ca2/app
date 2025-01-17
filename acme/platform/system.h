@@ -97,8 +97,10 @@ namespace platform
 
       ::task* get_task(const class ::task_index & taskindex);
       //itask get_task_id(const ::task* ptask);
-      void set_task(const class ::task_index & taskindex, ::task* ptask);
-      void unset_task(const class ::task_index & taskindex, ::task* ptask);
+      //void set_task(const class ::task_index & taskindex, ::task* ptask);
+      //void unset_task(const class ::task_index & taskindex, ::task* ptask);
+      void set_task(::task* ptask);
+      void unset_task(::task* ptask);
 
       virtual bool is_task_set(const class ::task_index & taskindex);
       //virtual bool is_active(::task * ptask);
@@ -187,7 +189,7 @@ namespace platform
 
       virtual void init2() override;
 
-      void set_current_handles() override;
+      //void set_current_handles() override;
 
       virtual void TermSystem() override;
 

@@ -1822,78 +1822,6 @@ return m_psavings;
 
       //}
 
-      __check_refdbg
-
-      information() << "aura::session .2";
-
-      if (application()->m_bUser)
-      {
-
-         information() << "aura::session m_bUser";
-
-         //auto psetup = system_setup::get_first(::system_setup::flag_object_user);
-
-         //if (psetup)
-         //{
-
-         //   estatus = __øconstruct(m_puser, psetup->create_new_object());
-
-         //   if(!estatus)
-         //   {
-
-         //      informationf("\nFailed to __øconstruct(m_puser)");
-
-         //   }
-
-         //}
-
-         //if (!estatus)
-         //{
-
-         //estatus =
-         
-         __øconstruct(m_puser);
-
-         information() << "aura::session user type : " << ::type(m_puser).name();
-
-         //}
-
-         if (!m_puser)
-         {
-
-            warningf("Failed to __construct_new(m_puser)");
-
-            error() <<".4";
-
-            return;
-
-         }
-
-         information() << "aura::session m_bUser end";
-
-         m_puser->init1();
-
-         //if (!m_puser->init1())
-         //{
-
-         //   return false;
-
-         //}
-
-         m_puser->init2();
-
-         //if (!m_puser->init2())
-         //{
-
-         //   return false;
-
-         //}
-
-
-      }
-
-     
-
       //return true;
 
    }
@@ -2319,8 +2247,104 @@ namespace aura
    }
 
 
+   void session::initialize_user()
+   {
+
+      if (m_puser)
+      {
+
+         return;
+
+      }
+
+
+      __check_refdbg
+
+         information() << "aura::session .2";
+
+      if (application()->m_bUser)
+      {
+
+         information() << "aura::session m_bUser";
+
+         //auto psetup = system_setup::get_first(::system_setup::flag_object_user);
+
+         //if (psetup)
+         //{
+
+         //   estatus = __øconstruct(m_puser, psetup->create_new_object());
+
+         //   if(!estatus)
+         //   {
+
+         //      informationf("\nFailed to __øconstruct(m_puser)");
+
+         //   }
+
+         //}
+
+         //if (!estatus)
+         //{
+
+         //estatus =
+
+         __øconstruct(m_puser);
+
+         information() << "aura::session user type : " << ::type(m_puser).name();
+
+         //}
+
+         if (!m_puser)
+         {
+
+            warningf("Failed to __construct_new(m_puser)");
+
+            error() << ".4";
+
+            return;
+
+         }
+
+         information() << "aura::session m_bUser end";
+
+         m_puser->init1();
+
+         //if (!m_puser->init1())
+         //{
+
+         //   return false;
+
+         //}
+
+         m_puser->init2();
+
+         //if (!m_puser->init2())
+         //{
+
+         //   return false;
+
+         //}
+
+         m_puser->init();
+
+      }
+
+
+
+   }
+
+
    ::user::user* session::user()
    {
+
+
+      if (!m_puser)
+      {
+
+
+         initialize_user();
+
+      }
 
       return m_puser;
 

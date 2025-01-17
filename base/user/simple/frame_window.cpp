@@ -199,7 +199,7 @@ void simple_frame_window::on_system_command(const ::e_system_command & esystemco
 
    }
 
-   on_system_command(esystemcommand);
+   ::experience::frame_window::on_system_command(esystemcommand);
 
 }
 

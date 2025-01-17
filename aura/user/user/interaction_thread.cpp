@@ -220,6 +220,13 @@ namespace user
    {
 
       //auto estatus = 
+
+      if (!system()->is_task_set(m_taskindex))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
       
       ::thread::init_task();
 

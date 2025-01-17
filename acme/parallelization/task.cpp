@@ -751,6 +751,21 @@ void task::__priority_and_affinity()
 void task::set_task()
 {
 
+   auto taskindex = ::task_index();
+
+   auto itask = ::current_itask();
+
+   auto htask = ::current_htask();
+
+   m_taskindex = taskindex;
+
+   m_itask = itask;
+
+   m_htask = htask;
+
+   ::set_task(this);
+
+
    //SetCurrentHandles();
 
    //auto atom = ::current_itask();
@@ -761,7 +776,7 @@ void task::set_task()
    __check_refdbg
       //register_task();
 
-      system()->set_task(m_taskindex, this);
+   system()->set_task(this);
 
    __check_refdbg
 
@@ -820,7 +835,7 @@ void task::unset_task()
 
    //::system()->set_task_off(::task_index());
 
-   system()->unset_task(m_taskindex, this);
+   system()->unset_task(this);
 
    //::set_task(nullptr);
 
@@ -970,7 +985,17 @@ void task::run()
 bool task::task_iteration()
 {
 
-   ASSERT(is_current_task());
+   if (!is_current_task())
+   {
+
+      if (!is_current_task())
+      {
+
+         throw ::exception(error_failed);
+
+      }
+
+   }
 
    if (m_bMessageThread && !m_bHandlingMessages)
    {
@@ -1296,7 +1321,7 @@ void task::__task_init()
 
    __check_refdbg
 
-      set_current_handles();
+      //set_current_handles();
 
 
 #if defined(WINDOWS)
@@ -1389,14 +1414,7 @@ void task::__task_init()
 
    {
 
-      __check_refdbg
-         if (::_get_task() != this)
-         {
-            __check_refdbg
-               ::set_task(this);
-            __check_refdbg
-         }
-      __check_refdbg
+
          processor_cache_oriented_set_thread_memory_pool(0);
       // set default handler cache oriented thread memory pool index to 0 ("zero") (The First One)
 
@@ -2397,6 +2415,27 @@ void task::on_before_branch()
 
    increment_reference_count();
 
+   if (m_taskindex.is_set())
+   {
+
+      throw ::exception(error_wrong_state);
+
+   }
+
+   if (m_htask.is_set())
+   {
+
+      throw ::exception(error_wrong_state);
+
+   }
+
+   if (m_itask.is_set())
+   {
+
+      throw ::exception(error_wrong_state);
+
+   }
+
 #ifdef WINDOWS
 
    DWORD dwThread = 0;
@@ -2942,22 +2981,22 @@ bool task::task_sleep(const class time & timeWait)
 //}
 
 
-void task::set_current_handles()
-{
-
-#ifdef WINDOWS_DESKTOP
-
-   m_htask = (::uptr) duplicate_handle(::current_htask().m_h);
-
-#else
-
-   m_htask = ::current_htask();
-
-#endif
-
-   m_itask = ::current_itask();
-
-}
+//void task::set_current_handles()
+//{
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//   m_htask = (::uptr) duplicate_handle(::current_htask().m_h);
+//
+//#else
+//
+//   m_htask = ::current_htask();
+//
+//#endif
+//
+//   m_itask = ::current_itask();
+//
+//}
 
 
 void task::kick_idle()

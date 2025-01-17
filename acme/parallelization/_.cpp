@@ -690,13 +690,13 @@ void run_runnable(::matter * pmatter)
 thread_local ::task * t_ptask;
 
 
-CLASS_DECL_ACME ::task * _get_task()
-{
-   
-   return t_ptask;
-   
-}
-
+//CLASS_DECL_ACME ::task * _get_task()
+//{
+//   
+//   return t_ptask;
+//   
+//}
+//
 
 CLASS_DECL_ACME ::task * get_task()
 {
@@ -757,18 +757,17 @@ CLASS_DECL_ACME void set_task(task * ptask)
 // #endif
 //    //::increment_reference_count(ptask);
 
-   t_ptask = ptask;
+   auto taskindex = ::task_index();
 
-   if (::is_set(ptask))
+   if (ptask->m_taskindex != taskindex)
    {
-      
-      ptask->m_taskindex = ::task_index();
 
-      ptask->m_itask = ::current_itask();
-
-      ptask->m_htask = ::current_htask();
+      throw ::exception(error_failed);
 
    }
+   
+   t_ptask = ptask;
+
 
    ::release(ptaskOld);
 

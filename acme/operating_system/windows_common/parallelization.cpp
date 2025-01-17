@@ -510,3 +510,19 @@ bool itask::operator==(const itask & itask) const
 }
 
 
+bool htask::is_null() const
+{
+
+   return !m_h;
+
+}
+
+
+bool itask::is_null() const
+{
+
+   return !m_i;
+
+}
+
+

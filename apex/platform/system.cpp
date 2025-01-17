@@ -1471,91 +1471,91 @@ pdirectorysystem->create("/ca2core");
    //   }
    //
 
-
-   void system::init_task()
-   {
-
-      ::thread::init_task();
-
-      call_init_system();
-
-      //auto estatus = ([a-z0-9_]+)_factory();
-
-      //if(!estatus)
-      //{
-
-        // return estatus;
-
-      //}
-
-      //auto estatus =
-//      process_init();
+//
+//   void system::init_task()
+//   {
+//
+//      ::thread::init_task();
+//
+//      call_init_system();
+//
+//      //auto estatus = ([a-z0-9_]+)_factory();
 //
 //      //if(!estatus)
 //      //{
 //
-//      //   return estatus;
+//        // return estatus;
 //
 //      //}
 //
-//      if (m_psystemParent)
-//      {
-//
-//         m_psystemParent->add_reference(this);
-//
-//      }
-//
-//
-//      //if (!estatus)
-//      //{
-//
-//      //   return estatus;
-//
-//      //}
-//
-//      //estatus =
-//      init1();
-//
-//      //if(!estatus)
-//      //{
-//
-//      //   return estatus;
-//
-//      //}
-//
-//      //estatus =
-//      init2();
-//
-//      //if (!estatus)
-//      //{
-//
-//      //   return estatus;
-//
-//      //}
-//
-//
-////      estatus = process_init();
+//      //auto estatus =
+////      process_init();
 ////
-////      if (!estatus)
+////      //if(!estatus)
+////      //{
+////
+////      //   return estatus;
+////
+////      //}
+////
+////      if (m_psystemParent)
 ////      {
 ////
-////         return estatus;
+////         m_psystemParent->add_reference(this);
 ////
 ////      }
+////
+////
+////      //if (!estatus)
+////      //{
+////
+////      //   return estatus;
+////
+////      //}
+////
+////      //estatus =
+////      init1();
+////
+////      //if(!estatus)
+////      //{
+////
+////      //   return estatus;
+////
+////      //}
+////
+////      //estatus =
+////      init2();
+////
+////      //if (!estatus)
+////      //{
+////
+////      //   return estatus;
+////
+////      //}
+////
+////
+//////      estatus = process_init();
+//////
+//////      if (!estatus)
+//////      {
+//////
+//////         return estatus;
+//////
+//////      }
+////
+////
+////      //estatus = process_creation_requests();
+////
+////      //if (!estatus)
+////      //{
+////
+////      //   return estatus;
+////
+////      //}
+////
+////      //return true;
 //
-//
-//      //estatus = process_creation_requests();
-//
-//      //if (!estatus)
-//      //{
-//
-//      //   return estatus;
-//
-//      //}
-//
-//      //return true;
-
-   }
+//   }
 
 
    void system::init()
@@ -1721,47 +1721,47 @@ pdirectorysystem->create("/ca2core");
 
    }
 
-
-   void system::init_system()
-   {
-
-      //auto estatus =
-      ::platform::system::init_system();
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-//      ::platform::application * pappStartup = ::platform::application::g_p;
 //
-//      if(::is_null(pappStartup))
-//      {
+//   void system::init_system()
+//   {
 //
-//         pappStartup = new_app(m_strAppId);
+//      //auto estatus =
+//      ::platform::system::init_system();
 //
-//      }
-//
-//      //if (!pappStartup)
+//      //if(!estatus)
 //      //{
 //
-//      //   return -1;
+//      //   return estatus;
 //
 //      //}
 //
-//      __refer(application(), pappStartup);
+////      ::platform::application * pappStartup = ::platform::application::g_p;
+////
+////      if(::is_null(pappStartup))
+////      {
+////
+////         pappStartup = new_app(m_strAppId);
+////
+////      }
+////
+////      //if (!pappStartup)
+////      //{
+////
+////      //   return -1;
+////
+////      //}
+////
+////      __refer(application(), pappStartup);
+////
+////      application()->initialize(this);
+////
+////      application()->get_property_set().merge(get_property_set());
+////
+////      set_main_struct(*application());
 //
-//      application()->initialize(this);
+//      //return estatus;
 //
-//      application()->get_property_set().merge(get_property_set());
-//
-//      set_main_struct(*application());
-
-      //return estatus;
-
-   }
+//   }
 
 
    void system::term()
@@ -1844,32 +1844,32 @@ pdirectorysystem->create("/ca2core");
    //}
 
 
-   void system::term_task()
-   {
+   //void system::term_task()
+   //{
 
-      try
-      {
+   //   try
+   //   {
 
-         term_system();
+   //      term_system();
 
-      }
-      catch (...)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
-      }
+   //   }
 
-      try
-      {
+   //   try
+   //   {
 
-         ::thread::term_task();
+   //      ::thread::term_task();
 
-      }
-      catch (...)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
-      }
+   //   }
 
-   }
+   //}
 
 
    //void system::post_to_all_threads(const ::atom & atom, WPARAM wparam, LPARAM lparam)

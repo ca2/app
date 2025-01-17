@@ -1524,50 +1524,50 @@ namespace aura
    }
 
 
-   void system::init_task()
-   {
+   //void system::init_task()
+   //{
 
-      
-      return ::aqua::system::init_task();
+   //   
+   //   return ::aqua::system::init_task();
 
 
-      //if (m_psystemParent)
-      //{
+   //   //if (m_psystemParent)
+   //   //{
 
-      //   m_psystemParent->add_reference(this);
+   //   //   m_psystemParent->add_reference(this);
 
-      //}
+   //   //}
 
-      //auto estatus = process_init();
+   //   //auto estatus = process_init();
 
-      //if (!estatus)
-      //{
+   //   //if (!estatus)
+   //   //{
 
-      //   return estatus;
+   //   //   return estatus;
 
-      //}
+   //   //}
 
-      //estatus = init_system();
+   //   //estatus = init_system();
 
-      //if (!estatus)
-      //{
+   //   //if (!estatus)
+   //   //{
 
-      //   return estatus;
+   //   //   return estatus;
 
-      //}
+   //   //}
 
-      //estatus = initial_check_directrix();
+   //   //estatus = initial_check_directrix();
 
-      //if (!estatus)
-      //{
+   //   //if (!estatus)
+   //   //{
 
-      //   return estatus;
+   //   //   return estatus;
 
-      //}
+   //   //}
 
-      //return true;
+   //   //return true;
 
-   }
+   //}
 
 
    void system::init()
@@ -2013,33 +2013,33 @@ namespace aura
 //   }
 
 
-   void system::term_task()
-   {
+   //void system::term_task()
+   //{
 
-      //try
-      //{
+   //   //try
+   //   //{
 
-         term_system();
+   //      term_system();
 
-      //}
-      //catch(...)
-      //{
+   //   //}
+   //   //catch(...)
+   //   //{
 
-      //}
+   //   //}
 
 
-      //try
-      //{
+   //   //try
+   //   //{
 
-         ::thread::term_task();
+   //      ::thread::term_task();
 
-      //}
-      //catch(...)
-      //{
+   //   //}
+   //   //catch(...)
+   //   //{
 
-      //}
+   //   //}
 
-   }
+   //}
 
 
 //   void system::term_system()

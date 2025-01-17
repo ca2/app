@@ -22081,7 +22081,7 @@ if(get_parent())
    ::pointer < ::user::thread > interaction::create_user_thread()
    {
 
-      auto puserthread = __øcreate < ::user::thread >();
+      auto puserthread = __create_new < ::user::thread >();
 
       puserthread->initialize_user_thread(window());
 

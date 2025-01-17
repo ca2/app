@@ -229,7 +229,25 @@ namespace aura
    ::user::user * application::user()
    {
 
-         return session()->user();
+      auto psession = session();
+
+      if (!psession)
+      {
+
+         return nullptr;
+
+      }
+
+      auto puser = psession->user();
+
+      if (!puser)
+      {
+
+         return nullptr;
+
+      }
+
+      return puser;
 
    }
 

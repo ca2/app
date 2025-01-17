@@ -413,10 +413,12 @@ namespace platform
       virtual void process_init();
 
 
-      virtual void call_init_system();
+      //virtual void call_init_system();
 
 
       virtual void init_system();
+
+      virtual void term_system();
 
 
       virtual void on_start_system();

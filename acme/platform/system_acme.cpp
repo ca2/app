@@ -4323,13 +4323,19 @@ return nullptr;
    }
 
 
-   void acme_system_layer::call_init_system()
-   {
-   }
+   //void acme_system_layer::call_init_system()
+   //{
+   //}
 
 
    void acme_system_layer::init_system()
    {
+   }
+
+
+   void acme_system_layer::term_system()
+   {
+
    }
 
 

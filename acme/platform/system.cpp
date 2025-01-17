@@ -1792,7 +1792,7 @@ particle* system::matter_mutex()
    void system::term_task()
    {
 
-      //term_system();
+      term_system();
 
       task::term_task();
 
@@ -1985,6 +1985,14 @@ particle* system::matter_mutex()
       //}
 
       //return success;
+
+   }
+
+
+   void system::term_system()
+   {
+
+
 
    }
 

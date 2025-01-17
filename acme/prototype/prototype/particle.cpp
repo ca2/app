@@ -1872,7 +1872,25 @@ bool particle::_handle_call(::payload & payload, const ::string & strObject, con
 ::user::user * particle::user()
 {
 
-   return ::is_set(application()) ? application()->user() : nullptr;
+   auto papplication = application();
+
+   if (!papplication)
+   {
+
+      return nullptr;
+
+   }
+
+   auto puser = papplication->user();
+
+   if (!puser)
+   {
+
+      return nullptr;
+
+   }
+
+   return puser;
 
 }
 

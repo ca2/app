@@ -153,8 +153,6 @@ namespace windowing
 
       ::channel::on_initialize_particle();
 
-      auto psession = session();
-
       auto puser = user();
 
       puser->on_initialize_window_object();

@@ -302,6 +302,7 @@ namespace platform
 
 
       virtual void init_system() override;
+      virtual void term_system() override;
 
 
        //virtual void on_start_system() override;

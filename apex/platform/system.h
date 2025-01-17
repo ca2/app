@@ -128,7 +128,7 @@ namespace apex
       void inline_term() override;
 
 
-      void init_system() override;
+      //void init_system() override;
       virtual void term_system();
 
       virtual void on_system_construct();
@@ -255,8 +255,8 @@ namespace apex
 
 
 
-      virtual void init_task() override;
-      virtual void term_task() override;
+      //virtual void init_task() override;
+      //virtual void term_task() override;
 
 
 

@@ -397,8 +397,8 @@ namespace aura
       virtual ::factory::factory * imaging_factory() override;
       virtual ::string imaging_get_default_implementation_name() override;
 
-      virtual void init_task() override;
-      virtual void term_task() override;
+      //virtual void init_task() override;
+      //virtual void term_task() override;
 
 
       //virtual void thread_loop() override;

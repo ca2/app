@@ -3378,15 +3378,27 @@ namespace platform
 }
 */
 
+
 ::interlocked_huge_integer g_iNewTaskIndex = 1;
 
-thread_local ::huge_integer t_iThreadIndex = g_iNewTaskIndex++;
+
+static class ::task_index new_task_index()
+{
+
+   auto iNewTaskIndex = g_iNewTaskIndex++;
+
+   return iNewTaskIndex;
+
+}
+
+
+thread_local class ::task_index t_taskindex = new_task_index();
+
 
 class ::task_index task_index()
 {
 
-//   return ::system()->task_index(itask);
-	return t_iThreadIndex;
+	return t_taskindex;
 
 }
 

@@ -305,4 +305,35 @@ critical_section * get_pid_cs()
 }
 
 
+string get_current_directory_name();
 
+::file::path deduct_module_path_from_current_directory(const char * pszOptionalExecutableRelativePath)
+{
+	
+   ::string strName(pszOptionalExecutableRelativePath);
+	
+   if(strName.is_empty())
+   {
+      
+      strName = ::system()->m_args[0];
+      
+   }
+  
+   auto pathCurrentFolder = get_current_directory_name();
+   
+   auto path = pathCurrentFolder / strName;
+   
+   informationf("deduct_module_path_from_current_directory (1): %s", path.c_str());
+   
+   if(!file_exists(path))
+   {
+
+      return {};
+
+   }
+   
+   informationf("deduct_module_path_from_current_directory : OK!!: %s", path.c_str());
+   
+   return path;
+   
+}

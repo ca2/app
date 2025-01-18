@@ -1,15 +1,23 @@
 // Create by camilo on 2024-09-02 20:12 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+
+#if !defined(OPENBSD)
+#if defined(OPENBSD)
+#include <sys/types.h>
+#endif
 #include <sys/sysctl.h>
+#endif
 
-
-
-string get_current_directory_name();
+::file::path deduct_module_path_from_current_directory(const char * pszOptionalExecutableRelativePath = nullptr);
 
 
 //https://stackoverflow.com/questions/1528298/get-path-of-executable
 ::file::path get_module_path()
 {
+	
+   ::string strName;
+	
+#if !defined(OPENBSD)
 
    int mib[4]{0};
    
@@ -32,8 +40,6 @@ string get_current_directory_name();
    
    }
   
-   ::string strName;
-
    auto p = strName.get_range_buffer(size);
    
    result = sysctl(mib, 4, p, &size, nullptr, 0);
@@ -55,29 +61,12 @@ string get_current_directory_name();
       return strName;
 
    }
-   
-   if(strName.is_empty())
-   {
-      
-      strName = ::system()->m_args[0];
-      
-   }
-  
-   auto pathCurrentFolder = get_current_directory_name();
-   
-   auto path = pathCurrentFolder / strName;
-   
-   informationf("get_module_path (2): %s", path.c_str());
-   
-   if(!file_exists(path))
-   {
 
-      return {};
+#endif
 
-   }
-   
-   informationf("get_module_path (3): OK!!: %s", path.c_str());
+   auto path = deduct_module_path_from_current_directory(strName);
    
    return path;
 
 }
+

@@ -142,7 +142,7 @@ string task_get_name(htask htask)
 
 #if defined(__BSD__)
 
-   pthread_get_name_np(::block_cast < pthread_t >( htask.m_h), szThreadName, sizeof(szThreadName));
+   pthread_get_name_np(::literal_cast < pthread_t >( htask.m_h), szThreadName, sizeof(szThreadName));
 
    int error = errno;
 
@@ -190,7 +190,7 @@ void task_set_name(htask htask, const char * psz)
 
    errno = 0;
 
-   pthread_set_name_np(::block_cast < pthread_t >(pthread), strName);
+   pthread_set_name_np(::literal_cast < pthread_t >(pthread), strName);
 
    int error = errno;
 

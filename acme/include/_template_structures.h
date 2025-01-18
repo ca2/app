@@ -84,28 +84,66 @@ public:
 
 
 
+// block_cast and literal_cast work together
+// block_cast converts from a potentially smaller literal type to a potentially larger block type through memory copy
+// literal_cast converts from a potentially larger block type to a potentially smaller literal type through memory copy
+// so the block type must be larger or equal in size to the literal type
 
 
 
-template < typename T >
+template < typename LITERAL >
+class literal_cast 
+{
+public:
+
+
+	LITERAL m_literal;
+
+
+	template < typename BLOCK >
+	literal_cast(const BLOCK & block)
+	{
+		
+		static_assert(sizeof(m_literal) <= sizeof(block));
+		
+		memory_copy(&m_literal, &block, sizeof(m_literal));
+		
+	}
+
+
+	operator LITERAL &() { return m_literal; }
+
+	operator const LITERAL &() const { return m_literal; }
+
+	
+};
+
+
+template < typename BLOCK >
 class block_cast 
 {
 public:
-T m_t;
 
-template < typename T2 >
-block_cast(const T2 & t2)
-{
-	
-	static_assert(sizeof(m_t) <= sizeof(t2));
-	
-	memory_copy(&m_t, &t2, sizeof(m_t));
-	
-}
 
-operator T &() {return m_t;}
-operator const T &() const {return m_t;}
+	BLOCK m_block{};
+
+
+	template < typename LITERAL >
+	block_cast(const LITERAL & literal)
+	{
+		
+		static_assert(sizeof(m_block) >= sizeof(literal));
+		
+		memory_copy(&m_block, &literal, sizeof(literal));
+		
+	}
+
+	operator BLOCK &() { return m_block; }
+
+	operator const BLOCK &() const { return m_block; }
+
 	
 };
+
 
 

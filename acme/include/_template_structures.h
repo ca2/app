@@ -84,3 +84,28 @@ public:
 
 
 
+
+
+
+template < typename T >
+class block_cast 
+{
+public:
+T m_t;
+
+template < typename T2 >
+block_cast(const T2 & t2)
+{
+	
+	static_assert(sizeof(m_t) <= sizeof(t2));
+	
+	memory_copy(&m_t, &t2, sizeof(m_t));
+	
+}
+
+operator T &() {return m_t;}
+operator const T &() const {return m_t;}
+	
+};
+
+

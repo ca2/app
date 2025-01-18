@@ -281,7 +281,7 @@ public:
 #endif
 
 
-   virtual bool is_task_set() const;
+   bool is_task_set() const override;
    //virtual void register_task();
    //virtual void unregister_task();
    

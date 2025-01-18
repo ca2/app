@@ -15,6 +15,11 @@
 #if defined(OPENBSD)
 #include "clear_cstddef"
 #define _BSD_SOURCE 1
+#define __BSD_VISIBLE 1
+#ifdef _TIME_H_
+#error "time.h already include"
+#endif
+#include <time.h>
 #elif defined(FREEBSD)
 #define __XSI_VISIBLE 700
 #define __BSD_VISIBLE 1

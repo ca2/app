@@ -4,6 +4,29 @@
 
 #include "acme/prototype/prototype/hash32.h"
 
+struct hthread_t
+{
+	unsigned int ui0;
+	unsigned int ui1;
+	unsigned int ui2;
+	unsigned int ui3;
+	unsigned int ui4;
+	unsigned int ui5;
+	unsigned int ui6;
+	unsigned int ui7;
+};
+
+
+//#ifdef _TIME_H_
+//#error "time.h already included WHAT!!!!!!"
+//#endif
+
+//#include <pthread.h>
+
+//#ifdef _TIME_H_
+//#error "time.h already included WHAT!!!!!!"
+//#endif
+
 
 #ifdef WINDOWS
 
@@ -26,9 +49,9 @@ public:
 
 #ifdef PARALLELIZATION_PTHREAD
 
-	pthread_t	m_h;
+	hthread_t	m_h;
 	
-	htask(pthread_t h):m_h(h) {}
+	htask(hthread_t h):m_h(h) {}
 	
 #elif defined(WINDOWS)
 
@@ -72,9 +95,9 @@ public:
 
 #ifdef PARALLELIZATION_PTHREAD
 
-	pthread_t	m_i;
+	hthread_t	m_i;
 	
-	itask(pthread_t i):m_i(i) {}
+	itask(hthread_t i):m_i(i) {}
 	
 #else
 

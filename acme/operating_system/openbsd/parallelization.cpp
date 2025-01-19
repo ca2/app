@@ -1,10 +1,10 @@
 #include "framework.h"
 #include "acme/operating_system/ansi/_pthread.h"
-#include "acme/windowing/windowing_base.h"
 #include "acme/platform/system.h"
-#include "acme/user/micro/display.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/node.h"
+#include "acme/windowing/display.h"
+#include "acme/windowing/windowing.h"
 #include "acme/_operating_system.h"
 #include <sys/param.h>
 #include <sys/sysctl.h>
@@ -270,67 +270,67 @@ namespace x11{namespace nano { namespace user{void process_messages();}}}
 namespace xcb{namespace nano { namespace user{void process_messages();}}}
 
 
-void _do_tasks()
+//void _do_tasks()
+//{
+
+   //auto psystem = system();
+
+   //auto pwindowingsystem = psystem->acme_windowing();
+
+   //if(::is_set(pwindowingsystem))	
+   //{
+
+      //pwindowingsystem->process_messages();
+
+   //}
+
+
+////   if(psystem->m_ewindowing == ::windowing::e_windowing_wayland)
+////   {
+////
+////      wayland_process_messages();
+////
+////   }
+////   else
+////  if(psystem->m_ewindowing == ::windowing::e_windowing_xcb)
+  //// {
+
+    ////  xcb_process_messages();
+
+  //// }
+  //// else
+  //// {
+
+////#if !defined(OPENBSD)
+
+  ////    x11_process_messages();
+
+////#endif
+
+  //// }
+
+   //psystem->node()->defer_do_main_tasks();
+
+//}
+
+
+
+
+namespace platform
 {
 
-   auto psystem = system();
 
-   auto pwindowingsystem = psystem->windowing_system();
-
-   if(::is_set(pwindowingsystem))	
-   {
-
-      pwindowingsystem->process_messages();
-
-   }
-
-
-//   if(psystem->m_ewindowing == ::windowing::e_windowing_wayland)
-//   {
-//
-//      wayland_process_messages();
-//
-//   }
-//   else
-//  if(psystem->m_ewindowing == ::windowing::e_windowing_xcb)
-  // {
-
-    //  xcb_process_messages();
-
-  // }
-  // else
-  // {
-
-//#if !defined(OPENBSD)
-
-  //    x11_process_messages();
-
-//#endif
-
-  // }
-
-   psystem->node()->defer_do_main_tasks();
-
-}
-
-
-
-
-namespace acme
-{
-
-
-   void node::user_post(const ::procedure &procedure)
+   void node::_user_post(const ::procedure &procedure)
    {
 
       information() << "::platform::node::user_post going to display_post";
 
-      ::acme::windowing::display::g_p->display_post(procedure);
+      system()->acme_windowing()->_user_post(procedure);
 
    }
 
 
-} // namespace acme
+} // namespace platform
 
 
 int get_processor_count()

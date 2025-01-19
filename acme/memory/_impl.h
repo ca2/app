@@ -15,3 +15,4 @@ inline TYPE& zero(TYPE& type) { ::zero(&type, sizeof(type)); return type; }
 
 
 
+

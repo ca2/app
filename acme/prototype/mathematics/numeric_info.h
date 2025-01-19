@@ -447,6 +447,7 @@ class CLASS_DECL_ACME numeric_info < unsigned long long > :
 
 #if !defined(GNU_COMPILER) \
    && !defined(FREEBSD) \
+   && !defined(OPENBSD) \
       && !defined(WINDOWS_DESKTOP) \
       && !defined(__APPLE__) \
       && !defined(UNIVERSAL_WINDOWS)

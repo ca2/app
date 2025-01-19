@@ -2936,7 +2936,7 @@ list(APPEND library_source
 endif ()
 
 
-if (${LINUX} OR ${LINUX} OR ${__BSD__} OR ${APPLE} OR ${SOLARIS})
+if (${LINUX} OR ${__BSD__} OR ${APPLE} OR ${SOLARIS})
 
 
    list(APPEND library_source

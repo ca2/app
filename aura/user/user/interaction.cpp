@@ -27427,7 +27427,7 @@ if(get_parent())
       if (::is_item_set(pitemHitTest))
       {
 
-         information() << "::is_item_set(pitemHitTest)";
+         //information() << "::is_item_set(pitemHitTest)";
 
          bRet = drag_on_mouse_hover(pitemHitTest, pmouse);
 

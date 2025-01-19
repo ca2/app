@@ -18,14 +18,15 @@ namespace platform
    uuid::uuid(const uuid_t & uuid)
    {
 
-      memcpy(this, &uuid, sizeof(uuid));
+      memory_copy(this, &uuid, sizeof(uuid));
 
    }
    
    
    uuid::uuid(const uuid & uuid)
    {
-      memcpy(this, &uuid, sizeof(uuid));
+      
+      memory_copy(this, &uuid, sizeof(uuid));
 
    }
 

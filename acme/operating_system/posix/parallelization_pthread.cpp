@@ -10,6 +10,11 @@
 //#include "acme/operating_system/linux/_user.h"
 //#endif
 
+#ifdef OPENBSD
+
+#include <string.h>
+
+#endif
 
 #if defined(PARALLELIZATION_PTHREAD)
 
@@ -310,7 +315,7 @@ thread_local ::message_queue * t_pmessagequeue = nullptr;
 CLASS_DECL_ACME htask current_htask()
 {
 
-   return (htask) ::pthread_self();
+   return ::block_cast < htask > (::pthread_self());
 
 }
 
@@ -318,7 +323,7 @@ CLASS_DECL_ACME htask current_htask()
 CLASS_DECL_ACME itask current_itask()
 {
 
-   return (itask) ::pthread_self();
+   return ::block_cast < itask > (::pthread_self());
 
 }
 
@@ -612,7 +617,7 @@ string task_get_name()
 
    auto pthread = pthread_self();
 
-   auto strTaskName = task_get_name((htask) pthread);
+   auto strTaskName = task_get_name(::block_cast < htask > (pthread));
 
    return strTaskName;
    
@@ -650,7 +655,7 @@ string task_get_name()
 void task_set_name(const char * psz)
 {
 
-   return task_set_name((htask) pthread_self(), psz);
+   return task_set_name(::block_cast < htask > (pthread_self()), psz);
 
 }
 
@@ -709,7 +714,7 @@ bool itask::operator == (const itask & i) const
       
    }
    
-   return pthread_equal(m_i, i.m_i);
+   return pthread_equal(::literal_cast < pthread_t > (m_i), ::literal_cast < pthread_t > (i.m_i));
    
 }
 
@@ -741,7 +746,7 @@ bool htask::operator == (const htask & h) const
       
    }
    
-   return pthread_equal(m_h, h.m_h);
+   return pthread_equal(::literal_cast < pthread_t > (m_h), ::literal_cast < pthread_t > (h.m_h));
    
 }
 
@@ -789,7 +794,7 @@ namespace parallelization
 
       thread_get_os_priority(&iPolicy, &schedparam, epriority);
 
-      pthread_setschedparam(htask.m_h, iPolicy, &schedparam);
+      pthread_setschedparam(::literal_cast < pthread_t > (htask.m_h), iPolicy, &schedparam);
 
       return true;
 
@@ -814,7 +819,7 @@ namespace parallelization
 
       schedparam.sched_priority = 0;
 
-      pthread_getschedparam(htask.m_h, &iOsPolicy, &schedparam);
+      pthread_getschedparam(::literal_cast < pthread_t > (htask.m_h), &iOsPolicy, &schedparam);
 
       return thread_get_scheduling_priority(iOsPolicy, &schedparam);
 

@@ -140,9 +140,9 @@ string task_get_name(htask htask)
 
    char szThreadName[32];
 
-#if defined(FREEBSD) || defined(OPENBSD)
+#if defined(__BSD__)
 
-   pthread_get_name_np((pthread_t) htask, szThreadName, sizeof(szThreadName));
+   pthread_get_name_np(::literal_cast < pthread_t >( htask.m_h), szThreadName, sizeof(szThreadName));
 
    int error = errno;
 
@@ -190,7 +190,7 @@ void task_set_name(htask htask, const char * psz)
 
    errno = 0;
 
-   pthread_set_name_np(pthread, strName);
+   pthread_set_name_np(::literal_cast < pthread_t >(pthread), strName);
 
    int error = errno;
 
@@ -213,7 +213,7 @@ void task_set_name(htask htask, const char * psz)
    if (error)
    {
    
-      printf("task_set_name pthread_t 0x%016lX\n", (long unsigned int)pthread);
+//      printf("task_set_name pthread_t 0x%016lX\n", (long unsigned int)pthread);
       if(error == ESRCH)
       {
       

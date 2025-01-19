@@ -81,7 +81,7 @@ if (MSVC)
     target_link_options(programming PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(programming PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/programming.lib")
     target_link_options(programming PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/programming.def")
-    target_link_libraries(programming PRIVATE ${library_references})
+    target_link_libraries(programming PRIVATE ${library_references} ${global_library_references})
 
 
 elseif(${LINUX})
@@ -93,7 +93,7 @@ elseif(${LINUX})
 
 
     #target_link_options(${PROJECT_NAME} PRIVATE "-Wl,-rpath=\$ORIGIN")
-    target_link_libraries(programming PRIVATE dl ${library_references})
+    target_link_libraries(programming PRIVATE dl ${library_references} ${global_library_references})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 

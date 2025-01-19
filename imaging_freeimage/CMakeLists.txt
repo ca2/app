@@ -27,7 +27,7 @@ add_library(static_${PROJECT_NAME} STATIC ${library_source})
 list(APPEND library_references acme apex aqua aura)
 
 
-list(APPEND static_library_references ${library_references})
+list(APPEND static_library_references ${library_references} ${global_library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
 
@@ -68,7 +68,7 @@ elseif (${FREEBSD})
     target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive ${PKGCONFIG_${PROJECT_NAME}_CFLAGS})
     target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive ${PKGCONFIG_${PROJECT_NAME}_CFLAGS})
     target_link_options(${PROJECT_NAME} PRIVATE  ${PKGCONFIG_${PROJECT_NAME}_LDFLAGS})
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_${PROJECT_NAME}_LIBRARIES})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} ${PKGCONFIG_${PROJECT_NAME}_LIBRARIES})
     target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${PKGCONFIG_${PROJECT_NAME}_LIBRARIES})
 
 

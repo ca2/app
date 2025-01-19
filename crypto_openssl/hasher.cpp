@@ -40,7 +40,9 @@
 #include <openssl/ssl.h>
 #include <openssl/md5.h>
 #include <openssl/err.h>
+#if !defined(OPENSSL_NO_WHIRLPOOL)
 #include <openssl/whrlpool.h>
+#endif
 
 #undef boolean
 

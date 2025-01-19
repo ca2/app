@@ -2698,9 +2698,8 @@ m_ibuf(isize)
          }
 
 
-
-
 #if OPENSSL_VERSION_NUMBER >= 0x10101000L  && !defined(LIBRESSL_VERSION_NUMBER)
+
 
          if (!SSL_CTX_use_cert_and_key(m_psslcontext->m_pclientcontext->m_psslcontext, pcert->m_pcertificate, pcert->m_pkey, pcert->m_pchain, 1))
          {
@@ -2709,26 +2708,31 @@ m_ibuf(isize)
 
          }
 
+
 #else
 
-         if (!SSL_CTX_use_certificate(m_psslcontext->m_pclientcontext->m_psslcontext, certificate))
+
+         if (!SSL_CTX_use_certificate(m_psslcontext->m_pclientcontext->m_psslcontext, pcert->m_pcertificate))
          {
 
             fatal() << "tcp_socket InitializeContext: Couldn't read certificate string " << keyfile;
 
          }
 
-         if (!SSL_CTX_use_PrivateKey(m_psslcontext->m_pclientcontext->m_psslcontext, key))
+
+         if (!SSL_CTX_use_PrivateKey(m_psslcontext->m_pclientcontext->m_psslcontext, pcert->m_pkey))
          {
 
             fatal() << "tcp_socket InitializeContext: Couldn't read certificate string " << keyfile;
 
          }
+         
 
-         for (auto x : xa)
+		 for(int i = 0; i < sk_X509_num(pcert->m_pchain); i++)
+         //for (auto x : xa)
          {
 
-            if (!SSL_CTX_add_extra_chain_cert(m_psslcontext->m_pclientcontext->m_psslcontext, x))
+            if (!SSL_CTX_add_extra_chain_cert(m_psslcontext->m_pclientcontext->m_psslcontext, sk_X509_value(pcert->m_pchain, i)))
             {
 
                fatal() << "tcp_socket InitializeContext: Couldn't read certificate string " + keyfile;

@@ -122,8 +122,10 @@ namespace crypto_openssl
          return EVP_sha1();
       case e_hash_sha256:
          return EVP_sha256();
+#if !defined(OPENSSL_NO_WHIRLPOOL)
       case e_hash_nessie:
          return EVP_whirlpool();
+#endif
       case e_hash_none:
          break;
       }

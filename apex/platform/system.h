@@ -129,7 +129,7 @@ namespace apex
 
 
       //void init_system() override;
-      virtual void term_system();
+      void term_system() override;
 
       virtual void on_system_construct();
 

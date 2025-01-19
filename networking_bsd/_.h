@@ -46,6 +46,9 @@
 #include <openssl/rand.h>
 #include <openssl/err.h>
 #include <openssl/evp.h>
+//#if OPENSSL_VERSION_NUMBER < 0x10101000L  || defined(LIBRESSL_VERSION_NUMBER)
+//#include <openssl/whrlpool.h>
+//#endif
 #undef index
 #endif
 

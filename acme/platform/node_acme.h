@@ -402,7 +402,7 @@ namespace platform
       virtual void defer_do_main_tasks();
 
 
-      virtual void user_post_quit();
+      //virtual void user_post_quit();
 
 
       //virtual void node_quit();

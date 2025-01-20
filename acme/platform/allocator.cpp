@@ -452,6 +452,13 @@ namespace allocator
 
       }
 
+      if (((iptr) preferer) < 0xf0000000)
+      {
+
+         //output_debug_string("what?!?!");
+
+      }
+
       //ASSERT(!t_preferencerefererReleaser);
 
       if (t_preferencerefererReleaser)

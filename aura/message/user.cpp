@@ -338,34 +338,34 @@ namespace message
    mouse::~mouse()
    {
 
-      try
-      {
-
-         //information() << "mouse::~mouse this (X) : " << (::iptr) (::user::message *)this;
-         //information() << "mouse::~mouse pwnd (X) : " << (::iptr) m_pwindow.m_p;
-
-         auto pwindow = window();
-
-         if (::is_set(pwindow))
-         {
-
-            //information() << "::message::mouse::~mouse pwindow is_set";
-
-            pwindow->on_destruct_mouse_message(this);
-
-         }
-         else
-         {
-
-            //information() << "::message::mouse::~mouse pwindow !is_set";
-
-         }
-
-      }
-      catch(...)
-      {
-
-      }
+      // try
+      // {
+      //
+      //    //information() << "mouse::~mouse this (X) : " << (::iptr) (::user::message *)this;
+      //    //information() << "mouse::~mouse pwnd (X) : " << (::iptr) m_pwindow.m_p;
+      //
+      //    auto pwindow = window();
+      //
+      //    if (::is_set(pwindow))
+      //    {
+      //
+      //       //information() << "::message::mouse::~mouse pwindow is_set";
+      //
+      //       pwindow->on_destruct_mouse_message(this);
+      //
+      //    }
+      //    else
+      //    {
+      //
+      //       //information() << "::message::mouse::~mouse pwindow !is_set";
+      //
+      //    }
+      //
+      // }
+      // catch(...)
+      // {
+      //
+      // }
 
    }
 

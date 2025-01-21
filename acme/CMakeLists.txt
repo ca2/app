@@ -2909,8 +2909,15 @@ if (${__BSD__})
 
    list(APPEND library_source
       operating_system/bsd/time.cpp
-      operating_system/bsd/sysctl.cpp
    )
+   
+   if(NOT ${OPENBSD})
+   
+		list(APPEND library_source
+			operating_system/bsd/sysctl.cpp
+		)
+   
+   endif()
 
 endif ()
 

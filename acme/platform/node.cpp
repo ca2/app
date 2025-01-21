@@ -1436,11 +1436,11 @@ namespace platform
    }
 
 
-   void node::user_post_quit()
-   {
-
-
-   }
+   // void node::user_post_quit()
+   // {
+   //
+   //
+   // }
 
 
    bool node::should_launch_on_node(::topic * ptopic)

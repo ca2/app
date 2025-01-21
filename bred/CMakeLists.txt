@@ -78,7 +78,7 @@ if (MSVC)
     target_link_options(bred PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(bred PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/bred.lib")
     #target_link_options(bred PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/bred.def")
-    target_link_libraries(bred PRIVATE ${library_references})
+    target_link_libraries(bred PRIVATE ${library_references} ${global_library_references})
 
 
 elseif(${LINUX} OR ${__BSD__})
@@ -88,7 +88,7 @@ elseif(${LINUX} OR ${__BSD__})
     target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
-    target_link_libraries(bred PRIVATE ${library_references})
+    target_link_libraries(bred PRIVATE ${library_references} ${global_library_references})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 

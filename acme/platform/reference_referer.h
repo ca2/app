@@ -49,6 +49,7 @@ public:
       m_cstringDebug(pszDebug),
       m_iSerial(new_serial())
    {
+      common_construct();
    }
    reference_referer(const reference_referer & referer) :
       //m_bConstructor(referer.m_bConstructor),
@@ -60,6 +61,7 @@ public:
       m_p(referer.m_p),
       m_iSerial(referer.m_iSerial)
    {
+      common_construct();
    }
    reference_referer(reference_referer && referer) :
       //m_bConstructor(referer.m_bConstructor),
@@ -76,6 +78,7 @@ public:
       referer.m_p = nullptr;
       referer.m_iSerial = -1;
       //referer.m_preferencerefererNext = nullptr;
+      common_construct();
    }
    template < primitive_subparticle A_SUBPARTICLE >
    //reference_referer(::subparticle * psubparticleExisting, A_SUBPARTICLE * pparticle, const char * pszFunctionName = nullptr, const char * pszDebug = nullptr) :
@@ -89,6 +92,7 @@ public:
       m_p(nullptr),
       m_iSerial(new_serial())
    {
+      common_construct();
    }
    template < non_primitive_subparticle NON_SUBPARTICLE >
    //reference_referer(::subparticle * psubparticleExisting, NON_SUBPARTICLE * p, const char * pszFunctionName, const char * pszDebug = nullptr) :
@@ -102,6 +106,7 @@ public:
       m_p(p),
       m_iSerial(new_serial())
    {
+      common_construct();
    }
    ~reference_referer()
    {
@@ -177,6 +182,8 @@ public:
    {
       return !this->operator!();
    }
+
+   void common_construct();
 
 };
 

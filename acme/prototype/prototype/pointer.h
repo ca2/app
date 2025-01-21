@@ -1348,6 +1348,15 @@ template < primitive_subparticle SUBPARTICLE >
 }
 
 
+template < primitive_subparticle SUBPARTICLE >
+::pointer < SUBPARTICLE > transfer_as_pointer(SUBPARTICLE* p)
+{
+
+   return { ::transfer_t{}, p };
+
+}
+
+
 class __pointer_site
 {
 public:

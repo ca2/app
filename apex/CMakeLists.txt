@@ -1439,7 +1439,7 @@ endif ()
 list(APPEND library_references acme)
 
 
-list(APPEND static_library_references ${library_references})
+list(APPEND static_library_references ${library_references} ${global_library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
 
@@ -1465,9 +1465,9 @@ if (MSVC)
    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/apex.lib")
    #target_link_options(apex PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/apex.def")
 
-   message(STATUS "\${library_references} is ${library_references}")
+   message(STATUS "\${library_references} ${global_library_references} is ${library_references} ${global_library_references}")
 
-   target_link_libraries(${PROJECT_NAME} PRIVATE zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32 ${library_references})
+   target_link_libraries(${PROJECT_NAME} PRIVATE zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32 ${library_references} ${global_library_references})
 
 
 elseif (${LINUX} OR ${__BSD__})
@@ -1498,7 +1498,7 @@ elseif (${LINUX} OR ${__BSD__})
       list(APPEND this_system_libraries dl pthread idn z)
    endif ()
 
-   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES} ${this_system_libraries} ${global_library_references})
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} ${PKGCONFIG_LIBRARIES} ${this_system_libraries})
    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${PKGCONFIG_LIBRARIES} ${this_system_libraries})
 
 

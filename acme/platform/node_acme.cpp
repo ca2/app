@@ -468,10 +468,10 @@ namespace platform
    }
 
 
-   void acme_node_layer::user_post_quit()
-   {
-   }
-
+   // void acme_node_layer::user_post_quit()
+   // {
+   // }
+   //
 
    //void acme_node_layer::node_quit(){}
 

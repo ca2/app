@@ -1462,7 +1462,7 @@ bool thread::handle_message(bool & bContinue)
          informationf(
             "\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " +
             ::as_string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" +
-            ::as_string((huge_natural)::current_itask().m_i) + ")\n\n\n");
+            ::as_string((huge_natural)::task_index().m_i) + ")\n\n\n");
          
          bContinue = false;
 

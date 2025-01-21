@@ -40,7 +40,7 @@ if (MSVC)
     target_compile_options(api_ca2 PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(api_ca2 PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(api_ca2 PRIVATE "/SUBSYSTEM:WINDOWS")
-    target_link_libraries(api_ca2 PRIVATE ${library_references})
+    target_link_libraries(api_ca2 PRIVATE ${library_references} ${global_library_references})
     target_link_libraries(api_ca2 PRIVATE ws2_32 winmm shlwapi)
 
 
@@ -48,7 +48,7 @@ elseif(${LINUX} OR ${__BSD__})
 
 
     target_compile_options(api_ca2 PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
-    target_link_libraries(api_ca2 PRIVATE ${library_references})
+    target_link_libraries(api_ca2 PRIVATE ${library_references} ${global_library_references})
     target_link_options(api_ca2 PRIVATE -Wl,-z,defs)
 
 

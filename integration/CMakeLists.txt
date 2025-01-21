@@ -64,7 +64,7 @@ if (MSVC)
     target_compile_options(app_integration PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(app_integration PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(app_integration PRIVATE "/SUBSYSTEM:WINDOWS")
-    target_link_libraries(app_integration PRIVATE ${library_references})
+    target_link_libraries(app_integration PRIVATE ${library_references} ${global_library_references})
 
 elseif(${LINUX} OR ${__BSD__})
 
@@ -79,7 +79,7 @@ elseif(${LINUX} OR ${__BSD__})
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
     #target_link_options(${PROJECT_NAME} PRIVATE "-Wl,-rpath=\$ORIGIN")
-    target_link_libraries(app_integration PRIVATE ${library_references})
+    target_link_libraries(app_integration PRIVATE ${library_references} ${global_library_references})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 

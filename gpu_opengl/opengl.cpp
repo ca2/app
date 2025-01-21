@@ -256,7 +256,7 @@ namespace opengl
       /* verify the type of file */
       char filecode[4];
       fread(filecode, 1, 4, fp);
-      if (strncmp(filecode, "DDS ", 4) != 0) {
+      if (::string(filecode, 4).case_insensitive_order("DDS ") != 0) {
          //fclose(fp);
          return 0;
       }

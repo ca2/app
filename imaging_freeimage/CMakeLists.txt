@@ -19,12 +19,17 @@ list(APPEND library_source
         saving.cpp)
 
 
+list(APPEND library_references
+   acme 
+   apex 
+   aqua 
+   aura )
+
+
 add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
-
-list(APPEND library_references acme apex aqua aura)
 
 
 list(APPEND static_library_references ${library_references} ${global_library_references})
@@ -97,7 +102,7 @@ elseif (${LINUX} OR ${OPENBSD} OR ${NETBSD})
 
     target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_${PROJECT_NAME}_CFLAGS})
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_${PROJECT_NAME}_LDFLAGS})
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_${PROJECT_NAME}_LIBRARIES} freeimage acme apex aqua aura)
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_${PROJECT_NAME}_LIBRARIES} freeimage ${library_references} ${global_library_references})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 

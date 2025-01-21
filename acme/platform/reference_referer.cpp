@@ -17,6 +17,8 @@ CLASS_DECL_ACME huge_integer new_reference_referer_serial()
 }
 
 
+#if REFERENCING_DEBUGGING
+
 
 void reference_referer::common_construct()
 {
@@ -31,3 +33,9 @@ void reference_referer::common_construct()
    }
 
 }
+
+
+#endif
+
+
+

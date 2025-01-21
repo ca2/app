@@ -39,14 +39,27 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 target_include_directories(static_${PROJECT_NAME}_library PRIVATE ${library_include_directories})
 
-target_link_options(${PROJECT_NAME} PRIVATE -static -static-libgcc -static-libstdc++)
+#target_link_options(${PROJECT_NAME} PRIVATE -static -static-libgcc -static-libstdc++)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE
-        static_acme
-        static_acme_linux)
+if(${LINUX})
+   target_link_options(${PROJECT_NAME} PRIVATE -static -static-libgcc -static-libstdc++)
+elseif(${FREEBSD})
+   target_link_options(${PROJECT_NAME} PRIVATE -static)
+elseif(${OPENBSD})
+   target_link_options(${PROJECT_NAME} PRIVATE -static)
+elseif(${NETBSD})
+   target_link_options(${PROJECT_NAME} PRIVATE -static)
+endif()
 
 add_dependencies(${PROJECT_NAME} static_acme)
 add_dependencies(static_${PROJECT_NAME}_library static_acme)
+
+if(${LINUX})
+
+target_link_libraries(${PROJECT_NAME} PRIVATE
+        static_acme_linux)
+        
+endif()
 
 if(NOT ${WINDOWS})
 add_dependencies(static_${PROJECT_NAME}_library static_nano_compress_command_line)

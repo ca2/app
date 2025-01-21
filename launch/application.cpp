@@ -444,13 +444,13 @@ namespace launch
 
       directory_system()->change_current(m_pathBinaryFolder);
 
-#if defined(LINUX) || defined(FREEBSD)
+#if defined(WINDOWS)
 
-      ::string strExecutable = "_" + m_strAppRoot + "_" + m_strAppName;
+      ::string strExecutable = "shared_" + m_strAppRoot + "_" + m_strAppName + ".exe";
 
 #else
 
-      ::string strExecutable = "shared_" + m_strAppRoot + "_" + m_strAppName + ".exe";
+      ::string strExecutable = "_" + m_strAppRoot + "_" + m_strAppName;
 
 #endif
 

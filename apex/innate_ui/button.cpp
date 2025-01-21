@@ -32,7 +32,13 @@ namespace innate_ui
    void button::call_on_click()
    {
 
-      m_callbackOnClick();
+      if (m_callbackOnClick)
+      {
+
+         m_callbackOnClick();
+
+      }
+
    }
 
 

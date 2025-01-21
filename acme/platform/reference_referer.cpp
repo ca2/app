@@ -18,3 +18,16 @@ CLASS_DECL_ACME huge_integer new_reference_referer_serial()
 
 
 
+void reference_referer::common_construct()
+{
+
+   auto uPointer = (::uptr) this;
+
+   if (uPointer < 0x1000000)
+   {
+
+      //::output_debug_string("what?!?!?!?!");
+
+   }
+
+}

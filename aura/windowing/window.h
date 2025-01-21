@@ -617,7 +617,7 @@ namespace windowing
 
       bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse) override;
 
-      virtual void on_destruct_mouse_message(::message::mouse * pmouse);
+      virtual void final_mouse_message_handling(::message::mouse * pmouse);
 
 
       ::trace_statement & trace_statement_prefix(::trace_statement & statement) const override;

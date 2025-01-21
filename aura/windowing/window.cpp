@@ -572,7 +572,7 @@ namespace windowing
           pmessage->m_atom == e_message_mouse_wheel)
       {
 
-         ::pointer<::message::mouse> pmouse = pmessage;
+         auto pmouse = pmessage->m_union.m_pmouse;
 
          //information() << "msghdl pwnd : " << (::iptr) pmouse->m_pwindow.m_p;
 
@@ -3127,17 +3127,8 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::on_destruct_mouse_message(::message::mouse * pmouse)
+   void window::final_mouse_message_handling(::message::mouse * pmouse)
    {
-
-      //information() << "on_destruct_mouse_message";
-
-      if (::is_null(pmouse))
-      {
-
-         return;
-
-      }
 
       //information() << "pmouse set";
 
@@ -3146,17 +3137,23 @@ void window::set_oswindow(::oswindow oswindow)
 
          ::windowing::cursor * pcursor = nullptr;
 
-
-
          //if(::is_set(pimpl))
          {
 
+            __check_refdbg;
+
             auto puserinteraction = user_interaction();
+
+            __check_refdbg;
 
             if (::is_set(puserinteraction))
             {
 
+               __check_refdbg;
+
                pcursor = puserinteraction->user_mouse_get_cursor(pmouse);
+
+               __check_refdbg;
 
             }
 
@@ -3165,7 +3162,11 @@ void window::set_oswindow(::oswindow oswindow)
          if (!pcursor)
          {
 
+            __check_refdbg;
+
             pcursor = get_mouse_cursor();
+
+            __check_refdbg;
 
             if (pcursor)
             {
@@ -3185,15 +3186,19 @@ void window::set_oswindow(::oswindow oswindow)
          if (pcursor)
          {
 
-            //information() << "pcursor set";
+            __check_refdbg;
 
             set_mouse_cursor(pcursor);
 
+            __check_refdbg;
+
          }
+
 
       }
       catch (...)
       {
+
 
       }
 
@@ -6278,9 +6283,6 @@ void window::set_oswindow(::oswindow oswindow)
 
       //}
 
-      if (pmouse->m_atom == e_message_left_button_up)
-      {
-
          auto pwindow = pmouse->m_pwindow;
 
          //auto pwindowimpl = pwindow->m_pwindow;
@@ -6288,21 +6290,26 @@ void window::set_oswindow(::oswindow oswindow)
          if (::is_set(pwindow))
          {
 
-            if (::is_set(pwindow->m_puiLastLButtonDown))
+            if (pmouse->m_atom == e_message_left_button_up)
             {
+               if (::is_set(pwindow->m_puiLastLButtonDown))
+               {
 
-               pwindow->m_puiLastLButtonDown = nullptr;
+                  pwindow->m_puiLastLButtonDown = nullptr;
 
+               }
+
+               if (::is_set(pwindow->m_pitemLButtonDown))
+               {
+
+                  pwindow->m_pitemLButtonDown = nullptr;
+
+               }
             }
 
-            if (::is_set(pwindow->m_pitemLButtonDown))
-            {
+            pwindow->final_mouse_message_handling(pmouse);
 
-               pwindow->m_pitemLButtonDown = nullptr;
 
-            }
-
-         }
 
       }
 

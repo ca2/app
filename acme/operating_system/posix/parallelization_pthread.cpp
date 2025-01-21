@@ -165,7 +165,7 @@ thread_local ::message_queue * t_pmessagequeue = nullptr;
 
       int i;
 
-      notify_lock notifylock;
+      auto pnotifylock = __allocate notify_lock();
 
       //while (true)
       //{
@@ -173,7 +173,7 @@ thread_local ::message_queue * t_pmessagequeue = nullptr;
          if (::is_set(pmq))
          {
 
-            if (pmq->m_happeningNewMessage.start_notify_lock(&notifylock))
+            if (pmq->m_happeningNewMessage.start_notify_lock(pnotifylock))
             {
 
                return (enum_status)(((int) signaled_base) + dwSize);
@@ -187,7 +187,7 @@ thread_local ::message_queue * t_pmessagequeue = nullptr;
 
             auto psync = pparticle[i];
 
-            if (psync->start_notify_lock(&notifylock))
+            if (psync->start_notify_lock(pnotifylock))
             {
 
                auto estatus = signaled_base + i;
@@ -198,7 +198,7 @@ thread_local ::message_queue * t_pmessagequeue = nullptr;
 
          }
 
-   if (!notifylock.m_manualresethappening._wait(timeWait))
+   if (!pnotifylock->m_manualresethappening._wait(timeWait))
    {
 
       return error_wait_timeout;

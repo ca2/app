@@ -26544,6 +26544,8 @@ if(get_parent())
    void interaction::on_message_mouse_move(::message::message * pmessage)
    {
 
+      __check_refdbg;
+
       if (!is_window_enabled())
       {
 
@@ -26608,6 +26610,8 @@ if(get_parent())
 
       }
 
+__check_refdbg;
+
       auto pmouse = pmessage->m_union.m_pmouse;
 
       if (m_ekeyboardmode == ::user::e_keyboard_mode_reposition
@@ -26628,6 +26632,7 @@ if(get_parent())
 
       }
 
+__check_refdbg;
 
       if (m_bBarDragScrollLeftButtonDown)
       {
@@ -26696,9 +26701,14 @@ if(get_parent())
 
       {
 
+
+         __check_refdbg;
+
          //_synchronous_lock synchronouslock(this->synchronization());
 
          user_mouse_set_cursor(pmouse, get_mouse_cursor());
+
+         __check_refdbg;
 
          if (user_mouse_get_cursor(pmouse))
          {
@@ -26724,6 +26734,8 @@ if(get_parent())
             //information() << "(no cursor)";
 
          }
+
+         __check_refdbg;
 
          //if (m_pdragmove && m_pdragmove->m_bLButtonDown)
          //{
@@ -26773,8 +26785,11 @@ if(get_parent())
 
          class ::time timeNoiseSuppressionElapsed;
 
+         __check_refdbg;
+
          if (!system()->windowing()->has_readily_gettable_absolute_coordinates())
          {
+            __check_refdbg;
 
             timeNoiseSuppressionElapsed = window()->m_timeHoverNoiseSuppression.elapsed();
 
@@ -26798,6 +26813,8 @@ if(get_parent())
          //if (!m_pitemHover || !m_pitemHover->is_item_set())
          //{
 
+         __check_refdbg;
+
          if (bUpdateHover)
          {
 
@@ -26810,6 +26827,8 @@ if(get_parent())
 
             }
 
+            __check_refdbg;
+
             //bool bAvoidRedraw = !m_bDefaultMouseHoverHandling;
 
             auto pitemFront = update_hover(pmouse, e_zorder_front);
@@ -26819,9 +26838,14 @@ if(get_parent())
             if (!pitemFront)
             {
 
+               __check_refdbg;
+
                //information() << "update_hover pmouse e_zorder_back";
 
                pitemBack = update_hover(pmouse, e_zorder_back);
+
+               __check_refdbg;
+
 
             }
 
@@ -26924,6 +26948,8 @@ if(get_parent())
          }
 
       }
+
+      __check_refdbg;
 
    }
 

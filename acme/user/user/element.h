@@ -337,6 +337,7 @@ namespace user
 
       //virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
       virtual void on_reposition();
+      virtual void on_size();
       //virtual void on_show_window();
 
       //virtual void BringToTop(::e_display edisplay);

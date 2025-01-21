@@ -2281,7 +2281,15 @@ namespace user
    void element::on_reposition()
    {
 
-      throw ::interface_only();
+      //throw ::interface_only();
+
+   }
+
+
+   void element::on_size()
+   {
+
+      //throw ::interface_only();
 
    }
 

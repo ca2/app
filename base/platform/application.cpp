@@ -448,6 +448,8 @@ namespace base
    
    ::pointer<::user::impact_system> application::impact_system(const ::atom & atom)
    {
+      
+      session()->user();
 
       return document_manager_container::impact_system(atom);
 

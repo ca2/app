@@ -68,9 +68,9 @@ elseif(${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_dependencies(${PROJECT_NAME} ${default_apex})
+add_dependencies(${PROJECT_NAME} ${apex_libraries})
 add_dependencies(${PROJECT_NAME} crypto_openssl)
-add_dependencies(${PROJECT_NAME} ${default_innate_ui})
+add_dependencies(${PROJECT_NAME} ${innate_ui_libraries})
 
 
 list(APPEND executable_include_directories ${CMAKE_CURRENT_SOURCE_DIR})

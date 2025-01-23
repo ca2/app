@@ -1015,16 +1015,6 @@ namespace node_xfce
 } // namespace node_xfce
 
 
-namespace operating_ambient_gtk_based
-{
-
-
-   class node;
-
-
-} // namespace operating_ambient_gtk_based
-
-
 namespace windowing
 {
 

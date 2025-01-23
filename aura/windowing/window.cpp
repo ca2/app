@@ -2536,11 +2536,11 @@ void window::set_oswindow(::oswindow oswindow)
          || bVisibilityChange || bZ || bActivate)
       {
 
-         information() << "windowing::window::set_window_position_unlocked";
+         debug() << "windowing::window::set_window_position_unlocked";
 
          ::int_rectangle r(pointDesign, sizeOutput);
 
-         information()  << "bMove : " << bMove
+         debug()  << "bMove : " << bMove
                         << ", bSize : " << bSize
                         << ", bVisibilityChange : " << bVisibilityChange
                         << ", bZ : " << bZ

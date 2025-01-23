@@ -612,6 +612,11 @@ namespace acme
 
 #endif
 
+   void shell::launch_process(const ::scoped_string & scopedstr)
+   {
+      
+      
+   }
    
 } // namespace acme
 

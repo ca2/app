@@ -78,6 +78,9 @@ namespace acme
 
 #endif
 
+      virtual void launch_process(const ::scoped_string & scopedstr);
+      
+
    };
 
 

@@ -10,7 +10,7 @@
 //#include "acme/operating_system/linux/_user.h"
 //#endif
 
-#ifdef OPENBSD
+#if defined(OPENBSD)  || defined(FREEBSD)
 
 #include <string.h>
 

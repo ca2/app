@@ -34,8 +34,7 @@ int SetThreadAffinityMask(htask h, unsigned int dwThreadAffinityMask)
 
 #if defined(OPENBSD)
 
-    return 1;
-
+    return 1;/home/camilo/cmake/console_build_tools/source/app/acme/operating_system/pthread/pthread_np.cpp
 #elif defined(NETBSD)
 
     cpuset_t * pcpuset = cpuset_create();
@@ -65,7 +64,7 @@ int SetThreadAffinityMask(htask h, unsigned int dwThreadAffinityMask)
            }
 
         }
-
+/home/camilo/cmake/console_build_tools/source/app/acme/operating_system/pthread/pthread_np.cpp
     }
 
     if(iCpuSetErrorCount <= 0)
@@ -78,7 +77,7 @@ int SetThreadAffinityMask(htask h, unsigned int dwThreadAffinityMask)
     cpuset_destroy(pcpuset);
 
     return iCpuSetErrorCount <= 0;
-
+/home/camilo/cmake/console_build_tools/source/app/acme/operating_system/pthread/pthread_np.cpp
 #else
 
     cpuset_t c;
@@ -97,7 +96,7 @@ int SetThreadAffinityMask(htask h, unsigned int dwThreadAffinityMask)
 
     }
 
-    pthread_setaffinity_np((pthread_t) h, sizeof(c), &c);
+    pthread_setaffinity_np(::literal_cast < pthread_t >(h), sizeof(c), &c);
 
     return 1;
 

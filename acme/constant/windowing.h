@@ -50,6 +50,7 @@ namespace windowing
    enum enum_windowing
    {
 
+      e_windowing_unknown = -1,
       e_windowing_none,
       e_windowing_win32,
       e_windowing_x11,

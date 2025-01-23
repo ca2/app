@@ -2486,6 +2486,14 @@ void window::set_oswindow(::oswindow oswindow)
       if (bSize)
       {
 
+         if(system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
+         {
+
+            bSize = false;
+
+         }
+
+
          //information() << "Design.size != Window.size " << sizeOutput << ", " << sizeWindow;
 
       }

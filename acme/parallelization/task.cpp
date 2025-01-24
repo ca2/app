@@ -1231,36 +1231,54 @@ void task::destroy()
 
    //m_pmanualresethappeningHappening.release();
 
-   //task_osterm();
+}
+
+
+void task::__task_init()
+{
+
+   __check_refdbg
+
+      on_task_init();
+
+   if (m_phappeningInitialization)
+   {
+
+      m_phappeningInitialization->set_happening();
+
+   }
+
 
 }
 
 
-//void task::__task_init()
-//{
-//
-//   __check_refdbg
-//
-//      on_task_init();
-//
-//   if (m_phappeningInitialization)
-//   {
-//
-//      m_phappeningInitialization->set_happening();
-//
-//   }
-//
-//
-//}
+void task::__task_term()
+{
+
+   on_task_term();
+
+}
 
 
-// void task::__task_term()
-// {
+void task::on_task_init()
+{
 
-//    on_task_term();
+   __check_refdbg
 
-// }
+      init_task();
 
+   m_estatus = ::success;
+
+}
+
+
+
+void task::on_task_term()
+{
+
+   term_task();
+
+}
 
 
 
@@ -1286,6 +1304,10 @@ void * task::s_os_task(void * p)
       ::pointer < ::task > ptask(transfer_t{}, (::task *)p);
 
       ptask->__task_main(procedureTaskEnded);
+
+      ptask->task_osterm();
+
+
 
    }
 

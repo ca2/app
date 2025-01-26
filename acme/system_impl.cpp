@@ -568,7 +568,7 @@ namespace platform
    }
 
 
-   void system::on_branch_system_from_main_thread_startup()
+   void system::on_branch_system_from_main_thread_startup(::task_handle * ptaskhandler)
    {
 
       m_itask = nullptr;

@@ -1876,7 +1876,7 @@ void object::branch_each(const ::procedure_array& routinea)
 
    ptask->m_atom = typeid(*pbase).name();
 
-   ptask->branch(eparallelization, createtaskattributes);
+   ptask->branch(eparallelization, nullptr, createtaskattributes);
 
    return ptask;
 
@@ -1910,7 +1910,7 @@ void object::branch_each(const ::procedure_array& routinea)
 
    ptask->m_atom = typeid(*pbase).name();
 
-   ptask->branch_synchronously(createtaskattributes);
+   ptask->branch_synchronously(nullptr, createtaskattributes);
 
    return ptask;
 

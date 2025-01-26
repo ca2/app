@@ -304,7 +304,9 @@ namespace user
 
       //m_happeningReady.wait();
 
-      m_synchronizationa.add(&m_happeningUpdateScreen);
+      __defer_raw_construct_new(m_phappeningUpdateScreen);
+
+      m_synchronizationa.add(m_phappeningUpdateScreen);
 
    #ifdef WINDOWS_DESKTOP
 
@@ -315,7 +317,7 @@ namespace user
       if (m_bAuraMessageQueue)
       {
 
-         m_synchronizationa.add(&get_message_queue()->m_happeningNewMessage);
+         m_synchronizationa.add(get_message_queue()->m_phappeningNewMessage);
 
       }
 
@@ -750,7 +752,7 @@ namespace user
    void graphics_thread::destroy()
    {
 
-      m_happeningUpdateScreen.set_happening();
+      m_phappeningUpdateScreen->set_happening();
 
       m_puserinteraction.release();
 
@@ -1038,7 +1040,7 @@ namespace user
 
             //}
 
-            m_happeningUpdateScreen.reset_happening();
+            m_phappeningUpdateScreen->reset_happening();
 
          }
 

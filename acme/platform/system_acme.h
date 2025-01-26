@@ -62,8 +62,8 @@ namespace platform
       bool                                            m_bGraphicsAndWindowingFactory;
 
 
-      ::pointer < manual_reset_happening >                m_pmanualresethappeningReadyToExit;
-      ::pointer < manual_reset_happening >                m_pmanualresethappeningMainLoopEnd;
+      ::pointer < manual_reset_happening >                m_pmanualresethappeningSystemTaskFinished;
+      //::pointer < manual_reset_happening >                m_pmanualresethappeningMainLoopEnd;
 
       ::int_sz *                                      m_pintstringLanguageResourceMap;
       int                                             m_iMatterFromHttpCache;
@@ -435,7 +435,7 @@ namespace platform
       //void on_pre_run_task() override;
 
 
-      virtual void on_branch_system_from_main_thread_startup();
+      virtual void on_branch_system_from_main_thread_startup(::task_handler * ptaskhandler);
 
 
       //void main() override;

@@ -389,17 +389,28 @@ namespace user
 
    //}
 
+
    void thread::term_task()
    {
 
-      auto puserinteraction = m_pwindow->user_interaction();
-
-      if (puserinteraction
-   && puserinteraction->m_ewindowflag & e_window_flag_is_window
-   && ::thread::has_finishing_flag())
       {
 
-         puserinteraction->destroy_window();
+         auto pwindow = ::transfer(m_pwindow);
+
+         if (pwindow)
+         {
+            auto puserinteraction = pwindow->user_interaction();
+
+            if (puserinteraction
+         && puserinteraction->m_ewindowflag & e_window_flag_is_window
+         && ::thread::has_finishing_flag())
+            {
+
+               puserinteraction->destroy_window();
+
+            }
+
+         }
 
       }
 

@@ -15,6 +15,7 @@
 #include "apex/message/message.h"
 #include "apex/platform/application.h"
 #include "acme/handler/request.h"
+#include "acme/handler/task_handler.h"
 #include "apex/platform/session.h"
 #include "apex/platform/system.h"
 
@@ -2693,7 +2694,8 @@ size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddr
 //}
 
 
-::pointer<::task> thread::branch(enum_parallelization eparallelization,
+void thread::branch(enum_parallelization eparallelization,
+                                 ::task_handler * ptaskhandler,
                                  const ::create_task_attributes& createtaskattributes)
 {
 
@@ -2771,7 +2773,9 @@ size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddr
 
    //}
 
-   auto ptask = ::task::branch(eparallelization, createtaskattributes);
+   //auto ptask = ::task::branch(eparallelization, ptaskhandler, createtaskattributes);
+
+   ::task::branch(eparallelization, ptaskhandler, createtaskattributes);
 
    //   if(!m_htask)
    //   {
@@ -2820,7 +2824,7 @@ size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddr
 
    //return ::success;
 
-   return ptask;
+   //return ptask;
 
 }
 
@@ -2845,12 +2849,16 @@ size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddr
 //}
 
 
-::pointer<::task> thread::branch_synchronously(const create_task_attributes& createtaskattributes)
+void thread::branch_synchronously(
+   ::task_handler * ptaskhandler,
+   const create_task_attributes& createtaskattributes)
 {
 
-   auto ptask = ::task::branch_synchronously(createtaskattributes);
+   //auto ptask = ::task::branch_synchronously(ptaskhandler, createtaskattributes);
 
-   return ptask;
+   ::task::branch_synchronously(ptaskhandler, createtaskattributes);
+
+   //return ptask;
 
 }
 

@@ -29,6 +29,8 @@ bool apex_defer_process_x_message(htask htask,MESSAGE * pMsg,::windowing::window
 message_queue::message_queue()
 {
 
+   __raw_construct_new(m_phappeningNewMessage);
+
    m_bQuit = false;
 
    //m_bKickIdle = false;
@@ -110,7 +112,8 @@ void message_queue::post_message(const MESSAGE & message)
       
       //printf("test123");
    }
-   m_happeningNewMessage.set_happening();
+
+   m_phappeningNewMessage->set_happening();
 
    //return true;
 
@@ -227,11 +230,11 @@ void message_queue::kick_idle()
 
       {
 
-         m_happeningNewMessage.reset_happening();
+         m_phappeningNewMessage->reset_happening();
 
          synchronouslock.unlock();
 
-         auto bAcquired = m_happeningNewMessage._wait(time);
+         auto bAcquired = m_phappeningNewMessage->_wait(time);
 
          if(m_eflagElement & (1ll << 36))
          {

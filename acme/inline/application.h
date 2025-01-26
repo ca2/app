@@ -141,7 +141,7 @@ int main(int argc, char * argv[], char * envp[])
 
    application_main();
 
-   system.on_system_before_destroy();
+   //system.on_system_before_destroy();
 
 #ifdef NETBSD
 

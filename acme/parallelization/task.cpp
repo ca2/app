@@ -4,6 +4,7 @@
 #include "manual_reset_happening.h"
 #include "wait_for_end_of_sequence.h"
 #include "acme/handler/sequence.h"
+#include "acme/handler/task_handler.h"
 #include "acme/platform/scoped_restore.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/application.h"
@@ -852,14 +853,7 @@ void task::main()
 
    //__task_init();
 
-   init_task();
-
-   if (m_phappeningInitialization)
-   {
-
-      m_phappeningInitialization->set_happening();
-
-   }
+   call_init_task();
 
    if (defer_implement(application()))
    {
@@ -1127,16 +1121,25 @@ void task::stop_task()
 
    }
 
-   manual_reset_happening ev;
+   auto taskindexThis = m_taskindex;
 
-   ::procedure procedure = [&ev]()
-      {
+   if (taskindexThis.is_null())
+   {
 
-         ev.set_happening();
+      return;
 
-      };
+   }
 
-   m_procedureTaskEnded = procedure;
+   // manual_reset_happening ev;
+   //
+   // ::procedure procedure = [&ev]()
+   //    {
+   //
+   //       ev.set_happening();
+   //
+   //    };
+   //
+   //m_procedureTaskEnded = procedure;
 
    //__defer_construct_new(m_phappeningFinished2);
 
@@ -1147,14 +1150,14 @@ void task::stop_task()
    while (true)
    {
 
-      auto bWaitFinished = ev._wait(1_s);
-
-      if (bWaitFinished)
-      {
-
-         break;
-
-      }
+      // auto bWaitFinished = ev._wait(1_s);
+      //
+      // if (bWaitFinished)
+      // {
+      //
+      //    break;
+      //
+      // }
 
       auto bTasksFinished = set_children_to_finish_and_check_them_finished();
 
@@ -1164,6 +1167,15 @@ void task::stop_task()
          informationf("tasks still not finished for task : %s", m_strTaskName.c_str());
 
       }
+
+      if (!::system()->is_task_set(taskindexThis))
+      {
+
+         break;
+
+      }
+
+      preempt(50_ms);
 
    }
 
@@ -1234,51 +1246,51 @@ void task::destroy()
 }
 
 
-void task::__task_init()
-{
-
-   __check_refdbg
-
-      on_task_init();
-
-   if (m_phappeningInitialization)
-   {
-
-      m_phappeningInitialization->set_happening();
-
-   }
-
-
-}
-
-
-void task::__task_term()
-{
-
-   on_task_term();
-
-}
+// void task::__task_init()
+// {
+//
+//    __check_refdbg
+//
+//       on_task_init();
+//
+//    if (m_phappeningInitialization)
+//    {
+//
+//       m_phappeningInitialization->set_happening();
+//
+//    }
+//
+//
+// }
 
 
-void task::on_task_init()
-{
-
-   __check_refdbg
-
-      init_task();
-
-   m_estatus = ::success;
-
-}
+// void task::__task_term()
+// {
+//
+//    on_task_term();
+//
+// }
 
 
+// void task::on_task_init()
+// {
+//
+//    __check_refdbg
+//
+//       init_task();
+//
+//    m_estatus = ::success;
+//
+// }
 
-void task::on_task_term()
-{
 
-   term_task();
 
-}
+// void task::on_task_term()
+// {
+//
+//    term_task();
+//
+// }
 
 
 
@@ -1297,24 +1309,11 @@ void * task::s_os_task(void * p)
 #endif
 {
 
-   ::procedure procedureTaskEnded;
-
    {
 
-      ::pointer < ::task > ptask(transfer_t{}, (::task *)p);
+      auto ptaskhandler = ::transfer_as_pointer((::task_handler *)p);
 
-      ptask->__task_main(procedureTaskEnded);
-
-      ptask->task_osterm();
-
-
-
-   }
-
-   if (procedureTaskEnded)
-   {
-
-      procedureTaskEnded();
+      ptaskhandler->__task_handle();
 
    }
 
@@ -1492,7 +1491,9 @@ void task::__task_init()
 }
 
 
-void task::__task_main(::procedure & procedureTaskEnded)
+void task::__task_main()
+//void task::__task_main(::procedure & procedureTaskEnded)
+//void task::__task_main()
 {
 
    //::pointer < manual_reset_happening > pmanualresethappeningFinished;
@@ -1596,7 +1597,7 @@ void task::__task_main(::procedure & procedureTaskEnded)
 
       //}
 
-      procedureTaskEnded = ::transfer(m_procedureTaskEnded);
+      //procedureTaskEnded = ::transfer(m_procedureTaskEnded);
 
       __task_term();
 
@@ -1607,8 +1608,6 @@ void task::__task_main(::procedure & procedureTaskEnded)
    }
 
 }
-
-
 
 
 void task::__task_term()
@@ -2039,6 +2038,21 @@ void task::task_caller_on_init()
 }
 
 
+void task::call_init_task()
+{
+
+   init_task();
+
+   if (m_phappeningInitialization)
+   {
+
+      m_phappeningInitialization->set_happening();
+
+   }
+
+}
+
+
 void task::init_task()
 {
 
@@ -2298,13 +2312,13 @@ void task::on_before_branch()
 }
 
 
-::pointer<::task>task::branch(enum_parallelization eparallelization, const ::create_task_attributes & createtaskattributes)
+void task::branch(enum_parallelization eparallelization, task_handler * ptaskhandler, const ::create_task_attributes & createtaskattributes)
 {
 
    if (eparallelization == e_parallelization_synchronous)
    {
 
-      return branch_synchronously(createtaskattributes);
+      return branch_synchronously(ptaskhandler, createtaskattributes);
 
    }
 
@@ -2492,11 +2506,26 @@ void task::on_before_branch()
 
    }
 
+   if (::is_null(ptaskhandler))
+   {
+
+      ptaskhandler = __raw_new task_handler;
+
+   }
+   else
+   {
+
+      ptaskhandler->increment_reference_count();
+
+   }
+
+   ptaskhandler->m_ptask = this;
+
    int iError = pthread_create(
       (pthread_t *)&m_htask,
       &taskAttr,
       &task::s_os_task,
-      this);
+      ptaskhandler);
 
 
    if (iError != 0)
@@ -2549,12 +2578,12 @@ void task::on_before_branch()
 //   }
 
    //return ::success;
-   return this;
+   //return this;
 
 }
 
 
-::pointer<::task>task::branch_synchronously(const ::create_task_attributes & createtaskattributes)
+void task::branch_synchronously(task_handler * ptaskhandler, const ::create_task_attributes & createtaskattributes)
 {
 
    clear_finishing_flag();
@@ -2638,7 +2667,7 @@ void task::on_before_branch()
 
    //auto estatus = branch(epriority, nStackSize, uiCreateFlags);
 
-   branch(e_parallelization_asynchronous, createtaskattributes);
+   branch(e_parallelization_asynchronous, ptaskhandler, createtaskattributes);
 
    if (!m_htask)
    {
@@ -2898,7 +2927,7 @@ void task::on_before_branch()
    //
    //   //return ::success;
 
-   return this;
+   //return this;
 
 }
 

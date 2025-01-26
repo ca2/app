@@ -256,6 +256,14 @@ namespace acme
       return true;
       
    }
+
+
+   void windowing::__task_suffix()
+   {
+
+      windowing_post_quit();
+
+   }
    
    
    void windowing::show(::particle_pointer pparticle)

@@ -101,6 +101,10 @@ class waiting_call_base;
 using waiting_call_stack = ::comparable_eq_list < ::waiting_call_base * >;
 
 
+// TTThomas loves handlers. Jeg elsker dig Thomas.
+class task_handler;
+
+
 class CLASS_DECL_ACME task :
    virtual public object,
    virtual public acme::implementable,
@@ -202,7 +206,7 @@ public:
 
    class ::time                                    m_timeLastPing;
    class ::time                                    m_timePingTimeout;
-   ::procedure                                     m_procedureTaskEnded;
+   //::procedure                                     m_procedureTaskEnded;
    class ::time                                    m_timeLastPostedProcedureStart;
    class ::time                                    m_timeDefaultPostedProcedureTimeout;
    class ::time                                    m_timePostedProcedureTimeout;
@@ -312,9 +316,12 @@ public:
 
 
    virtual void __task_init();
-   virtual void __task_main(::procedure & procedureTaskEnded);
+   virtual void __task_main();
+   //virtual void __task_main(::procedure & procedureTaskEnded);
    virtual void __task_term();
 
+
+   virtual void call_init_task();
   
    void init_task() override;
    void term_task() override;
@@ -332,9 +339,9 @@ public:
 
    using ::object::branch;
 
-   virtual ::pointer<::task>branch(enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes& createtaskattributes = {});
+   virtual void branch(enum_parallelization eparallelization = e_parallelization_asynchronous, task_handler * ptaskhandler = nullptr, const create_task_attributes& createtaskattributes = {});
 
-   virtual ::pointer<::task>branch_synchronously(const create_task_attributes& createtaskattributes = {});
+   virtual void branch_synchronously(task_handler * ptaskhandler = nullptr, const create_task_attributes& createtaskattributes = {});
 
    virtual bool task_sleep(const class time & timeWait);
 

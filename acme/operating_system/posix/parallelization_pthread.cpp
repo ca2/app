@@ -173,7 +173,7 @@ thread_local ::message_queue * t_pmessagequeue = nullptr;
          if (::is_set(pmq))
          {
 
-            if (pmq->m_happeningNewMessage.start_notify_lock(pnotifylock))
+            if (pmq->m_phappeningNewMessage->start_notify_lock(pnotifylock))
             {
 
                return (enum_status)(((int) signaled_base) + dwSize);

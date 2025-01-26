@@ -15,7 +15,20 @@
 namespace platform
 {
 
-
+   /// For GUI applications:
+   /// Never let system and other "system" threads (like session, application)
+   /// be the main thread object.
+   /// Maybe better thought, always make acme_windowing the main thread object
+   /// at a GUI application.
+   ///
+   /// For console applications:
+   /// Abandon idea of doing GUI interaction. This implies never creating
+   /// windowing component at console applications. GUI interaction
+   /// requires at least one GUI thread which is a heavy overhead
+   /// for a console application. This implies that even system
+   /// provided ways of doing GUI interaction, like MessageBox
+   /// at Windows, should be avoided as it can trigger a GUI
+   /// interaction requirement for other operating systems.
    class CLASS_DECL_ACME system :
       virtual public ::platform::platform,
       virtual public ::handler::handler,
@@ -321,7 +334,7 @@ namespace platform
       //void on_pre_run_task() override;
 
 
-      virtual void on_branch_system_from_main_thread_startup() override;
+      virtual void on_branch_system_from_main_thread_startup(::task_handler * ptaskhandler) override;
 
 
       void main() override;

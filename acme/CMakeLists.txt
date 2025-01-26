@@ -3003,6 +3003,8 @@ add_library(${PROJECT_NAME} SHARED ${library_source}
    operating_system/posix/dynamic_library_dl.cpp
    operating_system/posix/dynamic_library_dl.h
    _finish.h
+   handler/task_handler.cpp
+   handler/task_handler.h
 )
 
 

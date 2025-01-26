@@ -29,7 +29,7 @@ namespace acme
       //::pointer < ::platform::platform >      m_pplatform;
       ::heap::management *                      m_pheapmanagement;
 
-
+      //::pointer < manual_reset_happening >      m_pmanualresethappeningSystemTaskFinished;
 
 #if REFERENCING_DEBUGGING 
 
@@ -73,7 +73,7 @@ namespace acme
       virtual ::platform::platform * platform();
       ::heap::management * heap() { return m_pheapmanagement; }
 
-      virtual void on_system_before_destroy();
+      //virtual void on_system_before_destroy();
 
    protected:
       

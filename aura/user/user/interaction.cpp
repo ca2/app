@@ -12103,6 +12103,8 @@ if(get_parent())
 
          _synchronous_lock synchronouslock(window()->m_pmutexGraphics);
 
+
+         auto puserinteractionHold = ::as_pointer(this);
             //
             //   if (!window())
             //   {

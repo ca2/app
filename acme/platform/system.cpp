@@ -229,6 +229,19 @@ namespace platform
    system::~system()
    {
 
+      if (m_pmanualresethappeningSystemTaskFinished)
+      {
+
+         m_pmanualresethappeningSystemTaskFinished->_wait(2.5_min);
+
+         //delete m_pmanualresethappeningReadyToExit;
+
+         //m_pmanualresethappeningReadyToExit = nullptr;
+
+      }
+
+      ::task_release();
+
       debug() << "platform::system::~system() (start)";
 
       m_pparticleSynchronization.release();
@@ -646,7 +659,7 @@ namespace platform
    }
 
 
-   void system::on_branch_system_from_main_thread_startup()
+   void system::on_branch_system_from_main_thread_startup(::task_handler * ptaskhandler)
    {
       
       information() << "platform::system::on_branch_system_from_main_thread_startup START";
@@ -655,7 +668,7 @@ namespace platform
 
       m_htask = nullptr;
 
-      branch_synchronously();
+      branch_synchronously(ptaskhandler);
 
       // To pair freebsd.h/main platform_create_system ___new system
       // This should be safe here in this node_gtk::node
@@ -1430,36 +1443,36 @@ namespace platform
    void system::TermSystem()
    {
 
-      auto pacmewindowing = m_pacmewindowing;
+      // auto pacmewindowing = m_pacmewindowing;
+      //
+      // if (pacmewindowing)
+      // {
+      //
+      //    m_pmanualresethappeningReadyToExit = __allocate manual_reset_happening();
+      //    m_pmanualresethappeningMainLoopEnd = __allocate manual_reset_happening();
+      //
+      //    auto pReadyToExit = m_pmanualresethappeningReadyToExit;
+      //    auto pMainLoopEnd = m_pmanualresethappeningMainLoopEnd;
+      //
+      //    if (!m_procedureTaskEnded)
+      //    {
+      //
+      //       m_procedureTaskEnded = [pReadyToExit]()
+      //       {
+      //
+      //          pReadyToExit->set_happening();
+      //
+      //       };
+      //
+      //       m_pacmewindowing->windowing_post_quit();
+      //
+      //       pMainLoopEnd->_wait(2.5_min);
+      //
+      //    }
+      //
+      // }
 
-      if (pacmewindowing)
-      {
-
-         m_pmanualresethappeningReadyToExit = __allocate manual_reset_happening();
-         m_pmanualresethappeningMainLoopEnd = __allocate manual_reset_happening();
-
-         auto pReadyToExit = m_pmanualresethappeningReadyToExit;
-         auto pMainLoopEnd = m_pmanualresethappeningMainLoopEnd;
-
-         if (!m_procedureTaskEnded)
-         {
-
-            m_procedureTaskEnded = [pReadyToExit]()
-            {
-
-               pReadyToExit->set_happening();
-
-            };
-
-            m_pacmewindowing->windowing_post_quit();
-
-            pMainLoopEnd->_wait(2.5_min);
-
-         }
-
-      }
-
-      m_pacmewindowing.release();
+      //m_pacmewindowing.release();
 
       m_pmapRegularExpressionContext.release();
 

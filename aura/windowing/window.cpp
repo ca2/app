@@ -183,10 +183,10 @@ namespace windowing
 
          puserthread->m_pwindow.release();
 
-         if (::is_set(m_puserthread->m_puserinteractionbaseaThread))
+         if (::is_set(puserthread->m_puserinteractionbaseaThread))
          {
 
-            m_puserthread->m_puserinteractionbaseaThread->erase(user_interaction());
+            puserthread->m_puserinteractionbaseaThread->erase(user_interaction());
 
          }
 

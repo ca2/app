@@ -19,6 +19,7 @@
 #include "acme/platform/department.h"
 #include "acme/prototype/collection/comparable_list.h"
 #include "_.h"
+#include "acme/handler/task_handler.h"
 
 
 namespace acme
@@ -31,7 +32,8 @@ namespace acme
       
       class CLASS_DECL_ACME windowing :
          virtual public ::acme::department,
-         virtual public ::task
+         virtual public ::task,
+         virtual public ::task_handler
       {
       public:
 
@@ -110,6 +112,8 @@ namespace acme
          virtual void process_messages();
 
          virtual bool init_threads();
+
+         void __task_suffix() override;
 
          
          virtual void show(::particle_pointer pparticle);

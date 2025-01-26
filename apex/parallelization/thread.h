@@ -427,9 +427,9 @@ public:
    // void task_osterm() override;
 
 
-   ::pointer<::task>branch(enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes & createtaskattributes = nullptr) override;
+   void branch(enum_parallelization eparallelization = e_parallelization_asynchronous, task_handler * ptaskhandler = nullptr, const create_task_attributes & createtaskattributes = nullptr) override;
 
-   ::pointer<::task>branch_synchronously(const create_task_attributes & createtaskattributes = nullptr) override;
+   void branch_synchronously(task_handler * ptaskhandler = nullptr, const create_task_attributes & createtaskattributes = nullptr) override;
 
 
    virtual void stop_task() override;

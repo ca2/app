@@ -433,7 +433,7 @@ namespace acme
       void on_pre_run_task() override;
 
 
-      virtual void on_branch_system_from_main_thread_startup();
+      virtual void on_branch_system_from_main_thread_startup(::task_handler * ptaskhandler);
 
 
       void main() override;

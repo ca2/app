@@ -291,23 +291,23 @@ namespace acme
    }
 
    
-   void acme::on_system_before_destroy()
-   {
-      
-      if (::system()->m_pmanualresethappeningReadyToExit)
-      {
-
-         ::system()->m_pmanualresethappeningReadyToExit->_wait(2.5_min);
-
-         //delete m_pmanualresethappeningReadyToExit;
-
-         //m_pmanualresethappeningReadyToExit = nullptr;
-
-      }
-
-      ::task_release();
-
-   }
+   // void acme::on_system_before_destroy()
+   // {
+   //
+   //    if (m_pmanualresethappeningSystemTaskFinished)
+   //    {
+   //
+   //       m_pmanualresethappeningSystemTaskFinished->_wait(2.5_min);
+   //
+   //       //delete m_pmanualresethappeningReadyToExit;
+   //
+   //       //m_pmanualresethappeningReadyToExit = nullptr;
+   //
+   //    }
+   //
+   //    ::task_release();
+   //
+   // }
 
 
    void acme::on_acme_before_destroy()

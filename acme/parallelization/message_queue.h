@@ -17,10 +17,10 @@ class CLASS_DECL_ACME message_queue :
 public:
 
 
-   message_array           m_messagea;
-   manual_reset_happening      m_happeningNewMessage;
-   itask                 m_itask;
-   bool                    m_bQuit;
+   message_array                             m_messagea;
+   ::pointer < manual_reset_happening >      m_phappeningNewMessage;
+   itask                                     m_itask;
+   bool                                      m_bQuit;
 
 
    message_queue();

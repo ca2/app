@@ -2472,6 +2472,23 @@ void task::branch(enum_parallelization eparallelization, const ::create_task_att
 
    }
 
+   auto ptaskhandler = createtaskattributes.m_ptaskhandler;
+
+   if (::is_null(ptaskhandler))
+   {
+
+      ptaskhandler = __raw_new task_handler;
+
+   }
+   else
+   {
+
+      ptaskhandler->increment_reference_count();
+
+   }
+
+   ptaskhandler->m_ptask = this;
+
 #ifdef WINDOWS
 
    DWORD dwThread = 0;
@@ -2480,7 +2497,7 @@ void task::branch(enum_parallelization eparallelization, const ::create_task_att
       (LPSECURITY_ATTRIBUTES)(createtaskattributes.m_psecurityattributes ? createtaskattributes.m_psecurityattributes->get_os_security_attributes() : nullptr),
       createtaskattributes.m_uStackSize,
       (LPTHREAD_START_ROUTINE) & ::task::s_os_task,
-      (LPVOID)(task *)this,
+      (LPVOID)(::task_handler *)ptaskhandler,
       createtaskattributes.m_uCreateFlags,
       &dwThread);
 
@@ -2506,27 +2523,11 @@ void task::branch(enum_parallelization eparallelization, const ::create_task_att
 
    }
 
-   if (::is_null(ptaskhandler))
-   {
-
-      ptaskhandler = __raw_new task_handler;
-
-   }
-   else
-   {
-
-      ptaskhandler->increment_reference_count();
-
-   }
-
-   ptaskhandler->m_ptask = this;
-
    int iError = pthread_create(
       (pthread_t *)&m_htask,
       &taskAttr,
       &task::s_os_task,
       ptaskhandler);
-
 
    if (iError != 0)
    {

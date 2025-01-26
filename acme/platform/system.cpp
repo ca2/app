@@ -668,7 +668,7 @@ namespace platform
 
       m_htask = nullptr;
 
-      branch_synchronously(ptaskhandler);
+      branch_synchronously({ .m_ptaskhandler = ptaskhandler });
 
       // To pair freebsd.h/main platform_create_system ___new system
       // This should be safe here in this node_gtk::node

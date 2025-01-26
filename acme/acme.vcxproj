@@ -990,6 +990,7 @@
     <ClCompile Include="handler\request.cpp" />
     <ClCompile Include="handler\sequence.cpp" />
     <ClCompile Include="handler\source.cpp" />
+    <ClCompile Include="handler\task_handler.cpp" />
     <ClCompile Include="handler\topic.cpp" />
     <ClInclude Include="aaa_id.h" />
     <ClInclude Include="acme.h" />

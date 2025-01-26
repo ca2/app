@@ -339,9 +339,9 @@ public:
 
    using ::object::branch;
 
-   virtual void branch(enum_parallelization eparallelization = e_parallelization_asynchronous, task_handler * ptaskhandler = nullptr, const create_task_attributes& createtaskattributes = {});
+   virtual void branch(enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes_t& createtaskattributes = {});
 
-   virtual void branch_synchronously(task_handler * ptaskhandler = nullptr, const create_task_attributes& createtaskattributes = {});
+   virtual void branch_synchronously(const create_task_attributes_t & createtaskattributes = {});
 
    virtual bool task_sleep(const class time & timeWait);
 

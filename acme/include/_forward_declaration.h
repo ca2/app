@@ -1739,6 +1739,7 @@ struct system_time_t;
 CLASS_DECL_ACME int __node_is_debugger_attached();
 
 
+struct create_task_attributes_t;
 class create_task_attributes;
 class security_attributes;
 

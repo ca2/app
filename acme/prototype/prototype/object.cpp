@@ -1849,7 +1849,7 @@ void object::branch_each(const ::procedure_array& routinea)
 }
 
 
-::pointer<task>object::branch_procedure(const ::procedure & procedure, bool bAutoRelease, enum_parallelization eparallelization, const create_task_attributes & createtaskattributes)
+::pointer<task>object::branch_procedure(const ::procedure & procedure, bool bAutoRelease, enum_parallelization eparallelization, const create_task_attributes_t & createtaskattributes)
 {
 
    if (::is_reference_null(procedure))
@@ -1876,14 +1876,14 @@ void object::branch_each(const ::procedure_array& routinea)
 
    ptask->m_atom = typeid(*pbase).name();
 
-   ptask->branch(eparallelization, nullptr, createtaskattributes);
+   ptask->branch(eparallelization, createtaskattributes);
 
    return ptask;
 
 }
 
 
-::pointer<::task>object::branch_procedure_synchronously(const ::procedure & procedure, bool bAutoRelease, const create_task_attributes & createtaskattributes)
+::pointer<::task>object::branch_procedure_synchronously(const ::procedure & procedure, bool bAutoRelease, const create_task_attributes_t & createtaskattributes)
 {
 
    if (::is_reference_null(procedure))
@@ -1910,7 +1910,7 @@ void object::branch_each(const ::procedure_array& routinea)
 
    ptask->m_atom = typeid(*pbase).name();
 
-   ptask->branch_synchronously(nullptr, createtaskattributes);
+   ptask->branch_synchronously(createtaskattributes);
 
    return ptask;
 

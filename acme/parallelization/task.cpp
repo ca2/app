@@ -2312,13 +2312,13 @@ void task::on_before_branch()
 }
 
 
-void task::branch(enum_parallelization eparallelization, task_handler * ptaskhandler, const ::create_task_attributes & createtaskattributes)
+void task::branch(enum_parallelization eparallelization, const ::create_task_attributes_t & createtaskattributes)
 {
 
    if (eparallelization == e_parallelization_synchronous)
    {
 
-      return branch_synchronously(ptaskhandler, createtaskattributes);
+      return branch_synchronously(createtaskattributes);
 
    }
 
@@ -2583,7 +2583,7 @@ void task::branch(enum_parallelization eparallelization, task_handler * ptaskhan
 }
 
 
-void task::branch_synchronously(task_handler * ptaskhandler, const ::create_task_attributes & createtaskattributes)
+void task::branch_synchronously(const ::create_task_attributes_t & createtaskattributes)
 {
 
    clear_finishing_flag();
@@ -2667,7 +2667,7 @@ void task::branch_synchronously(task_handler * ptaskhandler, const ::create_task
 
    //auto estatus = branch(epriority, nStackSize, uiCreateFlags);
 
-   branch(e_parallelization_asynchronous, ptaskhandler, createtaskattributes);
+   branch(e_parallelization_asynchronous, createtaskattributes);
 
    if (!m_htask)
    {

@@ -2695,8 +2695,7 @@ size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddr
 
 
 void thread::branch(enum_parallelization eparallelization,
-                                 ::task_handler * ptaskhandler,
-                                 const ::create_task_attributes& createtaskattributes)
+                                 const ::create_task_attributes_t& createtaskattributes)
 {
 
    clear_finishing_flag();
@@ -2775,7 +2774,7 @@ void thread::branch(enum_parallelization eparallelization,
 
    //auto ptask = ::task::branch(eparallelization, ptaskhandler, createtaskattributes);
 
-   ::task::branch(eparallelization, ptaskhandler, createtaskattributes);
+   ::task::branch(eparallelization, createtaskattributes);
 
    //   if(!m_htask)
    //   {
@@ -2850,13 +2849,12 @@ void thread::branch(enum_parallelization eparallelization,
 
 
 void thread::branch_synchronously(
-   ::task_handler * ptaskhandler,
-   const create_task_attributes& createtaskattributes)
+   const create_task_attributes_t& createtaskattributes)
 {
 
    //auto ptask = ::task::branch_synchronously(ptaskhandler, createtaskattributes);
 
-   ::task::branch_synchronously(ptaskhandler, createtaskattributes);
+   ::task::branch_synchronously(createtaskattributes);
 
    //return ptask;
 

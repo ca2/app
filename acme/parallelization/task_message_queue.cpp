@@ -32,20 +32,30 @@ message_queue * task_message_queue::get_message_queue(const class ::task_index &
    if (!taskindex)
    {
 
-      ASSERT(false);
+      information() << "task_message_queue::get_message_queue !task_index";
+
+      throw ::exception(error_wrong_state);
 
       return nullptr;
 
    }
 
-   critical_section_lock criticalsectionlock(&system()->m_criticalsectionThreadStorage);
+   auto psystem = system();
 
-   auto pthreadstorage = system()->_thread_storage_unlocked(taskindex);
+   information() << "task_message_queue::get_message_queue psystem : (::uptr) " << (::uptr) psystem;
+
+   critical_section_lock criticalsectionlock(&psystem->m_criticalsectionThreadStorage);
+
+   auto pthreadstorage = psystem->_thread_storage_unlocked(taskindex);
+
+   information() << "task_message_queue::get_message_queue pthreadstorage : (::uptr) " << (::uptr) pthreadstorage;
 
    auto & pmessagequeue = pthreadstorage->m_pmessagequeue;
 
    if (!pmessagequeue)
    {
+
+      information() << "task_message_queue::get_message_queue !pmessagequeue";
 
       if (bCreate)
       {

@@ -741,7 +741,34 @@ namespace acme
       bool window::has_capture()
       {
 
-         return m_pacmeuserinteraction->has_capture();
+         //return m_pacmeuserinteraction->has_capture();
+
+         auto pacmewindowing = system()->acme_windowing();
+
+         if(::is_null(pacmewindowing))
+         {
+
+            return false;
+
+         }
+
+         auto pacmewindowingwindowMouseCapture = pacmewindowing->get_mouse_capture(nullptr);
+
+         if(::is_null(pacmewindowingwindowMouseCapture))
+         {
+
+            return false;
+
+         }
+
+         if(pacmewindowingwindowMouseCapture != this)
+         {
+
+            return false;
+
+         }
+
+         return true;
 
       }
 

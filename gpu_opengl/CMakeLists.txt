@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.16)
 project(gpu_opengl CXX)
 
 
+
+message(STATUS "PROJECT_NAME is ${PROJECT_NAME}")
+
 list(APPEND library_source
         _.cpp
         _.h
@@ -120,8 +123,7 @@ elseif(${LINUX} OR ${__BSD__})
       #list(APPEND extra_pkg_modules glm gl)
       list(APPEND extra_pkg_modules osmesa)
    elseif(${FREEBSD})
-      #list(APPEND extra_pkg_modules glm gl)
-      list(APPEND extra_pkg_modules gl)
+      list(APPEND extra_pkg_modules gl osmesa)
    endif()
 
     #if (USE_PKGCONFIG)

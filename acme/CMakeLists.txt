@@ -265,6 +265,8 @@ list(APPEND library_source
    handler/sequence.h
    handler/source.cpp
    handler/source.h
+   handler/task_handler.cpp
+   handler/task_handler.h
    #include/_.cpp
    #include/path.h        #prototype/collection/comparable_array.cpp
    #memory/alloc.cpp

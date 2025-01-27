@@ -141,12 +141,17 @@ namespace micro
 
       virtual void on_draw(::nano::graphics::device * pnanodevice);
       //virtual void on_char(int iChar);
-      void set_focus() override;
-      bool is_focusable() override;
+      void set_keyboard_focus() override;
+      bool is_keyboard_focusable() override;
       //virtual void on_mouse_move(::user::mouse * pmouse);
-      void set_capture() override;
-      bool has_capture() override;
-      void release_capture() override;
+      //void set_mouse_capture() override;
+      //bool has_mouse_capture() override;
+      //void release_mouse_capture() override;
+
+      void set_mouse_capture() override;
+      bool is_mouse_captured() override;
+      bool has_mouse_capture() override;
+      void release_mouse_capture() override;
 
 
       virtual void resize_to_fit();
@@ -310,12 +315,12 @@ namespace micro
       //virtual ::int_point try_absolute_mouse_position(const ::int_point & point);
 
       // drag_client
-      //void drag_set_capture() override;
+      //void drag_set_mouse_capture() override;
       //bool on_drag_start(::int_point & point, ::item * pitem) override;
       //::int_point drag_mouse_cursor_position(::item * pitem, const ::int_point & point) override;
       //bool drag_shift(::item * pitem, ::user::mouse * pmouse) override;
       //bool drag_hover(::item * pitem) override;
-      //void drag_release_capture() override;
+      //void drag_release_mouse_capture() override;
       //void drag_set_cursor(::item * pitem) override;
 
 
@@ -357,11 +362,11 @@ namespace micro
       //virtual void get_client_rectangle(::int_rectangle & rectangle);
       ::int_rectangle get_rectangle() override;
 
-      //void set_capture() override;
+      //void set_mouse_capture() override;
 
-      //bool has_capture() override;
+      //bool has_mouse_capture() override;
 
-      //void release_capture() override;
+      //void release_mouse_capture() override;
 
       void set_cursor(enum_cursor ecursor) override;
 
@@ -402,11 +407,7 @@ namespace micro
       //void window_restore() override; // m_pwindow->m_puserinteraction->display(::e_display_normal);
       //void window_close() override;
 
-      void set_mouse_capture() override;
-      bool is_mouse_captured() override;
-      bool has_mouse_capture() override;
-      void release_mouse_capture() override;
-
+      
 
       //void _on_window_simple_action(const char * pszActionName) override;
 

@@ -125,9 +125,9 @@ namespace xcb
 
             void get_window_rectangle(::int_rectangle & rectangle) override;
 
-            void set_capture() override;
+            void set_mouse_capture() override;
 
-            void release_capture() override;
+            void release_mouse_capture() override;
 
             virtual void _wm_nodecorations(int iMap);
 

@@ -144,12 +144,12 @@ namespace micro
          /// @param pnanodevice 
          ////virtual void on_draw(::nano::graphics::device * pnanodevice);
          ////virtual void on_char(int iChar);
-         //virtual void set_focus();
-         //virtual bool is_focusable();
+         //virtual void set_keyboard_focus();
+         //virtual bool is_keyboard_focusable();
          ////virtual void on_mouse_move(::user::mouse * pmouse);
-         //virtual void set_capture();
-         //virtual bool has_capture();
-         //virtual void release_capture();
+         //virtual void set_mouse_capture();
+         //virtual bool has_mouse_capture();
+         //virtual void release_mouse_capture();
 
 
          //virtual void resize_to_fit();
@@ -356,11 +356,11 @@ namespace micro
          //virtual void get_client_rectangle(::int_rectangle & rectangle);
          ::int_rectangle get_window_rectangle() override;
 
-         //void set_capture() override;
+         //void set_mouse_capture() override;
 
-         //bool has_capture() override;
+         //bool has_mouse_capture() override;
 
-         //void release_capture() override;
+         //void release_mouse_capture() override;
 
          void set_cursor(enum_cursor ecursor) override;
 

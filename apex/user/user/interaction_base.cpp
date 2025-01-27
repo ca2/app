@@ -2558,7 +2558,7 @@ namespace user
    //}
 
 
-   //bool interaction_base::set_capture(::user::interaction * pinteraction)
+   //bool interaction_base::set_mouse_capture(::user::interaction * pinteraction)
    //{
 
    //   return false;

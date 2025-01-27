@@ -4798,7 +4798,7 @@ void window::set_oswindow(::oswindow oswindow)
 
    //   }
 
-   //   if(has_capture())
+   //   if(has_mouse_capture())
    //   {
 
    //      if (pmouse->m_atom == e_message_left_button_up)
@@ -7153,7 +7153,7 @@ void window::set_oswindow(::oswindow oswindow)
 
    //   auto pwindowing = psession->windowing();
 
-   //   pwindowing->release_capture();
+   //   pwindowing->release_mouse_capture();
 
    //   psession->m_puiCapture = nullptr;
 
@@ -7165,7 +7165,7 @@ void window::set_oswindow(::oswindow oswindow)
    //::user::interaction * window::get_capture()
    //{
 
-   //   if (!has_capture())
+   //   if (!has_mouse_capture())
    //   {
 
    //      return nullptr;
@@ -7194,7 +7194,7 @@ void window::set_oswindow(::oswindow oswindow)
 
    //   }
 
-   //   oswindow w = ::set_capture(get_handle());
+   //   oswindow w = ::set_mouse_capture(get_handle());
 
    //   informationf("\nSet Capture: oswindow=0x" + ::hex::lower_from((iptr) w));
 
@@ -15508,10 +15508,10 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   //void window::set_capture(::user::interaction * pinteraction)
+   //void window::set_mouse_capture(::user::interaction * pinteraction)
    //{
 
-   //   return get_host_user_interaction()->set_capture(pinteraction);
+   //   return get_host_user_interaction()->set_mouse_capture(pinteraction);
 
    //}
 

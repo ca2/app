@@ -36,7 +36,7 @@
 //CLASS_DECL_APEX unsigned int main_user_itask();
 
 //CLASS_DECL_APEX oswindow get_focus();
-//CLASS_DECL_APEX oswindow set_focus(oswindow oswindow);
+//CLASS_DECL_APEX oswindow set_keyboard_focus(oswindow oswindow);
 
 //CLASS_DECL_APEX oswindow get_window(oswindow oswindow, int iWindow);
 

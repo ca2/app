@@ -92,8 +92,8 @@ namespace os
 
       void window_rectangle(::int_rectangle * prectangle);
 
-      virtual void set_capture();
-      virtual void release_capture();
+      virtual void set_mouse_capture();
+      virtual void release_mouse_capture();
 
 
    };

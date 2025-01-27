@@ -105,7 +105,7 @@ namespace micro
    }
 
 
-   void elemental::set_focus()
+   void elemental::set_keyboard_focus()
    {
 
       acme_windowing_window()->m_pacmeuserinteractionKeyboardFocus = this;
@@ -115,7 +115,7 @@ namespace micro
    }
 
 
-   bool elemental::is_focusable()
+   bool elemental::is_keyboard_focusable()
    {
 
       return false;
@@ -123,20 +123,36 @@ namespace micro
    }
 
 
-   void elemental::set_capture()
+   void elemental::set_mouse_capture()
    {
 
       acme_windowing_window()->m_pacmeuserinteractionCapture = this;
 
-      acme_windowing_window()->set_capture();
+      acme_windowing_window()->set_mouse_capture();
 
    }
 
 
-   bool elemental::has_capture()
+   bool elemental::is_mouse_captured()
    {
 
-      if (!acme_windowing_window()->has_capture())
+      if (!acme_windowing_window())
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      return acme_windowing_window()->is_mouse_captured();
+
+   }
+
+
+
+   bool elemental::has_mouse_capture()
+   {
+
+      if (!acme_windowing_window()->has_mouse_capture())
       {
 
          return false;
@@ -148,7 +164,7 @@ namespace micro
    }
 
 
-   void elemental::release_capture()
+   void elemental::release_mouse_capture()
    {
 
       if (acme_windowing_window()->m_pacmeuserinteractionCapture == this)
@@ -156,7 +172,7 @@ namespace micro
 
          acme_windowing_window()->m_pacmeuserinteractionCapture.release();
 
-         acme_windowing_window()->release_capture();
+         acme_windowing_window()->release_mouse_capture();
 
       }
 
@@ -491,64 +507,64 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
    //}
 
 
-   void elemental::set_mouse_capture()
-   {
+   // void elemental::set_mouse_capture()
+   // {
 
-      if (!acme_windowing_window())
-      {
+   //    if (!acme_windowing_window())
+   //    {
 
-         throw ::exception(error_wrong_state);
+   //       throw ::exception(error_wrong_state);
 
-      }
+   //    }
 
-      acme_windowing_window()->set_mouse_capture();
+   //    acme_windowing_window()->set_mouse_capture();
 
-   }
-
-
-   bool elemental::is_mouse_captured()
-   {
-
-      if (!acme_windowing_window())
-      {
-
-         throw ::exception(error_wrong_state);
-
-      }
-
-      return acme_windowing_window()->is_mouse_captured();
-
-   }
+   // }
 
 
-   bool elemental::has_mouse_capture()
-   {
+   // bool elemental::is_mouse_captured()
+   // {
 
-      if (!acme_windowing_window())
-      {
+   //    if (!acme_windowing_window())
+   //    {
 
-         throw ::exception(error_wrong_state);
+   //       throw ::exception(error_wrong_state);
 
-      }
+   //    }
 
-      return acme_windowing_window()->has_mouse_capture();
+   //    return acme_windowing_window()->is_mouse_captured();
 
-   }
+   // }
 
 
-   void elemental::release_mouse_capture()
-   {
+   // bool elemental::has_mouse_capture()
+   // {
 
-      if (!acme_windowing_window())
-      {
+   //    if (!acme_windowing_window())
+   //    {
 
-         throw ::exception(error_wrong_state);
+   //       throw ::exception(error_wrong_state);
 
-      }
+   //    }
 
-      acme_windowing_window()->release_mouse_capture();
+   //    return acme_windowing_window()->has_mouse_capture();
 
-   }
+   // }
+
+
+   // void elemental::release_mouse_capture()
+   // {
+
+   //    if (!acme_windowing_window())
+   //    {
+
+   //       throw ::exception(error_wrong_state);
+
+   //    }
+
+   //    acme_windowing_window()->release_mouse_capture();
+
+   // }
 
 
    void elemental::on_initialize_particle()
@@ -1033,10 +1049,10 @@ void elemental::back_on_mouse_move(::user::mouse* pmouse)
 
       }
 
-      if (::is_set(pchild) && pchild->is_focusable())
+      if (::is_set(pchild) && pchild->is_keyboard_focusable())
       {
 
-         pchild->set_focus();
+         pchild->set_keyboard_focus();
 
       }
       
@@ -1092,10 +1108,10 @@ void elemental::back_on_left_button_down(::user::mouse* pmouse)
 //
 //   }
 
-   if (::is_set(pchild) && pchild->is_focusable())
+   if (::is_set(pchild) && pchild->is_keyboard_focusable())
    {
 
-      pchild->set_focus();
+      pchild->set_keyboard_focus();
 
    }
 
@@ -1105,7 +1121,7 @@ void elemental::back_on_left_button_down(::user::mouse* pmouse)
    void elemental::fore_on_left_button_up(::user::mouse* pmouse)
    {
 
-      release_capture();
+      release_mouse_capture();
 
       if (drag_on_button_up(pmouse))
       {
@@ -1184,7 +1200,7 @@ void elemental::back_on_left_button_down(::user::mouse* pmouse)
 void elemental::back_on_left_button_up(::user::mouse* pmouse)
 {
 
-   release_capture();
+   release_mouse_capture();
 
 //   if (drag_on_button_up(pmouse))
 //   {
@@ -1287,10 +1303,10 @@ void elemental::back_on_left_button_up(::user::mouse* pmouse)
       }
 
 
-      if (::is_set(pchild) && pchild->is_focusable())
+      if (::is_set(pchild) && pchild->is_keyboard_focusable())
       {
 
-         pchild->set_focus();
+         pchild->set_keyboard_focus();
 
       }
       
@@ -1332,10 +1348,10 @@ void elemental::back_on_right_button_down(::user::mouse* pmouse)
    }
 
 
-   if (::is_set(pchild) && pchild->is_focusable())
+   if (::is_set(pchild) && pchild->is_keyboard_focusable())
    {
 
-      pchild->set_focus();
+      pchild->set_keyboard_focus();
 
    }
    
@@ -1347,7 +1363,7 @@ void elemental::back_on_right_button_down(::user::mouse* pmouse)
    void elemental::fore_on_right_button_up(::user::mouse* pmouse)
    {
 
-      release_capture();
+      release_mouse_capture();
 
       auto pchild = hit_test(pmouse, ::user::e_zorder_front);
 
@@ -1400,7 +1416,7 @@ void elemental::back_on_right_button_down(::user::mouse* pmouse)
 void elemental::back_on_right_button_up(::user::mouse* pmouse)
 {
 
-   release_capture();
+   release_mouse_capture();
 
    auto pchild = hit_test(pmouse, ::user::e_zorder_back);
 
@@ -1718,10 +1734,10 @@ void elemental::back_on_right_button_up(::user::mouse* pmouse)
    //}
 
 
-   //void elemental::drag_set_capture()
+   //void elemental::drag_set_mouse_capture()
    //{
 
-   //   set_capture();
+   //   set_mouse_capture();
 
    //}
 
@@ -1811,7 +1827,7 @@ void elemental::back_on_right_button_up(::user::mouse* pmouse)
    //void elemental::drag_release_capture()
    //{
 
-   //   release_capture();
+   //   release_mouse_capture();
 
    //}
 
@@ -2015,23 +2031,23 @@ void elemental::back_on_right_button_up(::user::mouse* pmouse)
    }
 
 
-   //void elemental::set_capture()
+   //void elemental::set_mouse_capture()
    //{
 
-   //   acme_windowing_window()->set_capture();
+   //   acme_windowing_window()->set_mouse_capture();
 
    //}
 
 
-   //bool elemental::has_capture()
+   //bool elemental::has_mouse_capture()
    //{
 
-   //   return acme_windowing_window()->has_capture();
+   //   return acme_windowing_window()->has_mouse_capture();
 
    //}
 
 
-   //void elemental::release_capture()
+   //void elemental::release_mouse_capture()
    //{
 
 

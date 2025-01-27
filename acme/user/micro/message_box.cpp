@@ -281,13 +281,13 @@ namespace micro
 
          int iDefaultButton = iDefaultButtonIndex & 7;
 
-         m_pacmeuserinteractionaChildren->element_at(iDefaultButton)->set_focus();
+         m_pacmeuserinteractionaChildren->element_at(iDefaultButton)->set_keyboard_focus();
 
       }
       else
       {
 
-         m_pacmeuserinteractionaChildren->first()->set_focus();
+         m_pacmeuserinteractionaChildren->first()->set_keyboard_focus();
 
       }
 

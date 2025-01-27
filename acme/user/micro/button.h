@@ -27,7 +27,7 @@ namespace micro
       void on_char(int iChar) override;
 
 
-      bool is_focusable() override;
+      bool is_keyboard_focusable() override;
 
 
    };

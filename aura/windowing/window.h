@@ -1731,8 +1731,8 @@ namespace windowing
 
       //virtual bool is_active() const;
 
-      //virtual bool has_capture() const;
-      //virtual bool set_capture(::user::interaction * pinteraction = nullptr);
+      //virtual bool has_mouse_capture() const;
+      //virtual bool set_mouse_capture(::user::interaction * pinteraction = nullptr);
       //virtual ::user::interaction * get_capture() const;
 
       //virtual bool has_keyboard_focus() const;

@@ -108,7 +108,7 @@ namespace acme
       ///child
 
 
-      void interaction::set_focus()
+      void interaction::set_keyboard_focus()
       {
 
          acme_windowing_window()->m_pacmeuserinteractionKeyboardFocus = this;
@@ -118,7 +118,7 @@ namespace acme
       }
 
 
-      bool interaction::is_focusable()
+      bool interaction::is_keyboard_focusable()
       {
 
          return false;
@@ -173,20 +173,20 @@ namespace acme
       }
 
 
-      void interaction::set_capture()
+      void interaction::set_mouse_capture()
       {
 
          acme_windowing_window()->m_pacmeuserinteractionCapture = this;
 
-         acme_windowing_window()->set_capture();
+         acme_windowing_window()->set_mouse_capture();
 
       }
 
 
-      bool interaction::has_capture()
+      bool interaction::has_mouse_capture()
       {
 
-         if (!acme_windowing_window()->has_capture())
+         if (!acme_windowing_window()->has_mouse_capture())
          {
 
             return false;
@@ -198,7 +198,7 @@ namespace acme
       }
 
 
-      void interaction::release_capture()
+      void interaction::release_mouse_capture()
       {
 
          if (acme_windowing_window()->m_pacmeuserinteractionCapture == this)
@@ -206,7 +206,7 @@ namespace acme
 
             acme_windowing_window()->m_pacmeuserinteractionCapture.release();
 
-            acme_windowing_window()->release_capture();
+            acme_windowing_window()->release_mouse_capture();
 
          }
 
@@ -483,19 +483,19 @@ namespace acme
          }
 
 
-         void interaction::set_mouse_capture()
-         {
+         // void interaction::set_mouse_capture()
+         // {
 
-            if (!acme_windowing_window())
-            {
+         //    if (!acme_windowing_window())
+         //    {
 
-               throw ::exception(error_wrong_state);
+         //       throw ::exception(error_wrong_state);
 
-            }
+         //    }
 
-            acme_windowing_window()->set_mouse_capture();
+         //    acme_windowing_window()->set_mouse_capture();
 
-         }
+         // }
 
 
          bool interaction::is_mouse_captured()
@@ -513,34 +513,34 @@ namespace acme
          }
 
 
-         bool interaction::has_mouse_capture()
-         {
+         // bool interaction::has_mouse_capture()
+         // {
 
-            if (!acme_windowing_window())
-            {
+         //    if (!acme_windowing_window())
+         //    {
 
-               throw ::exception(error_wrong_state);
+         //       throw ::exception(error_wrong_state);
 
-            }
+         //    }
 
-            return acme_windowing_window()->has_mouse_capture();
+         //    return acme_windowing_window()->has_mouse_capture();
 
-         }
+         // }
 
 
-         void interaction::release_mouse_capture()
-         {
+         // void interaction::release_mouse_capture()
+         // {
 
-            if (!acme_windowing_window())
-            {
+         //    if (!acme_windowing_window())
+         //    {
 
-               throw ::exception(error_wrong_state);
+         //       throw ::exception(error_wrong_state);
 
-            }
+         //    }
 
-            acme_windowing_window()->release_mouse_capture();
+         //    acme_windowing_window()->release_mouse_capture();
 
-         }
+         // }
 
 
 
@@ -1065,10 +1065,10 @@ namespace acme
 
          //   }
 
-         //   if (::is_set(pchild) && pchild->is_focusable())
+         //   if (::is_set(pchild) && pchild->is_keyboard_focusable())
          //   {
 
-         //      pchild->set_focus();
+         //      pchild->set_keyboard_focus();
 
          //   }
 
@@ -1078,7 +1078,7 @@ namespace acme
          //void interaction::on_left_button_up(::user::mouse * pmouse)
          //{
 
-         //   release_capture();
+         //   release_mouse_capture();
 
          //   if (drag_on_button_up(pmouse))
          //   {
@@ -1140,10 +1140,10 @@ namespace acme
          //   }
 
 
-         //   if (::is_set(pchild) && pchild->is_focusable())
+         //   if (::is_set(pchild) && pchild->is_keyboard_focusable())
          //   {
 
-         //      pchild->set_focus();
+         //      pchild->set_keyboard_focus();
 
          //   }
 
@@ -1153,7 +1153,7 @@ namespace acme
          //void interaction::on_right_button_up(::user::mouse * pmouse)
          //{
 
-         //   release_capture();
+         //   release_mouse_capture();
 
          //   auto pchild = hit_test(pmouse, ::user::e_zorder_any);
 
@@ -1394,7 +1394,7 @@ namespace acme
          void interaction::drag_set_capture()
          {
 
-            set_capture();
+            set_mouse_capture();
 
          }
 
@@ -1484,7 +1484,7 @@ namespace acme
          void interaction::drag_release_capture()
          {
 
-            release_capture();
+            release_mouse_capture();
 
          }
 
@@ -1657,23 +1657,23 @@ namespace acme
 
 
 
-         //void interaction::set_capture()
+         //void interaction::set_mouse_capture()
          //{
 
-         //   acme_windowing_window()->set_capture();
+         //   acme_windowing_window()->set_mouse_capture();
 
          //}
 
 
-         //bool interaction::has_capture()
+         //bool interaction::has_mouse_capture()
          //{
 
-         //   return acme_windowing_window()->has_capture();
+         //   return acme_windowing_window()->has_mouse_capture();
 
          //}
 
 
-         //void interaction::release_capture()
+         //void interaction::release_mouse_capture()
          //{
 
 

@@ -1194,7 +1194,7 @@ namespace user
 //
 //            auto pwindowing = system()->windowing();
 //
-//            pwindowing->release_capture();
+//            pwindowing->release_mouse_capture();
 //
 //            m_iState = stateInitial;
 //

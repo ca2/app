@@ -29,9 +29,9 @@
 CLASS_DECL_ACME string normalize_path(const char* lpcszPath);
 
 
-//CLASS_DECL_ACME oswindow get_capture();
-//CLASS_DECL_ACME oswindow set_capture(oswindow oswindow);
-//CLASS_DECL_ACME int_bool release_capture();
+//CLASS_DECL_ACME oswindow get_mouse_capture();
+//CLASS_DECL_ACME oswindow set_mouse_capture(oswindow oswindow);
+//CLASS_DECL_ACME int_bool release_mouse_capture();
 //
 //CLASS_DECL_ACME oswindow get_active_window();
 //CLASS_DECL_ACME oswindow set_active_window(oswindow oswindow);
@@ -118,7 +118,7 @@ CLASS_DECL_ACME htask main_htask();
 CLASS_DECL_ACME itask main_itask();
 
 //CLASS_DECL_ACME oswindow get_focus();
-//CLASS_DECL_ACME oswindow set_focus(oswindow oswindow);
+//CLASS_DECL_ACME oswindow set_keyboard_focus(oswindow oswindow);
 
 //CLASS_DECL_ACME oswindow get_window(oswindow oswindow, int iWindow);
 

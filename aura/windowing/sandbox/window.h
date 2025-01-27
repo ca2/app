@@ -125,9 +125,9 @@ namespace sandbox_windowing
       //virtual void unmapped_net_state_raw( windowing_android_WINDOW_MEMBER ...);
       //virtual bool x11_get_window_rect(windowing_android_WINDOW_MEMBER  ::int_rectangle * prectangle);
       //virtual bool x11_get_client_rect(windowing_android_WINDOW_MEMBER  ::int_rectangle * prectangle);
-      //virtual oswindow set_capture( windowing_android_WINDOW_MEMBER );
-      //virtual int_bool release_capture();
-      //virtual oswindow set_focus( windowing_android_WINDOW_MEMBER );
+      //virtual oswindow set_mouse_capture( windowing_android_WINDOW_MEMBER );
+      //virtual int_bool release_mouse_capture();
+      //virtual oswindow set_keyboard_focus( windowing_android_WINDOW_MEMBER );
       //virtual void x11_check_status(int status, unsigned long window);
       //virtual unsigned long x11_get_long_property( windowing_android_WINDOW_MEMBER char* property_name);
       //virtual string x11_get_name(windowing_android_WINDOW_MEMBER);

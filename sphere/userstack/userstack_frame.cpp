@@ -173,7 +173,7 @@ namespace userstack
                screen_to_client()(point);
                if(rectangleX.contains(point))
                {
-                  get_wnd()->set_capture();
+                  get_wnd()->set_mouse_capture();
                   if(!m_bMouseOver)
                   {
                      m_bMouseOver = true;
@@ -182,7 +182,7 @@ namespace userstack
                }
                else
                {
-                  get_wnd()->release_capture();
+                  get_wnd()->release_mouse_capture();
                   m_bMouseOver = false;
                   m_pdocument->m_pplatformdocument->get_platform_frame()->super_dock_on_bergedge();
                }

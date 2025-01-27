@@ -167,13 +167,14 @@ namespace acme
          /// @param pnanodevice 
          //virtual void on_draw(::nano::graphics::device * pnanodevice);
          //virtual void on_char(int iChar);
-         virtual void set_focus();
-         virtual bool is_focusable();
+         virtual void set_keyboard_focus() override;
+         virtual bool is_keyboard_focusable();
          virtual bool has_keyboard_focus();
          //virtual void on_mouse_move(::user::mouse * pmouse);
-         void set_capture() override;
-         bool has_capture() override;
-         void release_capture() override;
+         void set_mouse_capture() override;
+         bool is_mouse_captured() override;
+         bool has_mouse_capture() override;
+         void release_mouse_capture() override;
 
          
          //virtual void resize_to_fit();
@@ -384,11 +385,11 @@ namespace acme
 
                ::int_rectangle get_rectangle() override;
 
-               //void set_capture() override;
+               //void set_mouse_capture() override;
 
-               //bool has_capture() override;
+               //bool has_mouse_capture() override;
 
-               //void release_capture() override;
+               //void release_mouse_capture() override;
 
                void set_cursor(enum_cursor ecursor) override;
 
@@ -429,10 +430,10 @@ namespace acme
                //void window_restore() override; // m_pwindow->m_puserinteraction->display(::e_display_normal);
                //void window_close() override;
 
-               void set_mouse_capture() override;
-               bool is_mouse_captured() override;
-               bool has_mouse_capture() override;
-               void release_mouse_capture() override;
+               // void set_mouse_capture() override;
+               // bool is_mouse_captured() override;
+               // bool has_mouse_capture() override;
+               // void release_mouse_capture() override;
 
 
                void _on_window_simple_action(const char * pszActionName) override;

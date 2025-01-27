@@ -644,7 +644,7 @@ namespace acme
       // }
 
 
-      void window::set_capture()
+      void window::set_mouse_capture()
       {
 
          ::cast < ::acme::user::frame_interaction > pframeinteraction = m_pacmeuserinteraction;
@@ -656,7 +656,7 @@ namespace acme
 
          }
 
-         m_pacmeuserinteraction->set_capture();
+         m_pacmeuserinteraction->set_mouse_capture();
 
          if (pframeinteraction)
          {
@@ -738,10 +738,10 @@ namespace acme
    }
 
 
-      bool window::has_capture()
+      bool window::has_mouse_capture()
       {
 
-         //return m_pacmeuserinteraction->has_capture();
+         //return m_pacmeuserinteraction->has_mouse_capture();
 
          auto pacmewindowing = system()->acme_windowing();
 
@@ -773,7 +773,7 @@ namespace acme
       }
 
 
-      void window::release_capture()
+      void window::release_mouse_capture()
       {
 
          m_pacmeuserinteractionCapture = nullptr;
@@ -794,7 +794,7 @@ namespace acme
 
          }
 
-         m_pacmeuserinteraction->release_capture();
+         m_pacmeuserinteraction->release_mouse_capture();
 
       }
 

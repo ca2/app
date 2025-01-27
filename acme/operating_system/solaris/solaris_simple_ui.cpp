@@ -738,7 +738,7 @@ namespace os
    }
 
 
-   void simple_ui::set_capture()
+   void simple_ui::set_mouse_capture()
    {
 
       ::SetCapture(m_window);
@@ -746,7 +746,7 @@ namespace os
    }
 
 
-   void simple_ui::release_capture()
+   void simple_ui::release_mouse_capture()
    {
 
       ::ReleaseCapture();

@@ -213,6 +213,9 @@ namespace user
       virtual void on_window_close();
 
 
+      virtual void set_cursor(enum_cursor ecursor);
+
+
       virtual void set_mouse_capture();
       virtual bool is_mouse_captured();
       virtual bool has_mouse_capture();
@@ -472,10 +475,9 @@ namespace user
 
 
       virtual void redraw();
-      virtual void set_cursor(enum_cursor ecursor);
-      virtual void set_capture();
-      virtual bool has_capture();
-      virtual void release_capture();
+      // virtual void set_mouse_capture();
+      // virtual bool has_mouse_capture();
+      // virtual void release_mouse_capture();
 
 
       virtual void edit_on_set_focus(::user::interaction * pinteraction);

@@ -184,7 +184,7 @@ namespace user
          
          //__UNREFERENCED_PARAMETER(pmessage);
 
-         //::pointer<::message::set_focus>psetfocus(pmessage);
+         //::pointer<::message::set_keyboard_focus>psetfocus(pmessage);
 
          if (!is_text_editable())
          {

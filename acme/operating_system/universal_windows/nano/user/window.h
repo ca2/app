@@ -86,11 +86,11 @@ namespace universal_windows
 
             //void get_window_rectangle(::int_rectangle & rectangle) override;
 
-            //void set_capture() override;
+            //void set_mouse_capture() override;
 
-            //bool has_capture() const override;
+            //bool has_mouse_capture() const override;
 
-            //void release_capture() override;
+            //void release_mouse_capture() override;
 
             //void set_cursor(enum_cursor ecursor) override;
 

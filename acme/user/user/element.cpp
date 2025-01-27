@@ -1661,18 +1661,12 @@ namespace user
    }
 
 
-   void element::set_capture()
-   {
+   // void element::set_mouse_capture()
+   // {
 
 
-   }
+   // }
 
-
-   void element::set_cursor(enum_cursor ecursor)
-   {
-
-
-   }
 
 
    void element::edit_on_set_focus(::user::interaction * pinteraction)
@@ -2455,7 +2449,7 @@ namespace user
    //}
 
 
-   //bool element::set_capture(::user::interaction * pinteraction)
+   //bool element::set_mouse_capture(::user::interaction * pinteraction)
    //{
 
    //   return false;
@@ -3173,6 +3167,13 @@ namespace user
 
 
    void element::on_window_close()
+   {
+
+
+   }
+
+   
+   void element::set_cursor(enum_cursor ecursor)
    {
 
 
@@ -5160,18 +5161,18 @@ namespace user
 
    }
 
-   bool element::has_capture()
-   {
+   // bool element::has_mouse_capture()
+   // {
 
-      return false;
-   }
-
-
-   void element::release_capture()
-   {
+   //    return false;
+   // }
 
 
-   }
+   // void element::release_mouse_capture()
+   // {
+
+
+   // }
 
    
 

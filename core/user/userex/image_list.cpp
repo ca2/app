@@ -346,7 +346,7 @@ namespace userex
 
    //auto pwindowing = system()->windowing();
 
-   //pwindowing->release_capture();
+   //pwindowing->release_mouse_capture();
 
    //   m_iMenuHover = -1;
 

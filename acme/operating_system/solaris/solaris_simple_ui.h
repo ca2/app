@@ -87,8 +87,8 @@ namespace os
 
       virtual void on_draw_framebuffer();
 
-      virtual void set_capture();
-      virtual void release_capture();
+      virtual void set_mouse_capture();
+      virtual void release_mouse_capture();
 
       virtual bool move_window(int x, int y);
       virtual bool set_window_position(int x, int y, int cx, int cy, bool bShow);

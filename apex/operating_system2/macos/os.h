@@ -25,8 +25,8 @@
 
 
 oswindow get_capture();
-oswindow set_capture(oswindow window);
-int_bool release_capture();
+oswindow set_mouse_capture(oswindow window);
+int_bool release_mouse_capture();
 oswindow set_foucs(oswindow window);
 oswindow get_focus();
 oswindow get_active_window();

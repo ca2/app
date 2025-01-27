@@ -140,7 +140,7 @@ namespace micro
    ///child
 
 
-   //void main_window::set_focus()
+   //void main_window::set_keyboard_focus()
    //{
 
    //   acme_windowing_window()->m_pmicrouserinteractionFocus = this;
@@ -150,7 +150,7 @@ namespace micro
    //}
 
 
-   //bool main_window::is_focusable()
+   //bool main_window::is_keyboard_focusable()
    //{
 
    //   return false;
@@ -158,20 +158,20 @@ namespace micro
    //}
 
 
-   //void main_window::set_capture()
+   //void main_window::set_mouse_capture()
    //{
 
    //   acme_windowing_window()->m_pmicrouserinteractionCapture = this;
 
-   //   acme_windowing_window()->set_capture();
+   //   acme_windowing_window()->set_mouse_capture();
 
    //}
 
 
-   //bool main_window::has_capture()
+   //bool main_window::has_mouse_capture()
    //{
 
-   //   if (!acme_windowing_window()->has_capture())
+   //   if (!acme_windowing_window()->has_mouse_capture())
    //   {
 
    //      return false;
@@ -183,7 +183,7 @@ namespace micro
    //}
 
 
-   //void main_window::release_capture()
+   //void main_window::release_mouse_capture()
    //{
 
    //   if (acme_windowing_window()->m_pmicrouserinteractionCapture == this)
@@ -191,7 +191,7 @@ namespace micro
 
    //      acme_windowing_window()->m_pmicrouserinteractionCapture.release();
 
-   //      acme_windowing_window()->release_capture();
+   //      acme_windowing_window()->release_mouse_capture();
 
    //   }
 
@@ -943,10 +943,10 @@ namespace micro
 
    //   }
 
-   //   if (::is_set(pchild) && pchild->is_focusable())
+   //   if (::is_set(pchild) && pchild->is_keyboard_focusable())
    //   {
 
-   //      pchild->set_focus();
+   //      pchild->set_keyboard_focus();
 
    //   }
 
@@ -956,7 +956,7 @@ namespace micro
    //void main_window::on_left_button_up(::user::mouse * pmouse)
    //{
 
-   //   release_capture();
+   //   release_mouse_capture();
 
    //   if (drag_on_button_up(pmouse))
    //   {
@@ -1018,10 +1018,10 @@ namespace micro
    //   }
 
 
-   //   if (::is_set(pchild) && pchild->is_focusable())
+   //   if (::is_set(pchild) && pchild->is_keyboard_focusable())
    //   {
 
-   //      pchild->set_focus();
+   //      pchild->set_keyboard_focus();
 
    //   }
 
@@ -1031,7 +1031,7 @@ namespace micro
    //void main_window::on_right_button_up(::user::mouse * pmouse)
    //{
 
-   //   release_capture();
+   //   release_mouse_capture();
 
    //   auto pchild = hit_test(pmouse, ::user::e_zorder_any);
 
@@ -1267,10 +1267,10 @@ namespace micro
    //}
 
 
-   //void main_window::drag_set_capture()
+   //void main_window::drag_set_mouse_capture()
    //{
 
-   //   set_capture();
+   //   set_mouse_capture();
 
    //}
 
@@ -1360,7 +1360,7 @@ namespace micro
    //void main_window::drag_release_capture()
    //{
 
-   //   release_capture();
+   //   release_mouse_capture();
 
    //}
 
@@ -1557,23 +1557,23 @@ namespace micro
    }
 
 
-   //void main_window::set_capture()
+   //void main_window::set_mouse_capture()
    //{
 
-   //   m_pacmewindowingwindow->set_capture();
+   //   m_pacmewindowingwindow->set_mouse_capture();
 
    //}
 
 
-   //bool main_window::has_capture()
+   //bool main_window::has_mouse_capture()
    //{
 
-   //   return m_pacmewindowingwindow->has_capture();
+   //   return m_pacmewindowingwindow->has_mouse_capture();
 
    //}
 
 
-   //void main_window::release_capture()
+   //void main_window::release_mouse_capture()
    //{
 
 

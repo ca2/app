@@ -31,7 +31,7 @@ namespace micro
 
       void fore_on_mouse_move(::user::mouse * pmouse) override;
 
-      bool is_focusable() override;
+      bool is_keyboard_focusable() override;
 
 
       void resize_to_fit() override;

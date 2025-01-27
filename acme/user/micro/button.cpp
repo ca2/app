@@ -91,7 +91,7 @@ namespace micro
    }
 
 
-   bool button::is_focusable()
+   bool button::is_keyboard_focusable()
    {
 
       return true;

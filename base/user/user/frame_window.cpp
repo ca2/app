@@ -699,7 +699,7 @@ namespace user
 
          auto pwindowing = system()->windowing();
 
-         pwindowing->release_capture();
+         pwindowing->release_mouse_capture();
 
       ::pointer<::user::frame_window>pFrameWnd = top_level_frame();
       ENSURE_VALID(pFrameWnd);

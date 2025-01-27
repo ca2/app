@@ -1157,13 +1157,13 @@ run_install:
 
    //}
 
-   //void plugin::set_focus(::user::interaction * puiFocus)
+   //void plugin::set_keyboard_focus(::user::interaction * puiFocus)
    //{
 
    //   if (m_phost != nullptr)
    //   {
 
-   //      m_phost->set_focus(puiFocus);
+   //      m_phost->set_keyboard_focus(puiFocus);
 
    //   }
 

@@ -61,7 +61,7 @@ namespace micro
          e_align_center,
          e_draw_text_single_line,
          micro_theme()->m_pbrushWindow,
-         m_bHyperlink ? (has_capture() ?
+         m_bHyperlink ? (has_mouse_capture() ?
             micro_theme()->m_pbrushHyperlinkHover :
             micro_theme()->m_pbrushHyperlink) : micro_theme()->m_pbrushText,
          micro_theme()->m_pfont);
@@ -136,7 +136,7 @@ namespace micro
    }
 
 
-   bool still::is_focusable()
+   bool still::is_keyboard_focusable()
    {
 
       return m_bHyperlink;

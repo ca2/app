@@ -210,7 +210,7 @@ namespace acme
    ::acme::windowing::window * windowing::get_mouse_capture(::thread* pthread)
    {
       
-      return nullptr;
+      return m_pwindowMouseCapture;
       
    }
    

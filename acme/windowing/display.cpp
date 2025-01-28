@@ -25,6 +25,9 @@ namespace acme
 
       {
 
+
+         m_bDisplayOpened = false;
+
          defer_create_synchronization();
 
          //m_edisplaytype = e_display_type_none;

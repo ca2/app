@@ -24,6 +24,7 @@ namespace acme
          //enum_display_type       m_edisplaytype;
 
          ::string                         m_strDarkModeAnnotation;
+         bool                             m_bDisplayOpened;
 
 
 

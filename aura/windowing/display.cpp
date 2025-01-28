@@ -212,7 +212,14 @@ namespace windowing
    ::collection::index display::get_main_monitor_index()
    {
 
-      return 0;
+      if (!m_bDisplayOpened)
+      {
+
+         open_display();
+
+      }
+
+      return m_iMainMonitor;
 
    }
 

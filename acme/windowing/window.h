@@ -83,7 +83,7 @@ namespace acme
 
 
 
-
+//enum_bias m_ebias;
 
 
          window();
@@ -91,8 +91,7 @@ namespace acme
 
 
          //virtual void do_interchange();
-
-
+         ::windowing::enum_bias windowing_bias() const;
 
 
          //virtual ::pointer < item_container > item_form();

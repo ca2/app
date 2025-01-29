@@ -619,6 +619,13 @@ namespace user
 
       auto puserinteractionTopOwner = get_owner();
 
+      if (::is_null(puserinteractionTopOwner))
+      {
+
+         puserinteractionTopOwner = puiParent;
+
+      }
+
       puserinteractionTopOwner->m_menua.add(this);
 
 #else

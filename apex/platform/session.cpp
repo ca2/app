@@ -1092,6 +1092,8 @@ ret:
    void session::init1()
    {
 
+      ::platform::session::init1();
+
       //auto estatus = 
       
 

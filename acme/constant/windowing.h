@@ -75,6 +75,20 @@ namespace windowing
    };
 
 
+
+   enum enum_bias
+   {
+
+      e_bias_unknown = -1,
+      e_bias_none = 0,
+      e_bias_linux_mint_x_cinnamon_22_1,
+
+   };
+
+
+
+
+
 } // namespace windowing
 
 

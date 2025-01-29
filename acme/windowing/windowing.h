@@ -28,8 +28,8 @@ namespace acme
    
    namespace windowing
    {
-      
-      
+
+
       class CLASS_DECL_ACME windowing :
          virtual public ::acme::department,
          virtual public ::task,
@@ -44,9 +44,14 @@ namespace acme
          ::pointer<::acme::windowing::window>               m_pwindowMouseCapture;
          class ::time                                       m_timeDarkMode;
 
+         ::windowing::enum_bias                             m_ewindowingbias;
 
          windowing();
          ~windowing() override;
+
+         virtual ::windowing::enum_bias calculate_windowing_bias();
+
+         inline ::windowing::enum_bias windowing_bias() { return m_ewindowingbias; }
 
 
          //inline static const char * represented_component_name() { return "nano_windowing"; }
@@ -210,6 +215,9 @@ namespace acme
          virtual bool defer_realize(         ::pointer < ::reified < ::message_box > > & preifiedMessageBox, ::message_box * p);
 
          virtual bool has_resizing();
+
+
+         //virtual enum_bias calculate_bias();
 
          
       };

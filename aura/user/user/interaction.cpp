@@ -15482,14 +15482,57 @@ if(get_parent())
       //auto yPos = (int)(short)HIWORD(lparam);   // vertical position 
       auto xPos = rectangle.left();
       auto yPos = rectangle.top();
+      auto w = rectangle.width();
+      auto h = rectangle.height();
 
       //::int_point p(r.left, r.top);
 
       ::int_point p(xPos, yPos);
 
+      ::int_size s(w, h);
+
+      information() << "user::interaction::_on_configure_notify_unlocked rectangle = " << rectangle;
+
       //m_pointWindow = p;
 
       //::SetWindowPos(m_hwnd, nullptr, xPos, yPos, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+
+
+      //     layout().m_statea[::user::e_layout_window].m_size = s;
+      //
+      //     if(layout().m_statea[::user::e_layout_sketch].m_size != s)
+      //    {
+      //
+      //       layout().m_statea[::user::e_layout_sketch].m_size = s;
+      //
+      //       set_need_layout();
+      //
+      //       set_need_redraw();
+      //
+      //       post_redraw();
+      //
+      //    }
+      //
+      // //}
+      //
+      // //::int_point p(x, y);
+      // //
+      // // if(m_pointWindow != p)
+      // // {
+      // //
+      // //    m_pointWindow = p;
+      // //
+      // layout().m_statea[::user::e_layout_window].m_point2 = p;
+      //
+      // if(layout().m_statea[::user::e_layout_sketch].m_point2 != p)
+      //     {
+      //
+      //        layout().m_statea[::user::e_layout_sketch].m_point2 = p;
+      //
+      //     }
+      // //
+      // // }
+
 
       layout().m_statea[::user::e_layout_sketch].m_point2 = p;
       layout().m_statea[::user::e_layout_lading].m_point2 = p;
@@ -15499,6 +15542,13 @@ if(get_parent())
       layout().m_statea[::user::e_layout_window].m_point2 = p;
       layout().m_statea[::user::e_layout_normal].m_point2 = p;
 
+      layout().m_statea[::user::e_layout_sketch].m_size = s;
+      layout().m_statea[::user::e_layout_lading].m_size = s;
+      layout().m_statea[::user::e_layout_layout].m_size = s;
+      layout().m_statea[::user::e_layout_design].m_size = s;
+      layout().m_statea[::user::e_layout_output].m_size = s;
+      layout().m_statea[::user::e_layout_window].m_size = s;
+      layout().m_statea[::user::e_layout_normal].m_size = s;
 
 
    }
@@ -18160,14 +18210,14 @@ if(get_parent())
 
       auto puserinteraction = pchild;
 
-      ::user::interaction_array interactionaHandled;
+      //::user::interaction_array interactionaHandled;
 
       while (::is_set(puserinteraction))
       {
 
          puserinteraction->route_message(pmouse);
 
-         interactionaHandled.add_interaction(puserinteraction);
+//         interactionaHandled.add_interaction(puserinteraction);
 
          if (pmouse->m_bRet)
          {

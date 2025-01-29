@@ -11,6 +11,9 @@
 #include "aura/platform/session.h"
 
 
+#define DEEP_LOG_HERE 0
+
+
 namespace windowing
 {
 
@@ -76,7 +79,11 @@ namespace windowing
       && m_rectangleFixedWorkspace.bottom() != I32_MINIMUM)
       {
 
+#if DEEP_LOG_HERE >= 6
+
          information() << "monitor returning fixed workspace rectangle : " << m_rectangleFixedWorkspace;
+
+#endif
 
          return m_rectangleFixedWorkspace;
 
@@ -88,7 +95,11 @@ namespace windowing
          && m_rectangleWorkspace.bottom() != I32_MINIMUM)
       {
 
-         information() << "monitor returning fixed workspace rectangle : " << m_rectangleWorkspace;
+#if DEEP_LOG_HERE >= 6
+
+         information() << "monitor returning workspace rectangle : " << m_rectangleWorkspace;
+
+#endif
 
          return m_rectangleWorkspace;
 

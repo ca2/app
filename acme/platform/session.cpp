@@ -190,6 +190,12 @@ namespace platform
    void session::init1()
    {
 
+      if (system()->acme_windowing()->m_ewindowingbias == ::windowing::e_bias_unknown)
+      {
+
+         system()->acme_windowing()->m_ewindowingbias = system()->acme_windowing()->calculate_windowing_bias();
+
+      }
 
    }
 

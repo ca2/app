@@ -2655,20 +2655,35 @@ void window::set_oswindow(::oswindow oswindow)
    bool window::_strict_set_window_position_unlocked(int x, int y, int cx, int cy, bool bNoMove, bool bNoSize)
    {
 
-      bool bMove = !bNoMove;
-
-      bool bSize = !bNoSize;
-
-      if (bMove)
+      if (!is_window_zoomed() && !is_full_screen())
       {
+         bool bMove = !bNoMove;
 
-         set_position_unlocked({ x, y });
+         bool bSize = !bNoSize;
 
-      }
+         if (bMove)
+         {
 
-      if (bSize)
-      {
-         set_size_unlocked({ cx, cy });
+            if (bSize)
+            {
+
+               set_rectangle_unlocked(::int_rectangle_dimension(x, y, cx, cy));
+
+            }
+            else
+            {
+
+               set_position_unlocked({ x, y });
+
+            }
+
+         }
+         else if (bSize)
+         {
+
+            set_size_unlocked({ cx, cy });
+
+         }
 
       }
 

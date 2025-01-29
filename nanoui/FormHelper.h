@@ -135,8 +135,10 @@ NAMESPACE_END(detail)
          const ::scoped_string & title = "Untitled")
       {
          ASSERT(m_pscreen);
-         m_pwindow = __allocate Window(m_pscreen, title);
-         m_playout = __allocate AdvancedGridLayout(int_array{ 10, 0, 10, 0 }, int_array{});
+         m_pwindow = ___new Window(m_pscreen, title);
+         int_array ia1{ 10, 0, 10, 0 };
+         int_array ia2;
+         m_playout = ___new AdvancedGridLayout(ia1, ia2);
          m_playout->set_margin(10);
          m_playout->set_col_stretch(2, 1);
          m_pwindow->set_position(pos);
@@ -149,7 +151,7 @@ NAMESPACE_END(detail)
       /// Add a ___new group that may contain several sub-widgets
       Label * add_group(const ::scoped_string & caption)
       {
-         Label * plabel = __allocate Label(m_pwindow, caption, m_group_font_name, m_group_font_size);
+         Label * plabel = ___new Label(m_pwindow, caption, m_group_font_name, m_group_font_size);
          if (m_playout->row_count() > 0)
             m_playout->append_row(m_pre_group_spacing); /* Spacing */
          m_playout->append_row(0);
@@ -201,7 +203,7 @@ NAMESPACE_END(detail)
       /// Add a button with a custom callback
       Button * add_button(const ::scoped_string & label, const ::function<void()> & cb)
       {
-         Button * pbutton = __allocate Button(m_pwindow, label);
+         Button * pbutton = ___new Button(m_pwindow, label);
          pbutton->set_callback(cb);
          pbutton->set_fixed_height(25);
          if (m_playout->row_count() > 0)

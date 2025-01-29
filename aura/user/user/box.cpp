@@ -160,16 +160,30 @@ namespace user
 
          calculate_broad_and_compact_restore();
 
-         if (m_windowdisplayandlayout.m_rectangleWindow.size() == m_rectangleRestoreBroad.size())
+         ::e_display edisplay = ::e_display_undefined;
+
+         if (m_windowdisplayandlayout.m_rectangleWindow.size() >= m_rectangleRestoreBroad.size() * 0.8)
          {
 
             m_windowdisplayandlayout.m_rectangleBroad = m_windowdisplayandlayout.m_rectangleWindow;
 
+            information() << "m_windowdisplayandlayout.m_rectangleBroad (1) : " << m_windowdisplayandlayout.m_rectangleBroad;
+
+            edisplay = ::e_display_broad;
+
+            information() << "box::_on_configure_notify_unlocked() : e_display_broad";
+
          }
-         else if (m_windowdisplayandlayout.m_rectangleWindow.size() == m_rectangleRestoreCompact.size())
+         else if (m_windowdisplayandlayout.m_rectangleWindow.size() <= m_rectangleRestoreCompact.size() * 1.125)
          {
 
             m_windowdisplayandlayout.m_rectangleCompact = m_windowdisplayandlayout.m_rectangleWindow;
+
+            information() << "m_windowdisplayandlayout.m_rectangleCompact (1) : " << m_windowdisplayandlayout.m_rectangleCompact;
+
+            edisplay = ::e_display_compact;
+
+            information() << "box::_on_configure_notify_unlocked() : e_display_compact";
 
          }
          else
@@ -179,7 +193,30 @@ namespace user
 
             information() << "m_windowdisplayandlayout.m_rectangleNormal (1) : " << m_windowdisplayandlayout.m_rectangleNormal;
 
+            edisplay = ::e_display_normal;
+
+            information() << "box::_on_configure_notify_unlocked() : e_display_normal";
+
          }
+
+
+         layout().m_statea[::user::e_layout_sketch].m_edisplay = edisplay;
+         layout().m_statea[::user::e_layout_lading].m_edisplay = edisplay;
+         layout().m_statea[::user::e_layout_layout].m_edisplay = edisplay;
+         layout().m_statea[::user::e_layout_design].m_edisplay = edisplay;
+         layout().m_statea[::user::e_layout_output].m_edisplay = edisplay;
+         layout().m_statea[::user::e_layout_window].m_edisplay = edisplay;
+         layout().m_statea[::user::e_layout_normal].m_edisplay = edisplay;
+
+         // layout().m_statea[::user::e_layout_sketch].m_size = s;
+         // layout().m_statea[::user::e_layout_lading].m_size = s;
+         // layout().m_statea[::user::e_layout_layout].m_size = s;
+         // layout().m_statea[::user::e_layout_design].m_size = s;
+         // layout().m_statea[::user::e_layout_output].m_size = s;
+         // layout().m_statea[::user::e_layout_window].m_size = s;
+         // layout().m_statea[::user::e_layout_normal].m_size = s;
+
+
          //else
          //{
 
@@ -193,6 +230,8 @@ namespace user
          //   }
 
          //}
+
+
 
       }
 

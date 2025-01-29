@@ -25,35 +25,36 @@ namespace operating_system
    {
    public:
 
-      ::string m_strName;
-      ::string m_strDistroName;
-      ::string m_strDistroFamilyName;
-      ::string m_strDistroBranchName;
-      ::string m_strDistroReleaseName;
-      ::string m_strDesktopEnvironmentName;
 
-      ::string m_strDistro;
-      ::string m_strDistroFamily;
-      ::string m_strDistroBranch;
-      ::string m_strDistroRelease;
-      ::string m_strDesktopEnvironment;
-      ::string m_strSlashedStore;
-      ::string m_strSlashedIntegration;
-      ::string m_strUnderscoreOperatingSystem;
+      ::string          m_strName;
+      ::string          m_strOperatingSystemName;
+      ::string          m_strOperatingSystemFamilyName;
+      ::string          m_strOperatingSystemBranchName;
+      ::string          m_strOperatingSystemReleaseName;
+      ::string          m_strOperatingAmbientName;
 
-      int       m_iMajor;
-      int       m_iMinor;
-      int       m_iPatch;
+      ::string          m_strOperatingSystem;
+      ::string          m_strOperatingSystemFamily;
+      ::string          m_strOperatingSystemBranch;
+      ::string          m_strOperatingSystemRelease;
+      ::string          m_strOperatingAmbient;
+      ::string          m_strSlashedStore;
+      ::string          m_strSlashedIntegration;
+      ::string          m_strUnderscoreOperatingSystem;
+
+      int               m_iMajor;
+      int               m_iMinor;
+      int               m_iPatch;
       
-      ::string    m_strIntegrationRelease;
-      ::string    m_strStoreRelease;
+      ::string          m_strIntegrationRelease;
+      ::string          m_strStoreRelease;
 
-      ::string m_strSudoInstall;
-      ::string m_strStandardPackageFileExtension;
-      ::string m_strPackagePlatform;
+      ::string          m_strSudoInstall;
+      ::string          m_strStandardPackageFileExtension;
+      ::string          m_strPackagePlatform;
 
 
-      ::string m_strTerminal;
+      ::string          m_strTerminal;
 
 
       summary();

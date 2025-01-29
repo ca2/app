@@ -91,6 +91,8 @@ namespace experience_core
 
       pgraphics->fill_rectangle(rectangleX, crBackground);
 
+      draw_display_normal_label(pgraphics);
+
    }
 
 

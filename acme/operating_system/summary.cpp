@@ -35,11 +35,11 @@ summary::~summary()
    
    ::string strSummary;
    
-   strSummary.append_formatf("__SYSTEM_DISTRO is %s", m_strDistro.c_str());
-   strSummary.append_formatf("__SYSTEM_DISTRO_FAMILY is %s", m_strDistroFamily.c_str());
-   strSummary.append_formatf("__SYSTEM_DISTRO_BRANCH is %s", m_strDistroBranch.c_str());
-   strSummary.append_formatf("__SYSTEM_DISTRO_RELEASE is %s", m_strDistroRelease.c_str());
-   strSummary.append_formatf("__SYSTEM_DESKTOP_ENVIRONMENT is %s", m_strDesktopEnvironment.c_str());
+   strSummary.append_formatf("__OPERATING_SYSTEM is %s", m_strOperatingSystem.c_str());
+   strSummary.append_formatf("__OPERATING_SYSTEM_FAMILY is %s", m_strOperatingSystemFamily.c_str());
+   strSummary.append_formatf("__OPERATING_SYSTEM_BRANCH is %s", m_strOperatingSystemBranch.c_str());
+   strSummary.append_formatf("__OPERATING_SYSTEM_RELEASE is %s", m_strOperatingSystemRelease.c_str());
+   strSummary.append_formatf("__OPERATING_AMBIENT is %s", m_strOperatingAmbient.c_str());
    strSummary.append_formatf("__SYSTEM_SLASHED_STORE is %s", m_strSlashedStore.c_str());
    strSummary.append_formatf("__SYSTEM_SLASHED_INTEGRATION is %s", m_strSlashedIntegration.c_str());
    strSummary.append_formatf("__SYSTEM_UNDERSCORE_OPERATING_SYSTEM is %s", m_strUnderscoreOperatingSystem.c_str());

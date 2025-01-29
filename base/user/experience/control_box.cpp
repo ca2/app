@@ -15,6 +15,7 @@
 #include "aura/graphics/write_text/font.h"
 #include "aura/message/user.h"
 #include "base/platform/session.h"
+#include "aura/graphics/draw2d/graphics.h"
 
 
 namespace experience
@@ -1302,6 +1303,58 @@ namespace experience
 //         throw ::exception(error_failed, "no more a u");
 //
 //      }
+
+   }
+
+
+   void control_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      ::user::box::_001OnDraw(pgraphics);
+
+      draw_display_normal_label(pgraphics);
+
+   }
+
+
+   void control_box::draw_display_normal_label(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      auto pframewindow = m_pframewindow;
+
+      if (::is_null(pframewindow))
+      {
+
+         return;
+
+      }
+
+      auto edisplay = pframewindow->const_layout().design().display();
+
+      if (equivalence_sink(edisplay) == e_display_normal)
+      {
+
+         if (edisplay == e_display_normal)
+         {
+
+            pgraphics->text_out(0, 0, "Normal");
+
+         }
+         else if (edisplay == e_display_compact)
+         {
+
+            pgraphics->text_out(0, 0, "Compact");
+
+         }
+         else if (edisplay == e_display_broad)
+         {
+
+            pgraphics->text_out(0, 0, "Broad");
+
+         }
+
+
+      }
 
    }
 

@@ -57,6 +57,8 @@ namespace acme
       window::window() :
          m_pointCursor2(I32_MINIMUM)
       {
+
+         //m_ebias = e_bias_unknown;
          m_bRepositioningWindowFromCenter = false;
          m_bResizingWindowFromBottomRight = false;
 
@@ -103,10 +105,38 @@ namespace acme
       }
 
 
+      ::windowing::enum_bias window::windowing_bias() const
+      {
+
+         auto psystem = system();
+
+         if (::is_null(psystem))
+         {
+
+            return ::windowing::e_bias_unknown;
+
+         }
+
+         auto pacmewindowing = psystem->acme_windowing();
+
+         if (::is_null(pacmewindowing))
+         {
+
+            return ::windowing::e_bias_unknown;
+
+         }
+
+         return pacmewindowing->windowing_bias();
+
+      }
+
+
       void window::on_initialize_particle()
       {
 
          ::user::element::on_initialize_particle();
+
+         //m_ebias = calculate_bias();
 
          //__øconstruct(m_pacmeuserinteraction);
 
@@ -1521,9 +1551,9 @@ namespace acme
       void window::set_rectangle_unlocked(const int_rectangle & rectangle)
       {
 
-         set_position_unlocked(rectangle.top_left());
-
          set_size_unlocked(rectangle.size());
+
+         set_position_unlocked(rectangle.top_left());
 
       }
 

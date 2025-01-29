@@ -3,6 +3,9 @@
 #include "task_message_queue.h"
 
 
+#define DEEP_LOG_HERE 0
+
+
 task_message_queue::task_message_queue()
 {
    
@@ -32,7 +35,11 @@ message_queue * task_message_queue::get_message_queue(const class ::task_index &
    if (!taskindex)
    {
 
+#if DEEP_LOG_HERE >= 9
+
       information() << "task_message_queue::get_message_queue !task_index";
+
+#endif
 
       throw ::exception(error_wrong_state);
 
@@ -42,20 +49,32 @@ message_queue * task_message_queue::get_message_queue(const class ::task_index &
 
    auto psystem = system();
 
+#if DEEP_LOG_HERE >= 9
+
    information() << "task_message_queue::get_message_queue psystem : (::uptr) " << (::uptr) psystem;
+
+#endif
 
    critical_section_lock criticalsectionlock(&psystem->m_criticalsectionThreadStorage);
 
    auto pthreadstorage = psystem->_thread_storage_unlocked(taskindex);
 
+#if DEEP_LOG_HERE >= 9
+
    information() << "task_message_queue::get_message_queue pthreadstorage : (::uptr) " << (::uptr) pthreadstorage;
+
+#endif
 
    auto & pmessagequeue = pthreadstorage->m_pmessagequeue;
 
    if (!pmessagequeue)
    {
 
+#if DEEP_LOG_HERE >= 9
+
       information() << "task_message_queue::get_message_queue !pmessagequeue";
+
+#endif
 
       if (bCreate)
       {

@@ -82,6 +82,11 @@ namespace experience
       void install_message_routing(::channel *pframewindow) override;
 
       void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+
+
+      virtual void draw_display_normal_label(::draw2d::graphics_pointer & pgraphics);
+
 
       void drag(const ::int_point & point);
 

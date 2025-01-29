@@ -473,7 +473,11 @@ namespace experience
 
          }
 
-         if(system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
+         auto pacmewindowing = system()->acme_windowing();
+
+         auto ewindowing = pacmewindowing->get_ewindowing();
+
+         if(ewindowing == ::windowing::e_windowing_wayland)
          {
 
             return m_pframewindow->layout().is_zoomed(user::e_layout_lading);

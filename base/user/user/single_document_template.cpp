@@ -96,8 +96,10 @@ namespace user
    // single_document_template commands
 
    // if lpszPathName == nullptr => create ___new file of this type
-   void single_document_template::on_request(::request * prequest)
+   void single_document_template::on_request(::request * prequestParameter)
    {
+
+      auto prequest = ::as_pointer(prequestParameter);
 
       prequest->m_countStack++;
 

@@ -9,7 +9,7 @@
 #include "acme/prototype/prototype/url.h"
 #include "apex/networking/internet.h"
 #include "aura/graphics/draw2d/draw2d.h"
-#include "aura/graphics/image/save_options.h"
+#include "aura/graphics/image/encoding_options.h"
 #include "aura/graphics/image/frame_array.h"
 #include "aura/graphics/image/context.h"
 #include "aura/windowing/window.h"
@@ -227,34 +227,34 @@ namespace user
 
             memory mem;
 
-            ::image::save_options saveoptions;
+            ::image::encoding_options encodingoptions;
 
             if (pimage->frames() && pimage->frames()->count() >= 2)
             {
 
-               saveoptions.m_eformat = ::image::e_format_gif;
+               encodingoptions.m_eformat = ::image::e_format_gif;
 
             }
             else
             {
 
-               saveoptions.m_eformat = ::image::e_format_png;
+               encodingoptions.m_eformat = ::image::e_format_png;
 
             }
 
-            image()->save_image(mem, pimage, saveoptions);
+            image()->save_image(mem, pimage, encodingoptions);
 
             auto pbase64 = system()->base64();
 
             str = pbase64->encode(mem);
 
-            if (saveoptions.m_eformat == ::image::e_format_png)
+            if (encodingoptions.m_eformat == ::image::e_format_png)
             {
 
                str = "data:image/png;base64;" + str;
 
             }
-            else if (saveoptions.m_eformat == ::image::e_format_gif)
+            else if (encodingoptions.m_eformat == ::image::e_format_gif)
             {
 
                str = "data:image/gif;base64;" + str;

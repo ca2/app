@@ -736,7 +736,20 @@ namespace acme
 
        m_pacmeuserinteractionKeyboardFocus = pacmeuserinteractionFocus;
 
+         if (!has_keyboard_focus())
+         {
+
+            set_keyboard_focus();
+
+         }
+
     }
+
+
+   void window::set_keyboard_focus()
+   {
+
+   }
 
     //void window::erase_keyboard_focus(::acme::user::interaction * pacmeuserinteractionFocus)
     //{

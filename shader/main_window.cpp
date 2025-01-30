@@ -231,13 +231,13 @@ namespace app_shader
             fork([this, pimage]()
                  {
 
-                    ::image::save_options saveoptions;
+                    ::image::encoding_options encodingoptions;
 
-                    saveoptions.m_eformat = ::image::e_format_png;
+                    encodingoptions.m_eformat = ::image::e_format_png;
 
                     string strDate = datetime()->date_time_text_for_file();
 
-                    image()->save_image("image://app_simple_shader-" + strDate + ".png", pimage, saveoptions);
+                    image()->save_image("image://app_simple_shader-" + strDate + ".png", pimage, encodingoptions);
 
                  });
 

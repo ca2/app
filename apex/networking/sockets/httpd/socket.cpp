@@ -510,7 +510,7 @@ namespace httpd
 
    //      pimage->stretch_image(pimage);
 
-   //      ::image::save_options saveoptions;
+   //      ::image::encoding_options encodingoptions;
 
    //      savepimage->m_eformat = pimage::e_format_jpeg;
    //      savepimage->m_iQuality = 50;
@@ -518,7 +518,7 @@ namespace httpd
    //      outheader("content-type") = "image/jpeg";
 
 
-   //      pimage->save_to_file(&response().file(), saveoptions);
+   //      pimage->save_to_file(&response().file(), encodingoptions);
 
    //   }
 

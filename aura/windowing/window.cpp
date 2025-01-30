@@ -2968,7 +2968,12 @@ void window::set_oswindow(::oswindow oswindow)
 
       ::string strTextToInsert(pansisz, length);
 
-      m_pacmeuserinteractionKeyboardFocus->insert_text(strTextToInsert, true, ::e_source_user);
+      if (m_pacmeuserinteractionKeyboardFocus)
+      {
+
+         m_pacmeuserinteractionKeyboardFocus->insert_text(strTextToInsert, true, ::e_source_user);
+
+      }
 
    }
 

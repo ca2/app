@@ -3320,6 +3320,22 @@ void thread::post_message(const ::atom& atom, wparam wparam, lparam lparam)
    if (!pmessagequeue)
    {
 
+      if (!is_task_set())
+      {
+
+         _post([this, atom, wparam, lparam]()
+         {
+
+            post_message(atom, wparam, lparam);
+
+         });
+
+         return;
+
+      }
+
+      throw ::exception(::error_wrong_state);
+
       return;
 
    }
@@ -3633,7 +3649,7 @@ message_queue* thread::_get_message_queue()
 
    }
 
-   if (!m_itask)
+   if (!m_taskindex)
    {
 
       return nullptr;

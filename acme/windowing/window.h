@@ -150,6 +150,7 @@ namespace acme
          
          virtual bool has_keyboard_focus();
          virtual void set_keyboard_focus(::acme::user::interaction * pacmeuserinteractionFocus);
+         virtual void set_keyboard_focus();
          //virtual void erase_keyboard_focus(::acme::user::interaction * pacmeuserinteractionFocus);
 
          virtual bool is_window();

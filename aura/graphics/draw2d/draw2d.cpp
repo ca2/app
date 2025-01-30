@@ -2,7 +2,7 @@
 #include "lock.h"
 #include "acme/graphics/image/image32.h"
 #include "acme/platform/application.h"
-#include "aura/graphics/image/save_options.h"
+#include "aura/graphics/image/encoding_options.h"
 #include "aura/graphics/image/array.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/imaging.h"

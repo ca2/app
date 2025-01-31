@@ -64,7 +64,7 @@ public:
 
       void * m_pvoid;
       para_return                            m_parareturn;
-      atom                                   m_atom;
+      atom                                   m_atomPayload;
       type_atom                              m_typeatom;
       bool                                   m_b;
       bool * m_pb;
@@ -297,7 +297,7 @@ public:
    template < primitive_enum ENUM >
    payload(ENUM e) :
    m_etype(e_type_atom),
-   m_atom(e)
+   m_atomPayload(e)
    {
 
    }
@@ -404,7 +404,7 @@ public:
 
 
 #define IMPLEMENT_PAYLOAD_ENUMERATION(ENUMTYPE) \
-   inline payload(const ::e_ ## ENUMTYPE & e) : m_etype(e_type_atom),m_atom(e) { } \
+   inline payload(const ::e_ ## ENUMTYPE & e) : m_etype(e_type_atom),m_atomPayload(e) { } \
    inline ::e_ ## ENUMTYPE as_e ## ENUMTYPE() const { return as_atom().as_e ## ENUMTYPE(); } \
    inline ::e_ ## ENUMTYPE & e ## ENUMTYPE ## _reference() { return atom_reference().e ## ENUMTYPE ## _reference(); }
    IMPLEMENT_PAYLOAD_ENUMERATION(status);
@@ -420,7 +420,7 @@ public:
       if (m_etype == e_type_atom)
       {
 
-         return m_atom == e;
+         return m_atomPayload == e;
 
       }
       else if (m_etype == e_type_patom)

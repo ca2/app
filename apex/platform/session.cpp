@@ -2066,8 +2066,8 @@ namespace apex
    void session::frame_pre_translate_message(::message::message* pmessage)
    {
 
-//      if (pmessage->m_atom == WM_GETTEXT
-//         || pmessage->m_atom == WM_GETTEXTLENGTH
+//      if (pmessage->m_emessage == WM_GETTEXT
+//         || pmessage->m_emessage == WM_GETTEXTLENGTH
 //         )
 //      {
 //
@@ -2077,7 +2077,7 @@ namespace apex
 //         return;
 //
 //      }
-      //else if (pmessage->m_atom == e_message_mouse_move)
+      //else if (pmessage->m_emessage == e_message_mouse_move)
       //{
 
       //   pmessage->m_uiMessageFlags |= 0; // message considered pre translated

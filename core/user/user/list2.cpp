@@ -901,7 +901,7 @@ namespace user
    {
       for(int i = 0; i < this->get_size(); i++)
       {
-         if(this->element_at(i).m_atom == pszId)
+         if(this->element_at(i).id() == pszId)
 
             return i;
       }

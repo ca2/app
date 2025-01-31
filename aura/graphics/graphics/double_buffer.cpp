@@ -45,12 +45,12 @@ namespace graphics
       __construct_new(m_bufferitema[0]);
       __øconstruct(m_bufferitema[0]->m_pimage2);
       __øconstruct(m_bufferitema[0]->m_pmutex);
-      m_bufferitema[0]->m_pimage2->m_atom = 0;
+      m_bufferitema[0]->m_pimage2->id() = 0;
 
       __construct_new(m_bufferitema[1]);
       __øconstruct(m_bufferitema[1]->m_pimage2);
       __øconstruct(m_bufferitema[1]->m_pmutex);
-      m_bufferitema[1]->m_pimage2->m_atom = 1;
+      m_bufferitema[1]->m_pimage2->id() = 1;
 
       //return estatus;
 

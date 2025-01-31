@@ -15,7 +15,7 @@ namespace menu
 
 
       ::item_pointer                   m_pitemParent;
-      atom                             m_atom;
+      atom                             m_atomItem;
       ::pointer<::menu::item_ptra>     m_pmenuitema;
       ::pointer<::menu::item>          m_pmenuitemParent;
       //int                            m_iFullHeightItemCount;

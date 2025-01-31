@@ -85,7 +85,7 @@ namespace user
       //////__update(::update)
       //{
 
-      //   if (ptopic->m_atom == id_browse)
+      //   if (ptopic->id() == id_browse)
       //   {
 
       //      if (!ptopic->payload(id_form).is_empty())
@@ -103,7 +103,7 @@ namespace user
       //      }
 
       //   }
-      //   else if (ptopic->m_atom == id_get_form_impact)
+      //   else if (ptopic->id() == id_get_form_impact)
       //   {
 
       //      ptopic->payload(id_form) = this;

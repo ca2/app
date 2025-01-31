@@ -82,7 +82,7 @@ namespace user
 
          m_puserinteraction->m_pinteractionimpl.release();
 
-         //m_puserinteraction->m_atom = atom;
+         //m_puserinteraction->id() = atom;
 
          //if (!m_puserinteraction->pre_create_window(pusersystem))
          //{
@@ -208,7 +208,7 @@ namespace user
          if (!(m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created))
          {
 //            auto pmessage = __create_new <::message::create>();
-//            pmessage->m_atom = e_message_create;
+//            pmessage->m_emessage = e_message_create;
 //            m_puserinteraction->send_message(pmessage);
 
 //            m_puserinteraction->send_create_message();
@@ -567,7 +567,7 @@ namespace user
       }
 
 
-      auto message = pmessage->m_atom.m_emessage;
+      auto message = pmessage->m_emessage;
 
       //if (m_puserinteraction != nullptr)
       //{
@@ -752,7 +752,7 @@ namespace user
    }
 
 
-   void interaction_child::send_message_to_descendants(const ::atom & atom, wparam wParam, lparam lParam, bool bDeep, bool bOnlyPerm)
+   void interaction_child::send_message_to_descendants(::enum_message emessage, ::wparam wparam, ::lparam lparam, bool bDeep, bool bOnlyPerm)
    {
 
       if (m_puserinteraction == nullptr)
@@ -770,7 +770,7 @@ namespace user
          try
          {
 
-            pinteraction->send_message(atom, wParam, lParam);
+            pinteraction->send_message(emessage, wparam, lparam);
 
          }
          catch (...)
@@ -784,7 +784,7 @@ namespace user
             try
             {
 
-               pinteraction->send_message_to_descendants(atom, wParam, lParam, bDeep, bOnlyPerm);
+               pinteraction->send_message_to_descendants(emessage, wparam, lparam, bDeep, bOnlyPerm);
 
             }
             catch (...)

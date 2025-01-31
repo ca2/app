@@ -217,7 +217,7 @@ class synchronous_lock;
 //} // namespace windowing
 //
 //
-//CLASS_DECL_ACME void post_message(::windowing::window * pwindow, const ::atom & atom, wparam wparam, lparam lparam);
+//CLASS_DECL_ACME void post_message(::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam);
 //
 //
 //class thread;

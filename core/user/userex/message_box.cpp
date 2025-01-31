@@ -44,7 +44,7 @@ namespace userex
 
    bool message_box::on_timeout()
    {
-      //m_atom = "ok";
+      //id() = "ok";
       return wait_message_dialog::on_timeout();
    }
 

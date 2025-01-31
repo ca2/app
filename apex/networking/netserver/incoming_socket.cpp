@@ -106,7 +106,7 @@ namespace netserver
 
    //      ::string strNewHeader;
 
-   //      strNewHeader.formatf("{%s=%s}", pproperty->m_atom.as_string().c_str(), pproperty->as_string().c_str());
+   //      strNewHeader.formatf("{%s=%s}", pproperty->id().as_string().c_str(), pproperty->as_string().c_str());
 
    //      if (str.length() + strNewHeader.length() > 80)
    //      {

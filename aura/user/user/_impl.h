@@ -132,7 +132,7 @@ namespace user
 //   inline ::pointer<VIEW>impact::create_impact(::user::impact_data* pimpactdata, ::user::interaction* pviewLast)
 //   {
 //
-//      return create_impact < VIEW >(get_document(), pimpactdata->m_pplaceholder, pimpactdata->m_atom, pviewLast, pimpactdata);
+//      return create_impact < VIEW >(get_document(), pimpactdata->m_pplaceholder, pimpactdata->id(), pviewLast, pimpactdata);
 //
 //   }
 //

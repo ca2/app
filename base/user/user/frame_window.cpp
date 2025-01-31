@@ -383,7 +383,7 @@ namespace user
 //      
 //      auto pcreate = __create_new < ::message::create >();
 //      
-//      pcreate->m_atom = e_message_create;
+//      pcreate->id() = e_message_create;
 //      
 //      pcreate->m_pusersystem = m_pusersystem;
 //      
@@ -959,7 +959,7 @@ namespace user
 
    //   auto pusersystem = __allocate ::user::system(dwExStyle, pszClassName, pszWindowName, uStyle, rectangle, pcreate);
 
-   //   if (!::user::interaction::create_window_ex(pusersystem, puiParent, pcreate->m_atom))
+   //   if (!::user::interaction::create_window_ex(pusersystem, puiParent, pcreate->id()))
    //   {
 
    //      information(trace_category_appmsg, e_trace_level_warning, "Warning: failed to create frame_window.\n");
@@ -1010,7 +1010,7 @@ namespace user
          
       }
 
-      //m_strDataKey = "frame::" + m_pimpactsystem->m_atom;
+      //m_strDataKey = "frame::" + m_pimpactsystem->id();
 
 //#ifdef MACOS
 
@@ -1101,7 +1101,7 @@ namespace user
 
       string strDataKey;
 
-      strDataKey = m_atom + "::" + m_pimpactsystem->m_atom;
+      strDataKey = id() + "::" + m_pimpactsystem->id();
 
       return strDataKey;
 
@@ -1162,7 +1162,7 @@ namespace user
 
       //auto pusersystem = __allocate ::user::system(0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate);
 
-      //if (!create_window_ex(pusersystem, puiParent, pcreate->m_atom))
+      //if (!create_window_ex(pusersystem, puiParent, pcreate->id()))
       //{
 
       //   return false;   // will self destruct on failure normally
@@ -1170,15 +1170,15 @@ namespace user
       //}
 
 
-   if (pusersystem->m_atom.is_set())
+   if (pusersystem->id().is_set())
    {
 
-      ::string strAtom = pusersystem->m_atom.as_string();
+      ::string strAtom = pusersystem->id().as_string();
 
       if (strAtom.has_character())
       {
 
-         m_atom = strAtom;
+         id() = strAtom;
 
       }
 
@@ -1310,7 +1310,7 @@ namespace user
 
    m_ewindowflag -= e_window_flag_load_window_rect_on_impl;
 
-   //bool bCreated = create_window_ex(pusersystem, puiParent, m_atom);
+   //bool bCreated = create_window_ex(pusersystem, puiParent, id());
 
    //bool bCreated;
 

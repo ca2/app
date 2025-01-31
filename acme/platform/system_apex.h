@@ -216,7 +216,7 @@ namespace platform
       //
 
 
-      virtual unsigned int os_post_to_all_threads(const ::atom & atom, wparam wparam = {}, lparam lparam = 0);
+      virtual unsigned int os_post_to_all_threads(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
 
 
       //
@@ -389,12 +389,12 @@ namespace platform
 
 
       virtual void post_quit_to_all_threads();
-      virtual void post_to_all_threads(const ::atom& atom, wparam wparam, lparam lparam);
+      virtual void post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam);
 
 
       virtual void dump_command_line_and_environment_variables_to_file();
 
-      virtual void system_id_update(huge_integer iUpdate, huge_integer iPayload);
+      virtual void system_id_update(int iUpdate, huge_integer iPayload);
 
 
       [[nodiscard]] virtual class ::handler::signal * signal(const ::atom& atom);

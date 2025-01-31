@@ -1147,7 +1147,7 @@ void _android_key(unsigned int message, int keyCode, int iUni)
 
    ::pointer<::message::key>pkey = __allocate ::message::key();
 
-   pkey->m_atom = message;
+   pkey->m_emessage = message;
 
    if (!translate_android_key_message(pkey, keyCode, iUni))
    {
@@ -1360,7 +1360,7 @@ namespace acme
 
       ::pointer<::message::key>pkey = __allocate ::message::key();
 
-      pkey->m_atom = e_message_key_down;
+      pkey->m_emessage = e_message_key_down;
 
       pkey->m_ekey = ::user::e_key_refer_to_text_member;
 

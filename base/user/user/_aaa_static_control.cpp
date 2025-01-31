@@ -198,7 +198,7 @@
 ////
 ////#ifdef WINDOWS_DESKTOP
 ////
-////      if (pusermessage->m_atom != WM_DRAWITEM)
+////      if (pusermessage->id() != WM_DRAWITEM)
 ////         return ::user::interaction::OnChildNotify(pusermessage);
 ////
 ////#ifdef WINDOWS_DESKTOP

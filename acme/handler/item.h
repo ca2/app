@@ -195,7 +195,7 @@ public:
 
    bool _is_set() const override;
 
-   bool is_item_set() const { return m_atom.is_set() || m_item.m_eelement != ::e_element_none; }
+   bool is_item_set() const { return m_atomMatterId.is_set() || m_item.m_eelement != ::e_element_none; }
 
    explicit operator bool() const { return is_item_set(); }
 
@@ -215,7 +215,7 @@ public:
 //   operator const ::item_t *() const {return &m_item;}
 //   operator ::item_t *() {return &m_item;}
 
-   //item & operator = (const ::particle & particle) { m_atom = if ((PARTICLE *) this != (PARTICLE *)&particle) ::memory_copy((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); return *this; }
+   //item & operator = (const ::particle & particle) { id() = if ((PARTICLE *) this != (PARTICLE *)&particle) ::memory_copy((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); return *this; }
 
 
    //bool operator == (const ::particle & particle)  const { return ((PARTICLE *) this == (PARTICLE *)&particle) ? true : !memcmp((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); }

@@ -1,10 +1,10 @@
 #pragma once
 
 
-enum enum_message : int
+enum enum_message : unsigned int
 {
 
-   e_message_undefined = -1, // -1
+   e_message_undefined = UINT32_MAX,
 
    e_message_null = 0, // 0
 
@@ -222,11 +222,11 @@ e_message_queue_sentinel =    0x0379,
 //   LPARAM - MESSAGE * pMsg - a pointer to the MESSAGE structure
 //   return value - 0 if the message was not processed, nonzero if it was
 //#define WM_FORWARDMSG      0x037F
-   e_message_forward_message = 0x037F,
+e_message_forward_message = 0x037F,
 
-   e_message_user = 0x0400,
-   e_message_main_post = e_message_user + 23,
-   e_message_image_loaded,
+e_message_user = 0x0400,
+e_message_main_post = e_message_user + 23,
+e_message_image_loaded,
 
 
 
@@ -234,109 +234,102 @@ e_message_queue_sentinel =    0x0379,
 
 
 
-   e_message_application = 0x8000,
-   e_message_ole_dragenter  = e_message_application + 324,
-   e_message_ole_dragover   = e_message_application + 325,
-   e_message_ole_dragleave  = e_message_application + 326,
-   e_message_ole_dragdrop  = e_message_application + 327,
-   e_message_application_exit = e_message_application + 1444,
+e_message_application = 0x8000,
+e_message_ole_dragenter = e_message_application + 324,
+e_message_ole_dragover = e_message_application + 325,
+e_message_ole_dragleave = e_message_application + 326,
+e_message_ole_dragdrop = e_message_application + 327,
+e_message_application_exit = e_message_application + 1444,
 
-   e_message_system = e_message_application + 2048,
-   e_message_branch,
-   e_message_system_command,
-   e_message_system_command_probe,
-   e_message_system_has_command_handler,
-   e_message_system_update,
-   e_message_language,
-   e_message_has_command_handler,
-   e_message_thread,
-   e_message_desk,
-   e_message_display_change,
-   e_message_property,
-   e_message_midi_attribute,
-   e_message_event1,
-   e_message_event2_trying_to_remove,
-   e_message_simple_command,
-   e_message_set_schema,
-   e_message_post_user,
-   e_message_update_notify_icon,
-   e_message_drag_and_drop,
-   e_message_after_create,
-   e_message_frame_initial_update,
-   e_message_redraw,
-   e_message_apply_visual_deprecated_schedule_window_show,
-   e_message_destroy_window,
-   e_message_run,
-   e_message_done,
-   e_message_do_show_window,
-   e_message_auratype_key_down,
-   e_message_auratype_key_up,
-   e_message_auraclick_mouse,
-   e_message_update_device_list,
-   //e_message_erase_application,
-   //e_message_erase_session,
-   e_message_switch,
-   e_message_subject,
-
-
-   e_message_backimpact,
-   e_message_backimpact_dequeue,
-
-   e_message_graphical_command,
+e_message_system = e_message_application + 2048,
+e_message_branch,
+e_message_system_command,
+e_message_system_command_probe,
+e_message_system_has_command_handler,
+e_message_system_update,
+e_message_language,
+e_message_has_command_handler,
+e_message_thread,
+e_message_desk,
+e_message_display_change,
+e_message_property,
+e_message_midi_attribute,
+e_message_event1,
+e_message_event2_trying_to_remove,
+e_message_simple_command,
+e_message_set_schema,
+e_message_post_user,
+e_message_update_notify_icon,
+e_message_drag_and_drop,
+e_message_after_create,
+e_message_frame_initial_update,
+e_message_redraw,
+e_message_apply_visual_deprecated_schedule_window_show,
+e_message_destroy_window,
+e_message_run,
+e_message_done,
+e_message_do_show_window,
+e_message_auratype_key_down,
+e_message_auratype_key_up,
+e_message_auraclick_mouse,
+e_message_update_device_list,
+//e_message_erase_application,
+//e_message_erase_session,
+e_message_switch,
+e_message_subject,
 
 
-   e_message_recorder_command,
-   e_message_recorder_event,
+e_message_backimpact,
+e_message_backimpact_dequeue,
+
+e_message_graphical_command,
 
 
-   e_message_player_open,
-   e_message_player_start,
-   e_message_player_close,
-   e_message_player_filled,
-   e_message_player_free,
-   e_message_player_stop,
+e_message_recorder_command,
+e_message_recorder_event,
 
-   e_message_player_command,
-   e_message_player_event,
-   e_message_player_notify_event,
 
-   e_message_midi_sequence_event,
+e_message_player_open,
+e_message_player_start,
+e_message_player_close,
+e_message_player_filled,
+e_message_player_free,
+e_message_player_stop,
 
-   e_message_prebuffer_done,
+e_message_player_command,
+e_message_player_event,
+e_message_player_notify_event,
 
-   e_message_need_load_form_data,
-   e_message_need_save_form_data,
+e_message_midi_sequence_event,
 
-   e_message_text_composition,
+e_message_prebuffer_done,
 
-   e_message_change_experience,
-   e_message_notify_icon,
+e_message_need_load_form_data,
+e_message_need_save_form_data,
 
-   e_message_open_response,
-   
-   e_message_wave_in_data,
+e_message_text_composition,
+
+e_message_change_experience,
+e_message_notify_icon,
+
+e_message_open_response,
+
+e_message_wave_in_data,
+
+
+
+
+e_message_hyper_space = 0x8000000,
+e_message_initialize_host_window,
+e_message_defer_create_context_button,
+e_message_defer_post_initial_request,
+e_message_click,
+e_message_start_tab_drag,
+e_message_tool_tip_text,
+
+
 
 
 };
-
-
-//
-//
-//struct emessage
-//{
-//
-//   enum_message m_emessage;
-//    
-//   emessage(enum_message emessage = e_message_null):m_emessage(emessage) {}
-//   emessage(const ::atom & atom) : m_emessage(emessage.m_emessage) {}
-//
-//   operator enum_message& () { return m_emessage; }
-//   operator enum_message() const { return m_emessage; }
-//
-//};
-
-
-
-
 
 

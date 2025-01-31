@@ -56,15 +56,15 @@ namespace user
 
       m_bMessageThread = true;
 
-//#ifdef WINDOWS_DESKTOP
-//
-//      m_bCreateNativeWindowOnInteractionThread = true;
-//
-//#else
-//
-//      m_bCreateNativeWindowOnInteractionThread = false;
-//
-//#endif
+      //#ifdef WINDOWS_DESKTOP
+      //
+      //      m_bCreateNativeWindowOnInteractionThread = true;
+      //
+      //#else
+      //
+      //      m_bCreateNativeWindowOnInteractionThread = false;
+      //
+      //#endif
 
 
    }
@@ -160,7 +160,7 @@ namespace user
       if (SUCCEEDED(hr))
       {
 
-         hr = m_pthreadmgr->QueryInterface(IID_ITfKeystrokeMgr, (void **)& m_pkeystrokemgr);
+         hr = m_pthreadmgr->QueryInterface(IID_ITfKeystrokeMgr, (void **)&m_pkeystrokemgr);
 
       }
 
@@ -168,7 +168,7 @@ namespace user
       if (SUCCEEDED(hr))
       {
 
-         hr = m_pthreadmgr->QueryInterface(IID_ITfMessagePump, (void **)& m_pmessagepump);
+         hr = m_pthreadmgr->QueryInterface(IID_ITfMessagePump, (void **)&m_pmessagepump);
 
       }
 
@@ -227,23 +227,23 @@ namespace user
          throw ::exception(error_wrong_state);
 
       }
-      
+
       ::thread::init_task();
 
-   /*   if (!estatus)
-      {
+      /*   if (!estatus)
+         {
 
-         return estatus;
+            return estatus;
 
-      }*/
+         }*/
 
-//#ifdef WINDOWS_DESKTOP
-//
-//      node()->defer_co_initialize_ex(false);
-//
-//#endif
+         //#ifdef WINDOWS_DESKTOP
+         //
+         //      node()->defer_co_initialize_ex(false);
+         //
+         //#endif
 
-      //set_topic_text("window_thread_" + ::type(m_pwindow->m_puserinteraction).name()) + "> ";
+               //set_topic_text("window_thread_" + ::type(m_pwindow->m_puserinteraction).name()) + "> ";
 
       ::task_set_name(::type(m_pwindow->m_pacmeuserinteraction).name());
 
@@ -269,7 +269,7 @@ namespace user
       }
 
       //__øconstruct(m_pwindow->m_puserinteraction, m_pwindow->m_puserinteraction->m_pthreadUserInteraction);
-      
+
       m_eflagElement += e_flag_running;
 
       //auto puserinteraction = m_pwindow->user_interaction();
@@ -293,7 +293,7 @@ namespace user
       //puserinteraction->windowing() = pwindowing;
 
       //estatus =
-      
+
       //puserinteraction->operating_system_create_host(e_parallelization_asynchronous);
 
       //puserinteraction->create_window();
@@ -429,7 +429,7 @@ namespace user
    //      
    //      get_message(&m_message, nullptr, 0, 0);
 
-   //      if(m_message.m_atom == e_message_quit)
+   //      if(m_message.m_emessage == e_message_quit)
    //      {
 
    //         if (m_strDebugType.contains("filemanager"))
@@ -450,36 +450,36 @@ namespace user
 
    //      }
 
-   //      if(m_message.m_atom == e_message_left_button_down)
+   //      if(m_message.m_emessage == e_message_left_button_down)
    //      {
 
    //         informationf("pump_message e_message_left_button_down");
 
    //      }
 
-   //      if (m_message.m_atom == e_message_quit)
+   //      if (m_message.m_emessage == e_message_quit)
    //      {
 
 
    //      }
 
-   //      if(m_message.m_atom == e_message_left_button_down)
+   //      if(m_message.m_emessage == e_message_left_button_down)
    //      {
 
    //         informationf("::user::thread::LBUTTONDOWN");
 
    //      }
-   //      else if(m_message.m_atom == e_message_left_button_up)
+   //      else if(m_message.m_emessage == e_message_left_button_up)
    //      {
 
    //         informationf("::user::thread::LBUTTONUP");
 
    //      }
 
-   //      if (m_message.m_atom != e_message_kick_idle && m_message.m_atom != e_message_quit)
+   //      if (m_message.m_emessage != e_message_kick_idle && m_message.m_emessage != e_message_quit)
    //      {
 
-   //         if (m_message.m_atom == e_message_destroy_window)
+   //         if (m_message.m_emessage == e_message_destroy_window)
    //         {
 
    //            if (m_strDebugType.contains("notify_icon"))
@@ -555,29 +555,29 @@ namespace user
       try
       {
 
-         MESSAGE & msg = m_message;
+         auto & message = m_message;
 
-         if(msg.m_atom == e_message_mouse_move)
+         if (message.m_emessage == e_message_mouse_move)
          {
 
 
          }
-         else if(msg.m_atom == e_message_left_button_down)
+         else if (message.m_emessage == e_message_left_button_down)
          {
 
             informationf("e_message_left_button_down");
 
          }
-         else if(msg.m_atom == e_message_left_button_up)
+         else if (message.m_emessage == e_message_left_button_up)
          {
 
             informationf("e_message_left_button_up");
 
          }
 
-         auto oswindow = msg.oswindow;
+         auto oswindow = message.m_oswindow;
 
-         if(oswindow)
+         if (oswindow)
          {
 
             auto pwindow = system()->windowing()->window(oswindow);
@@ -600,68 +600,68 @@ namespace user
                auto puserframe = pwindow->m_pacmeuserinteraction;
 
 
-                  if (puserframe)
+               if (puserframe)
+               {
+
+                  if (message.m_emessage == ::e_message_redraw)
                   {
 
-                     if (msg.m_atom == ::e_message_redraw)
-                     {
+                     throw ::exception(error_failed, "Please post e_message_redraw directly to the graphics thread");
 
-                        throw ::exception(error_failed, "Please post e_message_redraw directly to the graphics thread");
+                     //string strType = ::type(puserinteraction).name();
 
-                        //string strType = ::type(puserinteraction).name();
+                     //if (strType.case_insensitive_contains("filemanager"))
+                     //{
 
-                        //if (strType.case_insensitive_contains("filemanager"))
-                        //{
+                     //   //information() << "filemanager";
 
-                        //   //information() << "filemanager";
+                     //}
 
-                        //}
+                     //puserinteraction->prodevian_redraw(msg.wParam & 1);
 
-                        //puserinteraction->prodevian_redraw(msg.wParam & 1);
+                     return true;
 
-                        return true;
-
-                     }
+                  }
 
 #if !defined(WINDOWS_DESKTOP)
 
-                     else
+                  else
+                  {
+
+                     if (msg.id() == e_message_left_button_down)
                      {
 
-                        if(msg.m_atom == e_message_left_button_down)
+                        informationf("e_message_left_button_down");
+
+                     }
+                     else if (msg.id() == e_message_left_button_up)
+                     {
+
+                        informationf("e_message_left_button_up");
+
+                     }
+
+                     ::cast < ::user::interaction > puserinteractionFrame = puserframe;
+
+                     auto pmessage = puserinteractionFrame->get_message(msg.id(), msg.wParam, msg.lParam);
+
+                     if (pmessage)
+                     {
+
+                        if (pmessage->m_emessage == e_message_left_button_down)
                         {
 
                            informationf("e_message_left_button_down");
 
                         }
-                        else if(msg.m_atom == e_message_left_button_up)
-                        {
 
-                           informationf("e_message_left_button_up");
+                        pwindow->message_handler(pmessage);
 
-                        }
-                        
-                        ::cast < ::user::interaction > puserinteractionFrame = puserframe;
-
-                        auto pmessage = puserinteractionFrame->get_message(msg.m_atom, msg.wParam, msg.lParam);
-
-                        if (pmessage)
-                        {
-
-                           if(pmessage->m_atom == e_message_left_button_down)
-                           {
-
-                              informationf("e_message_left_button_down");
-
-                           }
-
-                           pwindow->message_handler(pmessage);
-
-                           return ::success;
-
-                        }
+                        return ::success;
 
                      }
+
+                  }
 
 #endif
 
@@ -672,49 +672,49 @@ namespace user
          }
 
       }
-      catch(const ::exception & exception)
+      catch (const ::exception & exception)
       {
-         
-         error() <<"Exception Reached Thread Loop" << exception.m_strMessage << exception.m_strDetails;
+
+         error() << "Exception Reached Thread Loop" << exception.m_strMessage << exception.m_strDetails;
 
       }
-      catch(...)
+      catch (...)
       {
-         
-         error() <<"Exception Reached Thread Loop";
+
+         error() << "Exception Reached Thread Loop";
 
       }
 
       return ::thread::process_message();
 
-   //      MESSAGE & msg = m_message;
-   //
-   //#ifdef WINDOWS_DESKTOP
-   //
-   //      if (msg.hwnd != nullptr)
-   //      {
-   //
-   //         ::TranslateMessage(&msg);
-   //
-   //         ::DispatchMessage(&msg);
-   //
-   //         return true;
-   //
-   //      }
-   //      else
-   //      {
-   //
-   //         ::TranslateMessage(&msg);
-   //
-   //         lresult lresult = ::DispatchMessageW(&msg);
-   //
-   //         return true;
-   //
-   //      }
-   //
-   //#endif
-   //
-   //      return true;
+      //      MESSAGE & msg = m_message;
+      //
+      //#ifdef WINDOWS_DESKTOP
+      //
+      //      if (msg.hwnd != nullptr)
+      //      {
+      //
+      //         ::TranslateMessage(&msg);
+      //
+      //         ::DispatchMessage(&msg);
+      //
+      //         return true;
+      //
+      //      }
+      //      else
+      //      {
+      //
+      //         ::TranslateMessage(&msg);
+      //
+      //         lresult lresult = ::DispatchMessageW(&msg);
+      //
+      //         return true;
+      //
+      //      }
+      //
+      //#endif
+      //
+      //      return true;
 
    }
 
@@ -722,7 +722,7 @@ namespace user
    bool thread::process_message(::message::message * pmessage)
    {
 
-      if(pmessage->m_oswindow)
+      if (pmessage->m_oswindow)
       {
 
          return process_user_message(pmessage);
@@ -751,7 +751,7 @@ namespace user
          if (::is_set(puserinteraction))
          {
 
-            huge_integer iMessage = pmessage->m_atom.as_huge_integer();
+            auto emessage = pmessage->m_emessage;
 
             //throw ::exception(todo("interaction"));
             //throw ::exception(todo("thread"));
@@ -774,7 +774,7 @@ namespace user
 //
 //            }
 //            else
-               if (iMessage == e_message_update_notify_icon)
+            if (emessage == e_message_update_notify_icon)
             {
 
                puserinteraction->route_message(pusermessage);
@@ -782,31 +782,31 @@ namespace user
                return true;
 
             }
-//            else if (iMessage == e_message_simple_command)
-//            {
-//
-//               puserinteraction->m_pinteractionimpl->_001OnApplyVisual(pusermessage);
-//
-//               return true;
-//
-//            }
+            //            else if (iMessage == e_message_simple_command)
+            //            {
+            //
+            //               puserinteraction->m_pinteractionimpl->_001OnApplyVisual(pusermessage);
+            //
+            //               return true;
+            //
+            //            }
 
-            //if (iMessage > e_message_midi_sequence_event)
-            //{
+                        //if (iMessage > e_message_midi_sequence_event)
+                        //{
 
-            //   return true;
+                        //   return true;
 
-            //   huge_integer iApp = iMessage - WM_APP;
+                        //   huge_integer iApp = iMessage - WM_APP;
 
-            //   pusermessage->m_pwindow->m_puserinteraction->message_handler(pusermessage);
+                        //   pusermessage->m_pwindow->m_puserinteraction->message_handler(pusermessage);
 
-            //}
-            //else
-            //{
+                        //}
+                        //else
+                        //{
 
-            //      //return true;
-            //   //throw ::exception(todo("interaction"));
-            //   //throw ::exception(todo("thread"));
+                        //      //return true;
+                        //   //throw ::exception(todo("interaction"));
+                        //   //throw ::exception(todo("thread"));
 
             puserinteraction->message_handler(pusermessage);
 
@@ -825,7 +825,7 @@ namespace user
    {
 
       //auto estatus = 
-      
+
       ::manager::on_destroy();
 
       //return estatus;
@@ -833,7 +833,7 @@ namespace user
    }
 
 
-   void thread::enumerate_composite(matter_array& a)
+   void thread::enumerate_composite(matter_array & a)
    {
 
 
@@ -898,81 +898,81 @@ namespace user
    }
 
 
-//#ifdef WINDOWS_DESKTOP
-//
-//
-//   int thread::_GetMessage(MESSAGE * lpMsg, HWND hWnd, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax)
-//   {
-//
-//#ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
-//
-//      while (m_pmessagepump && m_pkeystrokemgr)
-//      {
-//
-//         BOOL fResult = true;
-//
-//         if (FAILED(m_pmessagepump->GetMessage(lpMsg, hWnd, wMsgFilterMin, wMsgFilterMax, &fResult)))
-//         {
-//
-//            return false;
-//
-//         }
-//         else
-//         {
-//
-//            BOOL    fEaten;
-//
-//            if (e_message_key_down == lpMsg->message)
-//            {
-//               // does an ime want it?
-//               if (m_pkeystrokemgr->TestKeyDown(lpMsg->wParam, lpMsg->lParam, &fEaten) == S_OK && fEaten &&
-//                  m_pkeystrokemgr->KeyDown(lpMsg->wParam, lpMsg->lParam, &fEaten) == S_OK && fEaten)
-//               {
-//                  continue;
-//               }
-//            }
-//            else if (e_message_key_up == lpMsg->message)
-//            {
-//               // does an ime want it?
-//               if (m_pkeystrokemgr->TestKeyUp(lpMsg->wParam, lpMsg->lParam, &fEaten) == S_OK && fEaten &&
-//                  m_pkeystrokemgr->KeyUp(lpMsg->wParam, lpMsg->lParam, &fEaten) == S_OK && fEaten)
-//               {
-//                  continue;
-//               }
-//            }
-//
-//         }
-//
-//         return true;
-//
-//      }
-//
-//#endif
-//
-//      int iRet = ::thread::_GetMessage(lpMsg, hWnd, wMsgFilterMin, wMsgFilterMax);
-//
-//      if (iRet <= 0)
-//      {
-//
-//         return iRet;
-//
-//      }
-//
-//      return iRet;
-//
-//      //if (ImmIsUIMessageW(lpMsg->hwnd, lpMsg->message, lpMsg->wParam, lpMsg->lParam))
-//      //{
-//
-//      //   return iRet;
-//
-//      //}
-//
-//      //return iRet;
-//
-//   }
-//
-//
-//#endif
+   //#ifdef WINDOWS_DESKTOP
+   //
+   //
+   //   int thread::_GetMessage(MESSAGE * lpMsg, HWND hWnd, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax)
+   //   {
+   //
+   //#ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
+   //
+   //      while (m_pmessagepump && m_pkeystrokemgr)
+   //      {
+   //
+   //         BOOL fResult = true;
+   //
+   //         if (FAILED(m_pmessagepump->GetMessage(lpMsg, hWnd, wMsgFilterMin, wMsgFilterMax, &fResult)))
+   //         {
+   //
+   //            return false;
+   //
+   //         }
+   //         else
+   //         {
+   //
+   //            BOOL    fEaten;
+   //
+   //            if (e_message_key_down == lpMsg->message)
+   //            {
+   //               // does an ime want it?
+   //               if (m_pkeystrokemgr->TestKeyDown(lpMsg->wParam, lpMsg->lParam, &fEaten) == S_OK && fEaten &&
+   //                  m_pkeystrokemgr->KeyDown(lpMsg->wParam, lpMsg->lParam, &fEaten) == S_OK && fEaten)
+   //               {
+   //                  continue;
+   //               }
+   //            }
+   //            else if (e_message_key_up == lpMsg->message)
+   //            {
+   //               // does an ime want it?
+   //               if (m_pkeystrokemgr->TestKeyUp(lpMsg->wParam, lpMsg->lParam, &fEaten) == S_OK && fEaten &&
+   //                  m_pkeystrokemgr->KeyUp(lpMsg->wParam, lpMsg->lParam, &fEaten) == S_OK && fEaten)
+   //               {
+   //                  continue;
+   //               }
+   //            }
+   //
+   //         }
+   //
+   //         return true;
+   //
+   //      }
+   //
+   //#endif
+   //
+   //      int iRet = ::thread::_GetMessage(lpMsg, hWnd, wMsgFilterMin, wMsgFilterMax);
+   //
+   //      if (iRet <= 0)
+   //      {
+   //
+   //         return iRet;
+   //
+   //      }
+   //
+   //      return iRet;
+   //
+   //      //if (ImmIsUIMessageW(lpMsg->hwnd, lpMsg->message, lpMsg->wParam, lpMsg->lParam))
+   //      //{
+   //
+   //      //   return iRet;
+   //
+   //      //}
+   //
+   //      //return iRet;
+   //
+   //   }
+   //
+   //
+   //#endif
 
 
    bool thread::task_get_run() const
@@ -983,22 +983,22 @@ namespace user
    }
 
 
-//   void thread::start_window_visual()
-//   {
-//
-//      //m_happeningApplyVisual.reset_happening();
-//
-//      m_pwindow->m_puserinteraction->post_message(e_message_apply_visual);
-//
-//   }
+   //   void thread::start_window_visual()
+   //   {
+   //
+   //      //m_happeningApplyVisual.reset_happening();
+   //
+   //      m_pwindow->m_puserinteraction->post_message(e_message_apply_visual);
+   //
+   //   }
 
 
-   //void thread::destroy()
-   //{
+      //void thread::destroy()
+      //{
 
-   //   return ::thread::destroy();
+      //   return ::thread::destroy();
 
-   //}
+      //}
 
 
    void thread::destroy()
@@ -1030,14 +1030,14 @@ namespace user
 
          //string strType = ::type(m_pwindow->m_puserinteraction).name();
 
-         if (m_strDebugType.contains("filemanager"))
-         {
+      if (m_strDebugType.contains("filemanager"))
+      {
 
-            //information() << "filemanager";
+         //information() << "filemanager";
 
-         }
+      }
 
-         ::thread::destroy();
+      ::thread::destroy();
 
       //}
 

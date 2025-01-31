@@ -779,9 +779,9 @@ namespace user
 
             topic.m_puserinteraction = this;
 
-            //topic.m_atom = m_atom;
+            //topic.id() = id();
 
-            topic.m_atom = ::id_after_change_cur_sel;
+            topic.id() = ::id_after_change_cur_sel;
 
             topic.m_actioncontext = ::e_source_user;
 

@@ -126,14 +126,14 @@ namespace app_integration
 
       }
 
-      if (pimpactdata->m_atom == "menu")
+      if (pimpactdata->id() == "menu")
       {
 
          create_impact < menu >(pimpactdata);
 
       }
 
-      switch(pimpactdata->m_atom.as_int())
+      switch(pimpactdata->id().as_int())
       {
       case MENU_IMPACT:
       {
@@ -144,14 +144,14 @@ namespace app_integration
       break;
       }
 
-      //string strId = pimpactdata->m_atom;
+      //string strId = pimpactdata->id();
 
       //if(strId.case_insensitive_begins_eat("drawing"))
       //{
 
       //   auto pimpact = get_app()->create_simple_drawing_impact(this, pimpactdata);
 
-      //   pimpact->m_atom = pimpactdata->m_atom;
+      //   pimpact->id() = pimpactdata->id();
 
       //   pimpact->m_prender->initialize_simple_drawing(atoi(strId));
 

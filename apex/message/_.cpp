@@ -34,7 +34,7 @@ namespace message
       }
 
       // redundant e_message_mouse_move and e_message_non_client_mouse_move
-      if(pmessage->m_atom == e_message_mouse_move || pmessage->m_atom == e_message_non_client_mouse_move)
+      if(pmessage->m_emessage == e_message_mouse_move || pmessage->m_emessage == e_message_non_client_mouse_move)
       {
 
          return true;
@@ -42,7 +42,7 @@ namespace message
       }
 
       // e_message_paint and WM_SYSTIMER (caret blink)
-      return pmessage->m_atom != e_message_paint && pmessage->m_atom != 0x0118;
+      return pmessage->m_emessage != e_message_paint && pmessage->m_emessage != 0x0118;
 
    }
 
@@ -61,14 +61,14 @@ namespace message
          return false;
 
       // redundant e_message_mouse_move and e_message_non_client_mouse_move
-      if(pmsg->m_atom == e_message_mouse_move || pmsg->m_atom == e_message_non_client_mouse_move)
+      if(pmsg->m_emessage == e_message_mouse_move || pmsg->m_emessage == e_message_non_client_mouse_move)
 
       {
          return true;
       }
 
       // e_message_paint and WM_SYSTIMER (caret blink)
-      return pmsg->m_atom != e_message_paint && pmsg->m_atom != 0x0118;
+      return pmsg->m_emessage != e_message_paint && pmsg->m_emessage != 0x0118;
 
    }
 

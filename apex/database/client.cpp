@@ -42,7 +42,7 @@ namespace database
       //
       // //auto linkedproperty = fetch_property(atom);
       //
-      // auto psignal = get_app()->get_signal(linkedproperty->m_atom);
+      // auto psignal = get_app()->get_signal(linkedproperty->id());
       //
       // psignal->add_signal_handler([this, atom, linkedproperty](::topic * ptopic, ::context * pcontext)
       //
@@ -546,7 +546,7 @@ namespace database
 
       defer_update_object_id();
 
-      strKey += "/" + m_atom;
+      strKey += "/" + id();
 
       return strKey;
 

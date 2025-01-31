@@ -931,9 +931,9 @@ namespace apex
       //virtual void add_frame(::user::interaction * puserinteraction);
       //virtual void erase_frame(::user::interaction * puserinteraction);
 
-      virtual bool send_message_to_windows(const ::atom& atom, wparam wparam, lparam lparam) override; // with tbs in <3
+      virtual void send_message_to_windows(::enum_message emessage, ::wparam wparam, ::lparam lparam) override; // with tbs in <3
 
-      virtual bool route_message_to_windows(::message::message* pmessage) override; // with tbs in <3
+      virtual void route_message_to_windows(::message::message* pmessage) override; // with tbs in <3
 
 
       virtual void send_language_change_message() override;
@@ -949,7 +949,7 @@ namespace apex
       // user virtual ::user::document * place_hold(::user::interaction * pinteraction);
 
 
-      virtual void post_message(const ::atom& atom, wparam wParam = {}, lparam lParam = 0) override;
+      virtual void post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
 
       //virtual ::image::icon * set_icon(object * pparticle, ::image::icon * picon, bool bBigIcon);

@@ -457,7 +457,7 @@ namespace filemanager
 
       }
 
-      filemanager_document()->on_file_manager_item_command(pcommand->m_atom, itema);
+      filemanager_document()->on_file_manager_item_command(pcommand->m_atomCommand, itema);
 
    }
 
@@ -722,7 +722,7 @@ namespace filemanager
 
             auto pmenuitem = __create_new < ::menu::item > ();
 
-            pmenuitem->m_atom = "open with" + stra[i];
+            pmenuitem->id() = "open with" + stra[i];
 
             if (pmenuitem->m_puserinteraction != nullptr)
             {
@@ -768,7 +768,7 @@ namespace filemanager
 
          string strId = "open with" + m_straOpenWith[i];
 
-         if (pcommand->m_atom == strId)
+         if (pcommand->m_atomCommand == strId)
          {
 
             iPos = i;
@@ -798,7 +798,7 @@ namespace filemanager
    void file_list::on_command(::message::command * pcommand)
    {
 
-      if (pcommand->m_atom == "1000")
+      if (pcommand->m_atomCommand == "1000")
       {
 
          //      _017OpenSelected(true, ::e_source_user);
@@ -816,7 +816,7 @@ namespace filemanager
 
          string strId = "open with" + m_straOpenWith[i];
 
-         if (pcommand->m_atom == strId)
+         if (pcommand->m_atomCommand == strId)
          {
 
             iPos = i;
@@ -1361,7 +1361,7 @@ namespace filemanager
             pinteraction->m_bTransparent = true;
             //pinteraction->set_control_type(user::e_control_type_button);
             //pinteraction->m_type = ::type < ::user::button >();
-            pinteraction->m_atom = atom;
+            pinteraction->id() = atom;
             pinteraction->add_function(user::e_control_function_action);
             _001AddControl(pinteraction);
 
@@ -1373,7 +1373,7 @@ namespace filemanager
 
             pcolumn->m_iWidth = 18;
             pcolumn->m_iSubItem = i;
-            pcolumn->m_atom = atom;
+            pcolumn->id() = atom;
             pcolumn->m_bCustomDraw = true;
             pcolumn->m_bEditOnSecondClick = true;
             pcolumn->m_pimagelist = pcallback->GetActionButtonImageList(i);
@@ -1424,14 +1424,14 @@ namespace filemanager
             auto pinteraction = __create_new <  user::plain_edit > ();
             //pinteraction->set_control_type(user::e_control_type_edit_plain_text);
             pinteraction->m_strDataKey20 = "FILE_MANAGER_ID_FILE_NAME";
-            //pinteraction->m_atom = _vms::FILE_MANAGER_ID_FILE_NAME;
+            //pinteraction->id() = _vms::FILE_MANAGER_ID_FILE_NAME;
             pinteraction->set_data_type(user::e_control_data_type_string);
             pinteraction->add_function(user::e_control_function_vms_data_edit);
             pinteraction->m_typeatom = ::type < ::user::plain_edit >();
             //pinteraction->m_iSubItem = i;
-            pinteraction->m_atom = 1000 + i;
+            pinteraction->id() = 1000 + i;
             ::collection::index iControl = _001AddControl(pinteraction);
-            pcolumn->m_atom = pinteraction->m_atom;
+            pcolumn->id() = pinteraction->id();
 
          }
 
@@ -1741,7 +1741,7 @@ namespace filemanager
 
          pbutton->set_button_style(::user::button::e_style_list);
 
-         pcallback->InitializeActionButton(pinteraction->m_atom.as_int() - 1000, pbutton);
+         pcallback->InitializeActionButton(pinteraction->id().as_int() - 1000, pbutton);
 
       }
 
@@ -1762,7 +1762,7 @@ namespace filemanager
 
          ::collection::index iStrict = display_to_strict(iItem);
 
-         pcallback->OnButtonAction(pinteraction->m_atom, fs_list_item(iStrict));
+         pcallback->OnButtonAction(pinteraction->id(), fs_list_item(iStrict));
 
       }
 
@@ -2068,7 +2068,7 @@ namespace filemanager
 
       auto papp = get_app();
 
-      if (m_bStatic && ptopic->m_atom == id_add_location)
+      if (m_bStatic && ptopic->id() == id_add_location)
       {
 
          ::file::path_array filepatha;
@@ -2105,26 +2105,26 @@ namespace filemanager
          }
 
       }
-      else if (ptopic->m_atom == id_impact_list)
+      else if (ptopic->id() == id_impact_list)
       {
 
          _001SetImpact(impact_list);
 
       }
-      else if (ptopic->m_atom == id_impact_report)
+      else if (ptopic->id() == id_impact_report)
       {
 
          _001SetImpact(impact_report);
 
       }
-      else if (ptopic->m_atom == id_impact_icon)
+      else if (ptopic->id() == id_impact_icon)
       {
 
          _001SetImpact(impact_icon);
 
       }
 
-      if (ptopic->m_atom == id_initialize)
+      if (ptopic->id() == id_initialize)
       {
 
          if (filemanager_data()->m_bPassBk)
@@ -2139,7 +2139,7 @@ namespace filemanager
          update_impact();
 
       }
-      else if (!m_bStatic && ptopic->m_atom == id_browse)
+      else if (!m_bStatic && ptopic->id() == id_browse)
       {
 
          //if (ptopic->_extended_topic()->m_pfileitem->user_path() != filemanager_item()->user_path())
@@ -2180,7 +2180,7 @@ namespace filemanager
          post_redraw();
 
       }
-      else if (ptopic->m_atom == id_filter)
+      else if (ptopic->id() == id_filter)
       {
 
          if (ptopic->payload(id_filter).is_empty())
@@ -2199,7 +2199,7 @@ namespace filemanager
          }
 
       }
-      else if (ptopic->m_atom == id_get_active_impact_selection)
+      else if (ptopic->id() == id_get_active_impact_selection)
       {
 
          if (parent_frame()->get_active_impact() == (this))
@@ -2210,7 +2210,7 @@ namespace filemanager
          }
 
       }
-      else if (ptopic->m_atom == id_after_browse)
+      else if (ptopic->id() == id_after_browse)
       {
 
          if (ptopic->payload(id_after_browse) == "filemanager\\replace_name_in_file_system.xhtml")
@@ -2235,7 +2235,7 @@ namespace filemanager
 
          }
 
-         if (ptopic->m_atom == id_replace_name)
+         if (ptopic->id() == id_replace_name)
          {
 
             if (ptopic->payload(id_find).has_character())
@@ -2250,7 +2250,7 @@ namespace filemanager
             }
 
          }
-         else if (ptopic->m_atom == id_new_folder)
+         else if (ptopic->id() == id_new_folder)
          {
 
             if (ptopic->payload(id_folder).has_character())

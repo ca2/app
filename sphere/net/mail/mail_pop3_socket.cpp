@@ -399,7 +399,7 @@ namespace mail
    {
       if(m_ppop3->m_straId.get_size() == 0)
          return false;
-      m_ppop3->m_atom = m_ppop3->m_straId[0];
+      m_ppop3->id() = m_ppop3->m_straId[0];
       string strSend;
       strSend.formatf("RETR %s\r\n", m_ppop3->m_straIndex[0].c_str());
       write((const ::string &) strSend);

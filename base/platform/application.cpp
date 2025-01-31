@@ -397,7 +397,7 @@ namespace base
 
          auto pitemNewChild = __create_new<::menu::item>();
          pitemNewChild->m_pmenu = pmenu;
-         pitemNewChild->m_atom = "separator";
+         pitemNewChild->id() = "separator";
          pmenu->m_pmenuitem->add_item(pitemNewChild);
 
       }
@@ -409,7 +409,7 @@ namespace base
 
          auto pitemNewChild = __create_new<::menu::item>();
          pitemNewChild->m_pmenu = pmenu;
-         pitemNewChild->m_atom = "display_about";
+         pitemNewChild->id() = "display_about";
          pitemNewChild->m_strTitle = "About";
          pmenu->m_pmenuitem->add_item(pitemNewChild);
 

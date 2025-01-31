@@ -189,7 +189,7 @@ namespace user
 
          }
 
-         if (pitem->m_atom != "separator" && pitem->m_puserinteraction != nullptr)
+         if (pitem->id() != "separator" && pitem->m_puserinteraction != nullptr)
          {
             
             auto rPlacement = ::int_rectangle_dimension(

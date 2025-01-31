@@ -204,7 +204,7 @@ huge_integer payload::payload_release()
    else if (m_etype == e_type_atom)
    {
 
-      m_atom.::atom::~atom();
+      m_atomPayload.::atom::~atom();
 
    }
    else

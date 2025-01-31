@@ -31,7 +31,7 @@ namespace userex
    bool split_impact::on_new_impact_creator_data(::user::impact_data * pimpactdata)
    {
 
-      auto iPane = pimpactdata->m_atom.as_iptr();
+      auto iPane = pimpactdata->id().as_iptr();
 
       if (::not_found(iPane))
       {
@@ -95,7 +95,7 @@ namespace userex
 
       ppane->m_bFixedSize = bFixedSize;
 
-      ppane->m_atom = atom;
+      ppane->id() = atom;
 
       ::int_rectangle rectangle;
 

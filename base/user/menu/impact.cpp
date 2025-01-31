@@ -96,14 +96,14 @@ namespace user
 
       ::pointer < ::menu::item > pmenuitem = pitem;
 
-      if (pmenuitem->m_atom.is_empty())
+      if (pmenuitem->id().is_empty())
       {
 
          return false;
 
       }
 
-      auto pcommand = __initialize_new::message::command(pmenuitem->m_atom, pmouse->user_activation_token());
+      auto pcommand = __initialize_new::message::command(pmenuitem->id(), pmouse->user_activation_token());
 
       route_command(pcommand);
 
@@ -215,7 +215,7 @@ namespace user
 
       //set_topic_text("menu_impact> ");
 
-      auto atom = get_document()->m_pimpactsystem->m_atom;
+      auto atom = get_document()->m_pimpactsystem->id();
 
       string strText;
 
@@ -223,7 +223,7 @@ namespace user
 
       ::cast < ::database::client > pdatabaseclient = application();
 
-      pdatabaseclient->datastream()->get(m_atom + ".cur_text", strText);
+      pdatabaseclient->datastream()->get(id() + ".cur_text", strText);
 
       m_pimageLogo = image()->load_image("matter://main/logo.png", { .cache = false });
 
@@ -266,7 +266,7 @@ namespace user
       if (ptopic)
       {
 
-         if (ptopic->m_atom == id_after_change_text)
+         if (ptopic->id() == id_after_change_text)
          {
 
             auto peditimpact = _001TypedWindow < ::user::plain_edit_impact >();
@@ -506,7 +506,7 @@ namespace user
 
             auto pmenuitem = pmenuitemPopup->m_pmenuitema->element_at(j);
 
-            auto atom = pmenuitem->m_atom;
+            auto atom = pmenuitem->id();
 
             auto strItemTitle = pmenuitem->m_strTitle;
 
@@ -653,7 +653,7 @@ namespace user
 
             auto pmenuitem = pmenuitemPopup->m_pmenuitema->element_at(j);
 
-            auto atom = pmenuitem->m_atom;
+            auto atom = pmenuitem->id();
 
             auto strItemTitle = pmenuitem->m_strTitle;
 
@@ -798,7 +798,7 @@ namespace user
 
             pmenuitemMenuBar->m_pmenuitema->add(pmenuitemCommand);
 
-            pmenuitemCommand->m_atom = pnodeChild->attribute("id").as_atom();
+            pmenuitemCommand->id() = pnodeChild->attribute("id").as_atom();
 
             pmenuitemCommand->m_item.m_iItem = iPos;
 

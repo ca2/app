@@ -130,7 +130,7 @@ namespace app_message_box
    void main_window::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == ::id_click)
+      if (ptopic->id() == ::id_click)
       {
 
          if (ptopic->user_interaction() == m_pbuttonShowMessageBox && ptopic->m_actioncontext.is_user_source())

@@ -456,7 +456,7 @@ namespace handler
    class ::time signal::poll_time()
    {
 
-      return system()->get_update_poll_time(m_atom);
+      return system()->get_update_poll_time(id());
 
    }
 

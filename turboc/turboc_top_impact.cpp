@@ -70,7 +70,7 @@ namespace turboc
 
       SetPane(0,m_peditimpact,false);
 
-      if(m_atom == "turboc_top")
+      if(id() == "turboc_top")
       {
 
          m_ptoggleimpact = create_impact < toggle_impact >(NULL,::int_rectangle(),NULL,"turboc_toggle");

@@ -187,7 +187,7 @@ namespace filemanager
 
       ::filemanager_impact_base::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == id_initialize)
+      if (ptopic->id() == id_initialize)
       {
 
          //            filemanager_document() = pupdate->filemanager_document();
@@ -204,7 +204,7 @@ namespace filemanager
                      DISetSection(str);
                      _001UpdateColumns();*/
       }
-      else if (ptopic->m_atom == id_filter)
+      else if (ptopic->id() == id_filter)
       {
          /*if(ptopic->payload(id_filter).is_empty())
          {
@@ -217,7 +217,7 @@ namespace filemanager
          FilterApply();
          }*/
       }
-      else if(ptopic->m_atom == id_after_change_text)
+      else if(ptopic->id() == id_after_change_text)
       {
 
       if (!ptopic->m_actioncontext.is_user_source())

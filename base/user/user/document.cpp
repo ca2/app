@@ -414,7 +414,7 @@ namespace user
    ::atom document::get_toolbar_id()
    {
 
-      return m_pimpactsystem->m_atom + "/" + class_title();
+      return m_pimpactsystem->id() + "/" + class_title();
 
    }
 
@@ -688,7 +688,7 @@ namespace user
          if (typeatom == pimpact)
          {
 
-            if (atom == pimpact->m_atom)
+            if (atom == pimpact->id())
             {
 
                return pimpact;

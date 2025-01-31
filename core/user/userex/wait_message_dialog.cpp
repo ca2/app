@@ -40,7 +40,7 @@ namespace userex
       if(ptopic->user_interaction() == m_pform)
       {
       
-         if(ptopic->m_atom == ::id_create)
+         if(ptopic->id() == ::id_create)
          {
             
             if(m_timeDelay > 0_s)
@@ -55,7 +55,7 @@ namespace userex
             m_timeStart.Now();
 
          }
-         else if(ptopic->m_atom == ::id_timer)
+         else if(ptopic->id() == ::id_timer)
          {
             
             if(ptopic->_extended_topic()->m_etimer == e_timer_reload)
@@ -68,10 +68,10 @@ namespace userex
          }
          
       }
-      else if(ptopic->m_atom == ::id_click)
+      else if(ptopic->id() == ::id_click)
       {
 
-         m_atomResponse = ptopic->user_interaction()->m_atom;
+         m_atomResponse = ptopic->user_interaction()->id();
 
          EndModalLoop(m_atomResponse);
 

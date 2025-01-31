@@ -443,7 +443,7 @@ void task_group::select_tool(task_tool* ptool)
 
       auto & pitem = ptool->item_at(i);
 
-      pitem = system()->__id_create(ptool->m_atom);
+      pitem = system()->__id_create(ptool->id());
 
       pitem->m_ptask = ptask;
 

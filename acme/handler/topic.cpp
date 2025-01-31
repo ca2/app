@@ -122,7 +122,7 @@
 
    }
 
-   return pacmeuserinteraction->m_atom;
+   return pacmeuserinteraction->id();
 
 }
 

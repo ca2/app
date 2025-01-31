@@ -438,7 +438,7 @@ namespace user
 
 #endif   // WINVER >= 0x0500
 
-      lresult send_message(const ::atom& atom, ::wparam wParam = 0, ::lparam lParam = 0, const ::int_point & point = {}) override;
+      lresult send_message(const ::atom& atom, ::const ::wparam & wparam = {}, ::const ::lparam & lparam = {}, const ::int_point & point = {}) override;
 
       lresult send_message(::message::message * pmessage) override;
 
@@ -450,7 +450,7 @@ namespace user
 //#endif
 
 
-      void post_message(const ::atom & atom,wparam wParam = 0,lparam lParam = 0) override;
+      void post_message(const ::atom & atom,const ::wparam & wparam = {},const ::lparam & lparam = {}) override;
 
 
       //virtual bool SendNotifyMessage(unsigned int message,wparam wParam,lparam lParam);
@@ -616,7 +616,7 @@ namespace user
       //virtual ::windowing::window * GetNextDlgGroupItem(::windowing::window * pWndCtl,bool bPrevious = false) const;
       //virtual ::windowing::window * GetNextDlgTabItem(::windowing::window * pWndCtl,bool bPrevious = false) const;
       //virtual unsigned int IsDlgButtonChecked(int nIDButton) const;
-      //virtual lresult SendDlgItemMessage(int nID,unsigned int message,wparam wParam = 0,lparam lParam = 0);
+      //virtual lresult SendDlgItemMessage(int nID,unsigned int message,const ::wparam & wparam = {},const ::lparam & lparam = {});
       //virtual void SetDlgItemInt(int nID,unsigned int nValue,bool bSigned = true);
       //virtual void SetDlgItemText(int nID, const ::string & pszString);
 

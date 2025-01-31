@@ -134,10 +134,10 @@ namespace user
 
       };
 
-      if (prequest->m_atom.is_null())
+      if (prequest->id().is_null())
       {
 
-         prequest->m_atom = m_typeatomImpact;
+         prequest->id() = m_typeatomImpact;
 
       }
 

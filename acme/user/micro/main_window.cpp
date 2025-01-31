@@ -821,7 +821,7 @@ namespace micro
    //   auto pbutton = __allocate ::micro::button();
 
    //   pbutton->m_strText = scopedstrText;
-   //   pbutton->m_atom = edialogresult;
+   //   pbutton->id() = edialogresult;
    //   pbutton->m_edialogresult1 = edialogresult;
    //   pbutton->m_chLetter = chLetter;
    //   //pbutton->m_bDefault = bDefault;
@@ -839,7 +839,7 @@ namespace micro
    //   for (auto & pchild : m_microuserinteractionaChildren)
    //   {
 
-   //      if (pchild->m_atom == atom)
+   //      if (pchild->id() == atom)
    //      {
 
    //         return pchild;
@@ -917,7 +917,7 @@ namespace micro
    //   if (pchild)
    //   {
 
-   //      m_atomLeftButtonDown = pchild->m_atom;
+   //      m_atomLeftButtonDown = pchild->id();
 
    //   }
    //   else
@@ -970,7 +970,7 @@ namespace micro
    //   if (pchild)
    //   {
 
-   //      m_atomLeftButtonUp = pchild->m_atom;
+   //      m_atomLeftButtonUp = pchild->id();
 
    //   }
    //   else
@@ -1007,7 +1007,7 @@ namespace micro
    //   if (pchild)
    //   {
 
-   //      m_atomRightButtonDown = pchild->m_atom;
+   //      m_atomRightButtonDown = pchild->id();
 
    //   }
    //   else
@@ -1038,7 +1038,7 @@ namespace micro
    //   if (pchild)
    //   {
 
-   //      m_atomRightButtonUp = pchild->m_atom;
+   //      m_atomRightButtonUp = pchild->id();
 
    //   }
    //   else
@@ -1487,7 +1487,7 @@ namespace micro
    //   if (!atom.is_empty())
    //   {
 
-   //      m_atom = atom;
+   //      id() = atom;
 
    //   }
 
@@ -1512,7 +1512,7 @@ namespace micro
    //void main_window::create_control(::user::main_window * puserinteractionParent, const ::atom & atom)
    //{
 
-   //   m_atom = atom;
+   //   id() = atom;
 
    //   create_child(puserinteractionParent);
 
@@ -1648,19 +1648,19 @@ namespace micro
    void main_window::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == id_operating_system_user_color_change)
+      if (ptopic->id() == id_operating_system_user_color_change)
       {
 
          redraw();
 
       }
-      else if (ptopic->m_atom == id_set_application_dark_mode)
+      else if (ptopic->id() == id_set_application_dark_mode)
       {
 
          redraw();
 
       }
-      else if (ptopic->m_atom == id_application_dark_mode_change)
+      else if (ptopic->id() == id_application_dark_mode_change)
       {
 
          redraw();
@@ -1815,7 +1815,7 @@ namespace micro
 
       statement << strType;
 
-      ::string strAtom = m_atom.as_string();
+      ::string strAtom = id().as_string();
 
       if (strAtom.has_character() && strAtom != strType)
       {

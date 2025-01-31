@@ -17,12 +17,12 @@
 
 
 //       ::pointer<interaction>       m_pinteraction;
-//       ::atom                        m_atom;
+//       ::atom                        id();
 //       wparam                        m_wparam;
 //       lparam                        m_lparam;
 
 
-//       call_message_handler_task(interaction * pinteraction, const ::atom & atom, wparam wparam, lparam lparam);
+//       call_message_handler_task(interaction * pinteraction, ::enum_message emessage, ::wparam wparam, ::lparam lparam);
 //       ~call_message_handler_task() override;
 
 

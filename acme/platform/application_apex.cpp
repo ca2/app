@@ -1050,14 +1050,16 @@ namespace platform
    //void apex_application_layer::add_frame(::user::interaction * puserinteraction){}
    //void apex_application_layer::erase_frame(::user::interaction * puserinteraction){}
 
-   bool apex_application_layer::send_message_to_windows(const ::atom& atom, wparam wparam, lparam lparam)
+
+   void apex_application_layer::send_message_to_windows(::enum_message emessage, ::wparam wparam, ::lparam lparam)
    {
-      return false;
+      // return false;
    } // with tbs in <3
 
-   bool apex_application_layer::route_message_to_windows(::message::message* pmessage)
+
+   void apex_application_layer::route_message_to_windows(::message::message* pmessage)
    {
-      return false;
+      //return false;
    } // with tbs in <3
 
 
@@ -1079,7 +1081,7 @@ namespace platform
    // user virtual ::user::document * place_hold(::user::interaction * pinteraction){}
 
 
-   void apex_application_layer::post_message(const ::atom& atom, wparam wParam, lparam lParam)
+   void apex_application_layer::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
    {
    }
 

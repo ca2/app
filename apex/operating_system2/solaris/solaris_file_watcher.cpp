@@ -35,7 +35,7 @@ namespace file_watcher
 
    struct watch_struct_item
    {
-      atom m_atom;
+      atom id();
       vsstring m_strDirName;
    };
 
@@ -90,7 +90,7 @@ namespace file_watcher
 
       watch_struct* pWatch = ___new watch_struct();
       pWatch->m_plistener = pwatcher;
-      pWatch->m_atom = wd;
+      pWatch->id() = wd;
       pWatch->m_strDirName = directory;
       if(bRecursive)
       {
@@ -118,7 +118,7 @@ namespace file_watcher
 
             item.m_strDirName = stra[index];
 
-            item.m_atom = inaw;
+            item.id() = inaw;
 
             pWatch->m_itema.add(item);
 

@@ -103,7 +103,7 @@ string demangle(const char* name)
 //{
 //
 //   m_pfactoryitem = nullptr;
-//   m_atom              = atom;
+//   id()              = atom;
 //   m_atomFriendly      = idFriendly;
 //
 //}
@@ -125,7 +125,7 @@ string demangle(const char* name)
 //type_atom::type_atom(const type_atom & info)
 //{
 //
-//   m_atom              = info.m_atom;
+//   id()              = info.id();
 //   m_atomFriendly      = info.m_atomFriendly;
 //   m_pfactoryitem    = info.m_pfactoryitem;
 //
@@ -138,16 +138,16 @@ string demangle(const char* name)
 //   m_pfactoryitem = nullptr;
 //#ifdef WINDOWS
 //   m_atomFriendly      = info.name();
-//   m_atom              = info.raw_name();
+//   id()              = info.raw_name();
 //#elif defined(ANDROID)
 //   m_atomFriendly	   = info.name();
-//   m_atom			      = info.name();
+//   id()			      = info.name();
 //#elif defined(__APPLE__)
 //   m_atomFriendly      = info.name();
-//   m_atom              = info.name();
+//   id()              = info.name();
 //#else
 //   m_atomFriendly      = info.name();
-//   m_atom              = info.name();
+//   id()              = info.name();
 //#endif
 //
 //}
@@ -157,7 +157,7 @@ string demangle(const char* name)
 //{
 //
 //   m_pfactoryitem = nullptr;
-//   m_atom              = strName;
+//   id()              = strName;
 //   m_atomFriendly      = strFriendlyName;
 //
 //}
@@ -166,7 +166,7 @@ string demangle(const char* name)
 //type_atom & type_atom::operator = (const type_atom & info)
 //{
 //
-//   m_atom              = info.m_atom;
+//   id()              = info.id();
 //   m_atomFriendly      = info.m_atomFriendly;
 //   m_pfactoryitem    = info.m_pfactoryitem;
 //
@@ -180,16 +180,16 @@ string demangle(const char* name)
 //
 //#ifdef WINDOWS
 //   m_atomFriendly      = info.name();
-//   m_atom              = info.raw_name();
+//   id()              = info.raw_name();
 //#elif defined(ANDROID)
 //   m_atomFriendly      = info.name();
-//   m_atom              = info.name();
+//   id()              = info.name();
 //#elif defined(__APPLE__)
 //   m_atomFriendly      = info.name();
-//   m_atom              = info.name();
+//   id()              = info.name();
 //#else
 //   m_atomFriendly      = info.name();
-//   m_atom              = info.name();
+//   id()              = info.name();
 //#endif
 ////   m_pfactoryitem.release();
 //
@@ -201,7 +201,7 @@ string demangle(const char* name)
 //bool type_atom::operator == (const type_atom & info) const
 //{
 //
-//   return m_atom == info.m_atom;
+//   return id() == info.id();
 //
 //}
 //
@@ -211,11 +211,11 @@ string demangle(const char* name)
 //
 //#ifdef WINDOWS
 //
-//   return m_atom == info.raw_name();
+//   return id() == info.raw_name();
 //
 //#else
 //
-//   return m_atom == info.name();
+//   return id() == info.name();
 //
 //#endif // WINDOWS
 //
@@ -225,7 +225,7 @@ string demangle(const char* name)
 //bool type_atom::operator == (const ::string & strName) const
 //{
 //
-//   return m_atom == strName;
+//   return id() == strName;
 //
 //}
 //
@@ -233,7 +233,7 @@ string demangle(const char* name)
 //bool type_atom::operator == (const atom & atom ) const
 //{
 //
-//   return m_atom == atom ;
+//   return id() == atom ;
 //
 //}
 //
@@ -241,7 +241,7 @@ string demangle(const char* name)
 //bool type_atom::operator != (const type_atom & info) const
 //{
 //
-//   return m_atom != info.m_atom;
+//   return id() != info.id();
 //
 //}
 //
@@ -251,11 +251,11 @@ string demangle(const char* name)
 //
 //#ifdef WINDOWS
 //
-//   return m_atom != info.raw_name();
+//   return id() != info.raw_name();
 //
 //#else
 //
-//   return m_atom != info.name();
+//   return id() != info.name();
 //
 //#endif // WINDOWS
 //
@@ -265,7 +265,7 @@ string demangle(const char* name)
 //bool type_atom::operator != (const ::string & strName) const
 //{
 //
-//   return m_atom != strName;
+//   return id() != strName;
 //
 //}
 //
@@ -273,7 +273,7 @@ string demangle(const char* name)
 //bool type_atom::operator != (const atom & atom ) const
 //{
 //
-//   return m_atom != atom ;
+//   return id() != atom ;
 //
 //}
 //
@@ -281,7 +281,7 @@ string demangle(const char* name)
 //const char * type_atom::name() const
 //{
 //
-//   return m_atom;
+//   return id();
 //
 //}
 //

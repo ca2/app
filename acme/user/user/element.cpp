@@ -1018,10 +1018,10 @@ namespace user
    //}
 
 
-   lresult element::send_message(const ::atom & atom, wparam wparam, lparam lparam, const ::int_point & point)
+   lresult element::send_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
    {
 
-      return message_call(atom, wparam, lparam, point);
+      return message_call(emessage, wparam, lparam, point);
 
    }
 
@@ -1034,7 +1034,7 @@ namespace user
    }
 
 
-   lresult element::message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::int_point & point)
+   lresult element::message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
    {
 
       return 0;
@@ -1135,8 +1135,7 @@ namespace user
    //}
 
 
-   void element::send_message_to_descendants(const ::atom & atom, wparam wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
-
+   void element::send_message_to_descendants(::enum_message emessage, ::wparam wparam, ::lparam lparam, bool bDeep, bool bOnlyPerm)
    {
 
       throw ::interface_only();
@@ -2400,8 +2399,7 @@ namespace user
    //}
 
 
-
-   lresult element::message_handler(const ::atom & atom, wparam wparam, lparam lparam)
+   lresult element::message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam)
    {
 
       throw ::interface_only();
@@ -2411,7 +2409,7 @@ namespace user
    }
 
 
-   void element::post_message(const ::atom & atom, wparam wparam, lparam lparam)
+   void element::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
    {
 
       throw ::interface_only();
@@ -3891,7 +3889,7 @@ namespace user
 {
 
 
-   void element::post_simple_command(const enum_simple_command & ecommand, lparam lparam)
+   void element::post_simple_command(const enum_simple_command & ecommand, const ::lparam & lparam)
    {
 
       post_message(e_message_simple_command, (wparam)ecommand, lparam);
@@ -3946,7 +3944,7 @@ namespace user
    //}
 
 
-//   ::pointer<::message::message>element::get_message(const ::atom & atom, wparam wparam, lparam lparam)
+//   ::pointer<::message::message>element::get_message(const ::atom & atom, const ::wparam & wparam, const ::lparam & lparam)
 //   {
 //
 //      ::pointer<::message::message>pmessage;
@@ -4087,17 +4085,17 @@ namespace user
 //
 //      }
 //
-//      pmessage->set(get_oswindow(), get_window(), atom, wparam, lparam);
+//      pmessage->set(get_oswindow(), get_window(), emessage, wparam, lparam);
 //
 //      return pmessage;
 //
 //   }
 
 
-   // bool element::call_message_handler(const ::atom & atom, wparam wparam, lparam lparam, const ::int_point & point, lresult * plresult)
+   // bool element::call_message_handler(const ::atom & atom, const ::wparam & wparam, const ::lparam & lparam, const ::int_point & point, lresult * plresult)
    // {
 
-   //    //auto pmessage = get_message(atom, wparam, lparam);
+   //    //auto pmessage = get_message(emessage, wparam, lparam);
 
    //    //try
    //    //{
@@ -5136,7 +5134,7 @@ namespace user
 
       statement << strType;
 
-      // ::string strAtom = m_atom.as_string();
+      // ::string strAtom = id().as_string();
       //
       // if(strAtom.has_character() && strAtom != strType)
       // {

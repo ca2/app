@@ -126,7 +126,7 @@ namespace html
          else
          {
 
-            m_pcheckbox->m_atom = atom;
+            m_pcheckbox->id() = atom;
 
          }
 

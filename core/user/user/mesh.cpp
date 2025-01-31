@@ -48,9 +48,9 @@
 namespace user
 {
 
-   const unsigned int mesh::MESSAGE_ENDCOLUMNHEADERDRAG = WM_USER + 25;
-   const unsigned int mesh::MESSAGE_COLUMNHEADERTRACK = WM_USER + 26;
-   const unsigned int mesh::MESSAGE_ENDCOLUMNHEADERTRACK = WM_USER + 27;
+   const ::enum_message mesh::MESSAGE_ENDCOLUMNHEADERDRAG = (::enum_message)(WM_USER + 25);
+   const ::enum_message mesh::MESSAGE_COLUMNHEADERTRACK = (::enum_message) (WM_USER + 26);
+   const ::enum_message mesh::MESSAGE_ENDCOLUMNHEADERTRACK = (::enum_message) (WM_USER + 27);
 
    mesh::mesh()
    {
@@ -3323,7 +3323,7 @@ namespace user
 
                       pmessage->m_pwindow = window();
 
-                      pmessage->m_atom = e_message_left_button_double_click;
+                      pmessage->m_emessage = e_message_left_button_double_click;
 
                       pmessage->m_ebuttonstate = pmouse->m_ebuttonstate;
 

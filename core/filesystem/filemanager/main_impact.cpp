@@ -156,7 +156,7 @@ namespace filemanager
    void main_impact::on_command(::message::command * pcommand)
    {
 
-      if(pcommand->m_atom == "change_impact")
+      if(pcommand->m_atomCommand == "change_impact")
       {
 
          if(m_pthumbnail->is_window_visible())
@@ -195,13 +195,13 @@ namespace filemanager
 
       ::user::split_impact::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == id_initialize)
+      if (ptopic->id() == id_initialize)
       {
 
          create_split_impact();
 
       }
-      else if (ptopic->m_atom == id_incoming_document)
+      else if (ptopic->id() == id_incoming_document)
       {
 
          informationf("filemanager::main_impact ::update_open_document");
@@ -214,13 +214,13 @@ namespace filemanager
       if (filemanager_document() == ptopic->cast < ::user::document >(id_document))
       {
 
-         if (ptopic->m_atom == id_open_selection_properties)
+         if (ptopic->id() == id_open_selection_properties)
          {
 
             OpenSelectionProperties();
 
          }
-         else if (ptopic->m_atom == id_pop)
+         else if (ptopic->id() == id_pop)
          {
 
             OnActivateFrame(e_activate_inactive, parent_frame());
@@ -240,7 +240,7 @@ namespace filemanager
             //}
 
          }
-         else if (ptopic->m_atom == id_create_bars)
+         else if (ptopic->id() == id_create_bars)
          {
 
             //auto pframe = parent_frame();

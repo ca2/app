@@ -359,7 +359,7 @@ namespace user
    void list_box::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == ::id_click)
+      if (ptopic->id() == ::id_click)
       {
 
          if (ptopic->user_interaction() == this)

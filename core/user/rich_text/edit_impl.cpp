@@ -1071,7 +1071,7 @@ namespace user
       void edit_impl::handle(::topic * ptopic, ::context * pcontext)
       {
 
-         if (ptopic->m_atom == ::id_after_change_cur_sel)
+         if (ptopic->id() == ::id_after_change_cur_sel)
          {
 
             auto pformattool = get_format_tool(false);
@@ -1109,7 +1109,7 @@ namespace user
             }
 
          }
-         else if (ptopic->m_atom == id_incoming_document)
+         else if (ptopic->id() == id_incoming_document)
          {
 
             auto puserdocument = ptopic->m_pparticle.cast < ::user::document >();
@@ -2187,9 +2187,9 @@ namespace user
 
          auto ptopic = create_topic(atom);
 
-         //topic.m_atom = ehappening;
+         //topic.id() = ehappening;
 
-         //topic.m_atom = m_atom;
+         //topic.id() = id();
 
          ptopic->m_puserelement = this;
 

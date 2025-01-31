@@ -648,7 +648,7 @@ namespace user
 //
 //         ::user::menu_command command(this);
 //
-//         command.m_atom = m_atom;
+//         command.id() = id();
 //
 //         command.m_puiOther = this;
 //
@@ -749,7 +749,7 @@ namespace user
 
       }
 
-      ::string strId(m_atom.as_string());
+      ::string strId(id().as_string());
 
       if (strId.case_insensitive_begins_eat("application://"))
       {
@@ -760,7 +760,7 @@ namespace user
 
       }
 
-      //m_linkedpropertyCheck = fetch_property(m_atom, true);
+      //m_linkedpropertyCheck = fetch_property(id(), true);
 
    }
 

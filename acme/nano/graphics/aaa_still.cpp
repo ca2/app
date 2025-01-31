@@ -77,7 +77,7 @@ void still::on_char(int iChar)
    if (iChar == '\r' || iChar == ' ')
    {
 
-      m_pinterchange->on_click(m_atom, nullptr);
+      m_pinterchange->on_click(id(), nullptr);
 
    }
 

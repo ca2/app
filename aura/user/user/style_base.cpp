@@ -158,8 +158,8 @@ namespace user
    void style_base::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == id_operating_system_user_color_change
-         || ptopic->m_atom == id_application_dark_mode_change)
+      if (ptopic->id() == id_operating_system_user_color_change
+         || ptopic->id() == id_application_dark_mode_change)
       {
 
          on_user_color();

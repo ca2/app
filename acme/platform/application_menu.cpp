@@ -34,7 +34,7 @@ application_menu::application_menu(const ::scoped_string & scopedstrName, popup_
 application_menu::application_menu(bool bStockItem, const ::scoped_string & scopedstrName, const ::atom & atom, const ::scoped_string & scopedstrAccelerator, const ::scoped_string & scopedstrDescription) :
    m_bStockItem(bStockItem),
    m_strName(scopedstrName),
-   m_atom(atom),
+   m_atomMenu(atom),
    m_strAccelerator(scopedstrAccelerator),
    m_strDescription(scopedstrDescription)
    {
@@ -150,7 +150,7 @@ application_menu * application_menu::item(const ::scoped_string & scopedstrName,
    auto iIndex = this->predicate_find_first([&atom](auto pmenu)
       {
 
-         return !pmenu->is_popup() && pmenu->m_atom == atom;
+         return !pmenu->is_popup() && pmenu->m_atomMenu == atom;
 
          });
    

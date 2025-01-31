@@ -373,7 +373,7 @@ namespace user
       if (ptopic)
       {
 
-         if (ptopic->m_atom == id_initial_update)
+         if (ptopic->id() == id_initial_update)
          {
 
             if (get_document()->is_opened())
@@ -406,7 +406,7 @@ namespace user
    //   //   }
    //   //}
 
-   //   //if(ptopic->m_atom == id_set_edit_file)
+   //   //if(ptopic->id() == id_set_edit_file)
    //   //{
 
    //   //   post_simple_command(e_simple_command_set_edit_file, pparticle);
@@ -470,7 +470,7 @@ namespace user
    ::atom impact::get_toolbar_id()
    {
 
-      return get_document()->m_pimpactsystem->m_atom + "/" + class_title();
+      return get_document()->m_pimpactsystem->id() + "/" + class_title();
 
    }
 
@@ -891,7 +891,7 @@ namespace user
 
       pusersystem->m_pdocumentCurrent = get_document();
 
-      auto pinteraction = pusersystem->create_impact(pimpactdata->m_pplaceholder, pimpactdata->m_atom);
+      auto pinteraction = pusersystem->create_impact(pimpactdata->m_pplaceholder, pimpactdata->id());
 
       return pinteraction;
 
@@ -1068,7 +1068,7 @@ namespace user
    void impact::call_handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == id_initial_update)
+      if (ptopic->id() == id_initial_update)
       {
 
          if (!get_document())

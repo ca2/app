@@ -246,7 +246,7 @@ bool property_set::case_insensitive_erase_first_value(const ::payload & payload)
    if (pproperty != nullptr)
    {
 
-      return erase_by_name(pproperty->m_atom);
+      return erase_by_name(pproperty->m_atomName);
 
    }
 
@@ -263,7 +263,7 @@ bool property_set::case_insensitive_erase_first_value(const ::scoped_string & sc
    if (pproperty != nullptr)
    {
 
-      return erase_by_name(pproperty->m_atom);
+      return erase_by_name(pproperty->name());
 
    }
 
@@ -280,7 +280,7 @@ bool property_set::erase_first_value(const ::payload & payload)
    if (pproperty != nullptr)
    {
 
-      return erase_by_name(pproperty->m_atom);
+      return erase_by_name(pproperty->name());
 
    }
 
@@ -297,7 +297,7 @@ bool property_set::erase_first_value(const ::scoped_string & scopedstr)
    if (pproperty != nullptr)
    {
 
-      return erase_by_name(pproperty->m_atom);
+      return erase_by_name(pproperty->name());
 
    }
 
@@ -1538,7 +1538,7 @@ property_set & property_set::operator = (const ::payload & payload)
       //   for (auto & pproperty : this->propertyptra())
       //   {
 
-      //      auto ppropertySource = payload.m_ppropertyset->find(pproperty->m_atom);
+      //      auto ppropertySource = payload.m_ppropertyset->find(pproperty->id());
 
       //      if (::is_set(ppropertySource))
       //      {
@@ -1563,7 +1563,7 @@ property_set & property_set::operator = (const ::payload & payload)
 
    //   erase_all_properties();
 
-   //   set_at(payload.m_pproperty->m_atom, *payload.m_pproperty);
+   //   set_at(payload.m_pproperty->id(), *payload.m_pproperty);
 
    //}
    //else
@@ -1731,7 +1731,7 @@ property_set & property_set::merge(const property & property)
    else
    {
 
-      set_at(property.m_atom, property);
+      set_at(property.name(), property);
 
    }
 
@@ -1970,7 +1970,7 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
 //   for (::collection::index i = 0; i < this->get_size(); i++)
 //   {
 //
-//      if (m_propertyptra[i]->m_atom == atom)
+//      if (m_propertyptra[i]->id() == atom)
 //      {
 //
 //         return i;
@@ -1996,7 +1996,7 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
 //
 //      this->add(pproperty);
 //
-//      pproperty->m_atom = atom;
+//      pproperty->id() = atom;
 //
 //      return *pproperty;
 //
@@ -2074,7 +2074,7 @@ string property_set::get_command_line(const string_array & straKeys) const
 
       }
 
-      string strItem = pproperty->m_atom.as_string();
+      string strItem = pproperty->name().as_string();
 
       if (strItem.contains(" ") || strItem.contains("\'"))
       {
@@ -2155,7 +2155,7 @@ string property_set::get_command_line() const
 
       }
 
-      string strItem(property.m_atom.as_string());
+      string strItem(property.name().as_string());
 
       if (strItem.contains(" ") || strItem.contains("\'"))
       {
@@ -2340,7 +2340,7 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
    for (auto & property : *this)
    {
       
-      str += property.m_atom.as_string();
+      str += property.name().as_string();
 
       str += scopedstrSeparator1;
 
@@ -2361,7 +2361,7 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
    for (; i < this->get_count(); i++)
    {
 
-      if (this->element_at(i).m_atom == atom)
+      if (this->element_at(i).name() == atom)
       {
 
          return i;
@@ -2383,7 +2383,7 @@ property* property_set::find_by_text(const ::scoped_string & scopedstr, ::collec
    for (; !this->is_end(p); p++)
    {
 
-      if (p->m_atom == scopedstr)
+      if (p->name() == scopedstr)
       {
 
          return (::property*)p;
@@ -2405,7 +2405,7 @@ property* property_set::find_by_text(const ::scoped_string & scopedstr, ::collec
    for (; !this->is_end(p); p++)
    {
 
-      if (p->m_atom == atom)
+      if (p->name() == atom)
       {
 
          return (::property *) p;
@@ -2514,7 +2514,7 @@ property & property_set::get(const ::atom_array & atoma)
 //   for (; p < this->m_end; p++)
 //   {
 //
-//      if ((*p)->m_atom.as_iptr() == i)
+//      if ((*p)->id().as_iptr() == i)
 //      {
 //
 //         return *p;

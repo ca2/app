@@ -87,7 +87,7 @@ namespace data
       //
       //
       // check_property::check_property(const check_property & checkproperty) :
-      // check_property(checkproperty.m_ppropertycontainer, checkproperty.m_atom)
+      // check_property(checkproperty.m_ppropertycontainer, checkproperty.id())
       // {
       //
       //
@@ -208,7 +208,7 @@ namespace data
       // bool check_property::on_property_will_change(const ::atom & atom, const ::payload & payload, const ::action_context & actioncontext)
       // {
       //
-      //    if(atom == m_atom)
+      //    if(atom == id())
       //    {
       //
       //       if(!on_check_will_change(atom, payload.as_echeck(), actioncontext))
@@ -228,7 +228,7 @@ namespace data
       // void check_property::on_property_changed(const ::atom & atom, const ::payload & payload, const ::action_context & actioncontext)
       // {
       //
-      //    if(atom == m_atom)
+      //    if(atom == id())
       //    {
       //
       //       on_check_changed(payload.as_echeck(), actioncontext);

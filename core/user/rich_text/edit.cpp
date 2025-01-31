@@ -1532,7 +1532,7 @@ namespace user
 
             ptopic->m_puserelement = this;
 
-            ptopic->m_atom = ::id_escape;
+            ptopic->id() = ::id_escape;
 
             ptopic->m_actioncontext = ::e_source_user;
 

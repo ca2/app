@@ -502,9 +502,9 @@ namespace introjection
 //      for (auto & pproperty : setEnvironment)
 //      {
 //
-//         informationf("%s : %s", pproperty->m_atom.to_string().c_str(), pproperty->string().c_str());
+//         informationf("%s : %s", pproperty->id().to_string().c_str(), pproperty->string().c_str());
 //
-//         SetEnvironmentVariableW(wstring(pproperty->m_atom), wstring(pproperty->string()));
+//         SetEnvironmentVariableW(wstring(pproperty->id()), wstring(pproperty->string()));
 //
 //      }
 //

@@ -596,7 +596,7 @@ namespace platform
       virtual void get_public_internet_domain_extension_list(string_array & stra);
       virtual ::string fetch_public_internet_domain_extension_list_text();
 
-      virtual void system_id_update(huge_integer iUpdate, huge_integer iPayload);
+      virtual void system_id_update(int iUpdate, huge_integer iPayload);
 
       //void handle(::topic * ptopic, ::context * pcontext) override;
 

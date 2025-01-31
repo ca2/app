@@ -33,12 +33,16 @@ namespace user
    void tool_tip_window::relay_event(::user::tool_tip_tool * ptool, ::message::message * pmessage)
    {
       
-      if(is_window())
+      if (is_window())
+      {
+
          return;
+
+      }
       
       ::pointer<::user::message>pusermessage(pmessage);
 
-      switch(pusermessage->m_atom.as_int())
+      switch(pusermessage->m_emessage)
       {
       case e_message_mouse_move:
       {
@@ -617,7 +621,7 @@ namespace user
 
       CText text;
       
-      if (!m_puserinteraction->send_message(MessageBaseToolTipText, iTool, (lparam)&text))
+      if (!m_puserinteraction->send_message(e_message_tool_tip_text, iTool, (lparam)&text))
       {
 
          return false;

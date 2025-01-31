@@ -88,14 +88,14 @@ namespace handler
       ::topic & operator=(const ::atom & atom)
       {
 
-         m_atom = atom;
+         id() = atom;
 
          return *this;
 
       }
 
 
-      inline bool operator==(const ::atom & atom) const { return m_atom == atom || m_atom == id_full; }
+      inline bool operator==(const ::atom & atom) const { return id() == atom || id() == id_full; }
 
       void subject_common_construct();
 

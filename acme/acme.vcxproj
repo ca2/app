@@ -1158,6 +1158,7 @@
     <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="format.h" />
     <ClInclude Include="graphics\image\pixmap_lock.h" />
+    <ClInclude Include="handler\request.h" />
     <ClInclude Include="handler\sequence.h" />
     <ClInclude Include="handler\source.h" />
     <ClInclude Include="handler\aaa_step.h" />

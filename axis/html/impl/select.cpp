@@ -89,7 +89,7 @@ namespace html
             
             m_pcombo->m_bPassword = pelement->m_propertyset["type"].case_insensitive_order("password") == 0;
             m_pcombo->m_strName = pelement->m_phtmlbase->get_tag()->get_attr_value("name");
-            m_pcombo->m_atom = pelement->m_phtmlbase->get_tag()->get_attr_value("id");
+            m_pcombo->id() = pelement->m_phtmlbase->get_tag()->get_attr_value("id");
 
             if (pelement->m_phtmlbase->get_tag()->baseptra().has_elements())
             {

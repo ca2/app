@@ -426,9 +426,9 @@ namespace windowing
 
       virtual void win_update_graphics();
 
-      virtual lresult send_message(const ::atom & atom, wparam wParam = 0, lparam lParam = nullptr);
+      virtual lresult send_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
 
-      void post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = nullptr) override;
+      void post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
 
       void set_window_text(const ::scoped_string & scopedstr) override;
@@ -920,7 +920,7 @@ namespace windowing
 //
 //#endif   // WINVER >= 0x0500
 //
-      lresult send_message(const ::atom & atom, ::wparam wParam = 0, ::lparam lParam = 0, const ::int_point & point = {}) override;
+      lresult send_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {}) override;
 
       lresult send_message(::message::message * pmessage) override;
 
@@ -932,7 +932,7 @@ namespace windowing
       //#endif
 
 
-      //void post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = 0) override;
+      //void post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
 
       //virtual bool SendNotifyMessage(unsigned int message,wparam wParam,lparam lParam);
@@ -1098,7 +1098,7 @@ namespace windowing
       //virtual ::windowing::window * GetNextDlgGroupItem(::windowing::window * pWndCtl,bool bPrevious = false) const;
       //virtual ::windowing::window * GetNextDlgTabItem(::windowing::window * pWndCtl,bool bPrevious = false) const;
       //virtual unsigned int IsDlgButtonChecked(int nIDButton) const;
-      //virtual lresult SendDlgItemMessage(int nID,unsigned int message,wparam wParam = 0,lparam lParam = 0);
+      //virtual lresult SendDlgItemMessage(int nID,unsigned int message,const ::wparam & wparam = {},const ::lparam & lparam = {});
       //virtual void SetDlgItemInt(int nID,unsigned int nValue,bool bSigned = true);
       //virtual void SetDlgItemText(int nID, const ::string & pszString);
 
@@ -1394,7 +1394,7 @@ namespace windowing
       //virtual void queue_message_handler(::message::message * pmessage);
 
 
-      virtual ::pointer<::message::message>get_message(const ::atom & atom, wparam wparam, lparam lparam, ::message::enum_prototype eprototype = ::message::e_prototype_none) override;
+      virtual ::pointer<::message::message>get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype = ::message::e_prototype_none) override;
 
 
       //virtual void enable_window(bool bEnable = true);
@@ -1505,16 +1505,16 @@ namespace windowing
       //virtual bool _is_window();
 
 
-      //virtual ::lresult send_message(const ::atom & atom, ::wparam wparam = 0, ::lparam lparam = 0, const ::int_point & point = {});
+      //virtual ::lresult send_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {});
 
       //virtual ::lresult send_message(::message::message * pmessage);
 
       using ::channel::message_handler;
 
-      virtual lresult message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0) override;
+      virtual lresult message_handler(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
 
-      //virtual void post_message(const ::atom & atom, wparam wparam = 0, ::lparam lparam = 0);
+      //virtual void post_message(const ::atom & atom, const ::wparam & wparam = {}, ::const ::lparam & lparam = {});
 
       //virtual void post_message(::message::message * pusermessage);
 
@@ -1719,10 +1719,10 @@ namespace windowing
       //virtual ::user::frame_interaction * EnsureParentFrame();
 
 
-      virtual lresult message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::int_point & point = {}) override;
+      virtual lresult message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point = {}) override;
       virtual lresult message_call(::message::message * pmessage) override;
 
-      virtual void send_message_to_descendants(const ::atom & atom, wparam wParam = 0, lparam lParam = 0, bool bDeep = true, bool bOnlyPerm = false) override;
+      virtual void send_message_to_descendants(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, bool bDeep = true, bool bOnlyPerm = false) override;
 
 
 
@@ -1781,7 +1781,7 @@ namespace windowing
       //virtual void aaa_impl_clear_keyboard_focus();
 
 
-      //virtual void post_message(const ::atom & atom, ::wparam wparam = 0, lparam lparam = 0);
+      //virtual void post_message(const ::atom & atom, ::const ::wparam & wparam = {}, const ::lparam & lparam = {});
 
       //virtual void post_non_client_destroy();
 

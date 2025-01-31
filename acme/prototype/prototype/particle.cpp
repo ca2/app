@@ -1652,9 +1652,8 @@ bool particle::is_branch_current() const
 }
 
 
-CLASS_DECL_ACME lresult __call(::particle * pparticle, const ::atom & atom, huge_integer wParam, huge_integer lParam)
+CLASS_DECL_ACME lresult __call_message(::particle * pparticle, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
 {
-
 
    throw "what?!?!?!";
 
@@ -1718,37 +1717,39 @@ CLASS_DECL_ACME lresult __call(::particle * pparticle, const ::atom & atom, huge
 //
 
 
-lresult particle::call(const ::atom & atom, wparam wparam, lparam lparam)
+lresult particle::message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam)
 {
 
-   if (atom.m_etype == ::atom::e_type_message)
-   {
+   return message_handler(emessage, wparam, lparam);
 
-      return message_handler(atom, wparam, lparam);
+   //if (atom.m_etype == ::atom::e_type_message)
+   //{
 
-   }
-   else
-   {
+   //   return message_handler(emessage, wparam, lparam);
 
-      auto ptopic = create_topic(atom);
+   //}
+   //else
+   //{
 
-      ptopic->payload("wparam") = (huge_integer) wparam.m_number;
+   //   auto ptopic = create_topic(atom);
 
-      ptopic->payload("lparam") = (huge_integer) lparam.m_lparam;
+   //   ptopic->payload("wparam") = (huge_integer) wparam.m_number;
 
-      handle(ptopic, nullptr);
+   //   ptopic->payload("lparam") = (huge_integer) lparam.m_lparam;
 
-      return ptopic->payload("lresult").as_huge_integer();
+   //   handle(ptopic, nullptr);
 
-   }
+   //   return ptopic->payload("lresult").as_huge_integer();
+
+   //}
 
 }
 
 
-lresult particle::message_handler(const ::atom & atom, wparam wParam, lparam lParam)
+lresult particle::message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam)
 {
 
-   return __call(this, atom, wParam, lParam);
+   return __call_message(this, emessage, wparam, lparam);
 
 }
 

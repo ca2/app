@@ -184,8 +184,8 @@ namespace app_shader
    void main_window::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == "simple_checkbox"
-         || ptopic->m_atom == "no_client_frame")
+      if (ptopic->id() == "simple_checkbox"
+         || ptopic->id() == "no_client_frame")
       {
 
          set_need_redraw();

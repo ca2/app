@@ -10,8 +10,8 @@
 // {
 
 
-//    call_message_handler_task::call_message_handler_task(interaction * pinteraction, const ::atom & atom, wparam wparam, lparam lparam) :
-//       m_atom(atom),
+//    call_message_handler_task::call_message_handler_task(interaction * pinteraction, ::enum_message emessage, ::wparam wparam, ::lparam lparam) :
+//       id()(atom),
 //       m_pinteraction(pinteraction),
 //       m_wparam(wparam),
 //       m_lparam(lparam)
@@ -28,7 +28,7 @@
 //    void call_message_handler_task::run()
 //    {
 
-//       m_pinteraction->call_message_handler(m_atom, m_wparam, m_lparam);
+//       m_pinteraction->call_message_handler(id(), m_wparam, m_lparam);
 
 //       //return ::success;
 

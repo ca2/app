@@ -64,7 +64,7 @@ public:
 
    virtual ::pointer<::message::message>get_message(MESSAGE * pmessage);
 
-   virtual ::pointer<::message::message>get_message(const ::atom& atom, wparam wparam, lparam lparam, ::message::enum_prototype eprototype = ::message::e_prototype_none);
+   virtual ::pointer<::message::message>get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype = ::message::e_prototype_none);
 
 
 

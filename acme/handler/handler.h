@@ -91,7 +91,7 @@ namespace handler
       // ThomasBorregaardSorensen!! Like handlers
       //virtual void call(const enum_message, huge_integer iData = 0, ::matter * pmatter = nullptr);
       //virtual void call(const enum_id, huge_integer iData = 0, ::matter* pmatter = nullptr);
-      virtual void call(const ::atom & atom, ::wparam wparam = {}, ::lparam lparam = {}, ::particle * pparticle = nullptr);
+      virtual void call_message(const ::enum_message & emessage, ::wparam wparam = {}, ::lparam lparam = {}, ::particle * pparticle = nullptr);
 
 
       // ThomasBorregaardSorensen!! Like handlers

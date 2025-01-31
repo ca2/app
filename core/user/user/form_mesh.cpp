@@ -507,7 +507,7 @@ namespace user
 
    //   //screen_to_client()(point);
 
-   //   //if(pmouse->m_atom == e_message_left_button_down)
+   //   //if(pmouse->m_emessage == e_message_left_button_down)
    //   //{
    //   //
    //   //   int iItem;

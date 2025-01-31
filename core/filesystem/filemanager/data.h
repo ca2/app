@@ -58,7 +58,7 @@ namespace filemanager
       bool                                   m_bSetBergedgeTopicFile;
       property_set                           m_setToolbar;
       bool                                   m_bEnableRecursiveFolderSelectionList;
-      atom                                   m_atom;
+      atom                                   m_atomFileManagerData;
       string                                 m_strCopy;
       ::file::path                           m_pathDefault;
       string                                 m_strMenuBar;

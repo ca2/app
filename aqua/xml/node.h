@@ -179,9 +179,9 @@ namespace xml
       ::property              attribute(const ::atom & atom) { return m_set[atom]; }
       ::property &            attribute_at(::collection::index i) { return m_set.property_at(i); }
       const ::property &      attribute_at(::collection::index i) const { return m_set.property_at(i); }
-      ::property &            set_attribute(const property & property) { return set_attribute(property.m_atom, property); }
+      ::property &            set_attribute(const property & property) { return set_attribute(property.name(), property); }
       ::property &            set_attribute(const ::atom & atom, const ::payload & payload = ::e_type_new);
-      bool                    erase_attribute(const ::property & property) { return erase_attribute(property.m_atom); }
+      bool                    erase_attribute(const ::property & property) { return erase_attribute(property.name()); }
       bool                    erase_attribute(const ::atom & atom) { return m_set.erase_by_name(atom) > 0; }
 
 

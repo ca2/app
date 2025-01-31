@@ -190,7 +190,7 @@ namespace userfs
    void list::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == id_browse)
+      if (ptopic->id() == id_browse)
       {
 
          //auto plistdata = __create_new < list_data>();
@@ -610,7 +610,7 @@ namespace userfs
       ::pointer<::user::button>pbutton =  (pinteraction);
       if(pcallback != nullptr && pbutton != nullptr)
       {
-      pcallback->InitializeActionButton(((int) pinteraction->m_atom) - 1000, pbutton);
+      pcallback->InitializeActionButton(((int) pinteraction->id()) - 1000, pbutton);
       } */
    }
 
@@ -636,7 +636,7 @@ namespace userfs
       }
       item.m_strPath         = pdata->item(iStrict).m_strPath;
       item.m_strExtra        = pdata->item(iStrict).m_strExtra;
-      pcallback->OnButtonAction((int) pinteraction->m_atom - 1000, item);
+      pcallback->OnButtonAction((int) pinteraction->id() - 1000, item);
       } */
    }
 

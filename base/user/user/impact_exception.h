@@ -15,10 +15,10 @@ namespace user
    public:
 
 
-      ::atom       m_atom;
+      ::atom       m_atomImpactException;
 
 
-      impact_exception(const ::atom & atom) : m_atom(atom) {}
+      impact_exception(const ::atom & atom) : m_atomImpactException(atom) {}
 
 
    };

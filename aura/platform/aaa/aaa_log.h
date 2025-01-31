@@ -34,7 +34,7 @@ namespace aura
       FILE *                     m_pfile;
       bool                       m_bInitialized;
       string                     m_strLogPath;
-      atom                         m_atom;
+      atom                         id();
       int                        m_iYear;
       int                        m_iMonth;
       int                        m_iDay;

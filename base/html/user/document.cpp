@@ -286,7 +286,7 @@ void html_document::soft_reload()
 
 //   auto pupdate = new_update();
 //
-//   ptopic->m_atom = id_document_complete;
+//   ptopic->id() = id_document_complete;
 //
 //   ptopic->payload(id_url) = get_file_path();
 //
@@ -361,7 +361,7 @@ void html_document::soft_reload()
 void html_document::on_command_probe(::message::command * pcommand)
 {
 
-   if(pcommand->m_atom == "viewindefaultbrowser")
+   if(pcommand->m_atomCommand == "viewindefaultbrowser")
    {
 
       pcommand->enable();
@@ -380,7 +380,7 @@ void html_document::on_command(::message::command * pcommand)
 
    auto papp = get_app();
 
-   if(pcommand->m_atom == "viewindefaultbrowser")
+   if(pcommand->m_atomCommand == "viewindefaultbrowser")
    {
 
       property_set propertyset;

@@ -232,7 +232,7 @@ namespace helloworld
    void pane_impact::on_create_impact(::user::impact_data * pimpactdata)
    {
 
-      switch(pimpactdata->m_atom)
+      switch(pimpactdata->id())
       {
       case impact_menu:
       {
@@ -305,7 +305,7 @@ namespace helloworld
       if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (pimpact) == m_pdocMenu->get_impact(0) && ptopic->user_interaction() != nullptr)
       {
 
-         if(ptopic->m_atom == ::id_after_change_text)
+         if(ptopic->id() == ::id_after_change_text)
          {
 
             if(m_prollfps != nullptr && ptopic->user_interaction_id() == "roll_per_second" && !ptopic->m_context.is_source(::e_source_initialize)
@@ -383,7 +383,7 @@ namespace helloworld
 
 
          }
-         else if (ptopic->m_atom == ::id_set_check && ptopic->user_interaction() != nullptr)
+         else if (ptopic->id() == ::id_set_check && ptopic->user_interaction() != nullptr)
          {
 
             string strCheck = ptopic->user_interaction_id();

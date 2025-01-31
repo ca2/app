@@ -5049,7 +5049,7 @@ namespace apex
    }
 
 
-   bool application::send_message_to_windows(const ::atom & atom, wparam wparam, lparam lparam) // with tbs in <3
+   void application::send_message_to_windows(::enum_message emessage, ::wparam wparam, ::lparam lparam) // with tbs in <3
    {
 
       //::pointer<::user::interaction>puserinteraction;
@@ -5109,12 +5109,12 @@ namespace apex
 
       throw ::interface_only();
 
-      return false;
+      //return false;
 
    }
 
 
-   bool application::route_message_to_windows(::message::message * pmessage) // with tbs in <3
+   void application::route_message_to_windows(::message::message * pmessage) // with tbs in <3
    {
 
       throw ::interface_only();
@@ -5173,7 +5173,7 @@ namespace apex
 
       //}
 
-      return false;
+      //return false;
 
    }
 
@@ -5229,12 +5229,12 @@ namespace apex
    //}
 
 
-   void application::post_message(const ::atom & atom, wparam wparam, lparam lparam)
+   void application::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
    {
 
-      //return ::thread::post_message(atom, wparam, lparam);
+      //return ::thread::post_message(emessage, wparam, lparam);
 
-      ::thread::post_message(atom, wparam, lparam);
+      ::thread::post_message(emessage, wparam, lparam);
 
    }
 
@@ -7663,7 +7663,7 @@ namespace apex
 
       // handle certain messages in thread
 
-      switch (pmessage->m_atom.m_emessage)
+      switch (pmessage->m_emessage)
       {
       case e_message_create:
       case e_message_paint:
@@ -7679,7 +7679,7 @@ namespace apex
       //linux unsigned int nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
       const ::string & nIDP = "Internal Failure";
       pmessage->m_lresult = 0;        // sensible default
-      if (pmessage->m_atom == e_message_command)
+      if (pmessage->m_emessage == e_message_command)
       {
 
          if (pmessage->m_lparam == 0)

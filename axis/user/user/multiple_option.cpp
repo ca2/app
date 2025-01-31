@@ -60,7 +60,7 @@ namespace user
 
       }
 
-      m_propertyOption.set_property(pitem->m_atom, ::e_source_user);
+      m_propertyOption.set_property(pitem->id(), ::e_source_user);
 
       set_need_redraw();
 
@@ -591,10 +591,14 @@ namespace user
             pgraphics->fill_rectangle(rItem, ::argb(127, 127, 127, 127));
 
          }
+         
          auto pitem = __create_new<::item>();
+
          pitem->m_item.m_iItem = i;
+
          pitem->m_item.m_eelement = e_element_item;
-         pitem->m_atom = m_atomaOptions[i];
+
+         pitem->id() = m_atomaOptions[i];
 
 
          main_content().add_item(pitem);
@@ -655,7 +659,7 @@ namespace user
 
       //}
 
-      if (ptopic->m_atom == ::id_after_change_cur_sel)
+      if (ptopic->id() == ::id_after_change_cur_sel)
       {
 
          auto puserinteraction = ptopic->user_interaction();
@@ -716,7 +720,7 @@ namespace user
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
-//      switch (pusermessage->m_atom)
+//      switch (pusermessage->id())
 //      {
 //      case WM_DRAWITEM:
 //#ifdef WINDOWSEX

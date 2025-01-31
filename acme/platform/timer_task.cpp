@@ -112,7 +112,7 @@ void timer_task::start_timer_task(const class time & timeWait, bool bPeriodic)
       //      if (pcontextobjectContainer)
       //      {
 
-      //         strFormat.formatf(", atom = % s]", as_string(pcontextobjectContainer->m_atom).c_str());
+      //         strFormat.formatf(", atom = % s]", as_string(pcontextobjectContainer->id()).c_str());
       //         
       //         m_strDebugNote += strFormat;
 
@@ -128,7 +128,7 @@ void timer_task::start_timer_task(const class time & timeWait, bool bPeriodic)
 
       //}
 
-      m_atom = m_strDebugNote;
+      id() = m_strDebugNote;
 
       set_flag(e_flag_running);
 

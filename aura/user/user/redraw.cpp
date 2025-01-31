@@ -177,7 +177,7 @@ namespace user
       if (!bNeedsToDraw)
       {
 
-         //information() << "Opting out from draw!! " << typeid(*this).name() << " " << m_atom.as_string();
+         //information() << "Opting out from draw!! " << typeid(*this).name() << " " << id().as_string();
 
          //information() << "no need to draw";
 

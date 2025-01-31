@@ -108,7 +108,7 @@ namespace filehandler
 
       //         ::pointer<application>papp =  (( (get_parent_frame()))->get_app());
 
-      string strFile = pimpactdata->m_atom;
+      string strFile = pimpactdata->id();
 
       if(strFile.case_insensitive_begins_eat("default_file_handler://"))
       {
@@ -124,7 +124,7 @@ namespace filehandler
 
       }
 
-      switch(pimpactdata->m_atom)
+      switch(pimpactdata->id())
       {
       case impact_new:
       {
@@ -175,7 +175,7 @@ namespace filehandler
    void pane_impact::_001OnMenuMessage(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
-      set_current_tab_by_id(m_pimpactdataOld->m_atom);
+      set_current_tab_by_id(m_pimpactdataOld->id());
    }
 
    void pane_impact::install_message_routing(::channel * pchannel)

@@ -25,7 +25,7 @@
 //
 //         common_construct();
 //
-//         m_atom.set_compounded_type(::atom::e_type_command);
+//         id().set_compounded_type(::atom::e_type_command);
 //         m_bRadioChanged = false;
 //
 //      }
@@ -241,7 +241,7 @@
 //      void command::do_probe(channel * ptarget)
 //      {
 //
-//         if (m_atom.is_empty())
+//         if (id().is_empty())
 //            return;     // ignore invalid IDs
 //
 //         ENSURE_VALID(ptarget);
@@ -266,9 +266,9 @@
 //
 //      {
 //
-//         scoped_restore(pcommand->m_atom.m_etype);
+//         scoped_restore(pcommand->m_atomCommand.m_etype);
 //
-//         pcommand->m_atom.set_compounded_type(::atom::e_type_command);
+//         pcommand->m_atomCommand.set_compounded_type(::atom::e_type_command);
 //
 //         route_command(pcommand);
 //
@@ -284,9 +284,9 @@
 //
 //      {
 //
-//         scoped_restore(pcommand->m_atom.m_etype);
+//         scoped_restore(pcommand->m_atomCommand.m_etype);
 //
-//         pcommand->m_atom.set_compounded_type(::atom::e_type_command_probe);
+//         pcommand->m_atomCommand.set_compounded_type(::atom::e_type_command_probe);
 //
 //         route_command(pcommand);
 //
@@ -326,7 +326,7 @@
 //         on_command(pcommand);
 //
 //      }
-//      else if (pcommand->m_atom.is_compounded(::atom::e_type_command_probe))
+//      else if (pcommand->m_atomCommand.is_compounded(::atom::e_type_command_probe))
 //      {
 //
 //         pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
@@ -334,7 +334,7 @@
 //         on_command_probe(pcommand);
 //
 //      }
-//      else if (pcommand->m_atom.is_compounded(::atom::e_type_command))
+//      else if (pcommand->m_atomCommand.is_compounded(::atom::e_type_command))
 //      {
 //
 //         pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
@@ -355,9 +355,9 @@
 //
 //      {
 //
-//         scoped_restore(pcommand->m_atom.m_etype);
+//         scoped_restore(pcommand->m_atomCommand.m_etype);
 //
-//         pcommand->m_atom.set_compounded_type(::atom::e_type_command);
+//         pcommand->m_atomCommand.set_compounded_type(::atom::e_type_command);
 //
 //         route_message(pcommand);
 //
@@ -371,18 +371,18 @@
 //
 //      synchronous_lock synchronouslock(channel_mutex());
 //
-//      scoped_restore(pcommand->m_atom.m_etype);
+//      scoped_restore(pcommand->m_atomCommand.m_etype);
 //
-//      pcommand->m_atom.set_compounded_type(::atom::e_type_command);
+//      pcommand->m_atomCommand.set_compounded_type(::atom::e_type_command);
 //
-//      if (m_atomaHandledCommands.contains(pcommand->m_atom))
+//      if (m_atomaHandledCommands.contains(pcommand->m_atomCommand))
 //      {
 //
 //         return true;
 //
 //      }
 //
-//      auto passoc = m_idroute.plookup(pcommand->m_atom);
+//      auto passoc = m_idroute.plookup(pcommand->m_atomCommand);
 //
 //      if (::is_null(passoc))
 //      {
@@ -415,9 +415,9 @@
 //
 //      {
 //
-//         scoped_restore(pcommand->m_atom.m_etype);
+//         scoped_restore(pcommand->m_atomCommand.m_etype);
 //
-//         pcommand->m_atom.set_compounded_type(::atom::e_type_command_probe);
+//         pcommand->m_atomCommand.set_compounded_type(::atom::e_type_command_probe);
 //
 //         route_message(pcommand);
 //

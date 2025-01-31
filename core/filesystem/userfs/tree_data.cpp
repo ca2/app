@@ -330,7 +330,7 @@ namespace userfs
 
       control.set_type(::user::form_control_type_edit);
       control.m_iKey = FILE_MANAGER_ID_FILE_NAME;
-      pinteraction->m_atom = FILE_MANAGER_ID_FILE_NAME;
+      pinteraction->id() = FILE_MANAGER_ID_FILE_NAME;
       control.set_data_type(::user::form_control_data_type_string);
 
       int iControl =  _001AddControl(control);
@@ -674,11 +674,11 @@ namespace userfs
       ////__update(::update)
       {
 
-         if (ptopic->m_atom == id_initialize)
+         if (ptopic->id() == id_initialize)
          {
 
          }
-         if (ptopic->m_atom == id_filter)
+         if (ptopic->id() == id_filter)
          {
 
             if (ptopic->payload(id_filter).is_empty())

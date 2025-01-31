@@ -64,7 +64,7 @@ namespace user
 
       }
 
-      m_atom = pinteraction->m_atom;
+      id() = pinteraction->id();
 
       return true;
 
@@ -145,7 +145,7 @@ namespace user
 
    //   }
 
-   //   auto puserinteraction = plist->get_child_by_id(m_atom);
+   //   auto puserinteraction = plist->get_child_by_id(id());
 
    //   if (!puserinteraction)
    //   {

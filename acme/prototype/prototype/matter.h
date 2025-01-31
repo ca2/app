@@ -36,8 +36,8 @@ public:
    };
 
 
+   class ::atom                        m_atomMatterId;
 
-   class ::atom                        m_atom;
 //   ::eobject                           m_eobject;
 
 //#if REFERENCING_DEBUGGING
@@ -74,8 +74,9 @@ public:
    //virtual void  dump(dump_context& dumpcontext) const;
 
 
-
-
+   ::atom & id() { return m_atomMatterId; }
+   const ::atom & id() const { return m_atomMatterId; }
+   
 
 
    void operator()(::topic * ptopic, ::context * pcontext) override;

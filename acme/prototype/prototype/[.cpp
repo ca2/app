@@ -677,7 +677,7 @@ void payload::set_type(enum_type etype, bool bConvert)
             m_str = ::transfer(this->string());
             break;
          case e_type_id:
-            m_atom = ::transfer(this->atom());
+            id() = ::transfer(this->atom());
             break;
          default:
             ::set_last_status(error_conversion_not_a_number);
@@ -789,7 +789,7 @@ void payload::set_id(const ::atom & atom)
 
       set_type(e_type_id, false);
 
-      m_atom = atom;
+      id() = atom;
 
    }
 
@@ -1323,7 +1323,7 @@ class ::payload & payload::operator = (const class ::payload & payload)
             m_pproperty=payload.m_pproperty;
             break;
          case e_type_id:
-            m_atom = payload.m_atom;
+            id() = payload.id();
             break;
          default:
             ::memory_copy(m_all, payload.m_all, sizeof(m_all));
@@ -1679,7 +1679,7 @@ bool payload::is_empty() const
    case e_type_property:
       return m_pproperty->is_empty();
    case e_type_id:
-      return m_atom.is_empty();
+      return id().is_empty();
    case e_type_pid:
       return m_pid->is_empty();
 
@@ -2254,7 +2254,7 @@ string payload::string(const ::scoped_string & scopedstrOnNull) const
       }
       else if(m_etype == ::e_type_id)
       {
-         str = m_atom;
+         str = id();
       }
       else if(m_etype == ::e_type_pid)
       {
@@ -2456,7 +2456,7 @@ string & payload::string_reference(const ::scoped_string & scopedstrOnNull)
    else
    {
 
-      return m_atom;
+      return id();
 
    }
 
@@ -2491,9 +2491,9 @@ string & payload::string_reference(const ::scoped_string & scopedstrOnNull)
 
       set_type(e_type_id, false);
 
-      m_atom = ::transfer(atom);
+      id() = ::transfer(atom);
 
-      return m_atom;
+      return id();
 
    }
 
@@ -2556,9 +2556,9 @@ int payloadint(int iDefault) const
       return atoi(*m_pstr);
    case e_type_id:
    {
-      if(!fits_int(m_atom.huge_integer()))
+      if(!fits_int(id().huge_integer()))
          throw ::exception(error_overflow, "::payload contains atom that does not fit 32 bit integer");
-      return (int) (huge_integer) m_atom;
+      return (int) (huge_integer) id();
    }
    case e_type_pid:
    {
@@ -5566,7 +5566,7 @@ bool payload::is_natural() const
 //   else if (m_etype == e_type_id)
 //   {
 //
-//      return (m_atom.is_text() && ::papaya::is_true(m_atom.m_psz)) || (m_atom.is_integer() && m_atom.m_i != 0);
+//      return (id().is_text() && ::papaya::is_true(id().m_psz)) || (id().is_integer() && id().m_i != 0);
 //
 //   }
 //   else if (m_etype == e_type_pid)
@@ -6535,7 +6535,7 @@ bool payload::is_numeric() const
       return false;
 
    case e_type_id:
-      return false; // m_atom.is_number(); // may be improved MBI
+      return false; // id().is_number(); // may be improved MBI
 
    case e_type_pid:
       return false; // m_pid->is_number(); // may be improved MBI
@@ -6911,7 +6911,7 @@ bool payload::is_false() const
    case e_type_ptime:
       return !m_ptime || m_ptime->is_null();
    case e_type_id:
-      return m_atom.is_empty() || !m_atom.case_insensitive_order("false") || !m_atom.case_insensitive_order("no");
+      return id().is_empty() || !id().case_insensitive_order("false") || !id().case_insensitive_order("no");
    case e_type_pid:
       return !m_pid || m_pid->is_empty() || !m_pid->case_insensitive_order("false") || !m_pid->case_insensitive_order("no");
    case e_type_time:
@@ -7097,7 +7097,7 @@ bool payload::is_set_false() const
    case e_type_ptime:
       return !m_ptime || m_ptime->is_null();
    case e_type_id:
-      return m_atom.is_empty() || !m_atom.case_insensitive_order("false") || !m_atom.case_insensitive_order("no");
+      return id().is_empty() || !id().case_insensitive_order("false") || !id().case_insensitive_order("no");
    case e_type_pid:
       return !m_pid || m_pid->is_empty() || !m_pid->case_insensitive_order("false") || !m_pid->case_insensitive_order("no");
    case e_type_time:

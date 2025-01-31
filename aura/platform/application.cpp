@@ -311,7 +311,7 @@ namespace aura
    //::message::application::message::application(e_::message::application esignal)
    //{
 
-   //   m_atom = ::message::type_application;
+   //   id() = ::message::type_application;
    //   m_esignal = esignal;
    //   m_bOk = true;
 
@@ -3665,7 +3665,7 @@ retry_license:
    }
 
 
-   bool application::send_message_to_windows(const ::atom & atom, wparam wparam, lparam lparam) // with tbs in <3
+   void application::send_message_to_windows(::enum_message emessage, ::wparam wparam, ::lparam lparam) // with tbs in <3
    {
 
       ::pointer<::user::interaction>puserinteraction;
@@ -3685,7 +3685,7 @@ retry_license:
                   try
                   {
 
-                     puserinteraction->send_message(atom, wparam, lparam);
+                     puserinteraction->send_message(emessage, wparam, lparam);
 
                   }
                   catch (...)
@@ -3696,7 +3696,7 @@ retry_license:
                   try
                   {
 
-                     puserinteraction->send_message_to_descendants(atom, wparam, lparam);
+                     puserinteraction->send_message_to_descendants(emessage, wparam, lparam);
 
                   }
                   catch (...)
@@ -3721,12 +3721,12 @@ retry_license:
 
       }
 
-      return true;
+      //return true;
 
    }
 
 
-   bool application::route_message_to_windows(::message::message * pmessage) // with tbs in <3
+   void application::route_message_to_windows(::message::message * pmessage) // with tbs in <3
    {
 
       ::pointer<::user::interaction>puserinteraction;
@@ -3783,7 +3783,7 @@ retry_license:
 
       }
 
-      return true;
+      //return true;
 
    }
 
@@ -3855,7 +3855,7 @@ retry_license:
    //   if (pinteraction == nullptr && pmsg->oswindow != nullptr)
    //   {
 
-   //     if (pmsg->m_atom == 126)
+   //     if (pmsg->id() == 126)
    //     {
 
    //        information() << "e_message_display_change";
@@ -3902,7 +3902,7 @@ retry_license:
    //   if (pinteraction != nullptr)
    //   {
 
-   //      return pinteraction->get_message(pmsg->m_atom, pmsg->wParam, pmsg->lParam);
+   //      return pinteraction->get_message(pmsg->id(), pmsg->wParam, pmsg->lParam);
 
    //   }
 
@@ -3915,7 +3915,7 @@ retry_license:
 
    //   }
 
-   //   pusermessage->set(pmsg->oswindow, pwindow, pmsg->m_atom, pmsg->wParam, pmsg->lParam);
+   //   pusermessage->set(pmsg->oswindow, pwindow, pmsg->id(), pmsg->wParam, pmsg->lParam);
 
    //   return pusermessage;
 
@@ -3948,10 +3948,10 @@ retry_license:
    //}
 
 
-   void application::post_message(const ::atom & atom, wparam wparam, lparam lparam )
+   void application::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam )
    {
 
-      ::thread::post_message(atom, wparam, lparam);
+      ::thread::post_message(emessage, wparam, lparam);
 
    }
 
@@ -5892,7 +5892,7 @@ namespace aura
 
       // handle certain messages in thread
 
-      switch (pusermessage->m_atom.m_emessage)
+      switch (pusermessage->m_emessage)
       {
          case e_message_create:
          case e_message_paint:
@@ -5908,7 +5908,7 @@ namespace aura
       //linux unsigned int nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
       const char* nIDP = "Internal Failure";
       pusermessage->m_lresult = 0;        // sensible default
-      if (pusermessage->m_atom == e_message_command)
+      if (pusermessage->m_emessage == e_message_command)
       {
          if (pusermessage->m_lparam == 0)
             //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
@@ -7728,7 +7728,7 @@ namespace aura
 
       //::pointer<::user::message>pusermessage(pmessage);
 
-      //      if (pmessage->m_atom == WM_USER + 124 && pmessage->userinteraction() == nullptr)
+      //      if (pmessage->m_emessage == WM_USER + 124 && pmessage->userinteraction() == nullptr)
       //      {
       //
       //         /*
@@ -8487,7 +8487,7 @@ namespace aura
 
       //::user::form_callback::handle(ptopic, pcontext);
 
-      if(ptopic->m_atom == id_app_activated)
+      if(ptopic->id() == id_app_activated)
       {
 
          if(m_pacmeuserinteractionMain)
@@ -8506,7 +8506,7 @@ namespace aura
          }
 
       }
-      else if (ptopic->m_atom == id_application_dark_mode_change)
+      else if (ptopic->id() == id_application_dark_mode_change)
       {
 
          if (m_puserinteractionaFrame)
@@ -8523,12 +8523,12 @@ namespace aura
 
       }
 
-      if (ptopic->m_atom == ::id_initialize_control)
+      if (ptopic->id() == ::id_initialize_control)
       {
 
          ::pointer < ::user::interaction > puserinteraction = ptopic->m_puserelement;
 
-         if (puserinteraction->m_atom == "user_auto_start_checkbox")
+         if (puserinteraction->id() == "user_auto_start_checkbox")
          {
 
             try
@@ -8563,12 +8563,12 @@ namespace aura
          }
 
       }
-      else if (ptopic->m_atom == ::id_set_check)
+      else if (ptopic->id() == ::id_set_check)
       {
 
          auto puserinteraction = ptopic->user_interaction();
 
-         if (puserinteraction->m_atom == "user_auto_start_checkbox"
+         if (puserinteraction->id() == "user_auto_start_checkbox"
             && ptopic->m_actioncontext.is_user_source())
          {
 
@@ -8696,7 +8696,7 @@ namespace aura
       //case MSGF_DIALOGBOX:    // handles message boxes as well.
       //   //pMainWnd = __get_main_window();
       //   if (code == MSGF_DIALOGBOX && m_puiActive != nullptr &&
-      //      pusermessage->m_atom >= e_message_key_first && pusermessage->m_atom <= e_message_key_last)
+      //      pusermessage->id() >= e_message_key_first && pusermessage->id() <= e_message_key_last)
       //   {
       //   }
       //   break;
@@ -9117,7 +9117,7 @@ namespace aura
 
    //      ::message::command command;
 
-   //      command.m_atom = ::atom(pszCommand);
+   //      command.id() = ::atom(pszCommand);
 
    //      __channel(m_pacmeuserinteractionMain)->route_command_message(&command);
 

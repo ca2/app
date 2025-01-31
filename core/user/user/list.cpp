@@ -1529,7 +1529,7 @@ namespace user
       
       auto pcolumn = new_list_column();
 
-      pcolumn->m_atom = puserinteraction->m_atom;
+      pcolumn->id() = puserinteraction->id();
 
       pcolumn->m_puserinteractionTemplate = puserinteraction;
 
@@ -3111,7 +3111,7 @@ namespace user
 
       }
 
-      auto puserinteraction = get_child_by_id(pcolumn->m_atom);
+      auto puserinteraction = get_child_by_id(pcolumn->id());
 
       if (!puserinteraction)
       {
@@ -4298,7 +4298,7 @@ namespace user
 
                       pmessage->m_pwindow = window();
 
-                      pmessage->m_atom = e_message_left_button_double_click;
+                      pmessage->m_emessage = e_message_left_button_double_click;
 
                       pmessage->m_ebuttonstate = pmouse->m_ebuttonstate;
 
@@ -5031,7 +5031,7 @@ namespace user
 
          list_column * pcolumn = element_at(iIndex);
 
-         if (pcolumn != nullptr && pcolumn->m_atom == atom)
+         if (pcolumn != nullptr && pcolumn->id() == atom)
          {
 
             return iIndex;
@@ -5067,7 +5067,7 @@ namespace user
    list_column * list_column_array::get_by_control(::user::interaction * pinteraction)
    {
 
-      return get_by_control_id(pinteraction->m_atom);
+      return get_by_control_id(pinteraction->id());
 
    }
 

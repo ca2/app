@@ -251,7 +251,7 @@ namespace user
 
       }
 
-      ppane->m_atom = atom;
+      ppane->id() = atom;
 
       on_change_tab_count({ ppane });
 
@@ -292,7 +292,7 @@ namespace user
 
       }
 
-      ppane->m_atom = atom;
+      ppane->id() = atom;
       ppane->m_pplaceholder = pplaceholder;
 
       ppane->m_pimage = image()->load_image(strIcon, { .sync = false, .cache = false, });
@@ -315,7 +315,7 @@ namespace user
    void tab::_001OnRemoveTab(class tab_pane * ptabpane)
    {
 
-      if (matches_restorable_tab(ptabpane->m_atom, ptabpane->m_pplaceholder))
+      if (matches_restorable_tab(ptabpane->id(), ptabpane->m_pplaceholder))
       {
 
          on_change_tab_count({ nullptr });
@@ -339,10 +339,10 @@ namespace user
       for (int i = 0; i < get_data()->m_tabpanea.get_count(); i++)
       {
 
-         if (get_data()->m_tabpanea[i]->m_atom == atom)
+         if (get_data()->m_tabpanea[i]->id() == atom)
          {
 
-            //if (!bRestorableMatch && matches_restorable_tab(get_data()->m_tabpanea[i]->m_atom, get_data()->m_tabpanea[i]->m_pplaceholder))
+            //if (!bRestorableMatch && matches_restorable_tab(get_data()->m_tabpanea[i]->id(), get_data()->m_tabpanea[i]->m_pplaceholder))
             //{
 
             //   bRestorableMatch = true;
@@ -1662,7 +1662,7 @@ namespace user
       MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &tab::on_message_mouse_leave);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &tab::on_message_show_window);
       MESSAGE_LINK(e_message_language, pchannel, this, &tab::_001OnAppLanguage);
-      MESSAGE_LINK(message_start_tab_drag, pchannel, this, &tab::_001OnStartTabDrag);
+      MESSAGE_LINK(e_message_start_tab_drag, pchannel, this, &tab::_001OnStartTabDrag);
 
       ////MESSAGE_LINK(e_message_timer, pchannel, this, &tab::on_timer);
 
@@ -1793,7 +1793,7 @@ namespace user
       return pdata->m_tabpanea.predicate_contains([atom](auto & ptabpane)
          {
 
-            return ptabpane->m_atom == atom;
+            return ptabpane->id() == atom;
 
          });
 
@@ -1810,7 +1810,7 @@ namespace user
       return pdata->m_tabpanea.predicate_find_first([atom](auto & ptabpane)
          {
 
-            return ptabpane->m_atom == atom;
+            return ptabpane->id() == atom;
 
          });
 
@@ -1841,7 +1841,7 @@ namespace user
 
       }
 
-      return ppane->m_atom;
+      return ppane->id();
 
    }
 
@@ -2450,7 +2450,7 @@ namespace user
 
    //      }
 
-   //      if (get_data()->m_tabpanea[iIndex]->m_atom == atom)
+   //      if (get_data()->m_tabpanea[iIndex]->id() == atom)
    //      {
 
    //         return iIndex;
@@ -2477,7 +2477,7 @@ namespace user
    //         if(iIndex <= 0)
    //         {
 
-   //            return get_data()->m_tabpanea[iIndex]->m_atom;
+   //            return get_data()->m_tabpanea[iIndex]->id();
 
    //         }
    //         else
@@ -2726,7 +2726,7 @@ namespace user
 
       ::user::auto_hide::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == id_get_topic_impact_id)
+      if (ptopic->id() == id_get_topic_impact_id)
       {
 
          ptopic->payload(id_id) = get_current_tab_id();
@@ -2734,7 +2734,7 @@ namespace user
          ptopic->m_bRet = true;
 
       }
-      else if (ptopic->m_atom == id_set_topic_impact_by_id)
+      else if (ptopic->id() == id_set_topic_impact_by_id)
       {
 
          set_current_tab_by_id(ptopic->payload(id_id));
@@ -2742,7 +2742,7 @@ namespace user
          ptopic->m_bRet = true;
 
       }
-      else if (ptopic->m_atom == id_place_child_title_change)
+      else if (ptopic->id() == id_place_child_title_change)
       {
 
          for (auto & ppane : get_data()->m_tabpanea)
@@ -2808,7 +2808,7 @@ namespace user
 
             m_estate = state_drag_commanded;
 
-            post_message(message_start_tab_drag);
+            post_message(e_message_start_tab_drag);
 
          }
          else
@@ -2860,7 +2860,7 @@ namespace user
 
    //         client_to_screen(rectangleTabScreen);
 
-   //         if ((pmouse->m_atom == e_message_left_button_down || pmouse->m_atom == e_message_left_button_up) && rectangleTabScreen.contains(pmouse->m_point))
+   //         if ((pmouse->m_emessage == e_message_left_button_down || pmouse->m_emessage == e_message_left_button_up) && rectangleTabScreen.contains(pmouse->m_point))
    //         {
 
    //            route_message(pmouse);
@@ -2873,7 +2873,7 @@ namespace user
    //            }
 
    //         }
-   //         else if (pmouse->m_atom == e_message_mouse_move)
+   //         else if (pmouse->m_emessage == e_message_mouse_move)
    //         {
 
    //            route_message(pmouse);
@@ -2894,7 +2894,7 @@ namespace user
    //      }
 
    //   }
-   //   else if(pmouse->m_atom == e_message_mouse_move)
+   //   else if(pmouse->m_emessage == e_message_mouse_move)
    //   {
 
    //   }
@@ -3004,7 +3004,7 @@ namespace user
       for (auto ppane : array)
       {
 
-         if (ppane == nullptr || matches_restorable_tab(ppane->m_atom, ppane->m_pplaceholder))
+         if (ppane == nullptr || matches_restorable_tab(ppane->id(), ppane->m_pplaceholder))
          {
 
             bAny = true;
@@ -3116,7 +3116,7 @@ namespace user
 
          auto ppane = panea[i].get();
 
-         strPath = ppane->m_atom;
+         strPath = ppane->id();
 
          if (strPrefix.is_empty() || strPath.case_insensitive_begins(strPrefix))
          {
@@ -3167,7 +3167,7 @@ namespace user
 
          auto ppane = panea[i].get();
 
-         strPath = ppane->m_atom;
+         strPath = ppane->id();
 
          if (strPrefix.is_empty() || strPath.case_insensitive_begins(strPrefix))
          {
@@ -3226,7 +3226,7 @@ namespace user
       for (int i = 0; i < panea.get_count(); i++)
       {
 
-         varId = panea[i]->m_atom;
+         varId = panea[i]->id();
 
          if (matches_restorable_tab(varId, panea[i]->m_pplaceholder))
          {
@@ -3263,7 +3263,7 @@ namespace user
       tab_pane_array & panea = get_data()->m_tabpanea;
       for (int i = 0; i < panea.get_count(); i++)
       {
-         varId = panea[i]->m_atom;
+         varId = panea[i]->id();
          if (matchany.matches(varId))
          {
             return true;

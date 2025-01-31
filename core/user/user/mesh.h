@@ -105,9 +105,9 @@ namespace user
       };
 
 
-      static const unsigned int MESSAGE_ENDCOLUMNHEADERDRAG;
-      static const unsigned int MESSAGE_COLUMNHEADERTRACK;
-      static const unsigned int MESSAGE_ENDCOLUMNHEADERTRACK;
+      static const enum_message MESSAGE_ENDCOLUMNHEADERDRAG;
+      static const enum_message MESSAGE_COLUMNHEADERTRACK;
+      static const enum_message MESSAGE_ENDCOLUMNHEADERTRACK;
 
       // Simple Filter Implementation
       // Base Mesh Side

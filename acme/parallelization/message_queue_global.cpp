@@ -130,15 +130,15 @@ bool apex_defer_process_x_message(htask htask,MESSAGE * pMsg,oswindow oswindow,b
 //}
 //
 
-void mq_post_thread_message(class ::task_index & taskindex, const ::atom & atom, wparam wparam, lparam lparam)
+void mq_post_thread_message(class ::task_index & taskindex, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
 {
 
-   if (atom.m_etype != ::atom::e_type_message)
-   {
+   //if (atom.m_etype != ::atom::e_type_message)
+   //{
 
-      throw ::exception(error_bad_argument);
+   //   throw ::exception(error_bad_argument);
 
-   }
+   //}
 
    auto pmessagequeue = ::system()->task_message_queue()->get_message_queue(taskindex, true);
 
@@ -149,7 +149,7 @@ void mq_post_thread_message(class ::task_index & taskindex, const ::atom & atom,
 
    }
 
-   pmessagequeue->post_message(nullptr, atom.m_emessage, wparam, lparam);
+   pmessagequeue->post_message(nullptr, emessage, wparam, lparam);
 
 }
 

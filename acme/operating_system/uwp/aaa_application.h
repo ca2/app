@@ -144,7 +144,7 @@
 //   
 //      unsigned int SuspendThread();
 //      unsigned int ResumeThread();
-//      bool post_message(::user::interaction * pguie, const ::atom & atom, WPARAM wParam, LPARAM lParam);
+//      bool post_message(::user::interaction * pguie, ::enum_message emessage, ::wparam wparam, ::lparam lparam);
 //
 //      virtual bool PreInitInstance();
 //

@@ -51,14 +51,14 @@ namespace message
       bool m_bCommand = false;
 
 
-      message(const ::atom & atom = ::atom());
+      message(::enum_message emessage = e_message_undefined);
       ~message() override;
 
 
       //void common_construct();
 
 
-      inline bool is_message() const { return m_atom.is_message(); }
+      inline bool is_message() const { return m_emessage != e_message_undefined; }
       inline bool is_thread_message() const { return is_message() && m_oswindow == nullptr; }
 
 
@@ -70,8 +70,8 @@ namespace message
       bool previous(); // returns bRet
 
       virtual void set_lresult(lresult lresult);
-      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam, const ::int_point & point);
-      //virtual void set(oswindow oswindow, ::windowing::window* pwindow, const ::atom& atom, wparam wparam, ::lparam lparam);
+      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point);
+      //virtual void set(oswindow oswindow, ::windowing::window* pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam);
 
 
       unsigned int GetNotifyCode() const { return __hiword(m_wparam.m_number); }

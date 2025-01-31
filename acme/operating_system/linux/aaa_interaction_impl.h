@@ -167,12 +167,12 @@ namespace linux
 
 #endif   // WINVER >= 0x0500
 
-      LRESULT send_message(const ::atom & atom, WPARAM wParam = 0, lparam lparam = 0) override;
+      LRESULT send_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
-      bool post_message(const ::atom & atom, WPARAM wParam = 0, lparam lparam = 0) override;
+      bool post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
 
-//      bool SendNotifyMessage(const ::atom & atom, WPARAM wParam, lparam lParam);
+//      bool SendNotifyMessage(::enum_message emessage, ::wparam wparam, ::lparam lparam);
 //
 //      bool SendChildNotifyLastMsg(LRESULT* pResult = nullptr);
 //

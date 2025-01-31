@@ -55,7 +55,7 @@ namespace filemanager
       ////__update(::update)
       {
 
-         if (ptopic->m_atom == id_topic_saved)
+         if (ptopic->id() == id_topic_saved)
          {
 
             if (top_level_frame()->m_bModal)
@@ -66,7 +66,7 @@ namespace filemanager
             }
 
          }
-         else if (ptopic->m_atom == id_topic_save_failed)
+         else if (ptopic->id() == id_topic_save_failed)
          {
 
             if (top_level_frame()->m_bModal)
@@ -77,7 +77,7 @@ namespace filemanager
             }
 
          }
-         else if (ptopic->m_puserelement == this && ptopic->m_atom == id_initialize)
+         else if (ptopic->m_puserelement == this && ptopic->id() == id_initialize)
          {
             //            filemanager_document() = pupdate->filemanager_document();
             /*            m_pserverNext = simpledb::AppGet()->GetDataServer();
@@ -93,7 +93,7 @@ namespace filemanager
                         DISetSection(str);
                         _001UpdateColumns();*/
          }
-         else if (ptopic->m_atom == id_filter)
+         else if (ptopic->id() == id_filter)
          {
             /*if(ptopic->payload(id_filter).is_empty())
             {

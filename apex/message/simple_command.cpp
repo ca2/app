@@ -11,17 +11,17 @@ namespace message
    simple_command::simple_command()
    {
 
-      m_atom = ::e_message_simple_command;
+      m_emessage = ::e_message_simple_command;
 
       set(e_simple_command_none);
 
    }
 
 
-   //void simple_command::set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //void simple_command::set(oswindow oswindow, ::layered * playeredUserPrimitive, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 
-   //   ::user::message::set(oswindow, playeredUserPrimitive, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, playeredUserPrimitive, emessage, wparam, lparam);
 
    //   m_esimplecommand = (e_simple_command)wparam.m_number;
 

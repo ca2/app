@@ -282,7 +282,7 @@ namespace user
 
       pimpactdata->m_puserinteraction.release();
 
-      return create_impact < IMPACT >(get_document(), pimpactdata->m_pplaceholder, pimpactdata->m_atom, pviewLast, pimpactdata);
+      return create_impact < IMPACT >(get_document(), pimpactdata->m_pplaceholder, pimpactdata->id(), pviewLast, pimpactdata);
 
    }
 

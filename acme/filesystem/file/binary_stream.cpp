@@ -317,7 +317,7 @@ binary_stream & operator <<(binary_stream&stream, const ::payload & payload)
       //   *this << *payload.m_pfileimage;
       //   break;
    case e_type_atom:
-      stream << payload.m_atom;
+      stream << payload.m_atomPayload;
       break;
    //case e_type_property:
    //{
@@ -653,7 +653,7 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 
       payload.set_type(::e_type_atom, false);
 
-      *this >> payload.m_atom;
+      *this >> payload.m_atomPayload;
 
    }
    break;

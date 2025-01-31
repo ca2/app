@@ -266,7 +266,7 @@ namespace sockets
          for(auto & property : m_fields)
          {
 
-            atom & atom = property.m_atom;
+            auto atom = property.name();
 
             ::payload & payload = property;
 

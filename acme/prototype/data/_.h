@@ -35,11 +35,11 @@ namespace data
 
    struct property_change
    {
+
       property_container * m_ppropertycontainer;
       const ::atom_array & m_atoma;
       const ::payload & m_payload;
       const ::action_context & m_actioncontext;
-
 
    };
 

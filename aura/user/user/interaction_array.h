@@ -120,9 +120,9 @@ namespace user
       ::pointer<::user::interaction>find_first(oswindow oswindow);
 
       //::user::oswindow_array get_hwnda();
-      void send_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
+      void send_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
 
-      void send_message_to_descendants(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, bool bRecursive = true);
+      void send_message_to_descendants(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, bool bRecursive = true);
 
 
       interaction_array & operator = (const pointer_array < ::user::interaction > & a);

@@ -770,10 +770,10 @@ namespace user
    }
 
 
-   lresult primitive_impl::send_message(const ::atom& atom, wparam wparam, lparam lparam, const ::int_point& point)
+   lresult primitive_impl::send_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
    {
 
-      return message_call(atom, wparam, lparam, point);
+      return message_call(emessage, wparam, lparam, point);
 
    }
 
@@ -791,7 +791,7 @@ namespace user
    pmessage->m_pchannel = this; \
    pmessage->m_oswindow = oswindow; \
    pmessage->m_pwindow = pwindow; \
-   pmessage->m_atom = atom; \
+   pmessage->m_emessage = atom; \
    pmessage->m_wparam = wparam; \
    pmessage->m_lparam = lparam; \
    pmessageBase = pmessage
@@ -800,13 +800,13 @@ namespace user
 //#define _NEW_MESSAGE(TYPE) \
 //   auto pmessage = __create_new<TYPE>(); \
 //   pmessage->m_pchannel = this; \
-//   pmessage->m_atom = atom; \
+//   pmessage->m_emessage = atom; \
 //   pmessage->m_wparam = wparam; \
 //   pmessage->m_lparam = lparam; \
 //   pmessageBase = pmessage
 
 
-   ::pointer<::message::message>primitive_impl::get_message(const ::atom & atom, wparam wparam, lparam lparam, ::message::enum_prototype eprototype)
+   ::pointer<::message::message>primitive_impl::get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype)
    {
 
       ::pointer<::message::message>pmessageBase;
@@ -848,7 +848,7 @@ namespace user
          _NEW_MESSAGE(::message::nc_activate);
          {
 
-            //::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+            //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
             pmessage->m_bActive = wparam != false;
 
@@ -858,10 +858,10 @@ namespace user
       case ::message::e_prototype_key:
       {
          _NEW_MESSAGE(::message::key);
-         //void key::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+         //void key::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
          {
 
-            // ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+            // ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
             pmessage->m_nChar = static_cast<unsigned int>(wparam);
 
@@ -932,7 +932,7 @@ namespace user
          
 #endif
 
-         //::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+         //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
          pmessage->m_ecommand = (enum_scroll_command)(short)lower_unsigned_short(wparam);
 
@@ -989,10 +989,10 @@ namespace user
       case ::message::e_prototype_object:
       {
          _NEW_MESSAGE(::message::particle);
-         //void particle::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+         //void particle::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
          {
 
-            //::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+            //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
             ::particle_pointer pparticle(lparam);
 
@@ -1032,11 +1032,11 @@ namespace user
       {
          _NEW_MESSAGE(::message::activate);
          //pmessage = p;
-         //default_set(pmessage, atom, wparam, lparam)
-         //void activate::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+         //default_set(pmessage, emessage, wparam, lparam)
+         //void activate::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
          //{
 
-            //::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+            //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
          pmessage->m_eactivate = (enum_activate)(lower_unsigned_short(wparam));
 
@@ -1073,7 +1073,7 @@ namespace user
       default:
       {
          
-         auto pmessage = ::channel::get_message(atom, wparam, lparam, eprototype);
+         auto pmessage = ::channel::get_message(emessage, wparam, lparam, eprototype);
          
          pmessageBase = pmessage;
 
@@ -1950,7 +1950,7 @@ namespace user
    //}
 
 
-   void primitive_impl::message_handler(const ::atom & atom, wparam wparam, lparam lparam)
+   void primitive_impl::message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam)
    {
 
       // if (::is_null(m_puserinteraction))
@@ -1960,7 +1960,7 @@ namespace user
 
       // }
 
-      // m_puserinteraction->interaction_post(__allocate call_message_handler_task(m_puserinteraction, atom, wparam, lparam));
+      // m_puserinteraction->interaction_post(__allocate call_message_handler_task(m_puserinteraction, emessage, wparam, lparam));
 
       //auto pmessage
 
@@ -1971,13 +1971,13 @@ namespace user
       if (m_puserinteraction)
       {
 
-         pmessage = m_puserinteraction->get_message(atom, wparam, lparam);
+         pmessage = m_puserinteraction->get_message(emessage, wparam, lparam);
 
       }
       else
       {
 
-         pmessage = get_message(atom, wparam, lparam);
+         pmessage = get_message(emessage, wparam, lparam);
 
       }
 
@@ -1990,7 +1990,7 @@ namespace user
    }
 
 
-   lresult primitive_impl::message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::int_point& point)
+   lresult primitive_impl::message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
    {
 
       ::pointer<::message::message>pmessage;
@@ -1998,13 +1998,13 @@ namespace user
       if (m_puserinteraction)
       {
 
-         pmessage = m_puserinteraction->get_message(atom, wparam, lparam);
+         pmessage = m_puserinteraction->get_message(emessage, wparam, lparam);
 
       }
       else
       {
 
-         pmessage = get_message(atom, wparam, lparam);
+         pmessage = get_message(emessage, wparam, lparam);
 
       }
 
@@ -2060,10 +2060,10 @@ namespace user
    }
 
 
-   void primitive_impl::send_message_to_descendants(const ::atom & atom, wparam wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
+   void primitive_impl::send_message_to_descendants(::enum_message emessage, ::wparam wparam, ::lparam lparam, bool bDeep, bool bOnlyPerm)
    {
 
-      return m_puserinteraction->send_message_to_descendants(atom, wparam, lparam, bDeep, bOnlyPerm);
+      return m_puserinteraction->send_message_to_descendants(emessage, wparam, lparam, bDeep, bOnlyPerm);
 
    }
 
@@ -2458,7 +2458,7 @@ namespace user
    }
 
 
-   void primitive_impl::post_message(const ::atom & atom, wparam wparam, lparam lparam)
+   void primitive_impl::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
    {
 
       // if (::is_null(m_puserinteraction))
@@ -2468,7 +2468,7 @@ namespace user
 
       // }
 
-      // m_puserinteraction->interaction_post(__allocate call_message_handler_task(m_puserinteraction, atom, wparam, lparam));
+      // m_puserinteraction->interaction_post(__allocate call_message_handler_task(m_puserinteraction, emessage, wparam, lparam));
 
       //auto pmessage
 
@@ -2479,13 +2479,13 @@ namespace user
       if (m_puserinteraction)
       {
 
-         pmessage = m_puserinteraction->get_message(atom, wparam, lparam);
+         pmessage = m_puserinteraction->get_message(emessage, wparam, lparam);
 
       }
       else
       {
 
-         pmessage = get_message(atom, wparam, lparam);
+         pmessage = get_message(emessage, wparam, lparam);
 
       }
 

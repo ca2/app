@@ -34,7 +34,7 @@ namespace apex
 //      ::file_pointer                      m_pfile;
       bool                                m_bInitialized;
       string                              m_strLogPath;
-      atom                                  m_atom;
+      atom                                m_atomLog;
       int                                 m_iYear;
       int                                 m_iMonth;
       int                                 m_iDay;

@@ -13,7 +13,7 @@ namespace user
 
       auto pitem = __create_new < item >();
 
-      pitem->m_atom = atom;
+      pitem->id() = atom;
 
       pitem->m_strName = strTitle;
 

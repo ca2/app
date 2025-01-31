@@ -64,7 +64,7 @@ void host_interaction::create_context_button()
       r.left() = r.right() - 32;
       r.top() = r.bottom() - 32;
       
-      m_pbuttonContext->m_atom = id_context_button;
+      m_pbuttonContext->id() = id_context_button;
 
       m_pbuttonContext->set_rectangle(r);
 

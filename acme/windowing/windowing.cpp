@@ -243,7 +243,7 @@ namespace acme
 
       void windowing::handle(::topic* ptopic, ::context* pcontext)
       {
-         if (ptopic->m_atom == id_set_application_dark_mode)
+         if (ptopic->id() == id_set_application_dark_mode)
          {
             for (auto& pwindow: m_windowa)
             {

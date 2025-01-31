@@ -1044,9 +1044,9 @@ namespace platform
       //virtual void add_frame(::user::interaction * puserinteraction);
       //virtual void erase_frame(::user::interaction * puserinteraction);
 
-      virtual bool send_message_to_windows(const ::atom& atom, wparam wparam, lparam lparam); // with tbs in <3
+      virtual void send_message_to_windows(::enum_message emessage, ::wparam wparam, ::lparam lparam); // with tbs in <3
 
-      virtual bool route_message_to_windows(::message::message* pmessage); // with tbs in <3
+      virtual void route_message_to_windows(::message::message* pmessage); // with tbs in <3
 
 
       virtual void send_language_change_message();
@@ -1062,7 +1062,7 @@ namespace platform
       // user virtual ::user::document * place_hold(::user::interaction * pinteraction);
 
 
-      virtual void post_message(const ::atom& atom, wparam wParam = {}, lparam lParam = 0);
+      virtual void post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
 
 
       //virtual ::image::icon * set_icon(object * pparticle, ::image::icon * picon, bool bBigIcon);

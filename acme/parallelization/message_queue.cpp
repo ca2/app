@@ -16,7 +16,7 @@
 #endif
 
 
-#define e_message_kick_idle         0x036A  // (params unused) causes idles to kick in
+//#define e_message_kick_idle         0x036A  // (params unused) causes idles to kick in
 #if defined(LINUX) // || defined(ANDROID)
 
 
@@ -52,7 +52,7 @@ void message_queue::on_initialize_particle()
 }
 
 
-void message_queue::post_message(oswindow oswindow, const ::atom & atom, wparam wparam, lparam lparam)
+void message_queue::post_message(oswindow oswindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
 {
 
    if (m_bQuit)
@@ -65,12 +65,12 @@ void message_queue::post_message(oswindow oswindow, const ::atom & atom, wparam 
 
    MESSAGE message;
 
-   message.m_atom = atom;
-   message.oswindow = oswindow;
-   message.wParam = wparam;
-   message.lParam = lparam;
-   message.pt.x() = I32_MINIMUM;
-   message.pt.y() = I32_MINIMUM;
+   message.m_oswindow = oswindow;
+   message.m_emessage = emessage;
+   message.m_wparam = wparam;
+   message.m_lparam = lparam;
+   message.m_point.x() = I32_MINIMUM;
+   message.m_point.y() = I32_MINIMUM;
 
    /* return */ post_message(message);
 
@@ -89,7 +89,7 @@ void message_queue::post_message(const MESSAGE & message)
 
    }
 
-   if (message.m_atom == e_message_quit)
+   if (message.m_emessage == e_message_quit)
    {
 
       informationf("message_queue::post_message e_message_quit\n");
@@ -129,7 +129,7 @@ void message_queue::kick_idle()
 
    //m_happeningNewMessage.set_happening();
 
-   post_message(nullptr, e_message_kick_idle, {}, 0);
+   post_message(nullptr, e_message_kick_idle, {}, {});
 
 }
 
@@ -188,7 +188,7 @@ void message_queue::kick_idle()
 
          auto & message = m_messagea[i];
 
-         if (message.m_atom == e_message_quit)
+         if (message.m_emessage == e_message_quit)
          {
 
             m_bQuit = true;
@@ -204,9 +204,9 @@ void message_queue::kick_idle()
 
          }
 
-         auto iMessage = message.m_atom.as_huge_integer();
+         auto emessage = message.m_emessage;
 
-         if ((oswindow == nullptr || message.oswindow == oswindow) && iMessage >= iFilterMinimum && iMessage <= iFilterMaximum)
+         if ((oswindow == nullptr || message.m_oswindow == oswindow) && emessage >= iFilterMinimum && emessage <= iFilterMaximum)
          {
 
             *pmessage = message;
@@ -300,7 +300,7 @@ bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,unsigned int 
 
       MESSAGE & msg = m_messagea[i];
 
-      if((oswindow == nullptr || msg.oswindow == oswindow) && msg.m_atom.as_huge_integer() >= wMsgFilterMin && msg.m_atom.as_huge_integer() <= wMsgFilterMax)
+      if((oswindow == nullptr || msg.m_oswindow == oswindow) && msg.m_emessage >= wMsgFilterMin && msg.m_emessage <= wMsgFilterMax)
       {
 
          *pMsg = msg;

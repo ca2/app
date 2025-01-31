@@ -28,11 +28,11 @@ namespace message
 
       common_construct();
 
-      m_atom = atom;
+      m_atomCommand = atom;
 
       m_actioncontext.m_puseractivationtoken = puseractivationtoken;
 
-      //m_atom.set_compounded_type(::atom::e_type_command);
+      //id().set_compounded_type(::atom::e_type_command);
       m_bRadioChanged = false;
 
    }
@@ -309,8 +309,12 @@ namespace message
    void command::do_probe(channel * ptarget)
    {
 
-      if (m_atom.is_empty())
+      if (m_atomCommand.is_empty())
+      {
+
          return;     // ignore invalid IDs
+
+      }
 
       ENSURE_VALID(ptarget);
 

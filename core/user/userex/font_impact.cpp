@@ -19,7 +19,7 @@ namespace userex
    font_impact::font_impact()
    {
 
-      m_atom = "font_impact";
+      id() = "font_impact";
 
       m_pimpact = nullptr;
 
@@ -71,7 +71,7 @@ namespace userex
 
       ::user::split_impact::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == id_after_change_text)
+      if (ptopic->id() == id_after_change_text)
       {
 
          if (m_ptopimpact != nullptr && ptopic->m_puserelement == m_ptopimpact->m_peditimpact)
@@ -91,7 +91,7 @@ namespace userex
       else if (ptopic->user_interaction_id() == FONTSEL_IMPACT)
       {
 
-         if (ptopic->m_atom == ::id_after_change_cur_sel)
+         if (ptopic->id() == ::id_after_change_cur_sel)
          {
 
             if (m_bSourceFontSel)
@@ -236,7 +236,7 @@ namespace userex
    //   if (ptopic->user_interaction_id() == impact_font_sel)
    //   {
 
-   //      if (ptopic->m_atom == ::id_after_change_cur_sel)
+   //      if (ptopic->id() == ::id_after_change_cur_sel)
    //      {
 
    //         if (m_bSourceFontSel)

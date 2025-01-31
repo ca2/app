@@ -935,9 +935,9 @@ void thread::run()
    if (m_procedure && m_procedure != this)
    {
 
-      m_atom = ::type(m_procedure.m_pbase);
+      id() = ::type(m_procedure.m_pbase);
 
-      task_set_name(m_atom.as_string());
+      task_set_name(id().as_string());
 
       return m_procedure();
 
@@ -1059,7 +1059,7 @@ bool thread::task_iteration()
       for (auto & m : m_messageaInitialQueue)
       {
 
-         ::PostThreadMessage((DWORD)m_itask.m_i, m.m_atom.as_emessage(), m.wParam, m.lParam);
+         ::PostThreadMessage((DWORD)m_itask.m_i, m.m_emessage, m.m_wparam, m.m_lparam);
 
       }
 
@@ -1093,7 +1093,7 @@ bool thread::task_iteration()
 //      for (auto& m: m_messageaInitialQueue)
 //      {
 //
-//         ::PostThreadMessage((DWORD)m_itask, m.m_atom.as_emessage(), m.wParam, m.lParam);
+//         ::PostThreadMessage((DWORD)m_itask, m.id().as_emessage(), m.wParam, m.lParam);
 //
 //      }
 //
@@ -1145,7 +1145,7 @@ bool thread::task_iteration()
 //
 //      }
 //
-//      if (m_message.m_atom == e_message_quit)
+//      if (m_message.m_emessage == e_message_quit)
 //      {
 //
 //         string strType = ::type(this).name();
@@ -1185,7 +1185,7 @@ bool thread::task_iteration()
 //      else
 //      {
 //
-//         if (m_message.m_atom == e_message_destroy_window && m_strDebugType.contains("notify_icon"))
+//         if (m_message.m_emessage == e_message_destroy_window && m_strDebugType.contains("notify_icon"))
 //         {
 //
 //            information() << "notify_icon";
@@ -1241,7 +1241,7 @@ bool thread::get_message()
 
    get_message(&message, NULL, 0, 0);
 
-   if (m_message.m_atom == e_message_quit)
+   if (m_message.m_emessage == e_message_quit)
    {
 
       return false;
@@ -1457,12 +1457,12 @@ bool thread::handle_message(bool & bContinue)
    if (peek_message(&m_message, nullptr, 0, 0, true))
    {
 
-      if (m_message.m_atom == e_message_quit)
+      if (m_message.m_emessage == e_message_quit)
       {
 
          informationf(
             "\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " +
-            ::as_string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" +
+            ::as_string(m_message.m_emessage == e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" +
             ::as_string((huge_natural)::task_index().m_i) + ")\n\n\n");
          
          bContinue = false;
@@ -2606,13 +2606,13 @@ void thread::system_pre_translate_message(::message::message* pmessage)
 void thread::process_window_procedure_exception(const ::exception& e, ::message::message* pmessage)
 {
 
-   if (pmessage->m_atom == e_message_create)
+   if (pmessage->m_emessage == e_message_create)
    {
 
       pmessage->m_lresult = -1;
 
    }
-   else if (pmessage->m_atom == e_message_paint)
+   else if (pmessage->m_emessage == e_message_paint)
    {
 
       // force validation of interaction_impl to prevent getting e_message_paint again
@@ -2704,16 +2704,16 @@ void thread::branch(enum_parallelization eparallelization,
 
    defer_create_synchronization();
 
-   //if(m_atom.is_empty())
+   //if(id().is_empty())
    //{
 
-   //   m_atom = ::type(this).name();
+   //   id() = ::type(this).name();
 
    //}
 
    //#ifdef __DEBUG
    //
-   //   string strId = m_atom;
+   //   string strId = id();
    //
    //   if (strId.case_insensitive_contains("forking_thread"))
    //   {
@@ -3138,7 +3138,7 @@ namespace apex
    }
 
 
-   void system::post_to_all_threads(const ::atom& atom, wparam wparam, lparam lparam)
+   void system::post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam)
    {
 
       //#ifdef _DEBUG
@@ -3165,7 +3165,7 @@ namespace apex
 
       //      auto psystem = system();
       //
-      //      psystem->post_to_all_threads(atom, wparam, lparam);
+      //      psystem->post_to_all_threads(emessage, wparam, lparam);
 
    }
 
@@ -3204,24 +3204,24 @@ namespace apex
 //}
 
 
-void thread::post_element(const ::atom& atom, wparam wparam, ::particle* pparticle)
+void thread::post_element(const ::enum_message & emessage, const ::wparam & wparam, ::particle* pparticle)
 {
 
-   post_message(atom, wparam, pparticle);
+   post_message(emessage, wparam, pparticle);
 
 }
 
 
-void thread::post_message(const ::atom& atom, wparam wparam, lparam lparam)
+void thread::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
 {
 
-   if (atom == e_message_close)
+   if (emessage == e_message_close)
    {
 
       informationf("thread::post_message e_message_close");
 
    }
-   else if (atom == e_message_branch)
+   else if (emessage == e_message_branch)
    {
 
       informationf("thread::post_message e_message_branch");
@@ -3233,7 +3233,7 @@ void thread::post_message(const ::atom& atom, wparam wparam, lparam lparam)
    if (m_htask.is_set() && !m_bAuraMessageQueue && m_bMessageThread)
    {
 
-      if (atom == e_message_quit)
+      if (emessage == e_message_quit)
       {
 
          string strType = ::type(this).name();
@@ -3290,16 +3290,16 @@ void thread::post_message(const ::atom& atom, wparam wparam, lparam lparam)
       //   m_bCertainlyTheresWindowsMessageQueue = true;
       //}
 
-      UINT message = atom.as_emessage();
+      UINT message = emessage;
 
       int_bool bOk = ::PostThreadMessageW((DWORD)m_itask.m_i, message, wparam, lparam) != false;
 
       if (!bOk)
       {
          MESSAGE message;
-         message.m_atom = atom.as_emessage();
-         message.wParam = wparam;
-         message.lParam = lparam;
+         message.m_emessage = emessage;
+         message.m_wparam = wparam;
+         message.m_lparam = lparam;
          m_messageaInitialQueue.add(message);
          return;
 
@@ -3323,10 +3323,10 @@ void thread::post_message(const ::atom& atom, wparam wparam, lparam lparam)
       if (!is_task_set())
       {
 
-         _post([this, atom, wparam, lparam]()
+         _post([this, emessage, wparam, lparam]()
          {
 
-            post_message(atom, wparam, lparam);
+            post_message(emessage, wparam, lparam);
 
          });
 
@@ -3340,22 +3340,15 @@ void thread::post_message(const ::atom& atom, wparam wparam, lparam lparam)
 
    }
 
-   pmessagequeue->post_message(nullptr, atom, wparam, lparam);
+   pmessagequeue->post_message(nullptr, emessage, wparam, lparam);
 
    new_main_loop_happening()->set_happening();
 
 }
 
 
-void thread::send_element(const ::atom& atom, wparam wparam, ::particle* pparticle, const class time& time)
+void thread::send_element(const ::enum_message & emessage, const ::wparam & wparam, ::particle* pparticle, const class time& time)
 {
-
-   if (!atom.is_message())
-   {
-
-      throw ::exception(error_bad_argument);
-
-   }
 
    //if (m_bThreadClosed)
    //{
@@ -3379,22 +3372,15 @@ void thread::send_element(const ::atom& atom, wparam wparam, ::particle* ppartic
 
    }
 
-   send_message(atom, wparam, pparticle, time);
+   send_message(emessage, wparam, pparticle, time);
 
    //return true;
 
 }
 
 
-void thread::send_message(const ::atom& atom, wparam wparam, lparam lparam, const class time& time)
+void thread::send_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, const class time& time)
 {
-
-   if (!atom.is_message())
-   {
-
-      throw ::exception(error_bad_argument);
-
-   }
 
    //if (m_bThreadClosed)
    //{
@@ -3414,11 +3400,11 @@ void thread::send_message(const ::atom& atom, wparam wparam, lparam lparam, cons
 
    auto pmessage = __allocate ::send_thread_message(this);
 
-   pmessage->m_message.m_atom = atom;
+   pmessage->m_message.m_emessage = emessage;
 
-   pmessage->m_message.wParam = wparam;
+   pmessage->m_message.m_wparam = wparam;
 
-   pmessage->m_message.lParam = lparam;
+   pmessage->m_message.m_lparam = lparam;
 
    post_message(e_message_system, e_system_message_meta, pmessage);
 
@@ -4034,7 +4020,7 @@ void thread::get_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFilt
 
       get_message_queue()->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, 500_ms);
 
-      if (pMsg->m_atom == e_message_quit)
+      if (pMsg->m_emessage == e_message_quit)
       {
 
          return;
@@ -4053,7 +4039,7 @@ void thread::get_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFilt
 
          set_finishing_flag();
 
-         if (pMsg->m_atom == e_message_quit)
+         if (pMsg->m_emessage == e_message_quit)
          {
 
             return;
@@ -4144,15 +4130,8 @@ void thread::get_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFilt
 }
 
 
-void thread::post_message(oswindow oswindow, const ::atom& atom, wparam wparam, lparam lparam)
+void thread::post_message(oswindow oswindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
 {
-
-   if (!atom.is_message())
-   {
-
-      throw ::exception(error_bad_argument);
-
-   }
 
    //if (m_bThreadClosed)
    //{
@@ -4166,7 +4145,7 @@ void thread::post_message(oswindow oswindow, const ::atom& atom, wparam wparam, 
    if (m_htask.is_set() && !m_bAuraMessageQueue)
    {
 
-      if (::PostMessage(as_hwnd(oswindow), atom.as_unsigned_int(), wparam, lparam))
+      if (::PostMessage(as_hwnd(oswindow), (UINT) emessage, wparam, lparam))
       {
 
          return;
@@ -4177,9 +4156,9 @@ void thread::post_message(oswindow oswindow, const ::atom& atom, wparam wparam, 
 
 #endif
 
-   //return get_message_queue()->post_message(oswindow, atom, wparam, lparam);
+   //return get_message_queue()->post_message(oswindow, emessage, wparam, lparam);
 
-   get_message_queue()->post_message(oswindow, atom, wparam, lparam);
+   get_message_queue()->post_message(oswindow, emessage, wparam, lparam);
 
 }
 
@@ -4309,7 +4288,7 @@ void thread::handle_posted_messages()
       if (m_emessageaGetLast.has_element())
       {
 
-         if (m_emessageaGetLast.contains(pmessage->m_atom.as_emessage()))
+         if (m_emessageaGetLast.contains(pmessage->m_emessage))
          {
 
             ::collection::index cIgnoredMessages = 0;
@@ -4317,7 +4296,7 @@ void thread::handle_posted_messages()
             for (::collection::index i = 1; i < m_messagea.size();)
             {
 
-               if (m_messagea[i]->m_atom == pmessage->m_atom)
+               if (m_messagea[i]->m_emessage == pmessage->m_emessage)
                {
 
                   m_messagea.erase_at(iEraseAt);
@@ -4339,7 +4318,7 @@ void thread::handle_posted_messages()
             //            if(cIgnoredMessages > 0)
             //            {
             //
-            //               if(pmessage->m_atom == e_message_mouse_move)
+            //               if(pmessage->m_emessage == e_message_mouse_move)
             //               {
             //
             //                  information() << cIgnoredMessages << " ignored mouse move message" << (cIgnoredMessages > 1 ? "s" : 0);
@@ -4486,7 +4465,7 @@ bool thread::process_message()
 
 #ifdef WINDOWS_DESKTOP
 
-      if (message.oswindow != nullptr || message.m_atom == e_message_timer)
+      if (message.m_oswindow != nullptr || message.m_emessage == e_message_timer)
       {
 
          MSG msg;
@@ -4503,7 +4482,7 @@ bool thread::process_message()
 
 #endif
 
-      if (message.m_atom == e_message_event2_trying_to_remove)
+      if (message.m_emessage == e_message_event2_trying_to_remove)
       {
 
          //if(msg.lParam)
@@ -4524,13 +4503,13 @@ bool thread::process_message()
          //}
 
       }
-      else if (message.m_atom == e_message_system)
+      else if (message.m_emessage == e_message_system)
       {
 
-         if (message.wParam == e_system_message_create)
+         if (message.m_wparam == e_system_message_create)
          {
 
-            ::pointer<::request> prequest(message.lParam);
+            ::pointer<::request> prequest(message.m_lparam);
 
             if (prequest.is_set())
             {
@@ -4542,10 +4521,10 @@ bool thread::process_message()
             }
 
          }
-         else if (message.wParam == e_system_message_method)
+         else if (message.m_wparam == e_system_message_method)
          {
 
-            ::procedure routine(e_as_lparam, message.lParam);
+            ::procedure routine(e_as_lparam, message.m_lparam);
 
             routine();
 
@@ -4558,10 +4537,10 @@ bool thread::process_message()
          //   pobjectTask->call();
 
          //}
-         else if (message.wParam == e_system_message_meta)
+         else if (message.m_wparam == e_system_message_meta)
          {
 
-            ::pointer<::send_thread_message> pmessage(message.lParam);
+            ::pointer<::send_thread_message> pmessage(message.m_lparam);
 
             m_message = pmessage->m_message;
 
@@ -4586,7 +4565,7 @@ bool thread::process_message()
 
       }
 
-      if (message.m_atom == e_message_kick_idle)
+      if (message.m_emessage == e_message_kick_idle)
       {
 
          return true;

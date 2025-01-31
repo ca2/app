@@ -49,7 +49,7 @@ namespace micro
 
 
       string                                    m_strText;
-      //::atom                                    m_atom;
+      //::atom                                    id();
       int_rectangle                             m_rectangle;
       enum_font                                 m_efont;
 

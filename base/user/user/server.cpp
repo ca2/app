@@ -133,7 +133,7 @@ namespace user
          payloadOptions, 
          pimpactdata->m_pplaceholder,
          e_window_flag(), 
-         pimpactdata->m_atom);
+         pimpactdata->id());
 
       ::pointer<::user::system>pusersystem;
       

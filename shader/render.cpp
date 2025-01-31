@@ -205,7 +205,7 @@ namespace app_shader
 
       //string strDataId;
 
-      //strDataId = m_pinteraction->m_atom;
+      //strDataId = m_pinteraction->id();
 
       m_pgpucontext->m_pprogram = m_pgpuprogram;
 

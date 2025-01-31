@@ -496,11 +496,11 @@ namespace platform
       virtual void get_public_internet_domain_extension_list(string_array & stra) override;
       virtual ::string fetch_public_internet_domain_extension_list_text() override;
 
-      virtual void system_id_update(huge_integer iUpdate, huge_integer iPayload) override;
+      void system_id_update(int iUpdate, huge_integer iPayload) override;
 
       void handle(::topic * ptopic, ::context * pcontext) override;
       
-      void call(const ::atom& atom, ::wparam wparam, ::lparam lparam, ::particle* pparticle) override;
+      void call_message(const ::enum_message & emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle) override;
     
 
       //virtual void add_handler(::particle * pmatter, bool bPriority = false);
@@ -988,7 +988,7 @@ namespace platform
 //       //virtual ::acme::library * get_library(const ::string & pszLibrary, bool bOpenCa2 = false) override;
 //
 //
-//       //virtual unsigned int os_post_to_all_threads(const ::atom & atom,wparam wparam = 0,lparam lparam = 0) override;
+//       //virtual unsigned int os_post_to_all_threads(const ::atom & atom,const ::wparam & wparam = {},const ::lparam & lparam = {}) override;
 //
 //
 //       //virtual void session_add(::collection::index iEdge, ::apex::session * psession) overr;

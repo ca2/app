@@ -251,7 +251,7 @@ namespace user
 
          pinteraction->m_pusersystem = this;
 
-         pinteraction->m_atom = atom;
+         pinteraction->id() = atom;
 
          //if (!pinteraction->create_interaction(nullptr, nullptr, WS_VISIBLE | WS_CHILD, puserinteractionParent, atom, pcreate))
          //if (!pinteraction->create_child(puserinteractionParent))

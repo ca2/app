@@ -176,7 +176,7 @@ namespace platform
       int iStr = sizeof(payload.m_str);
       int iHls = sizeof(payload.m_hls);
       int iTime = sizeof(payload.m_time);
-      int iAtom = sizeof(payload.m_atom);
+      int iAtom = sizeof(payload.id());
       int iFileTime = sizeof(payload.m_filetime);
       int iEarthTime = sizeof(payload.m_earthtime);
       if (iThis != iComputed)
@@ -2853,7 +2853,7 @@ namespace platform
    void system::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == id_get_operating_system_dark_mode_reply)
+      if (ptopic->id() == id_get_operating_system_dark_mode_reply)
       {
 
          if (ptopic->payload("wparam").is_true())
@@ -2877,7 +2877,7 @@ namespace platform
          }
 
       }
-      else if (ptopic->m_atom == id_operating_system_user_theme_change)
+      else if (ptopic->id() == id_operating_system_user_theme_change)
       {
 
          // auto pnode = node();
@@ -2892,7 +2892,7 @@ namespace platform
          // }
 
       }
-      else if (ptopic->m_atom == id_open_hyperlink)
+      else if (ptopic->id() == id_open_hyperlink)
       {
 
          auto plink = ptopic->_extended_topic()->m_payload.cast < ::hyperlink >();
@@ -2916,7 +2916,7 @@ namespace platform
          }
 
       }
-      else if (ptopic->m_atom == id_app_activated)
+      else if (ptopic->id() == id_app_activated)
       {
 
          node()->on_app_activated();
@@ -2929,7 +2929,7 @@ namespace platform
          }
 
       }
-      else if (ptopic->m_atom == id_did_pick_document_at_url)
+      else if (ptopic->id() == id_did_pick_document_at_url)
       {
 
          if (::is_set(application()))

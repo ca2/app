@@ -6,10 +6,10 @@ namespace message
 {
 
 
-   //void timer::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //void timer::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 
-   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
    //   m_uTimer = static_cast<unsigned int>(wparam);
 

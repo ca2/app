@@ -163,7 +163,7 @@ namespace parallelization
    }
 
 
-   CLASS_DECL_APEX void post_to_all_threads(const ::atom & atom, wparam wparam, lparam lparam)
+   CLASS_DECL_APEX void post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam)
    {
 
       critical_section_lock criticalsectionlock(&::platform::get()->m_criticalsectionThreadStorage);
@@ -176,7 +176,7 @@ namespace parallelization
 
             ::pointer<::thread>pthread = pair.element2().m_ptask;
 
-            pthread->post_message(atom, wparam, lparam);
+            pthread->post_message(emessage, wparam, lparam);
 
          }
          catch (...)

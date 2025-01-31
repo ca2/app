@@ -363,7 +363,7 @@ namespace userex
 
       ::user::tab_impact::on_change_cur_sel();
 
-      if (m_pimpactdataOld != nullptr && is_filemanager(m_pimpactdataOld->m_atom))
+      if (m_pimpactdataOld != nullptr && is_filemanager(m_pimpactdataOld->id()))
       {
 
          if (parent_frame()->is_waiting_for_dialog_result())
@@ -381,7 +381,7 @@ namespace userex
          }
 
       }
-//      else if(m_pimpactdata->m_atom == OPTIONS_IMPACT)
+//      else if(m_pimpactdata->id() == OPTIONS_IMPACT)
 //      {
 //
 //         if (::is_set(m_pformdocumentMenu))
@@ -444,21 +444,21 @@ namespace userex
    bool pane_tab_impact::on_after_create_impact_data(::user::impact_data * pimpactdata)
    {
 
-      ::collection::index iVisibleIndex = id_visible_index(pimpactdata->m_atom);
+      ::collection::index iVisibleIndex = id_visible_index(pimpactdata->id());
 
       if (iVisibleIndex < 0)
       {
 
          KEEP(m_bDisableSavingRestorableTabs, true);
 
-         if (!add_tab(pimpactdata->m_strTitle, pimpactdata->m_atom, true, false, pimpactdata->m_pplaceholder))
+         if (!add_tab(pimpactdata->m_strTitle, pimpactdata->id(), true, false, pimpactdata->m_pplaceholder))
          {
 
             return false;
 
          }
 
-         iVisibleIndex = id_visible_index(pimpactdata->m_atom);
+         iVisibleIndex = id_visible_index(pimpactdata->id());
 
          if (iVisibleIndex < 0)
          {
@@ -495,7 +495,7 @@ namespace userex
 
       pimpactdata->m_pimpactdata = (void *)pimpactdata;
 
-      if (matches_restorable_tab(pimpactdata->m_atom, pimpactdata->m_pplaceholder))
+      if (matches_restorable_tab(pimpactdata->id(), pimpactdata->m_pplaceholder))
       {
 
          save_restorable_tabs();
@@ -525,7 +525,7 @@ namespace userex
          if(panea[iTab]->m_pplaceholder == pholder)
          {
 
-            ::user::impact_data * pimpactdata = get_impact_data(panea[iTab]->m_atom, false);
+            ::user::impact_data * pimpactdata = get_impact_data(panea[iTab]->id(), false);
 
             if(pimpactdata != nullptr)
             {
@@ -564,7 +564,7 @@ namespace userex
 
       }
 
-      ::collection::index iIndex = id_index(pimpactdata->m_atom);
+      ::collection::index iIndex = id_index(pimpactdata->id());
 
       if (iIndex < 0)
       {
@@ -587,13 +587,13 @@ namespace userex
 
       auto psystem = system();
 
-//      if(pimpactdata->m_atom.is_text() && psystem->m_idmapCreateImpactLibrary.lookup(pimpactdata->m_atom,plibrary) && plibrary != nullptr)
+//      if(pimpactdata->id().is_text() && psystem->m_idmapCreateImpactLibrary.lookup(pimpactdata->id(),plibrary) && plibrary != nullptr)
 //      {
 //
 //
 //      }
 //      else
-         if (pimpactdata->m_atom == "account")
+         if (pimpactdata->id() == "account")
       {
 
          ::pointer<::account::impact>pimpact = create_impact < ::account::impact >();
@@ -610,13 +610,13 @@ namespace userex
          }
 
       }
-      else if (pimpactdata->m_atom == MENU_IMPACT)
+      else if (pimpactdata->id() == MENU_IMPACT)
       {
 
 //         create_menu_impact(pimpactdata);
 
       }
-      //else if (pimpactdata->m_atom == OPTIONS_IMPACT)
+      //else if (pimpactdata->id() == OPTIONS_IMPACT)
       //{
 
       //   if (!pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild
@@ -632,7 +632,7 @@ namespace userex
       //   }
 
       //}
-      else if (is_font_sel(pimpactdata->m_atom))
+      else if (is_font_sel(pimpactdata->id()))
       {
 
          pimpactdata->m_eflag.add(::user::e_flag_modifier_impact);
@@ -681,7 +681,7 @@ namespace userex
          }
 
       }
-      else if (is_color_sel(pimpactdata->m_atom))
+      else if (is_color_sel(pimpactdata->id()))
       {
 
          pimpactdata->m_eflag.add(::user::e_flag_modifier_impact);
@@ -716,12 +716,12 @@ namespace userex
          }
 
       }
-      else if(is_filemanager(pimpactdata->m_atom))
+      else if(is_filemanager(pimpactdata->id()))
       {
 
          pimpactdata->m_eflag.add(::user::e_flag_tool_impact);
 
-         //auto pfilemanagerdata = cast < ::filemanager::data >("data." + pimpactdata->m_atom);
+         //auto pfilemanagerdata = cast < ::filemanager::data >("data." + pimpactdata->id());
 
          //auto pcontext = m_papplication;
          //
@@ -732,7 +732,7 @@ namespace userex
          //if (pfilemanagerdata.is_null())
          //{
 
-         //   pfilemanagerdata = puser->filemanager(pimpactdata->m_atom);
+         //   pfilemanagerdata = puser->filemanager(pimpactdata->id());
 
          //}
 
@@ -740,7 +740,7 @@ namespace userex
 
          auto pfilemanagerdata = pfilemanager->create_filemanager_data();
 
-         pfilemanagerdata->m_atom = pimpactdata->m_atom;
+         pfilemanagerdata->id() = pimpactdata->id();
 
          auto pfilemanagerdocument = pfilemanager->impact_system()->create_subdocument(pimpactdata, pfilemanagerdata);
 
@@ -808,7 +808,7 @@ namespace userex
          if(pdocument != nullptr)
          {
 
-            m_mapFileManager[pimpactdata->m_atom] = pdocument;
+            m_mapFileManager[pimpactdata->id()] = pdocument;
 
             ::pointer<::user::impact>pimpact = pdocument->get_impact();
 
@@ -829,7 +829,7 @@ namespace userex
          }
 
       }
-      //else if(pimpactdata->m_atom == "tabbed_file_manager")
+      //else if(pimpactdata->id() == "tabbed_file_manager")
       //{
 
       //   ::pointer<::create>cc(e_create);
@@ -865,7 +865,7 @@ namespace userex
       //   }
 
       //}
-      //else if (pimpactdata->m_atom == "app_options")
+      //else if (pimpactdata->id() == "app_options")
       //{
 
       //   create_app_options(pimpactdata);
@@ -971,13 +971,13 @@ namespace userex
 
       }
 
-      if (ptopic->m_atom == ::id_context_menu_close)
+      if (ptopic->id() == ::id_context_menu_close)
       {
 
          if (m_pimpactdataOld != nullptr)
          {
 
-            set_current_tab_by_id(m_pimpactdataOld->m_atom);
+            set_current_tab_by_id(m_pimpactdataOld->id());
 
             ptopic->m_bRet = true;
 
@@ -1006,13 +1006,13 @@ namespace userex
    //void pane_tab_impact::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   if (ptopic->m_atom == ::id_context_menu_close)
+   //   if (ptopic->id() == ::id_context_menu_close)
    //   {
 
    //      if (m_pimpactdataOld != nullptr)
    //      {
 
-   //         set_current_tab_by_id(m_pimpactdataOld->m_atom);
+   //         set_current_tab_by_id(m_pimpactdataOld->id());
 
    //         ptopic->m_bRet = true;
 
@@ -1041,7 +1041,7 @@ namespace userex
 
    //   }
 
-   //   payload("app_options_title") = get_tab_by_id(pimpactdata->m_atom)->get_title();
+   //   payload("app_options_title") = get_tab_by_id(pimpactdata->id())->get_title();
 
    //   auto pcontext = m_papplication;
    //   
@@ -1090,7 +1090,7 @@ namespace userex
 
       ::user::tab_impact::_001OnRemoveTab(ptab);
 
-      m_impactdatamap.erase_item(ptab->m_atom);
+      m_impactdatamap.erase_item(ptab->id());
 
    }
 

@@ -1055,7 +1055,7 @@ namespace user
 
       virtual void create_message_queue(const ::string & strName) override;
 
-      virtual ::pointer<::message::message>get_message(const ::atom & atom, wparam wparam, lparam lparam, ::message::enum_prototype eprototype = ::message::e_prototype_none) override;
+      virtual ::pointer<::message::message>get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype = ::message::e_prototype_none) override;
 
       virtual bool has_text_input();
 
@@ -1550,12 +1550,12 @@ namespace user
 
       void post_message(::message::message* pmessage) override;
       
-      lresult send_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::int_point & point = {}) override;
+      lresult send_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {}) override;
       lresult send_message(::message::message* pmessage) override;
 
       //virtual lresult send_create_message();
 
-      lresult message_call(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::int_point & point = {}) override;
+      lresult message_call(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {}) override;
       lresult message_call(::message::message * pmessage) override;
 
       
@@ -1568,18 +1568,18 @@ namespace user
 
 #endif
 
-      lresult message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0) override;
+      lresult message_handler(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
-      virtual lresult call_route_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
+      virtual lresult call_route_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
 
       virtual void on_default_window_procedure(::message::message * pmessage);
 
-      void post_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0) override;
+      void post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
-      virtual void post_object(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
+      virtual void post_object(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
 
 
-      //virtual void user_post(const ::atom& atom, wparam wParam = 0, lparam lParam = 0) override;
+      //virtual void user_post(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
       //virtual void SetWindowDisplayChanged() override;
 
@@ -1958,7 +1958,7 @@ namespace user
       //virtual ::user::frame_interaction * top_level_frame() override;
 
 
-      void send_message_to_descendants(const ::atom & atom, wparam wParam = 0, lparam lParam = 0, bool bDeep = true, bool bOnlyPerm = false) override;
+      void send_message_to_descendants(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, bool bDeep = true, bool bOnlyPerm = false) override;
 
       void route_message_to_descendants(::message::message* pmessage) override;
 
@@ -2540,7 +2540,7 @@ namespace user
       //virtual bool has_function(enum_control_function econtrolfunction);
       //virtual enum_control_type get_control_type();
       //virtual void _003CallCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
-      //virtual bool _003CallCustomWindowProc(::pointer<::user::interaction>puserinteraction, const ::atom & atom, wparam wparam, lparam lparam, lresult& lresult);
+      //virtual bool _003CallCustomWindowProc(::pointer<::user::interaction>puserinteraction, ::enum_message emessage, ::wparam wparam, ::lparam lparam, lresult& lresult);
       //virtual void _003OnCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
       //virtual void _003CustomWindowProc(::message::message* pmessage);
       //virtual form_list * get_form_list();

@@ -333,18 +333,18 @@ void manager::send_signal(const ::atom & atom, const ::action_context & actionco
 
    //handle(psignal, nullptr);
 
-   //ptopic->m_atom = id_handle;
+   //ptopic->id() = id_handle;
 
    //signal(ptopic);
 
-   //if(ptopic->m_atom == id_not_modified)
+   //if(ptopic->id() == id_not_modified)
    //{
 
    //   return;
 
    //}
 
-   //ptopic->m_atom = id_notify;
+   //ptopic->id() = id_notify;
 
    //ptopic->notify();
 
@@ -358,32 +358,32 @@ void manager::send_signal(const ::atom & atom, const ::action_context & actionco
 void manager::on_property_changed(property * pproperty, const ::action_context & actioncontext)
 {
 
-   send_signal(pproperty->m_atom, actioncontext);
+   send_signal(pproperty->name(), actioncontext);
 
 }
 
 //void manager::signal(::signal * psignal)
 //{
 //
-////      if (ptopic->m_atom == id_prepare)
+////      if (ptopic->id() == id_prepare)
 ////      {
 ////
 ////         //on_subject(ptopic);
 ////
-////         ptopic->m_atom = id_process;
+////         ptopic->id() = id_process;
 ////
 ////      }
 ////
-////      if (ptopic->m_atom == id_process)
+////      if (ptopic->id() == id_process)
 ////      {
 ////
 ////         //on_subject(ptopic);
 ////
-////         ptopic->m_atom = id_deliver;
+////         ptopic->id() = id_deliver;
 ////
 ////      }
 ////
-////      if (ptopic->m_atom == id_deliver)
+////      if (ptopic->id() == id_deliver)
 ////      {
 ////
 ////         ptopic->deliver();
@@ -573,7 +573,7 @@ void manager::erase_handler(::object * pobject)
    //   m_pbacking(pbacking)
    //{
 
-   //   //m_atom = atom;
+   //   //id() = atom;
 
    //   m_iUpdateSerial = -1;
 

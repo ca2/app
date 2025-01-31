@@ -144,7 +144,7 @@ namespace user
    bool line_layout::on_perform_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (m_atom == "RedDotLogicsInternal_license_manager::user_form::line_layout")
+      if (id() == "RedDotLogicsInternal_license_manager::user_form::line_layout")
       {
 
          information() << "RedDotLogicsInternal_license_manager::user_form::line_layout";
@@ -161,7 +161,7 @@ namespace user
          //if (m_puserinteractionpointeraChild && m_puserinteractionpointeraChild->has_interaction())
          {
 
-            if (m_atom == "RedDotLogicsInternal_license_manager::user_form::line_layout")
+            if (id() == "RedDotLogicsInternal_license_manager::user_form::line_layout")
             {
 
                information() << "RedDotLogicsInternal_license_manager::user_form::line_layout";

@@ -59,15 +59,15 @@ namespace userex
 
       ::user::impact::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == ::id_item_clicked)
+      if (ptopic->id() == ::id_item_clicked)
       {
 
 
       }
-      else if (ptopic->m_atom == ::id_click)
+      else if (ptopic->id() == ::id_click)
       {
 
-         if (ptopic->user_interaction()->m_atom == m_atom)
+         if (ptopic->user_interaction()->id() == id())
          {
 
             show_menu();
@@ -137,11 +137,11 @@ namespace userex
 
       pcreate->previous();
 
-      m_atomaHandledCommands.add(m_atom);
+      m_atomaHandledCommands.add(id());
 
       __construct_new(m_pbuttonMenu);
 
-      m_pbuttonMenu->create_control(this, m_atom);
+      m_pbuttonMenu->create_control(this, id());
 
       m_pbuttonMenu->set_button_style(::user::button::e_style_image_and_text);
 
@@ -363,15 +363,15 @@ namespace userex
    //void group_image_list_impact::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   if (ptopic->m_atom == ::id_item_clicked)
+   //   if (ptopic->id() == ::id_item_clicked)
    //   {
 
 
    //   }
-   //   else if (ptopic->m_atom == ::id_click)
+   //   else if (ptopic->id() == ::id_click)
    //   {
 
-   //      if (ptopic->user_interaction()->m_atom == m_atom)
+   //      if (ptopic->user_interaction()->id() == id())
    //      {
 
    //         show_menu();
@@ -390,7 +390,7 @@ namespace userex
 
       string str;
 
-      str = "<menubar title = \""+string(m_atom)+"\" close_button=\"false\">";
+      str = "<menubar title = \""+string(id())+"\" close_button=\"false\">";
 
       for (auto & pgroup : m_groupa)
       {
@@ -486,7 +486,7 @@ namespace userex
    void group_image_list_impact::on_command(::message::command * pcommand)
    {
 
-      string str = pcommand->m_atom;
+      string str = pcommand->m_atomCommand;
 
       if (str.case_insensitive_begins_eat("menu_item_"))
       {

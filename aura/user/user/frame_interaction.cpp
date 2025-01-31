@@ -965,13 +965,13 @@ namespace user
    void frame_interaction::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == id_user_style_change)
+      if (ptopic->id() == id_user_style_change)
       {
 
          on_user_style_change();
 
       }
-      else if (ptopic->m_atom == id_operating_system_user_color_change)
+      else if (ptopic->id() == id_operating_system_user_color_change)
       {
 
          set_need_redraw();

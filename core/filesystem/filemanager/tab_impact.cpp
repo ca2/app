@@ -63,15 +63,15 @@ namespace filemanager
    void tab_impact::on_create_impact(::user::impact_data * pimpactdata)
    {
 
-      if(pimpactdata->m_atom.is_null())
+      if(pimpactdata->id().is_null())
       {
 
          return;
 
       }
-      //else if (pimpactdata->m_atom == "add_location"
-      //         || pimpactdata->m_atom == "replace_name"
-      //         || pimpactdata->m_atom == "new_folder")
+      //else if (pimpactdata->id() == "add_location"
+      //         || pimpactdata->id() == "replace_name"
+      //         || pimpactdata->id() == "new_folder")
       //{
 
       //   ::pointer<::request>prequest(e_create, this);
@@ -101,39 +101,39 @@ namespace filemanager
 
       //   auto ptopic = create_topic(id_browse);
 
-      //   if (pimpactdata->m_atom == "new_folder")
+      //   if (pimpactdata->id() == "new_folder")
       //   {
 
       //      ptopic->payload(id_form) = "matter://filemanager/new_folder.html";
 
       //   }
-      //   if (pimpactdata->m_atom == "replace_name")
+      //   if (pimpactdata->id() == "replace_name")
       //   {
 
       //      ptopic->payload(id_form) = "matter://filemanager/replace_name_in_file_system.html";
 
       //   }
-      //   else if (pimpactdata->m_atom == "add_location")
+      //   else if (pimpactdata->id() == "add_location")
       //   {
 
       //      ptopic->payload(id_form) = "matter://filemanager/add_location_1.html";
 
       //   }
 
-      //   ptopic->payload("creator") = pimpactdata->m_atom;
+      //   ptopic->payload("creator") = pimpactdata->id();
 
       //   pdocument->update_all_impacts(ptopic);
 
       //   //ptopic->m_papplication = ptopic->context(id_after_browse);
 
-      //   ptopic->m_atom = id_after_browse;
+      //   ptopic->id() = id_after_browse;
 
       //   pdocument->update_all_impacts(ptopic);
 
       //   pimpactdata->m_pdocument = pdocument;
 
       //}
-      //else if(pimpactdata->m_atom == "filemanager::operation")
+      //else if(pimpactdata->id() == "filemanager::operation")
       //{
 
       //   ::pointer<::request>prequest(e_create, this);
@@ -195,7 +195,7 @@ namespace filemanager
 //
 //         prequest->payload("filemanager::data") = pdocument;
 //
-//         string str = pimpactdata->m_atom;
+//         string str = pimpactdata->id();
 //
 //         str.case_insensitive_begins_eat("verifile://");
 //
@@ -229,7 +229,7 @@ namespace filemanager
 //         if(pdocument != nullptr)
 //         {
 //
-//            m_mapFileManager[pimpactdata->m_atom] = pdocument;
+//            m_mapFileManager[pimpactdata->id()] = pdocument;
 //
 ////            pdocument->get_document()->m_iTemplate = puser->filemanager()->m_iTemplate;
 //
@@ -318,7 +318,7 @@ namespace filemanager
       ////__update(::update)
       {
 
-         if (ptopic->m_atom == id_incoming_document)
+         if (ptopic->id() == id_incoming_document)
          {
 
             //if (m_impactmap.get_count() == 0)
@@ -335,7 +335,7 @@ namespace filemanager
       ////__update(::update)
       {
 
-         if (ptopic->m_atom == id_initialize)
+         if (ptopic->id() == id_initialize)
          {
 
             //               string str;
@@ -352,7 +352,7 @@ namespace filemanager
             //               }
 
          }
-         else if (ptopic->m_atom == id_pop)
+         else if (ptopic->id() == id_pop)
          {
 
             auto pframe = parent_frame();
@@ -372,19 +372,19 @@ namespace filemanager
 
       }
 
-      if (ptopic->m_atom == id_add_location)
+      if (ptopic->id() == id_add_location)
       {
 
          set_current_tab_by_id("add_location");
 
       }
-      else if (ptopic->m_atom == id_replace_name)
+      else if (ptopic->id() == id_replace_name)
       {
 
          set_current_tab_by_id("replace_name");
 
       }
-      else if (ptopic->m_atom == id_new_folder)
+      else if (ptopic->id() == id_new_folder)
       {
 
          set_current_tab_by_id("new_folder");

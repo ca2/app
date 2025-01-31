@@ -1232,7 +1232,7 @@ namespace experience_tranquillum
 
          ::user::e_state estate = ::user::e_state_none;
 
-         if (ptab->get_data()->m_idaSel.contains(pane.m_atom))
+         if (ptab->get_data()->m_idaSel.contains(pane.id()))
          {
 
             estate |= ::user::e_state_selected;
@@ -1293,7 +1293,7 @@ namespace experience_tranquillum
             if (true)
             {
 
-               if (ptab->get_data()->m_idaSel.contains(pane.m_atom))
+               if (ptab->get_data()->m_idaSel.contains(pane.id()))
                {
 
                   ::int_rectangle rSel;
@@ -1437,7 +1437,7 @@ namespace experience_tranquillum
 
                //auto ppath = __øcreate < ::draw2d::path > ();
 
-               if (ptab->get_data()->m_idaSel.contains(pane.m_atom))
+               if (ptab->get_data()->m_idaSel.contains(pane.id()))
                {
 
                   ::int_rectangle rSel;
@@ -1727,7 +1727,7 @@ namespace experience_tranquillum
 
       //   bool bHover = ptoolbar->m_pitemHover == iItem;
 
-      //   unsigned int uImage = psession->userex()->menu()->command_image(item.m_atom);
+      //   unsigned int uImage = psession->userex()->menu()->command_image(item.id());
 
       //   ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
       //   ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
@@ -2033,7 +2033,7 @@ namespace experience_tranquillum
 
       //   bool bHover = ptoolbar->m_pitemHover == iItem;
 
-      //   unsigned int uImage = psession->userex()->menu()->command_image(item.m_atom);
+      //   unsigned int uImage = psession->userex()->menu()->command_image(item.id());
 
       //   ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
       //   ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
@@ -2091,7 +2091,7 @@ namespace experience_tranquillum
 
       //   ptoolbar->index_element_rectangle(iItem, rectangleImage, eelementImage);
 
-      //   if (item.m_atom.case_insensitive_order("separator") == 0)
+      //   if (item.id().case_insensitive_order("separator") == 0)
       //   {
       //      /*::int_rectangle rectangleSeparator;
       //      rectangleSeparator.left() = (rectangleImage.left() + rectangleImage.right()) / 2 - 1;

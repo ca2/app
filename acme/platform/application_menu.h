@@ -37,7 +37,7 @@ public:
    
    bool        m_bPopup = false;
    string      m_strName;
-   ::atom      m_atom;
+   ::atom      m_atomMenu;
    string      m_strLabel;
    string      m_strAccelerator;
    string      m_strDescription;
@@ -77,7 +77,7 @@ public:
    bool is_separator() const
    {
 
-      return this->m_atom == id_separator;
+      return this->m_atomMenu == id_separator;
 
    }
 

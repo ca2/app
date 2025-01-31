@@ -1324,25 +1324,25 @@ namespace linux
    void interaction_impl::aaa_message_handler(::user::message * pusermessage)
    {
 
-      if(pusermessage->m_atom == e_message_timer)
+      if(pusermessage->m_emessage == e_message_timer)
       {
 
          //m_pthread->step_timer();
 
       }
-      else if(pusermessage->m_atom == e_message_left_button_down)
+      else if(pusermessage->m_emessage == e_message_left_button_down)
       {
 
          informationf("e_message_left_button_down (0)");
 
       }
-      else if(pusermessage->m_atom == e_message_left_button_up)
+      else if(pusermessage->m_emessage == e_message_left_button_up)
       {
 
          informationf("e_message_left_button_up (0)");
 
       }
-      else if(pusermessage->m_atom == e_message_mouse_move)
+      else if(pusermessage->m_emessage == e_message_mouse_move)
       {
 
          g_iMouseMove++;
@@ -1351,7 +1351,7 @@ namespace linux
          //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
       }
-      else if(pusermessage->m_atom == e_message_paint)
+      else if(pusermessage->m_emessage == e_message_paint)
       {
 
       }
@@ -1416,14 +1416,14 @@ namespace linux
 
       }
 
-      if(pusermessage->m_atom == e_message_key_down || pusermessage->m_atom == e_message_key_up || pusermessage->m_atom == e_message_char)
+      if(pusermessage->m_emessage == e_message_key_down || pusermessage->m_emessage == e_message_key_up || pusermessage->m_emessage == e_message_char)
       {
 
          ::message::key * pkey = (::message::key *) pusermessage;
 
          psession->translate_os_key_message(pkey);
 
-         if(pusermessage->m_atom == e_message_key_down)
+         if(pusermessage->m_emessage == e_message_key_down)
          {
 
             try
@@ -1438,7 +1438,7 @@ namespace linux
             }
 
          }
-         else if(pusermessage->m_atom == e_message_key_up)
+         else if(pusermessage->m_emessage == e_message_key_up)
          {
 
             try
@@ -1458,7 +1458,7 @@ namespace linux
 
       pusermessage->m_lresult = 0;
 
-      if(pusermessage->m_atom == e_message_mouse_leave)
+      if(pusermessage->m_emessage == e_message_mouse_leave)
       {
 
          _000OnMouseLeave(pusermessage);
@@ -1467,15 +1467,15 @@ namespace linux
 
       }
 
-      if(pusermessage->m_atom == e_message_left_button_down ||
-            pusermessage->m_atom == e_message_left_button_up ||
-            pusermessage->m_atom == e_message_middle_button_down ||
-            pusermessage->m_atom == e_message_middle_button_up ||
-            pusermessage->m_atom == e_message_right_button_down ||
-            pusermessage->m_atom == e_message_right_button_up ||
-            pusermessage->m_atom == e_message_mouse_move ||
-            pusermessage->m_atom == e_message_mouse_move)
-//         pusermessage->m_atom == e_message_mouse_wheel)
+      if(pusermessage->m_emessage == e_message_left_button_down ||
+            pusermessage->m_emessage == e_message_left_button_up ||
+            pusermessage->m_emessage == e_message_middle_button_down ||
+            pusermessage->m_emessage == e_message_middle_button_up ||
+            pusermessage->m_emessage == e_message_right_button_down ||
+            pusermessage->m_emessage == e_message_right_button_up ||
+            pusermessage->m_emessage == e_message_mouse_move ||
+            pusermessage->m_emessage == e_message_mouse_move)
+//         pusermessage->m_emessage == e_message_mouse_wheel)
       {
 
          if(::is_set(m_puserinteraction) && !m_puserinteraction->m_bUserElementOk)
@@ -1537,7 +1537,7 @@ namespace linux
             }
          }
 
-         if(pusermessage->m_atom == e_message_mouse_move)
+         if(pusermessage->m_emessage == e_message_mouse_move)
          {
             // We are at the message handler procedure.
             // mouse messages originated from message handler and that are mouse transfer happenings should end up with the correct cursor.
@@ -1552,9 +1552,9 @@ namespace linux
          return;
 
       }
-      else if(pusermessage->m_atom == e_message_key_down ||
-              pusermessage->m_atom == e_message_key_up ||
-              pusermessage->m_atom == e_message_char)
+      else if(pusermessage->m_emessage == e_message_key_down ||
+              pusermessage->m_emessage == e_message_key_up ||
+              pusermessage->m_emessage == e_message_char)
       {
 
          ::message::key * pkey = (::message::key *) pusermessage;
@@ -1602,7 +1602,7 @@ namespace linux
 
       }
 
-      if(pusermessage->m_atom == e_message_event)
+      if(pusermessage->m_emessage == e_message_event)
       {
 
          if(m_puserinteraction != nullptr)
@@ -3143,7 +3143,7 @@ pmessagebox->sync();
    }
 
 
-   LRESULT interaction_impl::send_message(const ::atom & atom, WPARAM wparam, lparam lparam)
+   LRESULT interaction_impl::send_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
 
    {
 
@@ -3153,7 +3153,7 @@ pmessagebox->sync();
    }
 
 
-   bool interaction_impl::post_message(const ::atom & atom, WPARAM wparam, lparam lparam)
+   bool interaction_impl::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
    {
 
 //      if(::is_set(m_pwindowthread))
@@ -3550,7 +3550,7 @@ pmessagebox->sync();
 //
 //   }
 //
-////   void interaction_impl::send_message_to_descendants(const ::atom & atom, WPARAM wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
+////   void interaction_impl::send_message_to_descendants(::enum_message emessage, ::wparam wparam, ::lparam lparam, bool bDeep, bool bOnlyPerm)
 //
 ////   {
 ////      ASSERT(::is_window((oswindow) get_handle()));
@@ -3959,7 +3959,7 @@ pmessagebox->sync();
 //
 //   }
 //
-//   LPARAM interaction_impl::SendDlgItemMessage(int nID, const ::atom & atom, WPARAM wparam, LPARAM lparam)
+//   LPARAM interaction_impl::SendDlgItemMessage(int nID, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
 //
 //   {
 //
@@ -4210,7 +4210,7 @@ pmessagebox->sync();
 //   }
 //
 //
-//   bool interaction_impl::SendNotifyMessage(const ::atom & atom, WPARAM wparam, lparam lparam)
+//   bool interaction_impl::SendNotifyMessage(::enum_message emessage, ::wparam wparam, ::lparam lparam)
 //
 //   {
 //

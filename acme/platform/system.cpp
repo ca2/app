@@ -194,7 +194,7 @@ namespace platform
       int iStr = sizeof(payload.m_str);
       int iHls = sizeof(payload.m_hls);
       int iTime = sizeof(payload.m_time);
-      int iAtom = sizeof(payload.m_atom);
+      int iAtom = sizeof(payload.m_atomPayload);
       int iFileTime = sizeof(payload.m_filetime);
       int iEarthTime = sizeof(payload.m_earthtime);
       if (iThis != iComputed)
@@ -3234,10 +3234,10 @@ particle* system::matter_mutex()
 #endif
 
 
-   void system::system_id_update(huge_integer iId, huge_integer iPayload)
+   void system::system_id_update(int iId, huge_integer iPayload)
    {
 
-      call((::enum_id)iId, iPayload, {}, nullptr);
+      call_message((::enum_message)iId, iPayload, {}, nullptr);
 
    }
 
@@ -3245,7 +3245,7 @@ particle* system::matter_mutex()
    void system::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == id_get_operating_system_dark_mode_reply)
+      if (ptopic->id() == id_get_operating_system_dark_mode_reply)
       {
 
          if (ptopic->payload("wparam").is_true())
@@ -3269,7 +3269,7 @@ particle* system::matter_mutex()
          }
 
       }
-      else if (ptopic->m_atom == id_operating_system_user_theme_change)
+      else if (ptopic->id() == id_operating_system_user_theme_change)
       {
 
          // auto pnode = node();
@@ -3284,7 +3284,7 @@ particle* system::matter_mutex()
          // }
 
       }
-      else if (ptopic->m_atom == id_open_hyperlink)
+      else if (ptopic->id() == id_open_hyperlink)
       {
 
          auto plink = ptopic->_extended_topic()->m_payload.cast<::hyperlink>();
@@ -3308,14 +3308,14 @@ particle* system::matter_mutex()
          }
 
       }
-      else if (ptopic->m_atom == id_initialize_host_window)
+      else if (ptopic->id() == e_message_initialize_host_window)
       {
 
          acme_windowing()->defer_initialize_host_window(nullptr);
 
 
       }
-      else if (ptopic->m_atom == id_app_activated)
+      else if (ptopic->id() == id_app_activated)
       {
 
          node()->on_app_activated(ptopic->user_activation_token());
@@ -3328,7 +3328,7 @@ particle* system::matter_mutex()
          }
 
       }
-      else if (ptopic->m_atom == id_did_pick_document_at_url)
+      else if (ptopic->id() == id_did_pick_document_at_url)
       {
 
          if (::is_set(application()))
@@ -3345,16 +3345,16 @@ particle* system::matter_mutex()
    }
 
 
-   void system::call(const ::atom& atom, ::wparam wparam, ::lparam lparam, ::particle* pparticle)
+   void system::call_message(const ::enum_message & emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle)
    {
       
-      if(atom == id_initialize_host_window)
+      if(emessage == e_message_initialize_host_window)
       {
        
          acme_windowing()->defer_initialize_host_window(nullptr);
          
       }
-      else if(atom == id_defer_create_context_button)
+      else if(emessage == e_message_defer_create_context_button)
       {
          
          auto pwindow = acme_windowing()->get_application_host_window();
@@ -3364,7 +3364,7 @@ particle* system::matter_mutex()
          phostinteraction->create_context_button();
          
       }
-      else if(atom == id_defer_post_initial_request)
+      else if(emessage == e_message_defer_post_initial_request)
       {
          
          defer_post_initial_request();
@@ -4734,7 +4734,7 @@ particle* system::matter_mutex()
 //}
 
 
-void system_id_update(::platform::system * psystem, huge_integer iUpdate, huge_integer iParam)
+void system_id_update(::platform::system * psystem, int iUpdate, huge_integer iParam)
 {
 
    psystem->system_id_update(iUpdate, iParam);

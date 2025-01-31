@@ -253,7 +253,7 @@ void object::process_exit_status(const ::e_status & estatus)
 
        pthread->m_pmatter = routine;
 
-       pthread->m_atom = ::type(pthread->m_pmatter).name();
+       pthread->id() = ::type(pthread->m_pmatter).name();
 
        pthread->begin_thread();
 

@@ -22,10 +22,10 @@ namespace message
    //}
 
 
-   message::message(const ::atom & atom)
+   message::message(::enum_message emessage)
    { 
       
-      m_atom = atom;
+      m_emessage = emessage;
       
       m_union.m_p = nullptr;
       m_pdispatchera = nullptr;
@@ -116,15 +116,15 @@ namespace message
    }
 
 
-   //void message::set(oswindow oswindow, ::windowing::window * playeredUserPrimitive, const ::atom & atom, wparam wparam, ::lparam lparam, const ::int_point & point)
-   //void message::set(oswindow oswindow, ::windowing::window* playeredUserPrimitive, const ::atom& atom, wparam wparam, ::lparam lparam)
+   //void message::set(oswindow oswindow, ::windowing::window * playeredUserPrimitive, ::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
+   //void message::set(oswindow oswindow, ::windowing::window* playeredUserPrimitive, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
    //   
    //   //initialize(playeredUserPrimitive);
 
    //   m_oswindow = oswindow;
 
-   //   m_atom = atom;
+   //   id() = atom;
 
    //   m_wparam = wparam;
 

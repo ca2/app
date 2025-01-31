@@ -261,7 +261,7 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
 
       bool bDeleteOriginOnSuccessfulCopy = eop == ::user::copydesk::e_op_cut;
 
-      auto atomFileManager = get_document()->m_atom;
+      auto atomFileManager = get_document()->id();
 
       ptabimpact->filemanager_document(atomFileManager)->get_operation_doc(true)->m_poperationthread->queue_copy(listing, strDir, nullptr, true, false, bDeleteOriginOnSuccessfulCopy, this, WM_APP + 1024, 4096);
 
@@ -300,7 +300,7 @@ void filemanager_impact_base::handle(::topic * ptopic, ::context * pcontext)
 
    ::user::impact::handle(ptopic, pcontext);
 
-   if (ptopic->m_atom == id_initialize)
+   if (ptopic->id() == id_initialize)
    {
 
       //if (filemanager_document() == ptopic->cast < ::user::document >(id_document))
@@ -308,12 +308,12 @@ void filemanager_impact_base::handle(::topic * ptopic, ::context * pcontext)
 
       //   //::pointer<::database::client>pclient = parent_frame();
 
-      //   //if (pclient != nullptr && !::string(pclient->m_atom).contains("::frame"))
+      //   //if (pclient != nullptr && !::string(pclient->id()).contains("::frame"))
       //   //{
 
       //   //   string str;
 
-      //   //   str.formatf("frame(%s)", ::string(get_document()->m_atom).c_str());
+      //   //   str.formatf("frame(%s)", ::string(get_document()->id()).c_str());
 
       //   //   pclient->set_data_key_modifier(str);
 
@@ -322,7 +322,7 @@ void filemanager_impact_base::handle(::topic * ptopic, ::context * pcontext)
       //}
 
    }
-   else if (ptopic->m_atom == id_synchronize_path)
+   else if (ptopic->id() == id_synchronize_path)
    {
 
       ::pointer<::core::application>papp = get_app();

@@ -432,7 +432,7 @@ namespace user
 
          get_message(&m_message, nullptr, 0, 0);
 
-         if (m_message.m_atom == e_message_quit)
+         if (m_message.m_emessage == e_message_quit)
          {
 
             ::string strType = type(m_puserinteraction).name();
@@ -445,7 +445,7 @@ namespace user
          
          int iRedrawMessageCount = 0;
          
-         if (m_message.m_atom == e_message_redraw)
+         if (m_message.m_emessage == e_message_redraw)
          {
 
             iRedrawMessageCount = 1;
@@ -457,7 +457,7 @@ namespace user
          while (peek_message(&m_message, nullptr, 0, 0, true))
          {
 
-            if (m_message.m_atom == e_message_redraw)
+            if (m_message.m_emessage == e_message_redraw)
             {
 
                iRedrawMessageCount++;
@@ -500,20 +500,20 @@ namespace user
       while (peek_message(&m_message, NULL, 0, 0, true))
       {
 
-         if(m_message.m_atom == e_message_quit)
+         if(m_message.m_emessage == e_message_quit)
          {
 
             return false;
 
          }
 
-//               if (m_message.m_atom == e_message_null)
+//               if (m_message.m_emessage == e_message_null)
 //               {
 //
 //                  return true;
 //
 //               }
-//               else if (m_message.m_atom != e_message_redraw)
+//               else if (m_message.m_emessage != e_message_redraw)
 //               {
 //
 //                  return true;
@@ -612,13 +612,13 @@ namespace user
 // //            while (peek_message(&m_message, NULL, 0, 0, true))
 // //            {
 // //
-// ////               if (m_message.m_atom == e_message_null)
+// ////               if (m_message.m_emessage == e_message_null)
 // ////               {
 // ////
 // ////                  return true;
 // ////
 // ////               }
-// ////               else if (m_message.m_atom != e_message_redraw)
+// ////               else if (m_message.m_emessage != e_message_redraw)
 // ////               {
 // ////
 // ////                  return true;
@@ -1432,7 +1432,7 @@ namespace user
 
          information() << "graphics_thread_redraw(A)";
 
-         m_message.wParam |= 1;
+         m_message.m_wparam |= 1;
 
          graphics_thread_iteration();
 

@@ -58,7 +58,7 @@ namespace browser
 
       ::pointer<::message::create>pcreate(pmessage);
 
-      m_atom = "browser_gcom";
+      id() = "browser_gcom";
 
       pcreate->previous();
 

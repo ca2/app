@@ -62,13 +62,13 @@ namespace write_text
    void font_enumeration::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == id_font_enumeration)
+      if (ptopic->id() == id_font_enumeration)
       {
 
          check_need_update(ptopic);
 
       }
-      else if (ptopic->m_atom == id_operating_system_font_list_change)
+      else if (ptopic->id() == id_operating_system_font_list_change)
       {
 
          ::pointer<::manager>psystem = system();
@@ -213,7 +213,7 @@ namespace write_text
 
          m_bUpdating = false;
 
-         ptopic->m_atom = id_not_modified;
+         ptopic->id() = id_not_modified;
 
          return;
 
@@ -227,7 +227,7 @@ namespace write_text
 
       ptopic->set_modified_flag();
 
-      //ptopic->m_atom = id_handle;
+      //ptopic->id() = id_handle;
 
    }
 

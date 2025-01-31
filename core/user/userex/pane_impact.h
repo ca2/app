@@ -15,14 +15,17 @@ namespace userex
    {
    public:
 
+
       class menu :
          virtual public ::particle
       {
       public:
          
+
          string      m_strMatter;
          
-         atom        m_atom;
+         atom        m_atomMenu;
+
 
       };
 

@@ -33,7 +33,7 @@ namespace interprocess
    communication::communication()
    {
 
-      m_atom = "::interprocess::communication";
+      id() = "::interprocess::communication";
 
       defer_create_synchronization();
 

@@ -31,7 +31,7 @@ namespace user
 
       BASE_VIEW::handle(ptopic, pcontext);
 
-      //if (ptopic->m_atom == id_initial_update)
+      //if (ptopic->id() == id_initial_update)
       //{
 
       //   update_impact();

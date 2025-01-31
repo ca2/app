@@ -90,17 +90,17 @@
 //   ENSURE_ARG(pmessage != nullptr);
 //   ::pointer<::user::message>pusermessage(pmessage);
 //
-//   if (pusermessage->m_atom == e_message_mouse_move || pusermessage->m_atom == e_message_non_client_mouse_move ||
-//       pusermessage->m_atom == e_message_non_client_hittest || pusermessage->m_atom == e_message_set_cursor ||
-//       pusermessage->m_atom == WM_CTLCOLORBTN ||
-//       pusermessage->m_atom == WM_CTLCOLORDLG ||
-//       pusermessage->m_atom == WM_CTLCOLOREDIT ||
-//       pusermessage->m_atom == WM_CTLCOLORLISTBOX ||
-//       pusermessage->m_atom == WM_CTLCOLORMSGBOX ||
-//       pusermessage->m_atom == WM_CTLCOLORSCROLLBAR ||
-//       pusermessage->m_atom == WM_CTLCOLORSTATIC ||
-//       pusermessage->m_atom == WM_ENTERIDLE || pusermessage->m_atom == WM_CANCELMODE ||
-//       pusermessage->m_atom == 0x0118)    // WM_SYSTIMER (caret blink)
+//   if (pusermessage->m_emessage == e_message_mouse_move || pusermessage->m_emessage == e_message_non_client_mouse_move ||
+//       pusermessage->m_emessage == e_message_non_client_hittest || pusermessage->m_emessage == e_message_set_cursor ||
+//       pusermessage->id() == WM_CTLCOLORBTN ||
+//       pusermessage->id() == WM_CTLCOLORDLG ||
+//       pusermessage->id() == WM_CTLCOLOREDIT ||
+//       pusermessage->id() == WM_CTLCOLORLISTBOX ||
+//       pusermessage->id() == WM_CTLCOLORMSGBOX ||
+//       pusermessage->id() == WM_CTLCOLORSCROLLBAR ||
+//       pusermessage->id() == WM_CTLCOLORSTATIC ||
+//       pusermessage->id() == WM_ENTERIDLE || pusermessage->id() == WM_CANCELMODE ||
+//       pusermessage->id() == 0x0118)    // WM_SYSTIMER (caret blink)
 //   {
 //      // don't report very frequently sent messages
 //      return;
@@ -110,17 +110,17 @@
 //   char szBuf[80];
 //
 //   // find message name
-//   if (pusermessage->m_atom >= 0xC000)
+//   if (pusermessage->id() >= 0xC000)
 //   {
 //      // Window message registered with 'RegisterWindowMessage'
 //      //  (actually a USER atom)
-//      //      if (::GetClipboardFormatNameA(pusermessage->m_atom, szBuf, _countof(szBuf)))
+//      //      if (::GetClipboardFormatNameA(pusermessage->id(), szBuf, _countof(szBuf)))
 //      //       lpszMsgName = szBuf;
 //   }
-//   else if (pusermessage->m_atom >= WM_USER)
+//   else if (pusermessage->id() >= WM_USER)
 //   {
 //      // User message
-//      sprintf(szBuf, "WM_USER+0x%04X", pusermessage->m_atom - WM_USER);
+//      sprintf(szBuf, "WM_USER+0x%04X", pusermessage->id() - WM_USER);
 //      lpszMsgName = szBuf;
 //   }
 //   else
@@ -129,7 +129,7 @@
 //      const __MAP_MESSAGE* pMapMsg = allMessages;
 //      for (/*null*/ ; pMapMsg->lpszMsg != nullptr; pMapMsg++)
 //      {
-//         if (pMapMsg->nMsg == pusermessage->m_atom)
+//         if (pMapMsg->nMsg == pusermessage->id())
 //         {
 //            lpszMsgName = pMapMsg->lpszMsg;
 //            break;
@@ -162,7 +162,7 @@
 //#endif
 //   }
 //
-//   /*   if (pusermessage->m_atom >= WM_DDE_FIRST && pusermessage->m_atom <= WM_DDE_LAST)
+//   /*   if (pusermessage->id() >= WM_DDE_FIRST && pusermessage->id() <= WM_DDE_LAST)
 //    TraceDDE(lpszPrefix, pMsg);  */
 //}
 //

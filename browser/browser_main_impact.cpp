@@ -145,7 +145,7 @@ namespace browser
    void main_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(ptopic->m_atom == ::id_click)
+      if(ptopic->id() == ::id_click)
       {
 
          if(ptopic->user_interaction_id() == "browser_toggle")

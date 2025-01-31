@@ -130,12 +130,12 @@ namespace filemanager
       if (filemanager_document() == pdocumentSubject)
       {
 
-         //if (ptopic->m_atom == id_initialize)
+         //if (ptopic->id() == id_initialize)
          //{
 
          //   string str;
 
-         //   str.formatf("(%s)", get_document()->m_atom.str().c_str());
+         //   str.formatf("(%s)", get_document()->id().str().c_str());
 
          //   ::pointer<::database::client>pframe = get_parent_frame();
 
@@ -148,7 +148,7 @@ namespace filemanager
 
          //}
          //else
-         if (ptopic->m_atom == id_pop)
+         if (ptopic->id() == id_pop)
          {
 
             OnActivateFrame(e_activate_inactive, parent_frame());
@@ -167,7 +167,7 @@ namespace filemanager
             set_need_redraw();
 
          }
-         else if (ptopic->m_atom == id_create_bars)
+         else if (ptopic->id() == id_create_bars)
          {
 
             auto pframe = parent_frame();
@@ -180,7 +180,7 @@ namespace filemanager
             }
 
          }
-         else if (ptopic->m_atom == id_topic_start)
+         else if (ptopic->id() == id_topic_start)
          {
 
             if (filemanager_data()->m_emode != ::userfs::e_mode_import && get_pane_count() == 2)
@@ -272,7 +272,7 @@ namespace filemanager
             }
 
          }
-         else if (ptopic->m_atom == id_topic_cancel)
+         else if (ptopic->id() == id_topic_cancel)
          {
 
             if (base_class < ::filemanager::save_as_impact >::bases(get_pane_window(0)))
@@ -283,7 +283,7 @@ namespace filemanager
             }
 
          }
-         else if (ptopic->m_atom == id_topic_ok)
+         else if (ptopic->id() == id_topic_ok)
          {
 
             if (filemanager_data()->m_emode == ::userfs::e_mode_import)

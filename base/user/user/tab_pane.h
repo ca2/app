@@ -31,7 +31,7 @@ namespace user
       ::draw2d::brush_pointer             m_pbrushFill;
       ::draw2d::brush_pointer             m_pbrushFillSel;
       ::draw2d::brush_pointer             m_pbrushFillHover;
-      atom                                m_atom;
+      atom                                m_atomTabPane;
       ::image::image_pointer                     m_pimage;
       ::pointer<place_holder>            m_pplaceholder;
       ::pointer<impact_data>             m_pimpactdata;

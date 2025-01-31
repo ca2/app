@@ -311,7 +311,7 @@ namespace handler
 
    //
 
-   void handler::call(const ::atom& atom, ::wparam wparam, ::lparam lparam, ::particle* pparticle)
+   void handler::call_message(const ::enum_message & emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle)
    {
 
 
@@ -330,7 +330,7 @@ namespace handler
    // void handler::call(const ::atom& atom, huge_integer wParam, huge_integer lParam, ::matter* pmatter)
    // {
    //
-   //    return __call(this, atom, wParam, lParam, pmatter);
+   //    return __call(this, emessage, wparam, lparam, pmatter);
    //
    // }
 

@@ -10,29 +10,37 @@
 struct MESSAGE
 {
 
-   ::oswindow              oswindow;
-   ::atom                  m_atom;
-   wparam                  wParam;
-   lparam                  lParam;
-   ::int_point               pt;
-   huge_natural                   time;
+   
+   ::oswindow              m_oswindow = nullptr;
+   ::enum_message          m_emessage = e_message_null;
+   wparam                  m_wparam;
+   lparam                  m_lparam;
+   ::int_point             m_point;
+   huge_natural            m_time = 0;
 
 
    MESSAGE() {}
+
    MESSAGE(const MESSAGE & message)
    {
+      
       operator=(message);
+
    }
 
+   
    MESSAGE & operator = (const MESSAGE & message)
    {
-      oswindow = message.oswindow;
-      m_atom = message.m_atom;
-      wParam = message.wParam;
-      lParam = message.lParam;
-      pt = message.pt;
-      time = message.time;
+      
+      m_oswindow = message.m_oswindow;
+      m_emessage = message.m_emessage;
+      m_wparam = message.m_wparam;
+      m_lparam = message.m_lparam;
+      m_point = message.m_point;
+      m_time = message.m_time;
+
       return *this;
+
    }
 
 };

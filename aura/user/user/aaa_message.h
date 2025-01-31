@@ -26,9 +26,9 @@ namespace user
       ~message() override;
 
 
-      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam) override;
+      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
 
-      //inline void change(wparam wparam, ::lparam lparam) { set(m_oswindow, m_pwindow, m_atom, wparam, lparam); }
+      //inline void change(wparam wparam, ::lparam lparam) { set(m_oswindow, m_pwindow, m_emessage, wparam, lparam); }
 
       ::windowing::window * window() { return m_pwindow; }
 

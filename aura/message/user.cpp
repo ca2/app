@@ -52,10 +52,10 @@ namespace message
    //}
 
 
-   //void create::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //void create::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 
-   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
    //   //m_pusersystem = __user_interaction(pwindow)->payload("user_create").cast < ::user::system >();
 
@@ -169,10 +169,10 @@ namespace message
    }
 
 
-   //void activate::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //void activate::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 
-   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
    //   m_eactivate = (enum_activate)(first_unsigned_short(wparam));
 
@@ -238,10 +238,10 @@ namespace message
    }
 
 
-   //void key::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //void key::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 
-   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
    //   m_nChar = static_cast<unsigned int>(wparam);
 
@@ -264,30 +264,30 @@ namespace message
    }
 
 
-   //void nc_activate::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //void nc_activate::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 
-   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
    //   m_bActive = wparam != false;
 
    //}
 
 
-   //void reposition::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //void reposition::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 
-   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
    //   m_point = ::int_point(lparam);
 
    //}
 
 
-   //void size::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //void size::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 
-   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
    //   m_nType     = static_cast < unsigned int > (wparam);
 
@@ -381,10 +381,10 @@ namespace message
    }
 
 
-   //void mouse::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //void mouse::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 
-   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
    //   m_nFlags   = wparam;
 
@@ -401,10 +401,10 @@ namespace message
    //}
 
 
-   //void mouse_wheel::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //void mouse_wheel::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 
-   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
    //   m_nFlags    = wparam;
 
@@ -413,10 +413,10 @@ namespace message
    //}
 
 
-   //void set_cursor::set(oswindow oswindow, ::windowing::window* pwindow, const ::atom& atom, wparam wparam, ::lparam lparam)
+   //void set_cursor::set(oswindow oswindow, ::windowing::window* pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 
-   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
    //}
 
@@ -529,14 +529,14 @@ namespace message
    }
 
 
-   //void scroll::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //void scroll::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   ::pointer<::user::interaction_base>pprimitive(lparam);
 
    //   m_pscrollbar = pprimitive;
 
-   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
    //   m_ecommand = (enum_scroll_command) (short)first_unsigned_short(wparam);
 
@@ -545,10 +545,10 @@ namespace message
    //}
 
 
-   //void show_window::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //void show_window::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 
-   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
    //   m_bShow = wparam != false;
 
@@ -557,20 +557,20 @@ namespace message
    //}
 
 
-   //void kill_keyboard_focus::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //void kill_keyboard_focus::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 
-   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
    //   m_oswindowNew = (::oswindow) wparam.m_number;
 
    //}
 
 
-   //void nc_hit_test::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //void nc_hit_test::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 
-   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
    //   m_point.x() = x_short(m_lparam);
    //   
@@ -579,10 +579,10 @@ namespace message
    //}
 
 
-   //void set_keyboard_focus::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //void set_keyboard_focus::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 
-   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
    //   //m_puserinteraction = psystem->ui_from_handle(reinterpret_cast<oswindow>(wparam));
 
@@ -594,20 +594,20 @@ namespace message
 #ifdef WINDOWS_DESKTOP
 
 
-   //void window_pos::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //void window_pos::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 
-   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
    //   m_pWINDOWPOS = reinterpret_cast<void*>(lparam.m_lparam);
 
    //}
 
 
-   //void nc_calc_size::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //void nc_calc_size::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 
-   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
    //   m_pNCCALCSIZE_PARAMS = reinterpret_cast<void*>(lparam.m_lparam);
 
@@ -688,10 +688,10 @@ namespace message
    }
 
 
-   //void particle::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //void particle::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 
-   //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
    //   ::particle_pointer pparticle(lparam);
 
@@ -701,7 +701,7 @@ namespace message
 
    //}
 
-   drag_and_drop::drag_and_drop(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom)
+   drag_and_drop::drag_and_drop(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage)
    {
 
       m_lresult = 0;
@@ -710,7 +710,7 @@ namespace message
       
       m_pwindow = pwindow;
       
-      m_atom = atom;
+      m_emessage = emessage;
 
    }
 

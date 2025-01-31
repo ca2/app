@@ -84,7 +84,7 @@
 //   //{
 //   //public:
 //
-//   //   atom                            m_atom;
+//   //   atom                            id();
 //   //   string                        m_strDirName;
 //
 //   //};

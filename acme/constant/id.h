@@ -352,9 +352,6 @@ enum enum_id : ::uptr
    id_speech,
 
    id_load_fragment_path_prefix,
-   id_initialize_host_window,
-   id_defer_post_initial_request,
-   id_defer_create_context_button,
    id_context_button,
    //id_cloud_provider,
 

@@ -9,7 +9,7 @@
 interprocess_intercommunication::interprocess::communication() 
 {
 
-   m_atom = "::interprocess::communication";
+   id() = "::interprocess::communication";
 
    defer_create_synchronization();
 

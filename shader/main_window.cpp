@@ -13,7 +13,7 @@
 #include "acme/user/user/tool.h"
 #include "aura/graphics/user/control_box_icon.h"
 #include "aura/graphics/image/image.h"
-#include "aura/graphics/image/save_options.h"
+#include "aura/graphics/image/encoding_options.h"
 #include "aura/graphics/image/context.h"
 #include "aura/message/user.h"
 #include "aura/platform/system.h"

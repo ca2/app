@@ -12103,10 +12103,11 @@ if(get_parent())
       main_send([this]()
          {
 
+            auto puserinteractionHold = ::as_pointer(this);
+
          _synchronous_lock synchronouslock(window()->m_pmutexGraphics);
 
 
-         auto puserinteractionHold = ::as_pointer(this);
             //
             //   if (!window())
             //   {
@@ -24231,7 +24232,7 @@ if(get_parent())
       if (m_callbackOnClick)
       {
 
-         if (m_callbackOnClick(this, pitem))
+         if (m_callbackOnClick(this, pitem, pmouse->user_activation_token()))
          {
 
             return true;

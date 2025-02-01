@@ -12,6 +12,7 @@
 #include "acme/platform/application.h"
 #include "acme/user/micro/button.h"
 #include "acme/user/micro/popup_button.h"
+#include "acme/user/user/activation_token.h"
 #include "acme/user/user/mouse.h"
 
 
@@ -99,11 +100,13 @@ void host_interaction::on_click(const ::payload & payload, ::user::mouse * pmous
          pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y(),
          this);
 
+      auto puseractivationtoken = ::as_pointer(pmouse->user_activation_token());
+
       ppopupbutton->main_async()
-         << [this, ppopupbutton]()
+         << [this, ppopupbutton, puseractivationtoken]()
          {
             
-            application()->show_about_box();
+            application()->show_about_box(puseractivationtoken);
 
 //            auto result = ppopupbutton->m_payloadPopupButtonResult;
 //

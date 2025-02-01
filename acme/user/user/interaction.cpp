@@ -413,7 +413,7 @@ namespace acme
          //}
 
 
-         void interaction::_on_window_simple_action(const char * pszActionName)
+         void interaction::_on_window_simple_action(const char * pszActionName, ::user::activation_token * puseractivationtoken)
          {
 
             ::string strActionName(pszActionName);
@@ -441,7 +441,7 @@ namespace acme
             else if (strActionName == "about_box")
             {
 
-               application()->show_about_box();
+               application()->show_about_box(puseractivationtoken);
 
             }
             else if (strActionName == "close")

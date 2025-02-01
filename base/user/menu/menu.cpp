@@ -1360,7 +1360,7 @@ namespace user
 
                auto pchannelNotify = m_pchannelNotify;
 
-               atom idCommand = pmenuitem->id();
+               atom idCommand = pmenuitem->m_atomItem;
 
                //idCommand = translate_property_id(idCommand);
 

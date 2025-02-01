@@ -397,6 +397,13 @@ namespace acme
       }
 
 
+      void windowing::on_activate()
+      {
+
+
+      }
+
+
       void windowing::finalize_windowing()
       {
 
@@ -740,6 +747,14 @@ namespace acme
       //    return false;
       //
       // }
+
+
+      ::pointer < ::user::activation_token > windowing::get_user_activation_token()
+      {
+
+         return {};
+
+      }
 
 
    } // namespace windowing

@@ -73,6 +73,10 @@ namespace platform
       ::task_message_queue * task_message_queue() override;
 
 
+      ::thread_storage * thread_storage(const class ::task_index & taskindex) override;
+      ::thread_storage * _thread_storage_unlocked(const class ::task_index & taskindex) override;
+
+
       void on_initialize_particle() override;
 
 

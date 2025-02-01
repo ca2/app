@@ -1398,33 +1398,6 @@ g_bWindowingOutputDebugString = true;
    }
    
    
-   ::thread_storage * platform::thread_storage(const class ::task_index & taskindex)
-   {
-      
-      critical_section_lock lock(&m_criticalsectionThreadStorage);
-      
-      auto pthreadstorage = _thread_storage_unlocked(taskindex);
-
-      return pthreadstorage;
-      
-   }
-
-
-   ::thread_storage * platform::_thread_storage_unlocked(const class ::task_index & taskindex)
-   {
-
-      auto ppairThreadStorage = m_mapThreadStorage.plookup(taskindex);
-
-      if (!ppairThreadStorage)
-      {
-
-         return nullptr;
-
-      }
-
-      return &ppairThreadStorage->m_element2;
-
-   }
 
 
    //::operating_system::dynamic_library* platform::dynamic_library()

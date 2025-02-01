@@ -3893,6 +3893,25 @@ namespace platform
       return nullptr;
 
    }
+
+
+   ::thread_storage * acme_system_layer::thread_storage(const class ::task_index & taskindex)
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::thread_storage * acme_system_layer::_thread_storage_unlocked(const class ::task_index & taskindex)
+   {
+
+      return nullptr;
+
+   }
+
+
+
    //void acme_system_layer::on_set_platform() override{}
 
 

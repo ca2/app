@@ -211,7 +211,7 @@ namespace micro
 
 
          //virtual ::pointer < ::operating_system::a_system_menu > create_system_menu(bool bContextual = true);
-         void _on_window_simple_action(const char * pszActionName) override;
+         void _on_window_simple_action(const char * pszActionName, ::user::activation_token * puseractivationtoken) override;
          
 
          void handle(::topic * ptopic, ::context * pcontext) override;

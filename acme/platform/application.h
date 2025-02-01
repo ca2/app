@@ -325,7 +325,7 @@ namespace platform
 
       virtual ::string_array get_about_box_lines() override;
 
-      virtual void show_about_box() override;
+      void show_about_box(::user::activation_token * puseractivationtoken) override;
 
       bool handle_command(const ::atom & atom, ::user::activation_token * puseractivationtoken) override;
 

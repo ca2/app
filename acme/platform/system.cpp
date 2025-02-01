@@ -459,6 +459,36 @@ namespace platform
    }
 
 
+   ::thread_storage * system::thread_storage(const class ::task_index & taskindex)
+   {
+
+      critical_section_lock lock(&m_criticalsectionThreadStorage);
+
+      auto pthreadstorage = _thread_storage_unlocked(taskindex);
+
+      return pthreadstorage;
+
+   }
+
+
+   ::thread_storage * system::_thread_storage_unlocked(const class ::task_index & taskindex)
+   {
+
+      auto ppairThreadStorage = m_mapThreadStorage.plookup(taskindex);
+
+      if (!ppairThreadStorage)
+      {
+
+         return nullptr;
+
+      }
+
+      return &ppairThreadStorage->m_element2;
+
+   }
+
+
+
    void system::on_initialize_particle()
    {
 

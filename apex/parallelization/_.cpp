@@ -142,7 +142,7 @@ namespace parallelization
    void post_quit_to_all_threads()
    {
 
-      critical_section_lock criticalsectionlock(&::platform::get()->m_criticalsectionThreadStorage);
+      critical_section_lock criticalsectionlock(&::system()->m_criticalsectionThreadStorage);
 
       for (auto& pair : ::system()->m_mapThreadStorage)
       {
@@ -166,7 +166,7 @@ namespace parallelization
    CLASS_DECL_APEX void post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam)
    {
 
-      critical_section_lock criticalsectionlock(&::platform::get()->m_criticalsectionThreadStorage);
+      critical_section_lock criticalsectionlock(&::system()->m_criticalsectionThreadStorage);
 
       for (auto& pair : ::system()->m_mapThreadStorage)
       {

@@ -1414,7 +1414,7 @@ namespace acme
       //}
 
 
-      void window::_on_window_simple_action(const char * pszActionName)
+      void window::_on_window_simple_action(const char * pszActionName, ::user::activation_token * puseractivationtoken)
       {
 
          if (!m_pacmeuserinteraction)
@@ -1424,7 +1424,7 @@ namespace acme
 
          }
 
-         m_pacmeuserinteraction->_on_window_simple_action(pszActionName);
+         m_pacmeuserinteraction->_on_window_simple_action(pszActionName, puseractivationtoken);
 
       }
 
@@ -1610,7 +1610,7 @@ namespace acme
       }
 
 
-      void window::on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem)
+      void window::on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem, ::user::activation_token * puseractivationtoken)
       {
 
          ::string strActionName(psystemmenuitem->m_strAtom);
@@ -1636,7 +1636,7 @@ namespace acme
          else if (strActionName == "about_box")
          {
 
-            application()->show_about_box();
+            application()->show_about_box(puseractivationtoken);
 
          }
          else if (strActionName == "close")

@@ -24,6 +24,7 @@
 #include "acme/prototype/text/context.h"
 #include "acme/nano/nano.h"
 #include "acme/user/micro/user.h"
+#include "acme/user/user/activation_token.h"
 #include "acme/nano/graphics/icon.h"
 #include "acme/windowing/windowing.h"
 
@@ -2179,9 +2180,8 @@ namespace platform
    }
 
 
-   void application::show_about_box()
+   void application::show_about_box(::user::activation_token * puseractivationtoken)
    {
-
 
       auto lines = get_about_box_lines();
 
@@ -2216,6 +2216,8 @@ namespace platform
 
       //      });
 
+      paboutbox->m_puseractivationtoken = puseractivationtoken;
+
       paboutbox->async();
 
 
@@ -2245,7 +2247,7 @@ namespace platform
       if(atom == "show_about_box")
       {
        
-         show_about_box();
+         show_about_box(puseractivationtoken);
 
          return true;
          

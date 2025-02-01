@@ -176,7 +176,7 @@ namespace platform
    // void term_application() override{}
    //
 
-   void apex_application_layer::show_about_box()
+   void apex_application_layer::show_about_box(::user::activation_token * puseractivationtoken)
    {
    }
 

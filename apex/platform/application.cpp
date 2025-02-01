@@ -5322,7 +5322,7 @@ namespace apex
 
       pmessage->m_bRet = true;
 
-      show_about_box();
+      show_about_box(pmessage->user_activation_token());
 
    }
 
@@ -10387,10 +10387,12 @@ namespace apex
    //}
 
 
-   void application::show_about_box()
+   void application::show_about_box(::user::activation_token * puseractivationtokenParameter)
    {
+
+      auto puseractivationtoken = ::as_pointer(puseractivationtokenParameter);
       
-      main_post([this]()
+      main_post([this, puseractivationtoken]()
                 {
          
          system()->defer_innate_ui();
@@ -10469,7 +10471,7 @@ namespace apex
          
          
          
-         pdialog->show();
+         pdialog->show_front(puseractivationtoken);
          
       });
 

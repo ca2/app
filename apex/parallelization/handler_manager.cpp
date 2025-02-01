@@ -148,13 +148,13 @@ void handler_manager::handle_asynchronously(const ::procedure & procedure)
       if(m_pevTaskOnQueue)
       {
 
-         m_pevTaskOnQueue->_wait(1_s);
+         m_pevTaskOnQueue->wait(1_s);
 
       }
       else
       {
 
-         preempt(100_ms);
+         task_sleep(100_ms);
 
       }
 

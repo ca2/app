@@ -5937,7 +5937,7 @@ namespace aura
    void application::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
    {
 
-      ::channel::command_handler(pcommand);
+      ::channel::route_command(pcommand);
 
       if (pcommand->m_bRet)
       {

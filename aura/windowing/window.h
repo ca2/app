@@ -653,7 +653,7 @@ namespace windowing
 
       void destroy() override;
 
-      void on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem) override;
+      void on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem, ::user::activation_token * puseractivationtoken) override;
 
 
       void _main_send(const ::procedure & procedure) override;

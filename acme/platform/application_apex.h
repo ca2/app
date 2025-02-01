@@ -423,7 +423,7 @@ namespace platform
       // void term_application() override;
       //
 
-      virtual void show_about_box();
+      virtual void show_about_box(::user::activation_token * puseractivationtoken);
 
 
       virtual ::pointer<::innate_ui::icon> innate_ui_icon(const ::int_size& size);

@@ -3157,7 +3157,7 @@ namespace user
    }
 
 
-   void element::_on_window_simple_action(const char * pszActionName)
+   void element::_on_window_simple_action(const char * pszActionName, ::user::activation_token * puseractivationtoken)
    {
 
 

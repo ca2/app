@@ -349,7 +349,7 @@ namespace user
       ::task_pointer                            m_ptaskTransparentMouseEvents;
 
 
-      ::function < bool(::user::interaction *, ::item *) > m_callbackOnClick;
+      ::function < bool(::user::interaction *, ::item *, ::user::activation_token * puseractivationtoken) > m_callbackOnClick;
 
       
       //class draw_select

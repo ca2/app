@@ -388,7 +388,7 @@ namespace platform
    }
 
 
-   void acme_application_layer::show_about_box()
+   void acme_application_layer::show_about_box(::user::activation_token * puseractivationtoken)
    {
 
 

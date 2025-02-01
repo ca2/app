@@ -1609,7 +1609,7 @@ namespace micro
    }
 
 
-   void main_window::_on_window_simple_action(const char* pszActionName)
+   void main_window::_on_window_simple_action(const char* pszActionName, ::user::activation_token * puseractivationtoken)
    {
 
       ::string strActionName(pszActionName);
@@ -1638,7 +1638,7 @@ namespace micro
       else
       {
 
-         ::acme::user::interaction::_on_window_simple_action(pszActionName);
+         ::acme::user::interaction::_on_window_simple_action(pszActionName, puseractivationtoken);
 
       }
 

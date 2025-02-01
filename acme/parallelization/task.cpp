@@ -1161,7 +1161,13 @@ void task::stop_task()
 
       auto bTasksFinished = set_children_to_finish_and_check_them_finished();
 
-      if (!bTasksFinished)
+      if (bTasksFinished)
+      {
+
+         break;
+
+      }
+      else
       {
 
          informationf("tasks still not finished for task : %s", m_strTaskName.c_str());
@@ -2950,7 +2956,18 @@ bool task::task_sleep(const class time & timeWait)
 
       }
 
-      ::preempt(waitStep);
+      task_iteration();
+
+      auto waitStep2 = minimum(timeWait - waitStart.elapsed(), 100_ms);
+
+      if (waitStep2 <= 0_s)
+      {
+
+         return true;
+
+      }
+
+      ::preempt(waitStep2);
 
    }
 

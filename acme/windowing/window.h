@@ -66,6 +66,8 @@ namespace acme
 
          bool                                               m_bRepositioningWindowFromCenter;
          bool                                               m_bResizingWindowFromBottomRight;
+         ::int_point                                        m_pointDesignRequest;
+         ::int_size                                         m_sizeDesignRequest;
          ::int_point                                        m_pointWindow;
          ::int_size                                         m_sizeWindow;
          ::int_point                                        m_pointCursor2;

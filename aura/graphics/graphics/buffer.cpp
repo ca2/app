@@ -98,11 +98,11 @@ namespace graphics
       try
       {
 
-         information() << "::graphics::buffer::update_buffer going to create image : " << pitem->m_size;
+         information() << "::graphics::buffer::update_buffer going to create image : " << pitem->m_sizeBufferItemDraw;
 
-         m_pimageBuffer->create(pitem->m_size);
+         m_pimageBuffer->create(pitem->m_sizeBufferItemDraw);
 
-         information() << "::graphics::buffer::update_buffer going after create image : " << pitem->m_size;
+         information() << "::graphics::buffer::update_buffer going after create image : " << pitem->m_sizeBufferItemDraw;
 
       }
       catch (...)

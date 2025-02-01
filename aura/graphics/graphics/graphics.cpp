@@ -184,9 +184,9 @@ namespace graphics
 
       auto puserinteraction = m_pwindow->user_interaction();
 
-      pbufferitem->m_point = puserinteraction->const_layout().design().origin();
+      pbufferitem->m_pointBufferItemDraw = puserinteraction->const_layout().design().origin();
 
-      pbufferitem->m_size = puserinteraction->const_layout().design().size();
+      pbufferitem->m_sizeBufferItemDraw = puserinteraction->const_layout().design().size();
 
       //pbufferitem->m_point = m_pimpl->m_puserinteraction->const_layout().layout().origin();
 
@@ -228,13 +228,13 @@ namespace graphics
 
       buffer_size_and_position(pbufferitem);
 
-      if (pbufferitem->m_size.is_empty())
+      if (pbufferitem->m_sizeBufferItemDraw.is_empty())
       {
 
          if (egraphics & e_graphics_layout)
          {
 
-            pbufferitem->m_size = { 512, 256 };
+            pbufferitem->m_sizeBufferItemDraw = { 512, 256 };
 
          }
          else

@@ -10094,7 +10094,7 @@ void window::set_oswindow(::oswindow oswindow)
 
          //}
 
-         m_sizeLastBuffer = pbufferitem->m_size;
+         m_sizeLastBuffer = pbufferitem->m_sizeBufferItemDraw;
 
          //}
 

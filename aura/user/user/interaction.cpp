@@ -15534,23 +15534,40 @@ if(get_parent())
       //     }
       // //
       // // }
-
-
-      layout().m_statea[::user::e_layout_sketch].m_point2 = p;
-      layout().m_statea[::user::e_layout_lading].m_point2 = p;
-      layout().m_statea[::user::e_layout_layout].m_point2 = p;
-      layout().m_statea[::user::e_layout_design].m_point2 = p;
-      layout().m_statea[::user::e_layout_output].m_point2 = p;
       layout().m_statea[::user::e_layout_window].m_point2 = p;
-      layout().m_statea[::user::e_layout_normal].m_point2 = p;
-
-      layout().m_statea[::user::e_layout_sketch].m_size = s;
-      layout().m_statea[::user::e_layout_lading].m_size = s;
-      layout().m_statea[::user::e_layout_layout].m_size = s;
-      layout().m_statea[::user::e_layout_design].m_size = s;
-      layout().m_statea[::user::e_layout_output].m_size = s;
       layout().m_statea[::user::e_layout_window].m_size = s;
-      layout().m_statea[::user::e_layout_normal].m_size = s;
+
+      auto pwindow = window();
+
+      if (pwindow->m_pointDesignRequest == layout().m_statea[::user::e_layout_design].m_point2)
+      {
+
+         layout().m_statea[::user::e_layout_sketch].m_point2 = p;
+         layout().m_statea[::user::e_layout_lading].m_point2 = p;
+         layout().m_statea[::user::e_layout_layout].m_point2 = p;
+         layout().m_statea[::user::e_layout_design].m_point2 = p;
+         layout().m_statea[::user::e_layout_output].m_point2 = p;
+         layout().m_statea[::user::e_layout_normal].m_point2 = p;
+
+         pwindow->m_pointDesignRequest.x() = INT_MIN;
+         pwindow->m_pointDesignRequest.y() = INT_MIN;
+
+      }
+
+      if (pwindow->m_sizeDesignRequest == layout().m_statea[::user::e_layout_design].m_size)
+      {
+
+         layout().m_statea[::user::e_layout_sketch].m_size = s;
+         layout().m_statea[::user::e_layout_lading].m_size = s;
+         layout().m_statea[::user::e_layout_layout].m_size = s;
+         layout().m_statea[::user::e_layout_design].m_size = s;
+         layout().m_statea[::user::e_layout_output].m_size = s;
+         layout().m_statea[::user::e_layout_normal].m_size = s;
+
+         pwindow->m_sizeDesignRequest.cx() = INT_MIN;
+         pwindow->m_sizeDesignRequest.cy() = INT_MIN;
+
+      }
 
 
    }

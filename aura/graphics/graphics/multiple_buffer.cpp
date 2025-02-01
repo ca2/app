@@ -114,7 +114,7 @@ namespace graphics
       //if (m_imageaBuffer[m_iBuffer]->size() != sizeBuffer)
       {
 
-         pitem->m_pimage2->create(pitem->m_size);
+         pitem->m_pimage2->create(pitem->m_sizeBufferItemDraw);
 
          //if (!m_imageaBuffer[m_iBuffer]->create(sizeBuffer))
          //{

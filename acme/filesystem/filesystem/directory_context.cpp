@@ -1191,7 +1191,7 @@ bool directory_context::fast_has_subdir(const ::file::path& path)
    if (pathParam.trimmed().is_empty())
    {
 
-      return ::file::e_type_existent_folder;
+      return ::file::e_type_doesnt_exist;
 
    }
 

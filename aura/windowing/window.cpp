@@ -5405,8 +5405,7 @@ void window::set_oswindow(::oswindow oswindow)
 
             information() << ::type(user_interaction()).name() << "::destroy_impl_only";
 
-            user_interaction()->transfer_handler(m_dispatchermapNormal, this, false);
-            user_interaction()->transfer_handler(m_dispatchermapProbe, this, true);
+            user_interaction()->transfer_handler(this, this);
 
          }
 

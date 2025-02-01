@@ -645,7 +645,7 @@ void thread::__task_term()
    try
    {
 
-      m_dispatchermapNormal.erase_all();
+      m_messagemap.erase_all();
 
    }
    catch (...)
@@ -655,7 +655,17 @@ void thread::__task_term()
    try
    {
 
-      m_dispatchermapProbe.erase_all();
+      m_commandmap.erase_all();
+
+   }
+   catch (...)
+   {
+
+   }
+   try
+   {
+
+      m_commandmapProbe.erase_all();
 
    }
    catch (...)

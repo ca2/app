@@ -314,8 +314,7 @@ namespace user
 
       pcommand->handle(this);
 
-      // ::user::layout intentional
-      command_handler(pcommand);
+      ::user::interaction_base::route_command(pcommand);
 
       if(pcommand->m_bRet)
       {

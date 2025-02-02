@@ -1349,6 +1349,15 @@ template < primitive_subparticle SUBPARTICLE >
 
 
 template < primitive_subparticle SUBPARTICLE >
+::pointer < SUBPARTICLE > as_pointer(const ::pointer < SUBPARTICLE > & p)
+{
+
+   return { p };
+
+}
+
+
+template < primitive_subparticle SUBPARTICLE >
 ::pointer < SUBPARTICLE > transfer_as_pointer(SUBPARTICLE* p)
 {
 

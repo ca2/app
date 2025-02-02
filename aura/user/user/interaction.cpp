@@ -4044,7 +4044,8 @@ namespace user
                try
                {
 
-                  if (::is_set(m_puserinteractionpointeraOwned->interaction_at(i)))
+                  if (::is_set(m_puserinteractionpointeraOwned->interaction_at(i))
+                     && !m_puserinteractionpointeraOwned->interaction_at(i)->payload("dont_hide_on_owner_hiding").as_bool())
                   {
 
                      m_puserinteractionpointeraOwned->interaction_at(i)->display(e_display_none);
@@ -12104,6 +12105,7 @@ if(get_parent())
          {
 
             auto puserinteractionHold = ::as_pointer(this);
+            auto pwindowingwindowHold = ::as_pointer(m_pacmewindowingwindow);
 
          _synchronous_lock synchronouslock(window()->m_pmutexGraphics);
 
@@ -22871,11 +22873,16 @@ if(get_parent())
          for (auto & pmenu : menua)
          {
 
-            pmenu->hide();
+            if (!pmenu->payload("dont_hide_on_owner_hiding").as_bool())
+            {
 
-            pmenu->set_need_redraw();
+               pmenu->hide();
 
-            pmenu->post_redraw();
+               pmenu->set_need_redraw();
+
+               pmenu->post_redraw();
+
+            }
 
          }
 

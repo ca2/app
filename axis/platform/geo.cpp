@@ -1762,7 +1762,7 @@ namespace geo
       if (!m_ptaskSaveLocalityTimeZone)
       {
 
-         m_ptaskSaveLocalityTimeZone = fork([this]()
+         m_ptaskSaveLocalityTimeZone = m_papplication->fork([this]()
             {
 
                try
@@ -1778,7 +1778,7 @@ namespace geo
                   while (m_ptaskSaveLocalityTimeZone->task_get_run())
                   {
 
-                     preempt(1_s);
+                     task_sleep(1_s);
 
                      if (m_bLocalityTimeZoneModified)
                      {

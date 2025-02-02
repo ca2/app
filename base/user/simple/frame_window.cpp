@@ -3636,6 +3636,8 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
    if (ptopic->id() == id_task_bar_created)
    {
 
+      //m_pnotifyicon->m_bCreated = false;
+
       defer_create_notification_icon();
 
    }

@@ -4152,7 +4152,7 @@ namespace user
       while (ptask->task_get_run())
       {
 
-         preempt(100_ms);
+         ptask->task_sleep(100_ms);
 
          if (m_bPendingHoverSelect)
          {

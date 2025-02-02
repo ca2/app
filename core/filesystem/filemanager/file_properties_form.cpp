@@ -149,7 +149,7 @@ namespace filemanager
    void file_properties_form::on_create_impact(::user::impact_data * pimpactdata)
    {
 
-      switch(pimpactdata->m_atom.as_int())
+      switch(pimpactdata->id().as_int())
       {
       case 1:
       {
@@ -211,10 +211,10 @@ namespace filemanager
    void file_properties_form::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(ptopic->m_atom == ::id_click)
+      if(ptopic->id() == ::id_click)
       {
 
-         if(ptopic->user_interaction()->m_atom == "submit")
+         if(ptopic->user_interaction()->id() == "submit")
          {
 
          }

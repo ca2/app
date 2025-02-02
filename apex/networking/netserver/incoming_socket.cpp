@@ -106,7 +106,7 @@ namespace netserver
 
    //      ::string strNewHeader;
 
-   //      strNewHeader.formatf("{%s=%s}", pproperty->m_atom.as_string().c_str(), pproperty->as_string().c_str());
+   //      strNewHeader.formatf("{%s=%s}", pproperty->id().as_string().c_str(), pproperty->as_string().c_str());
 
    //      if (str.length() + strNewHeader.length() > 80)
    //      {
@@ -295,7 +295,7 @@ namespace netserver
 
    ////      pimage->stretch_image(pimage);
 
-   ////      ::image::save_options saveoptions;
+   ////      ::image::encoding_options encodingoptions;
 
    ////      savepimage->m_eformat = pimage::e_format_jpeg;
    ////      savepimage->m_iQuality = 50;
@@ -303,7 +303,7 @@ namespace netserver
    ////      outheader("content-type") = "image/jpeg";
 
 
-   ////      pimage->save_to_file(&response().file(), saveoptions);
+   ////      pimage->save_to_file(&response().file(), encodingoptions);
 
    ////   }
 

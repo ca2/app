@@ -9,7 +9,7 @@
 #include "aura/platform/application.h"
 
 
-//CLASS_DECL_AURA void message_queue_post(::windowing::window * pwindow, const ::atom & atom, wparam wparam, lparam lparam)
+//CLASS_DECL_AURA void message_queue_post(::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
 //{
 //
 //   //
@@ -40,7 +40,7 @@
 //
 //   //if (!
 //   
-//   pmq->post_message(pwindow->oswindow(), atom, wparam, lparam);
+//   pmq->post_message(pwindow->oswindow(), emessage, wparam, lparam);
 //   //{
 //
 //   //   return false;
@@ -100,7 +100,7 @@ CLASS_DECL_AURA void mq_erase_window_from_all_queues(::windowing::window * pwind
    pmessagequeue->m_messagea.predicate_erase([=](MESSAGE & message)
    {
 
-      return message.oswindow == pwindow->oswindow();
+      return message.m_oswindow == pwindow->oswindow();
 
    });
 

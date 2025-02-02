@@ -427,31 +427,31 @@ namespace user
          m_bEffectiveVisibleControl = false;
 
       }
-      else if (ptopic->m_atom == id_on_after_enter_full_screen)
+      else if (ptopic->id() == id_on_after_enter_full_screen)
       {
 
          m_bEffectiveVisibleControl = false;
 
       }
-      else if (ptopic->m_atom == id_on_set_transparent_frame)
+      else if (ptopic->id() == id_on_set_transparent_frame)
       {
 
          m_bEffectiveVisibleControl = false;
 
       }
-      else if (ptopic->m_atom == id_on_after_exit_full_screen)
+      else if (ptopic->id() == id_on_after_exit_full_screen)
       {
 
          m_bEffectiveVisibleControl = auto_hide_full_screen_or_transparent_frame_control_visibility();
 
       }
-      else if (ptopic->m_atom == id_on_clear_transparent_frame)
+      else if (ptopic->id() == id_on_clear_transparent_frame)
       {
 
          m_bEffectiveVisibleControl = auto_hide_full_screen_or_transparent_frame_control_visibility();
 
       }
-      else if (ptopic->m_atom == id_on_activate)
+      else if (ptopic->id() == id_on_activate)
       {
 
          m_bEffectiveVisibleControl = auto_hide_full_screen_or_transparent_frame_control_visibility();

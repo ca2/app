@@ -30,13 +30,6 @@ namespace user
 
       };
 
-      enum e_message
-      {
-
-         message_start_tab_drag = WM_USER + 223 + 2000 + 77 + 51,
-
-      };
-
 
       class CLASS_DECL_BASE erase_tab_exception
       {

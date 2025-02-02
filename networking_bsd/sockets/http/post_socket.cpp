@@ -256,7 +256,7 @@ namespace sockets
          for(auto & pproperty : m_fields)
          {
 
-            atom & atom = pproperty->m_atom;
+            atom & atom = pproperty->id();
 
             ::payload & payload = *pproperty;
 

@@ -104,7 +104,7 @@ namespace browser
 
 
 
-      bool bAlternate = string(m_atom).case_insensitive_contains("switcher");
+      bool bAlternate = string(id()).case_insensitive_contains("switcher");
 
       m_prender = __allocate render(get_app(), bAlternate);
 
@@ -259,7 +259,7 @@ namespace browser
 
       impact_base::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == id_after_change_text)
+      if (ptopic->id() == id_after_change_text)
       {
 
          auto * peditview = _001TypedWindow < ::userex::top_edit_impact >();
@@ -328,7 +328,7 @@ namespace browser
       happening.x() = point.x();
       happening.y() = point.y();
 
-      if (pmouse->m_atom == e_message_left_button_down)
+      if (pmouse->m_emessage == e_message_left_button_down)
       {
 
          papp->m_ppaneimpact->m_pimpactLastBilbo = this;
@@ -336,13 +336,13 @@ namespace browser
          m_pbrowser->GetHost()->SendMouseClickEvent(happening, cef_mouse_button_type_t::MBT_LEFT, false, 1);
 
       }
-      else if (pmouse->m_atom == e_message_left_button_up)
+      else if (pmouse->m_emessage == e_message_left_button_up)
       {
 
          m_pbrowser->GetHost()->SendMouseClickEvent(happening, cef_mouse_button_type_t::MBT_LEFT, true, 1);
 
       }
-      else if (pmouse->m_atom == e_message_mouse_move)
+      else if (pmouse->m_emessage == e_message_mouse_move)
       {
 
          m_pbrowser->GetHost()->SendMouseMoveEvent(happening, false);

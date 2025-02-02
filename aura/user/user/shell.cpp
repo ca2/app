@@ -456,7 +456,7 @@ namespace user
 
          {
 
-            m_pevNewImageKey->_wait(500_ms);
+            m_pevNewImageKey->wait(500_ms);
 
             _synchronous_lock synchronouslock(this->synchronization());
 

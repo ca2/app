@@ -949,7 +949,7 @@ namespace user
 
       }
 
-      pcomponent->m_atom = atom.is_empty() ? (::atom) iIndex : atom;
+      pcomponent->id() = atom.is_empty() ? (::atom) iIndex : atom;
 
       m_panea[iIndex]->m_bFixedSize = bFixedSize;
 
@@ -1036,7 +1036,7 @@ namespace user
 
       }
 
-      pcomponent->m_atom = atom.is_empty() ? (::atom) iIndex : atom;
+      pcomponent->id() = atom.is_empty() ? (::atom) iIndex : atom;
 
       m_panea[iIndex]->m_bFixedSize = bFixedSize;
 
@@ -1134,7 +1134,7 @@ namespace user
    }
 
 
-   void split_layout::RelayEventSplitBar(::collection::index iSplitBar, const ::atom & atom, WPARAM wParam, LPARAM lParam)
+   void split_layout::RelayEventSplitBar(::collection::index iSplitBar, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
    {
 
       ASSERT(false);
@@ -1309,7 +1309,7 @@ namespace user
 
       Pane & pane = m_panea(iPane);
 
-      return pane.m_atom;
+      return pane.id();
 
    }
 
@@ -1320,7 +1320,7 @@ namespace user
       for(::collection::index iPane = 0; iPane < m_panea.get_count(); iPane++)
       {
 
-         if (m_panea[iPane]->m_atom == atom)
+         if (m_panea[iPane]->id() == atom)
          {
 
             return iPane;

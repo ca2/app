@@ -187,11 +187,6 @@ namespace platform
       ::windowing::enum_toolkit                             m_etoolkit;
       
       
-      ::map < class ::task_index, ::thread_storage >        m_mapThreadStorage;
-
-
-      ::critical_section                                    m_criticalsectionThreadStorage;
-
       ::critical_section   m_criticalsectionSystemHeap;
 
 
@@ -429,10 +424,10 @@ namespace platform
       //pass_through_function m_passthroughfunction;
 
 
-      //::collection::index task_index(itask itask, bool bAddIfNotInList = false);
-      //::collection::index new_task_index();
-      ::thread_storage * thread_storage(const class ::task_index & taskindex);
-      ::thread_storage * _thread_storage_unlocked(const class ::task_index & taskindex);
+      ////::collection::index task_index(itask itask, bool bAddIfNotInList = false);
+      ////::collection::index new_task_index();
+      //::thread_storage * thread_storage(const class ::task_index & taskindex);
+      //::thread_storage * _thread_storage_unlocked(const class ::task_index & taskindex);
 
 
 

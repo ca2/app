@@ -123,9 +123,9 @@ namespace user
       __STATUSPANE* pSBP = _GetPanePtr(0);
       for (int i = 0; i < stra.get_count(); i++)
       {
-         pSBP->m_atom = stra[i];
+         pSBP->id() = stra[i];
          pSBP->nFlags |= SBPF_UPDATE;
-         if (pSBP->m_atom.has_character())
+         if (pSBP->id().has_character())
          {
             /* xxx            if (!pSBP->strText.load_string(pSBP->strId))
                         {
@@ -322,7 +322,7 @@ namespace user
       for (int i = 0; i < m_panecompositea.get_count(); i++)
       {
          __STATUSPANE* pSBP = _GetPanePtr(i);
-         if (pSBP->m_atom == atom)
+         if (pSBP->id() == atom)
             return i;
       }
 
@@ -332,7 +332,7 @@ namespace user
    atom status_bar::GetItemId(int nIndex)
    {
       ASSERT_VALID(this);
-      return _GetPanePtr(nIndex)->m_atom;
+      return _GetPanePtr(nIndex)->id();
    }
 
    void status_bar::GetItemRect(int nIndex, ::int_rectangle * prectangle)
@@ -383,7 +383,7 @@ namespace user
       ASSERT_VALID(this);
 
       __STATUSPANE* pSBP = _GetPanePtr(nIndex);
-      atom = pSBP->m_atom;
+      atom = pSBP->id();
       nStyle = pSBP->nStyle;
       cxWidth = pSBP->cxText;
    }
@@ -396,7 +396,7 @@ namespace user
 
       bool bChanged = false;
       __STATUSPANE* pSBP = _GetPanePtr(nIndex);
-      pSBP->m_atom = atom;
+      pSBP->id() = atom;
       if (pSBP->nStyle != nStyle)
       {
          if ((pSBP->nStyle ^ nStyle) & SBPS_STRETCH)
@@ -613,7 +613,7 @@ namespace user
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      if (pmessage->m_atom != WM_DRAWITEM)
+//      if (pmessage->m_emessage != WM_DRAWITEM)
 //      {
 //
 //         return ::user::interaction::OnChildNotify(pmessage);
@@ -908,7 +908,7 @@ namespace user
       command.m_iCount = (unsigned int)m_panecompositea.get_count();
       for (command.m_iIndex = 0; command.m_iIndex < command.m_iCount; command.m_iIndex++)
       {
-         command.m_atom = _GetPanePtr((int) command.m_iIndex)->m_atom;
+         command.m_atomCommand = _GetPanePtr((int) command.m_iIndex)->id();
 
          // allow the statusbar itself to have update handlers
          ::user::interaction::on_command_probe(&command);
@@ -950,7 +950,7 @@ namespace user
    //   //   {
    //   //      __STATUSPANE * ppane = ((status_bar *) this)->_GetPanePtr(i);
    //   //      dumpcontext << "\nstatus pane[" << i << "] = {";
-   //   //      dumpcontext << "\n\tnID = " << (const ::string &) ppane->m_atom;
+   //   //      dumpcontext << "\n\tnID = " << (const ::string &) ppane->id();
    //   //      dumpcontext << "\n\tnStyle = " << ppane->nStyle;
    //   //      dumpcontext << "\n\tcxText = " << ppane->cxText;
    //   //      dumpcontext << "\n\tstrText = " << ppane->strText;
@@ -974,7 +974,7 @@ namespace user
    {
       if(&pane == this)
          return *this;
-      m_atom = pane.m_atom;        // IDC of indicator: 0 => normal text area
+      m_atomStatusPane = pane.m_atomStatusPane;        // IDC of indicator: 0 => normal text area
       cxText = pane.cxText;     // width of string area in pixels
       //   on both sides there is a 3 pixel gap and
       //   a one pixel border, making a pane 6 pixels wider

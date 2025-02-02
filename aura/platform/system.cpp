@@ -2156,10 +2156,10 @@ namespace aura
    }
 
 
-   //unsigned int system::os_post_to_all_threads(const ::atom & atom,wparam wparam,lparam lparam)
+   //unsigned int system::os_post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 
-   //   post_to_all_threads(atom, wparam, lparam);
+   //   post_to_all_threads(emessage, wparam, lparam);
 
    //   return 0;
 
@@ -4671,7 +4671,7 @@ namespace aura
 
    //      auto ptool = __allocate ::task_tool();
 
-   //      ptool->m_atom = etool;
+   //      ptool->id() = etool;
 
    //      threadtoola.add(ptool);
 
@@ -6397,13 +6397,13 @@ if(!m_pimaging)
    void system::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == id_font_enumeration)
+      if (ptopic->id() == id_font_enumeration)
       {
 
          draw2d()->write_text()->handle_font_enumeration(ptopic);
 
       }
-      else if (ptopic->m_atom == id_operating_system_user_color_change)
+      else if (ptopic->id() == id_operating_system_user_color_change)
       {
 
 

@@ -689,7 +689,7 @@ namespace user
 
       //}
 
-      pscroll->m_atom = e_message_scroll_y;
+      pscroll->m_emessage = e_message_scroll_y;
 
       send_message(pscroll);
 

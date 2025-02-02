@@ -82,7 +82,7 @@ namespace micro
          if (pelemental)
          {
 
-            pelemental->on_click(m_atom, nullptr);
+            pelemental->on_click(id(), nullptr);
 
          }
 

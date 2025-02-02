@@ -665,7 +665,7 @@ namespace platform
    }
 
 
-   // bool aura_application_layer::send_message_to_windows(const ::atom & atom, wparam wparam, lparam lparam) override{} // with tbs in <3
+   // bool aura_application_layer::send_message_to_windows(::enum_message emessage, ::wparam wparam, ::lparam lparam) override{} // with tbs in <3
    //
    // bool aura_application_layer::route_message_to_windows(::message::message * pmessage) override{} // with tbs in <3
 
@@ -680,7 +680,7 @@ namespace platform
    // // user virtual ::user::document * place_hold(::user::interaction * pinteraction){}
    //
    //
-   // void aura_application_layer::post_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0) override{}
+   // void aura_application_layer::post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}) override{}
    //
    //
    //virtual ::image::icon * set_icon(object * pparticle, ::image::icon * picon, bool bBigIcon){}

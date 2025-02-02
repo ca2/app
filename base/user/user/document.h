@@ -194,7 +194,7 @@ namespace user
             if(p)
             {
 
-               if (atom == p->m_atom)
+               if (atom == p->id())
                {
 
                   return p;

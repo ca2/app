@@ -686,7 +686,7 @@ namespace core
 
 
 
-      //virtual void SendMessageToWindows(const ::atom & atom, WPARAM wParam, LPARAM lParam);
+      //virtual void SendMessageToWindows(::enum_message emessage, ::wparam wparam, ::lparam lparam);
 
       virtual void term() override;
 

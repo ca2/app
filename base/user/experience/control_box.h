@@ -22,9 +22,9 @@ namespace experience
       public:
 
          
-         ::atom                    m_atom;
+         ::atom                  m_atomControlBoxItem;
          bool                    m_bPresent;
-         ::pointer<button>      m_pbutton;
+         ::pointer<button>       m_pbutton;
 
 
          item() 

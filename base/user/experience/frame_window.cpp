@@ -209,13 +209,13 @@ namespace experience
 
       //#ifdef WINDOWS_DESKTOP
       //
-      //      if (pmessage->m_atom == WM_GETTEXT)
+      //      if (pmessage->m_emessage == WM_GETTEXT)
       //      {
       //
       //         return;
       //
       //      }
-      //      else if (pmessage->m_atom == WM_GETTEXTLENGTH)
+      //      else if (pmessage->m_emessage == WM_GETTEXTLENGTH)
       //      {
       //
       //         return;
@@ -225,16 +225,16 @@ namespace experience
       //
       //#endif
 
-      if (pmessage->m_atom == e_message_mouse_move)
+      if (pmessage->m_emessage == e_message_mouse_move)
       {
 
          return;
 
       }
-      else if (pmessage->m_atom == e_message_key_down
-         || pmessage->m_atom == e_message_key_up
-         || pmessage->m_atom == e_message_sys_key_down
-         || pmessage->m_atom == e_message_sys_key_up)
+      else if (pmessage->m_emessage == e_message_key_down
+         || pmessage->m_emessage == e_message_key_up
+         || pmessage->m_emessage == e_message_sys_key_down
+         || pmessage->m_emessage == e_message_sys_key_up)
       {
 
          auto pkey = pmessage->m_union.m_pkey;
@@ -244,7 +244,7 @@ namespace experience
          if(pkey->user_interaction() == this)
          {
 
-            if (pmessage->m_atom == e_message_key_down || pmessage->m_atom == e_message_sys_key_down)
+            if (pmessage->m_emessage == e_message_key_down || pmessage->m_emessage == e_message_sys_key_down)
             {
 
                if (!m_bFullScreenOnMaximize)
@@ -296,7 +296,7 @@ namespace experience
                }
 
             }
-            else if (pmessage->m_atom == e_message_key_up || pmessage->m_atom == e_message_sys_key_up)
+            else if (pmessage->m_emessage == e_message_key_up || pmessage->m_emessage == e_message_sys_key_up)
             {
 
                if (pkey->m_ekey == ::user::e_key_return)
@@ -447,10 +447,10 @@ namespace experience
    void frame_window::message_handler(::message::message * pusermessage)
    {
 
-      //      int iMessage = pusermessage->m_atom;
+      //      int iMessage = pusermessage->id();
 
 
-            //if (pusermessage->m_atom == WM_GETTEXT)
+            //if (pusermessage->id() == WM_GETTEXT)
             //{
 
             //   _008GetWindowText(pusermessage);
@@ -468,7 +468,7 @@ namespace experience
             //   return;
 
             //}
-            //else if (pusermessage->m_atom == WM_GETTEXTLENGTH)
+            //else if (pusermessage->id() == WM_GETTEXTLENGTH)
             //{
 
             //   _008GetWindowTextLength(pusermessage);
@@ -836,7 +836,7 @@ namespace experience
    void frame_window::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == ::id_click && m_pframe != nullptr
+      if (ptopic->id() == ::id_click && m_pframe != nullptr
           && m_pframe
           && m_pframe->get_control_box() != nullptr)
       {
@@ -971,7 +971,7 @@ namespace experience
          }
 
       }
-      else if (ptopic->m_atom == id_app_activated)
+      else if (ptopic->id() == id_app_activated)
       {
 
          frame_toggle_restore(ptopic->m_actioncontext.user_activation_token());
@@ -986,10 +986,10 @@ namespace experience
    void frame_window::on_command(::message::command * pcommand)
    {
 
-      if (pcommand->m_atom == ::e_message_system_command && m_pframe != nullptr)
+      if (pcommand->m_emessage == ::e_message_system_command && m_pframe != nullptr)
       {
 
-         auto ebutton = m_pframe->get_control_box()->get_control_box_button_type(pcommand->m_atom);
+         auto ebutton = m_pframe->get_control_box()->get_control_box_button_type(pcommand->m_atomCommand);
 
          switch (ebutton)
          {

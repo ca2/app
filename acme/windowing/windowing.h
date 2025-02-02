@@ -125,7 +125,7 @@ namespace acme
 
          //// windowing_system
 
-
+         virtual ::pointer < ::user::activation_token > get_user_activation_token();
          //
 
          //windowing_base();
@@ -152,6 +152,8 @@ namespace acme
          //virtual void defer_initialize_windowing();
 
          virtual void initialize_windowing();
+
+         virtual void on_activate();
 
          virtual void finalize_windowing();
 

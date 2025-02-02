@@ -12,7 +12,7 @@ namespace simple_ui
       m_dStockIconPenWidth       = 2.0;
       m_estockicon               = stock_icon_none;
 
-      m_atom                       = "submit";
+      id()                       = "submit";
       m_bDown                    = false;
       m_bMouseMove               = false;
 
@@ -105,7 +105,7 @@ namespace simple_ui
 
          m_bDown = false;
 
-         on_action(m_atom);
+         on_action(id());
 
       }
 
@@ -492,7 +492,7 @@ auto pwindowing = windowing();
       if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
       {
 
-         on_action(m_atom);
+         on_action(id());
 
          pkey->m_bRet = true;
 

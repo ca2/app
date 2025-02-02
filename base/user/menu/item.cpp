@@ -142,11 +142,11 @@ namespace menu
          pitemNewChild->m_bPopup = false;
          if (strCommand.is_empty())
          {
-            pitemNewChild->m_atom = id_separator;
+            pitemNewChild->id() = id_separator;
          }
          else
          {
-            pitemNewChild->m_atom = strCommand;
+            pitemNewChild->id() = strCommand;
             pitemNewChild->m_iLevel = 0;
             pitemNewChild->m_puserinteraction->set_window_text(strCommandTitle);
          }
@@ -191,7 +191,7 @@ namespace menu
 
       auto pitem = __create_new<item>();
 
-      pitem->m_atom = id_separator;
+      pitem->id() = id_separator;
 
       pitem->m_pmenu = m_pmenu;
 
@@ -215,7 +215,7 @@ namespace menu
       if (pnode->get_name() == "separator")
       {
 
-         m_atom = id_separator;
+         id() = id_separator;
 
       }
       else
@@ -225,7 +225,7 @@ namespace menu
 
          //atom = translate_property_id(atom);
 
-         m_atom = atom;
+         m_atomItem = atom;
 
          string strText;
 
@@ -358,7 +358,7 @@ namespace menu
    bool item::is_separator() const
    {
 
-      return m_atom == id_separator;
+      return m_atomItem == id_separator;
 
    }
 
@@ -458,7 +458,7 @@ namespace menu
 
          item * pitem = element_at(i);
 
-         if (pitem->m_atom == atom)
+         if (pitem->id() == atom)
          {
 
             return pitem;
@@ -528,9 +528,9 @@ namespace menu
 
          }
 
-         pinteraction->create_control(pusermenu, pitem->m_atom);
+         pinteraction->create_control(pusermenu, pitem->id());
 
-         //if (!pinteraction->create_control(pmenu, pitem->m_atom))
+         //if (!pinteraction->create_control(pmenu, pitem->id()))
          //{
 
          //   return false;

@@ -33,7 +33,7 @@ protected:
 public:
 
 
-   ::atom                                            m_atom;
+   ::atom                                            id();
    bool                                            m_bRet;
    ::pointer<::layered>                           m_psender;
    ::pointer<::layered>                           m_pobjectTopic;
@@ -83,8 +83,8 @@ public:
    //virtual ~update();
 
 
-   ::update& operator =(const ::atom& atom) { m_atom = atom; return *this; }
-   inline bool operator ==(const ::atom& atom) const { return m_atom == atom || m_atom == FULL_ID; }
+   ::update& operator =(const ::atom& atom) { id() = atom; return *this; }
+   inline bool operator ==(const ::atom& atom) const { return id() == atom || id() == FULL_ID; }
 
    //void set_handled_by(const ::particle * pparticle) { m_handledbya.add((::matter*) pparticle); }
    //bool handled_by(const ::particle * pparticle) const { return m_handledbya.has((::matter*) pparticle); }

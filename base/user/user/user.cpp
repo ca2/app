@@ -446,7 +446,7 @@ namespace base
    }
 
 
-   void user::SendMessageToWindows(const ::atom & atom, wparam wparam, lparam lparam)
+   void user::SendMessageToWindows(::enum_message emessage, ::wparam wparam, ::lparam lparam)
    {
 
       //auto pappBase = get_app();
@@ -468,9 +468,9 @@ namespace base
             if (pinteraction != nullptr && pinteraction->is_window())
             {
 
-               pinteraction->send_message(atom, wparam, lparam);
+               pinteraction->send_message(emessage, wparam, lparam);
 
-               pinteraction->send_message_to_descendants(atom, wparam, lparam);
+               pinteraction->send_message_to_descendants(emessage, wparam, lparam);
 
             }
 
@@ -1130,7 +1130,7 @@ namespace base
       {
 
          pmenuitem->m_pmenu = pmenu;
-         pmenuitem->m_atom = id_separator;
+         pmenuitem->id() = id_separator;
 
       }
       else if (papplicationmenu->is_popup())
@@ -1143,7 +1143,7 @@ namespace base
       {
 
          pmenuitem->m_pmenu = pmenu;
-         pmenuitem->m_atom = papplicationmenu->m_atom;
+         pmenuitem->m_atomItem = papplicationmenu->m_atomMenu;
          pmenuitem->m_strTitle = papplicationmenu->m_strName;
 
       }
@@ -1417,9 +1417,9 @@ namespace base
          throw ::exception(todo);
 
          //application()->add_impact_system(
-         //   m_ptemplateForm->m_atom, 
+         //   m_ptemplateForm->id(), 
          //   __initialize_new ::user::multiple_document_template(
-         //      m_ptemplateForm->m_atom,
+         //      m_ptemplateForm->id(),
          //      m_ptemplateForm->m_typeatomDocument,
          //      m_ptemplateForm->m_typeatomFrame,
          //      typeatom));
@@ -1676,9 +1676,9 @@ namespace base
             throw ::exception(todo);
 
             //add_impact_system(
-            //   m_ptemplateChildForm->m_atom,
+            //   m_ptemplateChildForm->id(),
             //       __initialize_new ::user::multiple_document_template(
-            //   m_ptemplateChildForm->m_atom,
+            //   m_ptemplateChildForm->id(),
             //   typeDocument,
             //   m_ptemplateChildForm->m_typeatomFrame,
             //   typeatom));

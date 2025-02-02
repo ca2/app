@@ -26,7 +26,7 @@ namespace user
 
       m_puserinteractionOwner = nullptr;
 
-      m_atom = atom;
+      id() = atom;
       m_typeatomDocument = typeatomDocument;
       m_typeatomFrame = typeatomFrame;
       m_typeatomImpact = typeatomImpact;
@@ -176,7 +176,7 @@ namespace user
 
       bool bAddToTitle = is_true("add_to_title");
 
-      ASSERT(m_atom.has_character());
+      ASSERT(id().has_character());
 
       ::pointer<::user::system>pusersystem = prequest->m_pmatterUserPayload;
 
@@ -299,7 +299,7 @@ namespace user
       ::pointer<::user::interaction>puserinteractionParent = prequest->m_puserelementParent;
 
       // create ___new from resource
-      if (!pframe->LoadFrame(m_atom,
+      if (!pframe->LoadFrame(id(),
                              //WS_OVERLAPPEDWINDOW |
                              (bAddToTitle ? FWS_ADDTOTITLE : 0),   // default frame styles
          puserinteractionParent,
@@ -420,7 +420,7 @@ namespace user
 //   {
 //      channel::dump(dumpcontext);
 //
-//      //dumpcontext << "m_strMatter = " << m_atom;
+//      //dumpcontext << "m_strMatter = " << id();
 //      //dumpcontext << "\nm_strDocStrings: " << m_strDocStrings;
 //
 //      //if (m_typeatomDocument)

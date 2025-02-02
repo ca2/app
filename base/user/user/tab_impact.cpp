@@ -85,7 +85,7 @@ namespace user
       if (!m_bCreatedTabs)
       {
 
-         if (ptopic->m_atom == id_incoming_document)
+         if (ptopic->id() == id_incoming_document)
          {
 
             create_tabs();
@@ -264,7 +264,7 @@ namespace user
       if(pusermessage->m_wparam == 0 && pusermessage->m_lparam == 0)
       {
 
-         set_current_tab_by_id(m_pimpactdataOld->m_atom);
+         set_current_tab_by_id(m_pimpactdataOld->id());
 
       }
 
@@ -331,7 +331,7 @@ namespace user
 
       m_placeholdera.erase(ptabpane->m_pplaceholder);
 
-      atom idTab = ptabpane->m_atom;
+      atom idTab = ptabpane->id();
 
       ::user::impact_data * pimpactdata = m_impactdatamap[idTab];
 
@@ -351,7 +351,7 @@ namespace user
          if (ptabpaneTop)
          {
 
-            set_current_tab_by_id(ptabpaneTop->m_atom);
+            set_current_tab_by_id(ptabpaneTop->id());
 
          }
 
@@ -701,7 +701,7 @@ namespace user
 
                   __check_refdbg
 
-                  if (iTab >= 0 && get_data()->m_tabpanea[iTab]->m_atom == pimpactdata->m_atom)
+                  if (iTab >= 0 && get_data()->m_tabpanea[iTab]->id() == pimpactdata->id())
                   {
 
                      __check_refdbg
@@ -731,11 +731,11 @@ namespace user
 
          __check_refdbg
 
-         strPlaceHolderId = "place_holder : " + pimpactdata->m_atom.as_string();
+         strPlaceHolderId = "place_holder : " + pimpactdata->id().as_string();
 
          __check_refdbg
 
-         pimpactdata->m_pplaceholder->m_atom = strPlaceHolderId;
+         pimpactdata->m_pplaceholder->id() = strPlaceHolderId;
 
          __check_refdbg
 
@@ -836,11 +836,11 @@ namespace user
 
       if (m_pimpactdataOld
          && m_pimpactdataOld->m_eflag & ::user::e_flag_hide_on_kill_focus
-         && m_pimpactdataOld->m_atom != MENU_IMPACT
-         && m_pimpactdataOld->m_atom != OPTIONS_IMPACT
-         && m_pimpactdataOld->m_atom != APP_OPTIONS_IMPACT
-         && m_pimpactdataOld->m_atom != CONTEXT_OPTIONS_IMPACT
-         && m_pimpactdataOld->m_atom != ABOUT_IMPACT)
+         && m_pimpactdataOld->id() != MENU_IMPACT
+         && m_pimpactdataOld->id() != OPTIONS_IMPACT
+         && m_pimpactdataOld->id() != APP_OPTIONS_IMPACT
+         && m_pimpactdataOld->id() != CONTEXT_OPTIONS_IMPACT
+         && m_pimpactdataOld->id() != ABOUT_IMPACT)
       {
 
          informationf("::user::e_flag_hide_on_kill_focus");
@@ -966,18 +966,18 @@ namespace user
    void tab_impact::on_create_impact(::user::impact_data * pimpactdata)
    {
    
-      if (pimpactdata->m_atom == OPTIONS_IMPACT
-         || pimpactdata->m_atom == APP_OPTIONS_IMPACT
-         || pimpactdata->m_atom == CONTEXT_OPTIONS_IMPACT
-         || pimpactdata->m_atom == ABOUT_IMPACT)
+      if (pimpactdata->id() == OPTIONS_IMPACT
+         || pimpactdata->id() == APP_OPTIONS_IMPACT
+         || pimpactdata->id() == CONTEXT_OPTIONS_IMPACT
+         || pimpactdata->id() == ABOUT_IMPACT)
       {
 
-         m_maphandlerimpact[pimpactdata->m_atom] = create_impact < handler_impact >(pimpactdata);
+         m_maphandlerimpact[pimpactdata->id()] = create_impact < handler_impact >(pimpactdata);
 
-         if (pimpactdata->m_atom == APP_OPTIONS_IMPACT)
+         if (pimpactdata->id() == APP_OPTIONS_IMPACT)
          {
 
-            auto phandlerimpact = m_maphandlerimpact[pimpactdata->m_atom];
+            auto phandlerimpact = m_maphandlerimpact[pimpactdata->id()];
 
             auto functionHandler = [this](auto puserinteraction)
                {
@@ -996,10 +996,10 @@ namespace user
             phandlerimpact->call_handler(functionHandler);
 
          }
-         else if (pimpactdata->m_atom == ABOUT_IMPACT)
+         else if (pimpactdata->id() == ABOUT_IMPACT)
          {
 
-            auto phandlerimpact = m_maphandlerimpact[pimpactdata->m_atom];
+            auto phandlerimpact = m_maphandlerimpact[pimpactdata->id()];
 
             auto functionHandler = [this](auto puserinteraction)
                {
@@ -1015,10 +1015,10 @@ namespace user
          //pimpactdata->m_eflag += ::user::e_flag_hide_all_others_on_show;
 
       }
-      else if (pimpactdata->m_atom.is_text())
+      else if (pimpactdata->id().is_text())
       {
 
-         if (case_insensitive_string_begins(pimpactdata->m_atom.m_str, "form_"))
+         if (case_insensitive_string_begins(pimpactdata->id().m_str, "form_"))
          {
 
             auto puser = user();
@@ -1028,22 +1028,22 @@ namespace user
             if (pformdocument)
             {
 
-               m_mapformdocument[pimpactdata->m_atom] = pformdocument;
+               m_mapformdocument[pimpactdata->id()] = pformdocument;
 
-               pformdocument->m_atom = string("document.") + string(pimpactdata->m_atom);
+               pformdocument->id() = string("document.") + string(pimpactdata->id());
 
                ::user::impact * pimpact = pformdocument->get_impact(0);
 
                pimpactdata->m_puserinteraction = pimpact->parent_frame();
 
-               prepare_form(pimpactdata->m_atom, pformdocument);
+               prepare_form(pimpactdata->id(), pformdocument);
 
             }
 
          }
 
       }
-      else if(pimpactdata->m_atom == MENU_IMPACT)
+      else if(pimpactdata->id() == MENU_IMPACT)
       {
          
          create_impact_menu(pimpactdata);
@@ -1058,7 +1058,7 @@ namespace user
 
       _on_change_cur_sel();
 
-      if (m_pimpactdata->m_atom == MENU_IMPACT)
+      if (m_pimpactdata->id() == MENU_IMPACT)
       {
          
          // create_impact_menu(m_pimpactdata);
@@ -1091,12 +1091,12 @@ namespace user
          return;
          
       }
-      else if (m_pimpactdata->m_atom == CONTEXT_OPTIONS_IMPACT && m_maphandlerimpact[m_pimpactdata->m_atom])
+      else if (m_pimpactdata->id() == CONTEXT_OPTIONS_IMPACT && m_maphandlerimpact[m_pimpactdata->id()])
       {
 
          auto poptionsimpacthandler = m_poptionsimpacthandlerContext;
 
-         auto phandlerimpact = m_maphandlerimpact[m_pimpactdata->m_atom];
+         auto phandlerimpact = m_maphandlerimpact[m_pimpactdata->id()];
 
          if(poptionsimpacthandler && phandlerimpact)
          {
@@ -1203,7 +1203,7 @@ namespace user
 
          //   pmenuitem->m_pmenu = pmenu;
 
-         //   pmenuitem->m_atom = pnotifyiconitem->m_strId;
+         //   pmenuitem->id() = pnotifyiconitem->m_strId;
 
          //   pmenuitem->m_strTitle = pnotifyiconitem->m_strName;
 
@@ -1313,7 +1313,7 @@ namespace user
 
    //            _synchronous_lock synchronouslock(this->synchronization());
 
-   //            if (pimpactdata->m_strCreatorDataTitle.has_character() && ppane->m_atom == pimpactdata->m_atom)
+   //            if (pimpactdata->m_strCreatorDataTitle.has_character() && ppane->id() == pimpactdata->id())
    //            {
 
    //               ppane->set_title(pimpactdata->m_strCreatorDataTitle);
@@ -1349,7 +1349,7 @@ namespace user
 
       }
 
-      return m_pimpactdata->m_atom;
+      return m_pimpactdata->id();
 
    }
 
@@ -1545,26 +1545,26 @@ namespace user
    bool tab_impact::on_prepare_impact_data(::user::impact_data* pimpactdata)
    {
 
-      //if (!add_tab(pimpactdata->m_atom, pimpactdata->m_atomTitle))
+      //if (!add_tab(pimpactdata->id(), pimpactdata->m_atomTitle))
       //{
 
       //   return false;
 
       //}
 
-      auto ptabpane = get_tab_by_id(pimpactdata->m_atom);
+      auto ptabpane = get_tab_by_id(pimpactdata->id());
 
       if (!ptabpane)
       {
 
-         if (!add_tab(pimpactdata->m_strTitle, pimpactdata->m_atom))
+         if (!add_tab(pimpactdata->m_strTitle, pimpactdata->id()))
          {
 
             return false;
 
          }
 
-         ptabpane = get_tab_by_id(pimpactdata->m_atom);
+         ptabpane = get_tab_by_id(pimpactdata->id());
 
       }
 

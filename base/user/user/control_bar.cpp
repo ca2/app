@@ -315,7 +315,7 @@ namespace user
 //
 //      unsigned int message;
 //
-//      message = pmessage->m_atom.umessage();
+//      message = pmessage->m_emessage.umessage();
 //
 //      // handle CBRS_FLYBY style (status bar flyby help)
 //      if (((m_dwStyle & CBRS_FLYBY) ||
@@ -379,7 +379,7 @@ namespace user
 //
 //      unsigned int message;
 //
-//      message = pmessage->m_atom.umessage();
+//      message = pmessage->m_emessage.umessage();
 //
 //      switch (message)
 //      {
@@ -401,7 +401,7 @@ namespace user
 //
 //         // special case for TTN_NEEDTEXTA and TTN_NEEDTEXTW
 ////#ifdef WINDOWS_DESKTOP
-////            if(pmessage->m_atom == WM_NOTIFY)
+////            if(pmessage->m_emessage == WM_NOTIFY)
 ////            {
 ////               NMHDR* pNMHDR = (NMHDR*)pmessage->m_lparam.m_lparam;
 ////               if (pNMHDR->code == TTN_NEEDTEXTA || pNMHDR->code == TTN_NEEDTEXTW)

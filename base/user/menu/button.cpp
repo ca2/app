@@ -126,7 +126,7 @@ namespace user
          
       }
 
-      if (m_atom == "separator")
+      if (id() == "separator")
       {
 
          _001OnButtonDrawBackground(pgraphics);
@@ -244,7 +244,7 @@ namespace user
    void menu_button::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //if (m_atom != "separator")
+      //if (id() != "separator")
       {
 
          ::user::button::_001OnNcDraw(pgraphics);
@@ -272,7 +272,7 @@ namespace user
             if (pmenu)
             {
 
-               uImage = pmenu->command_image(m_pmenuitem->m_atom);
+               uImage = pmenu->command_image(m_pmenuitem->id());
 
             }
 
@@ -374,7 +374,7 @@ namespace user
 
       pmessage->previous();
 
-      ::string strId(m_atom.as_string());
+      ::string strId(id());
 
       if (strId.case_insensitive_begins_eat("application://"))
       {

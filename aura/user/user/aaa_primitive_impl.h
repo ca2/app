@@ -74,7 +74,7 @@ namespace user
       virtual void queue_message_handler(::message::message * pmessage);
 
 
-      virtual ::pointer<::message::message>get_message(const ::atom & atom, wparam wparam, lparam lparam, ::message::enum_prototype eprototype = ::message::e_prototype_none) override;
+      virtual ::pointer<::message::message>get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype = ::message::e_prototype_none) override;
 
 
       virtual void enable_window(bool bEnable = true);
@@ -183,16 +183,16 @@ namespace user
       virtual bool _is_window();
 
       
-      virtual ::lresult send_message(const ::atom& atom, ::wparam wparam = 0, ::lparam lparam = 0, const ::int_point & point = {});
+      virtual ::lresult send_message(const ::atom& atom, ::const ::wparam & wparam = {}, ::const ::lparam & lparam = {}, const ::int_point & point = {});
 
       virtual ::lresult send_message(::message::message * pmessage);
 
       using ::channel::message_handler;
 
-      virtual void message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
+      virtual void message_handler(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
 
      
-      virtual void post_message(const ::atom& atom, wparam wparam = 0, ::lparam lparam = 0);
+      virtual void post_message(const ::atom& atom, const ::wparam & wparam = {}, ::const ::lparam & lparam = {});
       
       virtual void post_message(::message::message* pusermessage);
 
@@ -397,10 +397,10 @@ namespace user
       //virtual ::user::frame_interaction * EnsureParentFrame();
 
 
-      virtual lresult message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::int_point & point = {});
+      virtual lresult message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point = {});
       virtual lresult message_call(::message::message * pmessage);
 
-      virtual void send_message_to_descendants(const ::atom & atom, wparam wParam = 0,lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = false);
+      virtual void send_message_to_descendants(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {},bool bDeep = true,bool bOnlyPerm = false);
 
 
 
@@ -459,7 +459,7 @@ namespace user
       virtual void aaa_impl_clear_keyboard_focus();
 
 
-      //virtual void post_message(const ::atom & atom, ::wparam wparam = 0, lparam lparam = 0);
+      //virtual void post_message(const ::atom & atom, ::const ::wparam & wparam = {}, const ::lparam & lparam = {});
 
       virtual void post_non_client_destroy();
 

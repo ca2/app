@@ -278,21 +278,21 @@ public:
 
 
    //PARTICLE(const class ::atom & atom) :
-   //   m_atom(atom)
+   //   id()(atom)
    //{
 
    //}
 
 
    //PARTICLE(const PARTICLE & topic) :
-   //   m_atom(topic.m_atom)
+   //   id()(topic.id())
    //{
 
    //}
 
 
    //PARTICLE(PARTICLE && topic) :
-   //   m_atom(topic.m_atom)
+   //   id()(topic.id())
    //{
 
    //}
@@ -445,14 +445,14 @@ public:
 
 
    // ThomasBorregaardSorensen!! Like handlers
-   virtual lresult message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
+   virtual lresult message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam);
    virtual void handle(::topic * ptopic, ::context * pcontext);
    virtual void handle_message(::message::message * pmessage);
    virtual void handle_item(::item * pitem);
 
    using subparticle::call;
    // ThomasBorregaardSorensen!! Like handlers
-   virtual lresult call(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
+   virtual lresult message_call(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
    virtual void call_handle(::topic * ptopic, ::context * pcontext);
    virtual void call_handle_message(::message::message* pmessage);
    virtual void call_handle_item(::item* pitem);

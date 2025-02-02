@@ -50,7 +50,7 @@ public:
    //::pointer<command_line>        m_pcommandline;
    ::pointer<::matter>              m_pmatterUserPayload;
    e_window_flag                    m_ewindowflag;
-   ::atom                           m_atom;
+   ::atom                           m_atomRequest;
    //enum_command                   m_ecommand;
    bool                             m_bShowSplash;
    bool                             m_bRunEmbedded;

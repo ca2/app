@@ -266,7 +266,7 @@ namespace userfs
 //
 //      browse(pathInitialBrowse, action_context);
 
-      //ptopic->m_atom = ;
+      //ptopic->id() = ;
 
       //update_all_impacts(pupdate);
 

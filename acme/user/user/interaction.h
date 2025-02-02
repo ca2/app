@@ -63,7 +63,7 @@ namespace acme
          ::pointer <::pointer_array < ::acme::user::interaction >> m_pacmeuserinteractionaChildrenToDestroy;
 
          ////string                                    m_strText;
-         ////::atom                                    m_atom;
+         ////::atom                                    id();
          ////int_rectangle                             m_rectangle;
          ////enum_font                                 m_efont;
          ::pointer<::acme::timer_array>               m_ptimerarray;
@@ -436,7 +436,7 @@ namespace acme
                // void release_mouse_capture() override;
 
 
-               void _on_window_simple_action(const char * pszActionName) override;
+               void _on_window_simple_action(const char * pszActionName, ::user::activation_token * puseractivationtoken) override;
 
 
                //

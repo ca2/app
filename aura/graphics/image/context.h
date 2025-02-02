@@ -5,7 +5,7 @@
 #include "acme/prototype/collection/int_map.h"
 #include "acme/prototype/collection/string_map.h"
 #include "load_options.h"
-#include "save_options.h"
+#include "encoding_options.h"
 
 
 namespace image
@@ -54,7 +54,7 @@ namespace image
       inline ::particle* image_synchronization() { return m_pparticleImageSynchronization; }
 
 
-      ::image::save_options create_save_options(const ::payload & payloadFile);
+      ::image::encoding_options create_encoding_options(const ::payload & payloadFile);
 
 
       ::image::enum_format file_extension_to_format(const ::payload & payloadFile);
@@ -113,8 +113,8 @@ namespace image
       virtual void _load_dib(::image::image *pimage, const ::file::path & pathDib);
 
 
-      virtual void save_image(const ::payload & payloadFile, ::image::image *pimage, const ::image::save_options & saveoptions = ::image::save_options());
-      virtual void save_image(memory & memory, ::image::image *pimage, const ::image::save_options & saveoptions = ::image::save_options());
+      virtual void save_image(const ::payload & payloadFile, ::image::image *pimage, const ::image::encoding_options & encodingoptions = ::image::encoding_options());
+      virtual void save_image(memory & memory, ::image::image *pimage, const ::image::encoding_options & encodingoptions = ::image::encoding_options());
       virtual void save_dib(const ::file::path & path, ::image::image *pimage);
 
 
@@ -123,7 +123,7 @@ namespace image
 
 
       virtual ::image::image_pointer _load_image_from_file(const ::payload & payloadFile, const ::payload & varOptions);
-      virtual void _save_to_file(const ::payload & payloadFile, ::image::image *pimage, const ::image::save_options & saveoptions);
+      virtual void _save_to_file(const ::payload & payloadFile, ::image::image *pimage, const ::image::encoding_options & encodingoptions);
 
       virtual void _load_image(::image::image* pimage, ::pointer<image_frame_array> & pframea, memory & memory);
 

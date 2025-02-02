@@ -106,9 +106,9 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
 
-      void send_message_to_descendants(const ::atom & atom,wparam wParam = 0,lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = 0) override;
+      void send_message_to_descendants(const ::atom & atom,const ::wparam & wparam = {},const ::lparam & lparam = {},bool bDeep = true,bool bOnlyPerm = 0) override;
 
-      //virtual bool post_message(const ::atom & atom,wparam wparam,lparam lparam) override;
+      //virtual bool post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
 
       //void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

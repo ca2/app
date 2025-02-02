@@ -351,10 +351,10 @@ namespace base
 
       auto pbutton = create_button<::user::button>(pparent, "About");
 
-      pbutton->m_callbackOnClick = [this](::user::interaction * puserinteraction, ::item * pitem)
+      pbutton->m_callbackOnClick = [this](::user::interaction * puserinteraction, ::item * pitem, ::user::activation_token * puseractivationtoken)
          {
 
-            show_about_box();
+            show_about_box(puseractivationtoken);
 
             return true;
 
@@ -397,7 +397,7 @@ namespace base
 
          auto pitemNewChild = __create_new<::menu::item>();
          pitemNewChild->m_pmenu = pmenu;
-         pitemNewChild->m_atom = "separator";
+         pitemNewChild->id() = "separator";
          pmenu->m_pmenuitem->add_item(pitemNewChild);
 
       }
@@ -409,7 +409,7 @@ namespace base
 
          auto pitemNewChild = __create_new<::menu::item>();
          pitemNewChild->m_pmenu = pmenu;
-         pitemNewChild->m_atom = "display_about";
+         pitemNewChild->id() = "display_about";
          pitemNewChild->m_strTitle = "About";
          pmenu->m_pmenuitem->add_item(pitemNewChild);
 
@@ -419,10 +419,10 @@ namespace base
    }
 
 
-   void application::show_about_box()
+   void application::show_about_box(::user::activation_token * puseractivationtoken)
    {
 
-      ::axis::application::show_about_box();
+      ::axis::application::show_about_box(puseractivationtoken);
 
       //if (!m_ptabimpactBase)
       //{

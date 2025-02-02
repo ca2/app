@@ -32,7 +32,7 @@ public:
    topic(const ::atom & atom) 
    { 
    
-      m_atom = atom;
+      m_atomMatterId = atom;
       m_bOk = true;
       m_bRet = false;
 

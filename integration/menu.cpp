@@ -158,7 +158,7 @@ namespace app_integration
 
       auto pimpactsystem = pdocument->m_pimpactsystem;
 
-      string strId = pimpactsystem->m_atom;
+      string strId = pimpactsystem->id();
 
       string strText;
 
@@ -193,9 +193,9 @@ namespace app_integration
       if (puserinteraction)
       {
 
-         auto atom = puserinteraction->m_atom;
+         auto atom = puserinteraction->id();
 
-         if (ptopic->m_atom == id_click)
+         if (ptopic->id() == id_click)
          {
 
             if (atom == "openssl")

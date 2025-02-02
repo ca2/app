@@ -215,7 +215,7 @@ namespace filemanager
 
          //::payload varQuery;
 
-         //if (itema.get_count() == 2 && m_atom == "filemanager::main::left")
+         //if (itema.get_count() == 2 && id() == "filemanager::main::left")
          //{
 
          //   {
@@ -239,7 +239,7 @@ namespace filemanager
          //   }
 
          //}
-         //else if (itema.get_count() == 2 && m_atom == "filemanager::main::right")
+         //else if (itema.get_count() == 2 && id() == "filemanager::main::right")
          //{
 
          //   {
@@ -270,7 +270,7 @@ namespace filemanager
 
          //   //varQuery = itema.get_var_query();
 
-         //   //varQuery["::filemanager::atom"] = m_atom;
+         //   //varQuery["::filemanager::atom"] = id();
 
          auto pcallback = pfilemanagerdata->m_pfilemanagercallback;
 
@@ -428,7 +428,7 @@ namespace filemanager
    void document::on_update_data(::data::data * pdata, ::topic * ptopic, const ::action_context & context)
    {
 
-      if (ptopic->m_atom == id_browse)
+      if (ptopic->id() == id_browse)
       {
 
          OnFileManagerBrowse(::e_source_sync);
@@ -573,7 +573,7 @@ namespace filemanager
 
    ///*          ::pointer<main_frame>pframe = get_impact()->get_typed_parent < main_frame >();
 
-   //          if (pframe.is_set() && !pframe->m_atom.to_string().contains("::frame"))
+   //          if (pframe.is_set() && !pframe->id().to_string().contains("::frame"))
    //          {
 
    //             pframe->set_data_key_modifier(m_strManagerId);
@@ -848,7 +848,7 @@ namespace filemanager
       if (pfilemanagerdata != nullptr)
       {
 
-         if (pcommand->m_atom == "levelup")
+         if (pcommand->m_atomCommand == "levelup")
          {
 
             FileManagerOneLevelUp(::e_source_user);
@@ -868,7 +868,7 @@ namespace filemanager
 
    void document::on_command_probe(::message::command * pcommand)
    {
-      /*if(pcommand->m_atom == filemanager_template()->m_strLevelUp)
+      /*if(pcommand->m_atomCommand == filemanager_template()->m_strLevelUp)
       {
       FileManagerOnUpdateLevelUp(pcommand);
       return true;
@@ -1307,7 +1307,7 @@ namespace filemanager
 //
 //      browse(pathInitialBrowse, action_context);
 //
-//      //ptopic->m_atom = ;
+//      //ptopic->id() = ;
 //
 //      //update_all_impacts(pupdate);
 //
@@ -1388,7 +1388,7 @@ namespace filemanager
             if (pfilemanagerdata->m_pfilemanagercallback != nullptr)
             {
 
-               if (pfilemanagerdata->m_pfilemanagercallback->get_file_manager_item_callback(pfilemanagerdata, pcommand->m_atom, itema))
+               if (pfilemanagerdata->m_pfilemanagercallback->get_file_manager_item_callback(pfilemanagerdata, pcommand->m_atomCommand, itema))
                {
 
                   pfilemanagerdata->m_pfilemanagercallback->on_file_manager_item_update(pfilemanagerdata, pcommand, itema);
@@ -1413,10 +1413,10 @@ namespace filemanager
             if (::is_set(pcallback))
             {
 
-               if (pcallback->get_file_manager_item_callback(pfilemanagerdata, pcommand->m_atom, itema))
+               if (pcallback->get_file_manager_item_callback(pfilemanagerdata, pcommand->m_atomCommand, itema))
                {
 
-                  pcallback->on_file_manager_item_command(pfilemanagerdata, pcommand->m_atom, itema);
+                  pcallback->on_file_manager_item_command(pfilemanagerdata, pcommand->m_atomCommand, itema);
 
                   return true;
 
@@ -1597,7 +1597,7 @@ namespace filemanager
    //   //if (!m_pfilemanagerdata)
    //   //{
 
-   //   //   m_pfilemanagerdata = puser->filemanager(prequest->m_atom);
+   //   //   m_pfilemanagerdata = puser->filemanager(prequest->id());
 
    //   //}
 

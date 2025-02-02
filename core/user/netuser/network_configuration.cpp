@@ -120,10 +120,10 @@ namespace usernet
 
       //// auto pcontext = get_context();
 
-      if(ptopic->m_atom == ::id_click)
+      if(ptopic->id() == ::id_click)
       {
 
-         if(ptopic->user_interaction()->m_atom == "submit")
+         if(ptopic->user_interaction()->id() == "submit")
          {
 
             auto pinteraction = m_pimpact->get_child_by_name("server");

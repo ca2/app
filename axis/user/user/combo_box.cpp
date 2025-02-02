@@ -1117,7 +1117,7 @@ namespace user
 
       //}
 
-      if (ptopic->m_atom == ::id_after_change_cur_sel)
+      if (ptopic->id() == ::id_after_change_cur_sel)
       {
 
          auto puserinteraction = ptopic->user_interaction();
@@ -1178,7 +1178,7 @@ namespace user
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
-//      switch (pusermessage->m_atom)
+//      switch (pusermessage->id())
 //      {
 //      case WM_DRAWITEM:
 //#ifdef WINDOWSEX

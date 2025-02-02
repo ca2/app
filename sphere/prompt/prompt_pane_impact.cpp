@@ -108,7 +108,7 @@ namespace prompt
 
    void pane_impact::on_create_impact(::user::impact_data * pimpactdata)
    {
-      switch(pimpactdata->m_atom)
+      switch(pimpactdata->id())
       {
       case CONTEXT_MENU_IMPACT:
       {
@@ -247,14 +247,14 @@ namespace prompt
          ::pointer<::user::impact>pimpact = pdocument->get_typed_impact < ::user::impact > ();
          auto pupdate = new_update();
          pupdate->m_actioncontext = ::e_source_system;
-         ptopic->m_atom = id_browse;
+         ptopic->id() = id_browse;
          ptopic->payload(id_form) = "filemanager\\replace_name_in_file_system.xhtml";
          pdocument->update_all_impacts(pupdate);
 
-         ptopic->m_atom = id_get_form_impact;
+         ptopic->id() = id_get_form_impact;
          pdocument->update_all_impacts(pupdate);
 
-         ptopic->m_atom = id_after_browse;
+         ptopic->id() = id_after_browse;
          pdocument->update_all_impacts(pupdate);
 
 
@@ -279,7 +279,7 @@ namespace prompt
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      set_current_tab_by_id(m_pimpactdataOld->m_atom);
+      set_current_tab_by_id(m_pimpactdataOld->id());
 
    }
 

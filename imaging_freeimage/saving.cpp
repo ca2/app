@@ -2,7 +2,7 @@
 #include "image_context.h"
 ////#include "acme/exception/exception.h"
 #include "aura/graphics/image/image.h"
-#include "aura/graphics/image/save_options.h"
+#include "aura/graphics/image/encoding_options.h"
 
 
 #include <FreeImage.h>
@@ -191,13 +191,22 @@ namespace imaging_freeimage
    }
 
 
-   void image_context::save_image(memory & memory, ::image::image *pimage, const ::image::save_options & saveoptions)
+   void image_context::save_image(memory & memory, ::image::image *pimage, const ::image::encoding_options & encodingoptions)
    {
 
       if (::is_null(pimage))
       {
 
          throw ::exception(error_invalid_empty_argument);
+
+      }
+
+      auto eformat = encodingoptions.m_eformat;
+
+      if (eformat == ::image::e_format_none)
+      {
+
+         eformat = ::image::e_format_png;
 
       }
 
@@ -209,42 +218,42 @@ namespace imaging_freeimage
 
       int iFreeImageSave = 0;
 
-      FREE_IMAGE_FORMAT eformat = (FREE_IMAGE_FORMAT)0;
+      FREE_IMAGE_FORMAT efreeimageformat = (FREE_IMAGE_FORMAT)0;
 
       string strFile;
 
-      switch (saveoptions.m_eformat)
+      switch (eformat)
       {
       case ::image::e_format_png:
-         eformat = FreeImage_GetFIFFromFormat("PNG");
+         efreeimageformat = FreeImage_GetFIFFromFormat("PNG");
          strFile = "foo.png";
          break;
       case ::image::e_format_bmp:
-         eformat = FIF_BMP;
+         efreeimageformat = FIF_BMP;
          strFile = "foo.bmp";
          break;
       case ::image::e_format_gif:
          b8 = true;
-         eformat = FIF_GIF;
+         efreeimageformat = FIF_GIF;
          strFile = "foo.gif";
          break;
       case ::image::e_format_jpeg:
          b24 = true;
-         eformat = FreeImage_GetFIFFromFormat("JPEG");
+         efreeimageformat = FreeImage_GetFIFFromFormat("JPEG");
          strFile = "foo.jpg";
-         if (saveoptions.m_iQuality > 80)
+         if (encodingoptions.m_iQuality > 80)
          {
             iFreeImageSave |= JPEG_QUALITYSUPERB;
          }
-         else if (saveoptions.m_iQuality > 67)
+         else if (encodingoptions.m_iQuality > 67)
          {
             iFreeImageSave |= JPEG_QUALITYGOOD;
          }
-         else if (saveoptions.m_iQuality > 33)
+         else if (encodingoptions.m_iQuality > 33)
          {
             iFreeImageSave |= JPEG_QUALITYNORMAL;
          }
-         else if (saveoptions.m_iQuality > 15)
+         else if (encodingoptions.m_iQuality > 15)
          {
             iFreeImageSave |= JPEG_QUALITYAVERAGE;
          }
@@ -257,7 +266,7 @@ namespace imaging_freeimage
          throw ::exception(error_bad_argument);
       }
 
-      eformat = FreeImage_GetFIFFromFilename(strFile);
+      efreeimageformat = FreeImage_GetFIFFromFilename(strFile);
 
 
       FIMEMORY * pfm1 = FreeImage_OpenMemory();
@@ -281,7 +290,7 @@ namespace imaging_freeimage
          bConv = false;
       }
 
-      bOk = FreeImage_SaveToMemory(eformat, pfi8, pfm1, iFreeImageSave) != false;
+      bOk = FreeImage_SaveToMemory(efreeimageformat, pfi8, pfm1, iFreeImageSave) != false;
 
       unsigned char * pbData = nullptr;
       DWORD dwSize = 0;

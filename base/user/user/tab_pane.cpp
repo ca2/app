@@ -74,7 +74,7 @@ namespace user
       {
 
          m_ptab = pane.m_ptab;
-         m_atom = pane.m_atom;
+         m_atomMatterId = pane.m_atomMatterId;
          m_textTitle = pane.m_textTitle;
          m_pimage = pane.m_pimage;
          m_pplaceholder = pane.m_pplaceholder;

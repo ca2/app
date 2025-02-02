@@ -133,10 +133,10 @@ namespace user
 
       // try to find exclusive id for the ___new impact kit
 
-      while (find_impact_kit(pimpactkit->m_atom))
+      while (find_impact_kit(pimpactkit->id()))
       {
 
-         pimpactkit->m_atom = pimpactkit->m_atom.as_huge_integer() + 1;
+         pimpactkit->id() = pimpactkit->id().as_huge_integer() + 1;
 
       }
 
@@ -151,7 +151,7 @@ namespace user
       for (auto & pimpactkit : m_impactkita)
       {
 
-         if (pimpactkit->m_atom == atom)
+         if (pimpactkit->id() == atom)
          {
 
             return pimpactkit;
@@ -209,13 +209,13 @@ namespace user
                if (pitem->m_strIcon.has_character())
                {
 
-                  add_impact_with_icon(pitem->m_strName, pitem->m_strIcon, pitem->m_atom, pitem->m_bVisible, pitem->m_bPermanent);
+                  add_impact_with_icon(pitem->m_strName, pitem->m_strIcon, pitem->id(), pitem->m_bVisible, pitem->m_bPermanent);
 
                }
                else
                {
 
-                  add_impact(pitem->m_strName, pitem->m_atom, pitem->m_bVisible, pitem->m_bPermanent);
+                  add_impact(pitem->m_strName, pitem->id(), pitem->m_bVisible, pitem->m_bPermanent);
 
                }
 
@@ -294,7 +294,7 @@ namespace user
       catch (const impact_exception & impactexception)
       {
 
-         if (impactexception.m_atom == atom)
+         if (impactexception.m_atomImpactException == atom)
          {
 
             //::acme::del(pimpactdata);
@@ -534,7 +534,7 @@ namespace user
    //   }
    //   catch (const exception& exception)
    //   {
-   //      if (exception.m_atom == pimpactdata->m_atom)
+   //      if (exception.id() == pimpactdata->id())
    //      {
 
    //         //::acme::del(pimpactdata);
@@ -549,7 +549,7 @@ namespace user
    //   catch (const ::exception & exception)
    //   {
 
-   //      m_impactdatamap.erase_key(pimpactdata->m_atom);
+   //      m_impactdatamap.erase_key(pimpactdata->id());
 
    //      handle_exception(exception);
 
@@ -664,7 +664,7 @@ namespace user
       //   && pupdown->m_eupdown != updown_none)
       //{
 
-      //   string strImpact = pupdown->m_atom;
+      //   string strImpact = pupdown->id();
 
       //   auto& app = papp;
 
@@ -696,7 +696,7 @@ namespace user
       //   && pupdown->m_eupdown != updown_none)
       //{
 
-      //   string strImpact = pupdown->m_atom;
+      //   string strImpact = pupdown->id();
 
       //   auto pdataclient = papp->cast < ::database::client > ();
 
@@ -726,7 +726,7 @@ namespace user
       //   && pupdown->m_eupdown != updown_none)
       //{
 
-      //   string strImpact = pupdown->m_atom;
+      //   string strImpact = pupdown->id();
 
       //   auto pdataclient = papp->cast < ::database::client >();
 
@@ -756,7 +756,7 @@ namespace user
          && pupdown->m_eupdown != updown_none)
       {
 
-         string strImpact = pupdown->m_atom;
+         string strImpact = pupdown->id();
 
          auto pdataclient = papp->cast < ::database::client >();
 
@@ -811,7 +811,7 @@ namespace user
    ::user::place_holder * impact_host::updown_target_get_place_holder(::user::interaction* pinteraction, ::user::document* pdocument)
    {
 
-      auto pimpactdata = impact_host_get_impact_data(pinteraction->m_atom, pinteraction, pdocument);
+      auto pimpactdata = impact_host_get_impact_data(pinteraction->id(), pinteraction, pdocument);
 
       if (::is_null(pimpactdata))
       {

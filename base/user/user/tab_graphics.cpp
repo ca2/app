@@ -137,7 +137,7 @@ namespace user
 
          ::user::e_state estate = ::user::e_state_none;
 
-         if (get_data()->m_idaSel.contains(ppane->m_atom))
+         if (get_data()->m_idaSel.contains(ppane->id()))
          {
 
             estate |= ::user::e_state_selected;
@@ -197,7 +197,7 @@ namespace user
             if (true)
             {
 
-               if (get_data()->m_idaSel.contains(ppane->m_atom))
+               if (get_data()->m_idaSel.contains(ppane->id()))
                {
 
                   ppath->add_line(rectangleBorder.right(), rectangleBorder.bottom(), rectangleBorder.left() + 1, rectangleBorder.bottom());
@@ -305,7 +305,7 @@ namespace user
 
                auto ppath = __øcreate < ::draw2d::path >();
 
-               if (get_data()->m_idaSel.contains(ppane->m_atom))
+               if (get_data()->m_idaSel.contains(ppane->id()))
                {
 
                   ppath->add_line(rectangleBorder.left(), rectangleX.bottom(), rectangleBorder.left(), rectangleBorder.top());
@@ -599,7 +599,7 @@ namespace user
 
             }
 
-            if (get_data()->m_idaSel.contains(ppane->m_atom))
+            if (get_data()->m_idaSel.contains(ppane->id()))
             {
 
                auto ppen = __øcreate < ::draw2d::pen >();

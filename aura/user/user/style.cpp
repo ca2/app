@@ -113,9 +113,9 @@ namespace user
    void style::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == id_user_style_change 
-         || ptopic->m_atom == id_operating_system_user_theme_change
-         || ptopic->m_atom == id_operating_system_user_color_change)
+      if (ptopic->id() == id_user_style_change 
+         || ptopic->id() == id_operating_system_user_theme_change
+         || ptopic->id() == id_operating_system_user_color_change)
       {
 
          m_iUpdate++;

@@ -56,15 +56,15 @@ namespace user
 
          m_puiLabel = m_pstill;
 
-         m_pstill->create_control(get_parent(), "still_" + m_atom);
+         m_pstill->create_control(get_parent(), "still_" + id());
 
       }
 
-      m_pbuttonMinus->create_control(this, m_atom + "_minus");
+      m_pbuttonMinus->create_control(this, id() + "_minus");
 
       m_pbuttonMinus->set_window_text("-");
 
-      m_pbuttonPlus->create_control(this, m_atom + "_plus");
+      m_pbuttonPlus->create_control(this, id() + "_plus");
 
       m_pbuttonPlus->set_window_text("+");
 
@@ -231,7 +231,7 @@ namespace user
    void plus_minus::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == ::id_click)
+      if (ptopic->id() == ::id_click)
       {
 
          if (ptopic->user_interaction() == m_pbuttonMinus || ptopic->user_interaction() == m_pbuttonPlus)

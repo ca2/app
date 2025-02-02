@@ -895,7 +895,7 @@ namespace user
 
       ::user::impact::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == id_after_change_text)
+      if (ptopic->id() == id_after_change_text)
       {
 
          throw ::exception(todo, "core");
@@ -970,7 +970,7 @@ namespace user
 
          ptopic->m_pitem = current_item();
 
-         ptopic->m_atom = ::id_after_change_cur_sel;
+         ptopic->id() = ::id_after_change_cur_sel;
 
          route(ptopic);
 

@@ -24,6 +24,7 @@ namespace acme
       class ::time         m_time;
       huge_integer         m_iTimestamp;
       ::double_point       m_pointMessage;
+      ::enum_message       m_emessage;
       wparam               m_wparam;
       lparam               m_lparam;
       lresult              m_lresult;
@@ -32,6 +33,9 @@ namespace acme
 
       virtual ::user::activation_token * user_activation_token();
 
+   private:
+
+      int id() { return 0; }
 
    };
 

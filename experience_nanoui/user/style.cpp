@@ -110,7 +110,7 @@ namespace experience_nanoui
 
          ::user::e_state estate = ::user::e_state_none;
 
-         if (ptab->get_data()->m_idaSel.contains(ppane->m_atom))
+         if (ptab->get_data()->m_idaSel.contains(ppane->id()))
          {
 
             estate |= ::user::e_state_selected;
@@ -179,7 +179,7 @@ namespace experience_nanoui
 
             auto ppath = __øcreate < ::draw2d::path > ();
 
-            if(ptab->get_data()->m_idaSel.contains(ppane->m_atom))
+            if(ptab->get_data()->m_idaSel.contains(ppane->id()))
             {
 
                ppath->begin_figure();
@@ -303,7 +303,7 @@ namespace experience_nanoui
 
             auto ppath = __øcreate < ::draw2d::path >();
 
-            if(ptab->get_data()->m_idaSel.contains(ppane->m_atom))
+            if(ptab->get_data()->m_idaSel.contains(ppane->id()))
             {
 
                if (iPane != iCurrentTab)

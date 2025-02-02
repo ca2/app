@@ -51,11 +51,11 @@ namespace user
 //         {
 //         case e_control_type_static:
 //         {
-//            /*xxx            CTransparentStatic * pstatic = (CTransparentStatic *) window::FromHandlePermanent(pform->get_child_by_id(pinteraction->m_atom)->GetSafeoswindow_());
+//            /*xxx            CTransparentStatic * pstatic = (CTransparentStatic *) window::FromHandlePermanent(pform->get_child_by_id(pinteraction->id())->GetSafeoswindow_());
 //                        if(pstatic == nullptr || !base_class < CTransparentStatic >::bases(pstatic))
 //                        {
 //                           pstatic = ___new CTransparentStatic();
-//                           VERIFY(pstatic->subclass_window(pform->get_child_by_id(pinteraction->m_atom)->GetSafeoswindow_()));
+//                           VERIFY(pstatic->subclass_window(pform->get_child_by_id(pinteraction->id())->GetSafeoswindow_()));
 //                        }
 //                        pinteraction->m_unionwndptr.m_pstatic = pstatic;*/
 //         }
@@ -226,7 +226,7 @@ namespace user
       //{
       //case BN_CLICKED:
       //{
-      //   /*      linux   ::user::button * pbutton = (::user::button *) get_child_by_id(pinteraction->m_atom);
+      //   /*      linux   ::user::button * pbutton = (::user::button *) get_child_by_id(pinteraction->id());
       //            int i = pbutton->get_check() != 0;
       //            VmsDataSet(pinteraction->m_dataid, 0, 0, i);*/
       //}
@@ -262,7 +262,7 @@ namespace user
       //{
       //case CBN_SELCHANGE:
       //{
-      //   /* linux         ::pointer<::user::combo_box>pcombo = (::pointer<::user::combo_box>get_child_by_id(pinteraction->m_atom);
+      //   /* linux         ::pointer<::user::combo_box>pcombo = (::pointer<::user::combo_box>get_child_by_id(pinteraction->id());
       //            int iSel = pcombo->current_item();
       //            if(iSel != CB_ERR)
       //            {
@@ -427,7 +427,7 @@ namespace user
 
       }
 
-      if (ptopic->m_atom == ::id_tab_key)
+      if (ptopic->id() == ::id_tab_key)
       {
 
          ::pointer<::user::interaction_base>pfocus = ptopic->user_interaction()->keyboard_get_next_focusable();
@@ -440,7 +440,7 @@ namespace user
          }
 
       }
-      else if (ptopic->m_atom == ::id_click)
+      else if (ptopic->id() == ::id_click)
       {
 
          ::pointer<interaction>pinteraction = ptopic->user_interaction();
@@ -469,7 +469,7 @@ namespace user
          }
 
       }
-      else if (ptopic->m_atom == ::id_set_check && ptopic->m_actioncontext.is_user_source())
+      else if (ptopic->id() == ::id_set_check && ptopic->m_actioncontext.is_user_source())
       {
 
          ::pointer<interaction>pinteraction = ptopic->user_interaction();
@@ -606,7 +606,7 @@ namespace user
       //int i;
       //if(datastream()->get(pinteraction->m_strDataKey, i))
       //{
-      //   /* linux      ::user::button * pbutton = (::user::button *) get_child_by_id(pinteraction->m_atom);
+      //   /* linux      ::user::button * pbutton = (::user::button *) get_child_by_id(pinteraction->id());
       //         pbutton->SetCheck((i != 0) ? 1 : 0); */
       //}
    }
@@ -623,7 +623,7 @@ namespace user
             iptr iSel = pinteraction->GetComboBox()->m_dwaData.find_first((unsigned int) i);
             if(iSel >= 0)
             {
-               ::pointer<::user::combo_box>pcombo = (::pointer<::user::combo_box>get_child_by_id(pinteraction->m_atom);
+               ::pointer<::user::combo_box>pcombo = (::pointer<::user::combo_box>get_child_by_id(pinteraction->id());
                pcombo->set_current_item(iSel);
             }
          }*/
@@ -698,7 +698,7 @@ throw_todo();
 
       ASSERT(pinteraction->get_control_type() == e_control_type_simple_list);
 
-      /*      ::user::list * plist = dynamic_cast<::user::list *>(get_child_by_id(pinteraction->m_atom));
+      /*      ::user::list * plist = dynamic_cast<::user::list *>(get_child_by_id(pinteraction->id()));
 
             if(typeid(plist->GetDataInterface()) == ::type < ::user::simple_mesh_data >())
             {
@@ -948,7 +948,7 @@ throw_todo();
 
             string str;
 
-            str = papp->load_string(pinteraction->m_atom);
+            str = papp->load_string(pinteraction->id());
 
             pinteraction->set_window_text(str);
 
@@ -1109,7 +1109,7 @@ throw_todo();
 //   //            ASSERT(pinteraction->m_type->IsDerivedFrom(::type < window >()));
 //               if(descriptor.m_pcontrol.is_set())
 //               {
-//                  //window_id wndidTemp = get_child_by_id(pinteraction->m_atom)->GetSafeoswindow_();
+//                  //window_id wndidTemp = get_child_by_id(pinteraction->id())->GetSafeoswindow_();
 //                  //if(wndidTemp != nullptr)
 //                  {
 //             //xxx        VERIFY(pinteraction->m_puserinteraction->subclass_window(wndidTemp));
@@ -1219,7 +1219,7 @@ throw_todo();
 
    }
 
-   //if (ptopic->m_atom == ::id_form_initialize)
+   //if (ptopic->id() == ::id_form_initialize)
    //{
 
    //   call_sync(get_document()->m_mapRunnablea["load"]);
@@ -1239,7 +1239,7 @@ throw_todo();
 
    //   }
 
-   //   if(ptopic->m_atom == ::id_tab_key)
+   //   if(ptopic->id() == ::id_tab_key)
    //   {
 
    //      ::pointer<::user::interaction_base>pfocus = ptopic->user_interaction()->keyboard_get_next_focusable();
@@ -1252,7 +1252,7 @@ throw_todo();
    //      }
 
    //   }
-   //   else if(ptopic->m_atom == ::id_click)
+   //   else if(ptopic->id() == ::id_click)
    //   {
 
    //      ::pointer<interaction>pinteraction = ptopic->user_interaction();
@@ -1281,7 +1281,7 @@ throw_todo();
    //      }
 
    //   }
-   //   else if(ptopic->m_atom == ::id_set_check && ptopic->m_actioncontext.is_user_source())
+   //   else if(ptopic->id() == ::id_set_check && ptopic->m_actioncontext.is_user_source())
    //   {
 
    //      ::pointer<interaction>pinteraction = ptopic->user_interaction();

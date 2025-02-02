@@ -78,7 +78,7 @@ return {};
 
    //void destroy() override{}
 
-   //void SendMessageToWindows(const ::atom & atom, wparam wParam, lparam lParam) override{}
+   //void SendMessageToWindows(::enum_message emessage, ::wparam wparam, ::lparam lparam) override{}
 
    //void term() override{}
 

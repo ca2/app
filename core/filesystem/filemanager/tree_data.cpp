@@ -1461,7 +1461,7 @@ _001SelectItem(pchild);
 
       ::filemanager_impact_base::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == id_browse)
+      if (ptopic->id() == id_browse)
       {
 
          auto pfilemanagerdata = filemanager_data();

@@ -17,15 +17,17 @@ namespace graphics
 
       
       ::e_graphics                  m_egraphics;
-      ::image::image_pointer               m_pimage2;
+      ::image::image_pointer        m_pimage2;
       ::mutex_pointer               m_pmutex;
       ::draw2d::graphics_pointer    m_pgraphics;
-      ::int_point                   m_point;
-      ::int_size                    m_size;
-      ::particle_pointer      m_pparticleData;
-      manual_reset_happening            m_manualresethappening;
+      ::int_point                   m_pointBufferItemDraw;
+      ::int_size                    m_sizeBufferItemDraw;
+      ::int_point                   m_pointBufferItemWindow;
+      ::int_size                    m_sizeBufferItemWindow;
+      ::particle_pointer            m_pparticleData;
+      manual_reset_happening        m_manualresethappening;
       ::int_size                    m_sizeInternal;
-      int                         m_iScan;
+      int                           m_iScan;
 
 
       ::draw2d::graphics_pointer g();

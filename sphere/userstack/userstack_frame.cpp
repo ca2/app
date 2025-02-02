@@ -231,12 +231,12 @@ namespace userstack
    void frame::message_queue_message_handler(::message::message * pmessage)
    {
       ::pointer<::user::message>pusermessage(pmessage);
-      if(pusermessage->m_atom == (WM_APP + 2000))
+      if(pusermessage->id() == (WM_APP + 2000))
       {
          _001OnApp2000(pusermessage);
          pusermessage->m_bRet = true;
       }
-      else if(pusermessage->m_atom == WM_COPYDATA)
+      else if(pusermessage->id() == WM_COPYDATA)
       {
 #ifdef WINDOWS_DESKTOP
          int iEdge = 0;

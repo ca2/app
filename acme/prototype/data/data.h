@@ -28,7 +28,7 @@ namespace data
 
 
       listener_array                m_listenera;
-      ::atom                        m_atom;
+      ::atom                        m_atomData;
       bool                          m_bNew;
       ::pointer < ::user::controller >          m_pusercontroller;
 

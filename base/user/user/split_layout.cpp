@@ -273,7 +273,7 @@ namespace user
 
       CalcSplitBarRect(iIndex, splitRect);
 
-      if(pMsg->m_atom == e_message_left_button_down)
+      if(pMsg->m_emessage == e_message_left_button_down)
       {
 
          if(session()->is_mouse_button_pressed(::user::e_mouse_left_button))
@@ -290,7 +290,7 @@ namespace user
          }
 
       }
-      else if(pMsg->m_atom == e_message_left_button_up)
+      else if(pMsg->m_emessage == e_message_left_button_up)
       {
 
          if(m_iState != stateInitial)
@@ -303,7 +303,7 @@ namespace user
          }
 
       }
-      else if(pMsg->m_atom == e_message_mouse_move)
+      else if(pMsg->m_emessage == e_message_mouse_move)
       {
 
 //         int   fwKeys = (int) pMsg->wParam;        // key flags
@@ -968,7 +968,7 @@ namespace user
 
       }
 
-      ppane->m_atom = atom.is_empty() ? (::atom) iIndex : atom;
+      ppane->id() = atom.is_empty() ? (::atom) iIndex : atom;
 
       ppane->m_bFixedSize = bFixedSize;
 
@@ -1057,7 +1057,7 @@ namespace user
 
       }
 
-      ppane->m_atom = atom.is_empty() ? (::atom) iIndex : atom;
+      ppane->id() = atom.is_empty() ? (::atom) iIndex : atom;
 
       m_panea[iIndex]->m_bFixedSize = bFixedSize;
 
@@ -1154,7 +1154,7 @@ namespace user
    }
 
 
-//   void split_layout::RelayEventSplitBar(::collection::index iSplitBar, const ::atom & atom, WPARAM wParam, LPARAM lParam)
+//   void split_layout::RelayEventSplitBar(::collection::index iSplitBar, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
 //   {
 //
 //      ASSERT(false);
@@ -1341,7 +1341,7 @@ namespace user
 
       auto & ppane = m_panea[iPane];
 
-      return ppane->m_atom;
+      return ppane->id();
 
    }
 
@@ -1352,7 +1352,7 @@ namespace user
       for(::collection::index iPane = 0; iPane < m_panea.get_count(); iPane++)
       {
 
-         if (m_panea[iPane]->m_atom == atom)
+         if (m_panea[iPane]->id() == atom)
          {
 
             return m_panea[iPane].get();

@@ -42,6 +42,10 @@ namespace innate_ui
 
    }
 
+   void window::show_front(::user::activation_token * puseractivationtoken)
+   {
+
+   }
 
    void window::center()
    {

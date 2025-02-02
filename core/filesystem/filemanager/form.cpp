@@ -23,10 +23,10 @@ namespace filemanager
    void form::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(ptopic->m_atom == ::id_click)
+      if(ptopic->id() == ::id_click)
       {
 
-         if(ptopic->user_interaction()->m_atom == "lfs")
+         if(ptopic->user_interaction()->id() == "lfs")
          {
 
             auto ptopic = create_topic(id_browse);
@@ -41,7 +41,7 @@ namespace filemanager
             pinteraction->set_text(filemanager_item()->user_path(), ::e_source_user);
 
          }
-         else if(ptopic->user_interaction()->m_atom == "ftp")
+         else if(ptopic->user_interaction()->id() == "ftp")
          {
 
             auto ptopic = create_topic(id_browse);
@@ -51,7 +51,7 @@ namespace filemanager
             ::user::form_impact::get_document()->update_all_impacts(ptopic);
 
          }
-         //else if(ptopic->user_interaction()->m_atom == "submit")
+         //else if(ptopic->user_interaction()->id() == "submit")
          //{
 
          //   if(m_strPath == "filemanager_add_location_lfs.xhtml")

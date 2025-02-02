@@ -859,7 +859,7 @@ void html_form::handle(::topic * ptopic, ::context * pcontext)
    ////__update(::update)
    {
 
-      if (ptopic->m_atom == id_document_complete)
+      if (ptopic->id() == id_document_complete)
       {
 
          //m_phtmldata = get_html_data();

@@ -365,7 +365,9 @@ namespace windows
       if (wmId == 123)
       {
 
-         application()->show_about_box();
+         auto puseractiovationtoken = system()->acme_windowing()->get_user_activation_token();
+
+         application()->show_about_box(puseractiovationtoken);
 
          lresult = 0;
 
@@ -427,6 +429,12 @@ namespace windows
 
       ::windows::window * pwindow = nullptr;
 
+      if (msg == (WM_USER + 123))
+      {
+
+         ::information() << "::windows::window_procedure WM_USER + 123";
+
+      }
       if (msg == WM_NCCREATE)
       {
 

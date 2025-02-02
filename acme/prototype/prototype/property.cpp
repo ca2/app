@@ -252,7 +252,7 @@ void property_skip_network_payload_payload(::ansi_range & range)
 string & property::get_network_arguments(::string & str) const
 {
 
-   str += ::url::encode(m_atom);
+   str += ::url::encode(m_atomName);
 
    str += "=";
 
@@ -1907,7 +1907,7 @@ void on_property_destruct(property* pproperty)
 CLASS_DECL_ACME binary_stream& binary_stream_write_property(::binary_stream& stream, const property& property)
 {
 
-   stream << property.m_atom;
+   stream << property.m_atomName;
 
    stream << (::payload&)property;
 
@@ -1919,7 +1919,7 @@ CLASS_DECL_ACME binary_stream& binary_stream_write_property(::binary_stream& str
 CLASS_DECL_ACME binary_stream& binary_stream_read_property(::binary_stream& stream, property& property)
 {
 
-   stream >> property.m_atom;
+   stream >> property.m_atomName;
 
    stream >> (::payload&)property;
 

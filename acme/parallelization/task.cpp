@@ -655,7 +655,7 @@ void task::__priority_and_affinity()
 //      //      if (!pthreadParent->task_add(this))
 //      //      {
 //
-//      //         if (pthreadParent->m_atom.case_insensitive_begins("predicate_thread") && m_atom.case_insensitive_begins("predicate_thread"))
+//      //         if (pthreadParent->id().case_insensitive_begins("predicate_thread") && id().case_insensitive_begins("predicate_thread"))
 //      //         {
 //
 //      //            pthreadParent->task_erase(this);
@@ -1161,7 +1161,13 @@ void task::stop_task()
 
       auto bTasksFinished = set_children_to_finish_and_check_them_finished();
 
-      if (!bTasksFinished)
+      if (bTasksFinished)
+      {
+
+         break;
+
+      }
+      else
       {
 
          informationf("tasks still not finished for task : %s", m_strTaskName.c_str());
@@ -1405,7 +1411,7 @@ void task::__task_init()
       //      if (!pthreadParent->task_add(this))
       //      {
 
-      //         if (pthreadParent->m_atom.case_insensitive_begins("predicate_thread") && m_atom.case_insensitive_begins("predicate_thread"))
+      //         if (pthreadParent->id().case_insensitive_begins("predicate_thread") && id().case_insensitive_begins("predicate_thread"))
       //         {
 
       //            pthreadParent->task_erase(this);
@@ -2182,9 +2188,9 @@ void task::term_task()
 //
 //   //      }
 //
-//   //      m_atom = ::type(pelement).name();
+//   //      id() = ::type(pelement).name();
 //
-//   //      task_set_name(m_atom);
+//   //      task_set_name(id());
 //
 //   //      m_pelement.m_p = nullptr;
 //
@@ -2247,7 +2253,7 @@ bool task::has_message() const
 //
 //   m_pelement = pelement;
 //
-//   m_atom = ::type(pelement).name();
+//   id() = ::type(pelement).name();
 //
 //   return branch(epriority, nStackSize, uCreateFlags ADD_PARAM_SEC_ATTRS);
 //
@@ -2322,25 +2328,25 @@ void task::branch(enum_parallelization eparallelization, const ::create_task_att
 
    }
 
-   if (m_atom.is_empty())
+   if (id().is_empty())
    {
 
       if (m_procedure)
       {
 
-         m_atom = ::type(m_procedure).name();
+         id() = ::type(m_procedure).name();
 
       }
       else
       {
 
-         m_atom = ::type(this).name();
+         id() = ::type(this).name();
 
       }
 
    }
 
-   if (m_atom.is_empty() || m_atom == "task" || m_atom == "thread")
+   if (id().is_empty() || id() == "task" || id() == "thread")
    {
 
       throw ::exception(error_bad_argument);
@@ -2358,7 +2364,7 @@ void task::branch(enum_parallelization eparallelization, const ::create_task_att
 
 #ifdef __DEBUG
 
-   string strId = m_atom.as_string();
+   string strId = id().as_string();
 
    if (strId.case_insensitive_contains("forking_thread"))
    {
@@ -2591,16 +2597,16 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
 
    ENSURE(!m_htask);
 
-   //if(m_atom.is_empty())
+   //if(id().is_empty())
    //{
 
-   //   m_atom = ::type(this).name();
+   //   id() = ::type(this).name();
 
    //}
 
 //#ifdef __DEBUG
 //
-//   string strId = m_atom;
+//   string strId = id();
 //
 //   if (strId.case_insensitive_contains("forking_thread"))
 //   {
@@ -2721,25 +2727,25 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
 
    }
 
-   //   if (m_atom.is_empty())
+   //   if (id().is_empty())
    //   {
    //
    //      if (m_pelement)
    //      {
    //
-   //         m_atom = ::type(m_pelement).name();
+   //         id() = ::type(m_pelement).name();
    //
    //      }
    //      else
    //      {
    //
-   //         m_atom = ::type(this).name();
+   //         id() = ::type(this).name();
    //
    //      }
    //
    //   }
    //
-   //   if (m_atom.is_empty() || m_atom == "task" || m_atom == "thread")
+   //   if (id().is_empty() || id() == "task" || id() == "thread")
    //   {
    //
    //      throw ::exception(error_bad_argument);
@@ -2757,7 +2763,7 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
    //
    //#ifdef __DEBUG
    //
-   //   string strId = m_atom;
+   //   string strId = id();
    //
    //   if (strId.case_insensitive_contains("forking_thread"))
    //   {
@@ -2950,7 +2956,18 @@ bool task::task_sleep(const class time & timeWait)
 
       }
 
-      ::preempt(waitStep);
+      task_iteration();
+
+      auto waitStep2 = minimum(timeWait - waitStart.elapsed(), 100_ms);
+
+      if (waitStep2 <= 0_s)
+      {
+
+         return true;
+
+      }
+
+      ::preempt(waitStep2);
 
    }
 

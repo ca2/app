@@ -374,7 +374,7 @@ namespace graphics
 
       m_bLButtonPressed = false;
 
-      //m_atom = COLORSEL_IMPACT;
+      //id() = COLORSEL_IMPACT;
 
       m_strOk = "OK";
 
@@ -495,7 +495,7 @@ namespace graphics
 
 
 
-   //   //get_parent_frame()->m_atom += ".color_sel";
+   //   //get_parent_frame()->id() += ".color_sel";
 
    //   pmessage->previous();
 

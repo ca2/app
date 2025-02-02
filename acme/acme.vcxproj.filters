@@ -4137,6 +4137,9 @@
     <ClInclude Include="parallelization\types.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
+    <ClInclude Include="handler\request.h">
+      <Filter>Header Files\handler</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">

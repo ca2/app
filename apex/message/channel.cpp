@@ -39,18 +39,19 @@ void channel::install_message_routing(::channel * pchannel)
 void channel::erase_handler(::particle * pparticle)
 {
 
-   erase_handler(pparticle, false);
-   erase_handler(pparticle, true);
+   erase_message_handler(pparticle);
+   erase_command_handler(pparticle);
+   erase_command_probe_handler(pparticle);
 
 }
 
 
-void channel::erase_handler(::particle * pparticle, bool bProber)
+void channel::erase_message_handler(::particle * pparticle)
 {
 
    critical_section_lock synchronouslock(platform()->channel_critical_section());
 
-   auto payloads = get_dispatcher_map(bProber)->payloads();
+   auto payloads = get_message_map()->payloads();
 
    for (auto & dispatchera : payloads)
    {
@@ -74,38 +75,24 @@ void channel::erase_handler(::particle * pparticle, bool bProber)
 }
 
 
-void channel::transfer_handler(::message::dispatcher_map & dispatchermap, ::particle * pparticle, bool bProber)
+void channel::erase_command_handler(::particle * pparticle)
 {
 
    critical_section_lock synchronouslock(platform()->channel_critical_section());
 
-   auto pdispatchermap = get_dispatcher_map(bProber);
+   auto payloads = get_command_map()->payloads();
 
-   for (auto & pair : *pdispatchermap)
+   for (auto & dispatchera : payloads)
    {
 
-      if (pair.element2().is_empty())
+      if (dispatchera.is_empty())
       {
 
          continue;
 
       }
 
-      pair.element2().predicate_each([&](auto & dispatcher)
-      {
-
-         if (dispatcher.m_pparticleHandlerTarget == pparticle)
-         {
-
-            auto & dispatcha = dispatchermap[pair.element1()];
-
-            dispatcha.add(dispatcher);
-
-         }
-
-      });
-
-      pair.element2().predicate_erase([&](auto & dispatcher)
+      dispatchera.predicate_erase([=](auto & dispatcher)
       {
 
          return dispatcher.m_pparticleHandlerTarget == pparticle;
@@ -117,12 +104,223 @@ void channel::transfer_handler(::message::dispatcher_map & dispatchermap, ::part
 }
 
 
-::particle * channel::add_message_handler(const ::atom & atom, const ::message::dispatcher & dispatcher, bool bProber)
+void channel::erase_command_probe_handler(::particle * pparticle)
 {
 
-   auto pdispatchermap =
+   critical_section_lock synchronouslock(platform()->channel_critical_section());
 
-      get_dispatcher_map(bProber);
+   auto payloads = get_command_probe_map()->payloads();
+
+   for (auto & dispatchera : payloads)
+   {
+
+      if (dispatchera.is_empty())
+      {
+
+         continue;
+
+      }
+
+      dispatchera.predicate_erase([=](auto & dispatcher)
+      {
+
+         return dispatcher.m_pparticleHandlerTarget == pparticle;
+
+      });
+
+   }
+
+}
+
+
+void channel::transfer_handler(::channel * pchannelReceiver, ::particle * pparticle)
+{
+
+   transfer_message_handler(pchannelReceiver, pparticle);
+   transfer_command_handler(pchannelReceiver, pparticle);
+   transfer_command_probe_handler(pchannelReceiver, pparticle);
+
+}
+
+
+void channel::transfer_message_handler(::channel * pchannelReceiver, ::particle * pparticle)
+{
+
+   critical_section_lock synchronouslock(platform()->channel_critical_section());
+
+   {
+
+      auto pdispatchermap = get_message_map();
+
+      for (auto & pair : *pdispatchermap)
+      {
+
+         if (pair.element2().is_empty())
+         {
+
+            continue;
+
+         }
+
+         pair.element2().predicate_each([&](auto & dispatcher)
+         {
+
+            if (dispatcher.m_pparticleHandlerTarget == pparticle)
+            {
+
+               auto & dispatcha = pchannelReceiver->m_messagemap[pair.element1()];
+
+               dispatcha.add(dispatcher);
+
+            }
+
+         });
+
+         pair.element2().predicate_erase([&](auto & dispatcher)
+         {
+
+            return dispatcher.m_pparticleHandlerTarget == pparticle;
+
+         });
+
+      }
+
+   }
+
+
+}
+
+
+void channel::transfer_command_handler(::channel * pchannelReceiver, ::particle * pparticle)
+{
+
+   critical_section_lock synchronouslock(platform()->channel_critical_section());
+
+   {
+
+      auto pdispatchermap = get_command_map();
+
+      for (auto & pair : *pdispatchermap)
+      {
+
+         if (pair.element2().is_empty())
+         {
+
+            continue;
+
+         }
+
+         pair.element2().predicate_each([&](auto & dispatcher)
+         {
+
+            if (dispatcher.m_pparticleHandlerTarget == pparticle)
+            {
+
+               auto & dispatcha = pchannelReceiver->m_commandmap[pair.element1()];
+
+               dispatcha.add(dispatcher);
+
+            }
+
+         });
+
+         pair.element2().predicate_erase([&](auto & dispatcher)
+         {
+
+            return dispatcher.m_pparticleHandlerTarget == pparticle;
+
+         });
+
+      }
+
+   }
+
+
+}
+
+
+void channel::transfer_command_probe_handler(::channel * pchannelReceiver, ::particle * pparticle)
+{
+
+   critical_section_lock synchronouslock(platform()->channel_critical_section());
+
+   {
+
+      auto pcommandmapProbe = get_command_probe_map();
+
+      for (auto & pair : *pcommandmapProbe)
+      {
+
+         if (pair.element2().is_empty())
+         {
+
+            continue;
+
+         }
+
+         pair.element2().predicate_each([&](auto & dispatcher)
+         {
+
+            if (dispatcher.m_pparticleHandlerTarget == pparticle)
+            {
+
+               auto & dispatcha = pchannelReceiver->m_commandmapProbe[pair.element1()];
+
+               dispatcha.add(dispatcher);
+
+            }
+
+         });
+
+         pair.element2().predicate_erase([&](auto & dispatcher)
+         {
+
+            return dispatcher.m_pparticleHandlerTarget == pparticle;
+
+         });
+
+      }
+
+   }
+
+}
+
+
+
+
+::particle * channel::add_message_handler(::enum_message emessage, const ::message::dispatcher & dispatcher)
+{
+
+   auto pdispatchermap = get_message_map();
+
+   auto & dispatchera = (*pdispatchermap)[emessage];
+
+   // Try to not add already added dispatcher
+   for (::collection::index i = 0; i < dispatchera.get_count(); i++)
+   {
+
+      auto & dispatcherItem = dispatchera[i];
+
+      if (dispatcherItem == dispatcher)
+      {
+
+         return nullptr;
+
+      }
+
+   }
+
+   dispatchera.add(dispatcher);
+
+   return dispatcher.m_pparticleHandlerTarget.m_p;
+
+}
+
+
+::particle * channel::add_command_handler(const ::atom & atom, const ::message::dispatcher & dispatcher)
+{
+
+   auto pdispatchermap = get_command_map();
 
    auto & dispatchera = (*pdispatchermap)[atom];
 
@@ -148,10 +346,41 @@ void channel::transfer_handler(::message::dispatcher_map & dispatchermap, ::part
 }
 
 
+
+::particle * channel::add_command_prober(const ::atom & atom, const ::message::dispatcher & dispatcher)
+{
+
+   auto pdispatchermap = get_command_probe_map();
+
+   auto & dispatchera = (*pdispatchermap)[atom];
+
+   // Try to not add already added dispatcher
+   for (::collection::index i = 0; i < dispatchera.get_count(); i++)
+   {
+
+      auto & dispatcherItem = dispatchera[i];
+
+      if (dispatcherItem == dispatcher)
+      {
+
+         return nullptr;
+
+      }
+
+   }
+
+   dispatchera.add(dispatcher);
+
+   return dispatcher.m_pparticleHandlerTarget.m_p;
+
+}
+
+
+
 void channel::route_message(::message::message * pmessage)
 {
 
-   if (::is_null(pmessage)) { ASSERT(false); return; } { critical_section_lock synchronouslock(platform()->channel_critical_section()); pmessage->m_pdispatchera = get_dispatcher_map(pmessage->m_bProbing)->pget(pmessage->m_atom); } if (pmessage->m_pdispatchera == nullptr || pmessage->m_pdispatchera->is_empty()) return;
+   if (::is_null(pmessage)) { ASSERT(false); return; } { critical_section_lock synchronouslock(platform()->channel_critical_section()); pmessage->m_pdispatchera = get_message_map()->pget(pmessage->m_emessage); } if (pmessage->m_pdispatchera == nullptr || pmessage->m_pdispatchera->is_empty()) return;
 
    for (pmessage->m_pchannel = this, pmessage->m_iRouteIndex = pmessage->m_pdispatchera->get_upper_bound(); pmessage->m_pdispatchera && pmessage->m_iRouteIndex >= 0; pmessage->m_iRouteIndex--)
    {
@@ -172,15 +401,67 @@ void channel::route_message(::message::message * pmessage)
 }
 
 
+void channel::_route_command(::message::command * pcommand)
+{
+
+   ASSERT(!pcommand->m_bProbing);
+
+   if (::is_null(pcommand)) { ASSERT(false); return; } { critical_section_lock synchronouslock(platform()->channel_critical_section()); pcommand->m_pdispatchera = get_command_map()->pget(pcommand->m_atomCommand); } if (pcommand->m_pdispatchera == nullptr || pcommand->m_pdispatchera->is_empty()) return;
+
+   for (pcommand->m_pchannel = this, pcommand->m_iRouteIndex = pcommand->m_pdispatchera->get_upper_bound(); pcommand->m_pdispatchera && pcommand->m_iRouteIndex >= 0; pcommand->m_iRouteIndex--)
+   {
+
+      auto & dispatcher = pcommand->m_pdispatchera->m_begin[pcommand->m_iRouteIndex];
+
+      if (::is_null(&dispatcher))
+      {
+
+         break;
+
+      }
+
+      dispatcher.m_functionHandler(pcommand); if (pcommand->m_bRet) return;
+
+   }
+
+}
+
+
+void channel::_route_command_probe(::message::command * pcommand)
+{
+
+   ASSERT(pcommand->m_bProbing);
+
+   if (::is_null(pcommand)) { ASSERT(false); return; } { critical_section_lock synchronouslock(platform()->channel_critical_section()); pcommand->m_pdispatchera = get_command_probe_map()->pget(pcommand->m_atomCommand); } if (pcommand->m_pdispatchera == nullptr || pcommand->m_pdispatchera->is_empty()) return;
+
+   for (pcommand->m_pchannel = this, pcommand->m_iRouteIndex = pcommand->m_pdispatchera->get_upper_bound(); pcommand->m_pdispatchera && pcommand->m_iRouteIndex >= 0; pcommand->m_iRouteIndex--)
+   {
+
+      auto & dispatcher = pcommand->m_pdispatchera->m_begin[pcommand->m_iRouteIndex];
+
+      if (::is_null(&dispatcher))
+      {
+
+         break;
+
+      }
+
+      dispatcher.m_functionHandler(pcommand); if (pcommand->m_bRet) return;
+
+   }
+
+}
+
+
 ::pointer<::message::message>channel::get_message(MESSAGE * pmessage)
 {
 
    auto pmessagemessage = __allocate::message::message();
 
-   pmessagemessage->m_oswindow = pmessage->oswindow;
-   pmessagemessage->m_atom = pmessage->m_atom;
-   pmessagemessage->m_wparam = pmessage->wParam;
-   pmessagemessage->m_lparam = pmessage->lParam;
+   pmessagemessage->m_oswindow = pmessage->m_oswindow;
+   pmessagemessage->m_emessage = pmessage->m_emessage;
+   pmessagemessage->m_wparam = pmessage->m_wparam;
+   pmessagemessage->m_lparam = pmessage->m_lparam;
 
    return pmessagemessage;
 
@@ -188,13 +469,13 @@ void channel::route_message(::message::message * pmessage)
 #define _NEW_MESSAGE(TYPE) \
    auto pmessage = __allocate TYPE(); \
    pmessageBase = pmessage; \
-   pmessage->m_atom = atom; \
+   pmessage->m_emessage = emessage; \
    pmessage->m_wparam = wparam; \
    pmessage->m_lparam = lparam;
 
 
-//::pointer<::message::message>channel::get_message(const ::atom & atom, wparam wparam, lparam lparam, const ::int_point & point)
-::pointer<::message::message>channel::get_message(const ::atom & atom, wparam wparam, lparam lparam, ::message::enum_prototype eprototype)
+//::pointer<::message::message>channel::get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
+::pointer<::message::message>channel::get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, ::message::enum_prototype eprototype)
 {
 
    ::pointer<::message::message>pmessageBase;
@@ -202,7 +483,7 @@ void channel::route_message(::message::message * pmessage)
    if (eprototype == ::message::e_prototype_none)
    {
 
-      eprototype = ::message::get_message_prototype(atom.as_emessage(), 0);
+      eprototype = ::message::get_message_prototype(emessage, 0);
 
    }
 
@@ -228,7 +509,7 @@ void channel::route_message(::message::message * pmessage)
 
    //auto pmessagemessage = __allocate ::message::message();
 
-   //pmessagemessage->m_atom = atom;
+   //pmessagemessage->id() = atom;
    //pmessagemessage->m_wparam = wparam;
    //pmessagemessage->m_lparam = lparam;
 
@@ -237,7 +518,7 @@ void channel::route_message(::message::message * pmessage)
 }
 
 
-//::pointer<::user::message>channel::get_message_base(::windowing::window * pwindow, const ::atom & atom, wparam wparam, lparam lparam)
+//::pointer<::user::message>channel::get_message_base(::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
 //{
 //
 //   if (atom.m_etype != ::atom::e_type_message)
@@ -315,8 +596,9 @@ void channel::erase_all_routes()
 
                // }
 
-         m_dispatchermapNormal.erase_all();
-         m_dispatchermapProbe.erase_all();
+         m_messagemap.erase_all();
+         m_commandmap.erase_all();
+         m_commandmapProbe.erase_all();
 
       }
 
@@ -364,23 +646,35 @@ void channel::erase_all_routes()
 }
 
 
-::message::dispatcher_map * channel::get_dispatcher_map(bool bProber)
+::message::message_map * channel::get_message_map()
 {
 
+   return &m_messagemap;
 
-   if (bProber)
-   {
-
-      return &m_dispatchermapProbe;
-
-   }
-   else
-   {
-
-      return &m_dispatchermapNormal;
-
-   }
 }
+
+::message::command_map * channel::get_command_map()
+{
+
+   return &m_commandmap;
+
+}
+
+::message::command_map * channel::get_command_probe_map()
+{
+
+   return &m_commandmapProbe;
+
+}
+//
+//   }
+//   else
+//   {
+//
+//      return &m_dispatchermapNormal;
+//
+//   }
+//}
 
 void channel::channel_common_construct()
 {
@@ -404,8 +698,9 @@ void channel::destroy()
 
    m_atomaHandledCommands.erase_all();
 
-   m_dispatchermapNormal.erase_all();
-   m_dispatchermapProbe.erase_all();
+   m_messagemap.erase_all();
+   m_commandmap.erase_all();
+   m_commandmapProbe.erase_all();
 
    ///   m_dispatchermapNew.erase_all();
 
@@ -450,9 +745,9 @@ void channel::_001SendCommand(::message::command * pcommand)
 
    {
 
-      //      scoped_restore(pcommand->m_atom.m_etype);
+      //      scoped_restore(pcommand->m_atomCommand.m_etype);
       //
-      //      pcommand->m_atom.set_compounded_type(::atom::e_type_command);
+      //      pcommand->m_atomCommand.set_compounded_type(::atom::e_type_command);
 
       route_command(pcommand, true);
 
@@ -470,7 +765,7 @@ void channel::_001SendCommandProbe(::message::command * pcommand)
 
       scoped_restore(pcommand->m_bProbing);
       pcommand->m_bProbing = true;
-      //      pcommand->m_atom.set_compounded_type(::atom::e_type_command_probe);
+      //      pcommand->m_atomCommand.set_compounded_type(::atom::e_type_command_probe);
 
       route_command(pcommand);
 
@@ -482,7 +777,18 @@ void channel::_001SendCommandProbe(::message::command * pcommand)
 void channel::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
 {
 
-   command_handler(pcommand);
+   if (pcommand->m_bProbing)
+   {
+
+      _route_command_probe(pcommand);
+
+   }
+   else
+   {
+
+      _route_command(pcommand);
+
+   }
 
 }
 
@@ -511,7 +817,7 @@ void channel::command_handler(::message::command * pcommand)
          && !pcommand->m_bHasCommandHandler)
       {
 
-         if (on_command_final(pcommand->m_atom, pcommand->user_activation_token()))
+         if (on_command_final(pcommand->m_emessage, pcommand->user_activation_token()))
          {
 
             pcommand->m_bRet = true;
@@ -534,32 +840,23 @@ bool channel::has_command_handler(::message::command * pcommand)
 
    critical_section_lock synchronouslock(platform()->channel_critical_section());
 
-   scoped_restore(pcommand->m_atom.m_etype);
-
-   string strText = pcommand->m_atom.as_string();
-
-   if (strText.has_character())
+   if (m_atomaHandledCommands.contains(pcommand->m_atomCommand))
    {
 
-      if (m_atomaHandledCommands.contains(strText))
-      {
-
-         return true;
-
-      }
+      return true;
 
    }
 
-   //   pcommand->m_atom.set_compounded_type(::atom::e_type_command);
+   //   pcommand->m_atomCommand.set_compounded_type(::atom::e_type_command);
    //
-   //   if (m_atomaHandledCommands.contains(pcommand->m_atom))
+   //   if (m_atomaHandledCommands.contains(pcommand->m_atomCommand))
    //   {
    //
    //      return true;
    //
    //   }
 
-   auto passociation = m_dispatchermapNormal.plookup(pcommand->m_atom);
+   auto passociation = m_commandmap.plookup(pcommand->m_atomCommand);
 
    if (passociation.is_null())
    {
@@ -585,7 +882,7 @@ void channel::on_command_probe(::message::command * pcommand)
 
    scoped_restore(pcommand->m_bProbing);
 
-   //pcommand->m_atom.set_compounded_type(::atom::e_type_command_probe);
+   //pcommand->m_atomCommand.set_compounded_type(::atom::e_type_command_probe);
    pcommand->m_bProbing = true;
    route_message(pcommand);
 
@@ -610,11 +907,22 @@ bool channel::on_command_final(const ::atom & atom, ::user::activation_token * p
 void channel::on_command(::message::command * pcommand)
 {
 
-   //   scoped_restore(pcommand->m_atom.m_etype);
+   //   scoped_restore(pcommand->m_atomCommand.m_etype);
    //
-   //   pcommand->m_atom.set_compounded_type(::atom::e_type_command);
+   //   pcommand->m_atomCommand.set_compounded_type(::atom::e_type_command);
 
-   route_message(pcommand);
+   //if (pcommand->m_bProbing)
+   //{
+
+   //   route_command_probe(pcommand);
+
+   //}
+   //else
+   {
+
+      route_command(pcommand);
+
+   }
 
 }
 

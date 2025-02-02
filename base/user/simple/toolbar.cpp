@@ -459,10 +459,10 @@ void simple_toolbar::on_message_create(::message::message * pmessage)
 //   for (state.m_iIndex = 0; state.m_iIndex < state.m_iCount; state.m_iIndex++)
 //   {
 //
-//      if (m_useritema[state.m_iIndex]->m_atom != "separator")
+//      if (m_useritema[state.m_iIndex]->id() != "separator")
 //      {
 //
-//         state.m_atom = m_useritema[state.m_iIndex]->m_atom;
+//         state.id() = m_useritema[state.m_iIndex]->id();
 //
 //         // allow reflections
 //         //if (::user::interaction::on_command(0,
@@ -766,7 +766,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    auto pmenucentral = puser->menu();
 
-   unsigned int uImage = pmenucentral->command_image(ptoolitem->m_atom);
+   unsigned int uImage = pmenucentral->command_image(ptoolitem->id());
    
    auto estate = tool_item_user_state(iItem);
 
@@ -1657,7 +1657,7 @@ bool simple_toolbar::on_click(::item * pitem, ::user::mouse * pmouse)
 
    }
 
-   auto pcommand = __initialize_new::message::command(pitem->m_atom, pmouse->user_activation_token());
+   auto pcommand = __initialize_new::message::command(pitem->id(), pmouse->user_activation_token());
 
    puserinteraction->_001SendCommand(pcommand);
 
@@ -2382,7 +2382,7 @@ int_size simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, unsi
 
                   pControl[nControlCount].nIndex = i;
 
-                  pControl[nControlCount].strId = ptoolitem->m_atom;
+                  pControl[nControlCount].strId = ptoolitem->id();
 
                   auto statusrectangle = index_item_rectangle(i);
 
@@ -2443,7 +2443,7 @@ int_size simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, unsi
             //
             // button.dwMask = TBIF_COMMAND | TBIF_SIZE;
             // button.cx() = size.cx();
-            // button.m_atom = i;
+            // button.id() = i;
             //
             // GetToolBarCtrl().SetButtonInfo(i, &button);
 
@@ -2461,7 +2461,7 @@ int_size simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, unsi
             //    | TBIF_SIZE;
             // unsigned int uID = GetItemID(i);
             // GetToolBarCtrl().GetButtonInfo(uId, &buttona);
-            // informationf("BUTTON.m_atom = %d\n", buttona.m_atom  );
+            // informationf("BUTTON.id() = %d\n", buttona.id()  );
             // informationf("BUTTON.m_fsStyle = %d\n", buttona.m_fsStyle  );
             // informationf("BUTTON.cx() = %d\n", buttona.cx() );
 

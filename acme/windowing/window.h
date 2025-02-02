@@ -66,6 +66,8 @@ namespace acme
 
          bool                                               m_bRepositioningWindowFromCenter;
          bool                                               m_bResizingWindowFromBottomRight;
+         ::int_point                                        m_pointDesignRequest;
+         ::int_size                                         m_sizeDesignRequest;
          ::int_point                                        m_pointWindow;
          ::int_size                                         m_sizeWindow;
          ::int_point                                        m_pointCursor2;
@@ -150,6 +152,7 @@ namespace acme
          
          virtual bool has_keyboard_focus();
          virtual void set_keyboard_focus(::acme::user::interaction * pacmeuserinteractionFocus);
+         virtual void set_keyboard_focus();
          //virtual void erase_keyboard_focus(::acme::user::interaction * pacmeuserinteractionFocus);
 
          virtual bool is_window();
@@ -357,7 +360,7 @@ namespace acme
          //virtual ::int_size get_main_screen_size();
 
 
-         void _on_window_simple_action(const char * pszActionName) override;
+         void _on_window_simple_action(const char * pszActionName, ::user::activation_token * puseractivationtoken) override;
 
 
          //virtual ::payload do_synchronously(const class time & timeWait = ::time::infinity()) override;
@@ -389,7 +392,7 @@ namespace acme
          virtual void set_size_unlocked(const int_size & size);
 
 
-         virtual void on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem);
+         virtual void on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem, ::user::activation_token * puseractivationtoken);
          
 
       };

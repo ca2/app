@@ -62,7 +62,7 @@ namespace filemanager
 
       ::filemanager_impact_base::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == id_initialize)
+      if (ptopic->id() == id_initialize)
       {
 
          /*            m_pserverNext = simpledb::AppGet()->GetDataServer();
@@ -78,7 +78,7 @@ namespace filemanager
                      DISetSection(str);
                      _001UpdateColumns();*/
       }
-      else if (ptopic->m_atom == id_filter)
+      else if (ptopic->id() == id_filter)
       {
          /*if(ptopic->payload(id_filter).is_empty())
          {

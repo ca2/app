@@ -1029,7 +1029,7 @@ namespace experience_anthill
 
          ::user::e_state estate = ::user::e_state_none;
 
-         if (ptab->get_data()->m_idaSel.contains(ppane->m_atom))
+         if (ptab->get_data()->m_idaSel.contains(ppane->id()))
          {
 
             estate |= ::user::e_state_selected;
@@ -1075,7 +1075,7 @@ namespace experience_anthill
             if (true)
             {
 
-               if (ptab->get_data()->m_idaSel.contains(ppane->m_atom))
+               if (ptab->get_data()->m_idaSel.contains(ppane->id()))
                {
 
                   //ppath->start_figure();
@@ -1865,7 +1865,7 @@ namespace experience_anthill
 
       ::pointer<::user::menu_central>pmenucentral = puser->menu();
 
-      unsigned int uImage = pmenucentral->command_image(ptoolitem->m_atom);
+      unsigned int uImage = pmenucentral->command_image(ptoolitem->id());
 
       ::user::enum_state estate = ptoolbar->tool_item_user_state(iItem);
 
@@ -2185,7 +2185,7 @@ namespace experience_anthill
 
       ::pointer<::user::menu_central>pmenucentral = puser->menu();
 
-      unsigned int uImage = pmenucentral->command_image(ptoolitem->m_atom);
+      unsigned int uImage = pmenucentral->command_image(ptoolitem->id());
 
       ::user::enum_state estate = ptoolbar->tool_item_user_state(iItem);
 
@@ -2193,7 +2193,7 @@ namespace experience_anthill
 
       rectangleImage = ptoolbar->index_element_rectangle(iItem, ::e_element_image, estate);
 
-      if (ptoolitem->m_atom.case_insensitive_order("separator") == 0)
+      if (ptoolitem->id().case_insensitive_order("separator") == 0)
       {
          /*::int_rectangle rectangleSeparator;
          rectangleSeparator.left() = (rectangleImage.left() + rectangleImage.right()) / 2 - 1;

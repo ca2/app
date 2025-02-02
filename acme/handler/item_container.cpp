@@ -350,7 +350,7 @@ bool item_container::contains_item(const ::atom & atom) const
 
          auto pitem = (*m_pitema)[iItem];
 
-         if (pitem->m_atom == atom)
+         if (pitem->m_atomMatterId == atom)
          {
 
             //information() << "item_container::item_index FOUND(D) : " << iItem;

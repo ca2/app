@@ -87,13 +87,13 @@ namespace filemanager
          {
 
             auto pcolumn = new_list_column();
-            pcolumn->m_atom = "check_recursive";
+            pcolumn->id() = "check_recursive";
             pcolumn->m_iWidth = 80;
             pcolumn->m_iSubItem = 1;
             pcolumn->m_text = m_papplication->__text("text://filemanager/list_impact/recursive/Recursive");
 
             auto pcheckbox = __create_new <  ::user::check_box >();
-            pcheckbox->m_atom = pcolumn->m_atom;
+            pcheckbox->id() = pcolumn->id();
             pcheckbox->add_function(::user::e_control_function_check_box);
             _001AddControl(pcheckbox);
 
@@ -202,7 +202,7 @@ namespace filemanager
 
          FILEMANAGER_SHOW_IMPACT::handle(ptopic, pcontext);
 
-         if (ptopic->m_atom == id_initialize)
+         if (ptopic->id() == id_initialize)
          {
 
             //if (filemanager_data()->m_bPassBk)
@@ -226,7 +226,7 @@ namespace filemanager
       void list_impact::on_check_save(::user::interaction * puserinteraction)
       {
 
-         if (puserinteraction->m_atom == "check_recursive")
+         if (puserinteraction->id() == "check_recursive")
          {
 
             if (m_pfolderlistdata)
@@ -248,7 +248,7 @@ namespace filemanager
       void list_impact::on_check_load(::user::interaction * puserinteraction)
       {
 
-         if (puserinteraction->m_atom == "check_recursive")
+         if (puserinteraction->id() == "check_recursive")
          {
 
             if (m_pfolderlistdata)

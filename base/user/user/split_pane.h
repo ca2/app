@@ -16,7 +16,7 @@ namespace user
    public:
 
 
-      atom                                   m_atom;
+      atom                                   m_atomSplitPane;
       ::int_rectangle                        m_rectanglePane;
       ::int_rectangle                        m_rectangleHosting;
       ::int_size                             m_sizeFixed;

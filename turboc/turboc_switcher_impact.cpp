@@ -92,7 +92,7 @@ namespace turboc
    void switcher_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(ptopic->m_atom == ::id_click)
+      if(ptopic->id() == ::id_click)
       {
 
          if(ptopic->user_interaction_id() == "switcher_toggle")

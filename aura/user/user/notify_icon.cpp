@@ -163,10 +163,10 @@ namespace user
 
       ::channel::on_command(pcommand);
 
-      //if (pcommand->m_atom.is_text())
+      //if (pcommand->m_atomCommand.is_text())
       //{
 
-      //   string strId(pcommand->m_atom);
+      //   string strId(pcommand->m_atomCommand);
 
       //   call_notification_area_action(strId);
 

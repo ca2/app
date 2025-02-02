@@ -138,7 +138,7 @@ namespace app_integration
 
       auto pimpactsystem = pdocument->m_pimpactsystem;
 
-      string strId = pimpactsystem->m_atom;
+      string strId = pimpactsystem->id();
 
       string strText;
 
@@ -263,7 +263,7 @@ namespace app_integration
    {
 
 
-      if (ptopic->m_atom == "openssl")
+      if (ptopic->id() == "openssl")
       {
 
          m_strName = "openssl";
@@ -275,7 +275,7 @@ namespace app_integration
          start();
 
       }
-      else if (ptopic->m_atom == "ffmpeg")
+      else if (ptopic->id() == "ffmpeg")
       {
 
          m_strName = "ffmpeg";
@@ -287,8 +287,8 @@ namespace app_integration
          start();
 
       }
-      else if (ptopic->m_atom == "simple_checkbox"
-         || ptopic->m_atom == "no_client_frame")
+      else if (ptopic->id() == "simple_checkbox"
+         || ptopic->id() == "no_client_frame")
       {
 
          set_need_redraw();

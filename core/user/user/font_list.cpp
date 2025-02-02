@@ -293,7 +293,7 @@ namespace user
 
       list_box::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == id_font_list_total_size)
+      if (ptopic->id() == id_font_list_total_size)
       {
 
          set_need_layout();

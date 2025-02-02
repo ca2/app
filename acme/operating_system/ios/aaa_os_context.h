@@ -59,7 +59,7 @@ namespace ios
 
       virtual bool is_remote_session() override;
 
-      virtual void post_to_all_threads(const ::atom & atom, WPARAM wParam, LPARAM lParam);
+      virtual void post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam);
 
 
       virtual bool file_open(const ::file::path & path, string strParams, string strFolder) override;

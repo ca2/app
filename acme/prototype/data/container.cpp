@@ -70,7 +70,7 @@ namespace data
    bool data_container_base::set_data(const ::atom & atom, ::data::data * pdata)
    {
 
-      pdata->m_atom = atom;
+      pdata->id() = atom;
 
       if(!add_data(pdata))
       {
@@ -89,7 +89,7 @@ namespace data
 
       pdata->initialize_data();
 
-      m_datamap.set_at(pdata->m_atom, pdata);
+      m_datamap.set_at(pdata->id(), pdata);
 
       return true;
 
@@ -99,7 +99,7 @@ namespace data
    bool data_container_base::erase_data(::data::data * pdata)
    {
 
-      auto bRemove = m_datamap.erase_item(pdata->m_atom);
+      auto bRemove = m_datamap.erase_item(pdata->id());
 
       return bRemove;
 

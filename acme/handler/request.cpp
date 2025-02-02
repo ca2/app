@@ -107,7 +107,7 @@ void request::initialize_create(string strAppId, ::payload payloadFile, const ::
 
    m_ewindowflag = ewindowflag;
       
-   m_atom = atom;
+   id() = atom;
 
    create_common_construct(varOptions, puiParent);
 
@@ -142,7 +142,7 @@ void request::initialize_create(::data::data * pdata, const ::payload & varOptio
 
    m_ewindowflag = ewindowflag;
 
-   m_atom = atom;
+   id() = atom;
 
    create_common_construct(varOptions, puiParent);
 

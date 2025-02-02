@@ -139,7 +139,8 @@ namespace micro
 
       void user::handle(::topic * ptopic, ::context * pcontext)
       {
-         if (ptopic->m_atom == id_set_application_dark_mode)
+         
+         if (ptopic->id() == id_set_application_dark_mode)
          {
 
             auto windowa = system()->acme_windowing()->m_windowa;

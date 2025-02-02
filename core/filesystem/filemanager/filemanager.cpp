@@ -360,7 +360,7 @@ namespace filemanager
 
    //   pdata->initialize_filemanager_data(this);
 
-   //   pdata->m_atom = atom;
+   //   pdata->id() = atom;
 
    //   filemanager_set_data(atom, pdata);
 
@@ -433,7 +433,7 @@ namespace filemanager
 
       pdata->initialize_filemanager_data(this);
 
-      //pdata->m_atom = atom;
+      //pdata->id() = atom;
 
       //filemanager_set_data(atom, pdata);
 

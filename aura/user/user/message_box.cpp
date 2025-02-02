@@ -231,7 +231,7 @@ namespace user
    void message_box::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == id_user_style_change)
+      if (ptopic->id() == id_user_style_change)
       {
 
          m_bOsUserThemeColorModified = true;
@@ -239,10 +239,10 @@ namespace user
          invalidate();
 
       }
-      else if (ptopic->m_atom == ::id_click)
+      else if (ptopic->id() == ::id_click)
       {
 
-         m_prealizable->m_payloadResult = ptopic->m_puserelement->user_interaction()->m_atom;
+         m_prealizable->m_payloadResult = ptopic->m_puserelement->user_interaction()->id();
 
          m_estatus = ::success;
 
@@ -452,7 +452,7 @@ namespace user
    //void message_box::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   if (ptopic->m_atom == ::id_click)
+   //   if (ptopic->id() == ::id_click)
    //   {
 
    //      m_edialogresult = (enum_dialog_result) ptopic->user_interaction_id().huge_integer();

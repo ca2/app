@@ -25,7 +25,7 @@ namespace user
 
       for (int i = 0; i < this->get_count(); i++)
       {
-         if (this->element_at(i)->m_atom == atom)
+         if (this->element_at(i)->id() == atom)
          {
             return element_at(i);
          }

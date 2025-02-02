@@ -13,7 +13,7 @@
 #include "acme/user/user/tool.h"
 #include "aura/graphics/user/control_box_icon.h"
 #include "aura/graphics/image/image.h"
-#include "aura/graphics/image/save_options.h"
+#include "aura/graphics/image/encoding_options.h"
 #include "aura/graphics/image/context.h"
 #include "aura/message/user.h"
 #include "aura/platform/system.h"
@@ -184,8 +184,8 @@ namespace app_shader
    void main_window::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == "simple_checkbox"
-         || ptopic->m_atom == "no_client_frame")
+      if (ptopic->id() == "simple_checkbox"
+         || ptopic->id() == "no_client_frame")
       {
 
          set_need_redraw();
@@ -231,13 +231,13 @@ namespace app_shader
             fork([this, pimage]()
                  {
 
-                    ::image::save_options saveoptions;
+                    ::image::encoding_options encodingoptions;
 
-                    saveoptions.m_eformat = ::image::e_format_png;
+                    encodingoptions.m_eformat = ::image::e_format_png;
 
                     string strDate = datetime()->date_time_text_for_file();
 
-                    image()->save_image("image://app_simple_shader-" + strDate + ".png", pimage, saveoptions);
+                    image()->save_image("image://app_simple_shader-" + strDate + ".png", pimage, encodingoptions);
 
                  });
 

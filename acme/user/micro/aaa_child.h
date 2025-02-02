@@ -22,7 +22,7 @@ public:
 
 
    string                        m_strText;
-   ::atom                        m_atom;
+   ::atom                        id();
    int_rectangle                 m_rectangle;
    ::acme::user::interaction *     m_pinteraction;
 

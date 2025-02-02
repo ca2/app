@@ -474,7 +474,7 @@ bool  stream_base::is_version(int i)
 //      *this << payload.propset();
 //      break;
 //   case e_type_atom:
-//      *this << payload.m_atom;
+//      *this << payload.id();
 //      break;
 //   case e_type_element:
 //   case e_type_path:
@@ -494,7 +494,7 @@ bool  stream_base::is_version(int i)
 //void stream::write(const property & property)
 //{
 //
-//   write(property.m_atom);
+//   write(property.id());
 //   write((const ::payload &) property);
 //
 //}

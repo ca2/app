@@ -47,6 +47,11 @@ namespace platform
       //task_id_map                                        m_taskidmap;
       //::map < class ::task_index, class ::task_index >   m_mapTaskOn;
 
+      ::map < class ::task_index, ::thread_storage >  m_mapThreadStorage;
+
+
+      ::critical_section                              m_criticalsectionThreadStorage;
+
       ::pointer < ::task_message_queue >              m_ptaskmessagequeue;
 
       ::platform::session_map                         m_sessionmap;
@@ -205,6 +210,10 @@ namespace platform
       //void on_set_platform() override;
 
       virtual ::task_message_queue * task_message_queue();
+
+      virtual ::thread_storage * thread_storage(const class ::task_index & taskindex);
+      virtual ::thread_storage * _thread_storage_unlocked(const class ::task_index & taskindex);
+
 
       //void on_initialize_particle() override;
 
@@ -596,7 +605,7 @@ namespace platform
       virtual void get_public_internet_domain_extension_list(string_array & stra);
       virtual ::string fetch_public_internet_domain_extension_list_text();
 
-      virtual void system_id_update(huge_integer iUpdate, huge_integer iPayload);
+      virtual void system_id_update(int iUpdate, huge_integer iPayload);
 
       //void handle(::topic * ptopic, ::context * pcontext) override;
 

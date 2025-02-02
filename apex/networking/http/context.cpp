@@ -1404,11 +1404,11 @@ namespace http
 //
 //         psession->m_scalarsourceDownloadedRate.m_plistener = set["http_downloaded_rate_listener"].cast < ::double_scalar_source::listener >();
 //
-//         psession->m_scalarsourceDownloadedRate.m_atom = set["http_downloaded_rate_id"].atom();
+//         psession->m_scalarsourceDownloadedRate.id() = set["http_downloaded_rate_id"].atom();
 //
 //         psession->m_scalarsourceDownloaded.m_plistener = set["http_downloaded_listener"].cast < ::int_scalar_source::listener >();
 //
-//         psession->m_scalarsourceDownloaded.m_atom = set["http_downloaded_id"].atom();
+//         psession->m_scalarsourceDownloaded.id() = set["http_downloaded_id"].atom();
 //
 //         bool bPost;
 //
@@ -2144,7 +2144,7 @@ namespace http
 
       }
 
-      //psocket->m_realscalarDownloadedRate.m_atom = set["http_downloaded_rate_id"].atom();
+      //psocket->m_realscalarDownloadedRate.id() = set["http_downloaded_rate_id"].atom();
 
       {
 
@@ -2159,7 +2159,7 @@ namespace http
 
       }
 
-      //psocket->m_integerscalarDownloaded.m_atom = set["http_downloaded_id"].atom();
+      //psocket->m_integerscalarDownloaded.id() = set["http_downloaded_id"].atom();
 
       if (tickTotalTimeout <= 0_s)
       {

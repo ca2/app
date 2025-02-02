@@ -19,10 +19,10 @@ namespace user
    public:
 
 
-      enum e_message
-      {
-         MessageBaseToolTipText = WM_USER + 110
-      };
+      //enum e_message
+      //{
+      //   MessageBaseToolTipText = WM_USER + 110
+      //};
 
       enum enum_position
       {

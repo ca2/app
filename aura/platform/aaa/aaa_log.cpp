@@ -175,7 +175,7 @@ pdirectorysystem->system() / "trace.txt";
 
       }
 
-      m_atom = atom;
+      id() = atom;
 
       m_bInitialized = true;
 
@@ -475,7 +475,7 @@ pdirectorysystem->system() / "log.txt"))
 
          strIndex.formatf("%d-%05d", get_current_process_id(), iRetry);
 
-         m_strLogPath = ::dir::appdata() / string(m_atom) / strDatetime + "-" + strIndex + ".ca2log";
+         m_strLogPath = ::dir::appdata() / string(id()) / strDatetime + "-" + strIndex + ".ca2log";
 
          try
          {

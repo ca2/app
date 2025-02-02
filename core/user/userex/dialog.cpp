@@ -54,7 +54,7 @@ void dialog::handle(::topic * ptopic, ::context * pcontext)
    if(::is_set(ptopic->user_interaction()) && m_pform == nullptr)
    {
 
-      if(ptopic->m_atom == ::id_create)
+      if(ptopic->id() == ::id_create)
       {
 
          m_pform = ptopic->user_interaction();

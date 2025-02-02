@@ -1090,7 +1090,7 @@ namespace acme
 //       //virtual ::acme::library * get_library(const ::string & pszLibrary, bool bOpenCa2 = false) override;
 //
 //
-//       //virtual unsigned int os_post_to_all_threads(const ::atom & atom,wparam wparam = 0,lparam lparam = 0) override;
+//       //virtual unsigned int os_post_to_all_threads(const ::atom & atom,const ::wparam & wparam = {},const ::lparam & lparam = {}) override;
 //
 //
 //       //virtual void session_add(::collection::index iEdge, ::apex::session * psession) overr;

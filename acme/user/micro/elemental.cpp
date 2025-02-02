@@ -803,7 +803,7 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
       auto pbutton = __allocate ::micro::button();
 
       pbutton->m_strText = scopedstrText;
-      pbutton->m_atom = edialogresult;
+      pbutton->id() = edialogresult;
       pbutton->m_edialogresult1 = edialogresult;
       pbutton->m_chLetter = chLetter;
       //pbutton->m_bDefault = bDefault;
@@ -821,7 +821,7 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
 
          ::pointer<::micro::elemental> pelemental = pchild;
 
-         if (pelemental->m_atom == atom)
+         if (pelemental->id() == atom)
          {
 
             return pelemental;
@@ -1014,7 +1014,7 @@ void elemental::back_on_mouse_move(::user::mouse* pmouse)
          if (pmainwindow)
          {
 
-            pmainwindow->m_atomLeftButtonDown = pchild->m_atom;
+            pmainwindow->m_atomLeftButtonDown = pchild->id();
 
          }
 
@@ -1073,7 +1073,7 @@ void elemental::back_on_left_button_down(::user::mouse* pmouse)
       if (pmainwindow)
       {
 
-         pmainwindow->m_atomLeftButtonDown = pchild->m_atom;
+         pmainwindow->m_atomLeftButtonDown = pchild->id();
 
       }
 
@@ -1140,7 +1140,7 @@ void elemental::back_on_left_button_down(::user::mouse* pmouse)
          if (pmainwindow)
          {
 
-            pmainwindow->m_atomLeftButtonUp = pchild->m_atom;
+            pmainwindow->m_atomLeftButtonUp = pchild->id();
 
             if (pmainwindow->m_atomLeftButtonUp == pmainwindow->m_atomLeftButtonDown
                && pmainwindow->m_atomLeftButtonUp != e_dialog_result_none)
@@ -1219,7 +1219,7 @@ void elemental::back_on_left_button_up(::user::mouse* pmouse)
       if (pmainwindow)
       {
 
-         pmainwindow->m_atomLeftButtonUp = pchild->m_atom;
+         pmainwindow->m_atomLeftButtonUp = pchild->id();
 
          if (pmainwindow->m_atomLeftButtonUp == pmainwindow->m_atomLeftButtonDown
             && pmainwindow->m_atomLeftButtonUp != e_dialog_result_none)
@@ -1283,7 +1283,7 @@ void elemental::back_on_left_button_up(::user::mouse* pmouse)
          if (pmainwindow)
          {
 
-            pmainwindow->m_atomRightButtonDown = pchild->m_atom;
+            pmainwindow->m_atomRightButtonDown = pchild->id();
 
          }
 
@@ -1328,7 +1328,7 @@ void elemental::back_on_right_button_down(::user::mouse* pmouse)
       if (pmainwindow)
       {
 
-         pmainwindow->m_atomRightButtonDown = pchild->m_atom;
+         pmainwindow->m_atomRightButtonDown = pchild->id();
 
       }
 
@@ -1375,7 +1375,7 @@ void elemental::back_on_right_button_down(::user::mouse* pmouse)
          if (pmainwindow)
          {
 
-            pmainwindow->m_atomRightButtonUp = pchild->m_atom;
+            pmainwindow->m_atomRightButtonUp = pchild->id();
 
          }
 
@@ -1428,7 +1428,7 @@ void elemental::back_on_right_button_up(::user::mouse* pmouse)
       if (pmainwindow)
       {
 
-         pmainwindow->m_atomRightButtonUp = pchild->m_atom;
+         pmainwindow->m_atomRightButtonUp = pchild->id();
 
       }
 
@@ -1963,7 +1963,7 @@ void elemental::back_on_right_button_up(::user::mouse* pmouse)
    //   if (!atom.is_empty())
    //   {
 
-   //      m_atom = atom;
+   //      id() = atom;
 
    //   }
 
@@ -1988,7 +1988,7 @@ void elemental::back_on_right_button_up(::user::mouse* pmouse)
    //void elemental::create_control(::user::elemental * puserinteractionParent, const ::atom & atom)
    //{
 
-   //   m_atom = atom;
+   //   id() = atom;
 
    //   create_child(puserinteractionParent);
 
@@ -2086,19 +2086,19 @@ void elemental::back_on_right_button_up(::user::mouse* pmouse)
    void elemental::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == id_operating_system_user_color_change)
+      if (ptopic->id() == id_operating_system_user_color_change)
       {
 
          redraw();
 
       }
-      else if (ptopic->m_atom == id_set_application_dark_mode)
+      else if (ptopic->id() == id_set_application_dark_mode)
       {
 
          redraw();
 
       }
-      else if (ptopic->m_atom == id_application_dark_mode_change)
+      else if (ptopic->id() == id_application_dark_mode_change)
       {
 
          redraw();
@@ -2245,7 +2245,7 @@ void elemental::back_on_right_button_up(::user::mouse* pmouse)
 
       statement << strType;
 
-      ::string strAtom = m_atom.as_string();
+      ::string strAtom = id().as_string();
 
       if (strAtom.has_character() && strAtom != strType)
       {

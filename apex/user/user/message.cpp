@@ -25,14 +25,14 @@ namespace user
 
 
 
-   //user::user(oswindow oswindow, ::layered * playeredUserPrimitive, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //user::user(oswindow oswindow, ::layered * playeredUserPrimitive, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   m_uiMessageFlags = 0;
    //   m_lresult = 0;
    //   m_bDestroyed = false;
    //   m_bDoSystemDefault = true;
-   //   set(oswindow, playeredUserPrimitive, atom, wparam, lparam);
+   //   set(oswindow, playeredUserPrimitive, emessage, wparam, lparam);
 
 
    //   //papp->tellme_destroyed(puserinteraction, &m_bDestroyed);
@@ -45,7 +45,7 @@ namespace user
 
    //   m_uiMessageFlags = base.m_uiMessageFlags;
    //   m_pwindow = base.m_pwindow;
-   //   m_atom = base.m_atom;
+   //   id() = base.id();
    //   m_wparam = base.m_wparam;
    //   m_lparam = base.m_lparam;
    //   m_bConditional = base.m_bConditional;
@@ -83,12 +83,12 @@ namespace user
    }
 
 
-   //void message::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
+   //void message::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   m_pwindow = pwindow;
 
-   //   ::message::message::set(oswindow, pwindow, atom, wparam, lparam);
+   //   ::message::message::set(oswindow, pwindow, emessage, wparam, lparam);
 
    //}
 

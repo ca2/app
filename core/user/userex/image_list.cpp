@@ -369,13 +369,13 @@ namespace userex
 
       }
 
-      ::atom atom = get_document()->m_pimpactsystem->m_atom;
+      ::atom atom = get_document()->m_pimpactsystem->id();
 
       string strText;
 
       ::cast < ::database::client > pdatabaseclient = application();
 
-      pdatabaseclient->datastream()->get(m_atom + ".cur_text", strText);
+      pdatabaseclient->datastream()->get(id() + ".cur_text", strText);
 
    }
 
@@ -391,7 +391,7 @@ namespace userex
 
       ::user::image_list_impact::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == id_after_change_text)
+      if (ptopic->id() == id_after_change_text)
       {
 
          auto * peditimpact = _001TypedWindow < ::userex::top_edit_impact >();

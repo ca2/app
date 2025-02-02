@@ -232,14 +232,14 @@ namespace user
    bool split_impact::on_prepare_impact_data(::user::impact_data* pimpactdata)
    {
 
-      //if (!add_tab(pimpactdata->m_atom, pimpactdata->m_atomTitle))
+      //if (!add_tab(pimpactdata->id(), pimpactdata->m_atomTitle))
       //{
 
       //   return false;
 
       //}
 
-      split_pane * ppane = m_panea[pimpactdata->m_atom.as_index()];
+      split_pane * ppane = m_panea[pimpactdata->id().as_index()];
 
       if (ppane != nullptr)
       {

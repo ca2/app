@@ -473,7 +473,11 @@ namespace experience
 
          }
 
-         if(system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
+         auto pacmewindowing = system()->acme_windowing();
+
+         auto ewindowing = pacmewindowing->get_ewindowing();
+
+         if(ewindowing == ::windowing::e_windowing_wayland)
          {
 
             return m_pframewindow->layout().is_zoomed(user::e_layout_lading);
@@ -767,7 +771,7 @@ namespace experience
 
       atom atom = get_control_box_button_id(ebutton);
 
-      pbutton->m_atom = atom;
+      pbutton->id() = atom;
 
       string strTag = get_control_box_button_tag(ebutton);
 
@@ -917,7 +921,7 @@ namespace experience
 
       //}
 
-      pitem->m_atom = atom;
+      pitem->id() = atom;
 
       m_idmap[atom] = ebutton;
 
@@ -938,7 +942,7 @@ namespace experience
 
       }
 
-      return m_itemmap[ebutton]->m_atom;
+      return m_itemmap[ebutton]->id();
 
    }
 

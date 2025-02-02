@@ -380,7 +380,7 @@ namespace user
    void plain_edit::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == id_current_text_changed)
+      if (ptopic->id() == id_current_text_changed)
       {
 
          queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
@@ -1116,7 +1116,7 @@ namespace user
 
       }
 
-      m_linkedpropertyText = fetch_property(m_atom, true);
+      m_linkedpropertyText = fetch_property(id(), true);
 
       if (m_linkedpropertyText && !m_linkedpropertyText->is_empty())
       {
@@ -1125,7 +1125,7 @@ namespace user
 
       }
 
-      //m_ppropertyText = fetch_property(m_atom, true);
+      //m_ppropertyText = fetch_property(id(), true);
 
       //add_change_notification(m_ppropertyText);
 

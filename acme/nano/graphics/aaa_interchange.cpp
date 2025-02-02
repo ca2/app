@@ -462,7 +462,7 @@ void interchange::add_button(const ::scoped_string & scopedstrText, enum_dialog_
    auto pbutton = __allocate ::micro::button();
    
    pbutton->m_strText = scopedstrText;
-   pbutton->m_atom = edialogresult;
+   pbutton->id() = edialogresult;
    pbutton->m_edialogresult1 = edialogresult;
    pbutton->m_chLetter = chLetter;
    //pbutton->m_bDefault = bDefault;
@@ -481,7 +481,7 @@ void interchange::add_button(const ::scoped_string & scopedstrText, enum_dialog_
    for (auto & pchild : m_childa)
    {
       
-      if (pchild->m_atom == atom)
+      if (pchild->id() == atom)
       {
          
          return pchild;
@@ -551,7 +551,7 @@ void interchange::on_left_button_down(::user::mouse * pmouse)
    if (pchild)
    {
       
-      m_atomLeftButtonDown = pchild->m_atom;
+      m_atomLeftButtonDown = pchild->id();
       
    }
    else
@@ -604,7 +604,7 @@ void interchange::on_left_button_up(::user::mouse * pmouse)
    if (pchild)
    {
       
-      m_atomLeftButtonUp = pchild->m_atom;
+      m_atomLeftButtonUp = pchild->id();
       
    }
    else
@@ -641,7 +641,7 @@ void interchange::on_right_button_down(::user::mouse * pmouse)
    if (pchild)
    {
       
-      m_atomRightButtonDown = pchild->m_atom;
+      m_atomRightButtonDown = pchild->id();
       
    }
    else
@@ -672,7 +672,7 @@ void interchange::on_right_button_up(::user::mouse * pmouse)
    if (pchild)
    {
       
-      m_atomRightButtonUp = pchild->m_atom;
+      m_atomRightButtonUp = pchild->id();
       
    }
    else
@@ -922,7 +922,7 @@ void interchange::_run_modal_loop()
 void interchange::handle(::topic * ptopic, ::context * pcontext)
 {
    
-   if (ptopic->m_atom == id_set_application_dark_mode)
+   if (ptopic->id() == id_set_application_dark_mode)
    {
       
       m_pwindowbase->handle(ptopic, pcontext);

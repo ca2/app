@@ -31,7 +31,7 @@ namespace data
 
          pdata->m_listenera.add_unique(this);
 
-         m_datamap.set_at(pdata->m_atom, pdata);
+         m_datamap.set_at(pdata->id(), pdata);
 
          return true;
 
@@ -41,7 +41,7 @@ namespace data
 
          pdata->m_listenera.erase(this);
 
-         m_datamap.erase_item(pdata->m_atom);
+         m_datamap.erase_item(pdata->id());
 
          //::acme::map::erase_value(m_datamap, pdata);
 

@@ -33,7 +33,7 @@ namespace user
 
       form_window::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == ::id_form_initialize && ptopic->user_interaction() == this)
+      if (ptopic->id() == ::id_form_initialize && ptopic->user_interaction() == this)
       {
 
          //throw ::exception(todo);
@@ -47,7 +47,7 @@ namespace user
          }
 
       }
-      else if (ptopic->m_atom == id_browse)
+      else if (ptopic->id() == id_browse)
       {
 
          if (!ptopic->payload(id_form).is_empty())
@@ -63,13 +63,13 @@ namespace user
          }
 
       }
-      else if (ptopic->m_atom == id_get_form_impact)
+      else if (ptopic->id() == id_get_form_impact)
       {
 
          ptopic->payload(id_form) = this;
 
       }
-      else if (ptopic->m_atom == id_incoming_document)
+      else if (ptopic->id() == id_incoming_document)
       {
 
          auto strOpenOnCreate = m_strOpenOnCreate;
@@ -339,7 +339,7 @@ namespace user
 
    //   form_window::handle(ptopic, pcontext);
 
-   //   if (ptopic->m_atom == ::id_form_initialize && ptopic->user_interaction() == this)
+   //   if (ptopic->id() == ::id_form_initialize && ptopic->user_interaction() == this)
    //   {
 
    //      if (get_document())

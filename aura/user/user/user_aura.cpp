@@ -153,7 +153,7 @@ namespace user
    }
 
 
-   void aura_user_layer::SendMessageToWindows(const ::atom& atom, wparam wParam, lparam lParam)
+   void aura_user_layer::SendMessageToWindows(::enum_message emessage, ::wparam wparam, ::lparam lparam)
    {
    }
 

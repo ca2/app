@@ -214,7 +214,7 @@ namespace user
 
                pextendedtopic->m_puserelement = pinteraction;
 
-               pextendedtopic->m_atom = ::id_click;
+               pextendedtopic->id() = ::id_click;
 
                m_pitemControl = pitem;
 
@@ -268,10 +268,10 @@ namespace user
 
          ::pointer<::user::list_column>pcolumn = m_pcolumna->get_by_subitem(pitem->m_item.m_iSubItem);
 
-         if (pcolumn.is_set() && pcolumn->m_atom.is_set())
+         if (pcolumn.is_set() && pcolumn->id().is_set())
          {
 
-            auto pinteraction = get_child_by_id(pcolumn->m_atom);
+            auto pinteraction = get_child_by_id(pcolumn->id());
 
             if (pinteraction)
             {
@@ -393,7 +393,7 @@ namespace user
 
       ::user::list_column * pcolumn = m_pcolumna->get_by_subitem(iSubItem);
 
-      if (!pcolumn || pcolumn->m_atom.is_empty())
+      if (!pcolumn || pcolumn->id().is_empty())
       {
 
          return nullptr;
@@ -414,7 +414,7 @@ namespace user
 
       ::user::list_column * pcolumn = psubitem->m_pcolumn;
 
-      if (!pcolumn || pcolumn->m_atom.is_empty())
+      if (!pcolumn || pcolumn->id().is_empty())
       {
 
          return nullptr;
@@ -742,9 +742,9 @@ namespace user
          //{
          //   ::database::selection_item & item = selection.get_item(0);
          //   ::pointer<::user::edit_text>ptext = nullptr;
-         //   if (get_child_by_id(pinteraction->m_atom) != nullptr)
+         //   if (get_child_by_id(pinteraction->id()) != nullptr)
          //   {
-         //      ptext = get_child_by_id(pinteraction->m_atom);
+         //      ptext = get_child_by_id(pinteraction->id());
          //   }
          //   if (ptext == nullptr && pinteraction != nullptr)
          //   {
@@ -752,7 +752,7 @@ namespace user
          //   }
          //   if (ptext == nullptr)
          //      return;
-         //   if (datastream()->get(pinteraction->m_dataid.m_atom + "." + pitem->m_atom.m_atom, payload))
+         //   if (datastream()->get(pinteraction->m_dataid.id() + "." + pitem->id().id(), payload))
          //   {
          //      switch (payload.get_type())
          //      {
@@ -908,7 +908,7 @@ namespace user
       ASSERT(pinteraction->get_control_type() == e_control_type_edit || pinteraction->get_control_type() == e_control_type_edit_plain_text
          || pinteraction->get_control_type() == e_control_type_combo_box);
 
-      //auto pinteraction = get_child_by_id(pinteraction->m_atom);
+      //auto pinteraction = get_child_by_id(pinteraction->id());
 
       //if (!pinteraction)
       //{
@@ -1355,7 +1355,7 @@ namespace user
          for (::collection::index i = 0; i < m_pcolumna->get_size(); i++)
          {
 
-            auto pdescriptor = get_child_by_id((*m_pcolumna)[i]->m_atom);
+            auto pdescriptor = get_child_by_id((*m_pcolumna)[i]->id());
 
             if (pdescriptor != nullptr)
             {
@@ -1398,7 +1398,7 @@ namespace user
    //
    //      screen_to_client()(point);
    //
-   //      if (pmouse->m_atom == e_message_left_button_down)
+   //      if (pmouse->m_emessage == e_message_left_button_down)
    //      {
    //
    //         index iItem;
@@ -1697,7 +1697,7 @@ namespace user
 
          auto puserinteraction = get_control(pcolumn, iItem);
 
-         if (pcolumn->m_atom.is_set()
+         if (pcolumn->id().is_set()
             && puserinteraction != nullptr
             && _001IsSubItemEnabled(iItem, pcolumn->m_iSubItem))
          {
@@ -1946,7 +1946,7 @@ namespace user
    void form_list::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == ::id_set_check)
+      if (ptopic->id() == ::id_set_check)
       {
 
          auto puserinteraction = ptopic->user_interaction();
@@ -1963,7 +1963,7 @@ namespace user
          }
 
       }
-      else if (ptopic->m_atom == ::id_after_change_cur_sel)
+      else if (ptopic->id() == ::id_after_change_cur_sel)
       {
 
          if (m_pcontrolEdit == ptopic->user_interaction())
@@ -1981,7 +1981,7 @@ namespace user
          }
 
       }
-      else if (ptopic->m_atom == ::id_enter_key)
+      else if (ptopic->id() == ::id_enter_key)
       {
 
          if (m_pcontrolEdit != nullptr)
@@ -1996,7 +1996,7 @@ namespace user
          }
 
       }
-      else if (ptopic->m_atom == ::id_tab_key)
+      else if (ptopic->id() == ::id_tab_key)
       {
 
          ::collection::index iItem = 0;
@@ -2047,7 +2047,7 @@ namespace user
          }
 
       }
-      else if (ptopic->m_atom == ::id_key_down)
+      else if (ptopic->id() == ::id_key_down)
       {
 
          auto pkey = ptopic->m_actioncontext.m_pmessage->m_union.m_pkey;
@@ -2250,13 +2250,13 @@ namespace user
 
       }
 
-      ::string strIdTemplate(pinteractionTemplate->m_atom);
+      ::string strIdTemplate(pinteractionTemplate->id());
 
       ::string strId;
 
       strId.formatf("%s-%04d", strIdTemplate.c_str(), iIndex);
 
-      pinteraction->m_atom = strId;
+      pinteraction->id() = strId;
 
       pinteraction->m_item.m_iItem = iItem;
 
@@ -2283,7 +2283,7 @@ namespace user
    void form_list::_001DrawSubItem(::draw2d::graphics_pointer & pgraphics, draw_list_subitem * pdrawlistsubitem)
    {
 
-      //if (psubitem->m_pcolumn->m_atom)
+      //if (psubitem->m_pcolumn->id())
       //{
 
       //   auto rScreen = psubitem->m_rectangleSubItem;
@@ -2520,10 +2520,10 @@ namespace user
 
       ::pointer<::user::list_column>pcolumn = m_pcolumna->get_by_subitem(iSubItem);
 
-      if (pcolumn.is_set() && pcolumn->m_atom.is_set())
+      if (pcolumn.is_set() && pcolumn->id().is_set())
       {
 
-         auto pinteraction = get_child_by_id(pcolumn->m_atom);
+         auto pinteraction = get_child_by_id(pcolumn->id());
 
          if (pinteraction->has_function(::user::e_control_function_check_box))
          {
@@ -2570,10 +2570,10 @@ namespace user
 
       ::pointer<::user::list_column>pcolumn = m_pcolumna->get_by_subitem(iSubItem);
 
-      if (pcolumn.is_set() && pcolumn->m_atom.is_set())
+      if (pcolumn.is_set() && pcolumn->id().is_set())
       {
 
-         auto pinteraction = get_child_by_id(pcolumn->m_atom);
+         auto pinteraction = get_child_by_id(pcolumn->id());
 
          if (pinteraction)
          {
@@ -2614,10 +2614,10 @@ namespace user
 
       ::pointer<::user::list_column>pcolumn = m_pcolumna->get_by_subitem(iSubItem);
 
-      if (pcolumn.is_set() && pcolumn->m_atom.is_set())
+      if (pcolumn.is_set() && pcolumn->id().is_set())
       {
 
-         auto pinteraction = get_child_by_id(pcolumn->m_atom);
+         auto pinteraction = get_child_by_id(pcolumn->id());
 
          if (pinteraction)
          {

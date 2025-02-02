@@ -30,7 +30,8 @@ namespace filemanager
       char *                     m_pchBuffer;
       int                        m_iBufferSize;
       ::user::interaction *      m_oswindowCallback;
-      atom                         m_atom;
+      //atom                       m_atomFileManagerOperation;
+      enum_message               m_emessageFileManagerOperation;
       wparam                     m_wparamCallback;
 
 

@@ -268,10 +268,10 @@ namespace user
 //      virtual lresult send(::message::message * pmessage);
       virtual void post_message(::message::message * pmessage);
 
-      lresult send_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::int_point & point = {}) override;
+      lresult send_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {}) override;
       lresult send_message(::message::message * pmessage) override;
 
-      lresult message_call(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::int_point & point = {}) override;
+      lresult message_call(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {}) override;
       lresult message_call(::message::message * pmessage) override;
 
       
@@ -284,13 +284,13 @@ namespace user
 
 #endif
 
-      lresult message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0)override;
+      lresult message_handler(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {})override;
 
-      void post_message(const ::atom & atom, wparam wparam = 0,lparam lparam = 0)override;
+      void post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {})override;
 
-      void post_simple_command(const enum_simple_command & ecommand,lparam lParam = 0) override;
+      void post_simple_command(const enum_simple_command & ecommand,const ::lparam & lparam = {}) override;
 
-      //virtual bool user_post(const ::atom& atom, wparam wparam = 0, lparam lparam = 0);
+      //virtual bool user_post(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
 
       //virtual bool ModifyStyle(unsigned int dwRemove,unsigned int dwAdd,unsigned int nFlags = 0);
       //virtual bool ModifyStyleEx(unsigned int dwRemove,unsigned int dwAdd,unsigned int nFlags = 0);
@@ -385,7 +385,7 @@ namespace user
 
       bool is_top_level_window() override;
 
-      void send_message_to_descendants(const ::atom & atom, wparam wParam = 0, lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = false) override;
+      void send_message_to_descendants(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {},bool bDeep = true,bool bOnlyPerm = false) override;
 
       void route_message_to_descendants(::message::message * pmessage) override;
       void pre_translate_message(::message::message * pmessage) override;
@@ -432,7 +432,7 @@ namespace user
       //virtual void default_window_procedure(::message::message * pmessage);
 
 
-      //bool call_message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, const ::int_point & point = {},lresult * presult = nullptr) override;
+      //bool call_message_handler(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {},lresult * presult = nullptr) override;
 
 
       //virtual void GuieProc(::message::message * pmessage);
@@ -555,8 +555,8 @@ namespace user
       //bool _001OnBeforeExitFullScreen() override;
       //bool _001OnBeforeExitZoomed() override;
 
-      //virtual lresult send_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
-      //virtual bool post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = 0);
+      //virtual lresult send_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
+      //virtual bool post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
       //virtual void message_handler(::message::message * pmessage);
       //virtual void pre_translate_message(::message::message * pmessage);
 

@@ -145,7 +145,7 @@ namespace apex
 
       }
 
-      m_atom = atom;
+      id() = atom;
 
       m_bInitialized = true;
 
@@ -487,7 +487,7 @@ namespace apex
 ////
 ////         strIndex.formatf("%d-%05d", get_current_process_id(), iRetry);
 ////
-////         m_strLogPath = directory_system()->appdata() / string(m_atom) / strDatetime + "-" + strIndex + ".ca2log";
+////         m_strLogPath = directory_system()->appdata() / string(id()) / strDatetime + "-" + strIndex + ".ca2log";
 ////
 ////         try
 ////         {

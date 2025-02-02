@@ -800,10 +800,10 @@ void object::branch_send(const ::procedure & procedure, manual_reset_happening *
 void object::defer_update_object_id()
 {
 
-   if (m_atom.is_empty())
+   if (id().is_empty())
    {
 
-      m_atom = calc_default_object_id();
+      id() = calc_default_object_id();
 
    }
 
@@ -956,14 +956,14 @@ void object::destruct()
 //
 //   //on_finalize();
 //
-//   if (string(m_atom).contains("::rx"))
+//   if (string(id()).contains("::rx"))
 //   {
 //
 //      informationf("::rx destroy");
 //
 //   }
 //
-//   if (string(m_atom).contains("::interprocess::communication"))
+//   if (string(id()).contains("::interprocess::communication"))
 //   {
 //
 //      informationf("::interprocess::communication destroy");
@@ -1874,7 +1874,7 @@ void object::branch_each(const ::procedure_array& routinea)
    
    auto pbase = procedure.m_pbase.m_p;
 
-   ptask->m_atom = typeid(*pbase).name();
+   ptask->id() = typeid(*pbase).name();
 
    ptask->branch(eparallelization, createtaskattributes);
 
@@ -1908,7 +1908,7 @@ void object::branch_each(const ::procedure_array& routinea)
    
    auto pbase = procedure.m_pbase.m_p;
 
-   ptask->m_atom = typeid(*pbase).name();
+   ptask->id() = typeid(*pbase).name();
 
    ptask->branch_synchronously(createtaskattributes);
 
@@ -3034,7 +3034,7 @@ void object::initialize(::particle * pparticle)
 //
 //   pthread->m_pelement = routine;
 //
-//   pthread->m_atom = ::type(pthread->m_pelement).name();
+//   pthread->id() = ::type(pthread->m_pelement).name();
 //
 //   pthread->begin_thread();
 //

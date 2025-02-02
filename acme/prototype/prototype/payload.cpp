@@ -236,7 +236,7 @@ payload::payload(const type_atom & typeatom):
 #if REFERENCING_DEBUGGING
    , m_preferer(nullptr)
 #endif
-   ,m_atom(typeatom)
+   ,m_atomPayload(typeatom)
 {
 
 
@@ -517,7 +517,7 @@ payload::payload(const ::atom & atom) :
 #if REFERENCING_DEBUGGING
    , m_preferer(nullptr)
 #endif
-   ,m_atom(atom)
+   ,m_atomPayload(atom)
 {
 
 }
@@ -679,7 +679,7 @@ atom::enum_type payload::atom_type() const
 
    }
 
-   return m_atom.m_etype;
+   return m_atomPayload.m_etype;
 
 }
 
@@ -820,7 +820,7 @@ void payload::set_type(enum_type etype, bool bConvert)
             m_str = ::transfer(this->as_string());
             break;
          case e_type_atom:
-            m_atom = ::transfer(this->as_atom());
+            m_atomPayload = ::transfer(this->as_atom());
             break;
          default:
             ::set_last_status(error_conversion_not_a_number);
@@ -841,7 +841,7 @@ void payload::set_type(enum_type etype, bool bConvert)
          else if (etype == e_type_atom)
          {
 
-            ::new(&m_atom) ::atom();
+            ::new(&m_atomPayload) ::atom();
 
          }
          else if (etype >= e_type_element && etype < e_type_last_element)
@@ -1032,7 +1032,7 @@ void payload::set_id(const ::atom & atom)
 
       }
 
-      m_atom = atom;
+      m_atomPayload = atom;
 
    }
 
@@ -1761,7 +1761,7 @@ class ::payload & payload::operator = (const class ::payload & payload)
          //   m_pproperty=payload.m_pproperty;
          //   break;
          case e_type_atom:
-            m_atom = payload.m_atom;
+            m_atomPayload = payload.m_atomPayload;
             break;
          default:
             m_payloadall = payload.m_payloadall;
@@ -2256,7 +2256,7 @@ bool payload::is_true() const
       //case e_type_property:
       //   return m_pproperty->is_true(bDefault);
       case e_type_atom:
-         return m_atom.is_true();
+         return m_atomPayload.is_true();
 //      case e_type_enum_status:
 //         return m_estatus.succeeded();
 //      case e_type_enum_check:
@@ -2301,7 +2301,7 @@ bool payload::is_empty() const
    //case e_type_property:
    //   return m_pproperty->is_empty();
    case e_type_atom:
-      return m_atom.is_empty();
+      return m_atomPayload.is_empty();
    case e_type_patom:
       return m_patom->is_empty();
 
@@ -2362,7 +2362,7 @@ bool payload::has_character() const
    //case e_type_property:
    //   return m_pproperty->has_character();
    case e_type_atom:
-      return m_atom.has_character();
+      return m_atomPayload.has_character();
    case e_type_patom:
       return m_patom->has_character();
    case e_type_element:
@@ -3144,7 +3144,7 @@ string payload::as_string(const ::scoped_string & scopedstrOnNull) const
       else if(m_etype == ::e_type_atom)
       {
 
-         str = m_atom;
+         str = m_atomPayload;
 
       }
       else if(m_etype == ::e_type_patom)
@@ -3386,7 +3386,7 @@ string & payload::string_reference()
    else
    {
 
-      return m_atom;
+      return m_atomPayload;
 
    }
 
@@ -3421,9 +3421,9 @@ string & payload::string_reference()
 
       set_type(e_type_atom, false);
 
-      m_atom = ::transfer(atom);
+      m_atomPayload = ::transfer(atom);
 
-      return m_atom;
+      return m_atomPayload;
 
    }
 
@@ -3486,9 +3486,9 @@ int payload::as_int(int iDefault) const
       return atoi(*m_pstr);
    case e_type_atom:
    {
-      if(!fits_int(m_atom.as_huge_integer()))
+      if(!fits_int(m_atomPayload.as_huge_integer()))
          throw ::exception(error_overflow, "::payload contains atom that does not fit 32 bit integer");
-      return (int) (huge_integer) m_atom.as_huge_integer();
+      return (int) (huge_integer) m_atomPayload.as_huge_integer();
    }
    case e_type_patom:
    {
@@ -3630,7 +3630,7 @@ huge_integer payload::as_huge_integer(huge_integer iDefault) const
       case e_type_huge_natural:
          return m_hn;
       case e_type_atom:
-         return m_atom.as_huge_integer();
+         return m_atomPayload.as_huge_integer();
       case e_type_pchar:
          if (::is_null(m_p)) return iDefault;
          return *m_pch;
@@ -6994,7 +6994,7 @@ bool payload::has_string_reference() const
 //   else if (m_etype == e_type_atom)
 //   {
 //
-//      return (m_atom.is_text() && ::acme::is_true(m_atom.m_psz)) || (m_atom.is_integer() && m_atom.m_i != 0);
+//      return (m_atomPayload.is_text() && ::acme::is_true(m_atomPayload.m_psz)) || (m_atomPayload.is_integer() && m_atomPayload.m_i != 0);
 //
 //   }
 //   else if (m_etype == e_type_patom)
@@ -8090,7 +8090,7 @@ bool payload::is_numeric() const
       return false;
 
    case e_type_atom:
-      return false; // m_atom.is_number(); // may be improved MBI
+      return false; // m_atomPayload.is_number(); // may be improved MBI
 
    case e_type_patom:
       return false; // m_patom->is_number(); // may be improved MBI
@@ -8873,7 +8873,7 @@ bool payload::is_false() const
    case e_type_ptime:
       return !m_ptime || *m_ptime <= 0_s;
    case e_type_atom:
-      return m_atom.is_empty() || m_atom == 0 || m_atom.case_insensitive_order("false") == 0 || m_atom.case_insensitive_order("no") == 0 || m_atom == "0";
+      return m_atomPayload.is_empty() || m_atomPayload == 0 || m_atomPayload.case_insensitive_order("false") == 0 || m_atomPayload.case_insensitive_order("no") == 0 || m_atomPayload == "0";
    case e_type_patom:
       return !m_patom || m_patom->is_empty() || *m_patom == 0 || m_patom->case_insensitive_order("false") == 0 || m_patom->case_insensitive_order("no") == 0 || *m_patom == "0";
    case e_type_earth_time:
@@ -9060,7 +9060,7 @@ bool payload::is_set_false() const
    case e_type_ptime:
       return !m_ptime || *m_ptime <= 0_s;
    case e_type_atom:
-      return m_atom.is_empty() || m_atom == 0|| m_atom.case_insensitive_order("false") == 0 || m_atom.case_insensitive_order("no") == 0 || m_atom.case_insensitive_order("0") == 0;
+      return m_atomPayload.is_empty() || m_atomPayload == 0|| m_atomPayload.case_insensitive_order("false") == 0 || m_atomPayload.case_insensitive_order("no") == 0 || m_atomPayload.case_insensitive_order("0") == 0;
    case e_type_patom:
       return !m_patom || m_patom->is_empty()|| *m_patom == 0 || m_patom->case_insensitive_order("false") == 0 || m_patom->case_insensitive_order("no") == 0 || m_patom->case_insensitive_order("0") == 0;
    case e_type_earth_time:
@@ -10570,10 +10570,10 @@ payload & payload::operator = (const ::file::path & path)
 bool succeeded(const ::payload & payload)
 {
 
-   if (payload.m_etype == e_type_atom && payload.m_atom.m_estatus)
+   if (payload.m_etype == e_type_atom && payload.m_atomPayload.m_estatus)
    {
 
-      return payload.m_atom.m_estatus.succeeded();
+      return payload.m_atomPayload.m_estatus.succeeded();
 
    }
    else if (payload.is_integer())

@@ -86,13 +86,13 @@ namespace user
       if(m_eorientation == e_orientation_horizontal)
       {
 
-         pscroll->m_atom = e_message_scroll_x;
+         pscroll->m_emessage = e_message_scroll_x;
 
       }
       else
       {
 
-         pscroll->m_atom = e_message_scroll_y;
+         pscroll->m_emessage = e_message_scroll_y;
 
       }
 

@@ -186,7 +186,7 @@ namespace filemanager
       if (pdocumentTopic->on_filemanager_save(filemanager_document(), path))
       {
 
-         //ptopic->m_atom = id_topic_saved;
+         //ptopic->id() = id_topic_saved;
 
          //pupdate->m_pfileitem = __allocate ::file::item(path, path);
 
@@ -196,7 +196,7 @@ namespace filemanager
 
          //output_error_message("Failed to save document");
 
-         //ptopic->m_atom = id_topic_save_failed;
+         //ptopic->id() = id_topic_save_failed;
 
       }
 

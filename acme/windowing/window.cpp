@@ -736,7 +736,20 @@ namespace acme
 
        m_pacmeuserinteractionKeyboardFocus = pacmeuserinteractionFocus;
 
+         if (!has_keyboard_focus())
+         {
+
+            set_keyboard_focus();
+
+         }
+
     }
+
+
+   void window::set_keyboard_focus()
+   {
+
+   }
 
     //void window::erase_keyboard_focus(::acme::user::interaction * pacmeuserinteractionFocus)
     //{
@@ -904,7 +917,7 @@ namespace acme
       void window::handle(::topic * ptopic, ::context * pcontext)
       {
 
-         if (ptopic->m_atom == id_set_application_dark_mode)
+         if (ptopic->id() == id_set_application_dark_mode)
          {
 
             m_pacmeuserinteraction->handle(ptopic, pcontext);
@@ -1266,7 +1279,7 @@ namespace acme
       //void window::handle(::topic * ptopic, ::context * pcontext)
       //{
 
-      //   // if(ptopic->m_atom == id_operating_system_user_color_change)
+      //   // if(ptopic->id() == id_operating_system_user_color_change)
       //   // {
       //   //
       //   //    update_drawing_objects();
@@ -1274,7 +1287,7 @@ namespace acme
       //   //    redraw();
       //   //
       //   // }
-      //   // else if(ptopic->m_atom == id_set_application_dark_mode)
+      //   // else if(ptopic->id() == id_set_application_dark_mode)
       //   // {
       //   //
       //   //    update_drawing_objects();
@@ -1282,7 +1295,7 @@ namespace acme
       //   //    redraw();
       //   //
       //   // }
-      //   // else if(ptopic->m_atom == id_application_dark_mode_change)
+      //   // else if(ptopic->id() == id_application_dark_mode_change)
       //   // {
       //   //
       //   //    update_drawing_objects();
@@ -1401,7 +1414,7 @@ namespace acme
       //}
 
 
-      void window::_on_window_simple_action(const char * pszActionName)
+      void window::_on_window_simple_action(const char * pszActionName, ::user::activation_token * puseractivationtoken)
       {
 
          if (!m_pacmeuserinteraction)
@@ -1411,7 +1424,7 @@ namespace acme
 
          }
 
-         m_pacmeuserinteraction->_on_window_simple_action(pszActionName);
+         m_pacmeuserinteraction->_on_window_simple_action(pszActionName, puseractivationtoken);
 
       }
 
@@ -1597,7 +1610,7 @@ namespace acme
       }
 
 
-      void window::on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem)
+      void window::on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem, ::user::activation_token * puseractivationtoken)
       {
 
          ::string strActionName(psystemmenuitem->m_strAtom);
@@ -1623,7 +1636,7 @@ namespace acme
          else if (strActionName == "about_box")
          {
 
-            application()->show_about_box();
+            application()->show_about_box(puseractivationtoken);
 
          }
          else if (strActionName == "close")

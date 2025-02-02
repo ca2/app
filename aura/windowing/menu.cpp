@@ -60,7 +60,7 @@ namespace windowing
 
    //       pitem->m_strParent = straParent[i];
    //       pitem->m_strMenu = straMenu[i];
-   //       pitem->m_atom = straId[i];
+   //       pitem->id() = straId[i];
 
    //       pmenu->m_itema.add(pitem);
 
@@ -92,7 +92,7 @@ namespace windowing
    //       if (!strcmp(pszParent, pitem->m_strParent))
    //       {
 
-   //          if (!strcmp(pszId, pitem->m_atom.to_string()))
+   //          if (!strcmp(pszId, pitem->id().to_string()))
    //          {
 
    //             return pitem;
@@ -200,7 +200,7 @@ namespace windowing
                
                command.m_bProbing = true;
 
-               command.m_atom = pitem->m_atom;
+               command.m_atomCommand = pitem->id();
 
                pchannel->on_command_probe(&command);
 

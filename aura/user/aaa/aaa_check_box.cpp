@@ -56,9 +56,9 @@ namespace user
 
          topic.m_puserinteraction = this;
 
-         //topic.m_atom = m_atom;
+         //topic.id() = id();
 
-         topic.m_atom = ::id_set_check;
+         topic.id() = ::id_set_check;
 
          topic.m_actioncontext = context;
 
@@ -568,7 +568,7 @@ namespace user
 //
 //         ::user::menu_command command(this);
 //
-//         command.m_atom = m_atom;
+//         command.id() = id();
 //
 //         command.m_puiOther = this;
 //
@@ -654,7 +654,7 @@ namespace user
 
       pmessage->previous();
 
-      m_ppropertyCheck = fetch_property(m_atom, true);
+      m_ppropertyCheck = fetch_property(id(), true);
 
       add_update_notification(m_ppropertyCheck);
 

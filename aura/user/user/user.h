@@ -154,7 +154,7 @@ namespace user
 
       virtual bool on_ui_mouse_message(::message::mouse_base * pmouse) override;
 
-      virtual void SendMessageToWindows(const ::atom & atom, wparam wParam, lparam lParam) override;
+      virtual void SendMessageToWindows(::enum_message emessage, ::wparam wparam, ::lparam lparam) override;
 
       virtual void term() override;
 

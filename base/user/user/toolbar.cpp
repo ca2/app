@@ -164,7 +164,7 @@ namespace user
 
          }
 
-         command.m_atom = ptoolitem->m_atom;
+         command.m_atomCommand = ptoolitem->id();
 
          // allow reflections
          //if (::user::interaction::on_command(0,
@@ -1694,7 +1694,7 @@ namespace user
          // get buttons state
          TBBUTTON button;
          _GetButton(state.m_iIndex, &button);
-         state.m_atom = button.idCommand;
+         state.id() = button.idCommand;
 
          // ignore separators
          if (!(button.fsStyle & TBSTYLE_SEP))
@@ -2015,7 +2015,7 @@ namespace user
 
             auto pattributeId = pchild->find_attribute("id");
 
-            ptoolitem->m_atom = pattributeId->as_string();
+            ptoolitem->id() = pattributeId->as_string();
 
             //auto puseritem = user_item_at(iItem);
 
@@ -2063,7 +2063,7 @@ namespace user
 
             pitema->set_at_grow(iItem, ptoolitem);
 
-            ptoolitem->m_atom = "separator";
+            ptoolitem->id() = "separator";
 
             ptoolitem->m_str = "";
 

@@ -166,7 +166,7 @@ public:
 
    bool peek_message(MESSAGE * pMsg, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, bool bRemoveMessage = false);
    void get_message(MESSAGE * pMsg, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax);
-   void post_message(oswindow oswindow, const ::atom & atom, wparam wParam, lparam lParam);
+   void post_message(oswindow oswindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam);
 
 
    ::user::interaction_base_array & userprimitivea();
@@ -256,13 +256,13 @@ public:
    //inline bool command_value_is_true(const ::atom& atom) const;
 
 
-   virtual void post_message(const ::atom & atom, wparam wParam = {}, lparam lParam = 0);
+   virtual void post_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
 
-   virtual void send_message(const ::atom & atom, wparam wParam = {}, lparam lParam = 0, const class time & timeTimeout = ::time::infinity());
+   virtual void send_message(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {}, const class time & timeTimeout = ::time::infinity());
 
-   virtual void post_element(const ::atom & atom, wparam wParam, ::particle * pparticle);
+   virtual void post_element(const ::enum_message & emessage, const ::wparam & wparam, ::particle * pparticle);
 
-   virtual void send_element(const ::atom & atom, wparam wParam, ::particle * pparticle, const class time & timeTimeout = ::time::infinity());
+   virtual void send_element(const ::enum_message & emessage, const ::wparam & wparam, ::particle * pparticle, const class time & timeTimeout = ::time::infinity());
 
 
    DECLARE_MESSAGE_HANDLER(on_message_branch);

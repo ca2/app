@@ -275,10 +275,10 @@ namespace image
    }
 
 
-   void image_context::_save_to_file(const ::payload & payloadFile, ::image::image * pimage, const ::image::save_options & saveoptions)
+   void image_context::_save_to_file(const ::payload & payloadFile, ::image::image * pimage, const ::image::encoding_options & encodingoptions)
    {
 
-      return save_image(payloadFile, pimage, saveoptions);
+      return save_image(payloadFile, pimage, encodingoptions);
 
    }
 
@@ -789,12 +789,12 @@ namespace image
    }
 
 
-   void image_context::save_image(const ::payload & payloadFile, ::image::image * pimage, const ::image::save_options & saveoptions)
+   void image_context::save_image(const ::payload & payloadFile, ::image::image * pimage, const ::image::encoding_options & encodingoptions)
    {
 
       memory mem;
 
-      save_image(mem, pimage, saveoptions);
+      save_image(mem, pimage, encodingoptions);
       //{
 
       //   return false;
@@ -808,14 +808,14 @@ namespace image
    }
 
 
-   void image_context::save_image(::memory & memory, ::image::image * pimage, const ::image::save_options & saveoptions)
+   void image_context::save_image(::memory & memory, ::image::image * pimage, const ::image::encoding_options & encodingoptions)
    {
 
       auto pfile = create_memory_file(memory);
 
       //auto estatus = 
 
-      save_image(pfile, pimage, saveoptions);
+      save_image(pfile, pimage, encodingoptions);
 
       //if (!estatus)
       //{
@@ -1241,61 +1241,61 @@ namespace image
    //}
 
 
-   ::image::save_options image_context::create_save_options(const ::payload & payloadFile)
+   ::image::encoding_options image_context::create_encoding_options(const ::payload & payloadFile)
    {
 
-      save_options saveoptions;
+      encoding_options encodingoptions;
 
-      auto payloadSaveOptions = payloadFile["save_options"];
+      auto payloadEncodingOptions = payloadFile["encoding_options"];
 
-      saveoptions.m_eformat = text_to_format(payloadSaveOptions["format"]);
+      encodingoptions.m_eformat = text_to_format(payloadEncodingOptions["format"]);
 
-      if (saveoptions.m_eformat != ::image::e_format_none)
+      if (encodingoptions.m_eformat != ::image::e_format_none)
       {
 
          ::pointer<::aura::system>psystem = system();
 
-         saveoptions.m_eformat = file_extension_to_format(payloadFile.as_file_path());
+         encodingoptions.m_eformat = file_extension_to_format(payloadFile.as_file_path());
 
       }
 
-      if (saveoptions.m_eformat == ::image::e_format_none)
+      if (encodingoptions.m_eformat == ::image::e_format_none)
       {
 
-         saveoptions.m_eformat = ::image::e_format_png;
+         encodingoptions.m_eformat = ::image::e_format_png;
 
       }
 
-      if (payloadSaveOptions["quality"].is_floating())
+      if (payloadEncodingOptions["quality"].is_floating())
       {
 
-         saveoptions.m_iQuality = (int)(payloadSaveOptions["quality"].as_double() * 100.0);
+         encodingoptions.m_iQuality = (int)(payloadEncodingOptions["quality"].as_double() * 100.0);
 
       }
-      else if (payloadSaveOptions["quality"].is_integer())
+      else if (payloadEncodingOptions["quality"].is_integer())
       {
 
-         saveoptions.m_iQuality = payloadSaveOptions["quality"].as_int();
+         encodingoptions.m_iQuality = payloadEncodingOptions["quality"].as_int();
 
       }
 
-      if (saveoptions.m_iQuality <= 0)
+      if (encodingoptions.m_iQuality <= 0)
       {
 
-         saveoptions.m_iQuality = 100;
+         encodingoptions.m_iQuality = 100;
 
       }
 
-      saveoptions.m_iDpi = payloadSaveOptions["dpi"].as_int();
+      encodingoptions.m_iDpi = payloadEncodingOptions["dpi"].as_int();
 
-      if (saveoptions.m_iDpi <= 0)
+      if (encodingoptions.m_iDpi <= 0)
       {
 
-         saveoptions.m_iDpi = 96;
+         encodingoptions.m_iDpi = 96;
 
       }
 
-      return saveoptions;
+      return encodingoptions;
 
    }
 

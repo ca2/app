@@ -33,6 +33,7 @@ namespace innate_ui
       virtual void center();
       virtual void show();
       virtual void hide();
+      virtual void show_front(::user::activation_token * puseractivationtoken);
 
 
       virtual void set_text(const ::scoped_string & scopedstr);

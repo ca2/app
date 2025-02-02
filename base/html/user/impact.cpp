@@ -186,7 +186,7 @@ void html_impact::on_document_complete(const ::string & strUrl)
 //   ////__update(::update)
 //   {
 //
-//      if (ptopic->m_atom == id_document_complete)
+//      if (ptopic->id() == id_document_complete)
 //      {
 //
 //         {
@@ -234,7 +234,7 @@ void html_impact::handle(::topic * ptopic, ::context * pcontext)
    ////__update(::update)
    {
 
-      if (ptopic->m_atom == id_document_complete)
+      if (ptopic->id() == id_document_complete)
       {
 
          {

@@ -159,7 +159,7 @@ namespace experience_core
 
          ::user::e_state estate = ::user::e_state_none;
 
-         if (pdata->m_idaSel.contains(ppane->m_atom))
+         if (pdata->m_idaSel.contains(ppane->id()))
          {
 
             estate |= ::user::e_state_selected;
@@ -228,7 +228,7 @@ namespace experience_core
 
             auto ppath = __øcreate < ::draw2d::path >();
 
-            if (pdata->m_idaSel.contains(ppane->m_atom))
+            if (pdata->m_idaSel.contains(ppane->id()))
             {
 
                ppath->begin_figure();
@@ -458,7 +458,7 @@ namespace experience_core
 
             }
 
-            bool bPaneSelected = pdata->m_idaSel.contains(ppane->m_atom);
+            bool bPaneSelected = pdata->m_idaSel.contains(ppane->id());
 
             auto & ppath = groupPaneLayout.m_patha[
                bPaneSelected ? 

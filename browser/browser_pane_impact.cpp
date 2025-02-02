@@ -273,7 +273,7 @@ namespace browser
 
       }
 
-      if (m_pimpactdataOld != nullptr && m_pimpactdataOld->m_atom == FONTSEL_IMPACT)
+      if (m_pimpactdataOld != nullptr && m_pimpactdataOld->id() == FONTSEL_IMPACT)
       {
 
          ::pointer<::user::font_list_impact>pfontview = ptabpaneFontSel->m_pholder->get_child_by_id("font_list_impact");
@@ -297,7 +297,7 @@ namespace browser
    void pane_impact::on_create_impact(::user::impact_data * pimpactdata)
    {
 
-      switch(pimpactdata->m_atom)
+      switch(pimpactdata->id())
       {
       case MENU_IMPACT:
       {
@@ -345,7 +345,7 @@ namespace browser
       if(m_pdocMenu != nullptr && ptopic->is_about(m_pdocMenu->get_impact(0)))
       {
 
-         if(ptopic->m_atom == ::id_after_change_text)
+         if(ptopic->id() == ::id_after_change_text)
          {
 
             if(m_prollfps != nullptr && ptopic->user_interaction_id() == "roll_per_second" && !ptopic->m_context.is(::e_source_initialize)
@@ -427,7 +427,7 @@ namespace browser
 
 
          }
-         else if (ptopic->m_atom == ::id_set_check && ptopic->user_interaction() != nullptr)
+         else if (ptopic->id() == ::id_set_check && ptopic->user_interaction() != nullptr)
          {
 
             string strCheck = ptopic->user_interaction_id();
@@ -473,7 +473,7 @@ namespace browser
          if (m_pfontimpact != nullptr && ptopic->user_interaction() == m_pfontimpact->m_pimpact)
          {
 
-            if (ptopic->m_atom == ::id_after_change_cur_sel)
+            if (ptopic->id() == ::id_after_change_cur_sel)
             {
 
                string strFont = m_pfontimpact->m_pimpact->get_cur_sel_face_name();
@@ -492,7 +492,7 @@ namespace browser
                }
 
             }
-            else if (ptopic->m_atom == ::id_after_change_cur_hover)
+            else if (ptopic->id() == ::id_after_change_cur_hover)
             {
 
                string strFont = m_pfontimpact->m_pimpact->get_cur_hover_face_name();
@@ -513,13 +513,13 @@ namespace browser
          {
 
 
-            if (ptopic->m_atom == ::id_after_change_cur_sel
-                  || ptopic->m_atom == ::id_after_change_cur_hover)
+            if (ptopic->id() == ::id_after_change_cur_sel
+                  || ptopic->id() == ::id_after_change_cur_hover)
             {
 
                m_pcolorimpact->get_color().get_hls(m_pimpactLastBilbo->m_prender->m_hlsForeground);
 
-               if (ptopic->m_atom == ::id_after_change_cur_sel)
+               if (ptopic->id() == ::id_after_change_cur_sel)
                {
 
                   m_pimpactLastBilbo->datastream()->set("cur_color", m_pimpactLastBilbo->m_prender->m_hlsForeground);

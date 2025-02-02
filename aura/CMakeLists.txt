@@ -167,13 +167,13 @@ list(APPEND library_source
    graphics/image/drawing.h
    graphics/image/dynamic.cpp
    graphics/image/dynamic.h
+   graphics/image/encoding_options.cpp
+   graphics/image/encoding_options.h
    graphics/image/load_gif_frame.cpp
    graphics/image/load_image.cpp
    graphics/image/load_image.h
-   graphics/image/save_options.h
    graphics/image/load_options.h
    graphics/image/_constant.h
-   graphics/image/save_options.cpp
    graphics/image/extension.cpp
    graphics/image/extension.h
    graphics/image/fastblur.cpp

@@ -1118,10 +1118,10 @@ namespace user
    }
 
 
-   lresult interaction_base::send_message(const ::atom & atom,wparam wparam,lparam lparam, const ::int_point& point)
+   lresult interaction_base::send_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
    {
 
-      return message_call(atom, wparam, lparam, point);
+      return message_call(emessage, wparam, lparam, point);
 
    }
 
@@ -1134,7 +1134,7 @@ namespace user
 //   }
 
 
-   lresult interaction_base::message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::int_point& point)
+   lresult interaction_base::message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
    {
 
       return 0;
@@ -1236,7 +1236,7 @@ namespace user
    //}
 
 
-   void interaction_base::send_message_to_descendants(const ::atom & atom,wparam wparam,lparam lparam,bool bDeep,bool bOnlyPerm)
+   void interaction_base::send_message_to_descendants(::enum_message emessage, ::wparam wparam, ::lparam lparam,bool bDeep,bool bOnlyPerm)
 
    {
 
@@ -1308,7 +1308,7 @@ namespace user
    //void interaction_base::create_control(::user::interaction * puserinteractionParent, const ::atom & atom)
    //{
 
-   //   m_atom = atom;
+   //   id() = atom;
 
    //   //auto estatus =
    //   
@@ -1350,7 +1350,7 @@ namespace user
    //   if (!atom.is_empty())
    //   {
 
-   //      m_atom = atom;
+   //      id() = atom;
 
    //   }
 
@@ -2500,7 +2500,7 @@ namespace user
    //}
 
 
-   lresult interaction_base::message_handler(const ::atom & atom, wparam wparam, lparam lparam)
+   lresult interaction_base::message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam)
    {
 
       throw ::interface_only();
@@ -2510,7 +2510,7 @@ namespace user
    }
 
 
-   void interaction_base::post_message(const ::atom & atom,wparam wparam,lparam lparam)
+   void interaction_base::post_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
    {
 
       throw ::interface_only();
@@ -2518,7 +2518,7 @@ namespace user
    }
 
 
-   //bool interaction_base::user_post(const ::atom& atom, wparam wparam, lparam lparam)
+   //bool interaction_base::user_post(::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   throw ::interface_only();
@@ -3634,7 +3634,7 @@ namespace user
 {
 
 
-   void interaction_base::post_simple_command(const enum_simple_command & ecommand, lparam lparam)
+   void interaction_base::post_simple_command(const enum_simple_command & ecommand, const ::lparam & lparam)
    {
 
       post_message(e_message_simple_command, (wparam)ecommand, lparam);
@@ -3694,7 +3694,7 @@ namespace user
    }
 
 
-//   ::pointer<::message::message>interaction_base::get_message(const ::atom & atom, wparam wparam, lparam lparam)
+//   ::pointer<::message::message>interaction_base::get_message(::enum_message emessage, ::wparam wparam, ::lparam lparam)
 //   {
 //
 //      ::pointer<::message::message>pmessage;
@@ -3835,14 +3835,14 @@ namespace user
 //
 //      }
 //
-//      pmessage->set(get_oswindow(), get_window(), atom, wparam, lparam);
+//      pmessage->set(get_oswindow(), get_window(), emessage, wparam, lparam);
 //
 //      return pmessage;
 //
 //   }
 
 
-   // bool interaction_base::call_message_handler(const ::atom & atom, wparam wparam, lparam lparam, const ::int_point & point, lresult * plresult)
+   // bool interaction_base::call_message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point, lresult * plresult)
    // {
       
    //    if(atom == e_message_post_user)
@@ -3873,7 +3873,7 @@ namespace user
 
    //    }
 
-   //    auto pmessage = get_message(atom, wparam, lparam);
+   //    auto pmessage = get_message(emessage, wparam, lparam);
 
    //    try
    //    {
@@ -4117,7 +4117,7 @@ namespace user
    //void interaction_base::on_check_change()
    //{
 
-   //   get_app()->signal(m_linkedpropertyCheck->m_atom);
+   //   get_app()->signal(m_linkedpropertyCheck->id());
 
    //}
 

@@ -13,12 +13,12 @@ class CLASS_DECL_ACME ___keep_task_payload
 public:
 
 
-   ::atom         m_atom;
+   ::atom         id();
    ::payload      m_payload;
 
 
    ___keep_task_payload(const ::atom& atom) :
-      m_atom(atom),
+      id()(atom),
       m_payload(task_property(atom))
    {
 
@@ -29,7 +29,7 @@ public:
    ~___keep_task_payload()
    {
 
-      task_property(m_atom) = m_payload;
+      task_property(id()) = m_payload;
 
    }
 

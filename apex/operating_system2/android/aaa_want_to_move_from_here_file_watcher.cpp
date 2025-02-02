@@ -111,7 +111,7 @@
 //      ::pointer<os_watch>pWatch = aaa_primitive_new os_watch();
 //
 //      pWatch->m_listenera.add(pwatcher);
-//      pWatch->m_atom = wd;
+//      pWatch->id() = wd;
 //      pWatch->m_pathFolder = directory;
 //      //pWatch->m_bOwn = bOwn;
 //      pWatch->m_pwatcher = this;
@@ -142,7 +142,7 @@
 //
 //            item.m_strDirName = stra[index];
 //
-//            item.m_atom = inaw;
+//            item.id() = inaw;
 //
 //            pWatch->m_itema.add(item);
 //

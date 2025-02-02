@@ -1841,7 +1841,7 @@ atom::atom(const PAYLOAD & payload)
    else if (payload.get_type() == ::e_type_atom)
    {
 
-      operator = (payload.m_atom);
+      operator = (payload.as_atom());
 
    }
 //   else if (payload.get_type() == ::e_type_enum_command)

@@ -79,7 +79,7 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      if (m_atom == "separator")
+      if (id() == "separator")
       {
 
          auto ppen = __øcreate < ::draw2d::pen > ();
@@ -161,7 +161,7 @@ namespace user
    void menu_interaction::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (m_atom != "separator")
+      if (id() != "separator")
       {
 
          ::user::interaction::_001OnNcDraw(pgraphics);

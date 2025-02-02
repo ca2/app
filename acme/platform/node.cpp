@@ -433,7 +433,7 @@ namespace platform
 
          system()->m_itask = nullptr;
 
-         system()->branch_synchronously();
+         system()->branch_synchronously({.m_ptaskhandler = system()->acme_windowing()});
          //system()->acme_windowing()->on_start_system();
 
       }

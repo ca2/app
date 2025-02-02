@@ -102,7 +102,7 @@ namespace app_just_aura_message_box
    //      << [this, pmessagebox]
    //      {
 
-   //         auto edialogresult = pmessagebox->get_result_payload().m_atom.m_edialogresult;
+   //         auto edialogresult = pmessagebox->get_result_payload().id().m_edialogresult;
 
    //         if (edialogresult == e_dialog_result_cancel)
    //         {

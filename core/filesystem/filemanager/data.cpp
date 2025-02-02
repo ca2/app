@@ -259,7 +259,7 @@ namespace filemanager
    //                          bMakeVisible,
    //                          puiParent,
    //                       e_window_flag(),
-   //                       m_atom));
+   //                       id()));
 
    //   }
 
@@ -355,7 +355,7 @@ browse(pathInitialBrowse, ::e_source_initialize);
 //
 //      browse(pathInitialBrowse, action_context);
 
-      //ptopic->m_atom = ;
+      //ptopic->id() = ;
 
       //update_all_impacts(pupdate);
 
@@ -371,7 +371,7 @@ browse(pathInitialBrowse, ::e_source_initialize);
 //      if(m_strDataKey.is_empty())
 //      {
 //
-//         m_strDataKey.formatf("%s", m_atom.str().c_str());
+//         m_strDataKey.formatf("%s", id().str().c_str());
 //
 //      }
 //

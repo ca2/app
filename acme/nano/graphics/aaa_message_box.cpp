@@ -95,7 +95,7 @@ void message_box::defer_create_details_still()
 
       m_pstillDetails = __allocate ::micro::still();
 
-      m_pstillDetails->m_atom = "details";
+      m_pstillDetails->id() = "details";
 
       m_pstillDetails->m_strText = m_strLabelDetails;
 

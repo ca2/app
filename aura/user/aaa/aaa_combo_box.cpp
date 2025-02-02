@@ -815,9 +815,9 @@ namespace user
 
          topic.m_puserinteraction = this;
 
-         //topic.m_atom = m_atom;
+         //topic.id() = id();
 
-         topic.m_atom = ::id_after_change_cur_sel;
+         topic.id() = ::id_after_change_cur_sel;
 
          topic.m_item = item;
 
@@ -973,7 +973,7 @@ namespace user
    bool combo_box::OnChildNotify(::user::message * pusermessage)
    {
 
-      switch (pusermessage->m_atom)
+      switch (pusermessage->id())
       {
       case WM_DRAWITEM:
 #ifdef WINODWSEX
@@ -1671,7 +1671,7 @@ namespace user
    void combo_box::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(ptopic->m_atom == ::id_after_change_cur_sel)
+      if(ptopic->id() == ::id_after_change_cur_sel)
       {
 
          if(ptopic->user_interaction() == m_plist)

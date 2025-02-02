@@ -107,7 +107,7 @@ namespace userex
 
 
 
-      //get_parent_frame()->m_atom += ".color_sel";
+      //get_parent_frame()->id() += ".color_sel";
 
       pmessage->previous();
 
@@ -216,7 +216,7 @@ namespace userex
 
       auto ptopic = create_topic(::id_after_change_cur_sel);
 
-      ptopic->m_atom = m_atomImpact;
+      ptopic->id() = m_atomImpact;
 
       ptopic->m_puserelement = this;
 

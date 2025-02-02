@@ -45,12 +45,12 @@ namespace graphics
       __construct_new(m_bufferitema[0]);
       __øconstruct(m_bufferitema[0]->m_pimage2);
       __øconstruct(m_bufferitema[0]->m_pmutex);
-      m_bufferitema[0]->m_pimage2->m_atom = 0;
+      m_bufferitema[0]->m_pimage2->id() = 0;
 
       __construct_new(m_bufferitema[1]);
       __øconstruct(m_bufferitema[1]->m_pimage2);
       __øconstruct(m_bufferitema[1]->m_pmutex);
-      m_bufferitema[1]->m_pimage2->m_atom = 1;
+      m_bufferitema[1]->m_pimage2->id() = 1;
 
       //return estatus;
 
@@ -109,17 +109,17 @@ namespace graphics
 
          auto sizeReserved = ::int_size(1920, 1080);
 
-         if (pitem->m_size.cx() > sizeImage.cx())
+         if (pitem->m_sizeBufferItemDraw.cx() > sizeImage.cx())
          {
 
-            sizeImage.cx() = pitem->m_size.cx();
+            sizeImage.cx() = pitem->m_sizeBufferItemDraw.cx();
 
          }
 
-         if (pitem->m_size.cy() > sizeImage.cy())
+         if (pitem->m_sizeBufferItemDraw.cy() > sizeImage.cy())
          {
 
-            sizeImage.cy() = pitem->m_size.cy();
+            sizeImage.cy() = pitem->m_sizeBufferItemDraw.cy();
 
          }
 
@@ -157,7 +157,7 @@ namespace graphics
          if (pgraphics)
          {
 
-            pgraphics->resize(pitem->m_size);
+            pgraphics->resize(pitem->m_sizeBufferItemDraw);
 
          }
 
@@ -275,18 +275,22 @@ namespace graphics
       if (is_single_buffer_mode())
       {
 
-         if (get_buffer_item())
+         auto pbufferitem = get_buffer_item();
+
+         if (pbufferitem)
          {
 
-            if (get_buffer_item()->m_pimage2)
+            if (pbufferitem->m_pimage2)
             {
 
-               if (get_buffer_item()->m_pimage2->m_pgraphics)
+               if (pbufferitem->m_pimage2->m_pgraphics)
                {
 
-                  get_buffer_item()->m_pimage2->m_pgraphics->on_end_draw(
+                  pbufferitem->m_pimage2->m_pgraphics->on_end_draw(m_pwindow->oswindow());
 
-                  m_pwindow->oswindow());
+                  pbufferitem->m_pointBufferItemWindow = pbufferitem->m_pointBufferItemDraw;
+
+                  pbufferitem->m_sizeBufferItemWindow = pbufferitem->m_sizeBufferItemDraw;
 
                }
 
@@ -326,7 +330,9 @@ namespace graphics
       if(!is_single_buffer_mode())
       {
 
-         auto pimageNewScreen = get_screen_item()->m_pimage2;
+         auto pscreenitem = get_screen_item();
+
+         auto pimageNewScreen = pscreenitem->m_pimage2;
 
          auto pimageNewBuffer = get_buffer_item()->m_pimage2;
 
@@ -336,6 +342,10 @@ namespace graphics
             pimageNewBuffer->copy_from_no_create(pimageNewScreen);
 
          }
+
+         pscreenitem->m_pointBufferItemWindow = pscreenitem->m_pointBufferItemDraw;
+
+         pscreenitem->m_sizeBufferItemWindow = pscreenitem->m_sizeBufferItemDraw;
 
       }
 

@@ -96,8 +96,10 @@ namespace user
    // single_document_template commands
 
    // if lpszPathName == nullptr => create ___new file of this type
-   void single_document_template::on_request(::request * prequest)
+   void single_document_template::on_request(::request * prequestParameter)
    {
+
+      auto prequest = ::as_pointer(prequestParameter);
 
       prequest->m_countStack++;
 
@@ -132,10 +134,10 @@ namespace user
 
       };
 
-      if (prequest->m_atom.is_null())
+      if (prequest->id().is_null())
       {
 
-         prequest->m_atom = m_typeatomImpact;
+         prequest->id() = m_typeatomImpact;
 
       }
 

@@ -25,9 +25,10 @@ xfplayer_impact_line_selection::~xfplayer_impact_line_selection()
 
 void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline, ::message::message * pmessage)
 {
+
    ::pointer<::user::message>pusermessage(pmessage);
 
-   auto emessage = pusermessage->m_atom.as_emessage();
+   auto emessage = pusermessage->m_emessage;
 
    if(emessage != e_message_mouse_move
          && emessage != e_message_timer

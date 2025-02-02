@@ -38,7 +38,7 @@ namespace user
 
       m_strWindowText2 = pszName;
 
-      m_atom = atom;
+      id() = atom;
 
    }
 
@@ -315,7 +315,7 @@ namespace user
 
       }
 
-      //m_linkedpropertyCheck = fetch_property(m_atom, true);
+      //m_linkedpropertyCheck = fetch_property(id(), true);
 
    }
 

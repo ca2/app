@@ -18,7 +18,7 @@ class CLASS_DECL_ACME property_set :
 public:
 
 
-   //__declare_iterator(name_iterator, &(*this->m_pelement)->m_atom);
+   //__declare_iterator(name_iterator, &(*this->m_pelement)->id());
    //__declare_iterator(value_iterator, &(*this->m_pelement)->m_var);
 
 

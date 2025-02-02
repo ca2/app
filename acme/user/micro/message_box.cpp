@@ -39,7 +39,7 @@ namespace micro
    message_box::message_box()
    {
 
-      m_atom = e_dialog_result_none;
+      id() = e_dialog_result_none;
 
       set_flag(e_flag_should_create_sequence_on_synchronicity);
 
@@ -155,7 +155,7 @@ namespace micro
 
          m_pstillDetails = __allocate::micro::still();
 
-         m_pstillDetails->m_atom = "details";
+         m_pstillDetails->id() = "details";
 
          m_pstillDetails->m_strText = m_strLabelDetails;
 
@@ -493,7 +493,7 @@ namespace micro
 
             m_pstillTimeout = __allocate::micro::still();
 
-            m_pstillTimeout->m_atom = "timeout";
+            m_pstillTimeout->id() = "timeout";
 
             add_child(m_pstillTimeout);
 

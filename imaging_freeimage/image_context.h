@@ -24,7 +24,7 @@ namespace imaging_freeimage
       void _load_image(::image::image *pimageParam, const ::payload & payloadFile, const image::load_options & loadoptions) override;
 
       void _load_image(::image::image *pimage, ::pointer<::image::image_frame_array>& pframea, memory & memory) override;
-      void save_image(memory & memory, ::image::image *pimage, const ::image::save_options & saveoptions) override;
+      void save_image(memory & memory, ::image::image *pimage, const ::image::encoding_options & encodingoptions) override;
       //void load_svg(::image::image *pimage, memory & memory) override;
 
       //virtual void _load_image(::particle * pparticle, image_frame_array * pimageframea, const ::memory & memory);

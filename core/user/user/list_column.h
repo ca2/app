@@ -38,7 +38,7 @@ namespace user
       //
       // int                           m_iKey;
 
-      //::atom                                m_atom;
+      //::atom                                id();
       bool                                   m_bNew;
       bool                                   m_bVisible;
       ::collection::index                                  m_iNextGlobalOrderKey;

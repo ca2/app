@@ -209,7 +209,7 @@ namespace filemanager
 
       poperation->m_oswindowCallback = oswindowCallback;
 
-      poperation->m_atom = atom;
+      poperation->id() = atom;
       poperation->m_wparamCallback = wparamCallback;
       poperation->m_bReplaceAll = bReplaceAll;
       poperation->initialize(this);

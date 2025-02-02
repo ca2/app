@@ -437,7 +437,7 @@
 //
 //#ifdef _DEBUG
 //
-////   ::atom atom = p->m_atom;
+////   ::atom atom = p->id();
 //   //char * pszType = nullptr;
 //   //
 //   //try

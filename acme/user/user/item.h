@@ -174,31 +174,31 @@ namespace user
    //   inline ::collection::index list_item_index() const { return (::collection::index)m_iListItem; }
 
 
-   //   item_base & operator = (const ::matter & particle) { m_atom = particle.m_atom; return *this; }
+   //   item_base & operator = (const ::matter & particle) { id() = particle.id(); return *this; }
 
 
-   //   bool operator == (const ::matter & particle) const { return m_atom == particle.m_atom; }
+   //   bool operator == (const ::matter & particle) const { return id() == particle.id(); }
    //   bool operator != (const ::matter & particle) const { return !operator == (particle); }
 
 
-   //   item_base & operator = (const item_base & itembase) { m_atom = itembase.m_atom; ((ITEM_BASE_ADDITIONS &)*this) = ((ITEM_BASE_ADDITIONS &)itembase); return *this; }
+   //   item_base & operator = (const item_base & itembase) { id() = itembase.id(); ((ITEM_BASE_ADDITIONS &)*this) = ((ITEM_BASE_ADDITIONS &)itembase); return *this; }
 
 
-   //   bool operator == (const ::item_base & itembase) const { return m_atom == itembase.m_atom && ITEM_BASE_ADDITIONS::operator==(itembase); }
+   //   bool operator == (const ::item_base & itembase) const { return id() == itembase.id() && ITEM_BASE_ADDITIONS::operator==(itembase); }
    //   bool operator != (const ::item_base & itembase) const { return !operator == (itembase); }
 
 
-   //   //item_base & operator = (const ::PARTICLE & particle) { m_atom = particle.m_atom; return *this; }
+   //   //item_base & operator = (const ::PARTICLE & particle) { id() = particle.id(); return *this; }
 
 
-   //   //bool operator == (const ::PARTICLE & particle) const { return m_atom == particle.m_atom; }
+   //   //bool operator == (const ::PARTICLE & particle) const { return id() == particle.id(); }
    //   //bool operator != (const ::PARTICLE & particle) const { return !operator == (particle); }
 
 
-   //   //item_base & operator = (const ITEM_BASE & itembase) { m_atom = itembase.m_atom; ((ITEM_BASE_ADDITIONS &)*this) = ((ITEM_BASE_ADDITIONS &)itembase); return *this; }
+   //   //item_base & operator = (const ITEM_BASE & itembase) { id() = itembase.id(); ((ITEM_BASE_ADDITIONS &)*this) = ((ITEM_BASE_ADDITIONS &)itembase); return *this; }
 
 
-   //   //bool operator == (const ::ITEM_BASE & itembase) const { return m_atom == itembase.m_atom && ITEM_BASE_ADDITIONS::operator == (itembase); }
+   //   //bool operator == (const ::ITEM_BASE & itembase) const { return id() == itembase.id() && ITEM_BASE_ADDITIONS::operator == (itembase); }
    //   //bool operator != (const ::ITEM_BASE & itembase) const { return !operator == (itembase); }
 
 
@@ -240,7 +240,7 @@ namespace user
    //   }
 
 
-   //   item_data & operator = (const ::matter & particle) { m_atom = particle.m_atom; return *this; }
+   //   item_data & operator = (const ::matter & particle) { id() = particle.id(); return *this; }
 
 
    //   item_data & operator = (const item_base & itembase) { item_base::operator=(itembase); return *this; }
@@ -258,7 +258,7 @@ namespace user
    //   }
 
 
-   //   //item_data & operator = (const ::matter & particle) { m_atom = particle.m_atom; return *this; }
+   //   //item_data & operator = (const ::matter & particle) { id() = particle.id(); return *this; }
 
 
    //   //item_data & operator = (const item_base & itembase) { item_base::operator=(itembase); return *this; }
@@ -400,7 +400,7 @@ namespace user
      /* item(enum_element eelement = ::e_element_none, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1, const ::atom & atom = ::atom::e_type_null, const ::user::e_flag uFlags = ::user::e_flag_none)
       {
 
-         m_atom = atom;
+         id() = atom;
 
          m_eelement = eelement;
 
@@ -483,7 +483,7 @@ namespace user
       ::pointer < ITEM > as_item() { return m_pitem.cast < ITEM >(); }
 
 
-      ::atom atom() const { return is_item_set() ? m_pitem->m_atom : e_element_none; }
+      ::atom atom() const { return is_item_set() ? m_pitem->m_atomMatterId : e_element_none; }
 
       //template < primitive_integral INTEGRAL >
       //operator INTEGRAL() const { return (INTEGRAL)m_iItem; }
@@ -493,7 +493,7 @@ namespace user
       //::string get_text(::collection::index iSubItem);
 
 
-      //item & operator = (const ::particle & particle) { m_atom = if ((PARTICLE *) this != (PARTICLE *)&particle) ::memory_copy((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); return *this; }
+      //item & operator = (const ::particle & particle) { id() = if ((PARTICLE *) this != (PARTICLE *)&particle) ::memory_copy((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); return *this; }
 
 
       //bool operator == (const ::particle & particle)  const { return ((PARTICLE *) this == (PARTICLE *)&particle) ? true : !memcmp((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); }

@@ -818,6 +818,7 @@
     <ClInclude Include="user\user\split_pane.h" />
     <ClInclude Include="user\user\tab_data.h" />
     <ClInclude Include="user\user\tab_drop_target_window.h" />
+    <ClInclude Include="user\user\tab_pane.h" />
     <ClInclude Include="user\user\toolbar.h" />
     <ClInclude Include="user\user\_binary_stream.h" />
     <ClInclude Include="user\user\_constant.h" />

@@ -57,13 +57,13 @@ CLASS_DECL_ACME bool load_modules_diff(string_array & straOld, string_array & st
 inline void copy(MESSAGE & message, const MSG & msg)
 {
 
-   message.oswindow = (oswindow)(msg.hwnd);
-   message.m_atom = (enum_message)msg.message;
-   message.wParam = msg.wParam;
-   message.lParam = msg.lParam;
-   message.pt.x() = msg.pt.x;
-   message.pt.y() = msg.pt.y;
-   message.time = msg.time;
+   message.m_oswindow = (oswindow)(msg.hwnd);
+   message.m_emessage = (enum_message)msg.message;
+   message.m_wparam = msg.wParam;
+   message.m_lparam = msg.lParam;
+   message.m_point.x() = msg.pt.x;
+   message.m_point.y() = msg.pt.y;
+   message.m_time = msg.time;
 
 
 }
@@ -72,14 +72,13 @@ inline void copy(MESSAGE & message, const MSG & msg)
 inline void copy(MSG & msg, const MESSAGE & message)
 {
 
-   msg.hwnd = (HWND)(message.oswindow);
-   msg.message = (UINT)message.m_atom.as_huge_integer();
-   msg.wParam = message.wParam;
-   msg.lParam = message.lParam;
-   msg.pt.x = message.pt.x();
-   msg.pt.y = message.pt.y();
-   msg.time = (DWORD)message.time;
-
+   msg.hwnd = (HWND)(message.m_oswindow);
+   msg.message = (UINT)message.m_emessage;
+   msg.wParam = message.m_wparam;
+   msg.lParam = message.m_lparam;
+   msg.pt.x = message.m_point.x();
+   msg.pt.y = message.m_point.y();
+   msg.time = (DWORD)message.m_time;
 
 }
 

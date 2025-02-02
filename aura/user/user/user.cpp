@@ -829,7 +829,7 @@ namespace user
    }
 
 
-   void user::SendMessageToWindows(const ::atom & atom,wparam wparam,lparam lparam)
+   void user::SendMessageToWindows(::enum_message emessage, ::wparam wparam, ::lparam lparam)
    {
 
       auto psession = session();
@@ -849,9 +849,9 @@ namespace user
             if (pinteraction != nullptr && pinteraction->is_window())
             {
 
-               pinteraction->send_message(atom, wparam, lparam);
+               pinteraction->send_message(emessage, wparam, lparam);
 
-               pinteraction->send_message_to_descendants(atom, wparam, lparam);
+               pinteraction->send_message_to_descendants(emessage, wparam, lparam);
 
             }
 
@@ -1505,14 +1505,14 @@ namespace user
 
       }
 
-      huge_integer iMessage = pmouse->m_atom.as_huge_integer();
+      auto emessage = pmouse->m_emessage;
 
-      if(iMessage == e_message_left_button_down
-       //|| iMessage == e_message_left_button_up
-       || iMessage == e_message_right_button_down
-       //|| iMessage == e_message_right_button_up
-       || iMessage == e_message_middle_button_down
-       //|| iMessage == e_message_middle_button_up
+      if(emessage == e_message_left_button_down
+       //|| emessage == e_message_left_button_up
+       || emessage == e_message_right_button_down
+       //|| emessage == e_message_right_button_up
+       || emessage == e_message_middle_button_down
+       //|| emessage == e_message_middle_button_up
        )
        {
 

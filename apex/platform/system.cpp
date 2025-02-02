@@ -1872,7 +1872,7 @@ pdirectorysystem->create("/ca2core");
    //}
 
 
-   //void system::post_to_all_threads(const ::atom & atom, WPARAM wparam, LPARAM lparam)
+   //void system::post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   synchronous_lock synchronouslock(m_pmutexThread);
@@ -2036,10 +2036,10 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   unsigned int system::os_post_to_all_threads(const ::atom & atom, wparam wparam, lparam lparam)
+   unsigned int system::os_post_to_all_threads(::enum_message emessage, ::wparam wparam, ::lparam lparam)
    {
 
-      post_to_all_threads(atom, wparam, lparam);
+      post_to_all_threads(emessage, wparam, lparam);
 
       return 0;
 
@@ -4133,7 +4133,7 @@ pmessagebox->sync();
 
    //      auto ptool = __allocate ::task_tool();
 
-   //      ptool->m_atom = etool;
+   //      ptool->id() = etool;
 
    //      threadtoola.add(ptool);
 

@@ -308,7 +308,7 @@ void window_base::on_create_window()
 void window_base::handle(::topic * ptopic, ::context * pcontext)
 {
 
-   // if(ptopic->m_atom == id_operating_system_user_color_change)
+   // if(ptopic->id() == id_operating_system_user_color_change)
    // {
    //
    //    update_drawing_objects();
@@ -316,7 +316,7 @@ void window_base::handle(::topic * ptopic, ::context * pcontext)
    //    redraw();
    //
    // }
-   // else if(ptopic->m_atom == id_set_application_dark_mode)
+   // else if(ptopic->id() == id_set_application_dark_mode)
    // {
    //
    //    update_drawing_objects();
@@ -324,7 +324,7 @@ void window_base::handle(::topic * ptopic, ::context * pcontext)
    //    redraw();
    //
    // }
-   // else if(ptopic->m_atom == id_application_dark_mode_change)
+   // else if(ptopic->id() == id_application_dark_mode_change)
    // {
    //
    //    update_drawing_objects();

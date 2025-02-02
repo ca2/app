@@ -91,14 +91,14 @@ public:
    using ARG_TYPE2 = const ::payload &;
 
 
-   ::atom                 m_atom;
+   ::atom                 m_atomName;
 
 
    property() { on_property_construct(this); }
-   property(const ::atom& atom) : m_atom(atom) { on_property_construct(this); }
-   property(const ::atom& atom, const ::payload& payload) : m_atom(atom), ::payload(payload) { on_property_construct(this); }
-   property(const ::property& property) : m_atom(property.m_atom), ::payload((const ::payload &) property) { on_property_construct(this); }
-   property(::property&& property) : m_atom(::transfer(property.m_atom)), ::payload((::payload &&)::transfer(property)) { on_property_construct(this); }
+   property(const ::atom& atom) : m_atomName(atom) { on_property_construct(this); }
+   property(const ::atom& atom, const ::payload& payload) : m_atomName(atom), ::payload(payload) { on_property_construct(this); }
+   property(const ::property& property) : m_atomName(property.m_atomName), ::payload((const ::payload &) property) { on_property_construct(this); }
+   property(::property&& property) : m_atomName(::transfer(property.m_atomName)), ::payload((::payload &&)::transfer(property)) { on_property_construct(this); }
    ~property() { on_property_destruct(this); }
 
 
@@ -134,8 +134,8 @@ public:
    }
 
 
-   ::atom& element1() { return m_atom; };
-   const ::atom& element1() const { return m_atom; };
+   ::atom& element1() { return m_atomName; };
+   const ::atom& element1() const { return m_atomName; };
    ::payload& element2() { return *this; };
    const ::payload& element2() const { return *this; };
 
@@ -147,7 +147,7 @@ public:
       if(this != &property)
       {
 
-         m_atom = property.m_atom;
+         m_atomName = property.m_atomName;
 
          payload::operator=((const ::payload & )property);
 
@@ -158,7 +158,7 @@ public:
    }
 
 
-   ::atom name() const { return m_atom; }
+   ::atom name() const { return m_atomName; }
 
   
    inline ::string & get_network_payload(::string & str, bool bNewLine = true) const
@@ -166,7 +166,7 @@ public:
 
       str += "\"";
 
-      str += m_atom;
+      str += m_atomName;
 
       str += "\"";
 

@@ -333,7 +333,7 @@ namespace user
    //         else
    //         {
 
-   //            if (pitem->m_atom == atom)
+   //            if (pitem->id() == atom)
    //            {
 
    //               iIndex = iItem;
@@ -400,7 +400,7 @@ namespace user
    //         else
    //         {
 
-   //            if (pitem->m_atom == atom)
+   //            if (pitem->id() == atom)
    //            {
 
    //               iIndex = iItem;
@@ -460,7 +460,7 @@ namespace user
    //         else
    //         {
 
-   //            if (pitem->m_atom == atom)
+   //            if (pitem->id() == atom)
    //            {
 
    //               iIndex = iItem;

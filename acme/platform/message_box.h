@@ -44,6 +44,7 @@ public:
    string                                 m_strDetails;
    ::pointer < ::nano::graphics::icon >   m_picon;
    ::payload                              m_payloadResult;
+   ::pointer < ::user::activation_token > m_puseractivationtoken;
 
    message_box(const ::string & strMessage, const ::string & strTitle = {}, const ::e_message_box & emessagebox = {}, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
    message_box(const ::exception & exception, const ::string & strMessage = {}, const ::string & strTitle = {}, const ::e_message_box & emessagebox = {}, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);

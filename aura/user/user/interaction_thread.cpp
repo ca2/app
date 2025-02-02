@@ -599,7 +599,6 @@ namespace user
 
                auto puserframe = pwindow->m_pacmeuserinteraction;
 
-
                if (puserframe)
                {
 
@@ -628,13 +627,13 @@ namespace user
                   else
                   {
 
-                     if (msg.id() == e_message_left_button_down)
+                     if (message.m_emessage == e_message_left_button_down)
                      {
 
                         informationf("e_message_left_button_down");
 
                      }
-                     else if (msg.id() == e_message_left_button_up)
+                     else if (message.m_emessage == e_message_left_button_up)
                      {
 
                         informationf("e_message_left_button_up");
@@ -643,7 +642,7 @@ namespace user
 
                      ::cast < ::user::interaction > puserinteractionFrame = puserframe;
 
-                     auto pmessage = puserinteractionFrame->get_message(msg.id(), msg.wParam, msg.lParam);
+                     auto pmessage = puserinteractionFrame->get_message(message.m_emessage, message.m_wparam, message.m_lparam);
 
                      if (pmessage)
                      {

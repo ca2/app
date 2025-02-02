@@ -28,6 +28,50 @@ path_system::~path_system()
 }
 
 
+::string path_system::tool_folder_operating_system_name()
+{
+
+#ifdef TOOL_FOLDER_OPERATING_SYSTEM_NAME
+
+   return TOOL_FOLDER_OPERATING_SYSTEM_NAME;
+
+#else
+
+   return ::application_build_helper::get_operating_system_name();
+
+#endif
+
+}
+
+
+::file::path path_system::tool_folder_path()
+{
+
+   ::string strToolFolderName = "tool-" + tool_folder_operating_system_name();
+
+   ::file::path pathToolFolder;
+
+#ifdef WINDOWS_DESKTOP
+
+   pathToolFolder = "C:" / strToolFolderName;
+
+#elif defined(MACOS)
+
+   pathToolFolder = directory_system()->home() / "workspace/operating_system" / strToolFolderName;
+
+#else
+
+   pathToolFolder = directory_system()->home() / "cmake/operating_system" / strToolFolderName;
+
+#endif
+
+   return pathToolFolder;
+
+}
+
+
+
+
 ::string path_system::icloud_container_identifier(const char * psz_iCloudContainerIdentifier)
 {
    

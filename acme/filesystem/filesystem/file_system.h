@@ -55,6 +55,7 @@ public:
    //virtual string get_temp_name(const ::file::path & pathName, const ::scoped_string & scopedstrExtension);
    virtual void append_wait(const ::file::path & pathFile, const block & block, const class time & time);
    virtual void append(const ::file::path & pathFile, const block & block);
+   virtual ::collection::count find_and_erase(const ::file::path & pathFile, const block & block);
 
    virtual bool exists(const ::file::path & path);
 

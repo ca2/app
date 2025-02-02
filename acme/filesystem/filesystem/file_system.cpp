@@ -20,8 +20,8 @@
 ////#include "acme/prototype/datetime/earth_time.h"
 
 
-CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
-
+CLASS_DECL_ACME void exception_message_box(::particle* pparticle, ::exception& exception,
+                                           const ::string& strMoreDetails);
 
 
 file_system::file_system()
@@ -36,7 +36,7 @@ file_system::~file_system()
 }
 
 
-void file_system::ensure_exists(const ::file::path & path)
+void file_system::ensure_exists(const ::file::path& path)
 {
 
    throw ::interface_only();
@@ -46,7 +46,7 @@ void file_system::ensure_exists(const ::file::path & path)
 }
 
 
-void file_system::touch(const ::file::path & path)
+void file_system::touch(const ::file::path& path)
 {
 
    throw ::interface_only();
@@ -57,7 +57,7 @@ void file_system::touch(const ::file::path & path)
 }
 
 
-void file_system::touch_app_cloud(const ::file::path & path, const char * pszContentIdentifier)
+void file_system::touch_app_cloud(const ::file::path& path, const char* pszContentIdentifier)
 {
 
    touch(path);
@@ -68,7 +68,7 @@ void file_system::touch_app_cloud(const ::file::path & path, const char * pszCon
 }
 
 
-void file_system::clear_read_only(const ::file::path & path)
+void file_system::clear_read_only(const ::file::path& path)
 {
 
    throw ::interface_only();
@@ -78,7 +78,7 @@ void file_system::clear_read_only(const ::file::path & path)
 }
 
 
-void file_system::set_file_normal(const ::file::path & path)
+void file_system::set_file_normal(const ::file::path& path)
 {
 
    throw ::interface_only();
@@ -88,7 +88,7 @@ void file_system::set_file_normal(const ::file::path & path)
 }
 
 
-bool file_system::is_equal(const ::file::path & path1, const ::file::path & path2)
+bool file_system::is_equal(const ::file::path& path1, const ::file::path& path2)
 {
 
    auto mem1 = as_memory(path1);
@@ -100,7 +100,7 @@ bool file_system::is_equal(const ::file::path & path1, const ::file::path & path
 }
 
 
-void file_system::overwrite_if_different(const ::file::path & pathTarget, const ::file::path & pathSource)
+void file_system::overwrite_if_different(const ::file::path& pathTarget, const ::file::path& pathSource)
 {
 
    if (!exists(pathSource))
@@ -122,7 +122,6 @@ void file_system::overwrite_if_different(const ::file::path & pathTarget, const 
 }
 
 
-
 ::file::path file_system::module()
 {
 
@@ -142,13 +141,14 @@ void file_system::overwrite_if_different(const ::file::path & pathTarget, const 
 }
 
 
-file_pointer file_system::get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* pfileexception)
+file_pointer file_system::get_file(const ::payload& payloadFile, ::file::e_open eopen,
+                                   ::pointer<::file::exception>* pfileexception)
 {
 
    if (payloadFile.m_etype == e_type_element)
    {
 
-      auto pfile = payloadFile.cast < ::file::file>();
+      auto pfile = payloadFile.cast<::file::file>();
 
       if (pfile)
       {
@@ -159,9 +159,9 @@ file_pointer file_system::get_file(const ::payload& payloadFile, ::file::e_open 
 
    }
 
-   auto pfile = application()->__øcreate < ::file::file >();
+   auto pfile = application()->__øcreate<::file::file>();
 
-   if(!pfile)
+   if (!pfile)
    {
 
       return pfile;
@@ -179,30 +179,33 @@ file_pointer file_system::get_file(const ::payload& payloadFile, ::file::e_open 
 }
 
 
-file_pointer file_system::get_reader(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* pfileexception)
+file_pointer file_system::get_reader(const ::payload& payloadFile, ::file::e_open eopen,
+                                     ::pointer<::file::exception>* pfileexception)
 {
-   
+
    return get_file(payloadFile, eopen | ::file::e_open_read, pfileexception);
-   
+
 }
 
 
-file_pointer file_system::get_writer(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* pfileexception)
+file_pointer file_system::get_writer(const ::payload& payloadFile, ::file::e_open eopen,
+                                     ::pointer<::file::exception>* pfileexception)
 {
-   
+
    return get_file(payloadFile, eopen | ::file::e_open_read_write, pfileexception);
-   
+
 }
 
 
-string file_system::as_string(const ::file::path & pathParam, character_count iReadAtMostByteCount, bool bNoExceptionIfNotFound)
+string file_system::as_string(const ::file::path& pathParam, character_count iReadAtMostByteCount,
+                              bool bNoExceptionIfNotFound)
 {
-   
+
    auto memory = as_memory(pathParam, iReadAtMostByteCount);
 
    ::string str;
 
-   auto data = (char *) memory.data();
+   auto data = (char *)memory.data();
 
    auto size = memory.size();
 
@@ -215,13 +218,13 @@ string file_system::as_string(const ::file::path & pathParam, character_count iR
    else if (data[0] == '\xEF' && data[1] == '\xBB' && data[2] == '\xBF') // BOM
    {
 
-      return { (const char*)data + 3, size - 3 };
+      return {(const char *)data + 3, size - 3};
 
    }
    else
    {
 
-      return { (const char*)data, size };
+      return {(const char *)data, size};
 
    }
 
@@ -256,15 +259,15 @@ string file_system::as_string(const ::file::path & pathParam, character_count iR
    //
    //if(iReadAtMostByteCount < 0)
    //{
-   //   
+   //
    //   iReadAtMostByteCount = (character_count) uSize;
-   //   
+   //
    //}
    //else
    //{
-   //   
+   //
    //   iReadAtMostByteCount = minimum(iReadAtMostByteCount, (character_count)uSize);
-   //   
+   //
    //}
 
    //char * psz = str.get_buffer(iReadAtMostByteCount);
@@ -296,7 +299,8 @@ string file_system::as_string(const ::file::path & pathParam, character_count iR
 }
 
 
-string file_system::safe_get_string(const ::file::path & pathParam, character_count iReadAtMostByteCount, bool bNoExceptionIfNotFound)
+string file_system::safe_get_string(const ::file::path& pathParam, character_count iReadAtMostByteCount,
+                                    bool bNoExceptionIfNotFound)
 {
 
    auto memory = safe_get_memory(pathParam, iReadAtMostByteCount);
@@ -316,13 +320,13 @@ string file_system::safe_get_string(const ::file::path & pathParam, character_co
    else if (data[0] == '\xEF' && data[1] == '\xBB' && data[2] == '\xBF') // BOM
    {
 
-      return { (const char *)data + 3, size - 3 };
+      return {(const char *)data + 3, size - 3};
 
    }
    else
    {
 
-      return { (const char *)data, size };
+      return {(const char *)data, size};
 
    }
 
@@ -331,9 +335,8 @@ string file_system::safe_get_string(const ::file::path & pathParam, character_co
 }
 
 
-
-
-string file_system::get_temporary_file_name(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension)
+string file_system::get_temporary_file_name(const ::scoped_string& scopedstrName,
+                                            const ::scoped_string& scopedstrExtension)
 {
 
    throw interface_only();
@@ -351,9 +354,7 @@ string file_system::get_temporary_file_name(const ::scoped_string & scopedstrNam
 //}
 
 
-
-
-void file_system::append(const ::file::path & pathFile, const block & block)
+void file_system::append(const ::file::path& pathFile, const block& block)
 {
 
    file_system::append_wait(pathFile, block, 0_s);
@@ -361,10 +362,46 @@ void file_system::append(const ::file::path & pathFile, const block & block)
 }
 
 
-bool file_system::exists(const ::file::path & pathParam)
+::collection::count file_system::find_and_erase(const ::file::path& pathFile, const block& block)
 {
 
-   if(pathParam.is_empty())
+   auto memory = as_memory(pathFile);
+
+   ::collection::count c = 0;
+
+   while (true)
+   {
+
+      auto start = memory.find_index(block);
+
+      if (start < 0)
+      {
+
+         if (c > 0)
+         {
+
+            put_block(pathFile, memory);
+
+         }
+
+         return c;
+
+      }
+
+      c++;
+
+      memory.erase(start, block.size());
+
+   }
+
+
+}
+
+
+bool file_system::exists(const ::file::path& pathParam)
+{
+
+   if (pathParam.is_empty())
    {
 
       throw ::exception(error_bad_argument);
@@ -382,7 +419,7 @@ bool file_system::exists(const ::file::path & pathParam)
 
    auto bExists = _exists(path);
 
-   if(!bExists)
+   if (!bExists)
    {
 
       return false;
@@ -404,7 +441,10 @@ bool file_system::exists(const ::file::path & pathParam)
 //}
 
 
-void file_system::get_temporary_file_name_template(char * szRet, character_count iBufferSize, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate)
+void file_system::get_temporary_file_name_template(char* szRet, character_count iBufferSize,
+                                                   const ::scoped_string& scopedstrName,
+                                                   const ::scoped_string& scopedstrExtension,
+                                                   const ::scoped_string& scopedstrTemplate)
 {
 
    throw ::interface_only();
@@ -414,7 +454,7 @@ void file_system::get_temporary_file_name_template(char * szRet, character_count
 }
 
 
-filesize file_system::get_size(const ::file::path & path)
+filesize file_system::get_size(const ::file::path& path)
 {
 
    throw ::interface_only();
@@ -434,8 +474,6 @@ filesize file_system::get_size_fd(int iFile)
 }
 
 
-
-
 void file_system::clear_application_data()
 {
 
@@ -446,12 +484,12 @@ void file_system::clear_application_data()
 }
 
 
-void file_system::find_replace(const ::file::path & path, const ::property_set & set)
+void file_system::find_replace(const ::file::path& path, const ::property_set& set)
 {
 
    auto str = as_string(path);
 
-   for(auto & property : set)
+   for (auto& property: set)
    {
 
       str.find_replace(property.name(), property.as_string());
@@ -463,48 +501,47 @@ void file_system::find_replace(const ::file::path & path, const ::property_set &
 }
 
 
-void file_system::put_app_cloud_data(const ::file::path & path, const char * pszContentIdentifier, const ::block & block)
+void file_system::put_app_cloud_data(const ::file::path& path, const char* pszContentIdentifier, const ::block& block)
 {
-   
+
    auto pathAppCloud = path_system()->defer_get_icloud_container_path(path, pszContentIdentifier);
-   
+
    this->put_contents(pathAppCloud, pszContentIdentifier);
-   
+
 }
 
 
-::memory file_system::get_app_cloud_data(const ::file::path & path, const char * pszContentIdentifier)
+::memory file_system::get_app_cloud_data(const ::file::path& path, const char* pszContentIdentifier)
 {
-   
+
    auto pathAppCloud = path_system()->defer_get_icloud_container_path(path, pszContentIdentifier);
-   
+
    return this->as_memory(pathAppCloud);
-   
+
 }
 
 
-void file_system::put_documents_cloud_data(const ::file::path & path, const ::block & block)
+void file_system::put_documents_cloud_data(const ::file::path& path, const ::block& block)
 {
-   
+
    auto pathAppCloud = path_system()->defer_get_icloud_container_path(path, "Documents");
-   
+
    this->put_contents(pathAppCloud, block);
-   
+
 }
 
 
-::memory file_system::get_documents_cloud_data(const ::file::path & path)
+::memory file_system::get_documents_cloud_data(const ::file::path& path)
 {
-   
+
    auto pathAppCloud = path_system()->defer_get_icloud_container_path(path, "Documents");
-   
+
    return this->as_memory(pathAppCloud);
-   
+
 }
 
 
-
-bool file_system::is_true(const ::file::path & path)
+bool file_system::is_true(const ::file::path& path)
 {
 
    throw ::interface_only();
@@ -514,7 +551,7 @@ bool file_system::is_true(const ::file::path & path)
 }
 
 
-void file_system::set_size(const ::file::path & pathName, filesize size)
+void file_system::set_size(const ::file::path& pathName, filesize size)
 {
 
    throw ::interface_only();
@@ -544,7 +581,7 @@ void file_system::set_size(int iFileDescriptor, filesize size)
 //}
 
 
-void file_system::transfer(const ::file::path & pathNewName, const ::file::path & pathOldName)
+void file_system::transfer(const ::file::path& pathNewName, const ::file::path& pathOldName)
 {
 
    copy(pathNewName, pathOldName, true);
@@ -554,10 +591,10 @@ void file_system::transfer(const ::file::path & pathNewName, const ::file::path 
 }
 
 
-void file_system::erase(const ::file::path & pathParam)
+void file_system::erase(const ::file::path& pathParam)
 {
 
-   if(pathParam.is_empty())
+   if (pathParam.is_empty())
    {
 
       throw ::exception(error_null_pointer);
@@ -566,7 +603,7 @@ void file_system::erase(const ::file::path & pathParam)
 
    auto path = path_system()->defer_process_relative_path(pathParam);
 
-    _erase(path);
+   _erase(path);
 
    //if(!estatus)
    //{
@@ -583,7 +620,7 @@ void file_system::erase(const ::file::path & pathParam)
 void file_system::defer_erase(const ::file::path& path)
 {
 
-   if(exists(path))
+   if (exists(path))
    {
 
       erase(path);
@@ -615,7 +652,7 @@ bool file_system::safe_erase(const ::file::path& path)
 }
 
 
-void replace_char(char * sz, char ch1, char ch2)
+void replace_char(char* sz, char ch1, char ch2)
 {
 
    while (*sz)
@@ -635,7 +672,7 @@ void replace_char(char * sz, char ch1, char ch2)
 }
 
 
-void file_system::copy(const ::file::path & pathNew, const ::file::path & pathExisting, bool bOverwrite)
+void file_system::copy(const ::file::path& pathNew, const ::file::path& pathExisting, bool bOverwrite)
 {
 
    if (directory_system()->is(pathExisting))
@@ -695,44 +732,45 @@ void file_system::copy(const ::file::path & pathNew, const ::file::path & pathEx
       }
 
       return;
-      
+
    }
-   
+
    auto pathTarget = pathNew;
-      
+
    if (directory_system()->is(pathTarget))
    {
-      
+
       pathTarget /= pathExisting.name();
-      
+
    }
-      
+
    _copy(pathTarget, pathExisting, bOverwrite);
 
 }
 
 
-void file_system::_copy(const ::file::path & pathDup, const ::file::path & pathSrc, bool bOverwrite)
+void file_system::_copy(const ::file::path& pathDup, const ::file::path& pathSrc, bool bOverwrite)
 {
-   
-   if(!bOverwrite && exists(pathDup))
+
+   if (!bOverwrite && exists(pathDup))
    {
-      
+
       return;
-      
+
    }
-   
+
    //if(!_memory_map_file_copy(pathDup, pathSrc))
    {
-      
+
       _read_write_file_copy(pathDup, pathSrc, 128_MiB);
-      
+
    }
-   
+
 }
 
 
-bool file_system::text_is_different(const ::file::path & path1, const ::file::path & path2, ::string * pstr1, ::string * pstr2)
+bool file_system::text_is_different(const ::file::path& path1, const ::file::path& path2, ::string* pstr1,
+                                    ::string* pstr2)
 {
 
    ::string str1 = this->safe_get_string(path1);
@@ -754,13 +792,14 @@ bool file_system::text_is_different(const ::file::path & path1, const ::file::pa
    }
 
    bool bIsDifferent = str1 != str2;
-   
+
    return bIsDifferent;
 
 }
 
 
-bool file_system::copy_if_text_is_different(const ::file::path & pathTarget, const ::file::path & pathSource, const ::procedure & procedureRunIfFilesAreDifferentAndAfterCopy)
+bool file_system::copy_if_text_is_different(const ::file::path& pathTarget, const ::file::path& pathSource,
+                                            const ::procedure& procedureRunIfFilesAreDifferentAndAfterCopy)
 {
 
    ::string strSource;
@@ -786,49 +825,50 @@ bool file_system::copy_if_text_is_different(const ::file::path & pathTarget, con
 }
 
 
-bool file_system::_memory_map_file_copy(const ::file::path & pathTarget, const ::file::path & pathSource)
+bool file_system::_memory_map_file_copy(const ::file::path& pathTarget, const ::file::path& pathSource)
 {
 
-   auto pmemorymapSource = __øcreate < ::file::memory_map >();
-   
-   auto pmemorymapTarget = __øcreate < ::file::memory_map >();
-   
-   if(!pmemorymapSource->open_path(pathSource, true, false, false))
+   auto pmemorymapSource = __øcreate<::file::memory_map>();
+
+   auto pmemorymapTarget = __øcreate<::file::memory_map>();
+
+   if (!pmemorymapSource->open_path(pathSource, true, false, false))
    {
-      
+
       return false;
-      
+
    }
-      
-   if(!pmemorymapTarget->open_path(pathSource, true, true, true, pmemorymapSource->m_size))
+
+   if (!pmemorymapTarget->open_path(pathSource, true, true, true, pmemorymapSource->m_size))
    {
-      
+
       return false;
-      
+
    }
 
    try
    {
-    
+
       memory_copy(pmemorymapTarget->m_pdata, pmemorymapSource->m_pdata, pmemorymapSource->m_size);
-      
+
    }
    catch (...)
    {
-      
+
       return false;
-      
+
    }
 
    return true;
-   
+
 }
 
 
-void file_system::_read_write_file_copy(const ::file::path & pathTarget, const ::file::path & pathSource, ::memsize sizeBuffer)
+void file_system::_read_write_file_copy(const ::file::path& pathTarget, const ::file::path& pathSource,
+                                        ::memsize sizeBuffer)
 {
 
-   if(pathSource.case_insensitive_ends("/store.zip"))
+   if (pathSource.case_insensitive_ends("/store.zip"))
    {
 
 
@@ -837,27 +877,28 @@ void file_system::_read_write_file_copy(const ::file::path & pathTarget, const :
    }
 
    auto pfileIn = get_file(pathSource, ::file::e_open_read | ::file::e_open_binary);
-   
+
    auto pfileOut = get_file(pathTarget, ::file::e_open_write | ::file::e_open_binary
-                  | ::file::e_open_create | ::file::e_open_truncate | ::file::e_open_defer_create_directory);
+                                        | ::file::e_open_create | ::file::e_open_truncate |
+                                        ::file::e_open_defer_create_directory);
 
 
-//#ifdef WINDOWS
-//
-//   FILE * out = _wfopen(wstring(pathTarget), L"w"); // create the output file for writing
-//
-//#else
-//
-//   FILE * out = fopen(pathTarget.c_str(), "w"); // create the output file for writing
-//
-//#endif
+   //#ifdef WINDOWS
+   //
+   //   FILE * out = _wfopen(wstring(pathTarget), L"w"); // create the output file for writing
+   //
+   //#else
+   //
+   //   FILE * out = fopen(pathTarget.c_str(), "w"); // create the output file for writing
+   //
+   //#endif
 
-//   if (out == NULL)
-//   {
-//
-//      throw io_exception(error_io);
-//
-//   }
+   //   if (out == NULL)
+   //   {
+   //
+   //      throw io_exception(error_io);
+   //
+   //   }
 
    memory memory;
 
@@ -871,13 +912,13 @@ void file_system::_read_write_file_copy(const ::file::path & pathTarget, const :
       pfileOut->write(memory.data(), read);
 
    }
-   
+
    pfileOut->set_modification_time(pfileIn->modification_time());
 
 }
 
 
-class ::time file_system::modification_time(const ::file::path & path)
+class ::time file_system::modification_time(const ::file::path& path)
 {
 
    throw ::interface_only();
@@ -887,7 +928,7 @@ class ::time file_system::modification_time(const ::file::path & path)
 }
 
 
-void file_system::set_modification_time(const ::file::path & path, const class ::time& time)
+void file_system::set_modification_time(const ::file::path& path, const class ::time& time)
 {
 
    throw ::interface_only();
@@ -906,7 +947,7 @@ void file_system::set_modification_time(const ::file::path & path, const class :
 //}
 
 
-void file_system::synchronize(const ::file::path & path1, const ::file::path & path2)
+void file_system::synchronize(const ::file::path& path1, const ::file::path& path2)
 {
 
    auto time1 = modification_time(path1);
@@ -938,19 +979,19 @@ void file_system::synchronize(const ::file::path & path1, const ::file::path & p
 
       //}
 
-      return ;
+      return;
 
    }
    else if ((!bExists2 && bExists1) || ((bExists1 && bExists2) && (time2 < time1)))
    {
 
-       copy(path2, path1, true);
+      copy(path2, path1, true);
 
 
       return;
 
-//#if !defined(WINDOWS)
-//
+      //#if !defined(WINDOWS)
+      //
       //estatus = set_modification_time(psz2, time1);
 
       //if (!estatus)
@@ -969,7 +1010,7 @@ void file_system::synchronize(const ::file::path & path1, const ::file::path & p
 }
 
 
-void file_system::save_stra(const ::file::path & pathName, const string_array & stra)
+void file_system::save_stra(const ::file::path& pathName, const string_array& stra)
 {
 
    throw ::interface_only();
@@ -979,7 +1020,7 @@ void file_system::save_stra(const ::file::path & pathName, const string_array & 
 }
 
 
-void file_system::load_stra(const ::file::path & pathName, string_array & stra, bool bAddEmpty)
+void file_system::load_stra(const ::file::path& pathName, string_array& stra, bool bAddEmpty)
 {
 
    throw ::interface_only();
@@ -989,7 +1030,7 @@ void file_system::load_stra(const ::file::path & pathName, string_array & stra, 
 }
 
 
-void file_system::put_contents(const ::file::path & path, const memory_base & memory)
+void file_system::put_contents(const ::file::path& path, const memory_base& memory)
 {
 
    put_block(path, memory);
@@ -997,7 +1038,7 @@ void file_system::put_contents(const ::file::path & path, const memory_base & me
 }
 
 
-void file_system::put_contents(const ::file::path & path, const ::scoped_string & scopedstrContents)
+void file_system::put_contents(const ::file::path& path, const ::scoped_string& scopedstrContents)
 {
 
 
@@ -1005,13 +1046,11 @@ void file_system::put_contents(const ::file::path & path, const ::scoped_string 
 
    //put_contents(path, scopedstrContents, scopedstrContents.size());
 
-  
+
 }
 
 
-
-
-void file_system::put_block(const ::file::path & path, const block & block)
+void file_system::put_block(const ::file::path& path, const block& block)
 {
 
    throw interface_only();
@@ -1066,7 +1105,6 @@ void file_system::put_time(const ::file::path& path, const ::earth::time& time)
 }
 
 
-
 ::earth::time file_system::safe_time(const ::file::path& path)
 {
 
@@ -1090,14 +1128,12 @@ void file_system::put_time(const ::file::path& path, const ::earth::time& time)
 }
 
 
-
-
-void file_system::as_block(block & block, const ::file::path & path)
+void file_system::as_block(block& block, const ::file::path& path)
 {
 
    auto size = as_memory(path, block.data(), block.size());
 
-   if(size != block.size())
+   if (size != block.size())
    {
 
       throw ::exception(error_wrong_type);
@@ -1107,7 +1143,7 @@ void file_system::as_block(block & block, const ::file::path & path)
 }
 
 
-string file_system::first_line(const ::file::path & path)
+string file_system::first_line(const ::file::path& path)
 {
 
    return line(path, 0);
@@ -1115,9 +1151,7 @@ string file_system::first_line(const ::file::path & path)
 }
 
 
-
-
-string_array file_system::lines(const ::file::path & pathParam)
+string_array file_system::lines(const ::file::path& pathParam)
 {
 
    auto path = path_system()->defer_process_relative_path(pathParam);
@@ -1125,7 +1159,8 @@ string_array file_system::lines(const ::file::path & pathParam)
    try
    {
 
-      auto pfile = get_file(path, ::file::e_open_read | ::file::e_open_share_deny_none | ::file::e_open_no_exception_on_open);
+      auto pfile = get_file(
+         path, ::file::e_open_read | ::file::e_open_share_deny_none | ::file::e_open_no_exception_on_open);
 
       if (pfile.nok())
       {
@@ -1148,7 +1183,7 @@ string_array file_system::lines(const ::file::path & pathParam)
       return ::transfer(straLines);
 
    }
-   catch (const ::exception & exception)
+   catch (const ::exception& exception)
    {
 
       if (exception.m_estatus == error_file_not_found)
@@ -1165,7 +1200,8 @@ string_array file_system::lines(const ::file::path & pathParam)
 }
 
 
-void file_system::set_line(const ::file::path & pathParam, ::collection::index iLine, const ::scoped_string & scopedstrLine)
+void file_system::set_line(const ::file::path& pathParam, ::collection::index iLine,
+                           const ::scoped_string& scopedstrLine)
 {
 
    if (iLine < 0)
@@ -1250,7 +1286,7 @@ void file_system::set_line(const ::file::path & pathParam, ::collection::index i
    if (iLine > 0)
    {
 
-      while(iLine > 0)
+      while (iLine > 0)
       {
 
          pfile->put('\n');
@@ -1275,9 +1311,9 @@ void file_system::set_line(const ::file::path & pathParam, ::collection::index i
 
          auto pfile2 =
             get_file(
-               pathTime, 
-               ::file::e_open_write 
-               | ::file::e_open_share_exclusive 
+               pathTime,
+               ::file::e_open_write
+               | ::file::e_open_share_exclusive
                | ::file::e_open_defer_create_directory
                | ::file::e_open_create);
 
@@ -1335,7 +1371,7 @@ void file_system::set_line(const ::file::path & pathParam, ::collection::index i
 
    }
 
-///   return true;
+   ///   return true;
 
 }
 
@@ -1499,7 +1535,7 @@ void file_system::set_line(const ::file::path & pathParam, ::collection::index i
 //}
 
 
-void file_system::append(const ::string & strFile, const block & block)
+void file_system::append(const ::string& strFile, const block& block)
 {
 
    return append_wait(strFile, block, 0_s);
@@ -1507,9 +1543,7 @@ void file_system::append(const ::string & strFile, const block & block)
 }
 
 
-
-
-bool file_system::_exists(const ::file::path & path)
+bool file_system::_exists(const ::file::path& path)
 {
 
    bool bOk = ::safe_file_exists(path.c_str());
@@ -1528,15 +1562,16 @@ bool file_system::_exists(const ::file::path & path)
 }
 
 
-void file_system::_erase(const ::file::path & path)
+void file_system::_erase(const ::file::path& path)
 {
 
-    throw ::interface_only();
+   throw ::interface_only();
 
 }
 
 
-::file::path file_system::time_put_contents(const ::file::path& pathFolder, const ::string& strPrefix, const ::string& strExtension, const ::string& str)
+::file::path file_system::time_put_contents(const ::file::path& pathFolder, const ::string& strPrefix,
+                                            const ::string& strExtension, const ::string& str)
 {
 
    ::file::path path;
@@ -1572,7 +1607,7 @@ void file_system::_erase(const ::file::path & path)
 }
 
 
-::pointer<::handle::ini>file_system::get_ini(const ::payload & payloadFile)
+::pointer<::handle::ini> file_system::get_ini(const ::payload& payloadFile)
 {
 
    auto preader = this->get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read);
@@ -1588,7 +1623,7 @@ void file_system::_erase(const ::file::path & path)
 
    preader->right_string(str);
 
-   auto pini = __create_new < handle::ini >();
+   auto pini = __create_new<handle::ini>();
 
    if (!pini)
    {
@@ -1604,7 +1639,7 @@ void file_system::_erase(const ::file::path & path)
 }
 
 
-::property_set file_system::parse_standard_configuration(const ::payload & payloadFile)
+::property_set file_system::parse_standard_configuration(const ::payload& payloadFile)
 {
 
 
@@ -1617,9 +1652,6 @@ void file_system::_erase(const ::file::path & path)
    return ::transfer(set);
 
 }
-
-
-
 
 
 // file_system::file_system()
@@ -1635,10 +1667,11 @@ void file_system::_erase(const ::file::path & path)
 // }
 //
 
-void file_system::initialize(::particle * pparticle)
+void file_system::initialize(::particle* pparticle)
 {
 
-   /*auto estatus = */ ::object::initialize(pparticle);
+   /*auto estatus = */
+   ::object::initialize(pparticle);
 
    //if(!estatus)
    //{
@@ -1681,6 +1714,3 @@ void file_system::init_system()
 //   return ::success;
 //
 //}
-
-
-

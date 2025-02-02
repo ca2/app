@@ -3,6 +3,9 @@
 //
 #include "framework.h"
 #include "summary.h"
+
+#include <filesystem/filesystem/path_system.h>
+
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/platform/node.h"
 
@@ -43,6 +46,7 @@ namespace operating_system
       propertya.add({ "__SYSTEM_SUDO_INSTALL", m_strSudoInstall });
       propertya.add({ "__SYSTEM_STANDARD_PACKAGE_FILE_EXTENSION", m_strStandardPackageFileExtension });
       propertya.add({ "__AMBIENT", m_strAmbient });
+      propertya.add({ "__SHELL_PRIORITY_PATH_PATCH", m_strShellPriorityPathPatch });
 
       return ::transfer(propertya);
 

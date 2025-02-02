@@ -68,9 +68,9 @@ namespace application_build_helper
 
 #else
 
-      //pathZip = "/store/" + m_strSlashedOperatingSystem + "/" + m_strUnderscoreAppId + ".zip";
+      //pathZip = "/store/" + m_strSystemAmbientRelease + "/" + m_strUnderscoreAppId + ".zip";
 
-      pathZip = directory_system()->home() / "store" / m_strSlashedOperatingSystem / (m_strApplication + ".zip");
+      pathZip = directory_system()->home() / "store" / m_strSystemAmbientRelease / (m_strApplication + ".zip");
 
       pathBinaries = m_pathBaseDir + "/cmake-build-release/output";
 
@@ -84,7 +84,7 @@ namespace application_build_helper
 
       ::file::path pathPackageList;
 
-      pathPackageList = m_pathFolder / "operating_system" / m_strSlashedOperatingSystem / "_packages.txt";
+      pathPackageList = m_pathFolder / "operating_system" / m_strSystemAmbientRelease / "_packages.txt";
 
       string strInput = file_system()->as_string(pathPackageList);
 

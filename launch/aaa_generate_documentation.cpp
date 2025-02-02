@@ -92,11 +92,11 @@ namespace application_build_helper
       ////
       ////   }
       ////
-      ////   ::file::path pathInl = pathFolder / "operating_system" / m_strSlashedOperatingSystem / "_static_factory.inl";
+      ////   ::file::path pathInl = pathFolder / "operating_system" / m_strSystemAmbientRelease / "_static_factory.inl";
       ////
       ////   ::file::path pathSourcePackages = pathFolder / "_packages.txt";
       ////
-      ////   ::file::path pathTargetPackages = pathFolder / "operating_system" / m_strSlashedOperatingSystem / "_packages.txt";
+      ////   ::file::path pathTargetPackages = pathFolder / "operating_system" / m_strSystemAmbientRelease / "_packages.txt";
       ////
       ////   file_system()->put_contents(pathSourcePackages, strPackages);
       ////
@@ -127,7 +127,7 @@ namespace application_build_helper
       ////
       ////   ::file::path pathTargetReferences;
       ////
-      ////   pathTargetReferences = pathFolder / "operating_system" / m_strSlashedOperatingSystem / "_references.txt";
+      ////   pathTargetReferences = pathFolder / "operating_system" / m_strSystemAmbientRelease / "_references.txt";
       ////
       ////   ::file::path pathDepsDeprecated;
       ////
@@ -139,7 +139,7 @@ namespace application_build_helper
       ////
       ////   ::file::path pathTargetDependencies;
       ////
-      ////   pathTargetDependencies = pathFolder / "operating_system" / m_strSlashedOperatingSystem / "_dependencies.txt";
+      ////   pathTargetDependencies = pathFolder / "operating_system" / m_strSystemAmbientRelease / "_dependencies.txt";
       ////
       ////   ::file::path pathSourceExtensions;
       ////
@@ -147,7 +147,7 @@ namespace application_build_helper
       ////
       ////   ::file::path pathTargetExtensions;
       ////
-      ////   pathTargetExtensions = pathFolder / "operating_system" / m_strSlashedOperatingSystem / "_extensions.txt";
+      ////   pathTargetExtensions = pathFolder / "operating_system" / m_strSystemAmbientRelease / "_extensions.txt";
       ////
       ////   auto lenDepsDeprecated = file_system()->as_string(pathDepsDeprecated).trimmed().length();
       ////
@@ -339,11 +339,11 @@ namespace application_build_helper
       //
       //   }
       //
-      //   ::file::path pathInl = pathFolder / "operating_system" / m_strSlashedOperatingSystem / "_static_factory.inl";
+      //   ::file::path pathInl = pathFolder / "operating_system" / m_strSystemAmbientRelease / "_static_factory.inl";
       //
       //   ::file::path pathSourcePackages = pathFolder / "_packages.txt";
       //
-      //   ::file::path pathTargetPackages = pathFolder / "operating_system" / m_strSlashedOperatingSystem / "_packages.txt";
+      //   ::file::path pathTargetPackages = pathFolder / "operating_system" / m_strSystemAmbientRelease / "_packages.txt";
       //
       //   file_system()->put_contents(pathSourcePackages, strPackages);
       //
@@ -374,7 +374,7 @@ namespace application_build_helper
       //
       //   ::file::path pathTargetReferences;
       //
-      //   pathTargetReferences = pathFolder / "operating_system" / m_strSlashedOperatingSystem / "_references.txt";
+      //   pathTargetReferences = pathFolder / "operating_system" / m_strSystemAmbientRelease / "_references.txt";
       //
       //   ::file::path pathDepsDeprecated;
       //
@@ -386,7 +386,7 @@ namespace application_build_helper
       //
       //   ::file::path pathTargetDependencies;
       //
-      //   pathTargetDependencies = pathFolder / "operating_system" / m_strSlashedOperatingSystem / "_dependencies.txt";
+      //   pathTargetDependencies = pathFolder / "operating_system" / m_strSystemAmbientRelease / "_dependencies.txt";
       //
       //   ::file::path pathSourceExtensions;
       //
@@ -394,7 +394,7 @@ namespace application_build_helper
       //
       //   ::file::path pathTargetExtensions;
       //
-      //   pathTargetExtensions = pathFolder / "operating_system" / m_strSlashedOperatingSystem / "_extensions.txt";
+      //   pathTargetExtensions = pathFolder / "operating_system" / m_strSystemAmbientRelease / "_extensions.txt";
       //
       //   auto lenDepsDeprecated = file_system()->as_string(pathDepsDeprecated).trimmed().length();
       //

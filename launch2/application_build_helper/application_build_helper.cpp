@@ -39,13 +39,13 @@ namespace application_build_helper
 
       m_strOperatingSystem2 = "windows";
 
-      m_strSlashedOperatingSystem = "windows";
+      m_strSystemAmbientRelease = "windows";
 
 #elif defined(MACOS)
 
       m_strOperatingSystem2 = "macos";
 
-      m_strSlashedOperatingSystem = "macos";
+      m_strSystemAmbientRelease = "macos";
 
 #elif defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
 
@@ -53,11 +53,11 @@ namespace application_build_helper
 
       strOperatingSystem = getenv("__SYSTEM_UNDERSCORE_OPERATING_SYSTEM");
 
-      string strSlashedOperatingSystem;
+      string strSystemAmbientRelease;
 
-      strSlashedOperatingSystem = getenv("__SYSTEM_SLASHED_OPERATING_SYSTEM");
+      strSystemAmbientRelease = getenv("__SYSTEM_SLASHED_OPERATING_SYSTEM");
 
-      if (strOperatingSystem.is_empty() || strSlashedOperatingSystem.is_empty())
+      if (strOperatingSystem.is_empty() || strSystemAmbientRelease.is_empty())
       {
 
          printf("%s", "Did you set __SYSTEM_SLASHED_OPERATING_SYSTEM and __SYSTEM_UNDERSCORE_OPERATING_SYSTEM environment variables?\n");
@@ -69,7 +69,7 @@ namespace application_build_helper
 
       m_strOperatingSystem2 = strOperatingSystem;
 
-      m_strSlashedOperatingSystem = strSlashedOperatingSystem;
+      m_strSystemAmbientRelease = strSystemAmbientRelease;
 
       ::file::path pathEtcOsRelease;
 
@@ -184,7 +184,7 @@ namespace application_build_helper
 
       m_strOperatingSystem2.trim();
 
-      m_strSlashedOperatingSystem.trim();
+      m_strSystemAmbientRelease.trim();
 
    }
 
@@ -322,7 +322,7 @@ namespace application_build_helper
 
       ::file::path pathPackageMap;
 
-      pathPackageMap = m_pathOperatingSystem / ("operating_system-" OPERATING_SYSTEM_NAME) / "operating_system" / m_strSlashedOperatingSystem / "package_map.txt";
+      pathPackageMap = m_pathOperatingSystem / ("operating_system-" OPERATING_SYSTEM_NAME) / "operating_system" / m_strSystemAmbientRelease / "package_map.txt";
 
       try
       {
@@ -787,7 +787,7 @@ namespace application_build_helper
 
       {
 
-         ::file::path pathMain = m_pathFolder / "operating_system" / m_strSlashedOperatingSystem / "_main.inl";
+         ::file::path pathMain = m_pathFolder / "operating_system" / m_strSystemAmbientRelease / "_main.inl";
 
          string strMain;
 
@@ -862,7 +862,7 @@ namespace application_build_helper
                {
 
                   ::file::path pathApplication =
-                     m_pathFolder / "operating_system" / m_strSlashedOperatingSystem / ("_" + strAppName + ".cpp");
+                     m_pathFolder / "operating_system" / m_strSystemAmbientRelease / ("_" + strAppName + ".cpp");
 
                   //if (!psystem->m_pfilesystem->exists(pathApplication))
                   {

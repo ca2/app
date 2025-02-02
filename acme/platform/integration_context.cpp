@@ -651,7 +651,7 @@ namespace integration
    ::file::path context::host_integration_folder()
    {
 
-      return m_pathBaseIntegrationFolder / node()->operating_system_summary()->m_strSlashedIntegration;
+      return m_pathBaseIntegrationFolder / node()->operating_system_summary()->m_strSystemAmbientRelease;
 
    }
 
@@ -800,7 +800,7 @@ namespace integration
    ::string context::integration_main_status()
    {
 
-      auto strSlashed = node()->operating_system_summary()->m_strSlashedIntegration;
+      auto strSlashed = node()->operating_system_summary()->m_strSystemAmbientRelease;
 
       auto strMainStatus = integration_main_status(strSlashed);
 

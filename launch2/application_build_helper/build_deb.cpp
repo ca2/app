@@ -63,7 +63,7 @@ namespace application_build_helper
 
       pathStoreFolder = directory_system()->home() / "store";
 
-      pathStoreFolder /= m_strSlashedOperatingSystem;
+      pathStoreFolder /= m_strSystemAmbientRelease;
 
       ::file::path pathStoreZip;
 

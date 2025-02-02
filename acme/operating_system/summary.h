@@ -27,20 +27,22 @@ namespace operating_system
 
 
       ::string          m_strName;
-      ::string          m_strOperatingSystemName;
-      ::string          m_strOperatingSystemFamilyName;
-      ::string          m_strOperatingSystemBranchName;
-      ::string          m_strOperatingSystemReleaseName;
-      ::string          m_strOperatingAmbientName;
 
-      ::string          m_strOperatingSystem;
-      ::string          m_strOperatingSystemFamily;
-      ::string          m_strOperatingSystemBranch;
-      ::string          m_strOperatingSystemRelease;
-      ::string          m_strOperatingAmbient;
-      ::string          m_strSlashedStore;
-      ::string          m_strSlashedIntegration;
-      ::string          m_strUnderscoreOperatingSystem;
+      ::string          m_strSystemName;
+      ::string          m_strSystemFamilyName;
+      ::string          m_strSystemBranchName;
+      ::string          m_strSystemReleaseName;
+
+      ::string          m_strAmbientName;
+
+      ::string          m_strSystem;
+      ::string          m_strSystemFamily;
+      ::string          m_strSystemBranch;
+      ::string          m_strSystemRelease;
+
+      ::string          m_strAmbient;
+
+      ::string          m_strSystemAmbientRelease;
 
       int               m_iMajor;
       int               m_iMinor;
@@ -61,7 +63,10 @@ namespace operating_system
       ~summary() override;
 
 
+      ::property_array get_property_array() const;
       ::string get_summary() const;
+      ::string id_payload_listing() const;
+      void set_ambient();
 
       //
       //   void initialize(::particle *pparticle) override;

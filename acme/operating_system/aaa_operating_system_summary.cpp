@@ -32,7 +32,7 @@ distro__release_and_desktop_environment::~distro__release_and_desktop_environmen
    strSummary.append_format("__SYSTEM_DISTRO_BRANCH is %s", m_strDistroBranch);
    strSummary.append_format("__SYSTEM_DISTRO_RELEASE is %s", m_strDistroRelease);
    strSummary.append_format("__SYSTEM_DESKTOP_ENVIRONMENT is %s", m_strDesktopEnvironment);
-   strSummary.append_format("__SYSTEM_SLASHED_OPERATING_SYSTEM is %s", m_strSlashedOperatingSystem);
+   strSummary.append_format("__SYSTEM_SLASHED_OPERATING_SYSTEM is %s", m_strSystemAmbientRelease);
    strSummary.append_format("__SYSTEM_UNDERSCORE_OPERATING_SYSTEM is %s", m_strUnderscoreOperatingSystem);
    strSummary.append_format("__SYSTEM_SUDO_INSTALL is %s", m_strSudoInstall);
    strSummary.append_format("__SYSTEM_STANDARD_PACKAGE_FILE_EXTENSION is %s", m_strStandardPackageFileExtension);
@@ -293,7 +293,7 @@ void distro__release_and_desktop_environment::initialize(::particle *pparticle)
       if (m_strDistro.case_insensitive_equals("opensuse-tumbleweed"))
       {
 
-         m_strSlashedOperatingSystem = m_strDistro + "/" + m_strDistroBranch + "/" + m_strDistroRelease.substr(0, 4);
+         m_strSystemAmbientRelease = m_strDistro + "/" + m_strDistroBranch + "/" + m_strDistroRelease.substr(0, 4);
 
       }
       else if (m_strDistro.case_insensitive_equals("ubuntu"))
@@ -302,20 +302,20 @@ void distro__release_and_desktop_environment::initialize(::particle *pparticle)
          if (m_strDesktopEnvironment.case_insensitive_equals("kde"))
          {
 
-            m_strSlashedOperatingSystem = "kubuntu/" + m_strDistroRelease;
+            m_strSystemAmbientRelease = "kubuntu/" + m_strDistroRelease;
 
          }
          else
          {
 
-            m_strSlashedOperatingSystem = m_strDistro + "/" + m_strDistroRelease;
+            m_strSystemAmbientRelease = m_strDistro + "/" + m_strDistroRelease;
          }
 
       }
       else
       {
 
-         m_strSlashedOperatingSystem = m_strDistro + "/" + m_strDistroBranch + "/" + m_strDistroRelease;
+         m_strSystemAmbientRelease = m_strDistro + "/" + m_strDistroBranch + "/" + m_strDistroRelease;
 
       }
 
@@ -358,7 +358,7 @@ void distro__release_and_desktop_environment::initialize(::particle *pparticle)
 
       }
 
-      m_strUnderscoreOperatingSystem = m_strSlashedOperatingSystem;
+      m_strUnderscoreOperatingSystem = m_strSystemAmbientRelease;
 
       m_strUnderscoreOperatingSystem.find_replace("/", "_");
 
@@ -367,7 +367,7 @@ void distro__release_and_desktop_environment::initialize(::particle *pparticle)
       node()->set_environment_variable("__SYSTEM_DISTRO_BRANCH", m_strDistroBranch);
       node()->set_environment_variable("__SYSTEM_DISTRO_RELEASE", m_strDistroRelease);
       node()->set_environment_variable("__SYSTEM_DESKTOP_ENVIRONMENT", m_strDesktopEnvironment);
-      node()->set_environment_variable("__SYSTEM_SLASHED_OPERATING_SYSTEM", m_strSlashedOperatingSystem);
+      node()->set_environment_variable("__SYSTEM_SLASHED_OPERATING_SYSTEM", m_strSystemAmbientRelease);
       node()->set_environment_variable("__SYSTEM_UNDERSCORE_OPERATING_SYSTEM", m_strUnderscoreOperatingSystem);
       node()->set_environment_variable("__SYSTEM_SUDO_INSTALL", m_strSudoInstall);
       node()->set_environment_variable("__SYSTEM_TERMINAL", m_strTerminal);

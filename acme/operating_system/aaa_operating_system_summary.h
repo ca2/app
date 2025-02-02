@@ -26,7 +26,7 @@ public:
    ::string m_strDistroBranch;
    ::string m_strDistroRelease;
    ::string m_strDesktopEnvironment;
-   ::string m_strSlashedOperatingSystem;
+   ::string m_strSystemAmbientRelease;
    ::string m_strUnderscoreOperatingSystem;
 
 

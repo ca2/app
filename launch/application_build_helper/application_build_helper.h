@@ -45,7 +45,7 @@ namespace application_build_helper
       string                              m_strLog;
 
       string                              m_strOperatingSystem2;
-      string                              m_strSlashedOperatingSystem;
+      string                              m_strSystemAmbientRelease;
       package_reference_array             m_packagereferencea;
       string_array                        m_straIgnorePackage;
 

@@ -45,17 +45,17 @@ namespace launch
       auto psummary = node()->operating_system_summary();
 
 
-      m_strDistro = psummary->m_strDistro;
+      m_strDistro = psummary->m_strSystem;
 
       m_strDistro.make_lower();
 
-      ::string strBranch = psummary->m_strDistroBranch;
+      ::string strBranch = psummary->m_strSystemBranch;
 
       strBranch.make_lower();
 
       ::string strRelease;
 
-      strRelease = psummary->m_strDistroRelease;
+      strRelease = psummary->m_strSystemRelease;
 
       if (m_strDistro == "ubuntu")
       {
@@ -378,12 +378,12 @@ namespace launch
                         m_strAppRoot.c_str(),
                         m_strAppName.c_str(),
                         psummary->m_strName.c_str(),
-                        psummary-> m_strDistroReleaseName.c_str());
+                        psummary-> m_strSystemReleaseName.c_str());
 
          if(m_strBranch.has_character())
          {
 
-            strErr.append_formatf(" \"%s\".", psummary->m_strDistroBranchName.c_str());
+            strErr.append_formatf(" \"%s\".", psummary->m_strSystemBranchName.c_str());
 
          }
          else

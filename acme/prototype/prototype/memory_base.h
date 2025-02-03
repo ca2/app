@@ -293,6 +293,9 @@ public:
 
    void splice(const unsigned char * pbMemory, memsize iCountSrc, memsize iStartDst = 0, memsize iCountDst = 0);
    void splice(const memory_base & memory, memsize iStartDst = 0, memsize iCountDst = 0, memsize iStartSrc = 0, memsize iCountSrc = -1);
+   ::memory slice(memsize start, memsize count);
+   ::memory left(memsize count);
+   ::memory right(memsize count);
 
    void move_and_grow(memsize offset);
    void transfer(memsize offset, bool bGrow = false);
@@ -453,21 +456,6 @@ inline void memory_base::splice(const memory_base & memory, memsize iStartDst, m
    minimum(memory.size(), iCountSrc < 0 ? memory.size() - iCountSrc + 1 : iCountSrc),
    iStartDst,
    iCountDst);
-
-}
-
-
-inline void memory_base::set_char_at_grow(character_count iChar, char ch)
-{
-
-   if (::comparison::ge(iChar, size()))
-   {
-
-      set_size(iChar + 1);
-
-   }
-
-   ((char*)data())[iChar] = ch;
 
 }
 

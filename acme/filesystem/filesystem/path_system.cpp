@@ -28,6 +28,14 @@ path_system::~path_system()
 }
 
 
+::string path_system::shell_path(const ::file::path & path)
+{
+
+   return path;
+
+}
+
+
 ::string path_system::tool_folder_operating_system_name()
 {
 

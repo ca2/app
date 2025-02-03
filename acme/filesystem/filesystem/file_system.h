@@ -55,6 +55,11 @@ public:
    //virtual string get_temp_name(const ::file::path & pathName, const ::scoped_string & scopedstrExtension);
    virtual void append_wait(const ::file::path & pathFile, const block & block, const class time & time);
    virtual void append(const ::file::path & pathFile, const block & block);
+   virtual ::filesize size(const ::file::path & pathFile);
+   virtual ::memory slice(const ::file::path & pathFile, memsize start, memsize count);
+   virtual ::memory beginning(const ::file::path & pathFile, memsize len);
+   virtual ::memory ending(const ::file::path & pathFile, memsize len);
+   virtual bool append_unique_line(const ::file::path & pathFile, const ::scoped_string & scopedstrLine);
    virtual ::collection::count find_and_erase(const ::file::path & pathFile, const block & block);
 
    virtual bool exists(const ::file::path & path);

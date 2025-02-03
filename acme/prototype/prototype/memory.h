@@ -87,4 +87,62 @@ using memory_pointer = ::pointer<memory>;
 inline memory_pointer create_memory() { return __allocate ::memory (); }
 
 
+inline ::memory memory_base::slice(memsize start, memsize count)
+{
+
+   auto p = this->data() + start;
+
+   return {p, count};
+
+}
+
+
+inline ::memory memory_base::left(memsize count)
+{
+
+   auto left = minimum(count, this->size());
+
+   if (left <= 0)
+   {
+
+      return {};
+
+   }
+
+   return slice(0, left);
+
+}
+
+
+inline ::memory memory_base::right(memsize count)
+{
+
+   auto start = this->size() - count;
+
+   if (start <= 0)
+   {
+
+      return {};
+
+   }
+
+   return slice(start, count);
+
+}
+
+
+
+inline void memory_base::set_char_at_grow(character_count iChar, char ch)
+{
+
+   if (::comparison::ge(iChar, size()))
+   {
+
+      set_size(iChar + 1);
+
+   }
+
+   ((char*)data())[iChar] = ch;
+
+}
 

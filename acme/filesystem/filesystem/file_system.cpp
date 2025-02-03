@@ -362,6 +362,86 @@ void file_system::append(const ::file::path& pathFile, const block& block)
 }
 
 
+::filesize file_system::size(const ::file::path & pathFile)
+{
+
+   auto memory = as_memory(pathFile);
+
+   return memory.size();
+
+}
+
+
+::memory file_system::slice(const ::file::path & pathFile, memsize start, memsize count)
+{
+
+   auto memory = as_memory(pathFile);
+
+   return memory.slice(start, count);
+
+}
+
+
+::memory file_system::beginning(const ::file::path & pathFile, memsize len)
+{
+
+   return slice(pathFile, 0, len);
+
+}
+
+
+::memory file_system::ending(const ::file::path & pathFile, memsize len)
+{
+
+   return slice(pathFile, size(pathFile) - len, len);
+
+}
+
+
+bool file_system::append_unique_line(const file::path& pathFile, const scoped_string& scopedstrLine)
+{
+
+   ::string_array lines;
+
+   if (this->exists(pathFile))
+   {
+
+      lines = this->lines(pathFile);
+
+   }
+
+   if (lines.contains(pathFile))
+   {
+
+      return false;
+
+   }
+
+   ::string strAppend;
+
+   strAppend = scopedstrLine;
+
+   if (lines.has_element())
+   {
+
+      auto ending = this->ending(pathFile, 1);
+
+      if (ending[0] != '\r' && ending[0] != '\n')
+      {
+
+         strAppend = "\n" + strAppend;
+
+      }
+
+   }
+
+   this->append(pathFile, strAppend);
+
+   return true;
+
+}
+
+
 ::collection::count file_system::find_and_erase(const ::file::path& pathFile, const block& block)
 {
 

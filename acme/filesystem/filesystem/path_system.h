@@ -20,6 +20,9 @@ public:
    ~path_system() override;
 
 
+   virtual ::string shell_path(const ::file::path & path);
+
+
    virtual ::string tool_folder_operating_system_name();
    virtual ::file::path tool_folder_path();
 

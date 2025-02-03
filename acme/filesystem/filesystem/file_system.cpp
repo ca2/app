@@ -435,6 +435,8 @@ bool file_system::append_unique_line(const file::path& pathFile, const scoped_st
 
    }
 
+   strAppend += "\n";
+
    this->append(pathFile, strAppend);
 
    return true;

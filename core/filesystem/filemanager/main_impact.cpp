@@ -156,7 +156,7 @@ namespace filemanager
    void main_impact::on_command(::message::command * pcommand)
    {
 
-      if(pcommand->m_atomCommand == "change_impact")
+      if(pcommand->command_id() == "change_impact")
       {
 
          if(m_pthumbnail->is_window_visible())

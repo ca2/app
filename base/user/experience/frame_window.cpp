@@ -989,7 +989,7 @@ namespace experience
       if (pcommand->m_emessage == ::e_message_system_command && m_pframe != nullptr)
       {
 
-         auto ebutton = m_pframe->get_control_box()->get_control_box_button_type(pcommand->m_atomCommand);
+         auto ebutton = m_pframe->get_control_box()->get_control_box_button_type(pcommand->command_id());
 
          switch (ebutton)
          {

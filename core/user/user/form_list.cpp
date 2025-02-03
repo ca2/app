@@ -2452,7 +2452,7 @@ namespace user
 
                      pcombobox->get_text(strText);
 
-                     if (pcombobox->get_current_item_atom() != pdrawlistsubitem->m_strText)
+                     if (pcombobox->get_current_item_id() != pdrawlistsubitem->m_strText)
                      {
 
                         pcombobox->set_current_item_by_atom(pdrawlistsubitem->m_strText, ::e_source_sync);

@@ -457,7 +457,7 @@ namespace filemanager
 
       }
 
-      filemanager_document()->on_file_manager_item_command(pcommand->m_atomCommand, itema);
+      filemanager_document()->on_file_manager_item_command(pcommand->command_id(), itema);
 
    }
 
@@ -768,7 +768,7 @@ namespace filemanager
 
          string strId = "open with" + m_straOpenWith[i];
 
-         if (pcommand->m_atomCommand == strId)
+         if (pcommand->command_id() == strId)
          {
 
             iPos = i;
@@ -798,7 +798,7 @@ namespace filemanager
    void file_list::on_command(::message::command * pcommand)
    {
 
-      if (pcommand->m_atomCommand == "1000")
+      if (pcommand->command_id() == "1000")
       {
 
          //      _017OpenSelected(true, ::e_source_user);
@@ -816,7 +816,7 @@ namespace filemanager
 
          string strId = "open with" + m_straOpenWith[i];
 
-         if (pcommand->m_atomCommand == strId)
+         if (pcommand->command_id() == strId)
          {
 
             iPos = i;

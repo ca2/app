@@ -361,7 +361,7 @@ void html_document::soft_reload()
 void html_document::on_command_probe(::message::command * pcommand)
 {
 
-   if(pcommand->m_atomCommand == "viewindefaultbrowser")
+   if(pcommand->command_id() == "viewindefaultbrowser")
    {
 
       pcommand->enable();
@@ -380,7 +380,7 @@ void html_document::on_command(::message::command * pcommand)
 
    auto papp = get_app();
 
-   if(pcommand->m_atomCommand == "viewindefaultbrowser")
+   if(pcommand->command_id() == "viewindefaultbrowser")
    {
 
       property_set propertyset;

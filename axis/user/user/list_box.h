@@ -119,7 +119,7 @@ namespace user
       virtual void set_current_item_by_text(const ::scoped_string & scopedstr, const ::action_context& action_context);
       virtual void set_current_item_by_index(::collection::index iIndex, const ::action_context& context);
       virtual string get_current_item_text();
-      virtual ::atom get_current_item_atom();
+      virtual ::atom get_current_item_id();
 
 
       virtual bool _001GetListText(::collection::index iSel, string& str);

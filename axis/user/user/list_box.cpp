@@ -1604,7 +1604,7 @@ namespace user
    }
 
 
-   ::atom list_box::get_current_item_atom()
+   ::atom list_box::get_current_item_id()
    {
 
       auto pitem = current_item();

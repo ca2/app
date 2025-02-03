@@ -164,7 +164,7 @@ namespace user
 
          }
 
-         command.m_atomCommand = ptoolitem->id();
+         command.set_command_id(ptoolitem->id());
 
          // allow reflections
          //if (::user::interaction::on_command(0,

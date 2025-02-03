@@ -28,7 +28,7 @@ namespace message
 
       common_construct();
 
-      m_atomCommand = atom;
+      set_command_id(atom);
 
       m_actioncontext.m_puseractivationtoken = puseractivationtoken;
 
@@ -65,6 +65,22 @@ namespace message
       ::user::check::destroy();
       ::user::text::destroy();
 
+
+   }
+
+
+   void command::set_command_id(const ::atom & atom)
+   {
+
+      m_atomCommand2 = atom;
+
+   }
+
+
+   ::atom command::command_id() const
+   {
+
+      return m_atomCommand2;
 
    }
 
@@ -309,7 +325,7 @@ namespace message
    void command::do_probe(channel * ptarget)
    {
 
-      if (m_atomCommand.is_empty())
+      if (command_id().is_empty())
       {
 
          return;     // ignore invalid IDs

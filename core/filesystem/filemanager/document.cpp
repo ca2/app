@@ -848,7 +848,7 @@ namespace filemanager
       if (pfilemanagerdata != nullptr)
       {
 
-         if (pcommand->m_atomCommand == "levelup")
+         if (pcommand->command_id() == "levelup")
          {
 
             FileManagerOneLevelUp(::e_source_user);
@@ -1388,7 +1388,7 @@ namespace filemanager
             if (pfilemanagerdata->m_pfilemanagercallback != nullptr)
             {
 
-               if (pfilemanagerdata->m_pfilemanagercallback->get_file_manager_item_callback(pfilemanagerdata, pcommand->m_atomCommand, itema))
+               if (pfilemanagerdata->m_pfilemanagercallback->get_file_manager_item_callback(pfilemanagerdata, pcommand->command_id(), itema))
                {
 
                   pfilemanagerdata->m_pfilemanagercallback->on_file_manager_item_update(pfilemanagerdata, pcommand, itema);
@@ -1413,10 +1413,10 @@ namespace filemanager
             if (::is_set(pcallback))
             {
 
-               if (pcallback->get_file_manager_item_callback(pfilemanagerdata, pcommand->m_atomCommand, itema))
+               if (pcallback->get_file_manager_item_callback(pfilemanagerdata, pcommand->command_id(), itema))
                {
 
-                  pcallback->on_file_manager_item_command(pfilemanagerdata, pcommand->m_atomCommand, itema);
+                  pcallback->on_file_manager_item_command(pfilemanagerdata, pcommand->command_id(), itema);
 
                   return true;
 

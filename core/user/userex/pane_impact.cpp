@@ -24,7 +24,7 @@ namespace userex
       for(int i = 0; i < m_menua.get_size(); i++)
       {
 
-         if(pcommand->m_atomCommand == m_menua[i]->m_atomMenu)
+         if(pcommand->command_id() == m_menua[i]->m_atomMenu)
          {
 
             pcommand->enable(true);
@@ -48,7 +48,7 @@ namespace userex
       for(int i = 0; i < m_menua.get_size(); i++)
       {
 
-         if(pcommand->m_atomCommand == m_menua[i]->m_atomMenu.compounded(::atom::e_type_command))
+         if(pcommand->command_id() == m_menua[i]->m_atomMenu.compounded(::atom::e_type_command))
          {
             
             // show_impact where??

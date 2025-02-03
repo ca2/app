@@ -486,7 +486,7 @@ namespace userex
    void group_image_list_impact::on_command(::message::command * pcommand)
    {
 
-      string str = pcommand->m_atomCommand;
+      string str = pcommand->command_id();
 
       if (str.case_insensitive_begins_eat("menu_item_"))
       {

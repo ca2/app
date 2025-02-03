@@ -23,7 +23,7 @@ namespace message
 
 
       ::pointer<::channel>                         m_pcommandtargetSource;
-      ::atom                                       m_atomCommand;
+      ::atom                                       m_atomCommand2;
       ::atom                                         m_atomControl;     // menu item or other index
       ::collection::index                                        m_iIndex;
       ::collection::count                                      m_iCount;
@@ -58,6 +58,11 @@ namespace message
       void common_construct();
 
       void destroy() override;
+
+
+      void set_command_id(const ::atom & atom);
+      ::atom command_id() const;
+
 
       bool is_command()const { return m_emessage == e_message_command; }
       bool is_command_probe() const { return m_bProbing; }

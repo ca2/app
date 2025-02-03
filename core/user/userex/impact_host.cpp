@@ -114,10 +114,10 @@ namespace userex
    void impact_host::on_command(::message::command * pcommand)
    {
 
-      if (m_idaHandledImpacts.contains(pcommand->m_atomCommand))
+      if (m_idaHandledImpacts.contains(pcommand->command_id()))
       {
 
-         toggle_impact(pcommand->m_atomCommand);
+         toggle_impact(pcommand->command_id());
 
       }
 

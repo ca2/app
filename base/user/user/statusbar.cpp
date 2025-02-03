@@ -908,7 +908,7 @@ namespace user
       command.m_iCount = (unsigned int)m_panecompositea.get_count();
       for (command.m_iIndex = 0; command.m_iIndex < command.m_iCount; command.m_iIndex++)
       {
-         command.m_atomCommand = _GetPanePtr((int) command.m_iIndex)->id();
+         command.set_command_id(_GetPanePtr((int) command.m_iIndex)->id());
 
          // allow the statusbar itself to have update handlers
          ::user::interaction::on_command_probe(&command);

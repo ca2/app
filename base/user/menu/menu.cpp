@@ -1974,7 +1974,7 @@ namespace user
 
          pmenucommand->m_commandtargetptraHandle.clear();
 
-         pmenucommand->m_atomCommand = pitem->id();
+         pmenucommand->set_command_id(pitem->id());
 
          pmenucommand->m_puiOther = pitem->m_puserinteraction;
 
@@ -2005,7 +2005,7 @@ namespace user
 
          ::pointer<::menu::item>pitem = pitemParent->m_pmenuitema->element_at(pmenucommand->m_iIndex);
 
-         pmenucommand->m_atomCommand = pitem->id();
+         pmenucommand->set_command_id(pitem->id());
 
          pmenucommand->m_puiOther = pitem->m_puserinteraction;
 

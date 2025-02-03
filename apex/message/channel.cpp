@@ -406,7 +406,7 @@ void channel::_route_command(::message::command * pcommand)
 
    ASSERT(!pcommand->m_bProbing);
 
-   if (::is_null(pcommand)) { ASSERT(false); return; } { critical_section_lock synchronouslock(platform()->channel_critical_section()); pcommand->m_pdispatchera = get_command_map()->pget(pcommand->m_atomCommand); } if (pcommand->m_pdispatchera == nullptr || pcommand->m_pdispatchera->is_empty()) return;
+   if (::is_null(pcommand)) { ASSERT(false); return; } { critical_section_lock synchronouslock(platform()->channel_critical_section()); pcommand->m_pdispatchera = get_command_map()->pget(pcommand->command_id()); } if (pcommand->m_pdispatchera == nullptr || pcommand->m_pdispatchera->is_empty()) return;
 
    for (pcommand->m_pchannel = this, pcommand->m_iRouteIndex = pcommand->m_pdispatchera->get_upper_bound(); pcommand->m_pdispatchera && pcommand->m_iRouteIndex >= 0; pcommand->m_iRouteIndex--)
    {
@@ -432,7 +432,7 @@ void channel::_route_command_probe(::message::command * pcommand)
 
    ASSERT(pcommand->m_bProbing);
 
-   if (::is_null(pcommand)) { ASSERT(false); return; } { critical_section_lock synchronouslock(platform()->channel_critical_section()); pcommand->m_pdispatchera = get_command_probe_map()->pget(pcommand->m_atomCommand); } if (pcommand->m_pdispatchera == nullptr || pcommand->m_pdispatchera->is_empty()) return;
+   if (::is_null(pcommand)) { ASSERT(false); return; } { critical_section_lock synchronouslock(platform()->channel_critical_section()); pcommand->m_pdispatchera = get_command_probe_map()->pget(pcommand->command_id()); } if (pcommand->m_pdispatchera == nullptr || pcommand->m_pdispatchera->is_empty()) return;
 
    for (pcommand->m_pchannel = this, pcommand->m_iRouteIndex = pcommand->m_pdispatchera->get_upper_bound(); pcommand->m_pdispatchera && pcommand->m_iRouteIndex >= 0; pcommand->m_iRouteIndex--)
    {
@@ -840,7 +840,7 @@ bool channel::has_command_handler(::message::command * pcommand)
 
    critical_section_lock synchronouslock(platform()->channel_critical_section());
 
-   if (m_atomaHandledCommands.contains(pcommand->m_atomCommand))
+   if (m_atomaHandledCommands.contains(pcommand->command_id()))
    {
 
       return true;
@@ -856,7 +856,7 @@ bool channel::has_command_handler(::message::command * pcommand)
    //
    //   }
 
-   auto passociation = m_commandmap.plookup(pcommand->m_atomCommand);
+   auto passociation = m_commandmap.plookup(pcommand->command_id());
 
    if (passociation.is_null())
    {

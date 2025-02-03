@@ -1743,7 +1743,7 @@ namespace user
    }
 
 
-   ::atom combo_box::get_current_item_atom()
+   ::atom combo_box::get_current_item_id()
    {
 
       if (::is_null(m_plistbox))
@@ -1753,7 +1753,7 @@ namespace user
 
       }
 
-      return m_plistbox->get_current_item_atom();
+      return m_plistbox->get_current_item_id();
 
    }
 

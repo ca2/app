@@ -200,7 +200,7 @@ namespace windowing
                
                command.m_bProbing = true;
 
-               command.m_atomCommand = pitem->id();
+               command.set_command_id(pitem->id());
 
                pchannel->on_command_probe(&command);
 

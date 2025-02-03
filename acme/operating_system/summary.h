@@ -59,7 +59,7 @@ namespace operating_system
       ::string          m_strTerminal;
 
 
-      ::string          m_strShellPriorityPathPatch;
+      ::string          m_strPathPrefix;
 
       summary();
       ~summary() override;

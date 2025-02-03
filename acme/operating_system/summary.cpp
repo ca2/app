@@ -46,7 +46,7 @@ namespace operating_system
       propertya.add({ "__SYSTEM_SUDO_INSTALL", m_strSudoInstall });
       propertya.add({ "__SYSTEM_STANDARD_PACKAGE_FILE_EXTENSION", m_strStandardPackageFileExtension });
       propertya.add({ "__AMBIENT", m_strAmbient });
-      propertya.add({ "__SHELL_PRIORITY_PATH_PATCH", m_strShellPriorityPathPatch });
+      propertya.add({ "__PATH_PREFIX", m_strPathPrefix });
 
       return ::transfer(propertya);
 

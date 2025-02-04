@@ -18,8 +18,10 @@ namespace nano2d
    {
                                                  
        auto fontdescriptor = system()->draw2d()->write_text()->calculate_font_descriptor(face, size);
+
+       float fSize = (float) fontdescriptor.m_iSize;
        
-       auto & pfontShared = m_mapSharedFont[fontdescriptor.m_strFace][fontdescriptor.m_iSize];
+       auto & pfontShared = m_mapSharedFont[fontdescriptor.m_strFace][fSize];
        
        if(pfontShared)
        {

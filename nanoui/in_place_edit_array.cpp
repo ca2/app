@@ -31,10 +31,15 @@ namespace nanoui
 
          auto pointInternal = pmapper->outer_to_inner(point, pinplaceedit);
 
-         if (pinplaceedit->m_rectangleInternal.contains(pointInternal))
+         if (pinplaceedit)
          {
 
-            return pinplaceedit;
+            if (pinplaceedit->m_rectangleInternal.contains(pointInternal))
+            {
+
+               return pinplaceedit;
+
+            }
 
          }
 

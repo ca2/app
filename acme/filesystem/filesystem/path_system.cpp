@@ -11,6 +11,7 @@
 #include "acme/platform/http.h"
 #include "acme/prototype/collection/map_interface.h"
 
+CLASS_DECL_ACME::string get_operating_system_name();
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
@@ -45,7 +46,7 @@ path_system::~path_system()
 
 #else
 
-   return ::application_build_helper::get_operating_system_name();
+   return ::get_operating_system_name();
 
 #endif
 

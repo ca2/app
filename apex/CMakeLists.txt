@@ -1439,7 +1439,7 @@ endif ()
 list(APPEND library_references acme)
 
 
-list(APPEND static_library_references ${library_references} ${global_library_references})
+list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
 
@@ -1498,7 +1498,7 @@ elseif (${LINUX} OR ${__BSD__})
    endif ()
 
    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} ${PKGCONFIG_LIBRARIES} ${this_system_libraries})
-   target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${PKGCONFIG_LIBRARIES} ${this_system_libraries})
+   target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${PKGCONFIG_LIBRARIES} ${this_system_libraries} ${global_library_references})
 
 
    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)

@@ -64,20 +64,20 @@ int SetThreadAffinityMask(htask h, unsigned int dwThreadAffinityMask)
            }
 
         }
-/home/camilo/cmake/console_build_tools/source/app/acme/operating_system/pthread/pthread_np.cpp
+
     }
 
     if(iCpuSetErrorCount <= 0)
     {
 
-       pthread_setaffinity_np(h.m_h, cpuset_size(pcpuset), pcpuset);
+       pthread_setaffinity_np(::literal_cast < pthread_t >(h), cpuset_size(pcpuset), pcpuset);
 
     }
 
     cpuset_destroy(pcpuset);
 
     return iCpuSetErrorCount <= 0;
-/home/camilo/cmake/console_build_tools/source/app/acme/operating_system/pthread/pthread_np.cpp
+
 #else
 
     cpuset_t c;
@@ -139,7 +139,7 @@ string task_get_name(htask htask)
 
    char szThreadName[32];
 
-#if defined(__BSD__)
+#if defined(FREEBSD) || defined(OPENBSD)
 
    pthread_get_name_np(::literal_cast < pthread_t >( htask.m_h), szThreadName, sizeof(szThreadName));
 
@@ -197,7 +197,7 @@ void task_set_name(htask htask, const char * psz)
 
    thread_name_abbreviate(strName, PTHREAD_MAX_NAMELEN_NP - 1);
 
-   int error = pthread_setname_np(pthread, "%s", (void *) strName.c_str());
+   int error = pthread_setname_np(::literal_cast < pthread_t >(pthread), "%s", (void *) strName.c_str());
 
 #else
 

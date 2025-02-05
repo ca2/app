@@ -397,8 +397,8 @@ public:
 
    virtual bool task_run(const class ::time & time = 0_s);
 
-   /// @brief  
-   /// @param time 
+   /// @brief task waits a lot
+   /// @param timeRemaining time increases as it passes a lot
    /// @return true if there are pending happenings
    virtual bool task_wait(const class ::time & timeRemaining = 0_s);
 

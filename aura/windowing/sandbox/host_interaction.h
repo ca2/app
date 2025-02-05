@@ -56,6 +56,9 @@ namespace sandbox_windowing
       
       void set_mouse_capture() override;
       bool has_mouse_capture() override;
+       
+       
+      void set_keyboard_focus() override;
       
       
       void hide() override;

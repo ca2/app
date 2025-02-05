@@ -159,9 +159,9 @@ namespace sandbox_windowing
 
       }
 
-      ::pointer<::user::interaction>pinteraction;
+      ::pointer<::user::interaction>pinteraction = first_child();
       
-      get_child(pinteraction);
+//      get_child(pinteraction);
 
       if (::is_null(pinteraction))
       {
@@ -188,6 +188,14 @@ bool host_interaction::has_mouse_capture()
 
    return ::user::interaction::has_mouse_capture();
 
+}
+
+
+void host_interaction::set_keyboard_focus()
+{
+   
+   ::acme::sandbox_windowing::host_interaction::set_keyboard_focus();
+   
 }
 
 

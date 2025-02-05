@@ -56,10 +56,9 @@ namespace sockets
       IEventOwner *     m_from;
       EventTime         m_time;
       static int        m_unique_id;
-      int               id();
+      int               m_iId;
       
-      
-      
+
       Event(IEventOwner *,long sec,long usec);
       ~Event();
 

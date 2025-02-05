@@ -3641,12 +3641,23 @@ namespace sandbox_windowing
    pwindowing->m_pwindowKeyboardFocus = this;
 
    SetInternalFocus();
+      
+      auto puserinteraction = user_interaction();
+      
+      if(puserinteraction)
+      {
+         
+         puserinteraction->on_set_keyboard_focus();
+         
+      }
      
-      if (pwindow)
+      //if (pwindow)
    {
 
-      pwindow->on_final_set_keyboard_focus();
-         //auto puserinteraction = pwindow->m_puserinteraction;
+      //pwindow->on_final_set_keyboard_focus();
+
+      //pwindow->on_set_keyboard_focus();
+      //auto puserinteraction = pwindow->m_puserinteraction;
 
          //if (puserinteraction)
          //{

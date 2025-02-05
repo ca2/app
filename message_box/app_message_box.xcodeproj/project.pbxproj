@@ -53,6 +53,27 @@
 			remoteGlobalIDString = 9AC01A572748C26A006BEBCC;
 			remoteInfo = app_app;
 		};
+		9ACCC7E12D5143390024B9A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AB54BA12D2B0B0200AFBCB1 /* crypto_openssl.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AC019342748A002006BEBCC;
+			remoteInfo = crypto_openssl;
+		};
+		9ACCC7E32D5143390024B9A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AB54BA12D2B0B0200AFBCB1 /* crypto_openssl.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AA14DBB282A17C600B1621E;
+			remoteInfo = ios_crypto_openssl;
+		};
+		9ACCC7E52D5143390024B9A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AB54BA12D2B0B0200AFBCB1 /* crypto_openssl.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AC97ECF2A71B2A700B1BCF3;
+			remoteInfo = static_crypto_openssl;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -151,6 +172,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9ACCC7CF2D5143390024B9A6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9ACCC7E22D5143390024B9A6 /* libcrypto_openssl.dylib */,
+				9ACCC7E42D5143390024B9A6 /* libios_crypto_openssl.a */,
+				9ACCC7E62D5143390024B9A6 /* libstatic_crypto_openssl.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -237,6 +268,10 @@
 					ProductGroup = 9AC01A4A2748C20F006BEBCC /* Products */;
 					ProjectRef = 9AC01A492748C20F006BEBCC /* app_app.xcodeproj */;
 				},
+				{
+					ProductGroup = 9ACCC7CF2D5143390024B9A6 /* Products */;
+					ProjectRef = 9AB54BA12D2B0B0200AFBCB1 /* crypto_openssl.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -259,6 +294,27 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libapp_app.dylib;
 			remoteRef = 9AC01A4D2748C210006BEBCC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9ACCC7E22D5143390024B9A6 /* libcrypto_openssl.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libcrypto_openssl.dylib;
+			remoteRef = 9ACCC7E12D5143390024B9A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9ACCC7E42D5143390024B9A6 /* libios_crypto_openssl.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_crypto_openssl.a;
+			remoteRef = 9ACCC7E32D5143390024B9A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9ACCC7E62D5143390024B9A6 /* libstatic_crypto_openssl.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libstatic_crypto_openssl.dylib;
+			remoteRef = 9ACCC7E52D5143390024B9A6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

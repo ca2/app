@@ -2555,7 +2555,7 @@ namespace user
                
                auto pcontextmenu = __create_new < ::message::context_menu >();
                
-               pcontextmenu->id() = e_message_context_menu;
+               pcontextmenu->m_emessage= e_message_context_menu;
                
                auto pointHost = pmessageHold->m_union.m_pmouse->m_pointHost;
                

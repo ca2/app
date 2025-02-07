@@ -34,7 +34,7 @@ int SetThreadAffinityMask(htask h, unsigned int dwThreadAffinityMask)
 
 #if defined(OPENBSD)
 
-    return 1;/home/camilo/cmake/console_build_tools/source/app/acme/operating_system/pthread/pthread_np.cpp
+    return 1;
 #elif defined(NETBSD)
 
     cpuset_t * pcpuset = cpuset_create();

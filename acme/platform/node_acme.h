@@ -1299,6 +1299,11 @@ namespace platform
       virtual ::string get_computer_name();
 
 
+      virtual ::string system_name();
+      virtual ::string system_release();
+      virtual ::string system_architecture();
+
+
    };
 
 

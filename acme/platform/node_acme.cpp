@@ -1904,4 +1904,29 @@ namespace platform
 
    }
 
+   
+   ::string acme_node_layer::system_name()
+   {
+
+      return {};
+
+   }
+   
+   
+   ::string acme_node_layer::system_release()
+   {
+
+      return {};
+
+   }
+
+
+   ::string acme_node_layer::system_architecture()
+   {
+
+      return {};
+
+   }
+
+
 }

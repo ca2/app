@@ -10781,19 +10781,21 @@ void window::set_oswindow(::oswindow oswindow)
    bool window::defer_release_mouse_capture(::user::interaction * puserinteraction)
    {
 
-      if (puserinteraction != m_puserinteractionMouseCapture)
-      {
+      //if (puserinteraction != m_puserinteractionMouseCapture)
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
+      
+      this->defer_release_mouse_capture();
 
-      if (!this->defer_release_mouse_capture())
-      {
+      //if (!this->defer_release_mouse_capture())
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       m_puserinteractionMouseCapture.release();
 

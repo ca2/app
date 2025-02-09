@@ -105,7 +105,7 @@ unsigned long long div128_64(unsigned long long hi, unsigned long long lo, unsig
 {
    for (size_t i = 1; i <= 64; ++i)
    {
-      unsigned long long t = long long(hi) >> 63;
+      unsigned long long t = (long long)(hi) >> 63;
       // t is all ones if x(63) = 1
       // Shift the hi|lo left one bit
       hi = (hi << 1) | (lo >> 63);

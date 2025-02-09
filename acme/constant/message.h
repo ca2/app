@@ -326,7 +326,7 @@ e_message_defer_post_initial_request,
 e_message_click,
 e_message_start_tab_drag,
 e_message_tool_tip_text,
-
+e_message_document
 
 
 

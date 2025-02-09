@@ -122,9 +122,9 @@ unsigned long long binary_stream::read_buffer_length()
       else
       {
 
-         unsigned long long unsigned long long;
+         unsigned long long ull;
 
-         if (!m_pfile->get_unsigned_long_long(unsigned long long))
+         if (!m_pfile->get_unsigned_long_long(ull))
          {
 
             set_nok();
@@ -133,7 +133,7 @@ unsigned long long binary_stream::read_buffer_length()
 
          }
 
-         return unsigned long long;
+         return ull;
 
       }
 

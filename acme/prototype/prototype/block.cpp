@@ -20,7 +20,7 @@ block::block(const atom & atom) :
 
 
 //block::block(const ::string & str, ::character_count s) : 
-//   ::block((const void *)str.c_str(), (huge_integer)(s >= 0 ? s : str.length() + s + 1))
+//   ::block((const void *)str.c_str(), (long long)(s >= 0 ? s : str.length() + s + 1))
 //{
 //
 //

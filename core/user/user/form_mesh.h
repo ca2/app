@@ -69,7 +69,7 @@ namespace user
 
       bool _001IsEditing() override;
 
-      bool _001IsPointInside(::user::interaction * pinteraction, const huge_integer_point & point) override;
+      bool _001IsPointInside(::user::interaction * pinteraction, const long_long_point & point) override;
 
       void _001HideEditingControls();
       void _001HideControl(::user::interaction * pinteraction);

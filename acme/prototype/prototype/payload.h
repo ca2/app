@@ -78,16 +78,16 @@ public:
       //unsigned long                          m_ul;
 #endif
       unsigned int                           m_ui;
-      huge_integer                           m_hi;
-      huge_natural                           m_hn;
+      long long                           m_hi;
+      unsigned long long                           m_hn;
       char *                                 m_pch;
       unsigned char * m_puch;
       short * m_psh;
       unsigned short * m_push;
       int * m_pi;
       unsigned int * m_pui;
-      huge_integer * m_phi;
-      huge_natural * m_phn;
+      long long * m_phi;
+      unsigned long long * m_phn;
       ::string * m_pstr;
       float                                  m_f;
       float * m_pf;
@@ -141,7 +141,7 @@ public:
       ::int_array  * m_pia;
       ::payload_array  * m_ppayloada;
       ::property_set  * m_ppropertyset;
-      ::huge_integer_array * m_pi64a;
+      ::long_long_array * m_pi64a;
       ::memory * m_pmemory;
       ::file::path_object * m_ppath;
       payload_all_t                          m_payloadall;
@@ -185,8 +185,8 @@ public:
    template < same_as < unsigned short > UNSIGNED_SHORT > payload(UNSIGNED_SHORT ush) : m_etype(e_type_unsigned_short) {m_ush = ush;}
    template < same_as < int > INT > payload(INT i) : m_etype(e_type_int) {m_i = i;}
    template < same_as < unsigned int > UNSIGNED_INT > payload(UNSIGNED_INT ui) : m_etype(e_type_unsigned_int) {m_ui = ui;}
-   template < same_as < huge_integer > LONG_LONG > payload(LONG_LONG hi) : m_etype(e_type_huge_integer) {m_hi = hi;}
-   template < same_as < huge_natural > UNSIGNED_LONG_LONG > payload(UNSIGNED_LONG_LONG hn) : m_etype(e_type_huge_natural) {m_hn = hn;}
+   template < same_as < long long > LONG_LONG > payload(LONG_LONG hi) : m_etype(e_type_long_long) {m_hi = hi;}
+   template < same_as < unsigned long long > UNSIGNED_LONG_LONG > payload(UNSIGNED_LONG_LONG hn) : m_etype(e_type_unsigned_long_long) {m_hn = hn;}
    template < same_as < float > FLOAT > payload(FLOAT f) : m_etype(e_type_float) {m_f = f;}
    template < same_as < double > DOUBLE > payload(DOUBLE d) : m_etype(e_type_double) {m_d = d;}
 #ifdef __APPLE__
@@ -196,8 +196,8 @@ public:
 #endif
    payload(int * pi);
    payload(unsigned int * pu);
-   payload(huge_integer * pi);
-   payload(huge_natural * pu);
+   payload(long long * pi);
+   payload(unsigned long long * pu);
    payload(bool * pb);
    payload(::string * pstr);
    //payload(::payload * ppayload);
@@ -345,9 +345,9 @@ public:
 
    bool get_type(::type_atom & typeatom) const;
 
-   huge_integer payload_release();
+   long long payload_release();
 
-   huge_integer logical_release();
+   long long logical_release();
 
    void _set_element(::subparticle * pelement);
 
@@ -376,7 +376,7 @@ public:
    bool                             get_bool()     const;
 
    template < typename ENUM >
-   ENUM                             e(ENUM edefault = enum_default < ENUM >())  const { return (ENUM)huge_integer(edefault); }
+   ENUM                             e(ENUM edefault = enum_default < ENUM >())  const { return (ENUM)(long long)(edefault); }
 
 //#define DECL_VAR_FLAG(ENUMTYPE) \
 //inline payload(::enum_ ## ENUMTYPE e ## ENUMTYPE) { m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; } \
@@ -430,7 +430,7 @@ public:
 
       }
 
-      return operator == (::as_huge_integer(e));
+      return operator == (::as_long_long(e));
 
    }
 
@@ -455,8 +455,8 @@ public:
    unsigned short & as(unsigned short & u) const { return u = as_unsigned_short(); }
    int & as(int & i)  const { return i = as_int(); }
    unsigned int & as(unsigned int & u)  const { return u = as_unsigned_int(); }
-   huge_integer & as(huge_integer & i)  const { return i = as_huge_integer(); }
-   huge_natural & as(huge_natural & u)  const { return u = as_huge_natural(); }
+   long long & as(long long & i)  const { return i = as_long_long(); }
+   unsigned long long & as(unsigned long long & u)  const { return u = as_unsigned_long_long(); }
    float & as(float & f) const { return f = as_float(); }
    double & as(double & f) const { return f = as_double(); }
 
@@ -467,8 +467,8 @@ public:
    unsigned short as_unsigned_short(unsigned short uDefault = 0) const;
    int as_int(int iDefault = 0)  const;
    unsigned int as_unsigned_int(unsigned int uiDefault = 0)  const;
-   huge_integer as_huge_integer(huge_integer iDefault = 0)  const;
-   huge_natural as_huge_natural(huge_natural uiDefault = 0)  const;
+   long long as_long_long(long long iDefault = 0)  const;
+   unsigned long long as_unsigned_long_long(unsigned long long uiDefault = 0)  const;
    float as_float(float fDefault = 0) const;
    double as_double(double fDefault = 0) const;
 
@@ -488,10 +488,10 @@ public:
    ::procedure get_procedure() const;
 
 
-   ::posix_time as_posix_time(huge_integer iDefault = 0) const
+   ::posix_time as_posix_time(long long iDefault = 0) const
    {
 
-      return { posix_time_t{}, this->as_huge_integer() };
+      return { posix_time_t{}, this->as_long_long() };
 
    }
 
@@ -507,7 +507,7 @@ public:
    ::memory as_memory() const;
    ::string_array as_string_array() const;
    ::int_array as_int_array() const;
-   ::huge_integer_array as_huge_integer_array() const;
+   ::long_long_array as_long_long_array() const;
    ::payload_array as_payload_array()  const;
    ::property_set as_property_set() const;
    class ::time as_time() const;
@@ -631,8 +631,8 @@ public:
    operator unsigned short() const { return this->as_unsigned_short(); }
    operator int() const { return this->as_int(); }
    operator unsigned int() const { return this->as_unsigned_int(); }
-   operator huge_integer() const { return this->as_huge_integer(); }
-   operator huge_natural() const { return this->as_huge_natural(); }
+   operator long long()const { return this->as_long_long(); }
+   operator unsigned long long() const { return this->as_unsigned_long_long(); }
 
 
 
@@ -662,7 +662,7 @@ public:
 
    ::string_array & string_array_reference();
    ::int_array & int_array_reference();
-   ::huge_integer_array & huge_integer_array_reference();
+   ::long_long_array & long_long_array_reference();
    ::payload_array & payload_array_reference();
    class ::time & time_reference();
    ::property_set & property_set_reference();
@@ -677,7 +677,7 @@ public:
 
    const ::string_array & string_array_reference() const;
    const ::int_array & int_array_reference() const;
-   const ::huge_integer_array & huge_integer_array_reference() const;
+   const ::long_long_array & long_long_array_reference() const;
    const ::payload_array & payload_array_reference() const;
    const class time & time_reference() const;
    const ::property_set & property_set_reference() const;
@@ -707,8 +707,8 @@ public:
    unsigned short & unsigned_short_reference();
    int & int_reference();
    unsigned int & unsigned_int_reference();
-   huge_integer & huge_integer_reference();
-   huge_natural & huge_natural_reference();
+   long long & long_long_reference();
+   unsigned long long & unsigned_long_long_reference();
    float & float_reference();
    double & double_reference();
 
@@ -720,7 +720,7 @@ public:
       if constexpr(sizeof(SIGNED) == 8)
       {
 
-         return (SIGNED&) this->huge_integer_reference();
+         return (SIGNED&) this->long_long_reference();
 
       }
       else if constexpr(sizeof(SIGNED) == 4)
@@ -759,7 +759,7 @@ public:
       if constexpr(sizeof(UNSIGNED) == 8)
       {
 
-         return (UNSIGNED&) this->huge_natural_reference();
+         return (UNSIGNED&) this->unsigned_long_long_reference();
 
       }
       else if constexpr(sizeof(UNSIGNED) == 4)
@@ -890,7 +890,7 @@ public:
    //template < a_enum ENUM >
    //payload & operator = (const ENUM & eenum)
    //{
-   //   return operator =((huge_integer) eenum);
+   //   return operator =((long long) eenum);
    //}
 
    payload & operator |= (enumeration < ::file::enum_flag > eflag);
@@ -921,8 +921,8 @@ payload & assign_## NUMBER_NAME (NUMBER_TYPE NUMBER_SHORT_NAME) { return __assig
    //payload & assign_unsigned_short  (unsigned short   ush)   { return __assign_primitive(m_ush , e_type_unsigned_short   , u ); }
    //payload & assign_int             (int                i)   { return __assign_primitive(  m_i , e_type_int   , i ); }
    //payload & assign_unsigned_int    (unsigned int       u)   { return __assign_primitive( m_ui , e_type_unsigned_int   , u ); }
-   //payload & assign_huge_integer    (huge_integer      hi)   { return __assign_primitive( m_hi , e_type_huge_integer   , i ); }
-   //payload & assign_huge_natural    (huge_natural      hn)   { return __assign_primitive( m_hn , e_type_huge_natural   , u ); }
+   //payload & assign_long_long    (long long      hi)   { return __assign_primitive( m_hi , e_type_long_long   , i ); }
+   //payload & assign_unsigned_long_long    (unsigned long long      hn)   { return __assign_primitive( m_hn , e_type_unsigned_long_long   , u ); }
    //payload & assign_float             (float              f)   { return __assign_primitive(  m_f , e_type_float   , f ); }
    //payload & assign_double             (double             d)   { return __assign_primitive(  m_d , e_type_double   , f ); }
 
@@ -934,8 +934,8 @@ payload & assign_## NUMBER_NAME (NUMBER_TYPE NUMBER_SHORT_NAME) { return __assig
    payload & assign_pu16   (unsigned short * pu)   { return __assign_primitive_pointer(m_push   , e_type_punsigned_short  , pu); }
    payload & assign_pi32   (int * pi)   { return __assign_primitive_pointer(m_pi   , e_type_pint  , pi); }
    payload & assign_pu32   (unsigned int * pu)   { return __assign_primitive_pointer(m_pui   , e_type_punsigned_int  , pu); }
-   payload & assign_pi64   (huge_integer * pi)   { return __assign_primitive_pointer(m_phi   , e_type_phuge_integer  , pi); }
-   payload & assign_pu64   (huge_natural * pu)   { return __assign_primitive_pointer(m_phn   , e_type_phuge_natural  , pu); }
+   payload & assign_pi64   (long long * pi)   { return __assign_primitive_pointer(m_phi   , e_type_plong_long  , pi); }
+   payload & assign_pu64   (unsigned long long * pu)   { return __assign_primitive_pointer(m_phn   , e_type_punsigned_long_long  , pu); }
    payload & assign_pf32   (float * pf)   { return __assign_primitive_pointer(m_pf   , e_type_pfloat  , pf); }
    payload & assign_pf64   (double * pf)   { return __assign_primitive_pointer(m_pd   , e_type_pdouble  , pf); }
 
@@ -988,16 +988,16 @@ protected:
          *m_pi = (int) primitive;
 
       }
-      else if(get_type() == e_type_phuge_natural)
+      else if(get_type() == e_type_punsigned_long_long)
       {
 
-         *m_phn = (huge_natural) primitive;
+         *m_phn = (unsigned long long) primitive;
 
       }
-      else if(get_type() == e_type_phuge_integer)
+      else if(get_type() == e_type_plong_long)
       {
 
-         *m_phi = (huge_integer) primitive;
+         *m_phi = (long long) primitive;
 
       }
       else if(get_type() == e_type_pfloat)
@@ -1056,8 +1056,8 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    //template < same_as < unsigned short > U16 > payload & operator=(U16 u) { return assign_unsigned_short(u); }
    //template < same_as < int > I32 > payload & operator=(I32 i) { return assign_int(i); }
    //template < same_as < unsigned int > U32 > payload & operator=(U32 u) { return assign_unsigned_int(u); }
-   //template < same_as < huge_integer > I64 > payload & operator=(I64 i) { return assign_huge_integer(i); }
-   //template < same_as < huge_natural > U64 > payload & operator=(U64 u) { return assign_huge_natural(u); }
+   //template < same_as < long long > I64 > payload & operator=(I64 i) { return assign_long_long(i); }
+   //template < same_as < unsigned long long > U64 > payload & operator=(U64 u) { return assign_unsigned_long_long(u); }
    //template < same_as < float > F32 > payload & operator=(F32 f) { return assign_float(f); }
    //template < same_as < double > F64 > payload & operator=(F64 f) { return assign_double(f); }
 
@@ -1068,8 +1068,8 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    payload & assign_pointer(unsigned short * pu) { return assign_pu16(pu); }
    payload & assign_pointer(int * pi) { return assign_pi32(pi); }
    payload & assign_pointer(unsigned int * pu) { return assign_pu32(pu); }
-   payload & assign_pointer(huge_integer * pi) { return assign_pi64(pi); }
-   payload & assign_pointer(huge_natural * pu) { return assign_pu64(pu); }
+   payload & assign_pointer(long long * pi) { return assign_pi64(pi); }
+   payload & assign_pointer(unsigned long long * pu) { return assign_pu64(pu); }
    payload & assign_pointer(float * pf) { return assign_pf32(pf); }
    payload & assign_pointer(double * pf) { return assign_pf64(pf); }
 
@@ -1288,8 +1288,8 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
 
 
    bool equals_payload(const ::payload & payload) const;
-   bool equals_signed(huge_integer i) const;
-   bool equals_unsigned(huge_natural u) const;
+   bool equals_signed(long long i) const;
+   bool equals_unsigned(unsigned long long u) const;
    bool equals_scoped_string(const ::scoped_string & scopedstr) const;
 
 
@@ -1314,35 +1314,35 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    //bool operator != (const payload & payload) const;
    //bool operator != (const ::scoped_string & scopedstr) const;
    //bool operator != (const ::string & str) const;
-   //bool operator != (huge_integer i) const;
+   //bool operator != (long long i) const;
    //bool operator != (int i) const;
    //bool operator != (bool b) const;
 
    ::std::strong_ordering operator <=> (const payload & payload) const;
    ::std::strong_ordering operator <=> (const ::scoped_string & scopedstr) const;
    ::std::strong_ordering operator <=> (const ::string & str) const;
-   ::std::strong_ordering operator <=> (huge_integer i) const;
+   ::std::strong_ordering operator <=> (long long i) const;
    ::std::strong_ordering operator <=> (int i) const;
    ::std::strong_ordering operator <=> (bool b) const;
 
    //bool operator <= (const payload & payload) const;
    //bool operator <= (const ::scoped_string & scopedstr) const;
    //bool operator <= (const ::string & str) const;
-   //bool operator <= (huge_integer i) const;
+   //bool operator <= (long long i) const;
    //bool operator <= (int i) const;
    //bool operator <= (bool b) const;
 
    //bool operator >= (const payload & payload) const;
    //bool operator >= (const ::scoped_string & scopedstr) const;
    //bool operator >= (const ::string & str) const;
-   //bool operator >= (huge_integer i) const;
+   //bool operator >= (long long i) const;
    //bool operator >= (int i) const;
    //bool operator >= (bool b) const;
 
    //bool operator > (const payload & payload) const;
    //bool operator > (const ::scoped_string & scopedstr) const;
    //bool operator > (const ::string & str) const;
-   //bool operator > (huge_integer i) const;
+   //bool operator > (long long i) const;
    //bool operator > (int i) const;
    //bool operator > (bool b) const;
 
@@ -1556,7 +1556,7 @@ CLASS_DECL_ACME void payload_skip_network_payload(::ansi_range & range);
 //inline payload::operator long &()
 //{
 //
-//   set_type(e_type_huge_integer);
+//   set_type(e_type_long_long);
 //
 //   return (long &) m_hi;
 //
@@ -1566,7 +1566,7 @@ CLASS_DECL_ACME void payload_skip_network_payload(::ansi_range & range);
 //inline payload::operator unsigned long &()
 //{
 //
-//   set_type(e_type_huge_natural);
+//   set_type(e_type_unsigned_long_long);
 //
 //   return (unsigned long &) m_hn;
 //
@@ -1617,15 +1617,15 @@ CLASS_DECL_ACME void payload_skip_network_payload(::ansi_range & range);
 
 
 // returns 0 for unknown conversions
-//inline payload::operator huge_integer() const
+//inline payload::operator long long()const
 //{
-//   return huge_integer();
+//   return long_long;
 //}
 
 // returns 0 for unknown conversions
-//inline payload::operator huge_natural() const
+//inline payload::operator unsigned long long() const
 //{
-//   return huge_natural();
+//   return unsigned_long_long;
 //}
 
 
@@ -1704,7 +1704,7 @@ inline iptr payload::as_iptr(::iptr iDefault) const
 
 #if defined(OS64BIT)
 
-   return as_huge_integer(iDefault);
+   return as_long_long(iDefault);
 
 #else
 
@@ -1720,7 +1720,7 @@ inline uptr payload::as_uptr(::uptr uiDefault) const
 
 #ifdef OS64BIT
 
-   return as_huge_natural(uiDefault);
+   return as_unsigned_long_long(uiDefault);
 
 #else
 
@@ -1739,7 +1739,7 @@ inline uptr payload::as_uptr(::uptr uiDefault) const
 inline payload::operator long() const
 {
 
-   return as_huge_integer();
+   return as_long_long();
 
 }
 
@@ -1751,7 +1751,7 @@ inline payload::operator unsigned long() const
 #if LONG_IS_32BIT
    return as_unsigned_int();
 #else
-   return as_huge_natural();
+   return as_unsigned_long_long();
 #endif
 }
 

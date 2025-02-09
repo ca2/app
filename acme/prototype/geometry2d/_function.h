@@ -149,7 +149,7 @@
 //template < primitive_rectangle RECTANGLE,  typename L, typename T, typename W, typename H >
 //inline auto _001SetRectDim(RECTANGLE &r, L l, T t, W w, H h) { return set_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
-//inline auto _001SetRectDim(::huge_integer_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
+//inline auto _001SetRectDim(::long_long_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
 //inline auto _001SetRectDim(::float_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
@@ -1016,7 +1016,7 @@ RECTANGLE & set_dimension(RECTANGLE & rectangle, L l, T t, W w, H h)
 //template < primitive_rectangle RECTANGLE,  typename L, typename T, typename W, typename H >
 //inline auto _001SetRectDim(RECTANGLE &r, L l, T t, W w, H h) { return set_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
-//inline auto _001SetRectDim(::huge_integer_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
+//inline auto _001SetRectDim(::long_long_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
 //inline auto _001SetRectDim(::float_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
@@ -1381,8 +1381,8 @@ template < primitive_rectangle RECTANGLE >
 inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTANGLE::POINT_TYPE*)&rectangle.right(); }
 
 
-//inline huge_integer_point& top_left(const huge_integer_rectangle& rectangle) { return *(huge_integer_point*)&rectangle; }
-//inline huge_integer_point& bottom_right(const huge_integer_rectangle& rectangle) { return *(huge_integer_point*)&rectangle.right(); }
+//inline long_long_point& top_left(const long_long_rectangle& rectangle) { return *(long_long_point*)&rectangle; }
+//inline long_long_point& bottom_right(const long_long_rectangle& rectangle) { return *(long_long_point*)&rectangle.right(); }
 
 
 //inline float_point& top_left(const float_rectangle& rectangle) { return *(float_point*)&rectangle; }
@@ -1399,10 +1399,10 @@ inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTA
 //inline int_point & bottom_right(const ::int_rectangle &rectangle) { return bottom_right(&rectangle); }
 
 
-//inline huge_integer_point & top_left(const ::huge_integer_rectangle & rectangle) { return *(huge_integer_point *)&rectangle; }
-//inline huge_integer_point & bottom_right(const ::huge_integer_rectangle & rectangle) { return *(huge_integer_point *)&rectangle.right(); }
-//inline huge_integer_point & top_left(const ::huge_integer_rectangle & rectangle) { return top_left(&rectangle); }
-//inline huge_integer_point & bottom_right(const ::huge_integer_rectangle & rectangle) { return bottom_right(&rectangle); }
+//inline long_long_point & top_left(const ::long_long_rectangle & rectangle) { return *(long_long_point *)&rectangle; }
+//inline long_long_point & bottom_right(const ::long_long_rectangle & rectangle) { return *(long_long_point *)&rectangle.right(); }
+//inline long_long_point & top_left(const ::long_long_rectangle & rectangle) { return top_left(&rectangle); }
+//inline long_long_point & bottom_right(const ::long_long_rectangle & rectangle) { return bottom_right(&rectangle); }
 
 
 //inline double_point & top_left(const ::double_rectangle & rectangle) { return *(double_point *)&rectangle; }
@@ -1440,7 +1440,7 @@ inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTA
 //
 //
 //template <  >
-//inline huge_integer __conv<huge_integer>(const ::string & str)
+//inline long long __conv<long long>(const ::string & str)
 //{
 //
 //   return (int) ::atoi(str);
@@ -1476,7 +1476,7 @@ inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTA
 //
 //
 //template < >
-//inline string __xmlpri<huge_integer>()
+//inline string __xmlpri<long long>()
 //{
 //
 //   return "%" PRId64;

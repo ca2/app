@@ -2378,7 +2378,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//string_array_base < Type, RawType, t_etypeContainer >  & string_array_base < Type, RawType, t_etypeContainer > ::operator =(const huge_integer_array & ia)
+//string_array_base < Type, RawType, t_etypeContainer >  & string_array_base < Type, RawType, t_etypeContainer > ::operator =(const long_long_array & ia)
 //{
 //
 //   this->_001CopyContainer(ia);
@@ -3665,7 +3665,7 @@ Type string_array_base < Type, RawType, t_etypeContainer > ::encode_v16()
    //   /*      for(::collection::index uj = 0; uj < str.size(); uj++)
    //   {
    //   char sz[32];
-   //   ansi_from_huge_integer(sz, str[uj], 16);
+   //   ansi_from_long_long(sz, str[uj], 16);
    //   if(ansi_length(sz) == 0)
    //   {
    //   strEncode += "00";

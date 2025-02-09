@@ -136,7 +136,7 @@ namespace user
       while (find_impact_kit(pimpactkit->id()))
       {
 
-         pimpactkit->id() = pimpactkit->id().as_huge_integer() + 1;
+         pimpactkit->id() = pimpactkit->id().as_long_long() + 1;
 
       }
 

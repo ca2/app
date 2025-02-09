@@ -14,7 +14,7 @@ public:
 //       ::ansi_character    m_chaTempuStock[8];
 //       ::wd16_character    m_shaTempoStore[4];
 //       ::wd32_character    m_iaTempiWarehouse[2];
-//       huge_integer               m_llTempeMart;
+//       long long               m_llTempeMart;
 //
 //   };
 

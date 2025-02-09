@@ -455,7 +455,7 @@ namespace mysql
    }
 
 
-   huge_integer database::_mysql_num_fields(MYSQL_RES* pres)
+   long long database::_mysql_num_fields(MYSQL_RES* pres)
    {
 
       if (::is_null(pres))
@@ -470,7 +470,7 @@ namespace mysql
    }
 
 
-   huge_integer database::_mysql_num_rows(MYSQL_RES* pres)
+   long long database::_mysql_num_rows(MYSQL_RES* pres)
    {
 
       if (::is_null(pres))
@@ -505,9 +505,9 @@ namespace mysql
 
       auto& prowa = pset->m_prowa;
 
-      huge_integer iNumRows = _mysql_num_rows(pres);
+      long long iNumRows = _mysql_num_rows(pres);
 
-      huge_integer iNumFields = _mysql_num_fields(pres);
+      long long iNumFields = _mysql_num_fields(pres);
 
       if (iColumnCount > 0)
       {
@@ -525,7 +525,7 @@ namespace mysql
 
       prowa->set_size(iNumRows);
 
-      huge_integer iRow = 0;
+      long long iRow = 0;
 
       while ((row = _mysql_fetch_row(pres)) != nullptr)
       {
@@ -550,7 +550,7 @@ namespace mysql
 
          prow->set_size(iNumFields);
 
-         for (huge_integer iField = 0; iField < iNumFields; iField++)
+         for (long long iField = 0; iField < iNumFields; iField++)
          {
 
             if (row[iField] == nullptr)
@@ -689,11 +689,11 @@ namespace mysql
 
       MYSQL_ROW row;
 
-      huge_integer iNumRows = _mysql_num_rows(pres);
+      long long iNumRows = _mysql_num_rows(pres);
 
       pvara->set_size(iNumRows);
 
-      huge_integer iRow = 0;
+      long long iRow = 0;
 
       while ((row = _mysql_fetch_row(pres)) != nullptr)
       {
@@ -750,11 +750,11 @@ namespace mysql
 
       }
 
-      huge_integer iNumFields = _mysql_num_fields(pres);
+      long long iNumFields = _mysql_num_fields(pres);
 
       prow->set_size(iNumFields);
 
-      for (huge_integer iField = 0; iField < iNumFields; iField++)
+      for (long long iField = 0; iField < iNumFields; iField++)
       {
 
          if (row[iField] == nullptr)
@@ -878,7 +878,7 @@ namespace mysql
 
    ::payload database::get_insert_id()
    {
-      return (huge_natural)mysql_insert_id((MYSQL*)m_pmysql);
+      return (unsigned long long)mysql_insert_id((MYSQL*)m_pmysql);
    }
 
 } //   namespace mysql

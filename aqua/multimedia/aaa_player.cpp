@@ -1108,7 +1108,7 @@ namespace wave
 
    //}
 
-   huge_natural player::player_get_frame_byte_count()
+   unsigned long long player::player_get_frame_byte_count()
    {
 
       return 0;

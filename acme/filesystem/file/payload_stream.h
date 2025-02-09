@@ -8,14 +8,14 @@
 //inline void __exchange(::payload_stream & s, char & i);
 //inline void __exchange(::payload_stream & s, short & i);
 //inline void __exchange(::payload_stream & s, int & i);
-//inline void __exchange(::payload_stream & s, huge_integer & i);
+//inline void __exchange(::payload_stream & s, long long & i);
 //#if !defined(LINUX)
 //inline void __exchange(::payload_stream & s, long & l);
 //#endif
 //inline void __exchange(::payload_stream & s, unsigned char & u);
 //inline void __exchange(::payload_stream & s, unsigned short & u);
 //inline void __exchange(::payload_stream & s, unsigned int & u);
-//inline void __exchange(::payload_stream & s, huge_natural & u);
+//inline void __exchange(::payload_stream & s, unsigned long long & u);
 //inline void __exchange(::payload_stream & s, float & f);
 //inline void __exchange(::payload_stream & s, double & d);
 //inline void __exchange(::payload_stream & s, ::earth::time & time);
@@ -101,7 +101,7 @@
 //
 //
 //   virtual void exchange(const ::atom & atom, double & d) ;
-//   virtual void exchange(const ::atom& atom, huge_integer& i) ;
+//   virtual void exchange(const ::atom& atom, long long& i) ;
 //
 //
 //   template < typename TYPE >

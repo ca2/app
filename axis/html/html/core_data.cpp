@@ -91,7 +91,7 @@ namespace html
 
    }
 
-   //huge_integer core_data::increment_reference_count()
+   //long long core_data::increment_reference_count()
    //{
 
    //   return ::object::increment_reference_count();
@@ -99,7 +99,7 @@ namespace html
    //}
 
 
-   //huge_integer core_data::decrement_reference_count()
+   //long long core_data::decrement_reference_count()
    //{
 
    //   return ::object::decrement_reference_count();

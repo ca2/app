@@ -3707,7 +3707,7 @@ namespace platform
 */
 
 
-::interlocked_huge_integer g_iNewTaskIndex = 1;
+::interlocked_long_long g_iNewTaskIndex = 1;
 
 
 static class ::task_index new_task_index()

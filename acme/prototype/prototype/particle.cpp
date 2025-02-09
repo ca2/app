@@ -1614,7 +1614,7 @@ void particle::set_finish()
 
 
 
-void particle::call_member(huge_integer iId)
+void particle::call_member(long long iId)
 {
 
    //return ::success_none;
@@ -1700,7 +1700,7 @@ CLASS_DECL_ACME lresult __call_message(::particle * pparticle, ::enum_message em
 
 //
 //
-//void handler::call(enum_message emessage, huge_integer iData, ::matter * pmatter)
+//void handler::call(enum_message emessage, long long iData, ::matter * pmatter)
 //{
 //
 //   return __call(this, emessage, iData, pmatter);
@@ -1708,7 +1708,7 @@ CLASS_DECL_ACME lresult __call_message(::particle * pparticle, ::enum_message em
 //}
 //
 //
-//void handler::call(enum_id eid, huge_integer iData, ::matter * pmatter)
+//void handler::call(enum_id eid, long long iData, ::matter * pmatter)
 //{
 //
 //   return __call(this, eid, iData, pmatter);
@@ -1733,13 +1733,13 @@ lresult particle::message_call(::enum_message emessage, ::wparam wparam, ::lpara
 
    //   auto ptopic = create_topic(atom);
 
-   //   ptopic->payload("wparam") = (huge_integer) wparam.m_number;
+   //   ptopic->payload("wparam") = (long long) wparam.m_number;
 
-   //   ptopic->payload("lparam") = (huge_integer) lparam.m_lparam;
+   //   ptopic->payload("lparam") = (long long) lparam.m_lparam;
 
    //   handle(ptopic, nullptr);
 
-   //   return ptopic->payload("lresult").as_huge_integer();
+   //   return ptopic->payload("lresult").as_long_long();
 
    //}
 
@@ -1808,7 +1808,7 @@ bool particle::_handle_call(::payload & payload, const ::string & strObject, con
 
 
 //
-//void handler::call(enum_id eid, huge_integer iData, ::matter * pmatter)
+//void handler::call(enum_id eid, long long iData, ::matter * pmatter)
 //{
 //
 //   return __call(this, eid, iData, pmatter);

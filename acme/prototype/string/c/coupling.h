@@ -25,8 +25,8 @@ CLASS_DECL_ACME const ::ansi_character * ansi_ichr(const ::ansi_character * psz1
 CLASS_DECL_ACME int ansi_icmp(const ::ansi_character * psz1, const ::ansi_character * psz2);
 CLASS_DECL_ACME int ansi_nicmp(const ::ansi_character * psz1, const ::ansi_character * psz2, character_count s);
 CLASS_DECL_ACME const ::ansi_character * ansi_istr(const ::ansi_character * psz, const ::ansi_character * pszFind);
-//CLASS_DECL_ACME ::ansi_character * u64toansi(huge_natural u, ::ansi_character * buf, int iBase);
-//CLASS_DECL_ACME ::ansi_character * i64toansi(huge_natural u, ::ansi_character * buf, int iBase);
+//CLASS_DECL_ACME ::ansi_character * u64toansi(unsigned long long u, ::ansi_character * buf, int iBase);
+//CLASS_DECL_ACME ::ansi_character * i64toansi(unsigned long long u, ::ansi_character * buf, int iBase);
 CLASS_DECL_ACME int ansi_coll(const ::ansi_character * psz1, const ::ansi_character * psz2);
 CLASS_DECL_ACME int ansi_ncoll(const ::ansi_character * psz1, const ::ansi_character * psz2, character_count s);
 CLASS_DECL_ACME int ansi_icoll(const ::ansi_character * psz1, const ::ansi_character * psz2);

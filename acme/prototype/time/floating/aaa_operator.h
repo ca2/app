@@ -24,8 +24,8 @@
 //{
 //
 //   return {
-//      (huge_integer) (second.m_d / floating),
-//      (huge_integer) (fmod(second.m_d / floating, 1.0) * 1'000'000'000.0)
+//      (long long) (second.m_d / floating),
+//      (long long) (fmod(second.m_d / floating, 1.0) * 1'000'000'000.0)
 //   };
 //
 //}

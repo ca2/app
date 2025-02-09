@@ -300,7 +300,7 @@ string url_encode(const ::scoped_string & scopedstr)
       else
       {
 
-         ansi_from_huge_integer(sz,(huge_integer)(unsigned char) ch,16);
+         ansi_from_long_long(sz,(long long)(unsigned char) ch,16);
 
          ansi_upper(sz);
 
@@ -851,7 +851,7 @@ CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate)
 //      else
 //      {
 //
-//         ansi_from_huge_integer(sz, uch, 16);
+//         ansi_from_long_long(sz, uch, 16);
 //
 //         ansi_upper(sz);
 //

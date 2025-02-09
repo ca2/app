@@ -426,7 +426,7 @@ string & property::get_network_arguments(::string & str) const
 ////   if(pchannel)
 ////   {
 ////
-////      pchannel->send_update((::enum_id) m_atom.huge_integer(), context);
+////      pchannel->send_update((::enum_id) m_atom.long_long, context);
 ////
 ////   }
 ////
@@ -812,27 +812,27 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-//bool property::operator == (huge_integer i) const
+//bool property::operator == (long long i) const
 //{
 //   return payload::operator == (i);
 //}
-//bool property::operator != (huge_integer i) const
+//bool property::operator != (long long i) const
 //{
 //   return payload::operator != (i);
 //}
-//bool property::operator < (huge_integer i) const
+//bool property::operator < (long long i) const
 //{
 //   return payload::operator < (i);
 //}
-//bool property::operator <= (huge_integer i) const
+//bool property::operator <= (long long i) const
 //{
 //   return payload::operator <= (i);
 //}
-//bool property::operator >= (huge_integer i) const
+//bool property::operator >= (long long i) const
 //{
 //   return payload::operator >= (i);
 //}
-//bool property::operator > (huge_integer i) const
+//bool property::operator > (long long i) const
 //{
 //   return payload::operator > (i);
 //}
@@ -862,12 +862,12 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() - user;
 //}
 //
-//::payload property::operator - (huge_integer i) const
+//::payload property::operator - (long long i) const
 //{
 //   return get_value() - i;
 //}
 //
-//::payload property::operator - (huge_natural user) const
+//::payload property::operator - (unsigned long long user) const
 //{
 //   return get_value() - user;
 //}
@@ -895,12 +895,12 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() + user;
 //}
 //
-//::payload property::operator + (huge_integer i) const
+//::payload property::operator + (long long i) const
 //{
 //   return get_value() + i;
 //}
 //
-//::payload property::operator + (huge_natural user) const
+//::payload property::operator + (unsigned long long user) const
 //{
 //   return get_value() + user;
 //}
@@ -971,12 +971,12 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() / user;
 //}
 //
-//::payload property::operator / (huge_integer i) const
+//::payload property::operator / (long long i) const
 //{
 //   return get_value() / i;
 //}
 //
-//::payload property::operator / (huge_natural user) const
+//::payload property::operator / (unsigned long long user) const
 //{
 //   return get_value() / user;
 //}
@@ -1004,12 +1004,12 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() * user;
 //}
 //
-//::payload property::operator * (huge_integer i) const
+//::payload property::operator * (long long i) const
 //{
 //   return get_value() * i;
 //}
 //
-//::payload property::operator * (huge_natural user) const
+//::payload property::operator * (unsigned long long user) const
 //{
 //   return get_value() * user;
 //}
@@ -1084,13 +1084,13 @@ string & property::get_network_arguments(::string & str) const
 //   return *this;
 //}
 //
-//property & property::operator -= (huge_integer i)
+//property & property::operator -= (long long i)
 //{
 //   operator=(*this - i);
 //   return *this;
 //}
 //
-//property & property::operator -= (huge_natural user)
+//property & property::operator -= (unsigned long long user)
 //{
 //   operator=(*this - user);
 //   return *this;
@@ -1180,13 +1180,13 @@ string & property::get_network_arguments(::string & str) const
 //   return *this;
 //}
 //
-//property & property::operator += (huge_integer i)
+//property & property::operator += (long long i)
 //{
 //   operator=(*this + i);
 //   return *this;
 //}
 //
-//property & property::operator += (huge_natural user)
+//property & property::operator += (unsigned long long user)
 //{
 //   operator=(*this + user);
 //   return *this;
@@ -1258,13 +1258,13 @@ string & property::get_network_arguments(::string & str) const
 //   return *this;
 //}
 //
-//property & property::operator /= (huge_integer i)
+//property & property::operator /= (long long i)
 //{
 //   operator=(*this / i);
 //   return *this;
 //}
 //
-//property & property::operator /= (huge_natural user)
+//property & property::operator /= (unsigned long long user)
 //{
 //   operator=(*this / user);
 //   return *this;
@@ -1324,13 +1324,13 @@ string & property::get_network_arguments(::string & str) const
 //   return *this;
 //}
 //
-//property & property::operator *= (huge_integer i)
+//property & property::operator *= (long long i)
 //{
 //   operator=(*this * i);
 //   return *this;
 //}
 //
-//property & property::operator *= (huge_natural user)
+//property & property::operator *= (unsigned long long user)
 //{
 //   operator=(*this * user);
 //   return *this;
@@ -1533,13 +1533,13 @@ string & property::get_network_arguments(::string & str) const
 //}
 //
 //
-//::payload  operator - (huge_integer l, const property & prop)
+//::payload  operator - (long long l, const property & prop)
 //{
 //   return l - (const & payload) prop;
 //}
 //
 //
-//::payload  operator - (huge_natural ul, const property & prop)
+//::payload  operator - (unsigned long long ul, const property & prop)
 //{
 //   return ul - (const & payload) prop;
 //}
@@ -1608,13 +1608,13 @@ string & property::get_network_arguments(::string & str) const
 //}
 //
 //
-//::payload  operator + (huge_integer l, const property & prop)
+//::payload  operator + (long long l, const property & prop)
 //{
 //   return l + prop;
 //}
 //
 //
-//::payload  operator + (huge_natural ul, const property & prop)
+//::payload  operator + (unsigned long long ul, const property & prop)
 //{
 //   return ul + prop;
 //}
@@ -1683,13 +1683,13 @@ string & property::get_network_arguments(::string & str) const
 //}
 //
 //
-//::payload  operator / (huge_integer l, const property & prop)
+//::payload  operator / (long long l, const property & prop)
 //{
 //   return l / prop;
 //}
 //
 //
-//::payload  operator / (huge_natural ul, const property & prop)
+//::payload  operator / (unsigned long long ul, const property & prop)
 //{
 //   return ul / prop;
 //}
@@ -1754,13 +1754,13 @@ string & property::get_network_arguments(::string & str) const
 //}
 //
 //
-//::payload  operator * (huge_integer l, const property & prop)
+//::payload  operator * (long long l, const property & prop)
 //{
 //   return l * prop;
 //}
 //
 //
-//::payload  operator * (huge_natural ul, const property & prop)
+//::payload  operator * (unsigned long long ul, const property & prop)
 //{
 //   return ul * prop;
 //}
@@ -1849,7 +1849,7 @@ void on_property_construct(property * pproperty)
 
 #if DEBUG_PROPERTY_COUNT
 
-   informationf("prop" + as_string(g_interlockedcountProperty.operator huge_integer()) + "\n");
+   informationf("prop" + as_string(g_interlockedcountProperty.operator long long) + "\n");
 
    on_property_construct2();
 

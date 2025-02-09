@@ -71,7 +71,7 @@ namespace app_net
 #ifdef _DEBUG
 
 
-   huge_integer application::increment_reference_count()
+   long long application::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -79,7 +79,7 @@ namespace app_net
    }
 
 
-   huge_integer application::decrement_reference_count()
+   long long application::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();

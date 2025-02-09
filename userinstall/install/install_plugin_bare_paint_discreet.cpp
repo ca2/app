@@ -141,11 +141,11 @@ auto m_timeSync = ::time::now();
 
          stringtow strProgress(wstrProgress);
 
-         string strDecimal = ansi_string_from_huge_integer(iRatePercentMillis);
+         string strDecimal = ansi_string_from_long_long(iRatePercentMillis);
 
          ansi_zero_pad(strDecimal, 3);
 
-         strProgress = ansi_string_from_huge_integer(iRatePercent) + "." + strDecimal + "%";
+         strProgress = ansi_string_from_long_long(iRatePercent) + "." + strDecimal + "%";
 
       }
 

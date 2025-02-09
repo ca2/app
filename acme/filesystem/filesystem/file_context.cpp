@@ -342,7 +342,7 @@ bool file_context::exists(const ::file::path &pathParam)
 //   else
 //   {
 //
-//      varRet = (((huge_natural) data.nFileSizeHigh) << 32) | (huge_natural) data.nFileSizeLow;
+//      varRet = (((unsigned long long) data.nFileSizeHigh) << 32) | (unsigned long long) data.nFileSizeLow;
 //
 //      ((::file::path &) path).m_iSize = varRet.m_hi;
 //
@@ -2697,7 +2697,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //
 //   string strMd5 = "01234567012345670123456701234567";
 //
-//   huge_natural iPos;
+//   unsigned long long iPos;
 //
 //   for (int i = 0; i < stra.size(); i++)
 //   {
@@ -2744,7 +2744,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //
 //   read_gen_string(pfile, nullptr, strVersion);
 //
-//   huge_integer n;
+//   long long n;
 //
 //   string strRelative;
 //   string strMd5;
@@ -2752,7 +2752,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //   int iBufSize = 1024 * 1024;
 //   memory buf;
 //   buf.set_size(iBufSize);
-//   huge_integer iLen;
+//   long long iLen;
 //   MD5_CTX ctx;
 //
 //   auto pfile2 = __øcreate < ::file::file >();
@@ -2795,7 +2795,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 
 
 
-//void file_context::write_n_number(::file::file * pfile, void * pctx, huge_integer iNumber)
+//void file_context::write_n_number(::file::file * pfile, void * pctx, long long iNumber)
 //{
 //
 //   string str;
@@ -2814,10 +2814,10 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //}
 
 
-//void file_context::read_n_number(::file::file * pfile, void * pctx, huge_integer & iNumber)
+//void file_context::read_n_number(::file::file * pfile, void * pctx, long long & iNumber)
 //{
 //
-//   huge_natural uRead;
+//   unsigned long long uRead;
 //
 //   string str;
 //
@@ -2846,7 +2846,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //      MD5_Update((MD5_CTX *)pctx, &ch, 1);
 //   }
 //
-//   iNumber = ::str::to_huge_integer(str);
+//   iNumber = ::str::to_long_long(str);
 //
 //}
 
@@ -2863,7 +2863,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 
 //void file_context::read_gen_string(::file::file * pfile, void * pctx, string & str)
 //{
-//   huge_integer iLen;
+//   long long iLen;
 //   read_n_number(pfile, pctx, iLen);
 //   char * psz = str.get_buffer((character_count)(iLen + 1));
 //
@@ -2871,7 +2871,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //
 //   if (pctx != nullptr)
 //   {
-//      huge_integer iProcessed = 0;
+//      long long iProcessed = 0;
 //      while (iLen - iProcessed > 0)
 //      {
 //         int iProcess = (int)minimum(1024 * 1024, iLen - iProcessed);
@@ -3058,7 +3058,7 @@ void file_context::destroy()
 
 //   file_pointer fileOut;
 
-//   huge_integer iTry = 0;
+//   long long iTry = 0;
 
 //   ::application * papp = ::get_app(pparticle);
 

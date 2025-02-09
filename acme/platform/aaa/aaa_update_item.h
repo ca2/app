@@ -7,7 +7,7 @@
 //public:
 //
 //
-//   huge_integer                         m_iUpdateSerial;
+//   long long                         m_iUpdateSerial;
 //   bool                          m_bFork;
 //
 //

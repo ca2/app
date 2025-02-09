@@ -83,8 +83,8 @@ inline void to_string(string& str, const short& i);
 inline void to_string(string& str, const unsigned short& i);
 inline void to_string(string& str, const int& i);
 inline void to_string(string& str, const unsigned int& u);
-inline void to_string(string& str, const huge_integer& i);
-inline void to_string(string& str, const huge_natural& u);
+inline void to_string(string& str, const long long& i);
+inline void to_string(string& str, const unsigned long long& u);
 
 
 CLASS_DECL_ACME void to_string(string& str, const float& f);

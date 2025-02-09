@@ -446,7 +446,7 @@ namespace simple_ui
    }
 
 
-   //huge_integer message_box::increment_reference_count()
+   //long long message_box::increment_reference_count()
    //{
 
    //   return simple_ui::top::increment_reference_count();
@@ -454,7 +454,7 @@ namespace simple_ui
    //}
 
 
-   //huge_integer message_box::decrement_reference_count()
+   //long long message_box::decrement_reference_count()
    //{
 
    //   return simple_ui::top::decrement_reference_count();

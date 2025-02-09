@@ -22,7 +22,7 @@ public:
    window_xlib();
    virtual ~window_xlib();
 
-   virtual void create(oswindow window, huge_integer cx, huge_integer cy, int iStride = -1);
+   virtual void create(oswindow window, long long cx, long long cy, int iStride = -1);
    virtual void destroy();
 
    virtual void update_window(oswindow window, color32_t * pOsBitmapData, const ::int_rectangle * lpcrect, int iStride = -1);

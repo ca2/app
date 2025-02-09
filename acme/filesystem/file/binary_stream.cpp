@@ -81,7 +81,7 @@ bool binary_stream::is_end_of_file() const
 }
 
 
-huge_natural binary_stream::read_buffer_length()
+unsigned long long binary_stream::read_buffer_length()
 {
 
    auto i = m_pfile->get_unsigned_char();
@@ -122,9 +122,9 @@ huge_natural binary_stream::read_buffer_length()
       else
       {
 
-         huge_natural huge_natural;
+         unsigned long long unsigned long long;
 
-         if (!m_pfile->get_huge_natural(huge_natural))
+         if (!m_pfile->get_unsigned_long_long(unsigned long long))
          {
 
             set_nok();
@@ -133,7 +133,7 @@ huge_natural binary_stream::read_buffer_length()
 
          }
 
-         return huge_natural;
+         return unsigned long long;
 
       }
 
@@ -254,13 +254,13 @@ binary_stream & operator <<(binary_stream&stream, const ::payload & payload)
    case e_type_int:
       stream << payload.m_i;
       break;
-   case e_type_huge_integer:
+   case e_type_long_long:
       stream << payload.m_hi;
       break;
    case e_type_unsigned_int:
       stream << payload.m_ui;
       break;
-   case e_type_huge_natural:
+   case e_type_unsigned_long_long:
       stream << payload.m_hn;
       break;
    case e_type_pchar:
@@ -278,13 +278,13 @@ binary_stream & operator <<(binary_stream&stream, const ::payload & payload)
    case e_type_pint:
       stream << *payload.m_pi;
       break;
-   case e_type_phuge_integer:
+   case e_type_plong_long:
       stream << *payload.m_phi;
       break;
    case e_type_punsigned_int:
       stream << *payload.m_pui;
       break;
-   case e_type_phuge_natural:
+   case e_type_punsigned_long_long:
       stream << *payload.m_phn;
       break;
    case e_type_double:
@@ -309,7 +309,7 @@ binary_stream & operator <<(binary_stream&stream, const ::payload & payload)
       //*this << *payload.m_pfilepropertyset;
       throw ::exception(todo);
       break;
-   case e_type_huge_integer_array:
+   case e_type_long_long_array:
       //*this << *payload.m_pfilei64a;
       throw ::exception(todo);
       break;
@@ -398,7 +398,7 @@ binary_stream & binary_stream::operator <<(const block & block)
 binary_stream & binary_stream::operator >>(memory_base & m)
 {
 
-   huge_natural u = 0;
+   unsigned long long u = 0;
 
    read_length(u);
 
@@ -441,7 +441,7 @@ binary_stream & binary_stream::operator >>(atom & atom)
    else
    {
 
-      huge_integer i;
+      long long i;
 
       operator >>(i);
 
@@ -557,11 +557,11 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 
    }
    break;
-   case e_type_phuge_integer:
-   case e_type_huge_integer:
+   case e_type_plong_long:
+   case e_type_long_long:
    {
 
-      payload.set_type(e_type_huge_integer, false);
+      payload.set_type(e_type_long_long, false);
 
       *this >> payload.m_hi;
 
@@ -577,11 +577,11 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 
    }
    break;
-   case e_type_phuge_natural:
-   case e_type_huge_natural:
+   case e_type_punsigned_long_long:
+   case e_type_unsigned_long_long:
    {
 
-      payload.set_type(::e_type_huge_natural, false);
+      payload.set_type(::e_type_unsigned_long_long, false);
 
       *this >> payload.m_hn;
 
@@ -705,7 +705,7 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 binary_stream & binary_stream::operator >>(string & str)
 {
 
-   huge_integer i = 0;
+   long long i = 0;
 
    i = m_pfile->_right_size() > 8 ? read_buffer_length_unbounded() : read_buffer_length();
 
@@ -732,7 +732,7 @@ binary_stream & binary_stream::operator >>(string & str)
 binary_stream & binary_stream::operator >>(block & block)
 {
 
-   huge_natural u = 0;
+   unsigned long long u = 0;
 
    u = read_buffer_length();
 

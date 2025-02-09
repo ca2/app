@@ -324,14 +324,14 @@ namespace mathematics
    }
 
 
-   huge_natural mathematics::random_huge_natural()
+   unsigned long long mathematics::random_unsigned_long_long()
    {
 //#if defined(UNIVERSAL_WINDOWS)
-//      huge_natural uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-//      huge_natural uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+//      unsigned long long uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+//      unsigned long long uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
 //      return uiLo | (uiHi << 32);
 //#else
-      huge_natural u = 0;
+      unsigned long long u = 0;
          random({ e_as_block,u });
          
       return u;
@@ -342,8 +342,8 @@ namespace mathematics
    char mathematics::random_char()
    {
       //#if defined(UNIVERSAL_WINDOWS)
-      //      huge_natural uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-      //      huge_natural uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      unsigned long long uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      unsigned long long uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       //      return uiLo | (uiHi << 32);
       //#else
 //      char ch = 0;
@@ -358,8 +358,8 @@ namespace mathematics
    unsigned char mathematics::random_uch()
    {
       //#if defined(UNIVERSAL_WINDOWS)
-      //      huge_natural uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-      //      huge_natural uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      unsigned long long uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      unsigned long long uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       //      return uiLo | (uiHi << 32);
       //#else
       //unsigned char u = 0;
@@ -374,8 +374,8 @@ namespace mathematics
    unsigned int mathematics::random_ui()
    {
       //#if defined(UNIVERSAL_WINDOWS)
-      //      huge_natural uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-      //      huge_natural uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      unsigned long long uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      unsigned long long uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       //      return uiLo | (uiHi << 32);
       //#else
       //unsigned int u = 0;
@@ -386,14 +386,14 @@ namespace mathematics
       //
    }
 
-//   huge_natural mathematics::gen_rand()
+//   unsigned long long mathematics::gen_rand()
 //   {
 ////#if defined(UNIVERSAL_WINDOWS)
-////      huge_natural uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-////      huge_natural uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+////      unsigned long long uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+////      unsigned long long uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
 ////      return uiLo | (uiHi << 32);
 ////#else
-//      huge_natural u = 0;
+//      unsigned long long u = 0;
 //      gen_rand(&u, sizeof(u));
 //      return u;
 ////#endif
@@ -489,7 +489,7 @@ namespace mathematics
    //}
 
 
-   bool mathematics::IsPowerOfTwo(huge_natural uiValue)
+   bool mathematics::IsPowerOfTwo(unsigned long long uiValue)
    {
 
       if (uiValue == 0)
@@ -585,13 +585,13 @@ namespace mathematics
 
    /*
 
-   huge_natural mathematics::RandRange(huge_natural ui1, huge_natural ui2)
+   unsigned long long mathematics::RandRange(unsigned long long ui1, unsigned long long ui2)
    {
    // dRandRange == 0.0 is impossible happening due this next statement;
    if(ui1 == ui2)
    return ui1;
-   huge_natural uiMin = minimum(ui1, ui2);
-   huge_natural uiMax = maximum(ui1, ui2);
+   unsigned long long uiMin = minimum(ui1, ui2);
+   unsigned long long uiMax = maximum(ui1, ui2);
    double dRand = 0.0;
    double dRange = (double) (uiMax - uiMin);
    double dRandRange = 1.0;
@@ -752,7 +752,7 @@ namespace apex
       int CLASS_DECL_ACME time_seed()
       {
 
-         return (time(nullptr) % 5000 + (::huge_integer_millisecond() / 100) % 5000) % 1000;
+         return (time(nullptr) % 5000 + (::long_long_millisecond() / 100) % 5000) % 1000;
 
       }
 

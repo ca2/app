@@ -631,13 +631,13 @@ pdirectorysystem->create(path.folder());
       native_buffer* pnative_buffer = (native_buffer*)this;
       dwCur = pnative_buffer->seek(0L,::e_seek_current);
       dwLen = pnative_buffer->seek_to_end();
-      VERIFY(dwCur == (huge_natural)pnative_buffer->seek((filesize)dwCur,::e_seek_set));
+      VERIFY(dwCur == (unsigned long long)pnative_buffer->seek((filesize)dwCur,::e_seek_set));
 
       return (filesize)dwLen;
    }
 
    //// native_buffer does not support direct buffering (CMemnative_buffer does)
-   //huge_natural native_buffer::GetBufferPtr(unsigned int nCommand,huge_natural /*nCount*/,
+   //unsigned long long native_buffer::GetBufferPtr(unsigned int nCommand,unsigned long long /*nCount*/,
    //                                     void ** /*ppBufStart*/,void ** /*ppBufMax*/)
    //{
    //   ASSERT(nCommand == bufferCheck);

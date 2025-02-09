@@ -22,14 +22,14 @@ namespace experience_tranquillum
       style();
       ~style() override;
 
-      //virtual huge_integer increment_reference_count() override
+      //virtual long long increment_reference_count() override
       //{
 
       //   return ::object::increment_reference_count();
 
       //}
 
-      //virtual huge_integer decrement_reference_count() override
+      //virtual long long decrement_reference_count() override
       //{
 
       //   return ::object::decrement_reference_count();

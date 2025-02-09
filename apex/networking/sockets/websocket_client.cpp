@@ -117,7 +117,7 @@
 //int client_send(memory & m, int fin, memory & memory, bool useMask)
 //{
 //
-//   huge_integer message_size = memory.size();
+//   long long message_size = memory.size();
 //
 //   int length = (int) ( 2 + message_size);
 //
@@ -277,7 +277,7 @@
 //
 //         frame[1] = 127;
 //         
-//         *((huge_integer*)&frame[2]) = HTONLL(len);
+//         *((long long*)&frame[2]) = HTONLL(len);
 //         
 //      }
 //      else
@@ -831,7 +831,7 @@ namespace sockets
 
          m_memResponse.append(buf, len);
 
-         //huge_natural uLen = 0;
+         //unsigned long long uLen = 0;
 
          //int iOffset = 2;
 
@@ -945,8 +945,8 @@ namespace sockets
             {
 
                m_iN = 0;
-               m_iN |= ((huge_natural)data[2]) << 8;
-               m_iN |= ((huge_natural)data[3]) << 0;
+               m_iN |= ((unsigned long long)data[2]) << 8;
+               m_iN |= ((unsigned long long)data[3]) << 0;
                m_i = 4;
 
             }
@@ -954,14 +954,14 @@ namespace sockets
             {
 
                m_iN = 0;
-               m_iN |= ((huge_natural)data[2]) << 56;
-               m_iN |= ((huge_natural)data[3]) << 48;
-               m_iN |= ((huge_natural)data[4]) << 40;
-               m_iN |= ((huge_natural)data[5]) << 32;
-               m_iN |= ((huge_natural)data[6]) << 24;
-               m_iN |= ((huge_natural)data[7]) << 16;
-               m_iN |= ((huge_natural)data[8]) << 8;
-               m_iN |= ((huge_natural)data[9]) << 0;
+               m_iN |= ((unsigned long long)data[2]) << 56;
+               m_iN |= ((unsigned long long)data[3]) << 48;
+               m_iN |= ((unsigned long long)data[4]) << 40;
+               m_iN |= ((unsigned long long)data[5]) << 32;
+               m_iN |= ((unsigned long long)data[6]) << 24;
+               m_iN |= ((unsigned long long)data[7]) << 16;
+               m_iN |= ((unsigned long long)data[8]) << 8;
+               m_iN |= ((unsigned long long)data[9]) << 0;
                m_i = 10;
 
             }

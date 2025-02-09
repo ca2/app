@@ -74,7 +74,7 @@ namespace filemanager
    void file_list_callback::InitializeActionButton(const ::atom & atomButton, ::pointer<::user::button>pbutton)
    {
 
-      switch (atomButton.as_huge_integer())
+      switch (atomButton.as_long_long())
       {
       case 0: // ExecuteButton
       {

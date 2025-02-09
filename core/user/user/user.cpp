@@ -81,7 +81,7 @@
 //
 //bool macos_set_user_wallpaper(int iScreen, const ::string & psz);
 //
-////huge_integer mm_get_user_wallpaper(huge_integer llScreen, char ** ppp);
+////long long mm_get_user_wallpaper(long long llScreen, char ** ppp);
 ////
 ////CLASS_DECL_CORE string macos_get_user_wallpaper(int iScreen)
 ////{
@@ -800,7 +800,7 @@ namespace core
    bool user::get_fs_size(string & strSize, const ::string & pszPath, bool & bPending)
    {
 
-      huge_integer i64Size;
+      long long i64Size;
 
       if (!get_fs_size(i64Size, pszPath, bPending))
       {
@@ -860,7 +860,7 @@ namespace core
    }
 
 
-   bool user::get_fs_size(huge_integer & i64Size, const ::string & pszPath, bool & bPending)
+   bool user::get_fs_size(long long & i64Size, const ::string & pszPath, bool & bPending)
    {
 
       //db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());

@@ -109,7 +109,7 @@ namespace image
       //inline ::int_rectangle rectangle(const ::int_point & point = {}) const;
 
 
-      //inline huge_natural area() const;
+      //inline unsigned long long area() const;
       //inline int width() const;
       //inline int height() const;
 
@@ -221,10 +221,10 @@ namespace image
       // paint_rgb
       virtual void multiply_rgb_by_source_alpha(::color::color color);
 
-      virtual huge_integer get_rgba_area(::color::color color) const;
-      virtual huge_integer get_rgba_area(::color::color color, const ::int_rectangle &rect) const;
-      virtual huge_integer _001GetTopLeftWeightedOpaqueArea(int iAlphaMin) const;
-      virtual huge_integer _001GetTopLeftWeightedOpaqueArea(int iAlphaMin, const ::int_rectangle &rect) const;
+      virtual long long get_rgba_area(::color::color color) const;
+      virtual long long get_rgba_area(::color::color color, const ::int_rectangle &rect) const;
+      virtual long long _001GetTopLeftWeightedOpaqueArea(int iAlphaMin) const;
+      virtual long long _001GetTopLeftWeightedOpaqueArea(int iAlphaMin, const ::int_rectangle &rect) const;
 
 
       virtual void saturation(double dRate);
@@ -504,7 +504,7 @@ namespace image
 
 
 
-      inline huge_natural area() const
+      inline unsigned long long area() const
       {
 
          if (::is_null(this))

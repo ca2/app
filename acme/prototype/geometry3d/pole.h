@@ -213,7 +213,7 @@ inline ::int_point as_int_point(const POLE & pole)
 
 
 using pole_int = ::pole_type < int >;
-using pole_huge_integer = ::pole_type < huge_integer>;
+using pole_long_long = ::pole_type < long long>;
 using pole_float = ::pole_type < float >;
 using pole_double = ::pole_type < double >;
 

@@ -78,9 +78,9 @@
 //
 //
 //
-////typedef huge_natural  filesize;
-////typedef huge_natural  filesize;
-////typedef huge_integer   filesize;
+////typedef unsigned long long  filesize;
+////typedef unsigned long long  filesize;
+////typedef long long   filesize;
 //
 
 CLASS_DECL_ACME bool is_directory(const ::file::path & path);

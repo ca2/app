@@ -55,7 +55,7 @@ namespace mathematics
       inline double get_pi() const { return m_dPi; }
       inline float get_pi_f() const { return m_fPi; }
 
-      static bool IsPowerOfTwo(huge_natural uiValue);
+      static bool IsPowerOfTwo(unsigned long long uiValue);
       static unsigned int ReverseBits(unsigned int index, unsigned int NumBits);
       static inline void MaxClip(double * pnClipValue, double nMaxValue);
       static inline void MinClip(double * pnClipValue, double nMinValue);
@@ -208,7 +208,7 @@ namespace mathematics
 
       //float random(float f1, float f2);
       //double random(double d1, double d2);
-      //huge_integer random(huge_integer i1, huge_integer i2);
+      //long long random(long long i1, long long i2);
       //int random(int i1, int i2);
       //template < typename int >
       //int __random_int(int i1, int i2);
@@ -216,7 +216,7 @@ namespace mathematics
 
       //#include "acme/prototype/prototype/matter.h"
       void random(const block & block);
-      //huge_natural gen_rand();
+      //unsigned long long gen_rand();
 //void random_bytes(void * buf, memsize dwLen);
 //void RandomBytes(void * buf, memsize dwLen);
 //void gen_rand(void * buf, memsize dwLen);
@@ -228,7 +228,7 @@ namespace mathematics
       char random_char();
       unsigned char random_uch();
       unsigned int random_ui();
-      huge_natural random_huge_natural();
+      unsigned long long random_unsigned_long_long();
 
       int rand_max();
 
@@ -287,7 +287,7 @@ namespace mathematics
 
          ::largest_type < FLOATING1, FLOATING2 > fRange = fMax - fMin;
 
-         huge_natural u = 0;
+         unsigned long long u = 0;
 
          random(u);
 
@@ -310,7 +310,7 @@ namespace mathematics
 
          ::largest_type < INTEGRAL1, INTEGRAL2 > iRange = iMax - iMin;
 
-         auto u = random_huge_natural();
+         auto u = random_unsigned_long_long();
 
          return(::largest_type < INTEGRAL1, INTEGRAL2 >) ((u % (iRange + 1)) + iMin);
 

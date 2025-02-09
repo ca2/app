@@ -3245,7 +3245,7 @@ particle* system::matter_mutex()
 #ifdef _DEBUG
 
 
-   huge_integer system::increment_reference_count()
+   long long system::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -3253,7 +3253,7 @@ particle* system::matter_mutex()
    }
 
 
-   huge_integer system::decrement_reference_count()
+   long long system::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -3264,7 +3264,7 @@ particle* system::matter_mutex()
 #endif
 
 
-   void system::system_id_update(int iId, huge_integer iPayload)
+   void system::system_id_update(int iId, long long iPayload)
    {
 
       call_message((::enum_message)iId, iPayload, {}, nullptr);
@@ -4764,7 +4764,7 @@ particle* system::matter_mutex()
 //}
 
 
-void system_id_update(::platform::system * psystem, int iUpdate, huge_integer iParam)
+void system_id_update(::platform::system * psystem, int iUpdate, long long iParam)
 {
 
    psystem->system_id_update(iUpdate, iParam);

@@ -134,7 +134,7 @@ namespace user
       virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
 
       virtual bool get_fs_size(string & strSize, const ::string & pszPath, bool & bPending);
-      virtual bool get_fs_size(huge_integer & i64Size, const ::string & pszPath, bool & bPending);
+      virtual bool get_fs_size(long long & i64Size, const ::string & pszPath, bool & bPending);
 
       virtual void data_on_after_change(::message::message * pmessage);
 

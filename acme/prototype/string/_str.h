@@ -271,15 +271,15 @@ public:
    static void fix_eol(string & str);
 
 
-   static bool to(huge_integer & i, const ::string & strParam);
+   static bool to(long long & i, const ::string & strParam);
    static bool to(int & i, const ::string & strParam);
-   static bool to(huge_natural & u, const ::string & strParam);
+   static bool to(unsigned long long & u, const ::string & strParam);
    static bool to(unsigned int & u, const ::string & strParam);
 
 
    static bool to(int & i, int iBase, const ::string & strParam);
-   static bool to(huge_integer & i, int iBase, const ::string & strParam);
-   static bool to(huge_natural & u, int iBase, const ::string & strParam);
+   static bool to(long long & i, int iBase, const ::string & strParam);
+   static bool to(unsigned long long & u, int iBase, const ::string & strParam);
    static bool to(unsigned int & u, int iBase, const ::string & strParam);
 
 
@@ -288,15 +288,15 @@ public:
    static unsigned int          to_unsigned_int(const ::scoped_string & scopedstr);
 
 
-   static huge_integer           to_huge_integer(const ::string & psz);
-   static huge_natural           to_huge_natural(const ::string & psz);
+   static long long           to_long_long(const ::string & psz);
+   static unsigned long long           to_unsigned_long_long(const ::string & psz);
 
 
 
    static inline   int to_with_fallback(const ::string & psz, int iDefault);
-   static inline   huge_integer to_with_fallback(const ::string & psz, huge_integer iDefault);
+   static inline   long long to_with_fallback(const ::string & psz, long long iDefault);
    static inline   int to_with_fallback(const ::string & psz, int iDefault, int iBase);
-   static inline   huge_integer to_with_fallback(const ::string & psz, huge_integer iDefault, int iBase);
+   static inline   long long to_with_fallback(const ::string & psz, long long iDefault, int iBase);
 
 
 

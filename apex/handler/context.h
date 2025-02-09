@@ -10,7 +10,7 @@ class CLASS_DECL_APEX context :
 public:
 
 
-   huge_integer       m_iUpdateSerial;
+   long long       m_iUpdateSerial;
 
 
    context();

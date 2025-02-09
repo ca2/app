@@ -653,7 +653,7 @@ namespace sockets
       if (escalar == e_scalar_download_size)
       {
 
-         m_content_ptr = (memsize) number.get_huge_integer();
+         m_content_ptr = (memsize) number.get_long_long();
 
          return true;
 
@@ -674,7 +674,7 @@ namespace sockets
       if (escalar == e_scalar_download_size)
       {
 
-         return (huge_integer)0;
+         return (long long)0;
 
       }
       else
@@ -693,7 +693,7 @@ namespace sockets
       if (escalar == e_scalar_download_size)
       {
 
-         return (huge_integer)m_content_ptr;
+         return (long long)m_content_ptr;
 
       }
       else
@@ -712,7 +712,7 @@ namespace sockets
       if (escalar == e_scalar_download_size)
       {
 
-         return (huge_integer) m_content_length;
+         return (long long) m_content_length;
 
       }
       else

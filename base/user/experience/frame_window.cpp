@@ -192,11 +192,11 @@ namespace experience
 
 #ifdef _DEBUG
 
-   huge_integer frame_window::increment_reference_count()
+   long long frame_window::increment_reference_count()
    {
       return ::user::frame_window::increment_reference_count();
    }
-   huge_integer frame_window::decrement_reference_count()
+   long long frame_window::decrement_reference_count()
    {
       return ::user::frame_window::decrement_reference_count();
    }
@@ -2306,7 +2306,7 @@ namespace experience
    ::collection::index frame_window::get_best_zoneing(::e_display & edisplay, ::int_rectangle * prectangle, const ::int_rectangle & rectangleRequest, bool bPreserveSize)
    {
 
-      //huge_integer g_i_get_best_zoneing = 0;
+      //long long g_i_get_best_zoneing = 0;
 
       ::int_rectangle rectangle;
 

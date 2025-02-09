@@ -322,7 +322,7 @@ namespace platform
    }
 
 
-   void application::application_on_status(::e_status estatus, ::particle* pparticle, huge_integer hi, void* p)
+   void application::application_on_status(::e_status estatus, ::particle* pparticle, long long hi, void* p)
    {
 
       if (estatus == error_icloud_not_available)
@@ -356,7 +356,7 @@ namespace platform
    }
 
 
-   void application::on_error_icloud_not_available(::particle* pparticle, huge_integer hi, void* p)
+   void application::on_error_icloud_not_available(::particle* pparticle, long long hi, void* p)
    {
 
       ::function < void(const ::atom& atom) > function;
@@ -1151,7 +1151,7 @@ namespace platform
 #ifdef DEBUG
 
 
-   huge_integer application::increment_reference_count()
+   long long application::increment_reference_count()
    {
 
       return ::platform::context::increment_reference_count();
@@ -1159,7 +1159,7 @@ namespace platform
    }
    
    
-   huge_integer application::decrement_reference_count()
+   long long application::decrement_reference_count()
    {
 
       return ::platform::context::decrement_reference_count();
@@ -2390,7 +2390,7 @@ bool application_get_bool(::platform::application * papplication, const char* ps
 }
 
 
-CLASS_DECL_ACME void application_send_status(::enum_status estatus, ::particle* pparticle, huge_integer hi, void* p)
+CLASS_DECL_ACME void application_send_status(::enum_status estatus, ::particle* pparticle, long long hi, void* p)
 {
 
    system()->application()->application_on_status(estatus, pparticle, hi, p);

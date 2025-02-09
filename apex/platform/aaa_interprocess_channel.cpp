@@ -63,7 +63,7 @@ namespace interprocess_channel
    //}
 
 
-   //void listener::on_interprocess_post(handler * prx, huge_integer a, huge_integer b)
+   //void listener::on_interprocess_post(handler * prx, long long a, long long b)
    //{
 
    //}
@@ -367,7 +367,7 @@ namespace interprocess_channel
    //}
 
 
-   void handler::on_interprocess_post(huge_integer a, huge_integer b)
+   void handler::on_interprocess_post(long long a, long long b)
    {
 
       if (m_preceiver != nullptr)
@@ -410,7 +410,7 @@ namespace interprocess_channel
    //}
 
 
-   //void handler::dispatch_message(huge_natural uData, ::memory && memory)
+   //void handler::dispatch_message(unsigned long long uData, ::memory && memory)
    //{
 
    //   auto pdispatchitem = __allocate class dispatch_item (uData, ::transfer(memory));

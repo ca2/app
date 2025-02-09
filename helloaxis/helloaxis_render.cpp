@@ -718,7 +718,7 @@ namespace helloaxis
 //            if (error == 0)
 //            {
 //
-//               huge_integer iChar = unicode_index(unicode_to_utf8(L"Love"));
+//               long long iChar = unicode_index(unicode_to_utf8(L"Love"));
 //
 //               int glyph_index = FT_Get_Char_Index(face, (int)iChar);
 //
@@ -769,7 +769,7 @@ namespace helloaxis
 //            if (error == 0)
 //            {
 //
-//               huge_integer iChar = unicode_index(unicode_to_utf8(L"Love"));
+//               long long iChar = unicode_index(unicode_to_utf8(L"Love"));
 //
 //               int glyph_index = FT_Get_Char_Index(face, (int)iChar);
 //

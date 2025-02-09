@@ -35,7 +35,7 @@ namespace aura
       return get_id_space()(str);
    }
 
-   inline atom system::atom(huge_integer i)
+   inline atom system::atom(long long i)
    {
       return get_id_space()(i);
    }
@@ -93,7 +93,7 @@ inline atom & atom::operator = (int i)
 }
 
 
-inline atom & atom::operator = (huge_integer i)
+inline atom & atom::operator = (long long i)
 {
 
    m_etype     = type_integer;
@@ -105,7 +105,7 @@ inline atom & atom::operator = (huge_integer i)
 }
 
 
-inline atom & atom::operator = (huge_natural u)
+inline atom & atom::operator = (unsigned long long u)
 {
    
    m_etype     = type_integer;

@@ -26,7 +26,7 @@ namespace database
       string            m_strUser;
       string            m_strPass;
       string            m_strSckt;
-      huge_natural               m_uConnectionFlags;
+      unsigned long long               m_uConnectionFlags;
 
 
       bool              m_bTransactionActive;
@@ -67,7 +67,7 @@ namespace database
          const ::string & user = nullptr,
          const ::string & pass = nullptr,
          const ::string & sckt = nullptr,
-         huge_natural uConnectionFlags = 0) override;
+         unsigned long long uConnectionFlags = 0) override;
 
       void     _connect()  override= 0;
 

@@ -85,7 +85,7 @@ CLASS_DECL_AURA void __set_bottom_right(const ::int_point & pointBottomRight);
 inline void make_parent_mouse_message(::enum_message & emessage)
 {
 
-   emessage = (::enum_message)((huge_integer)emessage + (huge_integer)(e_message_parent_mouse_first - e_message_mouse_first));
+   emessage = (::enum_message)((long long)emessage + (long long)(e_message_parent_mouse_first - e_message_mouse_first));
 
 }
 
@@ -14249,7 +14249,7 @@ if(get_parent())
 
       //}
 
-      //printf_line("interaction::message_handler pmessage->m_emessage %lld", pmessage->m_emessage.as_huge_integer());
+      //printf_line("interaction::message_handler pmessage->m_emessage %lld", pmessage->m_emessage.as_long_long());
 
       if (pre_message_handler(pkey, bKeyMessage, pmessage))
       {
@@ -17182,7 +17182,7 @@ if(get_parent())
    }
 
 
-   //static huge_integer g_i_graphics_thread_update_visual = 0;
+   //static long long g_i_graphics_thread_update_visual = 0;
 
    //void interaction::scroll_x_sketch_to_lading()
    //{
@@ -30310,7 +30310,7 @@ __check_refdbg;
    //         break;
    //      };
    //      case e_type_id:
-   //      case e_type_huge_integer:
+   //      case e_type_long_long:
    //      case e_type_int:
    //      {
 

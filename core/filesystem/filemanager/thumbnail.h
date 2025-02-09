@@ -18,7 +18,7 @@ namespace filemanager
       string         m_strPath;
       //string_array        m_straPath;
       //string_array        m_straTitle;
-      //huge_integer_array    m_iaSize;
+      //long_long_array    m_iaSize;
       int        m_iCurFile;
 
       thumbnail();

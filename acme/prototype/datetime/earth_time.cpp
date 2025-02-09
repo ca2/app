@@ -561,7 +561,7 @@ namespace earth
 
 //       return gregoriantime.m_iYear;
 
-      return { posix_time_t{}, (huge_integer)((gregoriantime.m_iHour * 3600) + (gregoriantime.m_iMinute * 60) + gregoriantime.m_iSecond) };
+      return { posix_time_t{}, (long long)((gregoriantime.m_iHour * 3600) + (gregoriantime.m_iMinute * 60) + gregoriantime.m_iSecond) };
 
    }
 
@@ -580,7 +580,7 @@ namespace earth
    //}
 
 
-   huge_integer time::day_sig(const class ::time& timeshift) const noexcept
+   long long time::day_sig(const class ::time& timeshift) const noexcept
    {
 
        ::earth::gregorian_time gregoriantime(*this, 0, timeshift);
@@ -802,7 +802,7 @@ namespace earth
    }
 
 
-   huge_integer time::total_minutes(const class ::time & timeshift) const noexcept
+   long long time::total_minutes(const class ::time & timeshift) const noexcept
    {
    
       return m_iSecond / 60;
@@ -844,7 +844,7 @@ namespace earth
 ////stream & operator <<(stream & os, ::earth::time & time)
 ////{
 ////
-////   os.write((huge_integer) time.m_posixtime);
+////   os.write((long long) time.m_posixtime);
 ////
 ////   return os;
 ////
@@ -854,7 +854,7 @@ namespace earth
 
 
 
-//huge_integer time::GetGmtDaySig() const noexcept
+//long long time::GetGmtDaySig() const noexcept
 //{
 
 //   struct tm ttm;
@@ -870,7 +870,7 @@ namespace earth
 //stream & operator >>(stream & is, ::earth::time & rtime)
 //{
 //
-//   is.read((huge_integer &) rtime.m_posixtime);
+//   is.read((long long &) rtime.m_posixtime);
 //
 //   return is;
 //

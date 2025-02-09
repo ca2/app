@@ -161,7 +161,7 @@ namespace user
    }
 
 
-   huge_integer message_box::increment_reference_count()
+   long long message_box::increment_reference_count()
    {
 
       return ::user::interaction::increment_reference_count();
@@ -169,7 +169,7 @@ namespace user
    }
 
 
-   huge_integer message_box::decrement_reference_count()
+   long long message_box::decrement_reference_count()
    {
 
       return ::user::interaction::decrement_reference_count();
@@ -177,7 +177,7 @@ namespace user
    }
 
 
-   huge_integer message_box::release()
+   long long message_box::release()
    {
 
       return ::user::interaction::release();
@@ -455,7 +455,7 @@ namespace user
    //   if (ptopic->id() == ::id_click)
    //   {
 
-   //      m_edialogresult = (enum_dialog_result) ptopic->user_interaction_id().huge_integer();
+   //      m_edialogresult = (enum_dialog_result) ptopic->user_interaction_id().long_long;
 
    //      ::extended::asynchronous <::conversation>::sequence()->set_status(::success);
 

@@ -21,7 +21,7 @@ for (size_t i = 0; i < size; i++)
 WriteByte(((const unsigned char *)data)[i]);
 }
 
-huge_natural GetProcessedSize() const;*/
+unsigned long long GetProcessedSize() const;*/
 
 // OutBuffer.cpp
 // from 7-zip on 2012-12-23, dawn
@@ -79,9 +79,9 @@ namespace file
 #endif
    }
 
-   huge_natural out_buffer::GetProcessedSize() const
+   unsigned long long out_buffer::GetProcessedSize() const
    {
-      huge_natural res = _processedSize + _pos - _streamPos;
+      unsigned long long res = _processedSize + _pos - _streamPos;
       if (_streamPos > _pos)
          res += m_memory.get_size();
       return res;

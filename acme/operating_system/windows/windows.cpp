@@ -480,7 +480,7 @@ void operating_system_get_main_screen_size(int& cx, int& cy)
 
 //
 //
-//CLASS_DECL_ACME string get_error_string(huge_integer iError)
+//CLASS_DECL_ACME string get_error_string(long long iError)
 //{
 //
 //

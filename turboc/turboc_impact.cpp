@@ -520,7 +520,7 @@ namespace turboc
             //          unsigned int dwTime2= ::time::now();
 
             //informationf("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-//            informationf("hello_impact::lyot call timeA= %d ms",(huge_natural) (dwTime2 - t_time1.operator DWORD_PTR()));
+//            informationf("hello_impact::lyot call timeA= %d ms",(unsigned long long) (dwTime2 - t_time1.operator DWORD_PTR()));
 
          }
 

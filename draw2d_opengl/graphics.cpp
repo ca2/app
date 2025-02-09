@@ -132,7 +132,7 @@ namespace draw2d_opengl
 
 #ifdef __DEBUG
 
-   huge_integer graphics::increment_reference_count()
+   long long graphics::increment_reference_count()
    {
 
       return ::particle::increment_reference_count();
@@ -140,7 +140,7 @@ namespace draw2d_opengl
    }
 
 
-   huge_integer graphics::decrement_reference_count()
+   long long graphics::decrement_reference_count()
    {
 
       return ::particle::decrement_reference_count();
@@ -3941,7 +3941,7 @@ namespace draw2d_opengl
    //   //   &origin,
    //   //   1);
 
-   //   //return point((huge_integer) origin.X, (huge_integer) origin.Y);
+   //   //return point((long long) origin.X, (long long) origin.Y);
 
    //   //return m_pointTranslate;
 

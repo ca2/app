@@ -179,7 +179,7 @@ namespace platform
       ::factory::component_factory_map                      m_componentfactorymap;
       ::pointer < ::operating_system::dynamic_library >     m_pdynamiclibrary;
       int                                                   m_iProcessStatus = 0;
-      //::interlocked_huge_integer                            m_iNewTaskIndex;
+      //::interlocked_long_long                            m_iNewTaskIndex;
       //::comparable_array < itask >                        m_itaska;
       bool                                                  m_bVerboseLog;
       ::windowing::enum_windowing                           m_ewindowing;

@@ -1635,10 +1635,10 @@ inline int_rectangle int_rectangle_dimension(X x, Y y, W w, H h)
 
 
 template < primitive_number X, primitive_number Y, primitive_number W, primitive_number H >
-inline huge_integer_rectangle huge_integer_rectangle_dimension(X x, Y y, W w, H h)
+inline long_long_rectangle long_long_rectangle_dimension(X x, Y y, W w, H h)
 {
 
-   return huge_integer_rectangle(x, y, x + w, y + h);
+   return long_long_rectangle(x, y, x + w, y + h);
 
 }
 
@@ -1662,12 +1662,12 @@ inline double_rectangle double_rectangle_dimension(X x, Y y, W w, H h)
 
 //
 //CLASS_DECL_ACME int_rectangle & muldiv(int_rectangle & rectangle, int numerator, int denominator);
-//CLASS_DECL_ACME huge_integer_rectangle & muldiv(huge_integer_rectangle & rectangle, huge_integer numerator, huge_integer denominator);
+//CLASS_DECL_ACME long_long_rectangle & muldiv(long_long_rectangle & rectangle, long long numerator, long long denominator);
 //
 //
 //
 //CLASS_DECL_ACME int_rectangle & muldiv(int_rectangle & rectangle, int numerator, int denominator);
-//CLASS_DECL_ACME huge_integer_rectangle & muldiv(huge_integer_rectangle & rectangle, huge_integer numerator, huge_integer denominator);
+//CLASS_DECL_ACME long_long_rectangle & muldiv(long_long_rectangle & rectangle, long long numerator, long long denominator);
 //
 //template < primitive_integral NUMERATOR, primitive_integral DENOMINATOR >
 //rectangle_type muldiv(NUMERATOR numerator, DENOMINATOR denominator) const 

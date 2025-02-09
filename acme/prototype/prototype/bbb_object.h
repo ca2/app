@@ -20,7 +20,7 @@ protected:
 public:
 
    ::object_meta* m_pmeta;
-   huge_integer                                              m_cRun;
+   long long                                              m_cRun;
 
 
    object() : m_pmeta(nullptr) { }
@@ -32,17 +32,17 @@ public:
 #ifdef _DEBUG
 
 
-   virtual huge_integer increment_reference_count() override;
-   virtual huge_integer decrement_reference_count() override;
-   virtual huge_integer release() override;
+   virtual long long increment_reference_count() override;
+   virtual long long decrement_reference_count() override;
+   virtual long long release() override;
 
 
 #else
 
 
-   virtual huge_integer increment_reference_count();
-   virtual huge_integer decrement_reference_count();
-   virtual huge_integer release();
+   virtual long long increment_reference_count();
+   virtual long long decrement_reference_count();
+   virtual long long release();
 
 
 #endif
@@ -163,7 +163,7 @@ public:
    virtual void operator()() override;
 
 
-   inline huge_integer get_ref_count()
+   inline long long get_ref_count()
    {
 
       return m_countReference;
@@ -404,7 +404,7 @@ public:
    virtual string __get_text(string str);
 
    //template < typename PRED >
-   //::image::image_pointer get_image(const ::payload & payloadFile, huge_natural uTrait, PRED pred);
+   //::image::image_pointer get_image(const ::payload & payloadFile, unsigned long long uTrait, PRED pred);
 
    //virtual ::image::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    //virtual ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);

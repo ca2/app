@@ -173,10 +173,10 @@ int _fltused = 0;
 // }
 
 
-// /*huge_integer ftoi64(double d)
+// /*long long ftoi64(double d)
 // {
-//    huge_integer u = 0x7fffffffffffffff;
-//    huge_integer l = 0x8000000000000000;
+//    long long u = 0x7fffffffffffffff;
+//    long long l = 0x8000000000000000;
 //    double m;
 //    while(true)
 //    {

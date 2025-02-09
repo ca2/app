@@ -8906,7 +8906,7 @@ void window::set_oswindow(::oswindow oswindow)
                   try
                   {
 
-                     puserinteraction->send_message(e_message_show_window, 0, (huge_integer)e_show_window_parent_closing);
+                     puserinteraction->send_message(e_message_show_window, 0, (long long)e_show_window_parent_closing);
 
                   }
                   catch (...)
@@ -12951,7 +12951,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   huge_integer window::approximate_occlusion_area()
+   long long window::approximate_occlusion_area()
    {
 
       int_rectangle_array ra;
@@ -12963,7 +12963,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   huge_integer window::opaque_area(const ::int_rectangle & rect)
+   long long window::opaque_area(const ::int_rectangle & rect)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -12983,7 +12983,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   huge_integer window::_001GetRectTopLeftWeightedArea(const ::int_rectangle & rect)
+   long long window::_001GetRectTopLeftWeightedArea(const ::int_rectangle & rect)
    {
 
       ::int_rectangle rectangle(rect);
@@ -12995,7 +12995,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   huge_integer window::opaque_area()
+   long long window::opaque_area()
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -13015,7 +13015,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   huge_integer window::_001GetTopLeftWeightedArea()
+   long long window::_001GetTopLeftWeightedArea()
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -13051,14 +13051,14 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   huge_integer window::approximate_occlusion_area_except_self_transparent()
+   long long window::approximate_occlusion_area_except_self_transparent()
    {
 
       int_rectangle_array ra;
 
       approximate_occlusion_rects(ra);
 
-      huge_integer cApproxOpaqueArea = 0;
+      long long cApproxOpaqueArea = 0;
 
       for (auto & r : ra)
       {
@@ -13080,14 +13080,14 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   huge_integer window::_001GetTopLeftWeightedOccludedOpaqueArea()
+   long long window::_001GetTopLeftWeightedOccludedOpaqueArea()
    {
 
       int_rectangle_array ra;
 
       approximate_occlusion_rects(ra);
 
-      huge_integer cApproxOpaqueArea = 0;
+      long long cApproxOpaqueArea = 0;
 
       for (auto & r : ra)
       {
@@ -13352,7 +13352,7 @@ void window::set_oswindow(::oswindow oswindow)
        //}
 
 
-   void window::android_fill_plasma(const void * pixels, int width, int height, int stride, huge_integer time_ms)
+   void window::android_fill_plasma(const void * pixels, int width, int height, int stride, long long time_ms)
    {
 
       auto pitem = m_pgraphicsgraphics->get_screen_item();

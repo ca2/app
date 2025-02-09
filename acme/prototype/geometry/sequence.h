@@ -792,9 +792,9 @@ using sequence2_int = sequence_type<int, 2>;
 using sequence3_int = sequence_type<int, 3>;
 using sequence4_int = sequence_type<int, 4>;
 
-using sequence2_huge_integer = sequence_type<huge_integer, 2>;
-using sequence3_huge_integer = sequence_type<huge_integer, 3>;
-using sequence4_huge_integer = sequence_type<huge_integer, 4>;
+using sequence2_long_long = sequence_type<long long, 2>;
+using sequence3_long_long = sequence_type<long long, 3>;
+using sequence4_long_long = sequence_type<long long, 4>;
 
 using sequence2_float = sequence_type<float, 2>;
 using sequence3_float = sequence_type<float, 3>;

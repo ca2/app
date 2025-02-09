@@ -239,19 +239,19 @@ namespace browser
 
       nano_timer nanotimer;
 
-      huge_natural uNow = get_nanos();
+      unsigned long long uNow = get_nanos();
 
-      huge_natural uFrameNanos = (huge_natural)(1000000000LL / get_frames_per_second());
+      unsigned long long uFrameNanos = (unsigned long long)(1000000000LL / get_frames_per_second());
 
       uFrameNanos = minimum(maximum(100000, uFrameNanos), 1000000000);
 
-      huge_natural uFrameId = uNow / uFrameNanos;
+      unsigned long long uFrameId = uNow / uFrameNanos;
 
-      huge_natural uLastFrameId = uFrameId;
+      unsigned long long uLastFrameId = uFrameId;
 
-      huge_natural uNextFrame;
+      unsigned long long uNextFrame;
 
-      huge_natural uWait;
+      unsigned long long uWait;
 
       ::collection::count cLost;
 
@@ -270,7 +270,7 @@ namespace browser
 
             uNow = get_nanos();
 
-            uFrameNanos = (huge_natural)(1000000000ULL / get_frames_per_second());
+            uFrameNanos = (unsigned long long)(1000000000ULL / get_frames_per_second());
 
             uFrameNanos = minimum(maximum(100000ULL, uFrameNanos), 1000000000ULL);
 
@@ -912,7 +912,7 @@ namespace browser
             if (error == 0)
             {
 
-               huge_integer iChar = unicode_index(unicode_to_utf8(L"Love"));
+               long long iChar = unicode_index(unicode_to_utf8(L"Love"));
 
                int glyph_index = FT_Get_Char_Index(face, (int)iChar);
 
@@ -963,7 +963,7 @@ namespace browser
             if (error == 0)
             {
 
-               huge_integer iChar = unicode_index(unicode_to_utf8(L"Love"));
+               long long iChar = unicode_index(unicode_to_utf8(L"Love"));
 
                int glyph_index = FT_Get_Char_Index(face, (int)iChar);
 

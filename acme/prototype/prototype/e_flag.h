@@ -23,7 +23,7 @@ inline bool __enum_is_failed(const ::enum_flag& e) { return (e & e_flag_failure)
 //   e_flag() { m_eflag = e_flag_none; }
 //   e_flag(const std::initializer_list < enum_flag >& list) { m_eflag = e_flag_none; for (auto& e : list) add(e); }
 //   e_flag(enum_flag e) { m_eflag = e; }
-//   e_flag(huge_integer i) { m_eflag = (enum_flag)i; }
+//   e_flag(long long i) { m_eflag = (enum_flag)i; }
 //   e_flag(const e_flag& e) { m_eflag = e.m_eflag; }
 //
 //   inline void add(enum_flag e) { m_eflag = (enum_flag)(e | m_eflag); }
@@ -35,21 +35,21 @@ inline bool __enum_is_failed(const ::enum_flag& e) { return (e & e_flag_failure)
 //   inline e_flag& operator &= (const e_flag& e) { m_eflag = (enum_flag)(m_eflag & e.m_eflag); return *this; }
 //
 //   inline e_flag& operator += (enum_flag e) { return operator |= (e); }
-//   inline e_flag& operator -= (enum_flag e) { return operator &= ((enum_flag)~(huge_integer)(e)); }
+//   inline e_flag& operator -= (enum_flag e) { return operator &= ((enum_flag)~(long long)(e)); }
 //
 //   inline e_flag& operator += (const e_flag& e) { return operator |= ((enum_flag)e.m_eflag); }
-//   inline e_flag& operator -= (const e_flag& e) { return operator &= ((enum_flag)~(huge_integer)(e.m_eflag)); }
+//   inline e_flag& operator -= (const e_flag& e) { return operator &= ((enum_flag)~(long long)(e.m_eflag)); }
 //
 //   inline e_flag& operator ^= (const e_flag& e) { toggle(e);  return *this; }
 //
 //   inline e_flag operator + (const e_flag& t) const { auto copy = *this; copy.add(t); return copy; }
 //
-//   inline e_flag operator - (enum_flag e) const { return (enum_flag)(m_eflag & ~((huge_integer)e)); }
+//   inline e_flag operator - (enum_flag e) const { return (enum_flag)(m_eflag & ~((long long)e)); }
 //
 //   inline e_flag operator | (enum_flag e) const { return (enum_flag)(m_eflag | e); }
 //   inline e_flag operator & (enum_flag e) const { return (enum_flag)(m_eflag & e); }
 //
-//   inline bool is(enum_flag e) const { return (huge_integer)(m_eflag & e) == (huge_integer)e; }
+//   inline bool is(enum_flag e) const { return (long long)(m_eflag & e) == (long long)e; }
 //   inline bool has(enum_flag e) const { return is(e); }
 //
 //   void erase(enum_flag e) { operator -= (e); }
@@ -92,7 +92,7 @@ inline bool __enum_is_failed(const ::enum_flag& e) { return (e & e_flag_failure)
 //   e_flag& operator ++(int)
 //   {
 //
-//      m_eflag = (enum_flag)((huge_integer)m_eflag + 1);
+//      m_eflag = (enum_flag)((long long)m_eflag + 1);
 //
 //      return *this;
 //
@@ -102,7 +102,7 @@ inline bool __enum_is_failed(const ::enum_flag& e) { return (e & e_flag_failure)
 //   e_flag& operator %=(const enum_flag& eenum)
 //   {
 //
-//      m_eflag = (enum_flag)((huge_integer)m_eflag % (huge_integer)eenum);
+//      m_eflag = (enum_flag)((long long)m_eflag % (long long)eenum);
 //
 //      return *this;
 //
@@ -112,7 +112,7 @@ inline bool __enum_is_failed(const ::enum_flag& e) { return (e & e_flag_failure)
 //   e_flag& rotate(const enum_flag& eenum)
 //   {
 //
-//      if ((huge_integer)m_eflag < 0)
+//      if ((long long)m_eflag < 0)
 //      {
 //
 //         m_eflag = (enum_flag)0;

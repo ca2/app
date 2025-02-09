@@ -2824,7 +2824,7 @@ namespace platform
 #ifdef _DEBUG
 
 
-   huge_integer system::increment_reference_count()
+   long long system::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -2832,7 +2832,7 @@ namespace platform
    }
 
 
-   huge_integer system::decrement_reference_count()
+   long long system::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -2843,7 +2843,7 @@ namespace platform
 #endif
 
 
-   void system::system_id_update(huge_integer iId, huge_integer iPayload)
+   void system::system_id_update(long long iId, long long iPayload)
    {
 
       call((::enum_id)iId, iPayload);
@@ -4229,7 +4229,7 @@ namespace platform
 //}
 
 
-void system_id_update(void * pSystem, huge_integer iUpdate, huge_integer iParam)
+void system_id_update(void * pSystem, long long iUpdate, long long iParam)
 {
 
    auto psystem = (::platform::system *)pSystem;

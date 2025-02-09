@@ -149,12 +149,12 @@ public:
       };
 
 
-      huge_natural m_hnTaskFlag;
+      unsigned long long m_hnTaskFlag;
 
 
    };
 
-   huge_natural                                    m_uThreadAffinityMask;
+   unsigned long long                                    m_uThreadAffinityMask;
 
 #if defined(WINDOWS)
 

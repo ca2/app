@@ -10,7 +10,7 @@ class flags :
 {
 public:
 
-   huge_integer_array m_ia;
+   long_long_array m_ia;
 
 
    flags();
@@ -125,21 +125,21 @@ flags < ENUM > ::~flags()
 template < class ENUM >
 bool flags < ENUM > ::add(ENUM eenum)
 {
-   return m_ia.add_unique((huge_integer)eenum);
+   return m_ia.add_unique((long long)eenum);
 }
 
 
 template < class ENUM >
 bool flags < ENUM > ::erase(ENUM eenum)
 {
-   return m_ia.erase((huge_integer)eenum);
+   return m_ia.erase((long long)eenum);
 }
 
 
 template < class ENUM >
 bool flags < ENUM > ::has(ENUM eenum) const
 {
-   return m_ia.has((huge_integer)eenum);
+   return m_ia.has((long long)eenum);
 }
 
 

@@ -166,7 +166,7 @@ namespace core
 
 
       bool get_fs_size(string & strSize, const ::string & pszPath, bool & bPending) override;
-      bool get_fs_size(huge_integer & i64Size, const ::string & pszPath, bool & bPending) override;
+      bool get_fs_size(long long & i64Size, const ::string & pszPath, bool & bPending) override;
 
       void data_on_after_change(::message::message * pmessage) override;
 
@@ -352,7 +352,7 @@ namespace core
 
       //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::menu::item * pitem) override;
 
-      //virtual ::color::color get_default_color(huge_natural u);
+      //virtual ::color::color get_default_color(unsigned long long u);
 
       ////virtual ::int_size get_window_minimum_size();
 

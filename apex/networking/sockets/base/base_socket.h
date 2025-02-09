@@ -327,10 +327,10 @@ namespace sockets
 
 
       /** Outgoing traffic counter. */
-      virtual huge_natural GetBytesSent(bool clear = false);
+      virtual unsigned long long GetBytesSent(bool clear = false);
 
       /** Incoming traffic counter. */
-      virtual huge_natural GetBytesReceived(bool clear = false);
+      virtual unsigned long long GetBytesReceived(bool clear = false);
 
       // LIST_TIMEOUT
 

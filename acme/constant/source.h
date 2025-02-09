@@ -1,7 +1,7 @@
 #pragma once
 
 
-enum enum_source : huge_natural
+enum enum_source : unsigned long long
 {
 
    e_source_none = 0,

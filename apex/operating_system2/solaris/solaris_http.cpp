@@ -150,7 +150,7 @@ vsstring ::url::encode(const ::scoped_string & scopedstr)
       }
       else
       {
-         ansi_from_huge_integer(sz, uch, 16);
+         ansi_from_long_long(sz, uch, 16);
          if(ansi_length(sz) == 0)
          {
             str += "%00";

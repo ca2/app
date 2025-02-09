@@ -20,7 +20,7 @@ namespace sockets
       ::pointer < ::factory::factory >             m_pfactorySocketHandler;
       ::type_atom                                  m_typeSocketHandler;
       ::pointer < ::sockets::socket_handler >      m_psockethandler;
-      huge_integer                                        m_iAllocatedCount;
+      long long                                        m_iAllocatedCount;
       //::type_atom                                m_typeListenSocket;
       //::pointer < ::factory::factory >    m_pfactory;
 
@@ -43,9 +43,9 @@ namespace sockets
 
 #ifdef _DEBUG
 
-      huge_integer increment_reference_count() override;
+      long long increment_reference_count() override;
 
-      huge_integer decrement_reference_count() override;
+      long long decrement_reference_count() override;
 
 #endif
 

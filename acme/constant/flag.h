@@ -2,7 +2,7 @@
 #pragma once
 
 
-enum enum_flag : huge_natural
+enum enum_flag : unsigned long long
 {
 
 

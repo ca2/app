@@ -320,8 +320,8 @@ public:
       domain_id            m_domainid;
       ::string             m_str;
       ::ansi_range         m_range;
-      huge_integer                m_iLargest;
-      huge_natural                m_uLargest;
+      long long                m_iLargest;
+      unsigned long long                m_uLargest;
 
    };
 
@@ -664,11 +664,11 @@ public:
    //inline operator ::iptr() const { return as_iptr(); }
    //inline operator ::enum_message () const { return as_emessage(); }
    
-   inline huge_integer as_huge_integer() const;
+   inline long long as_long_long() const;
    inline ::iptr as_iptr() const;
-   inline int as_int() const { return (int) as_huge_integer(); }
-   inline unsigned int as_unsigned_int() const { return (unsigned int) as_huge_integer(); }
-   inline ::collection::index as_index() const { return (::collection::index)as_huge_integer(); }
+   inline int as_int() const { return (int) as_long_long(); }
+   inline unsigned int as_unsigned_int() const { return (unsigned int) as_long_long(); }
+   inline ::collection::index as_index() const { return (::collection::index)as_long_long(); }
    inline unsigned int as_umessage() const { return as_unsigned_int(); }
    inline ::enum_message as_emessage() const;
    inline ::enum_id as_eid() const;

@@ -252,7 +252,7 @@ namespace apex
       {
       }
 
-      void small_ipc_rx_channel::receiver::on_post(small_ipc_rx_channel * prxchannel,huge_integer a,huge_integer b)
+      void small_ipc_rx_channel::receiver::on_post(small_ipc_rx_channel * prxchannel,long long a,long long b)
       {
       }
 
@@ -289,7 +289,7 @@ namespace apex
 
 
 
-      void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel,huge_integer a,huge_integer b)
+      void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel,long long a,long long b)
       {
 
          if(m_preceiver != nullptr)

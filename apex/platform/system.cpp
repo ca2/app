@@ -240,7 +240,7 @@ namespace apex
 #ifdef _DEBUG
 
 
-   huge_integer system::increment_reference_count()
+   long long system::increment_reference_count()
    {
 
       return ::platform::system::increment_reference_count();
@@ -248,7 +248,7 @@ namespace apex
    }
 
 
-   huge_integer system::decrement_reference_count()
+   long long system::decrement_reference_count()
    {
 
       return ::platform::system::decrement_reference_count();
@@ -538,7 +538,7 @@ namespace apex
 
       //add_factory_item < ::stdio_file, ::file::text_file >();
       //add_factory_item < ::stdio_file, ::file::file >();
-      factory()->add_factory_item < ::huge_integer_array >();
+      factory()->add_factory_item < ::long_long_array >();
       factory()->add_factory_item < ::double_array >();
       factory()->add_factory_item < ::acme::library >();
 
@@ -550,7 +550,7 @@ namespace apex
       factory()->add_factory_item < ::int_array >();
 
       //factory()->add_factory_item < ::file::path_object >();
-      //factory()->add_factory_item < ::huge_integer_array >();
+      //factory()->add_factory_item < ::long_long_array >();
       //factory()->add_factory_item < ::double_array >();
       //factory()->add_factory_item < ::acme::library >();
 
@@ -1445,7 +1445,7 @@ pdirectorysystem->create("/ca2core");
    //
    //      GetSystemTimeAsFileTime(&ft);
    //
-   //      huge_natural tt;
+   //      unsigned long long tt;
    //
    //      ::memory_copy(&tt, &ft, sizeof(tt));
    //
@@ -4785,7 +4785,7 @@ namespace apex
    }
 
 
-//   void system::system_id_update(huge_integer iUpdate, huge_integer iPayload)
+//   void system::system_id_update(long long iUpdate, long long iPayload)
 //   {
 //
 //      call((::enum_id)iUpdate, iPayload);

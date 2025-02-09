@@ -122,10 +122,10 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 
 }
 //::pair<int, int> ia;
-//inline huge_natural make64_from32(unsigned int l, unsigned int h)
+//inline unsigned long long make64_from32(unsigned int l, unsigned int h)
 //{
 //
-//   return ((huge_natural)l) | (((huge_natural)h) << 32);
+//   return ((unsigned long long)l) | (((unsigned long long)h) << 32);
 //
 //}
 //
@@ -313,10 +313,10 @@ inline bool is_reference_set(const TYPE& t)
 
 //
 //
-//inline bool is_impact_group(huge_natural u, huge_natural uGroup) { return u >= uGroup && u < uGroup + 1000; }
+//inline bool is_impact_group(unsigned long long u, unsigned long long uGroup) { return u >= uGroup && u < uGroup + 1000; }
 //
 //
-//inline bool is_impact_subgroup(huge_natural u, huge_natural uGroup) { return u >= uGroup && u < uGroup + 100; }
+//inline bool is_impact_subgroup(unsigned long long u, unsigned long long uGroup) { return u >= uGroup && u < uGroup + 100; }
 //
 //
 //inline bool is_file_or_folder(const ::file::enum_type& etype)
@@ -380,14 +380,14 @@ inline bool __sort(T1& t1, T2& t2)
 //
 //
 //
-//inline huge_integer ansi_to_huge_integer(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
+//inline long long ansi_to_long_long(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
 //{
 //
 //   return strtoll(psz, (::ansi_character **) ppszEnd, iBase);
 //
 //}
 //
-//inline huge_natural ansi_to_huge_natural(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
+//inline unsigned long long ansi_to_unsigned_long_long(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
 //{
 //
 //   return strtoull(psz, (::ansi_character **) ppszEnd, iBase);

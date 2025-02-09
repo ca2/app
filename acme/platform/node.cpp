@@ -132,7 +132,7 @@ namespace platform
 #ifdef _DEBUG
 
 
-   huge_integer node::increment_reference_count()
+   long long node::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -140,7 +140,7 @@ namespace platform
    }
 
 
-   huge_integer node::decrement_reference_count()
+   long long node::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -324,7 +324,7 @@ namespace platform
    }
 
 
-   void node::node_application_on_status(const char * pszStatus, void * p, huge_integer hi)
+   void node::node_application_on_status(const char * pszStatus, void * p, long long hi)
    {
       
       
@@ -2858,7 +2858,7 @@ return false;
    }
 
 
-   huge_natural node::translate_processor_affinity(int i)
+   unsigned long long node::translate_processor_affinity(int i)
    {
 
       return 0;
@@ -3550,7 +3550,7 @@ bool node::_is_smart_git_installed()
    }
 
 
-//   void node::application_handle(huge_integer l, void * p)
+//   void node::application_handle(long long l, void * p)
 //   {
 //
 //      
@@ -4797,7 +4797,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
 } // namespace platform
 
 
-void node_application_send_status(const char * pszStatus, void * p, huge_integer hi)
+void node_application_send_status(const char * pszStatus, void * p, long long hi)
 {
    
    system()->node()->node_application_on_status(pszStatus, p, hi);

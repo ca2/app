@@ -26,7 +26,7 @@ namespace userex
       ~progress_control() override;
 
 #ifdef _DEBUG
-      huge_integer decrement_reference_count() override;
+      long long decrement_reference_count() override;
 #endif
 
 
@@ -65,11 +65,11 @@ namespace userex
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
 #ifdef _DEBUG
-      virtual huge_integer increment_reference_count() override
+      virtual long long increment_reference_count() override
       {
          return ::object::increment_reference_count();
       }
-      virtual huge_integer decrement_reference_count() override
+      virtual long long decrement_reference_count() override
       {
          return ::object::decrement_reference_count();
       }

@@ -17,7 +17,7 @@ namespace interprocess
 
 
       ::atom                                    m_atomPid;
-      huge_integer                                     m_iTask;
+      long long                                     m_iTask;
       ::pointer<::interprocess::call>           m_pcall;
       ::payload                                 m_payload;
       ::pointer<manual_reset_happening>             m_pevReady;
@@ -25,7 +25,7 @@ namespace interprocess
       ::logic::boolean                          m_tristateHandled;
 
 
-      task(::interprocess::call * pcall, const ::atom & idPid, huge_integer iTask);
+      task(::interprocess::call * pcall, const ::atom & idPid, long long iTask);
       ~task() override;
 
 

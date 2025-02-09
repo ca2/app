@@ -10,7 +10,7 @@ namespace user
 #ifdef _DEBUG
 
 
-huge_integer mouse::increment_reference_count()
+long long mouse::increment_reference_count()
    {
 
       return ::acme::message::increment_reference_count();
@@ -18,7 +18,7 @@ huge_integer mouse::increment_reference_count()
    }
 
 
-   huge_integer mouse::decrement_reference_count()
+   long long mouse::decrement_reference_count()
    {
 
       return ::acme::message::decrement_reference_count();

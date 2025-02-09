@@ -13,7 +13,7 @@
 struct WAIT
 {
 
-   huge_integer m_iNanosecond;
+   long long m_iNanosecond;
 
 };
 
@@ -26,9 +26,9 @@ public:
 
    wait(no_initialize_t) {}
    constexpr wait() {}
-   constexpr wait(huge_integer iNanosecond) { m_iNanosecond = iNanosecond; }
-   constexpr wait(huge_integer iSecond, huge_integer iNanosecond): wait(iNanosecond + iSecond * 1'000'000'000) { }
-   wait(double dWait): wait((huge_integer) (dWait * 1'000'000'000.0)) {}
+   constexpr wait(long long iNanosecond) { m_iNanosecond = iNanosecond; }
+   constexpr wait(long long iSecond, long long iNanosecond): wait(iNanosecond + iSecond * 1'000'000'000) { }
+   wait(double dWait): wait((long long) (dWait * 1'000'000'000.0)) {}
    wait(const struct TIME& time) : wait(time.m_iSecond, time.m_iNanosecond) {}
    wait(const class wait& wait) : wait(wait.m_iNanosecond) {}
 

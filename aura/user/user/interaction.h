@@ -395,7 +395,7 @@ namespace user
       class ::time                              m_timeLastFullUpdate;
       class ::time                              m_timeLastVisualChange;
       string                                    m_strName;
-      huge_natural                                       m_uiUserInteractionFlags;
+      unsigned long long                                       m_uiUserInteractionFlags;
       ::pointer<::windowing::cursor>            m_pcursorDefault;
       string                                    m_strWindowText2;
       ::a_string_function                       m_astringfunctionWindowText;

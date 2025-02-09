@@ -3469,7 +3469,7 @@ end:
          /*      for(int uj = 0; uj < str.length(); uj++)
          {
          char sz[32];
-         ansi_from_huge_integer(sz, str[uj], 16);
+         ansi_from_long_long(sz, str[uj], 16);
          if(ansi_length(sz) == 0)
          {
          strEncode += "00";

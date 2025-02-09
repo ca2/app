@@ -723,7 +723,7 @@ concept non_container = !primitive_container < CONTAINER >;
 
 
 template < primitive_enum ENUM >
-inline huge_integer as_huge_integer(const ENUM & e) { return (huge_integer)(::raw_enum_of<ENUM>) e; }
+inline long long as_long_long(const ENUM & e) { return (long long)(::raw_enum_of<ENUM>) e; }
 
 
 

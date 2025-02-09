@@ -15,9 +15,9 @@ namespace hex
    CLASS_DECL_ACME string from_asc(const string& strAsc);
 
 
-   CLASS_DECL_ACME huge_integer to_huge_integer(const ::scoped_string & scopedstr);
+   CLASS_DECL_ACME long long to_long_long(const ::scoped_string & scopedstr);
 
-   CLASS_DECL_ACME huge_natural to_huge_natural(const string & pcsz);
+   CLASS_DECL_ACME unsigned long long to_unsigned_long_long(const string & pcsz);
 
    CLASS_DECL_ACME unsigned int to_unsigned_int(const ::string & str);
 
@@ -157,7 +157,7 @@ namespace hex
 
 
    template < character_count s_iWidth >
-   inline auto padded_from(huge_natural u, enum_digit_case edigitcase)
+   inline auto padded_from(unsigned long long u, enum_digit_case edigitcase)
    {
 
       ::inline_string < char, s_iWidth > numberstring;
@@ -186,7 +186,7 @@ namespace hex
 
 
    template < character_count s_iWidth >
-   inline auto lower_case_padded_from(huge_natural u)
+   inline auto lower_case_padded_from(unsigned long long u)
    {
 
       return padded_from < s_iWidth >(u, e_digit_case_lower);
@@ -195,7 +195,7 @@ namespace hex
 
 
    template < character_count s_iWidth >
-   inline auto upper_case_padded_from(huge_natural u)
+   inline auto upper_case_padded_from(unsigned long long u)
    {
 
       return padded_from < s_iWidth >(u, e_digit_case_upper);
@@ -204,9 +204,9 @@ namespace hex
 
 
    inline void to(unsigned int & u,const ::string & str) { u = to_unsigned_int(str); }
-   inline void to(huge_natural & u,const ::string & str) { u = to_huge_natural(str); }
+   inline void to(unsigned long long & u,const ::string & str) { u = to_unsigned_long_long(str); }
 #ifdef __APPLE__
-   inline void to(unsigned long & u,const ::string & str) { u = to_huge_natural(str); }
+   inline void to(unsigned long & u,const ::string & str) { u = to_unsigned_long_long(str); }
 #endif
    inline uptr to_uptr(const ::string & str) { uptr u; to(u,str); return u; }
 

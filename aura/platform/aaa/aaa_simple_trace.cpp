@@ -91,7 +91,7 @@ CLASS_DECL_AURA void trace(enum_trace_level elevel, const ::string & pszTag, con
 
          char pszNum[30];
 
-         ansi_from_huge_integer(pszNum, iLine, 10);
+         ansi_from_long_long(pszNum, iLine, 10);
 
          ansi_concatenate(psz, "(");
 

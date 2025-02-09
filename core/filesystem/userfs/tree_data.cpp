@@ -75,7 +75,7 @@ namespace userfs
 
 #ifdef _DEBUG
 
-   huge_integer tree_data::increment_reference_count()
+   long long tree_data::increment_reference_count()
    {
 
       return ::user::tree_data::increment_reference_count();
@@ -92,7 +92,7 @@ namespace userfs
    }
 
 
-   huge_integer tree_data::decrement_reference_count()
+   long long tree_data::decrement_reference_count()
    {
 
 //      auto c = m_countReference--;
@@ -113,10 +113,10 @@ namespace userfs
    }
 
 
-   huge_integer tree_data::release()
+   long long tree_data::release()
    {
 
-      huge_integer i = decrement_reference_count();
+      long long i = decrement_reference_count();
 
       if (i == 0)
       {

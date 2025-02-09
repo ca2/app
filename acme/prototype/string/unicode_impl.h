@@ -272,7 +272,7 @@ inline bool is_legal_unicode_index(int iUnicodeIndex)
 
    return iUnicodeIndex >= 0 && iUnicodeIndex < 65536 ? true : false;
 
-   //return ca >= ((huge_natural) 0xffffffffu) ? false : true;
+   //return ca >= ((unsigned long long) 0xffffffffu) ? false : true;
 
 }
 

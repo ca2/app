@@ -42,7 +42,7 @@
 //
 //
 //   atom operator()(const ::scoped_string & scopedstr);
-//   atom operator()(huge_integer i);
+//   atom operator()(long long i);
 //
 //   static atom_space *                            s_pidspace;
 //

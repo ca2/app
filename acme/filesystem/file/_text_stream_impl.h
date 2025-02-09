@@ -14,11 +14,11 @@
 //inline void __string_exchange(text_stream & s, char & i) { s.number_exchange(i); }
 //inline void __string_exchange(text_stream & s, short & i) { s.number_exchange(i); }
 //inline void __string_exchange(text_stream & s, int & i) { s.number_exchange(i); }
-//inline void __string_exchange(text_stream & s, huge_integer & i) { s.number_exchange(i); }
+//inline void __string_exchange(text_stream & s, long long & i) { s.number_exchange(i); }
 //inline void __string_exchange(text_stream & s, unsigned char & u) { s.number_exchange(u); }
 //inline void __string_exchange(text_stream & s, unsigned short & u) { s.number_exchange(u); }
 //inline void __string_exchange(text_stream & s, unsigned int & u) { s.number_exchange(u); }
-//inline void __string_exchange(text_stream & s, huge_natural & u) { s.number_exchange(u); }
+//inline void __string_exchange(text_stream & s, unsigned long long & u) { s.number_exchange(u); }
 //#if !defined(LINUX) && !defined(FREEBSD) && !defined(OPENBSD)
 //inline void __string_exchange(text_stream & s, long & l) { s.number_exchange(l); }
 //#endif

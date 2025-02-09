@@ -48,7 +48,7 @@ namespace handler
          };
 
 
-         huge_natural m_hnHandlerFlag;
+         unsigned long long m_hnHandlerFlag;
 
 
       };
@@ -89,8 +89,8 @@ namespace handler
 
       virtual bool on_idle();
       // ThomasBorregaardSorensen!! Like handlers
-      //virtual void call(const enum_message, huge_integer iData = 0, ::matter * pmatter = nullptr);
-      //virtual void call(const enum_id, huge_integer iData = 0, ::matter* pmatter = nullptr);
+      //virtual void call(const enum_message, long long iData = 0, ::matter * pmatter = nullptr);
+      //virtual void call(const enum_id, long long iData = 0, ::matter* pmatter = nullptr);
       virtual void call_message(const ::enum_message & emessage, ::wparam wparam = {}, ::lparam lparam = {}, ::particle * pparticle = nullptr);
 
 

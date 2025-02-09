@@ -56,7 +56,7 @@ namespace compress_bzip2
       class memory memIn;
       memIn.set_size(1024 * 8);
 
-      huge_integer uRead = pfileIn->read(memIn.data(), memIn.size());
+      long long uRead = pfileIn->read(memIn.data(), memIn.size());
 
       bz_stream zstream;
       zero(zstream);

@@ -404,14 +404,14 @@ namespace apex
 ////      time.Format(strPre, "%Y-%m-%d %H:%M:%S");
 ////      string strTick;
 ////      auto millisTotal = ::get_millis() - ::first_milli();
-////      huge_integer uiMillis = millisTotal % 1000;
-////      huge_integer uiTotalSeconds = millisTotal / 1000;
-////      huge_integer uiSeconds = uiTotalSeconds % 60;
-////      huge_integer uiTotalMinutes = uiTotalSeconds / 60;
-////      huge_integer uiMinutes = uiTotalMinutes % 60;
-////      huge_integer uiTotalHours = uiTotalMinutes / 60;
-////      huge_integer uiHours = uiTotalHours % 24;
-////      huge_integer uiTotalDays = uiTotalHours / 24;
+////      long long uiMillis = millisTotal % 1000;
+////      long long uiTotalSeconds = millisTotal / 1000;
+////      long long uiSeconds = uiTotalSeconds % 60;
+////      long long uiTotalMinutes = uiTotalSeconds / 60;
+////      long long uiMinutes = uiTotalMinutes % 60;
+////      long long uiTotalHours = uiTotalMinutes / 60;
+////      long long uiHours = uiTotalHours % 24;
+////      long long uiTotalDays = uiTotalHours / 24;
 ////      // sipman LCTV learning to format hours, minutes and seconds.... (me (re) learning too)...
 ////      if (uiTotalDays > 0)
 ////      {

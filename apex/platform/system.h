@@ -77,10 +77,10 @@ namespace apex
 #ifdef _DEBUG
 
 
-      huge_integer increment_reference_count() override;
+      long long increment_reference_count() override;
 
 
-      huge_integer decrement_reference_count() override;
+      long long decrement_reference_count() override;
 
 
 #endif
@@ -427,7 +427,7 @@ namespace apex
 
       void dump_command_line_and_environment_variables_to_file() override;
 
-      //void system_id_update(huge_integer iUpdate, huge_integer iPayload) override;
+      //void system_id_update(long long iUpdate, long long iPayload) override;
 
       //void add_handler(::particle * pmatter, bool bPriority = false) override;
 

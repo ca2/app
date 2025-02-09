@@ -186,8 +186,8 @@ enum enum_type
    e_type_unsigned_int,
    //e_type_long,
    //e_type_unsigned_long,
-   e_type_huge_integer,
-   e_type_huge_natural,
+   e_type_long_long,
+   e_type_unsigned_long_long,
 
 
    // floating int_point
@@ -245,7 +245,7 @@ enum enum_type
    e_type_int_array,
    e_type_payload_array,
    e_type_property_set,
-   e_type_huge_integer_array,
+   e_type_long_long_array,
    e_type_memory,
    e_type_path,
    e_type_last_element,
@@ -265,8 +265,8 @@ enum enum_type
    e_type_pshort = e_type_short | e_type_pointer_of,
    e_type_punsigned_int = e_type_unsigned_int | e_type_pointer_of,
    e_type_pint = e_type_int | e_type_pointer_of,
-   e_type_phuge_natural = e_type_huge_natural | e_type_pointer_of,
-   e_type_phuge_integer = e_type_huge_integer | e_type_pointer_of,
+   e_type_punsigned_long_long = e_type_unsigned_long_long | e_type_pointer_of,
+   e_type_plong_long = e_type_long_long | e_type_pointer_of,
    e_type_pfloat = e_type_float | e_type_pointer_of,
    e_type_pdouble= e_type_double | e_type_pointer_of,
 
@@ -286,8 +286,8 @@ constexpr bool is_number(enum_type etype)
    || etype ==  e_type_short
    || etype ==  e_type_unsigned_int
    || etype ==  e_type_int
-   || etype ==  e_type_huge_natural
-   || etype ==  e_type_huge_integer
+   || etype ==  e_type_unsigned_long_long
+   || etype ==  e_type_long_long
    || etype == e_type_float
    || etype == e_type_double;
 
@@ -378,7 +378,7 @@ constexpr char line_feed_letter(bool bCarriage)
 
 
 
-//enum  : huge_integer
+//enum  : long long
 //{
 //
 //
@@ -428,9 +428,9 @@ enum enum_priority
 
 
 //bool CLASS_DECL_ACME succeeded(const ::e_status & estatus);
-//bool CLASS_DECL_ACME status_succeeded(huge_integer i);
+//bool CLASS_DECL_ACME status_succeeded(long long i);
 //bool CLASS_DECL_ACME failed(const ::e_status & estatus);
-//bool CLASS_DECL_ACME status_failed(huge_integer i);
+//bool CLASS_DECL_ACME status_failed(long long i);
 
 
 enum enum_task_flag
@@ -520,7 +520,7 @@ enum enum_zorder
 
 
 //enum e_callstack :
-//   huge_integer
+//   long long
 //{
 //
 //
@@ -677,7 +677,7 @@ enum enum_border
 };
 
 
-enum enum_window_flag : huge_integer
+enum enum_window_flag : long long
 {
 
 
@@ -803,7 +803,7 @@ enum enum_service_status
 #include "parallelization.h"
 
 
-enum enum_item : huge_integer
+enum enum_item : long long
 {
 
    e_item_none = 0,
@@ -1087,7 +1087,7 @@ namespace user
 {
 
 
-   enum enum_key : huge_integer;
+   enum enum_key : long long;
 
 
 } // namespace user

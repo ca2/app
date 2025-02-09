@@ -23,7 +23,7 @@ namespace database
    }
 
 
-   void database_impl::connect(const ::string & name, const ::string & host, const ::string & port, const ::string & user, const ::string & pass, const ::string & sckt, huge_natural uConnectionFlags)
+   void database_impl::connect(const ::string & name, const ::string & host, const ::string & port, const ::string & user, const ::string & pass, const ::string & sckt, unsigned long long uConnectionFlags)
    {
 
       m_strHost = host;

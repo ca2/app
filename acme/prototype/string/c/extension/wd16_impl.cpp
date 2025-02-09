@@ -738,7 +738,7 @@ CLASS_DECL_ACME const ::wd16_character * wd16_find_char_reverse(const ::wd16_cha
 //CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_duplicate_and_free(const ::wd16_character * psz1, ::wd16_character * psz2);
 
 
-CLASS_DECL_ACME void wd16_from_u64_base(::wd16_character * sz, huge_natural u, int iBase, enum_digit_case edigitcase)
+CLASS_DECL_ACME void wd16_from_u64_base(::wd16_character * sz, unsigned long long u, int iBase, enum_digit_case edigitcase)
 {
 
    wd16_character * pend = nullptr;
@@ -748,12 +748,12 @@ CLASS_DECL_ACME void wd16_from_u64_base(::wd16_character * sz, huge_natural u, i
 }
 
 
-CLASS_DECL_ACME void wd16_from_huge_integer_base(::wd16_character * sz, huge_integer i, int iBase, enum_digit_case edigitcase)
+CLASS_DECL_ACME void wd16_from_long_long_base(::wd16_character * sz, long long i, int iBase, enum_digit_case edigitcase)
 {
 
    wd16_character * pend = nullptr;
 
-   __huge_integertowd16(i, sz, iBase, edigitcase, pend);
+   __long_longtowd16(i, sz, iBase, edigitcase, pend);
 
 }
 
@@ -761,7 +761,7 @@ CLASS_DECL_ACME void wd16_from_huge_integer_base(::wd16_character * sz, huge_int
 #ifdef WINDOWS
 
 
-CLASS_DECL_ACME huge_integer wd16_to_huge_integer(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase)
+CLASS_DECL_ACME long long wd16_to_long_long(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase)
 {
 
    return wcstoll(psz, (::wd16_character **) ppszEnd, iBase);
@@ -769,7 +769,7 @@ CLASS_DECL_ACME huge_integer wd16_to_huge_integer(const ::wd16_character * psz, 
 }
 
 
-CLASS_DECL_ACME huge_natural wd16_to_huge_natural(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase)
+CLASS_DECL_ACME unsigned long long wd16_to_unsigned_long_long(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase)
 {
 
    return wcstoull(psz, (::wd16_character **) ppszEnd, iBase);
@@ -797,7 +797,7 @@ CLASS_DECL_ACME unsigned int wd16_to_unsigned_int(const ::wd16_character * psz, 
 
 
 
-CLASS_DECL_ACME huge_integer wd16_to_huge_integer(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase)
+CLASS_DECL_ACME long long wd16_to_long_long(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase)
 {
 
    return __wd16toi64(psz, (::wd16_character **) ppszEnd, iBase);
@@ -805,7 +805,7 @@ CLASS_DECL_ACME huge_integer wd16_to_huge_integer(const ::wd16_character * psz, 
 }
 
 
-CLASS_DECL_ACME huge_natural wd16_to_huge_natural(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase)
+CLASS_DECL_ACME unsigned long long wd16_to_unsigned_long_long(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase)
 {
 
    return __wd16tou64(psz, (::wd16_character **) ppszEnd, iBase);
@@ -1140,12 +1140,12 @@ CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_and_duplicate(const ::
 //CLASS_DECL_ACME int wd16_compare_case_insensitive(const unichar * psz, const unichar * sz2);
 //CLASS_DECL_ACME ::wd16_character * wd16_find_string_case_insensitive(const unichar * src, const unichar * find);
 
-//CLASS_DECL_ACME void wd16_from_u64_base(unichar * sz, huge_natural i, int iBase);
-//CLASS_DECL_ACME void wd16_from_int_base(unichar * sz, huge_integer i, int iBase);
+//CLASS_DECL_ACME void wd16_from_u64_base(unichar * sz, unsigned long long i, int iBase);
+//CLASS_DECL_ACME void wd16_from_int_base(unichar * sz, long long i, int iBase);
 
 
-//CLASS_DECL_ACME void l64toa_dup(::wd16_character * sz, huge_integer i, huge_integer iBase);
-//CLASS_DECL_ACME void i64toa_dup(::wd16_character * sz, huge_integer i);
+//CLASS_DECL_ACME void l64toa_dup(::wd16_character * sz, long long i, long long iBase);
+//CLASS_DECL_ACME void i64toa_dup(::wd16_character * sz, long long i);
 //CLASS_DECL_ACME void wd16_reverse(unichar * sz);
 //CLASS_DECL_ACME void w_zero_pad(::wd16_character * sz, character_count iPad);
 

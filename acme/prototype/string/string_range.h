@@ -1805,8 +1805,8 @@ public:
    //static void consume(::const_ansi_range & range, const ::ansi_character * psz);
    void consume(const ::scoped_string & scopedstr);
    //void consume_spaces(::collection::count iMinimumCount = 1);
-   huge_natural consume_natural(huge_natural uiMax = ((huge_natural)-1), huge_natural uiMin = 0);
-   //huge_natural consume_natural(string & str, huge_natural uiMax = ((huge_natural)-1), huge_natural uiMin = 0);
+   unsigned long long consume_natural(unsigned long long uiMax = ((unsigned long long)-1), unsigned long long uiMin = 0);
+   //unsigned long long consume_natural(string & str, unsigned long long uiMax = ((unsigned long long)-1), unsigned long long uiMin = 0);
    ::string_base < ITERATOR_TYPE > consume_hex();
    //void consume_spaces(::const_ansi_range & range, ::collection::count iMinimumCount);
    ::string_base < ITERATOR_TYPE > consume_non_spaces();

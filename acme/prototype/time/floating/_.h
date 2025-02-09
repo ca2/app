@@ -5,7 +5,7 @@
 //#include "acme/prototype/time/floating/time.h"
 
 
-inline double double_nanosecond() { return (double)::huge_integer_nanosecond(); }
+inline double double_nanosecond() { return (double)::long_long_nanosecond(); }
 
 inline double double_microsecond() { return double_nanosecond() / 1'000.0; }
 
@@ -21,7 +21,7 @@ inline double double_day() { return double_nanosecond() / 86'400'000'000'000.0; 
 
 
 
-//inline float f32_nanosecond() { return (float)::huge_integer_nanosecond(); }
+//inline float f32_nanosecond() { return (float)::long_long_nanosecond(); }
 //
 //inline float f32_microsecond() { return f32_nanosecond() / 1'000.0f; }
 //

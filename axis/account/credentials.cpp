@@ -272,7 +272,7 @@ namespace account
          if (bOk)
          {
 
-            auto estatus = (::e_status) ::ansi_to_huge_integer(strOpen);
+            auto estatus = (::e_status) ::ansi_to_long_long(strOpen);
 
             if (estatus == ::success_credentials || estatus == ::success_authenticated)
             {
@@ -321,7 +321,7 @@ namespace account
    void credentials::save_status_to_storage(const ::e_status & estatus)
    {
 
-      string strStatus = ::as_string(estatus.as_huge_integer());
+      string strStatus = ::as_string(estatus.as_long_long());
 
       set("open", strStatus);
 
@@ -510,7 +510,7 @@ namespace account
          catch (const ::exception& exception)
          {
 
-            error() <<"check_ca2_hash " << exception.m_estatus.as_huge_integer();
+            error() <<"check_ca2_hash " << exception.m_estatus.as_long_long();
 
          }
 

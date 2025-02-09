@@ -21,7 +21,7 @@ namespace file
          void SetStream(writer *outStream) { m_Stream.SetStream(outStream); }
          void ReleaseStream() { m_Stream.ReleaseStream(); }
          unsigned int GetBitPosition() const { return (8 - m_BitPos); }
-         huge_natural GetProcessedSize() const { return m_Stream.GetProcessedSize() + (8 - m_BitPos + 7) /8; }
+         unsigned long long GetProcessedSize() const { return m_Stream.GetProcessedSize() + (8 - m_BitPos + 7) /8; }
          void Init()
          {
             m_Stream.Init();

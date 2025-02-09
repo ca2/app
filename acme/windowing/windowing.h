@@ -147,7 +147,7 @@ namespace acme
 
          virtual void _do_tasks();
          
-         virtual void application_handle(huge_integer l, void * p);
+         virtual void application_handle(long long l, void * p);
 
          //virtual void defer_initialize_windowing();
 

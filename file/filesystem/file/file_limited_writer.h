@@ -20,14 +20,14 @@ namespace file
       { 
          //_stream.Release(); 
       }
-      void Init(huge_natural size, bool overflowIsAllowed = false)
+      void Init(unsigned long long size, bool overflowIsAllowed = false)
       {
          _size = size;
          _overflow = false;
          _overflowIsAllowed = overflowIsAllowed;
       }
       bool IsFinishedOK() const { return (_size == 0 && !_overflow); }
-      huge_natural GetRem() const { return _size; }
+      unsigned long long GetRem() const { return _size; }
    };
 
 } // namespace file

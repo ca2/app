@@ -87,7 +87,7 @@ namespace compress_zlib
 
       memIn.set_size((memsize)maximum(1024, minimum(pfileIn->right_size(), 1024 * 64)));
 
-      huge_integer uRead = pfileIn->read(memIn);
+      long long uRead = pfileIn->read(memIn);
 
       z_stream zstream;
 

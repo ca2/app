@@ -212,14 +212,14 @@ pdirectorysystem->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir)
    }
 
 
-   huge_integer application::increment_reference_count()
+   long long application::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
 
    }
 
-   huge_integer application::decrement_reference_count()
+   long long application::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();

@@ -77,11 +77,11 @@ namespace windowing
       ~simple_ui_display();
 
 
-      virtual huge_integer increment_reference_count();
+      virtual long long increment_reference_count();
 
-      virtual huge_integer decrement_reference_count();
+      virtual long long decrement_reference_count();
 
-      virtual huge_integer release();
+      virtual long long release();
 
 
       button * new_button(const ::string & pszLabel, enum_dialog_result edialogresult);

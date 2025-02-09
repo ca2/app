@@ -48,7 +48,7 @@ namespace hotplugin
 
       int w =300;
 
-      int v = (int) (::huge_integer_millisecond() / 2);
+      int v = (int) (::long_long_millisecond() / 2);
 
       int x = v % rectangleBar.width();
 

@@ -269,7 +269,7 @@ namespace apex
       // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
       //::increment_reference_count(this);
 
-      srand((unsigned int)::huge_integer_nanosecond());
+      srand((unsigned int)::long_long_nanosecond());
 
       m_bService = false;
 
@@ -308,7 +308,7 @@ namespace apex
 #ifdef DEBUG
 
 
-   huge_integer application::increment_reference_count()
+   long long application::increment_reference_count()
    {
 
       return ::platform::context::increment_reference_count();
@@ -316,7 +316,7 @@ namespace apex
    }
 
 
-   huge_integer application::decrement_reference_count()
+   long long application::decrement_reference_count()
    {
 
       return ::platform::context::decrement_reference_count();
@@ -1244,7 +1244,7 @@ namespace apex
 
    //   string strTitle;
 
-   //   huge_natural uFlags = 0;
+   //   unsigned long long uFlags = 0;
 
    //   ::time timeTimeout;
 
@@ -5401,7 +5401,7 @@ namespace apex
    }
 
 
-   //   void application::on_event(huge_natural u, ::particle * pparticle)
+   //   void application::on_event(unsigned long long u, ::particle * pparticle)
    //   {
    //
    //      object_ptra ptra;
@@ -9661,7 +9661,7 @@ namespace apex
    bool application::get_fs_size(string & strSize, const ::string & pszPath, bool & bPending)
    {
 
-      huge_integer i64Size;
+      long long i64Size;
 
       if (!get_fs_size(i64Size, pszPath, bPending))
       {
@@ -9721,7 +9721,7 @@ namespace apex
    }
 
 
-   bool application::get_fs_size(huge_integer & i64Size, const ::string & pszPath, bool & bPending)
+   bool application::get_fs_size(long long & i64Size, const ::string & pszPath, bool & bPending)
    {
       return false;
       //db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());

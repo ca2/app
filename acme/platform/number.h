@@ -57,13 +57,13 @@ typedef unsigned int long unsigned int;
 #define CLIP32(x)  ((x) & ALLONES32)
 
 #ifdef _MSC_VER
-//typedef huge_natural huge_natural;
-//typedef huge_integer s64;
+//typedef unsigned long long unsigned long long;
+//typedef long long s64;
 #define ULL(v)   (v##ui64)
 #define ALLONES64   ULL(0xffffffffffffffff)
 #else  /* !_MSC_VER */
-//typedef unsigned int huge_integer huge_natural;
-//typedef signed huge_integer s64;
+//typedef unsigned int long long unsigned long long;
+//typedef signed long long s64;
 #define ULL(v)   (v##ULL)
 #define ALLONES64   ULL(0xffffffffffffffff)
 #endif /* ?_MSC_VER */
@@ -75,7 +75,7 @@ typedef unsigned int long unsigned int;
 * assumed to be at least 64-bit. This will not work correctly
 * on (old) 36-bit architectures (PDP-11 for instance).
 *
-* On non-64-bit architectures, "huge_integer" is used.
+* On non-64-bit architectures, "long long" is used.
 */
 
 /*

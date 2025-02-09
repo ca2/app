@@ -123,12 +123,12 @@ namespace user
 
       pgraphics->fill_rectangle(rectangleX, argb(bAlpha, 150, 200, 255));
 
-      huge_integer iMin = m_scalar.minimum().get_huge_integer();
-      huge_integer iMax = m_scalar.maximum().get_huge_integer();
-      huge_integer iVal = m_scalar.get().get_huge_integer();
+      long long iMin = m_scalar.minimum().get_long_long();
+      long long iMax = m_scalar.maximum().get_long_long();
+      long long iVal = m_scalar.get().get_long_long();
 
       ::int_rectangle rectangle;
-      for(huge_integer i = iMin; i <= iMax; i++)
+      for(long long i = iMin; i <= iMax; i++)
       {
          GetStepRect(&rectangle, i, iMin, iMax, rectangleX);
          if(i == iVal)
@@ -171,7 +171,7 @@ namespace user
    }
 
 
-   void step_slider::GetStepHoverRect(::int_rectangle * prectangle, huge_integer iStep, huge_integer iMin, huge_integer iMax, const ::int_rectangle & rectangleX)
+   void step_slider::GetStepHoverRect(::int_rectangle * prectangle, long long iStep, long long iMin, long long iMax, const ::int_rectangle & rectangleX)
    {
 
       if((iMax - iMin) == 0)
@@ -192,7 +192,7 @@ namespace user
    }
 
 
-   void step_slider::GetStepRect(::int_rectangle * prectangle, huge_integer iStep, huge_integer iMin, huge_integer iMax, const ::int_rectangle & rectangleX)
+   void step_slider::GetStepRect(::int_rectangle * prectangle, long long iStep, long long iMin, long long iMax, const ::int_rectangle & rectangleX)
    {
 
       if((iMax - iMin) == 0)
@@ -224,11 +224,11 @@ namespace user
 
       }
 
-      huge_integer iMin, iMax;
+      long long iMin, iMax;
 
-      iMin = m_scalar.minimum().get_huge_integer();
+      iMin = m_scalar.minimum().get_long_long();
 
-      iMax = m_scalar.maximum().get_huge_integer();
+      iMax = m_scalar.maximum().get_long_long();
 
       return __allocate ::item(e_element_item, (::collection::index) (iMin + (((point.x() - rectangleX.left()) * (iMax - iMin)) / rectangleX.width())));
 

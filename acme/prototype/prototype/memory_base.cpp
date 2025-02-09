@@ -1183,9 +1183,9 @@ void memory_base::to_hex(string & str, memsize pos, memsize count)
 
    char * pchDst = str.get_buffer(count * 2);
 
-   huge_natural tickEnd = pos + count;
+   unsigned long long tickEnd = pos + count;
 
-   for (huge_natural dw = pos; dw < tickEnd; dw++)
+   for (unsigned long long dw = pos; dw < tickEnd; dw++)
    {
 
       if (((pchSrc[dw] & 0xf0) >> 4) < 10)

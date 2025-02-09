@@ -3,9 +3,9 @@
 //#include <math.h>
 
 
-huge_integer ceil_div(huge_integer num, huge_integer den)
+long long ceil_div(long long num, long long den)
 {
-   huge_integer quo = num / den;
+   long long quo = num / den;
    if ((num % den) > 0)
       quo++;
    return quo;
@@ -113,6 +113,6 @@ int type_maximum_digits(enum_integer_type etype, int iBase)
 //int int_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_int, iBase); }
 //int u32_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_unsigned_int, iBase); }
 //
-//int i64_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_huge_integer, iBase); }
-//int u64_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_huge_natural, iBase); }
+//int i64_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_long_long, iBase); }
+//int u64_maximum_digits(int iBase) { return type_maximum_digits(e_integer_type_unsigned_long_long, iBase); }
 //

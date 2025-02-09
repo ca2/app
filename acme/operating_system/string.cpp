@@ -48,7 +48,7 @@ CLASS_DECL_ACME int ansi_nicoll(const ::ansi_character * psz1, const ::ansi_char
 }
 
 
-CLASS_DECL_ACME huge_integer ansi_to_huge_integer(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
+CLASS_DECL_ACME long long ansi_to_long_long(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
 {
 
    return strtoll(psz, (::ansi_character **)ppszEnd, iBase);
@@ -56,7 +56,7 @@ CLASS_DECL_ACME huge_integer ansi_to_huge_integer(const ::ansi_character * psz, 
 }
 
 
-CLASS_DECL_ACME huge_natural ansi_to_huge_natural(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
+CLASS_DECL_ACME unsigned long long ansi_to_unsigned_long_long(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase)
 {
 
    return strtoull(psz, (::ansi_character **)ppszEnd, iBase);
@@ -1148,7 +1148,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 ////CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_duplicate_and_free(const ::ansi_character * psz1, ::ansi_character * psz2);
 //
 //
-//CLASS_DECL_ACME void ansi_from_huge_natural(::ansi_character * sz, huge_natural u, int iBase, enum_digit_case edigitcase)
+//CLASS_DECL_ACME void ansi_from_unsigned_long_long(::ansi_character * sz, unsigned long long u, int iBase, enum_digit_case edigitcase)
 //{
 //
 //   ::ansi_character * end;
@@ -1158,12 +1158,12 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME void ansi_from_huge_integer(::ansi_character * sz, huge_integer i, int iBase, enum_digit_case edigitcase)
+//CLASS_DECL_ACME void ansi_from_long_long(::ansi_character * sz, long long i, int iBase, enum_digit_case edigitcase)
 //{
 //
 //   ::ansi_character * end;
 //
-//   __huge_integertoansi(i, sz, iBase, edigitcase, end);
+//   __long_longtoansi(i, sz, iBase, edigitcase, end);
 //
 //}
 //
@@ -1183,12 +1183,12 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //   ::ansi_character * end;
 //
-//   __huge_integertoansi(i, sz, iBase, edigitcase, end);
+//   __long_longtoansi(i, sz, iBase, edigitcase, end);
 //
 //}
 //
 //
-//CLASS_DECL_ACME huge_integer ansi_count_to_huge_integer(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase, character_count srclen)
+//CLASS_DECL_ACME long long ansi_count_to_long_long(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase, character_count srclen)
 //{
 //
 //   auto len = ansi_length(psz);
@@ -1208,7 +1208,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //         auto pszDup = ansi_count_duplicate(psz, srclen);
 //
-//         auto i = ansi_to_huge_integer(pszDup, ppszEnd, iBase);
+//         auto i = ansi_to_long_long(pszDup, ppszEnd, iBase);
 //
 //         if (ppszEnd)
 //         {
@@ -1225,7 +1225,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //   }
 //
-//   return ansi_to_huge_integer(psz, ppszEnd, iBase);
+//   return ansi_to_long_long(psz, ppszEnd, iBase);
 //
 //}
 //

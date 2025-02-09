@@ -1105,20 +1105,20 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //string & string::assign(int n,int ca)
 //{
-//   return assign((huge_natural)n,(huge_natural)ca);
+//   return assign((unsigned long long)n,(unsigned long long)ca);
 //}
 //
-//string & string::assign(huge_integer n,huge_integer ca)
+//string & string::assign(long long n,long long ca)
 //{
-//   return assign((huge_natural)n,(huge_natural)ca);
+//   return assign((unsigned long long)n,(unsigned long long)ca);
 //}
 //
 //string & string::assign(unsigned int n,unsigned int ca)
 //{
-//   return assign((huge_natural)n,(huge_natural)ca);
+//   return assign((unsigned long long)n,(unsigned long long)ca);
 //}
 //
-//string & string::assign(huge_natural n,huge_natural ca)
+//string & string::assign(unsigned long long n,unsigned long long ca)
 //{
 //   string strChar = ::str::uni_to_utf8(ca);
 //   while(n > 0)

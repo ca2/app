@@ -974,7 +974,7 @@ namespace filemanager
 
    //   document * pdocument;
 
-   //   if (atom.huge_integer() < -1 || atom.huge_integer() == m_pimpactsystemProject->get_document_count())
+   //   if (atom.long_long < -1 || atom.long_long == m_pimpactsystemProject->get_document_count())
    //   {
 
    //      pcreate->prop("component::template") = this;
@@ -1004,7 +1004,7 @@ namespace filemanager
    //      }
 
    //   }
-   //   else if (atom.huge_integer() < m_pimpactsystemProject->get_document_count())
+   //   else if (atom.long_long < m_pimpactsystemProject->get_document_count())
    //   {
 
    //      pdocument = m_pimpactsystemProject->get_document((index)atom);
@@ -1105,7 +1105,7 @@ namespace filemanager
 
    //   document * pdocument;
 
-   //   if (atom.huge_integer() < -1 || atom.huge_integer() == m_pimpactsystem->get_document_count())
+   //   if (atom.long_long < -1 || atom.long_long == m_pimpactsystem->get_document_count())
    //   {
 
    //      pcreate->prop("component::template") = this;
@@ -1135,7 +1135,7 @@ namespace filemanager
    //      }
 
    //   }
-   //   else if (atom.huge_integer() < m_pimpactsystem->get_document_count())
+   //   else if (atom.long_long < m_pimpactsystem->get_document_count())
    //   {
 
    //      pdocument = m_pimpactsystem->get_document((index)atom);

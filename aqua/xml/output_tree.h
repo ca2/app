@@ -25,7 +25,7 @@ namespace xml
 
       void set_attribute(const ::atom & atom, const ::payload & payload);
 
-      //void set_attr(const ::scoped_string & scopedstrName, huge_integer iValue, bool bOptional = true);
+      //void set_attr(const ::scoped_string & scopedstrName, long long iValue, bool bOptional = true);
 
       //void set_bool_attr(const ::scoped_string & scopedstrName, bool bValue, bool bOptional = true);
 

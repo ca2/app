@@ -18,7 +18,7 @@ public:
    base_enum();
    base_enum(const base_enum < EENUM, edefault> & evalue);
    base_enum(const wparam & wparam) :m_evalue((EENUM)wparam.m_number){}
-   base_enum(huge_integer i) :m_evalue((EENUM)i) {}
+   base_enum(long long i) :m_evalue((EENUM)i) {}
    base_enum(EENUM evalue);
    base_enum(int i);
    virtual ~base_enum();
@@ -26,7 +26,7 @@ public:
    void DefaultConstruct();
 
    const base_enum <EENUM, edefault> & operator = (int i) { return operator =((EENUM)i); }
-   const base_enum <EENUM, edefault> & operator = (huge_integer i) { return operator =((EENUM)i); }
+   const base_enum <EENUM, edefault> & operator = (long long i) { return operator =((EENUM)i); }
    const base_enum <EENUM, edefault> & operator = (const wparam & wparam) { return operator =((EENUM) wparam.m_number); }
 
    const base_enum <EENUM, edefault> & operator = (EENUM evalue);

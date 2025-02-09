@@ -13,8 +13,8 @@
 struct system_time_t;
 class file_time;
 
-CLASS_DECL_ACME huge_integer __first_tick(void);
-CLASS_DECL_ACME huge_integer __get_tick(void);
+CLASS_DECL_ACME long long __first_tick(void);
+CLASS_DECL_ACME long long __get_tick(void);
 
 
 class time;
@@ -41,7 +41,7 @@ CLASS_DECL_ACME bool is_valid_file_time(const ::file_time & filetime);
 inline ::file_time as_file_time(const FILETIME & filetime)
 {
 
-   return { file_time_t{}, (huge_natural) ::make_huge_natural(filetime.dwLowDateTime, filetime.dwHighDateTime) };
+   return { file_time_t{}, (unsigned long long) ::make_unsigned_long_long(filetime.dwLowDateTime, filetime.dwHighDateTime) };
 
 }
 

@@ -1998,7 +1998,7 @@ string str::get_word(const ::string & str, const ::string & strSeparator, bool b
 
 // GitHub MightyPork / utf8_encode.c
 
-utf8_character unicode_to_utf8(huge_integer i)
+utf8_character unicode_to_utf8(long long i)
 {
 
    utf8_character utf8character;
@@ -2047,7 +2047,7 @@ utf8_character unicode_to_utf8(huge_integer i)
 }
 
 
-character_count unicode_to_utf8_length(huge_integer i)
+character_count unicode_to_utf8_length(long long i)
 {
    if (i <0)
    {
@@ -2565,7 +2565,7 @@ int str::get_escaped_char(const ::ansi_character * psz, character_count pos, cha
 
             }
 
-            huge_integer hex = ::hex::to_huge_integer(val);
+            long long hex = ::hex::to_long_long(val);
 
             character_count val_len = val.length();
 
@@ -2584,9 +2584,9 @@ int str::get_escaped_char(const ::ansi_character * psz, character_count pos, cha
          else
          {
 
-            huge_integer hex = ::hex::to_huge_integer(string(&psz[pos + 2], 2));
+            long long hex = ::hex::to_long_long(string(&psz[pos + 2], 2));
 
-            if (huge_integer(strlen(psz)) <= pos + 2 || hex == -1)
+            if (long long(strlen(psz)) <= pos + 2 || hex == -1)
             {
 
                return BAD_WCHAR;
@@ -2768,7 +2768,7 @@ public:
 
    }
 
-   void append_uni(huge_integer w)
+   void append_uni(long long w)
    {
 
       if (m_iPos + 3 > m_iSize)
@@ -3067,13 +3067,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    }
 
 
-   string bigint2string(huge_natural l)
+   string bigint2string(unsigned long long l)
    {
       string str;
-      huge_natural tmp = l;
+      unsigned long long tmp = l;
       while (tmp)
       {
-         huge_natural a = tmp % 10;
+         unsigned long long a = tmp % 10;
          str = (char)(a + 48) + str;
          tmp /= 10;
       }
@@ -3096,12 +3096,12 @@ int str::to_int(const ::string & str)
 unsigned int str::to_unsigned_int(const ::scoped_string & scopedstr)
 {
 
-   return (unsigned int)ansi_to_huge_integer(scopedstr);
+   return (unsigned int)ansi_to_long_long(scopedstr);
 
 }
 
 
-huge_integer str::to_huge_integer(const ::string & str)
+long long str::to_long_long(const ::string & str)
 {
 
    int i = 0;
@@ -3117,7 +3117,7 @@ huge_integer str::to_huge_integer(const ::string & str)
 
    }
 
-   huge_natural u = 0;
+   unsigned long long u = 0;
 
    for (; i < str.length() && character_isdigit(str[i]); i++)
    {
@@ -3129,20 +3129,20 @@ huge_integer str::to_huge_integer(const ::string & str)
    if (bNegative)
    {
 
-      return -(huge_integer)u;
+      return -(long long)u;
 
    }
    else
    {
 
-      return (huge_integer)u;
+      return (long long)u;
 
    }
 
 }
 
 
-//huge_integer to_huge_integer(const ::string & str)
+//long long to_long_long(const ::string & str)
 //{
 
 //   int i = 0;
@@ -3154,7 +3154,7 @@ huge_integer str::to_huge_integer(const ::string & str)
 //   if(bNegative)
 //      psz++;
 
-//   huge_natural u = 0;
+//   unsigned long long u = 0;
 
 //   for(; *psz != '\0' && i < 30 && ansi_char_isdigit(*psz); psz++, i++)
 //   {
@@ -3162,20 +3162,20 @@ huge_integer str::to_huge_integer(const ::string & str)
 //   }
 
 //   if(bNegative)
-//      return -(huge_integer) u;
+//      return -(long long) u;
 //   else
-//      return (huge_integer) u;
+//      return (long long) u;
 
 //}
 
-huge_natural str::to_huge_natural(const ::string & str)
+unsigned long long str::to_unsigned_long_long(const ::string & str)
 {
 
    int i = 0;
 
    for (; i < str.length() && character_isspace(str[i]); i++);
 
-   huge_natural u = 0;
+   unsigned long long u = 0;
 
    for (; i < str.length() && character_isdigit(str[i]); i++)
    {
@@ -3186,14 +3186,14 @@ huge_natural str::to_huge_natural(const ::string & str)
 
 }
 
-//huge_natural to_huge_natural(const ::string & strParam)
+//unsigned long long to_unsigned_long_long(const ::string & strParam)
 //{
 
 //   int i = 0;
 
 //   for (; *psz != '\0' && i < 30 && character_isspace(*psz); i++, psz++);
 
-//   huge_natural u = 0;
+//   unsigned long long u = 0;
 
 //   for(; *psz != '\0' && i < 30 && isdigit(*psz); psz++, i++)
 //   {

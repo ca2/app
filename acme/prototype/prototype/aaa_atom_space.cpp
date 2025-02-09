@@ -104,7 +104,7 @@
 //}
 //
 //
-//atom atom_space::operator()(huge_integer i)
+//atom atom_space::operator()(long long i)
 //{
 //
 //   return (iptr) i;
@@ -224,7 +224,7 @@
 //
 //   index iUpperBound = m_psza.get_upper_bound();
 //
-//   huge_integer iCompare = 0;
+//   long long iCompare = 0;
 //
 //   const ::scoped_string & scopedstr;
 //

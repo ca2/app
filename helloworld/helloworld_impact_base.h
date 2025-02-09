@@ -53,11 +53,11 @@ namespace helloworld
       impact_base(::particle * pparticle);
       virtual ~impact_base();
 
-      virtual huge_integer increment_reference_count()
+      virtual long long increment_reference_count()
       {
          return ::object::increment_reference_count();
       }
-      virtual huge_integer decrement_reference_count()
+      virtual long long decrement_reference_count()
       {
          return ::object::decrement_reference_count();
       }

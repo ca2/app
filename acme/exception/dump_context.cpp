@@ -265,7 +265,7 @@
 ////}
 ////
 ////
-////void dump_context::write(huge_integer i)
+////void dump_context::write(long long i)
 ////{
 ////
 ////   string str;
@@ -279,7 +279,7 @@
 ////}
 ////
 ////
-////void dump_context::write(huge_natural u)
+////void dump_context::write(unsigned long long u)
 ////{
 ////
 ////   string str;
@@ -377,7 +377,7 @@
 ////}
 ////
 ////
-////void dump_context::hex_dump(huge_integer i)
+////void dump_context::hex_dump(long long i)
 ////{
 ////
 ////   string str;
@@ -391,7 +391,7 @@
 ////}
 ////
 ////
-////void dump_context::hex_dump(huge_natural u)
+////void dump_context::hex_dump(unsigned long long u)
 ////{
 ////
 ////   string str;

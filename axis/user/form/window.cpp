@@ -1350,7 +1350,7 @@ throw_todo();
    }
 
 
-   bool form_window::_001IsPointInside(::user::interaction * pinteraction, const huge_integer_point & point)
+   bool form_window::_001IsPointInside(::user::interaction * pinteraction, const long_long_point & point)
    {
 
       if(pinteraction == nullptr)

@@ -76,7 +76,7 @@ namespace sockets_bsd
 
       g_interlockedcountSocketHandler++;
 
-      ::informationf("%s currently allocated count = %lld", typeid(*this).name(), g_interlockedcountSocketHandler.operator huge_integer());
+      ::informationf("%s currently allocated count = %lld", typeid(*this).name(), g_interlockedcountSocketHandler.operator long long);
 
 #endif
 
@@ -94,7 +94,7 @@ namespace sockets_bsd
 
 
 
-   huge_integer socket_handler::increment_reference_count()
+   long long socket_handler::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -102,7 +102,7 @@ namespace sockets_bsd
    }
 
 
-   huge_integer socket_handler::decrement_reference_count()
+   long long socket_handler::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();

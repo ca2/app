@@ -19,7 +19,7 @@
 //      impact_bitmap(::particle * pparticle);
 //      virtual ~impact_bitmap();
 //
-//      virtual void create_window_graphics(oswindow interaction_impl, huge_integer cx, huge_integer cy, int iStride = -1);
+//      virtual void create_window_graphics(oswindow interaction_impl, long long cx, long long cy, int iStride = -1);
 //      virtual void destroy_window_graphics();
 //
 //      //virtual void update_window(color32_t * pimage32, const ::int_rectangle & rectangle, int cxParam, int cyParam, int iStride = -1, bool bTransferBuffer = true);

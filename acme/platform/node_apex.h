@@ -27,10 +27,10 @@ namespace platform
 // #ifdef _DEBUG
 //
 //
-//       huge_integer increment_reference_count() override;
+//       long long increment_reference_count() override;
 //
 //
-//       huge_integer decrement_reference_count() override;
+//       long long decrement_reference_count() override;
 //
 //
 // #endif
@@ -62,7 +62,7 @@ namespace platform
       //void start_node() override;
 
 
-      //void application_handle(huge_integer l, void * p) override;
+      //void application_handle(long long l, void * p) override;
 
 
       // void on_operating_system_user_theme_change() override;

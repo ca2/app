@@ -57,9 +57,9 @@ CLASS_DECL_ACME int __wd16nicmp(const ::wd16_character * psz1, const ::wd16_char
 
 CLASS_DECL_ACME const ::wd16_character * __wd16istr(const ::wd16_character * psz, const ::wd16_character * pszFind);
 
-CLASS_DECL_ACME ::wd16_character * __u64towd16(huge_natural u, ::wd16_character * buf, int iBase, enum_digit_case edigitcase, ::wd16_character *& end);
+CLASS_DECL_ACME ::wd16_character * __u64towd16(unsigned long long u, ::wd16_character * buf, int iBase, enum_digit_case edigitcase, ::wd16_character *& end);
 
-CLASS_DECL_ACME ::wd16_character * __huge_integertowd16(huge_integer i, ::wd16_character * buf, int iBase, enum_digit_case edigitcase, ::wd16_character *& end);
+CLASS_DECL_ACME ::wd16_character * __long_longtowd16(long long i, ::wd16_character * buf, int iBase, enum_digit_case edigitcase, ::wd16_character *& end);
 
 CLASS_DECL_ACME ::wd16_character * overlap_safe_wd16ncpy(::wd16_character * pszDst, const ::wd16_character * pszSrc, character_count srclen);
 
@@ -75,8 +75,8 @@ CLASS_DECL_ACME character_count __wd16spn(const ::wd16_character * psz1, const :
 
 CLASS_DECL_ACME character_count __wd16cspn(const ::wd16_character * psz1, const ::wd16_character * psz2);
 
-CLASS_DECL_ACME huge_integer __wd16toi64(const ::wd16_character * psz, ::wd16_character ** ppszEnd, int iBase);
-CLASS_DECL_ACME huge_natural __wd16tou64(const ::wd16_character * psz, ::wd16_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME long long __wd16toi64(const ::wd16_character * psz, ::wd16_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME unsigned long long __wd16tou64(const ::wd16_character * psz, ::wd16_character ** ppszEnd, int iBase);
 CLASS_DECL_ACME int __wd16toi32(const ::wd16_character * psz, ::wd16_character ** ppszEnd, int iBase);
 CLASS_DECL_ACME unsigned int __wd16tou32(const ::wd16_character * psz, ::wd16_character ** ppszEnd, int iBase);
 

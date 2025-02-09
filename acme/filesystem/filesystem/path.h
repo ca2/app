@@ -24,14 +24,14 @@ namespace file
 
       enum_path                  m_epath;
 
-      huge_integer                        m_iSize; // if negative, not set/calculated/retrieved the file int_size(for directories would be all contained elements total sum int_size)
+      long long                        m_iSize; // if negative, not set/calculated/retrieved the file int_size(for directories would be all contained elements total sum int_size)
       e_type                     m_etype;
       character_count                    m_iName; // if negative, not set/calculated/retrieved where name starts
       character_count                    m_iBasePathLength; // if negative, not set/calculated/retrieved base path length in the path
       ::pointer<::particle>      m_pparticleOsPath;
        enumeration < ::file::enum_flag > m_flags;
 
-      path_meta(enum_path epath = e_path_none, huge_integer iSize = -1, e_type etype = e_type_unknown, huge_integer iName = -1, character_count iBasePathLength = -1, enumeration < ::file::enum_flag > eflag = ::file::e_flag_none);
+      path_meta(enum_path epath = e_path_none, long long iSize = -1, e_type etype = e_type_unknown, long long iName = -1, character_count iBasePathLength = -1, enumeration < ::file::enum_flag > eflag = ::file::e_flag_none);
 
       ~path_meta();
 
@@ -62,13 +62,13 @@ namespace file
       //path(enum_for_moving) { }
       //path(enum_get_buffer, character_count len) { get_buffer(len); }
       path(const path & path) : string(path), path_meta(path) {}
-      path(const ::ansi_string & str, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, huge_integer iSize = -1);
-      path(const ::wd16_string & str, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, huge_integer iSize = -1);
-      path(const ::wd32_string & str, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, huge_integer iSize = -1);
-      path(const ::ansi_character * pansisz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, huge_integer iSize = -1);
-      path(const ::wd16_character * pansisz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, huge_integer iSize = -1);
-      path(const ::wd32_character * pansisz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, huge_integer iSize = -1);
-      path(const ::scoped_string & scopedstr, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, huge_integer iSize = -1);
+      path(const ::ansi_string & str, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
+      path(const ::wd16_string & str, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
+      path(const ::wd32_string & str, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
+      path(const ::ansi_character * pansisz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
+      path(const ::wd16_character * pansisz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
+      path(const ::wd32_character * pansisz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
+      path(const ::scoped_string & scopedstr, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
 
       //template<typed_range<::ansi_character *> RANGE>
       //path(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str); }
@@ -181,18 +181,18 @@ namespace file
 
 //      path() { m_epath = e_path_file; }
 //      path(nullptr_t) {}
-//      path(const ::ansi_string & str, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, huge_integer iSize = -1);
-////      path(const ::wd16_string & wd16str, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, huge_integer iSize = -1) :
+//      path(const ::ansi_string & str, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
+////      path(const ::wd16_string & wd16str, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1) :
 ////         path((const::ansi_string &)wd16str, epath, iDir, bNormalize, iSize) {}
-////      path(const ::wd32_string & wd32str, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, huge_integer iSize = -1) :
+////      path(const ::wd32_string & wd32str, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1) :
 ////         path((const::ansi_string &)wd32str, epath, iDir, bNormalize, iSize) {}
-//      path(const ::scoped_string & scopedstr, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, huge_integer iSize = -1) :
+//      path(const ::scoped_string & scopedstr, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1) :
 //         path((const::ansi_string &)psz, epath, iDir, bNormalize, iSize) {}
-////      path(const ::wd16_character * pwd16sz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, huge_integer iSize = -1) :
+////      path(const ::wd16_character * pwd16sz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1) :
 ////         path((const::ansi_string &)pwd16sz, epath, iDir, bNormalize, iSize) {}
-////      path(const ::wd32_character * pwd32sz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, huge_integer iSize = -1) :
+////      path(const ::wd32_character * pwd32sz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1) :
 ////         path((const::ansi_string &)pwd32sz, epath, iDir, bNormalize, iSize) {}
-//      //path(::ansi_character ch, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, huge_integer iSize = -1) :
+//      //path(::ansi_character ch, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1) :
 //        // path((const::ansi_string &)ch, epath, iDir, bNormalize, iSize) {}
 //      path(enum_path epath) { m_epath = epath; }
 //      path(const path& path);

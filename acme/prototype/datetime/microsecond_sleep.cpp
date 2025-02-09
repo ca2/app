@@ -62,7 +62,7 @@ bool microsecond_sleep::sleep(unsigned long usec)
 
    LARGE_INTEGER ft;
 
-   ft.QuadPart = -(10 * (huge_integer)usec);
+   ft.QuadPart = -(10 * (long long)usec);
 
    MICROSECOND_SLEEP * pthis = (MICROSECOND_SLEEP *)this;
 

@@ -27,7 +27,7 @@ public:
    bool           m_bMessageBox;
    bool           m_bMessageBoxOn;
    bool           m_iMessageBoxResult;
-   huge_integer      m_lMemFreeAvailableKb;
+   long long      m_lMemFreeAvailableKb;
 
 
    bool           m_bEditFocusSet;

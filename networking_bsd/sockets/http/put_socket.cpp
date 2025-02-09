@@ -100,7 +100,7 @@ namespace sockets
       {
          outheader("content-type")     = m_content_type;
       }
-      inheader("content-length")      = (huge_integer) m_content_length;
+      inheader("content-length")      = (long long) m_content_length;
       inheader("user_agent")          = MyUseragent();
       inheader("connection")          = "close";
       SendRequest();

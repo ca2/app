@@ -203,11 +203,11 @@ class time;
 //public:
 //
 //
-//   huge_integer       m_i;
+//   long long       m_i;
 //
 //
 //   class ::time() { m_i = 0; }
-//   class ::time(huge_integer i) { m_i = i; }
+//   class ::time(long long i) { m_i = i; }
 //
 //
 //   class ::time & operator = (const second & second) { m_i = second.m_i * 1'000; return *this; }
@@ -215,7 +215,7 @@ class time;
 //   class ::time & operator = (const microsecond & microsecond);
 //   class ::time & operator = (const nanosecond & nanosecond);
 //   class ::time & operator = (const class time & time);
-//   class ::time & operator = (huge_integer i) { m_i = i; return *this; }
+//   class ::time & operator = (long long i) { m_i = i; return *this; }
 //
 //
 //};
@@ -233,9 +233,9 @@ class time;
 //DEFINE_UNIT(CLASS_DECL_ACME, tick_time, unsigned int)
 ////#endif
 
-//DEFINE_C_NUMBER(CLASS_DECL_ACME, filesize        , huge_natural)
-//DEFINE_C_NUMBER(CLASS_DECL_ACME, filesize    , huge_natural)
-//DEFINE_C_NUMBER(CLASS_DECL_ACME, filesize      ,  huge_integer)
+//DEFINE_C_NUMBER(CLASS_DECL_ACME, filesize        , unsigned long long)
+//DEFINE_C_NUMBER(CLASS_DECL_ACME, filesize    , unsigned long long)
+//DEFINE_C_NUMBER(CLASS_DECL_ACME, filesize      ,  long long)
 
 
 /*namespace numeric_info
@@ -251,7 +251,7 @@ class time;
    template <>
    inline filesize get_minimum_value < filesize > ()
    {
-      return static_cast < huge_natural > (0);
+      return static_cast < unsigned long long > (0);
    }
 
    template <>

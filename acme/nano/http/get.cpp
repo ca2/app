@@ -64,7 +64,7 @@ namespace nano
          
          get_memory_response()->assign(data, size);
          
-         payload("http_status_code") = (huge_integer) http_status;
+         payload("http_status_code") = (long long) http_status;
          
          //passynchronoushttpdata->m_function(passynchronoushttpdata);
          
@@ -82,7 +82,7 @@ namespace nano
    void get::set_status(long http_status)
    {
       
-      payload("http_status_code") = (huge_integer) http_status;
+      payload("http_status_code") = (long long) http_status;
       
    }
 

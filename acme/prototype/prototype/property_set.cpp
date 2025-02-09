@@ -2021,7 +2021,7 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
 //   if (atom.is_integer())
 //   {
 //
-//      iFind = (index) (atom.huge_integer());
+//      iFind = (index) (atom.long_long);
 //
 //      if (::is_null(pFind) || iFind >= this->get_count())
 //      {

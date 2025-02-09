@@ -228,7 +228,7 @@ namespace sockets
    void http_post_socket::DoMultipartPost()
    {
 
-      huge_natural length = 0; // calculate content-length of our post body
+      unsigned long long length = 0; // calculate content-length of our post body
 
       string tmp;
 
@@ -279,7 +279,7 @@ namespace sockets
 
             string & name = pair.element1();
 
-            huge_natural content-length = pair.element2().m_uiContentLength;
+            unsigned long long content-length = pair.element2().m_uiContentLength;
 
             string filename;
 
@@ -324,7 +324,7 @@ namespace sockets
          //
          //   m_mapFiles.get_next_assoc(pos, name, filename);
          //
-         //   huge_natural content-length = m_mapContentLength[filename];
+         //   unsigned long long content-length = m_mapContentLength[filename];
 
          //   string content-type = m_mapContentType[filename];
 
@@ -365,7 +365,7 @@ namespace sockets
 
       inheader("content-type") = "multipart/form-data; boundary=" + m_boundary;
 
-      inheader("content-length") = (huge_integer) length;
+      inheader("content-length") = (long long) length;
 
 #if !defined(BSD_STYLE_SOCKETS)
 
@@ -411,7 +411,7 @@ namespace sockets
 
             string & name = pair.element1();
 
-            huge_natural content-length = pair.element2().m_uiContentLength;
+            unsigned long long content-length = pair.element2().m_uiContentLength;
 
             string filename;
 

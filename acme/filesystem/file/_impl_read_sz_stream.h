@@ -36,7 +36,7 @@ inline read_sz_stream::~read_sz_stream();
 
     //}
 
-inline  huge_natural read_sz_stream::read_natural(int iRadix = 10)
+inline  unsigned long long read_sz_stream::read_natural(int iRadix = 10)
     {
 
        return consume_natural(m_psz, m_pszBegin, iRadix);
@@ -44,7 +44,7 @@ inline  huge_natural read_sz_stream::read_natural(int iRadix = 10)
     }
 
 
-inline   huge_integer read_sz_stream::read_integer(int iRadix = 10)
+inline   long long read_sz_stream::read_integer(int iRadix = 10)
     {
 
        return consume_integer(m_psz, m_pszBegin, iRadix);
@@ -94,8 +94,8 @@ inline   ::string read_sz_stream::read_find_first_character_in(const ::ansi_char
 //   text_stream& operator <<(unsigned short u);
 //   text_stream& operator <<(int i);
 //   text_stream& operator <<(unsigned int u);
-//   text_stream& operator <<(huge_integer i);
-//   text_stream& operator <<(huge_natural u);
+//   text_stream& operator <<(long long i);
+//   text_stream& operator <<(unsigned long long u);
 //   text_stream& operator <<(float f);
 //   text_stream& operator <<(double d);
 //   // void write(const ::int_point & point) ;
@@ -293,7 +293,7 @@ inline    read_sz_stream& read_sz_stream::operator >>(unsigned int& u)
     }
 
 
-inline    read_sz_stream& read_sz_stream::operator >>(huge_integer& i)
+inline    read_sz_stream& read_sz_stream::operator >>(long long& i)
     {
 
        i = read_integer();
@@ -303,7 +303,7 @@ inline    read_sz_stream& read_sz_stream::operator >>(huge_integer& i)
     }
 
 
-inline    read_sz_stream& read_sz_stream::operator >>(huge_natural& u)
+inline    read_sz_stream& read_sz_stream::operator >>(unsigned long long& u)
     {
 
        u = read_natural();

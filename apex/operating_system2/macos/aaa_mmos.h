@@ -7,7 +7,7 @@
 {
    
    @public  char ** m_ppszWallpaper;
-   @public   huge_integer m_llWallpaper;
+   @public   long long m_llWallpaper;
    @public  int m_iIcon;
    @public  unsigned int * m_picon;
    @public   int m_cxIcon;

@@ -3,11 +3,11 @@
 #if OBJECT_TYPE_COUNTER
 
 int g_iObjTypCtrInit = 0;
-huge_integer g_iObjTypCtr = 0;
+long long g_iObjTypCtr = 0;
 
 critical_section g_csObjTypCtr;
 
-map < const char*, const ::string &, huge_integer, huge_integer > * g_pmapObjTypCtr = nullptr;
+map < const char*, const ::string &, long long, long long > * g_pmapObjTypCtr = nullptr;
 
 void object_type_counter_increment(::particle * pparticle)
 {

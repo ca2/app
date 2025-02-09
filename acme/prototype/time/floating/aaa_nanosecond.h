@@ -15,8 +15,8 @@
 //   constexpr floating_nanosecond_t(floating_nanosecond nanosecond = {}) : floating_nanosecond(nanosecond) {}
 //
 //
-//   operator integral_second() const { return integral_second((huge_integer) (m_d / 1'000'000'000.0)); }
-//   operator integral_nanosecond() const { return integral_nanosecond((huge_integer)fmod(m_d, 1'000'000'000.0)); }
+//   operator integral_second() const { return integral_second((long long) (m_d / 1'000'000'000.0)); }
+//   operator integral_nanosecond() const { return integral_nanosecond((long long)fmod(m_d, 1'000'000'000.0)); }
 //
 //   operator floating_second() const { return floating_second(m_d / 1'000'000'000.0); }
 //

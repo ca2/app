@@ -81,8 +81,8 @@ CLASS_DECL_ACME character_count unichar_count(const ::wd32_character * pstr);
 
 
 
-CLASS_DECL_ACME huge_integer string_to_signed(const ::wd32_character * psz);
-CLASS_DECL_ACME huge_natural as_huge_natural(const ::wd32_character * psz);
+CLASS_DECL_ACME long long string_to_signed(const ::wd32_character * psz);
+CLASS_DECL_ACME unsigned long long as_unsigned_long_long(const ::wd32_character * psz);
 CLASS_DECL_ACME double string_to_floating(const ::wd32_character * psz);
 
 

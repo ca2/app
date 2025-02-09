@@ -31,7 +31,7 @@ namespace filemanager
          public:
 
 
-            huge_integer            m_iFolder;
+            long long            m_iFolder;
             string         m_strName;
             EFolderType    m_etype;
             int            m_iImage;
@@ -47,7 +47,7 @@ namespace filemanager
          public:
 
 
-            int find_absolute(huge_integer iFolder);
+            int find_absolute(long long iFolder);
 
 
          };
@@ -65,7 +65,7 @@ namespace filemanager
             int                                          m_iIconArtistSelected;
             ::pointer<::filemanager::fs::simple::impact>  m_pserver;
             FolderArray                                  m_foldera;
-            huge_integer                                          m_iParentFolder;
+            long long                                          m_iParentFolder;
 
 
             tree();
@@ -80,7 +80,7 @@ namespace filemanager
             void parse(const ::string & pszSource);
 
 
-            ::pointer<::data::tree_item>FindTreeItem(huge_integer iFolder);
+            ::pointer<::data::tree_item>FindTreeItem(long long iFolder);
             ::collection::index _001GetItemImage(::pointer<::data::tree_item>pitem, bool bSelected);
 
 

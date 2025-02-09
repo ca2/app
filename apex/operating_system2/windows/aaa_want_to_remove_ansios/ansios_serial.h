@@ -50,7 +50,7 @@ using serial::io_exception;
 class ::durationTimer {
 public:
   ::durationTimer(const unsigned int ::duration);
-  huge_integer remaining();
+  long long remaining();
 
 private:
   static timespec timespec_now();

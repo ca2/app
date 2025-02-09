@@ -186,7 +186,7 @@ bool veiev_post::write(::payload rec)
 }
 
 
-huge_integer veiev_post::get_count()
+long long veiev_post::get_count()
 {
 
    if(m_pdataserver == nullptr)

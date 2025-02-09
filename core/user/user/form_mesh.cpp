@@ -399,7 +399,7 @@ namespace user
    }
 
 
-   bool form_mesh::_001IsPointInside(::user::interaction * pinteraction, const huge_integer_point & point)
+   bool form_mesh::_001IsPointInside(::user::interaction * pinteraction, const long_long_point & point)
    {
 
       if(pinteraction != nullptr)
@@ -458,9 +458,9 @@ namespace user
 //      //index_element_rectangle(&item, ::user::mesh::element_sub_item);
 //      rectangleControl = item.m_rectangleSubItem;
 //      client_to_screen(rectangleControl);
-//      huge_integer_rectangle rectangleForm;
+//      long_long_rectangle rectangleForm;
 //      window_rectangle(rectangleForm);
-//      huge_integer_rectangle rectangleX;
+//      long_long_rectangle rectangleX;
 //      rectangleX.top() = rectangleForm.top();
 //      rectangleX.bottom() = rectangleForm.bottom();
 //      rectangleX.left() = rectangleControl.left();

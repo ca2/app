@@ -27,11 +27,11 @@ HANDLE dup_handle(HANDLE h)
 
 //typedef struct _PROCESS_BASIC_INFORMATION64
 //{
-//   huge_natural  Reserved1;
-//   huge_natural  PebBaseAddress;
-//   huge_natural  Reserved2[2];
-//   huge_natural  UniqueProcessId;
-//   huge_natural  Reserved3;
+//   unsigned long long  Reserved1;
+//   unsigned long long  PebBaseAddress;
+//   unsigned long long  Reserved2[2];
+//   unsigned long long  UniqueProcessId;
+//   unsigned long long  Reserved3;
 //} PROCESS_BASIC_INFORMATION64;
 
 //typedef NTSTATUS(NTAPI *_NtQueryInformationProcess)(HANDLE ProcessHandle, unsigned int ProcessInformationClass, PVOID ProcessInformation, unsigned int ProcessInformationLength, PDWORD ReturnLength);
@@ -494,7 +494,7 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
 //}
 //
 //
-//CLASS_DECL_ACMEunsigned huge_integer translate_processor_affinity(int iOrder)
+//CLASS_DECL_ACMEunsigned long long translate_processor_affinity(int iOrder)
 //{
 //
 //   DWORD_PTR dwProcessAffinityMask;

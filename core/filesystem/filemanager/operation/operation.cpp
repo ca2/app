@@ -18,8 +18,8 @@ namespace filemanager
 
    bool has_digit(string strName);
    string get_number_mask(string strName);
-   huge_integer get_number_value(string strName);
-   string set_number_value(string strName, huge_integer iValue);
+   long long get_number_value(string strName);
+   string set_number_value(string strName, long long iValue);
 
 
    operation::operation()
@@ -778,7 +778,7 @@ namespace filemanager
    }
 
 
-   huge_integer get_number_value(string strName)
+   long long get_number_value(string strName)
    {
 
       string strResult;
@@ -806,12 +806,12 @@ namespace filemanager
 
       }
 
-      return ansi_to_huge_integer(strResult);
+      return ansi_to_long_long(strResult);
 
    }
 
 
-   string set_number_value(string strName, huge_integer iValue)
+   string set_number_value(string strName, long long iValue)
    {
 
       string strValue = as_string(iValue);
@@ -902,7 +902,7 @@ namespace filemanager
 
       if(has_digit(strName))
       {
-         huge_integer iValue = get_number_value(strName);
+         long long iValue = get_number_value(strName);
          string strFormat;
          for(int i = 1; i < 1000; i++)
          {

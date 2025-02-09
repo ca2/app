@@ -13,7 +13,7 @@ public:
    e_window_flag() { m_ewindowflag = (enum_window_flag)0; }
    ewindowflag(const std::initializer_list < enum_window_flag >& list) { m_ewindowflag = (enum_window_flag)0; for (auto& e : list) add(e); }
    ewindowflag(enum_window_flag e) { m_ewindowflag = e; }
-   ewindowflag(huge_integer i) { m_ewindowflag = (enum_window_flag)i; }
+   ewindowflag(long long i) { m_ewindowflag = (enum_window_flag)i; }
    ewindowflag(const ewindowflag& e) { m_ewindowflag = e.m_ewindowflag; }
 
    inline void add(enum_window_flag e) { m_ewindowflag = (enum_window_flag)(e | m_ewindowflag); }
@@ -25,16 +25,16 @@ public:
    inline ewindowflag& operator &= (const ewindowflag& e) { m_ewindowflag = (enum_window_flag)(m_ewindowflag & e.m_ewindowflag); return *this; }
 
    inline ewindowflag& operator += (enum_window_flag e) { return operator |= (e); }
-   inline ewindowflag& operator -= (enum_window_flag e) { return operator &= ((enum_window_flag)~(huge_integer)(e)); }
+   inline ewindowflag& operator -= (enum_window_flag e) { return operator &= ((enum_window_flag)~(long long)(e)); }
 
    inline ewindowflag& operator += (const ewindowflag& e) { return operator |= ((enum_window_flag)e.m_ewindowflag); }
-   inline ewindowflag& operator -= (const ewindowflag& e) { return operator &= ((enum_window_flag)~(huge_integer)(e.m_ewindowflag)); }
+   inline ewindowflag& operator -= (const ewindowflag& e) { return operator &= ((enum_window_flag)~(long long)(e.m_ewindowflag)); }
 
    inline ewindowflag& operator ^= (const ewindowflag& e) { toggle(e);  return *this; }
 
    inline ewindowflag operator + (const ewindowflag& t) const { auto copy = *this; copy.add(t); return copy; }
 
-   inline ewindowflag operator - (enum_window_flag e) const { return (enum_window_flag)(m_ewindowflag & ~((huge_integer)e)); }
+   inline ewindowflag operator - (enum_window_flag e) const { return (enum_window_flag)(m_ewindowflag & ~((long long)e)); }
 
    //template < typename TYPE >
    //ewindowflag operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return copy; }
@@ -43,7 +43,7 @@ public:
    inline ewindowflag operator | (enum_window_flag e) const { return (enum_window_flag)(m_ewindowflag | e); }
    inline ewindowflag operator & (enum_window_flag e) const { return (enum_window_flag)(m_ewindowflag & e); }
 
-   inline bool is(enum_window_flag e) const { return (huge_integer)(m_ewindowflag & e) == (huge_integer)e; }
+   inline bool is(enum_window_flag e) const { return (long long)(m_ewindowflag & e) == (long long)e; }
    inline bool has(enum_window_flag e) const { return is(e); }
 
    void erase(enum_window_flag e) { operator -= (e); }
@@ -81,7 +81,7 @@ public:
    ewindowflag& operator ++(int)
    {
 
-      m_ewindowflag = (enum_window_flag)((huge_integer) m_ewindowflag + 1);
+      m_ewindowflag = (enum_window_flag)((long long) m_ewindowflag + 1);
 
       return *this;
 
@@ -91,7 +91,7 @@ public:
    ewindowflag& operator %=(const enum_window_flag& eenum)
    {
 
-      m_ewindowflag = (enum_window_flag)((huge_integer) m_ewindowflag % (huge_integer) eenum);
+      m_ewindowflag = (enum_window_flag)((long long) m_ewindowflag % (long long) eenum);
 
       return *this;
 
@@ -100,7 +100,7 @@ public:
    ewindowflag& rotate(const enum_window_flag& eenum)
    {
 
-      if ((huge_integer) m_ewindowflag < 0)
+      if ((long long) m_ewindowflag < 0)
       {
 
          m_ewindowflag = (enum_window_flag)0;

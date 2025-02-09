@@ -68,7 +68,7 @@ namespace interprocess
 
 #else
 
-      m_atomApp = (huge_integer) node()->current_process_identifier();
+      m_atomApp = (long long) node()->current_process_identifier();
 
 #endif
 
@@ -146,7 +146,7 @@ namespace interprocess
       //
       //   }
       //
-      //   huge_integer iCall = ::str::consume_natural(strMessage);
+      //   long long iCall = ::str::consume_natural(strMessage);
       //
       //   if(!strMessage.begins_eat(" from "))
       //   {
@@ -290,7 +290,7 @@ namespace interprocess
 
             string strOriginObject = propertyset["protocol"]["origin_object"].as_string();
 
-            auto iCallId = propertyset["protocol"]["call_id"].as_huge_integer();
+            auto iCallId = propertyset["protocol"]["call_id"].as_long_long();
 
             auto pcall = create_call(strOrigin, strOriginObject, "reply." + strMember);
 
@@ -561,7 +561,7 @@ namespace interprocess
    //   //
    //   //   }
    //   //
-   //   //   huge_integer iCall = ::str::consume_natural(strMessage);
+   //   //   long long iCall = ::str::consume_natural(strMessage);
    //   //
    //   //   if(!strMessage.begins_eat(" from "))
    //   //   {
@@ -698,7 +698,7 @@ namespace interprocess
 
    //         string strOriginObject = propertyset["protocol"]["origin_object"].get_string();
 
-   //         auto iCallId = propertyset["protocol"]["call_id"].huge_integer();
+   //         auto iCallId = propertyset["protocol"]["call_id"].long_long;
 
    //         auto pcall = create_call(strOrigin, strOriginObject, "reply." + strMember);
 
@@ -740,7 +740,7 @@ namespace interprocess
    }
 
 
-   ::pointer<::interprocess::task>communication::get_task(huge_integer iTask)
+   ::pointer<::interprocess::task>communication::get_task(long long iTask)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -792,7 +792,7 @@ namespace interprocess
          if (strMember.case_insensitive_begins("reply."))
          {
 
-            huge_integer iTask = propertyset["protocol:call_id"].as_huge_integer();
+            long long iTask = propertyset["protocol:call_id"].as_long_long();
 
             auto pinterprocesstask = get_task(iTask);
 
@@ -830,7 +830,7 @@ namespace interprocess
          else if (strMember == "on_new_instance")
          {
 
-            on_new_instance(propertyset["module"].as_string(), propertyset["pid"].as_huge_integer());
+            on_new_instance(propertyset["module"].as_string(), propertyset["pid"].as_long_long());
 
          }
          else
@@ -925,7 +925,7 @@ namespace interprocess
 
       pathModule /= "module_list.txt";
 
-      ::file::path pathPid = pnode->process_identifier_module_path((unsigned int)idPid.as_huge_integer());
+      ::file::path pathPid = pnode->process_identifier_module_path((unsigned int)idPid.as_long_long());
 
       string strModuleList = file_system()->as_string(pathModule);
 

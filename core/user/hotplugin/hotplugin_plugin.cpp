@@ -17,7 +17,7 @@
 #if defined(LINUX) || defined(ANDROID) || defined(APPLEOS) || defined(SOLARIS)
 iptr get_map_failed();
 void my_munmap(void * pimage32,HANDLE hfile);
-void * my_open_map(const ::string & psz,HANDLE * pfile,bool bRead,bool bWrite,huge_integer int_size);
+void * my_open_map(const ::string & psz,HANDLE * pfile,bool bRead,bool bWrite,long long int_size);
 #endif
 
 
@@ -963,7 +963,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
    //}
 
 
-   //bool plugin::window_rectangle(::huge_integer_rectangle * prectangle)
+   //bool plugin::window_rectangle(::long_long_rectangle * prectangle)
    //{
 
    //   if(m_phost == nullptr)
@@ -985,7 +985,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
    //}
 
 
-   //bool plugin::this->rectangle(::huge_integer_rectangle * prectangle)
+   //bool plugin::this->rectangle(::long_long_rectangle * prectangle)
    //{
 
    //   if(m_phost == nullptr)
@@ -1080,7 +1080,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
       lparam lparam;
 
 
-      message = (unsigned int) (LPARAM) pusermessage->id().huge_integer();
+      message = (unsigned int) (LPARAM) pusermessage->id().long_long;
 
       wparam     = pusermessage->m_wparam;
 

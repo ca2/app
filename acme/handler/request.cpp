@@ -26,7 +26,7 @@ request::~request()
 
 
 
-huge_integer request::increment_reference_count()
+long long request::increment_reference_count()
 {
 
    return ::object::increment_reference_count();
@@ -34,7 +34,7 @@ huge_integer request::increment_reference_count()
 }
 
 
-huge_integer request::decrement_reference_count()
+long long request::decrement_reference_count()
 {
 
    return ::object::decrement_reference_count();

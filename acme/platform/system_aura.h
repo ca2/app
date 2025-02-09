@@ -440,7 +440,7 @@ namespace platform
   /*    static inline ::atom atom(const ::std::type_info & info);
       static inline ::atom atom(const ::string & psz);
       static inline ::atom atom(const ::string & str);
-      static inline ::atom atom(huge_integer i);
+      static inline ::atom atom(long long i);
       static inline ::atom_space & atom();
       inline ::atom atom(const ::payload & payload);
       inline ::atom atom(const property & prop);*/
@@ -539,8 +539,8 @@ virtual ::apex::session * session(::collection::index iEdge = 0) override;*/
       //virtual void defer_check_openweather_city_list();
 
       //virtual openweather_city * openweather_find_city(string strQuery);
-      //virtual ::collection::index openweather_find_city2(string strQuery, string & strCit, huge_integer & iId, double & dLat, double & dLon);
-      //virtual ::collection::index openweather_find_city2(string strQ1, string strQ2, string & strCit, huge_integer & iId, double & dLat, double & dLon, bool bPrefix);
+      //virtual ::collection::index openweather_find_city2(string strQuery, string & strCit, long long & iId, double & dLat, double & dLon);
+      //virtual ::collection::index openweather_find_city2(string strQ1, string strQ2, string & strCit, long long & iId, double & dLat, double & dLon, bool bPrefix);
 
 //#ifdef ANDROID
 ////#pragma message("at macos??")
@@ -576,7 +576,7 @@ virtual ::apex::session * session(::collection::index iEdge = 0) override;*/
       //virtual bool set_standalone_setting(string str, string strSetting) override;
 
 
-      //virtual void on_event(huge_natural u, ::particle * pparticle) override;
+      //virtual void on_event(unsigned long long u, ::particle * pparticle) override;
 
 
       virtual void on_initial_frame_position(::user::frame_interaction * pframe);

@@ -252,7 +252,7 @@
       // {
       // }
 
-      // void rx::receiver::on_ipc_post(rx * prx,huge_integer a,huge_integer b)
+      // void rx::receiver::on_ipc_post(rx * prx,long long a,long long b)
       // {
       // }
 
@@ -289,7 +289,7 @@
 
 
 
-      void * rx::on_interprocess_post(rx * prx,huge_integer a,huge_integer b)
+      void * rx::on_interprocess_post(rx * prx,long long a,long long b)
       {
 
          if(m_preceiver != nullptr)

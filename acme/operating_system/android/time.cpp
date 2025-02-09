@@ -4,7 +4,7 @@
 #include <time.h>
 
 
-CLASS_DECL_ACME huge_integer huge_integer_nanosecond()
+CLASS_DECL_ACME long long long_long_nanosecond()
 {
 
 #ifdef RASPBERRYPIOS
@@ -31,7 +31,7 @@ CLASS_DECL_ACME huge_integer huge_integer_nanosecond()
 
    }
 
-   return (huge_natural)ts.tv_sec * 1'000'000'000ull + (huge_natural)ts.tv_nsec;
+   return (unsigned long long)ts.tv_sec * 1'000'000'000ull + (unsigned long long)ts.tv_nsec;
 
 #endif
 
@@ -51,7 +51,7 @@ CLASS_DECL_ACME huge_integer huge_integer_nanosecond()
 //{
 
    //extern "C"
-CLASS_DECL_ACME huge_integer get_nanos()
+CLASS_DECL_ACME long long get_nanos()
 {
 
    struct timespec ts;
@@ -62,7 +62,7 @@ CLASS_DECL_ACME huge_integer get_nanos()
       return 0;
    }
 
-   huge_natural u = ts.tv_sec;
+   unsigned long long u = ts.tv_sec;
 
    u *= 1000 * 1000 * 1000;
 

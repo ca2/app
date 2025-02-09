@@ -1088,7 +1088,7 @@ namespace sockets
    }
 
 
-   huge_natural base_socket::GetBytesSent(bool b)
+   unsigned long long base_socket::GetBytesSent(bool b)
    {
       
       return base_socket_impl()->GetBytesSent(b);
@@ -1096,7 +1096,7 @@ namespace sockets
    }
 
 
-   huge_natural base_socket::GetBytesReceived(bool b)
+   unsigned long long base_socket::GetBytesReceived(bool b)
    {
       
       return base_socket_impl()->GetBytesReceived(b);

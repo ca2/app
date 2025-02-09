@@ -45,8 +45,8 @@ enum e_set_version
 //
 ////      void read(int & i);
 ////      void read(unsigned int & u);
-////      void read(huge_integer & i);
-////      void read(huge_natural & u);
+////      void read(long long & i);
+////      void read(unsigned long long & u);
 //
 //   using stream::read;
 //   virtual stream & read (bool & b) override;
@@ -60,8 +60,8 @@ enum e_set_version
 //   virtual stream & read (unsigned short & u) override;
 //   virtual stream & read (int & i) override;
 //   virtual stream & read (unsigned int & u) override;
-//   virtual stream & read (huge_integer & i) override;
-//   virtual stream & read (huge_natural & u) override;
+//   virtual stream & read (long long & i) override;
+//   virtual stream & read (unsigned long long & u) override;
 //   virtual stream & read (float & f) override;
 //   virtual stream & read (double & d) override;
 //   virtual stream & read(::int_point * ppoint) ;
@@ -86,8 +86,8 @@ enum e_set_version
 //   virtual stream & write (bool b) override;
 //   virtual stream & write (int i) override;
 //   virtual stream & write (unsigned int u) override;
-//   virtual stream & write (huge_integer i) override;
-//   virtual stream & write (huge_natural u) override;
+//   virtual stream & write (long long i) override;
+//   virtual stream & write (unsigned long long u) override;
 //   virtual stream & write (float f) override;
 //   virtual stream & write (double d) override;
 //   virtual stream & write(const ::int_point * ppoint);

@@ -383,8 +383,8 @@ namespace nanoui
       bool on_mouse_move(const ::int_point& point, bool bDown, const ::user::e_key& ekeyModifiers) override;
       //bool on_mouse_drag(const ::int_point & point, const ::user::e_key & ekeyModifiers) override;
 
-      bool on_key_down(::user::enum_key ekey, huge_integer scancode, const ::user::e_key& ekeyModifiers, const string& strText) override;
-      bool on_key_up(::user::enum_key ekey, huge_integer scancode, const ::user::e_key& ekeyModifiers) override;
+      bool on_key_down(::user::enum_key ekey, long long scancode, const ::user::e_key& ekeyModifiers, const string& strText) override;
+      bool on_key_up(::user::enum_key ekey, long long scancode, const ::user::e_key& ekeyModifiers) override;
 
       bool on_scroll_event(const ::int_point& point, double x, double y) override;
 

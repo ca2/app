@@ -872,7 +872,7 @@ namespace aura
 
    //   string strTitle;
 
-   //   huge_natural uFlags = 0;
+   //   unsigned long long uFlags = 0;
 
    //   ::time timeTimeout;
 
@@ -2553,7 +2553,7 @@ retry_license:
    }
 
 
-   //void application::on_set_scalar(enum_scalar escalar, huge_integer iValue, int iFlags)
+   //void application::on_set_scalar(enum_scalar escalar, long long iValue, int iFlags)
    //{
 
    //   //if (escalar == scalar_app_install_progress)
@@ -2584,7 +2584,7 @@ retry_license:
    //}
 
 
-   //void application::get_scalar_minimum(enum_scalar escalar, huge_integer & i)
+   //void application::get_scalar_minimum(enum_scalar escalar, long long & i)
    //{
 
    //   //if (escalar == scalar_app_install_progress)
@@ -2614,7 +2614,7 @@ retry_license:
 
    //}
 
-   //void application::get_scalar(enum_scalar escalar, huge_integer & i)
+   //void application::get_scalar(enum_scalar escalar, long long & i)
    //{
 
    //   //if (escalar == scalar_app_install_progress)
@@ -2644,7 +2644,7 @@ retry_license:
 
    //}
 
-   //void application::get_scalar_maximum(enum_scalar escalar, huge_integer & i)
+   //void application::get_scalar_maximum(enum_scalar escalar, long long & i)
    //{
 
    //   //if (escalar == scalar_download_size)
@@ -4044,7 +4044,7 @@ retry_license:
 //   }
 //
 //
-////   void application::on_event(huge_natural u, ::particle * pparticle)
+////   void application::on_event(unsigned long long u, ::particle * pparticle)
 ////   {
 ////
 ////      object_ptra ptra;
@@ -7930,7 +7930,7 @@ namespace aura
    bool application::get_fs_size(string& strSize, const ::string & pszPath, bool& bPending)
    {
 
-      huge_integer i64Size;
+      long long i64Size;
 
       if (!get_fs_size(i64Size, pszPath, bPending))
       {
@@ -7990,7 +7990,7 @@ namespace aura
    }
 
 
-   bool application::get_fs_size(huge_integer& i64Size, const ::string & pszPath, bool& bPending)
+   bool application::get_fs_size(long long& i64Size, const ::string & pszPath, bool& bPending)
    {
       return false;
       //db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());

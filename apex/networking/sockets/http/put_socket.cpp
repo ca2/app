@@ -64,7 +64,7 @@ namespace sockets
 
          m_filename = file;
 
-         m_content_length = ::particle::file()->length(file).as_huge_integer();
+         m_content_length = ::particle::file()->length(file).as_long_long();
 
       }
       else
@@ -110,7 +110,7 @@ namespace sockets
       {
          outheader("content-type")     = m_content_type;
       }
-      inheader("content-length")      = (huge_integer) m_content_length;
+      inheader("content-length")      = (long long) m_content_length;
       
       auto strUserAgent=MyUseragent();
       inheader("user-agent")          = strUserAgent;

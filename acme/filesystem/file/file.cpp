@@ -531,7 +531,7 @@ namespace file
    }
 
 
-   bool file::get_huge_natural(huge_natural & u)
+   bool file::get_unsigned_long_long(unsigned long long & u)
    {
 
       if (read({ &u, 8 }) != 8)
@@ -1307,13 +1307,13 @@ namespace file
       throw ::interface_only();
    }
 
-   void file::write (huge_integer i)
+   void file::write (long long i)
    {
       __UNREFERENCED_PARAMETER(i);
       throw ::interface_only();
    }
 
-   void file::write (huge_natural u)
+   void file::write (unsigned long long u)
    {
       __UNREFERENCED_PARAMETER(u);
       throw ::interface_only();

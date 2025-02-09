@@ -22,7 +22,7 @@ CLASS_DECL_ACME int_rectangle & muldiv(int_rectangle & rectangle, int numerator,
 
 
 
-CLASS_DECL_ACME huge_integer_rectangle & muldiv(huge_integer_rectangle & rectangle, huge_integer numerator, huge_integer denominator)
+CLASS_DECL_ACME long_long_rectangle & muldiv(long_long_rectangle & rectangle, long long numerator, long long denominator)
 {
 
    rectangle.left()    = ::uint64_muldiv(rectangle.left()     , (int)numerator, denominator);

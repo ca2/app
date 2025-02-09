@@ -304,7 +304,7 @@ namespace windows
    }
 
 
-   huge_integer file::get_file_size() const
+   long long file::get_file_size() const
    {
 
       LARGE_INTEGER largeintegerFileSize{};
@@ -321,7 +321,7 @@ namespace windows
    }
 
 
-   void file::ensure_file_size(huge_integer iSize)
+   void file::ensure_file_size(long long iSize)
    {
 
       auto iSizeCurrent = get_file_size();
@@ -336,7 +336,7 @@ namespace windows
    }
 
 
-   void file::set_file_size(huge_integer iSize)
+   void file::set_file_size(long long iSize)
    {
 
       set_file_pointer_ex(iSize, nullptr, SEEK_SET);
@@ -346,7 +346,7 @@ namespace windows
    }
 
 
-   void file::set_file_pointer_ex(huge_integer iOffset, PLARGE_INTEGER lpNewFilePointer, DWORD dwMoveMethod)
+   void file::set_file_pointer_ex(long long iOffset, PLARGE_INTEGER lpNewFilePointer, DWORD dwMoveMethod)
    {
 
       LARGE_INTEGER largeinteger{.QuadPart = iOffset };
@@ -361,7 +361,7 @@ namespace windows
    }
 
 
-   void file::set_file_pointer(huge_integer iOffset, DWORD dwMoveMethod)
+   void file::set_file_pointer(long long iOffset, DWORD dwMoveMethod)
    {
 
       set_file_pointer_ex(iOffset, nullptr, dwMoveMethod);
@@ -369,7 +369,7 @@ namespace windows
    }
 
 
-   huge_integer file::get_file_pointer() const
+   long long file::get_file_pointer() const
    {
 
       LARGE_INTEGER largeinteger{};
@@ -394,7 +394,7 @@ namespace windows
    }
 
 
-   void file::lock_file(huge_integer iOffset, huge_integer iCount)
+   void file::lock_file(long long iOffset, long long iCount)
    {
 
       if (!::LockFile((HANDLE)m_u, lower_unsigned_int(iOffset), upper_unsigned_int(iOffset), lower_unsigned_int(iCount), upper_unsigned_int(iCount)))
@@ -407,7 +407,7 @@ namespace windows
    }
 
 
-   void file::unlock_file(huge_integer iOffset, huge_integer iCount)
+   void file::unlock_file(long long iOffset, long long iCount)
    {
 
       if (!::UnlockFile((HANDLE)m_u, lower_unsigned_int(iOffset), upper_unsigned_int(iOffset), lower_unsigned_int(iCount), upper_unsigned_int(iCount)))

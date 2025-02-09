@@ -31,7 +31,7 @@ namespace userex
 //      if(set.has_property("message_box_timeout"))
       {
          
-  //       m_timeDelay = set["message_box_timeout"].huge_integer();
+  //       m_timeDelay = set["message_box_timeout"].long_long;
          
       }
 

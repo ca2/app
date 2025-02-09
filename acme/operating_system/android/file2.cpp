@@ -11,7 +11,7 @@
 //#include <sys/stat.h>
 
 
-void fd_set_size(int fd, huge_integer iSize)
+void fd_set_size(int fd, long long iSize)
 {
 
    if(ftruncate(fd, iSize) == -1)
@@ -20,7 +20,7 @@ void fd_set_size(int fd, huge_integer iSize)
 }
 
 
-huge_integer fd_get_file_size(int fd)
+long long fd_get_file_size(int fd)
 {
 
    struct stat st;

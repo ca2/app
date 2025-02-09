@@ -183,7 +183,7 @@ CLASS_DECL_ACME void debug_debug_reference()
    informationf("-");
 
 }
-//void property_object::add_trait(huge_integer i)
+//void property_object::add_trait(long long i)
 //{
 //
 //   if (!m_ptraits)
@@ -263,7 +263,7 @@ bool property_object::is_pinging() const
 //}
 
 
-//void property_object::notify(huge_natural uId)
+//void property_object::notify(unsigned long long uId)
 //{
 //
 //   m_uid |= uId;

@@ -205,8 +205,8 @@ namespace file
       virtual int get_unsigned_short(); // 0-255 - -1 if eof otherwise exception?
       inline unsigned short get_u16_unbounded() { return get_unsigned_short(); }
 
-      virtual bool get_huge_natural(huge_natural & hn); // 0-255 - -1 if eof otherwise exception?
-      inline huge_natural get_u64_unbounded() { huge_natural huge_natural; get_huge_natural(huge_natural); return huge_natural; }
+      virtual bool get_unsigned_long_long(unsigned long long & hn); // 0-255 - -1 if eof otherwise exception?
+      inline unsigned long long get_u64_unbounded() { unsigned long long ull; get_unsigned_long_long(ull); return ull; }
 
 
       virtual bool unget_if(::ansi_character ch);

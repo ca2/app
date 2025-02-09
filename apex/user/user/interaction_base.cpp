@@ -28,7 +28,7 @@ namespace user
 #ifdef _DEBUG
 
 
-   huge_integer interaction_base::increment_reference_count()
+   long long interaction_base::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -36,7 +36,7 @@ namespace user
    }
 
 
-   huge_integer interaction_base::decrement_reference_count()
+   long long interaction_base::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -44,7 +44,7 @@ namespace user
    }
 
 
-   huge_integer interaction_base::release()
+   long long interaction_base::release()
    {
 
       return ::object::release();
@@ -458,17 +458,17 @@ namespace user
    //}
 
 
-   //bool interaction_base::client_to_screen(::huge_integer_rectangle * prectangle)
+   //bool interaction_base::client_to_screen(::long_long_rectangle * prectangle)
    //{
 
-   //   ::offset_rect(prectangle, huge_integer_point(client_screen_top_left()));
+   //   ::offset_rect(prectangle, long_long_point(client_screen_top_left()));
 
    //   return true;
 
    //}
 
 
-   //bool interaction_base::client_to_screen(::huge_integer_point * ppoint)
+   //bool interaction_base::client_to_screen(::long_long_point * ppoint)
    //{
 
    //   ::offset_point(ppoint, client_screen_top_left());
@@ -518,7 +518,7 @@ namespace user
    //}
 
 
-   //bool interaction_base::screen_to_client(::huge_integer_rectangle * prectangle)
+   //bool interaction_base::screen_to_client(::long_long_rectangle * prectangle)
    //{
 
    //   ::offset_rect(prectangle, -client_screen_top_left());
@@ -528,7 +528,7 @@ namespace user
    //}
 
 
-   //bool interaction_base::screen_to_client(::huge_integer_point * ppoint)
+   //bool interaction_base::screen_to_client(::long_long_point * ppoint)
    //{
 
    //   ::offset_point(ppoint, -client_screen_top_left());
@@ -576,7 +576,7 @@ namespace user
    //}
 
 
-   //bool interaction_base::this->rectangle(::huge_integer_rectangle * prectangle)
+   //bool interaction_base::this->rectangle(::long_long_rectangle * prectangle)
 
    //{
 
@@ -587,7 +587,7 @@ namespace user
    //}
 
 
-   //bool interaction_base::window_rectangle(::huge_integer_rectangle * prectangle)
+   //bool interaction_base::window_rectangle(::long_long_rectangle * prectangle)
 
    //{
 
@@ -3699,7 +3699,7 @@ namespace user
 //
 //      ::pointer<::message::message>pmessage;
 //
-//      auto eprototype = ::message::get_message_prototype((enum_message) atom.huge_integer(), 0);
+//      auto eprototype = ::message::get_message_prototype((enum_message) atom.long_long, 0);
 //
 //      switch (eprototype)
 //      {
@@ -4489,8 +4489,8 @@ namespace user
       if (strType.contains("main_frame"))
       {
 
-         //information() << "main_frame interaction_base::destroy p1 " << (::huge_integer) p1;
-         //information() << "main_frame interaction_base::destroy p2 " << (::huge_integer) p2;
+         //information() << "main_frame interaction_base::destroy p1 " << (long long) p1;
+         //information() << "main_frame interaction_base::destroy p2 " << (long long) p2;
          information() << "main_frame interaction_base::destroy";
 
       }

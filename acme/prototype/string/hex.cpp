@@ -39,10 +39,10 @@ namespace hex
 {
 
 
-   huge_integer to_huge_integer(const ::scoped_string & scopedstr)
+   long long to_long_long(const ::scoped_string & scopedstr)
    {
 
-      huge_integer r = 0, num = 0;
+      long long r = 0, num = 0;
       if (scopedstr.is_empty())
       {
 
@@ -50,10 +50,10 @@ namespace hex
 
       }
       auto pcsz = scopedstr.begin();
-      for(huge_integer i = ansi_len(pcsz)-1; i >= 0; i--)
+      for(long long i = ansi_len(pcsz)-1; i >= 0; i--)
       {
 
-         huge_integer d = alphadigit_weight(pcsz[i]);
+         long long d = alphadigit_weight(pcsz[i]);
 
          if(d == -1)
             return -1;
@@ -73,9 +73,9 @@ namespace hex
       return r;
    }
 
-   huge_natural to_huge_natural(const ::string & str)
+   unsigned long long to_unsigned_long_long(const ::string & str)
    {
-      huge_natural r = 0;
+      unsigned long long r = 0;
       for(int i = 0; i < str.length(); i++)
       {
          r = r * 16 + str[i] - 48 - ((str[i] >= 'A') ? 7 : 0) - ((str[i] >= 'a') ? 32 : 0);

@@ -288,7 +288,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //			/* get content int_size of this stream */
 //			cliprdr_send_request_filecontents(clipboard, (void*) instance,
 //				instance->m_lIndex, FILECONTENTS_SIZE, 0, 0, 8);
-//			instance->m_lSize.QuadPart = *((huge_integer*) clipboard->req_fdata);
+//			instance->m_lSize.QuadPart = *((long long*) clipboard->req_fdata);
 //			free(clipboard->req_fdata);
 //		}
 //		else

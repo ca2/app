@@ -30,7 +30,7 @@ namespace user
    void impact_data::impact_data_common_construct()
    {
 
-      m_iId = id().is_integer() ? id().as_huge_integer() : -1;
+      m_iId = id().is_integer() ? id().as_long_long() : -1;
       m_iExtendOnParent = 0;
       m_pimpactdata = nullptr;
       m_bOk = false;

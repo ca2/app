@@ -72,7 +72,7 @@ namespace windowing
    }
 
 
-   huge_integer simple_ui_display::increment_reference_count()
+   long long simple_ui_display::increment_reference_count()
    {
 
       return hook::increment_reference_count();
@@ -80,7 +80,7 @@ namespace windowing
    }
 
 
-   huge_integer simple_ui_display::decrement_reference_count()
+   long long simple_ui_display::decrement_reference_count()
    {
 
       return hook::decrement_reference_count();
@@ -88,7 +88,7 @@ namespace windowing
    }
 
 
-   huge_integer simple_ui_display::release()
+   long long simple_ui_display::release()
    {
 
       return hook::release();

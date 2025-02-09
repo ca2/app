@@ -18,10 +18,10 @@ public:
    bool        m_bKept;
 
 
-   ___synchronously_keep_bit(::matter * pmatterLock, TYPE & field, huge_natural mask, bool bKeepValue) :
+   ___synchronously_keep_bit(::matter * pmatterLock, TYPE & field, unsigned long long mask, bool bKeepValue) :
       ___synchronously_keep_bit(pmatterLock, field, mask, bKeepValue, (field & mask) == mask) {}
 
-   ___synchronously_keep_bit(::matter * pmatterLock, TYPE & field, huge_natural mask, bool bKeepValue, bool bKeepAwayValue) :
+   ___synchronously_keep_bit(::matter * pmatterLock, TYPE & field, unsigned long long mask, bool bKeepValue, bool bKeepAwayValue) :
       set_bit < TYPE > (field, mask), m_pmatterLock(pmatterLock), m_bKeepValue(bKeepValue), m_bKeepAwayValue(bKeepAwayValue), m_bKept(false)
    {
 
@@ -79,7 +79,7 @@ public:
 
 
 template < typename TYPE >
-auto synchronously_keep_bit(::matter * pmatterLock, TYPE & field, huge_natural mask, bool bKeepValue)
+auto synchronously_keep_bit(::matter * pmatterLock, TYPE & field, unsigned long long mask, bool bKeepValue)
 {
    
    return ___synchronously_keep_bit < TYPE >(pmatterLock, field, mask, bKeepValue);
@@ -88,7 +88,7 @@ auto synchronously_keep_bit(::matter * pmatterLock, TYPE & field, huge_natural m
 
 
 template < typename TYPE >
-auto synchronously_keep_bit(::matter * pmatterLock, TYPE & field, huge_natural mask, bool bKeepValue, bool bKeepAwayValue)
+auto synchronously_keep_bit(::matter * pmatterLock, TYPE & field, unsigned long long mask, bool bKeepValue, bool bKeepAwayValue)
 {
 
    return ___synchronously_keep_bit < TYPE >(pmatterLock, field, mask, bKeepValue, bKeepAwayValue);

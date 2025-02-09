@@ -125,7 +125,7 @@ namespace appearance
    }
 
    
-   bool appearance::on_key_down(::user::enum_key ekey, huge_integer scancode, const ::user::e_key & ekeyModifiers, const ::string & strText)
+   bool appearance::on_key_down(::user::enum_key ekey, long long scancode, const ::user::e_key & ekeyModifiers, const ::string & strText)
    {
 
       return false;
@@ -133,7 +133,7 @@ namespace appearance
    }
 
 
-   bool appearance::on_key_up(::user::enum_key ekey, huge_integer scancode, const ::user::e_key & ekeyModifiers)
+   bool appearance::on_key_up(::user::enum_key ekey, long long scancode, const ::user::e_key & ekeyModifiers)
    {
 
       return false;

@@ -59,7 +59,7 @@ namespace platform
    }
 
 
-   void acme_node_layer::node_application_on_status(const char* pszStatus, void* p, huge_integer hi)
+   void acme_node_layer::node_application_on_status(const char* pszStatus, void* p, long long hi)
    {
    }
 
@@ -954,7 +954,7 @@ namespace platform
    }
 
 
-   huge_natural  acme_node_layer::translate_processor_affinity(int i)
+   unsigned long long  acme_node_layer::translate_processor_affinity(int i)
    {
       return   0;
    }
@@ -1233,7 +1233,7 @@ namespace platform
    }
 
 
-//   void acme_node_layer::application_handle(huge_integer l, void* p)
+//   void acme_node_layer::application_handle(long long l, void* p)
 //   {
 //   }
 

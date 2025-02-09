@@ -39,7 +39,7 @@ namespace sockets
       string         m_strTo;
       string         m_strFrom;
 
-      huge_integer m_iFirstTime;
+      long long m_iFirstTime;
 
       sip::request   m_request;
       sip::response  m_response;

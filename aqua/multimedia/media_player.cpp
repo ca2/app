@@ -1107,7 +1107,7 @@ class ::time media_player::player_get_position()
 
 //}
 
-huge_natural media_player::player_get_frame_byte_count()
+unsigned long long media_player::player_get_frame_byte_count()
 {
 
    return 0;

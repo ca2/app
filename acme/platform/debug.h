@@ -162,11 +162,11 @@ typedef void * _HFILE; /* file handle pointer */
 #define _DEBUG_FILE_STDERR   ((_HFILE)-5)
 #define _DEBUG_REPORT_FILE   ((_HFILE)-6)
 #else
-#define _DEBUG_INVALID_HFILE ((_HFILE)(huge_integer)-1)
-#define _DEBUG_HFILE_ERROR   ((_HFILE)(huge_integer)-2)
-#define _DEBUG_FILE_STDOUT   ((_HFILE)(huge_integer)-4)
-#define _DEBUG_FILE_STDERR   ((_HFILE)(huge_integer)-5)
-#define _DEBUG_REPORT_FILE   ((_HFILE)(huge_integer)-6)
+#define _DEBUG_INVALID_HFILE ((_HFILE)(long long)-1)
+#define _DEBUG_HFILE_ERROR   ((_HFILE)(long long)-2)
+#define _DEBUG_FILE_STDOUT   ((_HFILE)(long long)-4)
+#define _DEBUG_FILE_STDERR   ((_HFILE)(long long)-5)
+#define _DEBUG_REPORT_FILE   ((_HFILE)(long long)-6)
 #endif
 
 #endif

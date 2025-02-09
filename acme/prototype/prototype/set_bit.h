@@ -12,13 +12,13 @@ public:
    
 
    TYPE &         m_field;
-   huge_natural          m_mask;
+   unsigned long long          m_mask;
 
 
-   set_bit(TYPE & field, huge_natural mask) :
+   set_bit(TYPE & field, unsigned long long mask) :
       m_field(field), m_mask(mask) { }
 
-   bool is_set() const { return ((huge_natural)m_field & m_mask) == m_mask; }
+   bool is_set() const { return ((unsigned long long)m_field & m_mask) == m_mask; }
 
    void set(bool bSet)
    {
@@ -48,7 +48,7 @@ public:
 
       }
 
-      m_field = (TYPE) (((huge_natural) m_field) | ((huge_natural)m_mask));
+      m_field = (TYPE) (((unsigned long long) m_field) | ((unsigned long long)m_mask));
 
    }
 
@@ -62,7 +62,7 @@ public:
 
       }
 
-      m_field = (TYPE) (((huge_natural)m_field) & (~((huge_natural)m_mask)));
+      m_field = (TYPE) (((unsigned long long)m_field) & (~((unsigned long long)m_mask)));
 
    }
 

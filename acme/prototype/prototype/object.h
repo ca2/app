@@ -44,17 +44,17 @@ public:
 #ifdef _DEBUG
 
 
-   virtual huge_integer increment_reference_count() override;
-   virtual huge_integer decrement_reference_count() override;
-   virtual huge_integer release() override;
+   virtual long long increment_reference_count() override;
+   virtual long long decrement_reference_count() override;
+   virtual long long release() override;
 
 
 #else
 
 
-   virtual huge_integer increment_reference_count();
-   virtual huge_integer decrement_reference_count();
-   virtual huge_integer release();
+   virtual long long increment_reference_count();
+   virtual long long decrement_reference_count();
+   virtual long long release();
 
 
 #endif

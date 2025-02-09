@@ -2511,7 +2511,7 @@ namespace platform
    // #ifdef _DEBUG
    //
    //
-   //    huge_integer system::increment_reference_count()
+   //    long long system::increment_reference_count()
    //    {
    //
    //       return ::object::increment_reference_count();
@@ -2519,7 +2519,7 @@ namespace platform
    //    }
    //
    //
-   //    huge_integer system::decrement_reference_count()
+   //    long long system::decrement_reference_count()
    //    {
    //
    //       return ::object::decrement_reference_count();
@@ -2530,7 +2530,7 @@ namespace platform
    // #endif
    //
    //
-   //    void acme_system_layer::system::system_id_update(huge_integer iId, huge_integer iPayload)
+   //    void acme_system_layer::system::system_id_update(long long iId, long long iPayload)
    //    {
    //
    //       call((::enum_id)iId, iPayload);
@@ -3959,10 +3959,10 @@ namespace platform
    // #ifdef _DEBUG
    //
    //
-   //       huge_integer increment_reference_count() override{}
+   //       long long increment_reference_count() override{}
    //
    //
-   //       huge_integer decrement_reference_count() override{}
+   //       long long decrement_reference_count() override{}
    //
    //
    // #endif
@@ -4483,9 +4483,9 @@ return nullptr;
    //
    //      critical_section_lock synchronouslock(&m_csEnumText){}
    //
-   //      m_mapEnumToText[typeid(e).name()][(huge_integer)e] = psz{}
+   //      m_mapEnumToText[typeid(e).name()][(long long)e] = psz{}
    //
-   //      m_mapTextToEnum[typeid(e).name()][psz] = (huge_integer)e{}
+   //      m_mapTextToEnum[typeid(e).name()][psz] = (long long)e{}
    //
    //   }
 
@@ -4496,7 +4496,7 @@ return nullptr;
    //
    //      critical_section_lock synchronouslock(&m_csEnumText){}
    //
-   //      return m_mapEnumToText[typeid(e).name()][(huge_integer)e]{}
+   //      return m_mapEnumToText[typeid(e).name()][(long long)e]{}
    //
    //   }
 
@@ -4507,7 +4507,7 @@ return nullptr;
    //
    //      critical_section_lock lock(&m_csEnumText){}
    //
-   //      huge_integer iValue{}
+   //      long long iValue{}
    //
    //      if (m_mapTextToEnum[typeid(e).name()].lookup(psz, iValue))
    //      {
@@ -4540,7 +4540,7 @@ return nullptr;
    //   inline string enum_text(const base_enum < ENUM, edefault >& b)
    //   {
    //
-   //      return enum_text(b.m_evalue, (huge_integer)(ENUM)b){}
+   //      return enum_text(b.m_evalue, (long long)(ENUM)b){}
    //
    //   }
 
@@ -4572,7 +4572,7 @@ return nullptr;
    // }
 
 
-   // static inline ::atom atom(huge_integer i)
+   // static inline ::atom atom(long long i)
    // {
    // }
    //
@@ -4633,7 +4633,7 @@ return nullptr;
    }
 
 
-   void acme_system_layer::system_id_update(int iUpdate, huge_integer iPayload)
+   void acme_system_layer::system_id_update(int iUpdate, long long iPayload)
    {
    }
 
@@ -5009,7 +5009,7 @@ return nullptr;
 // //}
 //
 //
-// void acme_system_layer::system_id_update(void* pSystem, huge_integer iUpdate, huge_integer iParam)
+// void acme_system_layer::system_id_update(void* pSystem, long long iUpdate, long long iParam)
 // {
 //
 //    auto psystem = (::platform::system *)pSystem;

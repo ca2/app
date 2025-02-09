@@ -28,7 +28,7 @@ namespace file
      unsigned char *_bufferLimit;
      unsigned char *_bufferBase;
      reader * _stream;
-     huge_natural _processedSize;
+     unsigned long long _processedSize;
      unsigned int _bufferSize;
      bool _wasFinished;
 
@@ -83,7 +83,7 @@ namespace file
        }
        return size;
      }
-     huge_natural GetProcessedSize() const { return _processedSize + (_buffer - _bufferBase); }
+     unsigned long long GetProcessedSize() const { return _processedSize + (_buffer - _bufferBase); }
      bool WasFinished() const { return _wasFinished; }
    };
 

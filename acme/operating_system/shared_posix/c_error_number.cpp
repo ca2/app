@@ -95,7 +95,7 @@ c_error_number::c_error_number(const c_error_number & errornumber) :
 class ::error_code c_error_number::error_code() const
 {
 
-   return { e_error_code_type_errno, (huge_integer) m_iErrorNumber};
+   return { e_error_code_type_errno, (long long) m_iErrorNumber};
 
 }
 

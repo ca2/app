@@ -643,7 +643,7 @@ namespace os
 
 /*         unsigned char *dst = (unsigned char*) m_pimage->get_data();
 
-         huge_integer size = m_size.cx() * m_size.cy();
+         long long size = m_size.cx() * m_size.cy();
 
 
          // >> 8 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255

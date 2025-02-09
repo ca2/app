@@ -359,7 +359,7 @@ namespace console_hello
 
       auto path1 = path.sibling(pathLast.name());
 
-      strMillis = ::as_string(::huge_integer_millisecond() % 1000);
+      strMillis = ::as_string(::long_long_millisecond() % 1000);
 
       str1.formatf("this is a contatenation%s and format test%s ", str.c_str(), strD.c_str());
 

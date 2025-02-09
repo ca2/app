@@ -22,7 +22,7 @@ namespace userpresence
 
       class ::time m_timeLastActivity;
       class ::time m_timeLastPulse;
-      huge_integer        m_iShortStatusWayTag;
+      long long        m_iShortStatusWayTag;
       string         m_strLongStatus;
 
 

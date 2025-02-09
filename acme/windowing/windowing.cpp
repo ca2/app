@@ -658,7 +658,7 @@ namespace acme
       }
 
 
-      void windowing::application_handle(huge_integer l, void* p)
+      void windowing::application_handle(long long l, void* p)
       {
 
 

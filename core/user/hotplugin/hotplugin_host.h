@@ -58,10 +58,10 @@ namespace hotplugin
       virtual oswindow get_host_user_interaction() override;
 
       //using ::hotplugin::plugin::window_rectangle;
-      //virtual bool window_rectangle(::huge_integer_rectangle * prectangle) override;
+      //virtual bool window_rectangle(::long_long_rectangle * prectangle) override;
 
       //using ::hotplugin::plugin::this->rectangle;
-      //virtual bool this->rectangle(::huge_integer_rectangle * prectangle) override;
+      //virtual bool this->rectangle(::long_long_rectangle * prectangle) override;
 
       virtual bool hotplugin_host_begin();
       virtual bool hotplugin_host_is_initialized();

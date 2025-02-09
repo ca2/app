@@ -36,7 +36,7 @@ namespace earth
 //stream & operator << (stream & os, ::earth::time_span span)
 //{
 //
-//   os.write((huge_integer)span.m_i);
+//   os.write((long long)span.m_i);
 //
 //   return os;
 //
@@ -46,7 +46,7 @@ namespace earth
 //stream & operator >> (stream & is, ::earth::time_span & span)
 //{
 //
-//   is.read((huge_integer &)span.m_i);
+//   is.read((long long &)span.m_i);
 //
 //   return is;
 //

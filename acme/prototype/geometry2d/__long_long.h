@@ -1,14 +1,14 @@
 #pragma once
 
 
-#pragma pack(push, geometry2d_huge_integer, 1)
+#pragma pack(push, geometry2d_long_long, 1)
 
 
 struct LONG_LONG_SIZE
 {
 
-   huge_integer cx;
-   huge_integer cy;
+   long long cx;
+   long long cy;
 
 };
 
@@ -18,8 +18,8 @@ typedef const LONG_LONG_SIZE * LPCLONG_LONG_SIZE;
 struct LONG_LONG_POINT
 {
 
-   huge_integer x;
-   huge_integer y;
+   long long x;
+   long long y;
 
 };
 
@@ -30,10 +30,10 @@ typedef const LONG_LONG_POINT * LPCLONG_LONG_POINT;
 struct LONG_LONG_RECTANGLE
 {
 
-   huge_integer left;
-   huge_integer top;
-   huge_integer right;
-   huge_integer bottom;
+   long long left;
+   long long top;
+   long long right;
+   long long bottom;
 
 };
 
@@ -41,6 +41,6 @@ struct LONG_LONG_RECTANGLE
 typedef const LONG_LONG_RECTANGLE * LPCRECTANGE_I64;
 
 
-#pragma pack(pop, geometry2d_huge_integer)
+#pragma pack(pop, geometry2d_long_long)
 
 

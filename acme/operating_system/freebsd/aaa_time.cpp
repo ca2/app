@@ -3,7 +3,7 @@
 // #include <time.h>
 
 
-// CLASS_DECL_ACME huge_integer huge_integer_nanosecond()
+// CLASS_DECL_ACME long long long_long_nanosecond()
 // {
 // #ifdef RASPBERRYPIOS
 

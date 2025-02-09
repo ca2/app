@@ -1,7 +1,7 @@
 #pragma once
 //
 //
-//CLASS_DECL_ACME void hfile_set_size(HANDLE h, huge_integer iSize);
+//CLASS_DECL_ACME void hfile_set_size(HANDLE h, long long iSize);
 //CLASS_DECL_ACME unsigned int Winwindows_get_file_attributes(const unichar * psz);
 //#define WinGetFileAttributes Winwindows_get_file_attributes
 //CLASS_DECL_ACME unsigned int GetFileSize(HANDLE h, LPDWORD lpdwHi);

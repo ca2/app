@@ -16,7 +16,7 @@ window_android::~window_android()
 }
 
 
-void window_android::create(oswindow interaction_impl, huge_integer cxParam, huge_integer cyParam, int iStrideParam)
+void window_android::create(oswindow interaction_impl, long long cxParam, long long cyParam, int iStrideParam)
 {
 
    destroy();

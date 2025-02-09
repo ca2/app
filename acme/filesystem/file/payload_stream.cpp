@@ -88,12 +88,12 @@
 ////
 ////      m_var = u;
 ////   }
-////   void payload_stream::write(huge_integer i)
+////   void payload_stream::write(long long i)
 ////   {
 ////
 ////      m_var = i;
 ////   }
-////   void payload_stream::write(huge_natural u)
+////   void payload_stream::write(unsigned long long u)
 ////   {
 ////
 ////      m_var = u;
@@ -106,7 +106,7 @@
 ////      m_var = u;
 ////
 ////   }
-////   //void write (huge_integer hi);
+////   //void write (long long hi);
 ////#endif
 ////   void payload_stream::write(float f)
 ////   {
@@ -170,8 +170,8 @@
 ////
 ////   //      virtual void read(int & i);
 ////   //      virtual void read(unsigned int & u);
-////   //      virtual void read(huge_integer & i);
-////   //      virtual void read(huge_natural & u);
+////   //      virtual void read(long long & i);
+////   //      virtual void read(unsigned long long & u);
 ////
 ////
 ////   void payload_stream::read(bool & b);
@@ -184,11 +184,11 @@
 ////   void payload_stream::read(unsigned short & u);
 ////   void payload_stream::read(int & i);
 ////   void payload_stream::read(unsigned int & u);
-////   void payload_stream::read(huge_integer & i);
-////   void payload_stream::read(huge_natural & u);
+////   void payload_stream::read(long long & i);
+////   void payload_stream::read(unsigned long long & u);
 ////#ifdef __APPLE__
 ////   void payload_stream::read(unsigned long & u);
-////   //virtual void read (huge_integer & u);
+////   //virtual void read (long long & u);
 ////#endif
 ////   void payload_stream::read(float & f);
 ////   void payload_stream::read(double & d);
@@ -309,7 +309,7 @@
 //
 //}
 //
-//void payload_stream::exchange(const ::atom& atom, huge_integer& i)
+//void payload_stream::exchange(const ::atom& atom, long long& i)
 //{
 //
 //   var_exchange(atom, i);

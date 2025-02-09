@@ -16,8 +16,8 @@
 #include "hex.h"
 
 
-CLASS_DECL_ACME huge_integer strtoi(const ::scoped_string & scopedstr);
-CLASS_DECL_ACME huge_integer strtoi(const ::wide_character * psz);
+CLASS_DECL_ACME long long strtoi(const ::scoped_string & scopedstr);
+CLASS_DECL_ACME long long strtoi(const ::wide_character * psz);
 
 
 namespace file
@@ -157,7 +157,7 @@ template < primitive_string STRING, primitive_integral INTEGRAL >
 inline STRING& copy(STRING& string, const INTEGRAL& number)
 {
 
-	string.append_formatf("%lld", (huge_integer)number);
+	string.append_formatf("%lld", (long long)number);
 
 	return string;
 
@@ -177,7 +177,7 @@ template < primitive_natural NATURAL, primitive_string STRING >
 inline void copy(NATURAL& n, const STRING& string)
 {
 
-	n = (NATURAL)as_huge_natural(string);
+	n = (NATURAL)as_unsigned_long_long(string);
 
 }
 
@@ -263,7 +263,7 @@ inline inline_number_string as_string(INTEGRAL i, int radix, enum_digit_case edi
 
 //   inline_number_string numberstring;
 
-//   __huge_integertoansi(i, numberstring, iRadix, edigitcase, numberstring.m_iLength);
+//   __long_longtoansi(i, numberstring, iRadix, edigitcase, numberstring.m_iLength);
 
 //   return numberstring;
 
@@ -341,7 +341,7 @@ namespace file
 {
 
 
-    inline path::path(const ::scoped_string & scopedstr, enum_path epath, e_type etype, bool bNormalizePath, huge_integer iSize) :
+    inline path::path(const ::scoped_string & scopedstr, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
             path(::ansi_string(scopedstr), epath, etype, bNormalizePath, iSize)
     {
 
@@ -968,7 +968,7 @@ void string_range < ITERATOR_TYPE >::consume(const ::scoped_string & scopedstr)
 //}
 
 
-//huge_natural str::consume_natural(huge_natural uMax, huge_natural uMin)
+//unsigned long long str::consume_natural(unsigned long long uMax, unsigned long long uMin)
 //{
 //
 //   auto u = consume_natural(this->m_begin, uMax, uMin);
@@ -979,7 +979,7 @@ void string_range < ITERATOR_TYPE >::consume(const ::scoped_string & scopedstr)
 
 
 template < typename ITERATOR_TYPE >
-huge_natural string_range < ITERATOR_TYPE >::consume_natural(huge_natural uMax, huge_natural uMin)
+unsigned long long string_range < ITERATOR_TYPE >::consume_natural(unsigned long long uMax, unsigned long long uMin)
 {
 
    if (uMax < uMin)
@@ -993,7 +993,7 @@ huge_natural string_range < ITERATOR_TYPE >::consume_natural(huge_natural uMax, 
 
    int i = 0;
 
-   huge_natural u;
+   unsigned long long u;
 
    while (unicode_is_digit(this->m_begin))
    {
@@ -1111,7 +1111,7 @@ template < typename ITERATOR_TYPE >
 
       int len;
       
-      huge_integer i = unicode_index_length(this->m_begin, len);
+      long long i = unicode_index_length(this->m_begin, len);
 
       if ((i >= '0' && i <= '9') || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'))
       {

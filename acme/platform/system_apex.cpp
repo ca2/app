@@ -521,7 +521,7 @@ namespace platform
    }
 
 
-   void apex_system_layer::system_id_update(int iUpdate, huge_integer iPayload)
+   void apex_system_layer::system_id_update(int iUpdate, long long iPayload)
    {
    }
 

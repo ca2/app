@@ -22,7 +22,7 @@ namespace acme
       message_union        m_union;
 
       class ::time         m_time;
-      huge_integer         m_iTimestamp;
+      long long         m_iTimestamp;
       ::double_point       m_pointMessage;
       ::enum_message       m_emessage;
       wparam               m_wparam;

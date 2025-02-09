@@ -157,7 +157,7 @@ namespace filemanager
 #ifdef _DEBUG
 
 
-   huge_integer tree_data::increment_reference_count()
+   long long tree_data::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -165,7 +165,7 @@ namespace filemanager
    }
 
 
-   huge_integer tree_data::decrement_reference_count()
+   long long tree_data::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -173,7 +173,7 @@ namespace filemanager
    }
 
 
-   huge_integer tree_data::release()
+   long long tree_data::release()
    {
 
       return ::object::release();

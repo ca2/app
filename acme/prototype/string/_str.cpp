@@ -2586,7 +2586,7 @@ int str::get_escaped_char(const ::ansi_character * psz, character_count pos, cha
 
             long long hex = ::hex::to_long_long(string(&psz[pos + 2], 2));
 
-            if (long long(strlen(psz)) <= pos + 2 || hex == -1)
+            if ((long long)(strlen(psz)) <= pos + 2 || hex == -1)
             {
 
                return BAD_WCHAR;

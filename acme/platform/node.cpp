@@ -1936,6 +1936,8 @@ namespace platform
 
       for (auto processidentifier : processidentifiera)
       {
+         
+         informationf("processidentifier=%lld", processidentifier);
 
          auto pathaProcessModules = process_identifier_modules_paths(processidentifier);
 
@@ -3620,11 +3622,57 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    ::file::path pathBin = directory_system()->home() / "application" / scopedstrRepos / scopedstrApp / "binary";
 
    patha = pathBin / stra;
+   
+   if(are_any_shared_libraries_mapped(patha))
+   {
+      
+      return true;
+      
+   }
+   
+
+   //auto pathaSystem = this->modules_paths();
+
+   //for (auto & pathSystem : pathaSystem)
+   //{
+      
+      //informationf("pathSystem : %s", pathSystem.c_str());
+
+      //for (auto & path : patha)
+      //{
+
+         //if (pathSystem.case_insensitive_contains("SecurityHealthSSO"))
+         //{
+
+            //printf_line("SHSSO");
+
+         //}
+
+         //if (path_system()->real_path_is_same(pathSystem, path))
+         //{
+
+            //return true;
+
+         //}
+
+      //}
+
+   //}
+
+   return false;
+
+}
+
+
+bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
+{
 
    auto pathaSystem = this->modules_paths();
 
    for (auto & pathSystem : pathaSystem)
    {
+      
+      informationf("pathSystem : %s", pathSystem.c_str());
 
       for (auto & path : patha)
       {
@@ -3650,7 +3698,6 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    return false;
 
 }
-
 
    ::string node::get_error_code_message(const ::error_code & errorcode)
    {

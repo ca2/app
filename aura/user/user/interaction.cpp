@@ -24238,9 +24238,13 @@ if(get_parent())
 
       if (m_callbackOnClick)
       {
+         
+         information() << "interaction::on_click_generation m_callbackOnClick present";
 
          if (m_callbackOnClick(this, pitem, pmouse->user_activation_token()))
          {
+            
+            information() << "interaction::on_click_generation m_callbackOnClick return true";
 
             return true;
 
@@ -24258,12 +24262,16 @@ if(get_parent())
 
          if (pmessageOnClick->m_bRet)
          {
+            
+            information() << "interaction::on_click_generation e_message_click returned true";
 
             return true;
 
          }
 
       }
+      
+      information() << "interaction::on_click_generation going to call on_click";
 
       return on_click(pitem, pmouse);
 

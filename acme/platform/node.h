@@ -720,6 +720,8 @@ namespace platform
 
 
       bool are_framework_shared_libraries_busy(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp) override;
+      
+      bool are_any_shared_libraries_mapped(const ::file::path_array & patha) override;
 
 
       ::string get_error_code_message(const ::error_code & errorcode) override;

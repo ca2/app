@@ -1252,6 +1252,13 @@ namespace platform
    }
 
 
+   bool acme_node_layer::are_any_shared_libraries_mapped(const ::file::path_array & patha)
+   {
+      
+      return false;
+      
+   }
+
    ::string acme_node_layer::get_error_code_message(const ::error_code& errorcode)
    {
       return{};

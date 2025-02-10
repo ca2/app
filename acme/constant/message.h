@@ -323,7 +323,7 @@ e_message_hyper_space = 0x8000000,
 e_message_click,
 e_message_start_tab_drag,
 e_message_tool_tip_text,
-
+e_message_document
 
 
 

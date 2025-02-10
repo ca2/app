@@ -4862,6 +4862,12 @@
 		9AFC61AE2D573F08005ED062 /* message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AFC61AD2D573F08005ED062 /* message.cpp */; };
 		9AFC61AF2D573F08005ED062 /* message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AFC61AD2D573F08005ED062 /* message.cpp */; };
 		9AFC61B02D573F08005ED062 /* message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AFC61AD2D573F08005ED062 /* message.cpp */; };
+		9AFC67272D584C7A005ED062 /* uuid.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AFC67252D584C7A005ED062 /* uuid.h */; };
+		9AFC67282D584C7A005ED062 /* uuid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AFC67262D584C7A005ED062 /* uuid.cpp */; };
+		9AFC67292D584C7A005ED062 /* uuid.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AFC67252D584C7A005ED062 /* uuid.h */; };
+		9AFC672A2D584C7A005ED062 /* uuid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AFC67262D584C7A005ED062 /* uuid.cpp */; };
+		9AFC672B2D584C7A005ED062 /* uuid.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AFC67252D584C7A005ED062 /* uuid.h */; };
+		9AFC672C2D584C7A005ED062 /* uuid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AFC67262D584C7A005ED062 /* uuid.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -6730,6 +6736,8 @@
 		9AFC61A52D5330E6005ED062 /* task_handler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = task_handler.h; sourceTree = "<group>"; };
 		9AFC61A62D5330E6005ED062 /* task_handler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = task_handler.cpp; sourceTree = "<group>"; };
 		9AFC61AD2D573F08005ED062 /* message.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = message.cpp; sourceTree = "<group>"; };
+		9AFC67252D584C7A005ED062 /* uuid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = uuid.h; sourceTree = "<group>"; };
+		9AFC67262D584C7A005ED062 /* uuid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = uuid.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -7639,6 +7647,8 @@
 				9AA331A22C8A5A1E006DE525 /* url_context.h */,
 				9AA331A32C8A5A1F006DE525 /* url_context.cpp */,
 				9A68A53F2511442E008DABD2 /* user_parent.h */,
+				9AFC67252D584C7A005ED062 /* uuid.h */,
+				9AFC67262D584C7A005ED062 /* uuid.cpp */,
 				9A68A5582511442E008DABD2 /* version.cpp */,
 			);
 			path = platform;
@@ -9399,6 +9409,7 @@
 				9A523EA52CD41051006ED868 /* message_box.h in Headers */,
 				9A523EA62CD41051006ED868 /* theme.h in Headers */,
 				9A523EA72CD41051006ED868 /* details_window.h in Headers */,
+				9AFC67272D584C7A005ED062 /* uuid.h in Headers */,
 				9A523EAA2CD41051006ED868 /* _.h in Headers */,
 				9A523EAF2CD41051006ED868 /* user.h in Headers */,
 				9A523EB02CD41051006ED868 /* dialog.h in Headers */,
@@ -10617,6 +10628,7 @@
 				9AC101992B6AC9BD0053DB45 /* holder.h in Headers */,
 				9AC1019A2B6AC9BD0053DB45 /* sign.h in Headers */,
 				9AC1019B2B6AC9BD0053DB45 /* paged_memory.h in Headers */,
+				9AFC67292D584C7A005ED062 /* uuid.h in Headers */,
 				9AC1019C2B6AC9BD0053DB45 /* _string.h in Headers */,
 				9AC1019D2B6AC9BD0053DB45 /* application_flags.h in Headers */,
 				9AC1019E2B6AC9BD0053DB45 /* condition.h in Headers */,
@@ -12362,6 +12374,7 @@
 				9A15A6AB264B59EF0080670E /* critical_section.h in Headers */,
 				9A2AA67527F9530A00DB0519 /* drag.h in Headers */,
 				9A16260626EFCD6A003D9CB9 /* install_mutex.h in Headers */,
+				9AFC672B2D584C7A005ED062 /* uuid.h in Headers */,
 				9A0843262936667D009F7FF4 /* signalization.h in Headers */,
 				9A8F43A72A23022C00097EE1 /* __basic.h in Headers */,
 				9AD69118251A753A00C0EBD7 /* display.h in Headers */,
@@ -12819,6 +12832,7 @@
 				9A52417F2CD47440006ED868 /* socket_event.cpp in Sources */,
 				9A5241802CD47440006ED868 /* synchronization_array.cpp in Sources */,
 				9A5241812CD47440006ED868 /* synchronizer.cpp in Sources */,
+				9AFC67282D584C7A005ED062 /* uuid.cpp in Sources */,
 				9A5241822CD47440006ED868 /* task_message_queue.cpp in Sources */,
 				9A5241832CD47440006ED868 /* task.cpp in Sources */,
 				9A5241842CD47440006ED868 /* tools.cpp in Sources */,
@@ -13253,6 +13267,7 @@
 				9A523F3A2CD433B0006ED868 /* application_aqua.cpp in Sources */,
 				9A523F3B2CD433B0006ED868 /* application_axis.cpp in Sources */,
 				9A523F3C2CD433B0006ED868 /* application_aura.cpp in Sources */,
+				9AFC672A2D584C7A005ED062 /* uuid.cpp in Sources */,
 				9A523F3D2CD433B0006ED868 /* logger.cpp in Sources */,
 				9A523F3E2CD433B0006ED868 /* tracing.cpp in Sources */,
 				9A523F3F2CD433B0006ED868 /* application_core.cpp in Sources */,
@@ -14182,6 +14197,7 @@
 				9AA8FCAA27BA7299008FF9AA /* process.cpp in Sources */,
 				9AA8FCBE27BA7299008FF9AA /* _.cpp in Sources */,
 				9A0842DB2935EB40009F7FF4 /* object_meta.cpp in Sources */,
+				9AFC672C2D584C7A005ED062 /* uuid.cpp in Sources */,
 				9A523FF02CD43440006ED868 /* environment.cpp in Sources */,
 				9A523FF12CD43440006ED868 /* dynamic_library.cpp in Sources */,
 				9A523FF22CD43440006ED868 /* dostime.cpp in Sources */,

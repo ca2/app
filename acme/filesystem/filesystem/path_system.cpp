@@ -32,7 +32,16 @@ path_system::~path_system()
 ::string path_system::shell_path(const ::file::path & path)
 {
 
-   return path;
+   ::string str = path;
+
+   if (str.contains(' '))
+   {
+
+      str = "\"" + str + "\"";
+
+   }
+
+   return str;
 
 }
 

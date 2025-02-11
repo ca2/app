@@ -82,7 +82,7 @@ namespace sockets
 
 
 
-   huge_integer socket_handler::increment_reference_count()
+   long long socket_handler::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -90,7 +90,7 @@ namespace sockets
    }
 
 
-   huge_integer socket_handler::decrement_reference_count()
+   long long socket_handler::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();

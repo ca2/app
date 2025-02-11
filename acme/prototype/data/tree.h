@@ -32,12 +32,12 @@ namespace data
 
       virtual void on_insert_tree(tree * ptree);
 
-      virtual huge_integer increment_reference_count() override
+      virtual long long increment_reference_count() override
       {
          return ::matter::increment_reference_count();
       }
 
-      virtual huge_integer decrement_reference_count() override
+      virtual long long decrement_reference_count() override
       {
          return ::matter::decrement_reference_count();
       }

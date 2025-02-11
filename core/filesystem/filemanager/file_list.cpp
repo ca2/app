@@ -309,7 +309,7 @@ namespace filemanager
    //      while (i < fs_list()->m_pitema->get_count() || is_window_visible())
    //      {
 
-   //         huge_integer i64Size;
+   //         long long i64Size;
 
    //         bool bPendingSize;
 

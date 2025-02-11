@@ -24,7 +24,7 @@ namespace http
 //   }
 
 
-//   bool status_succeeded(huge_integer i)
+//   bool status_succeeded(long long i)
 //   {
 //
 //      return succeeded((void    ) i);
@@ -40,7 +40,7 @@ namespace http
 //   }
 
 //
-//   bool status_failed(huge_integer i)
+//   bool status_failed(long long i)
 //   {
 //
 //      return !status_succeeded(i);

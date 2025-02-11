@@ -717,7 +717,7 @@ void sequence::destroy()
 
 #if defined(DEBUG)
 
-::huge_integer sequence::increment_reference_count()
+long long sequence::increment_reference_count()
 {
 
    return ::subparticle_array::increment_reference_count();
@@ -725,7 +725,7 @@ void sequence::destroy()
 }
 
 
-::huge_integer sequence::decrement_reference_count()
+long long sequence::decrement_reference_count()
 {
 
    return ::subparticle_array::decrement_reference_count();

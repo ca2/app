@@ -315,14 +315,14 @@ namespace mathematics
    }
 
 
-   huge_natural math::gen_rand()
+   unsigned long long math::gen_rand()
    {
 #if defined(UNIVERSAL_WINDOWS)
-      huge_natural uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-      huge_natural uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      unsigned long long uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      unsigned long long uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       return uiLo | (uiHi << 32);
 #else
-      huge_natural u = 0;
+      unsigned long long u = 0;
       gen_rand(&u, sizeof(u));
       return u;
 #endif
@@ -410,7 +410,7 @@ namespace mathematics
    }
 
 
-   bool math::IsPowerOfTwo(huge_natural uiValue)
+   bool math::IsPowerOfTwo(unsigned long long uiValue)
    {
 
       if (uiValue == 0)
@@ -506,13 +506,13 @@ namespace mathematics
 
    /*
 
-   huge_natural math::RandRange(huge_natural ui1, huge_natural ui2)
+   unsigned long long math::RandRange(unsigned long long ui1, unsigned long long ui2)
    {
    // dRandRange == 0.0 is impossible happening due this next statement;
    if(ui1 == ui2)
    return ui1;
-   huge_natural uiMin = minimum(ui1, ui2);
-   huge_natural uiMax = maximum(ui1, ui2);
+   unsigned long long uiMin = minimum(ui1, ui2);
+   unsigned long long uiMax = maximum(ui1, ui2);
    double dRand = 0.0;
    double dRange = (double) (uiMax - uiMin);
    double dRandRange = 1.0;

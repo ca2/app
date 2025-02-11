@@ -22,7 +22,7 @@ class ::time time::now()
 CLASS_DECL_ACME void preempt(const class time& time)
 {
 
-   preempt((integral_millisecond)((huge_integer)(time.unsigned int())));
+   preempt((integral_millisecond)((long long)(time.unsigned int())));
 
 }
 

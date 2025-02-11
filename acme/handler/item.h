@@ -15,7 +15,7 @@ class item;
 DECLARE_ENUMERATION(e_item, enum_item);
 
 
-enum enum_item_flag : huge_integer
+enum enum_item_flag : long long
 {
 
    e_item_flag_none = 0,
@@ -105,7 +105,7 @@ public:
    //::pointer<::geometry2d::region>     m_pregion;
    //bool                             m_bAnyHoverChange;
 
-   //item(enum_element eelement, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1, const huge_natural uFlags = e_flag_none) :
+   //item(enum_element eelement, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1, const unsigned long long uFlags = e_flag_none) :
      // item(eelement, iItem, iSubItem, iListItem, uFlags) {}
 
    
@@ -310,8 +310,8 @@ public:
    ::collection::index operator + (int iItemAdd) { return (::collection::index) (m_item.m_iItem + iItemAdd); }
    ::collection::index operator - (int iItemSub) { return (::collection::index) (m_item.m_iItem - iItemSub); }
 
-   ::collection::index operator + (huge_integer iItemAdd) { return (::collection::index) (m_item.m_iItem + iItemAdd); }
-   ::collection::index operator - (huge_integer iItemSub) { return (::collection::index) (m_item.m_iItem - iItemSub); }
+   ::collection::index operator + (long long iItemAdd) { return (::collection::index) (m_item.m_iItem + iItemAdd); }
+   ::collection::index operator - (long long iItemSub) { return (::collection::index) (m_item.m_iItem - iItemSub); }
 
 
    bool in_element_range(enum_element eelement, int iCount) const { return m_item.m_eelement >= eelement && m_item.m_eelement < eelement + iCount; }

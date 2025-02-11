@@ -132,7 +132,7 @@ namespace datetime
       void destroy() override;
 
 
-      huge_integer get_timestamp(int year, int month, int day);
+      long long get_timestamp(int year, int month, int day);
 
       
       int get_month_day_count(int year, int month);
@@ -232,7 +232,7 @@ namespace datetime
       //inline string local(const ::earth::time & time) { return local_get(time); }
 
 
-virtual ::string elapsed_nanoseconds_text(huge_integer iNanoseconds);
+virtual ::string elapsed_nanoseconds_text(long long iNanoseconds);
 
 
 virtual ::string elapsed_time_text(const class ::time & time);

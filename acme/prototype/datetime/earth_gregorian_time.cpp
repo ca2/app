@@ -104,7 +104,7 @@ namespace earth
    //}
 
   
-   gregorian_time::gregorian_time(const ::posix_time & posixtime, huge_integer iNanosecond, const class ::time & timeshift)
+   gregorian_time::gregorian_time(const ::posix_time & posixtime, long long iNanosecond, const class ::time & timeshift)
    {
 
       set(posixtime, iNanosecond, timeshift);
@@ -159,9 +159,9 @@ namespace earth
       int day_of_year = days_from_1jan(year, month, day);
       int days_since_epoch = days_from_1970(year) + day_of_year;
 
-      huge_integer seconds_in_day = 3600 * 24;
+      long long seconds_in_day = 3600 * 24;
 
-      huge_integer result = seconds_in_day * days_since_epoch + 3600 * m_iHour + 60 * m_iMinute + m_iSecond;
+      long long result = seconds_in_day * days_since_epoch + 3600 * m_iHour + 60 * m_iMinute + m_iSecond;
 
       return { posix_time_t{}, result };
 

@@ -55,7 +55,7 @@ namespace platform
    //    union
    //    {
    //
-   //       huge_natural                                              m_uNodeFlags;
+   //       unsigned long long                                              m_uNodeFlags;
    //
    //       bool                                               m_bHasNodePostedSystemInitialRequest : 1;
    //
@@ -127,8 +127,8 @@ namespace platform
 
 #ifdef _DEBUG
 
-      huge_integer increment_reference_count() override;
-      huge_integer decrement_reference_count() override;
+      long long increment_reference_count() override;
+      long long decrement_reference_count() override;
 
 #endif
 
@@ -151,7 +151,7 @@ namespace platform
 
       virtual void initialize(::particle * pparticle) override;
 
-      virtual void node_application_on_status(const char * pszStatus, void * p = nullptr, huge_integer hi = 0) override;
+      virtual void node_application_on_status(const char * pszStatus, void * p = nullptr, long long hi = 0) override;
       //virtual ::particle_pointer create_quit_particle(::pointer<::platform::node>& pnode);
 
       //virtual ::particle_pointer create_quit_particle();
@@ -540,7 +540,7 @@ namespace platform
       virtual int get_current_processor_index() override;
       virtual int get_current_process_maximum_affinity() override;
       virtual int get_current_process_affinity_order() override;
-      virtual huge_natural translate_processor_affinity(int i) override;
+      virtual unsigned long long translate_processor_affinity(int i) override;
 
       //CLASS_DECL_ACME string expand_env(string str);
       //CLASS_DECL_ACME string xxxget_environment_variable(const ::scoped_string & scopedstrEnvironmentVariable);
@@ -720,6 +720,8 @@ namespace platform
 
 
       bool are_framework_shared_libraries_busy(const ::scoped_string & scopedstrRepos, const ::scoped_string & scopedstrApp) override;
+      
+      bool are_any_shared_libraries_mapped(const ::file::path_array & patha) override;
 
 
       ::string get_error_code_message(const ::error_code & errorcode) override;

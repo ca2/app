@@ -42,7 +42,7 @@ namespace user
 
 
 
-   huge_integer menu_button::increment_reference_count()
+   long long menu_button::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -50,7 +50,7 @@ namespace user
    }
 
 
-   huge_integer menu_button::decrement_reference_count()
+   long long menu_button::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();

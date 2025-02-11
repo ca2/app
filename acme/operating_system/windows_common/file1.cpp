@@ -624,14 +624,14 @@ namespace windows
 
 
 
-//CLASS_DECL_ACME bool ensure_file_size_handle(HANDLE h, huge_natural iSize)
+//CLASS_DECL_ACME bool ensure_file_size_handle(HANDLE h, unsigned long long iSize)
 //{
 //
 //   DWORD dwHi;
 //
 //   DWORD dwLo = GetFileSize(h, &dwHi);
 //
-//   if (((huge_natural)dwLo | ((huge_natural)dwHi << 32)) != iSize)
+//   if (((unsigned long long)dwLo | ((unsigned long long)dwHi << 32)) != iSize)
 //   {
 //
 //      LONG l = (iSize >> 32) & 0xffffffff;

@@ -422,13 +422,13 @@ bool  stream_base::is_version(int i)
 //   case e_type_int:
 //      *this << payload.m_i;
 //      break;
-//   case e_type_huge_integer:
+//   case e_type_long_long:
 //      *this << payload.m_hi;
 //      break;
 //   case e_type_unsigned_int:
 //      *this << payload.m_ui;
 //      break;
-//   case e_type_huge_natural:
+//   case e_type_unsigned_long_long:
 //      *this << payload.m_hn;
 //      break;
 //   case e_type_pchar:
@@ -446,13 +446,13 @@ bool  stream_base::is_version(int i)
 //   case e_type_pint:
 //      *this << *payload.m_pi;
 //      break;
-//   case e_type_phuge_integer:
+//   case e_type_plong_long:
 //      *this << *payload.m_phi;
 //      break;
 //   case e_type_punsigned_int:
 //      *this << *payload.m_pui;
 //      break;
-//   case e_type_phuge_natural:
+//   case e_type_punsigned_long_long:
 //      *this << *payload.m_pu64;
 //      break;
 //   case e_type_double:
@@ -752,7 +752,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//void stream::read(huge_integer & i)
+//void stream::read(long long & i)
 //{
 //
 //   throw ::exception(error_io);
@@ -760,7 +760,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//void stream::read(huge_natural & u)
+//void stream::read(unsigned long long & u)
 //{
 //
 //   throw ::exception(error_io);

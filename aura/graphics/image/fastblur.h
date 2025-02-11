@@ -55,8 +55,8 @@ namespace image
       byte_array           m_uchaA;
       byte_array           m_uchaDiv;
       ::array < rgba_t >   m_rgbaa;
-      huge_integer_array            m_iaVmin;
-      huge_integer_array            m_iaVmax;
+      long_long_array            m_iaVmin;
+      long_long_array            m_iaVmax;
 
 
       fastblur();

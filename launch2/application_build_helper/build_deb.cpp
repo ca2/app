@@ -52,8 +52,10 @@ namespace application_build_helper
       printf("%s\n", strCommand.c_str());
 
       acmenode()->command_system("bash -c \"" + strCommand + "\"", std_inline_log());
+      
+      ::string pathTool = path_system()->tool_folder_path();
 
-      strCommand = "cp -Rf " + pathHome + "/cmake/operating_system/tool-linux/build_deb/store_0.4_amd64 " + pathStore;
+      strCommand = "cp -Rf " + pathHome + "/build_deb/store_0.4_amd64 " + pathStore;
 
       printf("%s\n", strCommand.c_str());
 

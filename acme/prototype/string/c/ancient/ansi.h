@@ -76,8 +76,8 @@ CLASS_DECL_ACME character_count __ansispn(const ::ansi_character * psz1, const :
 CLASS_DECL_ACME character_count __ansicspn(const ::ansi_character * psz1, const ::ansi_character * psz2);
 
 
-CLASS_DECL_ACME huge_integer __ansitoi64(const ::ansi_character * psz, ::ansi_character ** ppszEnd, int iBase);
-CLASS_DECL_ACME huge_natural __ansitou64(const ::ansi_character * psz, ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME long long __ansitoi64(const ::ansi_character * psz, ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME unsigned long long __ansitou64(const ::ansi_character * psz, ::ansi_character ** ppszEnd, int iBase);
 CLASS_DECL_ACME int __ansitoi32(const ::ansi_character * psz, ::ansi_character ** ppszEnd, int iBase);
 CLASS_DECL_ACME unsigned int __ansitou32(const ::ansi_character * psz, ::ansi_character ** ppszEnd, int iBase);
 

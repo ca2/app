@@ -5484,7 +5484,7 @@ namespace user
                   try
                   {
 
-                     pinteraction->send_message(e_message_show_window, 0, (huge_integer) e_show_window_parent_closing);
+                     pinteraction->send_message(e_message_show_window, 0, (long long) e_show_window_parent_closing);
 
                   }
                   catch (...)
@@ -9337,7 +9337,7 @@ namespace user
    }
 
 
-   huge_integer interaction_impl::approximate_occlusion_area()
+   long long interaction_impl::approximate_occlusion_area()
    {
 
       int_rectangle_array ra;
@@ -9349,7 +9349,7 @@ namespace user
    }
 
 
-   huge_integer interaction_impl::opaque_area(const ::int_rectangle &rect)
+   long long interaction_impl::opaque_area(const ::int_rectangle &rect)
    {
 
       auto pitem = m_pgraphicsgraphics->get_screen_item();
@@ -9367,7 +9367,7 @@ namespace user
    }
 
 
-   huge_integer interaction_impl::_001GetRectTopLeftWeightedArea(const ::int_rectangle &rect)
+   long long interaction_impl::_001GetRectTopLeftWeightedArea(const ::int_rectangle &rect)
    {
 
       ::int_rectangle rectangle(rect);
@@ -9379,7 +9379,7 @@ namespace user
    }
 
 
-   huge_integer interaction_impl::opaque_area()
+   long long interaction_impl::opaque_area()
    {
 
       auto pitem = m_pgraphicsgraphics->get_screen_item();
@@ -9397,7 +9397,7 @@ namespace user
    }
 
 
-   huge_integer interaction_impl::_001GetTopLeftWeightedArea()
+   long long interaction_impl::_001GetTopLeftWeightedArea()
    {
 
       auto pitem = m_pgraphicsgraphics->get_screen_item();
@@ -9431,14 +9431,14 @@ namespace user
    }
 
 
-   huge_integer interaction_impl::approximate_occlusion_area_except_self_transparent()
+   long long interaction_impl::approximate_occlusion_area_except_self_transparent()
    {
 
       int_rectangle_array ra;
 
       approximate_occlusion_rects(ra);
 
-      huge_integer cApproxOpaqueArea = 0;
+      long long cApproxOpaqueArea = 0;
 
       for (auto &r: ra)
       {
@@ -9460,14 +9460,14 @@ namespace user
    }
 
 
-   huge_integer interaction_impl::_001GetTopLeftWeightedOccludedOpaqueArea()
+   long long interaction_impl::_001GetTopLeftWeightedOccludedOpaqueArea()
    {
 
       int_rectangle_array ra;
 
       approximate_occlusion_rects(ra);
 
-      huge_integer cApproxOpaqueArea = 0;
+      long long cApproxOpaqueArea = 0;
 
       for (auto &r: ra)
       {
@@ -9708,7 +9708,7 @@ namespace user
    }
 
 
-   void interaction_impl::android_fill_plasma(const void *pixels, int width, int height, int stride, huge_integer time_ms)
+   void interaction_impl::android_fill_plasma(const void *pixels, int width, int height, int stride, long long time_ms)
    {
 
       auto pitem = m_pgraphicsgraphics->get_screen_item();

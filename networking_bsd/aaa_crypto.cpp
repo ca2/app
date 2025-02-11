@@ -911,7 +911,7 @@ namespace crypto_openssl
    //   string strFormat;
    //   for (int i = 0; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - CA4_BASE_HASH_DIGEST_LENGTH; i += 2)
    //   {
-   //      huge_integer iDigit = random<char>();
+   //      long long iDigit = random<char>();
    //      strFormat.formatf("%02x", iDigit);
    //      strSalt += strFormat;
    //   }

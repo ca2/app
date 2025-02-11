@@ -43,11 +43,11 @@ namespace file
    void buffered_file::translate(filesize offset, ::enum_seek eseek)
    {
 
-      huge_natural uiBegBufPosition = m_uiBufLPos;
+      unsigned long long uiBegBufPosition = m_uiBufLPos;
 
-      huge_natural uiEndBufPosition = m_uiBufUPos;
+      unsigned long long uiEndBufPosition = m_uiBufUPos;
 
-      huge_natural uiNewPos;
+      unsigned long long uiNewPos;
 
       if(eseek == ::e_seek_set)
       {
@@ -71,7 +71,7 @@ namespace file
       else if(eseek == ::e_seek_current)
       {
          
-         huge_integer iNewPosition = m_uiPosition + offset;
+         long long iNewPosition = m_uiPosition + offset;
 
          if (iNewPosition < 0)
          {

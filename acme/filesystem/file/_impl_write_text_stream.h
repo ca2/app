@@ -401,7 +401,7 @@
 // //}
 //
 //
-// //write_text_stream& operator <<(huge_integer i)
+// //write_text_stream& operator <<(long long i)
 // //{
 //
 // //   write_integer(i);
@@ -413,7 +413,7 @@
 // //}
 //
 //
-// //write_text_stream& operator <<(huge_natural u)
+// //write_text_stream& operator <<(unsigned long long u)
 // //{
 //
 // //   write_natural(u);
@@ -646,8 +646,8 @@
 ////   text_stream& operator >>(unsigned short& u);
 ////   text_stream& operator >>(int& i);
 ////   text_stream& operator >>(unsigned int& u);
-////   text_stream& operator >>(huge_integer& i);
-////   text_stream& operator >>(huge_natural& u);
+////   text_stream& operator >>(long long& i);
+////   text_stream& operator >>(unsigned long long& u);
 ////   text_stream& operator >>(float& f);
 ////   text_stream& operator >>(double& d);
 ////   text_stream& operator >>(string& str);

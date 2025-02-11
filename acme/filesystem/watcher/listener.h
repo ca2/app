@@ -19,7 +19,7 @@ namespace file
    class watcher;
    class listener;
 
-   //using watch_id = huge_integer;
+   //using watch_id = long long;
 
 
    typedef ::pointer_array < watch> file_watch_array;

@@ -94,7 +94,7 @@ private:
    void processBuffer();
 
    /// size of processed data in bytes
-   huge_natural m_numBytes;
+   unsigned long long m_numBytes;
    /// valid bytes in m_buffer
    size_t   m_bufferSize;
    /// bytes not processed yet

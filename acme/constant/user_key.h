@@ -8,7 +8,7 @@ namespace user
 {
 
 
-   enum enum_key : huge_integer
+   enum enum_key : long long
    {
 
       e_key_none,

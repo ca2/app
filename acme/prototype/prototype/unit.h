@@ -13,7 +13,7 @@ protected:
 
       double m_d;
 
-      huge_integer m_hi;
+      long long m_hi;
 
    };
 
@@ -35,7 +35,7 @@ public:
    template < primitive_integral INTEGRAL >
    constexpr unit_base(INTEGRAL i, ENUM eunit)
    {
-      m_hi = (huge_integer)i;
+      m_hi = (long long)i;
       m_eunit = eunit; 
       clear_floating();
    }
@@ -68,9 +68,9 @@ public:
    constexpr void set_floating() {  m_bFloating = true; }
    constexpr void clear_floating() { m_bFloating = false; }
 
-   constexpr huge_integer as_huge_integer() const { return is_floating() ? (huge_integer)m_d : m_hi; }
+   constexpr long long as_long_long() const { return is_floating() ? (long long)m_d : m_hi; }
    constexpr double as_double() const { return is_floating() ? m_d : (double)m_hi; }
-   constexpr int as_int() const { return (int) this->as_huge_integer(); }
+   constexpr int as_int() const { return (int) this->as_long_long(); }
    constexpr float as_float() const { return (float) this->as_double(); }
    constexpr ENUM eunit() const { return m_eunit; }
 
@@ -79,12 +79,12 @@ public:
    constexpr bool is_null_or_positive() { return is_floating() ? m_d >= 0.0 : m_hi >= 0; }
    constexpr bool is_positive() { return is_floating() ? m_d > 0.0 : m_hi > 0; }
 
-//   constexpr operator huge_integer() const { return huge_integer(); }
+//   constexpr operator long long()const { return long_long; }
 //   constexpr operator double() const { return double(); }
 //   constexpr operator ENUM() const { return eunit(); }
 
    //template < primitive_integral INTEGRAL >
-   //constexpr unit_base & operator = (INTEGRAL i) { m_hi = (huge_integer)i; clear_floating(); return *this; }
+   //constexpr unit_base & operator = (INTEGRAL i) { m_hi = (long long)i; clear_floating(); return *this; }
 
    
    bool operator ==(const unit_base & unit) const

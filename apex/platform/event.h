@@ -21,7 +21,7 @@
 //      ::user::interaction *            m_ptab;
 //      ::user::interaction *            m_pform;
 //      atom                               id();
-//      huge_natural                              m_uiEvent;
+//      unsigned long long                              m_uiEvent;
 //      enum_timer                       m_etimer;
 //      ::action_context                 m_actioncontext;
 //      unsigned int                              m_uiVKey;

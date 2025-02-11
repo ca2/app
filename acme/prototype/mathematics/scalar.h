@@ -7,7 +7,7 @@
 
 
 //using real = double;
-//using integer = huge_integer;
+//using integer = long long;
 
 class CLASS_DECL_ACME number
 {
@@ -22,8 +22,8 @@ public:
       unsigned short       m_ush;
       int       m_i;
       unsigned int       m_ui;
-      huge_integer       m_hi;
-      huge_natural       m_hn;
+      long long       m_hi;
+      unsigned long long       m_hn;
 
       float       m_f;
       double       m_d;
@@ -39,12 +39,12 @@ public:
    number(unsigned short u) { m_ush = u; m_enumber = e_number_unsigned_short; }
    number(int i) { m_i = i; m_enumber = e_number_int; }
    number(unsigned int u) { m_ui = u; m_enumber = e_number_unsigned_int; }
-   number(huge_integer i) { m_hi = i; m_enumber = e_number_huge_integer; }
-   number(huge_natural u) { m_hn = u; m_enumber = e_number_huge_natural; }
+   number(long long i) { m_hi = i; m_enumber = e_number_long_long; }
+   number(unsigned long long u) { m_hn = u; m_enumber = e_number_unsigned_long_long; }
    number(float f) { m_f = f; m_enumber = e_number_float; }
    number(double d) { m_d = d; m_enumber = e_number_double; }
 //#ifdef __clang__
-//   number(long l) { m_hi = l; m_enumber = e_number_huge_integer; }
+//   number(long l) { m_hi = l; m_enumber = e_number_long_long; }
 //#endif
 
 
@@ -74,9 +74,9 @@ public:
          return(T)m_i;
       case e_number_unsigned_int:
          return (T)m_ui;
-      case e_number_huge_integer:
+      case e_number_long_long:
          return(T)m_hi;
-      case e_number_huge_natural:
+      case e_number_unsigned_long_long:
          return (T)m_hn;
       case e_number_float:
          return (T)m_f;
@@ -112,11 +112,11 @@ public:
       case e_number_unsigned_int:
          m_ui = (unsigned int)t;
          break;
-      case e_number_huge_integer:
-         m_hi = (huge_integer)t;
+      case e_number_long_long:
+         m_hi = (long long)t;
          break;
-      case e_number_huge_natural:
-         m_hn = (huge_natural)t;
+      case e_number_unsigned_long_long:
+         m_hn = (unsigned long long)t;
          break;
       case e_number_float:
          m_f = (float)t;
@@ -134,8 +134,8 @@ public:
    unsigned short get_unsigned_short() const { return get < unsigned short>(); }
    int get_int() const { return get < int>(); }
    unsigned int get_unsigned_int() const { return get < unsigned int>(); }
-   huge_integer get_huge_integer() const { return get < huge_integer>(); }
-   huge_natural get_huge_natural() const { return get < huge_natural>(); }
+   long long get_long_long() const { return get < long long>(); }
+   unsigned long long get_unsigned_long_long() const { return get < unsigned long long>(); }
    float get_float() const { return get < float>(); }
    double get_double() const { return get < double>(); }
 
@@ -156,7 +156,7 @@ public:
       else if (numberResult.is_integer())
       {
 
-         numberResult.set(get_huge_integer() + number.get_huge_integer());
+         numberResult.set(get_long_long() + number.get_long_long());
 
       }
 
@@ -181,7 +181,7 @@ public:
       else if (numberResult.is_integer())
       {
 
-         numberResult.set(get_huge_integer() - number.get_huge_integer());
+         numberResult.set(get_long_long() - number.get_long_long());
 
       }
 
@@ -205,7 +205,7 @@ public:
       else if (numberResult.is_integer())
       {
 
-         numberResult.set(get_huge_integer() * number.get_huge_integer());
+         numberResult.set(get_long_long() * number.get_long_long());
 
       }
 
@@ -230,7 +230,7 @@ public:
       else if (numberResult.is_integer())
       {
 
-         numberResult.set(get_huge_integer() / number.get_huge_integer());
+         numberResult.set(get_long_long() / number.get_long_long());
 
       }
 
@@ -253,7 +253,7 @@ public:
       else if (enumber & 6) // integer
       {
 
-         return get_huge_integer() == number.get_huge_integer();
+         return get_long_long() == number.get_long_long();
 
       }
 
@@ -275,7 +275,7 @@ public:
       else if (enumber & 6) // integer
       {
 
-         return get_huge_integer() != number.get_huge_integer();
+         return get_long_long() != number.get_long_long();
 
       }
 
@@ -298,7 +298,7 @@ public:
       else if (enumber & 6) // integer
       {
 
-         return get_huge_integer() < number.get_huge_integer();
+         return get_long_long() < number.get_long_long();
 
       }
 
@@ -321,7 +321,7 @@ public:
       else if (enumber & 6) // integer
       {
 
-         return get_huge_integer() <= number.get_huge_integer();
+         return get_long_long() <= number.get_long_long();
 
       }
 
@@ -344,7 +344,7 @@ public:
       else if (enumber & 6) // integer
       {
 
-         return get_huge_integer() > number.get_huge_integer();
+         return get_long_long() > number.get_long_long();
 
       }
 
@@ -368,7 +368,7 @@ public:
       else if (enumber & 6) // integer
       {
 
-         return get_huge_integer() >= number.get_huge_integer();
+         return get_long_long() >= number.get_long_long();
 
       }
 
@@ -396,7 +396,7 @@ inline string get_default_integer_scalar_format()
 //}
 //
 //template <  >
-//inline string get_default_scalar_format < huge_integer >()
+//inline string get_default_scalar_format < long long >()
 //{
 //   return "%lli";
 //}
@@ -614,14 +614,14 @@ public:
 //
 //
 ////using double_scalar_manager = scalar_manager < double >;
-////using int_scalar_manager  = scalar_manager < huge_integer >;
+////using int_scalar_manager  = scalar_manager < long long >;
 //
 ////using double_scalar_listener = scalar_manager < double >::listener;
-////using int_scalar_listener  = scalar_manager < huge_integer >::listener;
+////using int_scalar_listener  = scalar_manager < long long >::listener;
 //
 //
 ////using double_scalar = scalar < double >;
-////using int_scalar  = scalar < huge_integer >;
+////using int_scalar  = scalar < long long >;
 //
 //
 //

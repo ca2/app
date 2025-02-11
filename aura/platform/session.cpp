@@ -1359,7 +1359,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 
    //   }
 
-   //   huge_integer iMessage = pmouse->m_emessage;
+   //   long long iMessage = pmouse->m_emessage;
 
    //   if(iMessage == e_message_left_button_down
    //    //|| iMessage == e_message_left_button_up

@@ -44,7 +44,7 @@ void interprocess_intercommunication::initialize_interprocess_communication(::pa
 
 #else
 
-   m_atomApp = (huge_integer) ::get_current_process_id();
+   m_atomApp = (long long) ::get_current_process_id();
 
 #endif
 
@@ -354,7 +354,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 //
 //   }
 //
-//   huge_integer iCall = ::str::consume_natural(strMessage);
+//   long long iCall = ::str::consume_natural(strMessage);
 //
 //   if(!strMessage.begins_eat(" from "))
 //   {
@@ -491,7 +491,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 
          string strOriginObject = propertyset["protocol"]["origin_object"].get_string();
 
-         ::collection::index iCallId = propertyset["protocol"]["call_id"].huge_integer();
+         ::collection::index iCallId = propertyset["protocol"]["call_id"].long_long;
 
          auto pcall = create_call(strOrigin, strOriginObject, "reply." + strMember);
 
@@ -533,7 +533,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 }
 
 
-::pointer<::interprocess::task>interprocess_intercommunication::get_task(huge_integer iTask)
+::pointer<::interprocess::task>interprocess_intercommunication::get_task(long long iTask)
 {
 
    synchronous_lock synchronouslock(this->synchronization());
@@ -568,7 +568,7 @@ bool interprocess_intercommunication::on_interprocess_call(::payload & payload, 
       if(case_insensitive_string_begins(strMember, "reply."))
       {
 
-         huge_integer iTask = propertyset["protocol:call_id"];
+         long long iTask = propertyset["protocol:call_id"];
 
          auto pinterprocesstask = get_task(iTask);
 
@@ -754,7 +754,7 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
 
    pathModule /= m_strApp + ".module_list";
    
-   ::file::path pathPid = pnode->module_path_from_pid((unsigned int)idPid.huge_integer());
+   ::file::path pathPid = pnode->module_path_from_pid((unsigned int)idPid.long_long);
 
    string strModuleList = file_system()->as_string(pathModule);
 

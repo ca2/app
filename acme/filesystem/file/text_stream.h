@@ -9,8 +9,8 @@
 
 
 inline ::string ellipsis(const ::ansi_character * psz, character_count len);
-inline huge_natural consume_natural(const char*& psz, const ::ansi_character * pszBegin, int iRadix = 10);
-inline huge_integer consume_integer(const char * & psz, const ::ansi_character * pszBegin, int iRadix = 10);
+inline unsigned long long consume_natural(const char*& psz, const ::ansi_character * pszBegin, int iRadix = 10);
+inline long long consume_integer(const char * & psz, const ::ansi_character * pszBegin, int iRadix = 10);
 inline double consume_floating(const char*& psz, const ::ansi_character * pszBegin, int iRadix = 10);
 
 
@@ -296,7 +296,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator <<(huge_integer i)
+//text_stream < FILE >& text_stream < FILE >::operator <<(long long i)
 //{
 //
 //   print_number(as_string(i));
@@ -307,7 +307,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator <<(huge_natural u)
+//text_stream < FILE >& text_stream < FILE >::operator <<(unsigned long long u)
 //{
 //
 //   print_number(as_string(u));
@@ -534,7 +534,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator >>(huge_integer& i)
+//text_stream < FILE >& text_stream < FILE >::operator >>(long long& i)
 //{
 //
 //   number_read(i);
@@ -545,7 +545,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator >>(huge_natural& u)
+//text_stream < FILE >& text_stream < FILE >::operator >>(unsigned long long& u)
 //{
 //
 //   number_read(u);

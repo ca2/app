@@ -65,8 +65,8 @@ namespace sockets
       ~socket_handler() override;
 
       
-      huge_integer increment_reference_count() override;
-      huge_integer decrement_reference_count() override;
+      long long increment_reference_count() override;
+      long long decrement_reference_count() override;
 
 
       void initialize(::particle * pparticle) override;

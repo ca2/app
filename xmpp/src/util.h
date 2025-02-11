@@ -19,7 +19,7 @@
 #include "ostypes.h"
 
 /* timing functions */
-huge_natural time_stamp(void);
-huge_natural time_elapsed(huge_natural t1, huge_natural t2);
+unsigned long long time_stamp(void);
+unsigned long long time_elapsed(unsigned long long t1, unsigned long long t2);
 
 #endif /* __LIBSTROPHE_UTIL_H__ */

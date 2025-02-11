@@ -276,7 +276,7 @@
 //
 //
 ////typedef DWORD64[64]
-////::collection::count get_mem_info2(int ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], huge_integer ** ppiStack, int ** ppiLine, huge_integer ** ppiSize)
+////::collection::count get_mem_info2(int ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], long long ** ppiStack, int ** ppiLine, long long ** ppiSize)
 ////{
 ////
 ////#ifndef MEMDLEAK
@@ -304,9 +304,9 @@
 ////   int * piUse = (int *)malloc(sizeof(int) * ca);
 ////   const char ** pszFile = (const char **)malloc(sizeof(const char *) * ca);
 ////   DWORD64 ** puiStack[64] = (DWORD64 **[64])malloc(sizeof(DWORD64[64]) * ca);
-////   huge_integer * piStack = (huge_integer *)malloc(sizeof(huge_integer) * ca);
+////   long long * piStack = (long long *)malloc(sizeof(long long) * ca);
 ////   int * piLine = (int *)malloc(sizeof(int) * ca);
-////   huge_integer * piSize = (huge_integer *)malloc(sizeof(huge_integer) * ca);
+////   long long * piSize = (long long *)malloc(sizeof(long long) * ca);
 ////
 ////   ::collection::index i = 0;
 ////

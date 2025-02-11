@@ -43,7 +43,7 @@ void CancelDispatchSource(void * p)
 }
 
 
-void * CreateDispatchTimer(huge_natural interval, huge_natural leeway, void * queue, void (*pfnTimer)(void * p), void * p)
+void * CreateDispatchTimer(unsigned long long interval, unsigned long long leeway, void * queue, void (*pfnTimer)(void * p), void * p)
 {
 
    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, (dispatch_queue_t) queue);
@@ -64,7 +64,7 @@ void * CreateDispatchTimer(huge_natural interval, huge_natural leeway, void * qu
 }
 
 
-void * ResetDispatchTimer(void * timerParam, huge_natural interval, huge_natural leeway)
+void * ResetDispatchTimer(void * timerParam, unsigned long long interval, unsigned long long leeway)
 {
 
    dispatch_source_t timer = (dispatch_source_t) timerParam;
@@ -251,10 +251,10 @@ string apple_get_executable_path()
 
 
 
-huge_integer oswindow_id(oswindow w)
+long long oswindow_id(oswindow w)
 {
 
-   return (huge_integer) (w);
+   return (long long) (w);
 
 }
 

@@ -168,8 +168,8 @@ namespace apex
 
 #ifdef DEBUG
 
-      huge_integer increment_reference_count() override;
-      huge_integer decrement_reference_count() override;
+      long long increment_reference_count() override;
+      long long decrement_reference_count() override;
 
 #endif
       void initialize(::particle* pparticle) override;
@@ -494,7 +494,7 @@ namespace apex
 
       //virtual void record(::create * pcommand);
 
-      //virtual void on_event(huge_natural u, ::particle * pparticle) override;
+      //virtual void on_event(unsigned long long u, ::particle * pparticle) override;
       //virtual ::pointer<::thread_toolset>create_thread_toolset(::enum_task_tool etool);
 
 
@@ -1188,7 +1188,7 @@ namespace apex
       virtual bool get_fs_size(string& strSize, const ::string& pszPath, bool& bPending) override;
 
 
-      virtual bool get_fs_size(huge_integer& i64Size, const ::string& pszPath, bool& bPending) override;
+      virtual bool get_fs_size(long long& i64Size, const ::string& pszPath, bool& bPending) override;
 
 
       virtual void set_title(const ::string& pszTitle) override;

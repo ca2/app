@@ -4,7 +4,7 @@
 #pragma once
 
 
-enum enum_element : huge_integer
+enum enum_element : long long
 {
 
    e_element_none,

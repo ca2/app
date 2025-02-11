@@ -26,7 +26,7 @@ namespace universal_windows
       void assert_ok() const;
 
 
-      huge_integer get_length() const;
+      long long get_length() const;
       virtual string GetFileName() const;
       virtual string GetFilePath() const;
       virtual string GetFileTitle() const;

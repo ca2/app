@@ -134,8 +134,8 @@ CLASS_DECL_ACME void  flood_characters(::ansi_character * psz, ::ansi_character 
 CLASS_DECL_ACME character_count unichar_count(const ::ansi_character * pstr);
 
 
-CLASS_DECL_ACME huge_integer string_to_signed(const ::ansi_character * psz);
-CLASS_DECL_ACME huge_natural as_huge_natural(const ::ansi_character * psz);
+CLASS_DECL_ACME long long string_to_signed(const ::ansi_character * psz);
+CLASS_DECL_ACME unsigned long long as_unsigned_long_long(const ::ansi_character * psz);
 CLASS_DECL_ACME double string_to_floating(const ::ansi_character * psz);
 
 

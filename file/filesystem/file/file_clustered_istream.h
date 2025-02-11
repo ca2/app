@@ -20,12 +20,12 @@ namespace file
       int BlockSizeLog;
       u64_array Vector;
 
-      huge_natural SeekToPhys()
+      unsigned long long SeekToPhys()
       {
          return Stream->seek_begin((filesize) _physPos);
       }
 
-      huge_natural InitAndSeek()
+      unsigned long long InitAndSeek()
       {
          _curRem = 0;
          _virtPos = 0;

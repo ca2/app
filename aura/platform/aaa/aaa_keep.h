@@ -536,7 +536,7 @@ public:
    cflag < FLAG >          m_eflag;
 
 
-   ___keep_flag_on(cflag < FLAG > & eflagVariable, huge_integer iFlag) :
+   ___keep_flag_on(cflag < FLAG > & eflagVariable, long long iFlag) :
       m_eflagVariable(eflagVariable),
       m_eflag(iFlag)
    {
@@ -564,7 +564,7 @@ public:
 };
 
 template < typename FLAG >
-inline ___keep_flag_on < FLAG > keep_flag_on(cflag < FLAG > & eflagVariable, huge_integer iFlag)
+inline ___keep_flag_on < FLAG > keep_flag_on(cflag < FLAG > & eflagVariable, long long iFlag)
 {
 
    return ___keep_flag_on < FLAG >(eflagVariable, iFlag);

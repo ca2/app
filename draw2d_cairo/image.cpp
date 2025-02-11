@@ -423,7 +423,7 @@ namespace draw2d_cairo
    //void image::from_alpha()
    //{
    //   unsigned char *dst=(unsigned char*)m_pcolorrefMap;
-   //   huge_integer size = cx * cy;
+   //   long long size = cx * cy;
 
    //   while ( size-- )
    //   {
@@ -767,7 +767,7 @@ namespace draw2d_cairo
 //   bool image::update_window(::aura::draw_interface * puserinteraction,::message::message * pmessage,bool bTransferBuffer)
 //   {
 //
-//      huge_integer_rectangle rectangleWindow;
+//      long_long_rectangle rectangleWindow;
 //
 //      puserinteraction->window_rectangle(rectangleWindow);
 //
@@ -896,7 +896,7 @@ namespace draw2d_cairo
 ////   {
 ////
 ////
-////      huge_integer_rectangle rectangleWindow;
+////      long_long_rectangle rectangleWindow;
 ////
 ////      puserinteraction->window_rectangle(rectangleWindow);
 ////
@@ -941,7 +941,7 @@ namespace draw2d_cairo
 //   {
 //
 //
-//      huge_integer_rectangle rectangleWindow;
+//      long_long_rectangle rectangleWindow;
 //
 //      puserinteraction->window_rectangle(rectangleWindow);
 //

@@ -578,13 +578,13 @@ namespace android
       file* pFile = (file*)this;
       dwCur = pFile->seek(0L, ::e_seek_current);
       dwLen = pFile->seek_to_end();
-      VERIFY(dwCur == (huge_natural)pFile->seek((filesize) dwCur, ::e_seek_set));
+      VERIFY(dwCur == (unsigned long long)pFile->seek((filesize) dwCur, ::e_seek_set));
 
       return (filesize) dwLen;
    }
 
    //// file does not support direct buffering (CMemFile does)
-   //huge_natural file::GetBufferPtr(unsigned int nCommand, huge_natural /*nCount*/,
+   //unsigned long long file::GetBufferPtr(unsigned int nCommand, unsigned long long /*nCount*/,
    //                            void ** /*ppBufStart*/, void ** /*ppBufMax*/)
    //{
    //   ASSERT(nCommand == bufferCheck);
@@ -753,14 +753,14 @@ namespace android
 
    }
 
-   //huge_natural file::ReadHuge(void * lpBuffer, huge_natural dwCount)
+   //unsigned long long file::ReadHuge(void * lpBuffer, unsigned long long dwCount)
    //{
 
    //   return  read(lpBuffer, dwCount);
 
    //}
 
-   //void file::WriteHuge(const void * lpBuffer, huge_natural dwCount)
+   //void file::WriteHuge(const void * lpBuffer, unsigned long long dwCount)
    //{
 
    //   write(lpBuffer, dwCount);

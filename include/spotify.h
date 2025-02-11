@@ -44,7 +44,7 @@ extern "C" {
 #include <stddef.h>
 
 #ifdef _WIN32
-typedef huge_natural sp_::u3264;
+typedef unsigned long long sp_::u3264;
 #else
 #include <stdint.h>
 typedef uint64_t sp_::u3264;

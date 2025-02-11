@@ -25,8 +25,8 @@ public:
    operator unsigned short & () { return m_payload.unsigned_short_reference(); }
    operator int & () { return m_payload.int_reference(); }
    operator unsigned int & () { return m_payload.unsigned_int_reference(); }
-   operator huge_integer & () { return m_payload.huge_integer_reference(); }
-   operator huge_natural & () { return m_payload.huge_natural_reference(); }
+   operator long long & () { return m_payload.long_long_reference(); }
+   operator unsigned long long & () { return m_payload.unsigned_long_long_reference(); }
 
 
 #ifdef __APPLE__
@@ -55,7 +55,7 @@ public:
 
 
    operator int_array & () { return m_payload.int_array_reference(); }
-   operator huge_integer_array & () { return m_payload.huge_integer_array_reference(); }
+   operator long_long_array & () { return m_payload.long_long_array_reference(); }
    operator string_array & () { return m_payload.string_array_reference(); }
    operator payload_array & () { return m_payload.payload_array_reference(); }
    operator property_set & () { return m_payload.property_set_reference(); }

@@ -279,7 +279,7 @@
 //}
 //
 //
-//inline ::huge_integer_array & material_object::idarray() const { system()->__defer_construct_new(((material_object *)this)->m_pia); return *m_pia; }
+//inline ::long_long_array & material_object::idarray() const { system()->__defer_construct_new(((material_object *)this)->m_pia); return *m_pia; }
 //
 //
 //

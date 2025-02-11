@@ -52,8 +52,8 @@ namespace str
 
          locale_schema & operator = (const locale_schema & ls);
 
-         virtual huge_integer increment_reference_count();
-         virtual huge_integer release();
+         virtual long long increment_reference_count();
+         virtual long long release();
 
 
       };

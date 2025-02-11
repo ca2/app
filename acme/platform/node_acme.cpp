@@ -59,7 +59,7 @@ namespace platform
    }
 
 
-   void acme_node_layer::node_application_on_status(const char* pszStatus, void* p, huge_integer hi)
+   void acme_node_layer::node_application_on_status(const char* pszStatus, void* p, long long hi)
    {
    }
 
@@ -954,7 +954,7 @@ namespace platform
    }
 
 
-   huge_natural  acme_node_layer::translate_processor_affinity(int i)
+   unsigned long long  acme_node_layer::translate_processor_affinity(int i)
    {
       return   0;
    }
@@ -1233,7 +1233,7 @@ namespace platform
    }
 
 
-//   void acme_node_layer::application_handle(huge_integer l, void* p)
+//   void acme_node_layer::application_handle(long long l, void* p)
 //   {
 //   }
 
@@ -1251,6 +1251,13 @@ namespace platform
       return false;
    }
 
+
+   bool acme_node_layer::are_any_shared_libraries_mapped(const ::file::path_array & patha)
+   {
+      
+      return false;
+      
+   }
 
    ::string acme_node_layer::get_error_code_message(const ::error_code& errorcode)
    {
@@ -1903,5 +1910,30 @@ namespace platform
       return {};
 
    }
+
+   
+   ::string acme_node_layer::system_name()
+   {
+
+      return {};
+
+   }
+   
+   
+   ::string acme_node_layer::system_release()
+   {
+
+      return {};
+
+   }
+
+
+   ::string acme_node_layer::system_architecture()
+   {
+
+      return {};
+
+   }
+
 
 }

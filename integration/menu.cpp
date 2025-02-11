@@ -53,7 +53,7 @@ namespace app_integration
 #ifdef _DEBUG
 
 
-   huge_integer menu::increment_reference_count()
+   long long menu::increment_reference_count()
    {
 
       return  ::user::impact::increment_reference_count();
@@ -61,7 +61,7 @@ namespace app_integration
    }
 
 
-   huge_integer menu::decrement_reference_count()
+   long long menu::decrement_reference_count()
    {
 
       return  ::user::impact::decrement_reference_count();

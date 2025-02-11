@@ -124,8 +124,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //      ::pointer< ::mutex > m_pmutexSslCtx;
 //      //
 //      //bool m_b_input_buffer_disabled;
-//      //huge_natural m_bytes_sent;
-//      //huge_natural m_bytes_received;
+//      //unsigned long long m_bytes_sent;
+//      //unsigned long long m_bytes_received;
 //      //memory         m_memRead;
 //      //output_list m_obuf; ///< output buffer
 //      //::pointer<output>m_obuf_top; ///< output buffer on top
@@ -210,9 +210,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //      \lparam line Line read */
 //      void OnLine(const string & line) override;
 //      /** get counter of number of bytes received. */
-//      huge_natural GetBytesReceived(bool clear = false) override;
+//      unsigned long long GetBytesReceived(bool clear = false) override;
 //      /** get counter of number of bytes sent. */
-//      huge_natural GetBytesSent(bool clear = false) override;
+//      unsigned long long GetBytesSent(bool clear = false) override;
 //
 //      //#if defined(BSD_STYLE_SOCKETS)
 //      //      /** Socks4 specific callback. */

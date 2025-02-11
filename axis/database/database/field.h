@@ -23,7 +23,7 @@ namespace database
       string            m_strFieldTable;
       bool              m_bReadOnly;
       character_count           m_iLength;
-      huge_natural               m_ulFlag;
+      unsigned long long               m_ulFlag;
 
 
       field();

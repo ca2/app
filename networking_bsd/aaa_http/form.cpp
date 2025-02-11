@@ -7,16 +7,16 @@
 
 
 
-huge_integer g_iMaxHttpPost = 1_gb;
+long long g_iMaxHttpPost = 1_gb;
 
-void set_max_http_post(huge_integer i)
+void set_max_http_post(long long i)
 {
 
    g_iMaxHttpPost = i;
 
 }
 
-huge_integer get_max_http_post()
+long long get_max_http_post()
 {
 
    return g_iMaxHttpPost;

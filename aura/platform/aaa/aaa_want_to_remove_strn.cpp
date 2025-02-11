@@ -9,12 +9,12 @@ namespace aura
 {
 
 
-   bool strn::to(const ::string & psz, int iLen, huge_integer & i)
+   bool strn::to(const ::string & psz, int iLen, long long & i)
    {
 
       const ::ansi_character * pszEnd;
 
-      huge_integer iConversion = ::ansi_count_to_huge_integer(psz, &pszEnd, 10, iLen);
+      long long iConversion = ::ansi_count_to_long_long(psz, &pszEnd, 10, iLen);
 
       if(pszEnd == psz)
          return false;
@@ -30,7 +30,7 @@ namespace aura
 
       char * pszEnd;
 
-      huge_integer iConversion = ::ansi_count_to_huge_integer(psz, (const ::string &*) &pszEnd, 10, iLen);
+      long long iConversion = ::ansi_count_to_long_long(psz, (const ::string &*) &pszEnd, 10, iLen);
 
       if(pszEnd == psz)
          return false;
@@ -45,7 +45,7 @@ namespace aura
    }
 
 
-   bool strn::to(const ::string & psz, int iLen, huge_integer & i, int iBase)
+   bool strn::to(const ::string & psz, int iLen, long long & i, int iBase)
    {
 
       if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -53,7 +53,7 @@ namespace aura
 
       const ::ansi_character * pszEnd;
 
-      huge_integer iConversion = ::ansi_count_to_huge_integer(psz, &pszEnd, iBase, iLen);
+      long long iConversion = ::ansi_count_to_long_long(psz, &pszEnd, iBase, iLen);
 
       if(pszEnd == psz)
          return false;
@@ -72,7 +72,7 @@ namespace aura
 
       const ::ansi_character * pszEnd;
 
-      huge_integer iConversion = ::ansi_count_to_huge_integer(psz, &pszEnd, iBase, iLen);
+      long long iConversion = ::ansi_count_to_long_long(psz, &pszEnd, iBase, iLen);
 
       if(pszEnd == psz)
          return false;

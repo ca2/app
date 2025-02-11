@@ -21,8 +21,8 @@ typedef unsigned long uptr;
 #else
 
 
-typedef huge_integer iptr;
-typedef huge_natural uptr;
+typedef long long iptr;
+typedef unsigned long long uptr;
 
 
 #endif
@@ -41,9 +41,9 @@ typedef huge_natural uptr;
 
 #if OSBIT == 64
 
-typedef huge_natural              rtptr;
-typedef huge_natural              ulong_ptr;
-typedef huge_natural              dword_ptr;
+typedef unsigned long long              rtptr;
+typedef unsigned long long              ulong_ptr;
+typedef unsigned long long              dword_ptr;
 
 #else
 

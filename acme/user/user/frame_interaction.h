@@ -43,7 +43,7 @@ namespace acme
             };
             
             
-            huge_natural m_uAcmeUserFrameInteractionFlags;
+            unsigned long long m_uAcmeUserFrameInteractionFlags;
 
 
          };

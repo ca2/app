@@ -43,11 +43,11 @@
  inline void __exchange(::binary_stream & s, char & i);
  inline void __exchange(::binary_stream & s, short & i);
  inline void __exchange(::binary_stream & s, int & i);
- inline void __exchange(::binary_stream & s, huge_integer & i);
+ inline void __exchange(::binary_stream & s, long long & i);
  inline void __exchange(::binary_stream & s, unsigned char & u);
  inline void __exchange(::binary_stream & s, unsigned short & u);
  inline void __exchange(::binary_stream & s, unsigned int & u);
- inline void __exchange(::binary_stream & s, huge_natural & u);
+ inline void __exchange(::binary_stream & s, unsigned long long & u);
 
 
  inline void __exchange(::binary_stream & s, long & l);
@@ -66,19 +66,19 @@
 
 
  inline void __exchange(::binary_stream & s, ::int_rectangle & rectangle);
- inline void __exchange(::binary_stream & s, ::huge_integer_rectangle & rectangle);
+ inline void __exchange(::binary_stream & s, ::long_long_rectangle & rectangle);
  inline void __exchange(::binary_stream & s, ::float_rectangle & rectangle);
  inline void __exchange(::binary_stream & s, ::double_rectangle & rectangle);
 
 
  inline void __exchange(::binary_stream & s, ::int_size & rectangle);
- inline void __exchange(::binary_stream & s, ::huge_integer_size & rectangle);
+ inline void __exchange(::binary_stream & s, ::long_long_size & rectangle);
  inline void __exchange(::binary_stream & s, ::float_size & rectangle);
  inline void __exchange(::binary_stream & s, ::double_size & rectangle);
 
 
  inline void __exchange(::binary_stream & s, ::int_point & rectangle);
- inline void __exchange(::binary_stream & s, ::huge_integer_point & rectangle);
+ inline void __exchange(::binary_stream & s, ::long_long_point & rectangle);
  inline void __exchange(::binary_stream & s, ::float_point & rectangle);
  inline void __exchange(::binary_stream & s, ::double_point & rectangle);
 
@@ -377,7 +377,7 @@ public:
 //   // This number represents a following binary_stream of data with this length.
 //   // So the extra bytes representing the variable length quantity are
 //   // neglectable and worth due the very fast variable length encoding.
-//   inline void write_buffer_length(huge_natural u)
+//   inline void write_buffer_length(unsigned long long u)
 //   {
 //
 //      if (u < 255)
@@ -398,13 +398,13 @@ public:
 //
 //         write((unsigned char)255);
 //         write((unsigned short)65535);
-//         write((huge_natural)u);
+//         write((unsigned long long)u);
 //
 //      }
 //
 //   }
 //
-//   inline void read_buffer_length(huge_natural & u)
+//   inline void read_buffer_length(unsigned long long & u)
 //   {
 //
 //      unsigned char uRead;
@@ -453,12 +453,12 @@ public:
 //   virtual void write(bool b) { write((unsigned char)b?1: 0); }
 //   virtual void write(int i) { raw_write(i); }
 //   virtual void write(unsigned int u) { raw_write(u); }
-//   virtual void write(huge_integer i) { raw_write(i); }
-//   virtual void write(huge_natural u) { raw_write(u); }
+//   virtual void write(long long i) { raw_write(i); }
+//   virtual void write(unsigned long long u) { raw_write(u); }
 //#if defined(__APPLE__) || defined(ANDROID) || defined(WINDOWS) || defined(RASPBERRYPIOS)
 //   virtual void write(unsigned long ul) { raw_write(ul); }
 //   virtual void write(long l) { raw_write(l); }
-//   //inline void write (huge_integer hi);
+//   //inline void write (long long hi);
 //#endif
 //   virtual void write(float f) { raw_write(f); }
 //   virtual void write(double d) { raw_write(d); }
@@ -502,11 +502,11 @@ public:
 //   virtual void read(unsigned short & u);
 //   virtual void read(int & i);
 //   virtual void read(unsigned int & u);
-//   virtual void read(huge_integer & i);
-//   virtual void read(huge_natural & u);
+//   virtual void read(long long & i);
+//   virtual void read(unsigned long long & u);
 //#if defined(__APPLE__) || defined(ANDROID) || defined(WINDOWS) || defined(RASPBERRYPIOS)
 //   virtual void read(unsigned long & u);
-//   //inline void read (huge_integer & u);
+//   //inline void read (long long & u);
 //#endif
 //   virtual void read(float & f);
 //   virtual void read(double & d);
@@ -539,12 +539,12 @@ public:
 //   virtual void exchange(const ::atom & atom, bool & b) { stream_exchange(atom, b); }
 //   virtual void exchange(const ::atom & atom, int & i) { stream_exchange(atom, i); }
 //   virtual void exchange(const ::atom & atom, unsigned int & u) { stream_exchange(atom, u); }
-//   virtual void exchange(const ::atom & atom, huge_integer & i) { stream_exchange(atom, i); }
-//   virtual void exchange(const ::atom & atom, huge_natural & u) { stream_exchange(atom, u); }
+//   virtual void exchange(const ::atom & atom, long long & i) { stream_exchange(atom, i); }
+//   virtual void exchange(const ::atom & atom, unsigned long long & u) { stream_exchange(atom, u); }
 //#if defined(__APPLE__) || defined(ANDROID) || defined(WINDOWS) || defined(RASPBERRYPIOS)
 //   virtual void exchange(const ::atom & atom, unsigned long & ul) { stream_exchange(atom, ul); }
 //   virtual void exchange(const ::atom & atom, long & l) { stream_exchange(atom, l); }
-//   //inline void exchange(const ::atom & atom, huge_integer & hi);
+//   //inline void exchange(const ::atom & atom, long long & hi);
 //#endif
 //   virtual void exchange(const ::atom & atom, float & f) { stream_exchange(atom, f); }
 //   virtual void exchange(const ::atom & atom, double & d) { stream_exchange(atom, d); }
@@ -704,9 +704,9 @@ public:
 //
 //inline binary_stream & operator >> (binary_stream & s, unsigned int & u) { s.read(u); return s; }
 //
-//inline binary_stream & operator >> (binary_stream & s, huge_integer & i) { s.read(i); return s; }
+//inline binary_stream & operator >> (binary_stream & s, long long & i) { s.read(i); return s; }
 //
-//inline binary_stream & operator >> (binary_stream & s, huge_natural & u) { s.read(u); return s; }
+//inline binary_stream & operator >> (binary_stream & s, unsigned long long & u) { s.read(u); return s; }
 //
 //#ifdef __APPLE__
 //
@@ -799,9 +799,9 @@ public:
 //
 //inline binary_stream & operator << (binary_stream & s, unsigned int u) { s.write(u); return s; }
 //
-//inline binary_stream & operator << (binary_stream & s, huge_integer i) { s.write(i); return s; }
+//inline binary_stream & operator << (binary_stream & s, long long i) { s.write(i); return s; }
 //
-//inline binary_stream & operator << (binary_stream & s, huge_natural u) { s.write(u); return s; }
+//inline binary_stream & operator << (binary_stream & s, unsigned long long u) { s.write(u); return s; }
 //
 //#if defined(__APPLE__)
 //

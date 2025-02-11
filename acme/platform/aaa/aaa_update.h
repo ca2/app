@@ -1,7 +1,7 @@
 #pragma once
 
 
-//CLASS_DECL_ACME int os_get_system_update_poll_time(huge_integer iUpdate);
+//CLASS_DECL_ACME int os_get_system_update_poll_time(long long iUpdate);
 
 using update_map = map < ::pointer<matter> ::pointer<::update_item>>
 
@@ -43,13 +43,13 @@ public:
    ::pointer<::layered>                           m_pcontrolevent; // user::control_event
    ::pointer<::file::item>                        m_pfileitem;
    //::pointer<::u>                       m_pupdatetask;
-   huge_integer                                           m_iUpdateSerial;
+   long long                                           m_iUpdateSerial;
    ::user::enum_key                                   m_ekey;
    ::payload                                           m_var;
    bool                                            m_bModified;
    int                                             m_iMillisSleep;
-   //huge_integer                                        m_iUpdate;
-   //huge_integer                   m_iSerial;
+   //long long                                        m_iUpdate;
+   //long long                   m_iSerial;
 
 
    update();

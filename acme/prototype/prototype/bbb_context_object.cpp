@@ -11,7 +11,7 @@ object::~object()
 #ifdef _DEBUG
 
 
-huge_integer object::increment_reference_count()
+long long object::increment_reference_count()
 {
 
    return property_object::increment_reference_count();
@@ -19,7 +19,7 @@ huge_integer object::increment_reference_count()
 }
 
 
-huge_integer object::decrement_reference_count()
+long long object::decrement_reference_count()
 {
 
    return property_object::decrement_reference_count();
@@ -27,7 +27,7 @@ huge_integer object::decrement_reference_count()
 }
 
 
-huge_integer object::release()
+long long object::release()
 {
 
    return property_object::release();
@@ -38,7 +38,7 @@ huge_integer object::release()
 #else
 
 
-huge_integer object::increment_reference_count()
+long long object::increment_reference_count()
 {
 
    return property_object::increment_reference_count();
@@ -46,7 +46,7 @@ huge_integer object::increment_reference_count()
 }
 
 
-huge_integer object::decrement_reference_count()
+long long object::decrement_reference_count()
 {
 
    return property_object::decrement_reference_count();
@@ -54,7 +54,7 @@ huge_integer object::decrement_reference_count()
 }
 
 
-huge_integer object::release()
+long long object::release()
 {
 
    return property_object::release();
@@ -347,7 +347,7 @@ void object::process_exit_status(const ::e_status & estatus)
     }
 
 
-   //inline huge_integer get_ref_count()
+   //inline long long get_ref_count()
    //{
 
    //   return m_countReference;
@@ -830,7 +830,7 @@ void object::delete_this()
 
 
    //template < typename PRED >
-   //::image::image_pointer get_image(const ::payload & payloadFile, huge_natural uTrait, PRED pred);
+   //::image::image_pointer get_image(const ::payload & payloadFile, unsigned long long uTrait, PRED pred);
 
    // ::image::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    // ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);

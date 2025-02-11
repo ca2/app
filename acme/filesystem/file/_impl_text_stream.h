@@ -23,8 +23,8 @@ inline ::string ellipsis(const ::ansi_character * psz, character_count len)
 }
 
 
-//inline huge_natural consume_natural(const char*& psz, const ::ansi_character * pszBegin, int iRadix = 10)
-inline huge_natural consume_natural(const char*& psz, const ::ansi_character * pszBegin, int iRadix)
+//inline unsigned long long consume_natural(const char*& psz, const ::ansi_character * pszBegin, int iRadix = 10)
+inline unsigned long long consume_natural(const char*& psz, const ::ansi_character * pszBegin, int iRadix)
 {
 
    char* endptr = nullptr;
@@ -52,8 +52,8 @@ inline huge_natural consume_natural(const char*& psz, const ::ansi_character * p
 }
 
 
-inline huge_integer consume_integer(const char * & psz, const ::ansi_character * pszBegin, int iRadix)
-//inline huge_integer consume_integer(const char * & psz, const ::ansi_character * pszBegin, int iRadix = 10)
+inline long long consume_integer(const char * & psz, const ::ansi_character * pszBegin, int iRadix)
+//inline long long consume_integer(const char * & psz, const ::ansi_character * pszBegin, int iRadix = 10)
 {
 
    char* endptr = nullptr;

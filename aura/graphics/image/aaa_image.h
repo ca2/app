@@ -51,10 +51,10 @@
 ////
 ////   static float Cosines[360];
 ////   static float Sines[360];
-////   static huge_integer CosN[360]; // * 1 << 31
-////   static huge_integer SinN[360];
-////   static huge_integer Cos10N[10]; // until 10 degress
-////   static huge_integer Sin10N[10]; // more precision * 1 << 34
+////   static long long CosN[360]; // * 1 << 31
+////   static long long SinN[360];
+////   static long long Cos10N[10]; // until 10 degress
+////   static long long Sin10N[10]; // more precision * 1 << 34
 ////   static double dPi;
 ////
 ////

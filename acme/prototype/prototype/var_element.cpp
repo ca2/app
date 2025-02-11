@@ -67,8 +67,8 @@ enum_type set_element(::payload & payload, ::subparticle * pelement)
       case ::e_type_property_set:
          payload.m_ppropertyset = dynamic_cast <::property_set*>(pelement);
          break;
-      case ::e_type_huge_integer_array:
-         payload.m_pi64a = dynamic_cast <::huge_integer_array*>(pelement);
+      case ::e_type_long_long_array:
+         payload.m_pi64a = dynamic_cast <::long_long_array*>(pelement);
          break;
       case ::e_type_memory:
          payload.m_pmemory = dynamic_cast <::memory*>(pelement);
@@ -164,7 +164,7 @@ void payload::_set_element(::subparticle * pelement)
 }
 
 
-huge_integer payload::logical_release()
+long long payload::logical_release()
 {
 
    //if (m_etype == ::e_type_payload_pointer)
@@ -190,10 +190,10 @@ huge_integer payload::logical_release()
 }
 
 
-huge_integer payload::payload_release()
+long long payload::payload_release()
 {
 
-   huge_integer iRelease = -1;
+   long long iRelease = -1;
 
    if (m_etype == e_type_string)
    {
@@ -275,7 +275,7 @@ huge_integer payload::payload_release()
                iRelease = ::release(m_ppropertyset);
             }
             break;
-            case e_type_huge_integer_array:
+            case e_type_long_long_array:
             {
 #if REFERENCING_DEBUGGING
 

@@ -9,7 +9,7 @@ public:
    ::collection::index    m_iIndex;
    string   m_strCnt;
    string   m_strCit;
-   huge_integer  m_iId;
+   long long  m_iId;
    double   m_dLat;
    double   m_dLon;
 

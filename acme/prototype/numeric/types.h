@@ -6,8 +6,8 @@
 #if OSBIT == 32
 
 
-using huge_integer = long long int;
-using huge_natural = unsigned long long int;
+using long long = long long int;
+using unsigned long long = unsigned long long int;
 using iptr = int;
 using uptr = unsigned int;
 
@@ -28,14 +28,14 @@ using uptr = unsigned int;
 
 
 // #else
-using huge_integer = long long int;
-using huge_natural = unsigned long long int;
-#if defined(HAS_HYPER_INTEGER)
-using hyper_integer = __int128;
-using hyper_natural = unsigned __int128;
-#endif
-using iptr = huge_integer;
-using uptr = huge_natural;
+//using long long = long long int;
+//using unsigned long long = unsigned long long int;
+//#if defined(HAS_HYPER_INTEGER)
+//using hyper_integer = __int128;
+//using hyper_natural = unsigned __int128;
+//#endif
+using iptr = long long;
+using uptr = unsigned long long;
 
 
 #define IPTR_MAXIMUM I64_MAXIMUM
@@ -54,8 +54,8 @@ using uptr = huge_natural;
 //DO(unsigned int, unsigned_int, ui, UNSIGNED_INT); \
 //DO(long, long, l, LONG); \
 //DO(unsigned long, unsigned_long, ul, UNSIGNED_LONG); \
-//DO(huge_integer, huge_integer, hi, HUGE_INTEGER); \
-//DO(huge_natural, huge_natural, hn, HUGE_NATURAL); \
+//DO(long long, long long, hi, HUGE_INTEGER); \
+//DO(unsigned long long, unsigned long long, hn, HUGE_NATURAL); \
 //DO(float, float, f, FLOAT); \
 //DO(double, double, d, DOUBLE);
 //
@@ -84,8 +84,8 @@ DO(short, short, sh, SHORT); \
 DO(unsigned short, unsigned_short, ush, UNSIGNED_SHORT); \
 DO(int, int, i, INT); \
 DO(unsigned int, unsigned_int, ui, UNSIGNED_INT); \
-DO(huge_integer, huge_integer, hi, HUGE_INTEGER); \
-DO(huge_natural, huge_natural, hn, HUGE_NATURAL); \
+DO(long long, long_long, hi, HUGE_INTEGER); \
+DO(unsigned long long, unsigned_long_long, hn, HUGE_NATURAL); \
 DO(float, float, f, FLOAT); \
 DO(double, double, d, DOUBLE);
 
@@ -93,9 +93,9 @@ DO(double, double, d, DOUBLE);
 //
 //#if OSBIT == 64
 //
-//typedef huge_natural              rtptr;
-//typedef huge_natural              ulong_ptr;
-//typedef huge_natural              dword_ptr;
+//typedef unsigned long long              rtptr;
+//typedef unsigned long long              ulong_ptr;
+//typedef unsigned long long              dword_ptr;
 //
 //#else
 //

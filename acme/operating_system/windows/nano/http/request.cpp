@@ -125,7 +125,7 @@ namespace windows
 
             pget->payload("out_headers").as_property_set().parse_network_headers(strHeaders);
 
-            huge_natural contentLength = 0;
+            unsigned long long contentLength = 0;
             DWORD dwContentLengthBufferSize = sizeof(contentLength);
 
             auto bContentLength = WinHttpQueryHeaders(m_hinternet,

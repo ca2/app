@@ -19,7 +19,7 @@ namespace dynamic_source
 
       g_interlockedcountDynamicSourceSession++;
 
-      ::informationf("%s currently allocated count = %lld", typeid(*this).name(), g_interlockedcountDynamicSourceSession.operator huge_integer());
+      ::informationf("%s currently allocated count = %lld", typeid(*this).name(), g_interlockedcountDynamicSourceSession.operator long long());
 
    }
 
@@ -76,14 +76,14 @@ namespace dynamic_source
 #ifdef _DEBUG
 
 
-   huge_integer session::increment_reference_count()
+   long long session::increment_reference_count()
    {
 
       return ::particle::increment_reference_count();
 
    }
 
-   huge_integer session::decrement_reference_count()
+   long long session::decrement_reference_count()
    {
 
       return ::particle::decrement_reference_count();

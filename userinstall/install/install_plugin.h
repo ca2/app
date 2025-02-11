@@ -109,7 +109,7 @@ namespace install
 
 #ifndef UNIVERSAL_WINDOWS
 
-      virtual void on_post(::aura::ipc::rx * prx, huge_integer a, huge_integer b);
+      virtual void on_post(::aura::ipc::rx * prx, long long a, long long b);
 
       using ::hotplugin::plugin::on_receive;
 

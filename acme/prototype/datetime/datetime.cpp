@@ -205,7 +205,7 @@ namespace datetime
    }
 
 
-   huge_integer datetime::get_timestamp(int year, int month, int day)
+   long long datetime::get_timestamp(int year, int month, int day)
    {
       
       ::earth::time time(year, month, day, 0, 0, 0);
@@ -270,7 +270,7 @@ namespace datetime
    }
 
 
-   //huge_integer datetime::utc_strtotime(const ::text::context * pcontext, const ::scoped_string & scopedstr, int iPath, int & iPathCount)
+   //long long datetime::utc_strtotime(const ::text::context * pcontext, const ::scoped_string & scopedstr, int iPath, int & iPathCount)
    //{
 
    //   if (::is_null(psz) || string(psz).trimmed().is_empty())
@@ -1002,9 +1002,9 @@ namespace datetime
       bool bSolved = false;
       string strTime;
       string str;
-      huge_integer iSecDiff = (timeNow - time).seconds();
-      huge_integer iMinDiff = (timeNow - time).minutes();
-      huge_integer iHouDiff = (timeNow - time).hours();
+      long long iSecDiff = (timeNow - time).seconds();
+      long long iMinDiff = (timeNow - time).minutes();
+      long long iHouDiff = (timeNow - time).hours();
       if (iSecDiff <= 59)
       {
          bSolved = true;
@@ -1142,9 +1142,9 @@ namespace datetime
       bool bSolved = false;
       string strTime;
       string str;
-      huge_integer iSecDiff = (timeNow - time).seconds();
-      huge_integer iMinDiff = (timeNow - time).minutes();
-      huge_integer iHouDiff = (timeNow - time).hours();
+      long long iSecDiff = (timeNow - time).seconds();
+      long long iMinDiff = (timeNow - time).minutes();
+      long long iHouDiff = (timeNow - time).hours();
       if (iSecDiff <= 59)
       {
          bSolved = true;
@@ -1975,7 +1975,7 @@ namespace datetime
    }
 
 
-::string datetime::elapsed_nanoseconds_text(huge_integer iNanoseconds)
+::string datetime::elapsed_nanoseconds_text(long long iNanoseconds)
 {
 
    ::string str;

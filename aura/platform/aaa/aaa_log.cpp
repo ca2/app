@@ -391,15 +391,15 @@ pdirectorysystem->system() / "log.txt"))
       time = time.get_current_time();
       time.Format(strPre, "%Y-%m-%d %H:%M:%S");
       string strTick;
-      huge_integer uiTotalMillis= ::duration::now() - ::first_millis();
-      huge_integer uiMillis = uiTotalMillis % 1000;
-      huge_integer uiTotalSeconds = uiTotalMillis / 1000;
-      huge_integer uiSeconds = uiTotalSeconds % 60;
-      huge_integer uiTotalMinutes = uiTotalSeconds / 60;
-      huge_integer uiMinutes = uiTotalMinutes % 60;
-      huge_integer uiTotalHours = uiTotalMinutes / 60;
-      huge_integer uiHours = uiTotalHours % 24;
-      huge_integer uiTotalDays = uiTotalHours / 24;
+      long long uiTotalMillis= ::duration::now() - ::first_millis();
+      long long uiMillis = uiTotalMillis % 1000;
+      long long uiTotalSeconds = uiTotalMillis / 1000;
+      long long uiSeconds = uiTotalSeconds % 60;
+      long long uiTotalMinutes = uiTotalSeconds / 60;
+      long long uiMinutes = uiTotalMinutes % 60;
+      long long uiTotalHours = uiTotalMinutes / 60;
+      long long uiHours = uiTotalHours % 24;
+      long long uiTotalDays = uiTotalHours / 24;
       // sipman LCTV learning to format hours, minutes and seconds.... (me (re) learning too)...
       if (uiTotalDays > 0)
       {

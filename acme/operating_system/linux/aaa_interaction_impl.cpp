@@ -92,7 +92,7 @@ namespace linux
 {
 
 
-   huge_integer g_iMouseMove = 0;
+   long long g_iMouseMove = 0;
 
 
    interaction_impl::interaction_impl()

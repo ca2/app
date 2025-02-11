@@ -3,7 +3,7 @@
 //#include "string.h"
 
 
-//character::utf8_char(huge_natural u)
+//character::utf8_char(unsigned long long u)
 //{
 //
 //   m_chLen = (char)wd32_to_ansi_char(m_sz, (unsigned int)u);

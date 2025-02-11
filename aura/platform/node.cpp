@@ -138,7 +138,7 @@ namespace aura
    //}
 
 
-//   void * node::node_wrap_window(void * pdisplay, huge_integer window)
+//   void * node::node_wrap_window(void * pdisplay, long long window)
 //   {
 //
 //      return nullptr;

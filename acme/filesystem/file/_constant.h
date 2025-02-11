@@ -16,7 +16,7 @@ namespace file
 
 
    enum enum_flag :
-      huge_integer
+      long long
    {
 
       e_flag_none = 0,

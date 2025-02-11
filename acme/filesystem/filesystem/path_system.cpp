@@ -32,7 +32,16 @@ path_system::~path_system()
 ::string path_system::shell_path(const ::file::path & path)
 {
 
-   return path;
+   ::string str = path;
+
+   if (str.contains(' '))
+   {
+
+      str = "\"" + str + "\"";
+
+   }
+
+   return str;
 
 }
 
@@ -56,23 +65,26 @@ path_system::~path_system()
 ::file::path path_system::tool_folder_path()
 {
 
-   ::string strToolFolderName = "tool-" + tool_folder_operating_system_name();
+   //::string strToolFolderName = "tool-" + tool_folder_operating_system_name();
+   ::string strToolFolderName = "tool";
 
    ::file::path pathToolFolder;
 
-#ifdef WINDOWS_DESKTOP
+// #ifdef WINDOWS_DESKTOP
 
-   pathToolFolder = "C:" / strToolFolderName;
+//    pathToolFolder = "C:" / strToolFolderName;
 
-#elif defined(MACOS)
+// #elif defined(MACOS)
 
-   pathToolFolder = directory_system()->home() / "workspace/operating_system" / strToolFolderName;
+//    pathToolFolder = directory_system()->home() / "workspace/operating_system" / strToolFolderName;
 
-#else
+// #else
 
-   pathToolFolder = directory_system()->home() / "cmake/operating_system" / strToolFolderName;
+//    pathToolFolder = directory_system()->home() / "cmake/operating_system" / strToolFolderName;
 
-#endif
+// #endif
+
+   pathToolFolder = directory_system()->home() / "code/operating_system" / strToolFolderName;
 
    return pathToolFolder;
 

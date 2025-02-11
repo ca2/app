@@ -51,8 +51,8 @@ public:
    ~message_box() override;
 
 #ifdef DEBUG
-   huge_integer increment_reference_count() override;
-   huge_integer decrement_reference_count() override;
+   long long increment_reference_count() override;
+   long long decrement_reference_count() override;
 #endif
    
    //virtual ::string get_conversation_message();

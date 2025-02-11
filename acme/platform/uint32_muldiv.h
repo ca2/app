@@ -103,30 +103,30 @@
 #else
 
         //
-        //  Use C9 huge_integer support for Daytona RISC platforms.
+        //  Use C9 long long support for Daytona RISC platforms.
         //
 
         INLINE int MulDiv32( int a, int b, int ca )
         {
-           return (int)(((huge_integer)a * (huge_integer)b) / (huge_integer)ca);
+           return (int)(((long long)a * (long long)b) / (long long)ca);
         }
 
 
         INLINE unsigned int MulDivRD( unsigned int a, unsigned int b, unsigned int ca )
         {
-           return (int)(((huge_natural)a * (huge_natural)b) / (huge_natural)ca);
+           return (int)(((unsigned long long)a * (unsigned long long)b) / (unsigned long long)ca);
         }
 
 
         INLINE unsigned int MulDivRN( unsigned int a, unsigned int b, unsigned int ca )
         {
-           return (unsigned int)(((huge_natural)a * (huge_natural)b) / (huge_natural)ca);
+           return (unsigned int)(((unsigned long long)a * (unsigned long long)b) / (unsigned long long)ca);
         }
 
 
         INLINE unsigned int MulDivRU( unsigned int a, unsigned int b, unsigned int ca )
         {
-           return (int)((((huge_natural) a * (huge_integer)b) + ca -1) / (huge_integer)ca);
+           return (int)((((unsigned long long) a * (long long)b) + ca -1) / (long long)ca);
         }
 
     #endif
@@ -136,23 +136,23 @@
 
 inline int MulDiv32(int a, int b, int ca)
 {
-    return (int) (((huge_integer) a * (huge_integer) b) / (huge_integer) ca);
+    return (int) (((long long) a * (long long) b) / (long long) ca);
 }
 
 inline unsigned int MulDivRD(unsigned int a, unsigned int b, unsigned int ca)
 {
-    return (unsigned int) (((huge_natural) a * (huge_natural) b) / (huge_natural) ca);
+    return (unsigned int) (((unsigned long long) a * (unsigned long long) b) / (unsigned long long) ca);
 }
 
 inline unsigned int MulDivRN( unsigned int a, unsigned int b, unsigned int ca )
 {
-    return (unsigned int) ((((huge_natural) a * (huge_natural) b)+(huge_natural)ca/2) / (huge_natural)ca );
+    return (unsigned int) ((((unsigned long long) a * (unsigned long long) b)+(unsigned long long)ca/2) / (unsigned long long)ca );
 }
 
 
 inline unsigned int MulDivRU( unsigned int a, unsigned int b, unsigned int ca )
 {
-    return (unsigned int) ((((huge_natural) a * (huge_natural) b)+(huge_natural)ca-1) / (huge_natural)ca );
+    return (unsigned int) ((((unsigned long long) a * (unsigned long long) b)+(unsigned long long)ca-1) / (unsigned long long)ca );
 }
 
 

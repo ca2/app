@@ -19,9 +19,9 @@ public:
 
    constexpr time(no_initialize_t) {}
    constexpr time():time(0, 0) {}
-   constexpr time(huge_integer iSecond, huge_integer iNanosecond)  {m_iSecond = iSecond; m_iNanosecond = iNanosecond; normalize();}
+   constexpr time(long long iSecond, long long iNanosecond)  {m_iSecond = iSecond; m_iNanosecond = iNanosecond; normalize();}
    constexpr time(zero_t)  :time(0, 0) {}
-   time(double d) {m_iSecond = (huge_integer)d; m_iNanosecond = (huge_integer) ((d - floor(d)) * 1'000'000'000.0); normalize();}
+   time(double d) {m_iSecond = (long long)d; m_iNanosecond = (long long) ((d - floor(d)) * 1'000'000'000.0); normalize();}
    constexpr time(const class ::time& time)  {m_iSecond = time.m_iSecond; m_iNanosecond = time.m_iNanosecond;}
    constexpr time(const struct ::timespec& timespec)  {m_iSecond = timespec.tv_sec; m_iNanosecond = timespec.tv_nsec; normalize(); }
    inline time(const class duration & duration);

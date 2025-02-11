@@ -7,7 +7,7 @@ class CLASS_DECL_AURA db_long_set_item
 public:
 
    ::time m_timeTimeout;
-   huge_integer        m_l;
+   long long        m_l;
 
 };
 
@@ -18,7 +18,7 @@ public:
 
    string         m_strKey;
    ::time m_timeTimeout;
-   huge_integer        m_l;
+   long long        m_l;
 
    db_long_set_queue_item() {}
    db_long_set_queue_item(const db_long_set_queue_item & item){ operator =(item); }
@@ -108,7 +108,7 @@ public:
    virtual int run();
 
 
-   void queue(const ::string & pszKey,huge_integer l);
+   void queue(const ::string & pszKey,long long l);
 
 };
 
@@ -174,7 +174,7 @@ repeat:;
 
 }
 
-void db_long_sync_queue::queue(const ::string & pszKey,huge_integer l)
+void db_long_sync_queue::queue(const ::string & pszKey,long long l)
 {
 
    single_lock synchronouslock(m_pmutex, true);
@@ -205,7 +205,7 @@ db_long_set::~db_long_set()
 }
 
 // Adiciona na matriz System nomes dos diretrios de imagens.
-bool db_long_set::load(const ::string & lpKey, huge_integer * plValue)
+bool db_long_set::load(const ::string & lpKey, long long * plValue)
 {
 
    if(m_pcore->m_pdataserver->m_bRemote)
@@ -239,7 +239,7 @@ bool db_long_set::load(const ::string & lpKey, huge_integer * plValue)
          return false;
       }
 
-      *plValue = ::str::to_huge_integer(string((const ::string &)m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_data(),m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_size()));
+      *plValue = ::str::to_long_long(string((const ::string &)m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_data(),m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_size()));
 
       longitem.m_timeTimeout= ::time::now() + 23 * (5000);
       longitem.m_l = *plValue;
@@ -306,7 +306,7 @@ bool db_long_set::load(const ::string & lpKey, huge_integer * plValue)
 
 }
 
-bool db_long_set::save(const ::string & lpKey, huge_integer lValue)
+bool db_long_set::save(const ::string & lpKey, long long lValue)
 {
 
    if(m_pcore->m_pdataserver->m_bRemote)
@@ -355,7 +355,7 @@ bool db_long_set::save(const ::string & lpKey, huge_integer lValue)
 
       ::pointer<::sqlite::database>pdb   = m_pcore->db()->get_database();
       string strSql;
-      huge_integer l;
+      long long l;
       slDatabase.lock();
       if(load(lpKey, &l))
       {

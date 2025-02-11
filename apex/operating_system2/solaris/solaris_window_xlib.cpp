@@ -22,7 +22,7 @@ window_xlib::~window_xlib()
 HDC GetDC(oswindow window);
 
 
-void window_xlib::create(oswindow window, huge_integer cxParam, huge_integer cyParam, int iStrideParam)
+void window_xlib::create(oswindow window, long long cxParam, long long cyParam, int iStrideParam)
 {
 
    if(cxParam <= 0 || cyParam <= 0)

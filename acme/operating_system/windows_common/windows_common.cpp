@@ -23,7 +23,7 @@ extern LARGE_INTEGER g_largeintegerFrequency;
 #endif
 
 
-CLASS_DECL_ACME huge_integer huge_integer_nanosecond()
+CLASS_DECL_ACME long long long_long_nanosecond()
 {
 
    return ::time::now().integral_nanosecond();
@@ -283,7 +283,7 @@ namespace windows
       if (iResult >= WAIT_ABANDONED_0 && iResult < (WAIT_ABANDONED_0 + MAXIMUM_WAIT_OBJECTS))
       {
 
-         return (::e_status)(::enum_status)((huge_integer)abandoned_base + (iResult - WAIT_ABANDONED_0));
+         return (::e_status)(::enum_status)((long long)abandoned_base + (iResult - WAIT_ABANDONED_0));
 
       }
       else if (iResult == WAIT_IO_COMPLETION)
@@ -313,7 +313,7 @@ namespace windows
       else if (iResult >= WAIT_OBJECT_0 && iResult < (WAIT_OBJECT_0 + MAXIMUM_WAIT_OBJECTS))
       {
 
-         return (::e_status)(::enum_status)((huge_integer)signaled_base + (iResult - WAIT_OBJECT_0));
+         return (::e_status)(::enum_status)((long long)signaled_base + (iResult - WAIT_OBJECT_0));
 
       }
       else

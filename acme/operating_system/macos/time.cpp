@@ -15,7 +15,7 @@
 
 void ns_Sleep(unsigned int uiMillis);
 
-//huge_natural get_nanos()
+//unsigned long long get_nanos()
 //{
 //
 //   return mach_absolute_time() * g_machtime_conversion_factor;
@@ -24,7 +24,7 @@ void ns_Sleep(unsigned int uiMillis);
 //   //
 //   //   clock_get_time(g_cclock, &mts);
 //   //
-//   //   return ((huge_natural) mts.tv_sec * (huge_natural)1000 * (huge_natural)1000 * (huge_natural)1000 )+ ((huge_natural) mts.tv_nsec);
+//   //   return ((unsigned long long) mts.tv_sec * (unsigned long long)1000 * (unsigned long long)1000 * (unsigned long long)1000 )+ ((unsigned long long) mts.tv_nsec);
 //
 //}
 

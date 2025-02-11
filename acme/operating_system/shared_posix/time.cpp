@@ -28,7 +28,7 @@
 #ifdef HAVE_UNISTD_H
 
 
-CLASS_DECL_ACME void preempt_second(huge_integer i)
+CLASS_DECL_ACME void preempt_second(long long i)
 {
 
    ::sleep((unsigned int)i);
@@ -36,7 +36,7 @@ CLASS_DECL_ACME void preempt_second(huge_integer i)
 }
 
 
-CLASS_DECL_ACME void preempt_millisecond(huge_integer i)
+CLASS_DECL_ACME void preempt_millisecond(long long i)
 {
 
    ::usleep((useconds_t)i * 1'000);
@@ -52,7 +52,7 @@ CLASS_DECL_ACME void preempt_millisecond(huge_integer i)
 //}
 
 
-CLASS_DECL_ACME void preempt_microsecond(huge_integer i)
+CLASS_DECL_ACME void preempt_microsecond(long long i)
 {
 
    ::usleep((unsigned int)i);
@@ -66,7 +66,7 @@ CLASS_DECL_ACME void preempt_microsecond(huge_integer i)
 #if defined(ANDROID) || defined(__APPLE__) || defined(LINUX) || defined(__BSD__)
 
 
-CLASS_DECL_ACME void preempt_nanosecond(huge_integer i)
+CLASS_DECL_ACME void preempt_nanosecond(long long i)
 {
 
    struct timespec timespec;
@@ -93,7 +93,7 @@ CLASS_DECL_ACME void preempt_nanosecond(huge_integer i)
 // }
 
 
-//CLASS_DECL_ACME void precision_wait_nanoseconds(huge_natural u)
+//CLASS_DECL_ACME void precision_wait_nanoseconds(unsigned long long u)
 //{
 //
 //   struct timespec req;
@@ -211,7 +211,7 @@ bool microsecond_sleep::sleep(unsigned long usec)
 #endif
 
 
-void copy(::earth::gregorian_time * ptime, const struct ::tm * ptm, huge_integer iNanosecond)
+void copy(::earth::gregorian_time * ptime, const struct ::tm * ptm, long long iNanosecond)
 {
 
    ptime->m_iNanoSecond = iNanosecond;
@@ -243,7 +243,7 @@ void copy(struct ::tm * ptm, const ::earth::gregorian_time * ptime)
 namespace earth
 {
 
-   void gregorian_time::set(const ::posix_time & time, huge_integer iNanosecond, const class ::time & timeshift)
+   void gregorian_time::set(const ::posix_time & time, long long iNanosecond, const class ::time & timeshift)
    {
 
       struct tm tm;

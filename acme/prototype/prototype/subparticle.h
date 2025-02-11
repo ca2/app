@@ -85,19 +85,19 @@ public:
 #ifdef _DEBUG
 
 
-   virtual huge_integer increment_reference_count();
-   virtual huge_integer decrement_reference_count();
-   virtual huge_integer replace_reference();
-   virtual huge_integer release();
+   virtual long long increment_reference_count();
+   virtual long long decrement_reference_count();
+   virtual long long replace_reference();
+   virtual long long release();
 
 
 #else
 
 
-   inline huge_integer increment_reference_count();
-   inline huge_integer decrement_reference_count();
-   inline huge_integer replace_reference();
-   inline huge_integer release();
+   inline long long increment_reference_count();
+   inline long long decrement_reference_count();
+   inline long long replace_reference();
+   inline long long release();
 
 
 #endif

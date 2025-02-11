@@ -76,7 +76,7 @@ extern "C" {
 #endif
 #endif
 
-// experimental support for huge_integer (see README.mkdn for detail)
+// experimental support for long long (see README.mkdn for detail)
 #ifdef QUITE_COMPACT_NETWORK_PAYLOAD_USE_INT64
 #define __STDC_FORMAT_MACROS
 #include <cerrno>
@@ -145,7 +145,7 @@ public:
     bool boolean_;
     double number_;
 #ifdef QUITE_COMPACT_NETWORK_PAYLOAD_USE_INT64
-    huge_integer int64_;
+    long long int64_;
 #endif
     std::string *string_;
     array *array_;
@@ -161,7 +161,7 @@ public:
   value(int type, bool);
   explicit value(bool b);
 #ifdef QUITE_COMPACT_NETWORK_PAYLOAD_USE_INT64
-  explicit value(huge_integer i);
+  explicit value(long long i);
 #endif
   explicit value(double n);
   explicit value(const std::string &s);
@@ -240,7 +240,7 @@ inline value::value(bool b) : type_(boolean_type), u_() {
 }
 
 #ifdef QUITE_COMPACT_NETWORK_PAYLOAD_USE_INT64
-inline value::value(huge_integer i) : type_(int64_type), u_() {
+inline value::value(long long i) : type_(int64_type), u_() {
   u_.int64_ = i;
 }
 #endif
@@ -358,7 +358,7 @@ inline void value::swap(value &x) QUITE_COMPACT_NETWORK_PAYLOAD_NOEXCEPT {
 IS(null, null)
 IS(bool, boolean)
 #ifdef QUITE_COMPACT_NETWORK_PAYLOAD_USE_INT64
-IS(huge_integer, int64)
+IS(long long, int64)
 #endif
 IS(std::string, string)
 IS(array, array)
@@ -389,7 +389,7 @@ GET(object, *u_.object_)
 GET(double,
     (type_ == int64_type && (const_cast<value *>(this)->type_ = number_type, (const_cast<value *>(this)->u_.number_ = u_.int64_)),
      u_.number_))
-GET(huge_integer, u_.int64_)
+GET(long long, u_.int64_)
 #else
 GET(double, u_.number_)
 #endif
@@ -407,7 +407,7 @@ SET(array, array, u_.array_ = ___new array(_val);)
 SET(object, object, u_.object_ = ___new object(_val);)
 SET(double, number, u_.number_ = _val;)
 #ifdef QUITE_COMPACT_NETWORK_PAYLOAD_USE_INT64
-SET(huge_integer, int64, u_.int64_ = _val;)
+SET(long long, int64, u_.int64_ = _val;)
 #endif
 #undef SET
 
@@ -910,7 +910,7 @@ template <typename Context, typename Iter> inline bool _parse(Context &ctx, inpu
       {
         errno = 0;
         intmax_t ival = strtoimax(num_str.c_str(), &endp, 10);
-        if (errno == 0 && std::numeric_limits<huge_integer>::min() <= ival && ival <= std::numeric_limits<huge_integer>::max() &&
+        if (errno == 0 && std::numeric_limits<long long>::min() <= ival && ival <= std::numeric_limits<long long>::max() &&
             endp == num_str.c_str() + num_str.size()) {
           ctx.set_int64(ival);
           return true;
@@ -939,7 +939,7 @@ public:
     return false;
   }
 #ifdef QUITE_COMPACT_NETWORK_PAYLOAD_USE_INT64
-  bool set_int64(huge_integer) {
+  bool set_int64(long long) {
     return false;
   }
 #endif
@@ -983,7 +983,7 @@ public:
     return true;
   }
 #ifdef QUITE_COMPACT_NETWORK_PAYLOAD_USE_INT64
-  bool set_int64(huge_integer i) {
+  bool set_int64(long long i) {
     *out_ = value(i);
     return true;
   }
@@ -1054,7 +1054,7 @@ public:
     return true;
   }
 #ifdef QUITE_COMPACT_NETWORK_PAYLOAD_USE_INT64
-  bool set_int64(huge_integer) {
+  bool set_int64(long long) {
     return true;
   }
 #endif

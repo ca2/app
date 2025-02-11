@@ -38,10 +38,10 @@ namespace user
       class ::time                                m_timePostRedrawProdevian;
       class ::time                                m_timePostRedrawNominal;
 
-      //huge_integer                                       m_iFrameId;
+      //long long                                       m_iFrameId;
       //class ::time                                m_timeStart;
       class ::time                                m_timeLastFrame;
-      //huge_integer                                       m_iLastFrameId;
+      //long long                                       m_iLastFrameId;
       class ::time                                m_timeNextFrame;
       class ::time                                m_timeNextScreenUpdate;
       //::collection::count                                   m_cLost;
@@ -83,9 +83,9 @@ namespace user
 
 
 #ifdef _DEBUG
-      virtual huge_integer increment_reference_count() override;
-      virtual huge_integer decrement_reference_count() override;
-      virtual huge_integer release() override;
+      virtual long long increment_reference_count() override;
+      virtual long long decrement_reference_count() override;
+      virtual long long release() override;
 #endif
 
 

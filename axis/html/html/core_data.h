@@ -221,8 +221,8 @@ namespace html
 
 
       virtual string process_url(const ::string & pszUrl);
-      //virtual huge_integer increment_reference_count() override;
-      //virtual huge_integer decrement_reference_count() override;
+      //virtual long long increment_reference_count() override;
+      //virtual long long decrement_reference_count() override;
 
 
       bool open_document(const ::payload & payloadFile) override;

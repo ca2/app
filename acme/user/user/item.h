@@ -10,7 +10,7 @@ namespace user
 {
 
 
-   //enum enum_item : huge_integer
+   //enum enum_item : long long
    //{
 
    //   e_item_normal = 0,
@@ -294,7 +294,7 @@ namespace user
    public:
 
 
-      //item(enum_element eelement, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1, const huge_natural uFlags = e_flag_none) :
+      //item(enum_element eelement, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1, const unsigned long long uFlags = e_flag_none) :
       //   item(eelement, iItem, iSubItem, iListItem, uFlags) {}
 
       //item(const ::user::e_flag & eflag, enum_element eelement, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1, const ::atom & atom = ::atom::e_type_null) :
@@ -585,8 +585,8 @@ namespace user
       //::collection::index operator + (int iItemAdd) { return (::collection::index)(m_iItem + iItemAdd); }
       //::collection::index operator - (int iItemSub) { return (::collection::index)(m_iItem - iItemSub); }
 
-      //::collection::index operator + (huge_integer iItemAdd) { return (::collection::index)(m_iItem + iItemAdd); }
-      //::collection::index operator - (huge_integer iItemSub) { return (::collection::index)(m_iItem - iItemSub); }
+      //::collection::index operator + (long long iItemAdd) { return (::collection::index)(m_iItem + iItemAdd); }
+      //::collection::index operator - (long long iItemSub) { return (::collection::index)(m_iItem - iItemSub); }
 
 
       /*bool in_element_range(enum_element eelement, int iCount) const { return m_eelement >= eelement && m_eelement < eelement + iCount; }

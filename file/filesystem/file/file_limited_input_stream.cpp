@@ -18,7 +18,7 @@ namespace file
       memsize rem = _size - _virtPos;
       if (rem < int_size)
          size = (unsigned int)rem;
-      huge_natural newPos = _startOffset + _virtPos;
+      unsigned long long newPos = _startOffset + _virtPos;
       if (newPos != _physPos)
       {
          _physPos = newPos;
@@ -45,7 +45,7 @@ namespace file
    }
 
 
-   ::file::file * create_limited_istream(stream *inStream, huge_natural pos, huge_natural int_size)
+   ::file::file * create_limited_istream(stream *inStream, unsigned long long pos, unsigned long long int_size)
    {
       
       limited_istream *streamSpec = ___new limited_istream();

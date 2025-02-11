@@ -6,7 +6,7 @@
 #endif
 
 #if defined(WINDOWS)
-#define FILETIME_TO_USEC(ft) (((huge_natural) ft.dwHighDateTime << 32 | ft.dwLowDateTime) / 10)
+#define FILETIME_TO_USEC(ft) (((unsigned long long) ft.dwHighDateTime << 32 | ft.dwLowDateTime) / 10)
 #endif
 
 

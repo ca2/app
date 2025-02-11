@@ -30,7 +30,7 @@ namespace platform
 
          ::e_status m_estatus;
          ::particle_pointer m_pparticle;
-         huge_integer m_hi;
+         long long m_hi;
          void * m_p;
 
       };
@@ -107,10 +107,10 @@ namespace platform
 
       virtual void _001TryCloseApplication();
 
-      virtual void application_on_status(::e_status estatus, ::particle * pparticle = nullptr, huge_integer hi = 0, void * p = nullptr);
+      virtual void application_on_status(::e_status estatus, ::particle * pparticle = nullptr, long long hi = 0, void * p = nullptr);
 
 
-      virtual void on_error_icloud_not_available(::particle * pparticle = nullptr, huge_integer hi = 0, void * p = nullptr);
+      virtual void on_error_icloud_not_available(::particle * pparticle = nullptr, long long hi = 0, void * p = nullptr);
 
 
       //virtual void application_main();

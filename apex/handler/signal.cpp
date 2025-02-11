@@ -29,7 +29,7 @@ namespace handler
 #ifdef _DEBUG
 
 
-   huge_integer signal::increment_reference_count()
+   long long signal::increment_reference_count()
    {
 
       return ::topic::increment_reference_count();
@@ -37,7 +37,7 @@ namespace handler
    }
 
 
-   huge_integer signal::decrement_reference_count()
+   long long signal::decrement_reference_count()
    {
 
       return ::topic::decrement_reference_count();
@@ -45,7 +45,7 @@ namespace handler
    }
 
 
-   huge_integer signal::release()
+   long long signal::release()
    {
 
       return ::topic::release();

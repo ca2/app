@@ -98,7 +98,7 @@ namespace user
 
 
 
-   //bool drawable::_get_client_rect(::huge_integer_rectangle * prectangle)
+   //bool drawable::_get_client_rect(::long_long_rectangle * prectangle)
    //{
 
    //   copy(prectangle, get_window_rect64());
@@ -110,7 +110,7 @@ namespace user
    //}
 
 
-   //bool drawable::_get_window_rect(::huge_integer_rectangle * prectangle)
+   //bool drawable::_get_window_rect(::long_long_rectangle * prectangle)
    //{
 
    //   copy(prectangle, get_client_rect64());

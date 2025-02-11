@@ -71,7 +71,7 @@ namespace aura
    // aura commented
 //#if OBJECT_TYPE_COUNTER
 //
-//   map < const char*, const ::string &, huge_integer, huge_integer >* g_pmapObjTypCtr;
+//   map < const char*, const ::string &, long long, long long >* g_pmapObjTypCtr;
 //
 //#endif
 //
@@ -193,7 +193,7 @@ namespace aura
 //#endif
 
    // aura commented
-   //huge_integer g_iFirstNano;
+   //long long g_iFirstNano;
 
    //plex_heap_alloc_array * g_pplexheapallocarray;
 
@@ -513,7 +513,7 @@ namespace aura
 //
 //#if OBJECT_TYPE_COUNTER
 //
-//      g_pmapObjTypCtr = aaa_primitive_new map < const char*, const char *, huge_integer, huge_integer >;
+//      g_pmapObjTypCtr = aaa_primitive_new map < const char*, const char *, long long, long long >;
 //
 //#endif
 //

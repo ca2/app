@@ -268,9 +268,9 @@ const LARGE_INTEGER *liTime,
 PTIME_FIELDS TimeFields)
 {
    int SecondsInDay;
-   huge_natural cleaps, years, yearday, months;
-   huge_natural Days;
-   huge_integer Time;
+   unsigned long long cleaps, years, yearday, months;
+   unsigned long long Days;
+   long long Time;
 
    /* Extract ::time from time and convert time into seconds */
    TimeFields->Millisecond =
@@ -375,7 +375,7 @@ PLARGE_INTEGER Time)
           584817 ;                      /* zero that on 1601-01-01 */
    /* done */
 
-   Time->QuadPart = (((((huge_integer) day * HOURSPERDAY +
+   Time->QuadPart = (((((long long) day * HOURSPERDAY +
                         tfTimeFields->Hour) * MINSPERHOUR +
                        tfTimeFields->Minute) * SECSPERMIN +
                       tfTimeFields->Second ) * 1000 +
@@ -445,7 +445,7 @@ int RtlLocalTimeToSystemTime( const LARGE_INTEGER *LocalTime,
 //xxx    informationf("(%point, %int_point)\n", LocalTime, SystemTime);
 
    bias = TIME_GetBias();
-   SystemTime->QuadPart = LocalTime->QuadPart + bias * (huge_integer)TICKSPERSEC;
+   SystemTime->QuadPart = LocalTime->QuadPart + bias * (long long)TICKSPERSEC;
    return STATUS_SUCCESS;
 }
 
@@ -470,7 +470,7 @@ NTSTATUS RtlSystemTimeToLocalTime( const LARGE_INTEGER *SystemTime,
 //xxx    informationf("(%point, %int_point)\n", SystemTime, LocalTime);
 
    bias = TIME_GetBias();
-   LocalTime->QuadPart = SystemTime->QuadPart - bias * (huge_integer)TICKSPERSEC;
+   LocalTime->QuadPart = SystemTime->QuadPart - bias * (long long)TICKSPERSEC;
    return STATUS_SUCCESS;
 }
 
@@ -570,7 +570,7 @@ void RtlSecondsSince1980ToTime( unsigned int Seconds, LARGE_INTEGER *Time )
  */
 void RtlTimeToElapsedTimeFields( const LARGE_INTEGER *Time, PTIME_FIELDS TimeFields )
 {
-   huge_integer time;
+   long long time;
    int rem;
 
    time = Time->QuadPart / TICKSPERSEC;
@@ -592,7 +592,7 @@ void RtlTimeToElapsedTimeFields( const LARGE_INTEGER *Time, PTIME_FIELDS TimeFie
 #ifdef UNIVERSAL_WINDOWS
 
 
-const huge_integer DELTA_EPOCH_IN_MICROSECS= 11644473600000000;
+const long long DELTA_EPOCH_IN_MICROSECS= 11644473600000000;
 
 /* IN UNIX the use of the timezone struct is obsolete;
  I don't know why you use it. See http://linux.about.com/od/commands/l/blcmdl2_gettime.htm
@@ -610,7 +610,7 @@ struct timezone2
 //int gettimeofday(timeval *tv/*in*/, struct timezone2 *tz/*in*/)
 //{
 //  FILETIME ft;
-//  huge_integer tmpres = 0;
+//  long long tmpres = 0;
 //  TIME_ZONE_INFORMATION tz_winapi;
 //  int rez=0;
 //

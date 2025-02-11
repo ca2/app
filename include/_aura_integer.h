@@ -7,13 +7,13 @@
 //using char = int8_t;
 //using short = int16_t;
 //using int = int32_t;
-//using huge_integer = huge_integer;
+//using long long = long long;
 
 
 //using unsigned char = uint8_t;
 //using unsigned short = uint16_t;
 //using unsigned int = uint32_t;
-//using huge_natural = uint64_t;
+//using unsigned long long = uint64_t;
 
 
 //using float = float;

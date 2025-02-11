@@ -25,8 +25,8 @@ namespace windowing
       ~cursor_manager() override;
 
 
-      huge_integer increment_reference_count() override;
-      huge_integer decrement_reference_count() override;
+      long long increment_reference_count() override;
+      long long decrement_reference_count() override;
 
 
       //inline ::aura::application* get_app();

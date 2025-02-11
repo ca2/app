@@ -15,7 +15,7 @@ public:
 
    lparam(int i) { m_lparam = (LPARAM) i; }
 
-   lparam(huge_integer i) { m_lparam = (LPARAM) i; }
+   lparam(long long i) { m_lparam = (LPARAM) i; }
 
 
    /// catching/receiving object

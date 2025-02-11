@@ -202,13 +202,13 @@ extern CLASS_DECL_APEX int g_bApex;
 //#ifdef __cplusplus
 //
 //
-//#define as_huge_natural(a, b)                                   (((huge_natural)(((unsigned int)(((huge_natural)(a)) & 0xffffffff)) | ((huge_natural)((unsigned int)(((huge_natural)(b)) & 0xffffffff))) << 32)))
+//#define as_unsigned_long_long(a, b)                                   (((unsigned long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32)))
 //
 //
 //#else
 //
-//#define __MAKE_LONG64(a, b)                              (((huge_natural)(((unsigned int)(((huge_natural)(a)) & 0xffffffff)) | ((huge_natural)((unsigned int)(((huge_natural)(b)) & 0xffffffff))) << 32)))
-//#define as_huge_natural(a, b)                                   (((huge_natural)(((unsigned int)(((huge_natural)(a)) & 0xffffffff)) | ((huge_natural)((unsigned int)(((huge_natural)(b)) & 0xffffffff))) << 32)))
+//#define __MAKE_LONG64(a, b)                              (((unsigned long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32)))
+//#define as_unsigned_long_long(a, b)                                   (((unsigned long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32)))
 //
 //#endif
 //
@@ -342,10 +342,10 @@ namespace core
 
 //class eimpact;
 //
-//enum e_simple_command : huge_integer;
-//enum e_message : huge_integer;
-//enum enum_impact : huge_integer;
-//enum ::enum_id : huge_natural;
+//enum e_simple_command : long long;
+//enum e_message : long long;
+//enum enum_impact : long long;
+//enum ::enum_id : unsigned long long;
 //enum enum_check: int;
 
 

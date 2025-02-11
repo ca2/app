@@ -47,8 +47,8 @@ namespace draw2d_opengl
       ~graphics() override;
 
 #ifdef _DEBUG
-         huge_integer increment_reference_count() override;
-      huge_integer decrement_reference_count() override;
+         long long increment_reference_count() override;
+      long long decrement_reference_count() override;
 #endif
 
       void initialize(::particle * pparticle) override;
@@ -524,7 +524,7 @@ namespace draw2d_opengl
       //void DrawDragRect(const ::int_rectangle & rectangle, const ::int_size & size,
       //                  const ::int_rectangle & lpRectLast, const ::int_size & sizeLast,
       //                  ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr);
-      //void FillSolidRect(const ::huge_integer_rectangle * rectangle, color32_t clr);
+      //void FillSolidRect(const ::long_long_rectangle * rectangle, color32_t clr);
       //void FillSolidRect(const ::int_rectangle & rectangle, color32_t clr);
       //void FillSolidRect(int x, int y, int cx, int cy, color32_t clr);
       /*void Draw3dRect(const ::int_rectangle & rectangle, color32_t clrTopLeft, color32_t clrBottomRight);

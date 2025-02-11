@@ -98,7 +98,7 @@ namespace file
 {
 
 
-   inline path_meta::path_meta(enum_path epath, huge_integer iSize, e_type etype, huge_integer iName, character_count iBasePathLength, enumeration < ::file::enum_flag > eflag)
+   inline path_meta::path_meta(enum_path epath, long long iSize, e_type etype, long long iName, character_count iBasePathLength, enumeration < ::file::enum_flag > eflag)
    {
 
       m_epath = epath;
@@ -111,7 +111,7 @@ namespace file
    }
 
 
-   inline path::path(const ::ansi_string & str, enum_path epath, e_type etype, bool bNormalizePath, huge_integer iSize) :
+   inline path::path(const ::ansi_string & str, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
       string(str)
    {
 
@@ -159,7 +159,7 @@ namespace file
    }
 
 
-   inline path::path(const ::wd16_string & wd16str, enum_path epath, e_type etype, bool bNormalizePath, huge_integer iSize) :
+   inline path::path(const ::wd16_string & wd16str, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
       path(::string(wd16str), epath, etype, bNormalizePath, iSize)
    {
 
@@ -167,7 +167,7 @@ namespace file
    }
 
 
-   inline path::path(const ::wd32_string & wd32str, enum_path epath, e_type etype, bool bNormalizePath, huge_integer iSize) :
+   inline path::path(const ::wd32_string & wd32str, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
       path(::string(wd32str), epath, etype, bNormalizePath, iSize)
    {
 
@@ -175,7 +175,7 @@ namespace file
    }
 
 
-   inline path::path(const ::ansi_character * pansisz, enum_path epath, e_type etype, bool bNormalizePath, huge_integer iSize) :
+   inline path::path(const ::ansi_character * pansisz, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
       path(::ansi_string(pansisz), epath, etype, bNormalizePath, iSize)
    {
 
@@ -183,7 +183,7 @@ namespace file
    }
 
 
-   inline path::path(const ::wd16_character * pwd16sz, enum_path epath, e_type etype, bool bNormalizePath, huge_integer iSize) :
+   inline path::path(const ::wd16_character * pwd16sz, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
       path(::wd16_string(pwd16sz), epath, etype, bNormalizePath, iSize)
    {
 
@@ -191,7 +191,7 @@ namespace file
    }
 
 
-   inline path::path(const ::wd32_character * pwd32sz, enum_path epath, e_type etype, bool bNormalizePath, huge_integer iSize) :
+   inline path::path(const ::wd32_character * pwd32sz, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
       path(::wd32_string(pwd32sz), epath, etype, bNormalizePath, iSize)
    {
 
@@ -266,7 +266,7 @@ namespace file
    //
 
 
-   //   path::path(const unichar * pwsz, character_count iCount, e_path epath, e_type etype, bool bNormalizePath, huge_integer iSize) :
+   //   path::path(const unichar * pwsz, character_count iCount, e_path epath, e_type etype, bool bNormalizePath, long long iSize) :
    //      string(pwsz, iCount),
    //      path_meta(epath, iSize, iDir)
    //   {

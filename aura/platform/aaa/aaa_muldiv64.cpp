@@ -43,11 +43,11 @@
 // */
 
 
-// void mul64(huge_natural v1, huge_natural v2, huge_natural & hi, huge_natural & lo)
+// void mul64(unsigned long long v1, unsigned long long v2, unsigned long long & hi, unsigned long long & lo)
 // {
-//   huge_natural a, ca;
-//    huge_natural b, d;
-//    huge_natural x, y;
+//   unsigned long long a, ca;
+//    unsigned long long b, d;
+//    unsigned long long x, y;
 
 //   a = (v1 >> 32) & 0xffffffff;
 //   b = v1 & 0xffffffff;
@@ -64,32 +64,32 @@
 //   hi += a * ca;                  /* AC */
 // }
 
-// void mul64(huge_integer v1, huge_integer v2, huge_integer & hi, huge_natural & lo)
+// void mul64(long long v1, long long v2, long long & hi, unsigned long long & lo)
 // {
 //    if(v1 > 0)
 //    {
 //       if(v2 > 0)
 //       {
-//          mul64((huge_natural) v1, (huge_natural) v2, (huge_natural &) hi, lo);
+//          mul64((unsigned long long) v1, (unsigned long long) v2, (unsigned long long &) hi, lo);
 //       }
 //       else
 //       {
-//          mul64((huge_natural) v1, (huge_natural) -(huge_integer)v2, (huge_natural &) hi, lo);
+//          mul64((unsigned long long) v1, (unsigned long long) -(long long)v2, (unsigned long long &) hi, lo);
 //          hi = -hi;
-//          lo = (huge_natural)-(huge_integer)lo;
+//          lo = (unsigned long long)-(long long)lo;
 //       }
 //    }
 //    else
 //    {
 //       if(v2 > 0)
 //       {
-//          mul64((huge_natural) -v1, (huge_natural) v2, (huge_natural &) hi, lo);
+//          mul64((unsigned long long) -v1, (unsigned long long) v2, (unsigned long long &) hi, lo);
 //          hi = -hi;
-//          lo = (huge_natural)-(huge_integer)lo;
+//          lo = (unsigned long long)-(long long)lo;
 //       }
 //       else
 //       {
-//          mul64((huge_natural) -(huge_integer)v1, (huge_natural) -(huge_integer)v2, (huge_natural &) hi, lo);
+//          mul64((unsigned long long) -(long long)v1, (unsigned long long) -(long long)v2, (unsigned long long &) hi, lo);
 //       }
 //    }
 // }
@@ -101,11 +101,11 @@
 
 //    //64t rhi = hi/div;
 //    //64t rlo = hi % div + lo /div;
-// huge_natural div128_64(huge_natural hi, huge_natural lo, huge_natural div, huge_natural & remainder)
+// unsigned long long div128_64(unsigned long long hi, unsigned long long lo, unsigned long long div, unsigned long long & remainder)
 // {
 //    for(size_t i = 1; i <= 64; ++i)
 //    {
-//       huge_natural t = huge_integer(hi) >> 63;
+//       unsigned long long t = long long(hi) >> 63;
 //       // t is all ones if x(63) = 1
 //       // Shift the hi|lo left one bit
 //       hi = (hi << 1) | (lo >> 63);
@@ -121,28 +121,28 @@
 //    return lo;
 // }
 
-// huge_integer div128_64(huge_integer hi, huge_natural lo, huge_integer div, huge_natural & remainder)
+// long long div128_64(long long hi, unsigned long long lo, long long div, unsigned long long & remainder)
 // {
 //    if(hi > 0)
 //    {
 //       if(div > 0)
 //       {
-//          return div128_64((huge_natural) hi, lo, (huge_natural) div, remainder);
+//          return div128_64((unsigned long long) hi, lo, (unsigned long long) div, remainder);
 //       }
 //       else
 //       {
-//          return -(huge_integer)div128_64((huge_natural) hi, lo, (huge_natural) -(huge_integer)div, remainder);
+//          return -(long long)div128_64((unsigned long long) hi, lo, (unsigned long long) -(long long)div, remainder);
 //       }
 //    }
 //    else
 //    {
 //       if(div > 0)
 //       {
-//          return -(huge_integer)div128_64((huge_natural) -(huge_integer)hi, (huge_natural)-(huge_integer)lo, (huge_natural) div, remainder);
+//          return -(long long)div128_64((unsigned long long) -(long long)hi, (unsigned long long)-(long long)lo, (unsigned long long) div, remainder);
 //       }
 //       else
 //       {
-//          return div128_64((huge_natural) -(huge_integer)hi, (huge_natural)-(huge_integer)lo, (huge_natural) -(huge_integer)div, remainder);
+//          return div128_64((unsigned long long) -(long long)hi, (unsigned long long)-(long long)lo, (unsigned long long) -(long long)div, remainder);
 //       }
 //    }
 // }
@@ -159,10 +159,10 @@
 //  * determine the msb of a value in O(log log n)
 //  * @author Sean Eron Anderson
 //  */
-// inline unsigned int msb(huge_natural value)
+// inline unsigned int msb(unsigned long long value)
 // {
 //     const int MAX_LOGLOG = 6;
-//     const huge_natural BIT_LL[MAX_LOGLOG] = {0x2, 0xC, 0xF0, 0xFF00, 0xFFFF0000, 0xFFFFFFFF00000000uLL};
+//     const unsigned long long BIT_LL[MAX_LOGLOG] = {0x2, 0xC, 0xF0, 0xFF00, 0xFFFF0000, 0xFFFFFFFF00000000uLL};
 //     const unsigned int EXP_LL[MAX_LOGLOG] = {1, 2, 4, 8, 16, 32};
 //     unsigned int r = 0;
 //     for (int i = MAX_LOGLOG-1; i >= 0; i--)  {
@@ -176,16 +176,16 @@
 
 
 
-// static huge_natural const g_base = 1ULL<<32;
-// static huge_natural const g_maxdiv = (g_base-1)*g_base + (g_base-1);
+// static unsigned long long const g_base = 1ULL<<32;
+// static unsigned long long const g_maxdiv = (g_base-1)*g_base + (g_base-1);
 
-// huge_natural my_multdiv_64(huge_natural a, huge_natural b, huge_natural c)
+// unsigned long long my_multdiv_64(unsigned long long a, unsigned long long b, unsigned long long c)
 // {
 //     // First get the easy thing
 //     if(c == 0)
 //       return 0;
 
-//     huge_natural res = (a/c) * b + (a%c) * (b/c);
+//     unsigned long long res = (a/c) * b + (a%c) * (b/c);
 //     a %= c;
 //     b %= c;
 //     // Are we done?
@@ -196,31 +196,31 @@
 //         return res + (a*b/c);
 //     // Now 0 < a < c, 0 < b < c, c >= 1ULL
 //     // Normalize
-//     huge_natural norm = g_maxdiv/c;
+//     unsigned long long norm = g_maxdiv/c;
 //     c *= norm;
 //     a *= norm;
 //     // split into 2 digits
-//     huge_natural ah = a / g_base, al = a % g_base;
-//     huge_natural bh = b / g_base, bl = b % g_base;
-//     huge_natural ch = c / g_base, cl = c % g_base;
+//     unsigned long long ah = a / g_base, al = a % g_base;
+//     unsigned long long bh = b / g_base, bl = b % g_base;
+//     unsigned long long ch = c / g_base, cl = c % g_base;
 //     // compute the product
-//     huge_natural p0 = al*bl;
-//     huge_natural u1 = p0 / g_base + al*bh;
+//     unsigned long long p0 = al*bl;
+//     unsigned long long u1 = p0 / g_base + al*bh;
 //     p0 %= g_base;
-//     huge_natural u2 = u1 / g_base + ah*bh;
+//     unsigned long long u2 = u1 / g_base + ah*bh;
 //     u1 = (u1 % g_base) + ah * bl;
 //     u2 += u1 / g_base;
 //     u1 %= g_base;
 //     // u2 holds 2 digits, u1 and p0 one
 
 //     // first digit is easy, not null only in case of overflow
-// //    huge_natural q2 = u2 / c;
+// //    unsigned long long q2 = u2 / c;
 //     u2 = u2 % c;
 
 //     // second digit, estimate
-//     huge_natural q1 = u2 / ch;
+//     unsigned long long q1 = u2 / ch;
 //     // and now adjust
-//     huge_natural rhat = u2 % ch;
+//     unsigned long long rhat = u2 % ch;
 //     // the loop can be unrolled, it will be executed at most twice for
 //     // even g_bases -- three times for odd one -- due to the normalisation above
 //     while (q1 >= g_base || (rhat < g_base && q1*cl > rhat*g_base+u1)) {
@@ -233,7 +233,7 @@
 //     u1 = u1 % g_base + (u2 % g_base) * g_base;
 
 //     // now u1 hold 2 digits, p0 one and u2 is to be ignored
-//     huge_natural q0 = u1 / ch;
+//     unsigned long long q0 = u1 / ch;
 //     rhat = u1 % ch;
 //     while (q0 >= g_base || (rhat < g_base && q0*cl > rhat*g_base+p0)) {
 //         q0--;
@@ -246,14 +246,14 @@
 
 
 // //
-// huge_integer _stdcall muldiv64(huge_integer number, huge_integer numerator, huge_integer denominator)
+// long long _stdcall muldiv64(long long number, long long numerator, long long denominator)
 // {
 //    return my_multdiv_64(number, numerator, denominator);
 
-// //   huge_integer hi;
-// //   huge_natural lo;
+// //   long long hi;
+// //   unsigned long long lo;
 // //   mul64(number, numerator, hi, lo);
-// //   huge_natural remainder;
+// //   unsigned long long remainder;
 // //   return div128_64(hi, lo, denominator, remainder);
 // }
 
@@ -264,7 +264,7 @@
 //  *     Xscaled = (Xstart * Multiplier) SHR rshift
 //  * Uses 128 bit intermediate result
 //  */
-// huge_integer _stdcall mulshr64(huge_integer operant, huge_integer multiplier, uchar rshift)
+// long long _stdcall mulshr64(long long operant, long long multiplier, uchar rshift)
 // {
 //    return (operant * multiplier) >> rshift;
 // /*   // Declare 128bit storage

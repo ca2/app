@@ -49,10 +49,10 @@ namespace userex
 
 
 #ifdef _DEBUG
-   huge_integer progress_control::decrement_reference_count()
+   long long progress_control::decrement_reference_count()
    {
 
-      huge_integer i = ::progress::real::decrement_reference_count();
+      long long i = ::progress::real::decrement_reference_count();
 
       //if (i == 1 && m_pthread.is_set())
       //{

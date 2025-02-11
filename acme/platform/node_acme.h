@@ -47,7 +47,7 @@ namespace platform
       union
       {
 
-         huge_natural m_uNodeFlags;
+         unsigned long long m_uNodeFlags;
 
          bool m_bHasNodePostedSystemInitialRequest: 1;
 
@@ -149,7 +149,7 @@ namespace platform
       virtual void initialize(::particle* pparticle);
 
 
-      virtual void node_application_on_status(const char* pszStatus, void* p = nullptr, huge_integer hi = 0);
+      virtual void node_application_on_status(const char* pszStatus, void* p = nullptr, long long hi = 0);
 
 
       //virtual ::particle_pointer create_quit_particle(::pointer<::platform::node>& pnode);
@@ -694,7 +694,7 @@ namespace platform
       virtual int get_current_process_affinity_order();
 
 
-      virtual huge_natural translate_processor_affinity(int i);
+      virtual unsigned long long translate_processor_affinity(int i);
 
 
       //CLASS_DECL_ACME string expand_env(string str);
@@ -892,6 +892,8 @@ namespace platform
 
       virtual bool are_framework_shared_libraries_busy(const ::scoped_string& scopedstrRepos,
                                                        const ::scoped_string& scopedstrApp);
+                                                       
+      virtual bool are_any_shared_libraries_mapped(const ::file::path_array & patha);
 
 
       virtual ::string get_error_code_message(const ::error_code& errorcode);
@@ -1297,6 +1299,11 @@ namespace platform
 
 
       virtual ::string get_computer_name();
+
+
+      virtual ::string system_name();
+      virtual ::string system_release();
+      virtual ::string system_architecture();
 
 
    };

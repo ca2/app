@@ -276,10 +276,10 @@ int memory_file::get_unsigned_short()
 }
 
 
-bool memory_file::get_huge_natural(huge_natural & hn)
+bool memory_file::get_unsigned_long_long(unsigned long long & hn)
 {
 
-   return _get_huge_natural(hn);
+   return _get_unsigned_long_long(hn);
 
 }
 

@@ -231,7 +231,7 @@ void * gen_ch_class_reference_tables()
 
    void ch_class::add_char(const ::ansi_character * pszUtf8Char)
    {
-      huge_integer iChar = unicode_index(pszUtf8Char);
+      long long iChar = unicode_index(pszUtf8Char);
       bit_array * tablePos = infoIndex[iChar >> 8];
       if (!tablePos)
       {
@@ -243,7 +243,7 @@ void * gen_ch_class_reference_tables()
 
    void ch_class::clear_char(const ::ansi_character * pszUtf8Char)
    {
-      huge_integer iChar = unicode_index(pszUtf8Char);
+      long long iChar = unicode_index(pszUtf8Char);
       bit_array *tablePos = infoIndex[iChar >> 8];
       if(!tablePos)
          return;
@@ -252,9 +252,9 @@ void * gen_ch_class_reference_tables()
 
    void ch_class::add_range(const char * s, const char * e)
    {
-      huge_integer iCharStart = unicode_index(s);
-      huge_integer iCharEnd = unicode_index(e);
-      for(huge_integer ti = iCharStart >> 8; ti <= iCharEnd >> 8; ti++)
+      long long iCharStart = unicode_index(s);
+      long long iCharEnd = unicode_index(e);
+      for(long long ti = iCharStart >> 8; ti <= iCharEnd >> 8; ti++)
       {
          if (!infoIndex[ti])
             infoIndex[ti] = __raw_new bit_array();
@@ -266,9 +266,9 @@ void * gen_ch_class_reference_tables()
 
    void ch_class::clear_range(const char * s, const char * e)
    {
-      huge_integer iCharStart = unicode_index(s);
-      huge_integer iCharEnd = unicode_index(e);
-      for(huge_integer ti = iCharStart >> 8; ti <= iCharEnd >> 8; ti++)
+      long long iCharStart = unicode_index(s);
+      long long iCharEnd = unicode_index(e);
+      for(long long ti = iCharStart >> 8; ti <= iCharEnd >> 8; ti++)
       {
          if (!infoIndex[ti])
             infoIndex[ti] = __raw_new bit_array();

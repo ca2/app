@@ -12,7 +12,7 @@ template<int>
 template<>
 	struct _Bitset_base <8>
 	{	// eight-unsigned char bitset
-	typedef huge_natural _Ty;
+	typedef unsigned long long _Ty;
 	};
 
 		// TEMPLATE CLASS bitset
@@ -151,10 +151,10 @@ public:
 	bitset(_ULonglong _Val)
 
  #else /* _HAS_CPP0X */
-	bitset(huge_natural _Val)
+	bitset(unsigned long long _Val)
  #endif /* _HAS_CPP0X */
 
-		{	// construct from bits in huge_natural
+		{	// construct from bits in unsigned long long
 		_Tidy();
 		for (size_t _Pos = 0; _Val != 0 && _Pos < _Bits; _Val >>= 1, ++_Pos)
 			if (_Val & 1)
@@ -307,28 +307,28 @@ public:
 		return (*this);
 		}
 
-	huge_natural to_ulong() const
-   {	// convert bitset to huge_natural
-		huge_natural _Val = to_ullong();
-		huge_natural _Ans = (huge_natural)_Val;
+	unsigned long long to_ulong() const
+   {	// convert bitset to unsigned long long
+		unsigned long long _Val = to_ullong();
+		unsigned long long _Ans = (unsigned long long)_Val;
 		if (_Ans  != _Val)
 			_Xoflo();
 		return (_Ans);
 	}
 
-	huge_natural to_ullong() const
-	{	// convert bitset to huge_natural long
+	unsigned long long to_ullong() const
+	{	// convert bitset to unsigned long long long
 		enum
-			{	// cause zero divide if huge_natural long not multiple of _Ty
+			{	// cause zero divide if unsigned long long long not multiple of _Ty
 			_Assertion = 1
-				/ (int)(sizeof (huge_natural) % sizeof (_Ty) == 0)};
+				/ (int)(sizeof (unsigned long long) % sizeof (_Ty) == 0)};
 
 		int _Wpos = _Words;
-		for (; (int)(sizeof (huge_natural) / sizeof (_Ty)) <= _Wpos; --_Wpos)
+		for (; (int)(sizeof (unsigned long long) / sizeof (_Ty)) <= _Wpos; --_Wpos)
 			if (_Array[_Wpos] != 0)
 				_Xoflo();	// fail if any high-order words are nonzero
 
-		huge_natural _Val = _Array[_Wpos];
+		unsigned long long _Val = _Array[_Wpos];
 		for (; 0 <= --_Wpos; )
 			_Val = ((_Val << (_Bitsperword - 1)) << 1) | _Array[_Wpos];
    return (_Val);

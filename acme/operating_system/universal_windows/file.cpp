@@ -83,7 +83,7 @@
 //
 //   }
 //
-//   huge_natural u = hfile_get_size(hfile);
+//   unsigned long long u = hfile_get_size(hfile);
 //
 //   CloseHandle(hfile);
 //
@@ -824,14 +824,14 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 }
 
 
-//int_bool ensure_file_size_handle(HANDLE h, huge_natural iSize)
+//int_bool ensure_file_size_handle(HANDLE h, unsigned long long iSize)
 //{
 //
 //   DWORD dwHi;
 //
 //   DWORD dwLo = GetFileSize(h, &dwHi);
 //
-//   if (((huge_natural)dwLo | ((huge_natural)dwHi << 32)) != iSize)
+//   if (((unsigned long long)dwLo | ((unsigned long long)dwHi << 32)) != iSize)
 //   {
 //
 //      LONG l = (iSize >> 32) & 0xffffffff;
@@ -1115,7 +1115,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   int offsetHigh = (offset >> 32) & 0xffffffffLL;
 //   unsigned int dw = ::SetFilePointer((HANDLE)((FILE*)fp)->_base,offset & 0xffffffff,&offsetHigh,meth);
 //   ((FILE*)fp)->_flag &= ~_FILE_EOF;
-//   return (huge_natural)dw | (((huge_natural)offsetHigh) << 32);
+//   return (unsigned long long)dw | (((unsigned long long)offsetHigh) << 32);
 //
 //}
 //
@@ -1404,7 +1404,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //
 //}
 //
-//huge_natural hfile_get_size(HANDLE h)
+//unsigned long long hfile_get_size(HANDLE h)
 //{
 //
 //   unsigned int dwHi;
@@ -1419,14 +1419,14 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //
 //
 //
-//void hfile_set_size(HANDLE h, huge_integer iSize)
+//void hfile_set_size(HANDLE h, long long iSize)
 //{
 //
 //   DWORD dwHi;
 //
 //   DWORD dwLo = ::GetFileSize(h, &dwHi);
 //
-//   if (((huge_natural)dwLo | ((huge_integer)dwHi << 32)) != iSize)
+//   if (((unsigned long long)dwLo | ((long long)dwHi << 32)) != iSize)
 //   {
 //
 //      LONG l = (iSize >> 32) & 0xffffffff;

@@ -97,7 +97,7 @@ void update::notify()
 }
 
 
-::pointer<update>& update::task(huge_integer iUpdate)
+::pointer<update>& update::task(long long iUpdate)
 {
 
    cslock synchronouslock(g_pcs);
@@ -146,7 +146,7 @@ void update::erase(::matter * pmatter)
 }
 
 
-void update::_erase(huge_integer iUpdate, ::matter * pmatter)
+void update::_erase(long long iUpdate, ::matter * pmatter)
 {
 
    cslock synchronouslock(g_pcs);
@@ -174,7 +174,7 @@ void update::_erase(::matter* pmatter)
 }
 
 
-void update::set_modified(huge_integer iUpdate)
+void update::set_modified(long long iUpdate)
 {
 
    cslock synchronouslock(::update::g_pcs);
@@ -217,7 +217,7 @@ void update::post_destroy_all()
 }
 
 
-void update::_add(huge_integer iUpdate, ::matter * pmatter)
+void update::_add(long long iUpdate, ::matter * pmatter)
 {
 
    cslock synchronouslock(g_pcs);

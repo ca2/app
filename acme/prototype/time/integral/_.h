@@ -4,19 +4,19 @@
 
 //#include "acme/prototype/time/time.h"
 
-CLASS_DECL_ACME huge_integer huge_integer_nanosecond();
+CLASS_DECL_ACME long long long_long_nanosecond();
 
-inline huge_integer huge_integer_microsecond() { return (huge_integer) (huge_integer_nanosecond() / 1'000); }
+inline long long long_long_microsecond() { return (long long) (long_long_nanosecond() / 1'000); }
 
-inline huge_integer huge_integer_millisecond() { return (huge_integer) (huge_integer_nanosecond() / 1'000'000); }
+inline long long long_long_millisecond() { return (long long) (long_long_nanosecond() / 1'000'000); }
 
-inline huge_integer huge_integer_second() { return (huge_integer) (huge_integer_nanosecond() / 1'000'000'000); }
+inline long long long_long_second() { return (long long) (long_long_nanosecond() / 1'000'000'000); }
 
-inline huge_integer huge_integer_minute() { return (huge_integer) (huge_integer_nanosecond() / 60'000'000'000); }
+inline long long long_long_minute() { return (long long) (long_long_nanosecond() / 60'000'000'000); }
 
-inline huge_integer huge_integer_hour() { return (huge_integer) (huge_integer_nanosecond() / 3'600'000'000'000); }
+inline long long long_long_hour() { return (long long) (long_long_nanosecond() / 3'600'000'000'000); }
 
-inline huge_integer huge_integer_day() { return (huge_integer) (huge_integer_nanosecond() / 86'400'000'000'000); }
+inline long long long_long_day() { return (long long) (long_long_nanosecond() / 86'400'000'000'000); }
 
 
 

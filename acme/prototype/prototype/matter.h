@@ -177,7 +177,7 @@ public:
 //   inline void clear(const ::eobject& eobject) { m_eobject -= eobject; }
 
 
-   //inline huge_natural get_object_flag() { return m_eobject; }
+   //inline unsigned long long get_object_flag() { return m_eobject; }
 
 
    //inline bool is(enum_matter ematter) const { return (m_ematter & ematter) == ematter; }

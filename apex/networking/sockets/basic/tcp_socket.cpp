@@ -2361,22 +2361,22 @@ return true;
    }
 
 
-   huge_natural tcp_socket::GetBytesReceived(bool clear)
+   unsigned long long tcp_socket::GetBytesReceived(bool clear)
    {
 
       return m_ptcpsocketImpl->GetBytesReceived(clear);
 
-      //huge_natural z = m_bytes_received;
+      //unsigned long long z = m_bytes_received;
       //if(clear)
       //   m_bytes_received = 0;
       //return z;
    }
 
 
-   huge_natural tcp_socket::GetBytesSent(bool clear)
+   unsigned long long tcp_socket::GetBytesSent(bool clear)
    {
       return m_ptcpsocketImpl->GetBytesSent(clear);
-      //huge_natural z = m_bytes_sent;
+      //unsigned long long z = m_bytes_sent;
       //if(clear)
       //   m_bytes_sent = 0;
       //return z;
@@ -2989,7 +2989,7 @@ return true;
 //#ifdef WINDOWS
 //
 //
-//huge_integer networking_last_error()
+//long long networking_last_error()
 //{
 //
 //   return WSAGetLastError();
@@ -3000,7 +3000,7 @@ return true;
 //#else
 //
 //
-//huge_integer networking_last_error()
+//long long networking_last_error()
 //{
 //
 //   return errno;

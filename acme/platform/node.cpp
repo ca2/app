@@ -132,7 +132,7 @@ namespace platform
 #ifdef _DEBUG
 
 
-   huge_integer node::increment_reference_count()
+   long long node::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -140,7 +140,7 @@ namespace platform
    }
 
 
-   huge_integer node::decrement_reference_count()
+   long long node::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -324,7 +324,7 @@ namespace platform
    }
 
 
-   void node::node_application_on_status(const char * pszStatus, void * p, huge_integer hi)
+   void node::node_application_on_status(const char * pszStatus, void * p, long long hi)
    {
       
       
@@ -1936,6 +1936,8 @@ namespace platform
 
       for (auto processidentifier : processidentifiera)
       {
+         
+         informationf("processidentifier=%lld", processidentifier);
 
          auto pathaProcessModules = process_identifier_modules_paths(processidentifier);
 
@@ -2858,7 +2860,7 @@ return false;
    }
 
 
-   huge_natural node::translate_processor_affinity(int i)
+   unsigned long long node::translate_processor_affinity(int i)
    {
 
       return 0;
@@ -3550,7 +3552,7 @@ bool node::_is_smart_git_installed()
    }
 
 
-//   void node::application_handle(huge_integer l, void * p)
+//   void node::application_handle(long long l, void * p)
 //   {
 //
 //      
@@ -3620,11 +3622,57 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    ::file::path pathBin = directory_system()->home() / "application" / scopedstrRepos / scopedstrApp / "binary";
 
    patha = pathBin / stra;
+   
+   if(are_any_shared_libraries_mapped(patha))
+   {
+      
+      return true;
+      
+   }
+   
+
+   //auto pathaSystem = this->modules_paths();
+
+   //for (auto & pathSystem : pathaSystem)
+   //{
+      
+      //informationf("pathSystem : %s", pathSystem.c_str());
+
+      //for (auto & path : patha)
+      //{
+
+         //if (pathSystem.case_insensitive_contains("SecurityHealthSSO"))
+         //{
+
+            //printf_line("SHSSO");
+
+         //}
+
+         //if (path_system()->real_path_is_same(pathSystem, path))
+         //{
+
+            //return true;
+
+         //}
+
+      //}
+
+   //}
+
+   return false;
+
+}
+
+
+bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
+{
 
    auto pathaSystem = this->modules_paths();
 
    for (auto & pathSystem : pathaSystem)
    {
+      
+      informationf("pathSystem : %s", pathSystem.c_str());
 
       for (auto & path : patha)
       {
@@ -3650,7 +3698,6 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    return false;
 
 }
-
 
    ::string node::get_error_code_message(const ::error_code & errorcode)
    {
@@ -4797,7 +4844,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
 } // namespace platform
 
 
-void node_application_send_status(const char * pszStatus, void * p, huge_integer hi)
+void node_application_send_status(const char * pszStatus, void * p, long long hi)
 {
    
    system()->node()->node_application_on_status(pszStatus, p, hi);

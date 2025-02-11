@@ -31,9 +31,9 @@ namespace calculator
 
       bool keyboard_focus_is_focusable() override;
 
-      //virtual huge_integer increment_reference_count() override;
+      //virtual long long increment_reference_count() override;
 
-      //virtual huge_integer decrement_reference_count() override;
+      //virtual long long decrement_reference_count() override;
 
       virtual ::payload get_ex_value() override;
 

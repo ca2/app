@@ -13,7 +13,7 @@ namespace simpledb
 
 
       string m_strLastError;
-      huge_integer m_iLastUsedTime;
+      long long m_iLastUsedTime;
 
       int       m_protocol;
 

@@ -10,7 +10,7 @@
 #include <bzlib.h>
 
 
-#define MAKEU64(hi, lo) ((((huge_natural)hi) << 32) | ((huge_natural) lo))
+#define MAKEU64(hi, lo) ((((unsigned long long)hi) << 32) | ((unsigned long long) lo))
 
 //#define ALLOC(size) malloc(size)
 //#define TRYFREE(point) {if (point) free(point);}
@@ -104,7 +104,7 @@ namespace compress_bzip2
       class memory memIn;
       memIn.set_size(1024 * 64);
 
-      huge_integer uRead = pfileUncompressed->read(memIn.data(), memIn.size());
+      long long uRead = pfileUncompressed->read(memIn.data(), memIn.size());
 
       iBlockSize = maximum(1, minimum(9, iBlockSize));
       iVerbosity = maximum(0, minimum(4, iVerbosity));

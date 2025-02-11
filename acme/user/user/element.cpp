@@ -383,17 +383,17 @@ namespace user
 //}
 
 
-//bool element::client_to_screen(::huge_integer_rectangle * prectangle)
+//bool element::client_to_screen(::long_long_rectangle * prectangle)
 //{
 
-//   ::offset_rect(prectangle, huge_integer_point(client_screen_top_left()));
+//   ::offset_rect(prectangle, long_long_point(client_screen_top_left()));
 
 //   return true;
 
 //}
 
 
-//bool element::client_to_screen(::huge_integer_point * ppoint)
+//bool element::client_to_screen(::long_long_point * ppoint)
 //{
 
 //   ::offset_point(ppoint, client_screen_top_left());
@@ -443,7 +443,7 @@ namespace user
 //}
 
 
-//bool element::screen_to_client(::huge_integer_rectangle * prectangle)
+//bool element::screen_to_client(::long_long_rectangle * prectangle)
 //{
 
 //   ::offset_rect(prectangle, -client_screen_top_left());
@@ -453,7 +453,7 @@ namespace user
 //}
 
 
-//bool element::screen_to_client(::huge_integer_point * ppoint)
+//bool element::screen_to_client(::long_long_point * ppoint)
 //{
 
 //   ::offset_point(ppoint, -client_screen_top_left());
@@ -501,7 +501,7 @@ namespace user
 //}
 
 
-//bool element::this->rectangle(::huge_integer_rectangle * prectangle)
+//bool element::this->rectangle(::long_long_rectangle * prectangle)
 
 //{
 
@@ -512,7 +512,7 @@ namespace user
 //}
 
 
-//bool element::window_rectangle(::huge_integer_rectangle * prectangle)
+//bool element::window_rectangle(::long_long_rectangle * prectangle)
 
 //{
 
@@ -3949,7 +3949,7 @@ namespace user
 //
 //      ::pointer<::message::message>pmessage;
 //
-//      auto eprototype = ::message::get_message_prototype((enum_message) atom.huge_integer(), 0);
+//      auto eprototype = ::message::get_message_prototype((enum_message) atom.long_long, 0);
 //
 //      switch (eprototype)
 //      {

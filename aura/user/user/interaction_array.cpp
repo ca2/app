@@ -372,7 +372,7 @@ namespace user
 #ifdef DEBUG
 
 
-   huge_integer interaction_array::increment_reference_count()
+   long long interaction_array::increment_reference_count()
    {
 
       return ::matter::increment_reference_count();
@@ -380,7 +380,7 @@ namespace user
    }
 
 
-   huge_integer interaction_array::decrement_reference_count()
+   long long interaction_array::decrement_reference_count()
    {
 
       return ::matter::decrement_reference_count();

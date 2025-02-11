@@ -178,7 +178,7 @@ namespace user
 
       virtual void GetTabClientRect(::int_rectangle & rectangle);
 
-      virtual void GetTabClientRect(::huge_integer_rectangle & rectangle);
+      virtual void GetTabClientRect(::long_long_rectangle & rectangle);
 
       virtual bool add_tab(const ::string & strName, const ::atom & idImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr);
 

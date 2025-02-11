@@ -25,19 +25,19 @@ unsigned int c_inet_to_ui(const char * src)
    if(case_insensitive_ansi_begins(src, "0x"))
    {
 
-      return (unsigned int) ansi_to_huge_integer(&src[2], nullptr, 16);
+      return (unsigned int) ansi_to_long_long(&src[2], nullptr, 16);
 
    }
    else if(ansi_begins(src, "0"))
    {
 
-      return (unsigned int) ansi_to_huge_integer(&src[1], nullptr, 16);
+      return (unsigned int) ansi_to_long_long(&src[1], nullptr, 16);
 
    }
    else
    {
 
-      return (unsigned int) ansi_to_huge_integer(src, nullptr, 10);
+      return (unsigned int) ansi_to_long_long(src, nullptr, 10);
 
    }
 
@@ -418,19 +418,19 @@ struct c_in_addr
 //
 //   char * psz = str.get_buffer(20);
 //
-//   ansi_concatenate_huge_integer(psz, b1);
+//   ansi_concatenate_long_long(psz, b1);
 //
 //   ansi_concatenate(psz, ".");
 //
-//   ansi_concatenate_huge_integer(psz, b2);
+//   ansi_concatenate_long_long(psz, b2);
 //
 //   ansi_concatenate(psz, ".");
 //
-//   ansi_concatenate_huge_integer(psz, b3);
+//   ansi_concatenate_long_long(psz, b3);
 //
 //   ansi_concatenate(psz, ".");
 //
-//   ansi_concatenate_huge_integer(psz, b4);
+//   ansi_concatenate_long_long(psz, b4);
 //
 //   str.release_buffer();
 //

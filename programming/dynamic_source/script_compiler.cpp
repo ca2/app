@@ -204,7 +204,7 @@ namespace dynamic_source
 //      catch (const ::e_status & estatus)
 //      {
 //
-//         informationf("failed to setup visual studio environment " + as_string((huge_integer)estatus.m_estatus));
+//         informationf("failed to setup visual studio environment " + as_string((long long)estatus.m_estatus));
 //
 //      }
 //
@@ -395,7 +395,7 @@ namespace dynamic_source
 
       string strMillis;
 
-      strMillis = ::as_string(::huge_integer_millisecond() % 1000);
+      strMillis = ::as_string(::long_long_millisecond() % 1000);
 
       auto pszBufferMillis = strMillis.get_buffer(3);
 

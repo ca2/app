@@ -45,7 +45,7 @@ void html_data::initialize_html_data(::html_data * phtmldata)
 }
 
 
-huge_integer html_data::increment_reference_count()
+long long html_data::increment_reference_count()
 {
 
    return ::object::increment_reference_count();
@@ -53,7 +53,7 @@ huge_integer html_data::increment_reference_count()
 }
 
 
-huge_integer html_data::decrement_reference_count()
+long long html_data::decrement_reference_count()
 {
 
    return ::object::decrement_reference_count();

@@ -1069,12 +1069,12 @@ run_install:
       //pgraphics.bit_blt(lprect->left()                , lprect->top()                 , lprect->right() - lprect->left(), lprect->bottom() - lprect->top(),
       //     pgraphics         , lprect->left() - ::hotplugin::plugin::m_rectangle.left()  , lprect.top() - ::hotplugin::plugin::m_rectangle.top()    );
 
-      /*string strx = ansi_string_from_huge_integer(lprect->left());
-      string stry = ansi_string_from_huge_integer(lprect->top());
+      /*string strx = ansi_string_from_long_long(lprect->left());
+      string stry = ansi_string_from_long_long(lprect->top());
       text_out(hdcWindow, lprect->left() + 10, lprect->top() + 10, strx, strx.get_length());
       text_out(hdcWindow, lprect->left() + 110, lprect->top() + 10, stry, stry.get_length());
-      string strx2 = ansi_string_from_huge_integer(m_rectangle.left());
-      string stry2 = ansi_string_from_huge_integer(m_rectangle.top());
+      string strx2 = ansi_string_from_long_long(m_rectangle.left());
+      string stry2 = ansi_string_from_long_long(m_rectangle.top());
       text_out(hdcWindow, lprect->left() + 210, lprect->top() + 10, strx2, strx2.get_length());
       text_out(hdcWindow, lprect->left() + 310, lprect->top() + 10, stry2, stry2.get_length());
       */
@@ -1315,7 +1315,7 @@ run_install:
    }
 
 
-   void plugin::on_post(::aura::ipc::rx * prx, huge_integer a, huge_integer b)
+   void plugin::on_post(::aura::ipc::rx * prx, long long a, long long b)
    {
 
       if(prx == &m_rx)

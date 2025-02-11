@@ -103,7 +103,7 @@ namespace interprocess
    //   //
    //   //   }
    //   //
-   //   //   huge_integer iCall = ::str::consume_natural(strMessage);
+   //   //   long long iCall = ::str::consume_natural(strMessage);
    //   //
    //   //   if(!strMessage.begins_eat(" from "))
    //   //   {
@@ -240,7 +240,7 @@ namespace interprocess
 
    //         string strOriginObject = propertyset["protocol"]["origin_object"].get_string();
 
-   //         auto iCallId = propertyset["protocol"]["call_id"].huge_integer();
+   //         auto iCallId = propertyset["protocol"]["call_id"].long_long;
 
    //         auto pcall = m_pcommunication->create_call(strOrigin, strOriginObject, "reply." + strMember);
 
@@ -328,7 +328,7 @@ namespace interprocess
    //}
 
 
-   //void target::on_interprocess_post(huge_integer a, huge_integer b)
+   //void target::on_interprocess_post(long long a, long long b)
    //{
 
    //   if (m_phandler != nullptr)
@@ -371,7 +371,7 @@ namespace interprocess
    //}
 
 
-   //void target::dispatch_message(huge_natural uData, ::memory && memory)
+   //void target::dispatch_message(unsigned long long uData, ::memory && memory)
    //{
 
    //   auto pdispatchitem = __allocate class dispatch_item (uData, ::transfer(memory));

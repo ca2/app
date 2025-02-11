@@ -179,7 +179,7 @@ public:
    }
 
 
-   text_reader & operator >>(huge_integer & i)
+   text_reader & operator >>(long long & i)
    {
 
       read_integer(i, m_psz);
@@ -189,7 +189,7 @@ public:
    }
 
 
-   text_reader & operator >>(huge_natural & u)
+   text_reader & operator >>(unsigned long long & u)
    {
 
       read_natural(u, m_psz);

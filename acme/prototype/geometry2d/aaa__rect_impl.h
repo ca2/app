@@ -65,250 +65,250 @@
 //
 //
 //
-//huge_integer huge_integer_rectangle::width() const noexcept
+//long long long_long_rectangle::width() const noexcept
 //{
 //   return right - left;
 //}
-//huge_integer huge_integer_rectangle::height() const noexcept
+//long long long_long_rectangle::height() const noexcept
 //{
 //   return bottom - top;
 //}
-//huge_integer_size rect64SIZE_TYPE() const noexcept
+//long_long_size rect64SIZE_TYPE() const noexcept
 //{
-//   return huge_integer_size(right - left, bottom - top);
+//   return long_long_size(right - left, bottom - top);
 //}
-//huge_integer_point& huge_integer_rectangle::top_left() noexcept
+//long_long_point& long_long_rectangle::top_left() noexcept
 //{
-//   return *((huge_integer_point*)this);
+//   return *((long_long_point*)this);
 //}
-//huge_integer_point& huge_integer_rectangle::bottom_right() noexcept
+//long_long_point& long_long_rectangle::bottom_right() noexcept
 //{
-//   return *((huge_integer_point*)this + 1);
+//   return *((long_long_point*)this + 1);
 //}
-//const huge_integer_point& huge_integer_rectangle::top_left() const noexcept
+//const long_long_point& long_long_rectangle::top_left() const noexcept
 //{
-//   return *((huge_integer_point*)this);
+//   return *((long_long_point*)this);
 //}
-//const huge_integer_point& huge_integer_rectangle::bottom_right() const noexcept
+//const long_long_point& long_long_rectangle::bottom_right() const noexcept
 //{
-//   return *((huge_integer_point*)this + 1);
+//   return *((long_long_point*)this + 1);
 //}
-//TEMPLATE void huge_integer_rectangle::swap_left_right() noexcept
+//TEMPLATE void long_long_rectangle::swap_left_right() noexcept
 //{
-//   swap_left_right((::huge_integer_rectangle*)(this));
+//   swap_left_right((::long_long_rectangle*)(this));
 //}
-//void WINAPI huge_integer_rectangle::swap_left_right(::huge_integer_rectangle * RECT_TEMPLATE) noexcept
+//void WINAPI long_long_rectangle::swap_left_right(::long_long_rectangle * RECT_TEMPLATE) noexcept
 //
 //{
-//   huge_integer temp = RECT_TEMPLATE.left(); RECT_TEMPLATE.left() = RECT_TEMPLATE.right(); RECT_TEMPLATE.right() = temp;
+//   long long temp = RECT_TEMPLATE.left(); RECT_TEMPLATE.left() = RECT_TEMPLATE.right(); RECT_TEMPLATE.right() = temp;
 //}
 //
-//huge_integer_rectangle::operator ::huge_integer_rectangle* () noexcept
+//long_long_rectangle::operator ::long_long_rectangle* () noexcept
 //{
 //   return this;
 //}
-//huge_integer_rectangle::operator const ::huge_integer_rectangle* () const noexcept
+//long_long_rectangle::operator const ::long_long_rectangle* () const noexcept
 //{
 //   return this;
 //}
-//huge_integer_rectangle::operator RECT_TEMPLATE() const
+//long_long_rectangle::operator RECT_TEMPLATE() const
 //{
-//   return ::rect_TEMPLATE((const ::huge_integer_rectangle&)* this);
+//   return ::rect_TEMPLATE((const ::long_long_rectangle&)* this);
 //}
-//TEMPLATE bool huge_integer_rectangle::contains(::huge_integer_point int_point) const noexcept
+//TEMPLATE bool long_long_rectangle::contains(::long_long_point int_point) const noexcept
 //{
 //   return ::contains(this, point);
 //}
-//TEMPLATE void huge_integer_rectangle::set(huge_integer x1, huge_integer y1, huge_integer x2, huge_integer y2) noexcept
+//TEMPLATE void long_long_rectangle::set(long long x1, long long y1, long long x2, long long y2) noexcept
 //{
 //   ::set_rect(this, x1, y1, x2, y2);
 //}
-//TEMPLATE void huge_integer_rectangle::set(::huge_integer_point topLeft, ::huge_integer_point bottomRight) noexcept
+//TEMPLATE void long_long_rectangle::set(::long_long_point topLeft, ::long_long_point bottomRight) noexcept
 //{
 //   ::set_rect(this, topLeft.x(), topLeft.y(), bottomRight.x(), bottomRight.y());
 //}
-//TEMPLATE void huge_integer_rectangle::null() noexcept
+//TEMPLATE void long_long_rectangle::null() noexcept
 //{
 //   ::null(this);
 //}
-//TEMPLATE void rect64copy(const ::huge_integer_rectangle * pSrcRect) noexcept
+//TEMPLATE void rect64copy(const ::long_long_rectangle * pSrcRect) noexcept
 //
 //{
 //   ::copy(this, pSrcRect);
 //}
 //
-//TEMPLATE bool huge_integer_rectangle::is_equal(const ::huge_integer_rectangle * RECT_TEMPLATE) const noexcept
+//TEMPLATE bool long_long_rectangle::is_equal(const ::long_long_rectangle * RECT_TEMPLATE) const noexcept
 //
 //{
 //   return ::is_equal(this, RECT_TEMPLATE);
 //}
 //
-//TEMPLATE void huge_integer_rectangle::inflate(huge_integer x, huge_integer y) noexcept
+//TEMPLATE void long_long_rectangle::inflate(long long x, long long y) noexcept
 //{
 //   ::inflate(this, x, y);
 //}
-//TEMPLATE void huge_integer_rectangle::inflate(::huge_integer_size huge_integer_size) noexcept
+//TEMPLATE void long_long_rectangle::inflate(::long_long_size long_long_size) noexcept
 //{
-//   ::inflate(this, huge_integer_size.cx(), huge_integer_size.cy());
+//   ::inflate(this, long_long_size.cx(), long_long_size.cy());
 //}
-//TEMPLATE void huge_integer_rectangle::deflate(huge_integer x, huge_integer y) noexcept
+//TEMPLATE void long_long_rectangle::deflate(long long x, long long y) noexcept
 //{
 //   ::inflate(this, -x, -y);
 //}
-//TEMPLATE void huge_integer_rectangle::deflate(::huge_integer_size huge_integer_size) noexcept
+//TEMPLATE void long_long_rectangle::deflate(::long_long_size long_long_size) noexcept
 //{
-//   ::inflate(this, -huge_integer_size.cx(), -huge_integer_size.cy());
+//   ::inflate(this, -long_long_size.cx(), -long_long_size.cy());
 //}
-//TEMPLATE void huge_integer_rectangle::offset(huge_integer x, huge_integer y) noexcept
+//TEMPLATE void long_long_rectangle::offset(long long x, long long y) noexcept
 //{
 //   ::offset(this, x, y);
 //}
-//TEMPLATE void huge_integer_rectangle::offset(::huge_integer_point huge_integer_point) noexcept
+//TEMPLATE void long_long_rectangle::offset(::long_long_point long_long_point) noexcept
 //{
-//   ::offset(this, huge_integer_point.x(), huge_integer_point.y());
+//   ::offset(this, long_long_point.x(), long_long_point.y());
 //}
-//TEMPLATE void huge_integer_rectangle::set_size(::huge_integer_size s) noexcept
+//TEMPLATE void long_long_rectangle::set_size(::long_long_size s) noexcept
 //{
 //   this->set_size(s.cx(), s.cy());
 //}
-//TEMPLATE void huge_integer_rectangle::rsize(::huge_integer_size s) noexcept
+//TEMPLATE void long_long_rectangle::rsize(::long_long_size s) noexcept
 //{
 //   this->rsize(s.cx(), s.cy());
 //}
-//TEMPLATE void huge_integer_rectangle::set_size(huge_integer cx, huge_integer cy) noexcept
+//TEMPLATE void long_long_rectangle::set_size(long long cx, long long cy) noexcept
 //{
 //   ::resize(this, cx, cy);
 //}
-//TEMPLATE void huge_integer_rectangle::rsize(huge_integer cx, huge_integer cy) noexcept
+//TEMPLATE void long_long_rectangle::rsize(long long cx, long long cy) noexcept
 //{
 //   ::reverse_size(this, cx, cy);
 //}
-//TEMPLATE void huge_integer_rectangle::offset(::huge_integer_size huge_integer_size) noexcept
+//TEMPLATE void long_long_rectangle::offset(::long_long_size long_long_size) noexcept
 //{
-//   ::offset(this, huge_integer_size.cx(), huge_integer_size.cy());
+//   ::offset(this, long_long_size.cx(), long_long_size.cy());
 //}
-//TEMPLATE void huge_integer_rectangle::move_to_y(huge_integer y) noexcept
+//TEMPLATE void long_long_rectangle::move_to_y(long long y) noexcept
 //{
 //   bottom = height() + y; top = y;
 //}
-//TEMPLATE void huge_integer_rectangle::move_to_x(huge_integer x) noexcept
+//TEMPLATE void long_long_rectangle::move_to_x(long long x) noexcept
 //{
 //   right = width() + x; left = x;
 //}
-//TEMPLATE void huge_integer_rectangle::move_to(huge_integer x, huge_integer y) noexcept
+//TEMPLATE void long_long_rectangle::move_to(long long x, long long y) noexcept
 //{
 //   move_to_x(x); move_to_y(y);
 //}
-//TEMPLATE void huge_integer_rectangle::move_to(::huge_integer_point int_point) noexcept
+//TEMPLATE void long_long_rectangle::move_to(::long_long_point int_point) noexcept
 //{
 //   move_to_x(point.x()); move_to_y(point.y());
 //}
-//TEMPLATE bool huge_integer_rectangle::intersect(const ::huge_integer_rectangle * rect1, const ::huge_integer_rectangle * rect2) noexcept
+//TEMPLATE bool long_long_rectangle::intersect(const ::long_long_rectangle * rect1, const ::long_long_rectangle * rect2) noexcept
 //
 //{
 //   return ::intersect(this, rect1, rect2);
 //}
 //
-//TEMPLATE bool huge_integer_rectangle::unite(const ::huge_integer_rectangle * rect1, const ::huge_integer_rectangle * rect2) noexcept
+//TEMPLATE bool long_long_rectangle::unite(const ::long_long_rectangle * rect1, const ::long_long_rectangle * rect2) noexcept
 //
 //{
 //   return ::unite(this, rect1, rect2);
 //}
 //
-//TEMPLATE void huge_integer_rectangle::operator=(const ::huge_integer_rectangle & rectangleSource) noexcept
+//TEMPLATE void long_long_rectangle::operator=(const ::long_long_rectangle & rectangleSource) noexcept
 //{
 //   ::copy(this, &rectangleSource);
 //}
-//TEMPLATE bool huge_integer_rectangle::operator==(const ::huge_integer_rectangle & huge_integer_rectangle) const noexcept
+//TEMPLATE bool long_long_rectangle::operator==(const ::long_long_rectangle & long_long_rectangle) const noexcept
 //{
-//   return ::is_equal(this, &huge_integer_rectangle);
+//   return ::is_equal(this, &long_long_rectangle);
 //}
-//TEMPLATE bool huge_integer_rectangle::operator!=(const ::huge_integer_rectangle & huge_integer_rectangle) const noexcept
+//TEMPLATE bool long_long_rectangle::operator!=(const ::long_long_rectangle & long_long_rectangle) const noexcept
 //{
-//   return !::is_equal(this, &huge_integer_rectangle);
+//   return !::is_equal(this, &long_long_rectangle);
 //}
-//TEMPLATE void huge_integer_rectangle::operator+=(::huge_integer_point huge_integer_point) noexcept
+//TEMPLATE void long_long_rectangle::operator+=(::long_long_point long_long_point) noexcept
 //{
-//   ::offset(this, huge_integer_point.x(), huge_integer_point.y());
+//   ::offset(this, long_long_point.x(), long_long_point.y());
 //}
-//TEMPLATE void huge_integer_rectangle::operator+=(::huge_integer_size huge_integer_size) noexcept
+//TEMPLATE void long_long_rectangle::operator+=(::long_long_size long_long_size) noexcept
 //{
-//   ::offset(this, huge_integer_size.cx(), huge_integer_size.cy());
+//   ::offset(this, long_long_size.cx(), long_long_size.cy());
 //}
-//TEMPLATE void huge_integer_rectangle::operator+=(const ::huge_integer_rectangle * RECT_TEMPLATE) noexcept
+//TEMPLATE void long_long_rectangle::operator+=(const ::long_long_rectangle * RECT_TEMPLATE) noexcept
 //
 //{
 //   inflate(RECT_TEMPLATE);
 //}
 //
-//TEMPLATE void huge_integer_rectangle::operator-=(::huge_integer_point huge_integer_point) noexcept
+//TEMPLATE void long_long_rectangle::operator-=(::long_long_point long_long_point) noexcept
 //{
-//   ::offset(this, -huge_integer_point.x(), -huge_integer_point.y());
+//   ::offset(this, -long_long_point.x(), -long_long_point.y());
 //}
-//TEMPLATE void huge_integer_rectangle::operator-=(::huge_integer_size huge_integer_size) noexcept
+//TEMPLATE void long_long_rectangle::operator-=(::long_long_size long_long_size) noexcept
 //{
-//   ::offset(this, -huge_integer_size.cx(), -huge_integer_size.cy());
+//   ::offset(this, -long_long_size.cx(), -long_long_size.cy());
 //}
-//TEMPLATE void huge_integer_rectangle::operator-=(const ::huge_integer_rectangle * RECT_TEMPLATE) noexcept
+//TEMPLATE void long_long_rectangle::operator-=(const ::long_long_rectangle * RECT_TEMPLATE) noexcept
 //
 //{
 //   deflate(RECT_TEMPLATE);
 //}
 //
-//TEMPLATE void huge_integer_rectangle::operator&=(const ::huge_integer_rectangle & huge_integer_rectangle) noexcept
+//TEMPLATE void long_long_rectangle::operator&=(const ::long_long_rectangle & long_long_rectangle) noexcept
 //{
-//   ::intersect(this, this, &huge_integer_rectangle);
+//   ::intersect(this, this, &long_long_rectangle);
 //}
-//TEMPLATE void huge_integer_rectangle::operator|=(const ::huge_integer_rectangle & huge_integer_rectangle) noexcept
+//TEMPLATE void long_long_rectangle::operator|=(const ::long_long_rectangle & long_long_rectangle) noexcept
 //{
-//   ::unite(this, this, &huge_integer_rectangle);
+//   ::unite(this, this, &long_long_rectangle);
 //}
-//huge_integer_rectangle huge_integer_rectangle::operator+(::huge_integer_point int_point) const noexcept
+//long_long_rectangle long_long_rectangle::operator+(::long_long_point int_point) const noexcept
 //{
-//   huge_integer_rectangle huge_integer_rectangle(*this); ::offset(&huge_integer_rectangle, point.x(), point.y()); return huge_integer_rectangle;
+//   long_long_rectangle long_long_rectangle(*this); ::offset(&long_long_rectangle, point.x(), point.y()); return long_long_rectangle;
 //}
-//huge_integer_rectangle huge_integer_rectangle::operator-(::huge_integer_point int_point) const noexcept
+//long_long_rectangle long_long_rectangle::operator-(::long_long_point int_point) const noexcept
 //{
-//   huge_integer_rectangle huge_integer_rectangle(*this); ::offset(&huge_integer_rectangle, -point.x(), -point.y()); return huge_integer_rectangle;
+//   long_long_rectangle long_long_rectangle(*this); ::offset(&long_long_rectangle, -point.x(), -point.y()); return long_long_rectangle;
 //}
-//huge_integer_rectangle huge_integer_rectangle::operator+(::huge_integer_size huge_integer_size) const noexcept
+//long_long_rectangle long_long_rectangle::operator+(::long_long_size long_long_size) const noexcept
 //{
-//   huge_integer_rectangle huge_integer_rectangle(*this); ::offset(&huge_integer_rectangle, huge_integer_size.cx(), huge_integer_size.cy()); return huge_integer_rectangle;
+//   long_long_rectangle long_long_rectangle(*this); ::offset(&long_long_rectangle, long_long_size.cx(), long_long_size.cy()); return long_long_rectangle;
 //}
-//huge_integer_rectangle huge_integer_rectangle::operator-(::huge_integer_size huge_integer_size) const noexcept
+//long_long_rectangle long_long_rectangle::operator-(::long_long_size long_long_size) const noexcept
 //{
-//   huge_integer_rectangle huge_integer_rectangle(*this); ::offset(&huge_integer_rectangle, -huge_integer_size.cx(), -huge_integer_size.cy()); return huge_integer_rectangle;
+//   long_long_rectangle long_long_rectangle(*this); ::offset(&long_long_rectangle, -long_long_size.cx(), -long_long_size.cy()); return long_long_rectangle;
 //}
-//huge_integer_rectangle huge_integer_rectangle::operator+(const ::huge_integer_rectangle * RECT_TEMPLATE) const noexcept
+//long_long_rectangle long_long_rectangle::operator+(const ::long_long_rectangle * RECT_TEMPLATE) const noexcept
 //
 //{
-//   huge_integer_rectangle huge_integer_rectangle(this); huge_integer_rectangle.inflate(RECT_TEMPLATE); return huge_integer_rectangle;
+//   long_long_rectangle long_long_rectangle(this); long_long_rectangle.inflate(RECT_TEMPLATE); return long_long_rectangle;
 //}
 //
-//huge_integer_rectangle huge_integer_rectangle::operator-(const ::huge_integer_rectangle * RECT_TEMPLATE) const noexcept
+//long_long_rectangle long_long_rectangle::operator-(const ::long_long_rectangle * RECT_TEMPLATE) const noexcept
 //
 //{
-//   huge_integer_rectangle huge_integer_rectangle(this); huge_integer_rectangle.deflate(RECT_TEMPLATE); return huge_integer_rectangle;
+//   long_long_rectangle long_long_rectangle(this); long_long_rectangle.deflate(RECT_TEMPLATE); return long_long_rectangle;
 //}
 //
-//huge_integer_rectangle huge_integer_rectangle::operator&(const ::huge_integer_rectangle & rect2) const noexcept
+//long_long_rectangle long_long_rectangle::operator&(const ::long_long_rectangle & rect2) const noexcept
 //{
-//   huge_integer_rectangle huge_integer_rectangle; ::intersect(&huge_integer_rectangle, this, &rect2);
-//   return huge_integer_rectangle;
+//   long_long_rectangle long_long_rectangle; ::intersect(&long_long_rectangle, this, &rect2);
+//   return long_long_rectangle;
 //}
-//huge_integer_rectangle huge_integer_rectangle::operator|(const ::huge_integer_rectangle & rect2) const noexcept
+//long_long_rectangle long_long_rectangle::operator|(const ::long_long_rectangle & rect2) const noexcept
 //{
-//   huge_integer_rectangle huge_integer_rectangle; ::unite(&huge_integer_rectangle, this, &rect2);
-//   return huge_integer_rectangle;
+//   long_long_rectangle long_long_rectangle; ::unite(&long_long_rectangle, this, &rect2);
+//   return long_long_rectangle;
 //}
-////TEMPLATE bool huge_integer_rectangle::subtract(const ::huge_integer_rectangle * pRectSrc1, const ::huge_integer_rectangle * lpRectSrc2) noexcept
+////TEMPLATE bool long_long_rectangle::subtract(const ::long_long_rectangle * pRectSrc1, const ::long_long_rectangle * lpRectSrc2) noexcept
 //
 ////   { return ::subtract(this, pRectSrc1, lpRectSrc2); }
 //
 //
-//TEMPLATE void huge_integer_rectangle::normalize() noexcept
+//TEMPLATE void long_long_rectangle::normalize() noexcept
 //{
-//   huge_integer nTemp;
+//   long long nTemp;
 //   if (left > right)
 //   {
 //      nTemp = left;
@@ -323,7 +323,7 @@
 //   }
 //}
 //
-//TEMPLATE void huge_integer_rectangle::inflate(const ::huge_integer_rectangle * RECT_TEMPLATE) noexcept
+//TEMPLATE void long_long_rectangle::inflate(const ::long_long_rectangle * RECT_TEMPLATE) noexcept
 //
 //{
 //   left -= RECT_TEMPLATE.left();      top -= RECT_TEMPLATE.top();
@@ -332,13 +332,13 @@
 //
 //}
 //
-//TEMPLATE void huge_integer_rectangle::inflate(huge_integer l, huge_integer t, huge_integer r, huge_integer b) noexcept
+//TEMPLATE void long_long_rectangle::inflate(long long l, long long t, long long r, long long b) noexcept
 //{
 //   left -= l;         top -= t;
 //   right += r;         bottom += b;
 //}
 //
-//TEMPLATE void huge_integer_rectangle::deflate(const ::huge_integer_rectangle * RECT_TEMPLATE) noexcept
+//TEMPLATE void long_long_rectangle::deflate(const ::long_long_rectangle * RECT_TEMPLATE) noexcept
 //
 //{
 //   left += RECT_TEMPLATE.left();   top += RECT_TEMPLATE.top();
@@ -347,15 +347,15 @@
 //
 //}
 //
-//TEMPLATE void huge_integer_rectangle::deflate(huge_integer l, huge_integer t, huge_integer r, huge_integer b) noexcept
+//TEMPLATE void long_long_rectangle::deflate(long long l, long long t, long long r, long long b) noexcept
 //{
 //   left += l;      top += t;
 //   right -= r;      bottom -= b;
 //}
 //
-//huge_integer_rectangle huge_integer_rectangle::MulDiv(huge_integer nMultiplier, huge_integer nDivisor) const noexcept
+//long_long_rectangle long_long_rectangle::MulDiv(long long nMultiplier, long long nDivisor) const noexcept
 //{
-//   return huge_integer_rectangle(
+//   return long_long_rectangle(
 //      ::MulDiv(left, nMultiplier, nDivisor),
 //      ::MulDiv(top, nMultiplier, nDivisor),
 //      ::MulDiv(right, nMultiplier, nDivisor),
@@ -363,7 +363,7 @@
 //}
 //
 //
-//huge_integer huge_integer_rectangle::area() const
+//long long long_long_rectangle::area() const
 //{
 //
 //   return size().area();

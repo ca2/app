@@ -9,7 +9,7 @@
 #if !defined(_DEBUG)
 
 
-inline huge_integer subparticle::increment_reference_count()
+inline long long subparticle::increment_reference_count()
 {
 
    auto c = ++m_countReference;
@@ -25,7 +25,7 @@ inline huge_integer subparticle::increment_reference_count()
 }
 
 
-inline huge_integer subparticle::decrement_reference_count()
+inline long long subparticle::decrement_reference_count()
 {
 
    auto c = --m_countReference;
@@ -46,10 +46,10 @@ inline huge_integer subparticle::decrement_reference_count()
 }
 
 
-inline huge_integer subparticle::release()
+inline long long subparticle::release()
 {
 
-   huge_integer i = decrement_reference_count();
+   long long i = decrement_reference_count();
 
    if (i == 0)
    {
@@ -63,7 +63,7 @@ inline huge_integer subparticle::release()
 }
 
 
-inline huge_integer subparticle::replace_reference()
+inline long long subparticle::replace_reference()
 {
 
    return m_countReference;

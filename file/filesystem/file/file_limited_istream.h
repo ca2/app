@@ -10,12 +10,12 @@ namespace file
       public stream
    {
       stream *    _stream;
-      huge_natural            _virtPos;
-      huge_natural            _physPos;
-      huge_natural            _size;
-      huge_natural         _startOffset;
+      unsigned long long            _virtPos;
+      unsigned long long            _physPos;
+      unsigned long long            _size;
+      unsigned long long         _startOffset;
 
-      huge_natural SeekToPhys()
+      unsigned long long SeekToPhys()
       { 
          return _stream->seek_begin((iptr) _physPos); 
       }
@@ -28,8 +28,8 @@ namespace file
 
       }
 
-      //HRESULT InitAndSeek(huge_natural startOffset, huge_natural int_size)
-      huge_natural InitAndSeek(huge_natural startOffset, huge_natural int_size)
+      //HRESULT InitAndSeek(unsigned long long startOffset, unsigned long long int_size)
+      unsigned long long InitAndSeek(unsigned long long startOffset, unsigned long long int_size)
       {
          _startOffset = startOffset;
          _physPos = startOffset;
@@ -43,7 +43,7 @@ namespace file
 
    };
 
-   ::file::file * create_limited_istream(stream *inStream, huge_natural pos, huge_natural int_size);
+   ::file::file * create_limited_istream(stream *inStream, unsigned long long pos, unsigned long long int_size);
 
 
 } // namespace file

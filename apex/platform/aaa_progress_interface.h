@@ -9,8 +9,8 @@
 #include "IDecl.h"*/
 
 #define CA2_EX1_progress_interface(x) \
-  virtual HRes SetTotal(huge_natural total) x; \
-  virtual HRes SetCompleted(const huge_natural *completeValue) x; \
+  virtual HRes SetTotal(unsigned long long total) x; \
+  virtual HRes SetCompleted(const unsigned long long *completeValue) x; \
 
 namespace apex
 {
@@ -32,7 +32,7 @@ MIDL_INTERFACE("23170F69-40C1-278A-0000-000000050002")
 IProgress2: public IUnknown
 {
 public:
-  HRes SetTotal)(const huge_natural *total) PURE;
-  HRes SetCompleted)(const huge_natural *completeValue) PURE;
+  HRes SetTotal)(const unsigned long long *total) PURE;
+  HRes SetCompleted)(const unsigned long long *completeValue) PURE;
 };
 */

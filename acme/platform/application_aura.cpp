@@ -296,7 +296,7 @@ namespace platform
 
    //void aura_application_layer::record(::create * pcommand){}
 
-   //void aura_application_layer::on_event(huge_natural u, ::particle * pparticle) override{}
+   //void aura_application_layer::on_event(unsigned long long u, ::particle * pparticle) override{}
    //virtual ::pointer<::thread_toolset>create_thread_toolset(::enum_task_tool etool){}
 
 
@@ -510,10 +510,10 @@ namespace platform
    //bool aura_application_layer::check_exclusive(bool & bHandled) override{}
    //bool aura_application_layer::release_exclusive() override{}
 
-   //void aura_application_layer::on_set_scalar(e_scalar escalar,huge_integer iValue,int iFlags) override{}
-   //void aura_application_layer::get_scalar_minimum(e_scalar escalar,huge_integer & i) override{}
-   //void aura_application_layer::get_scalar(e_scalar escalar,huge_integer & i) override{}
-   //void aura_application_layer::get_scalar_maximum(e_scalar escalar,huge_integer & i) override{}
+   //void aura_application_layer::on_set_scalar(e_scalar escalar,long long iValue,int iFlags) override{}
+   //void aura_application_layer::get_scalar_minimum(e_scalar escalar,long long & i) override{}
+   //void aura_application_layer::get_scalar(e_scalar escalar,long long & i) override{}
+   //void aura_application_layer::get_scalar_maximum(e_scalar escalar,long long & i) override{}
 
 
    //bool safe_is_running(){}
@@ -884,7 +884,7 @@ namespace platform
 
 
    // bool aura_application_layer::get_fs_size(string& strSize, const ::string & pszPath, bool& bPending) override{}
-   // bool aura_application_layer::get_fs_size(huge_integer& i64Size, const ::string & pszPath, bool& bPending) override{}
+   // bool aura_application_layer::get_fs_size(long long& i64Size, const ::string & pszPath, bool& bPending) override{}
    //
    // void aura_application_layer::set_title(const ::string & pszTitle) override{}
 

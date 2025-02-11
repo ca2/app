@@ -29,7 +29,7 @@ namespace simpledb
       ::pointer < ::mutex >                         m_pmutexTagName;
       string_to_string          m_tagname;
 
-      huge_integer                       m_iDatabaseWaitTimeOut;
+      long long                       m_iDatabaseWaitTimeOut;
 
       ::pointer < ::mutex >                         m_pmutexSession;
       string_map < ::simpledb::session * >      m_mapSession;

@@ -977,7 +977,7 @@ namespace sockets
    }
 
 
-   huge_integer http_socket::get_request_serial()
+   long long http_socket::get_request_serial()
    {
 
       return m_iHttpSocketRequestSerial;

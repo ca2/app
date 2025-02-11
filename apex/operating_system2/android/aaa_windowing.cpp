@@ -1460,10 +1460,10 @@ int_bool is_window(oswindow oswindow)
 }
 
 
-huge_integer oswindow_id(oswindow w)
+long long oswindow_id(oswindow w)
 {
 
-   return (huge_integer)(w);
+   return (long long)(w);
 
 }
 

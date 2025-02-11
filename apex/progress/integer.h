@@ -26,7 +26,7 @@ namespace progress
 
       virtual void trace_progress();
 
-      virtual void trace_progress(huge_integer iStep);
+      virtual void trace_progress(long long iStep);
 
       virtual void progress_step();
 

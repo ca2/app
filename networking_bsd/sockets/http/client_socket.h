@@ -42,7 +42,7 @@ namespace sockets
       ::pointer < ::mutex >                          m_pmutexData;
       ::memory_file                    m_memoryfile;
       ::file::file *                   m_pfile;
-      huge_integer                              m_iFinalSize;
+      long long                              m_iFinalSize;
       ::progress::integer              m_progressinteger;
       e_http_method                    m_emethod;
 
@@ -121,10 +121,10 @@ namespace sockets
       virtual void request_url(string strUrlParam);
 
 
-      virtual void on_set_scalar(enum_scalar escalar,huge_integer iValue,int iFlags) override;
-      virtual void get_scalar_minimum(enum_scalar escalar, huge_integer & i) override;
-      virtual void get_scalar(enum_scalar escalar, huge_integer & i) override;
-      virtual void get_scalar_maximum(enum_scalar escalar, huge_integer & i) override;
+      virtual void on_set_scalar(enum_scalar escalar,long long iValue,int iFlags) override;
+      virtual void get_scalar_minimum(enum_scalar escalar, long long & i) override;
+      virtual void get_scalar(enum_scalar escalar, long long & i) override;
+      virtual void get_scalar_maximum(enum_scalar escalar, long long & i) override;
 
       virtual string MyUseragent() override;
 

@@ -103,9 +103,9 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
 
-      huge_integer increment_reference_count() override;
-      huge_integer decrement_reference_count() override;
-      huge_integer release() override;
+      long long increment_reference_count() override;
+      long long decrement_reference_count() override;
+      long long release() override;
 
 
       void common_construct();

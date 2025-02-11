@@ -33,8 +33,8 @@ public:
    operator unsigned short ()const { return m_payload.as_unsigned_short(); }
    operator int () const { return m_payload.as_int(); }
    operator unsigned int ()const { return m_payload.as_unsigned_int(); }
-   operator huge_integer () const { return m_payload.as_huge_integer(); }
-   operator huge_natural ()const { return m_payload.as_huge_natural(); }
+   operator long long () const { return m_payload.as_long_long(); }
+   operator unsigned long long ()const { return m_payload.as_unsigned_long_long(); }
 
    operator float () const { return m_payload.as_float(); }
    operator double ()const { return m_payload.as_double(); }
@@ -48,7 +48,7 @@ public:
 
 
    operator ::int_array ()const { return m_payload.as_int_array(); }
-   operator ::huge_integer_array ()const { return m_payload.as_huge_integer_array(); }
+   operator ::long_long_array ()const { return m_payload.as_long_long_array(); }
    operator ::string_array ()const { return m_payload.as_string_array(); }
    operator ::payload_array() const { return m_payload.as_payload_array(); }
    operator ::property_set() const { return m_payload.as_property_set(); }

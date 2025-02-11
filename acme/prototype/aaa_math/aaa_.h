@@ -1,26 +1,26 @@
 #pragma once
 
 //// SIGNED SIGNED
-//inline constexpr bool __lt(const huge_integer & a, const huge_integer & b) { return a < b; }
-//inline constexpr bool __lt(const int & a, const huge_integer & b) { return a < b; }
-//inline constexpr bool __lt(const huge_integer & a, const int & b) { return a < b; }
+//inline constexpr bool __lt(const long long & a, const long long & b) { return a < b; }
+//inline constexpr bool __lt(const int & a, const long long & b) { return a < b; }
+//inline constexpr bool __lt(const long long & a, const int & b) { return a < b; }
 //
 //// UNSIGNED SIGNED
 //inline constexpr bool __lt(const unsigned int & a, const int & b) { return b < 0 ? false : a < static_cast < unsigned int > (b); }
-//inline constexpr bool __lt(const size_t & a, const huge_integer & b) { return b < 0 ? false : a < static_cast < huge_natural > (b); }
+//inline constexpr bool __lt(const size_t & a, const long long & b) { return b < 0 ? false : a < static_cast < unsigned long long > (b); }
 //
 //// SIGNED UNSIGNED
 //inline constexpr bool __lt(const int & a, const unsigned int & b) { return a < 0 ? true : static_cast <unsigned int> (a) < b; }
-//inline constexpr bool __lt(const huge_integer & a, const size_t & b) { return a < 0 ? true : static_cast <huge_natural> (a) < b; }
+//inline constexpr bool __lt(const long long & a, const size_t & b) { return a < 0 ? true : static_cast <unsigned long long> (a) < b; }
 //
 //
 //// UNSIGNED SIGNED
 //inline constexpr bool __le(const unsigned int & a, const int & b) { return b < 0 ? false : a <= static_cast <unsigned int> (b); }
-//inline constexpr bool __le(const size_t & a, const huge_integer & b) { return b < 0 ? false : a <= static_cast <huge_natural> (b); }
+//inline constexpr bool __le(const size_t & a, const long long & b) { return b < 0 ? false : a <= static_cast <unsigned long long> (b); }
 //
 //// SIGNED UNSIGNED
 //inline constexpr bool __le(const int & a, const unsigned int & b) { return a < 0 ? false : static_cast <unsigned int> (a) <= b; }
-//inline constexpr bool __le(const huge_integer & a, const size_t & b) { return a < 0 ? false : static_cast <huge_natural> (a) <= b; }
+//inline constexpr bool __le(const long long & a, const size_t & b) { return a < 0 ? false : static_cast <unsigned long long> (a) <= b; }
 //
 //
 //template < typename A, typename B >
@@ -32,20 +32,20 @@
 //
 //// UNSIGNED SIGNED
 //constexpr int minimum(const unsigned int & a, const int & b) { return __lt(a, b) ? (int) a : b; }
-//constexpr huge_integer minimum(const size_t & a, const huge_integer & b) { return __lt(a, b) ? (huge_integer) a : b; }
+//constexpr long long minimum(const size_t & a, const long long & b) { return __lt(a, b) ? (long long) a : b; }
 //
 //// SIGNED UNSIGNED
 //constexpr int minimum(const int & a, const unsigned int & b) { return __lt(a, b) ? a : (int) b; }
-//constexpr huge_integer minimum(const huge_integer & a, const size_t & b) { return __lt(a, b) ? a : (huge_integer) b; }
+//constexpr long long minimum(const long long & a, const size_t & b) { return __lt(a, b) ? a : (long long) b; }
 //
 //
 //// UNSIGNED SIGNED
 //constexpr unsigned int maximum(const unsigned int & a, const int & b) { return __lt(b, a) ? a : (unsigned int) b; }
-//constexpr size_t maximum(const size_t & a, const huge_integer & b) { return __lt(b, a) ? a : (size_t) b; }
+//constexpr size_t maximum(const size_t & a, const long long & b) { return __lt(b, a) ? a : (size_t) b; }
 //
 //// SIGNED UNSIGNED
 //constexpr unsigned int maximum(const int & a, const unsigned int & b) { return __lt(b, a) ? (unsigned int) a : b; }
-//constexpr size_t maximum(const huge_integer & a, const size_t & b) { return __lt(b, a) ? (size_t) a : b; }
+//constexpr size_t maximum(const long long & a, const size_t & b) { return __lt(b, a) ? (size_t) a : b; }
 //
 //
 //#include "count.h"
@@ -54,7 +54,7 @@
 //#include "index.h"
 
 
-//CLASS_DECL_APEX huge_integer ceil_div(huge_integer num, huge_integer den);
+//CLASS_DECL_APEX long long ceil_div(long long num, long long den);
 //
 //
 //CLASS_DECL_APEX double tri(double angle);

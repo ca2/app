@@ -15,7 +15,7 @@ namespace x11
    };
 
 
-   using window_t = huge_integer;
+   using window_t = long long;
 
 
    struct visual_t

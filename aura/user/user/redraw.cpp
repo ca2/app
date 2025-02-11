@@ -28,7 +28,7 @@ namespace user
 #ifdef _DEBUG
 
 
-   huge_integer redraw_item::increment_reference_count()
+   long long redraw_item::increment_reference_count()
    {
 
       return ::particle::increment_reference_count();
@@ -36,7 +36,7 @@ namespace user
    }
 
 
-   huge_integer redraw_item::decrement_reference_count()
+   long long redraw_item::decrement_reference_count()
    {
 
       return ::particle::decrement_reference_count();

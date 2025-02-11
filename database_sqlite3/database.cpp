@@ -303,7 +303,7 @@ namespace sqlite
       const ::string & user,
       const ::string & pass,
       const ::string & sckt,
-      huge_natural uConnectionFlags)
+      unsigned long long uConnectionFlags)
    {
 
       m_strHost = host;

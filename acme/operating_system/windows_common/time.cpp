@@ -38,7 +38,7 @@ struct tm * gmtime_r(const time_t * timep, struct tm * result)
 //}
 
 
-CLASS_DECL_ACME void preempt_second(huge_integer i)
+CLASS_DECL_ACME void preempt_second(long long i)
 {
 
    ::Sleep((DWORD) (i * 1'000));
@@ -46,7 +46,7 @@ CLASS_DECL_ACME void preempt_second(huge_integer i)
 }
 
 
-CLASS_DECL_ACME void preempt_millisecond(huge_integer i)
+CLASS_DECL_ACME void preempt_millisecond(long long i)
 {
 
    ::Sleep((DWORD)i);
@@ -54,7 +54,7 @@ CLASS_DECL_ACME void preempt_millisecond(huge_integer i)
 }
 
 
-CLASS_DECL_ACME void preempt_microsecond(huge_integer i)
+CLASS_DECL_ACME void preempt_microsecond(long long i)
 {
 
    ::Sleep(1);
@@ -62,7 +62,7 @@ CLASS_DECL_ACME void preempt_microsecond(huge_integer i)
 }
 
 
-CLASS_DECL_ACME void preempt_nanosecond(huge_integer i)
+CLASS_DECL_ACME void preempt_nanosecond(long long i)
 {
 
    ::Sleep(1);

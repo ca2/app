@@ -24,7 +24,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 #include "__double.h"
 #include "__float.h"
 #include "__int.h"
-#include "__huge_integer.h"
+#include "__long_long.h"
 
 
 //template < typename TARGET, typename SOURCE >
@@ -729,7 +729,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////template < primitive_rectangle RECTANGLE,  typename L, typename T, typename W, typename H >
 ////inline auto _001SetRectDim(RECTANGLE &r, L l, T t, W w, H h) { return set_dim(p, l, t, w, h); }
 ////template <  typename L, typename T, typename W, typename H >
-////inline auto _001SetRectDim(::huge_integer_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
+////inline auto _001SetRectDim(::long_long_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 ////template <  typename L, typename T, typename W, typename H >
 ////inline auto _001SetRectDim(::float_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 ////template <  typename L, typename T, typename W, typename H >
@@ -1027,29 +1027,29 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 //inline int area(int cx, int cy) { return (cx < 0 && cy < 0 ? -1 : 1) * cx * cy; }
-//inline huge_integer area(huge_integer cx, huge_integer cy) { return (cx < 0 && cy < 0 ? -1 : 1) * cx * cy; }
+//inline long long area(long long cx, long long cy) { return (cx < 0 && cy < 0 ? -1 : 1) * cx * cy; }
 //inline double area(double cx, double cy) { return (cx < 0. && cy < 0. ? -1. : 1.) * cx * cy; }
 //
 //
 //
-//struct ::huge_integer_size;
-//struct ::huge_integer_point;
-//struct ::huge_integer_rectangle;
+//struct ::long_long_size;
+//struct ::long_long_point;
+//struct ::long_long_rectangle;
 ////::int_size;
-////class huge_integer_size;
+////class long_long_size;
 ////class double_size;
 ////::int_point;
-////class huge_integer_point;
+////class long_long_point;
 ////class double_point;
 ////::double_rectangle;
-////::huge_integer_rectangle;
+////::long_long_rectangle;
 ////::double_rectangle;
 //
 //typedef uchar      uch;
 //
-//struct ::huge_integer_point;
-//struct ::huge_integer_size;
-//struct ::huge_integer_rectangle;
+//struct ::long_long_point;
+//struct ::long_long_size;
+//struct ::long_long_rectangle;
 //struct ::double_point;
 //struct ::double_size;
 //struct ::double_rectangle;
@@ -1057,25 +1057,25 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 //using int_point = point_type < ::int_point, ::int_size, ::int_rectangle >;
-//using huge_integer_point = point_type < ::huge_integer_point, ::huge_integer_size, ::huge_integer_rectangle >;
+//using long_long_point = point_type < ::long_long_point, ::long_long_size, ::long_long_rectangle >;
 //using float_point = point_type < ::float_point, ::float_size, ::float_rectangle >;
 //using double_point = point_type < ::double_point, ::double_size, ::double_rectangle >;
 //
 //
 //using int_size = size_type < ::int_size, ::int_point, ::int_rectangle >;
-//using huge_integer_size = size_type < ::huge_integer_size, ::huge_integer_point, ::huge_integer_rectangle >;
+//using long_long_size = size_type < ::long_long_size, ::long_long_point, ::long_long_rectangle >;
 //using float_size = size_type < ::float_size, ::float_point, ::float_rectangle >;
 //using double_size = size_type < ::double_size, ::double_point, ::double_rectangle >;
 //
 //
 //using int_rectangle = rectangle_type < ::int_rectangle, ::int_point, ::int_size >;
-//using huge_integer_rectangle = rectangle_type < ::huge_integer_rectangle, ::huge_integer_point, ::huge_integer_size >;
+//using long_long_rectangle = rectangle_type < ::long_long_rectangle, ::long_long_point, ::long_long_size >;
 //using float_rectangle = rectangle_type < ::float_rectangle, ::float_point, ::float_size >;
 //using double_rectangle = rectangle_type < ::double_rectangle, ::double_point, ::double_size >;
 //
 //
 //using int_point_array = point_array_base < int_point >;
-//using huge_integer_point_array = point_array_base < huge_integer_point >;
+//using long_long_point_array = point_array_base < long_long_point >;
 //using float_point_array = point_array_base < float_point >;
 //using double_point_array = point_array_base < double_point >;
 //
@@ -1087,9 +1087,9 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////inline double i32muldiv(double d, int iNum, int iDen);
 ////inline int i32muldiv(int i, int iNum, int iDen);
 ////#ifndef WINDOWS
-////inline huge_integer MulDiv(huge_integer nNumber, int iNum, int iDen);
+////inline long long MulDiv(long long nNumber, int iNum, int iDen);
 ////#endif
-////inline huge_integer i32muldiv(huge_integer i, huge_integer iNum, huge_integer iDen);
+////inline long long i32muldiv(long long i, long long iNum, long long iDen);
 //
 //
 //template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2, primitive_integral INTEGRAL3, primitive_integral INTEGRAL_RESULT = typename ::largest_type_of_3 < INTEGRAL1, INTEGRAL2, INTEGRAL3 >::type >
@@ -1179,7 +1179,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 ////inline bool is_empty(::int_size & size) { return size.cx() <= 0 || size.cy() <= 0; }
-////inline bool is_empty(::huge_integer_size & size) { return size.cx() <= 0 || size.cy() <= 0; }
+////inline bool is_empty(::long_long_size & size) { return size.cx() <= 0 || size.cy() <= 0; }
 ////inline bool is_empty(::float_size & size) { return size.cx() <= 0.f || size.cy() <= 0.f; }
 ////inline bool is_empty(::double_size & size) { return size.cx() <= 0. || size.cy() <= 0.; }
 //
@@ -1190,25 +1190,25 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 //
-////inline bool contains(const ::huge_integer_rectangle & rectangle, const ::int_point & point) { return ::rectangle_contains(rectangle, point.x(), point.y()); }
-////inline ::huge_integer_rectangle & null(::huge_integer_rectangle & rectDst) { return ::null_rect(rectDst); }
-////inline bool is_equal(const ::huge_integer_rectangle & rect1, const ::huge_integer_rectangle & rect2) { return ::rect_equals(rect1, rect2); }
-////inline ::huge_integer_rectangle & inflate(::huge_integer_rectangle & rectangle, huge_integer x, huge_integer y) { return ::rect_inflate_point(rectangle, x, y); }
-////inline ::huge_integer_rectangle & deflate(::huge_integer_rectangle & rectangle, huge_integer x, huge_integer y) { return ::rect_deflate_point(rectangle, x, y); }
-////inline ::huge_integer_rectangle & offset(::huge_integer_rectangle & rectangle, huge_integer x, huge_integer y) { return ::offset_rect(rectangle, x, y); }
-////inline bool intersect(::huge_integer_rectangle & rectangle, const ::huge_integer_rectangle & rect1, const ::huge_integer_rectangle & rect2) { return ::intersect_rect(rectangle, rect1, rect2); }
-////inline ::huge_integer_rectangle & unite(::huge_integer_rectangle & rectangle, const ::huge_integer_rectangle & rect1, const ::huge_integer_rectangle & rect2) { return ::union_rect(rectangle, rect1, rect2); }
-////inline huge_integer width(const ::huge_integer_rectangle & rectangle) { return ::rect_width(rectangle); }
-////inline huge_integer height(const ::huge_integer_rectangle & rectangle) { return ::rect_height(rectangle); }
-////inline huge_integer area(const ::huge_integer_rectangle & rectangle) { return ::rect_area(rectangle); }
-////inline bool is_empty(const ::huge_integer_rectangle & rectangle) { return ::is_rect_empty(rectangle); }
-////inline void swap_left_right(::huge_integer_rectangle & rectangle) noexcept { ::__swap(rectangle.left(), rectangle.right()); }
+////inline bool contains(const ::long_long_rectangle & rectangle, const ::int_point & point) { return ::rectangle_contains(rectangle, point.x(), point.y()); }
+////inline ::long_long_rectangle & null(::long_long_rectangle & rectDst) { return ::null_rect(rectDst); }
+////inline bool is_equal(const ::long_long_rectangle & rect1, const ::long_long_rectangle & rect2) { return ::rect_equals(rect1, rect2); }
+////inline ::long_long_rectangle & inflate(::long_long_rectangle & rectangle, long long x, long long y) { return ::rect_inflate_point(rectangle, x, y); }
+////inline ::long_long_rectangle & deflate(::long_long_rectangle & rectangle, long long x, long long y) { return ::rect_deflate_point(rectangle, x, y); }
+////inline ::long_long_rectangle & offset(::long_long_rectangle & rectangle, long long x, long long y) { return ::offset_rect(rectangle, x, y); }
+////inline bool intersect(::long_long_rectangle & rectangle, const ::long_long_rectangle & rect1, const ::long_long_rectangle & rect2) { return ::intersect_rect(rectangle, rect1, rect2); }
+////inline ::long_long_rectangle & unite(::long_long_rectangle & rectangle, const ::long_long_rectangle & rect1, const ::long_long_rectangle & rect2) { return ::union_rect(rectangle, rect1, rect2); }
+////inline long long width(const ::long_long_rectangle & rectangle) { return ::rect_width(rectangle); }
+////inline long long height(const ::long_long_rectangle & rectangle) { return ::rect_height(rectangle); }
+////inline long long area(const ::long_long_rectangle & rectangle) { return ::rect_area(rectangle); }
+////inline bool is_empty(const ::long_long_rectangle & rectangle) { return ::is_rect_empty(rectangle); }
+////inline void swap_left_right(::long_long_rectangle & rectangle) noexcept { ::__swap(rectangle.left(), rectangle.right()); }
 //
-////inline huge_integer width(const ::huge_integer_rectangle & rectangle) { return ::width(&rectangle); }
-////inline huge_integer height(const ::huge_integer_rectangle & rectangle) { return ::height(&rectangle); }
-////inline huge_integer area(const ::huge_integer_rectangle & rectangle) { return ::area(&rectangle); }
-////inline bool is_empty(const ::huge_integer_rectangle & rectangle) { return ::is_empty(&rectangle); }
-////inline void swap_left_right(::huge_integer_rectangle & rectangle) noexcept { ::swap_left_right(&rectangle); }
+////inline long long width(const ::long_long_rectangle & rectangle) { return ::width(&rectangle); }
+////inline long long height(const ::long_long_rectangle & rectangle) { return ::height(&rectangle); }
+////inline long long area(const ::long_long_rectangle & rectangle) { return ::area(&rectangle); }
+////inline bool is_empty(const ::long_long_rectangle & rectangle) { return ::is_empty(&rectangle); }
+////inline void swap_left_right(::long_long_rectangle & rectangle) noexcept { ::swap_left_right(&rectangle); }
 //
 //
 //
@@ -1271,8 +1271,8 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //template < primitive_point POINT, primitive_point POINT2 >
 //inline POINT & operator += (POINT & point, const POINT2 & pointOffset) { ::subtract(point, pointOffset); return point; }
 //
-////inline ::huge_integer_point & operator -= (::huge_integer_point & point, const ::huge_integer_point & pointOffset) { ::point_sub(point, pointOffset); return point; }
-////inline ::huge_integer_point & operator += (::huge_integer_point & point, const ::huge_integer_point & pointOffset) { ::point_add(point, pointOffset); return point; }
+////inline ::long_long_point & operator -= (::long_long_point & point, const ::long_long_point & pointOffset) { ::point_sub(point, pointOffset); return point; }
+////inline ::long_long_point & operator += (::long_long_point & point, const ::long_long_point & pointOffset) { ::point_add(point, pointOffset); return point; }
 ////inline ::float_point & operator -= (::float_point & point, const ::float_point & pointOffset) { ::point_sub(point, pointOffset); return point; }
 ////inline ::float_point & operator += (::float_point & point, const ::float_point & pointOffset) { ::point_add(point, pointOffset); return point; }
 ////inline ::double_point & operator -= (::double_point & point, const ::double_point & pointOffset) { ::point_sub(point, pointOffset); return point; }
@@ -1284,8 +1284,8 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //template < primitive_rectangle RECTANGLE, primitive_point POINT >
 //inline RECTANGLE & operator += (RECTANGLE & rectangle, const POINT & point) { ::subtract(rectangle, point); return rectangle; }
 //
-////inline ::huge_integer_rectangle& operator -= (::huge_integer_rectangle& rectangle, const ::huge_integer_point& point) { ::rect_sub(rectangle, point); return rectangle; }
-////inline ::huge_integer_rectangle& operator += (::huge_integer_rectangle& rectangle, const ::huge_integer_point& point) { ::rect_add(rectangle, point); return rectangle; }
+////inline ::long_long_rectangle& operator -= (::long_long_rectangle& rectangle, const ::long_long_point& point) { ::rect_sub(rectangle, point); return rectangle; }
+////inline ::long_long_rectangle& operator += (::long_long_rectangle& rectangle, const ::long_long_point& point) { ::rect_add(rectangle, point); return rectangle; }
 ////inline ::float_rectangle& operator -= (::float_rectangle& rectangle, const ::float_point& point) { ::rect_sub(rectangle, point); return rectangle; }
 ////inline ::float_rectangle& operator += (::float_rectangle& rectangle, const ::float_point& point) { ::rect_add(rectangle, point); return rectangle; }
 ////inline ::double_rectangle& operator -= (::double_rectangle& rectangle, const ::double_point& point) { ::rect_sub(rectangle, point); return rectangle; }
@@ -1404,10 +1404,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////
 ////
 ////template < typename X, typename Y, typename W, typename H >
-////inline huge_integer_rectangle huge_integer_rectangle_dimension(X x, Y y, W w, H h)
+////inline long_long_rectangle long_long_rectangle_dimension(X x, Y y, W w, H h)
 ////{
 ////
-////   return huge_integer_rectangle((huge_integer)x, (huge_integer)y, (huge_integer)(x + w), (huge_integer)(y + h));
+////   return long_long_rectangle((long long)x, (long long)y, (long long)(x + w), (long long)(y + h));
 ////
 ////}
 ////
@@ -1454,24 +1454,24 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 ////inline auto ::int_point(const ::lparam & lparam) noexcept { return ::int_point(lparam.x(), lparam.y()); }
 ////inline auto ::int_point(const unsigned int u) noexcept { return ::int_point((int)u32_x(u), (int)u32_y(u)); }
-////inline auto ::int_point(const huge_natural u) noexcept { return ::int_point((int)u64_x(u), (int)u64_y(u)); }
+////inline auto ::int_point(const unsigned long long u) noexcept { return ::int_point((int)u64_x(u), (int)u64_y(u)); }
 ////inline auto ::int_point(const ::int_size & size) noexcept { return ::int_point(size.cx(), size.cy()); }
 ////
-////inline auto __point64(const ::lparam & lparam) noexcept { return ::huge_integer_point(lparam.x(), lparam.y()); }
-////inline auto __point64(const unsigned int u) noexcept { return ::huge_integer_point((huge_integer)u32_x(u), (huge_integer)u32_y(u)); }
-////inline auto __point64(const huge_natural u) noexcept { return ::huge_integer_point((huge_integer)u64_x(u), (huge_integer)u64_y(u)); }
-////inline auto __point64(const ::huge_integer_size & size) noexcept { return ::huge_integer_point(size.cx(), size.cy()); }
+////inline auto __point64(const ::lparam & lparam) noexcept { return ::long_long_point(lparam.x(), lparam.y()); }
+////inline auto __point64(const unsigned int u) noexcept { return ::long_long_point((long long)u32_x(u), (long long)u32_y(u)); }
+////inline auto __point64(const unsigned long long u) noexcept { return ::long_long_point((long long)u64_x(u), (long long)u64_y(u)); }
+////inline auto __point64(const ::long_long_size & size) noexcept { return ::long_long_point(size.cx(), size.cy()); }
 ////
 ////
 ////inline auto __pointf(const ::lparam & lparam) noexcept { return ::float_point((float)lparam.x(), (float)lparam.y()); }
 ////inline auto __pointf(const unsigned int u) noexcept { return ::float_point((float)u32_x(u), (float)u32_y(u)); }
-////inline auto __pointf(const huge_natural u) noexcept { return ::float_point((float)u64_x(u), (float)u64_y(u)); }
+////inline auto __pointf(const unsigned long long u) noexcept { return ::float_point((float)u64_x(u), (float)u64_y(u)); }
 ////inline auto __pointf(const ::float_size & size) noexcept { return ::float_point(size.cx(), size.cy()); }
 ////
 ////
 ////inline auto __pointd(const ::lparam & lparam) noexcept { return ::double_point(lparam.x(), lparam.y()); }
 ////inline auto __pointd(const unsigned int u) noexcept { return ::double_point((double)u32_x(u), (double)u32_y(u)); }
-////inline auto __pointd(const huge_natural u) noexcept { return ::double_point((double)u64_x(u), (double)u64_y(u)); }
+////inline auto __pointd(const unsigned long long u) noexcept { return ::double_point((double)u64_x(u), (double)u64_y(u)); }
 ////inline auto __pointd(const ::double_size & size) noexcept { return ::double_point(size.cx(), size.cy()); }
 //
 ////#ifdef UNIVERSAL_WINDOWS
@@ -1563,10 +1563,10 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //////inline int_point & bottom_right(const ::int_rectangle &rectangle) { return bottom_right(&rectangle); }
 ////
 ////
-////inline huge_integer_point & top_left(const ::huge_integer_rectangle & rectangle) { return *(huge_integer_point *)&rectangle; }
-////inline huge_integer_point & bottom_right(const ::huge_integer_rectangle & rectangle) { return *(huge_integer_point *)&rectangle.right(); }
-//////inline huge_integer_point & top_left(const ::huge_integer_rectangle & rectangle) { return top_left(&rectangle); }
-//////inline huge_integer_point & bottom_right(const ::huge_integer_rectangle & rectangle) { return bottom_right(&rectangle); }
+////inline long_long_point & top_left(const ::long_long_rectangle & rectangle) { return *(long_long_point *)&rectangle; }
+////inline long_long_point & bottom_right(const ::long_long_rectangle & rectangle) { return *(long_long_point *)&rectangle.right(); }
+//////inline long_long_point & top_left(const ::long_long_rectangle & rectangle) { return top_left(&rectangle); }
+//////inline long_long_point & bottom_right(const ::long_long_rectangle & rectangle) { return bottom_right(&rectangle); }
 ////
 ////
 ////inline double_point & top_left(const ::double_rectangle & rectangle) { return *(double_point *)&rectangle; }
@@ -1654,7 +1654,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////
 ////
 ////template <  >
-////inline huge_integer __conv<huge_integer>(const ::string & str)
+////inline long long __conv<long long>(const ::string & str)
 ////{
 ////
 ////   return (int) ::atoi(str);
@@ -1690,7 +1690,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////
 ////
 ////template < >
-////inline string __xmlpri<huge_integer>()
+////inline string __xmlpri<long long>()
 ////{
 ////
 ////   return "%" PRId64;
@@ -1834,79 +1834,79 @@ class lines_base;
 
 
 using int_point = point_type < int >;
-using huge_integer_point = point_type < huge_integer >;
+using long_long_point = point_type < long long >;
 using float_point = point_type < float >;
 using double_point = point_type < double >;
 
 
 using int_size = size_type < int >;
-using huge_integer_size = size_type < huge_integer >;
+using long_long_size = size_type < long long >;
 using float_size = size_type < float >;
 using double_size = size_type < double >;
 
 
 using int_rectangle = rectangle_type < int >;
-using huge_integer_rectangle = rectangle_type < huge_integer >;
+using long_long_rectangle = rectangle_type < long long >;
 using float_rectangle = rectangle_type < float >;
 using double_rectangle = rectangle_type < double >;
 
 
 using int_ellipse = ellipse_type < int >;
-using huge_integer_ellipse = ellipse_type < huge_integer >;
+using long_long_ellipse = ellipse_type < long long >;
 using float_ellipse = ellipse_type < float >;
 using double_ellipse = ellipse_type < double >;
 
 
 using int_line = line_type < int >;
-using huge_integer_line = line_type < huge_integer >;
+using long_long_line = line_type < long long >;
 using float_line = line_type < float >;
 using double_line = line_type < double >;
 
 
 using int_arc = arc_type < int >;
-using huge_integer_arc = arc_type < huge_integer >;
+using long_long_arc = arc_type < long long >;
 using float_arc = arc_type < float >;
 using double_arc = arc_type < double >;
 
 
 using int_point_array = point_array_base < int >;
-using huge_integer_point_array = point_array_base < huge_integer >;
+using long_long_point_array = point_array_base < long long >;
 using float_point_array = point_array_base < float >;
 using double_point_array = point_array_base < double >;
 
 
 using int_polygon = polygon_type < int >;
-using huge_integer_polygon = polygon_type < huge_integer >;
+using long_long_polygon = polygon_type < long long >;
 using float_polygon = polygon_type < float >;
 using double_polygon = polygon_type < double >;
 
 
 using int_poly_polygon = poly_polygon_type < int >;
-using huge_integer_poly_polygon = poly_polygon_type < huge_integer >;
+using long_long_poly_polygon = poly_polygon_type < long long >;
 using float_poly_polygon = poly_polygon_type < float >;
 using double_poly_polygon = poly_polygon_type < double >;
 
 
 using int_point_array = point_array_base < int >;
-using huge_integer_point_array = point_array_base < huge_integer >;
+using long_long_point_array = point_array_base < long long >;
 using float_point_array = point_array_base < float >;
 using double_point_array = point_array_base < double >;
 
 
 using int_size_array = size_array_base < int >;
-using huge_integer_size_array = size_array_base < huge_integer >;
+using long_long_size_array = size_array_base < long long >;
 using float_size_array = size_array_base < float >;
 using double_size_array = size_array_base < double >;
 
 
 using int_rectangle_array = rectangle_array_base < int >;
-using huge_integer_rectangle_array = rectangle_array_base < huge_integer >;
+using long_long_rectangle_array = rectangle_array_base < long long >;
 using float_rectangle_array = rectangle_array_base < float >;
 using double_rectangle_array = rectangle_array_base < double >;
 
 
 using int_lines = lines_base < int >;
-using huge_integer_lines = lines_base < huge_integer >;
+using long_long_lines = lines_base < long long >;
 using float_lines = lines_base < float >;
 using double_lines = lines_base < double >;
 

@@ -2,14 +2,14 @@
 
 
 //
-//CLASS_DECL_ACME huge_integer strtoi(const ::scoped_string & scopedstr)
+//CLASS_DECL_ACME long long strtoi(const ::scoped_string & scopedstr)
 //{
-//   return ::str::to_huge_integer(psz);
+//   return ::str::to_long_long(psz);
 //}
 //
-//CLASS_DECL_ACME huge_integer strtoi(const unichar * psz)
+//CLASS_DECL_ACME long long strtoi(const unichar * psz)
 //{
-//   return wide_to_huge_integer(psz);
+//   return wide_to_long_long(psz);
 //}
 
 

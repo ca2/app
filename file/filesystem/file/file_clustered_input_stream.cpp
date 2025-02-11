@@ -26,7 +26,7 @@ namespace file
          filesize virtBlock = _virtPos >> BlockSizeLog;
          filesize offsetInBlock = _virtPos & (blockSize - 1);
          filesize phyBlock = Vector[virtBlock];
-         filesize newPos = StartOffset + ((huge_natural)phyBlock << BlockSizeLog) + offsetInBlock;
+         filesize newPos = StartOffset + ((unsigned long long)phyBlock << BlockSizeLog) + offsetInBlock;
          if (newPos != _physPos)
          {
             _physPos = newPos;
@@ -34,7 +34,7 @@ namespace file
          }
          _curRem = blockSize - offsetInBlock;
          for (int i = 1; i < 64 && (virtBlock + i) < (unsigned int)Vector.get_size() && phyBlock + i == Vector[(virtBlock + i)]; i++)
-            _curRem += (huge_natural)((huge_natural) 1 << (huge_natural) BlockSizeLog);
+            _curRem += (unsigned long long)((unsigned long long) 1 << (unsigned long long) BlockSizeLog);
          auto rem = Size - _virtPos;
          if (_curRem > rem)
             _curRem = rem;
@@ -51,7 +51,7 @@ namespace file
 
    filesize clustered_istream::seek(filesize offset, enum_seek seekOrigin)
    {
-      huge_natural newVirtPos = offset;
+      unsigned long long newVirtPos = offset;
       switch(seekOrigin)
       {
       case STREAM_SEEK_SET: break;

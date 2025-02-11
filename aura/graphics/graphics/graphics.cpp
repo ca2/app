@@ -373,7 +373,7 @@ namespace graphics
    }
 
 
-   huge_integer graphics::_001GetTopLeftWeightedOpaqueArea(const ::int_rectangle & rect)
+   long long graphics::_001GetTopLeftWeightedOpaqueArea(const ::int_rectangle & rect)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());

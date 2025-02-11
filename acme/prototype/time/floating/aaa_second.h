@@ -15,8 +15,8 @@
 //   constexpr floating_second_t(floating_second second = {}) : floating_second(second) {}
 //   floating_second_t(const class time & time);
 //
-//   integral_second integral_seconds() const { return (integral_second)((huge_integer) m_d); }
-//   integral_nanosecond integral_nanoseconds() const { return (integral_nanosecond)((huge_integer) (fmod(m_d, 1.0) * 1'000'000'000.0)); }
+//   integral_second integral_seconds() const { return (integral_second)((long long) m_d); }
+//   integral_nanosecond integral_nanoseconds() const { return (integral_nanosecond)((long long) (fmod(m_d, 1.0) * 1'000'000'000.0)); }
 //
 //
 //};

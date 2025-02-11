@@ -23,7 +23,7 @@
  *     Xscaled = Xstart * Multiplier / Divider
  * Uses 128 bit intermediate result
  */
-CLASS_DECL_AURA huge_integer _stdcall muldiv64(huge_integer operant, huge_integer multiplier, huge_integer divider);
+CLASS_DECL_AURA long long _stdcall muldiv64(long long operant, long long multiplier, long long divider);
 
 
 /*
@@ -33,22 +33,22 @@ CLASS_DECL_AURA huge_integer _stdcall muldiv64(huge_integer operant, huge_intege
  *     Xscaled = (Xstart * Multiplier) SHR rshift
  * Uses 128 bit intermediate result
  */
-CLASS_DECL_AURA huge_integer _stdcall mulshr64(huge_integer operant, huge_integer multiplier, unsigned char rshift);
+CLASS_DECL_AURA long long _stdcall mulshr64(long long operant, long long multiplier, unsigned char rshift);
 
 
-CLASS_DECL_AURA void mul64(huge_natural v1, huge_natural v2, huge_natural & hi, huge_natural & lo);
+CLASS_DECL_AURA void mul64(unsigned long long v1, unsigned long long v2, unsigned long long & hi, unsigned long long & lo);
 
 
-CLASS_DECL_AURA void mul64(huge_integer v1, huge_integer v2, huge_integer & hi, huge_natural & lo);
+CLASS_DECL_AURA void mul64(long long v1, long long v2, long long & hi, unsigned long long & lo);
 
 
-CLASS_DECL_AURA huge_natural div128_64(huge_natural hi, huge_natural lo, huge_natural div, huge_natural & remainder);
+CLASS_DECL_AURA unsigned long long div128_64(unsigned long long hi, unsigned long long lo, unsigned long long div, unsigned long long & remainder);
 
 
-CLASS_DECL_AURA huge_integer div128_64(huge_integer hi, huge_natural lo, huge_integer div, huge_natural & remainder);
+CLASS_DECL_AURA long long div128_64(long long hi, unsigned long long lo, long long div, unsigned long long & remainder);
 
 
-CLASS_DECL_AURA huge_integer div128_64(huge_integer hi, huge_natural lo, huge_integer div, huge_natural & remainder);
+CLASS_DECL_AURA long long div128_64(long long hi, unsigned long long lo, long long div, unsigned long long & remainder);
 
 
 #endif //__FULL_MULDIV64_

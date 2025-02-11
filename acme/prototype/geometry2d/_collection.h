@@ -22,7 +22,7 @@
 //
 
 //using int_polygon = polygon_base < int >;
-//using huge_integer_polygon = polygon_base < huge_integer >;
+//using long_long_polygon = polygon_base < long long >;
 //using float_polygon = polygon_base < float >;
 //using double_polygon = polygon_base < double >;
 
@@ -44,7 +44,7 @@
 
 
 //using int_point_array = point_array_base < int >;
-//using huge_integer_point_array = point_array_base < huge_integer >;
+//using long_long_point_array = point_array_base < long long >;
 //using float_point_array = point_array_base < float >;
 //using double_point_array = point_array_base < double >;
 

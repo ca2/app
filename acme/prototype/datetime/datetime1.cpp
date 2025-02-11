@@ -587,10 +587,10 @@ namespace datetime
 } // namespace datetime
 
 
-huge_integer g_iNanosFirst;
+long long g_iNanosFirst;
 
 
-CLASS_DECL_ACME huge_integer _first_nano()
+CLASS_DECL_ACME long long _first_nano()
 {
 
    return g_iNanosFirst;

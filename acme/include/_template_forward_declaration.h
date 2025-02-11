@@ -497,12 +497,12 @@ class numeric_array;
 using char_array = numeric_array < char >;
 using short_array = numeric_array < short >;
 using int_array = numeric_array < int >;
-using huge_integer_array = numeric_array < huge_integer >;
+using long_long_array = numeric_array < long long >;
 
 using unsigned_char_array = numeric_array < unsigned char >;
 using unsigned_short_array = numeric_array < unsigned short >;
 using unsigned_int_array = numeric_array < unsigned int >;
-using u64_array = numeric_array < huge_natural >;
+using u64_array = numeric_array < unsigned long long >;
 
 using float_array = numeric_array < float >;
 using double_array = numeric_array < double >;
@@ -522,16 +522,16 @@ using unsigned_int_array = numeric_array < unsigned int >;
 
 
 using unique_int_sort_array = unique_number_sort_array < int >;
-using unique_huge_integer_sort_array = unique_number_sort_array < huge_integer >;
+using unique_long_long_sort_array = unique_number_sort_array < long long >;
 
 
 #ifdef OS64BIT
 
 
-using iptr_array = huge_integer_array;
+using iptr_array = long_long_array;
 using uptr_array = u64_array;
 
-using unique_iptr_sort_array = unique_huge_integer_sort_array;
+using unique_iptr_sort_array = unique_long_long_sort_array;
 
 
 #else
@@ -628,7 +628,7 @@ class spreadset;
 
 using int_spreadset = spreadset < int, int, unique_int_sort_array, unique_int_sort_array >;
 
-using i64_spreadset = spreadset < huge_integer, huge_integer, unique_huge_integer_sort_array, unique_huge_integer_sort_array >;
+using i64_spreadset = spreadset < long long, long long, unique_long_long_sort_array, unique_long_long_sort_array >;
 
 
 

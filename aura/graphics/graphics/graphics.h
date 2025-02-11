@@ -88,7 +88,7 @@ namespace graphics
 
       virtual void buffer_size_and_position(buffer_item * pitem);
 
-      virtual huge_integer _001GetTopLeftWeightedOpaqueArea(const ::int_rectangle &rect);
+      virtual long long _001GetTopLeftWeightedOpaqueArea(const ::int_rectangle &rect);
 
       //virtual ::particle * get_draw_lock();
       virtual buffer_item * on_begin_draw(::e_graphics egraphics);

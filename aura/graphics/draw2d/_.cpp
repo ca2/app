@@ -8,11 +8,11 @@ namespace draw2d
    float Cosines[360];
    float Sines[360];
 
-   huge_integer CosN[360]; // * 1 << 31
-   huge_integer SinN[360];
+   long long CosN[360]; // * 1 << 31
+   long long SinN[360];
 
-   huge_integer Cos10N[10]; // until 10 degress
-   huge_integer Sin10N[10]; // more precision * 1 << 34
+   long long Cos10N[10]; // until 10 degress
+   long long Sin10N[10]; // more precision * 1 << 34
 
    double dPi;
 
@@ -31,8 +31,8 @@ namespace draw2d
          dSin = ::sin(i / 180.0 * dPi);
          Cosines[i] = float(dCos);
          Sines[i] = float(dSin);
-         CosN[i] = (huge_integer)(dCos * d32);
-         SinN[i] = (huge_integer)(dSin * d32);
+         CosN[i] = (long long)(dCos * d32);
+         SinN[i] = (long long)(dSin * d32);
       }
       d32 = (1U << 31);
       d32 *= 8;
@@ -40,8 +40,8 @@ namespace draw2d
       {
          dCos = ::cos(i / 180.0 * dPi);
          dSin = ::sin(i / 180.0 * dPi);
-         Cos10N[i] = (huge_integer)(dCos * d32);
-         Sin10N[i] = (huge_integer)(dSin * d32);
+         Cos10N[i] = (long long)(dCos * d32);
+         Sin10N[i] = (long long)(dSin * d32);
       }
 
    }
@@ -138,8 +138,8 @@ namespace draw2d
          dSin = ::sin(i / 180.0 * dPi);
          Cosines[i] = float(dCos);
          Sines[i] = float(dSin);
-         CosN[i] = (huge_integer)(dCos * d32);
-         SinN[i] = (huge_integer)(dSin * d32);
+         CosN[i] = (long long)(dCos * d32);
+         SinN[i] = (long long)(dSin * d32);
       }
       d32 = (1U << 31);
       d32 *= 8;
@@ -147,8 +147,8 @@ namespace draw2d
       {
          dCos = ::cos(i / 180.0 * dPi);
          dSin = ::sin(i / 180.0 * dPi);
-         Cos10N[i] = (huge_integer)(dCos * d32);
-         Sin10N[i] = (huge_integer)(dSin * d32);
+         Cos10N[i] = (long long)(dCos * d32);
+         Sin10N[i] = (long long)(dSin * d32);
       }
 
    }

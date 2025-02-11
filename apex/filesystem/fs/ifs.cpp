@@ -236,9 +236,9 @@ bool ifs::enumerate(::file::listing & listing)
    ////if(m_mapdirFileName[strDir].is_null())
    ////   m_mapdirFileName[strDir] = __allocate string_array();
    ////if (m_mapdirFileSize[strDir].is_null())
-   ////   m_mapdirFileSize[strDir] = __allocate huge_integer_array();
+   ////   m_mapdirFileSize[strDir] = __allocate long_long_array();
    ////if (m_mapdirFolderSize[strDir].is_null())
-   ////   m_mapdirFolderSize[strDir] = __allocate huge_integer_array();
+   ////   m_mapdirFolderSize[strDir] = __allocate long_long_array();
    ////if(m_mapdirFileDir[strDir].is_null())
    ////   m_mapdirFileDir[strDir] = __allocate bool_array();
    ////if(m_mapdirFolderDir[strDir].is_null())
@@ -249,8 +249,8 @@ bool ifs::enumerate(::file::listing & listing)
    ////::file::path_array  & straThisDirName     = m_mapdirFolderName[strDir];
    ////::file::path_array  & straThisFile        = m_mapdirFile[strDir];
    ////::file::path_array  & straThisFileName    = m_mapdirFileName[strDir];
-   ////huge_integer_array    & iaThisFileSize      = *m_mapdirFileSize[strDir];
-   ////huge_integer_array    & iaThisFolderSize    = *m_mapdirFolderSize[strDir];
+   ////long_long_array    & iaThisFileSize      = *m_mapdirFileSize[strDir];
+   ////long_long_array    & iaThisFolderSize    = *m_mapdirFolderSize[strDir];
    ////bool_array     & baThisFileDir       = *m_mapdirFileDir[strDir];
    ////bool_array     & baThisFolderDir     = *m_mapdirFolderDir[strDir];
 

@@ -30,7 +30,7 @@ class CLASS_DECL_ACME millis
 public:
 
 
-   huge_integer       m_i;
+   long long       m_i;
 
 
    millis() { m_i = 0; }
@@ -113,7 +113,7 @@ public:
 
    }
 
-   inline huge_integer seconds()const { return m_i / 1000; }
+   inline long long seconds()const { return m_i / 1000; }
 
    inline void Now()
    {
@@ -172,27 +172,27 @@ public:
    inline millis& operator += (const ::millis & millis) { m_i += millis.m_i; return *this; }
 
 
-   //inline bool operator == (huge_integer i) const { return m_i == i; }
-   //inline bool operator != (huge_integer i) const { return m_i != i; }
-   //inline bool operator < (huge_integer i) const { return m_i < i; }
-   //inline bool operator <= (huge_integer i) const{ return m_i <= i; }
-   //inline bool operator > (huge_integer i) const { return m_i > i; }
-   //inline bool operator >= (huge_integer i) const { return m_i >= i; }
-   //inline millis operator - (huge_integer i) const { return m_i - i; }
-   //inline millis operator + (huge_integer i) const { return m_i + i; }
-   //inline millis& operator -= (huge_integer i) { m_i -= i; return *this; }
-   //inline millis& operator += (huge_integer i) { m_i += i; return *this; }
+   //inline bool operator == (long long i) const { return m_i == i; }
+   //inline bool operator != (long long i) const { return m_i != i; }
+   //inline bool operator < (long long i) const { return m_i < i; }
+   //inline bool operator <= (long long i) const{ return m_i <= i; }
+   //inline bool operator > (long long i) const { return m_i > i; }
+   //inline bool operator >= (long long i) const { return m_i >= i; }
+   //inline millis operator - (long long i) const { return m_i - i; }
+   //inline millis operator + (long long i) const { return m_i + i; }
+   //inline millis& operator -= (long long i) { m_i -= i; return *this; }
+   //inline millis& operator += (long long i) { m_i += i; return *this; }
 
 
-   inline millis& operator *= (double d) { m_i = (huge_integer)(m_i * d); return *this; }
+   inline millis& operator *= (double d) { m_i = (long long)(m_i * d); return *this; }
 
-   inline huge_integer operator / (const millis& millis) const { return m_i / millis.m_i; }
-   inline millis& operator /= (huge_integer i)  { m_i /= i; return *this; }
+   inline long long operator / (const millis& millis) const { return m_i / millis.m_i; }
+   inline millis& operator /= (long long i)  { m_i /= i; return *this; }
    inline millis& operator %= (const millis & millis) { m_i %= millis.m_i; return *this; }
 
 
    inline millis operator % (int i) const { return m_i % i; }
-   inline millis operator % (huge_integer i) const { return m_i % i; }
+   inline millis operator % (long long i) const { return m_i % i; }
    inline millis operator % (const ::millis & millis) const { return m_i % millis.m_i; }
 
 
@@ -202,7 +202,7 @@ public:
 };
 
 
-inline millis operator * (double d, const millis & millis) { return (huge_integer)(d * millis.m_i); }
+inline millis operator * (double d, const millis & millis) { return (long long)(d * millis.m_i); }
 
 
 namespace acme
@@ -252,7 +252,7 @@ inline auto __pr(const ::millis & millis) { return millis.m_i; }
 inline unsigned int __os(const ::millis & millis)
 {
 
-   if (millis.m_i > (huge_integer) I32_MAXIMUM)
+   if (millis.m_i > (long long) I32_MAXIMUM)
    {
 
       return U32_INFINITE_TIMEOUT;
@@ -276,16 +276,16 @@ inline unsigned int __os(const ::millis & millis)
 inline int __int(const ::millis & millis) { return (int) millis.m_i; }
 
 
-inline huge_integer __huge_integer(const ::millis & millis) { return (huge_integer) millis.m_i; }
+inline long long __long_long(const ::millis & millis) { return (long long) millis.m_i; }
 
 
 inline unsigned char as_byte(const ::millis & millis) { return (unsigned char) minimummax(millis.m_i, 0, 255); }
 
 
-inline millis __tick(double d) { return (huge_integer) d; }
+inline millis __tick(double d) { return (long long) d; }
 
 
-inline millis operator "" _tick(huge_natural u) { return u; }
+inline millis operator "" _tick(unsigned long long u) { return u; }
 
 
 #ifdef CPP20
@@ -300,7 +300,7 @@ typedef CLASS_DECL_ACME numeric_array < millis > millis_array;
 inline secs::secs(const millis & millis) { m_i = millis.m_i / 1'000; }
 
 
-inline millis operator "" _ms(huge_natural u) { return (huge_integer) u; }
+inline millis operator "" _ms(unsigned long long u) { return (long long) u; }
 
 
 inline millis operator -(const ::millis& millis1, const ::millis& millis2)
@@ -326,7 +326,7 @@ template < primitive_number NUMBER >
 inline millis operator *(const ::millis& millis, const NUMBER& number)
 {
 
-   return (huge_integer)(millis.m_i * number);
+   return (long long)(millis.m_i * number);
 
 }
 
@@ -335,7 +335,7 @@ template < primitive_number NUMBER >
 inline millis operator /(const ::millis& millis, const NUMBER& number)
 {
 
-   return (huge_integer) (millis.m_i / number);
+   return (long long) (millis.m_i / number);
 
 }
 
@@ -343,8 +343,8 @@ inline millis operator /(const ::millis& millis, const NUMBER& number)
 
 
 
-inline huge_integer _first_milli();
-inline huge_integer _get_millis();
+inline long long _first_milli();
+inline long long _get_millis();
 inline double _millis() { return _get_nanos() / 1'000'000.0; }
 
 

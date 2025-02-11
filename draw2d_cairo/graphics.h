@@ -511,7 +511,7 @@ namespace draw2d_cairo
 //      void DrawDragRect(const ::double_rectangle & double_rectangle, const ::double_size & double_size,
 //                        const ::double_rectangle & rectangleLast, const ::double_size & sizeLast,
 //                        ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr) override;
-      //void fill_rectangle(const ::huge_integer_rectangle * double_rectangle, color32_t clr) override;
+      //void fill_rectangle(const ::long_long_rectangle * double_rectangle, color32_t clr) override;
       //void fill_rectangle(const ::double_rectangle & double_rectangle, const ::color::color & color) override;
       void fill_rectangle(const ::double_rectangle & double_rectangle, const ::color::color & color) override;
       //void fill_rectangle(double x, double y, double cx, double cy, color32_t clr) override;

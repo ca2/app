@@ -7,7 +7,7 @@ namespace aura
 
 
 
-   inteprocess_channel::task::task(class call * pcall, const ::atom & idPid, huge_integer iTask) :
+   inteprocess_channel::task::task(class call * pcall, const ::atom & idPid, long long iTask) :
          ::object(pcall),
          m_pcall(pcall),
          m_atomPid(idPid),
@@ -235,7 +235,7 @@ namespace aura
 
 #else
 
-      m_atomApp = (huge_integer) ::get_current_process_id();
+      m_atomApp = (long long) ::get_current_process_id();
 
 #endif
 
@@ -557,7 +557,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
       }
 
-      huge_integer iCall = ::str::consume_natural(str);
+      long long iCall = ::str::consume_natural(str);
 
       if(!str.begins_eat(" from "))
       {
@@ -579,7 +579,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
 
       ::atom idPidFrom = strFrom;
 
-      if(idPidFrom.is_empty() || (idPidFrom.is_integer() && idPidFrom.huge_integer() == 0))
+      if(idPidFrom.is_empty() || (idPidFrom.is_integer() && idPidFrom.long_long == 0))
       {
 
          return;
@@ -690,7 +690,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
    }
 
 
-   ::pointer<class inteprocess_channel::task> inteprocess_channel::get_task(huge_integer iTask)
+   ::pointer<class inteprocess_channel::task> inteprocess_channel::get_task(long long iTask)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -725,7 +725,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
          if(case_insensitive_string_begins(strMember, "reply."))
          {
 
-            huge_integer iTask = payloada[0].huge_integer();
+            long long iTask = payloada[0].long_long;
 
             auto pobjectTask = get_task(iTask);
 
@@ -879,7 +879,7 @@ repeat:
 
       pathModule /= m_strApp + ".module_list";
 
-      ::file::path pathPid = module_path_from_pid((unsigned int)idPid.huge_integer());
+      ::file::path pathPid = module_path_from_pid((unsigned int)idPid.long_long);
 
       string strModuleList = file_system()->as_string(pathModule);
 

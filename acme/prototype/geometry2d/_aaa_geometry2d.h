@@ -38,8 +38,8 @@
 
 //inline auto left(const ::int_rectangle& rectangle) { return rectangle.left(); }
 //inline auto top(const ::int_rectangle& rectangle) { return rectangle.top(); }
-//inline auto left(const ::huge_integer_rectangle& rectangle) { return rectangle.left(); }
-//inline auto top(const ::huge_integer_rectangle& rectangle) { return rectangle.top(); }
+//inline auto left(const ::long_long_rectangle& rectangle) { return rectangle.left(); }
+//inline auto top(const ::long_long_rectangle& rectangle) { return rectangle.top(); }
 //inline auto left(const ::float_rectangle& rectangle) { return rectangle.left(); }
 //inline auto top(const ::float_rectangle& rectangle) { return rectangle.top(); }
 //inline auto left(const ::double_rectangle& rectangle) { return rectangle.left(); }

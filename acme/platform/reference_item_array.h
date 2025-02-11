@@ -21,7 +21,7 @@ public:
 
 
    ::reference_item_array *                                       m_preferenceitemarrayParent = nullptr;
-   huge_integer                                                          m_iSerial;
+   long long                                                          m_iSerial;
    int                                                            m_iStep;
    ::subparticle*                                                 m_psubparticle;
    ::subparticle*                                                 m_psubparticleParent;

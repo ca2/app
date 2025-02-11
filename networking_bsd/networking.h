@@ -115,7 +115,7 @@ namespace networking_bsd
       string_map < ::pointer<reverse_cache_item >>       m_mapReverseCache;
       array < ::pointer<reverse_cache_item >>            m_reversecacheaRequest;
       ::task_pointer                                     m_pthreadReverse;
-      huge_integer                                              m_iListenSocket;
+      long long                                              m_iListenSocket;
       /*::pointer < ::mutex > m_pmutexPool;*/
 
       interlocked_int                                    m_lListenSocket;

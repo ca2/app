@@ -41,7 +41,7 @@ namespace mathematics
       unsigned int _get();
       int m_value;
       unsigned_int_array m_uinta;
-      huge_integer m_iAccess = 0;
+      long long m_iAccess = 0;
    };
 
    // http://www.alhem.net/

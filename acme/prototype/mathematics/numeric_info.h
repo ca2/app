@@ -453,13 +453,13 @@ class CLASS_DECL_ACME numeric_info < unsigned long long > :
       && !defined(UNIVERSAL_WINDOWS)
 
    template < >
-   class CLASS_DECL_ACME numeric_info < huge_integer > :
+   class CLASS_DECL_ACME numeric_info < long long > :
       public numeric_integer_base
    {
    public:
 
-      typedef huge_integer TYPE;
-      typedef huge_integer OFFSET_TYPE;
+      typedef long long TYPE;
+      typedef long long OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {
@@ -489,13 +489,13 @@ class CLASS_DECL_ACME numeric_info < unsigned long long > :
    };
 
    template < >
-   class CLASS_DECL_ACME numeric_info < huge_natural >:
+   class CLASS_DECL_ACME numeric_info < unsigned long long >:
       public numeric_integer_base
    {
    public:
 
-      typedef huge_natural TYPE;
-      typedef huge_integer OFFSET_TYPE;
+      typedef unsigned long long TYPE;
+      typedef long long OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {

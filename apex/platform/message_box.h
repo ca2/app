@@ -36,7 +36,7 @@
 //
 //   }
 //
-//   payload["flags"] = (huge_integer) emessagebox;
+//   payload["flags"] = (long long) emessagebox;
 //
 //   return ::payload;
 //

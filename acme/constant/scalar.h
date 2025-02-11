@@ -48,8 +48,8 @@ enum enum_number : unsigned char
    e_number_unsigned_short = 4 | 8,
    e_number_int = 2 | 16,
    e_number_unsigned_int = 4 | 16,
-   e_number_huge_integer = 2 | 32,
-   e_number_huge_natural = 4 | 32,
+   e_number_long_long = 2 | 32,
+   e_number_unsigned_long_long = 4 | 32,
    e_number_float = 64,
    e_number_double = 65,
 };

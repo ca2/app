@@ -100,8 +100,8 @@ namespace user
       //mutable int_point     m_pointParentClient;
 
 
-      //inline auto get_client_rect64() { ::huge_integer_rectangle int_rectangle; this->rectangle(rectangle); return rectangle; }
-      //inline auto get_window_rect64() { ::huge_integer_rectangle int_rectangle; window_rectangle(rectangle); return rectangle; }
+      //inline auto get_client_rect64() { ::long_long_rectangle int_rectangle; this->rectangle(rectangle); return rectangle; }
+      //inline auto get_window_rect64() { ::long_long_rectangle int_rectangle; window_rectangle(rectangle); return rectangle; }
 
       //virtual ::window_graphics* get_window_graphics();
       //virtual oswindow get_handle() const;

@@ -6,7 +6,7 @@
 #if defined(LINUX) || defined(ANDROID) || defined(APPLEOS) || defined(SOLARIS)
 iptr get_map_failed();
 void my_munmap(void * pimage32,HANDLE hfile);
-void * my_open_map(const ::string & psz,HANDLE * pfile,bool bRead,bool bWrite,huge_integer int_size);
+void * my_open_map(const ::string & psz,HANDLE * pfile,bool bRead,bool bWrite,long long int_size);
 #endif
 
 
@@ -587,7 +587,7 @@ namespace hotplugin
    }
 
 
-   //bool host::window_rectangle(::huge_integer_rectangle * prectangle)
+   //bool host::window_rectangle(::long_long_rectangle * prectangle)
    //{
 
    //   ::copy(prectangle, m_rectangleWindow);
@@ -597,7 +597,7 @@ namespace hotplugin
    //}
 
 
-   //bool host::this->rectangle(::huge_integer_rectangle * prectangle)
+   //bool host::this->rectangle(::long_long_rectangle * prectangle)
    //{
 
    //   ::copy(prectangle,m_rectangleX);

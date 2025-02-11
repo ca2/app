@@ -185,7 +185,7 @@ bool file_as_memory(memory_base & memory, const ::file::path & path)
    FILE * f = fopen(path, "rb");
    if(f == nullptr)
       return false;
-   huge_integer iSize = FILE_get_size(f);
+   long long iSize = FILE_get_size(f);
 
    if(iSize <= 0)
    {

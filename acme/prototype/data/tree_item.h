@@ -397,14 +397,14 @@ namespace data
       #ifdef _DEBUG
 
 
-      virtual huge_integer increment_reference_count() override
+      virtual long long increment_reference_count() override
       {
 
          return ::particle::increment_reference_count();
 
       }
 
-      virtual huge_integer decrement_reference_count() override
+      virtual long long decrement_reference_count() override
       {
 
          return ::particle::decrement_reference_count();

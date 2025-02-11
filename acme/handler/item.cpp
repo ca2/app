@@ -17,7 +17,7 @@
       str = "e_element_item";
       break;
    default:
-      str.formatf("(enum_element=%lld)", (huge_integer)eelement);
+      str.formatf("(enum_element=%lld)", (long long)eelement);
       break;
    }
 

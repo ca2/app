@@ -34,7 +34,7 @@ namespace sockets
 {
 
 
-   typedef huge_integer mytime_t;
+   typedef long long mytime_t;
 
 
    /** \defgroup timer event_timer happening handling */

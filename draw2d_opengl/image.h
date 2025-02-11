@@ -21,7 +21,7 @@ namespace draw2d_opengl
 
 
       HBITMAP                          m_hbitmap;
-      class ::huge_integer_size                   m_sizeWnd;
+      class ::long_long_size                   m_sizeWnd;
       BITMAPINFO                       m_bitmapinfo;
       OffscreenContext *               m_phost;
 

@@ -7,39 +7,39 @@
 #if OSBIT == 64
 
 // memory must be aligned
-class INLINE_CLASS_DECL_ACME interlocked_huge_integer
+class INLINE_CLASS_DECL_ACME interlocked_long_long
 {
 protected:
 
 
    //char                 m_sz[16];
-   //huge_integer *              m_plong;
-   huge_integer                   m_hi;
+   //long long *              m_plong;
+   long long                   m_hi;
 
 
 public:
 
 
 
-   inline interlocked_huge_integer(huge_integer i = 0);
+   inline interlocked_long_long(long long i = 0);
 
 
-   inline interlocked_huge_integer& operator = (huge_integer i);
+   inline interlocked_long_long& operator = (long long i);
 
 
-   inline operator huge_integer() const;
+   inline operator long long() const;
 
 
-   inline huge_integer operator++();
-   inline huge_integer operator--();
-   inline huge_integer operator++(int);
-   inline huge_integer operator--(int);
+   inline long long operator++();
+   inline long long operator--();
+   inline long long operator++(int);
+   inline long long operator--(int);
 
-   inline interlocked_huge_integer& operator+=(huge_integer l);
-   inline interlocked_huge_integer& operator-=(huge_integer l);
+   inline interlocked_long_long& operator+=(long long l);
+   inline interlocked_long_long& operator-=(long long l);
 
 
-   inline huge_integer as_integer() const { return m_hi;}
+   inline long long as_integer() const { return m_hi;}
    
 };
 
@@ -90,7 +90,7 @@ using interlocked_count = ::interlocked_int;
 
 #else
 
-using interlocked_count = ::interlocked_huge_integer;
+using interlocked_count = ::interlocked_long_long;
 
 #endif
 
@@ -98,14 +98,14 @@ using interlocked_count = ::interlocked_huge_integer;
 #if OSBIT == 64
 
 
-inline interlocked_huge_integer::interlocked_huge_integer(huge_integer i) :
+inline interlocked_long_long::interlocked_long_long(long long i) :
    m_hi(i)
 {
 
 }
 
 
-inline interlocked_huge_integer& interlocked_huge_integer::operator = (huge_integer i)
+inline interlocked_long_long& interlocked_long_long::operator = (long long i)
 {
 
    atomic_assign64(&m_hi, i);
@@ -115,7 +115,7 @@ inline interlocked_huge_integer& interlocked_huge_integer::operator = (huge_inte
 }
 
 
-inline interlocked_huge_integer::operator huge_integer() const
+inline interlocked_long_long::operator long long() const
 {
 
    return m_hi;
@@ -123,7 +123,7 @@ inline interlocked_huge_integer::operator huge_integer() const
 }
 
 
-inline huge_integer interlocked_huge_integer::operator++()
+inline long long interlocked_long_long::operator++()
 {
 
    return atomic_increment64(&m_hi);
@@ -131,7 +131,7 @@ inline huge_integer interlocked_huge_integer::operator++()
 }
 
 
-inline huge_integer interlocked_huge_integer::operator--()
+inline long long interlocked_long_long::operator--()
 {
 
    return atomic_decrement64(&m_hi);
@@ -139,7 +139,7 @@ inline huge_integer interlocked_huge_integer::operator--()
 }
 
 
-inline huge_integer interlocked_huge_integer::operator++(int)
+inline long long interlocked_long_long::operator++(int)
 {
 
    auto i = m_hi;
@@ -151,7 +151,7 @@ inline huge_integer interlocked_huge_integer::operator++(int)
 }
 
 
-inline huge_integer interlocked_huge_integer::operator--(int)
+inline long long interlocked_long_long::operator--(int)
 {
 
    auto i = m_hi;
@@ -163,7 +163,7 @@ inline huge_integer interlocked_huge_integer::operator--(int)
 }
 
 
-inline interlocked_huge_integer& interlocked_huge_integer::operator+=(huge_integer i)
+inline interlocked_long_long& interlocked_long_long::operator+=(long long i)
 {
 
    atomic_add64(&m_hi, i);
@@ -173,7 +173,7 @@ inline interlocked_huge_integer& interlocked_huge_integer::operator+=(huge_integ
 }
 
 
-inline interlocked_huge_integer& interlocked_huge_integer::operator-=(huge_integer i)
+inline interlocked_long_long& interlocked_long_long::operator-=(long long i)
 {
 
    atomic_subtract64(&m_hi, i);

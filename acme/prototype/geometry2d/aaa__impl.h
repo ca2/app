@@ -20,10 +20,10 @@
 //inline int_point& bottom_right(const ::int_rectangle& rectangle) { return bottom_right(&rectangle); }
 //
 //
-//inline huge_integer_point& top_left(const ::huge_integer_rectangle* prectangle) { return *(huge_integer_point*)prectangle; }
-//inline huge_integer_point& bottom_right(const ::huge_integer_rectangle* prectangle) { return *(huge_integer_point*)& prectangle->right(); }
-//inline huge_integer_point& top_left(const ::huge_integer_rectangle& rectangle) { return top_left(&rectangle); }
-//inline huge_integer_point& bottom_right(const ::huge_integer_rectangle& rectangle) { return bottom_right(&rectangle); }
+//inline long_long_point& top_left(const ::long_long_rectangle* prectangle) { return *(long_long_point*)prectangle; }
+//inline long_long_point& bottom_right(const ::long_long_rectangle* prectangle) { return *(long_long_point*)& prectangle->right(); }
+//inline long_long_point& top_left(const ::long_long_rectangle& rectangle) { return top_left(&rectangle); }
+//inline long_long_point& bottom_right(const ::long_long_rectangle& rectangle) { return bottom_right(&rectangle); }
 //
 //
 //inline double_point& top_left(const ::double_rectangle* prectangle) { return *(double_point*)prectangle; }
@@ -111,7 +111,7 @@
 //
 //
 //template <  >
-//inline huge_integer __conv<huge_integer>(const ::string & str)
+//inline long long __conv<long long>(const ::string & str)
 //{
 //
 //   return (int) ::atoi(str);
@@ -147,7 +147,7 @@
 //
 //
 //template < >
-//inline string __xmlpri<huge_integer>()
+//inline string __xmlpri<long long>()
 //{
 //
 //   return "%" PRId64;

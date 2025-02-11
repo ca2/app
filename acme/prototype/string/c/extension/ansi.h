@@ -50,18 +50,18 @@ CLASS_DECL_ACME const ::ansi_character * ansi_find_char(const ::ansi_character *
 CLASS_DECL_ACME const ::ansi_character * ansi_find_char_reverse(const ::ansi_character * sz, ::ansi_character ch);
 CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::ansi_character * psz1, const ::ansi_character * psz2, int_bool iFree1 = false, int_bool iFree2 = false);
 
-//CLASS_DECL_ACME void ansi_from_huge_integer(char* sz, huge_integer i, int iBase, enum_digit_case edigitcase = e_digit_case_lower);
-//CLASS_DECL_ACME void ansi_from_huge_natural(char* sz, huge_natural u, int iBase, enum_digit_case edigitcase = e_digit_case_lower);
+//CLASS_DECL_ACME void ansi_from_long_long(char* sz, long long i, int iBase, enum_digit_case edigitcase = e_digit_case_lower);
+//CLASS_DECL_ACME void ansi_from_unsigned_long_long(char* sz, unsigned long long u, int iBase, enum_digit_case edigitcase = e_digit_case_lower);
 
-CLASS_DECL_ACME void                   ansi_from_huge_natural(::ansi_character * psz, huge_natural u, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
-CLASS_DECL_ACME void                   ansi_from_huge_integer(::ansi_character * psz, huge_integer i, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
+CLASS_DECL_ACME void                   ansi_from_unsigned_long_long(::ansi_character * psz, unsigned long long u, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
+CLASS_DECL_ACME void                   ansi_from_long_long(::ansi_character * psz, long long i, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 
 CLASS_DECL_ACME void                   ansi_from_ui(::ansi_character * psz, unsigned int u, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 CLASS_DECL_ACME void                   ansi_from_i(::ansi_character * psz, int i, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 
-CLASS_DECL_ACME huge_integer                    ansi_to_huge_integer(const ::ansi_character * psz, const ::ansi_character ** ppszEnd = nullptr, int iBase = 10);
-CLASS_DECL_ACME huge_natural                    ansi_to_huge_natural(const ::ansi_character * psz, const ::ansi_character ** ppszEnd = nullptr, int iBase = 10);
-CLASS_DECL_ACME huge_integer                    ansi_count_to_huge_integer(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase, character_count srclen);
+CLASS_DECL_ACME long long                    ansi_to_long_long(const ::ansi_character * psz, const ::ansi_character ** ppszEnd = nullptr, int iBase = 10);
+CLASS_DECL_ACME unsigned long long                    ansi_to_unsigned_long_long(const ::ansi_character * psz, const ::ansi_character ** ppszEnd = nullptr, int iBase = 10);
+CLASS_DECL_ACME long long                    ansi_count_to_long_long(const ::ansi_character * psz, const ::ansi_character ** ppszEnd, int iBase, character_count srclen);
 
 CLASS_DECL_ACME int                    ansi_to_int(const ::ansi_character * psz, const ::ansi_character ** ppszEnd = nullptr, int iBase = 10);
 CLASS_DECL_ACME unsigned int                    ansi_to_unsigned_int(const ::ansi_character * psz, const ::ansi_character ** ppszEnd = nullptr, int iBase = 10);

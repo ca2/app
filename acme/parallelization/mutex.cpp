@@ -1060,7 +1060,7 @@ mutex::~mutex()
 //
 //      ::time d;
 //
-//      d.m_iSecond = abs_time.tv_sec + (huge_integer) (wait.m_d);
+//      d.m_iSecond = abs_time.tv_sec + (long long) (wait.m_d);
 //
 //      d.m_iNanosecond = abs_time.tv_nsec + (fmod(wait.m_d, 1.0) * 1'000'000'000);
 //

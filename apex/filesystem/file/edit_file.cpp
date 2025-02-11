@@ -477,7 +477,7 @@ namespace file
 
 #ifdef DEBUG
 
-   huge_integer edit_file::increment_reference_count()
+   long long edit_file::increment_reference_count()
    {
 
       return ::data::tree::increment_reference_count();
@@ -485,7 +485,7 @@ namespace file
    }
 
 
-   huge_integer edit_file::decrement_reference_count()
+   long long edit_file::decrement_reference_count()
    {
 
       return ::data::tree::decrement_reference_count();
@@ -597,7 +597,7 @@ namespace file
 
       unsigned int uReadItem = 0xffffffff;
 
-      //huge_natural uiStopSize;
+      //unsigned long long uiStopSize;
 
       m_iOffset = 0;
 
@@ -930,7 +930,7 @@ namespace file
 
       //unsigned int uReadItem = 0xffffffff;
 
-      //huge_natural uiStopSize;
+      //unsigned long long uiStopSize;
 
       //m_iOffset = 0;
 

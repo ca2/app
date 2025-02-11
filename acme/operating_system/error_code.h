@@ -22,13 +22,13 @@ public:
    enum_error_code_type m_etype;
 
    
-   huge_integer m_iOsError;
+   long long m_iOsError;
 
 
    error_code() :m_etype(e_error_code_type_none), m_iOsError(0) {}
    error_code(const error_code & error_code) : m_etype(error_code.m_etype), m_iOsError(error_code.m_etype) {}
    error_code(const c_error_number & error_code);
-   error_code(enum_error_code_type etype, huge_integer iOsError) :m_etype(etype), m_iOsError(iOsError) {}
+   error_code(enum_error_code_type etype, long long iOsError) :m_etype(etype), m_iOsError(iOsError) {}
 
 
    //void get_message(::string & strMessage) const;

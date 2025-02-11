@@ -28,9 +28,9 @@ namespace turboc
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
-      virtual huge_integer increment_reference_count();
+      virtual long long increment_reference_count();
 
-      virtual huge_integer decrement_reference_count();
+      virtual long long decrement_reference_count();
 
    };
 

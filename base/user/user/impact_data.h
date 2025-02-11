@@ -17,7 +17,7 @@ namespace user
    public:
 
 
-      huge_integer                            m_iId;
+      long long                            m_iId;
       ::collection::index                          m_iIndex;
       ::pointer<interaction>          m_puserinteraction;
       ::pointer<place_holder>         m_pplaceholder;

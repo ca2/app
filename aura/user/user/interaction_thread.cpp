@@ -100,7 +100,7 @@ namespace user
 #ifdef _DEBUG
 
 
-   huge_integer thread::increment_reference_count()
+   long long thread::increment_reference_count()
    {
 
       return ::thread::increment_reference_count();
@@ -108,7 +108,7 @@ namespace user
    }
 
 
-   huge_integer thread::decrement_reference_count()
+   long long thread::decrement_reference_count()
    {
 
       return ::thread::decrement_reference_count();
@@ -116,7 +116,7 @@ namespace user
    }
 
 
-   huge_integer thread::release()
+   long long thread::release()
    {
 
       return ::thread::release();
@@ -795,7 +795,7 @@ namespace user
 
                         //   return true;
 
-                        //   huge_integer iApp = iMessage - WM_APP;
+                        //   long long iApp = iMessage - WM_APP;
 
                         //   pusermessage->m_pwindow->m_puserinteraction->message_handler(pusermessage);
 

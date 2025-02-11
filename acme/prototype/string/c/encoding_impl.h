@@ -205,7 +205,7 @@ inline character_count ansi_to_wd32_char(::wd32_character * output, const char *
 }
 
 
-inline huge_integer _ansi_to_wd32_char(const char ** ppsz, character_count * psrclen)
+inline long long _ansi_to_wd32_char(const char ** ppsz, character_count * psrclen)
 {
 
    ::wd32_character wd32ch = 0;

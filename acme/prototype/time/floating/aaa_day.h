@@ -14,8 +14,8 @@
 //   constexpr floating_day_t(floating_day day = {}) : floating_day(day) {}
 //
 //
-//   integral_second integral_seconds() const { return integral_second((huge_integer)(m_d * 86'400.0)); }
-//   integral_nanosecond integral_nanoseconds() const { return integral_nanosecond((huge_integer)(fmod(m_d * 86'400.0, 1.0) * 1'000'000'000.0)); }
+//   integral_second integral_seconds() const { return integral_second((long long)(m_d * 86'400.0)); }
+//   integral_nanosecond integral_nanoseconds() const { return integral_nanosecond((long long)(fmod(m_d * 86'400.0, 1.0) * 1'000'000'000.0)); }
 //
 //
 //};

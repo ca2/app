@@ -322,11 +322,11 @@ namespace calculator
    }
 
 
-   huge_integer plain_edit_impact::increment_reference_count()
+   long long plain_edit_impact::increment_reference_count()
    {
       return ::object::increment_reference_count();
    }
-   huge_integer plain_edit_impact::decrement_reference_count()
+   long long plain_edit_impact::decrement_reference_count()
    {
       return ::object::decrement_reference_count();
    }

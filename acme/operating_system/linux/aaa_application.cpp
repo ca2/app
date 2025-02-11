@@ -393,7 +393,7 @@ namespace acme
 //
 //      FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
 //      GetSystemTimeAsFileTime(&ft);
-//      huge_natural tt;
+//      unsigned long long tt;
 //      ::memory_copy(&tt, &ft, sizeof(tt));
 //      tt /= 10; // make it usecs
 //      point->tv_sec = (long)tt / 1000000;

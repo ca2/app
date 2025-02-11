@@ -320,13 +320,10 @@ e_message_wave_in_data,
 
 
 e_message_hyper_space = 0x8000000,
-e_message_initialize_host_window,
-e_message_defer_create_context_button,
-e_message_defer_post_initial_request,
 e_message_click,
 e_message_start_tab_drag,
 e_message_tool_tip_text,
-
+e_message_document
 
 
 

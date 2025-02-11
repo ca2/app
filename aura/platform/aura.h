@@ -19,7 +19,7 @@
 //
 ////#if OBJECT_TYPE_COUNTER
 ////
-////   extern map < const char*, const ::string &, huge_integer, huge_integer >* g_pmapObjTypCtr;
+////   extern map < const char*, const ::string &, long long, long long >* g_pmapObjTypCtr;
 ////
 ////#endif
 //
@@ -129,7 +129,7 @@
 ////
 ////#endif
 //
-//   //extern huge_integer g_iFirstNano;
+//   //extern long long g_iFirstNano;
 //
 //   //plex_heap_alloc_array * g_pplexheapallocarray;
 //

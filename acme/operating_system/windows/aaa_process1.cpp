@@ -9,7 +9,7 @@
 
 
 
-CLASS_DECL_ACMEunsigned huge_integer translate_processor_affinity(int iOrder)
+CLASS_DECL_ACMEunsigned long long translate_processor_affinity(int iOrder)
 {
 
    DWORD_PTR dwProcessAffinityMask;

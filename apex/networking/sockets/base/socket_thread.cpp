@@ -144,7 +144,7 @@ namespace sockets
 #ifdef _DEBUG
 
 
-   huge_integer socket_thread::increment_reference_count()
+   long long socket_thread::increment_reference_count()
    {
 
       return ::task::increment_reference_count();
@@ -152,7 +152,7 @@ namespace sockets
    }
 
 
-   huge_integer socket_thread::decrement_reference_count()
+   long long socket_thread::decrement_reference_count()
    {
 
       return ::task::decrement_reference_count();

@@ -174,13 +174,13 @@ string get_status_message(const ::e_status & estatus)
    // if(estatus)
    // {
     
-   //    str.formatf("success status (%" PRId64 ")", (huge_integer) estatus.m_estatus);
+   //    str.formatf("success status (%" PRId64 ")", (long long) estatus.m_estatus);
       
    // }
    // else
    // {
          
-   //    str.formatf("failure status (%" PRId64 ")", (huge_integer) estatus.m_estatus);
+   //    str.formatf("failure status (%" PRId64 ")", (long long) estatus.m_estatus);
          
    // }
 

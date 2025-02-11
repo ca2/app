@@ -725,7 +725,7 @@ namespace axis
    //}
 
 
-   //bool style::create_session_default_opaque_color(e_color eusercolor, huge_natural u)
+   //bool style::create_session_default_opaque_color(e_color eusercolor, unsigned long long u)
    //{
 
    //   if (!create_opaque_color(eusercolor, psession->get_default_color(u)))
@@ -740,7 +740,7 @@ namespace axis
    //}
 
 
-   //bool style::create_session_default_color(e_color eusercolor, unsigned char bAlpha, huge_natural u)
+   //bool style::create_session_default_color(e_color eusercolor, unsigned char bAlpha, unsigned long long u)
    //{
 
    //   if (!create_color(eusercolor, color_with_byte_opacity(bAlpha, psession->get_default_color(u))))
@@ -1336,7 +1336,7 @@ namespace axis
    //}
 
 
-   //bool style::create_session_default_opaque_color(e_color eusercolor, huge_natural u)
+   //bool style::create_session_default_opaque_color(e_color eusercolor, unsigned long long u)
    //{
 
    //   if (!create_opaque_color(eusercolor, psession->get_default_color(u)))
@@ -1351,7 +1351,7 @@ namespace axis
    //}
 
 
-   //bool style::create_session_default_color(e_color eusercolor, unsigned char bAlpha, huge_natural u)
+   //bool style::create_session_default_color(e_color eusercolor, unsigned char bAlpha, unsigned long long u)
    //{
 
    //   if (!create_color(eusercolor, color_with_byte_opacity(bAlpha, psession->get_default_color(u))))

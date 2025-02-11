@@ -41,8 +41,8 @@ enum enum_integer_type : int
    e_integer_type_unsigned_short = 3,
    e_integer_type_int = 4,
    e_integer_type_unsigned_int = 5,
-   e_integer_type_huge_integer = 6,
-   e_integer_type_huge_natural = 7,
+   e_integer_type_long_long = 6,
+   e_integer_type_unsigned_long_long = 7,
 
 };
 
@@ -51,7 +51,7 @@ class eimpact;
 
 enum enum_simple_command : int;
 enum enum_message : unsigned int;
-enum enum_impact : ::huge_integer;
+enum enum_impact : long long;
 enum enum_id : ::uptr;
 enum enum_check : int;
 enum enum_happening : int;

@@ -3245,7 +3245,7 @@ particle* system::matter_mutex()
 #ifdef _DEBUG
 
 
-   huge_integer system::increment_reference_count()
+   long long system::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -3253,7 +3253,7 @@ particle* system::matter_mutex()
    }
 
 
-   huge_integer system::decrement_reference_count()
+   long long system::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -3264,7 +3264,7 @@ particle* system::matter_mutex()
 #endif
 
 
-   void system::system_id_update(int iId, huge_integer iPayload)
+   void system::system_id_update(int iId, long long iPayload)
    {
 
       call_message((::enum_message)iId, iPayload, {}, nullptr);
@@ -3274,8 +3274,30 @@ particle* system::matter_mutex()
 
    void system::handle(::topic * ptopic, ::context * pcontext)
    {
-
-      if (ptopic->id() == id_get_operating_system_dark_mode_reply)
+      
+      if(ptopic->id() == id_initialize_host_window)
+      {
+       
+         acme_windowing()->defer_initialize_host_window(nullptr);
+         
+      }
+      else if(ptopic->id() == id_defer_create_context_button)
+      {
+         
+         auto pwindow = acme_windowing()->get_application_host_window();
+         
+         ::cast < ::acme::sandbox_windowing::host_interaction> phostinteraction = pwindow->m_pacmeuserinteraction;
+         
+         phostinteraction->create_context_button();
+         
+      }
+      else if(ptopic->id() == id_defer_post_initial_request)
+      {
+         
+         defer_post_initial_request();
+         
+      }
+      else if (ptopic->id() == id_get_operating_system_dark_mode_reply)
       {
 
          if (ptopic->payload("wparam").is_true())
@@ -3338,7 +3360,7 @@ particle* system::matter_mutex()
          }
 
       }
-      else if (ptopic->id() == e_message_initialize_host_window)
+      else if (ptopic->id() == id_initialize_host_window)
       {
 
          acme_windowing()->defer_initialize_host_window(nullptr);
@@ -3378,29 +3400,6 @@ particle* system::matter_mutex()
    void system::call_message(const ::enum_message & emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle)
    {
       
-      if(emessage == e_message_initialize_host_window)
-      {
-       
-         acme_windowing()->defer_initialize_host_window(nullptr);
-         
-      }
-      else if(emessage == e_message_defer_create_context_button)
-      {
-         
-         auto pwindow = acme_windowing()->get_application_host_window();
-         
-         ::cast < ::acme::sandbox_windowing::host_interaction> phostinteraction = pwindow->m_pacmeuserinteraction;
-         
-         phostinteraction->create_context_button();
-         
-      }
-      else if(emessage == e_message_defer_post_initial_request)
-      {
-         
-         defer_post_initial_request();
-         
-      }
-
    }
 
 
@@ -4764,7 +4763,7 @@ particle* system::matter_mutex()
 //}
 
 
-void system_id_update(::platform::system * psystem, int iUpdate, huge_integer iParam)
+void system_id_update(::platform::system * psystem, int iUpdate, long long iParam)
 {
 
    psystem->system_id_update(iUpdate, iParam);

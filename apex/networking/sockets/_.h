@@ -2,7 +2,7 @@
 #pragma once
 
 
-//using socket_id = huge_integer;
+//using socket_id = long long;
 //
 namespace sockets
 {

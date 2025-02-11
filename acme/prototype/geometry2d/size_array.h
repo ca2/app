@@ -33,7 +33,7 @@ public:
 
 
 using int_size_array = size_array_base < int >;
-using huge_integer_size_array = size_array_base < huge_integer >;
+using long_long_size_array = size_array_base < long long >;
 using float_size_array = size_array_base < float >;
 using double_size_array = size_array_base < double >;
 

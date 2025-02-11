@@ -47,8 +47,8 @@
 ////CLASS_DECL_ACME ::string as_string(const unsigned short & i);
 ////CLASS_DECL_ACME ::string as_string(const int & i);
 ////CLASS_DECL_ACME ::string as_string(const unsigned int & u);
-////CLASS_DECL_ACME ::string as_string(const huge_integer & i);
-////CLASS_DECL_ACME ::string as_string(const huge_natural & u);
+////CLASS_DECL_ACME ::string as_string(const long long & i);
+////CLASS_DECL_ACME ::string as_string(const unsigned long long & u);
 ////
 ////
 ////CLASS_DECL_ACME ::string as_string(const float & f);

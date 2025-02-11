@@ -840,13 +840,13 @@ namespace sockets_bsd
    }
 
 
-   huge_natural base_socket::GetBytesSent(bool)
+   unsigned long long base_socket::GetBytesSent(bool)
    {
       return 0;
    }
 
 
-   huge_natural base_socket::GetBytesReceived(bool)
+   unsigned long long base_socket::GetBytesReceived(bool)
    {
       return 0;
    }

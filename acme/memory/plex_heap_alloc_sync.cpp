@@ -143,7 +143,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
    //      printf("Free 8192");
    //
    //   }
-   huge_natural & u = ((huge_natural &)pParam);
+   unsigned long long & u = ((unsigned long long &)pParam);
    if ((u & 0xffffffff) == 00)
    {
       informationf("");
@@ -152,7 +152,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
 
    if (m_nAllocSize == 128)
    {
-      //huge_natural & u = ((huge_natural &)pParam);
+      //unsigned long long & u = ((unsigned long long &)pParam);
 
       if ((u & 0xff000000) == 00)
       {

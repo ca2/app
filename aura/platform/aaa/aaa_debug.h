@@ -53,11 +53,11 @@
 //#define _DEBUG_FILE_STDERR   ((_HFILE)-5)
 //#define _DEBUG_REPORT_FILE   ((_HFILE)-6)
 //#else
-//#define _DEBUG_INVALID_HFILE ((_HFILE)(huge_integer)-1)
-//#define _DEBUG_HFILE_ERROR   ((_HFILE)(huge_integer)-2)
-//#define _DEBUG_FILE_STDOUT   ((_HFILE)(huge_integer)-4)
-//#define _DEBUG_FILE_STDERR   ((_HFILE)(huge_integer)-5)
-//#define _DEBUG_REPORT_FILE   ((_HFILE)(huge_integer)-6)
+//#define _DEBUG_INVALID_HFILE ((_HFILE)(long long)-1)
+//#define _DEBUG_HFILE_ERROR   ((_HFILE)(long long)-2)
+//#define _DEBUG_FILE_STDOUT   ((_HFILE)(long long)-4)
+//#define _DEBUG_FILE_STDERR   ((_HFILE)(long long)-5)
+//#define _DEBUG_REPORT_FILE   ((_HFILE)(long long)-6)
 //#endif
 //
 //#endif
@@ -255,7 +255,7 @@
 //
 //CLASS_DECL_AURA string get_mem_info_report1();
 //CLASS_DECL_AURA ::collection::count get_mem_info(int ** ppiUse, const ::string &** ppszFile, const ::string &** pszCallStack, unsigned int ** ppuiLine, size_t ** ppsize);
-//CLASS_DECL_AURA ::collection::count get_mem_info2(int ** ppiUse, const ::string &** ppszFile, DWORD64 ** ppuiStack[64], huge_integer ** ppiStack, int ** ppiLine, huge_integer ** ppiSize);
+//CLASS_DECL_AURA ::collection::count get_mem_info2(int ** ppiUse, const ::string &** ppszFile, DWORD64 ** ppuiStack[64], long long ** ppiStack, int ** ppiLine, long long ** ppiSize);
 //
 //
 //

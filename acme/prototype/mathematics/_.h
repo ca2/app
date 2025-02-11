@@ -56,7 +56,7 @@ inline constexpr bool __le(const UNSIGNED1 & a, const SIGNED2 & b) { return b < 
 template < primitive_signed SIGNED1, primitive_unsigned UNSIGNED2 >
 inline constexpr bool __lt(const SIGNED1 & a, const UNSIGNED2 & b) { return a < 0 ? true : static_cast <unsigned int> (a) < b; }
 template < primitive_signed SIGNED1, primitive_unsigned UNSIGNED2 >
-inline constexpr bool __le(const SIGNED1 & a, const UNSIGNED2 & b) { return a < 0 ? false : static_cast <huge_natural> (a) <= b; }
+inline constexpr bool __le(const SIGNED1 & a, const UNSIGNED2 & b) { return a < 0 ? false : static_cast <unsigned long long> (a) <= b; }
 
 
 template < primitive_unsigned UNSIGNED1, primitive_unsigned UNSIGNED2 >
@@ -547,7 +547,7 @@ constexpr largest_type<TYPE1, TYPE2> minimum(const TYPE1 & a, const TYPE2 & b)
 }
 
 
-CLASS_DECL_ACME huge_integer ceil_div(huge_integer num, huge_integer den);
+CLASS_DECL_ACME long long ceil_div(long long num, long long den);
 
 
 CLASS_DECL_ACME double tri(double angle);
@@ -645,12 +645,12 @@ template < primitive_integral INTEGRAL >
 inline short  __hiword(INTEGRAL i) {return (i >> 16) & 0xffff; }
 
 
-//inline huge_integer as_huge_integer(const char * psz, int iBase = 10)
+//inline long long as_long_long(const char * psz, int iBase = 10)
 //{
 //
 //   const char * pszEnd = nullptr;
 //
-//   return ansi_to_huge_integer(psz, &pszEnd, iBase);
+//   return ansi_to_long_long(psz, &pszEnd, iBase);
 //
 //}
 
@@ -683,7 +683,7 @@ inline int maximum_digits(int iBase)
    else if constexpr (sizeof(SIGNED) == 8)
    {
 
-      return type_maximum_digits(e_integer_type_huge_integer, iBase);
+      return type_maximum_digits(e_integer_type_long_long, iBase);
 
    }
    else
@@ -723,7 +723,7 @@ inline int maximum_digits(int iBase)
    else if constexpr (sizeof(UNSIGNED) == 8)
    {
 
-      return type_maximum_digits(e_integer_type_huge_natural, iBase);
+      return type_maximum_digits(e_integer_type_unsigned_long_long, iBase);
 
    }
    else

@@ -19,7 +19,7 @@ namespace simpledb
       database *     m_pdatabase;
 //      MYSQL_RES *    m_pres;
       int        m_iFieldCount;
-      huge_natural       m_uiAffectedRows;
+      unsigned long long       m_uiAffectedRows;
 
 
       result(database * pdatabase);
@@ -28,7 +28,7 @@ namespace simpledb
 
 //      MYSQL_ROW fetch_row();
   //    unsigned long * fetch_lengths();
-      virtual huge_integer num_rows();
+      virtual long long num_rows();
       virtual int num_fields();
 
       virtual bool free_result();

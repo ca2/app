@@ -19,7 +19,7 @@ namespace earth
       int m_iDayOfWeek;
 
 
-      huge_integer m_iNanoSecond;
+      long long m_iNanoSecond;
       int m_iSecond;        /* Seconds.	[0-60] (1 leap second) */
       int m_iMinute;        /* Minutes.	[0-59] */
       int m_iHour;          /* Hours.	[0-23] */
@@ -45,13 +45,13 @@ namespace earth
       }
 
 
-      explicit gregorian_time(const ::posix_time & posixtime, huge_integer iNanosecond = 0, const class ::time & timeshift = {});
+      explicit gregorian_time(const ::posix_time & posixtime, long long iNanosecond = 0, const class ::time & timeshift = {});
       explicit gregorian_time(const class ::time & time, const class ::time & timeshift = {});
       explicit gregorian_time(const ::system_time & systemtime, const class ::time & timeshift = {});
       explicit gregorian_time(const ::file_time & filetime, const class ::time & timeshift = {});
 
 
-      void set(const ::posix_time & time, huge_integer iNanosecond, const class ::time & timeshift);
+      void set(const ::posix_time & time, long long iNanosecond, const class ::time & timeshift);
 
       void set(const class ::time & time, const class ::time & timeshift);
 

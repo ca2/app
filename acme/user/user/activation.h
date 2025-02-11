@@ -21,7 +21,7 @@ namespace user
       ::user::e_activation                      m_eactivation;
       ::pointer < ::user::activation_token >    m_pactivationtoken;
       // ::task *                               m_ptaskForeground;
-      // ::huge_integer                         m_iTime;
+      // long long                         m_iTime;
 
 
       activation();

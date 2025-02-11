@@ -62,8 +62,8 @@ namespace universal_windows
 
       //virtual bool GetStatus(const ::file::path & lpszFileName,::file::file_status& rStatus);
 
-      huge_natural ReadHuge(void * lpBuffer, huge_natural dwCount);
-      void WriteHuge(const void * lpBuffer, huge_natural dwCount);
+      unsigned long long ReadHuge(void * lpBuffer, unsigned long long dwCount);
+      void WriteHuge(const void * lpBuffer, unsigned long long dwCount);
 
       //virtual ::pointer<::file::file>Duplicate() const;
 
@@ -83,7 +83,7 @@ namespace universal_windows
 
       virtual bool is_opened()const  override;
       //enum BufferCommand { bufferRead, bufferWrite, bufferCommit, bufferCheck };
-      //virtual huge_natural GetBufferPtr(unsigned int nCommand, huge_natural nCount = 0,
+      //virtual unsigned long long GetBufferPtr(unsigned int nCommand, unsigned long long nCount = 0,
       //                              void ** ppBufStart = nullptr, void ** ppBufMax = nullptr);
 
    };

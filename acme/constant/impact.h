@@ -1,7 +1,7 @@
 #pragma once
 
 
-enum enum_impact : huge_integer
+enum enum_impact : long long
 {
 
    e_impact_none,

@@ -35,7 +35,7 @@ unsigned int GetTickCount()
 #include <mach/clock.h>
 #include <mach/mach.h>
 
-//huge_natural get_nanos()
+//unsigned long long get_nanos()
 //{
 //   
 //   clock_serv_t cclock;
@@ -44,7 +44,7 @@ unsigned int GetTickCount()
 //   clock_get_time(cclock, &mts);
 //   mach_port_deallocate(mach_task_self(), cclock);
 //   
-//   return ((huge_natural) mts.tv_sec * (huge_natural)1000 * (huge_natural)1000 * (huge_natural)1000 )+ ((huge_natural) mts.tv_nsec);
+//   return ((unsigned long long) mts.tv_sec * (unsigned long long)1000 * (unsigned long long)1000 * (unsigned long long)1000 )+ ((unsigned long long) mts.tv_nsec);
 //   
 //}
 //

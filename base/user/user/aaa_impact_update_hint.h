@@ -23,7 +23,7 @@
 //   ::pointer<::user::document>        m_pdocTopic;
 //   bool                                m_bFullScreen;
 //   ::pointer<::data::data>            m_pdataTopic;
-//   huge_integer                               m_iTime;
+//   long long                               m_iTime;
 //
 //   
 //   impact_update();

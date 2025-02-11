@@ -25,7 +25,7 @@ class CLASS_DECL_ACME static_numeric_info < unsigned int >
 
 
 template <>
-class CLASS_DECL_ACME static_numeric_info < huge_natural >
+class CLASS_DECL_ACME static_numeric_info < unsigned long long >
 {
    public:
 

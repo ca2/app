@@ -340,7 +340,7 @@ namespace http
             else if (strCache == "no")
             {
 
-               return ::str::to_huge_integer(strCache);
+               return ::str::to_long_long(strCache);
 
             }
 
@@ -359,7 +359,7 @@ namespace http
       else
       {
 
-         strCache = ::as_string(len.as_huge_integer());
+         strCache = ::as_string(len.as_long_long());
 
       }
 
@@ -1507,9 +1507,9 @@ namespace http
 //
 //            double dRateDownloaded = 0.0;
 //
-//            huge_integer iContentLength = set["http_content_length"].as_huge_integer();
+//            long long iContentLength = set["http_content_length"].as_long_long();
 //
-//            huge_integer iBodySizeDownloaded = set["http_body_size_downloaded"].as_huge_integer();
+//            long long iBodySizeDownloaded = set["http_body_size_downloaded"].as_long_long();
 //
 //            if (iContentLength > 0)
 //            {
@@ -1763,7 +1763,7 @@ namespace http
 
       }
 
-      huge_integer iHttpGetSerial = ++psystem->networking()->m_lHttpGetSerial;
+      long long iHttpGetSerial = ++psystem->networking()->m_lHttpGetSerial;
 
       //informationf("");
       //informationf("");
@@ -2185,7 +2185,7 @@ namespace http
          if (straProxy.get_count() != 2 || !psocket->proxy_open(straProxy[0], atoi(straProxy[1])))
          {
 
-            set["get_status"] = (huge_integer)error_http;
+            set["get_status"] = (long long)error_http;
 
             auto tick2 = ::time::now();
 
@@ -2199,7 +2199,7 @@ namespace http
       else if (!psocket->open(bConfigProxy))
       {
 
-         set["get_status"] = (huge_integer)error_http;
+         set["get_status"] = (long long)error_http;
 
          information() << LOG_HTTP_PREFIX << "> Not Opened/Connected Result Total time ::http::platform::context::get(\"" << url.as_string().truncated(255) << "\") " << tick1.elapsed().integral_second();
 
@@ -2253,9 +2253,9 @@ namespace http
 
       
 
-      huge_integer iContentLength = -1;
+      long long iContentLength = -1;
 
-      huge_integer iBodySizeDownloaded = -1;
+      long long iBodySizeDownloaded = -1;
 
       int iEnteredLoop = 0;
 
@@ -2289,7 +2289,7 @@ namespace http
 
          double dRateDownloaded = 0.0;
 
-         huge_integer iBodySizeDownloadedNow = set["http_body_size_downloaded"].as_huge_integer();
+         long long iBodySizeDownloadedNow = set["http_body_size_downloaded"].as_long_long();
 
          if (iBodySizeDownloadedNow > iBodySizeDownloaded)
          {
@@ -2722,7 +2722,7 @@ namespace http
       if (!http_get(psocket, pmessageMessage->m_url, set))
       {
 
-         pmessageMessage->m_estatusRet = (::e_status) set["get_status"].as_huge_integer();
+         pmessageMessage->m_estatusRet = (::e_status) set["get_status"].as_long_long();
 
          pmessageMessage->m_bRet = false;
 
@@ -2737,7 +2737,7 @@ namespace http
 
       }
 
-      pmessageMessage->m_estatusRet = (::e_status) set["get_status"].as_huge_integer();
+      pmessageMessage->m_estatusRet = (::e_status) set["get_status"].as_long_long();
 
       pmessageMessage->payload("out_headers") = psocket->outheaders();
 

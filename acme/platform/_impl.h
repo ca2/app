@@ -389,7 +389,7 @@ const char * memory_counter_id(T * pthis)
 //#ifndef WINDOWS
 //
 //
-//inline huge_integer MulDiv(huge_integer nNumber, int iNum, int iDen)
+//inline long long MulDiv(long long nNumber, int iNum, int iDen)
 //{
 //
 //   return nNumber * iNum / iDen;

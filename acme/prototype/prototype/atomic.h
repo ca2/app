@@ -27,11 +27,11 @@
 
 #ifdef WINDOWS
 
-#define atomic_assign64(pi, i) _interlockedexchange64((huge_integer *) (pi), i)
+#define atomic_assign64(pi, i) _interlockedexchange64((long long *) (pi), i)
 
 #else
 
-inline huge_integer atomic_assign64(huge_integer * pi, huge_integer i)
+inline long long atomic_assign64(long long * pi, long long i)
 {
 
 
@@ -53,11 +53,11 @@ inline huge_integer atomic_assign64(huge_integer * pi, huge_integer i)
 
 #ifdef WINDOWS
 
-#define atomic_increment64(pi) _interlockedincrement64((huge_integer *) (pi))
+#define atomic_increment64(pi) _interlockedincrement64((long long *) (pi))
   
 #else
 
-inline huge_integer atomic_increment64(huge_integer * pi)
+inline long long atomic_increment64(long long * pi)
 {
 
 
@@ -128,11 +128,11 @@ inline int atomic_increment32(int* pi)
 
 #ifdef WINDOWS
 
-   #define atomic_decrement64(pi) _interlockeddecrement64((huge_integer *)(pi))
+   #define atomic_decrement64(pi) _interlockeddecrement64((long long *)(pi))
   
 #else
    
-   inline huge_integer atomic_decrement64(huge_integer * pi)
+   inline long long atomic_decrement64(long long * pi)
    {
    
 #if defined(RASPBERRYPIOS) && defined(OS32BIT)
@@ -177,11 +177,11 @@ inline int atomic_increment32(int* pi)
 
 #ifdef WINDOWS
 
-   #define atomic_add64(pi, i) _interlockedadd64((huge_integer *)(pi),(huge_integer) (i))
+   #define atomic_add64(pi, i) _interlockedadd64((long long *)(pi),(long long) (i))
 
 #else
    
-inline huge_integer atomic_add64(huge_integer* pi, huge_integer i)
+inline long long atomic_add64(long long* pi, long long i)
 {
 
 #if defined(RASPBERRYPIOS) && defined(OS32BIT)
@@ -227,11 +227,11 @@ inline int atomic_add32(int* pi, int i)
 
 #ifdef WINDOWS
 
-#define atomic_subtract64(pi, i) _interlockedadd64((huge_integer *)(pi), (huge_integer) (-(i)))
+#define atomic_subtract64(pi, i) _interlockedadd64((long long *)(pi), (long long) (-(i)))
 
 #else
    
-   inline huge_integer atomic_subtract64(huge_integer* pi, huge_integer i)
+   inline long long atomic_subtract64(long long* pi, long long i)
    {
 
 #if defined(RASPBERRYPIOS) && defined(OS32BIT)

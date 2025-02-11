@@ -57,7 +57,7 @@ public:
    //bool add_message_handler(const ::atom & atom, RECEIVER * preceiver, void (RECEIVER:: * phandler)(::message::message * pmessage));
 
    //template < typename RECEIVER >
-   //bool add_message_handler(huge_integer iMessage, RECEIVER* preceiver, void (RECEIVER::* phandler)(::message::message* pmessage))
+   //bool add_message_handler(long long iMessage, RECEIVER* preceiver, void (RECEIVER::* phandler)(::message::message* pmessage))
    //{
 
       //return add_message_handler((const ::atom&)(::enum_message)iMessage, preceiver, phandler);

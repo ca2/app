@@ -26,7 +26,7 @@ void window_opengl::on_create_window(oswindow wnd)
 
 
 
-void window_opengl::create_window_graphics(huge_integer cxParam, huge_integer cyParam, int iStrideParam)
+void window_opengl::create_window_graphics(long long cxParam, long long cyParam, int iStrideParam)
 {
 
    destroy_window_graphics();

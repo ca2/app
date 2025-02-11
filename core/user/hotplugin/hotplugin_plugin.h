@@ -94,10 +94,10 @@ namespace hotplugin
       virtual bool screen_to_client(::int_point * ppt) override;
 
       using ::user::interaction::window_rectangle;
-      virtual bool window_rectangle(::huge_integer_rectangle * prectangle) override;
+      virtual bool window_rectangle(::long_long_rectangle * prectangle) override;
 
       using ::user::interaction::this->rectangle;
-      virtual bool this->rectangle(::huge_integer_rectangle * prectangle) override;
+      virtual bool this->rectangle(::long_long_rectangle * prectangle) override;
       */
 
 

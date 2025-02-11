@@ -49,7 +49,7 @@ inline void inline_byte_array_copy(unsigned char * target, const unsigned char *
       *(::u56 *)target = *(::u56 *)source;
       break;
    case 8:
-      *(huge_natural *)target = *(huge_natural *)source;
+      *(unsigned long long *)target = *(unsigned long long *)source;
       break;
    default:
       ::memory_copy(target, source, s);
@@ -208,7 +208,7 @@ public:
    }
 
 
-   inline bool _get_huge_natural(huge_natural & hn)
+   inline bool _get_unsigned_long_long(unsigned long long & hn)
    {
 
       if (_get_left() < 8)
@@ -218,7 +218,7 @@ public:
 
       }
 
-      hn = *((huge_natural *)&(m_pmemory.m_p->data()[m_position]));
+      hn = *((unsigned long long *)&(m_pmemory.m_p->data()[m_position]));
 
       m_position += 8;
 
@@ -227,10 +227,10 @@ public:
    }
 
 
-   inline huge_natural get_u64_unbounded()
+   inline unsigned long long get_u64_unbounded()
    {
 
-      auto u = *(huge_natural *)(m_pbyte + m_position);
+      auto u = *(unsigned long long *)(m_pbyte + m_position);
 
       m_position += 8;
 
@@ -241,7 +241,7 @@ public:
 
    int get_unsigned_char() override;
    int get_unsigned_short() override;
-   bool get_huge_natural(huge_natural & hn) override;
+   bool get_unsigned_long_long(unsigned long long & hn) override;
    bool is_end_of_file() const override;
 
 

@@ -39,9 +39,9 @@ namespace filemanager
 
             void install_message_routing(::channel * pchannel) override;
 
-            void open_file(huge_integer iFolder, const ::string & pszFileName, const ::string & pszExt);
+            void open_file(long long iFolder, const ::string & pszFileName, const ::string & pszExt);
 
-            void open_folder(huge_integer iFolder);
+            void open_folder(long long iFolder);
             void start_music();
             void start_root();
             void CreateImpacts();

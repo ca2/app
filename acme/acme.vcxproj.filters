@@ -4140,6 +4140,9 @@
     <ClInclude Include="handler\request.h">
       <Filter>Header Files\handler</Filter>
     </ClInclude>
+    <ClInclude Include="platform\prober.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -5920,6 +5923,9 @@
     </ClCompile>
     <ClCompile Include="handler\task_handler.cpp">
       <Filter>Source Files\handler</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\prober.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

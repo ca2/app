@@ -2070,6 +2070,8 @@
     <ClCompile Include="platform\node_apex.cpp" />
     <ClCompile Include="platform\node_aqua.cpp" />
     <ClCompile Include="platform\node_aura.cpp" />
+    <ClCompile Include="platform\prober.cpp" />
+    <ClInclude Include="platform\prober.h" />
     <ClCompile Include="platform\reference_item.cpp" />
     <ClCompile Include="platform\reference_item_array.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MaxSpeed</Optimization>

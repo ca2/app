@@ -617,9 +617,11 @@ list(APPEND library_source
    platform/predicate_holder.cpp
    platform/predicate_holder.h
    platform/printf.cpp
-   platform/profiler.cpp
+   platform/prober.cpp
+   platform/prober.h
    platform/procedure.cpp
    platform/procedure.h
+   platform/profiler.cpp
    platform/serial.cpp
    platform/session.cpp
    platform/session.h

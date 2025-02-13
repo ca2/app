@@ -523,6 +523,50 @@ void directory_system::set_path_install_folder(const string & strPath)
 }
 
 
+::file::path directory_system::application_data_base()
+{
+
+   // Example at Windows 
+   // C:\\Users\\user\\AppData\\Roaming
+
+   // Example at Linux
+   // /home/user/.config
+
+   return home() / ".config";
+
+}
+
+
+::file::path directory_system::application_data()
+{
+
+   ::string strAppId = application()->m_strAppId;
+
+   return application_data(strAppId);
+
+}
+
+
+::file::path directory_system::application_data(const ::scoped_string & scopedstrAppId)
+{
+
+   if (scopedstrAppId.size() < 3
+      || scopedstrAppId[0] == '\\'
+      || scopedstrAppId[0] == '/'
+      || scopedstrAppId.last() == '\\'
+      || scopedstrAppId.last() == '/'
+      || !(scopedstrAppId.contains('\\') || scopedstrAppId.contains('/')))
+   {
+
+      throw ::exception(error_bad_argument);
+
+   }
+
+   return application_data_base() / scopedstrAppId;
+
+}
+
+
 ::file::path directory_system::application_home()
 {
 

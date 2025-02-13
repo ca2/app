@@ -141,10 +141,13 @@ public:
    
 
    //auto & last() { return ::get(this->end() - 1); }
-   auto& last() const { return (const CHARACTER&) ::get(this->end() - 1); }
+   auto & last() const { return (const CHARACTER&) ::get(this->end() - 1); }
 
+   auto & last(::collection::index i) const { return (const CHARACTER &) ::get(this->end() - 1 - i); }
 
    auto last_index() const { return this->size() - 1; }
+
+   auto last_index(::collection::index i) const { return this->size() - 1 - i; }
 
    bool is_trimmed_empty() const;
 

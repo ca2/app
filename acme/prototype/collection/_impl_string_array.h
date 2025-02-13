@@ -2693,7 +2693,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::surround(const SCOP
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type string_array_base < Type, RawType, t_etypeContainer > ::surround_and_implode(const SCOPED_STRING& strSeparator, const SCOPED_STRING& strPrefix, const SCOPED_STRING& strSuffix, ::collection::index iStart, ::collection::count inCountLastOut)
+Type string_array_base < Type, RawType, t_etypeContainer > ::surround_and_implode(const SCOPED_STRING& scopedstrSeparator, const SCOPED_STRING& scopedstrPrefix, const SCOPED_STRING& scopedstrSuffix, ::collection::index iStart, ::collection::count inCountLastOut)
 {
 
    Type str;
@@ -2701,9 +2701,9 @@ Type string_array_base < Type, RawType, t_etypeContainer > ::surround_and_implod
    if (this->prepare_first_in_count_last_out(iStart, inCountLastOut))
    {
 
-      Type strSeparator(strSeparator);
-      Type strPrefix(strPrefix);
-      Type strSuffix(strSuffix);
+      Type strSeparator(scopedstrSeparator);
+      Type strPrefix(scopedstrPrefix);
+      Type strSuffix(scopedstrSuffix);
 
       str = strPrefix + this->element_at(iStart) + strSuffix;
 

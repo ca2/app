@@ -35,6 +35,10 @@ namespace windowing
       return ::windowing::e_toolkit_gtk4;
 #elif defined(HAS_GTK3)
       return ::windowing::e_toolkit_gtk3;
+#elif defined(HAS_LXQ2)
+      return ::windowing::e_toolkit_lxq2;
+#elif defined(HAS_LXQ1)
+      return ::windowing::e_toolkit_lxq1;
 #else
       return ::windowing::e_toolkit_unknown;
 #endif

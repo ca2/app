@@ -65,6 +65,14 @@ namespace windowing
          return ::windowing::e_operating_ambient_lxde;
          
       }
+      else if (strDesktop.case_insensitive_order("lxqt") == 0)
+      {
+
+         printf_line("calculate_edesktop e_operating_ambient_lxqt");
+
+         return ::windowing::e_operating_ambient_lxqt;
+
+      }
       else if (strDesktop.case_insensitive_order("unity") == 0)
       {
 
@@ -151,7 +159,7 @@ namespace windowing
       else
       {
          
-         printf_line("calculate_edesktop e_operating_ambient_gnome (1)");
+         printf_line("calculate_edesktop Fallback to e_operating_ambient_gnome");
 
          return ::windowing::e_operating_ambient_gnome;
          

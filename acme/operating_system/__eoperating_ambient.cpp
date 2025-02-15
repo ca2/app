@@ -33,7 +33,13 @@ namespace windowing
 #else
          return "gtk3";
 #endif
-      case e_operating_ambient_universal_windows:
+         case e_operating_ambient_lxqt:
+#ifdef HAS_LXQ2
+         return "lxq2";
+#else
+         return "lxq1";
+#endif
+         case e_operating_ambient_universal_windows:
          return "universal_windows";
          case e_operating_ambient_kde:
    #ifdef HAS_KDE6

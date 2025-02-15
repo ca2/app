@@ -19,6 +19,8 @@
    case ::windowing::e_toolkit_gtk4:     str = "gtk4"; break;
    case ::windowing::e_toolkit_kde5:     str = "kde5"; break;
    case ::windowing::e_toolkit_kde6:     str = "kde6"; break;
+   case ::windowing::e_toolkit_lxq2:     str = "lxq2"; break;
+   case ::windowing::e_toolkit_lxq1:     str = "lxq1"; break;
    case ::windowing::e_toolkit_appkit:   str = "appkit"; break;
    case ::windowing::e_toolkit_uikit:    str = "uikit"; break;
    case ::windowing::e_toolkit_android:  str = "android"; break;

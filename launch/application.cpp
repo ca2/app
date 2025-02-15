@@ -208,6 +208,7 @@ namespace launch
       ::string strCommand;
 
       if(m_strDistro == "ubuntu" || m_strDistro == "kubuntu" || m_strDistro == "xubuntu"
+      || m_strDistro == "lubuntu"
       || m_strDistro == "debian" || m_strDistro == "linuxmint")
       {
 

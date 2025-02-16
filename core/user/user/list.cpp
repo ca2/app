@@ -351,9 +351,9 @@ namespace user
 
       auto iItemFirst = m_iTopDisplayIndex;
 
-      information() << "m_nDisplayCount : " << m_nDisplayCount;
+      debug() << "m_nDisplayCount : " << m_nDisplayCount;
 
-      information() << "m_iTopDisplayIndex : " << m_iTopDisplayIndex;
+      debug() << "m_iTopDisplayIndex : " << m_iTopDisplayIndex;
 
       decltype(iItemCount) iItemLast;
 
@@ -3795,7 +3795,7 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      
+      information() << "How many times this is called for a single left button down?";
 
       m_bLButtonDown = true;
 
@@ -3895,14 +3895,14 @@ namespace user
 
       }
 
-      if (!has_keyboard_focus())
-      {
-
-         set_keyboard_focus();
-
-      }
-
-      set_keyboard_focus();
+      // if (!has_keyboard_focus())
+      // {
+      //
+      //    set_keyboard_focus();
+      //
+      // }
+      //
+      // set_keyboard_focus();
 
       user()->set_mouse_focus_LButtonDown(this);
 
@@ -4131,7 +4131,7 @@ namespace user
 
       }
 
-      pmouse->previous(); // give chance to base views
+      //pmouse->previous(); // give chance to base views
 
       pmessage->m_bRet = true;
 

@@ -11,11 +11,10 @@ else()
 
 endif()
 
-set(ENV{PATH} $ENV{HOME}/bin:$ENV{HOME}/code/operating_system/tool/bin:$ENV{PATH})
-
 
 
 message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
+message(STATUS "PATH is $ENV{PATH}")
 
 
 
@@ -24,6 +23,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(ROOT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(WORKSPACE_FOLDER ${ROOT_SOURCE_DIR})
+set(APPLICATION_BUILD_HELPER_BINARY "$ENV{HOME}/bin/application_build_helper")
 
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")

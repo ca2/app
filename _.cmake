@@ -11,6 +11,7 @@ else()
 
 endif()
 
+set(ENV{PATH} $ENV{HOME}/bin:$ENV{HOME}/code/operating_system/tool/bin:$ENV{PATH})
 
 
 

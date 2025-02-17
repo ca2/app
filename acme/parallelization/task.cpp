@@ -345,18 +345,6 @@ void task::post_request(::request * prequest)
 bool task::task_set_name(const ::scoped_string & scopedstrTaskName)
 {
 
-   if (::current_itask() == m_itask)
-   {
-
-      ::task_set_name(scopedstrTaskName);
-      //{
-      //   
-      //   return false;
-      //   
-      //}
-   }
-
-
    m_strTaskName = scopedstrTaskName;
 
    if (m_strTaskTag.is_empty() && m_strTaskName.has_character())
@@ -365,13 +353,23 @@ bool task::task_set_name(const ::scoped_string & scopedstrTaskName)
       m_strTaskTag = m_strTaskName;
 
    }
-   //   if (!::task_set_name(m_htask, pszTaskName))
-   //   {
+
+   ::task_set_name(m_htask, m_strTaskName.c_str());
+   // //   {
+   // //
+   // //      return false;
+   // //
+   // //   }
+   // //
+   // if (::current_itask() != m_itask)
+   // {
    //
-   //      return false;
+   //    throw ::exception(error_wrong_state);
    //
-   //   }
+   // }
    //
+   // ::task_set_name(scopedstrTaskName);
+
    return true;
 
 }

@@ -169,6 +169,14 @@ namespace launch
          m_strBranch = strBranch;
 
       }
+      else if (psummary->m_strSystemFamily == "arch")
+      {
+
+         print_line("This is Arch based system...\n");
+
+         m_strBranch = strBranch;
+
+      }
 
       m_strRelease = strRelease;
 

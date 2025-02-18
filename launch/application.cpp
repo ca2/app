@@ -69,6 +69,16 @@ namespace launch
             m_strDistro = "xubuntu";
             print_line("This is Xubuntu System...");
          }
+         else if(strBranch == "lxde")
+         {
+            m_strDistro = "lubuntu";
+            print_line("This is Lubuntu System (LXDE)...");
+         }
+         else if(strBranch == "lxqt")
+         {
+            m_strDistro = "lubuntu";
+            print_line("This is Xubuntu System (LXQt)...");
+         }
          else
          {
             print_line("This is Ubuntu System (Unity)...");

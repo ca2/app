@@ -1370,7 +1370,7 @@ namespace windowing
          //
          //                    });
 
-         on_window_configure_unlocked();
+         //on_window_configure_unlocked();
 
       }
 
@@ -1397,7 +1397,7 @@ namespace windowing
 
          m_sizeWindow = s;
 
-         on_window_configuration_change();
+         //on_window_configuration_change();
 
          //on_window_configure_unlocked();
 
@@ -1430,7 +1430,7 @@ namespace windowing
          //
          //           });
 
-         on_window_configure_unlocked();
+         //on_window_configure_unlocked();
 
       }
 

@@ -354,7 +354,12 @@ bool task::task_set_name(const ::scoped_string & scopedstrTaskName)
 
    }
 
-   ::task_set_name(m_htask, m_strTaskName.c_str());
+   if (m_htask.is_set())
+   {
+
+      ::task_set_name(m_htask, m_strTaskName.c_str());
+
+   }
    // //   {
    // //
    // //      return false;

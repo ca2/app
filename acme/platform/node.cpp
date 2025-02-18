@@ -346,6 +346,8 @@ namespace platform
 
       auto psystem = system();
 
+      psystem->m_papplication->__task_init();
+
       psystem->init_task();
 
       if (application()->m_bSession)

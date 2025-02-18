@@ -1494,8 +1494,12 @@ void task::__task_init()
 
    //   init_task();
 
+   if (m_strTaskName.has_character())
+   {
 
+      ::task_set_name(m_htask, m_strTaskName);
 
+   }
 
 }
 

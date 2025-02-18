@@ -3150,7 +3150,7 @@ namespace user
 
          MESSAGE_LINK(e_message_close, pchannel, this, &interaction::on_message_close);
          MESSAGE_LINK(e_message_size, pchannel, this, &interaction::on_message_size);
-         MESSAGE_LINK(e_message_reposition, pchannel, this, &interaction::on_message_move);
+         MESSAGE_LINK(e_message_reposition, pchannel, this, &interaction::on_message_reposition);
          MESSAGE_LINK(e_message_non_client_calc_size, pchannel, this,
                       &interaction::on_message_non_client_calculate_size);
          MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction::on_message_show_window);
@@ -4726,10 +4726,22 @@ namespace user
    }
 
 
+   // void interaction::on_message_size(::message::message * pmessage)
+   // {
+   //
+   //    ::pointer<::message::size> psize(pmessage);
+   //
+   //    layout().window().m_size = psize->m_size;
+   //
+   // }
+
+
    void interaction::on_message_size(::message::message * pmessage)
    {
 
       ::pointer<::message::size> psize(pmessage);
+
+      layout().window().m_size = psize->m_size;
 
       pmessage->previous();
 
@@ -4851,8 +4863,12 @@ namespace user
    //   }
 
 
-   void interaction::on_message_move(::message::message * pmessage)
+   void interaction::on_message_reposition(::message::message * pmessage)
    {
+
+      ::cast<::message::reposition> preposition(pmessage);
+
+      layout().window().m_point2 = preposition->m_point;
 
       pmessage->previous();
 
@@ -15539,12 +15555,12 @@ if(get_parent())
       //     }
       // //
       // // }
-      layout().m_statea[::user::e_layout_window].m_point2 = p;
-      layout().m_statea[::user::e_layout_window].m_size = s;
+      //layout().m_statea[::user::e_layout_window].m_point2 = p;
+      //layout().m_statea[::user::e_layout_window].m_size = s;
 
-      auto pwindow = window();
+      //auto pwindow = window();
 
-      if (pwindow->m_pointDesignRequest == layout().m_statea[::user::e_layout_design].m_point2)
+      if (layout().m_statea[::user::e_layout_sketch].m_point2 == layout().m_statea[::user::e_layout_design].m_point2)
       {
 
          layout().m_statea[::user::e_layout_sketch].m_point2 = p;
@@ -15554,26 +15570,35 @@ if(get_parent())
          layout().m_statea[::user::e_layout_output].m_point2 = p;
          layout().m_statea[::user::e_layout_normal].m_point2 = p;
 
-         pwindow->m_pointDesignRequest.x() = INT_MIN;
-         pwindow->m_pointDesignRequest.y() = INT_MIN;
+         //pwindow->m_pointDesignRequest.x() = INT_MIN;
+         //pwindow->m_pointDesignRequest.y() = INT_MIN;
+
+         on_reposition();
 
       }
 
-      if (pwindow->m_sizeDesignRequest == layout().m_statea[::user::e_layout_design].m_size)
+      if (layout().m_statea[::user::e_layout_sketch].m_size == layout().m_statea[::user::e_layout_design].m_size)
       {
 
-         layout().m_statea[::user::e_layout_sketch].m_size = s;
-         layout().m_statea[::user::e_layout_lading].m_size = s;
-         layout().m_statea[::user::e_layout_layout].m_size = s;
-         layout().m_statea[::user::e_layout_design].m_size = s;
-         layout().m_statea[::user::e_layout_output].m_size = s;
-         layout().m_statea[::user::e_layout_normal].m_size = s;
+         // layout().m_statea[::user::e_layout_sketch].m_size = s;
+         // layout().m_statea[::user::e_layout_lading].m_size = s;
+         // layout().m_statea[::user::e_layout_layout].m_size = s;
+         // layout().m_statea[::user::e_layout_design].m_size = s;
+         // layout().m_statea[::user::e_layout_output].m_size = s;
+         // layout().m_statea[::user::e_layout_normal].m_size = s;
+         //
+         // pwindow->m_sizeDesignRequest.cx() = INT_MIN;
+         // pwindow->m_sizeDesignRequest.cy() = INT_MIN;
 
-         pwindow->m_sizeDesignRequest.cx() = INT_MIN;
-         pwindow->m_sizeDesignRequest.cy() = INT_MIN;
+         set_size(s);
+
+         set_need_layout();
+
+         set_need_redraw();
+
+         post_redraw();
 
       }
-
 
    }
 

@@ -124,7 +124,7 @@ namespace windowing
       ::frequency                               m_frequencyOutputFramesPerSecond;
       int_point                                 m_pointMouseMove;
       //::int_size                              m_sizeDrawnAAA;
-      ::int_size                                m_sizeSetWindowSizeRequest;
+      //::int_size                                m_sizeSetWindowSizeRequest;
       particle_array                            m_particleaRedraw;
 
       //::int_rectangle                           m_rectangleUpdateBuffer;

@@ -136,16 +136,9 @@ namespace user
 
       ::user::interaction::_on_configure_notify_unlocked(rectangle);
 
-//#if !defined(UNIVERSAL_WINDOWS)
-
-      //user_post([this]()
-                                  //{
-
       auto & edisplay = layout().design().display();
 
       m_windowdisplayandlayout.m_edisplay = const_layout().window().display();
-
-      //window_rectangle(m_windowdisplayandlayout.m_rectangleWindow, e_layout_design);
 
       m_windowdisplayandlayout.m_rectangleWindow = rectangle;
 
@@ -155,7 +148,8 @@ namespace user
          m_windowdisplayandlayout.m_rectangleSnapped = m_windowdisplayandlayout.m_rectangleWindow;
 
       }
-      else if (!layout().is_docking() && (system()->acme_windowing()->get_ewindowing() != ::windowing::e_windowing_wayland) && is_equivalent_in_equivalence_sink(edisplay, e_display_normal))
+      //else if (!layout().is_docking() && (system()->acme_windowing()->get_ewindowing() != ::windowing::e_windowing_wayland) && is_equivalent_in_equivalence_sink(edisplay, e_display_normal))
+      else if (!layout().is_docking() && is_equivalent_in_equivalence_sink(edisplay, e_display_normal))
       {
 
          calculate_broad_and_compact_restore();

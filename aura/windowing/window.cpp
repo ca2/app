@@ -1331,18 +1331,28 @@ namespace windowing
    void window::_on_reposition(int x, int y)
    {
 
-      //::windowing::window* pimpl = m_pwindow;
+      //::int_point p(x, y);
 
-      auto puserinteraction = user_interaction();
+      //if (m_pointWindow != p)
+      //{
 
-      ::int_point p(x, y);
+        // m_pointWindow = p;
 
-      if (m_pointWindow != p)
-      {
+      auto preposition = __create_new<::message::reposition>();
 
-         m_pointWindow = p;
+      preposition->m_oswindow = this;
 
-         on_window_configuration_change();
+      preposition->m_pwindow = this;
+
+      preposition->m_emessage = e_message_reposition;
+
+      preposition->m_point.x() = x;
+
+      preposition->m_point.y() = y;
+
+      message_handler(preposition);
+
+//         on_window_configuration_change();
 
          //on_window_configure_unlocked();
 
@@ -1354,14 +1364,15 @@ namespace windowing
          //
          // }
 
-         puserinteraction->layout().m_statea[::user::e_layout_sketch].m_point2 = p;
-         puserinteraction->layout().m_statea[::user::e_layout_lading].m_point2 = p;
-         puserinteraction->layout().m_statea[::user::e_layout_layout].m_point2 = p;
-         puserinteraction->layout().m_statea[::user::e_layout_design].m_point2 = p;
-         puserinteraction->layout().m_statea[::user::e_layout_window].m_point2 = p;
-
-         puserinteraction->on_reposition();
-
+         // auto puserinteraction = user_interaction();
+         //
+         // puserinteraction->layout().m_statea[::user::e_layout_sketch].m_point2 = p;
+         // puserinteraction->layout().m_statea[::user::e_layout_lading].m_point2 = p;
+         // puserinteraction->layout().m_statea[::user::e_layout_layout].m_point2 = p;
+         // puserinteraction->layout().m_statea[::user::e_layout_design].m_point2 = p;
+         // puserinteraction->layout().m_statea[::user::e_layout_window].m_point2 = p;
+         //
+         // puserinteraction->on_reposition();
 
          // puserinteraction->post([puserinteraction]()
          //                    {
@@ -1372,7 +1383,7 @@ namespace windowing
 
          //on_window_configure_unlocked();
 
-      }
+      //}
 
    }
 
@@ -1380,59 +1391,61 @@ namespace windowing
    void window::_on_size(int cx, int cy)
    {
 
-      //::windowing::window* pimpl = m_pwindow;
+      auto psize = __create_new<::message::size>();
 
-      auto puserinteraction = user_interaction();
+      psize->m_oswindow = this;
 
-      ::int_size s(cx, cy);
+      psize->m_pwindow = this;
 
-      informationf("::windowing_q6::window::_on_size(%d, %d)", cx, cy);
-      informationf("::windowing_q6::window::_on_size this->m_sizeWindow (%d, %d)", m_sizeWindow.cx(), m_sizeWindow.cy());
+      psize->m_emessage = e_message_size;
 
-      if (m_sizeWindow != s)
-      {
+      psize->m_size.cx() = cx;
 
-         //gtk_drawing_area_set_content_width (GTK_DRAWING_AREA (m_pdrawingarea), cx);
-         //gtk_drawing_area_set_content_height (GTK_DRAWING_AREA (m_pdrawingarea), cy);
+      psize->m_size.cy() = cy;
 
-         m_sizeWindow = s;
+      message_handler(psize);
 
-         //on_window_configuration_change();
-
-         //on_window_configure_unlocked();
-
-         // {
-         //
-         //    auto r = ::int_rectangle(m_pointWindow, m_sizeWindow);
-         //
-         //    _on_configure_notify_unlocked(r);
-         //
-         // }
-         //
-
-         //on_window_configure_unlocked();
-
-         puserinteraction->set_size(s);
-
-         puserinteraction->layout().m_statea[::user::e_layout_window].m_size = s;
-
-         puserinteraction->set_need_layout();
-
-         puserinteraction->set_need_redraw();
-
-         puserinteraction->post_redraw();
-
-
-         // puserinteraction->post([puserinteraction]()
-         //           {
-         //
-         //              puserinteraction->defer_save_window_placement();
-         //
-         //           });
-
-         //on_window_configure_unlocked();
-
-      }
+      // ::int_size s(cx, cy);
+      //
+      // informationf("::windowing_q6::window::_on_size(%d, %d)", cx, cy);
+      // informationf("::windowing_q6::window::_on_size this->m_sizeWindow (%d, %d)", m_sizeWindow.cx(), m_sizeWindow.cy());
+      //
+      // if (m_sizeWindow != s)
+      // {
+      //
+      //    //gtk_drawing_area_set_content_width (GTK_DRAWING_AREA (m_pdrawingarea), cx);
+      //    //gtk_drawing_area_set_content_height (GTK_DRAWING_AREA (m_pdrawingarea), cy);
+      //
+      //    m_sizeWindow = s;
+      //
+      //    on_window_configuration_change();
+      //
+      //    // //on_window_configure_unlocked();
+      //    //
+      //    // // {
+      //    // //
+      //    // //    auto r = ::int_rectangle(m_pointWindow, m_sizeWindow);
+      //    // //
+      //    // //    _on_configure_notify_unlocked(r);
+      //    // //
+      //    // // }
+      //    // //
+      //    //
+      //    // //on_window_configure_unlocked();
+      //    //
+      //    // auto puserinteraction = user_interaction();
+      //    //
+      //    // puserinteraction->set_size(s);
+      //    //
+      //    // puserinteraction->layout().m_statea[::user::e_layout_window].m_size = s;
+      //    //
+      //    // puserinteraction->set_need_layout();
+      //    //
+      //    // puserinteraction->set_need_redraw();
+      //    //
+      //    // puserinteraction->post_redraw();
+      //
+      // }
 
    }
 
@@ -2594,7 +2607,16 @@ void window::set_oswindow(::oswindow oswindow)
    bool window::set_window_position_unlocked()
    {
 
+      auto & stateSketch = user_interaction()->layout().m_statea[::user::e_layout_sketch];
+
       auto & stateDesign = user_interaction()->layout().m_statea[::user::e_layout_design];
+
+      if (stateSketch.m_size != stateDesign.m_size || stateSketch.origin() != stateDesign.origin())
+      {
+
+         return false;
+
+      }
 
       auto pointDesign = stateDesign.origin();
 
@@ -12689,6 +12711,8 @@ void window::set_oswindow(::oswindow oswindow)
 
       ::pointer<::message::reposition> preposition(pmessage);
 
+      m_pointWindow = preposition->m_point;
+
       //      if(user_interaction()->m_ewindowflag & e_window_flag_postpone_visual_update)
       //      {
       //
@@ -12783,6 +12807,10 @@ void window::set_oswindow(::oswindow oswindow)
 
       //}
 
+      //on_window_configuration_change();
+
+      user_interaction()->set_timer(e_timer_configure_unlocked, 200_ms);
+
    }
 
 
@@ -12813,6 +12841,8 @@ void window::set_oswindow(::oswindow oswindow)
       }
 
       ::pointer<::message::size> psize(pmessage);
+
+      m_sizeWindow = psize->m_size;
 
       //      bool bLayered = user_interaction()->GetExStyle() & WS_EX_LAYERED;
       //
@@ -12854,7 +12884,7 @@ void window::set_oswindow(::oswindow oswindow)
       //user_interaction()->set_size(psize->m_size, e_layout_window);
       //user_interaction()->set_size(psize->m_size, e_layout_window);
 
-      m_sizeSetWindowSizeRequest = psize->m_size;
+      //m_sizeSetWindowSizeRequest = psize->m_size;
 
       if (!placement_log()->has_recent(psize->m_size)
          && user_interaction()->is_this_screen_visible()
@@ -12870,8 +12900,6 @@ void window::set_oswindow(::oswindow oswindow)
          int cx = user_interaction()->const_layout().sketch().size().width();
 
          int cy = user_interaction()->const_layout().sketch().size().height();
-         //         user_interaction()->layout().design().size() = user_interaction()->layout().window().size();
-
 
          user_interaction()->set_need_layout();
 
@@ -12906,6 +12934,10 @@ void window::set_oswindow(::oswindow oswindow)
          //         user_interaction()->post_redraw();
 
       }
+
+      //on_window_configuration_change();
+
+      user_interaction()->set_timer(e_timer_configure_unlocked, 200_ms);
 
    }
 
@@ -16800,7 +16832,7 @@ void window::set_oswindow(::oswindow oswindow)
    bool window::on_window_configure_unlocked()
    {
 
-      return false;
+      return true;
 
    }
 
@@ -16829,18 +16861,22 @@ void window::set_oswindow(::oswindow oswindow)
    void window::_017_on_window_get_configuration()
    {
 
-      preempt(40_ms);
+      auto r = ::int_rectangle(m_pointWindow, m_sizeWindow);
 
-      main_send([this]()
-      {
+      _on_configure_notify_unlocked(r);
 
-         auto r = get_window_rectangle();
-
-         information() << "window::_on_get_configuration";
-
-         _017_on_window_configure_delayed(r.left(), r.top(), r.width(), r.height());
-
-      });
+      // preempt(40_ms);
+      //
+      // main_send([this]()
+      // {
+      //
+      //    auto r = get_window_rectangle();
+      //
+      //    information() << "window::_on_get_configuration";
+      //
+      //    _017_on_window_configure_delayed(r.left(), r.top(), r.width(), r.height());
+      //
+      // });
 
    }
 

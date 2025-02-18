@@ -285,6 +285,9 @@ namespace acme
          virtual void on_position_window();
          virtual void on_size_window();
 
+         virtual void _on_reposition(int x, int y);
+         virtual void _on_size(int cx, int cy);
+
          virtual void show_window();
          virtual void hide_window();
 

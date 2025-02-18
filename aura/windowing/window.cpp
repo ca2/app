@@ -18,6 +18,7 @@
 //#include "acme/platform/procedure_sequence.h"
 #include "acme/platform/scoped_restore.h"
 //#include "acme/handler/sequence.h"
+#include "acme/constant/timer.h"
 #include "acme/platform/system.h"
 #include "acme/platform/timer_array.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
@@ -788,6 +789,24 @@ namespace windowing
 
       //pwindow->m_pwindow = this;
 
+      auto puserinteraction = user_interaction();
+
+      int x = puserinteraction->const_layout().sketch().origin().x();
+
+      int y = puserinteraction->const_layout().sketch().origin().y();
+
+      int cx = puserinteraction->const_layout().sketch().width();
+
+      int cy = puserinteraction->const_layout().sketch().height();
+
+      m_pointWindow.x() = x;
+
+      m_pointWindow.y() = y;
+
+      m_sizeWindow.cx() = cx;
+
+      m_sizeWindow.cy() = cy;
+
       install_message_routing(user_interaction());
 
       auto pwindowing = (::windowing::windowing *)system()->windowing();
@@ -1277,6 +1296,16 @@ namespace windowing
       // }
 
 
+   void window::on_window_configuration_change()
+   {
+
+      auto r = ::int_rectangle(m_pointWindow, m_sizeWindow);
+
+      user_interaction()->_on_configure_notify_unlocked(r);
+
+   }
+
+
    void window::_on_configure_notify_unlocked(const ::int_rectangle & rectangle)
    {
 
@@ -1297,6 +1326,116 @@ namespace windowing
       user_interaction()->_on_reposition_notify_unlocked(point);
 
    }
+
+
+   void window::_on_reposition(int x, int y)
+   {
+
+      //::windowing::window* pimpl = m_pwindow;
+
+      auto puserinteraction = user_interaction();
+
+      ::int_point p(x, y);
+
+      if (m_pointWindow != p)
+      {
+
+         m_pointWindow = p;
+
+         on_window_configuration_change();
+
+         //on_window_configure_unlocked();
+
+         // {
+         //
+         //    auto r = ::int_rectangle(m_pointWindow, m_sizeWindow);
+         //
+         //    _on_configure_notify_unlocked(r);
+         //
+         // }
+
+         puserinteraction->layout().m_statea[::user::e_layout_sketch].m_point2 = p;
+         puserinteraction->layout().m_statea[::user::e_layout_lading].m_point2 = p;
+         puserinteraction->layout().m_statea[::user::e_layout_layout].m_point2 = p;
+         puserinteraction->layout().m_statea[::user::e_layout_design].m_point2 = p;
+         puserinteraction->layout().m_statea[::user::e_layout_window].m_point2 = p;
+
+         puserinteraction->on_reposition();
+
+
+         // puserinteraction->post([puserinteraction]()
+         //                    {
+         //
+         //                       puserinteraction->defer_save_window_placement();
+         //
+         //                    });
+
+         on_window_configure_unlocked();
+
+      }
+
+   }
+
+
+   void window::_on_size(int cx, int cy)
+   {
+
+      //::windowing::window* pimpl = m_pwindow;
+
+      auto puserinteraction = user_interaction();
+
+      ::int_size s(cx, cy);
+
+      informationf("::windowing_q6::window::_on_size(%d, %d)", cx, cy);
+      informationf("::windowing_q6::window::_on_size this->m_sizeWindow (%d, %d)", m_sizeWindow.cx(), m_sizeWindow.cy());
+
+      if (m_sizeWindow != s)
+      {
+
+         //gtk_drawing_area_set_content_width (GTK_DRAWING_AREA (m_pdrawingarea), cx);
+         //gtk_drawing_area_set_content_height (GTK_DRAWING_AREA (m_pdrawingarea), cy);
+
+         m_sizeWindow = s;
+
+         on_window_configuration_change();
+
+         //on_window_configure_unlocked();
+
+         // {
+         //
+         //    auto r = ::int_rectangle(m_pointWindow, m_sizeWindow);
+         //
+         //    _on_configure_notify_unlocked(r);
+         //
+         // }
+         //
+
+         //on_window_configure_unlocked();
+
+         puserinteraction->set_size(s);
+
+         puserinteraction->layout().m_statea[::user::e_layout_window].m_size = s;
+
+         puserinteraction->set_need_layout();
+
+         puserinteraction->set_need_redraw();
+
+         puserinteraction->post_redraw();
+
+
+         // puserinteraction->post([puserinteraction]()
+         //           {
+         //
+         //              puserinteraction->defer_save_window_placement();
+         //
+         //           });
+
+         on_window_configure_unlocked();
+
+      }
+
+   }
+
 
 
    void window::win_update_graphics()
@@ -3963,6 +4102,24 @@ void window::set_oswindow(::oswindow oswindow)
             //      else
 
             //_create_window(eparallelization);
+
+      auto puserinteraction = user_interaction();
+
+      int x = puserinteraction->const_layout().sketch().origin().x();
+
+      int y = puserinteraction->const_layout().sketch().origin().y();
+
+      int cx = puserinteraction->const_layout().sketch().width();
+
+      int cy = puserinteraction->const_layout().sketch().height();
+
+      m_pointWindow.x() = x;
+
+      m_pointWindow.y() = y;
+
+      m_sizeWindow.cx() = cx;
+
+      m_sizeWindow.cy() = cy;
 
       _create_window();
 
@@ -16640,12 +16797,127 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   bool window::on_configure_unlocked_timer()
+   bool window::on_window_configure_unlocked()
    {
 
       return false;
 
    }
+
+
+   bool window::_017_on_window_configure_unlocked_timer()
+   {
+
+      if (m_time017LastConfigureUnlocked.elapsed() > 600_ms)
+      {
+
+         return false;
+
+      }
+
+      information() << "window::on_window_configure_unlocked going to get configuration";
+
+      _017_on_window_get_configuration();
+
+      return true;
+
+
+   }
+
+
+
+   void window::_017_on_window_get_configuration()
+   {
+
+      preempt(40_ms);
+
+      main_send([this]()
+      {
+
+         auto r = get_window_rectangle();
+
+         information() << "window::_on_get_configuration";
+
+         _017_on_window_configure_delayed(r.left(), r.top(), r.width(), r.height());
+
+      });
+
+   }
+
+
+   void window::_017_on_window_configure_delayed(int x, int y, int cx, int cy)
+   {
+
+      auto r = ::int_rectangle_dimension(x, y, cx, cy);
+
+      _on_configure_notify_unlocked(r);
+
+   }
+
+
+   void window::_017_on_window_configure_immediate(int x, int y, int cx, int cy)
+   {
+
+      information() << "::windowing_gtk3::window::_on_configure_immediate " << ::int_rectangle_dimension(x, y, cx, cy);
+
+      auto puserinteraction = user_interaction();
+
+      ::int_size s(cx, cy);
+
+      if (m_sizeWindow != s)
+      {
+
+         m_sizeWindow = s;
+
+         puserinteraction->layout().m_statea[::user::e_layout_window].m_size = s;
+
+         if (puserinteraction->layout().m_statea[::user::e_layout_sketch].m_size != s)
+         {
+
+            puserinteraction->layout().m_statea[::user::e_layout_sketch].m_size = s;
+
+            puserinteraction->set_need_layout();
+
+            puserinteraction->set_need_redraw();
+
+            puserinteraction->post_redraw();
+
+         }
+
+      }
+
+      ::int_point p(x, y);
+
+      if (m_pointWindow != p)
+      {
+
+         m_pointWindow = p;
+
+         puserinteraction->layout().m_statea[::user::e_layout_window].m_point2 = p;
+
+         if (puserinteraction->layout().m_statea[::user::e_layout_sketch].m_point2 != p)
+         {
+
+            puserinteraction->layout().m_statea[::user::e_layout_sketch].m_point2 = p;
+
+         }
+
+      }
+
+   }
+
+
+   void window::_017_set_window_configure_unlocked_timer()
+   {
+
+      m_time017LastConfigureUnlocked.Now();
+
+      ::cast<::user::interaction> puserinteraction = m_pacmeuserinteraction;
+
+      puserinteraction->SetTimer(e_timer_configure_unlocked, 100_ms);
+
+   }
+
 
 
 } // namespace windowing

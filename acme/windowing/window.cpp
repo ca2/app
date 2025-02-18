@@ -497,6 +497,20 @@ namespace acme
       }
 
 
+      void window::_on_reposition(int x, int y)
+      {
+
+
+      }
+
+
+      void window::_on_size(int cx, int cy)
+      {
+
+
+      }
+
+
       bool window::is_window_zoomed()
       {
 

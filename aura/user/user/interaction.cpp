@@ -733,6 +733,8 @@ namespace user
       if (!on_set_size(sizeNew, elayout))
       {
 
+         informationf("!interaction::!set_size({%d, %d})", sizeNew.cx(), sizeNew.cy());
+
          return false;
 
       }
@@ -9534,7 +9536,7 @@ if(get_parent())
       if (ptimer->m_etimer == e_timer_configure_unlocked)
       {
 
-         if (window()->on_configure_unlocked_timer())
+         if (window()->on_window_configure_unlocked())
          {
 
             KillTimer(ptimer->m_etimer);

@@ -82,6 +82,7 @@ namespace windowing
       ::pointer < class placement_log >         m_pplacementlog;
       ::particle_pointer                        m_pparticleChildrenSynchronization;
          ::pointer < ::particle >               m_pmutexGraphics;
+         class ::time m_time017LastConfigureUnlocked;
 
 #if defined(WINDOWS_DESKTOP) && !defined(ENABLE_TEXT_SERVICES_FRAMEWORK)
       //HIMC                                    m_himc;
@@ -1830,7 +1831,23 @@ namespace windowing
 
       ::windowing::window * windowing_window() override;
 
-      virtual bool on_configure_unlocked_timer();
+
+      virtual void _on_reposition(int x, int y);
+      virtual void _on_size(int cx, int cy);
+
+      virtual void on_window_configuration_change();
+
+      virtual bool on_window_configure_unlocked();
+
+      virtual void _017_on_window_configure_delayed(int x, int y, int cx, int cy);
+      virtual void _017_on_window_configure_immediate(int x, int y, int cx, int cy);
+
+      virtual bool _017_on_window_configure_unlocked_timer();
+      virtual void _017_on_window_get_configuration();
+
+      virtual void _017_set_window_configure_unlocked_timer();
+
+
 
    };
 

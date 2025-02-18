@@ -26,6 +26,11 @@ namespace windowing
       m_rectangleFixedWorkspace.right() = I32_MINIMUM;
       m_rectangleFixedWorkspace.bottom() = I32_MINIMUM;
 
+      m_rectangleWorkspace.left() = I32_MINIMUM;
+      m_rectangleWorkspace.top() = I32_MINIMUM;
+      m_rectangleWorkspace.right() = I32_MINIMUM;
+      m_rectangleWorkspace.bottom() = I32_MINIMUM;
+
    }
 
 

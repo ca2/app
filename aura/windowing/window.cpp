@@ -16832,6 +16832,8 @@ void window::set_oswindow(::oswindow oswindow)
    bool window::on_window_configure_unlocked()
    {
 
+      _017_on_window_get_configuration();
+
       return true;
 
    }

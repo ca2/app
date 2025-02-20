@@ -65,6 +65,8 @@ namespace acme
          virtual ::string theming_ui_name();
 
 
+         virtual void enable_wallpaper_change_notification();
+
          virtual string get_wallpaper(::collection::index iScreen);
          virtual void set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrWallpaper);
 
@@ -73,8 +75,8 @@ namespace acme
          virtual void set_wallpaper(const string_array & straWallpaper);
 
 
-         virtual ::string impl_get_wallpaper(::collection::index iScreen);
-         virtual void impl_set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrWallpaper);
+         virtual ::string _get_wallpaper(::collection::index iScreen);
+         virtual void _set_wallpaper(::collection::index iScreen, const ::scoped_string & scopedstrWallpaper);
 
 
          virtual ::string get_desktop_theme();
@@ -89,7 +91,7 @@ namespace acme
          virtual void set_desktop_icon_theme(const ::scoped_string & scopedtrDesktopIconTheme);
 
 
-         virtual void enable_wallpaper_change_notification();
+         //virtual void enable_wallpaper_change_notification();
          
       };
 

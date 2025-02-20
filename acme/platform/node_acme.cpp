@@ -399,17 +399,17 @@ namespace platform
 
    //void acme_node_layer::os_process_user_icon_theme(string strIconTheme){}
 
-   bool acme_node_layer::set_wallpaper(::collection::index iScreen, string strLocalImagePath,
-                                       ::acme::windowing::display* pwindowingdisplay)
-   {
-      return false;
-   }
-
-
-   ::string acme_node_layer::get_wallpaper(::collection::index iScreen, ::acme::windowing::display* pwindowingdisplay)
-   {
-      return{};
-   }
+//   bool acme_node_layer::set_wallpaper(::collection::index iScreen, string strLocalImagePath,
+//                                       ::acme::windowing::display* pwindowingdisplay)
+//   {
+//      return false;
+//   }
+//
+//
+//   ::string acme_node_layer::get_wallpaper(::collection::index iScreen, ::acme::windowing::display* pwindowingdisplay)
+//   {
+//      return{};
+//   }
 
 
    ::string acme_node_layer::get_file_icon_path(const ::string& pszPath, int iSize)
@@ -430,9 +430,9 @@ namespace platform
    }
 
 
-   void acme_node_layer::enable_wallpaper_change_notification()
-   {
-   }
+//   void acme_node_layer::enable_wallpaper_change_notification()
+//   {
+//   }
 
 
    bool acme_node_layer::has_xcb()

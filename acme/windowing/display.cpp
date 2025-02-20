@@ -271,12 +271,12 @@ namespace acme
       string display::get_wallpaper(::collection::index iScreen)
       {
 
-         return impl_get_wallpaper(iScreen);
+         return _get_wallpaper(iScreen);
 
       }
 
 
-      string display::impl_get_wallpaper(::collection::index)
+      string display::_get_wallpaper(::collection::index)
       {
 
          return "";
@@ -317,10 +317,10 @@ namespace acme
 
 
       // todo color:// gradient:// if the operating system doesn't have this, create the file, please.
-      void display::impl_set_wallpaper(::collection::index iMonitorIndex, const ::scoped_string & scopedstrWallpaper)
+      void display::_set_wallpaper(::collection::index iMonitorIndex, const ::scoped_string & scopedstrWallpaper)
       {
 
-         node()->set_wallpaper(iMonitorIndex, scopedstrWallpaper, this);
+//         node()->set_wallpaper(iMonitorIndex, scopedstrWallpaper, this);
 //         if ()
           //{
 
@@ -338,7 +338,7 @@ namespace acme
       {
 
          //return "";
-         impl_set_wallpaper(iScreen,scopedstrWallpaper);
+         _set_wallpaper(iScreen,scopedstrWallpaper);
 
       }
 

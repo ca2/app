@@ -361,11 +361,11 @@ namespace platform
 
       //virtual void os_process_user_icon_theme(string strIconTheme);
 
-      virtual bool set_wallpaper(::collection::index iScreen, string strLocalImagePath,
-                                 ::acme::windowing::display* pwindowingdisplay);
-
-
-      virtual string get_wallpaper(::collection::index iScreen, ::acme::windowing::display* pwindowingdisplay);
+//      virtual bool set_wallpaper(::collection::index iScreen, string strLocalImagePath,
+//                                 ::acme::windowing::display* pwindowingdisplay);
+//
+//
+//      virtual string get_wallpaper(::collection::index iScreen, ::acme::windowing::display* pwindowingdisplay);
 
 
       virtual string get_file_icon_path(const ::string& pszPath, int iSize);
@@ -377,7 +377,7 @@ namespace platform
       virtual int os_launch_uri(const ::string& pszUri, char* pszError = NULL, int iBufferSize = 0);
 
 
-      virtual void enable_wallpaper_change_notification();
+//      virtual void enable_wallpaper_change_notification();
 
 
       virtual bool has_xcb();

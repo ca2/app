@@ -757,6 +757,33 @@ namespace acme
       }
 
 
+//      void windowing::enable_wallpaper_change_notification()
+//      {
+//
+//
+//      }
+//
+//
+//      bool windowing::set_wallpaper(::collection::index iScreen, string strLocalImagePath, ::acme::windowing::display * pwindowingdisplay)
+//      {
+//
+//         throw interface_only();
+//
+//         //return pnode->set_wallpaper(iScreen, strLocalImagePath);
+//
+//         return false;
+//
+//      }
+//
+//
+//      string windowing::get_wallpaper(::collection::index iScreen, ::acme::windowing::display * pwindowingdisplay)
+//      {
+//
+//         return "";
+//
+//      }
+
+
    } // namespace windowing
 
 

@@ -221,7 +221,13 @@ namespace acme
 
          //virtual enum_bias calculate_bias();
 
-         
+         //virtual void enable_wallpaper_change_notification();
+
+         //virtual bool set_wallpaper(::collection::index iScreen, string strLocalImagePath, ::acme::windowing::display * pwindowingdisplay);
+
+         //virtual string get_wallpaper(::collection::index iScreen, ::acme::windowing::display * pwindowingdisplay);
+
+
       };
 
    

@@ -1321,24 +1321,24 @@ namespace platform
    // }
 
 
-   bool node::set_wallpaper(::collection::index iScreen, string strLocalImagePath, ::acme::windowing::display * pwindowingdisplay)
-   {
-
-      throw interface_only();
-
-      //return pnode->set_wallpaper(iScreen, strLocalImagePath);
-
-      return false;
-
-   }
-
-
-   string node::get_wallpaper(::collection::index iScreen, ::acme::windowing::display * pwindowingdisplay)
-   {
-
-      return "";
-
-   }
+//   bool node::set_wallpaper(::collection::index iScreen, string strLocalImagePath, ::acme::windowing::display * pwindowingdisplay)
+//   {
+//
+//      throw interface_only();
+//
+//      //return pnode->set_wallpaper(iScreen, strLocalImagePath);
+//
+//      return false;
+//
+//   }
+//
+//
+//   string node::get_wallpaper(::collection::index iScreen, ::acme::windowing::display * pwindowingdisplay)
+//   {
+//
+//      return "";
+//
+//   }
 
 
    string node::get_file_icon_path(const ::string & pszPath, int iSize)
@@ -1365,11 +1365,11 @@ namespace platform
    }
 
 
-   void node::enable_wallpaper_change_notification()
-   {
-
-
-   }
+//   void node::enable_wallpaper_change_notification()
+//   {
+//
+//
+//   }
 
 
    bool node::has_xcb()

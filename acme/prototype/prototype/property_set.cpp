@@ -894,7 +894,7 @@ void property_set::parse_ini(const ::string & strIni)
 
          strLine.trim_right("]");
 
-         pset = &(property_set &)operator[](strLine);
+         pset = &operator[](strLine).property_set_reference();
 
       }
       else

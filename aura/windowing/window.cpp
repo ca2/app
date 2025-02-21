@@ -1340,7 +1340,7 @@ namespace windowing
 
       auto preposition = __create_new<::message::reposition>();
 
-      preposition->m_oswindow = this;
+      preposition->m_oswindow = this->oswindow();
 
       preposition->m_pwindow = this;
 
@@ -1393,7 +1393,7 @@ namespace windowing
 
       auto psize = __create_new<::message::size>();
 
-      psize->m_oswindow = this;
+      psize->m_oswindow = this->oswindow();
 
       psize->m_pwindow = this;
 

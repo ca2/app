@@ -120,6 +120,9 @@ namespace nano2d
       void text_align(int align) override;
 
 
+      void diacritics(bool b) override;
+
+
       void fill_paint(::nano2d::paint paint) override;
       void stroke_paint(::nano2d::paint paint) override;
 

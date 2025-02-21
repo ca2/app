@@ -478,6 +478,9 @@ namespace nano2d
 		// Sets the font face based on specified name of current text style.
 		virtual void font_face(const ::scoped_string& font);
 
+		
+		virtual void diacritics(bool b);
+
 		// Draws text string at specified location. If end is specified only the sub-string up to the end is drawn.
 		virtual ::float_rectangle text(float x, float y, const ::scoped_string& scopedstr);
 

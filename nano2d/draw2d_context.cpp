@@ -473,6 +473,13 @@ namespace nano2d
       
    }
 
+   void draw2d_context::diacritics(bool b)
+   {
+
+      m_pstate->m_bDiacritics = b;
+
+   }
+
 
    void draw2d_context::font_size(float size)
    {
@@ -869,6 +876,15 @@ pstate->m_ppen->m_color = color;
       __set_current_font();
 
       auto size = m_pgraphics->get_text_extent(scopedstr);
+
+      //if (!m_pstate->m_bDiacritics)
+      //{
+
+      //   auto tm = m_pgraphics->get_text_metrics();
+
+      //   size.cy() = tm.m_dAscent;
+
+      //}
 
       double offsetx = 0.0;
 

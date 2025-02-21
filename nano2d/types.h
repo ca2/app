@@ -290,6 +290,7 @@ namespace nano2d
    int                         m_iSavedContext;
 
    string                        m_strFontFace;
+	bool                        m_bDiacritics = true;
    float                         m_fFontSize;
 
    ::e_align                     m_ealignText;

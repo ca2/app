@@ -2502,6 +2502,13 @@ void TransformSkewX(float* t, float a)
 	}
 
 
+	void context::diacritics(bool b)
+	{
+
+
+	}
+
+
 	//static float context::__quantize)(float a, float d)
 	//{
 	//	return ((int)(a / d + 0.5f)) * d;

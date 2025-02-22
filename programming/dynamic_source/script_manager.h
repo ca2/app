@@ -99,9 +99,10 @@ namespace dynamic_source
 
       string                                                m_strRepos;
       string                                                m_strNamespace;
-      ::file::path                                          m_strNetnodePath;
-      ::file::path                                          m_strNetseedPath;
-      ::file::path                                          m_strNetseedDsCa2Path;
+      ::file::path                                          m_pathBase;
+      ::file::path                                          m_pathNetnodePath;
+      ::file::path                                          m_pathNetseedPath;
+      ::file::path                                          m_pathNetseedDsCa2Path;
 
       ::pointer < ::mutex >                                 m_pmutexSimage;
       ::pointer < ::mutex >                                 m_pmutexSpider;

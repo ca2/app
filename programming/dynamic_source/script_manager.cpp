@@ -9,6 +9,7 @@
 #include "httpd_socket.h"
 #include "acme/exception/exit.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
@@ -101,19 +102,7 @@ namespace dynamic_source
       m_strRepos = "app-core";
       m_strNamespace = "netnode"; // default namespace is linked to outer project netnode
 
-#ifdef LINUX
 
-      m_strNetnodePath = "/netnodenet/";
-      m_strNetseedPath = "/netnodenet/net/";
-      m_strNetseedDsCa2Path = "/netnodenet/net/";
-
-#else
-
-      m_strNetnodePath = "C:\\netnodenet\\";
-      m_strNetseedPath = "C:\\netnodenet\\net\\";
-      m_strNetseedDsCa2Path = "C:\\netnodenet\\net\\";
-
-#endif
 
       m_iTunnelPluginCount = 0;
 
@@ -158,6 +147,23 @@ namespace dynamic_source
       //   
       //}
 
+
+//#ifdef LINUX
+//
+//      //m_pathNetnodePath = "/netnodenet/";
+//      //m_pathNetseedPath = "/netnodenet/net/";
+//      //m_pathNetseedDsCa2Path = "/netnodenet/net/";
+//
+//#else
+
+      m_pathBase = directory_system()->module() - 4;
+
+
+//#endif
+
+      m_pathNetnodePath = m_pathBase / "netnodenet";
+      m_pathNetseedPath = m_pathBase / "netnodenet/net";
+      m_pathNetseedDsCa2Path = m_pathBase / "netnodenet/net";
 
       m_pmutexSession = node()->create_mutex();
       m_pmutexIncludeMatches = node()->create_mutex();
@@ -292,7 +298,7 @@ namespace dynamic_source
 
          // auto pcontext = get_context();
 
-         file_watcher()->add_watch(m_strNetseedDsCa2Path, pwatcher, true);
+         file_watcher()->add_watch(m_pathNetseedDsCa2Path, pwatcher, true);
 
       }
 
@@ -300,7 +306,7 @@ namespace dynamic_source
 
       auto papp = get_app();
 
-      listing.set_listing(m_strNetnodePath);
+      listing.set_listing(m_pathNetnodePath);
 
       directory()->enumerate(listing);
 
@@ -1263,18 +1269,18 @@ namespace dynamic_source
       //      }
       //      else
       //      {
-      //         return real_path(m_strNetseedDsCa2Path, str);
+      //         return real_path(m_pathNetseedDsCa2Path, str);
       //      }
       //#else
       if (file_path_is_absolute(str))
       {
          if (include_matches_file_exists(str))
             return str;
-         return real_path(m_strNetseedDsCa2Path, str);
+         return real_path(m_pathNetseedDsCa2Path, str);
       }
       else
       {
-         return real_path(m_strNetseedDsCa2Path, str);
+         return real_path(m_pathNetseedDsCa2Path, str);
       }
       //#endif
    }
@@ -1786,13 +1792,13 @@ namespace dynamic_source
       strPath.find_replace(":\\", ".");
       strPath.find_replace("/", ".");
       strPath.find_replace("\\", ".");
-#ifdef WINDOWS
-      return ::file::path("C:\\netnode") / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / strPath;
-#else
-      strPath.begins_eat(".");
+//#ifdef WINDOWS
+      return m_pathBase / "netnode/netnode" / m_pcompiler->m_strDynamicSourceStage / m_pcompiler->m_pintegrationcontext->m_strStagePlatform / m_pcompiler->m_strDynamicSourceConfiguration / strPath;
+//#else
+  //    strPath.begins_eat(".");
       //return "/ca2/stage/"+m_pcompiler->m_strStagePlatform+"/","lib" + strPath);
-      return ::file::path("/ca2") / m_pcompiler->m_strDynamicSourceStage / "x86" / "lib" + strPath;
-#endif
+    //  return ::file::path("/ca2") / m_pcompiler->m_strDynamicSourceStage / "x86" / "lib" + strPath;
+//#endif
 
    }
 

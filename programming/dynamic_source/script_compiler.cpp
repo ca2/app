@@ -70,7 +70,7 @@ namespace dynamic_source
 
       //auto estatus = 
       
-      initialize_programming_compiler(pscriptmanager, pscriptmanager->m_strNetnodePath);
+      initialize_programming_compiler(pscriptmanager, pscriptmanager->m_pathNetnodePath);
 
       //if (!estatus)
       //{
@@ -378,7 +378,7 @@ namespace dynamic_source
       }
       else
       {
-         pscript->m_strSourcePath.formatf(m_pmanager->m_strNetnodePath / "net\\%s",strName.c_str());
+         pscript->m_strSourcePath.formatf(m_pmanager->m_pathNetnodePath / "net\\%s",strName.c_str());
       }
       pscript->m_strSourceDir = pscript->m_strSourcePath.folder();
 
@@ -727,7 +727,7 @@ namespace dynamic_source
       if(!string_ends(strV,"/") && !string_ends(strV,"\\"))
          strV += "/";
 
-      string strN = m_pmanager->m_strNetnodePath;
+      string strN = m_pmanager->m_pathNetnodePath;
       strN.find_replace("\\","/");
       if(!string_ends(strN,"/") && !string_ends(strN,"\\"))
          strN += "/";
@@ -1372,13 +1372,13 @@ namespace dynamic_source
 
       }
 
-      if(string_begins(path, m_pmanager->m_strNetseedDsCa2Path/ "library/include"))
+      if(string_begins(path, m_pmanager->m_pathNetseedDsCa2Path/ "library/include"))
       {
 
          m_pmanager->m_pcache->set_all_out_of_date();
 
       }
-      else if(string_begins(path, m_pmanager->m_strNetseedDsCa2Path / "library/source"))
+      else if(string_begins(path, m_pmanager->m_pathNetseedDsCa2Path / "library/source"))
       {
 
       }
@@ -1398,7 +1398,7 @@ namespace dynamic_source
    void script_compiler::folder_watch()
    {
 
-      //xxx:folder_watch m_filewatcherid = file_watcher()->add_watch(m_pmanager->m_strNetseedDsCa2Path, this, true);
+      //xxx:folder_watch m_filewatcherid = file_watcher()->add_watch(m_pmanager->m_pathNetseedDsCa2Path, this, true);
 
    }
 
@@ -1426,7 +1426,7 @@ namespace dynamic_source
       if(!string_ends(strV,"/") && !string_ends(strV,"\\"))
          strV += "/";
 
-      string strN = m_pmanager->m_strNetnodePath;
+      string strN = m_pmanager->m_pathNetnodePath;
       strN.find_replace("\\","/");
       if(!string_ends(strN,"/") && !string_ends(strN,"\\"))
          strN += "/";
@@ -1452,7 +1452,7 @@ namespace dynamic_source
 
       //auto pcontext = m_papplication;
 
-      l.m_straLibSourcePath.set_listing(m_pmanager->m_strNetseedDsCa2Path / "library" / strName, ::e_depth_recursively);
+      l.m_straLibSourcePath.set_listing(m_pmanager->m_pathNetseedDsCa2Path / "library" / strName, ::e_depth_recursively);
 
       directory()->enumerate(l.m_straLibSourcePath);
 
@@ -1478,7 +1478,7 @@ namespace dynamic_source
       }
       //l.m_straLibIncludePath.m_pprovider = papp;
       l.m_straLibIncludePath.clear_results();
-      l.m_straLibIncludePath.set_listing(m_pmanager->m_strNetseedDsCa2Path / "library" / strName, e_depth_recursively);
+      l.m_straLibIncludePath.set_listing(m_pmanager->m_pathNetseedDsCa2Path / "library" / strName, e_depth_recursively);
       directory()->enumerate(l.m_straLibIncludePath);
       for(int i = 0; i < l.m_straLibIncludePath.get_size();)
       {
@@ -1524,7 +1524,7 @@ namespace dynamic_source
       }
 
 
-//      string strN = m_pmanager->m_strNetnodePath;
+//      string strN = m_pmanager->m_pathNetnodePath;
       //    strN.replace("\\","/");
       //  if(!string_ends(strN,"/") && !string_ends(strN,"\\"))
       //   strN += "/";
@@ -2629,7 +2629,7 @@ ch_else:
    void script_compiler::run_persistent()
    {
 
-      string strPath = m_pmanager->m_strNetseedDsCa2Path/ "core/persistent";
+      string strPath = m_pmanager->m_pathNetseedDsCa2Path/ "core/persistent";
 
       ::file::listing stra;
 
@@ -2642,7 +2642,7 @@ ch_else:
       directory()->enumerate(stra);
 
       string strCat;
-      strCat = m_pmanager->m_strNetseedDsCa2Path/ "core/netnode_persistent_ui_str.ds";
+      strCat = m_pmanager->m_pathNetseedDsCa2Path/ "core/netnode_persistent_ui_str.ds";
       string strBody;
       strBody = "<?\r\n";
       strBody += "// ATTENTION!\r\n";
@@ -2655,7 +2655,7 @@ ch_else:
       for(int i = 0; i < stra.get_size(); i++)
       {
          string str = stra[i];
-         if(case_insensitive_string_begins(str, m_pmanager->m_strNetseedDsCa2Path/ "core/persistent")
+         if(case_insensitive_string_begins(str, m_pmanager->m_pathNetseedDsCa2Path/ "core/persistent")
                && case_insensitive_string_ends(str, ".ds"))
          {
             strBody += file()->as_string(str);
@@ -2666,7 +2666,7 @@ ch_else:
 
       string strInclude = strCat;
       
-      strInclude.case_insensitive_begins_eat(m_pmanager->m_strNetseedDsCa2Path);
+      strInclude.case_insensitive_begins_eat(m_pmanager->m_pathNetseedDsCa2Path);
       
       strInclude.case_insensitive_ends_eat(".ds");
       
@@ -2740,9 +2740,9 @@ ch_else:
          parse_pstr_set();
 
          //string strCat;
-         //strCat = m_pmanager->m_strNetseedDsCa2Path/ "aura\\netnode_persistent_ui_str.ds";
+         //strCat = m_pmanager->m_pathNetseedDsCa2Path/ "aura\\netnode_persistent_ui_str.ds";
          //string strInclude = strCat;
-         //strInclude.case_insensitive_begins_eat(m_pmanager->m_strNetseedDsCa2Path);
+         //strInclude.case_insensitive_begins_eat(m_pmanager->m_pathNetseedDsCa2Path);
          //strInclude.case_insensitive_ends_eat(".ds");
          //script_instance * pinstance = m_pmanager->get(strInclude);
          //if(pinstance != nullptr)
@@ -2778,7 +2778,7 @@ ch_else:
          //   }
          //}
       }
-      else if(str.case_insensitive_begins_eat(m_pmanager->m_strNetseedDsCa2Path/ "aura\\persistent")
+      else if(str.case_insensitive_begins_eat(m_pmanager->m_pathNetseedDsCa2Path/ "aura\\persistent")
               && str.case_insensitive_ends_eat(".ds")
               && str.case_insensitive_order("netnode_persistent_ui_str") != 0)
       {
@@ -2923,7 +2923,7 @@ ch_else:
 
       //auto pcontext = m_papplication;
 
-      ::file::path pathPstrSet = m_pmanager->m_strNetnodePath / "net/aura/pstr_set";
+      ::file::path pathPstrSet = m_pmanager->m_pathNetnodePath / "net/aura/pstr_set";
 
       if (directory()->is(pathPstrSet))
       {

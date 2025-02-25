@@ -165,15 +165,7 @@ void directory_system::initialize(::particle * pparticle)
 ::file::path directory_system::sensitive()
 {
 
-#ifdef WINDOWS
-
-   return "C:\\sensitive\\sensitive";
-
-#else
-
-   return "/sensitive/sensitive";
-
-#endif
+   return home() / ".sensitive/sensitive";
 
 }
 

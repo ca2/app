@@ -2434,6 +2434,12 @@
 		9A922FF027EAC9D400B5A78D /* topic.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A922FE827EAC9D300B5A78D /* topic.h */; };
 		9A92314627EAE25E00B5A78D /* enumerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92314227EAE25C00B5A78D /* enumerator.h */; };
 		9A92314927EAE25E00B5A78D /* path_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92314527EAE25D00B5A78D /* path_array.h */; };
+		9A930CCC2D6DA757006557FC /* prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A930CCB2D6DA757006557FC /* prober.h */; };
+		9A930CCD2D6DA757006557FC /* prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A930CCB2D6DA757006557FC /* prober.h */; };
+		9A930CCE2D6DA757006557FC /* prober.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A930CCB2D6DA757006557FC /* prober.h */; };
+		9A930CD02D6DA768006557FC /* prober.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A930CCF2D6DA768006557FC /* prober.cpp */; };
+		9A930CD12D6DA768006557FC /* prober.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A930CCF2D6DA768006557FC /* prober.cpp */; };
+		9A930CD22D6DA768006557FC /* prober.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A930CCF2D6DA768006557FC /* prober.cpp */; };
 		9A94D39728EB8DE400F7C157 /* tool_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A94D39428EB8DE400F7C157 /* tool_item.cpp */; };
 		9A94D39828EB8DE400F7C157 /* tool_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A94D39528EB8DE400F7C157 /* tool_item.h */; };
 		9A94D39928EB8DE400F7C157 /* tool_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A94D39528EB8DE400F7C157 /* tool_item.h */; };
@@ -6301,6 +6307,8 @@
 		9A92314327EAE25D00B5A78D /* path_array.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = path_array.cpp; sourceTree = "<group>"; };
 		9A92314427EAE25D00B5A78D /* enumerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = enumerator.cpp; sourceTree = "<group>"; };
 		9A92314527EAE25D00B5A78D /* path_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = path_array.h; sourceTree = "<group>"; };
+		9A930CCB2D6DA757006557FC /* prober.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prober.h; sourceTree = "<group>"; };
+		9A930CCF2D6DA768006557FC /* prober.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = prober.cpp; sourceTree = "<group>"; };
 		9A94D39428EB8DE400F7C157 /* tool_item.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tool_item.cpp; sourceTree = "<group>"; };
 		9A94D39528EB8DE400F7C157 /* tool_item.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tool_item.h; sourceTree = "<group>"; };
 		9A94DE71282C0BBD00F5C1CA /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
@@ -7557,6 +7565,8 @@
 				9A787BB0264BB149003DF8A0 /* predicate_process.h */,
 				9A220F06251A1993002B42B7 /* printf.h */,
 				9A220EA7251A1993002B42B7 /* printf.cpp */,
+				9A930CCB2D6DA757006557FC /* prober.h */,
+				9A930CCF2D6DA768006557FC /* prober.cpp */,
 				9A98148E28E4EA8C001C9855 /* procedure.h */,
 				9A98149128E4EA8C001C9855 /* procedure.cpp */,
 				9A98149228E4EA8D001C9855 /* procedure_array.h */,
@@ -9746,6 +9756,7 @@
 				9A78623A264B90B5003DF8A0 /* cast.h in Headers */,
 				9A68B3E025114438008DABD2 /* _dump_context.h in Headers */,
 				9A68AEF125114435008DABD2 /* international.h in Headers */,
+				9A930CCC2D6DA757006557FC /* prober.h in Headers */,
 				9AA3F7DF2A946705004283CA /* listener.h in Headers */,
 				9A0842B52935E694009F7FF4 /* aaa_template.h in Headers */,
 				9AF5BA592B01D35C00A33826 /* source.h in Headers */,
@@ -11105,6 +11116,7 @@
 				9AC103342B6AC9BD0053DB45 /* array_iterator.h in Headers */,
 				9AC103352B6AC9BD0053DB45 /* pointer_array.h in Headers */,
 				9AC103362B6AC9BD0053DB45 /* procedure.h in Headers */,
+				9A930CCE2D6DA757006557FC /* prober.h in Headers */,
 				9AC103372B6AC9BD0053DB45 /* trace_statement.h in Headers */,
 				9AC103382B6AC9BD0053DB45 /* _tree.h in Headers */,
 				9AC103392B6AC9BD0053DB45 /* _regular_expression.h in Headers */,
@@ -11783,6 +11795,7 @@
 				9A0842082935DD5D009F7FF4 /* encoding_impl.h in Headers */,
 				9A8660E82966A849000C82F0 /* _impl_pointer.h in Headers */,
 				9AD68F4D251A753A00C0EBD7 /* _dump_context.h in Headers */,
+				9A930CCD2D6DA757006557FC /* prober.h in Headers */,
 				9AD68F51251A753A00C0EBD7 /* international.h in Headers */,
 				9AD68F56251A753A00C0EBD7 /* string_base.h in Headers */,
 				9A523E732CD4103C006ED868 /* interaction.h in Headers */,
@@ -12631,6 +12644,7 @@
 				9A5240882CD47440006ED868 /* serialization.cpp in Sources */,
 				9A5240892CD47440006ED868 /* translator.cpp in Sources */,
 				9A52408A2CD47440006ED868 /* write_text_stream.cpp in Sources */,
+				9A930CD22D6DA768006557FC /* prober.cpp in Sources */,
 				9A52408B2CD47440006ED868 /* print_formatting.cpp in Sources */,
 				9A52408C2CD47440006ED868 /* binary_stream.cpp in Sources */,
 				9A52408D2CD47440006ED868 /* buffered_buffer.cpp in Sources */,
@@ -13693,6 +13707,7 @@
 				9AC106262B6AC9BD0053DB45 /* implementable.cpp in Sources */,
 				9AC106272B6AC9BD0053DB45 /* _c_trait_ansi.cpp in Sources */,
 				9AC106282B6AC9BD0053DB45 /* _main_hold_base.cpp in Sources */,
+				9A930CD02D6DA768006557FC /* prober.cpp in Sources */,
 				9AC106292B6AC9BD0053DB45 /* _synchronization.cpp in Sources */,
 				9A5240372CD44596006ED868 /* sequence_continuation.cpp in Sources */,
 				9AC1062A2B6AC9BD0053DB45 /* pipe.cpp in Sources */,
@@ -14214,6 +14229,7 @@
 				9A787BBF264BB154003DF8A0 /* predicate_holder.cpp in Sources */,
 				9A97BF4528C839DA00A43004 /* int_handle.cpp in Sources */,
 				9AE834CD2C1CC96200096100 /* _dynamic_library.cpp in Sources */,
+				9A930CD12D6DA768006557FC /* prober.cpp in Sources */,
 				9AA8021627BA72A6008FF9AA /* argcargv.cpp in Sources */,
 				9A72EEF22A3D5903009743AD /* trace_statement.cpp in Sources */,
 				9A08443829367B73009F7FF4 /* bidirectional_pipe.cpp in Sources */,

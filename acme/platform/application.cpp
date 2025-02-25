@@ -137,6 +137,13 @@ namespace platform
 
       ::platform::context::on_set_platform();
 
+      if (::is_null(system()->m_papplication))
+      {
+
+         system()->m_papplication = this;
+
+      }
+
       __check_refdbg
 
       factory()->add_factory_item < ::platform::system >();

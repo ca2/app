@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "smtp_socket.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/string/base64.h"
@@ -88,8 +89,14 @@ namespace sockets
 
                auto pbase64 = psystem->base64();
 
-               strResponse = pbase64->encode(file()->as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_user.txt"));
+               ::file::path pathDefaultSendMail;
+
+               pathDefaultSendMail = directory_system()->sensitive() / "seed/default_sendmail_user.txt";
+
+               strResponse = pbase64->encode(file()->as_string(pathDefaultSendMail));
+
                print(strResponse + "\r\n");
+
             }
             else if(::str::case_insensitive_find("password", strRequest) >= 0)
             {
@@ -98,7 +105,11 @@ namespace sockets
 
                auto pbase64 = psystem->base64();
 
-               strResponse = pbase64->encode(file()->as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_pass.txt"));
+               ::file::path pathDefaultSendPass;
+
+               pathDefaultSendPass = directory_system()->sensitive() / "seed/default_sendmail_pass.txt";
+
+               strResponse = pbase64->encode(file()->as_string(pathDefaultSendPass));
 
                print(strResponse + "\r\n");
 

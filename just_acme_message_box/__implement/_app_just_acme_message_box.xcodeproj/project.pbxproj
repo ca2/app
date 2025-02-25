@@ -400,6 +400,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "_app_just_acme_message_box" */;
 			buildPhases = (
+				9A932AE82D6DB671006557FC /* ShellScript */,
 				070B8EE61B6E53F900D26137 /* Sources */,
 				070B8EE71B6E53F900D26137 /* Frameworks */,
 				070B8EE81B6E53F900D26137 /* Resources */,
@@ -612,6 +613,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = ". ${WorkspaceDir}/../operating_system/tool/bin/_on_after_build_executable\n";
+		};
+		9A932AE82D6DB671006557FC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(PROJECT_DIR)/matter.txt",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(PROJECT_DIR)/_matter.zip",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ". ${WorkspaceDir}/../operating_system/tool/bin/_on_before_build_executable\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

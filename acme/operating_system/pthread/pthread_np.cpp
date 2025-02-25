@@ -25,14 +25,49 @@
 #include <sched.h>
 #endif
 
+#ifdef __APPLE__
+#include <mach/thread_act.h>
+#include <errno.h>
+#endif
 
-
-#if defined(FREEBSD) || defined(OPENBSD) || defined(NETBSD)
+#if defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD) || defined(NETBSD)
 
 int SetThreadAffinityMask(htask h, unsigned int dwThreadAffinityMask)
 {
+   
+   
+#if defined(__APPLE__)
+   
+   int iSetCount = 0;
+   thread_affinity_policy_data_t policydataa[sizeof(dwThreadAffinityMask) * 8];
 
-#if defined(OPENBSD)
+   for(int i = 0; i < sizeof(dwThreadAffinityMask) * 8; i++)
+   {
+
+         if((1 << i) & dwThreadAffinityMask)
+         {
+
+            // 1024? a private namespace of tags represented by a 1024-based index cpu core?
+            
+            policydataa[iSetCount].affinity_tag = (1024 + i);
+
+            iSetCount++;
+
+       }
+
+   }
+
+   if(iSetCount > 0)
+   {
+
+      mach_port_t mach_thread1 = pthread_mach_thread_np(::literal_cast < pthread_t>(h));
+      thread_policy_set(mach_thread1, THREAD_AFFINITY_POLICY, (thread_policy_t)policydataa, iSetCount);
+      
+
+   }
+
+
+#elif defined(OPENBSD)
 
     return 1;
 #elif defined(NETBSD)
@@ -174,8 +209,15 @@ void task_set_name(htask htask, const char * psz)
    //auto estatus = task_set_name(pthread, pszThreadName);
 
 #if defined(__APPLE__)
+   
+   if(htask != current_htask())
+   {
+    
+      throw ::exception(error_wrong_state);
+      
+   }
 
-   int error = pthread_setname_np(pszTaskName);
+   int error = pthread_setname_np(psz);
 
 #else
 
@@ -216,17 +258,17 @@ void task_set_name(htask htask, const char * psz)
       if(error == ESRCH)
       {
       
-         printf("task_set_name error ESRCH\n");
+         print_line("task_set_name error ESRCH");
 	      
       }
       else
       {
       
-         printf("task_set_name error %d\n", error);
+         printf_line("task_set_name error %d", error);
       
       }
       
-      fflush(stdout);
+      //fflush(stdout);
 
       throw ::exception(error_failed);
 

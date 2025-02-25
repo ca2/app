@@ -1832,8 +1832,8 @@ namespace windowing
       ::windowing::window * windowing_window() override;
 
 
-      virtual void _on_reposition(int x, int y);
-      virtual void _on_size(int cx, int cy);
+      void _on_reposition(int x, int y) override;
+      void _on_size(int cx, int cy) override;
 
       virtual void on_window_configuration_change();
 

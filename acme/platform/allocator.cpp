@@ -555,18 +555,19 @@ namespace allocator
    void on_construct_subparticle(::subparticle * pparticle)
    {
 
-      if (((unsigned char *)pparticle) >= t_pStartConstruct && pparticle->m_sType <= t_sStartConstruct)
+      if(!::is_set(t_pStartConstruct) || t_sStartConstruct <= 0)
+      {
+
+         ASSERT(!t_bStartConstructParticleAndHeapAllocation);
+
+      }
+      else if (((unsigned char *)pparticle) >= t_pStartConstruct
+               && ((unsigned char *)pparticle) + pparticle->m_sType <= ((unsigned char *)t_pStartConstruct) + t_sStartConstruct)
       {
 
          pparticle->m_pType = t_pStartConstruct;
          pparticle->m_sType = t_sStartConstruct;
          pparticle->m_bHeapAllocation = t_bStartConstructParticleAndHeapAllocation;
-
-      }
-      else if(!t_pStartConstruct || t_sStartConstruct <= 0)
-      {
-
-         ASSERT(!t_bStartConstructParticleAndHeapAllocation);
 
       }
 

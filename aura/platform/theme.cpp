@@ -438,14 +438,22 @@ namespace aura
    void theme::defer_check_ambient_change()
    {
 
-      synchronous_lock synchronous_lock(this->synchronization());
+      _synchronous_lock synchronous_lock(this->synchronization());
 
       ::file::path pathAmbient = directory_system()->home() / ".ambient/ambient.txt";
 
       string strAmbientState = file()->safe_get_string(pathAmbient);
 
-      if (strAmbientState != m_strAmbientState)
+      if (strAmbientState != m_strAmbientState
+         || m_strAmbientState.is_empty())
       {
+
+         if (strAmbientState.is_empty())
+         {
+
+            strAmbientState = ".day.clear";
+
+         }
 
          m_strAmbientState = strAmbientState;
 
@@ -598,7 +606,7 @@ namespace aura
 
       m_pfilewatchWeather = file_watcher()->add_watch(pathFolder, this, false);
       
-      //on_change_theme();
+      defer_check_ambient_change();
 
       //return ::success;
 

@@ -740,6 +740,7 @@
 			);
 			inputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(EXECUTABLE_FOLDER_PATH)/$(EXECUTABLE_NAME)",
+				"$(WorkspaceDir)/output_copy.txt",
 			);
 			outputFileListPaths = (
 			);

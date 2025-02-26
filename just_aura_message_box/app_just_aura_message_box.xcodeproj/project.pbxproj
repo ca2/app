@@ -111,6 +111,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9AAF50C62D6E961D00CFF717 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9ADF6CED2D6DC30E00CD1FDC /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +222,10 @@
 					ProductGroup = 9ADF6CED2D6DC30E00CD1FDC /* Products */;
 					ProjectRef = 9A93322C2D6DC2AC006557FC /* app_just_message_box.xcodeproj */;
 				},
+				{
+					ProductGroup = 9AAF50C62D6E961D00CFF717 /* Products */;
+					ProjectRef = 9A6CA20C2D6DC65A000BCB3E /* aura.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -233,10 +244,12 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(EXECUTABLE_NAME)",
 			);
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/output/$(EXECUTABLE_NAME)",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

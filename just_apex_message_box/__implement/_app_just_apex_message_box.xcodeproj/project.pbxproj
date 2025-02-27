@@ -15,8 +15,8 @@
 		9A22742A27CF38210042BAC2 /* libidn.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A22742827CF38210042BAC2 /* libidn.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A46D35E267859BC000B22D0 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC396FF25195DEB0036B92A /* libacme.dylib */; };
 		9A46D35F267859BC000B22D0 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3970125195DEB0036B92A /* libapex.dylib */; };
-		9A52443D2CDAD335006ED868 /* libapp_just_apex_message_box.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A52443C2CDAD335006ED868 /* libapp_just_apex_message_box.dylib */; };
 		9A5244502CDADAAD006ED868 /* _matter.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9A52444F2CDADAAD006ED868 /* _matter.zip */; };
+		9A591E092D6FBCCA00AB9903 /* libapp_just_apex_message_box.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEC3B842D1A8B1D00F9E621 /* libapp_just_apex_message_box.dylib */; };
 		9A5D09A52B7F9A90003239D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A5D099B2B7F9A90003239D4 /* Images.xcassets */; };
 		9A83B51A2807E6E100A1A2B6 /* libacme_apple.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A83B5102807E6E100A1A2B6 /* libacme_apple.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A83B51C2807E6E100A1A2B6 /* libacme_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A83B5112807E6E100A1A2B6 /* libacme_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -101,6 +101,13 @@
 			remoteGlobalIDString = 9A2FCE042C9D3ADC000CF701;
 			remoteInfo = innate_ui_appkit;
 		};
+		9AEA8AE32D6FD8D900DC8A9E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A9332122D6DC152006557FC /* apex_macos.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A0C1694264A2AA700B5CC33;
+			remoteInfo = apex_macos;
+		};
 		9AEC3B722D1A8B1D00F9E621 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A5244512CDADB7B006ED868 /* innate_ui_appkit.xcodeproj */;
@@ -173,6 +180,7 @@
 		9A52443E2CDAD3F8006ED868 /* app_just_apex_message_box.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = app_just_apex_message_box.xcodeproj; path = ../app_just_apex_message_box.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A52444F2CDADAAD006ED868 /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = _matter.zip; path = ../_matter.zip; sourceTree = SOURCE_ROOT; };
 		9A5244512CDADB7B006ED868 /* innate_ui_appkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = innate_ui_appkit.xcodeproj; path = "../../../../operating_system/operating_system-macos/innate_ui_appkit/innate_ui_appkit.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		9A591E002D6FBC2B00AB9903 /* libapp_just_message_box.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapp_just_message_box.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A5D099B2B7F9A90003239D4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9A5D099D2B7F9A90003239D4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A5D09A82B7F9ACC003239D4 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "_____release.xcconfig"; path = "../_____release.xcconfig"; sourceTree = "<group>"; };
@@ -214,7 +222,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A52443D2CDAD335006ED868 /* libapp_just_apex_message_box.dylib in Frameworks */,
+				9A591E092D6FBCCA00AB9903 /* libapp_just_apex_message_box.dylib in Frameworks */,
 				9A46D35E267859BC000B22D0 /* libacme.dylib in Frameworks */,
 				9A46D35F267859BC000B22D0 /* libapex.dylib in Frameworks */,
 				9A22742927CF38210042BAC2 /* libidn.dylib in Frameworks */,
@@ -304,6 +312,7 @@
 		9ADF1D2922C16DBB00456537 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A591E002D6FBC2B00AB9903 /* libapp_just_message_box.dylib */,
 				9AE7A1D02D1CC3E500070257 /* libnano_graphics_quartz2d.dylib */,
 				9AE7A1CA2D1CC3D900070257 /* libacme_windowing_appkit.dylib */,
 				9AE7A1CB2D1CC3D900070257 /* libacme_windowing_kit.dylib */,
@@ -387,6 +396,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9AEA8AE42D6FD8D900DC8A9E /* PBXTargetDependency */,
 				9AE7F66C2D1BF7FE001633B5 /* PBXTargetDependency */,
 				9AE7F66A2D1BF7EB001633B5 /* PBXTargetDependency */,
 				9A866051296671ED000C82F0 /* PBXTargetDependency */,
@@ -631,6 +641,11 @@
 			isa = PBXTargetDependency;
 			name = innate_ui_appkit;
 			targetProxy = 9AE7F66B2D1BF7FE001633B5 /* PBXContainerItemProxy */;
+		};
+		9AEA8AE42D6FD8D900DC8A9E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = apex_macos;
+			targetProxy = 9AEA8AE32D6FD8D900DC8A9E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 73;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -94,139 +94,8 @@
 		9AEC3EA32D1A9F2D00F9E621 /* libnode_macos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libnode_macos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		9A595BEF2D6D9A6E00B096D0 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				libacme.dylib,
-				libapp_app.dylib,
-				libaura.dylib,
-			);
-			target = 070B8EE91B6E53F900D26137 /* _app_app */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		9A595BCB2D6D996500B096D0 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			attributesByRelativePath = {
-				libacme.dylib = (
-					CodeSignOnCopy,
-				);
-				libacme_apple.dylib = (
-					CodeSignOnCopy,
-				);
-				libacme_darwin.dylib = (
-					CodeSignOnCopy,
-				);
-				libacme_macos.dylib = (
-					CodeSignOnCopy,
-				);
-				libacme_posix.dylib = (
-					CodeSignOnCopy,
-				);
-				libacme_windowing_appkit.dylib = (
-					CodeSignOnCopy,
-				);
-				libacme_windowing_kit.dylib = (
-					CodeSignOnCopy,
-				);
-				libapex.dylib = (
-					CodeSignOnCopy,
-				);
-				libapex_apple.dylib = (
-					CodeSignOnCopy,
-				);
-				libapex_macos.dylib = (
-					CodeSignOnCopy,
-				);
-				libapp_app.dylib = (
-					CodeSignOnCopy,
-				);
-				libaqua.dylib = (
-					CodeSignOnCopy,
-				);
-				libarchive.dylib = (
-					CodeSignOnCopy,
-				);
-				libaura.dylib = (
-					CodeSignOnCopy,
-				);
-				libaura_apple.dylib = (
-					CodeSignOnCopy,
-				);
-				libaura_darwin.dylib = (
-					CodeSignOnCopy,
-				);
-				libaura_macos.dylib = (
-					CodeSignOnCopy,
-				);
-				libcrypto_openssl.dylib = (
-					CodeSignOnCopy,
-				);
-				libdarwin.dylib = (
-					CodeSignOnCopy,
-				);
-				libdraw2d_quartz2d.dylib = (
-					CodeSignOnCopy,
-				);
-				libfolder_zip.dylib = (
-					CodeSignOnCopy,
-				);
-				libidn.dylib = (
-					CodeSignOnCopy,
-				);
-				libinnate_ui_appkit.dylib = (
-					CodeSignOnCopy,
-				);
-				libnano_graphics_quartz2d.dylib = (
-					CodeSignOnCopy,
-				);
-				libnode_macos.dylib = (
-					CodeSignOnCopy,
-				);
-				liboperating_ambient_macos.dylib = (
-					CodeSignOnCopy,
-				);
-				libwindowing_macos.dylib = (
-					CodeSignOnCopy,
-				);
-			};
-			buildPhase = 9A595B842D6D96B800B096D0 /* CopyFiles */;
-			membershipExceptions = (
-				libacme_apple.dylib,
-				libacme_darwin.dylib,
-				libacme_macos.dylib,
-				libacme_posix.dylib,
-				libacme_windowing_appkit.dylib,
-				libacme_windowing_kit.dylib,
-				libacme.dylib,
-				libapex_apple.dylib,
-				libapex_macos.dylib,
-				libapex.dylib,
-				libapp_app.dylib,
-				libaqua.dylib,
-				libarchive.dylib,
-				libaura_apple.dylib,
-				libaura_darwin.dylib,
-				libaura_macos.dylib,
-				libaura.dylib,
-				libcrypto_openssl.dylib,
-				libdarwin.dylib,
-				libdraw2d_quartz2d.dylib,
-				libfolder_zip.dylib,
-				libidn.dylib,
-				libinnate_ui_appkit.dylib,
-				libnano_graphics_quartz2d.dylib,
-				libnode_macos.dylib,
-				liboperating_ambient_macos.dylib,
-				libwindowing_macos.dylib,
-			);
-		};
-/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		9A595B872D6D981600B096D0 /* output */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (9A595BEF2D6D9A6E00B096D0 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 9A595BCB2D6D996500B096D0 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); name = output; path = "../../../../time-macos/output"; sourceTree = "<group>"; };
+		9A595B872D6D981600B096D0 /* output */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); name = output; path = "../../../../time-macos/output"; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -427,6 +296,7 @@
 				};
 			};
 			buildConfigurationList = 070B8EE51B6E53F900D26137 /* Build configuration list for PBXProject "app_app" */;
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -434,7 +304,6 @@
 				Base,
 			);
 			mainGroup = 070B8EE11B6E53F900D26137;
-			preferredProjectObjectVersion = 54;
 			productRefGroup = 070B8EEB1B6E53F900D26137 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

@@ -22,6 +22,8 @@
 		9AC3F1B52CF78DB90061DCC0 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1CC6B32CF31752004A00CB /* framework.cpp */; };
 		9AC3F1B62CF78DB90061DCC0 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1CC6B12CF31752004A00CB /* application.cpp */; };
 		9AC3F1B72CF78DB90061DCC0 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1CC6AA2CF316F4004A00CB /* _.cpp */; };
+		9AEA8BA62D6FE6C700DC8A9E /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEA8B9F2D6FE67000DC8A9E /* libaura.dylib */; };
+		9AEA8BA72D6FE6E800DC8A9E /* libapp_just_message_box.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEA8B982D6FE67000DC8A9E /* libapp_just_message_box.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +33,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9A5243E82CD5BBE2006ED868;
 			remoteInfo = app_just_message_box;
+		};
+		9AEA8B942D6FE67000DC8A9E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A6CA20C2D6DC65A000BCB3E /* aura.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
+			remoteInfo = aura;
+		};
+		9AEA8B972D6FE67000DC8A9E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A93322C2D6DC2AC006557FC /* app_just_message_box.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A5243E92CD5BBE2006ED868;
+			remoteInfo = app_just_message_box;
+		};
+		9AEA8B9E2D6FE67000DC8A9E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A6CA20C2D6DC65A000BCB3E /* aura.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
+			remoteInfo = aura;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -57,6 +80,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AEA8BA72D6FE6E800DC8A9E /* libapp_just_message_box.dylib in Frameworks */,
+				9AEA8BA62D6FE6C700DC8A9E /* libaura.dylib in Frameworks */,
 				9A1CC6C02CF319D3004A00CB /* libaqua.dylib in Frameworks */,
 				9A1CC6BE2CF319BA004A00CB /* libapex.dylib in Frameworks */,
 				9A1CC6BC2CF319AE004A00CB /* libacme.dylib in Frameworks */,
@@ -114,6 +139,7 @@
 		9AAF50C62D6E961D00CFF717 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				9AEA8B9F2D6FE67000DC8A9E /* libaura.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -121,6 +147,7 @@
 		9ADF6CED2D6DC30E00CD1FDC /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				9AEA8B982D6FE67000DC8A9E /* libapp_just_message_box.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -163,6 +190,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9AEA8B952D6FE67000DC8A9E /* PBXTargetDependency */,
 				9ADF6D042D6DC39A00CD1FDC /* PBXTargetDependency */,
 			);
 			name = app_just_aura_message_box;
@@ -235,6 +263,23 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		9AEA8B982D6FE67000DC8A9E /* libapp_just_message_box.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libapp_just_message_box.dylib;
+			remoteRef = 9AEA8B972D6FE67000DC8A9E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AEA8B9F2D6FE67000DC8A9E /* libaura.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libaura.dylib;
+			remoteRef = 9AEA8B9E2D6FE67000DC8A9E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXShellScriptBuildPhase section */
 		9A9332232D6DC1BB006557FC /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -286,6 +331,11 @@
 			isa = PBXTargetDependency;
 			name = app_just_message_box;
 			targetProxy = 9ADF6D032D6DC39A00CD1FDC /* PBXContainerItemProxy */;
+		};
+		9AEA8B952D6FE67000DC8A9E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = aura;
+			targetProxy = 9AEA8B942D6FE67000DC8A9E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

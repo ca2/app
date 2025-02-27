@@ -48,8 +48,6 @@
 		9AE5CC8F22CBECAE00EDEAD1 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 9AE5CC8E22CBECAE00EDEAD1 /* en.lproj */; };
 		9AE7A1E22D1CC51900070257 /* libacme_windowing_appkit.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AE7A1E02D1CC51900070257 /* libacme_windowing_appkit.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AE7A1E52D1CC52B00070257 /* libacme_windowing_kit.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AE7A1E32D1CC52B00070257 /* libacme_windowing_kit.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		9AE7A1E72D1CC53400070257 /* libapp_simple_nanoui_example.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE7A1E62D1CC53400070257 /* libapp_simple_nanoui_example.dylib */; };
-		9AE7A1E82D1CC53400070257 /* libapp_simple_nanoui_example.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AE7A1E62D1CC53400070257 /* libapp_simple_nanoui_example.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AE7A1EB2D1CC54200070257 /* libinnate_ui_appkit.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AE7A1E92D1CC54200070257 /* libinnate_ui_appkit.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AE7A1EE2D1CC56600070257 /* libnano_graphics_quartz2d.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AE7A1EC2D1CC56600070257 /* libnano_graphics_quartz2d.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AEC3EA82D1A9F5900F9E621 /* liboperating_ambient_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AEC3EA62D1A9F5900F9E621 /* liboperating_ambient_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -232,7 +230,6 @@
 				9AA3F9952A95608D004283CA /* libapex_darwin.dylib in Embed Libraries */,
 				9AE7A1EE2D1CC56600070257 /* libnano_graphics_quartz2d.dylib in Embed Libraries */,
 				9A83B5222807E6E200A1A2B6 /* libapex_macos.dylib in Embed Libraries */,
-				9AE7A1E82D1CC53400070257 /* libapp_simple_nanoui_example.dylib in Embed Libraries */,
 				9A83B51C2807E6E100A1A2B6 /* libacme_macos.dylib in Embed Libraries */,
 				9A83B52A2807E6E200A1A2B6 /* libaura_posix.dylib in Embed Libraries */,
 				9A6A480526611203004ED97A /* libwindowing_macos.dylib in Embed Libraries */,
@@ -317,7 +314,6 @@
 				9AEC3EF42D1AA52F00F9E621 /* libapp_just_message_box.dylib in Frameworks */,
 				9A46D35E267859BC000B22D0 /* libacme.dylib in Frameworks */,
 				9A1CC6C42CF31C6D004A00CB /* libapp_just_aura_message_box.dylib in Frameworks */,
-				9AE7A1E72D1CC53400070257 /* libapp_simple_nanoui_example.dylib in Frameworks */,
 				9A46D35F267859BC000B22D0 /* libapex.dylib in Frameworks */,
 				9A22742627CF37E40042BAC2 /* libaqua.dylib in Frameworks */,
 				9A22742927CF38210042BAC2 /* libidn.dylib in Frameworks */,

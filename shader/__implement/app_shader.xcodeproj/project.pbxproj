@@ -75,6 +75,47 @@
 		9A8F4D822A26D57C00097EE1 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "_____release.xcconfig"; path = "../_____release.xcconfig"; sourceTree = "<group>"; };
 		9A90BA332B549617002BFC9E /* libarchive.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libarchive.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9A15962AFC240600FA9BEB /* libdarwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libdarwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AA0D2FE2D70F72600702321 /* glad.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = glad.dylib; path = "/Users/camilo/code/release/time-macos/output/glad.dylib"; sourceTree = "<absolute>"; };
+		9AA0D2FF2D70F72600702321 /* libacme.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme.dylib; path = "/Users/camilo/code/release/time-macos/output/libacme.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3002D70F72600702321 /* libacme_apple.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme_apple.dylib; path = "/Users/camilo/code/release/time-macos/output/libacme_apple.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3012D70F72600702321 /* libacme_darwin.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme_darwin.dylib; path = "/Users/camilo/code/release/time-macos/output/libacme_darwin.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3022D70F72600702321 /* libacme_macos.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme_macos.dylib; path = "/Users/camilo/code/release/time-macos/output/libacme_macos.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3032D70F72600702321 /* libacme_posix.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme_posix.dylib; path = "/Users/camilo/code/release/time-macos/output/libacme_posix.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3042D70F72600702321 /* libacme_windowing_appkit.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme_windowing_appkit.dylib; path = "/Users/camilo/code/release/time-macos/output/libacme_windowing_appkit.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3052D70F72600702321 /* libacme_windowing_kit.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme_windowing_kit.dylib; path = "/Users/camilo/code/release/time-macos/output/libacme_windowing_kit.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3062D70F72600702321 /* libapex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapex.dylib; path = "/Users/camilo/code/release/time-macos/output/libapex.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3072D70F72600702321 /* libapex_apple.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapex_apple.dylib; path = "/Users/camilo/code/release/time-macos/output/libapex_apple.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3082D70F72600702321 /* libapex_darwin.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapex_darwin.dylib; path = "/Users/camilo/code/release/time-macos/output/libapex_darwin.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3092D70F72600702321 /* libapex_macos.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapex_macos.dylib; path = "/Users/camilo/code/release/time-macos/output/libapex_macos.dylib"; sourceTree = "<absolute>"; };
+		9AA0D30A2D70F72600702321 /* libapex_posix.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapex_posix.dylib; path = "/Users/camilo/code/release/time-macos/output/libapex_posix.dylib"; sourceTree = "<absolute>"; };
+		9AA0D30B2D70F72600702321 /* libapp_shader.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapp_shader.dylib; path = "/Users/camilo/code/release/time-macos/output/libapp_shader.dylib"; sourceTree = "<absolute>"; };
+		9AA0D30C2D70F72600702321 /* libaqua.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaqua.dylib; path = "/Users/camilo/code/release/time-macos/output/libaqua.dylib"; sourceTree = "<absolute>"; };
+		9AA0D30D2D70F72600702321 /* libarchive.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libarchive.dylib; path = "/Users/camilo/code/release/time-macos/output/libarchive.dylib"; sourceTree = "<absolute>"; };
+		9AA0D30E2D70F72600702321 /* libassimp.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.dylib; path = "/Users/camilo/code/release/time-macos/output/libassimp.dylib"; sourceTree = "<absolute>"; };
+		9AA0D30F2D70F72600702321 /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "/Users/camilo/code/release/time-macos/output/libaura.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3102D70F72600702321 /* libaura_apple.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura_apple.dylib; path = "/Users/camilo/code/release/time-macos/output/libaura_apple.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3112D70F72600702321 /* libaura_darwin.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura_darwin.dylib; path = "/Users/camilo/code/release/time-macos/output/libaura_darwin.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3122D70F72600702321 /* libaura_macos.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura_macos.dylib; path = "/Users/camilo/code/release/time-macos/output/libaura_macos.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3132D70F72600702321 /* libaura_posix.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura_posix.dylib; path = "/Users/camilo/code/release/time-macos/output/libaura_posix.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3142D70F72600702321 /* libclipper.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libclipper.dylib; path = "/Users/camilo/code/release/time-macos/output/libclipper.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3152D70F72600702321 /* libcrypto_openssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto_openssl.dylib; path = "/Users/camilo/code/release/time-macos/output/libcrypto_openssl.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3162D70F72600702321 /* libdarwin.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libdarwin.dylib; path = "/Users/camilo/code/release/time-macos/output/libdarwin.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3172D70F72600702321 /* libdraw2d_quartz2d.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libdraw2d_quartz2d.dylib; path = "/Users/camilo/code/release/time-macos/output/libdraw2d_quartz2d.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3182D70F72600702321 /* libfolder_zip.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfolder_zip.dylib; path = "/Users/camilo/code/release/time-macos/output/libfolder_zip.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3192D70F72600702321 /* libgpu_opengl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libgpu_opengl.dylib; path = "/Users/camilo/code/release/time-macos/output/libgpu_opengl.dylib"; sourceTree = "<absolute>"; };
+		9AA0D31A2D70F72600702321 /* libidn.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libidn.dylib; path = "/Users/camilo/code/release/time-macos/output/libidn.dylib"; sourceTree = "<absolute>"; };
+		9AA0D31B2D70F72600702321 /* libinnate_ui_appkit.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libinnate_ui_appkit.dylib; path = "/Users/camilo/code/release/time-macos/output/libinnate_ui_appkit.dylib"; sourceTree = "<absolute>"; };
+		9AA0D31C2D70F72600702321 /* libminizip.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libminizip.dylib; path = "/Users/camilo/code/release/time-macos/output/libminizip.dylib"; sourceTree = "<absolute>"; };
+		9AA0D31D2D70F72600702321 /* libnano_graphics_quartz2d.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libnano_graphics_quartz2d.dylib; path = "/Users/camilo/code/release/time-macos/output/libnano_graphics_quartz2d.dylib"; sourceTree = "<absolute>"; };
+		9AA0D31E2D70F72600702321 /* libnode_macos.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libnode_macos.dylib; path = "/Users/camilo/code/release/time-macos/output/libnode_macos.dylib"; sourceTree = "<absolute>"; };
+		9AA0D31F2D70F72600702321 /* libopenddlparser.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopenddlparser.dylib; path = "/Users/camilo/code/release/time-macos/output/libopenddlparser.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3202D70F72600702321 /* liboperating_ambient_macos.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liboperating_ambient_macos.dylib; path = "/Users/camilo/code/release/time-macos/output/liboperating_ambient_macos.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3212D70F72600702321 /* libpoly2tri.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpoly2tri.dylib; path = "/Users/camilo/code/release/time-macos/output/libpoly2tri.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3222D70F72600702321 /* libpugixml.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpugixml.dylib; path = "/Users/camilo/code/release/time-macos/output/libpugixml.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3232D70F72600702321 /* libtinyusdz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtinyusdz.dylib; path = "/Users/camilo/code/release/time-macos/output/libtinyusdz.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3242D70F72600702321 /* libwindowing_macos.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libwindowing_macos.dylib; path = "/Users/camilo/code/release/time-macos/output/libwindowing_macos.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3252D70F72600702321 /* libwrite_text_quartz2d.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libwrite_text_quartz2d.dylib; path = "/Users/camilo/code/release/time-macos/output/libwrite_text_quartz2d.dylib"; sourceTree = "<absolute>"; };
+		9AA0D3262D70F72600702321 /* libzip.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libzip.dylib; path = "/Users/camilo/code/release/time-macos/output/libzip.dylib"; sourceTree = "<absolute>"; };
 		9AB15BE329A87A0B00DFDF90 /* libacme_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB15BE429A87A0B00DFDF90 /* libapex_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB15BE529A87A0B00DFDF90 /* libaura_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +192,47 @@
 		9A7D47A42D7031E4003CF973 /* output */ = {
 			isa = PBXGroup;
 			children = (
+				9AA0D2FE2D70F72600702321 /* glad.dylib */,
+				9AA0D2FF2D70F72600702321 /* libacme.dylib */,
+				9AA0D3002D70F72600702321 /* libacme_apple.dylib */,
+				9AA0D3012D70F72600702321 /* libacme_darwin.dylib */,
+				9AA0D3022D70F72600702321 /* libacme_macos.dylib */,
+				9AA0D3032D70F72600702321 /* libacme_posix.dylib */,
+				9AA0D3042D70F72600702321 /* libacme_windowing_appkit.dylib */,
+				9AA0D3052D70F72600702321 /* libacme_windowing_kit.dylib */,
+				9AA0D3062D70F72600702321 /* libapex.dylib */,
+				9AA0D3072D70F72600702321 /* libapex_apple.dylib */,
+				9AA0D3082D70F72600702321 /* libapex_darwin.dylib */,
+				9AA0D3092D70F72600702321 /* libapex_macos.dylib */,
+				9AA0D30A2D70F72600702321 /* libapex_posix.dylib */,
+				9AA0D30B2D70F72600702321 /* libapp_shader.dylib */,
+				9AA0D30C2D70F72600702321 /* libaqua.dylib */,
+				9AA0D30D2D70F72600702321 /* libarchive.dylib */,
+				9AA0D30E2D70F72600702321 /* libassimp.dylib */,
+				9AA0D30F2D70F72600702321 /* libaura.dylib */,
+				9AA0D3102D70F72600702321 /* libaura_apple.dylib */,
+				9AA0D3112D70F72600702321 /* libaura_darwin.dylib */,
+				9AA0D3122D70F72600702321 /* libaura_macos.dylib */,
+				9AA0D3132D70F72600702321 /* libaura_posix.dylib */,
+				9AA0D3142D70F72600702321 /* libclipper.dylib */,
+				9AA0D3152D70F72600702321 /* libcrypto_openssl.dylib */,
+				9AA0D3162D70F72600702321 /* libdarwin.dylib */,
+				9AA0D3172D70F72600702321 /* libdraw2d_quartz2d.dylib */,
+				9AA0D3182D70F72600702321 /* libfolder_zip.dylib */,
+				9AA0D3192D70F72600702321 /* libgpu_opengl.dylib */,
+				9AA0D31A2D70F72600702321 /* libidn.dylib */,
+				9AA0D31B2D70F72600702321 /* libinnate_ui_appkit.dylib */,
+				9AA0D31C2D70F72600702321 /* libminizip.dylib */,
+				9AA0D31D2D70F72600702321 /* libnano_graphics_quartz2d.dylib */,
+				9AA0D31E2D70F72600702321 /* libnode_macos.dylib */,
+				9AA0D31F2D70F72600702321 /* libopenddlparser.dylib */,
+				9AA0D3202D70F72600702321 /* liboperating_ambient_macos.dylib */,
+				9AA0D3212D70F72600702321 /* libpoly2tri.dylib */,
+				9AA0D3222D70F72600702321 /* libpugixml.dylib */,
+				9AA0D3232D70F72600702321 /* libtinyusdz.dylib */,
+				9AA0D3242D70F72600702321 /* libwindowing_macos.dylib */,
+				9AA0D3252D70F72600702321 /* libwrite_text_quartz2d.dylib */,
+				9AA0D3262D70F72600702321 /* libzip.dylib */,
 			);
 			path = output;
 			sourceTree = "<group>";

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -94,10 +94,6 @@
 		9AEC3EA32D1A9F2D00F9E621 /* libnode_macos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libnode_macos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		9A595B872D6D981600B096D0 /* output */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); name = output; path = "../../../../time-macos/output"; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
 		070B8EFA1B6E53FA00D26137 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -119,7 +115,7 @@
 		070B8EE11B6E53F900D26137 = {
 			isa = PBXGroup;
 			children = (
-				9A595B872D6D981600B096D0 /* output */,
+				9AA0D3632D70F8E500702321 /* output */,
 				9AEA19E527602557006437A3 /* __implement */,
 				070B8EEB1B6E53F900D26137 /* Products */,
 				9ADF1D2922C16DBB00456537 /* Frameworks */,
@@ -142,6 +138,13 @@
 			children = (
 			);
 			name = Library;
+			sourceTree = "<group>";
+		};
+		9AA0D3632D70F8E500702321 /* output */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = output;
 			sourceTree = "<group>";
 		};
 		9AADA8E429D0A8DD0004D7ED /* en.lproj */ = {

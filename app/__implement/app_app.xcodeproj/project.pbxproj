@@ -10,6 +10,39 @@
 		9A595BEC2D6D99C000B096D0 /* application_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6DF272962ADEE008A1335 /* application_main.cpp */; };
 		9A8C817D2783F8D9000C8587 /* _matter.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C817C2783F8D9000C8587 /* _matter.zip */; };
 		9AADA8E729D0A8DD0004D7ED /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9AADA8E529D0A8DD0004D7ED /* InfoPlist.strings */; };
+		9AD7B8F12D7109B0005EF3BA /* libacme.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E97F2D7108D500702321 /* libacme.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B8F22D7109B0005EF3BA /* libacme_apple.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E9802D7108D500702321 /* libacme_apple.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B8F32D7109B0005EF3BA /* libacme_darwin.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E9812D7108D500702321 /* libacme_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B8F42D7109B0005EF3BA /* libacme_macos.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E9822D7108D500702321 /* libacme_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B8F52D7109B0005EF3BA /* libacme_posix.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E9832D7108D500702321 /* libacme_posix.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B8F62D7109B0005EF3BA /* libacme_windowing_appkit.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E9842D7108D500702321 /* libacme_windowing_appkit.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B8F72D7109B0005EF3BA /* libacme_windowing_kit.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E9852D7108D500702321 /* libacme_windowing_kit.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B8F82D7109B0005EF3BA /* libapex.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E9862D7108D500702321 /* libapex.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B8F92D7109B0005EF3BA /* libapex_apple.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E9872D7108D500702321 /* libapex_apple.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B8FA2D7109B0005EF3BA /* libapex_darwin.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E9882D7108D500702321 /* libapex_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B8FB2D7109B0005EF3BA /* libapex_macos.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E9892D7108D500702321 /* libapex_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B8FC2D7109B0005EF3BA /* libapex_posix.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E98A2D7108D500702321 /* libapex_posix.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B8FD2D7109B0005EF3BA /* libapp_app.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E98B2D7108D500702321 /* libapp_app.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B8FE2D7109B0005EF3BA /* libaqua.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E98C2D7108D500702321 /* libaqua.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B8FF2D7109B0005EF3BA /* libarchive.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E98D2D7108D500702321 /* libarchive.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B9002D7109B0005EF3BA /* libaura.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E98E2D7108D500702321 /* libaura.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B9012D7109B0005EF3BA /* libaura_apple.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E98F2D7108D500702321 /* libaura_apple.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B9022D7109B0005EF3BA /* libaura_darwin.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E9902D7108D500702321 /* libaura_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B9032D7109B0005EF3BA /* libaura_macos.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E9912D7108D500702321 /* libaura_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B9042D7109B0005EF3BA /* libaura_posix.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E9922D7108D500702321 /* libaura_posix.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B9052D7109B0005EF3BA /* libcrypto_openssl.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E9932D7108D500702321 /* libcrypto_openssl.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B9062D7109B0005EF3BA /* libdarwin.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E9942D7108D500702321 /* libdarwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B9072D7109B0005EF3BA /* libdraw2d_quartz2d.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E9952D7108D500702321 /* libdraw2d_quartz2d.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B9082D7109B0005EF3BA /* libfolder_zip.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E9962D7108D500702321 /* libfolder_zip.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B9092D7109B0005EF3BA /* libidn.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E9972D7108D500702321 /* libidn.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B90A2D7109B0005EF3BA /* libinnate_ui_appkit.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E9982D7108D500702321 /* libinnate_ui_appkit.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B90B2D7109B0005EF3BA /* libnano_graphics_quartz2d.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E9992D7108D500702321 /* libnano_graphics_quartz2d.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B90C2D7109B0005EF3BA /* libnode_macos.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E99A2D7108D500702321 /* libnode_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B90D2D7109B0005EF3BA /* liboperating_ambient_macos.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E99B2D7108D500702321 /* liboperating_ambient_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B90E2D7109B0005EF3BA /* libwindowing_macos.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0E99C2D7108D500702321 /* libwindowing_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B90F2D7109DE005EF3BA /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA0E97F2D7108D500702321 /* libacme.dylib */; };
+		9AD7B9102D7109F3005EF3BA /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA0E98E2D7108D500702321 /* libaura.dylib */; };
+		9AD7B9112D710A00005EF3BA /* libapp_app.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA0E98B2D7108D500702321 /* libapp_app.dylib */; };
 		9AEA1C692760261D006437A3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AEA1C652760261D006437A3 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +63,36 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
+				9AD7B8F12D7109B0005EF3BA /* libacme.dylib in CopyFiles */,
+				9AD7B8F22D7109B0005EF3BA /* libacme_apple.dylib in CopyFiles */,
+				9AD7B8F32D7109B0005EF3BA /* libacme_darwin.dylib in CopyFiles */,
+				9AD7B8F42D7109B0005EF3BA /* libacme_macos.dylib in CopyFiles */,
+				9AD7B8F52D7109B0005EF3BA /* libacme_posix.dylib in CopyFiles */,
+				9AD7B8F62D7109B0005EF3BA /* libacme_windowing_appkit.dylib in CopyFiles */,
+				9AD7B8F72D7109B0005EF3BA /* libacme_windowing_kit.dylib in CopyFiles */,
+				9AD7B8F82D7109B0005EF3BA /* libapex.dylib in CopyFiles */,
+				9AD7B8F92D7109B0005EF3BA /* libapex_apple.dylib in CopyFiles */,
+				9AD7B8FA2D7109B0005EF3BA /* libapex_darwin.dylib in CopyFiles */,
+				9AD7B8FB2D7109B0005EF3BA /* libapex_macos.dylib in CopyFiles */,
+				9AD7B8FC2D7109B0005EF3BA /* libapex_posix.dylib in CopyFiles */,
+				9AD7B8FD2D7109B0005EF3BA /* libapp_app.dylib in CopyFiles */,
+				9AD7B8FE2D7109B0005EF3BA /* libaqua.dylib in CopyFiles */,
+				9AD7B8FF2D7109B0005EF3BA /* libarchive.dylib in CopyFiles */,
+				9AD7B9002D7109B0005EF3BA /* libaura.dylib in CopyFiles */,
+				9AD7B9012D7109B0005EF3BA /* libaura_apple.dylib in CopyFiles */,
+				9AD7B9022D7109B0005EF3BA /* libaura_darwin.dylib in CopyFiles */,
+				9AD7B9032D7109B0005EF3BA /* libaura_macos.dylib in CopyFiles */,
+				9AD7B9042D7109B0005EF3BA /* libaura_posix.dylib in CopyFiles */,
+				9AD7B9052D7109B0005EF3BA /* libcrypto_openssl.dylib in CopyFiles */,
+				9AD7B9062D7109B0005EF3BA /* libdarwin.dylib in CopyFiles */,
+				9AD7B9072D7109B0005EF3BA /* libdraw2d_quartz2d.dylib in CopyFiles */,
+				9AD7B9082D7109B0005EF3BA /* libfolder_zip.dylib in CopyFiles */,
+				9AD7B9092D7109B0005EF3BA /* libidn.dylib in CopyFiles */,
+				9AD7B90A2D7109B0005EF3BA /* libinnate_ui_appkit.dylib in CopyFiles */,
+				9AD7B90B2D7109B0005EF3BA /* libnano_graphics_quartz2d.dylib in CopyFiles */,
+				9AD7B90C2D7109B0005EF3BA /* libnode_macos.dylib in CopyFiles */,
+				9AD7B90D2D7109B0005EF3BA /* liboperating_ambient_macos.dylib in CopyFiles */,
+				9AD7B90E2D7109B0005EF3BA /* libwindowing_macos.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,60 +101,44 @@
 /* Begin PBXFileReference section */
 		070B8EEA1B6E53F900D26137 /* _app_app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = _app_app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		070B8EFD1B6E53FA00D26137 /* Hello Multiverse!!Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hello Multiverse!!Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A1CC41B2CF2E999004A00CB /* liboperating_ambient_macos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = liboperating_ambient_macos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A1CF4F9276161C900802DB8 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A1CF4FA276161C900802DB8 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A1CF4FB276161C900802DB8 /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A1CF4FC276161C900802DB8 /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A21A6CB2761068B001E14CC /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = "../../../../../operating_system/storage-macos/Debug/library/libcrypto.dylib"; sourceTree = "<group>"; };
-		9A21A6CC2761068B001E14CC /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = "../../../../../operating_system/storage-macos/Debug/library/libssl.dylib"; sourceTree = "<group>"; };
-		9A21A6FE27610749001E14CC /* libaura_macos.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura_macos.dylib; path = "../../../time-macos/output/libaura_macos.dylib"; sourceTree = "<group>"; };
-		9A21A7002761074A001E14CC /* libnode_macos.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libnode_macos.dylib; path = "../../../time-macos/output/libnode_macos.dylib"; sourceTree = "<group>"; };
-		9A21A7012761074A001E14CC /* libapex_macos.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapex_macos.dylib; path = "../../../time-macos/output/libapex_macos.dylib"; sourceTree = "<group>"; };
-		9A21A7022761074A001E14CC /* libaura_posix.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura_posix.dylib; path = "../../../time-macos/output/libaura_posix.dylib"; sourceTree = "<group>"; };
-		9A21A7032761074A001E14CC /* libacme_macos.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme_macos.dylib; path = "../../../time-macos/output/libacme_macos.dylib"; sourceTree = "<group>"; };
-		9A21A7052761074A001E14CC /* libaura_apple.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura_apple.dylib; path = "../../../time-macos/output/libaura_apple.dylib"; sourceTree = "<group>"; };
-		9A21A7062761074A001E14CC /* libcrypto_openssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto_openssl.dylib; path = "../../../time-macos/output/libcrypto_openssl.dylib"; sourceTree = "<group>"; };
-		9A21A7072761074B001E14CC /* libdraw2d_quartz2d.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libdraw2d_quartz2d.dylib; path = "../../../time-macos/output/libdraw2d_quartz2d.dylib"; sourceTree = "<group>"; };
-		9A21A7082761074B001E14CC /* libwindowing_macos.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libwindowing_macos.dylib; path = "../../../time-macos/output/libwindowing_macos.dylib"; sourceTree = "<group>"; };
-		9A21A7092761074B001E14CC /* libapex_posix.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapex_posix.dylib; path = "../../../time-macos/output/libapex_posix.dylib"; sourceTree = "<group>"; };
-		9A21A70A2761074B001E14CC /* libapex_apple.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapex_apple.dylib; path = "../../../time-macos/output/libapex_apple.dylib"; sourceTree = "<group>"; };
-		9A21A70B2761074B001E14CC /* libidn.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libidn.dylib; path = "../../../time-macos/output/libidn.dylib"; sourceTree = "<group>"; };
-		9A21A70D2761074C001E14CC /* libacme_posix.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme_posix.dylib; path = "../../../time-macos/output/libacme_posix.dylib"; sourceTree = "<group>"; };
-		9A21A70F2761074C001E14CC /* libacme_apple.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme_apple.dylib; path = "../../../time-macos/output/libacme_apple.dylib"; sourceTree = "<group>"; };
-		9A3275E42C6DA9EA00EB43C5 /* libnano_dynamic_library_dyld.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libnano_dynamic_library_dyld.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A4E966D278532DC00B74C76 /* libacme_apple.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_apple.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A4E966E278532DC00B74C76 /* libacme_macos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_macos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A4E966F278532DC00B74C76 /* libacme_posix.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_posix.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A4E9670278532DC00B74C76 /* libapex_apple.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex_apple.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A4E9671278532DC00B74C76 /* libapex_macos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex_macos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A4E9672278532DC00B74C76 /* libapex_posix.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex_posix.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A4E9673278532DC00B74C76 /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A4E9674278532DC00B74C76 /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A4E9675278532DC00B74C76 /* libaura_apple.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura_apple.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A4E9676278532DC00B74C76 /* libaura_macos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura_macos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A4E9677278532DC00B74C76 /* libaura_posix.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura_posix.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A4E9678278532DC00B74C76 /* libidn.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libidn.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A4E9679278532DC00B74C76 /* libwindowing_macos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libwindowing_macos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A4E96B827853AB400B74C76 /* libfolder_zip.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libfolder_zip.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A52435B2CD4B109006ED868 /* libnano_graphics_quartz2d.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libnano_graphics_quartz2d.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A8B170329A10A9C00D14979 /* libacme_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A8B170629A10AAE00D14979 /* libapex_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A8B170A29A10B0600D14979 /* libaura_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A8C817C2783F8D9000C8587 /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = _matter.zip; path = ../_matter.zip; sourceTree = "<group>"; };
 		9A8F4DD32A26D60000097EE1 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "_____release.xcconfig"; path = "../_____release.xcconfig"; sourceTree = "<group>"; };
 		9A8F4DDB2A26D60000097EE1 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "_____debug.xcconfig"; path = "../_____debug.xcconfig"; sourceTree = "<group>"; };
-		9A90BA132B54958A002BFC9E /* libarchive.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libarchive.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A9A15742AFC230500FA9BEB /* libdarwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libdarwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AA0E97F2D7108D500702321 /* libacme.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme.dylib; path = "/Users/camilo/code/release/time-macos/output/libacme.dylib"; sourceTree = "<absolute>"; };
+		9AA0E9802D7108D500702321 /* libacme_apple.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme_apple.dylib; path = "/Users/camilo/code/release/time-macos/output/libacme_apple.dylib"; sourceTree = "<absolute>"; };
+		9AA0E9812D7108D500702321 /* libacme_darwin.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme_darwin.dylib; path = "/Users/camilo/code/release/time-macos/output/libacme_darwin.dylib"; sourceTree = "<absolute>"; };
+		9AA0E9822D7108D500702321 /* libacme_macos.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme_macos.dylib; path = "/Users/camilo/code/release/time-macos/output/libacme_macos.dylib"; sourceTree = "<absolute>"; };
+		9AA0E9832D7108D500702321 /* libacme_posix.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme_posix.dylib; path = "/Users/camilo/code/release/time-macos/output/libacme_posix.dylib"; sourceTree = "<absolute>"; };
+		9AA0E9842D7108D500702321 /* libacme_windowing_appkit.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme_windowing_appkit.dylib; path = "/Users/camilo/code/release/time-macos/output/libacme_windowing_appkit.dylib"; sourceTree = "<absolute>"; };
+		9AA0E9852D7108D500702321 /* libacme_windowing_kit.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme_windowing_kit.dylib; path = "/Users/camilo/code/release/time-macos/output/libacme_windowing_kit.dylib"; sourceTree = "<absolute>"; };
+		9AA0E9862D7108D500702321 /* libapex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapex.dylib; path = "/Users/camilo/code/release/time-macos/output/libapex.dylib"; sourceTree = "<absolute>"; };
+		9AA0E9872D7108D500702321 /* libapex_apple.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapex_apple.dylib; path = "/Users/camilo/code/release/time-macos/output/libapex_apple.dylib"; sourceTree = "<absolute>"; };
+		9AA0E9882D7108D500702321 /* libapex_darwin.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapex_darwin.dylib; path = "/Users/camilo/code/release/time-macos/output/libapex_darwin.dylib"; sourceTree = "<absolute>"; };
+		9AA0E9892D7108D500702321 /* libapex_macos.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapex_macos.dylib; path = "/Users/camilo/code/release/time-macos/output/libapex_macos.dylib"; sourceTree = "<absolute>"; };
+		9AA0E98A2D7108D500702321 /* libapex_posix.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapex_posix.dylib; path = "/Users/camilo/code/release/time-macos/output/libapex_posix.dylib"; sourceTree = "<absolute>"; };
+		9AA0E98B2D7108D500702321 /* libapp_app.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapp_app.dylib; path = "/Users/camilo/code/release/time-macos/output/libapp_app.dylib"; sourceTree = "<absolute>"; };
+		9AA0E98C2D7108D500702321 /* libaqua.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaqua.dylib; path = "/Users/camilo/code/release/time-macos/output/libaqua.dylib"; sourceTree = "<absolute>"; };
+		9AA0E98D2D7108D500702321 /* libarchive.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libarchive.dylib; path = "/Users/camilo/code/release/time-macos/output/libarchive.dylib"; sourceTree = "<absolute>"; };
+		9AA0E98E2D7108D500702321 /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "/Users/camilo/code/release/time-macos/output/libaura.dylib"; sourceTree = "<absolute>"; };
+		9AA0E98F2D7108D500702321 /* libaura_apple.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura_apple.dylib; path = "/Users/camilo/code/release/time-macos/output/libaura_apple.dylib"; sourceTree = "<absolute>"; };
+		9AA0E9902D7108D500702321 /* libaura_darwin.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura_darwin.dylib; path = "/Users/camilo/code/release/time-macos/output/libaura_darwin.dylib"; sourceTree = "<absolute>"; };
+		9AA0E9912D7108D500702321 /* libaura_macos.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura_macos.dylib; path = "/Users/camilo/code/release/time-macos/output/libaura_macos.dylib"; sourceTree = "<absolute>"; };
+		9AA0E9922D7108D500702321 /* libaura_posix.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura_posix.dylib; path = "/Users/camilo/code/release/time-macos/output/libaura_posix.dylib"; sourceTree = "<absolute>"; };
+		9AA0E9932D7108D500702321 /* libcrypto_openssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto_openssl.dylib; path = "/Users/camilo/code/release/time-macos/output/libcrypto_openssl.dylib"; sourceTree = "<absolute>"; };
+		9AA0E9942D7108D500702321 /* libdarwin.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libdarwin.dylib; path = "/Users/camilo/code/release/time-macos/output/libdarwin.dylib"; sourceTree = "<absolute>"; };
+		9AA0E9952D7108D500702321 /* libdraw2d_quartz2d.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libdraw2d_quartz2d.dylib; path = "/Users/camilo/code/release/time-macos/output/libdraw2d_quartz2d.dylib"; sourceTree = "<absolute>"; };
+		9AA0E9962D7108D500702321 /* libfolder_zip.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfolder_zip.dylib; path = "/Users/camilo/code/release/time-macos/output/libfolder_zip.dylib"; sourceTree = "<absolute>"; };
+		9AA0E9972D7108D500702321 /* libidn.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libidn.dylib; path = "/Users/camilo/code/release/time-macos/output/libidn.dylib"; sourceTree = "<absolute>"; };
+		9AA0E9982D7108D500702321 /* libinnate_ui_appkit.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libinnate_ui_appkit.dylib; path = "/Users/camilo/code/release/time-macos/output/libinnate_ui_appkit.dylib"; sourceTree = "<absolute>"; };
+		9AA0E9992D7108D500702321 /* libnano_graphics_quartz2d.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libnano_graphics_quartz2d.dylib; path = "/Users/camilo/code/release/time-macos/output/libnano_graphics_quartz2d.dylib"; sourceTree = "<absolute>"; };
+		9AA0E99A2D7108D500702321 /* libnode_macos.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libnode_macos.dylib; path = "/Users/camilo/code/release/time-macos/output/libnode_macos.dylib"; sourceTree = "<absolute>"; };
+		9AA0E99B2D7108D500702321 /* liboperating_ambient_macos.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liboperating_ambient_macos.dylib; path = "/Users/camilo/code/release/time-macos/output/liboperating_ambient_macos.dylib"; sourceTree = "<absolute>"; };
+		9AA0E99C2D7108D500702321 /* libwindowing_macos.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libwindowing_macos.dylib; path = "/Users/camilo/code/release/time-macos/output/libwindowing_macos.dylib"; sourceTree = "<absolute>"; };
 		9AADA8E629D0A8DD0004D7ED /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		9AE5CC8E22CBECAE00EDEAD1 /* en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = en.lproj; sourceTree = "<group>"; };
 		9AE6DF272962ADEE008A1335 /* application_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application_main.cpp; sourceTree = "<group>"; };
-		9AE7A1B92D1CC34F00070257 /* libacme_windowing_appkit.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_windowing_appkit.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AE7A1BA2D1CC34F00070257 /* libacme_windowing_kit.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_windowing_kit.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AE7A1C02D1CC36B00070257 /* libinnate_ui_appkit.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libinnate_ui_appkit.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEA1C652760261D006437A3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9AEA1C672760261D006437A3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9AEC3EA32D1A9F2D00F9E621 /* libnode_macos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libnode_macos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +153,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AD7B90F2D7109DE005EF3BA /* libacme.dylib in Frameworks */,
+				9AD7B9102D7109F3005EF3BA /* libaura.dylib in Frameworks */,
+				9AD7B9112D710A00005EF3BA /* libapp_app.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +193,36 @@
 		9AA0D3632D70F8E500702321 /* output */ = {
 			isa = PBXGroup;
 			children = (
+				9AA0E97F2D7108D500702321 /* libacme.dylib */,
+				9AA0E9802D7108D500702321 /* libacme_apple.dylib */,
+				9AA0E9812D7108D500702321 /* libacme_darwin.dylib */,
+				9AA0E9822D7108D500702321 /* libacme_macos.dylib */,
+				9AA0E9832D7108D500702321 /* libacme_posix.dylib */,
+				9AA0E9842D7108D500702321 /* libacme_windowing_appkit.dylib */,
+				9AA0E9852D7108D500702321 /* libacme_windowing_kit.dylib */,
+				9AA0E9862D7108D500702321 /* libapex.dylib */,
+				9AA0E9872D7108D500702321 /* libapex_apple.dylib */,
+				9AA0E9882D7108D500702321 /* libapex_darwin.dylib */,
+				9AA0E9892D7108D500702321 /* libapex_macos.dylib */,
+				9AA0E98A2D7108D500702321 /* libapex_posix.dylib */,
+				9AA0E98B2D7108D500702321 /* libapp_app.dylib */,
+				9AA0E98C2D7108D500702321 /* libaqua.dylib */,
+				9AA0E98D2D7108D500702321 /* libarchive.dylib */,
+				9AA0E98E2D7108D500702321 /* libaura.dylib */,
+				9AA0E98F2D7108D500702321 /* libaura_apple.dylib */,
+				9AA0E9902D7108D500702321 /* libaura_darwin.dylib */,
+				9AA0E9912D7108D500702321 /* libaura_macos.dylib */,
+				9AA0E9922D7108D500702321 /* libaura_posix.dylib */,
+				9AA0E9932D7108D500702321 /* libcrypto_openssl.dylib */,
+				9AA0E9942D7108D500702321 /* libdarwin.dylib */,
+				9AA0E9952D7108D500702321 /* libdraw2d_quartz2d.dylib */,
+				9AA0E9962D7108D500702321 /* libfolder_zip.dylib */,
+				9AA0E9972D7108D500702321 /* libidn.dylib */,
+				9AA0E9982D7108D500702321 /* libinnate_ui_appkit.dylib */,
+				9AA0E9992D7108D500702321 /* libnano_graphics_quartz2d.dylib */,
+				9AA0E99A2D7108D500702321 /* libnode_macos.dylib */,
+				9AA0E99B2D7108D500702321 /* liboperating_ambient_macos.dylib */,
+				9AA0E99C2D7108D500702321 /* libwindowing_macos.dylib */,
 			);
 			path = output;
 			sourceTree = "<group>";
@@ -158,52 +238,6 @@
 		9ADF1D2922C16DBB00456537 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9AE7A1C02D1CC36B00070257 /* libinnate_ui_appkit.dylib */,
-				9AE7A1B92D1CC34F00070257 /* libacme_windowing_appkit.dylib */,
-				9AE7A1BA2D1CC34F00070257 /* libacme_windowing_kit.dylib */,
-				9AEC3EA32D1A9F2D00F9E621 /* libnode_macos.dylib */,
-				9A1CC41B2CF2E999004A00CB /* liboperating_ambient_macos.dylib */,
-				9A52435B2CD4B109006ED868 /* libnano_graphics_quartz2d.dylib */,
-				9A3275E42C6DA9EA00EB43C5 /* libnano_dynamic_library_dyld.dylib */,
-				9A90BA132B54958A002BFC9E /* libarchive.dylib */,
-				9A9A15742AFC230500FA9BEB /* libdarwin.dylib */,
-				9A8B170A29A10B0600D14979 /* libaura_darwin.dylib */,
-				9A8B170629A10AAE00D14979 /* libapex_darwin.dylib */,
-				9A8B170329A10A9C00D14979 /* libacme_darwin.dylib */,
-				9A4E96B827853AB400B74C76 /* libfolder_zip.dylib */,
-				9A4E966D278532DC00B74C76 /* libacme_apple.dylib */,
-				9A4E966E278532DC00B74C76 /* libacme_macos.dylib */,
-				9A4E966F278532DC00B74C76 /* libacme_posix.dylib */,
-				9A4E9670278532DC00B74C76 /* libapex_apple.dylib */,
-				9A4E9671278532DC00B74C76 /* libapex_macos.dylib */,
-				9A4E9672278532DC00B74C76 /* libapex_posix.dylib */,
-				9A4E9673278532DC00B74C76 /* libaqua.dylib */,
-				9A4E9674278532DC00B74C76 /* libaura.dylib */,
-				9A4E9675278532DC00B74C76 /* libaura_apple.dylib */,
-				9A4E9676278532DC00B74C76 /* libaura_macos.dylib */,
-				9A4E9677278532DC00B74C76 /* libaura_posix.dylib */,
-				9A4E9678278532DC00B74C76 /* libidn.dylib */,
-				9A4E9679278532DC00B74C76 /* libwindowing_macos.dylib */,
-				9A1CF4F9276161C900802DB8 /* libacme.dylib */,
-				9A1CF4FA276161C900802DB8 /* libapex.dylib */,
-				9A1CF4FB276161C900802DB8 /* libaqua.dylib */,
-				9A1CF4FC276161C900802DB8 /* libaura.dylib */,
-				9A21A70F2761074C001E14CC /* libacme_apple.dylib */,
-				9A21A7032761074A001E14CC /* libacme_macos.dylib */,
-				9A21A70D2761074C001E14CC /* libacme_posix.dylib */,
-				9A21A70A2761074B001E14CC /* libapex_apple.dylib */,
-				9A21A7012761074A001E14CC /* libapex_macos.dylib */,
-				9A21A7092761074B001E14CC /* libapex_posix.dylib */,
-				9A21A7052761074A001E14CC /* libaura_apple.dylib */,
-				9A21A6FE27610749001E14CC /* libaura_macos.dylib */,
-				9A21A7022761074A001E14CC /* libaura_posix.dylib */,
-				9A21A7062761074A001E14CC /* libcrypto_openssl.dylib */,
-				9A21A7072761074B001E14CC /* libdraw2d_quartz2d.dylib */,
-				9A21A70B2761074B001E14CC /* libidn.dylib */,
-				9A21A7002761074A001E14CC /* libnode_macos.dylib */,
-				9A21A7082761074B001E14CC /* libwindowing_macos.dylib */,
-				9A21A6CB2761068B001E14CC /* libcrypto.dylib */,
-				9A21A6CC2761068B001E14CC /* libssl.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

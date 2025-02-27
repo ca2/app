@@ -10,6 +10,22 @@
 		9A22742127CF35F40042BAC2 /* application_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A22742027CF35F40042BAC2 /* application_main.cpp */; };
 		9A5D09A52B7F9A90003239D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A5D099B2B7F9A90003239D4 /* Images.xcassets */; };
 		9AA1FE502D18EAB600DB0C45 /* _matter.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9A52441C2CD5BEE6006ED868 /* _matter.zip */; };
+		9AD7B9122D710B74005EF3BA /* libacme.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0D3552D70F8D100702321 /* libacme.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B9132D710B74005EF3BA /* libacme_apple.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0D3562D70F8D100702321 /* libacme_apple.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B9142D710B74005EF3BA /* libacme_darwin.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0D3572D70F8D100702321 /* libacme_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B9152D710B74005EF3BA /* libacme_macos.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0D3582D70F8D100702321 /* libacme_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B9162D710B74005EF3BA /* libacme_posix.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0D3592D70F8D100702321 /* libacme_posix.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B9172D710B74005EF3BA /* libacme_windowing_appkit.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0D35A2D70F8D100702321 /* libacme_windowing_appkit.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B9182D710B74005EF3BA /* libacme_windowing_kit.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0D35B2D70F8D100702321 /* libacme_windowing_kit.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B9192D710B74005EF3BA /* libapp_just_acme_message_box.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0D35C2D70F8D100702321 /* libapp_just_acme_message_box.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B91A2D710B74005EF3BA /* libapp_just_message_box.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0D35D2D70F8D100702321 /* libapp_just_message_box.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B91B2D710B74005EF3BA /* libarchive.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0D35E2D70F8D100702321 /* libarchive.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B91C2D710B74005EF3BA /* libdarwin.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0D35F2D70F8D100702321 /* libdarwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B91D2D710B74005EF3BA /* libfolder_zip.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0D3602D70F8D100702321 /* libfolder_zip.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B91E2D710B74005EF3BA /* libidn.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0D3612D70F8D100702321 /* libidn.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B91F2D710B74005EF3BA /* libnano_graphics_quartz2d.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0D3622D70F8D100702321 /* libnano_graphics_quartz2d.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9AD7B9202D710BA8005EF3BA /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA0D3552D70F8D100702321 /* libacme.dylib */; };
+		9AD7B9212D710BBE005EF3BA /* libapp_just_acme_message_box.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA0D35C2D70F8D100702321 /* libapp_just_acme_message_box.dylib */; };
 		9AE5CC8F22CBECAE00EDEAD1 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 9AE5CC8E22CBECAE00EDEAD1 /* en.lproj */; };
 /* End PBXBuildFile section */
 
@@ -24,22 +40,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		9A6A47EF26611186004ED97A /* Embed Libraries */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 6;
-			files = (
-			);
-			name = "Embed Libraries";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9AAF4DB52D6E959400CFF717 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
+				9AD7B9122D710B74005EF3BA /* libacme.dylib in CopyFiles */,
+				9AD7B9132D710B74005EF3BA /* libacme_apple.dylib in CopyFiles */,
+				9AD7B9142D710B74005EF3BA /* libacme_darwin.dylib in CopyFiles */,
+				9AD7B9152D710B74005EF3BA /* libacme_macos.dylib in CopyFiles */,
+				9AD7B9162D710B74005EF3BA /* libacme_posix.dylib in CopyFiles */,
+				9AD7B9172D710B74005EF3BA /* libacme_windowing_appkit.dylib in CopyFiles */,
+				9AD7B9182D710B74005EF3BA /* libacme_windowing_kit.dylib in CopyFiles */,
+				9AD7B9192D710B74005EF3BA /* libapp_just_acme_message_box.dylib in CopyFiles */,
+				9AD7B91A2D710B74005EF3BA /* libapp_just_message_box.dylib in CopyFiles */,
+				9AD7B91B2D710B74005EF3BA /* libarchive.dylib in CopyFiles */,
+				9AD7B91C2D710B74005EF3BA /* libdarwin.dylib in CopyFiles */,
+				9AD7B91D2D710B74005EF3BA /* libfolder_zip.dylib in CopyFiles */,
+				9AD7B91E2D710B74005EF3BA /* libidn.dylib in CopyFiles */,
+				9AD7B91F2D710B74005EF3BA /* libnano_graphics_quartz2d.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +97,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AD7B9202D710BA8005EF3BA /* libacme.dylib in Frameworks */,
+				9AD7B9212D710BBE005EF3BA /* libapp_just_acme_message_box.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,12 +205,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "_app_just_acme_message_box" */;
 			buildPhases = (
-				9A932AE82D6DB671006557FC /* ShellScript */,
 				070B8EE61B6E53F900D26137 /* Sources */,
 				070B8EE71B6E53F900D26137 /* Frameworks */,
 				070B8EE81B6E53F900D26137 /* Resources */,
-				9A6A47EF26611186004ED97A /* Embed Libraries */,
-				9A930CD32D6DAA45006557FC /* ShellScript */,
 				9AAF4DB52D6E959400CFF717 /* CopyFiles */,
 			);
 			buildRules = (
@@ -277,48 +296,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		9A930CD32D6DAA45006557FC /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(EXECUTABLE_FOLDER_PATH)/$(EXECUTABLE_NAME)",
-				"$(WorkspaceDir)/output_copy.txt",
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/$(CONFIGURATION)/$(EXECUTABLE_NAME)",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = ". ${WorkspaceDir}/../operating_system/tool/bin/_on_after_build_executable\n";
-		};
-		9A932AE82D6DB671006557FC /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(PROJECT_DIR)/matter.txt",
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(PROJECT_DIR)/_matter.zip",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = ". ${WorkspaceDir}/../operating_system/tool/bin/_on_before_build_executable\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		070B8EE61B6E53F900D26137 /* Sources */ = {

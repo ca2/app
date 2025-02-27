@@ -5,22 +5,6 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "NO">
-      <BuildActionEntries>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "070B8EE91B6E53F900D26137"
-               BuildableName = "_app_just_acme_message_box.app"
-               BlueprintName = "_app_just_acme_message_box"
-               ReferencedContainer = "container:_app_just_acme_message_box.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-      </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
@@ -47,7 +31,7 @@
             BlueprintIdentifier = "070B8EE91B6E53F900D26137"
             BuildableName = "_app_just_acme_message_box.app"
             BlueprintName = "_app_just_acme_message_box"
-            ReferencedContainer = "container:_app_just_acme_message_box.xcodeproj">
+            ReferencedContainer = "container:app_just_acme_message_box.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>

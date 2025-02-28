@@ -11,6 +11,9 @@
 		9A86606829668701000C82F0 /* application_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86606729668701000C82F0 /* application_main.cpp */; };
 		9A8C5ECE2783E821000C8587 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C5ECA2783E821000C8587 /* Images.xcassets */; };
 		9A8C816F2783F891000C8587 /* _matter.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C816E2783F891000C8587 /* _matter.zip */; };
+		9A9FE0C12D716BD30069DC7E /* libapp_shader.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA0D30B2D70F72600702321 /* libapp_shader.dylib */; };
+		9A9FE0C22D716BD50069DC7E /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA0D2FF2D70F72600702321 /* libacme.dylib */; };
+		9A9FE0C32D716BD80069DC7E /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA0D30F2D70F72600702321 /* libaura.dylib */; };
 		9AA0DE0A2D71037B00702321 /* glad.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0D2FE2D70F72600702321 /* glad.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AA0DE0B2D71037B00702321 /* libacme.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0D2FF2D70F72600702321 /* libacme.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AA0DE0C2D71037B00702321 /* libacme_apple.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AA0D3002D70F72600702321 /* libacme_apple.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -165,6 +168,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A9FE0C12D716BD30069DC7E /* libapp_shader.dylib in Frameworks */,
+				9A9FE0C22D716BD50069DC7E /* libacme.dylib in Frameworks */,
+				9A9FE0C32D716BD80069DC7E /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +182,7 @@
 			children = (
 				9A7D47A42D7031E4003CF973 /* output */,
 				9A8C5BD62783E7A9000C8587 /* __implement */,
+				9A9FE0C02D716BD30069DC7E /* Frameworks */,
 				070B8EEB1B6E53F900D26137 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -265,6 +272,13 @@
 				9A8C5ECC2783E821000C8587 /* Info.plist */,
 			);
 			path = macos;
+			sourceTree = "<group>";
+		};
+		9A9FE0C02D716BD30069DC7E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

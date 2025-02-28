@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		9A86606029668296000C82F0 /* application_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86605F29668296000C82F0 /* application_main.cpp */; };
 		9A8C81712783F8A7000C8587 /* _matter.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9A8C81702783F8A7000C8587 /* _matter.zip */; };
+		9A9FE0C52D716C180069DC7E /* libapp_message_box.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7D38452D701626003CF973 /* libapp_message_box.dylib */; };
+		9A9FE0C62D716C1F0069DC7E /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7D38382D701626003CF973 /* libacme.dylib */; };
+		9A9FE0C72D716C230069DC7E /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7D38482D701626003CF973 /* libaura.dylib */; };
 		9AA0DE332D71038600702321 /* libacme.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A7D38382D701626003CF973 /* libacme.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AA0DE342D71038600702321 /* libacme_apple.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A7D38392D701626003CF973 /* libacme_apple.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AA0DE352D71038600702321 /* libacme_darwin.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A7D383A2D701626003CF973 /* libacme_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -88,7 +91,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		070B8EEA1B6E53F900D26137 /* _app_message_box.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = _app_message_box.app; path = /Users/camilo/code/release/source/app/message_box/__implement/build/Debug/_app_message_box.app; sourceTree = "<absolute>"; };
 		9A273C7229CF172300CBEB97 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		9A273C7429CF172300CBEB97 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = MainMenu.xib; sourceTree = "<group>"; };
 		9A7D38382D701626003CF973 /* libacme.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme.dylib; path = "/Users/camilo/code/release/time-macos/output/libacme.dylib"; sourceTree = "<absolute>"; };
@@ -129,6 +131,7 @@
 		9A8C81772783F8C5000C8587 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A8F4D852A26D5C600097EE1 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "_____release.xcconfig"; path = "../_____release.xcconfig"; sourceTree = "<group>"; };
 		9A8F4DBB2A26D5C700097EE1 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "_____debug.xcconfig"; path = "../_____debug.xcconfig"; sourceTree = "<group>"; };
+		9A9FE0282D7165F60069DC7E /* _app_message_box.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = _app_message_box.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +139,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A9FE0C52D716C180069DC7E /* libapp_message_box.dylib in Frameworks */,
+				9A9FE0C62D716C1F0069DC7E /* libacme.dylib in Frameworks */,
+				9A9FE0C72D716C230069DC7E /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +153,7 @@
 			children = (
 				9AEA8CDD2D6FF22F00DC8A9E /* output */,
 				9AB3DCD32783849D0025099F /* __implement */,
+				9A9FE0C42D716C180069DC7E /* Frameworks */,
 				070B8EEB1B6E53F900D26137 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -154,6 +161,7 @@
 		070B8EEB1B6E53F900D26137 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				9A9FE0282D7165F60069DC7E /* _app_message_box.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -175,6 +183,13 @@
 				9A8C81772783F8C5000C8587 /* Info.plist */,
 			);
 			path = macos;
+			sourceTree = "<group>";
+		};
+		9A9FE0C42D716C180069DC7E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		9AB3DCD32783849D0025099F /* __implement */ = {
@@ -246,7 +261,7 @@
 			);
 			name = _app_message_box;
 			productName = "Hello Multiverse!!";
-			productReference = 070B8EEA1B6E53F900D26137 /* _app_message_box.app */;
+			productReference = 9A9FE0282D7165F60069DC7E /* _app_message_box.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

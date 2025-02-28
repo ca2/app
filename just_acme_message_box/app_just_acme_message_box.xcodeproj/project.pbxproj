@@ -46,27 +46,6 @@
 			remoteGlobalIDString = 9A5243E82CD5BBE2006ED868;
 			remoteInfo = app_just_message_box;
 		};
-		9AA828B52CAF867C00DA11E9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AA828AD2CAF867C00DA11E9 /* acme.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A68A41425114352008DABD2;
-			remoteInfo = acme;
-		};
-		9AA828B72CAF867C00DA11E9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AA828AD2CAF867C00DA11E9 /* acme.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AC1067D2B6AC9BD0053DB45;
-			remoteInfo = ios_acme;
-		};
-		9AA828B92CAF867C00DA11E9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AA828AD2CAF867C00DA11E9 /* acme.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AD692B6251A753A00C0EBD7;
-			remoteInfo = static_acme;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -86,7 +65,6 @@
 		9A8FCBA42651A84F00C0D8A1 /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		9A8FCBA62651A84F00C0D8A1 /* application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
 		9A8FCC162651A85000C0D8A1 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		9AA828AD2CAF867C00DA11E9 /* acme.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = acme.xcodeproj; path = /Users/camilo/workspace/main/source/app/acme/acme.xcodeproj; sourceTree = "<absolute>"; };
 		9AC3970325195DFA0036B92A /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC3970525195DFA0036B92A /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -111,7 +89,6 @@
 				9A8FCADA2651A84D00C0D8A1 /* message_box */,
 				9A48898724EB48DE00119EC4 /* Products */,
 				9A488A5124EB4BAF00119EC4 /* Frameworks */,
-				9AA828AD2CAF867C00DA11E9 /* acme.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -162,16 +139,6 @@
 			name = message_box;
 			sourceTree = "<group>";
 		};
-		9AA828AE2CAF867C00DA11E9 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9AA828B62CAF867C00DA11E9 /* libacme.dylib */,
-				9AA828B82CAF867C00DA11E9 /* libios_acme.a */,
-				9AA828BA2CAF867C00DA11E9 /* libstatic_acme.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -216,6 +183,7 @@
 				9A48898224EB48DE00119EC4 /* Headers */,
 				9A48898324EB48DE00119EC4 /* Sources */,
 				9A48898424EB48DE00119EC4 /* Frameworks */,
+				9A9332112D6DC0EE006557FC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -255,10 +223,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9AA828AE2CAF867C00DA11E9 /* Products */;
-					ProjectRef = 9AA828AD2CAF867C00DA11E9 /* acme.xcodeproj */;
-				},
-				{
 					ProductGroup = 9A5243AC2CD524F8006ED868 /* Products */;
 					ProjectRef = 9A5243A32CD524F7006ED868 /* app_just_message_box.xcodeproj */;
 				},
@@ -286,28 +250,30 @@
 			remoteRef = 9A5244142CD5BDE7006ED868 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9AA828B62CAF867C00DA11E9 /* libacme.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libacme.dylib;
-			remoteRef = 9AA828B52CAF867C00DA11E9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9AA828B82CAF867C00DA11E9 /* libios_acme.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libios_acme.a;
-			remoteRef = 9AA828B72CAF867C00DA11E9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9AA828BA2CAF867C00DA11E9 /* libstatic_acme.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libstatic_acme.a;
-			remoteRef = 9AA828B92CAF867C00DA11E9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9A9332112D6DC0EE006557FC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(EXECUTABLE_NAME)",
+				"$(WorkspaceDir)/output_copy.txt",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/output/$(EXECUTABLE_NAME)",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ". ${WorkspaceDir}/../operating_system/tool/bin/_on_after_build_dylib\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9A47531A2CF515CA00ED30AE /* Sources */ = {

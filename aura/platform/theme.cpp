@@ -238,7 +238,7 @@ namespace aura
       if (strState.is_empty())
       {
 
-         return "";
+         return "lite";
 
       }
 
@@ -451,7 +451,7 @@ namespace aura
          if (strAmbientState.is_empty())
          {
 
-            strAmbientState = ".day.clear";
+            strAmbientState = "lite";
 
          }
 

@@ -48,8 +48,6 @@
 		9AE5CC8F22CBECAE00EDEAD1 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 9AE5CC8E22CBECAE00EDEAD1 /* en.lproj */; };
 		9AE7A1E22D1CC51900070257 /* libacme_windowing_appkit.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AE7A1E02D1CC51900070257 /* libacme_windowing_appkit.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AE7A1E52D1CC52B00070257 /* libacme_windowing_kit.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AE7A1E32D1CC52B00070257 /* libacme_windowing_kit.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		9AE7A1E72D1CC53400070257 /* libapp_simple_nanoui_example.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE7A1E62D1CC53400070257 /* libapp_simple_nanoui_example.dylib */; };
-		9AE7A1E82D1CC53400070257 /* libapp_simple_nanoui_example.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AE7A1E62D1CC53400070257 /* libapp_simple_nanoui_example.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AE7A1EB2D1CC54200070257 /* libinnate_ui_appkit.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AE7A1E92D1CC54200070257 /* libinnate_ui_appkit.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AE7A1EE2D1CC56600070257 /* libnano_graphics_quartz2d.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AE7A1EC2D1CC56600070257 /* libnano_graphics_quartz2d.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AEC3EA82D1A9F5900F9E621 /* liboperating_ambient_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AEC3EA62D1A9F5900F9E621 /* liboperating_ambient_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -191,6 +189,13 @@
 			remoteGlobalIDString = 07E25F501B4FFC2100752DE1;
 			remoteInfo = ios_draw2d_quartz2d;
 		};
+		9AE241EE2D6DC70000502593 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A1CC6C92CF32055004A00CB /* operating_ambient_macos.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A1CC36B2CF2BE37004A00CB;
+			remoteInfo = operating_ambient_macos;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -225,7 +230,6 @@
 				9AA3F9952A95608D004283CA /* libapex_darwin.dylib in Embed Libraries */,
 				9AE7A1EE2D1CC56600070257 /* libnano_graphics_quartz2d.dylib in Embed Libraries */,
 				9A83B5222807E6E200A1A2B6 /* libapex_macos.dylib in Embed Libraries */,
-				9AE7A1E82D1CC53400070257 /* libapp_simple_nanoui_example.dylib in Embed Libraries */,
 				9A83B51C2807E6E100A1A2B6 /* libacme_macos.dylib in Embed Libraries */,
 				9A83B52A2807E6E200A1A2B6 /* libaura_posix.dylib in Embed Libraries */,
 				9A6A480526611203004ED97A /* libwindowing_macos.dylib in Embed Libraries */,
@@ -310,7 +314,6 @@
 				9AEC3EF42D1AA52F00F9E621 /* libapp_just_message_box.dylib in Frameworks */,
 				9A46D35E267859BC000B22D0 /* libacme.dylib in Frameworks */,
 				9A1CC6C42CF31C6D004A00CB /* libapp_just_aura_message_box.dylib in Frameworks */,
-				9AE7A1E72D1CC53400070257 /* libapp_simple_nanoui_example.dylib in Frameworks */,
 				9A46D35F267859BC000B22D0 /* libapex.dylib in Frameworks */,
 				9A22742627CF37E40042BAC2 /* libaqua.dylib in Frameworks */,
 				9A22742927CF38210042BAC2 /* libidn.dylib in Frameworks */,
@@ -502,6 +505,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "_app_just_aura_message_box" */;
 			buildPhases = (
+				9A932AEB2D6DB6D2006557FC /* ShellScript */,
 				070B8EE61B6E53F900D26137 /* Sources */,
 				070B8EE71B6E53F900D26137 /* Frameworks */,
 				070B8EE81B6E53F900D26137 /* Resources */,
@@ -511,6 +515,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9AE241EF2D6DC70000502593 /* PBXTargetDependency */,
 				9A1CC4872CF31421004A00CB /* PBXTargetDependency */,
 				9A866051296671ED000C82F0 /* PBXTargetDependency */,
 				9A1FB52928713B3B0042849A /* PBXTargetDependency */,
@@ -731,6 +736,7 @@
 			);
 			inputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(EXECUTABLE_FOLDER_PATH)/$(EXECUTABLE_NAME)",
+				"$(WorkspaceDir)/output_copy.txt",
 			);
 			outputFileListPaths = (
 			);
@@ -740,6 +746,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = ". ${WorkspaceDir}/../operating_system/tool/bin/_on_after_build_executable\n";
+		};
+		9A932AEB2D6DB6D2006557FC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(PROJECT_DIR)/matter.txt",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(PROJECT_DIR)/_matter.zip",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ". ${WorkspaceDir}/../operating_system/tool/bin/_on_before_build_executable\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -791,6 +816,11 @@
 			isa = PBXTargetDependency;
 			name = folder_zip;
 			targetProxy = 9A866050296671ED000C82F0 /* PBXContainerItemProxy */;
+		};
+		9AE241EF2D6DC70000502593 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = operating_ambient_macos;
+			targetProxy = 9AE241EE2D6DC70000502593 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

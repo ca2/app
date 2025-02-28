@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "070B8EE91B6E53F900D26137"
-               BuildableName = "_app_app.app"
-               BlueprintName = "_app_app"
-               ReferencedContainer = "container:_app_app.xcodeproj">
+               BuildableName = "_app_just_aura_message_box.app"
+               BlueprintName = "_app_just_aura_message_box"
+               ReferencedContainer = "container:app_just_aura_message_box.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -31,7 +31,7 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -45,20 +45,11 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "070B8EE91B6E53F900D26137"
-            BuildableName = "_app_app.app"
-            BlueprintName = "_app_app"
-            ReferencedContainer = "container:app_app.xcodeproj">
+            BuildableName = "_app_just_aura_message_box.app"
+            BlueprintName = "_app_just_aura_message_box"
+            ReferencedContainer = "container:app_just_aura_message_box.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "070B8EE91B6E53F900D26137"
-            BuildableName = "_app_app.app"
-            BlueprintName = "_app_app"
-            ReferencedContainer = "container:_app_app.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -66,25 +57,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "070B8EE91B6E53F900D26137"
-            BuildableName = "_app_app.app"
-            BlueprintName = "_app_app"
-            ReferencedContainer = "container:_app_app.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "070B8EE91B6E53F900D26137"
-            BuildableName = "_app_app.app"
-            BlueprintName = "_app_app"
-            ReferencedContainer = "container:_app_app.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

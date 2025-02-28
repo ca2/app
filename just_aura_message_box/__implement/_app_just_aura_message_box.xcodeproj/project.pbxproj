@@ -50,7 +50,6 @@
 		9AE7A1E52D1CC52B00070257 /* libacme_windowing_kit.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AE7A1E32D1CC52B00070257 /* libacme_windowing_kit.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AE7A1EB2D1CC54200070257 /* libinnate_ui_appkit.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AE7A1E92D1CC54200070257 /* libinnate_ui_appkit.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AE7A1EE2D1CC56600070257 /* libnano_graphics_quartz2d.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AE7A1EC2D1CC56600070257 /* libnano_graphics_quartz2d.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		9AEC3EA82D1A9F5900F9E621 /* liboperating_ambient_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AEC3EA62D1A9F5900F9E621 /* liboperating_ambient_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AEC3EAB2D1A9F6300F9E621 /* libnode_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AEC3EA92D1A9F6300F9E621 /* libnode_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AEC3EF42D1AA52F00F9E621 /* libapp_just_message_box.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEC3EF32D1AA52F00F9E621 /* libapp_just_message_box.dylib */; };
 /* End PBXBuildFile section */
@@ -237,7 +236,6 @@
 				9A83B50F2807E68C00A1A2B6 /* libaura.dylib in Embed Libraries */,
 				9A1CC6C52CF31C6D004A00CB /* libapp_just_aura_message_box.dylib in Embed Libraries */,
 				9AE7A1E22D1CC51900070257 /* libacme_windowing_appkit.dylib in Embed Libraries */,
-				9AEC3EA82D1A9F5900F9E621 /* liboperating_ambient_macos.dylib in Embed Libraries */,
 				9AA3F9932A95608D004283CA /* libacme_darwin.dylib in Embed Libraries */,
 			);
 			name = "Embed Libraries";

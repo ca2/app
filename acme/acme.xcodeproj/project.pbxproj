@@ -12445,6 +12445,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9A68A41D25114352008DABD2 /* Build configuration list for PBXNativeTarget "acme" */;
 			buildPhases = (
+				9AA012D32D7181C500A28EED /* ShellScript */,
 				9A68A41025114352008DABD2 /* Headers */,
 				9A52406E2CD47411006ED868 /* Sources */,
 				9A68A41225114352008DABD2 /* Frameworks */,
@@ -12607,6 +12608,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = ". ${WorkspaceDir}/../operating_system/tool/bin/_on_after_build_dylib\n";
+		};
+		9AA012D32D7181C500A28EED /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "exit 0\n\nprepare_project()\n{\n\n   cd ${WorkspaceDir}\n   \n   ${HOME}/code/operating_system/tool/bin/application_build_helper --prepare-project app/acme\n\n}\n\nprepare_project\n\n\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

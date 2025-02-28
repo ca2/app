@@ -10,7 +10,6 @@
 		9A22742127CF35F40042BAC2 /* application_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A22742027CF35F40042BAC2 /* application_main.cpp */; };
 		9A5244502CDADAAD006ED868 /* _matter.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9A52444F2CDADAAD006ED868 /* _matter.zip */; };
 		9A5D09A52B7F9A90003239D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A5D099B2B7F9A90003239D4 /* Images.xcassets */; };
-		9AE5CC8F22CBECAE00EDEAD1 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 9AE5CC8E22CBECAE00EDEAD1 /* en.lproj */; };
 		9AEA8B042D6FD97000DC8A9E /* libacme.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AEA8AEF2D6FD94800DC8A9E /* libacme.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AEA8B052D6FD97000DC8A9E /* libacme_apple.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AEA8AF02D6FD94800DC8A9E /* libacme_apple.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AEA8B062D6FD97000DC8A9E /* libacme_darwin.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AEA8AF12D6FD94800DC8A9E /* libacme_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -80,22 +79,13 @@
 
 /* Begin PBXFileReference section */
 		070B8EEA1B6E53F900D26137 /* _app_just_apex_message_box.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = _app_just_apex_message_box.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		070B8EFD1B6E53FA00D26137 /* Hello Multiverse!!Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Hello Multiverse!!Tests.xctest"; path = "/Users/camilo/code/release/source/app/just_apex_message_box/__implement/build/Debug/Hello Multiverse!!.app_message_box/Contents/PlugIns/Hello Multiverse!!Tests.xctest"; sourceTree = "<absolute>"; };
 		9A22742027CF35F40042BAC2 /* application_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application_main.cpp; sourceTree = SOURCE_ROOT; };
-		9A39BAE424EB25CA003C070E /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = ../../time/macos/libssl.dylib; sourceTree = "<group>"; };
-		9A39BAE524EB25CA003C070E /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = ../../time/macos/libcrypto.dylib; sourceTree = "<group>"; };
-		9A39BAE924EB25CA003C070E /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = ../../time/macos/libaura.dylib; sourceTree = "<group>"; };
-		9A39BB1724EB2D04003C070E /* libapp_app.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapp_app.dylib; path = ../../time/macos/libapp_app.dylib; sourceTree = "<group>"; };
 		9A52444F2CDADAAD006ED868 /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = _matter.zip; path = ../_matter.zip; sourceTree = SOURCE_ROOT; };
 		9A5D099B2B7F9A90003239D4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9A5D099D2B7F9A90003239D4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A5D09A82B7F9ACC003239D4 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "_____release.xcconfig"; path = "../_____release.xcconfig"; sourceTree = "<group>"; };
 		9A5D09A92B7F9ACC003239D4 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "_____debug.xcconfig"; path = "../_____debug.xcconfig"; sourceTree = "<group>"; };
-		9AC396F925195DAB0036B92A /* libapex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapex.dylib; path = ../../time/macos/libapex.dylib; sourceTree = "<group>"; };
-		9AC396FA25195DAB0036B92A /* libacme.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme.dylib; path = ../../time/macos/libacme.dylib; sourceTree = "<group>"; };
-		9AC3971125195E580036B92A /* libacme.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme.dylib; path = ../../time/build/product/Debug/libacme.dylib; sourceTree = "<group>"; };
-		9AC3971225195E580036B92A /* libapex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapex.dylib; path = ../../time/build/product/Debug/libapex.dylib; sourceTree = "<group>"; };
-		9AE5CC8E22CBECAE00EDEAD1 /* en.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = en.lproj; sourceTree = "<group>"; };
+		9A9FD1EC2D714FB20069DC7E /* Hello Multiverse!!Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hello Multiverse!!Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEA8AEF2D6FD94800DC8A9E /* libacme.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme.dylib; path = "/Users/camilo/code/release/time-macos/output/libacme.dylib"; sourceTree = "<absolute>"; };
 		9AEA8AF02D6FD94800DC8A9E /* libacme_apple.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme_apple.dylib; path = "/Users/camilo/code/release/time-macos/output/libacme_apple.dylib"; sourceTree = "<absolute>"; };
 		9AEA8AF12D6FD94800DC8A9E /* libacme_darwin.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libacme_darwin.dylib; path = "/Users/camilo/code/release/time-macos/output/libacme_darwin.dylib"; sourceTree = "<absolute>"; };
@@ -145,8 +135,6 @@
 				9A591DF32D6FBAF300AB9903 /* output */,
 				9A8FCA842651A7FE00C0D8A1 /* __implement */,
 				070B8EEB1B6E53F900D26137 /* Products */,
-				9A3E0BA12309FBD400B5459B /* Library */,
-				9AE5CC8A22CBEBF400EDEAD1 /* Supporting Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -154,23 +142,9 @@
 			isa = PBXGroup;
 			children = (
 				070B8EEA1B6E53F900D26137 /* _app_just_apex_message_box.app */,
+				9A9FD1EC2D714FB20069DC7E /* Hello Multiverse!!Tests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		9A3E0BA12309FBD400B5459B /* Library */ = {
-			isa = PBXGroup;
-			children = (
-				9AC396FA25195DAB0036B92A /* libacme.dylib */,
-				9AC396F925195DAB0036B92A /* libapex.dylib */,
-				9AC3971125195E580036B92A /* libacme.dylib */,
-				9AC3971225195E580036B92A /* libapex.dylib */,
-				9A39BB1724EB2D04003C070E /* libapp_app.dylib */,
-				9A39BAE924EB25CA003C070E /* libaura.dylib */,
-				9A39BAE524EB25CA003C070E /* libcrypto.dylib */,
-				9A39BAE424EB25CA003C070E /* libssl.dylib */,
-			);
-			name = Library;
 			sourceTree = "<group>";
 		};
 		9A591DF32D6FBAF300AB9903 /* output */ = {
@@ -221,14 +195,6 @@
 			name = __implement;
 			sourceTree = "<group>";
 		};
-		9AE5CC8A22CBEBF400EDEAD1 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				9AE5CC8E22CBECAE00EDEAD1 /* en.lproj */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -265,7 +231,7 @@
 			);
 			name = "Hello Multiverse!!Tests";
 			productName = "Hello Multiverse!!Tests";
-			productReference = 070B8EFD1B6E53FA00D26137 /* Hello Multiverse!!Tests.xctest */;
+			productReference = 9A9FD1EC2D714FB20069DC7E /* Hello Multiverse!!Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -315,7 +281,6 @@
 			files = (
 				9A5244502CDADAAD006ED868 /* _matter.zip in Resources */,
 				9A5D09A52B7F9A90003239D4 /* Images.xcassets in Resources */,
-				9AE5CC8F22CBECAE00EDEAD1 /* en.lproj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

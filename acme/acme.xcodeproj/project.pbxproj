@@ -12625,7 +12625,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "exit 0\n\nprepare_project()\n{\n\n   cd ${WorkspaceDir}\n   \n   ${HOME}/code/operating_system/tool/bin/application_build_helper --prepare-project app/acme\n\n}\n\nprepare_project\n\n\n\n";
+			shellScript = "#exit 0\n\nprepare_project()\n{\n\n   cd ${WorkspaceDir}\n   \n   ${HOME}/code/operating_system/tool/bin/application_build_helper --prepare-project app/acme\n\n}\n\nprepare_project\n\n\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

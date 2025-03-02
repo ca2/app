@@ -14254,321 +14254,333 @@ if(get_parent())
 
       }
 
-      //m_puserinteraction->message_handler(pmessage);
-
-      bool bKeyMessage = false;
-
-      ::message::key * pkey = nullptr;
-
-      //if (::is_null(m_puserinteraction))
-      //{
-
-      //   return;
-
-      //}
-
-      //printf_line("interaction::message_handler pmessage->m_emessage %lld", pmessage->m_emessage.as_long_long());
-
-      if (pre_message_handler(pkey, bKeyMessage, pmessage))
+      if (is_top_level())
       {
 
-         information() << "returning on pre_message_handler";
-
-         return;
+         window()->message_handler(pmessage);
 
       }
-
-      if (pmessage->m_emessage == e_message_timer)
+      else
       {
 
-         //m_pthread->step_timer();
+         //m_puserinteraction->message_handler(pmessage);
 
-      }
-      else if (pmessage->m_emessage == e_message_left_button_down)
-      {
+         bool bKeyMessage = false;
 
-         informationf("linux::interaction_impl::e_message_left_button_down");
+         ::message::key * pkey = nullptr;
 
-      }
-      else if (pmessage->m_emessage == e_message_left_button_up)
-      {
+         //if (::is_null(m_puserinteraction))
+         //{
 
-         informationf("linux::interaction_impl::e_message_left_button_up");
+         //   return;
 
-      }
-      else if (pmessage->m_emessage == e_message_mouse_move)
-      {
+         //}
 
-         //g_iMouseMove++;
+         //printf_line("interaction::message_handler pmessage->m_emessage %lld", pmessage->m_emessage.as_long_long());
 
-         //informationf("interaction_impl::message_handler e_message_mouse_move");
-         //printf("g_iMouseMove = %d\n", g_iMouseMove);
-
-      }
-      else if (pmessage->m_emessage == e_message_paint)
-      {
-
-      }
-      else if (pmessage->m_emessage == e_message_left_button_up)
-      {
-
-         informationf("e_message_left_button_up (0)");
-
-      }
-
-      //      if(::is_set(m_puserinteraction))
-      //      {
-      //
-      //         m_puserinteraction->pre_translate_message(pmessage);
-      //
-      //      }
-
-      //      if(tickDebugmessage_handlerTime.timeout(1))
-      //      {
-      //
-      //         iDebugmessage_handlerTime = 0;
-      //
-      //      }
-      //      else
-      //      {
-      //
-      //         if(iDebugmessage_handlerTime > 20)
-      //         {
-      //
-      //            informationf("interaction_impl::message handler flooded?\n");
-      //
-      //         }
-      //         else
-      //         {
-      //
-      //            iDebugmessage_handlerTime++;
-      //
-      //         }
-      //
-      //      }
-
-      //if (m_puserinteraction != nullptr)
-      {
-
-         if (layout().is_moving())
-         {
-            //informationf("moving: skip pre translate message");
-         }
-         else if (layout().is_sizing())
-         {
-            //informationf("sizing: skip pre translate message");
-         }
-         else
+         if (pre_message_handler(pkey, bKeyMessage, pmessage))
          {
 
-            //m_puserinteraction->pre_translate_message(pmessage);
-
-            //if (pmessage->m_bRet)
-            //{
-
-            // return;
-
-            //}
-
-            //pmessage->m_uiMessageFlags |= 1;
-
-         }
-
-      }
-
-
-
-      //      if(bKeyMessage)
-      //      {
-      //
-      //         
-      //
-      //         auto puser = user();
-      //
-      //         auto pwindowing = system()->windowing();
-      //
-      //         ::pointer<::message::key>pkey = pmessage;
-      //
-      //         //pwindowing->set(pkey, get_oswindow(), m_pwindow, pkey->m_emessage, pkey->m_wparam, pkey->m_lparam);
-      //
-      ////         if(pmessage->m_emessage == e_message_key_down)
-      ////         {
-      ////
-      ////            try
-      ////            {
-      ////
-      ////               psession->set_key_pressed(pkey->m_ekey, true);
-      ////
-      ////            }
-      ////            catch(...)
-      ////            {
-      ////
-      ////            }
-      ////
-      ////         }
-      ////         else if(pmessage->m_emessage == e_message_key_up)
-      ////         {
-      ////
-      ////            try
-      ////            {
-      ////
-      ////               psession->set_key_pressed(pkey->m_ekey, false);
-      ////
-      ////            }
-      ////            catch(...)
-      ////            {
-      ////
-      ////            }
-      ////
-      ////         }
-      //
-      //      }
-
-      pmessage->m_lresult = 0;
-
-      //if (pmessage->m_emessage == e_message_mouse_leave)
-      //{
-
-      //   _000OnMouseLeave(pmessage);
-
-      //   return;
-
-      //}
-
-      if (pmessage->m_emessage == e_message_left_button_down ||
-          pmessage->m_emessage == e_message_left_button_up ||
-          pmessage->m_emessage == e_message_middle_button_down ||
-          pmessage->m_emessage == e_message_middle_button_up ||
-          pmessage->m_emessage == e_message_right_button_down ||
-          pmessage->m_emessage == e_message_right_button_up ||
-          pmessage->m_emessage == e_message_left_button_double_click ||
-          pmessage->m_emessage == e_message_mouse_move ||
-          pmessage->m_emessage == e_message_mouse_wheel)
-      {
-
-         ::pointer<::message::mouse> pmouse = pmessage;
-
-         //information() << "msghdl pwnd : " << (::iptr) pmouse->m_pwindow.m_p;
-
-         on_mouse_message(pmouse);
-
-         return;
-
-      }
-      /*      else if(pmessage->m_emessage == e_message_key_down ||
-                    pmessage->m_emessage == e_message_key_up ||
-                    pmessage->m_emessage == e_message_char)*/
-      else if (bKeyMessage)
-      {
-
-         if (::is_set(pkey))
-         {
-
-            information() << "key message";
-
-            ::pointer<::user::interaction> puiKeyboardFocus = window()->m_pacmeuserinteractionKeyboardFocus;
-
-            if (puiKeyboardFocus)
-            {
-
-               information() << "key message control with keyboard focus : " << ::string(::type(puiKeyboardFocus.m_p));
-
-               puiKeyboardFocus->route_message(pkey);
-
-            }
-            else
-            {
-
-               route_message(pkey);
-
-            }
-
-         }
-
-         if (pmessage->m_bRet)
-         {
+            information() << "returning on pre_message_handler";
 
             return;
 
          }
 
-         on_default_window_procedure(pmessage);
+         if (pmessage->m_emessage == e_message_timer)
+         {
 
-         return;
+            //m_pthread->step_timer();
 
-      }
+         }
+         else if (pmessage->m_emessage == e_message_left_button_down)
+         {
 
-      if (pmessage->m_emessage == e_message_subject)
-      {
+            informationf("linux::interaction_impl::e_message_left_button_down");
+
+         }
+         else if (pmessage->m_emessage == e_message_left_button_up)
+         {
+
+            informationf("linux::interaction_impl::e_message_left_button_up");
+
+         }
+         else if (pmessage->m_emessage == e_message_mouse_move)
+         {
+
+            //g_iMouseMove++;
+
+            //informationf("interaction_impl::message_handler e_message_mouse_move");
+            //printf("g_iMouseMove = %d\n", g_iMouseMove);
+
+         }
+         else if (pmessage->m_emessage == e_message_paint)
+         {
+
+         }
+         else if (pmessage->m_emessage == e_message_left_button_up)
+         {
+
+            informationf("e_message_left_button_up (0)");
+
+         }
+
+         //      if(::is_set(m_puserinteraction))
+         //      {
+         //
+         //         m_puserinteraction->pre_translate_message(pmessage);
+         //
+         //      }
+
+         //      if(tickDebugmessage_handlerTime.timeout(1))
+         //      {
+         //
+         //         iDebugmessage_handlerTime = 0;
+         //
+         //      }
+         //      else
+         //      {
+         //
+         //         if(iDebugmessage_handlerTime > 20)
+         //         {
+         //
+         //            informationf("interaction_impl::message handler flooded?\n");
+         //
+         //         }
+         //         else
+         //         {
+         //
+         //            iDebugmessage_handlerTime++;
+         //
+         //         }
+         //
+         //      }
 
          //if (m_puserinteraction != nullptr)
          {
 
-            handle((::topic *)pmessage->m_lparam.m_lparam, nullptr);
+            if (layout().is_moving())
+            {
+               //informationf("moving: skip pre translate message");
+            }
+            else if (layout().is_sizing())
+            {
+               //informationf("sizing: skip pre translate message");
+            }
+            else
+            {
+
+               //m_puserinteraction->pre_translate_message(pmessage);
+
+               //if (pmessage->m_bRet)
+               //{
+
+               // return;
+
+               //}
+
+               //pmessage->m_uiMessageFlags |= 1;
+
+            }
 
          }
-         //         else
-         //         {
+
+
+
+         //      if(bKeyMessage)
+         //      {
          //
-         //            on_control_event((::user::control_event *) pmessage->m_lparam.m_lparam);
+         //         
          //
-         //         }
+         //         auto puser = user();
+         //
+         //         auto pwindowing = system()->windowing();
+         //
+         //         ::pointer<::message::key>pkey = pmessage;
+         //
+         //         //pwindowing->set(pkey, get_oswindow(), m_pwindow, pkey->m_emessage, pkey->m_wparam, pkey->m_lparam);
+         //
+         ////         if(pmessage->m_emessage == e_message_key_down)
+         ////         {
+         ////
+         ////            try
+         ////            {
+         ////
+         ////               psession->set_key_pressed(pkey->m_ekey, true);
+         ////
+         ////            }
+         ////            catch(...)
+         ////            {
+         ////
+         ////            }
+         ////
+         ////         }
+         ////         else if(pmessage->m_emessage == e_message_key_up)
+         ////         {
+         ////
+         ////            try
+         ////            {
+         ////
+         ////               psession->set_key_pressed(pkey->m_ekey, false);
+         ////
+         ////            }
+         ////            catch(...)
+         ////            {
+         ////
+         ////            }
+         ////
+         ////         }
+         //
+         //      }
 
-         return;
+         pmessage->m_lresult = 0;
 
-      }
-
-      //if (::is_set())
-      {
-
-         route_message(pmessage);
-
-      }
-      //else
-      //{
-
-      //   route_message(pmessage);
-
-      //}
-
-      if (!pmessage->m_bRet)
-      {
-
-         on_default_window_procedure(pmessage);
-
-      }
-
-      if (pmessage->m_emessage == e_message_create)
-      {
-
-         //if (m_puserinteraction->m_procedureOnAfterCreate)
+         //if (pmessage->m_emessage == e_message_mouse_leave)
          //{
 
-         //   m_puserinteraction->post_message(e_message_after_create);
+         //   _000OnMouseLeave(pmessage);
+
+         //   return;
 
          //}
 
-//         if(has_screen_output_purpose())
-//         {
-//
-//            m_puserinteraction->set_need_layout();
-//
-//            m_puserinteraction->set_need_redraw();
-//
-//            m_puserinteraction->post_redraw();
-//
-//         }
+         if (pmessage->m_emessage == e_message_left_button_down ||
+             pmessage->m_emessage == e_message_left_button_up ||
+             pmessage->m_emessage == e_message_middle_button_down ||
+             pmessage->m_emessage == e_message_middle_button_up ||
+             pmessage->m_emessage == e_message_right_button_down ||
+             pmessage->m_emessage == e_message_right_button_up ||
+             pmessage->m_emessage == e_message_left_button_double_click ||
+             pmessage->m_emessage == e_message_mouse_move ||
+             pmessage->m_emessage == e_message_mouse_wheel)
+         {
 
-         //if(m_puserinteraction->m_setneedredrawa.has_element())
+            ::pointer<::message::mouse> pmouse = pmessage;
+
+            //information() << "msghdl pwnd : " << (::iptr) pmouse->m_pwindow.m_p;
+
+            on_mouse_message(pmouse);
+
+            return;
+
+         }
+         /*      else if(pmessage->m_emessage == e_message_key_down ||
+                       pmessage->m_emessage == e_message_key_up ||
+                       pmessage->m_emessage == e_message_char)*/
+         else if (bKeyMessage)
+         {
+
+            if (::is_set(pkey))
+            {
+
+               information() << "key message";
+
+               ::pointer<::user::interaction> puiKeyboardFocus = window()->m_pacmeuserinteractionKeyboardFocus;
+
+               if (puiKeyboardFocus)
+               {
+
+                  information() << "key message control with keyboard focus : " << ::string(::type(puiKeyboardFocus.m_p));
+
+                  puiKeyboardFocus->route_message(pkey);
+
+               }
+               else
+               {
+
+                  route_message(pkey);
+
+               }
+
+            }
+
+            if (pmessage->m_bRet)
+            {
+
+               return;
+
+            }
+
+            on_default_window_procedure(pmessage);
+
+            return;
+
+         }
+
+         if (pmessage->m_emessage == e_message_subject)
+         {
+
+            //if (m_puserinteraction != nullptr)
+            {
+
+               handle((::topic *)pmessage->m_lparam.m_lparam, nullptr);
+
+            }
+            //         else
+            //         {
+            //
+            //            on_control_event((::user::control_event *) pmessage->m_lparam.m_lparam);
+            //
+            //         }
+
+            return;
+
+         }
+
+         //if (::is_set())
+         {
+
+            route_message(pmessage);
+
+         }
+         //else
          //{
 
-         //   m_puserinteraction->post_redraw();
+         //   route_message(pmessage);
 
          //}
+
+         if (!pmessage->m_bRet)
+         {
+
+            on_default_window_procedure(pmessage);
+
+         }
+
+         if (pmessage->m_emessage == e_message_create)
+         {
+
+            //if (m_puserinteraction->m_procedureOnAfterCreate)
+            //{
+
+            //   m_puserinteraction->post_message(e_message_after_create);
+
+            //}
+
+   //         if(has_screen_output_purpose())
+   //         {
+   //
+   //            m_puserinteraction->set_need_layout();
+   //
+   //            m_puserinteraction->set_need_redraw();
+   //
+   //            m_puserinteraction->post_redraw();
+   //
+   //         }
+
+            //if(m_puserinteraction->m_setneedredrawa.has_element())
+            //{
+
+            //   m_puserinteraction->post_redraw();
+
+            //}
+
+         }
 
       }
 
    }
+
 
    void interaction::on_default_window_procedure(::message::message * pmessage)
    {

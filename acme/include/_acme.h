@@ -14,6 +14,11 @@
 #pragma once
 
 
+#if defined(_MSC_VER) && !defined(__llvm__) && !defined(__INTEL_COMPILER)
+#define MS_COMPILER _MSC_VER
+#endif
+
+
 #ifdef UNIVERSAL_WINDOWS
 #define INLINE_CLASS_DECL_ACME CLASS_DECL_ACME
 #else

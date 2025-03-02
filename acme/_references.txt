@@ -1,1 +1,3 @@
+third/archive
+third/idn
 third/zlib

@@ -1,4 +1,0 @@
-default_draw2d
-default_operating_ambient
-default_windowing
-default_write_text

@@ -53,6 +53,26 @@ public:
    }
 
 
+   void rotate(double dAngle)
+   {
+
+      point_array_base < NUMBER >::rotate(dAngle);
+      m_bDirtyBoundingRect = true;
+
+   }
+
+
+   void rotate(double dAngle, ::point_type < UNIT_TYPE > pointCenter)
+   {
+
+      point_array_base < NUMBER >::rotate(dAngle, pointCenter);
+      m_bDirty = true;
+      m_bDirtyBoundingRect = true;
+
+   }
+
+
+
    void check_dirty()
    {
 
@@ -92,6 +112,7 @@ public:
 
    polygon_type& operator = (const polygon_type& int_polygon);
    polygon_type& operator = (polygon_type&& int_polygon);
+
 
 
 

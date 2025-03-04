@@ -845,6 +845,16 @@ namespace windowing
    
    wstring windowing::_windows_get_user_interaction_window_class(::user::interaction* pinteraction)
    {
+
+      ::string strClassName = pinteraction->payload("class_name").as_string();
+
+      if(strClassName.has_character())
+      {
+
+         return strClassName;
+
+
+      }
    
       return "windows_interaction_impl";
 

@@ -1111,23 +1111,6 @@ namespace user
 
       ::pointer<::message::create>pcreate(pmessage);
 
-#if !defined(UNIVERSAL_WINDOWS)
-
-      //auto estatus =
-
-      initialize_text_composition_client(this, this);
-
-      //if (!estatus)
-      //{
-
-      //   pcreate->failed("plain_edit::initialize_text_composition_client failed.");
-
-      //   return;
-
-      //}
-
-#endif
-
       auto pwindowing = windowing();
 
       auto pcursor = pwindowing->get_cursor(e_cursor_text_select);
@@ -1172,6 +1155,24 @@ namespace user
             });
 
       }
+
+
+#if !defined(UNIVERSAL_WINDOWS)
+
+      //auto estatus =
+
+      initialize_text_composition_client(this, this);
+
+      //if (!estatus)
+      //{
+
+      //   pcreate->failed("plain_edit::initialize_text_composition_client failed.");
+
+      //   return;
+
+      //}
+
+#endif
 
       //m_linkedpropertyText = fetch_property(id(), true);
 

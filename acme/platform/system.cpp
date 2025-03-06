@@ -745,7 +745,9 @@ namespace platform
 
          //__task_init();
 
-         run();
+         ::task::main();
+
+         //run();
 
          ////         m_phappeningInitialization->set_happening();
 

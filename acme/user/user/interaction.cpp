@@ -244,6 +244,13 @@ namespace acme
       //}
 
 
+      void interaction::_on_draw(::nano::graphics::device * pnanodevice)
+      {
+
+
+      }
+
+
       //void interaction::draw_children(::nano::graphics::device * pnanodevice)
       //{
 

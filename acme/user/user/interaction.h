@@ -126,6 +126,8 @@ namespace acme
 
          //void draw(::nano::graphics::device * pnanodevice);
 
+         virtual void _on_draw(::nano::graphics::device * pnanodevice);
+
          //virtual void on_char(int iChar);
 
          //bool is_active() override;

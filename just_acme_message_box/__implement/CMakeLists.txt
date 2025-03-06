@@ -60,8 +60,11 @@ endif ()
 add_dependencies(${PROJECT_NAME} ${copy_libraries_dependency} ${acme_libraries})
 add_dependencies(${PROJECT_NAME} folder_zip)
 add_dependencies(${PROJECT_NAME} ${acme_windowing_libraries})
+add_dependencies(${PROJECT_NAME} app_just_acme_message_box)
 
-
+message(STATUS "(${PROJECT_NAME} acme_windowing_libraries : ${acme_windowing_libraries}")
+message(STATUS "(${PROJECT_NAME} copy_libraries_dependency : ${copy_libraries_dependency}")
+message(STATUS "(${PROJECT_NAME} acme_libraries : ${acme_libraries}")
 
 list(APPEND executable_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
 list(APPEND executable_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)

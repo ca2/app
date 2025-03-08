@@ -129,8 +129,6 @@ namespace launch
 
          m_strDistro = "ubuntu";
 
-         m_strBranch = "";
-
          if(strRelease == "21")
          {
 
@@ -139,6 +137,8 @@ namespace launch
             print_line("Going to use Ubuntu 22.04 binaries...");
 
             strRelease = "22.04";
+
+            m_strBranch = "";
 
          }
          else if(strRelease == "22")
@@ -150,15 +150,17 @@ namespace launch
 
             strRelease = "24.04";
 
+            m_strBranch = "";
+
          }
          else
          {
 
             printf_line("This is Linux Mint %s System...", strRelease.c_str());
 
-            print_line("Currently not known how to handle. Fallback to Ubuntu 24.04 binaries...");
+            //print_line("Currently not known how to handle. Fallback to Ubuntu 24.04 binaries...");
 
-            strRelease = "24.04";
+            m_strBranch = strBranch;
 
          }
 

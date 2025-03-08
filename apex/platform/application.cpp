@@ -2013,7 +2013,7 @@ namespace apex
 
                information() << "apex::application::init_application exit";
 
-               throw exit_exception(error_exit_system, this, "Another install of the application is running.");
+               throw exit_exception(error_exit_system, this, "Another instance of the application is running.");
 
             }
 

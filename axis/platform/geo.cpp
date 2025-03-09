@@ -179,7 +179,7 @@ namespace geo
          catch (const ::exception & exception)
          {
 
-            auto pmessagebox = __initialize_new ::message_box(exception);
+            auto pmessagebox = __initialize_new ::message_box(exception, "geo::defer_check_openweather_city_list");
 
             pmessagebox->async();
 
@@ -189,7 +189,7 @@ namespace geo
 
             ::exception exception(error_catch_all_exception);
 
-            auto pmessagebox = __initialize_new ::message_box(exception);
+            auto pmessagebox = __initialize_new ::message_box(exception, "geo::defer_check_openweather_city_list");
 
             pmessagebox->async();
 

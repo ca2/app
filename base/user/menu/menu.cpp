@@ -410,7 +410,7 @@ namespace user
       catch (const ::exception& exception)
       {
 
-         auto pmessagebox = __initialize_new::message_box(exception);
+         auto pmessagebox = __initialize_new::message_box(exception, __FUNCTION_FILE_LINE__);
 
          pmessagebox->async();
 

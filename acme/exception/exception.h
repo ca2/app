@@ -6,6 +6,18 @@
 //#include "acme/prototype/collection/array.h"
 
 
+enum enum_consequence
+{
+
+   e_consequence_none,
+   e_consequence_fatal,
+   e_consequence_blocking,
+   e_consequence_workaroundable,
+   e_consequence_too_generic_and_context_dependant,
+
+};
+
+
 class CLASS_DECL_ACME exception :
    virtual public ::particle
 {
@@ -18,6 +30,8 @@ public:
    string                     m_strCallStackTrace;
    bool                       m_bHandled;
    bool                       m_bContinue;
+   enum_consequence           m_econsequenceUserDefault;
+   string                     m_strTitle;
    string                     m_strMessage; // Message for the user
    string                     m_strDetails; // Details about exception (if available/applicable)
    //string                   m_strException;

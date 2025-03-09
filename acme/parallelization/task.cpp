@@ -971,7 +971,7 @@ void task::run()
 
       strMoreDetails = "task::run";
 
-      send(__initialize_new::message_box(exception, strMoreDetails));
+      send(__initialize_new::message_box(exception,  strMoreDetails));
 
    }
 

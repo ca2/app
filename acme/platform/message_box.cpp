@@ -79,7 +79,53 @@ message_box::message_box(const ::string & strMessage, const ::string & strTitle,
 }
 
 
-message_box::message_box(const ::exception & exception, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+message_box::message_box(const ::exception & exception, const ::scoped_string & scopedstrMoreDetails)
+{
+
+   m_strMessage = exception.m_strMessage;
+
+   m_strTitle = exception.m_strTitle;
+
+   if (exception.m_econsequenceUserDefault == e_consequence_fatal)
+   {
+
+      m_emessagebox = e_message_box_icon_error;
+
+   }
+   else if (exception.m_econsequenceUserDefault == e_consequence_blocking)
+   {
+
+      m_emessagebox = e_message_box_icon_exclamation;
+
+   }
+   else if (exception.m_econsequenceUserDefault == e_consequence_workaroundable)
+   {
+
+      m_emessagebox = e_message_box_ok;
+
+   }
+   else
+   {
+
+      m_emessagebox = e_message_box_icon_asterisk;
+
+   }
+
+   m_strDetails.concatenate_with_separator("\n", exception.m_strTitle);
+
+   m_strDetails.concatenate_with_separator("\n", exception.m_strMessage);
+
+   m_strDetails.concatenate_with_separator("\n", scopedstrMoreDetails);
+
+   m_strDetails.concatenate_with_separator("\n", exception.m_strDetails);
+
+   m_strDetails.concatenate_with_separator("\n\nCallstack:\n", exception.m_strCallStackTrace);
+
+}
+
+
+
+message_box::message_box(const ::exception & exception, const ::scoped_string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
 {
 
    m_strMessage = exception.m_strMessage;

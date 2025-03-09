@@ -2009,11 +2009,17 @@ namespace apex
 
                //message_box(strMessage, m_strAppName, e_message_box_icon_asterisk);
 
-               informationf(strMessage + m_strAppName);
+               informationf(strMessage);
 
                information() << "apex::application::init_application exit";
 
-               throw exit_exception(error_exit_system, this, "Another instance of the application is running.");
+               exit_exception exitexception(error_exit_system, this, strMessage);
+
+               exitexception.m_strTitle = "Another instance of the application is running.";
+
+               exitexception.m_econsequenceUserDefault = ::e_consequence_workaroundable;
+
+               throw exitexception;
 
             }
 

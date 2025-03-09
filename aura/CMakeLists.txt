@@ -331,6 +331,8 @@ list(APPEND library_source
    platform/aura.h
    #platform/aura.cpp
    platform/message_queue.cpp
+   platform/component.cpp
+   platform/component.h
    platform/context.cpp
    platform/context.h
    platform/draw_context.cpp

@@ -1,0 +1,7 @@
+LIBRARY "wallpaper_system_summary"
+
+EXPORTS
+wallpaper_system_summary_factory
+
+
+

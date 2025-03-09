@@ -509,6 +509,8 @@ list(APPEND apex_source
    #platform/definition.h
    platform/display.h
    #platform/error.h
+   platform/component.cpp
+   platform/component.h
    platform/get_file_extension_mime_type.cpp
    platform/get_file_extension_mime_type.h
    platform/history.cpp

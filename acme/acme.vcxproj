@@ -1409,10 +1409,12 @@
     <ClInclude Include="platform\application_menu_callback.h" />
     <ClInclude Include="platform\application_menu_command.h" />
     <ClInclude Include="platform\c.h" />
+    <ClInclude Include="platform\component_implementation.h" />
     <ClInclude Include="platform\context_acme.h" />
     <ClInclude Include="platform\context_apex.h" />
     <ClInclude Include="platform\context_aqua.h" />
     <ClInclude Include="platform\context_aura.h" />
+    <ClInclude Include="platform\component.h" />
     <ClInclude Include="platform\get_file_extension_mime_type.h" />
     <ClInclude Include="platform\uuid.h" />
     <ClInclude Include="platform\reference_referer.h" />
@@ -2040,6 +2042,7 @@
     <ClCompile Include="platform\context_apex.cpp" />
     <ClCompile Include="platform\context_aqua.cpp" />
     <ClCompile Include="platform\context_aura.cpp" />
+    <ClCompile Include="platform\component.cpp" />
     <ClCompile Include="platform\http.cpp" />
     <ClCompile Include="platform\http_acme.cpp" />
     <ClCompile Include="platform\http_apex.cpp" />

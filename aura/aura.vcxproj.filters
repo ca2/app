@@ -711,6 +711,9 @@
     <ClCompile Include="graphics\write_text\internal_font.cpp">
       <Filter>Source Files\graphics\write_text</Filter>
     </ClCompile>
+    <ClCompile Include="platform\component.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windowing\_.h">
@@ -1711,6 +1714,15 @@
     </ClInclude>
     <ClInclude Include="graphics\write_text\internal_font.h">
       <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\wallpaper_transform.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\transformation.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\component.h">
+      <Filter>Header Files\platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -739,6 +739,7 @@
     <ClCompile Include="message\user.cpp" />
     <ClCompile Include="message\_.cpp" />
     <ClCompile Include="platform\application.cpp" />
+    <ClCompile Include="platform\component.cpp" />
     <ClCompile Include="platform\message_queue.cpp" />
     <ClCompile Include="platform\context.cpp" />
     <ClCompile Include="platform\draw_context.cpp" />
@@ -967,6 +968,8 @@
     <ClInclude Include="graphics\image\meta.h" />
     <ClInclude Include="graphics\image\palette.h" />
     <ClInclude Include="graphics\image\source.h" />
+    <ClInclude Include="graphics\image\transformation.h" />
+    <ClInclude Include="graphics\image\wallpaper_transform.h" />
     <ClInclude Include="graphics\image\_.h" />
     <ClInclude Include="graphics\image\_image.h" />
     <ClInclude Include="graphics\image\_image_impl.h" />
@@ -1072,6 +1075,7 @@
     <ClInclude Include="platform\aura.h" />
     <ClInclude Include="platform\context.h" />
     <ClInclude Include="platform\draw_context2.h" />
+    <ClInclude Include="platform\component.h" />
     <ClInclude Include="platform\message_queue.h" />
     <ClInclude Include="platform\node.h" />
     <ClInclude Include="platform\session.h" />

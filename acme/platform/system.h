@@ -149,36 +149,40 @@ namespace platform
 
       virtual ::path_system * path_system() const;
 
-      virtual ::platform::system_factory * system_factory() override;
+      ::platform::system_factory * system_factory() override;
 
-      virtual ::xml::xml * _xml() override;
+      ::xml::xml * _xml() override;
 
-      virtual geometry::geometry * geometry() override;
+      ::geometry::geometry * geometry() override;
 
-      virtual ::datetime::datetime * datetime() override;
+      ::datetime::datetime * datetime() override;
 
-      virtual ::text::table * texttable() override;
+      ::text::table * texttable() override;
 
-      virtual ::internet::internet * internet() override;
-      virtual ::url::url_context * url() override;
+      ::internet::internet * internet() override;
+      ::url::url_context * url() override;
 
-      virtual::particle * ui_destroyed_synchronization() override;
+      ::particle * ui_destroyed_synchronization() override;
 
-      virtual ::nano::nano * nano() override;
+      ::nano::nano * nano() override;
 
-      virtual ::micro::user * micro_user() override;
-      virtual ::acme::windowing::windowing * acme_windowing() override;
-      virtual ::windowing::windowing * windowing() override;
+      ::micro::user * micro_user() override;
+      ::acme::windowing::windowing * acme_windowing() override;
+      ::windowing::windowing * windowing() override;
 
-      virtual void defer_innate_ui() override;
+      ::component * component(const ::scoped_string & scopedstrComponent)override;
 
-      virtual ::innate_ui::innate_ui * innate_ui() override;
+      ::string component_path(const ::scoped_string & scopedstrComponent) override;
+
+      void defer_innate_ui() override;
+
+      ::innate_ui::innate_ui * innate_ui() override;
 
       //virtual nano::nano * nano()
 
-      virtual class ::manager_room * manager_room() override;
+      class ::manager_room * manager_room() override;
 
-      virtual ::crypto::crypto * crypto() override;
+      ::crypto::crypto * crypto() override;
 
      //virtual ::acme::acme * acme() const ;
 

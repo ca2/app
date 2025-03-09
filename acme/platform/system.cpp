@@ -9,9 +9,10 @@
 #include "application.h"
 #include "acme/nano/nano.h"
 #include "acme/nano/http/http.h"
+#include "component.h"
+#include "hyperlink.h"
 #include "session.h"
 #include "simple_log.h"
-#include "hyperlink.h"
 #include "acme/compress/compress.h"
 #include "acme/compress/uncompress.h"
 #include "acme/constant/id.h"
@@ -2058,6 +2059,48 @@ particle* system::matter_mutex()
       }
 
       return m_pnano;
+
+   }
+
+
+   ::component * system::component(const ::scoped_string & scopedstrComponent)
+   {
+
+      _synchronous_lock synchronouslock(this->ui_destroyed_synchronization());
+
+      auto & pcomponent = m_mapComponent[scopedstrComponent];
+
+      if (pcomponent.is_null())
+      {
+
+         auto strComponentPath = component_path(scopedstrComponent);
+
+         if (strComponentPath.is_empty())
+         {
+
+            throw ::exception(error_failed, "Feature Component doesn't have a feature component path");
+
+         }
+
+         __øconstruct(pcomponent);
+
+         pcomponent->m_strComponent = scopedstrComponent;
+
+         pcomponent->m_strComponentPath = strComponentPath;
+
+         pcomponent->update();
+
+      }
+
+      return pcomponent;
+
+   }
+
+
+   ::string system::component_path(const ::scoped_string & scopedstrComponent)
+   {
+
+      return {};
 
    }
 

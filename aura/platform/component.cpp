@@ -24,7 +24,7 @@ namespace aura
 
          auto pimplementation = implementation(strImplementation);
 
-         ::string strImplementationName = pimplementation->component_implementation_name();
+         auto strImplementationName = system()->http_text(m_strComponentPath, "component_implementation_name");
 
          auto pcheckbox = create_check_box<::user::check_box>(puserinteractionParent, "");
 

@@ -533,10 +533,10 @@ payload_array & payload_array::operator = (const property_set & propertyset)
 
    ::collection::index i = 0;
 
-   for(auto & property : propertyset)
+   for(auto & pproperty : propertyset)
    {
 
-      set_at(i++, property);
+      set_at(i++, *pproperty);
 
    }
 

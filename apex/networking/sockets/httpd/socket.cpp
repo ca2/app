@@ -370,12 +370,12 @@ namespace httpd
 
       strMessage = "Request for " + m_request.m_url.as_string() + "\n";
 
-      for (auto& property : m_request.headers())
+      for (auto& pproperty : m_request.headers())
       {
 
          ::string strNewHeader;
 
-         strNewHeader.formatf("{%s=%s}", property.name().as_string().c_str(), property.as_string().c_str());
+         strNewHeader.formatf("{%s=%s}", pproperty->name().as_string().c_str(), pproperty->as_string().c_str());
 
          if (str.length() + strNewHeader.length() > 80)
          {

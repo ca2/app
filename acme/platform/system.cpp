@@ -1681,6 +1681,31 @@ namespace platform
    }
 
 
+   ::string system::http_text(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrKey, const scoped_string & strLocale, const ::scoped_string & strSchema)
+   {
+
+      ::string str;
+      
+      if (m_mapText[scopedstrPath].lookup(scopedstrKey, str))
+      {
+
+         return str;
+
+      }
+
+      ::property_set set;
+
+      set["raw_http"] = true;
+
+      http()->get(str, "https://ca2.network/text?path=" + scopedstrPath + "&key=" + scopedstrKey, set);
+
+      m_mapText[scopedstrPath].set_at(scopedstrKey, str);
+
+      return str;
+
+   }
+
+
    void system::process_machine_event_data(machine_event_data* pdata)
    {
 
@@ -2088,8 +2113,6 @@ particle* system::matter_mutex()
 
          pcomponent->m_strComponentPath = strComponentPath;
 
-         pcomponent->update();
-
       }
 
       return pcomponent;
@@ -2183,6 +2206,7 @@ particle* system::matter_mutex()
    void system::init2()
    {
 
+      m_pparticleHttpTextSynchronization = node()->create_mutex();
 
       initialize_matter();
 

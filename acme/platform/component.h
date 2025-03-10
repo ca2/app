@@ -17,7 +17,7 @@ public:
    ::string_array                               m_straImplementationOnShelf;
    ::string_array                               m_straImplementationInstalled;
    ::string_array                               m_straImplementationEnabled;
-
+   ::string_array                               m_straImplementationOnShelfPath;
 
    ::string_map < ::pointer < ::component_implementation > > m_mapImplementation;
 
@@ -44,9 +44,12 @@ public:
    virtual bool is_implementation_installed(const ::scoped_string & scopedstrImplementation);
    virtual bool is_implementation_on_shelf(const ::scoped_string & scopedstrImplementation);
    virtual bool is_implementation_enabled(const ::scoped_string & scopedstrImplementation);
-
+   virtual ::string implementation_path(const ::scoped_string & scopedstrImplementation);
 
    virtual ::component_implementation * implementation(const ::scoped_string & scopedstrImplementation);
+   virtual ::pointer < ::component_implementation > create_implementation(const ::scoped_string & scopedstrImplementation);
+
+   virtual ::pointer_array < ::component_implementation > enabled_implementations();
 
 
 };

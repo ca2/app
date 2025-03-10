@@ -2037,6 +2037,7 @@
     <ClCompile Include="platform\build_debug.cpp" />
     <ClCompile Include="platform\c.cpp" />
     <ClCompile Include="platform\checked.cpp" />
+    <ClCompile Include="platform\component_implementation.cpp" />
     <ClCompile Include="platform\context.cpp" />
     <ClCompile Include="platform\context_acme.cpp" />
     <ClCompile Include="platform\context_apex.cpp" />

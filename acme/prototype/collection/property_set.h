@@ -13,7 +13,7 @@
 // property set key is case insensitive
 // PROPERTY_ARRAY Property set ordered
 class CLASS_DECL_ACME property_set :
-   virtual public ::property_array
+   virtual public ::property_holder_array
 {
 public:
 
@@ -82,9 +82,9 @@ public:
    inline ::property & operator[](const ::atom_array & atoma) { return get(atoma); }
    inline ::property & operator[](const ::atom & atom) { return get(atom); }
    template < primitive_integral INTEGRAL >
-   inline ::payload operator[](INTEGRAL i) const { return this->element_at(i); }
+   inline ::payload operator[](INTEGRAL i) const { return *this->element_at(i); }
    template < primitive_integral INTEGRAL >
-   inline ::property & operator[](INTEGRAL i) { return this->element_at(i); }
+   inline ::property & operator[](INTEGRAL i) { return *this->element_at(i); }
 
 
 
@@ -289,16 +289,16 @@ public:
    //using property_ptra::is_empty;
 
    bool is_empty(const atom & idName) const;
-   bool is_empty() const { return ::property_array::is_empty(); }
+   bool is_empty() const { return ::property_holder_array::is_empty(); }
    bool has_property() const { return this->has_element(); }
    ::collection::count property_count() const { return this->get_count(); }
    
    
-   ::collection::index add_property(const property & property) { return this->add_item(property); }
+   ::collection::index add_property(const property & property) { return this->add_item(new ::property(property)); }
 
 
-   inline const property & property_at(::collection::index nIndex) const { return this->element_at(nIndex); }
-   inline property & property_at(::collection::index nIndex) { return this->element_at(nIndex); }
+   inline const property & property_at(::collection::index nIndex) const { return *this->element_at(nIndex); }
+   inline property & property_at(::collection::index nIndex) { return *this->element_at(nIndex); }
 
    inline ::collection::index erase_property_at(::collection::index iIndex) { return this->erase_at(iIndex); }
 

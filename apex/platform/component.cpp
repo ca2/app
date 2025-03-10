@@ -18,15 +18,15 @@ namespace apex
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      for (auto & component : m_straImplementationInstalled)
+      for (auto & strImplementation : m_straImplementationInstalled)
       {
 
          bool bEnabled = false;
 
-         if (datastream()->get(m_strComponent + "_" + component, bEnabled) && bEnabled)
+         if (datastream()->get(m_strComponent + "_" + strImplementation, bEnabled) && bEnabled)
          {
 
-            m_straImplementationEnabled.add(component);
+            m_straImplementationEnabled.add(strImplementation);
 
          }
 
@@ -54,7 +54,9 @@ namespace apex
 
             set["raw_http"] = true;
 
-            http()->download(pfileZip, "https://windows.ca2.store/" + m_strComponentPath + "_" + strImplementation + ".zip", set);
+            ::url::url url = "https://windows.ca2.store/" + implementation_path(strImplementation) + ".zip";
+
+            http()->download(pfileZip, url, set);
 
             auto pfolder = system()->create < ::folder >("folder", "zip");
 

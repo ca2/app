@@ -17,6 +17,9 @@ namespace wallpaper_transform_system_summary
    public:
 
 
+      ::write_text::font_pointer m_pfont;
+
+
       wallpaper_transform();
       ~wallpaper_transform() override;
 
@@ -25,7 +28,7 @@ namespace wallpaper_transform_system_summary
 
 
       void transform(::image::image * pimage) override;
-      ::string component_implementation_name() override;
+      //::string component_implementation_name() override;
 
 
    };

@@ -31,22 +31,22 @@ namespace operating_system
    }
 
 
-   ::property_array summary::get_property_array() const
+   ::property_set summary::get_property_set() const
    {
 
-      ::property_array propertya;
+      ::property_set set;
 
-      propertya.add({ "__SYSTEM", m_strSystem });
-      propertya.add({ "__SYSTEM_FAMILY", m_strSystemFamily });
-      propertya.add({ "__SYSTEM_BRANCH", m_strSystemBranch });
-      propertya.add({ "__SYSTEM_RELEASE", m_strSystemRelease });
-      propertya.add({ "__SYSTEM_AMBIENT_RELEASE", m_strSystemAmbientRelease });
-      propertya.add({ "__SYSTEM_SUDO_INSTALL", m_strSudoInstall });
-      propertya.add({ "__SYSTEM_STANDARD_PACKAGE_FILE_EXTENSION", m_strStandardPackageFileExtension });
-      propertya.add({ "__AMBIENT", m_strAmbient });
-      propertya.add({ "__PATH_PREFIX", m_strPathPrefix });
+      set["__SYSTEM"] = m_strSystem;
+      set["__SYSTEM_FAMILY"] = m_strSystemFamily;
+      set["__SYSTEM_BRANCH"] = m_strSystemBranch;
+      set["__SYSTEM_RELEASE"] = m_strSystemRelease;
+      set["__SYSTEM_AMBIENT_RELEASE"] = m_strSystemAmbientRelease;
+      set["__SYSTEM_SUDO_INSTALL"] = m_strSudoInstall;
+      set["__SYSTEM_STANDARD_PACKAGE_FILE_EXTENSION"] = m_strStandardPackageFileExtension;
+      set["__AMBIENT"] = m_strAmbient;
+      set["__PATH_PREFIX"] = m_strPathPrefix;
 
-      return ::transfer(propertya);
+      return ::transfer(set);
 
    }
 
@@ -54,14 +54,14 @@ namespace operating_system
    ::string summary::get_summary() const
    {
 
-      auto propertya = get_property_array();
+      auto set = get_property_set();
 
       ::string strSummary;
 
-      for (auto & property : propertya)
+      for (auto & pproperty : set)
       {
 
-         strSummary.append_formatf("%s is %s\n", property.name().as_string().c_str(), property.as_string().c_str());
+         strSummary.append_formatf("%s is %s\n", pproperty->name().as_string().c_str(), pproperty->as_string().c_str());
 
       }
 
@@ -73,14 +73,14 @@ namespace operating_system
    ::string summary::id_payload_listing() const
    {
 
-      auto propertya = get_property_array();
+      auto set = get_property_set();
 
       ::string strIdPayloadListing;
 
-      for (auto & property : propertya)
+      for (auto & pproperty : set)
       {
 
-         strIdPayloadListing.append_formatf("%s=\"%s\"\n", property.name().as_string().c_str(), property.as_string().c_str());
+         strIdPayloadListing.append_formatf("%s=\"%s\"\n", pproperty->name().as_string().c_str(), pproperty->as_string().c_str());
 
       }
 

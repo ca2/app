@@ -4,6 +4,7 @@
 
 
 #include "acme/handler/handler.h"
+#include "acme/platform/ini.h"
 #include "system_acme.h"
 #include "system_apex.h"
 #include "system_aqua.h"
@@ -14,6 +15,7 @@
 
 namespace platform
 {
+
 
    /// For GUI applications:
    /// Never let system and other "system" threads (like session, application)
@@ -52,8 +54,8 @@ namespace platform
       static ::platform::system *            s_p;
       //::pointer < ::platform::system  >      m_psystemComposite;
 
-
-
+      ::pointer < ::particle >               m_pparticleHttpTextSynchronization;
+      ::string_map < ::string_to_string >    m_mapText;
 
 
       system();
@@ -66,6 +68,8 @@ namespace platform
       virtual ::string_array * http_exists_array() override;
 
       virtual class ::time * file_listing_cache_time() override;
+
+      virtual ::string http_text(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrKey, const scoped_string & strLocale = "_std", const ::scoped_string & strSchema = "_std");
 
       //void on_set_platform() override;
 

@@ -60,7 +60,33 @@ void component::update()
 void component::_update_implementations_on_shelf()
 {
 
-   m_straImplementationOnShelf = file()->lines("https://ca2.network/component_implementations?component_path=" + m_strComponentPath);
+   ::file::path pathUrl = "https://ca2.network/component_implementations?component_path=" + m_strComponentPath;
+
+   pathUrl.flags() += ::file::e_flag_bypass_cache;
+
+   auto straImplementationOnShelf = file()->lines(pathUrl);
+
+   for (auto & str : straImplementationOnShelf)
+   {
+
+      ::string_array stra;
+
+      stra.explode("=", str);
+
+      if (stra.size() == 2)
+      {
+
+         ::string strImplementation = stra[0];
+
+         ::string strPath = stra[1];
+
+         m_straImplementationOnShelf.add(strImplementation);
+
+         m_straImplementationOnShelfPath.add(strPath);
+
+      }
+
+   }
 
 }
 
@@ -73,11 +99,13 @@ void component::_update_installed_implementations()
    for (auto file : module_folder_files)
    {
 
-      if (file.case_insensitive_begins(m_strComponent + "_")
-         && file.case_insensitive_ends_eat(node()->dynamic_library_suffix()))
+      ::string strImplementation = file.name();
+
+      if (strImplementation.case_insensitive_begins_eat(m_strComponent + "_")
+         && strImplementation.case_insensitive_ends_eat(node()->dynamic_library_suffix()))
       {
 
-         m_straImplementationInstalled.add(file);
+         m_straImplementationInstalled.add(strImplementation);
 
       }
 
@@ -184,12 +212,63 @@ bool component::is_implementation_enabled(const ::scoped_string & scopedstrImple
 }
 
 
-::component_implementation *component::implementation(const ::scoped_string & scopedstrImplementation)
+::string component::implementation_path(const ::scoped_string & scopedstrImplementation)
 {
 
-   auto pfactory = system()->factory(m_strComponent, scopedstrImplementation);
+   _synchronous_lock synchronouslock(this->synchronization());
 
-   if (pfactory.is_null())
+   auto strImplementation = scopedstrImplementation.lowered();
+
+   auto iFind = m_straImplementationOnShelf.find_first(strImplementation);
+
+   if (iFind < 0 || iFind >= m_straImplementationOnShelfPath.size())
+   {
+
+      return {};
+
+   }
+
+   auto strPath = m_straImplementationOnShelfPath[iFind];
+
+   return strPath;
+
+}
+
+::component_implementation * component::implementation(const ::scoped_string & scopedstrImplementation)
+{
+
+   auto & pimplementation = m_mapImplementation[scopedstrImplementation];
+
+   if (pimplementation.is_null())
+   {
+
+      pimplementation = create_implementation(scopedstrImplementation);
+
+   }
+
+   return pimplementation;
+
+}
+
+::pointer < ::component_implementation > component::create_implementation(const ::scoped_string & scopedstrImplementation)
+{
+
+   ::factory::factory_pointer pfactory;
+
+   try
+   {
+
+      pfactory = system()->factory(m_strComponent, scopedstrImplementation);
+
+      if (pfactory.is_null())
+      {
+
+         return nullptr;
+
+      }
+
+   }
+   catch (...)
    {
 
       return nullptr;
@@ -208,5 +287,29 @@ bool component::is_implementation_enabled(const ::scoped_string & scopedstrImple
    }
 
    return pimplementation;
+
+}
+
+
+::pointer_array < ::component_implementation > component::enabled_implementations()
+{
+
+   ::pointer_array < ::component_implementation > implementationa;
+
+   for (auto & strImplementation : m_straImplementationEnabled)
+   {
+
+      auto pimplementation = implementation(strImplementation);
+
+      if (::is_set(pimplementation))
+      {
+
+         implementationa.add(pimplementation);
+
+      }
+
+   }
+
+   return ::transfer(implementationa);
 
 }

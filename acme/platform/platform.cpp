@@ -1229,26 +1229,26 @@ g_bWindowingOutputDebugString = true;
 
       ::pointer<::acme::library> plibrary;
 
-      try
-      {
+//      try
+  //    {
 
          plibrary = create_library_dynamically(strLibrary);
 
-      }
-      catch (library_not_loaded& librarynotloaded)
-      {
+    //  }
+//      catch (library_not_loaded& librarynotloaded)
+  //    {
 
-         auto pmessagebox = __initialize_new_with(this) ::message_box(librarynotloaded.get_message(),
-            "Library not loaded", e_message_box_icon_error, librarynotloaded.m_strDetails);
+    //     auto pmessagebox = __initialize_new_with(this) ::message_box(librarynotloaded.get_message(),
+            //"Library not loaded", e_message_box_icon_error, librarynotloaded.m_strDetails);
 
-         pmessagebox->async();
+      //   pmessagebox->async();
 
-      }
-      catch (...)
-      {
+      //}
+      //catch (...)
+      //{
 
 
-      }
+      //}
 
       if (!plibrary)
       {

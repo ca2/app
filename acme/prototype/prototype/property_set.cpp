@@ -121,13 +121,13 @@ bool property_set::has_properties(::collection::count countMinimum) const
 property * property_set::case_insensitive_find_value(const ::payload & payload) const
 {
 
-   for (auto & property : *this)
+   for (auto & pproperty : *this)
    {
 
-      if (property.case_insensitive_order(payload) == 0)
+      if (pproperty->case_insensitive_order(payload) == 0)
       {
 
-         return (::property *) & property;
+         return (::property *) (::holder<::property > &) pproperty;
 
       }
 
@@ -141,13 +141,13 @@ property * property_set::case_insensitive_find_value(const ::payload & payload) 
 property * property_set::case_insensitive_find_value(const ::scoped_string & scopedstr) const
 {
 
-   for (auto & property : *this)
+   for (auto & pproperty : *this)
    {
 
-      if (property.case_insensitive_equals(scopedstr))
+      if (pproperty->case_insensitive_equals(scopedstr))
       {
 
-         return (::property *)  &property;
+         return (::property *)(::holder<::property > &)pproperty;
 
       }
 
@@ -163,13 +163,13 @@ property * property_set::case_insensitive_find_value(const ::scoped_string & sco
 property * property_set::find_payload(const ::payload & payload) const
 {
 
-   for (auto & property : *this)
+   for (auto & pproperty : *this)
    {
 
-      if (property == payload)
+      if (*pproperty == payload)
       {
 
-         return (::property *) &property;
+         return (::property *)(::holder<::property > &)pproperty;
 
       }
 
@@ -183,13 +183,13 @@ property * property_set::find_payload(const ::payload & payload) const
 property * property_set::find_payload(const ::scoped_string & scopedstr) const
 {
 
-   for (auto & property : *this)
+   for (auto & pproperty : *this)
    {
 
-      if (property == scopedstr)
+      if (*pproperty == scopedstr)
       {
 
-         return (::property *)  &property;
+         return (::property *)(::holder<::property > &)  pproperty;
 
       }
 
@@ -1089,7 +1089,7 @@ string & property_set::get_network_payload(string & str, bool bNewLine) const
       while (true)
       {
 
-         p->get_network_payload(str, bNewLine);
+         (*p)->get_network_payload(str, bNewLine);
 
          p++;
 
@@ -1380,7 +1380,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
       while (true)
       {
 
-         str += *p;
+         str += *(*p);
 
          p++;
 
@@ -1450,7 +1450,7 @@ property_set::property_set(const property_set & set)
 
 
 property_set::property_set(property_set && set) :
-   property_array(::transfer(set))
+   property_holder_array(::transfer(set))
 {
 
 }
@@ -1553,7 +1553,7 @@ property_set & property_set::operator = (const ::payload & payload)
       //else
       //{
 
-      (property_array &)*this = (const property_array &)*payload.m_ppropertyset;
+      (property_holder_array &)*this = (const property_holder_array &)*payload.m_ppropertyset;
 
       //      }
 
@@ -1584,7 +1584,7 @@ property_set & property_set::operator = (const property_set & set)
    if (&set != this)
    {
 
-      ::property_array::operator=(set);
+      ::property_holder_array::operator=(set);
 
    }
 
@@ -1599,10 +1599,10 @@ property_set & property_set::append(const property_set & set)
    if (&set != this)
    {
 
-      for (auto & property : *this)
+      for (auto & pproperty : *this)
       {
 
-         add_property(property);
+         add_property(*pproperty);
 
       }
 
@@ -1619,32 +1619,32 @@ property_set & property_set::merge(const property_set & set)
    if (::is_reference_set(set) && &set != this)
    {
 
-      for (auto & property : set)
+      for (auto & pproperty : set)
       {
 
-         atom idName = property.name();
+         atom idName = pproperty->name();
 
          auto ppropertyThis = find(idName);
 
-         if (!property.is_new())
+         if (!pproperty->is_new())
          {
 
             if (ppropertyThis != nullptr)
             {
 
-               if (ppropertyThis->get_type() == ::e_type_element || property.get_type() == ::e_type_element)
+               if (ppropertyThis->get_type() == ::e_type_element || pproperty->get_type() == ::e_type_element)
                {
 
-                  operator[](property.name()) = property;
+                  operator[](pproperty->name()) = *pproperty;
 
                }
                else if (ppropertyThis->get_type() == ::e_type_property_set)
                {
 
-                  if (property.get_type() == ::e_type_property_set)
+                  if (pproperty->get_type() == ::e_type_property_set)
                   {
 
-                     ppropertyThis->property_set_reference().merge(property.as_property_set());
+                     ppropertyThis->property_set_reference().merge(pproperty->as_property_set());
 
                   }
                   else
@@ -1658,7 +1658,7 @@ property_set & property_set::merge(const property_set & set)
                         if (!has_property(::as_string(i)))
                         {
 
-                           operator[](::as_string(i)) = property;
+                           operator[](::as_string(i)) = *pproperty;
 
                            break;
 
@@ -1671,10 +1671,10 @@ property_set & property_set::merge(const property_set & set)
                   }
 
                }
-               else if (operator[](property.name()).is_empty())
+               else if (operator[](pproperty->name()).is_empty())
                {
 
-                  operator[](property.name()) = property;
+                  operator[](pproperty->name()) = *pproperty;
 
                }
                else
@@ -1683,7 +1683,7 @@ property_set & property_set::merge(const property_set & set)
                   try
                   {
 
-                     if (operator[](property.name()) == property)
+                     if (operator[](pproperty->name()) == *pproperty)
                      {
 
                         continue;
@@ -1696,7 +1696,7 @@ property_set & property_set::merge(const property_set & set)
 
                   }
 
-                  operator[](property.name()).payload_array_reference().append_unique(operator[](property.name()).as_payload_array());
+                  operator[](pproperty->name()).payload_array_reference().append_unique(operator[](pproperty->name()).as_payload_array());
 
                }
 
@@ -1704,7 +1704,7 @@ property_set & property_set::merge(const property_set & set)
             else
             {
 
-               operator[](property.name()) = property;
+               operator[](pproperty->name()) = *pproperty;
 
             }
 
@@ -1818,13 +1818,13 @@ bool property_set::contains_payload(const ::scoped_string & scopedstr) const { r
 property * property_set::str_find(const property & property) const
 {
 
-   for (auto & property : *this)
+   for (auto & pproperty : *this)
    {
 
-      if (property.str_compare(property) == 0)
+      if (pproperty->str_compare(property) == 0)
       {
 
-         return (::property *) &property;
+         return (::property *) (::holder < ::property > &)pproperty;
 
       }
 
@@ -1838,10 +1838,10 @@ property * property_set::str_find(const property & property) const
 bool property_set::str_contains(const property_set & set) const
 {
 
-   for (auto & property : *this)
+   for (auto & pproperty : *this)
    {
 
-      if (str_find(property) == nullptr)
+      if (str_find(*pproperty) == nullptr)
       {
 
          return false;
@@ -1858,10 +1858,10 @@ bool property_set::str_contains(const property_set & set) const
 bool property_set::contains(const property_set & set) const
 {
 
-   for (auto & property : *this)
+   for (auto & pproperty : *this)
    {
 
-      auto ppropertyHere = find(property.name());
+      auto ppropertyHere = find(pproperty->name());
 
       if (!ppropertyHere)
       {
@@ -1870,7 +1870,7 @@ bool property_set::contains(const property_set & set) const
 
       }
 
-      if (*ppropertyHere != property)
+      if (*ppropertyHere != *pproperty)
       {
 
          return false;
@@ -1899,7 +1899,7 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
 
       }
 
-      p->get_network_arguments(strNetworkArguments);
+      (*p)->get_network_arguments(strNetworkArguments);
 
       p++;
 
@@ -2145,7 +2145,7 @@ string property_set::get_command_line() const
 
    string str;
 
-   for (auto & property : *this)
+   for (auto & pproperty : *this)
    {
 
       if (str.has_character())
@@ -2155,7 +2155,7 @@ string property_set::get_command_line() const
 
       }
 
-      string strItem(property.name().as_string());
+      string strItem(pproperty->name().as_string());
 
       if (strItem.contains(" ") || strItem.contains("\'"))
       {
@@ -2180,7 +2180,7 @@ string property_set::get_command_line() const
 
       }
 
-      if (property.is_empty())
+      if (pproperty->is_empty())
       {
 
          continue;
@@ -2189,7 +2189,7 @@ string property_set::get_command_line() const
 
       str += "=";
 
-      strItem = property;
+      strItem = pproperty->as_string();
 
       if (strItem.contains(" ") || strItem.contains("\'"))
       {
@@ -2337,14 +2337,14 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
 
    ::string str;
 
-   for (auto & property : *this)
+   for (auto & pproperty : *this)
    {
       
-      str += property.name().as_string();
+      str += pproperty->name().as_string();
 
       str += scopedstrSeparator1;
 
-      str += property.as_string();
+      str += pproperty->as_string();
 
       str += scopedstrSeparator2;
 
@@ -2361,7 +2361,7 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
    for (; i < this->get_count(); i++)
    {
 
-      if (this->element_at(i).name() == atom)
+      if (this->element_at(i)->name() == atom)
       {
 
          return i;
@@ -2383,7 +2383,7 @@ property* property_set::find_by_text(const ::scoped_string & scopedstr, ::collec
    for (; !this->is_end(p); p++)
    {
 
-      if (p->name() == scopedstr)
+      if ((*p)->name() == scopedstr)
       {
 
          return (::property*)p;
@@ -2405,10 +2405,10 @@ property* property_set::find_by_text(const ::scoped_string & scopedstr, ::collec
    for (; !this->is_end(p); p++)
    {
 
-      if (p->name() == atom)
+      if ((*p)->name() == atom)
       {
 
-         return (::property *) p;
+         return (::property *) (::holder < ::property > &) (*p);
 
       }
 
@@ -2429,7 +2429,7 @@ property & property_set::get(const ::atom & atom, ::collection::index iStart)
 
       auto iNewlyAdded = add_property({atom, e_type_new});
 
-      pproperty = &element_at(iNewlyAdded);
+      pproperty = element_at(iNewlyAdded);
 
    }
 

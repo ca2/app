@@ -536,27 +536,27 @@ namespace sockets
 
       }
 
-      for (auto & property: m_response.m_propertysetHeader)
+      for (auto & pproperty: m_response.m_propertysetHeader)
       {
 
-         string strKey = property.name();
+         string strKey = pproperty->name();
 
          ::string_array straValue;
 
-         if (property.array_get_count() > 1)
+         if (pproperty->array_get_count() > 1)
          {
 
-            straValue = property.as_string_array();
+            straValue = pproperty->as_string_array();
 
          }
          else
          {
 
-            straValue.add(property.as_string());
+            straValue.add(pproperty->as_string());
 
          }
 
-         if (!http_filter_response_header(property))
+         if (!http_filter_response_header(*pproperty))
          {
 
             continue;
@@ -729,14 +729,14 @@ namespace sockets
 
       }
 
-      for (auto & property: m_request.m_propertysetHeader)
+      for (auto & pproperty: m_request.m_propertysetHeader)
       {
 
-         string strKey = property.name();
+         string strKey = pproperty->name();
 
-         string strValue = property.as_string();
+         string strValue = pproperty->as_string();
 
-         if (property.name() == "content-type")
+         if (pproperty->name() == "content-type")
          {
 
             msg += "Content-Type: " + strValue + "\r\n";

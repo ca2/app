@@ -2,15 +2,14 @@
 #pragma once
 
 
-
-class component_implementation :
+class CLASS_DECL_ACME component_implementation :
    virtual public ::particle
 {
 public:
 
-
-   virtual ::string component_implementation_name() = 0;
-
+   
+   component_implementation();
+   ~component_implementation() override;
 
 
 };

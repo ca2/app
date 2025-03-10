@@ -218,9 +218,9 @@ CLASS_DECL_ACME void property_skip_network_payload_payload(::ansi_range & range)
 #include "acme/prototype/collection/ptr_array.h"
 #include "acme/prototype/collection/auto_ptr_array.h"
 #include "acme/prototype/collection/raw_pointer_array.h"
+#include "acme/prototype/prototype/holder.h"
 
-
-using property_array = ::array < ::property >;
+using property_holder_array = ::array < ::holder < ::property > >;
 
 //using property_map = map < ::atom, const ::atom &, payload, const ::payload &, ::property >;
 

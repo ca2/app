@@ -107,6 +107,8 @@ namespace draw2d
 
       virtual graphics_pointer create_memory_graphics(::draw2d::host * pdraw2dhost);
 
+      virtual brush_pointer create_solid_brush(const ::color::color & color);
+
       virtual class api & api();
 
       virtual class ::write_text::write_text * write_text();

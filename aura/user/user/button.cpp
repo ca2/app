@@ -648,6 +648,9 @@ namespace user
    void button::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+
+      _001OnButtonDrawBackground(pgraphics);
+
       auto rectangleX = this->rectangle();
 
       auto pstyle = get_style(pgraphics);
@@ -655,6 +658,15 @@ namespace user
       auto colorBackground = get_color(pstyle, ::e_element_background, get_state());
 
       //auto & linkedpropertyCheck = m_linkedpropertyCheck;
+
+      // ::string strType = ::type(this).as_string();
+      //
+      // if (strType.contains("experience"))
+      // {
+      //
+      //    information("experience");
+      //
+      // }
 
       auto echeck = this->echeck();
 
@@ -886,12 +898,12 @@ namespace user
 
       rectangleX.deflate(rectangleBorder);
 
-      if(m_estyle != e_style_stock_icon)
-      {
+      //if(m_estyle != e_style_stock_icon)
+      //{
 
-         _001OnButtonDrawBackground(pgraphics);
+         //_001OnButtonDrawBackground(pgraphics);
 
-      }
+      //}
 
 //      if(m_pitemHover)
 //      {

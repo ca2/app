@@ -2386,7 +2386,7 @@ property* property_set::find_by_text(const ::scoped_string & scopedstr, ::collec
       if ((*p)->name() == scopedstr)
       {
 
-         return (::property*)p;
+         return (::property*)(::holder < ::property > &) (*p);
 
       }
 

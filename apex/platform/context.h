@@ -29,8 +29,8 @@ namespace apex
       // //::pointer<::os_context>             m_poscontext;
       //
 
-
-
+      bool m_bModifiedRawFolders;
+      ::string_map < ::pointer < ::fs::raw_folder_protocol > >      m_mapRawFolderProtocol;
 
 
 
@@ -112,6 +112,11 @@ namespace apex
       ::file::path __defer_process_path(::file::path path) override;
 
       virtual bool _001IsProtocol(::file::path & path, const ::string & strProtocol) override;
+
+
+      virtual void defer_calculate_raw_folder_protocols();
+
+      virtual bool defer_process_raw_folder_protocol_path(::file::path & path);
 
       bool defer_process_known_folder_path(::file::path & path) override;
       virtual ::file::path full_process_path(::file::path path) override;

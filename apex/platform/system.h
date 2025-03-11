@@ -117,6 +117,10 @@ namespace apex
       //virtual void __task_init() override;
 
 
+      ::string component_path(const ::scoped_string & scopedstrComponent);
+
+
+
       class ::manager_room * manager_room() override;
 
       virtual ::platform::application * get_main_app() override;

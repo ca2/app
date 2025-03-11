@@ -32,6 +32,7 @@
 #include "acme/prototype/text/context.h"
 #include "apex/filesystem/fs/folder_sync.h"
 #include "apex/filesystem/fs/native.h"
+#include "apex/filesystem/fs/raw_folder_protocol.h"
 #include "apex/filesystem/fs/set.h"
 #include "apex/innate_ui/button.h"
 #include "apex/innate_ui/dialog.h"
@@ -1153,6 +1154,15 @@ namespace apex
       auto pnativefs = __create_new < ::fs::native>();
 
       pfsset->m_spafsdata.add(pnativefs);
+
+      defer_calculate_raw_folder_protocols();
+
+      for (auto & pair : m_mapRawFolderProtocol)
+      {
+
+         pfsset->m_spafsdata.add(pair.element2());
+
+      }
 
    }
 

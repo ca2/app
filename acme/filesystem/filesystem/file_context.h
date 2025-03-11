@@ -220,7 +220,7 @@ public:
    virtual void set_extension(::file::path & str, const ::scoped_string & scopedstrExtension);
 
 
-   virtual ::file::path dropbox_client();
+   //virtual ::file::path dropbox_client();
 
 
    virtual void normalize(string & str);
@@ -287,7 +287,7 @@ public:
 
    virtual void transfer(::file::file* pfileOut, ::file::file* pfileIn);
 
-   virtual ::file::path dropbox_info_network_payload();
+   //virtual ::file::path dropbox_info_network_payload();
 
 
    virtual ::file::path onedrive_global_ini();

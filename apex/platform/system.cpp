@@ -5198,6 +5198,25 @@ namespace apex
    }
 
 
+   ::string system::component_path(const ::scoped_string & scopedstrComponent)
+   {
+
+      ::string strComponent = scopedstrComponent;
+
+      strComponent.make_lower();
+
+      if (strComponent == "fs_raw_folder_protocol")
+      {
+
+         return "apex/filesystem/fs/raw_folder";
+
+      }
+
+      return ::platform::system::component_path(scopedstrComponent);
+
+   }
+
+
 
 } // namespace apex
 

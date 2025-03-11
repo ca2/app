@@ -156,6 +156,7 @@ namespace platform
       virtual bool defer_process_media_library_path(::file::path & path);
       virtual bool defer_process_known_folder_path(::file::path & path);
       virtual bool defer_process_protocol_path(::file::path & path) ;
+      virtual bool defer_process_raw_folder_protocol_path(::file::path & path);
 
       virtual ::platform::http * http();
 

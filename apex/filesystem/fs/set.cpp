@@ -93,10 +93,12 @@ namespace fs
 
          listing.add_listing(listingFsPath);
 
-         for(int j = 0; j < listing.get_size(); j++)
+         for(int j = 0; j < listingFsPath.get_size(); j++)
          {
 
-            m_fsdatamap[listing[j]] = m_spafsdata[i];
+            auto p = listing[j];
+
+            m_fsdatamap[p] = m_spafsdata[i];
 
          }
 

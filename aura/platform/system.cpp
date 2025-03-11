@@ -4644,8 +4644,7 @@ namespace aura
 
       }
 
-      return {};
-
+      return ::aqua::system::component_path(scopedstrComponent);
 
    }
 

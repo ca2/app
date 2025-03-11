@@ -14,6 +14,12 @@ namespace fs
    class folder_sync;
 
 
+   class raw_folder;
+
+
+   class raw_folder_protocol;
+
+
 } // namespace fs
 
 

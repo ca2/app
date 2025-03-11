@@ -295,6 +295,13 @@ bool memory_file::is_end_of_file() const
 bool memory_file::read_string(memory_base & memory)
 {
 
+   if (::is_null(m_pmemory))
+   {
+
+      return false;
+
+   }
+
    auto position = get_position();
 
    auto start = m_position;

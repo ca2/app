@@ -766,6 +766,13 @@ namespace platform
    }
 
 
+   bool context::defer_process_raw_folder_protocol_path(::file::path & path)
+   {
+
+      return false;
+
+   }
+
    ::file::path context::__defer_process_path(::file::path path)
    {
 
@@ -802,6 +809,11 @@ namespace platform
          return path;
 
       }
+      else if (defer_process_raw_folder_protocol_path(path))
+      {
+
+      }
+
 
       return path;
 

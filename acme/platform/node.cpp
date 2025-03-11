@@ -64,9 +64,9 @@ namespace platform
 
       //m_bUserDarkMode = false;
 
-      m_bDropboxCalculated = false;
+      //m_bDropboxCalculated = false;
 
-      m_bDropbox = false;
+      //m_bDropbox = false;
 
       m_bOneDriveCalculated = false;
 
@@ -3241,118 +3241,118 @@ bool node::_is_smart_git_installed()
    }
 
 
-   bool node::_is_dropbox_installed()
-   {
+   //bool node::_is_dropbox_installed()
+   //{
 
-      if (!m_bDropboxCalculated)
-      {
-         
-         __check_refdbg
+   //   if (!m_bDropboxCalculated)
+   //   {
+   //      
+   //      __check_refdbg
 
-         calculate_dropbox_installed();
+   //      calculate_dropbox_installed();
 
-         __check_refdbg
+   //      __check_refdbg
 
-      }
+   //   }
 
-      return m_bDropbox;
+   //   return m_bDropbox;
 
-   }
+   //}
 
 
-   void node::calculate_dropbox_installed()
-   {
+   //void node::calculate_dropbox_installed()
+   //{
 
-      m_bDropbox = false;
+   //   m_bDropbox = false;
 
-      m_pathDropbox.empty();
+   //   m_pathDropbox.empty();
 
-      m_bDropboxCalculated = true;
+   //   m_bDropboxCalculated = true;
 
-      __check_refdbg
+   //   __check_refdbg
 
-      ::file::path pathNetworkPayload = file()->dropbox_info_network_payload();
+   //   ::file::path pathNetworkPayload = file()->dropbox_info_network_payload();
 
-      __check_refdbg
+   //   __check_refdbg
 
-      if (!file()->exists(pathNetworkPayload))
-      {
+   //   if (!file()->exists(pathNetworkPayload))
+   //   {
 
-         if (platform()->is_desktop_system())
-         {
+   //      if (platform()->is_desktop_system())
+   //      {
 
-            auto pathHome = directory()->home();
+   //         auto pathHome = directory()->home();
 
-            auto pathTxt = pathHome / "dropbox.txt";
+   //         auto pathTxt = pathHome / "dropbox.txt";
 
-            if (file()->exists(pathTxt))
-            {
+   //         if (file()->exists(pathTxt))
+   //         {
 
-               string strPath = file()->safe_get_string(pathTxt);
+   //            string strPath = file()->safe_get_string(pathTxt);
 
-               strPath.trim();
+   //            strPath.trim();
 
-               if (strPath.has_character() && directory()->is(strPath))
-               {
+   //            if (strPath.has_character() && directory()->is(strPath))
+   //            {
 
-                  m_pathDropbox = strPath;
+   //               m_pathDropbox = strPath;
 
-                  m_bDropbox = true;
+   //               m_bDropbox = true;
 
-               }
+   //            }
 
-            }
+   //         }
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            m_pathDropbox.empty();
+   //         m_pathDropbox.empty();
 
-         }
+   //      }
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         __check_refdbg
+   //      __check_refdbg
 
-         string strNetworkPayload = file()->as_string(pathNetworkPayload);
+   //      string strNetworkPayload = file()->as_string(pathNetworkPayload);
 
-         __check_refdbg
+   //      __check_refdbg
 
-         {
+   //      {
 
-            ::property_set set;
+   //         ::property_set set;
 
-            __check_refdbg
+   //         __check_refdbg
 
-            set.parse_network_payload(strNetworkPayload);
+   //         set.parse_network_payload(strNetworkPayload);
 
-            __check_refdbg
+   //         __check_refdbg
 
-            m_pathDropbox = set["personal"]["path"];
+   //         m_pathDropbox = set["personal"]["path"];
 
-         }
+   //      }
 
-         __check_refdbg
+   //      __check_refdbg
 
-         if (directory()->is(m_pathDropbox))
-         {
+   //      if (directory()->is(m_pathDropbox))
+   //      {
 
-            m_bDropbox = true;
+   //         m_bDropbox = true;
 
-         }
+   //      }
 
-         __check_refdbg
+   //      __check_refdbg
 
-      }
+   //   }
 
-      __check_refdbg
+   //   __check_refdbg
 
-      m_bDropboxCalculated = true;
+   //   m_bDropboxCalculated = true;
 
-   }
+   //}
 
 
    bool node::_is_onedrive_installed()

@@ -1064,6 +1064,12 @@
     <ClInclude Include="platform\component.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\fs\raw_folder.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\raw_folder_protocol.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1536,6 +1542,12 @@
     </ClCompile>
     <ClCompile Include="platform\component.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\raw_folder.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\raw_folder_protocol.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

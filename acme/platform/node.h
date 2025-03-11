@@ -948,11 +948,11 @@ namespace platform
 
       bool _is_google_drive_installed() override;
 
-      bool _is_dropbox_installed() override;
+      //bool _is_dropbox_installed() override;
 
       bool _is_onedrive_installed() override;
 
-      void calculate_dropbox_installed() override;
+      //void calculate_dropbox_installed() override;
 
       void calculate_onedrive_installed() override;
 

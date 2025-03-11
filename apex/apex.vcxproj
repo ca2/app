@@ -600,6 +600,8 @@
     <ClCompile Include="filesystem\file\edit_file.cpp" />
     <ClCompile Include="filesystem\file\html_file.cpp" />
     <ClCompile Include="filesystem\fs\folder_sync.cpp" />
+    <ClCompile Include="filesystem\fs\raw_folder.cpp" />
+    <ClCompile Include="filesystem\fs\raw_folder_protocol.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">Create</PrecompiledHeader>
@@ -720,8 +722,10 @@
     <ClInclude Include="filesystem\file\action.h" />
     <ClInclude Include="filesystem\file\listener.h" />
     <ClInclude Include="filesystem\file\_constant.h" />
+    <ClInclude Include="filesystem\fs\raw_folder.h" />
     <ClInclude Include="filesystem\fs\folder_sync.h" />
     <ClInclude Include="filesystem\fs\native.h" />
+    <ClInclude Include="filesystem\fs\raw_folder_protocol.h" />
     <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="handler\context.h" />
     <ClInclude Include="handler\manager.h" />

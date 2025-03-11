@@ -8,13 +8,15 @@ list(APPEND library_source
         _factory.cpp
         fs_raw_folder_protocol.cpp
         fs_raw_folder_protocol.h
+   fs_raw_folder_protocol_other.cpp
+
 )
 
 if(${LINUX})
 
-    list(APPEND library_source
-            fs_raw_folder_protocol_linux.cpp
-    )
+    #list(APPEND library_source
+     #       fs_raw_folder_protocol_linux.cpp
+    #)
 
 endif()
 
@@ -32,8 +34,7 @@ else ()
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-        fs_raw_folder_protocol_linux.cpp)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 if (NOT ${NO_PRECOMPILED_HEADER})

@@ -3452,15 +3452,15 @@ bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path
 }
 
 
-::file::path directory_context::dropbox_client()
-{
-
-   throw ::interface_only();
-
-   return {};
-
-}
-
+// ::file::path directory_context::dropbox_client()
+// {
+//
+//    throw ::interface_only();
+//
+//    return {};
+//
+// }
+//
 
 //string_array directory_context::locale_schema_matter(string & strLocale, const ::string & strStyle)
 //{

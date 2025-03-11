@@ -568,6 +568,20 @@ namespace fs_raw_folder_protocol_dropbox
 
       return pathNetworkPayload;
 
+#elif defined(LINUX)
+
+
+      ::file::path pathNetworkPayload;
+
+      auto psystem = system();
+
+      auto pacmedir = psystem->m_pdirectorysystem;
+
+      pathNetworkPayload = pacmedir->home() / ".dropbox/info.json";
+
+      return pathNetworkPayload;
+
+
 #else
 
 

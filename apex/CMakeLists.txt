@@ -94,6 +94,8 @@ list(APPEND apex_source
    filesystem/fs/net.h
    filesystem/fs/raw_folder.cpp
    filesystem/fs/raw_folder.h
+   filesystem/fs/raw_folder_protocol.cpp
+   filesystem/fs/raw_folder_protocol.h
    filesystem/fs/remote_native_file.cpp
    filesystem/fs/remote_native_file.h
    filesystem/fs/remote_native.cpp

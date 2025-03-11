@@ -273,6 +273,10 @@ list(APPEND library_source
    handler/source.h
    handler/task_handler.cpp
    handler/task_handler.h
+   integrate/qt/_.h
+   integrate/qt.h
+   integrate/qt/geometry2d.h
+   integrate/qt/image.h
    #include/_.cpp
    #include/path.h        #prototype/collection/comparable_array.cpp
    #memory/alloc.cpp
@@ -419,7 +423,6 @@ list(APPEND library_source
    operating_system/argcargv.cpp
    operating_system/a_system_menu.cpp
    operating_system/a_system_menu.h
-   operating_system/calculate_etoolkit.cpp
    operating_system/chronometer.cpp
    operating_system/console.cpp
    operating_system/console_client.cpp
@@ -443,6 +446,8 @@ list(APPEND library_source
    operating_system/summary.cpp
    operating_system/summary.h
    operating_system/time.cpp
+   operating_system/x11/_x11.h
+   operating_system/x11/_x11.h
    operating_system/windowing.cpp
    parallelization/_.cpp
    parallelization/condition.cpp
@@ -488,18 +493,16 @@ list(APPEND library_source
    platform/acme.h
    platform/allocator.cpp
    platform/allocator.h
+   platform/component.cpp
+   platform/component.h
+   platform/component_implementation.cpp
+   platform/component_implementation.h
    #platform/acme_main_struct.cpp
    #platform/acme_main_struct.h
    #platform/apex_main_data.cpp
    #platform/apex_main_data.h
    #platform/apex_main_struct.cpp
    #platform/apex_main_struct.h
-   integrate/qt/_.h
-   integrate/qt.h
-   integrate/qt/geometry2d.h
-   integrate/qt/image.h
-   operating_system/x11/_x11.h
-   operating_system/x11/_x11.h
    platform/system_acme.h
    platform/system_apex.h
    platform/system_aqua.h
@@ -2349,6 +2352,8 @@ if (${WIN32} OR ${UWP})
       #      operating_system/windows_common/parallelization.cpp
       #      operating_system/windows_common/time.cpp
       #      operating_system/windows_common/unicode.cpp
+      operating_system/calculate_etoolkit.cpp
+
    )
 
 endif ()

@@ -1198,13 +1198,12 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
                            }
                            catch(::exception &)
                            {
+
                               information() << "simple_frame_window::on_message_create Failed to create notify icon (1)!";
 
                               enable_default_notification_icon(false);
 
                               m_pnotifyicon.release();
-
-
 
                            }
                            catch(...)
@@ -1973,29 +1972,35 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 
       }
 
-#ifdef LINUX
-      //if(is_window_visible())
-
-      //auto psystem = system();
-
-      //auto pnode = psystem->node();
-
-      auto edesktop = ::windowing::get_eoperating_ambient();
-
-      if (edesktop == ::windowing::e_operating_ambient_unity
-         || edesktop == ::windowing::e_operating_ambient_xfce)
-      {
-
-         display(e_display_none);
-
-      }
-      else
-      {
-
-         display(e_display_iconic);
-
-      }
-#else
+// #ifdef LINUX
+//       //if(is_window_visible())
+//
+//       //auto psystem = system();
+//
+//       //auto pnode = psystem->node();
+//
+//       auto edesktop = ::windowing::get_eoperating_ambient();
+//
+//       if (edesktop == ::windowing::e_operating_ambient_unity
+//          || edesktop == ::windowing::e_operating_ambient_xfce)
+//       {
+//
+//          display(e_display_none);
+//
+//       }
+//       else
+//       {
+//
+//          display(e_display_iconic);
+//
+//       }
+//
+//       set_need_redraw();
+//
+//       post_redraw();
+//
+//
+// #else
 
       if (is_window_visible())
       {
@@ -2008,7 +2013,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 
       }
 
-#endif // LINUX
+//#endif // LINUX
 
       //set_tool_window();
 

@@ -81,6 +81,8 @@ namespace apex
 
          datastream()->set(m_strComponent + "_" + strImplementation, true);
 
+         _update_enabled_implementations();
+
       }
       else if (ptopic->id() == id_implementation_disabled)
       {

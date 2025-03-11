@@ -1155,9 +1155,9 @@ namespace apex
 
       pfsset->m_spafsdata.add(pnativefs);
 
-      defer_calculate_raw_folder_protocols();
+      defer_calculate_fs_raw_folder_protocols();
 
-      for (auto & pair : m_mapRawFolderProtocol)
+      for (auto & pair : m_mapFsRawFolderProtocol)
       {
 
          pfsset->m_spafsdata.add(pair.element2());

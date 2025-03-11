@@ -182,6 +182,12 @@ namespace platform
       virtual void save_to_file(const ::payload& payloadFile, const ::particle * pparticle);
 
 
+      virtual bool defer_process_fs_raw_folder_protocol_path(::file::path & path);
+
+      virtual bool is_fs_raw_folder_protocol_installed(const ::scoped_string & scopedstrProtocol);
+
+
+
       //virtual void destroy() override;
 
       //file_pointer get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception = nullptr) override;

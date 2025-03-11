@@ -36,9 +36,10 @@ namespace apex
 
       //m_papexcontext = this;
 
-      m_bModifiedRawFolders = true;
+      m_bModifiedFsRawFolderProtocols = true;
 
    }
+
 
    context::~context()
    {
@@ -464,13 +465,13 @@ namespace apex
    }
    
 
-   void context::defer_calculate_raw_folder_protocols()
+   void context::defer_calculate_fs_raw_folder_protocols()
    {
 
-      if (m_bModifiedRawFolders)
+      if (m_bModifiedFsRawFolderProtocols)
       {
 
-         m_bModifiedRawFolders = false;
+         m_bModifiedFsRawFolderProtocols = false;
 
          auto pcomponent = system()->component("fs_raw_folder_protocol");
 
@@ -516,7 +517,7 @@ namespace apex
                         if (strProtocol.has_character())
                         {
 
-                           m_mapRawFolderProtocol[strProtocol] = prawfolderprotocol;
+                           m_mapFsRawFolderProtocol[strProtocol] = prawfolderprotocol;
 
                         }
 
@@ -544,24 +545,24 @@ namespace apex
    }
    
 
-   bool context::defer_process_raw_folder_protocol_path(::file::path & path)
+   bool context::defer_process_fs_raw_folder_protocol_path(::file::path & path)
    {
 
-      defer_calculate_raw_folder_protocols();
+      defer_calculate_fs_raw_folder_protocols();
 
-      for (auto & pair : m_mapRawFolderProtocol)
+      for (auto & pair : m_mapFsRawFolderProtocol)
       {
 
-         auto protocol = pair.element1();
+         auto strProtocol = pair.element1();
 
-         auto prawfolderprotocol = pair.element2();
+         auto pfsrawfolderprotocol = pair.element2();
 
-         if(::is_set(prawfolderprotocol) 
-            && prawfolderprotocol->is_installed() &&
-            _001IsProtocol(path, protocol + ":/"))
+         if(::is_set(pfsrawfolderprotocol)
+            && pfsrawfolderprotocol->is_installed() 
+            && _001IsProtocol(path, strProtocol + ":/"))
          { 
 
-            path = prawfolderprotocol->raw_path(path);
+            path = pfsrawfolderprotocol->raw_path(path);
 
             return true;
          
@@ -572,6 +573,36 @@ namespace apex
       return false;
 
    }
+
+
+
+   bool context::is_fs_raw_folder_protocol_installed(const ::scoped_string & scopedstrProtocol)
+   {
+
+      defer_calculate_fs_raw_folder_protocols();
+
+      for (auto & pair : m_mapFsRawFolderProtocol)
+      {
+
+         auto strProtocol = pair.element1();
+
+         auto pfsrawfolderprotocol = pair.element2();
+
+         if (::is_set(pfsrawfolderprotocol)
+            && pfsrawfolderprotocol->is_installed()
+            && scopedstrProtocol == strProtocol)
+         {
+
+            return true;
+
+         }
+
+      }
+
+      return false;
+
+   }
+
 
    //else if (node()->_is_dropbox_installed() && _001IsProtocol(path, "dropbox:/"))
 

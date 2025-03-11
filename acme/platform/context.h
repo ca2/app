@@ -165,10 +165,14 @@ namespace platform
       virtual ::pointer < ::file::link > _os_resolve_alias(const ::file::path& path, bool bNoUI, bool bNoMount) override;
       //virtual bool os_is_alias(const ::file::path & path) override;
 
-      virtual bool defer_process_media_library_path(::file::path & path) override;
-      virtual bool defer_process_known_folder_path(::file::path & path) override;
-      virtual bool defer_process_protocol_path(::file::path & path)  override;
-      virtual bool defer_process_raw_folder_protocol_path(::file::path & path)  override;
+      bool defer_process_media_library_path(::file::path & path) override;
+      bool defer_process_known_folder_path(::file::path & path) override;
+      bool defer_process_protocol_path(::file::path & path) override;
+      
+      
+      
+      bool defer_process_fs_raw_folder_protocol_path(::file::path & path) override;
+      bool is_fs_raw_folder_protocol_installed(const ::scoped_string & scopedstrProtocol) override;
 
 
    };

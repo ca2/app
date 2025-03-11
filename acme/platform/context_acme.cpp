@@ -264,14 +264,11 @@ namespace platform
 
    bool acme_context_layer::defer_process_protocol_path(::file::path& path)
    {
+      
       return false;
+
    }
 
-
-   bool acme_context_layer::defer_process_raw_folder_protocol_path(::file::path & path)
-   {
-      return false;
-   }
 
 
    ::platform::http * acme_context_layer::http()

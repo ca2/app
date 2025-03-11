@@ -4851,7 +4851,7 @@ void window::set_oswindow(::oswindow oswindow)
          minimum(pointInvalid.x());
          minimum(pointInvalid.y());
 
-         _on_mouse_move_step(pointInvalid);
+         _on_mouse_move_step(pointInvalid, true);
 
          //::pointer<::user::interaction>pinteraction;
 
@@ -5350,11 +5350,11 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::_on_mouse_move_step(const ::int_point & pointCursor, ::user::enum_layout elayoutChild, bool bMouseLeave)
-   {
+   // void window::_on_mouse_move_step(const ::int_point & pointCursor, ::user::enum_layout elayoutChild, bool bMouseLeave)
+   // {
 
 
-   }
+   // }
 
 
    void window::defer_check_mouse_leave(::user::enum_layout elayoutWindow, ::user::enum_layout elayoutChild)
@@ -6310,7 +6310,7 @@ void window::set_oswindow(::oswindow oswindow)
 
          //user_interaction()->_on_mouse_move_step(pmouse->m_pointHost);
 
-         _on_mouse_move_step(pmouse->m_pointHost);
+         _on_mouse_move_step(pmouse->m_pointHost, false);
 
          //information() << "e_message_mouse_move (2): " << pmouse->m_pointAbsolute;
 

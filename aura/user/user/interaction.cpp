@@ -18239,7 +18239,6 @@ if(get_parent())
 
          }
 
-
       }
 
       return pchild->on_child_from_point_mouse_message_routing(pmouse);
@@ -26944,32 +26943,45 @@ __check_refdbg;
 
             auto type = ::type(this);
 
-            if (type.name().contains("button"))
+            if (type.name().contains("experience") && type.name().contains("button"))
             {
 
-               //informationf("button");
+               informationf("experience, button");
 
             }
 
             __check_refdbg;
 
+            ::item_pointer pitemFront;
+
+            ::item_pointer pitemBack;
+
             //bool bAvoidRedraw = !m_bDefaultMouseHoverHandling;
 
-            auto pitemFront = update_hover(pmouse, e_zorder_front);
+            if (!m_bDefaultParentMouseMessageHandling)
+            {
 
-            decltype(pitemFront) pitemBack;
+               pitemFront = update_hover(pmouse, e_zorder_front);
 
-            if (!pitemFront)
+            }
+
+            if (!::is_item_set(pitemFront))
             {
 
                __check_refdbg;
+
+               if (type.name().contains("experience") && type.name().contains("button"))
+               {
+
+                  informationf("experience, button going to update_hover with e_zorder_back");
+
+               }
 
                //information() << "update_hover pmouse e_zorder_back";
 
                pitemBack = update_hover(pmouse, e_zorder_back);
 
                __check_refdbg;
-
 
             }
 
@@ -27883,6 +27895,13 @@ __check_refdbg;
          {
 
             information() << "interaction::on_message_mouse_leave button maximize";
+
+         }
+
+         if (strType.contains("experience"))
+         {
+
+            informationf("experience, button at on_message_mouse_leave");
 
          }
 

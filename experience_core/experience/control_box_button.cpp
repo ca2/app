@@ -3,11 +3,13 @@
 #include "acme/handler/item.h"
 #include "acme/user/user/tool.h"
 #include "acme/prototype/geometry2d/ellipse.h"
+#include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/user/user/frame_interaction.h"
+#include "aura/windowing/windowing.h"
 #include "base/user/experience/control_box.h"
 
 
@@ -58,81 +60,87 @@ namespace experience_core
 
       auto pstyle = get_style(pgraphics);
 
-      auto colorBackground = get_color(pstyle, ::e_element_background, get_state());
+      auto estate = get_state();
 
-      //::color::color crBackground = _001GetButtonBackgroundColor();
-
-      //auto & linkedpropertyCheck = m_linkedpropertyCheck;
-
-      auto echeck = this->echeck();
-
-      if(echeck == ::e_check_checked)
+      if (estate & (::user::e_state_hover | ::user::e_state_disabled))
       {
 
-         if(windowing()->is_sandboxed())
-         {
+         auto colorBackground = get_color(pstyle, ::e_element_background, estate);
+
+         //::color::color crBackground = _001GetButtonBackgroundColor();
+
+         //auto & linkedpropertyCheck = m_linkedpropertyCheck;
+
+            auto echeck = this->echeck();
+
+            if (echeck == ::e_check_checked)
+            {
+
+               if (windowing()->is_sandboxed())
+               {
 
 
 
-         }
-         else
-         {
+               }
+               else
+               {
 
-            ::int_rectangle rectanglePush(rectangleX);
+                  ::int_rectangle rectanglePush(rectangleX);
 
-            ::color::color colorBack(colorBackground);
+                  ::color::color colorBack(colorBackground);
 
-            colorBack.hls_rate(0.0, -0.2, 0.0);
+                  colorBack.hls_rate(0.0, -0.2, 0.0);
 
-            rectanglePush.deflate(0, 0, 1, 1);
+                  rectanglePush.deflate(0, 0, 1, 1);
 
-            ::color::color colorTopLeft(colorBack);
+                  ::color::color colorTopLeft(colorBack);
 
-            ::color::color colorBottomRight(colorBack);
+                  ::color::color colorBottomRight(colorBack);
 
-            colorTopLeft.hls_rate(0.0, -0.65, 0.0);
+                  colorTopLeft.hls_rate(0.0, -0.65, 0.0);
 
-            colorBottomRight.hls_rate(0.0, 0.75, 0.0);
+                  colorBottomRight.hls_rate(0.0, 0.75, 0.0);
 
-            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+                  pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
+                  pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
 
-            rectanglePush.deflate(1, 1);
+                  rectanglePush.deflate(1, 1);
 
-            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
+                  pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
 
-            rectanglePush.deflate(1, 1);
+                  rectanglePush.deflate(1, 1);
 
-            pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
+                  pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
 
-            rectanglePush.deflate(1, 1, 0, 1);
+                  rectanglePush.deflate(1, 1, 0, 1);
 
-            pgraphics->fill_rectangle(rectanglePush, colorBack);
+                  pgraphics->fill_rectangle(rectanglePush, colorBack);
 
-         }
+               }
 
-      }
-      else
-      {
+            }
+            else
+            {
 
-         if (colorBackground.non_transparent())
-         {
+               if (colorBackground.non_transparent())
+               {
 
-            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+                  pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            auto pbrushBackground = draw2d()->create_solid_brush(colorBackground);
+                  auto pbrushBackground = draw2d()->create_solid_brush(colorBackground);
 
-            pgraphics->set(pbrushBackground);
+                  pgraphics->set(pbrushBackground);
 
-            pgraphics->fill_ellipse(rectangleX);
+                  pgraphics->fill_ellipse(rectangleX);
 
-         }
+               }
+
+            }
 
       }
 
    }
-
 
 
    void control_box_button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)

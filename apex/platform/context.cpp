@@ -468,75 +468,80 @@ namespace apex
    void context::defer_calculate_fs_raw_folder_protocols()
    {
 
-      if (m_bModifiedFsRawFolderProtocols)
+      if (application()->m_bEnableFsRawFolderProtocols)
       {
 
-         m_bModifiedFsRawFolderProtocols = false;
-
-         auto pcomponent = system()->component("fs_raw_folder_protocol");
-
-         ::cast < ::database::client > pdatabaseclient = pcomponent;
-
-         if (pdatabaseclient)
+         if (m_bModifiedFsRawFolderProtocols)
          {
 
-            ::cast < ::database::client > pdatabaseclientApp = application();
+            m_bModifiedFsRawFolderProtocols = false;
 
-            if (pdatabaseclientApp)
+            auto pcomponent = system()->component("fs_raw_folder_protocol");
+
+            ::cast < ::database::client > pdatabaseclient = pcomponent;
+
+            if (pdatabaseclient)
             {
 
-               pdatabaseclient->initialize_data_client(pdatabaseclientApp->m_pdataserver);
+               ::cast < ::database::client > pdatabaseclientApp = application();
+
+               if (pdatabaseclientApp)
+               {
+
+                  pdatabaseclient->initialize_data_client(pdatabaseclientApp->m_pdataserver);
+
+               }
 
             }
 
-         }
+            pcomponent->update();
 
-         pcomponent->update();
-
-         if (pcomponent)
-         {
-
-            for (auto & strInstalled : pcomponent->m_straImplementationInstalled)
+            if (pcomponent)
             {
-               
-               try
+
+               for (auto& strInstalled : pcomponent->m_straImplementationInstalled)
                {
 
-                  auto pimplementation = pcomponent->implementation(strInstalled);
-
-                  ::pointer < ::fs::raw_folder_protocol > prawfolderprotocol = pimplementation;
-
-                  if (::is_set(prawfolderprotocol))
+                  try
                   {
 
-                     if (prawfolderprotocol->is_installed())
+                     auto pimplementation = pcomponent->implementation(strInstalled);
+
+                     ::pointer < ::fs::raw_folder_protocol > prawfolderprotocol = pimplementation;
+
+                     if (::is_set(prawfolderprotocol))
                      {
 
-                        ::string strProtocol = prawfolderprotocol->protocol();
-
-                        if (strProtocol.has_character())
+                        if (prawfolderprotocol->is_installed())
                         {
 
-                           m_mapFsRawFolderProtocol[strProtocol] = prawfolderprotocol;
+                           ::string strProtocol = prawfolderprotocol->protocol();
+
+                           if (strProtocol.has_character())
+                           {
+
+                              m_mapFsRawFolderProtocol[strProtocol] = prawfolderprotocol;
+
+                           }
 
                         }
 
+
                      }
+
+
+                  }
+                  catch (...)
+                  {
 
 
                   }
 
 
                }
-               catch (...)
-               {
 
 
-               }
-
-               
             }
-             
 
          }
 

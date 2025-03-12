@@ -14,33 +14,222 @@
 #include "ColorPicker.h"
 #include "Layout.h"
 #include "ColorWheel.h"
+#include "Label.h"
 #include "acme/constant/source.h"
 #include "acme/prototype/prototype/action_context.h"
 
 
 namespace nanoui
 {
+   ColorPicker::MyGridWidget::MyGridWidget(nanoui::Widget* p, int cols) :
+      nanoui::Widget(p)
+   {
+      auto playout = __allocate nanoui::GridLayout(::e_orientation_horizontal, cols,
+         e_alignment_minimum);
+
+      set_layout(playout);
+
+   }
 
 
-   ColorPicker::ColorPicker(Widget* parent, const ::color::color& color) :
+   void ColorPicker::sync_color(const ::color::hls& hls)
+   {
+
+      m_pick_button->set_background_color(hls);
+
+      ::color::color color(hls);
+
+      m_pick_button->set_text_color(color.contrasting_color());
+
+      m_color_wheel->set_sel_color(hls);
+
+      m_callback(hls);
+
+      m_ppopup->set_need_redraw();
+
+      m_ppopup->post_redraw();
+
+      ::color::hsv hsv(hls);
+      m_peditRed->set_value(color.byte_red(), e_source_sync);
+      m_peditGreen->set_value(color.byte_green(), e_source_sync);
+      m_peditBlue->set_value(color.byte_blue(), e_source_sync);
+      m_peditHSV_H->set_value(hsv.m_dH * 360.0, e_source_sync);
+      m_peditHSV_S->set_value(hsv.m_dS * 100.0, e_source_sync);
+      m_peditHSV_V->set_value(hsv.m_dV * 100.0, e_source_sync);
+
+      ::string strHex;
+      strHex.formatf("%02X%02X%02X", color.byte_red(), color.byte_green(),  color.byte_blue());
+
+      m_peditHex->set_value(strHex, e_source_sync);
+
+   }
+
+
+   ColorPicker::ColorPicker(Widget* parent, const ::color::hls& hls) :
       PopupButton(parent, "")
    {
 
-      set_background_color(color);
+      set_background_color(hls);
 
       m_ppopup->set_layout(__allocate GroupLayout());
 
       // initialize callback to do nothing; this is for users to hook into
       // receiving a ___new color value
-      m_callback = [](const ::color::color&) {};
-      m_final_callback = [](const ::color::color&) {};
+      m_callback = [](const ::color::hls&) {};
+      m_final_callback = [](const ::color::hls&) {};
+
+      
 
       // set the color wheel to the specified color
-      m_color_wheel = __allocate ColorWheel(m_ppopup, color);
+      m_color_wheel = __allocate ColorWheel(m_ppopup, hls);
+
+      m_ptab = __allocate TabWidget(m_ppopup);
+
+      m_ptab->set_erase_children(false);
+
+      m_pgridRgb = __allocate MyGridWidget(m_ptab, 2);
+
+      {
+         
+         __allocate nanoui::Label(m_pgridRgb, "Red", "sans", 14);
+
+         auto pedit = __allocate  nanoui::IntBox<int>(m_pgridRgb);
+         pedit->set_editable(true);
+         pedit->set_font_size(14);
+         pedit->set_unit("");
+         pedit->set_fixed_size({ 70,25 });
+         pedit->set_value(0, ::e_source_initialize);
+         pedit->set_minimum_maximum_values(0, 255);
+         pedit->set_alignment(::nanoui::TextBox::e_alignment_right);
+         pedit->set_spinnable(true);
+
+         m_peditRed = pedit;
+
+      }
+
+      {
+
+         __allocate nanoui::Label(m_pgridRgb, "Green", "sans", 14);
+
+         auto pedit = __allocate  nanoui::IntBox<int>(m_pgridRgb);
+         pedit->set_editable(true);
+         pedit->set_font_size(14);
+         pedit->set_unit("");
+         pedit->set_fixed_size({ 70,25 });
+         pedit->set_value(0, ::e_source_initialize);
+         pedit->set_minimum_maximum_values(0, 255);
+         pedit->set_alignment(::nanoui::TextBox::e_alignment_right);
+         pedit->set_spinnable(true);
+
+         m_peditGreen = pedit;
+
+      }
+
+
+      {
+
+         __allocate nanoui::Label(m_pgridRgb, "Blue", "sans", 14);
+
+         auto pedit = __allocate  nanoui::IntBox<int>(m_pgridRgb);
+         pedit->set_editable(true);
+         pedit->set_font_size(14);
+         pedit->set_unit("");
+         pedit->set_fixed_size({ 70,25 });
+         pedit->set_value(0, ::e_source_initialize);
+         pedit->set_minimum_maximum_values(0, 255);
+         pedit->set_alignment(::nanoui::TextBox::e_alignment_right);
+         pedit->set_spinnable(true);
+
+         m_peditBlue = pedit;
+
+      }
+
+      m_ptab->append_tab("RGB", m_pgridRgb);
+
+      m_pgridHSV = __allocate MyGridWidget(m_ptab, 2);
+
+      {
+
+         __allocate nanoui::Label(m_pgridHSV, "Hue", "sans", 14);
+
+         auto pedit = __allocate  nanoui::IntBox<int>(m_pgridHSV);
+         pedit->set_editable(true);
+         pedit->set_font_size(14);
+         pedit->set_unit("");
+         pedit->set_fixed_size({ 70,25 });
+         pedit->set_value(0, ::e_source_initialize);
+         pedit->set_alignment(::nanoui::TextBox::e_alignment_right);
+         pedit->set_minimum_maximum_values(0, 359);
+         pedit->set_spinnable(true);
+
+         m_peditHSV_H = pedit;
+
+      }
+
+      {
+
+         __allocate nanoui::Label(m_pgridHSV, "Saturation", "sans", 14);
+
+         auto pedit = __allocate  nanoui::IntBox<int>(m_pgridHSV);
+         pedit->set_editable(true);
+         pedit->set_font_size(14);
+         pedit->set_unit("");
+         pedit->set_fixed_size({ 70,25 });
+         pedit->set_value(0, ::e_source_initialize);
+         pedit->set_alignment(::nanoui::TextBox::e_alignment_right);
+         pedit->set_minimum_maximum_values(0, 100);
+         pedit->set_spinnable(true);
+
+         m_peditHSV_S = pedit;
+
+      }
+
+
+
+      {
+
+         __allocate nanoui::Label(m_pgridHSV, "Brightness", "sans", 14);
+
+         auto pedit = __allocate  nanoui::IntBox<int>(m_pgridHSV);
+         pedit->set_editable(true);
+         pedit->set_font_size(14);
+         pedit->set_unit("");
+         pedit->set_fixed_size({ 70,25 });
+         pedit->set_value(0, ::e_source_initialize);
+         pedit->set_alignment(::nanoui::TextBox::e_alignment_right);
+         pedit->set_minimum_maximum_values(0, 100);
+         pedit->set_spinnable(true);
+
+         m_peditHSV_V = pedit;
+
+      }
+
+      m_ptab->append_tab("HSV", m_pgridHSV);
+
+      m_pgridHEX = __allocate MyGridWidget(m_ptab, 2);
+
+      {
+
+         __allocate nanoui::Label(m_pgridHEX, "#", "sans", 14);
+
+         auto pedit = __allocate  nanoui::TextBox(m_pgridHEX);
+         pedit->set_editable(true);
+         pedit->set_font_size(14);
+         pedit->set_fixed_size({ 70,25 });
+         pedit->set_value("", ::e_source_initialize);
+         pedit->set_alignment(::nanoui::TextBox::e_alignment_right);
+
+         m_peditHex = pedit;
+
+      }
+
+      m_ptab->append_tab("HEX", m_pgridHEX);
+
+      ::color::color color(hls);
 
       // set the pick button to the specified color
       m_pick_button = __allocate Button(m_ppopup, "Pick");
-      m_pick_button->set_background_color(color);
+      m_pick_button->set_background_color(hls);
       m_pick_button->set_text_color(color.contrasting_color());
       m_pick_button->set_fixed_size({100, 20});
 
@@ -64,24 +253,16 @@ namespace nanoui
 
          });
 
-      m_color_wheel->set_callback([&](const ::color::color& value)
+      m_color_wheel->set_callback([&](const ::color::hls& hls)
          {
 
-            m_pick_button->set_background_color(value);
-
-            m_pick_button->set_text_color(value.contrasting_color());
-
-            m_callback(value);
-
-            m_ppopup->set_need_redraw();
-
-            m_ppopup->post_redraw();
+            sync_color(hls);
 
          });
 
       m_pick_button->set_callback([&]() {
          if (m_bChecked) {
-            ::color::color value = m_color_wheel->color();
+            ::color::hls value = m_color_wheel->get_sel_color();
             set_checked(false, e_source_selection);
             set_color(value);
             call_final_callback(value);
@@ -90,10 +271,10 @@ namespace nanoui
          });
 
       m_reset_button->set_callback([&]() {
-         ::color::color bg = m_reset_button->colorBackground();
-         ::color::color fg = m_reset_button->text_color();
+         ::color::hls bg = m_reset_button->colorBackground();
+         ::color::hls fg = m_reset_button->text_color();
 
-         m_color_wheel->set_color(bg);
+         m_color_wheel->set_sel_color(bg);
          m_pick_button->set_background_color(bg);
          m_pick_button->set_text_color(fg);
 
@@ -103,10 +284,51 @@ namespace nanoui
          post_redraw();
 
          });
+
+      m_peditRed->set_callback([&](int iIntensity) {
+            ::color::hls hls = m_color_wheel->get_sel_color();
+            ::color::color color(hls);
+            color.set_red(iIntensity);
+            hls = color;
+            sync_color(hls);
+         });
+      m_peditGreen->set_callback([&](int iIntensity) {
+            ::color::hls hls = m_color_wheel->get_sel_color();
+            ::color::color color(hls);
+            color.set_green(iIntensity);
+            hls = color;
+            sync_color(hls);
+         });
+      m_peditBlue->set_callback([&](int iIntensity) {
+         ::color::hls hls = m_color_wheel->get_sel_color();
+         ::color::color color(hls);
+         color.set_blue(iIntensity);
+         hls = color;
+         sync_color(hls);
+         });
+      m_peditHSV_H->set_callback([&](int iIntensity) {
+         ::color::hsv hsv = m_color_wheel->get_sel_color();
+         hsv.m_dH = (double) iIntensity / 360.0;
+         sync_color(hsv);
+         });
+      m_peditHSV_S->set_callback([&](int iIntensity) {
+         ::color::hsv hsv = m_color_wheel->get_sel_color();
+         hsv.m_dS = (double)iIntensity / 100.0;
+         sync_color(hsv);
+         });
+      m_peditHex->set_callback([&](const ::scoped_string& str) {
+         auto color = ::color::hex_to_color(str);
+         sync_color(color);
+         return true;
+         });
+
+      sync_color(hls);
+
+
    }
 
 
-   ::color::color ColorPicker::color() const
+   ::color::hls ColorPicker::color() const
    {
 
       return colorBackground();
@@ -114,16 +336,17 @@ namespace nanoui
    }
 
 
-   void ColorPicker::set_color(const ::color::color& color)
+   void ColorPicker::set_color(const ::color::hls& hls)
    {
 
       /* Ignore set_color() calls when the user is currently editing */
       if (!m_bChecked)
       {
-         ::color::color fg = color.contrasting_color();
-         set_background_color(color);
+         ::color::color color(hls);
+         auto fg = color.contrasting_color();
+         set_background_color(hls);
          set_text_color(fg);
-         m_color_wheel->set_color(color);
+         m_color_wheel->set_sel_color(color);
 
          m_pick_button->set_background_color(color);
          m_pick_button->set_text_color(fg);
@@ -135,7 +358,7 @@ namespace nanoui
    }
 
 
-   void ColorPicker::call_final_callback(const ::color::color& color)
+   void ColorPicker::call_final_callback(const ::color::hls& color)
    {
 
       popup()->set_visible(false);
@@ -143,6 +366,7 @@ namespace nanoui
       m_final_callback(color);
 
    }
+
 
 
 } // namespace nanoui

@@ -1599,3 +1599,74 @@ CLASS_DECL_ACME::color::color as_color(const ::scoped_string & scopedstr)
 }
 
 
+
+namespace color
+{
+
+   CLASS_DECL_ACME::color::color hex_to_color(const char* psz)
+   {
+
+      ::string str(psz);
+
+      if (str.size() < 6)
+      {
+
+         return ::color::transparent;
+
+      }
+
+      str.make_upper();
+
+      ::string_array straPermitted;
+
+      straPermitted.add("0");
+      straPermitted.add("1");
+      straPermitted.add("2");
+      straPermitted.add("3"); 
+      straPermitted.add("4");
+      straPermitted.add("5");
+      straPermitted.add("6");
+      straPermitted.add("7");
+      straPermitted.add("8");
+      straPermitted.add("9");
+      straPermitted.add("A");
+      straPermitted.add("B");
+      straPermitted.add("C");
+      straPermitted.add("D");
+      straPermitted.add("E");
+      straPermitted.add("F");
+
+
+      ::string strResult;
+
+      for (::character_count i = 0; i < str.size(); i++)
+      {
+
+         ::string strDigit;
+
+         strDigit = str[i];
+
+         if (straPermitted.contains(strDigit))
+         {
+
+            strResult += strDigit;
+
+         }
+
+      }
+
+      unsigned int r = 0;
+      unsigned int g = 0;
+      unsigned int b = 0;
+
+      ::hex::to(r, strResult.substr(0, 2));
+      ::hex::to(g, strResult.substr(2, 2));
+      ::hex::to(b, strResult.substr(4, 2));
+
+      return ::rgba((int)r, (int)g, (int) b, 255);
+
+   }
+
+
+
+} // namespace color

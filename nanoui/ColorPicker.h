@@ -11,7 +11,12 @@
 #pragma once
 
 
+#include "acme/constant/user_key.h"
+#include "aura/user/user/interaction.h"
+#include "IntBox.h"
+#include "FloatBox.h"
 #include "PopupButton.h"
+#include "TabWidget.h"
 
 
 namespace nanoui
@@ -28,16 +33,16 @@ namespace nanoui
    {
    public:
 
-
+      TabWidget* m_ptab;
       /// The "fast" callback executed when the ColorWheel has changed.
-      ::function<void(const ::color::color&)> m_callback;
+      ::function<void(const ::color::hls&)> m_callback;
 
       /**
        * The callback to execute when a ___new ::color::color is selected on the ColorWheel
        * **and** the user clicks the \::pointer nanoui::ColorPicker::m_pick_button or
        * \::pointer nanoui::ColorPicker::m_reset_button.
        */
-      ::function<void(const ::color::color&)> m_final_callback;
+      ::function<void(const ::color::hls&)> m_final_callback;
 
       /// The ColorWheel for this ColorPicker (the actual pwidget allowing selection).
       ColorWheel* m_color_wheel;
@@ -64,7 +69,26 @@ namespace nanoui
        */
       Button* m_reset_button;
 
+      class MyGridWidget : public nanoui::Widget
+      {
+      public:
+         MyGridWidget(nanoui::Widget* p, int cols);
+      };
+      MyGridWidget* m_pgridRgb;
+      nanoui::IntBox<int>* m_peditRed;
+      nanoui::IntBox<int>* m_peditGreen;
+      nanoui::IntBox<int>* m_peditBlue;
 
+
+      MyGridWidget* m_pgridHSV;
+      nanoui::IntBox<int>* m_peditHSV_H;
+      nanoui::IntBox<int>* m_peditHSV_S;
+      nanoui::IntBox<int>* m_peditHSV_V;
+
+      MyGridWidget* m_pgridHEX;
+      nanoui::TextBox * m_peditHex;
+
+      void sync_color(const ::color::hls & hls);
 
       /**
        * Attaches a ColorPicker to the specified parent.
@@ -76,10 +100,10 @@ namespace nanoui
        *     The color initially selected by this ColorPicker (default: Red).
        */
 
-      ColorPicker(Widget* parent, const ::color::color& color = ::argb(1.f, 0.f, 0.f, 1.f));
+      ColorPicker(Widget* parent, const ::color::hls& color = ::argb(1.f, 0.f, 0.f, 1.f));
 
       /// The callback executed when the ColorWheel changes.
-      ::function<void(const ::color::color&)> callback() const { return m_callback; }
+      ::function<void(const ::color::hls&)> callback() const { return m_callback; }
 
       /**
        * Sets the callback is executed as the ColorWheel itself is changed.  Set
@@ -87,7 +111,7 @@ namespace nanoui
        * before the user clicks \::pointer nanoui::ColorPicker::mPickButton or
        * \::pointer nanoui::ColorPicker::mPickButton.
        */
-      void set_callback(const ::function<void(const ::color::color&)>& callback) {
+      void set_callback(const ::function<void(const ::color::hls&)>& callback) {
          m_callback = callback;
          m_callback(colorBackground());
       }
@@ -97,19 +121,19 @@ namespace nanoui
        * **and** the user clicks the \::pointer nanoui::ColorPicker::m_pick_button or
        * \::pointer nanoui::ColorPicker::m_reset_button.
        */
-      ::function<void(const ::color::color&)> final_callback() const { return m_final_callback; }
+      ::function<void(const ::color::hls&)> final_callback() const { return m_final_callback; }
 
       /**
        * The callback to execute when a ___new ::color::color is selected on the ColorWheel
        * **and** the user clicks the \::pointer nanoui::ColorPicker::m_pick_button or
        * \::pointer nanoui::ColorPicker::m_reset_button.
        */
-      void set_final_callback(const ::function<void(const ::color::color&)>& callback) { m_final_callback = callback; }
+      void set_final_callback(const ::function<void(const ::color::hls&)>& callback) { m_final_callback = callback; }
 
       /// Get the current ::color::color
-      ::color::color color() const;
+      ::color::hls color() const;
       /// Set the current ::color::color
-      void set_color(const ::color::color& color);
+      void set_color(const ::color::hls& color);
 
       /// The current caption of the \::pointer nanoui::ColorPicker::m_pick_button.
       ::string pick_button_caption() { return m_pick_button->caption(); }
@@ -124,7 +148,7 @@ namespace nanoui
       void set_reset_button_caption(const ::scoped_string& caption) { m_reset_button->set_caption(caption); }
 
 
-      virtual void call_final_callback(const ::color::color& color);
+      virtual void call_final_callback(const ::color::hls& color);
 
    };
 

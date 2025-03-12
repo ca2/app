@@ -99,6 +99,8 @@ namespace platform
 
       int m_iWaitCursorCount; // for wait cursor (>0 => waiting)
 
+      bool m_bEnableFsRawFolderProtocols = true;
+
       //::pointer<::simpledb::server>              m_psimpledb;
 
       //::userex::pane_tab_impact *                m_pmainpane;

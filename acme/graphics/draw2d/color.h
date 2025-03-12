@@ -810,6 +810,8 @@ namespace color
    }
 
 
+   CLASS_DECL_ACME ::color::color hex_to_color(const char* psz);
+
    //constexpr void color::set_bgr(unsigned int ui)
    //{
 

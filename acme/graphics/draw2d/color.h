@@ -86,6 +86,8 @@ namespace color
 
    class color;
 
+   class hsv;
+
    
    struct HLS
    {
@@ -109,10 +111,40 @@ namespace color
       hls(enum_zero_init) : HLS{ 0.0,0.0, 0.0 } {}
       hls(double dH, double dL = 0.5, double dS = 1.0) :HLS{ dH, dL, dS } {}
       hls(const ::color::color & color);
+      hls(const ::color::hsv & hsv);
       hls & operator =(const ::payload & payload);
 
 
    };
+
+   struct HSV
+   {
+
+      double m_dH;
+      double m_dS;
+      double m_dV;
+
+   };
+
+
+   class CLASS_DECL_ACME hsv :
+      public HSV
+   {
+   public:
+
+
+
+
+      hsv() {}
+      hsv(enum_zero_init) : HSV{ 0.0,0.0, 0.0 } {}
+      hsv(double dH, double dS = 1.0, double dV = .5) :HSV{ dH, dS, dV } {}
+      hsv(const ::color::color & color);
+      hsv(const ::color::hls & hls);
+      hsv & operator =(const ::payload & payload);
+
+
+   };
+
 
    enum enum_channel
    {
@@ -149,6 +181,7 @@ namespace color
       constexpr color(enum_plain_color eplaincolor);
       constexpr color(enum_plain_color eplaincolor, unsigned char u8Opacity) : color(eplaincolor) { m_uchOpacity = u8Opacity; }
       color(const hls & hls, unsigned char A = 255);
+      color(const hsv & hsv, unsigned char A = 255);
       //color(const COLOR32 & color32, int flags = 0) { this->m_ui = color32.m_ui;  m_flags = flags; }
       //color(::color32_t color32, int flags = 0) { this->m_ui = color32;  m_flags = flags; }
       //color(unsigned char R, unsigned char G, unsigned char B, unsigned char A = 255);
@@ -203,16 +236,24 @@ namespace color
       //constexpr void set_bgr(::bgra_t bgra);
       constexpr void set(::bgra_t bgra);
       void get_hls(double & dHue, double & dLightness, double & dSaturation) const;
+      void get_hsv(double & dHue, double & dBlack, double & dWhite) const;
+
+      static ::color::color from_hue(double dHue);
 
       void set_hls(double dHue, double dLightness, double dSaturation);
+      void set_hsv(double dHue, double dBlack, double dWhite);
       void hls_mult(hls & hls);
       void hls_rate(hls & hls);
       void get_hls(hls & hls) const;
+      void get_hsv(hsv & hsv) const;
       void set_hls(const hls & hls);
+      void set_hsv(const hsv & hsv);
 
 
 
       ::color::hls get_hls() const { hls hls; get_hls(hls); return hls; }
+
+      ::color::hsv get_hsv() const { hsv hsv; get_hsv(hsv); return hsv; }
 
       constexpr ::rgba_t rgba() const;
       constexpr ::bgra_t bgra() const;
@@ -322,6 +363,7 @@ namespace color
       constexpr color & operator = (::color32_t color32);
       constexpr color & operator = (enum_plain_color ecolor);
       color & operator = (const hls & hls);
+      color & operator = (const hsv & hsv);
 
       bool parse_color(const ::scoped_string & scopedstr);
 
@@ -497,21 +539,21 @@ namespace color
 //CLASS_DECL_ACME::color::color RGBAf_color(float r, float g, float b, float a);
 
 // Linearly interpolates from color c0 to c1, and returns resulting color value.
-CLASS_DECL_ACME::color::color LerpRGBA_color(color c0, color c1, float u);
+CLASS_DECL_ACME::color::color LerpRGBA_color(color c0, color c1, double u);
 
 // Sets transparency of a color value.
 CLASS_DECL_ACME::color::color TransRGBA_color(color c0, unsigned char a);
 
 // Sets transparency of a color value.
-CLASS_DECL_ACME::color::color TransRGBAf(color c0, float a);
+CLASS_DECL_ACME::color::color TransRGBAf(color c0, double a);
 
 // Returns color value specified by hue, saturation and lightness.
 // HSL values are all in range [0..1], m_uchOpacity will be set to 255.
-CLASS_DECL_ACME::color::color HSL_color(float h, float s, float l);
+CLASS_DECL_ACME::color::color HSL_color(double h, double s, double l);
 
 // Returns color value specified by hue, saturation and lightness and m_uchOpacity.
 // HSL values are all in range [0..1], m_uchOpacity in range [0..255]
-CLASS_DECL_ACME ::color::color HSLA_color(float h, float s, float l, unsigned char a);
+CLASS_DECL_ACME ::color::color HSLA_color(double h, double s, double l, unsigned char a);
 
 
 } // namespace color
@@ -867,6 +909,16 @@ namespace color
    {
 
       operator=(color.get_hls());
+
+   }
+
+
+
+
+   inline hsv::hsv(const ::color::color & color)
+   {
+
+      operator=(color.get_hsv());
 
    }
 

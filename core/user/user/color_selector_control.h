@@ -2,6 +2,7 @@
 #pragma once
 
 
+#include "axis/graphics/graphics/color_wheel.h"
 #include "core/graphics/color_selector.h"
 #include "aura/user/user/plain_edit.h"
 
@@ -12,11 +13,12 @@ namespace user
 
    class CLASS_DECL_CORE color_selector_control :
       virtual public ::user::interaction,
-      virtual public ::graphics::color_selector
+      virtual public ::core::graphics::color_selector,
+      virtual public ::graphics::color_wheel
    {
    public:
 
-
+      ::write_text::font_pointer m_pfont;
       //bool                             m_bMouseColorBeam;
       //::int_point                      m_pointMouseColorBeam;
       //bool                             m_bCompact;
@@ -33,6 +35,8 @@ namespace user
       //::color::hls                            m_hls;
 
       //::int_rectangle                           m_rectangleColors;
+      bool m_bMode0;
+      bool m_bColorWheel;
 
 
       color_selector_control();
@@ -53,11 +57,19 @@ namespace user
       ::color::hls get_sel_color() override;
 
 
+      void graphics_set_mouse_capture() override;
+      void graphics_release_mouse_capture() override;
+      void graphics_redraw() override;
+
+
       void handle(::topic * ptopic, ::context * pcontext) override;
 
       //void handle(::topic * ptopic, ::context * pcontext) override;
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+
+      //virtual void on_draw_mode_0(::draw2d::graphics_pointer & pgraphics);
+      //virtual void on_draw_color_wheel(::draw2d::graphics_pointer & pgraphics);
 
       //virtual void draw_beam(::draw2d::graphics_pointer & pgraphics, const ::int_point & point);
       //virtual void draw_level(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleW, int y);
@@ -74,11 +86,11 @@ namespace user
       //virtual void on_mouse(const ::int_point & point);
       //virtual void rebuild_luminance();
 
-      virtual ::color::color get_color();
-      virtual void set_color(const ::color::color & color);
+      virtual ::color::hls get_color();
+      virtual void set_color(const ::color::hls & hls);
 
 
-      void on_after_hover_color_change() override;
+      virtual void on_color_change();
 
 
    };

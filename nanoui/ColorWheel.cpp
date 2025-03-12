@@ -143,8 +143,10 @@ namespace nanoui
             pcontext->stroke();
 
             // Select circle on triangle
+            //float sx = r * (1 - m_white - m_black) + ax * m_white + bx * m_black;
+            //float sy = ay * m_white + by * m_black;
             float sx = r * (1 - m_white - m_black) + ax * m_white + bx * m_black;
-            float sy = ay * m_white + by * m_black;
+            float sy = m_hls.dS * ay;
 
             pcontext->stroke_width(u);
             pcontext->begin_path();

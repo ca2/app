@@ -181,6 +181,12 @@
     <Filter Include="Header Files\geoip">
       <UniqueIdentifier>{9230e94b-5463-4a25-a906-d7cba74cfeeb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\graphics\graphics">
+      <UniqueIdentifier>{ab3e82ef-76f7-4f79-80ee-ef54514c3b39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\graphics">
+      <UniqueIdentifier>{c6fa53da-4b5d-47a1-a174-c553bdddaa8d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -744,6 +750,12 @@
     <ClInclude Include="user\user\multiple_option.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\graphics\color_wheel.h">
+      <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics\color_selector.h">
+      <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -1057,6 +1069,12 @@
     </ClCompile>
     <ClCompile Include="user\user\multiple_option.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics\color_wheel.cpp">
+      <Filter>Source Files\graphics\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics\color_selector.cpp">
+      <Filter>Source Files\graphics\graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

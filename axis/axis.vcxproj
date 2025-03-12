@@ -393,6 +393,8 @@
     <ClInclude Include="geoip\internal.h" />
     <ClInclude Include="geoip\update.h" />
     <ClInclude Include="geoip\_.h" />
+    <ClInclude Include="graphics\graphics\color_selector.h" />
+    <ClInclude Include="graphics\graphics\color_wheel.h" />
     <ClInclude Include="graphics\render\water_routine.h" />
     <ClInclude Include="html\element\element.h" />
     <ClInclude Include="html\element\_.h" />
@@ -570,6 +572,8 @@
     <ClCompile Include="geoip\region_name.cpp" />
     <ClCompile Include="geoip\time_zone.cpp" />
     <ClCompile Include="geoip\update.cpp" />
+    <ClCompile Include="graphics\graphics\color_selector.cpp" />
+    <ClCompile Include="graphics\graphics\color_wheel.cpp" />
     <ClCompile Include="graphics\render\water_routine.cpp" />
     <ClCompile Include="html\element\element.cpp" />
     <ClCompile Include="html\graphics\attribute.cpp" />
@@ -652,6 +656,9 @@
     </ProjectReference>
     <ProjectReference Include="..\aura\aura.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\nano2d\nano2d.vcxproj">
+      <Project>{5c621ac9-ff29-484b-83e2-377e051c2cfc}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

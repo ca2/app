@@ -105,7 +105,7 @@ namespace graphics
       virtual void on_draw(::draw2d::graphics * pgraphics);
       virtual void _on_draw(::nano2d::context * pcontext);
 
-      virtual void _on_draw(::nano2d::context * pcontext);
+      //virtual void _on_draw(::nano2d::context * pcontext);
 
       /// Handles mouse button click happenings for the ColorWheel.
       virtual bool on_mouse_down(const int_point & p);

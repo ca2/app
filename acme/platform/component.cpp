@@ -234,6 +234,7 @@ bool component::is_implementation_enabled(const ::scoped_string & scopedstrImple
 
 }
 
+
 ::component_implementation * component::implementation(const ::scoped_string & scopedstrImplementation)
 {
 
@@ -249,6 +250,7 @@ bool component::is_implementation_enabled(const ::scoped_string & scopedstrImple
    return pimplementation;
 
 }
+
 
 ::pointer < ::component_implementation > component::create_implementation(const ::scoped_string & scopedstrImplementation)
 {

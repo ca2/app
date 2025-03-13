@@ -75,10 +75,10 @@ elseif(${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_dependencies(${PROJECT_NAME} experience_core)
+#add_dependencies(${PROJECT_NAME} experience_core)
 add_dependencies(${PROJECT_NAME} ${default_draw2d})
 add_dependencies(${PROJECT_NAME} ${default_write_text})
-add_dependencies(${PROJECT_NAME} database_sqlite3)
+#add_dependencies(${PROJECT_NAME} database_sqlite3)
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})

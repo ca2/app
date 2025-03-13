@@ -122,6 +122,8 @@ namespace graphics
 
             m_pimageCircle->create({ diamRound, diamRound });
 
+            m_pimageCircle->map();
+
             m_pimageCircle->fill_byte(0);
 
             int centerX = diamRound / 2;
@@ -196,6 +198,8 @@ namespace graphics
                }
 
             }
+
+            m_pimageCircle->unmap();
 
             //m_pimageCirce->g()->fill_ellipse(ellipse0);
 

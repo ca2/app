@@ -101,6 +101,13 @@ namespace user
 
       auto prequest = ::as_pointer(prequestParameter);
 
+      if (prequest.is_null())
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
       prequest->m_countStack++;
 
       at_end_of_scope

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(wallpaper_system_summary CXX)
+project(wallpaper_transform_system_summary CXX)
 
 
 unset(PKGCONFIG_CFLAGS)
@@ -12,18 +12,8 @@ list(APPEND library_source
    _.h
    ##_library.h
    _factory.cpp
-   file.cpp
-   file.h
-   file_function_definitions.cpp
-   file_function_definitions.h
-   folder.cpp
-   folder.h
-   ioapi.cpp
-   ioapi.h
-   unzip.cpp
-   unzip.h
-   zip.cpp
-   zip.h
+   wallpaper_transform.cpp
+   wallpaper_transform.h
    )
 
 
@@ -36,7 +26,13 @@ endif()
 add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
-list(APPEND library_references acme)
+list(APPEND library_references
+   acme
+   apex
+   aqua
+   aura
+   ${default_write_text}
+)
 
 list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)

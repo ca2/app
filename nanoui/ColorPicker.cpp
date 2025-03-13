@@ -286,25 +286,19 @@ namespace nanoui
          });
 
       m_peditRed->set_callback([&](int iIntensity) {
-            ::color::hls hls = m_color_wheel->get_sel_color();
-            ::color::color color(hls);
+            ::color::color color = m_color_wheel->get_sel_color();
             color.set_red(iIntensity);
-            hls = color;
-            sync_color(hls);
+            sync_color(color);
          });
       m_peditGreen->set_callback([&](int iIntensity) {
-            ::color::hls hls = m_color_wheel->get_sel_color();
-            ::color::color color(hls);
+            ::color::color color = m_color_wheel->get_sel_color();
             color.set_green(iIntensity);
-            hls = color;
-            sync_color(hls);
+            sync_color(color);
          });
       m_peditBlue->set_callback([&](int iIntensity) {
-         ::color::hls hls = m_color_wheel->get_sel_color();
-         ::color::color color(hls);
+            ::color::color color = m_color_wheel->get_sel_color();
          color.set_blue(iIntensity);
-         hls = color;
-         sync_color(hls);
+         sync_color(color);
          });
       m_peditHSV_H->set_callback([&](int iIntensity) {
          ::color::hsv hsv = m_color_wheel->get_sel_color();

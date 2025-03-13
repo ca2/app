@@ -14296,13 +14296,13 @@ if(get_parent())
          else if (pmessage->m_emessage == e_message_left_button_down)
          {
 
-            informationf("linux::interaction_impl::e_message_left_button_down");
+            informationf("user::interaction::message_handler ::e_message_left_button_down");
 
          }
          else if (pmessage->m_emessage == e_message_left_button_up)
          {
 
-            informationf("linux::interaction_impl::e_message_left_button_up");
+            informationf("user::interaction::message_handler ::e_message_left_button_up");
 
          }
          else if (pmessage->m_emessage == e_message_mouse_move)
@@ -14310,7 +14310,7 @@ if(get_parent())
 
             //g_iMouseMove++;
 
-            //informationf("interaction_impl::message_handler e_message_mouse_move");
+            //informationf("user::interaction::message_handler ::e_message_mouse_move");
             //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
          }

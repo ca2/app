@@ -619,7 +619,7 @@ namespace user
       if (m_bColorWheel)
       {
 
-         if (color_wheel::on_mouse_down(point))
+         if (color_wheel::on_mouse_down(point - color_wheel::m_rectangle.top_left()))
          {
 
             pmouse->m_bRet = true;
@@ -660,7 +660,7 @@ namespace user
       if (m_bColorWheel)
       {
 
-         if (color_wheel::on_mouse_up(point))
+         if (color_wheel::on_mouse_up(point - color_wheel::m_rectangle.top_left()))
          {
 
             pmouse->m_bRet = true;
@@ -724,7 +724,7 @@ namespace user
       if (m_bColorWheel)
       {
 
-         if (color_wheel::on_mouse_motion(point))
+         if (color_wheel::on_mouse_motion(point - color_wheel::m_rectangle.top_left()))
          {
 
             pmouse->m_bRet = true;

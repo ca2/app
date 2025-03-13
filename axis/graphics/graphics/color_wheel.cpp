@@ -34,20 +34,8 @@ namespace graphics
    }
 
 
-   void color_wheel::on_draw(::draw2d::graphics * pgraphics)
+   void color_wheel::_on_draw(::nano2d::context * pcontext)
    {
-
-      ::nano2d::draw2d_context context(this);
-
-      context.set_graphics(pgraphics);
-
-      //__defer_construct_new(m_pfontsink);
-
-      //context.set_font_sink(m_pfontsink);
-
-      ::nano2d::context * pcontext = &context;
-
-
 
       //Widget::draw(pcontext);
 
@@ -105,6 +93,10 @@ namespace graphics
          //ellipse0.right() = center.x() + r0;
          //ellipse0.bottom() = center.y() + r0;
 
+         ::cast < ::nano2d::draw2d_context > p = pcontext;
+
+         auto pgraphics = p->m_pgraphics;
+
          pgraphics->set_compositing_quality(::draw2d::e_compositing_quality_high_quality);
 
          pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
@@ -136,7 +128,7 @@ namespace graphics
 
             int centerY = diamRound / 2;
 
-            double dAlphaThickness = u /2.0;
+            double dAlphaThickness = u / 2.0;
 
             for (int x = 0; x < diamRound; x++)
             {
@@ -174,12 +166,12 @@ namespace graphics
                      opacity = (unsigned char)255;
 
                   }
-                  else if(dRadius > r0 - dAlphaThickness)
+                  else if (dRadius > r0 - dAlphaThickness)
                   {
 
                      double d = dRadius - r0 + dAlphaThickness;
 
-                     opacity = (unsigned char)(minimum_maximum(d / dAlphaThickness, 0., 1.0)*255.);
+                     opacity = (unsigned char)(minimum_maximum(d / dAlphaThickness, 0., 1.0) * 255.);
 
                   }
                   else
@@ -263,7 +255,7 @@ namespace graphics
          //}
 
          ::color::hsv hsv;
-         
+
          {
             // Selector
             ::nano2d::guard guard(pcontext);
@@ -335,27 +327,27 @@ namespace graphics
             auto triangle_x_right = [&](double y)
                {
 
-                  return (1.0 - fabs(y *2.0/dTriangleSide) ) * 1.5 * r + bx;
+                  return (1.0 - fabs(y * 2.0 / dTriangleSide)) * 1.5 * r + bx;
 
                };
 
-                        //auto triangle_y_top = [&](double x)
-            //   {
+            //auto triangle_y_top = [&](double x)
+//   {
 
-            //      return (1.0 - (x - bx) / 1.5 * r) * (-dTriangleSide / 2.);
+//      return (1.0 - (x - bx) / 1.5 * r) * (-dTriangleSide / 2.);
 
-            //   };
+//   };
 
 
-            //auto triangle_y_bottom = [&](double x)
-            //   {
+//auto triangle_y_bottom = [&](double x)
+//   {
 
-            //      return (1.0 - (x - bx) / 1.5 * r) * (dTriangleSide / 2.);
+//      return (1.0 - (x - bx) / 1.5 * r) * (dTriangleSide / 2.);
 
-            //   };
+//   };
 
-            float sx = bx + (dTriangleHeight * m_hls.m_dS) ;
-            float sy = dTriangleSide * (m_hls.m_dL- 0.5);
+            float sx = bx + (dTriangleHeight * m_hls.m_dS);
+            float sy = dTriangleSide * (m_hls.m_dL - 0.5);
 
             auto max_sx_for_given_sx = triangle_x_right(sy);
 
@@ -364,7 +356,7 @@ namespace graphics
                sx = max_sx_for_given_sx;
 
             }
-           
+
 
             pcontext->stroke_width(u);
             pcontext->begin_path();
@@ -380,13 +372,33 @@ namespace graphics
 
       }
 
+
+   }
+
+
+
+   void color_wheel::on_draw(::draw2d::graphics * pgraphics)
+   {
+
+      ::nano2d::draw2d_context context(this);
+
+      context.set_graphics(pgraphics);
+
+      //__defer_construct_new(m_pfontsink);
+
+      //context.set_font_sink(m_pfontsink);
+
+      ::nano2d::context * pcontext = &context;
+
+      _on_draw(pcontext);
+
    }
 
 
    bool color_wheel::on_mouse_down(const int_point & p)
    {
 
-      if (!m_rectangle.contains(p))
+      if (!m_rectangle.contains(p + m_rectangle.top_left()))
       {
 
          return false;
@@ -449,8 +461,10 @@ namespace graphics
    color_wheel::enum_hit_test color_wheel::adjust_position_and_hit_test(const int_point & p)
    {
 
-      double x = (double)m_rectangle.left();
-      double y = (double)m_rectangle.top();
+      //double x = (double)m_rectangle.left();
+      //double y = (double)m_rectangle.top();
+      double x = 0.;
+      double y = 0.;
       double w = (double)m_rectangle.width();
       double h = (double)m_rectangle.height();
 

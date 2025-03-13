@@ -384,7 +384,8 @@ list(APPEND library_references
    acme
    apex
    aqua
-   aura)
+   aura
+   nano2d)
 
 if (NOT ${HAS_SYSTEM_UNAC})
 

@@ -65,6 +65,10 @@ enum enum_timer : ::iptr
    e_timer_configure_unlocked,
    e_timer_update_registered,
 
+
+   e_timer_start_spin_procedure,
+   e_timer_call_spin_procedure,
+
 };
 
 

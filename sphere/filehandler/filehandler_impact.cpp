@@ -72,7 +72,7 @@ namespace filehandler
       if(pmessage->previous())
          return;
 
-      SetTimer(8888, 5000, nullptr);
+      set_timer(8888, 5000, nullptr);
 
    }
 

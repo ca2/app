@@ -4561,7 +4561,7 @@ namespace user
          //      if (puserinteraction == this)
          //      {
          //
-         //         ::KillTimer((HWND)get_oswindow(), e_timer_transparent_mouse_event);
+         //         ::kill_timer((HWND)get_oswindow(), e_timer_transparent_mouse_event);
          //
          //      }
          //
@@ -9588,7 +9588,7 @@ if(get_parent())
          if (window()->on_window_configure_unlocked())
          {
 
-            KillTimer(ptimer->m_etimer);
+            kill_timer(ptimer->m_etimer);
 
          }
 
@@ -16374,27 +16374,22 @@ if(get_parent())
 
 
 
-   void interaction::call_and_set_timer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer)
-   {
+   //void interaction::call_and_set_timer(uptr uEvent, const class time & timeElapse, const ::procedure & procedure, bool bPeriodic)
+   //{
 
-      if (has_flag(e_flag_destroying))
-      {
+   //   if (has_flag(e_flag_destroying))
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      ::timer timer(uEvent);
+   //   return set_timer(uEvent, timeElapse, pfnTimer);
 
-      on_timer(&timer);
-
-      return SetTimer(uEvent, timeElapse, pfnTimer);
-
-   }
+   //}
 
 
-   void interaction::set_timer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer, bool bPeriodic,
-                               void * pdata)
+   void interaction::set_timer(uptr uEvent, const class time & timeElapse, const ::procedure & procedure, bool bPeriodic)
    {
 
       if (has_destroying_flag())
@@ -16404,12 +16399,12 @@ if(get_parent())
 
       }
 
-      return SetTimer(uEvent, timeElapse, pfnTimer, bPeriodic, pdata);
+      m_ptimerarray->set_timer(this, uEvent, timeElapse, procedure, bPeriodic);
 
    }
 
 
-   //void interaction::SetTimer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer, bool bPeriodic,
+   //void interaction::set_timer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer, bool bPeriodic,
    //                           void * pdata)
    //{
 
@@ -16427,12 +16422,12 @@ if(get_parent())
 
    //   //}
 
-   //   //return window()->SetTimer(uEvent, timeElapse, pfnTimer, bPeriodic, pdata);
+   //   //return window()->set_timer(uEvent, timeElapse, pfnTimer, bPeriodic, pdata);
 
    //}
 
 
-   //void interaction::KillTimer(uptr uEvent)
+   //void interaction::kill_timer(uptr uEvent)
    //{
 
    //   //if (window() == nullptr)
@@ -16442,7 +16437,7 @@ if(get_parent())
 
    //   //}
 
-   //   window()->KillTimer(uEvent);
+   //   window()->kill_timer(uEvent);
 
    //}
 
@@ -18480,7 +18475,7 @@ if(get_parent())
       case ::message::e_prototype_timer:
       {
 
-         //throw ::exception(::exception("do not use e_message_timer or Windows SetTimer/KillTimer"));
+         //throw ::exception(::exception("do not use e_message_timer or Windows set_timer/kill_timer"));
 
          _NEW_MESSAGE(::message::timer);
 
@@ -20085,9 +20080,9 @@ if(get_parent())
 
             );
 
-            //::SetTimer(get_handle(), e_timer_transparent_mouse_event, 5, NULL);
+            //::set_timer(get_handle(), e_timer_transparent_mouse_event, 5, NULL);
 
-            //SetTimer(e_timer_transparent_mouse_event, 100);
+            //set_timer(e_timer_transparent_mouse_event, 100);
 
          }
          else
@@ -20106,9 +20101,9 @@ if(get_parent())
 
             }
 
-            //::KillTimer(get_handle(), e_timer_transparent_mouse_event);
+            //::kill_timer(get_handle(), e_timer_transparent_mouse_event);
 
-            //KillTimer(e_timer_transparent_mouse_event);
+            //kill_timer(e_timer_transparent_mouse_event);
 
          }
 

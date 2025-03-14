@@ -1736,7 +1736,7 @@ namespace user
 //      if(ptimer->m_uTimer == 24)
 //      {
 //
-//         KillTimer(24);
+//         kill_timer(24);
 //
 //         top_level_frame()->EndModalLoop(e_dialog_result_ok);
 //

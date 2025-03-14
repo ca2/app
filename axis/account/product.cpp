@@ -136,7 +136,7 @@ namespace account
 //         if(get_splash() != nullptr)
 //         {
 //
-//            ::KillTimer(get_splash(),123);
+//            ::kill_timer(get_splash(),123);
 //
 //         }
 //

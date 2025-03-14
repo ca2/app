@@ -245,9 +245,9 @@ namespace user
 
    void control_bar::ResetTimer(unsigned int nEvent, const class time & time)
    {
-      KillTimer(ID_TIMER_WAIT);
-      KillTimer(ID_TIMER_CHECK);
-      SetTimer(nEvent,time,nullptr);
+      kill_timer(ID_TIMER_WAIT);
+      kill_timer(ID_TIMER_CHECK);
+      set_timer(nEvent,time,nullptr);
    }
 
    void control_bar::on_timer(::timer * ptimer)
@@ -278,7 +278,7 @@ namespace user
       //      m_nStateFlags &= ~statusSet;
       //      return true;
       //   }
-      //   KillTimer(ID_TIMER_WAIT);
+      //   kill_timer(ID_TIMER_WAIT);
       //}
       //else
       //{

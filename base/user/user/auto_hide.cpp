@@ -72,7 +72,7 @@ namespace user
 
                m_timeLastControlVisibilityChange.Now();
 
-               SetTimer(e_timer_defer_handle_auto_hide_tabs, 100_ms);
+               set_timer(e_timer_defer_handle_auto_hide_tabs, 100_ms);
 
             }
             else if (m_timeLastControlVisibilityChange.elapsed() > 2_s)
@@ -314,7 +314,7 @@ namespace user
          && pointClient.y() < iAutoHideThresholdHeight)
       {
 
-         KillTimer(e_timer_defer_handle_auto_hide_tabs);
+         kill_timer(e_timer_defer_handle_auto_hide_tabs);
 
          m_bOverrideVisibleControl = true;
 
@@ -403,7 +403,7 @@ namespace user
          if (!m_bControlVisibilityChanging)
          {
 
-            KillTimer(e_timer_defer_handle_auto_hide_tabs);
+            kill_timer(e_timer_defer_handle_auto_hide_tabs);
 
             set_need_layout();
 

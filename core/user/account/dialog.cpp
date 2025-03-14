@@ -180,7 +180,7 @@ namespace account
             if (m_plogin->m_bSubmitted)
             {
 
-               KillTimer(e_timer_check_cached_credentials);
+               kill_timer(e_timer_check_cached_credentials);
 
             }
             else
@@ -204,7 +204,7 @@ namespace account
 
                   pcredentials->m_estatus = ::success_credentials;
 
-                  KillTimer(e_timer_check_cached_credentials);
+                  kill_timer(e_timer_check_cached_credentials);
 
                   m_plogin->on_action("submit_timer");
 

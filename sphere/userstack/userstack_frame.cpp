@@ -111,7 +111,7 @@ namespace userstack
          
          display();
          
-         KillTimer(uEvent);
+         kill_timer(uEvent);
          
          m_bTimerOn = false;
 
@@ -296,11 +296,11 @@ namespace userstack
       /*         else if(pusermessage->m_lparam == 1)
                {
                   m_bTimerOn = true;
-                  SetTimer(1000, 23, nullptr);
+                  set_timer(1000, 23, nullptr);
                }
                else if(pusermessage->m_lparam == 0)
                {
-                  KillTimer(1000);
+                  kill_timer(1000);
                   m_bTimerOn = false;
                }
                else if(pusermessage->m_lparam == 3)

@@ -127,7 +127,7 @@ namespace userstack
       if(pmessage->previous())
          return;
 
-      SetTimer(888888, 2000, nullptr);
+      set_timer(888888, 2000, nullptr);
 
       ::pointer<frame>pframe = get_typed_parent < frame > ();
 
@@ -153,8 +153,8 @@ namespace userstack
 
 
 
-      SetTimer(e_timer_backimpact, 83, nullptr);  // maximum. 12 fps
-      SetTimer(21977, 20 * 1000, nullptr);  // maximum. 12 fps
+      set_timer(e_timer_backimpact, 83, nullptr);  // maximum. 12 fps
+      set_timer(21977, 20 * 1000, nullptr);  // maximum. 12 fps
 
       check_apps();
 
@@ -274,7 +274,7 @@ namespace userstack
    {
       auto pmouse = pmessage->m_union.m_pmouse;
       pmouse->m_lresult = 1;
-      KillTimer(5432180);
+      kill_timer(5432180);
       auto point = pmouse->m_point;
       screen_to_client()(point);
    }

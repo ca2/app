@@ -1590,11 +1590,11 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //
 //      //      if(m_iHover < -1)
 //      //    {
-//      //     KillTimer(TIMER_HOVER);
+//      //     kill_timer(TIMER_HOVER);
 //      //      }
 //      //    else
 //      //  {
-//      //   SetTimer(TIMER_HOVER, 50, nullptr);
+//      //   set_timer(TIMER_HOVER, 50, nullptr);
 //      //}
 //
 //      if (bRedraw)

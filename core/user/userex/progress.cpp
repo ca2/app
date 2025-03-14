@@ -266,7 +266,7 @@ namespace userex
 
       //}
 
-      SetTimer(e_timer_update_current_area, 300_ms);
+      set_timer(e_timer_update_current_area, 300_ms);
 
    }
 
@@ -277,7 +277,7 @@ namespace userex
             if (ptimer->m_uTimer == e_timer_update_current_area)
             {
       
-               KillTimer(ptimer->m_uTimer);
+               kill_timer(ptimer->m_uTimer);
       
                ::int_rectangle rectangle;
       

@@ -1746,8 +1746,8 @@ namespace windowing
       //virtual bool get_rect_normal(::int_rectangle * prectangle);
 
 
-      //virtual void SetTimer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pdata = nullptr) override;
-      //virtual void KillTimer(uptr uEvent) override;
+      //virtual void set_timer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pdata = nullptr) override;
+      //virtual void kill_timer(uptr uEvent) override;
 
 
 

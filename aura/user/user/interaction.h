@@ -1587,10 +1587,10 @@ namespace user
       //virtual void SetWindowDisplayChanged() override;
 
 
-      virtual void call_and_set_timer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer = nullptr);
-      virtual void set_timer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void* pdata = nullptr);
-      //virtual void SetTimer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void* pdata = nullptr) override;
-      //virtual void KillTimer(uptr uEvent) override;
+      //virtual void call_and_set_timer(uptr uEvent, const class time& timeElapse, const ::procedure& procedure = {}, bool bPeriodic = true);
+      void set_timer(uptr uEvent, const class time& timeElapse, const ::procedure& procedure = {}, bool bPeriodic = true) override;
+      //virtual void set_timer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void* pdata = nullptr) override;
+      //virtual void kill_timer(uptr uEvent) override;
 
 //      virtual void enable_window(bool bEnable = true) override;
 

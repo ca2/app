@@ -11,8 +11,10 @@
 
 
 #include "TextBox.h"
+#include "acme/constant/timer.h"
 #include "acme/constant/user_key.h"
 #include "aqua/platform/tinyexpr.h"
+#include "aura/user/user/interaction.h"
 
 
 namespace nanoui
@@ -28,6 +30,7 @@ namespace nanoui
       Scalar m_iIncrementValue;
       Scalar m_iMinimumValue;
       Scalar m_iMaximumValue;
+      SpinArea m_spingareaMouseDown;
 
 
       IntBox(Widget* parent, Scalar value = (Scalar)0) : TextBox(parent) {
@@ -72,7 +75,7 @@ namespace nanoui
                {
                   value = 0;
                }
-               set_value(value, e_source_sync);
+               set_value(value, e_source_user);
                cb(value);
                return true;
             }
@@ -111,39 +114,68 @@ namespace nanoui
 
          }
 
-         SpinArea area = spin_area(p);
+         m_spingareaMouseDown = spin_area(p);
 
-         if (m_bSpinnable && area != SpinArea::None && down && !focused()) 
+         //if (m_bSpinnable && area != SpinArea::None && down && !focused()) 
+         if (m_bSpinnable)
          {
-
-            if (area == SpinArea::Top) 
-            {
             
-               set_value(value() + m_iIncrementValue, e_source_user);
+            if (down)
+            {
 
-               if (m_callback)
+               if (m_spingareaMouseDown != SpinArea::None)
                {
 
-                  m_callback(m_strValue);
+                  if (m_spingareaMouseDown == SpinArea::Top)
+                  {
+
+                     set_value(value() + m_iIncrementValue, e_source_user);
+
+                     if (m_callback)
+                     {
+
+                        m_callback(m_strValue);
+
+                     }
+
+                     screen()->m_puserinteraction->set_timer(((uptr) this) + 10, 600_ms, [this]()
+                        {
+
+                           printf_line("Lets check this");
+
+                        });
+
+                  }
+                  else if (m_spingareaMouseDown == SpinArea::Bottom)
+                  {
+
+                     set_value(value() - m_iIncrementValue, e_source_user);
+
+                     if (m_callback)
+                     {
+
+                        m_callback(m_strValue);
+
+                     }
+
+                  }
+
+                  return true;
 
                }
 
             }
-            else if (area == SpinArea::Bottom) 
+            else if (m_spingareaMouseDown != SpinArea::None)
             {
-            
-               set_value(value() - m_iIncrementValue, e_source_user);
 
-               if (m_callback)
-               {
+               m_spingareaMouseDown = SpinArea::None;
 
-                  m_callback(m_strValue);
-
-               }
+               screen()->m_puserinteraction->kill_timer(((uptr)this) + 10);
+               screen()->m_puserinteraction->kill_timer(((uptr)this) + 11);
+               screen()->m_puserinteraction->kill_timer(((uptr)this) + 20);
+               screen()->m_puserinteraction->kill_timer(((uptr)this) + 21);
 
             }
-            
-            return true;
 
          }
 

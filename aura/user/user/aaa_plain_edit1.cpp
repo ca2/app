@@ -1249,12 +1249,12 @@ namespace user
       if (etimer == e_timer_overflow_scrolling_start)
       {
 
-         KillTimer(etimer);
+         kill_timer(etimer);
 
          if (m_bLMouseDown)
          {
 
-            SetTimer(e_timer_overflow_scrolling, 300_ms);
+            set_timer(e_timer_overflow_scrolling, 300_ms);
 
          }
 
@@ -1315,7 +1315,7 @@ namespace user
          else
          {
 
-            KillTimer(etimer);
+            kill_timer(etimer);
 
          }
 
@@ -1347,9 +1347,9 @@ namespace user
          if (ptimer->m_uTimer == 500)
          {
 
-            KillTimer(500);
+            kill_timer(500);
 
-            SetTimer(501, 300_ms, nullptr);
+            set_timer(501, 300_ms, nullptr);
 
          }
 
@@ -2192,7 +2192,7 @@ namespace user
 
             m_bLMouseDown = true;
 
-            SetTimer(e_timer_overflow_scrolling_start, 300_ms, nullptr);
+            set_timer(e_timer_overflow_scrolling_start, 300_ms, nullptr);
 
             set_mouse_capture();
 
@@ -2288,7 +2288,7 @@ namespace user
 
       //}
 
-      KillTimer(e_timer_overflow_scrolling);
+      kill_timer(e_timer_overflow_scrolling);
 
       m_bNewFocusSelectAll = false;
 
@@ -8800,7 +8800,7 @@ namespace user
 
       m_ewindowflag |= e_window_flag_focus;
 
-      SetTimer(e_timer_caret_flashing, 50_ms, nullptr);
+      set_timer(e_timer_caret_flashing, 50_ms, nullptr);
 
       on_reset_focus_start_tick();
 
@@ -8875,7 +8875,7 @@ namespace user
 
       information() << "plain_edit::on_kill_keyboard_focus";
 
-      KillTimer(e_timer_caret_flashing);
+      kill_timer(e_timer_caret_flashing);
 
       if (m_bCaretVisible)
       {

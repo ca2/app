@@ -1187,7 +1187,7 @@ _001SelectItem(pchild);
             
          puserinteraction->set_need_redraw();
 
-         puserinteraction->KillTimer(123);
+         puserinteraction->kill_timer(123);
 
          /*
          ::int_rectangle rectangle;
@@ -1229,7 +1229,7 @@ _001SelectItem(pchild);
       
       m_iAnimate = 1;
       
-      m_usertreea[0]->SetTimer(1234567, 50_ms, nullptr);
+      m_usertreea[0]->set_timer(1234567, 50_ms, nullptr);
 
    }
 
@@ -1395,7 +1395,7 @@ _001SelectItem(pchild);
 
          m_bTimer123 = false;
 
-         ptimer->m_ptimercallback->get_user_interaction()->KillTimer(123);
+         ptimer->m_ptimercallback->get_user_interaction()->kill_timer(123);
 
       }
 

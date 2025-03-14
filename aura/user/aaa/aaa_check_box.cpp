@@ -558,7 +558,7 @@ namespace user
          if (m_durationAnimationStart.elapsed() > m_durationAnimationPeriod)
          {
 
-            KillTimer(ptimer->m_uTimer);
+            kill_timer(ptimer->m_uTimer);
 
          }
 
@@ -619,7 +619,7 @@ namespace user
 
       m_durationAnimationStart.Now();
 
-      SetTimer(e_timer_check_toggle_animation, 12);
+      set_timer(e_timer_check_toggle_animation, 12);
 
       toggle_check(::e_source_user);
 

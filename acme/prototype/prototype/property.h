@@ -187,6 +187,8 @@ public:
 
   }
 
+  ::string get_ini_line() const;
+
    ::string & get_network_arguments(::string & str) const;
    ::string get_network_arguments() const { ::string str; return get_network_arguments(str); }
 

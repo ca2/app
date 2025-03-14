@@ -43,11 +43,12 @@ namespace nanoui
 
       m_color_wheel->set_sel_color(hls);
 
-      m_callback(hls);
+      if (m_callback)
+      {
 
-      m_ppopup->set_need_redraw();
+         m_callback(hls);
 
-      m_ppopup->post_redraw();
+      }
 
       ::color::hsv hsv(hls);
       m_peditRed->set_value(color.byte_red(), e_source_sync);
@@ -61,6 +62,10 @@ namespace nanoui
       strHex.formatf("%02X%02X%02X", color.byte_red(), color.byte_green(),  color.byte_blue());
 
       m_peditHex->set_value(strHex, e_source_sync);
+
+      m_ppopup->set_need_redraw();
+
+      m_ppopup->post_redraw();
 
    }
 

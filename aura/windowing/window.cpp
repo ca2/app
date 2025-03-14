@@ -12809,7 +12809,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       //on_window_configuration_change();
 
-      user_interaction()->set_timer(e_timer_configure_unlocked, 200_ms);
+      //user_interaction()->set_timer(e_timer_configure_unlocked, 200_ms);
 
    }
 
@@ -12937,7 +12937,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       //on_window_configuration_change();
 
-      user_interaction()->set_timer(e_timer_configure_unlocked, 200_ms);
+      ///user_interaction()->set_timer(e_timer_configure_unlocked, 200_ms);
 
    }
 

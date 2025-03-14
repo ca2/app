@@ -592,6 +592,9 @@ namespace user
       const class ::user::interaction_layout& const_layout() const { return m_layout; }
       class ::user::interaction_layout& layout() { return m_layout; }
 
+      virtual bool is_past_reposition_request(const ::int_point & point);
+      virtual bool is_past_resizing_request(const ::int_size & size);
+
       double screen_scaler();
       double font_scaler();
 

@@ -699,8 +699,6 @@ namespace user
 
       }
 
-
-
 #if defined(SPECIAL_DEBUG)
 
       //RECT rWindow;
@@ -721,6 +719,7 @@ namespace user
       g_xLastAbs = pointNew.x();
 
 #endif
+
       m_layout.m_statea[elayout].set_visual_state_origin(pointNew);
 
       if (windowing_window() && elayout == e_layout_sketch)
@@ -741,7 +740,13 @@ namespace user
 
       }
 
-      if (get_parent() != nullptr)
+      if (::is_null(get_parent()))
+      {
+
+         window()->set_position(pointNew);
+
+      }
+      else
       {
 
          set_need_redraw({}, pgraphics);

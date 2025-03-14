@@ -72,7 +72,7 @@ namespace nanoui
        * \param parent
        *     The Widget to add this ColorWheel to.
        *
-       * \param color
+       * \param hls
        *     The initial color of the ColorWheel (default: Red).
        */
       ColorWheel(Widget * parent, const color::hls & hls = argb(1.0f, 0.0f, 0.0f, 1.0f));

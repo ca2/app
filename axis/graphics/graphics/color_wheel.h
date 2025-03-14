@@ -72,15 +72,6 @@ namespace graphics
       /// The current callback to execute when the color::color value has changed.
       ::function<void(const color::color &)> m_callback;
 
-      /**
-       * Adds a ColorWheel to the specified parent.
-       *
-       * \param parent
-       *     The Widget to add this ColorWheel to.
-       *
-       * \param color
-       *     The initial color of the ColorWheel (default: Red).
-       */
       color_wheel();
       ~color_wheel() override;
 

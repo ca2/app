@@ -117,7 +117,7 @@ namespace apex
       //virtual void __task_init() override;
 
 
-      ::string component_path(const ::scoped_string & scopedstrComponent);
+      ::string component_path(const ::scoped_string & scopedstrComponent) override;
 
 
 

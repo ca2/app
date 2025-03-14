@@ -70,7 +70,7 @@
 #include "acme/prototype/collection/_tuple.h"
 #include "acme/_finish.h"
 //#include "app-core/store/_.h"
-#define SPECIAL_DEBUG
+//#define SPECIAL_DEBUG
 #if defined( WINDOWS_DESKTOP) && defined(SPECIAL_DEBUG)
 #include "acme/_operating_system.h"
 static int g_xLastAbs = -1000;

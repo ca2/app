@@ -88,7 +88,7 @@ namespace nanoui
       MyGridWidget* m_pgridHEX;
       nanoui::TextBox * m_peditHex;
 
-      void sync_color(const ::color::hls & hls);
+      void sync_color(const ::color::hls & hls, bool bForceH, bool bForceS, bool bForceB);
 
       /**
        * Attaches a ColorPicker to the specified parent.

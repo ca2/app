@@ -1611,7 +1611,7 @@ namespace color
       if (str.size() < 6)
       {
 
-         return ::color::transparent;
+         throw ::exception(error_parsing);
 
       }
 
@@ -1652,6 +1652,13 @@ namespace color
             strResult += strDigit;
 
          }
+
+      }
+
+      if (strResult.size() < 6)
+      {
+
+         throw ::exception(error_parsing);
 
       }
 

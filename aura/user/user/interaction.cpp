@@ -16399,7 +16399,7 @@ if(get_parent())
 
       }
 
-      m_ptimerarray->set_timer(this, uEvent, timeElapse, procedure, bPeriodic);
+      ::acme::user::interaction::set_timer(uEvent, timeElapse, procedure, bPeriodic);
 
    }
 

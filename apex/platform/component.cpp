@@ -56,6 +56,11 @@ namespace apex
 
             ::url::url url = "https://windows.ca2.store/" + implementation_path(strImplementation) + ".zip";
 
+            ::string strUrl(url.as_string());
+
+            printf_line("Going to fetch component implementation for component \"%s\" and for implementation \"%s\".\nFetching URL is \"%s\".",
+               m_strComponent.c_str(), strImplementation.c_str(), strUrl.c_str());
+
             http()->download(pfileZip, url, set);
 
             auto pfolder = system()->create < ::folder >("folder", "zip");

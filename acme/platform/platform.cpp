@@ -1183,11 +1183,13 @@ g_bWindowingOutputDebugString = true;
 
       }
       
-      #ifdef DEBUG
-      
-      information() << "Library was opened: \"" << strLibrary << "\".";
-      
-      #endif
+      // #ifdef DEBUG
+      //
+      // information() << "Library was opened: \"" << strLibrary << "\".";
+      //
+      // #endif
+
+      printf_line("Library was opened: \"%s\".", strLibrary.c_str());
 
       return plibrary;
 

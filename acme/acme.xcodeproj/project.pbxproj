@@ -2565,6 +2565,18 @@
 		9A9814A928E4EA8E001C9855 /* uint32_muldiv.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A98149628E4EA8E001C9855 /* uint32_muldiv.h */; };
 		9A9814AA28E4EA8E001C9855 /* uint32_muldiv.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A98149628E4EA8E001C9855 /* uint32_muldiv.h */; };
 		9A98E29429A56539009BF01D /* request.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4387B6299E499800D2EE15 /* request.cpp */; };
+		9A99794D2D84607900A1FC11 /* component_implementation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A99794B2D84607900A1FC11 /* component_implementation.h */; };
+		9A99794E2D84607900A1FC11 /* component.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9979492D84607900A1FC11 /* component.h */; };
+		9A99794F2D84607900A1FC11 /* component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A99794A2D84607900A1FC11 /* component.cpp */; };
+		9A9979502D84607900A1FC11 /* component_implementation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A99794C2D84607900A1FC11 /* component_implementation.cpp */; };
+		9A9979512D84607900A1FC11 /* component_implementation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A99794B2D84607900A1FC11 /* component_implementation.h */; };
+		9A9979522D84607900A1FC11 /* component.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9979492D84607900A1FC11 /* component.h */; };
+		9A9979532D84607900A1FC11 /* component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A99794A2D84607900A1FC11 /* component.cpp */; };
+		9A9979542D84607900A1FC11 /* component_implementation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A99794C2D84607900A1FC11 /* component_implementation.cpp */; };
+		9A9979552D84607900A1FC11 /* component_implementation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A99794B2D84607900A1FC11 /* component_implementation.h */; };
+		9A9979562D84607900A1FC11 /* component.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9979492D84607900A1FC11 /* component.h */; };
+		9A9979572D84607900A1FC11 /* component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A99794A2D84607900A1FC11 /* component.cpp */; };
+		9A9979582D84607900A1FC11 /* component_implementation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A99794C2D84607900A1FC11 /* component_implementation.cpp */; };
 		9A9A9DF029A43882009B6D92 /* scoped_string_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9A9DEC29A43881009B6D92 /* scoped_string_base.h */; };
 		9A9A9DF129A43882009B6D92 /* scoped_string_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9A9DEC29A43881009B6D92 /* scoped_string_base.h */; };
 		9A9AB0932A2A71E20075A73B /* item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9AB0802A2A71DE0075A73B /* item.cpp */; };
@@ -6363,6 +6375,10 @@
 		9A98149428E4EA8D001C9855 /* uint64_muldiv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uint64_muldiv.h; sourceTree = "<group>"; };
 		9A98149528E4EA8D001C9855 /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
 		9A98149628E4EA8E001C9855 /* uint32_muldiv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uint32_muldiv.h; sourceTree = "<group>"; };
+		9A9979492D84607900A1FC11 /* component.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = component.h; sourceTree = "<group>"; };
+		9A99794A2D84607900A1FC11 /* component.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = component.cpp; sourceTree = "<group>"; };
+		9A99794B2D84607900A1FC11 /* component_implementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = component_implementation.h; sourceTree = "<group>"; };
+		9A99794C2D84607900A1FC11 /* component_implementation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = component_implementation.cpp; sourceTree = "<group>"; };
 		9A9A9DEC29A43881009B6D92 /* scoped_string_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scoped_string_base.h; sourceTree = "<group>"; };
 		9A9AB0802A2A71DE0075A73B /* item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = item.cpp; sourceTree = "<group>"; };
 		9A9AB0832A2A71E00075A73B /* _defer_item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _defer_item.h; sourceTree = "<group>"; };
@@ -7476,6 +7492,10 @@
 				9A68A57C2511442F008DABD2 /* class.h */,
 				9A68A5622511442F008DABD2 /* cmp.h */,
 				9A68A5802511442F008DABD2 /* cmp2.h */,
+				9A9979492D84607900A1FC11 /* component.h */,
+				9A99794A2D84607900A1FC11 /* component.cpp */,
+				9A99794B2D84607900A1FC11 /* component_implementation.h */,
+				9A99794C2D84607900A1FC11 /* component_implementation.cpp */,
 				9A68A5902511442F008DABD2 /* const.h */,
 				9A68A5702511442F008DABD2 /* constraint.h */,
 				9A787B6A264BB117003DF8A0 /* context.h */,
@@ -10197,6 +10217,8 @@
 				9AA8FCCD27BA7299008FF9AA /* _.h in Headers */,
 				9A8F43A42A23022C00097EE1 /* _random.h in Headers */,
 				9A68B3D225114438008DABD2 /* parsing.h in Headers */,
+				9A9979552D84607900A1FC11 /* component_implementation.h in Headers */,
+				9A9979562D84607900A1FC11 /* component.h in Headers */,
 				9A0842A12935E694009F7FF4 /* _array.h in Headers */,
 				9A68ADD325114434008DABD2 /* attrib_map.h in Headers */,
 				9A68AF5125114435008DABD2 /* x_charcategory.h in Headers */,
@@ -11169,6 +11191,8 @@
 				9AC103672B6AC9BD0053DB45 /* heap.h in Headers */,
 				9AC103682B6AC9BD0053DB45 /* _loosely.h in Headers */,
 				9AC103692B6AC9BD0053DB45 /* extended_transport.h in Headers */,
+				9A99794D2D84607900A1FC11 /* component_implementation.h in Headers */,
+				9A99794E2D84607900A1FC11 /* component.h in Headers */,
 				9AC1036A2B6AC9BD0053DB45 /* command_update_target.h in Headers */,
 				9AC1036B2B6AC9BD0053DB45 /* _impl.h in Headers */,
 				9AC1036C2B6AC9BD0053DB45 /* x_charcategory2.h in Headers */,
@@ -11757,6 +11781,8 @@
 				9A5DCE57271A75CE00C2ED86 /* resource.h in Headers */,
 				9A0843A829366D3A009F7FF4 /* _text_stream.h in Headers */,
 				9AD68F1B251A753A00C0EBD7 /* bstr.h in Headers */,
+				9A9979512D84607900A1FC11 /* component_implementation.h in Headers */,
+				9A9979522D84607900A1FC11 /* component.h in Headers */,
 				9A15A693264B59EE0080670E /* condition.h in Headers */,
 				9A40CA3F2B6C63150077053E /* application.h in Headers */,
 				9A15A6BD264B59EF0080670E /* tools.h in Headers */,
@@ -12626,7 +12652,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#exit 0\n\nprepare_project()\n{\n\n   cd ${WorkspaceDir}\n   \n   ${HOME}/code/operating_system/tool/bin/application_build_helper --prepare-project app/acme\n\n}\n\nprepare_project\n\n\n\n";
+			shellScript = "#exit 0\n\nprepare_project()\n{\n\n   cd ${WorkspaceDir}\n   \n   echo \"WorkspaceDir=${WorkspaceDir}\"\n   echo \"HOME=${HOME}\"\n   \n   ${HOME}/code/operating_system/tool/bin/application_build_helper --prepare-project app/acme\n\n}\n\nprepare_project\n\n\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -13020,6 +13046,8 @@
 				9A5241F02CD47440006ED868 /* strdup_array.cpp in Sources */,
 				9A5241F12CD47440006ED868 /* string_array.cpp in Sources */,
 				9A5241F22CD47440006ED868 /* string_list.cpp in Sources */,
+				9A9979572D84607900A1FC11 /* component.cpp in Sources */,
+				9A9979582D84607900A1FC11 /* component_implementation.cpp in Sources */,
 				9A5241F32CD47440006ED868 /* var_strict.cpp in Sources */,
 				9A5241F42CD47440006ED868 /* check_property.cpp in Sources */,
 				9A5241F52CD47440006ED868 /* client.cpp in Sources */,
@@ -13572,6 +13600,8 @@
 				9AC1059E2B6AC9BD0053DB45 /* circular_buffer.cpp in Sources */,
 				9AC105A02B6AC9BD0053DB45 /* wd16.cpp in Sources */,
 				9AC105A12B6AC9BD0053DB45 /* node.cpp in Sources */,
+				9A99794F2D84607900A1FC11 /* component.cpp in Sources */,
+				9A9979502D84607900A1FC11 /* component_implementation.cpp in Sources */,
 				9AC105A22B6AC9BD0053DB45 /* mathematics.cpp in Sources */,
 				9AC105A32B6AC9BD0053DB45 /* integration_context.cpp in Sources */,
 				9A51A5542C31428600B52EDF /* file_context_interface.cpp in Sources */,
@@ -13863,6 +13893,8 @@
 				9A54051C2CE76B850009869E /* dialog.cpp in Sources */,
 				9AC1076D2B6AE9E10053DB45 /* lock.cpp in Sources */,
 				9AA3F8712A94851E004283CA /* not_dir.cpp in Sources */,
+				9A9979532D84607900A1FC11 /* component.cpp in Sources */,
+				9A9979542D84607900A1FC11 /* component_implementation.cpp in Sources */,
 				9AD69170251A753A00C0EBD7 /* hex.cpp in Sources */,
 				9A94DE3A282C034800F5C1CA /* property.cpp in Sources */,
 				9AA8037927BAC794008FF9AA /* no_memory.cpp in Sources */,

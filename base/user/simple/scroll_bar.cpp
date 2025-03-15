@@ -248,7 +248,7 @@ void simple_scroll_bar::on_message_left_button_down(::message::message * pmessag
    //   if (scrollbar_action(m_pitemCurrent))
    //   {
 
-   //      SetTimer((uptr)this, 300_ms, nullptr);
+   //      set_timer((uptr)this, 300_ms, nullptr);
 
    //   }
 
@@ -271,9 +271,9 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 
    //}
 
-   //KillTimer(((uptr)this));
+   //kill_timer(((uptr)this));
 
-   //KillTimer(((uptr)this) + 1);
+   //kill_timer(((uptr)this) + 1);
 
    //bool bWasTracking = m_bTracking;
 
@@ -826,9 +826,9 @@ void simple_scroll_bar::on_timer(::timer * ptimer)
    if (ptimer->m_uTimer == (uptr)this)
    {
 
-      KillTimer(ptimer->m_uTimer);
+      kill_timer(ptimer->m_uTimer);
 
-      SetTimer(((uptr)this) + 1, 10_ms, nullptr);
+      set_timer(((uptr)this) + 1, 10_ms, nullptr);
 
    }
    else if (ptimer->m_uTimer == ((uptr)this) + 1)
@@ -843,7 +843,7 @@ void simple_scroll_bar::on_timer(::timer * ptimer)
       if (!scrollbar_action(main_content().m_pitemCurrent, ::user::e_layout_sketch))
       {
 
-         KillTimer(ptimer->m_uTimer);
+         kill_timer(ptimer->m_uTimer);
 
       }
 

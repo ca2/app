@@ -44,7 +44,7 @@ namespace user
     
       __UNREFERENCED_PARAMETER(pmessage);
       
-      SetTimer(333, 50_ms, nullptr);
+      set_timer(333, 50_ms, nullptr);
 
    }
 

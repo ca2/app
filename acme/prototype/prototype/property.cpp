@@ -1965,3 +1965,11 @@ CLASS_DECL_ACME binary_stream& binary_stream_read_property(::binary_stream& stre
 //}
 
 
+::string property::get_ini_line() const
+{
+
+   return this->name() + " = " + this->as_string();
+
+}
+
+

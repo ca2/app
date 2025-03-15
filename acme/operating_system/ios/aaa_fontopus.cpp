@@ -479,7 +479,7 @@ namespace account
 
       m_login.on_layout(pgraphics);
 
-//      SetTimer(m_oswindow, 123, 23, nullptr);
+//      set_timer(m_oswindow, 123, 23, nullptr);
 
       XXXShowWindow(m_oswindow, e_display_normal);
 

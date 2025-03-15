@@ -186,7 +186,7 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
 
             ::pointer<::user::interaction>puserinteraction = viewline.get_interaction();
 
-            puserinteraction->KillTimer(::e_timer_hover);
+            puserinteraction->kill_timer(::e_timer_hover);
 
          }
 

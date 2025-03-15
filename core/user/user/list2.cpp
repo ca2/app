@@ -489,7 +489,7 @@ namespace user
    //   /*FillTask * pobjectTask = (FillTask *) pParameter;
 
 
-   //   pobjectTask->m_pimpact->KillTimer(1123);
+   //   pobjectTask->m_pimpact->kill_timer(1123);
 
    //   string & wstrPath = pobjectTask->m_wstrFile;
    //   MediaLibraryDoc * pdocument = pobjectTask->m_pimpact->get_document();
@@ -531,21 +531,21 @@ namespace user
    //   simple_user_list::on_timer(ptimer);
    //   if (ptimer->m_uTimer == 123654)
    //   {
-   //      KillTimer(123654);
+   //      kill_timer(123654);
    //      m_bKickActive = false;
 
    //   }
    //   /*   if(uEvent == 1123)
    //   {
-   //   KillTimer(1123);
+   //   kill_timer(1123);
    //   MediaLibraryDoc * pdocument = get_document();
    //   if(pdocument->m_bBuilt == true)
    //   {
-   //   KillTimer(uEvent);
+   //   kill_timer(uEvent);
    //   }
    //   else
    //   {
-   //   KillTimer(1124);
+   //   kill_timer(1124);
    //   int iTopIndex = _001GetTopIndex();
    //   if(m_buildhelper.m_iTopIndex != iTopIndex)
    //   {
@@ -566,8 +566,8 @@ namespace user
 
    //   if(m_buildhelper.m_iStep >= m_buildhelper.m_iDisplayItemCount)
    //   {
-   //   KillTimer(1123);
-   //   SetTimer(1124, 50, nullptr);
+   //   kill_timer(1123);
+   //   set_timer(1124, 50, nullptr);
    //   m_buildhelper.m_bActive = false;
    //   break;
    //   }
@@ -608,7 +608,7 @@ namespace user
    //   }
    //   else if(uEvent == 1124)
    //   {
-   //   KillTimer(1124);
+   //   kill_timer(1124);
    //   MediaLibraryDoc * pdocument = get_document();
    //   ::pointer<::sqlite::dataset>pds = pdocument->m_pdsAlbum;
 
@@ -674,12 +674,12 @@ namespace user
    if(bDisplayOnly)
    {
    m_buildhelper.m_bActive = true;
-   SetTimer(1123, 50, nullptr);
+   set_timer(1123, 50, nullptr);
    }
    else
    {
    m_buildhelper.m_bActive = true;
-   SetTimer(1124, 50, nullptr);
+   set_timer(1124, 50, nullptr);
    }
    }*/
 
@@ -711,7 +711,7 @@ namespace user
 
    //      //if(pobjectTask != nullptr)
    //      {
-   //         // SetTimer(pobjectTask->m_uiTimer, 50, nullptr);
+   //         // set_timer(pobjectTask->m_uiTimer, 50, nullptr);
 
    //         //delete pobjectTask;
    //      }
@@ -757,7 +757,7 @@ namespace user
    //   m_bKickActive = true;
 
 
-   //   SetTimer(123654, 700_ms, nullptr);
+   //   set_timer(123654, 700_ms, nullptr);
 
    //}
 

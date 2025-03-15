@@ -3216,7 +3216,7 @@ namespace user
 
                   m_pointLButtonDown1 = point;
 
-                  SetTimer(e_timer_drag_start, 1.2_s, nullptr);
+                  set_timer(e_timer_drag_start, 1.2_s, nullptr);
 
                   item_range itemrange;
 
@@ -3975,7 +3975,7 @@ namespace user
       else if(ptimer->m_uTimer == 12345679) // left click
       {
 
-         KillTimer(12345679);
+         kill_timer(12345679);
 
          if(m_bMeshSelect)
          {
@@ -3991,7 +3991,7 @@ namespace user
       else if(ptimer->m_uTimer == 8477) // right click
       {
 
-         KillTimer(8477);
+         kill_timer(8477);
 
          //if(!_001IsEditing())
          {
@@ -4028,7 +4028,7 @@ namespace user
          if(!Filter1Step())
          {
 
-            KillTimer(ptimer->m_uTimer);
+            kill_timer(ptimer->m_uTimer);
 
          }
 
@@ -4036,7 +4036,7 @@ namespace user
       else if (ptimer->m_uTimer == 224455)
       {
 
-         KillTimer(ptimer->m_uTimer);
+         kill_timer(ptimer->m_uTimer);
 
          if (m_iItemLButtonDown >= 0)
          {
@@ -4061,7 +4061,7 @@ namespace user
       else if(ptimer->m_uTimer == e_timer_drag_start) // 12345678
       {
 
-         KillTimer(ptimer->m_uTimer);
+         kill_timer(ptimer->m_uTimer);
 
          if(!m_bHoverSelect2)
          {
@@ -4135,7 +4135,7 @@ namespace user
       else
       {
 
-         //KillTimer(e_timer_hover_select);
+         //kill_timer(e_timer_hover_select);
 
          m_bPendingHoverSelect = false;
 
@@ -4822,7 +4822,7 @@ namespace user
 
       m_iFilter1Step = 0;
 
-      SetTimer(0xfffffffe,50_ms,nullptr);
+      set_timer(0xfffffffe,50_ms,nullptr);
 
       //queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
       //   {
@@ -4855,7 +4855,7 @@ namespace user
 
       m_bFilter1 = false;
 
-      KillTimer(0xfffffffe);
+      kill_timer(0xfffffffe);
 
       ASSERT(m_efilterstate == FilterStateSetup || m_efilterstate == FilterStateFilter);
 

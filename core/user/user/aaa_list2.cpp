@@ -3875,7 +3875,7 @@ namespace user
 
                   }
 
-                  SetTimer(e_timer_drag_start, 1.2_s);
+                  set_timer(e_timer_drag_start, 1.2_s);
 
                   item_range itemrange;
 
@@ -3991,9 +3991,9 @@ namespace user
 
       release_mouse_capture();
 
-      KillTimer(e_timer_drag_start);
+      kill_timer(e_timer_drag_start);
 
-      KillTimer(224455);
+      kill_timer(224455);
 
       synchronous_lock synchronouslock(this->synchronization());
 
@@ -4241,7 +4241,7 @@ namespace user
 
          m_pointRButtonUp = pmouse->m_point;
 
-         SetTimer(8477, 500_ms, nullptr);
+         set_timer(8477, 500_ms, nullptr);
 
       }
 
@@ -6219,7 +6219,7 @@ namespace user
 
       m_iFilter1Step = 0;
 
-      SetTimer(0xfffffffe, 50_ms, nullptr);
+      set_timer(0xfffffffe, 50_ms, nullptr);
 
       queue_graphics_call([this](::draw2d::graphics_pointer& pgraphics)
          {
@@ -6242,7 +6242,7 @@ namespace user
 
       m_bFilter1 = false;
 
-      KillTimer(0xfffffffe);
+      kill_timer(0xfffffffe);
 
       ASSERT(m_efilterstate == FilterStateSetup
          || m_efilterstate == FilterStateFilter);

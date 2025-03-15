@@ -42,23 +42,31 @@
 		9A42341B2BAE44A000428532 /* in_place_edit_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4234192BAE447F00428532 /* in_place_edit_array.cpp */; };
 		9A42341C2BAE44A500428532 /* in_place_edit_mapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4234162BAE446100428532 /* in_place_edit_mapper.cpp */; };
 		9A42341D2BAE44AB00428532 /* in_place_edit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A42341A2BAE448000428532 /* in_place_edit.cpp */; };
-		9A9E579B29F8602B001559E9 /* libnano2d.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9E579829F8600F001559E9 /* libnano2d.dylib */; };
+		9A99798E2D84636100A1FC11 /* libnano2d.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A99798D2D84636100A1FC11 /* libnano2d.dylib */; };
+		9A99798F2D84637B00A1FC11 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9979402D8447F600A1FC11 /* libaxis.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9A9E579729F8600F001559E9 /* PBXContainerItemProxy */ = {
+		9A99793F2D8447F600A1FC11 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A9E579229F8600F001559E9 /* nano2d.xcodeproj */;
+			containerPortal = 9A6CF6932D84456200E57B1E /* axis.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 9A9E560829F8556C001559E9;
-			remoteInfo = nano2d;
+			remoteGlobalIDString = 9AE63E9B252A5B7800BED5B8;
+			remoteInfo = axis;
 		};
-		9A9E579929F8601C001559E9 /* PBXContainerItemProxy */ = {
+		9A9979412D8447F600A1FC11 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A9E579229F8600F001559E9 /* nano2d.xcodeproj */;
+			containerPortal = 9A6CF6932D84456200E57B1E /* axis.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A93B6912846EA94005ACD11;
+			remoteInfo = ios_axis;
+		};
+		9A9979432D84489700A1FC11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A6CF6932D84456200E57B1E /* axis.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 9A9E560729F8556C001559E9;
-			remoteInfo = nano2d;
+			remoteGlobalIDString = 9AE63E9A252A5B7800BED5B8;
+			remoteInfo = axis;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -136,7 +144,8 @@
 		9A42341A2BAE448000428532 /* in_place_edit.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = in_place_edit.cpp; sourceTree = "<group>"; };
 		9A54985D2A2BCE800052BAB6 /* _____debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
 		9A54985E2A2BCE800052BAB6 /* _____release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
-		9A9E579229F8600F001559E9 /* nano2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = nano2d.xcodeproj; path = ../nano2d/nano2d.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A6CF6932D84456200E57B1E /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../axis/axis.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9A99798D2D84636100A1FC11 /* libnano2d.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libnano2d.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +153,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A9E579B29F8602B001559E9 /* libnano2d.dylib in Frameworks */,
+				9A99798F2D84637B00A1FC11 /* libaxis.dylib in Frameworks */,
+				9A99798E2D84636100A1FC11 /* libnano2d.dylib in Frameworks */,
 				9A3CA84A27EAED95009ADCD2 /* IOKit.framework in Frameworks */,
 				9A3CA84827EAED75009ADCD2 /* AppKit.framework in Frameworks */,
 				9A3CA83C27EAE999009ADCD2 /* libaura.dylib in Frameworks */,
@@ -160,7 +170,7 @@
 		9A3CA6DC27EAE89B009ADCD2 = {
 			isa = PBXGroup;
 			children = (
-				9A9E579229F8600F001559E9 /* nano2d.xcodeproj */,
+				9A6CF6932D84456200E57B1E /* axis.xcodeproj */,
 				9A3CA6F427EAE8EF009ADCD2 /* nanoui */,
 				9A3CA6E627EAE89B009ADCD2 /* Products */,
 				9A3CA83427EAE981009ADCD2 /* Frameworks */,
@@ -250,6 +260,7 @@
 		9A3CA83427EAE981009ADCD2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A99798D2D84636100A1FC11 /* libnano2d.dylib */,
 				9A3CA84927EAED95009ADCD2 /* IOKit.framework */,
 				9A3CA84727EAED75009ADCD2 /* AppKit.framework */,
 				9A3CA83D27EAE9A3009ADCD2 /* libaxis.dylib */,
@@ -261,10 +272,11 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9A9E579329F8600F001559E9 /* Products */ = {
+		9A99793B2D8447F600A1FC11 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A9E579829F8600F001559E9 /* libnano2d.dylib */,
+				9A9979402D8447F600A1FC11 /* libaxis.dylib */,
+				9A9979422D8447F600A1FC11 /* libios_axis.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -294,7 +306,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A9E579A29F8601C001559E9 /* PBXTargetDependency */,
+				9A9979442D84489700A1FC11 /* PBXTargetDependency */,
 			);
 			name = nanoui;
 			productName = nanoui;
@@ -328,8 +340,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9A9E579329F8600F001559E9 /* Products */;
-					ProjectRef = 9A9E579229F8600F001559E9 /* nano2d.xcodeproj */;
+					ProductGroup = 9A99793B2D8447F600A1FC11 /* Products */;
+					ProjectRef = 9A6CF6932D84456200E57B1E /* axis.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -340,11 +352,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A9E579829F8600F001559E9 /* libnano2d.dylib */ = {
+		9A9979402D8447F600A1FC11 /* libaxis.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libnano2d.dylib;
-			remoteRef = 9A9E579729F8600F001559E9 /* PBXContainerItemProxy */;
+			path = libaxis.dylib;
+			remoteRef = 9A99793F2D8447F600A1FC11 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A9979422D8447F600A1FC11 /* libios_axis.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_axis.a;
+			remoteRef = 9A9979412D8447F600A1FC11 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -412,10 +431,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9A9E579A29F8601C001559E9 /* PBXTargetDependency */ = {
+		9A9979442D84489700A1FC11 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = nano2d;
-			targetProxy = 9A9E579929F8601C001559E9 /* PBXContainerItemProxy */;
+			name = axis;
+			targetProxy = 9A9979432D84489700A1FC11 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

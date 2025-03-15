@@ -28,7 +28,7 @@ namespace acme
    }
 
 
-   bool timer_array::create_timer(::particle * pparticle, uptr uEvent, const class ::time& millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
+   bool timer_array::create_timer(::particle * pparticle, uptr uEvent, const class ::time& millisEllapse, const ::procedure& procedure, bool bPeriodic)
    {
 
       delete_timer(uEvent);
@@ -54,7 +54,7 @@ namespace acme
 
       }
 
-      ptimer->initialize_timer(pparticle, this, uEvent, pfnTimer, pvoidData, synchronization());
+      ptimer->initialize_timer(pparticle, this, uEvent, procedure, synchronization());
 
       bool bOk = true;
 
@@ -65,10 +65,10 @@ namespace acme
    }
 
 
-   bool timer_array::set_timer(::particle * pparticle, uptr uEvent, const class ::time& millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
+   bool timer_array::set_timer(::particle * pparticle, uptr uEvent, const class ::time& millisEllapse, const ::procedure& procedure, bool bPeriodic)
    {
 
-      if (!create_timer(pparticle, uEvent, millisEllapse, pfnTimer, bPeriodic, pvoidData))
+      if (!create_timer(pparticle, uEvent, millisEllapse, procedure, bPeriodic))
       {
 
          return false;

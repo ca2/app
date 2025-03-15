@@ -922,6 +922,50 @@ void property_set::parse_ini(const ::string & strIni)
 }
 
 
+::string_array property_set::get_ini_lines() const
+{
+
+   ::string_array stra;
+
+   for (auto& pprop : *this)
+   {
+
+      if (pprop->get_type() == e_type_property_set)
+      {
+
+         auto straInner = ::transfer(pprop->as_property_set().get_ini_lines());
+
+         for (auto& str : straInner)
+         {
+
+            stra.add(pprop->name().as_string() + "." + str);
+
+         }
+
+      }
+      else
+      {
+
+         stra.add(pprop->get_ini_line());
+
+      }
+
+   }
+
+   return ::transfer(stra);
+
+}
+
+
+::string property_set::get_ini() const
+{
+
+   ::string_array stra = get_ini_lines();
+
+   return stra.implode("\n");
+
+}
+
 /// Example of Standard Configuration (/etc/os-release from Ubuntu 22.10)
 /// PRETTY_NAME="Ubuntu 22.10"
 /// NAME="Ubuntu"

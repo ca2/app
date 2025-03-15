@@ -322,8 +322,8 @@ namespace linux
 
 
 //      // Timer Functions
-//      virtual bool SetTimer(uptr uEvent, unsigned int nElapse, PFN_TIMER pfnTimer);
-//      virtual bool KillTimer(uptr uEvent);
+//      virtual bool set_timer(uptr uEvent, unsigned int nElapse, PFN_TIMER pfnTimer);
+//      virtual bool kill_timer(uptr uEvent);
 
       // oswindow State Functions
       virtual bool IsWindowEnabled();

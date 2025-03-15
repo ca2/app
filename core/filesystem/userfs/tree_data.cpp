@@ -265,7 +265,7 @@ namespace userfs
       
       m_iAnimate = 1;
       
-      pinteraction->SetTimer(1234567, 50_ms, nullptr);
+      pinteraction->set_timer(1234567, 50_ms, nullptr);
 
    }
 

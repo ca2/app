@@ -750,12 +750,12 @@ namespace color
       double t = v * (1 - (1 - f) * s);
 
       switch (i % 6) {
-      case 0: r = v, g = t, b = p; break;
-      case 1: r = q, g = v, b = p; break;
-      case 2: r = p, g = v, b = t; break;
-      case 3: r = p, g = q, b = v; break;
-      case 4: r = t, g = p, b = v; break;
-      case 5: r = v, g = p, b = q; break;
+         case 0: r = v; g = t; b = p; break;
+         case 1: r = q; g = v; b = p; break;
+         case 2: r = p; g = v; b = t; break;
+         case 3: r = p; g = q; b = v; break;
+         case 4: r = t; g = p; b = v; break;
+         case 5: r = v; g = p; b = q; break;
       }
 
       m_uchRed = static_cast<int>(r * 255);
@@ -1611,7 +1611,7 @@ namespace color
       if (str.size() < 6)
       {
 
-         return ::color::transparent;
+         throw ::exception(error_parsing);
 
       }
 
@@ -1652,6 +1652,13 @@ namespace color
             strResult += strDigit;
 
          }
+
+      }
+
+      if (strResult.size() < 6)
+      {
+
+         throw ::exception(error_parsing);
 
       }
 

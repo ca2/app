@@ -575,7 +575,7 @@ menu::~menu()
 //
 //      set_need_redraw();
 //
-//      SetTimer(::e_timer_command_probe, 333_ms, nullptr);
+//      set_timer(::e_timer_command_probe, 333_ms, nullptr);
 //
 //      return true;
 //
@@ -1066,7 +1066,7 @@ menu::~menu()
 //      ////      {
 //      ////         if (ptopic->user_interaction_id() == m_atomTimerMenu)
 //      ////         {
-//      ////            KillTimer(e_timer_menu);
+//      ////            kill_timer(e_timer_menu);
 //      ////            m_atomTimerMenu.is_empty();
 //      ////         }
 //      ////
@@ -1247,7 +1247,7 @@ menu::~menu()
 //
 //      m_pmenuitemShowSubMenu2 = pmenuitem;
 //
-//      SetTimer(e_timer_menu, 300_ms);
+//      set_timer(e_timer_menu, 300_ms);
 //
 //   }
 //
@@ -1259,7 +1259,7 @@ menu::~menu()
 //
 //      m_pmenuitemShowSubMenu2 = nullptr;
 //
-//      SetTimer(e_timer_menu, 300_ms);
+//      set_timer(e_timer_menu, 300_ms);
 //
 //   }
 //
@@ -1299,7 +1299,7 @@ menu::~menu()
 //         if (ptimer->m_uTimer == e_timer_menu)
 //         {
 //
-//            KillTimer(e_timer_menu);
+//            kill_timer(e_timer_menu);
 //
 //            //if (m_atomSubMenu.has_character())
 //            //{

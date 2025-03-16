@@ -420,7 +420,7 @@ namespace launch
 
       }
 
-      printf_line("Launching %s/%s...", m_strAppRoot.c_str(), m_strAppName.c_str());
+      printf_line("Downloading %s/%s...", m_strAppRoot.c_str(), m_strAppName.c_str());
 
       auto pathStore = directory_system()->home() / "application" / m_strAppRoot / m_strAppName;
 
@@ -520,7 +520,7 @@ namespace launch
       // }
 
 
-
+      printf_line("Uncompressing %s/%s...", m_strAppRoot.c_str(), m_strAppName.c_str());
       //system(szDownloadCommand);
 
       nano()->compress()->unzip(m_pathBinaryFolder, pathZipName);
@@ -530,6 +530,8 @@ namespace launch
       //sprintf(szUnzipCommand, "unzip -o %s -d .", szZipName);
 
       //system(szUnzipCommand);
+
+      printf_line("Installing dependencies for %s/%s...", m_strAppRoot.c_str(), m_strAppName.c_str());
 
 
       install_dependencies();
@@ -543,6 +545,8 @@ namespace launch
          return;
 
       }
+
+      printf_line("Launching %s/%s...", m_strAppRoot.c_str(), m_strAppName.c_str());
 
       ::string strCommand;
 

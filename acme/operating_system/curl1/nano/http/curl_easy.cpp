@@ -53,6 +53,7 @@ void curl_easy::get(::nano::http::get * pget)
    curl_easy_setopt(m_pcurl, CURLOPT_WRITEFUNCTION, &curl_easy::s_write_function);
    curl_easy_setopt(m_pcurl, CURLOPT_WRITEDATA, (void *)(::nano::http::get*)pget);
    curl_easy_setopt(m_pcurl, CURLOPT_USERAGENT, "nano_http");
+   curl_easy_setopt(m_pcurl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
 
 
    // make the http request.

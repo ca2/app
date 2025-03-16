@@ -17,7 +17,7 @@ bool curl_check_http_ok(const char * pszUrl)
 
    char szCommand[4096];
 
-   strcpy(szCommand, "curl --silent -I ");
+   strcpy(szCommand, "curl --http1.1 --silent -I ");
 
    strcat(szCommand, pszUrl);
 

@@ -1014,11 +1014,11 @@ void property_set::parse_standard_configuration(const ::string & strStandardConf
 void property_set::parse_network_payload(const ::string & strNetworkPayload)
 {
 
-#ifdef LINUX
-
-   uselocale(this->platform()->m_localeC);
-
-#endif
+// #ifdef LINUX
+//
+//    uselocale(this->platform()->m_localeC);
+//
+// #endif
 
    __check_refdbg
 
@@ -1049,9 +1049,9 @@ void property_set::parse_network_payload(::ansi_range & range)
 {
 
 
-#ifdef LINUX
-   uselocale(this->platform()->m_localeC);
-#endif
+// #ifdef LINUX
+//    uselocale(this->platform()->m_localeC);
+// #endif
    __check_refdbg
    range.consume_spaces(0);
    __check_refdbg

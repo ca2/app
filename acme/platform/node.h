@@ -1023,6 +1023,7 @@ namespace platform
       bool _get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle & rectangle) override;
 
       void realize(::particle_pointer pparticle) override;
+      virtual ::string dynamic_library_prefix();
       virtual ::string dynamic_library_suffix();
 
    };

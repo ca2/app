@@ -948,11 +948,11 @@ namespace platform
 
       bool _is_google_drive_installed() override;
 
-      bool _is_dropbox_installed() override;
+      //bool _is_dropbox_installed() override;
 
       bool _is_onedrive_installed() override;
 
-      void calculate_dropbox_installed() override;
+      //void calculate_dropbox_installed() override;
 
       void calculate_onedrive_installed() override;
 
@@ -1023,7 +1023,7 @@ namespace platform
       bool _get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle & rectangle) override;
 
       void realize(::particle_pointer pparticle) override;
-
+      virtual ::string dynamic_library_suffix();
 
    };
 

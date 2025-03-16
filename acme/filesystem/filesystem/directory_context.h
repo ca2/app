@@ -176,10 +176,10 @@
       virtual ::file::path video();
       virtual ::file::path image();
 
-      virtual ::file::path dropbox();
+      //virtual ::file::path dropbox();
       virtual ::file::path onedrive();
 
-      virtual ::file::path dropbox_app();
+      //virtual ::file::path dropbox_app();
 
       //virtual bool is_dropbox_installed();
       //virtual void calculate_dropbox_installed();
@@ -241,7 +241,7 @@
 
       //virtual ::file::path onedrive();
 
-      virtual ::file::path dropbox_client();
+      //virtual ::file::path dropbox_client();
      
 
 

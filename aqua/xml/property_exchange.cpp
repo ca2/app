@@ -38,12 +38,12 @@ namespace xml
 
       var_exchange varexchange;
 
-      for(auto & property : *m_ppropertyset)
+      for(auto & pproperty : *m_ppropertyset)
       {
 
-         varexchange.m_ppayload = &property;
+         varexchange.m_ppayload = pproperty;
 
-         xmlot.export_node(property.name(), varexchange);
+         xmlot.export_node(pproperty->name(), varexchange);
 
       }
 
@@ -58,12 +58,12 @@ namespace xml
 
       var_exchange varexchange;
 
-      for(auto & property : *m_ppropertyset)
+      for(auto & pproperty : *m_ppropertyset)
       {
 
-         varexchange.m_ppayload = &property;
+         varexchange.m_ppayload = pproperty;
 
-         xmlit.import_node(property.name(), varexchange);
+         xmlit.import_node(pproperty->name(), varexchange);
 
       }
 

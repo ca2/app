@@ -396,7 +396,7 @@ namespace filemanager
          }
          else
          {
-            KillTimer(888888);
+            kill_timer(888888);
          }
       }
 
@@ -1125,7 +1125,7 @@ namespace filemanager
       if (filemanager_data()->m_bSetBergedgeTopicFile)
       {
 
-         SetTimer(888888, 230_ms, nullptr);
+         set_timer(888888, 230_ms, nullptr);
 
       }
 

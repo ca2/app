@@ -4,6 +4,7 @@
 
 
 #include "acme/handler/handler.h"
+#include "acme/platform/ini.h"
 #include "system_acme.h"
 #include "system_apex.h"
 #include "system_aqua.h"
@@ -14,6 +15,7 @@
 
 namespace platform
 {
+
 
    /// For GUI applications:
    /// Never let system and other "system" threads (like session, application)
@@ -52,8 +54,8 @@ namespace platform
       static ::platform::system *            s_p;
       //::pointer < ::platform::system  >      m_psystemComposite;
 
-
-
+      ::pointer < ::particle >               m_pparticleHttpTextSynchronization;
+      ::string_map < ::string_to_string >    m_mapText;
 
 
       system();
@@ -66,6 +68,8 @@ namespace platform
       virtual ::string_array * http_exists_array() override;
 
       virtual class ::time * file_listing_cache_time() override;
+
+      virtual ::string http_text(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrKey, const scoped_string & strLocale = "_std", const ::scoped_string & strSchema = "_std");
 
       //void on_set_platform() override;
 
@@ -149,36 +153,40 @@ namespace platform
 
       virtual ::path_system * path_system() const;
 
-      virtual ::platform::system_factory * system_factory() override;
+      ::platform::system_factory * system_factory() override;
 
-      virtual ::xml::xml * _xml() override;
+      ::xml::xml * _xml() override;
 
-      virtual geometry::geometry * geometry() override;
+      ::geometry::geometry * geometry() override;
 
-      virtual ::datetime::datetime * datetime() override;
+      ::datetime::datetime * datetime() override;
 
-      virtual ::text::table * texttable() override;
+      ::text::table * texttable() override;
 
-      virtual ::internet::internet * internet() override;
-      virtual ::url::url_context * url() override;
+      ::internet::internet * internet() override;
+      ::url::url_context * url() override;
 
-      virtual::particle * ui_destroyed_synchronization() override;
+      ::particle * ui_destroyed_synchronization() override;
 
-      virtual ::nano::nano * nano() override;
+      ::nano::nano * nano() override;
 
-      virtual ::micro::user * micro_user() override;
-      virtual ::acme::windowing::windowing * acme_windowing() override;
-      virtual ::windowing::windowing * windowing() override;
+      ::micro::user * micro_user() override;
+      ::acme::windowing::windowing * acme_windowing() override;
+      ::windowing::windowing * windowing() override;
 
-      virtual void defer_innate_ui() override;
+      ::component * component(const ::scoped_string & scopedstrComponent)override;
 
-      virtual ::innate_ui::innate_ui * innate_ui() override;
+      ::string component_path(const ::scoped_string & scopedstrComponent) override;
+
+      void defer_innate_ui() override;
+
+      ::innate_ui::innate_ui * innate_ui() override;
 
       //virtual nano::nano * nano()
 
-      virtual class ::manager_room * manager_room() override;
+      class ::manager_room * manager_room() override;
 
-      virtual ::crypto::crypto * crypto() override;
+      ::crypto::crypto * crypto() override;
 
      //virtual ::acme::acme * acme() const ;
 

@@ -9,9 +9,10 @@
 #include "application.h"
 #include "acme/nano/nano.h"
 #include "acme/nano/http/http.h"
+#include "component.h"
+#include "hyperlink.h"
 #include "session.h"
 #include "simple_log.h"
-#include "hyperlink.h"
 #include "acme/compress/compress.h"
 #include "acme/compress/uncompress.h"
 #include "acme/constant/id.h"
@@ -745,7 +746,9 @@ namespace platform
 
          //__task_init();
 
-         run();
+         ::task::main();
+
+         //run();
 
          ////         m_phappeningInitialization->set_happening();
 
@@ -1678,6 +1681,31 @@ namespace platform
    }
 
 
+   ::string system::http_text(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrKey, const scoped_string & strLocale, const ::scoped_string & strSchema)
+   {
+
+      ::string str;
+      
+      if (m_mapText[scopedstrPath].lookup(scopedstrKey, str))
+      {
+
+         return str;
+
+      }
+
+      ::property_set set;
+
+      set["raw_http"] = true;
+
+      http()->get(str, "https://ca2.network/text?path=" + scopedstrPath + "&key=" + scopedstrKey, set);
+
+      m_mapText[scopedstrPath].set_at(scopedstrKey, str);
+
+      return str;
+
+   }
+
+
    void system::process_machine_event_data(machine_event_data* pdata)
    {
 
@@ -2060,6 +2088,46 @@ particle* system::matter_mutex()
    }
 
 
+   ::component * system::component(const ::scoped_string & scopedstrComponent)
+   {
+
+      _synchronous_lock synchronouslock(this->ui_destroyed_synchronization());
+
+      auto & pcomponent = m_mapComponent[scopedstrComponent];
+
+      if (pcomponent.is_null())
+      {
+
+         auto strComponentPath = component_path(scopedstrComponent);
+
+         if (strComponentPath.is_empty())
+         {
+
+            throw ::exception(error_failed, "Feature Component doesn't have a feature component path");
+
+         }
+
+         __øconstruct(pcomponent);
+
+         pcomponent->m_strComponent = scopedstrComponent;
+
+         pcomponent->m_strComponentPath = strComponentPath;
+
+      }
+
+      return pcomponent;
+
+   }
+
+
+   ::string system::component_path(const ::scoped_string & scopedstrComponent)
+   {
+
+      return {};
+
+   }
+
+
    void system::defer_innate_ui()
    {
 
@@ -2138,6 +2206,7 @@ particle* system::matter_mutex()
    void system::init2()
    {
 
+      m_pparticleHttpTextSynchronization = node()->create_mutex();
 
       initialize_matter();
 

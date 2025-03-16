@@ -53,8 +53,8 @@ void destroy_pointer(cairo_surface_t* p);
 void destroy_pointer(cairo_pattern_t* p);
 
 
-using cairo_surface_holder = ::holder < cairo_surface_t* >;
-using cairo_pattern_holder = ::holder < cairo_pattern_t* >;
+using cairo_surface_holder = ::holder < cairo_surface_t >;
+using cairo_pattern_holder = ::holder < cairo_pattern_t >;
 
 
 void copy(::int_rectangle * prectTarget, const cairo_rectangle_int_t * prectSource);
@@ -106,8 +106,8 @@ void destroy_pointer(cairo_surface_t * p);
 void destroy_pointer(cairo_pattern_t * p);
 
 
-using cairo_surface_holder = ::holder < cairo_surface_t * >;
-using cairo_pattern_holder = ::holder < cairo_pattern_t * >;
+using cairo_surface_holder = ::holder < cairo_surface_t >;
+using cairo_pattern_holder = ::holder < cairo_pattern_t >;
 
 
 

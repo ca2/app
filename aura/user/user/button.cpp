@@ -648,6 +648,9 @@ namespace user
    void button::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+
+      _001OnButtonDrawBackground(pgraphics);
+
       auto rectangleX = this->rectangle();
 
       auto pstyle = get_style(pgraphics);
@@ -655,6 +658,15 @@ namespace user
       auto colorBackground = get_color(pstyle, ::e_element_background, get_state());
 
       //auto & linkedpropertyCheck = m_linkedpropertyCheck;
+
+      // ::string strType = ::type(this).as_string();
+      //
+      // if (strType.contains("experience"))
+      // {
+      //
+      //    information("experience");
+      //
+      // }
 
       auto echeck = this->echeck();
 
@@ -693,6 +705,7 @@ namespace user
          }
          
       }
+
    }
 
 
@@ -886,12 +899,12 @@ namespace user
 
       rectangleX.deflate(rectangleBorder);
 
-      if(m_estyle != e_style_stock_icon)
-      {
+      //if(m_estyle != e_style_stock_icon)
+      //{
 
-         _001OnButtonDrawBackground(pgraphics);
+         //_001OnButtonDrawBackground(pgraphics);
 
-      }
+      //}
 
 //      if(m_pitemHover)
 //      {
@@ -1219,7 +1232,7 @@ namespace user
       else if(estyle == e_style_push || estyle == e_style_push_group)
       {
 
-         SetTimer(16384,100_ms,nullptr);
+         set_timer(16384,100_ms,nullptr);
 
          MESSAGE_LINK(e_message_key_up, this, this, &button::on_message_key_up);
 
@@ -1247,7 +1260,7 @@ namespace user
       else if(estyle == e_style_push || estyle == e_style_push_group)
       {
 
-         KillTimer(16384);
+         kill_timer(16384);
 
       }
 

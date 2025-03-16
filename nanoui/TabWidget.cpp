@@ -370,7 +370,8 @@ namespace nanoui
 
       int tab_height = (int)font_size() + 2 * m_ptheme->m_iVerticalPaddingTabButton;
 
-      if (test_vertical && (p.y() <= m_pos.y() || p.y() > m_pos.y() + tab_height))
+      //if (test_vertical && (p.y() <= m_pos.y() || p.y() > m_pos.y() + tab_height))
+      if (test_vertical && (p.y() <= 0 || p.y() > tab_height))
       {
 
          pitem->m_item.m_eelement = e_element_none;
@@ -546,10 +547,15 @@ namespace nanoui
 
                   m_iCloseIndexPushed = -1;
 
-                  if (bTabChanged && m_callback) 
+                  if (bTabChanged ) 
                   {
 
-                     m_callback(selected_id());
+                     if (m_callback)
+                     {
+
+                        m_callback(selected_id());
+
+                     }
 
                      update_visibility();
 

@@ -571,10 +571,10 @@ void file_system::find_replace(const ::file::path& path, const ::property_set& s
 
    auto str = as_string(path);
 
-   for (auto& property: set)
+   for (auto& pproperty: set)
    {
 
-      str.find_replace(property.name(), property.as_string());
+      str.find_replace(pproperty->name(), pproperty->as_string());
 
    }
 

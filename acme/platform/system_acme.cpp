@@ -4100,9 +4100,26 @@ return nullptr;
 
    ::windowing::windowing*acme_system_layer:: windowing()
    {
+      
       return nullptr;
+
    }
 
+
+   ::component * acme_system_layer::component(const ::scoped_string & scopedstrComponent)
+   {
+
+      return nullptr;
+
+   }
+
+
+    ::string acme_system_layer::component_path(const ::scoped_string & scopedstrComponent)
+   {
+
+      return {};
+
+   }
 
    void acme_system_layer::defer_innate_ui()
    {

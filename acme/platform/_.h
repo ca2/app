@@ -65,4 +65,8 @@ namespace platform
 class message_box;
 
 
+class component;
+
+
+class component_implementation;
 

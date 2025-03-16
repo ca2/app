@@ -410,7 +410,7 @@ namespace user
       catch (const ::exception& exception)
       {
 
-         auto pmessagebox = __initialize_new::message_box(exception);
+         auto pmessagebox = __initialize_new::message_box(exception, __FUNCTION_FILE_LINE__);
 
          pmessagebox->async();
 
@@ -760,7 +760,7 @@ namespace user
 
       set_need_redraw();
 
-      SetTimer(::e_timer_command_probe, 333_ms, nullptr);
+      set_timer(::e_timer_command_probe, 333_ms, nullptr);
 
       return true;
 
@@ -1284,7 +1284,7 @@ namespace user
       ////      {
       ////         if (ptopic->user_interaction_id() == m_atomTimerMenu)
       ////         {
-      ////            KillTimer(e_timer_menu);
+      ////            kill_timer(e_timer_menu);
       ////            m_atomTimerMenu.is_empty();
       ////         }
       ////
@@ -1478,7 +1478,7 @@ namespace user
 
       m_pmenuitemShowSubMenu2 = pmenuitem;
 
-      SetTimer(e_timer_menu, 300_ms);
+      set_timer(e_timer_menu, 300_ms);
 
    }
 
@@ -1490,7 +1490,7 @@ namespace user
 
       m_pmenuitemShowSubMenu2 = nullptr;
 
-      SetTimer(e_timer_menu, 300_ms);
+      set_timer(e_timer_menu, 300_ms);
 
    }
 
@@ -1530,7 +1530,7 @@ namespace user
       if (ptimer->m_etimer == e_timer_menu)
       {
 
-         KillTimer(e_timer_menu);
+         kill_timer(e_timer_menu);
 
          //if (m_atomSubMenu.has_character())
          //{

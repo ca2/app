@@ -8,17 +8,19 @@
 #include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/directory_context.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/path_system.h"
+#include "acme/platform/component.h"
 #include "acme/parallelization/retry.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/component_implementation.h"
 #include "acme/platform/http.h"
 #include "acme/platform/ini.h"
 #include "acme/handler/request.h"
 #include "acme/prototype/string/str.h"
-#include "acme/filesystem/filesystem/directory_context.h"
-#include "acme/filesystem/filesystem/directory_system.h"
-#include "acme/filesystem/filesystem/file_context.h"
+#include "apex/filesystem/fs/raw_folder_protocol.h"
 #include "apex/networking/http/context.h"
 
 
@@ -34,7 +36,10 @@ namespace apex
 
       //m_papexcontext = this;
 
+      m_bModifiedFsRawFolderProtocols = true;
+
    }
+
 
    context::~context()
    {
@@ -437,9 +442,6 @@ namespace apex
    }
 
 
-
-
-
    bool context::_001IsProtocol(::file::path & path, const ::string & strProtocol)
    {
 
@@ -461,7 +463,153 @@ namespace apex
       return false;
 
    }
+   
 
+   void context::defer_calculate_fs_raw_folder_protocols()
+   {
+
+      if (application()->m_bEnableFsRawFolderProtocols)
+      {
+
+         if (m_bModifiedFsRawFolderProtocols)
+         {
+
+            m_bModifiedFsRawFolderProtocols = false;
+
+            auto pcomponent = system()->component("fs_raw_folder_protocol");
+
+            ::cast < ::database::client > pdatabaseclient = pcomponent;
+
+            if (pdatabaseclient)
+            {
+
+               ::cast < ::database::client > pdatabaseclientApp = application();
+
+               if (pdatabaseclientApp)
+               {
+
+                  pdatabaseclient->initialize_data_client(pdatabaseclientApp->m_pdataserver);
+
+               }
+
+            }
+
+            pcomponent->update();
+
+            if (pcomponent)
+            {
+
+               for (auto& strInstalled : pcomponent->m_straImplementationInstalled)
+               {
+
+                  try
+                  {
+
+                     auto pimplementation = pcomponent->implementation(strInstalled);
+
+                     ::pointer < ::fs::raw_folder_protocol > prawfolderprotocol = pimplementation;
+
+                     if (::is_set(prawfolderprotocol))
+                     {
+
+                        if (prawfolderprotocol->is_installed())
+                        {
+
+                           ::string strProtocol = prawfolderprotocol->protocol();
+
+                           if (strProtocol.has_character())
+                           {
+
+                              m_mapFsRawFolderProtocol[strProtocol] = prawfolderprotocol;
+
+                           }
+
+                        }
+
+
+                     }
+
+
+                  }
+                  catch (...)
+                  {
+
+
+                  }
+
+
+               }
+
+
+            }
+
+         }
+
+      }
+
+   }
+   
+
+   bool context::defer_process_fs_raw_folder_protocol_path(::file::path & path)
+   {
+
+      defer_calculate_fs_raw_folder_protocols();
+
+      for (auto & pair : m_mapFsRawFolderProtocol)
+      {
+
+         auto strProtocol = pair.element1();
+
+         auto pfsrawfolderprotocol = pair.element2();
+
+         if(::is_set(pfsrawfolderprotocol)
+            && pfsrawfolderprotocol->is_installed() 
+            && _001IsProtocol(path, strProtocol + ":/"))
+         { 
+
+            path = pfsrawfolderprotocol->raw_path(path);
+
+            return true;
+         
+         }
+
+      }
+
+      return false;
+
+   }
+
+
+
+   bool context::is_fs_raw_folder_protocol_installed(const ::scoped_string & scopedstrProtocol)
+   {
+
+      defer_calculate_fs_raw_folder_protocols();
+
+      for (auto & pair : m_mapFsRawFolderProtocol)
+      {
+
+         auto strProtocol = pair.element1();
+
+         auto pfsrawfolderprotocol = pair.element2();
+
+         if (::is_set(pfsrawfolderprotocol)
+            && pfsrawfolderprotocol->is_installed()
+            && scopedstrProtocol == strProtocol)
+         {
+
+            return true;
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
+   //else if (node()->_is_dropbox_installed() && _001IsProtocol(path, "dropbox:/"))
 
    bool context::defer_process_known_folder_path(::file::path & path)
    {
@@ -490,27 +638,27 @@ namespace apex
          path = directory()->document() / path;
 
       }
-      else if (node()->_is_dropbox_installed() && _001IsProtocol(path, "dropbox:/"))
-      {
+      //else if (node()->_is_dropbox_installed() && _001IsProtocol(path, "dropbox:/"))
+      //{
 
-         path = directory()->dropbox() / path;
+      //   path = directory()->dropbox() / path;
 
-      }
-      else if (node()->_is_dropbox_installed() && _001IsProtocol(path, "dropbox-app:/"))
-      {
+      //}
+      //else if (node()->_is_dropbox_installed() && _001IsProtocol(path, "dropbox-app:/"))
+      //{
 
-         auto papplication = application();
+      //   auto papplication = application();
 
-         if (!papplication || papplication->m_strAppId.is_empty())
-         {
+      //   if (!papplication || papplication->m_strAppId.is_empty())
+      //   {
 
-            return false;
+      //      return false;
 
-         }
+      //   }
 
-         path = directory()->dropbox_app() / path;
+      //   path = directory()->dropbox_app() / path;
 
-      }
+      //}
       else if (node()->_is_onedrive_installed() && _001IsProtocol(path, "onedrive:/"))
       {
 

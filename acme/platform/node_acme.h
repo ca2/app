@@ -25,9 +25,9 @@ namespace platform
    struct CLASS_DECL_ACME acme_node_layer_t
    {
 
-      bool m_bDropboxCalculated;
-      bool m_bDropbox;
-      ::file::path m_pathDropbox;
+      //bool m_bDropboxCalculated;
+      //bool m_bDropbox;
+      //::file::path m_pathDropbox;
 
 
       bool m_bOneDriveCalculated;
@@ -1204,13 +1204,13 @@ namespace platform
       virtual bool _is_google_drive_installed();
 
 
-      virtual bool _is_dropbox_installed();
+      //virtual bool _is_dropbox_installed();
 
 
       virtual bool _is_onedrive_installed();
 
 
-      virtual void calculate_dropbox_installed();
+      //virtual void calculate_dropbox_installed();
 
 
       virtual void calculate_onedrive_installed();

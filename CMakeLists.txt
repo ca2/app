@@ -31,6 +31,10 @@ add_subdirectory(nano_archive_libarchive)
 if(${LINUX})
     add_subdirectory(fs_folder_sync_dropbox)
 endif()
+
+add_dependencies(axis fs_raw_folder_protocol_dropbox)
+
+add_subdirectory(fs_raw_folder_protocol_dropbox)
 add_subdirectory(regular_expression_pcre2)
 
 

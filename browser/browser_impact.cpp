@@ -147,7 +147,7 @@ namespace browser
 
       }
 
-      SetTimer(::e_timer_update_current_area, 300);
+      set_timer(::e_timer_update_current_area, 300);
 
    }
 

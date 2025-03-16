@@ -93,4 +93,4 @@ CLASS_DECL_ACME void __cdecl __clearerr_s(FILE * stream);
 CLASS_DECL_ACME void destroy_pointer(FILE * p);
 
 
-using FILE_holder = holder < FILE * >;
+using FILE_holder = holder < FILE >;

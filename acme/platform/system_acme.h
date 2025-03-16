@@ -148,7 +148,7 @@ namespace platform
       //string_map < i64_map < string > >                                     m_mapEnumToText;
       //string_map < string_map < long long > >                                     m_mapTextToEnum;
 
-
+      ::string_map < ::pointer < ::component > >                              m_mapComponent;
       ::pointer<::internet::internet>                                         m_pinternet;
       ::pointer<::url::url_context>                                           m_purlcontext;
 
@@ -288,6 +288,10 @@ namespace platform
       virtual ::micro::user * micro_user();
       virtual ::acme::windowing::windowing * acme_windowing();
       virtual ::windowing::windowing * windowing();
+
+
+      virtual ::component * component(const ::scoped_string & scopedstrComponent);
+      virtual ::string component_path(const ::scoped_string & scopedstrComponent);
 
       virtual void defer_innate_ui();
 

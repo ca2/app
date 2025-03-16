@@ -32,6 +32,7 @@
 #include "acme/prototype/text/context.h"
 #include "apex/filesystem/fs/folder_sync.h"
 #include "apex/filesystem/fs/native.h"
+#include "apex/filesystem/fs/raw_folder_protocol.h"
 #include "apex/filesystem/fs/set.h"
 #include "apex/innate_ui/button.h"
 #include "apex/innate_ui/dialog.h"
@@ -1154,6 +1155,15 @@ namespace apex
 
       pfsset->m_spafsdata.add(pnativefs);
 
+      defer_calculate_fs_raw_folder_protocols();
+
+      for (auto & pair : m_mapFsRawFolderProtocol)
+      {
+
+         pfsset->m_spafsdata.add(pair.element2());
+
+      }
+
    }
 
 
@@ -2009,11 +2019,17 @@ namespace apex
 
                //message_box(strMessage, m_strAppName, e_message_box_icon_asterisk);
 
-               informationf(strMessage + m_strAppName);
+               informationf(strMessage);
 
                information() << "apex::application::init_application exit";
 
-               throw exit_exception(error_exit_system, this, "Another install of the application is running.");
+               exit_exception exitexception(error_exit_system, this, strMessage);
+
+               exitexception.m_strTitle = "Another instance of the application is running.";
+
+               exitexception.m_econsequenceUserDefault = ::e_consequence_workaroundable;
+
+               throw exitexception;
 
             }
 

@@ -250,4 +250,22 @@ namespace platform
    //void apex_context_layer::perform(::nano::http::get * pget){}
 
 
+   bool apex_context_layer::defer_process_fs_raw_folder_protocol_path(::file::path & path)
+   {
+
+      return false;
+
+   }
+
+
+
+   bool apex_context_layer::is_fs_raw_folder_protocol_installed(const ::scoped_string & scopedstrProtocol)
+   {
+
+      return false;
+
+   }
+
+
+
 } // namespace platform

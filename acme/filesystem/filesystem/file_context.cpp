@@ -2580,14 +2580,14 @@ void file_context::set_extension(::file::path & path, const ::scoped_string & sc
 }
 
 
-::file::path file_context::dropbox_client()
-{
-
-   throw ::interface_only();
-
-   return {};
-
-}
+//::file::path file_context::dropbox_client()
+//{
+//
+//   throw ::interface_only();
+//
+//   return {};
+//
+//}
 
 
 void file_context::normalize(string &str)
@@ -3951,16 +3951,16 @@ bool file_context::is_link(const ::file::path & path)
 }
 
 
-::file::path file_context::dropbox_info_network_payload()
-{
-
-   ::file::path pathNetworkPayload;
-
-   pathNetworkPayload = directory_system()->home() / ".dropbox/info" NETWORK_PAYLOAD_DEFAULT_EXTENSION;
-
-   return pathNetworkPayload;
-
-}
+//::file::path file_context::dropbox_info_network_payload()
+//{
+//
+//   ::file::path pathNetworkPayload;
+//
+//   pathNetworkPayload = directory_system()->home() / ".dropbox/info" NETWORK_PAYLOAD_DEFAULT_EXTENSION;
+//
+//   return pathNetworkPayload;
+//
+//}
 
 
 ::file::path file_context::onedrive_global_ini()

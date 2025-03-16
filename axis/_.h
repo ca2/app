@@ -6,6 +6,7 @@
 
 
 #include "aura/_.h"
+#include "nano2d/_.h"
 
 #undef PLATFORM_LAYER_NAME
 #define PLATFORM_LAYER_NAME axis

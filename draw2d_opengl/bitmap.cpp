@@ -424,11 +424,11 @@ namespace draw2d_opengl
 //      {
 //      case e_message_create:
 //         //         timeBeginPeriod(1);
-//         //SetTimer(hWnd, 1, 1000, 0);
+//         //set_timer(hWnd, 1, 1000, 0);
 //         return 0;
 //
 //      case e_message_destroy:
-//         //KillTimer(hWnd, 1);
+//         //kill_timer(hWnd, 1);
 //         //       timeEndPeriod(1);
 //         //PostQuitMessage(0);
 //         return 0;

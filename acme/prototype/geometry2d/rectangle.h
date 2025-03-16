@@ -473,6 +473,21 @@ public:
    }
 
 
+   rectangle_type outside_of(const rectangle_type& rect1) const
+   {
+
+      rectangle_type rectangle;
+
+      rectangle.top() = maximum(0, rect1.top() - this->top());
+      rectangle.bottom() = maximum(0, this->bottom() - rect1.bottom());
+      rectangle.left() = maximum(0, rect1.left() - this->left());
+      rectangle.bottom() = maximum(0, this->right() - rect1.right());
+
+      return rectangle;
+
+   }
+
+
    bool null_intersect(const rectangle_type & rect1, const rectangle_type & rect2)  { return ::null_intersect(*this, rect1, rect2); }
    bool top_left_null_intersect(const rectangle_type & rect1, const rectangle_type & rect2)  { return ::top_left_null_intersect(*this, rect1, rect2); }
 

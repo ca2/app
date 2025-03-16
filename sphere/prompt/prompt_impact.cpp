@@ -102,7 +102,7 @@ namespace prompt
       if(ptopic->id() == id_update_current_area)
       {
 
-         SetTimer(::e_timer_update_current_area, 100, nullptr);
+         set_timer(::e_timer_update_current_area, 100, nullptr);
 
       }
 
@@ -165,7 +165,7 @@ namespace prompt
    {
       if(pmessage->previous())
          return;
-      SetTimer(543218, 1000, nullptr);
+      set_timer(543218, 1000, nullptr);
    }
 
 
@@ -217,7 +217,7 @@ namespace prompt
    {
       //auto pmouse = pmessage->m_union.m_pmouse;
       __UNREFERENCED_PARAMETER(pmessage);
-      KillTimer(5432180);
+      kill_timer(5432180);
 
 
    }

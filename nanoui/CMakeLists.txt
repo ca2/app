@@ -3,92 +3,93 @@ project(nanoui CXX)
 
 
 list(APPEND library_source
-        #nano2d/_component.h
-        #nano2d/context.cpp
-        #nano2d/context.h
-        #nano2d/draw2d_context.cpp
-        #nano2d/draw2d_context.h
-        #nano2d/font_sink.cpp
-        #nano2d/font_sink.h
-        #nano2d/nano2d.cpp
-        _.cpp
-        _.h
-        _constant.h
-        _function.h
-        ##_library.h
-        Button.cpp
-        Button.h
-        Canvas.cpp
-        Canvas.h
-        CheckBox.cpp
-        CheckBox.h
-        ColorPicker.cpp
-        ColorPicker.h
-        ColorWheel.cpp
-        ColorWheel.h
-        ComboBox.cpp
-        ComboBox.h
-        common.cpp
-        common.h
-        FormHelper.h
-        framework.cpp
-        framework.h
-        Graph.cpp
-        Graph.h
-        #Icons.h
-        ImagePanel.cpp
-        ImagePanel.h
-        ImageImpact.cpp
-        ImageImpact.h
+   #nano2d/_component.h
+   #nano2d/context.cpp
+   #nano2d/context.h
+   #nano2d/draw2d_context.cpp
+   #nano2d/draw2d_context.h
+   #nano2d/font_sink.cpp
+   #nano2d/font_sink.h
+   #nano2d/nano2d.cpp
+   _.cpp
+   _.h
+   _constant.h
+   _function.h
+   ##_library.h
+   Button.cpp
+   Button.h
+   Canvas.cpp
+   Canvas.h
+   CheckBox.cpp
+   CheckBox.h
+   ColorPicker.cpp
+   ColorPicker.h
+   ColorWheel.cpp
+   ColorWheel.h
+   ComboBox.cpp
+   ComboBox.h
+   common.cpp
+   common.h
+   FormHelper.h
+   framework.cpp
+   framework.h
+   Graph.cpp
+   Graph.h
+   #Icons.h
+   ImagePanel.cpp
+   ImagePanel.h
+   ImageImpact.cpp
+   ImageImpact.h
    in_place_edit.cpp
    in_place_edit.h
    in_place_edit_array.cpp
    in_place_edit_array.h
    in_place_edit_mapper.cpp
    in_place_edit_mapper.h
-        Label.cpp
-        Label.h
-        Layout.cpp
-        Layout.h
-        MessageDialog.cpp
-        MessageDialog.h
-        Object.h
-        platform.cpp
-        Popup.cpp
-        Popup.h
-        PopupButton.cpp
-        PopupButton.h
-        ProgressBar.cpp
-        ProgressBar.h
-        Screen.cpp
-        Screen.h
-        Slider.cpp
-        Slider.h
-        TabWidget.cpp
-        TabWidget.h
-        TextBox.cpp
-        TextBox.h
-        Theme.cpp
-        Theme.h
-        ToolButton.h
-        traits.h
-        #vector.h
-        VScrollPanel.cpp
-        VScrollPanel.h
-        Widget.cpp
-        Widget.h
-        Window.cpp
-        Window.h
-        )
+   Label.cpp
+   Label.h
+   Layout.cpp
+   Layout.h
+   MessageDialog.cpp
+   MessageDialog.h
+   Object.h
+   platform.cpp
+   Popup.cpp
+   Popup.h
+   PopupButton.cpp
+   PopupButton.h
+   ProgressBar.cpp
+   ProgressBar.h
+   Screen.cpp
+   Screen.h
+   Slider.cpp
+   Slider.h
+   TabWidget.cpp
+   TabWidget.h
+   TextBox.cpp
+   TextBox.h
+   Theme.cpp
+   Theme.h
+   ToolButton.h
+   traits.h
+   #vector.h
+   VScrollPanel.cpp
+   VScrollPanel.h
+   Widget.cpp
+   Widget.h
+   Window.cpp
+   Window.h
+)
 
 
 list(APPEND library_references
-        acme
-        apex
-        aqua
-        aura
-        nano2d
-        )
+   acme
+   apex
+   aqua
+   aura
+   nano2d
+   axis
+)
 
 
 add_library(${PROJECT_NAME} SHARED ${library_source})
@@ -97,14 +98,14 @@ add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 if (NOT ${NO_PRECOMPILED_HEADER})
 
-    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+   target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+   target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 endif ()
 if (NOT ${NO_PRECOMPILED_HEADER})
 
-    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+   target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+   target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 endif ()
 
@@ -113,27 +114,23 @@ set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
-    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})
-    target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
-elseif(${LINUX} OR ${__BSD__})
+   target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+   target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})
+   target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
+elseif (${LINUX} OR ${__BSD__})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 
 
+   target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
+   target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
+   target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
 
-
-
-   target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
-    target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
-    target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
-
-
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})
-    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
-    # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})
+   target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
+   # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
 endif ()
 

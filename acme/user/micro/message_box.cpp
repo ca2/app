@@ -515,7 +515,7 @@ namespace micro
          m_pstillTimeout->m_rectangle.left() = (int)(m_rectangle.width() * 0.025);
          m_pstillTimeout->m_rectangle.right() = m_pstillTimeout->m_rectangle.left() + wButton / 3;
 
-         SetTimer(1021, 200_ms);
+         set_timer(1021, 200_ms);
 
       }
    }

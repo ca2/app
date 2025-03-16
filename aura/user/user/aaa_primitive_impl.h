@@ -423,8 +423,8 @@ namespace user
       virtual void get_rect_normal(::int_rectangle * prectangle);
 
 
-      virtual void SetTimer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pdata = nullptr);
-      virtual void KillTimer(uptr uEvent);
+      virtual void set_timer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pdata = nullptr);
+      virtual void kill_timer(uptr uEvent);
 
 
 

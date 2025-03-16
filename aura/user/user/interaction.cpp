@@ -70,9 +70,15 @@
 #include "acme/prototype/collection/_tuple.h"
 #include "acme/_finish.h"
 //#include "app-core/store/_.h"
+//#define SPECIAL_DEBUG
+#if defined( WINDOWS_DESKTOP) && defined(SPECIAL_DEBUG)
+#include "acme/_operating_system.h"
+static int g_xLastAbs = -1000;
+CLASS_DECL_AURA int get_last_x_abs()
+{
 
-#ifdef WINDOWS_DESKTOP
-//#include "acme/_operating_system.h"
+   return g_xLastAbs;
+}
 #endif
 
 
@@ -693,6 +699,27 @@ namespace user
 
       }
 
+#if defined(SPECIAL_DEBUG)
+
+      //RECT rWindow;
+
+      // ::GetWindowRect((HWND)window()->oswindow(), &rWindow);
+
+      int iLastXAbs = get_last_x_abs();
+
+      if (pointNew.x()< iLastXAbs - 20 && get_last_x_abs() >= 0)
+      {
+
+
+         informationf("drag_shift decreased");
+      }
+
+      //g_xLastAbs = rWindow.left;
+
+      g_xLastAbs = pointNew.x();
+
+#endif
+
       m_layout.m_statea[elayout].set_visual_state_origin(pointNew);
 
       if (windowing_window() && elayout == e_layout_sketch)
@@ -713,7 +740,13 @@ namespace user
 
       }
 
-      if (get_parent() != nullptr)
+      if (::is_null(get_parent()))
+      {
+
+         window()->set_position(pointNew);
+
+      }
+      else
       {
 
          set_need_redraw({}, pgraphics);
@@ -4528,7 +4561,7 @@ namespace user
          //      if (puserinteraction == this)
          //      {
          //
-         //         ::KillTimer((HWND)get_oswindow(), e_timer_transparent_mouse_event);
+         //         ::kill_timer((HWND)get_oswindow(), e_timer_transparent_mouse_event);
          //
          //      }
          //
@@ -9290,15 +9323,15 @@ if(get_parent())
       if (pitem->m_item.m_eelement == e_element_client)
       {
 
-         printf_line("drag_shift e_element_client");
-
          auto pdrag = drag(pitem);
 
          pdrag->m_ecursor = e_cursor_move;
 
          auto point = drag_point(pitem, pmouse);
 
+
          //set_position(point);
+         informationf("drag_shift e_element_client set_position(x, y) = %d, %d", point.x(), point.y());
 
          set_position(point);
 
@@ -9555,7 +9588,7 @@ if(get_parent())
          if (window()->on_window_configure_unlocked())
          {
 
-            KillTimer(ptimer->m_etimer);
+            kill_timer(ptimer->m_etimer);
 
          }
 
@@ -14296,13 +14329,13 @@ if(get_parent())
          else if (pmessage->m_emessage == e_message_left_button_down)
          {
 
-            informationf("linux::interaction_impl::e_message_left_button_down");
+            informationf("user::interaction::message_handler ::e_message_left_button_down");
 
          }
          else if (pmessage->m_emessage == e_message_left_button_up)
          {
 
-            informationf("linux::interaction_impl::e_message_left_button_up");
+            informationf("user::interaction::message_handler ::e_message_left_button_up");
 
          }
          else if (pmessage->m_emessage == e_message_mouse_move)
@@ -14310,7 +14343,7 @@ if(get_parent())
 
             //g_iMouseMove++;
 
-            //informationf("interaction_impl::message_handler e_message_mouse_move");
+            //informationf("user::interaction::message_handler ::e_message_mouse_move");
             //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
          }
@@ -15526,7 +15559,7 @@ if(get_parent())
 
       ::int_size s(w, h);
 
-      information() << "user::interaction::_on_configure_notify_unlocked rectangle = " << rectangle;
+      debug() << "user::interaction::_on_configure_notify_unlocked rectangle = " << rectangle;
 
       //m_pointWindow = p;
 
@@ -15575,40 +15608,50 @@ if(get_parent())
       if (layout().m_statea[::user::e_layout_sketch].m_point2 == layout().m_statea[::user::e_layout_design].m_point2)
       {
 
-         layout().m_statea[::user::e_layout_sketch].m_point2 = p;
-         layout().m_statea[::user::e_layout_lading].m_point2 = p;
-         layout().m_statea[::user::e_layout_layout].m_point2 = p;
-         layout().m_statea[::user::e_layout_design].m_point2 = p;
-         layout().m_statea[::user::e_layout_output].m_point2 = p;
-         layout().m_statea[::user::e_layout_normal].m_point2 = p;
+         if (!is_past_reposition_request(p))
+         {
 
-         //pwindow->m_pointDesignRequest.x() = INT_MIN;
-         //pwindow->m_pointDesignRequest.y() = INT_MIN;
+            layout().m_statea[::user::e_layout_sketch].m_point2 = p;
+            layout().m_statea[::user::e_layout_lading].m_point2 = p;
+            layout().m_statea[::user::e_layout_layout].m_point2 = p;
+            layout().m_statea[::user::e_layout_design].m_point2 = p;
+            layout().m_statea[::user::e_layout_output].m_point2 = p;
+            layout().m_statea[::user::e_layout_normal].m_point2 = p;
 
-         on_reposition();
+            //pwindow->m_pointDesignRequest.x() = INT_MIN;
+            //pwindow->m_pointDesignRequest.y() = INT_MIN;
+
+            on_reposition();
+
+         }
 
       }
 
       if (layout().m_statea[::user::e_layout_sketch].m_size == layout().m_statea[::user::e_layout_design].m_size)
       {
 
-         // layout().m_statea[::user::e_layout_sketch].m_size = s;
-         // layout().m_statea[::user::e_layout_lading].m_size = s;
-         // layout().m_statea[::user::e_layout_layout].m_size = s;
-         // layout().m_statea[::user::e_layout_design].m_size = s;
-         // layout().m_statea[::user::e_layout_output].m_size = s;
-         // layout().m_statea[::user::e_layout_normal].m_size = s;
-         //
-         // pwindow->m_sizeDesignRequest.cx() = INT_MIN;
-         // pwindow->m_sizeDesignRequest.cy() = INT_MIN;
+         if (!is_past_resizing_request(s))
+         {
 
-         set_size(s);
+            // layout().m_statea[::user::e_layout_sketch].m_size = s;
+            // layout().m_statea[::user::e_layout_lading].m_size = s;
+            // layout().m_statea[::user::e_layout_layout].m_size = s;
+            // layout().m_statea[::user::e_layout_design].m_size = s;
+            // layout().m_statea[::user::e_layout_output].m_size = s;
+            // layout().m_statea[::user::e_layout_normal].m_size = s;
+            //
+            // pwindow->m_sizeDesignRequest.cx() = INT_MIN;
+            // pwindow->m_sizeDesignRequest.cy() = INT_MIN;
 
-         set_need_layout();
+            set_size(s);
 
-         set_need_redraw();
+            set_need_layout();
 
-         post_redraw();
+            set_need_redraw();
+
+            post_redraw();
+
+         }
 
       }
 
@@ -16331,27 +16374,22 @@ if(get_parent())
 
 
 
-   void interaction::call_and_set_timer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer)
-   {
+   //void interaction::call_and_set_timer(uptr uEvent, const class time & timeElapse, const ::procedure & procedure, bool bPeriodic)
+   //{
 
-      if (has_flag(e_flag_destroying))
-      {
+   //   if (has_flag(e_flag_destroying))
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      ::timer timer(uEvent);
+   //   return set_timer(uEvent, timeElapse, pfnTimer);
 
-      on_timer(&timer);
-
-      return SetTimer(uEvent, timeElapse, pfnTimer);
-
-   }
+   //}
 
 
-   void interaction::set_timer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer, bool bPeriodic,
-                               void * pdata)
+   void interaction::set_timer(uptr uEvent, const class time & timeElapse, const ::procedure & procedure, bool bPeriodic)
    {
 
       if (has_destroying_flag())
@@ -16361,12 +16399,12 @@ if(get_parent())
 
       }
 
-      return SetTimer(uEvent, timeElapse, pfnTimer, bPeriodic, pdata);
+      ::acme::user::interaction::set_timer(uEvent, timeElapse, procedure, bPeriodic);
 
    }
 
 
-   //void interaction::SetTimer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer, bool bPeriodic,
+   //void interaction::set_timer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer, bool bPeriodic,
    //                           void * pdata)
    //{
 
@@ -16384,12 +16422,12 @@ if(get_parent())
 
    //   //}
 
-   //   //return window()->SetTimer(uEvent, timeElapse, pfnTimer, bPeriodic, pdata);
+   //   //return window()->set_timer(uEvent, timeElapse, pfnTimer, bPeriodic, pdata);
 
    //}
 
 
-   //void interaction::KillTimer(uptr uEvent)
+   //void interaction::kill_timer(uptr uEvent)
    //{
 
    //   //if (window() == nullptr)
@@ -16399,7 +16437,7 @@ if(get_parent())
 
    //   //}
 
-   //   window()->KillTimer(uEvent);
+   //   window()->kill_timer(uEvent);
 
    //}
 
@@ -18239,7 +18277,6 @@ if(get_parent())
 
          }
 
-
       }
 
       return pchild->on_child_from_point_mouse_message_routing(pmouse);
@@ -18438,7 +18475,7 @@ if(get_parent())
       case ::message::e_prototype_timer:
       {
 
-         //throw ::exception(::exception("do not use e_message_timer or Windows SetTimer/KillTimer"));
+         //throw ::exception(::exception("do not use e_message_timer or Windows set_timer/kill_timer"));
 
          _NEW_MESSAGE(::message::timer);
 
@@ -18538,7 +18575,7 @@ if(get_parent())
 
          pmessage->m_pointAbsolute = lparam.point();
 
-         _raw_client_to_screen(pmessage->m_pointAbsolute);
+         window()->_raw_client_to_screen(pmessage->m_pointAbsolute);
 
       }
       break;
@@ -20043,9 +20080,9 @@ if(get_parent())
 
             );
 
-            //::SetTimer(get_handle(), e_timer_transparent_mouse_event, 5, NULL);
+            //::set_timer(get_handle(), e_timer_transparent_mouse_event, 5, NULL);
 
-            //SetTimer(e_timer_transparent_mouse_event, 100);
+            //set_timer(e_timer_transparent_mouse_event, 100);
 
          }
          else
@@ -20064,9 +20101,9 @@ if(get_parent())
 
             }
 
-            //::KillTimer(get_handle(), e_timer_transparent_mouse_event);
+            //::kill_timer(get_handle(), e_timer_transparent_mouse_event);
 
-            //KillTimer(e_timer_transparent_mouse_event);
+            //kill_timer(e_timer_transparent_mouse_event);
 
          }
 
@@ -21727,7 +21764,7 @@ if(get_parent())
 
          }
 
-         information() << "calculate_broad_and_compact_restore restore broad : " << m_rectangleRestoreBroad;
+         debug() << "calculate_broad_and_compact_restore restore broad : " << m_rectangleRestoreBroad;
 
          ::int_size sizeMaximumCompact = sizeMin.maximum(rectangleWorkspace.size() * 5 / 10);
 
@@ -26944,32 +26981,45 @@ __check_refdbg;
 
             auto type = ::type(this);
 
-            if (type.name().contains("button"))
+            if (type.name().contains("experience") && type.name().contains("button"))
             {
 
-               //informationf("button");
+               informationf("experience, button");
 
             }
 
             __check_refdbg;
 
+            ::item_pointer pitemFront;
+
+            ::item_pointer pitemBack;
+
             //bool bAvoidRedraw = !m_bDefaultMouseHoverHandling;
 
-            auto pitemFront = update_hover(pmouse, e_zorder_front);
+            if (!m_bDefaultParentMouseMessageHandling)
+            {
 
-            decltype(pitemFront) pitemBack;
+               pitemFront = update_hover(pmouse, e_zorder_front);
 
-            if (!pitemFront)
+            }
+
+            if (!::is_item_set(pitemFront))
             {
 
                __check_refdbg;
+
+               if (type.name().contains("experience") && type.name().contains("button"))
+               {
+
+                  informationf("experience, button going to update_hover with e_zorder_back");
+
+               }
 
                //information() << "update_hover pmouse e_zorder_back";
 
                pitemBack = update_hover(pmouse, e_zorder_back);
 
                __check_refdbg;
-
 
             }
 
@@ -27883,6 +27933,13 @@ __check_refdbg;
          {
 
             information() << "interaction::on_message_mouse_leave button maximize";
+
+         }
+
+         if (strType.contains("experience"))
+         {
+
+            informationf("experience, button at on_message_mouse_leave");
 
          }
 
@@ -30752,6 +30809,80 @@ __check_refdbg;
    //    return m_papplication ? m_papplication->m_pauracontext : nullptr;
    //
    // }
+
+
+   bool interaction::is_past_reposition_request(const ::int_point & point)
+   {
+
+      auto pwindow = window();
+
+      if (::is_null(pwindow))
+      {
+
+         return false;
+
+      }
+
+      auto pplacementlog = pwindow->placement_log();
+
+      if (::is_null(pplacementlog))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      if (!pplacementlog->has_recent(point))
+      {
+
+         information() << "!has recent point";
+
+         return false;
+
+      }
+
+      debug() << "has recent point";
+
+      return true;
+
+   }
+
+
+   bool interaction::is_past_resizing_request(const ::int_size & size)
+   {
+
+      auto pwindow = window();
+
+      if (::is_null(pwindow))
+      {
+
+         return false;
+
+      }
+
+      auto pplacementlog = pwindow->placement_log();
+
+      if (::is_null(pplacementlog))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      if (!pplacementlog->has_recent(size))
+      {
+
+         information() << "!has recent size";
+
+         return false;
+
+      }
+
+      debug() << "has recent size";
+
+      return true;
+
+   }
 
 
    double interaction::screen_scaler()

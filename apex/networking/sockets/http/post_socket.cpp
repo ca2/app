@@ -263,12 +263,12 @@ namespace sockets
 
       {
 
-         for(auto & property : m_fields)
+         for(auto & pproperty : m_fields)
          {
 
-            auto atom = property.name();
+            auto atom = pproperty->name();
 
-            ::payload & payload = property;
+            ::payload & payload = *pproperty;
 
             strFields += "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + atom + "\"\r\n\r\n";
 

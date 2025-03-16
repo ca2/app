@@ -274,6 +274,7 @@ public:
    }
 
 
+
    template < typename ITERABLE >
    array_base_quantum< TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & copy_iter(const ITERABLE & iterable)
    {
@@ -293,6 +294,28 @@ public:
 
 };
 
+
+template < typename CONTAINER, typename T > 
+auto container_predicate_get(const CONTAINER & source, const ::function < bool(const T & t) >& predicate)
+{
+
+   CONTAINER result;
+
+   for (auto& item : source)
+   {
+
+      if (predicate(item))
+      {
+
+         result.add(item);
+
+      }
+
+   }
+
+   return ::transfer(result);
+
+}
 
 
 template < class TYPE, class ARG_TYPE = const TYPE & >

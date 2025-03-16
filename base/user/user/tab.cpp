@@ -654,7 +654,7 @@ namespace user
 
             //set_mouse_capture();
 
-            //SetTimer(e_timer_drag_start, 300, nullptr);
+            //set_timer(e_timer_drag_start, 300, nullptr);
 
             //g_tickDragStart.Now();
 
@@ -704,7 +704,7 @@ namespace user
 
       //   release_mouse_capture();
 
-      //   KillTimer(e_timer_drag_start);
+      //   kill_timer(e_timer_drag_start);
 
       //}
 
@@ -1593,7 +1593,7 @@ namespace user
 
       pusermessage->m_lresult = 0;
 
-      //SetTimer(e_timer_defer_handle_auto_hide_tabs, 300_ms);
+      //set_timer(e_timer_defer_handle_auto_hide_tabs, 300_ms);
 
       //post_message(WM_USER + 1342);
 
@@ -2791,7 +2791,7 @@ namespace user
       if (ptimer->m_uTimer == e_timer_drag_start)
       {
          //auto elapsed = g_tickDragStart.elapsed();
-         KillTimer(e_timer_drag_start);
+         kill_timer(e_timer_drag_start);
 
          defer_release_mouse_capture();
 

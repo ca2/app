@@ -179,7 +179,7 @@ namespace geo
          catch (const ::exception & exception)
          {
 
-            auto pmessagebox = __initialize_new ::message_box(exception);
+            auto pmessagebox = __initialize_new ::message_box(exception, "geo::defer_check_openweather_city_list");
 
             pmessagebox->async();
 
@@ -189,7 +189,7 @@ namespace geo
 
             ::exception exception(error_catch_all_exception);
 
-            auto pmessagebox = __initialize_new ::message_box(exception);
+            auto pmessagebox = __initialize_new ::message_box(exception, "geo::defer_check_openweather_city_list");
 
             pmessagebox->async();
 
@@ -213,64 +213,77 @@ namespace geo
       else
       {
 
-         string str;
-
-         ::payload payload;
-
-         payload["nocache"] = true;
-         payload["url"] = "https://ca2.software/city-list.json";
-
-         str = pfile->as_string(payload);
-
-         if (str.has_character())
+         try
          {
 
-            string_array stra;
+            string str;
 
-            stra.add_lines(str);
+            ::payload payload;
 
-            for (auto strJson : stra)
+            payload["nocache"] = true;
+            payload["url"] = "https://ca2.software/city-list.json";
+
+            str = pfile->as_string(payload);
+
+            if (str.has_character())
             {
 
-               const ::ansi_character * pszJson = strJson;
+               string_array stra;
 
-               //const ::ansi_character * pszJson = "{\"_id\":6322752, \"name\" : \"Curitiba\", \"country\" : \"BR\", \"coord\" : {\"lon\":-49.290821, \"lat\" : -25.50395}}";
+               stra.add_lines(str);
 
-               ::payload v;
+               for (auto strJson : stra)
+               {
 
-               v.parse_network_payload(pszJson);
+                  const ::ansi_character * pszJson = strJson;
 
-               string strLine = v["name"] + ", " + v["country"];
+                  //const ::ansi_character * pszJson = "{\"_id\":6322752, \"name\" : \"Curitiba\", \"country\" : \"BR\", \"coord\" : {\"lon\":-49.290821, \"lat\" : -25.50395}}";
 
-               m_straCity.add(strLine);
+                  ::payload v;
 
-               m_straCityLo.add(strLine.lowered());
+                  v.parse_network_payload(pszJson);
 
-               long long iId;
+                  string strLine = v["name"] + ", " + v["country"];
 
-               iId = v["_id"].as_long_long();
+                  m_straCity.add(strLine);
 
-               m_iaIds.add(iId);
+                  m_straCityLo.add(strLine.lowered());
 
-               double dLon = v["coord"]["lon"].as_double();
+                  long long iId;
 
-               m_daLon.add(dLon);
+                  iId = v["_id"].as_long_long();
 
-               double dLat = v["coord"]["lat"].as_double();
+                  m_iaIds.add(iId);
 
-               m_daLat.add(dLat);
+                  double dLon = v["coord"]["lon"].as_double();
+
+                  m_daLon.add(dLon);
+
+                  double dLat = v["coord"]["lat"].as_double();
+
+                  m_daLat.add(dLat);
+
+               }
+
+               auto pfileOut = pfile->get_writer(pathFolder / "weather.bin");
+
+               binary_stream stream(pfileOut);
+
+               stream << m_straCity;
+               stream << m_straCityLo;
+               stream << m_iaIds;
+               stream << m_daLon;
+               stream << m_daLat;
 
             }
 
-            auto pfileOut = pfile->get_writer(pathFolder / "weather.bin");
+         }
+         catch (...)
+         {
 
-            binary_stream stream(pfileOut);
+            auto pmessagebox = __initialize_new::message_box("Unable to download \"https://ca2.software/city-list.json\"");
 
-            stream << m_straCity;
-            stream << m_straCityLo;
-            stream << m_iaIds;
-            stream << m_daLon;
-            stream << m_daLat;
+            pmessagebox->async();
 
          }
 

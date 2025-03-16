@@ -48,7 +48,8 @@ struct payload_all_t
 };
 
 
-class CLASS_DECL_ACME payload
+class CLASS_DECL_ACME payload :
+   public memory_quantum
 {
 public:
 

@@ -784,7 +784,7 @@ namespace windowing
       //virtual void track_mouse_hover() override;
       //virtual void track_mouse_leave() override;
 
-      virtual void _on_mouse_move_step(const ::int_point & pointCursor, ::user::enum_layout elayoutChild = ::user::e_layout_design, bool bMouseLeave = false);
+      //virtual void _on_mouse_move_step(const ::int_point & pointCursor, ::user::enum_layout elayoutChild = ::user::e_layout_design, bool bMouseLeave = false);
 
 
       virtual void defer_check_mouse_leave(::user::enum_layout elayoutWindow, ::user::enum_layout elayoutChild);
@@ -1746,8 +1746,8 @@ namespace windowing
       //virtual bool get_rect_normal(::int_rectangle * prectangle);
 
 
-      //virtual void SetTimer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pdata = nullptr) override;
-      //virtual void KillTimer(uptr uEvent) override;
+      //virtual void set_timer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pdata = nullptr) override;
+      //virtual void kill_timer(uptr uEvent) override;
 
 
 

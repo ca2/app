@@ -208,14 +208,14 @@ namespace experience
 
          if(rectangleX.is_empty().contains(pointCursor))
          {
-         KillTimer(ptimer->m_uTimer);
+         kill_timer(ptimer->m_uTimer);
          m_bFocus = false;
          set_need_redraw();
          }
          }
          else
          {
-         KillTimer(ptimer->m_uTimer);
+         kill_timer(ptimer->m_uTimer);
          }*/
       }
       else

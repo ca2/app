@@ -1812,18 +1812,18 @@ namespace html
 
          str += m_atomTagName;
 
-         for(auto & property : this->m_propertyset)
+         for(auto & pproperty : this->m_propertyset)
          {
 
             str += " ";
 
-            str += property.name().as_string();
+            str += pproperty->name().as_string();
 
             str += "=";
 
             str += "\"";
 
-            str += property.as_string();
+            str += pproperty->as_string();
 
             str += "\"";
 

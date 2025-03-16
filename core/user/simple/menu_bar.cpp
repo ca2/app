@@ -845,11 +845,11 @@ int_size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
       m_iHover = iHover;
       if(m_iHover < -1 && m_iTracking < 0)
       {
-         KillTimer(TIMER_HOVER);
+         kill_timer(TIMER_HOVER);
       }
       else
       {
-         SetTimer(TIMER_HOVER, 50, nullptr);
+         set_timer(TIMER_HOVER, 50, nullptr);
       }
       set_need_redraw();
    }

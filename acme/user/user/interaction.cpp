@@ -244,6 +244,13 @@ namespace acme
       //}
 
 
+      void interaction::_on_draw(::nano::graphics::device * pnanodevice)
+      {
+
+
+      }
+
+
       //void interaction::draw_children(::nano::graphics::device * pnanodevice)
       //{
 
@@ -711,7 +718,7 @@ namespace acme
          }
 
 
-         void interaction::SetTimer(uptr uEvent, const class ::time & timeEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pdata)
+         void interaction::set_timer(uptr uEvent, const class ::time & timeEllapse, const ::procedure & procedure, bool bPeriodic)
          {
 
             if (timeEllapse < 500_ms)
@@ -736,12 +743,12 @@ namespace acme
 
             }
 
-            m_ptimerarray->create_timer(this, uEvent, timeEllapse, pfnTimer, bPeriodic, pdata);
+            m_ptimerarray->create_timer(this, uEvent, timeEllapse, procedure, bPeriodic);
 
          }
 
 
-         void interaction::KillTimer(uptr uEvent)
+         void interaction::kill_timer(uptr uEvent)
          {
 
             if (m_ptimerarray.is_null())
@@ -756,12 +763,8 @@ namespace acme
          }
 
 
-
-
-
          void interaction::show()
          {
-
 
 
          }

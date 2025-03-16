@@ -21,13 +21,11 @@ namespace user
    color_selector_impact::color_selector_impact()
    {
 
-      m_bMouseColorBeam = false;
+      //m_bMouseColorBeam = false;
 
       m_bCompact = false;
 
       m_atomImpact = COLORSEL_IMPACT;
-
-      m_bLButtonPressed = false;
 
       id() = COLORSEL_IMPACT;
 

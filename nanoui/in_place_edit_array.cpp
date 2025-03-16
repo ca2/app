@@ -61,7 +61,7 @@ namespace nanoui
          try
          {
 
-            if (pinplaceedit->on_end_edit())
+            if (pinplaceedit && pinplaceedit->on_end_edit())
             {
 
                bNeedRedraw = true;

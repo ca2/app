@@ -766,6 +766,22 @@ namespace platform
    }
 
 
+   bool context::defer_process_fs_raw_folder_protocol_path(::file::path & path)
+   {
+
+      return false;
+
+   }
+
+
+   bool context::is_fs_raw_folder_protocol_installed(const ::scoped_string & scopedstrProtocol)
+   {
+
+      return false;
+
+   }
+
+
    ::file::path context::__defer_process_path(::file::path path)
    {
 
@@ -797,6 +813,12 @@ namespace platform
 
       }
       else if (defer_process_protocol_path(path))
+      {
+
+         return path;
+
+      }
+      else if (defer_process_fs_raw_folder_protocol_path(path))
       {
 
          return path;

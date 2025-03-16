@@ -428,6 +428,21 @@ namespace draw2d
    }
 
 
+   ::draw2d::brush_pointer draw2d::create_solid_brush(const ::color::color & color)
+   {
+
+      ::draw2d::brush_pointer pbrush;
+
+      __øconstruct(pbrush);
+
+      pbrush->create_solid(color);
+
+      return pbrush;
+
+   }
+
+
+
 
    // should not call axis class implementation because draw2d::draw2d is inside a n-furcation of user::draw2d
    void draw2d::term_instance()

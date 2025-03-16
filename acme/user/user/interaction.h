@@ -110,8 +110,8 @@ namespace acme
 
          bool is_host_top_level() override;
 
-         virtual void SetTimer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pdata = nullptr);
-         virtual void KillTimer(uptr uEvent);
+         virtual void set_timer(uptr uEvent, const class ::time& millisElapse, const ::procedure& procedure = {}, bool bPeriodic = true);
+         virtual void kill_timer(uptr uEvent);
 
 
          //void show_window() override;
@@ -125,6 +125,8 @@ namespace acme
          //void on_draw(::nano::graphics::device * pnanodevice) override;
 
          //void draw(::nano::graphics::device * pnanodevice);
+
+         virtual void _on_draw(::nano::graphics::device * pnanodevice);
 
          //virtual void on_char(int iChar);
 

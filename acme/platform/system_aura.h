@@ -106,7 +106,6 @@ namespace platform
       virtual void defer_initialize_hardware_devices();
 
 
-
       //::aura::session * get_session();
       //::aura::node * node();
 

@@ -115,7 +115,75 @@ public:
 
    }
 
+
+   auto points_beyond_right(UNIT_TYPE x) const
+   {
+
+      return ::transfer(container_predicate_get(*this, [x](const ::point_type < NUMBER > & p) {return p.x() > x; }));
+
+   }
+
+   
+   auto points_beyond_left(UNIT_TYPE x) const
+   {
+
+      return ::transfer(container_predicate_get(*this, [x](const ::point_type < NUMBER > & p) {return p.x() < x; }));
+
+   }
+
+
+   auto points_beyond_top(UNIT_TYPE y) const
+   {
+
+      return ::transfer(container_predicate_get(*this, [y](const ::point_type < NUMBER > & p) {return p.y() < y; }));
+
+   }
+
+
+   auto points_beyond_bottom(UNIT_TYPE y) const
+   {
+
+      return ::transfer(container_predicate_get(*this, [y](const ::point_type < NUMBER > & p) {return p.y() > y; }));
+
+   }
+
+
+   auto points_beyond_right() const
+   {
+
+      return this->points_beyond_right(this->first().x());
+
+   }
+
+
+   auto points_beyond_left() const
+   {
+
+      return this->points_beyond_left(this->first().x());
+
+   }
+
+
+   auto points_beyond_top() const
+   {
+
+      return this->points_beyond_top(this->first().y());
+
+   }
+
+
+   auto points_beyond_bottom() const
+   {
+
+      return this->points_beyond_bottom(this->first().y());
+
+   }
+
+
 };
+
+
+   
 
 
 template < primitive_number NUMBER >

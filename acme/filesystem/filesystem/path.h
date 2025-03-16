@@ -285,7 +285,11 @@ namespace file
       path & operator = (const RANGE & range)
       {
 
-         return operator = (::file::path(range));
+         ::file::path path = ::file::path(range);
+
+         path.::file::path_meta::operator=(*this);
+
+         return operator=(path);
 
       }
 

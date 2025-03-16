@@ -84,7 +84,9 @@ list(APPEND library_source
    #prototype/promise_predicate/synchronized_predicate_routine.h
    #process/_.cpp
    _.cpp
-   #__matter_ca2.cpp
+        _finish.h
+
+        #__matter_ca2.cpp
    compress/_.h
    compress/compress.cpp
    compress/compress.h
@@ -223,6 +225,8 @@ list(APPEND library_source
    filesystem/filesystem/path_object.cpp
    filesystem/filesystem/path_system.cpp
    filesystem/filesystem/path_system.h
+   filesystem/filesystem/windows_path.cpp
+   filesystem/filesystem/windows_path.h
    filesystem/watcher/action.cpp
    filesystem/watcher/action.h
    filesystem/watcher/listener.h
@@ -260,13 +264,19 @@ list(APPEND library_source
    handler/topic.cpp
    handler/topic.h
    handler/request.cpp
-   handler/request.h
+        handler/task_handler.cpp
+        handler/task_handler.h
+        handler/request.h
    handler/sequence.cpp
    handler/sequence.h
    handler/source.cpp
    handler/source.h
    handler/task_handler.cpp
    handler/task_handler.h
+   integrate/qt/_.h
+   integrate/qt.h
+   integrate/qt/geometry2d.h
+   integrate/qt/image.h
    #include/_.cpp
    #include/path.h        #prototype/collection/comparable_array.cpp
    #memory/alloc.cpp
@@ -436,6 +446,8 @@ list(APPEND library_source
    operating_system/summary.cpp
    operating_system/summary.h
    operating_system/time.cpp
+   operating_system/x11/_x11.h
+   operating_system/x11/_x11.h
    operating_system/windowing.cpp
    parallelization/_.cpp
    parallelization/condition.cpp
@@ -481,18 +493,16 @@ list(APPEND library_source
    platform/acme.h
    platform/allocator.cpp
    platform/allocator.h
+   platform/component.cpp
+   platform/component.h
+   platform/component_implementation.cpp
+   platform/component_implementation.h
    #platform/acme_main_struct.cpp
    #platform/acme_main_struct.h
    #platform/apex_main_data.cpp
    #platform/apex_main_data.h
    #platform/apex_main_struct.cpp
    #platform/apex_main_struct.h
-   integrate/qt/_.h
-   integrate/qt.h
-   integrate/qt/geometry2d.h
-   integrate/qt/image.h
-   operating_system/x11/_x11.h
-   operating_system/x11/_x11.h
    platform/system_acme.h
    platform/system_apex.h
    platform/system_aqua.h
@@ -573,6 +583,9 @@ list(APPEND library_source
    #platform/factory.cpp
    platform/factory_function.cpp
    platform/factory_function.h
+   platform/component.cpp
+   platform/component.h
+   platform/component_implementation.h
    platform/fixed_alloc.cpp
    platform/flags.cpp
    platform/hyperlink.cpp
@@ -2170,7 +2183,7 @@ if (WIN32)
       #operating_system/windows/base/_windows.h
       #operating_system/windows/console.h
       operating_system/windows/calculate_edesktop.cpp
-      operating_system/windows/calculate_etoolkit.cpp
+      #operating_system/windows/calculate_etoolkit.cpp
       operating_system/windows/calculate_ewindowing.cpp
       operating_system/windows/callstack.cpp
       operating_system/windows/file1.cpp
@@ -2186,6 +2199,8 @@ if (WIN32)
       operating_system/windows/thread.cpp
       operating_system/windows/user.cpp
       operating_system/windows/window.cpp
+      operating_system/windows/windowing.cpp
+      operating_system/windows/windowing.h
       operating_system/windows/windows.cpp
       #operating_system/windows/exception.h
       #operating_system/windows/
@@ -2337,6 +2352,8 @@ if (${WIN32} OR ${UWP})
       #      operating_system/windows_common/parallelization.cpp
       #      operating_system/windows_common/time.cpp
       #      operating_system/windows_common/unicode.cpp
+      operating_system/calculate_etoolkit.cpp
+
    )
 
 endif ()
@@ -2972,6 +2989,8 @@ if (${LINUX} OR ${__BSD__} OR ${APPLE} OR ${SOLARIS})
       operating_system/winpr_keycode.cpp
       operating_system/winpr_scancode.cpp
       operating_system/strict_posix/debug.cpp
+   operating_system/posix/dynamic_library_dl.cpp
+   operating_system/posix/dynamic_library_dl.h
    )
 
    #set_source_files_properties(operating_system/posix/process.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
@@ -3003,13 +3022,7 @@ endif ()
 
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-   operating_system/posix/dynamic_library_dl.cpp
-   operating_system/posix/dynamic_library_dl.h
-   _finish.h
-   handler/task_handler.cpp
-   handler/task_handler.h
-)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

@@ -118,7 +118,7 @@ namespace filemanager
 
       m_pmeshcache = m_puserlistcache;
 
-      SetTimer(123,500_ms,nullptr);
+      set_timer(123,500_ms,nullptr);
 
    }
 

@@ -92,6 +92,10 @@ list(APPEND apex_source
    filesystem/fs/native.cpp
    filesystem/fs/native.h
    filesystem/fs/net.h
+   filesystem/fs/raw_folder.cpp
+   filesystem/fs/raw_folder.h
+   filesystem/fs/raw_folder_protocol.cpp
+   filesystem/fs/raw_folder_protocol.h
    filesystem/fs/remote_native_file.cpp
    filesystem/fs/remote_native_file.h
    filesystem/fs/remote_native.cpp
@@ -509,6 +513,8 @@ list(APPEND apex_source
    #platform/definition.h
    platform/display.h
    #platform/error.h
+   platform/component.cpp
+   platform/component.h
    platform/get_file_extension_mime_type.cpp
    platform/get_file_extension_mime_type.h
    platform/history.cpp

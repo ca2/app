@@ -29,8 +29,8 @@ namespace calculator
 
       m_bTimerOn = false;
 
-      SetTimer(8913, 5000, 0);
-      SetTimer(4033, 100, 0);
+      set_timer(8913, 5000, 0);
+      set_timer(4033, 100, 0);
       ModifyStyleEx(WS_EX_OVERLAPPEDWINDOW, 0);
 
       m_pimagelist = ___new image_list(this);
@@ -75,7 +75,7 @@ namespace calculator
 
          display();
          
-         KillTimer(uEvent);
+         kill_timer(uEvent);
 
          m_bTimerOn = false;
 

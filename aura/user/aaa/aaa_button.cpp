@@ -1009,7 +1009,7 @@ namespace user
       else if(estyle == style_push)
       {
 
-         SetTimer(16384,100,nullptr);
+         set_timer(16384,100,nullptr);
 
       }
 
@@ -1035,7 +1035,7 @@ namespace user
       else if(estyle == style_push)
       {
 
-         KillTimer(16384);
+         kill_timer(16384);
 
       }
 

@@ -4851,7 +4851,7 @@ void window::set_oswindow(::oswindow oswindow)
          minimum(pointInvalid.x());
          minimum(pointInvalid.y());
 
-         _on_mouse_move_step(pointInvalid);
+         _on_mouse_move_step(pointInvalid, true);
 
          //::pointer<::user::interaction>pinteraction;
 
@@ -5350,11 +5350,11 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::_on_mouse_move_step(const ::int_point & pointCursor, ::user::enum_layout elayoutChild, bool bMouseLeave)
-   {
+   // void window::_on_mouse_move_step(const ::int_point & pointCursor, ::user::enum_layout elayoutChild, bool bMouseLeave)
+   // {
 
 
-   }
+   // }
 
 
    void window::defer_check_mouse_leave(::user::enum_layout elayoutWindow, ::user::enum_layout elayoutChild)
@@ -6310,7 +6310,7 @@ void window::set_oswindow(::oswindow oswindow)
 
          //user_interaction()->_on_mouse_move_step(pmouse->m_pointHost);
 
-         _on_mouse_move_step(pmouse->m_pointHost);
+         _on_mouse_move_step(pmouse->m_pointHost, false);
 
          //information() << "e_message_mouse_move (2): " << pmouse->m_pointAbsolute;
 
@@ -12809,7 +12809,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       //on_window_configuration_change();
 
-      user_interaction()->set_timer(e_timer_configure_unlocked, 200_ms);
+      //user_interaction()->set_timer(e_timer_configure_unlocked, 200_ms);
 
    }
 
@@ -12937,7 +12937,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       //on_window_configuration_change();
 
-      user_interaction()->set_timer(e_timer_configure_unlocked, 200_ms);
+      ///user_interaction()->set_timer(e_timer_configure_unlocked, 200_ms);
 
    }
 
@@ -14520,7 +14520,7 @@ void window::set_oswindow(::oswindow oswindow)
 //      case ::message::e_prototype_timer:
 //      {
 //
-//         //throw ::exception(::exception("do not use e_message_timer or Windows SetTimer/KillTimer"));
+//         //throw ::exception(::exception("do not use e_message_timer or Windows set_timer/kill_timer"));
 //
 //         _NEW_MESSAGE(::message::timer);
 //
@@ -15776,7 +15776,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   //void window::SetTimer(uptr uEvent, const class ::time & timeEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pdata)
+   //void window::set_timer(uptr uEvent, const class ::time & timeEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pdata)
    //{
 
    //   if (timeEllapse < 500_ms)
@@ -15806,7 +15806,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   //void window::KillTimer(uptr uEvent)
+   //void window::kill_timer(uptr uEvent)
    //{
 
    //   if (m_ptimerarray.is_null())
@@ -16952,7 +16952,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       ::cast<::user::interaction> puserinteraction = m_pacmeuserinteraction;
 
-      puserinteraction->SetTimer(e_timer_configure_unlocked, 100_ms);
+      puserinteraction->set_timer(e_timer_configure_unlocked, 100_ms);
 
    }
 

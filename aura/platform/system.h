@@ -107,6 +107,8 @@ namespace aura
        ::gpu::approach* gpu() override; 
       void create_gpu() override;
 
+
+      ::string component_path(const ::scoped_string & scopedstrComponent) override;
       
       //virtual string install_get_platform() override;
       //virtual void install_set_platform(const ::string & pszPlatform) override;

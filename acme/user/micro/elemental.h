@@ -99,15 +99,21 @@ namespace micro
 
       //void on_draw(::micro::graphics::device * pmicrodevice) override;
 
-      void draw_background(::nano::graphics::device * pnanodevice);
-      void draw_foreground(::nano::graphics::device * pnanodevice);
+      void _on_draw(::nano::graphics::device * pnanodevice) override;
+
+      virtual void on_draw(::nano::graphics::device * pnanodevice);
+
+      virtual void draw_background(::nano::graphics::device * pnanodevice);
+      virtual void draw_foreground(::nano::graphics::device * pnanodevice);
+
+      virtual void draw_children(::nano::graphics::device * pnanodevice);
+
+
 
       virtual void on_char(int iChar);
 
       //bool is_active() override;
       //void set_active() override;
-
-      virtual void draw_children(::nano::graphics::device * pnanodevice);
 
       //void delete_drawing_objects() override;
       //bool get_dark_mode() override;
@@ -139,7 +145,6 @@ namespace micro
       ::int_rectangle get_client_rectangle() override;
       void set_rectangle(const ::int_rectangle & rectangle) override;
 
-      virtual void on_draw(::nano::graphics::device * pnanodevice);
       //virtual void on_char(int iChar);
       void set_keyboard_focus() override;
       bool is_keyboard_focusable() override;

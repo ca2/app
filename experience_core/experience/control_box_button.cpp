@@ -3,11 +3,13 @@
 #include "acme/handler/item.h"
 #include "acme/user/user/tool.h"
 #include "acme/prototype/geometry2d/ellipse.h"
+#include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/user/user/frame_interaction.h"
+#include "aura/windowing/windowing.h"
 #include "base/user/experience/control_box.h"
 
 
@@ -46,7 +48,97 @@ namespace experience_core
    void control_box_button::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //::experience::button::_001OnNcDraw(pgraphics);
+      ::experience::button::_001OnNcDraw(pgraphics);
+
+   }
+
+
+   void control_box_button::_001OnButtonDrawBackground(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      auto rectangleX = this->rectangle();
+
+      auto pstyle = get_style(pgraphics);
+
+      auto estate = get_state();
+
+      if (estate & (::user::e_state_hover | ::user::e_state_disabled))
+      {
+
+         auto colorBackground = get_color(pstyle, ::e_element_background, estate);
+
+         //::color::color crBackground = _001GetButtonBackgroundColor();
+
+         //auto & linkedpropertyCheck = m_linkedpropertyCheck;
+
+            auto echeck = this->echeck();
+
+            if (echeck == ::e_check_checked)
+            {
+
+               if (windowing()->is_sandboxed())
+               {
+
+
+
+               }
+               else
+               {
+
+                  ::int_rectangle rectanglePush(rectangleX);
+
+                  ::color::color colorBack(colorBackground);
+
+                  colorBack.hls_rate(0.0, -0.2, 0.0);
+
+                  rectanglePush.deflate(0, 0, 1, 1);
+
+                  ::color::color colorTopLeft(colorBack);
+
+                  ::color::color colorBottomRight(colorBack);
+
+                  colorTopLeft.hls_rate(0.0, -0.65, 0.0);
+
+                  colorBottomRight.hls_rate(0.0, 0.75, 0.0);
+
+                  pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+                  pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
+
+                  rectanglePush.deflate(1, 1);
+
+                  pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
+
+                  rectanglePush.deflate(1, 1);
+
+                  pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight, 1.0);
+
+                  rectanglePush.deflate(1, 1, 0, 1);
+
+                  pgraphics->fill_rectangle(rectanglePush, colorBack);
+
+               }
+
+            }
+            else
+            {
+
+               if (colorBackground.non_transparent())
+               {
+
+                  pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+                  auto pbrushBackground = draw2d()->create_solid_brush(colorBackground);
+
+                  pgraphics->set(pbrushBackground);
+
+                  pgraphics->fill_ellipse(rectangleX);
+
+               }
+
+            }
+
+      }
 
    }
 

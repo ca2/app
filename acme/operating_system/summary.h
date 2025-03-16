@@ -65,7 +65,7 @@ namespace operating_system
       ~summary() override;
 
 
-      ::property_array get_property_array() const;
+      ::property_set get_property_set() const;
       ::string get_summary() const;
       ::string id_payload_listing() const;
       void set_ambient();

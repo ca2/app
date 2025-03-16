@@ -46,7 +46,7 @@ void file_context_interface::safe_get_memory(const ::payload& payloadFile, memor
    catch (const ::exception& exception)
    {
 
-      auto pmessagebox = __initialize_new ::message_box(exception);
+      auto pmessagebox = __initialize_new ::message_box(exception, "file_context_interface::safe_get_memory");
 
       pmessagebox->async();
 

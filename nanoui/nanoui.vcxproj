@@ -356,6 +356,9 @@
     <ProjectReference Include="..\aura\aura.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\axis\axis.vcxproj">
+      <Project>{a2cbd4ed-ed0f-482b-9b16-f48f21c32835}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\nano2d\nano2d.vcxproj">
       <Project>{5c621ac9-ff29-484b-83e2-377e051c2cfc}</Project>
     </ProjectReference>

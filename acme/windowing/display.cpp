@@ -259,6 +259,23 @@ namespace acme
       }
 
 
+      bool display::is_wallpaper_associated_with_dark_mode()
+      {
+
+         return false;
+
+      }
+
+
+      bool display::is_wallpaper_associated_with_theming()
+      {
+
+         return false;
+
+      }
+
+
+
       string display::theming_ui_name()
       {
 

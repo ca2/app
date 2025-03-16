@@ -1754,10 +1754,10 @@ namespace platform
    }
 
 
-   bool acme_node_layer::_is_dropbox_installed()
-   {
-      return false;
-   }
+   //bool acme_node_layer::_is_dropbox_installed()
+   //{
+   //   return false;
+   //}
 
 
    bool acme_node_layer::_is_onedrive_installed()
@@ -1766,9 +1766,9 @@ namespace platform
    }
 
 
-   void acme_node_layer::calculate_dropbox_installed()
-   {
-   }
+   //void acme_node_layer::calculate_dropbox_installed()
+   //{
+   //}
 
 
    void acme_node_layer::calculate_onedrive_installed()

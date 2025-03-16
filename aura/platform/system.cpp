@@ -23,6 +23,7 @@
 #include "aura/graphics/image/icon.h"
 #include "aura/graphics/image/imaging.h"
 #include "aura/hardware/devices.h"
+#include "aura/platform/component.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/user.h"
 #include "aura/windowing/window.h"
@@ -136,6 +137,7 @@ namespace aura
       //factory()->add_factory_item < ::aura::application, ::apex::application >();
       //factory()->add_factory_item < ::aura::idpool, ::acme::idpool >();
       factory()->add_factory_item < ::user::user >();
+      factory()->add_factory_item < ::aura::component, ::component >();
 
    }
 
@@ -4627,6 +4629,24 @@ namespace aura
    }
 //#endif
 
+
+   ::string system::component_path(const ::scoped_string & scopedstrComponent)
+   {
+
+      ::string strComponent = scopedstrComponent;
+
+      strComponent.make_lower();
+
+      if (strComponent == "wallpaper_transform")
+      {
+
+         return "app/aura/graphics/image/wallpaper_transform";
+
+      }
+
+      return ::aqua::system::component_path(scopedstrComponent);
+
+   }
 
 
    //::task_group * system::task_group(::enum_priority epriority)

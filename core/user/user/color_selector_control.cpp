@@ -4,10 +4,12 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/graphics/image/image32.h"
+#include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/image/drawing.h"
+#include "aura/graphics/write_text/font.h"
 #include "acme/handler/topic.h"
 #include "aura/user/user/frame_interaction.h"
 #include "aura/message/user.h"
@@ -23,15 +25,17 @@ namespace user
    color_selector_control::color_selector_control()
    {
 
-      m_bMouseColorBeam = false;
+      //m_bMouseColorBeam = false;
 
       m_bCompact = false;
 
       m_atomImpact = COLORSEL_IMPACT;
 
-      m_bLButtonPressed = false;
-
       id() = COLORSEL_IMPACT;
+
+      m_bMode0 = true;
+
+      m_bColorWheel = true;
 
    }
 
@@ -47,8 +51,10 @@ namespace user
    {
 
       ::user::interaction::on_initialize_particle();
-      
-      ::graphics::color_selector::on_initialize_particle();
+
+      ::core::graphics::color_selector::on_initialize_particle();
+
+      ::graphics::color_wheel::on_initialize_particle();
 
    }
 
@@ -86,7 +92,7 @@ namespace user
    void color_selector_control::set_sel_color(const ::color::hls & hls)
    {
 
-      set_color(hls);
+      m_hls = hls;
 
    }
 
@@ -94,7 +100,7 @@ namespace user
    ::color::hls color_selector_control::get_sel_color()
    {
 
-      return color_selector_get_color().get_hls();
+      return m_hls;
 
    }
 
@@ -107,6 +113,31 @@ namespace user
    }
 
 
+   void color_selector_control::graphics_set_mouse_capture()
+   {
+
+      set_mouse_capture();
+
+   }
+
+
+   void color_selector_control::graphics_release_mouse_capture()
+   {
+
+      release_mouse_capture();
+
+   }
+
+
+   void color_selector_control::graphics_redraw()
+   {
+
+      set_need_redraw();
+
+      post_redraw();
+
+   }
+
    //void color_selector_control::handle(::topic * ptopic, ::context * pcontext)
    //{
 
@@ -118,6 +149,12 @@ namespace user
    void color_selector_control::on_message_create(::message::message * pmessage)
    {
 
+
+      __øconstruct(m_pfont);
+
+      m_pfont->create_font(e_font_sans_ui, 24_pt, e_font_weight_bold);
+
+      //set_font(pfont);
       //m_pimageBeam->create_image(this, ::int_size(32, 32));
 
       //m_pimageBeam->fill(0);
@@ -159,22 +196,22 @@ namespace user
    }
 
 
-   ::color::color color_selector_control::get_color()
+   ::color::hls color_selector_control::get_color()
    {
 
-      auto color = color_selector_get_color();
+      auto color = get_sel_color();
 
       return color;
 
    }
 
 
-   void color_selector_control::set_color(const ::color::color & color)
+   void color_selector_control::set_color(const ::color::hls & hls)
    {
 
-      m_bMouseColorBeam = false;
+      //m_bMouseColorBeam = false;
 
-      color_selector_set_color(color);
+      set_sel_color(hls);
 
       set_need_layout();
 
@@ -420,7 +457,64 @@ namespace user
    void color_selector_control::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      color_selector::_001OnDraw(pgraphics);
+      //auto r0 = this->rectangle();
+
+      //r0.right() = r0.center_x();
+
+      //pgraphics->fill_rectangle(r0, color::black);
+
+      //auto r1 = this->rectangle();
+
+      //r1.left() = r1.center_x();
+
+      //pgraphics->fill_rectangle(r1, color::black);
+
+      if (m_bMode0)
+      {
+
+         color_selector::_001OnDraw(pgraphics);
+
+      }
+
+      if (m_bColorWheel)
+      {
+
+         color_wheel::on_draw(pgraphics);
+
+      }
+
+      pgraphics->set(m_pfont);
+      {
+
+         ::color::hls hls(get_sel_color());
+
+         ::string str;
+
+         str.formatf("H=%d, L=%d, S=%d",
+   (int)(hls.m_dH * 100),
+   (int)(hls.m_dL * 100.),
+   (int)(hls.m_dS * 100.));
+         pgraphics->text_out(100, 100, str);
+
+      }
+
+      {
+
+         ::color::hsv hsv(get_sel_color());
+
+
+         ::string str;
+
+
+
+         str.formatf("H=%d, S=%d, V=%d",
+            (int)(hsv.m_dH * 100),
+            (int)(hsv.m_dS * 100.),
+            (int)(hsv.m_dV * 100.));
+         pgraphics->text_out(100, 150, str);
+
+      }
+
 
    }
 
@@ -522,13 +616,32 @@ namespace user
 
       host_to_client()(point);
 
-      on_mouse_motion(point);
+      if (m_bColorWheel)
+      {
 
-      pmouse->m_bRet = true;
+         if (color_wheel::on_mouse_down(point - color_wheel::m_rectangle.top_left()))
+         {
 
-      set_mouse_capture();
+            pmouse->m_bRet = true;
 
-      m_bLButtonPressed = true;
+            return;
+
+         }
+
+      }
+
+      if (m_bMode0)
+      {
+
+         if (color_selector::on_mouse_down(point))
+         {
+            pmouse->m_bRet = true;
+
+            return;
+
+         }
+
+      }
 
    }
 
@@ -542,13 +655,34 @@ namespace user
 
       host_to_client()(point);
 
-      on_mouse_motion(point);
+      release_mouse_capture();
 
-      pmouse->m_bRet = true;
+      if (m_bColorWheel)
+      {
 
-      defer_release_mouse_capture();
+         if (color_wheel::on_mouse_up(point - color_wheel::m_rectangle.top_left()))
+         {
 
-      m_bLButtonPressed = false;
+            pmouse->m_bRet = true;
+
+            return;
+
+         }
+
+      }
+
+      if (m_bMode0)
+      {
+
+         if (color_selector::on_mouse_up(point))
+         {
+
+            pmouse->m_bRet = true;
+
+            return;
+         }
+
+      }
 
       if (is_ok_target(point))
       {
@@ -565,12 +699,12 @@ namespace user
             route(ptopic);
 
          }
-         
-         if(m_callbackHls)
+
+         if (m_callbackHls)
          {
-            
+
             m_callbackHls(m_hls, true);
-            
+
          }
 
       }
@@ -583,16 +717,35 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      if (m_bLButtonPressed)
+      ::int_point point = pmouse->m_pointHost;
+
+      host_to_client()(point);
+
+      if (m_bColorWheel)
       {
 
-         ::int_point point = pmouse->m_pointHost;
+         if (color_wheel::on_mouse_motion(point - color_wheel::m_rectangle.top_left()))
+         {
 
-         host_to_client()(point);
+            pmouse->m_bRet = true;
 
-         on_mouse_motion(point);
+            return;
 
-         pmouse->m_bRet = true;
+         }
+
+      }
+
+      if (m_bMode0)
+      {
+
+         if (color_selector::on_mouse_motion(point))
+         {
+
+            pmouse->m_bRet = true;
+
+            return;
+
+         }
 
       }
 
@@ -602,24 +755,36 @@ namespace user
    void color_selector_control::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if(this->rectangle().area() < (48 * 48))
+      if (this->rectangle().area() < (48 * 48))
       {
 
          return;
 
       }
 
-         ::user::interaction::on_layout(pgraphics);
+      ::user::interaction::on_layout(pgraphics);
 
-      layout_color_selector(this->rectangle());
+      auto r = this->rectangle();
+
+      //r.top() += 20;
+
+      layout_color_selector(r);
+
+      auto r2 = m_rectangleColors;
+
+      r2.offset_y(r2.height());
+
+      color_wheel::m_rectangle = r2;
 
    }
 
 
-   void color_selector_control::on_after_hover_color_change()
+   void color_selector_control::on_color_change()
    {
 
-      color_selector::on_after_hover_color_change();
+      color_selector::on_color_change();
+
+      ::graphics::color_wheel::on_color_change();
 
       if (has_handler())
       {

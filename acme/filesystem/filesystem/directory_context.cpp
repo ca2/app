@@ -3277,52 +3277,52 @@ bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path
 //}
 
 
-::file::path directory_context::dropbox()
-{
+//::file::path directory_context::dropbox()
+//{
+//
+//   if (!node()->_is_dropbox_installed())
+//   {
+//
+//      throw ::exception(error_wrong_state);
+//
+//   }
+//
+//   return node()->m_pathDropbox;
+//
+//}
 
-   if (!node()->_is_dropbox_installed())
-   {
 
-      throw ::exception(error_wrong_state);
-
-   }
-
-   return node()->m_pathDropbox;
-
-}
-
-
-::file::path directory_context::dropbox_app()
-{
-
-   if (!system())
-   {
-
-      throw ::exception(error_wrong_state, "system() is null");
-
-   }
-
-   auto papplication = application();
-
-   if (papplication)
-   {
-
-      if (papplication->m_strAppId.is_empty())
-      {
-
-         throw ::exception(error_wrong_state, "Application Startup App Id is empty");
-
-      }
-
-      return dropbox() / "application" / papplication->m_strAppId;
-
-   }
-
-   throw ::exception(error_wrong_state, "No application is set");
-
-   return {};
-
-}
+//::file::path directory_context::dropbox_app()
+//{
+//
+//   if (!system())
+//   {
+//
+//      throw ::exception(error_wrong_state, "system() is null");
+//
+//   }
+//
+//   auto papplication = application();
+//
+//   if (papplication)
+//   {
+//
+//      if (papplication->m_strAppId.is_empty())
+//      {
+//
+//         throw ::exception(error_wrong_state, "Application Startup App Id is empty");
+//
+//      }
+//
+//      return dropbox() / "application" / papplication->m_strAppId;
+//
+//   }
+//
+//   throw ::exception(error_wrong_state, "No application is set");
+//
+//   return {};
+//
+//}
 
 
 
@@ -3452,15 +3452,15 @@ bool directory_context::is_inside(const ::file::path& pszDir, const ::file::path
 }
 
 
-::file::path directory_context::dropbox_client()
-{
-
-   throw ::interface_only();
-
-   return {};
-
-}
-
+// ::file::path directory_context::dropbox_client()
+// {
+//
+//    throw ::interface_only();
+//
+//    return {};
+//
+// }
+//
 
 //string_array directory_context::locale_schema_matter(string & strLocale, const ::string & strStyle)
 //{

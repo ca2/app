@@ -31,7 +31,7 @@ namespace experience_core
       void install_message_routing(::channel * pchannel) override;
 
 
-
+      void _001OnButtonDrawBackground(::draw2d::graphics_pointer & pgraphics) override;
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 

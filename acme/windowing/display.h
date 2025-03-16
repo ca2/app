@@ -64,6 +64,8 @@ namespace acme
          virtual bool is_dark_mode_through_theming();
          virtual ::string theming_ui_name();
 
+         virtual bool is_wallpaper_associated_with_dark_mode();
+         virtual bool is_wallpaper_associated_with_theming();
 
          virtual void enable_wallpaper_change_notification();
 

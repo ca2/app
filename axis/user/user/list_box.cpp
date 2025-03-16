@@ -786,7 +786,7 @@ namespace user
 
       //   }
 
-      //   KillTimer(e_timer_kill_focus);
+      //   kill_timer(e_timer_kill_focus);
 
       //}
 

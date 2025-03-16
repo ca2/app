@@ -54,10 +54,10 @@ namespace nanoui
 
       }
 
-      m_rectangle.left() = m_pos.x();
-      m_rectangle.top() = m_pos.y();
-      m_rectangle.right() = m_pos.x() + m_size.cx();
-      m_rectangle.bottom() = m_pos.y() + m_size.cy();
+      m_rectangle.left() = (float) m_pos.x();
+      m_rectangle.top() = (float)m_pos.y();
+      m_rectangle.right() = (float)(m_pos.x() + m_size.cx());
+      m_rectangle.bottom() = (float)(m_pos.y() + m_size.cy());
 
       ::graphics::color_wheel::_on_draw(pcontext);
 

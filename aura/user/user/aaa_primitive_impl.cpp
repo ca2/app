@@ -882,7 +882,7 @@ namespace user
       case ::message::e_prototype_timer:
       {
 
-         //throw ::exception(::exception("do not use e_message_timer or Windows SetTimer/KillTimer"));
+         //throw ::exception(::exception("do not use e_message_timer or Windows set_timer/kill_timer"));
 
          _NEW_MESSAGE(::message::timer);
 
@@ -2134,7 +2134,7 @@ namespace user
    }
 
 
-   void primitive_impl::SetTimer(uptr uEvent, const class ::time & timeEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
+   void primitive_impl::set_timer(uptr uEvent, const class ::time & timeEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
    {
 
       if (timeEllapse < 500_ms)
@@ -2164,7 +2164,7 @@ namespace user
    }
 
 
-   void primitive_impl::KillTimer(uptr uEvent)
+   void primitive_impl::kill_timer(uptr uEvent)
    {
 
       if (m_ptimerarray.is_null())

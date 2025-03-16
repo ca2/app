@@ -299,8 +299,8 @@ namespace user
       //virtual void SetWindowDisplayChanged();
 
       // timer Functions
-      //void SetTimer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer, bool bPeriodic = true, void* pdata = nullptr) override;
-      //void KillTimer(uptr uEvent)override;
+      //void set_timer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer, bool bPeriodic = true, void* pdata = nullptr) override;
+      //void kill_timer(uptr uEvent)override;
 
 
 

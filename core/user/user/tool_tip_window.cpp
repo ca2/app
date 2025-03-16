@@ -66,11 +66,11 @@ namespace user
                
                //ptool->BaseToolTipGetWnd()->screen_to_client(&m_point);
                
-               KillTimer(e_timer_show_delayed);
+               kill_timer(e_timer_show_delayed);
                
                HideTip();
                
-               SetTimer(e_timer_show_delayed, 500_ms, nullptr);
+               set_timer(e_timer_show_delayed, 500_ms, nullptr);
 
             }
 
@@ -112,7 +112,7 @@ namespace user
       if(!GetToolText(iTool, m_strTip))
          return;
 
-      SetTimer(1, 5_s, nullptr);
+      set_timer(1, 5_s, nullptr);
 
       ::int_rectangle rectangle;
 
@@ -353,14 +353,14 @@ namespace user
       case e_timer_hide_window:
       {
          display(e_display_none);
-         KillTimer(uEvent);
+         kill_timer(uEvent);
       }
       break;
       case e_timer_show_delayed:
       {
          m_iTool = m_iEventTool;
          ShowTip();
-         KillTimer(uEvent);
+         kill_timer(uEvent);
       }
       default:
          break;

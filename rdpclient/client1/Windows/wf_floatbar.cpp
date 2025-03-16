@@ -205,7 +205,7 @@ static int floatbar_paint(FloatBar* floatbar, HDC hdc)
 
 static int floatbar_animation(FloatBar* floatbar, BOOL show)
 {
-	SetTimer(floatbar->hwnd, show ? TIMER_ANIMAT_SHOW : TIMER_ANIMAT_HIDE, 10, nullptr);
+	set_timer(floatbar->hwnd, show ? TIMER_ANIMAT_SHOW : TIMER_ANIMAT_HIDE, 10, nullptr);
 	floatbar->shown = show;
 	return 0;
 }
@@ -246,7 +246,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 			tme.hwndTrack = hWnd;
 			tme.dwHoverTime = HOVER_DEFAULT;
 
-			SetTimer(hWnd, TIMER_HIDE, 3000, nullptr);
+			set_timer(hWnd, TIMER_HIDE, 3000, nullptr);
 			break;
 
 		case e_message_paint:
@@ -288,7 +288,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 			break;
 
 		case e_message_mouse_move:
-			KillTimer(hWnd, TIMER_HIDE);
+			kill_timer(hWnd, TIMER_HIDE);
 			pos_x = lParam & 0xffff;
 			pos_y = (lParam >> 16) & 0xffff;
 
@@ -338,7 +338,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 			InvalidateRect(hWnd, nullptr, false);
 			UpdateWindow(hWnd);
 
-			SetTimer(hWnd, TIMER_HIDE, 3000, nullptr);
+			set_timer(hWnd, TIMER_HIDE, 3000, nullptr);
 			break;
 		}
 		case e_message_timer:
@@ -346,7 +346,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 			{
 				case TIMER_HIDE:
 				{
-					KillTimer(hWnd, TIMER_HIDE);
+					kill_timer(hWnd, TIMER_HIDE);
 					if (!floatbar->locked)
 						floatbar_animation(floatbar, false);
 					break;
@@ -359,7 +359,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 					if (y == floatbar->height)
 					{
 						y = 0;
-						KillTimer(hWnd, wParam);
+						kill_timer(hWnd, wParam);
 					}
 					break;
 				}
@@ -371,7 +371,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 					if (y == floatbar->height)
 					{
 						y = 0;
-						KillTimer(hWnd, wParam);
+						kill_timer(hWnd, wParam);
 					}
 					break;
 				}
@@ -418,14 +418,14 @@ static FloatBar* floatbar_create(wfContext* wfc)
 
 int floatbar_hide(FloatBar* floatbar)
 {
-	KillTimer(floatbar->hwnd, TIMER_HIDE);
+	kill_timer(floatbar->hwnd, TIMER_HIDE);
 	MoveWindow(floatbar->hwnd, floatbar->rectangle.left(), -floatbar->height, floatbar->width, floatbar->height, true);
 	return 0;
 }
 
 int floatbar_show(FloatBar* floatbar)
 {
-	SetTimer(floatbar->hwnd, TIMER_HIDE, 3000, nullptr);
+	set_timer(floatbar->hwnd, TIMER_HIDE, 3000, nullptr);
 	MoveWindow(floatbar->hwnd, floatbar->rectangle.left(), floatbar->rectangle.top(), floatbar->width, floatbar->height, true);
 	return 0;
 }

@@ -184,7 +184,7 @@ namespace account
             if (m_pcredentials->m_estatus == ::success_credentials)
             {
 
-               KillTimer(e_timer_check_cached_credentials);
+               kill_timer(e_timer_check_cached_credentials);
 
                m_plogin->on_action("submit");
 
@@ -313,7 +313,7 @@ namespace account
 
       display(e_display_normal);
 
-      SetTimer(2000, 300_ms, nullptr);
+      set_timer(2000, 300_ms, nullptr);
 
       atom idResult = wait_for_dialog_result();
 

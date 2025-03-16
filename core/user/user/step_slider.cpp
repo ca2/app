@@ -59,7 +59,7 @@ namespace user
 //         {
 //            update_hover();
 //            if(!::is_set(m_pitemHover))
-//               KillTimer(1);
+//               kill_timer(1);
 //         }
 //      }
    }
@@ -100,7 +100,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      SetTimer(1, 200_ms, nullptr);
+      set_timer(1, 200_ms, nullptr);
 
       m_pitemHover = __allocate ::item(::e_element_client);
 

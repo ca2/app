@@ -130,7 +130,7 @@ namespace filemanager
    void operation_info_impact::on_message_create(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
-      //SetTimer(123, 184, nullptr);
+      //set_timer(123, 184, nullptr);
    }
 
    void operation_info_impact::install_message_routing(::channel * pchannel)

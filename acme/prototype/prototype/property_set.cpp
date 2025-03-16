@@ -922,6 +922,50 @@ void property_set::parse_ini(const ::string & strIni)
 }
 
 
+::string_array property_set::get_ini_lines() const
+{
+
+   ::string_array stra;
+
+   for (auto& pprop : *this)
+   {
+
+      if (pprop->get_type() == e_type_property_set)
+      {
+
+         auto straInner = ::transfer(pprop->as_property_set().get_ini_lines());
+
+         for (auto& str : straInner)
+         {
+
+            stra.add(pprop->name().as_string() + "." + str);
+
+         }
+
+      }
+      else
+      {
+
+         stra.add(pprop->get_ini_line());
+
+      }
+
+   }
+
+   return ::transfer(stra);
+
+}
+
+
+::string property_set::get_ini() const
+{
+
+   ::string_array stra = get_ini_lines();
+
+   return stra.implode("\n");
+
+}
+
 /// Example of Standard Configuration (/etc/os-release from Ubuntu 22.10)
 /// PRETTY_NAME="Ubuntu 22.10"
 /// NAME="Ubuntu"
@@ -970,11 +1014,11 @@ void property_set::parse_standard_configuration(const ::string & strStandardConf
 void property_set::parse_network_payload(const ::string & strNetworkPayload)
 {
 
-#ifdef LINUX
-
-   uselocale(this->platform()->m_localeC);
-
-#endif
+// #ifdef LINUX
+//
+//    uselocale(this->platform()->m_localeC);
+//
+// #endif
 
    __check_refdbg
 
@@ -1005,9 +1049,9 @@ void property_set::parse_network_payload(::ansi_range & range)
 {
 
 
-#ifdef LINUX
-   uselocale(this->platform()->m_localeC);
-#endif
+// #ifdef LINUX
+//    uselocale(this->platform()->m_localeC);
+// #endif
    __check_refdbg
    range.consume_spaces(0);
    __check_refdbg

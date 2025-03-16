@@ -58,7 +58,7 @@ namespace prompt
       }
       else if(uEvent == 1000)
       {
-         KillTimer(uEvent);
+         kill_timer(uEvent);
          m_bTimerOn = false;
 
 #ifdef WINDOWS_DESKTOP
@@ -83,7 +83,7 @@ namespace prompt
       }
       else if(uEvent == 1001)
       {
-         KillTimer(uEvent);
+         kill_timer(uEvent);
          //
          //hide();
          
@@ -103,12 +103,12 @@ namespace prompt
                if(rectangleWindow.is_empty().contains(point) && !m_bTimerHide)
                {
                   m_bTimerHide = true;
-                  SetTimer(1001, 800, nullptr);
+                  set_timer(1001, 800, nullptr);
                }
                else
                {
                   m_bTimerHide = false;
-                  KillTimer(1001);
+                  kill_timer(1001);
                }*/
          /*::int_point point;
          if(m_bHoverMouse && ::get_tick() > m_timeLastHover + 300)
@@ -237,8 +237,8 @@ namespace prompt
 
       m_bTimerOn = false;
 
-      SetTimer(8913, 5000, 0);
-      SetTimer(4033, 100, 0);
+      set_timer(8913, 5000, 0);
+      set_timer(4033, 100, 0);
       ModifyStyleEx(WS_EX_OVERLAPPEDWINDOW, 0);
 
 
@@ -375,11 +375,11 @@ namespace prompt
          if(pusermessage->m_lparam == 1)
          {
             m_bTimerOn = true;
-            SetTimer(1000, 23, nullptr);
+            set_timer(1000, 23, nullptr);
          }
          else if(pusermessage->m_lparam == 0)
          {
-            KillTimer(1000);
+            kill_timer(1000);
             m_bTimerOn = false;
          }
 

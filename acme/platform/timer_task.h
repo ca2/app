@@ -14,8 +14,9 @@ public:
 
 
    ::pointer<::acme::timer_array>      m_ptimera;
-   PFN_TIMER                           m_pfnTimer;
-   void *                              m_pvoidData;
+   //PFN_TIMER                           m_pfnTimer;
+   //void *                              m_pvoidData;
+   ::procedure                         m_procedure;
    //bool                                m_bRunning;
 
    //
@@ -62,7 +63,7 @@ public:
    void impl_term();
 
 
-   virtual void initialize_timer(::particle * pparticle, ::acme::timer_array * ptimera, uptr uiTimer = 0, PFN_TIMER pfnTimer = nullptr, void* pvoidData = nullptr, ::particle * pparticleSynchronization = nullptr);
+   virtual void initialize_timer(::particle* pparticle, ::acme::timer_array* ptimera, uptr uiTimer = 0, const ::procedure& procedure = {}, ::particle* pparticleSynchronization = nullptr);
 
    void run() override;
 

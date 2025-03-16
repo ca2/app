@@ -64,6 +64,9 @@ void component::_update_implementations_on_shelf()
 
    pathUrl.flags() += ::file::e_flag_bypass_cache;
 
+   printf_line("Going to fetch component implementations for component \"%s\".\nFetching URL is \"%s\".",
+      m_strComponent.c_str(), pathUrl.c_str());
+
    auto straImplementationOnShelf = file()->lines(pathUrl);
 
    for (auto & str : straImplementationOnShelf)
@@ -234,6 +237,7 @@ bool component::is_implementation_enabled(const ::scoped_string & scopedstrImple
 
 }
 
+
 ::component_implementation * component::implementation(const ::scoped_string & scopedstrImplementation)
 {
 
@@ -250,6 +254,7 @@ bool component::is_implementation_enabled(const ::scoped_string & scopedstrImple
 
 }
 
+
 ::pointer < ::component_implementation > component::create_implementation(const ::scoped_string & scopedstrImplementation)
 {
 
@@ -258,7 +263,12 @@ bool component::is_implementation_enabled(const ::scoped_string & scopedstrImple
    try
    {
 
-      pfactory = system()->factory(m_strComponent, scopedstrImplementation);
+      ::string strImplementation = scopedstrImplementation;
+
+      printf_line("Trying to create component implementation for component \"%s\" and for implementation \"%s\".",
+         m_strComponent.c_str(), strImplementation.c_str());
+
+      pfactory = system()->factory(m_strComponent, strImplementation);
 
       if (pfactory.is_null())
       {

@@ -132,7 +132,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, ::enum_message emessage, ::wparam wparam, ::
 
       prender->begin();
 
-      SetTimer(hWnd, 123, 50, nullptr);
+      set_timer(hWnd, 123, 50, nullptr);
 
    }
    else

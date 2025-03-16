@@ -432,8 +432,8 @@ namespace user
       //virtual void SetWindowDisplayChanged();
 
       // timer Functions
-      //virtual void SetTimer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer, bool bPeriodic = true, void * pdata = nullptr);
-      //virtual void KillTimer(uptr uEvent);
+      //virtual void set_timer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer, bool bPeriodic = true, void * pdata = nullptr);
+      //virtual void kill_timer(uptr uEvent);
 
 
       virtual bool is_host_top_level();

@@ -95,7 +95,7 @@ namespace userex
 
          m_bEnterKeyPressed = true;
 
-         SetTimer(5544, m_timeDelayedAfterChange, nullptr);
+         set_timer(5544, m_timeDelayedAfterChange, nullptr);
 
       }
       else
@@ -119,7 +119,7 @@ namespace userex
          if (m_timeLastChange.elapsed() > m_timeDelayedAfterChange)
          {
 
-            KillTimer(ptimer->m_uTimer);
+            kill_timer(ptimer->m_uTimer);
 
             bool bEnterKeyPressed = m_bEnterKeyPressed;
 
@@ -176,7 +176,7 @@ namespace userex
 
             m_timeLastChange.Now();
 
-            SetTimer(5544, m_timeDelayedAfterChange / 5, nullptr);
+            set_timer(5544, m_timeDelayedAfterChange / 5, nullptr);
 
          }
 

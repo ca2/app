@@ -2528,7 +2528,7 @@ namespace user
    //}
 
 
-   //void interaction_base::SetTimer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
+   //void interaction_base::set_timer(uptr uEvent, const class time & timeElapse, PFN_TIMER pfnTimer, bool bPeriodic, void* pdata)
    //{
 
    //   throw ::interface_only();
@@ -2538,7 +2538,7 @@ namespace user
    //}
 
 
-   //void interaction_base::KillTimer(uptr uEvent)
+   //void interaction_base::kill_timer(uptr uEvent)
    //{
 
    //   throw ::interface_only();
@@ -3733,7 +3733,7 @@ namespace user
 //      case ::message::PrototypeTimer:
 //      {
 //         
-//         //throw ::exception(::exception("do not use e_message_timer or Windows SetTimer/KillTimer"));
+//         //throw ::exception(::exception("do not use e_message_timer or Windows set_timer/kill_timer"));
 //         
 //         pmessage = __allocate ::message::timer();
 //

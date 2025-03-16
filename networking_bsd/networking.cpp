@@ -1108,7 +1108,7 @@ namespace networking_bsd
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          m_reversecacheaRequest.add(pitem);
 
@@ -1117,18 +1117,17 @@ namespace networking_bsd
       if (!m_pthreadReverse)
       {
 
-
          application()->post([this]()
-            {
+         {
+         
                auto psystem = system();
-
 
                m_pthreadReverse = psystem->fork([this]()
                   {
 
                      ::task_set_name("reverse___dns");
 
-                     single_lock synchronouslock(this->synchronization());
+                     _single_lock synchronouslock(this->synchronization());
 
                      while (task_get_run())
                      {
@@ -1325,7 +1324,7 @@ namespace networking_bsd
 
       //   reverse_cache_item item;
 
-      single_lock synchronouslock(m_pmutexReverseCache, true);
+      _single_lock synchronouslock(m_pmutexReverseCache, true);
 
       pitem->m_strReverse = host;
       //item.m_strService = serv;

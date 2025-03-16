@@ -261,7 +261,7 @@
 //         //   return false;
 //         //}
 //
-//         //SetTimer(m_oswindow,888888,84,nullptr);
+//         //set_timer(m_oswindow,888888,84,nullptr);
 //
 //         //SetWindowLongPtr(m_oswindow,GWLP_USERDATA,(LONG_PTR) this);
 //

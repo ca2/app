@@ -184,9 +184,23 @@ namespace graphics
 
       auto puserinteraction = m_pwindow->user_interaction();
 
-      pbufferitem->m_pointBufferItemDraw = puserinteraction->const_layout().design().origin();
+      auto pointDesign = puserinteraction->const_layout().design().origin();
 
-      pbufferitem->m_sizeBufferItemDraw = puserinteraction->const_layout().design().size();
+      if (pbufferitem->m_pointBufferItemDraw != pointDesign)
+      {
+
+         pbufferitem->m_pointBufferItemDraw = pointDesign;
+
+      }
+
+      auto sizeDesign = puserinteraction->const_layout().design().size();
+
+      if (pbufferitem->m_sizeBufferItemDraw != sizeDesign)
+      {
+
+         pbufferitem->m_sizeBufferItemDraw = sizeDesign;
+
+      }
 
       //pbufferitem->m_point = m_pimpl->m_puserinteraction->const_layout().layout().origin();
 

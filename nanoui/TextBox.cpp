@@ -77,6 +77,13 @@ namespace nanoui
 
       m_strValue = value;
 
+      if (focused())
+      {
+
+         focus_event(true);
+
+      }
+
       set_need_redraw();
 
       post_redraw();
@@ -217,7 +224,8 @@ namespace nanoui
 
       float spin_arrows_width = 0.f;
 
-      if (m_bSpinnable && !focused())
+      //if (m_bSpinnable && !focused())
+      if (m_bSpinnable)
       {
 
          spin_arrows_width = 14.f;
@@ -526,7 +534,8 @@ namespace nanoui
 
       if (!m_bEditable)
          set_cursor(Cursor::Arrow);
-      else if (m_bSpinnable && !focused() && spin_area(m_mouse_pos) != SpinArea::None) /* scrolling arrows */
+      //else if (m_bSpinnable && !focused() && spin_area(m_mouse_pos) != SpinArea::None) /* scrolling arrows */
+      else if (m_bSpinnable && spin_area(m_mouse_pos) != SpinArea::None) /* scrolling arrows */
          set_cursor(Cursor::Hand);
       else
          set_cursor(Cursor::IBeam);
@@ -1288,11 +1297,11 @@ namespace nanoui
    TextBox::SpinArea TextBox::spin_area(const int_point& pos)
    {
 
-      if (0 <= pos.x() - m_pos.x() && pos.x() - m_pos.x() < 14.f) { /* on scrolling arrows */
-         if (m_size.cy() >= pos.y() - m_pos.y() && pos.y() - m_pos.y() <= m_size.cy() / 2.f) { /* top part */
+      if (0 <= pos.x() && pos.x() < 14.f) { /* on scrolling arrows */
+         if (m_size.cy() >= pos.y() && pos.y() <= m_size.cy() / 2.f) { /* top part */
             return SpinArea::Top;
          }
-         else if (0.f <= pos.y() - m_pos.y() && pos.y() - m_pos.y() > m_size.cy() / 2.f) { /* bottom part */
+         else if (0.f <= pos.y() && pos.y() > m_size.cy() / 2.f) { /* bottom part */
             return SpinArea::Bottom;
          }
       }

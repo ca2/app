@@ -99,7 +99,7 @@ namespace micro
 
       //void on_draw(::micro::graphics::device * pmicrodevice) override;
 
-      virtual void _on_draw(::nano::graphics::device * pnanodevice);
+      void _on_draw(::nano::graphics::device * pnanodevice) override;
 
       virtual void on_draw(::nano::graphics::device * pnanodevice);
 

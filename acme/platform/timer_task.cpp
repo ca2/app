@@ -48,7 +48,7 @@ long long timer_task::release()
 #endif
 
 
-void timer_task::initialize_timer(::particle * pparticle, ::acme::timer_array * ptimera, uptr uiTimer, PFN_TIMER pfnTimer, void* pvoidData, ::particle * pparticleSynchronization)
+void timer_task::initialize_timer(::particle * pparticle, ::acme::timer_array * ptimera, uptr uiTimer, const::procedure& procedure, ::particle * pparticleSynchronization)
 {
 
    ::task::initialize(pparticle);
@@ -59,9 +59,7 @@ void timer_task::initialize_timer(::particle * pparticle, ::acme::timer_array * 
 
    m_uTimer = uiTimer;
 
-   m_pfnTimer = pfnTimer;
-
-   m_pvoidData = pvoidData;
+   m_procedure = procedure;
 
 }
 
@@ -161,10 +159,10 @@ void timer_task::on_timer()
 
    m_bRet = false;
 
-   if (m_pfnTimer != nullptr)
+   if (m_procedure)
    {
 
-      m_pfnTimer(this);
+      m_procedure();
 
       return;
       //return true;

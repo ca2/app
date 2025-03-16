@@ -32,7 +32,7 @@ namespace nanoui
    }
 
 
-   void ColorPicker::sync_color(const ::color::hls& hls)
+   void ColorPicker::sync_color(const ::color::hls& hls, bool bForceH, bool bForceS, bool bForceB)
    {
 
       m_pick_button->set_background_color(hls);
@@ -43,24 +43,38 @@ namespace nanoui
 
       m_color_wheel->set_sel_color(hls);
 
-      m_callback(hls);
+      if (m_callback)
+      {
 
-      m_ppopup->set_need_redraw();
+         m_callback(hls);
 
-      m_ppopup->post_redraw();
+      }
 
       ::color::hsv hsv(hls);
       m_peditRed->set_value(color.byte_red(), e_source_sync);
       m_peditGreen->set_value(color.byte_green(), e_source_sync);
       m_peditBlue->set_value(color.byte_blue(), e_source_sync);
-      m_peditHSV_H->set_value(hsv.m_dH * 360.0, e_source_sync);
-      m_peditHSV_S->set_value(hsv.m_dS * 100.0, e_source_sync);
-      m_peditHSV_V->set_value(hsv.m_dV * 100.0, e_source_sync);
+      if (bForceH || fabs(m_peditHSV_H->value() - (int)(hsv.m_dH * 360.0)) > 2.0)
+      {
+         m_peditHSV_H->set_value(hsv.m_dH * 360.0, e_source_sync);
+      }
+      if (bForceS || fabs(m_peditHSV_S->value() - (int)(hsv.m_dS * 100.0)) > 5.0)
+      {
+         m_peditHSV_S->set_value(hsv.m_dS * 100.0, e_source_sync);
+      }
+      if (bForceB || fabs(m_peditHSV_V->value() - (int)(hsv.m_dV * 100.0)) > 5.0)
+      {
+         m_peditHSV_V->set_value(hsv.m_dV * 100.0, e_source_sync);
+      }
 
       ::string strHex;
       strHex.formatf("%02X%02X%02X", color.byte_red(), color.byte_green(),  color.byte_blue());
 
       m_peditHex->set_value(strHex, e_source_sync);
+
+      m_ppopup->set_need_redraw();
+
+      m_ppopup->post_redraw();
 
    }
 
@@ -159,7 +173,7 @@ namespace nanoui
          pedit->set_fixed_size({ 70,25 });
          pedit->set_value(0, ::e_source_initialize);
          pedit->set_alignment(::nanoui::TextBox::e_alignment_right);
-         pedit->set_minimum_maximum_values(0, 359);
+         pedit->set_minimum_maximum_values(0, 360);
          pedit->set_spinnable(true);
 
          m_peditHSV_H = pedit;
@@ -256,7 +270,7 @@ namespace nanoui
       m_color_wheel->set_callback([&](const ::color::hls& hls)
          {
 
-            sync_color(hls);
+            sync_color(hls, true, true, true);
 
          });
 
@@ -288,35 +302,48 @@ namespace nanoui
       m_peditRed->set_callback([&](int iIntensity) {
             ::color::color color = m_color_wheel->get_sel_color();
             color.set_red(iIntensity);
-            sync_color(color);
+            sync_color(color, true, true, true);
          });
       m_peditGreen->set_callback([&](int iIntensity) {
             ::color::color color = m_color_wheel->get_sel_color();
             color.set_green(iIntensity);
-            sync_color(color);
+            sync_color(color, true, true, true);
          });
       m_peditBlue->set_callback([&](int iIntensity) {
             ::color::color color = m_color_wheel->get_sel_color();
          color.set_blue(iIntensity);
-         sync_color(color);
+         sync_color(color, true, true, true);
          });
       m_peditHSV_H->set_callback([&](int iIntensity) {
-         ::color::hsv hsv = m_color_wheel->get_sel_color();
-         hsv.m_dH = (double) iIntensity / 360.0;
-         sync_color(hsv);
+         auto hls = m_color_wheel->get_sel_color();
+         hls.m_dH = (double) iIntensity / 360.0;
+         sync_color(hls, false, true, true);
          });
       m_peditHSV_S->set_callback([&](int iIntensity) {
          ::color::hsv hsv = m_color_wheel->get_sel_color();
          hsv.m_dS = (double)iIntensity / 100.0;
-         sync_color(hsv);
+         sync_color(hsv, true, false, true);
+         });
+      m_peditHSV_V->set_callback([&](int iIntensity) {
+         ::color::hsv hsv = m_color_wheel->get_sel_color();
+         hsv.m_dV = (double)iIntensity / 100.0;
+         sync_color(hsv, true, true, false);
          });
       m_peditHex->set_callback([&](const ::scoped_string& str) {
-         auto color = ::color::hex_to_color(str);
-         sync_color(color);
+         ::color::color color;
+         try
+         {
+            color = ::color::hex_to_color(str);
+         }
+         catch (...)
+         {
+            color = ::color::white;
+         }
+         sync_color(color, true, true, true);
          return true;
          });
 
-      sync_color(hls);
+      sync_color(hls, true, true, true);
 
 
    }

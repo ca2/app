@@ -188,6 +188,7 @@ namespace micro
 
    }
 
+
    void elemental::draw_background(::nano::graphics::device* pmicrodevice)
    {
 

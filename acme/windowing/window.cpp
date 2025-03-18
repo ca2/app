@@ -58,6 +58,8 @@ namespace acme
          m_pointCursor2(I32_MINIMUM)
       {
 
+         m_bPerformingEntireRepositionProcess = false;
+         m_bPerformingEntireResizingProcess = false;
          //m_ebias = e_bias_unknown;
          m_bRepositioningWindowFromCenter = false;
          m_bResizingWindowFromBottomRight = false;

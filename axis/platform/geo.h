@@ -41,6 +41,7 @@ namespace geo
    public:
 
 
+      bool                                                  m_bOpenWeatherCityListLock;
 
       //bool                                                            m_bInitialCountryTimeZoneInit;
       bool                                                  m_bInitialLocalityTimeZoneInit;

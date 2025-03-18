@@ -6,6 +6,7 @@
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/http.h"
+#include "acme/platform/keep.h"
 #include "acme/prototype/datetime/_binary_stream.h"
 #include "acme/prototype/datetime/datetime.h"
 #include "acme/prototype/datetime/earth_zone_time.h"
@@ -36,6 +37,9 @@ namespace geo
 
    geo::geo()
    {
+
+
+      m_bOpenWeatherCityListLock = false;
 
       m_bInitialLocalityTimeZoneInit = false;
 
@@ -70,11 +74,23 @@ namespace geo
 
    }
    
+#define DEBUGF_LINE(...)
+#define DEBUGF_OUT(...)
+
 
    void geo::defer_check_openweather_city_list()
    {
 
       _synchronous_lock synchronouslock(get_openweather_city_mutex());
+
+      if (m_bOpenWeatherCityListLock)
+      {
+
+         return;
+
+      }
+
+      __keep_true(m_bOpenWeatherCityListLock);
 
       if (m_straCityLo.get_size() == m_straCity.get_size()
          && m_straCity.get_size() == m_iaIds.get_size()
@@ -87,6 +103,8 @@ namespace geo
 
       }
 
+      DEBUGF_LINE("abcxxx1");
+
       ::file::path pathFolder = directory_system()->userconfig();
 
       bool bOk = false;
@@ -95,31 +113,40 @@ namespace geo
 
       auto pfile = file();
 
+      ::file::path pathWeatherBin;
+
+      pathWeatherBin = pathFolder / "weather.bin";
+
       {
 
          try
          {
 
+            DEBUGF_LINE("abcxxx2 Going to open file : \"%s\".", pathWeatherBin.c_str());
 
-         auto memory = pfile->as_memory(pathFolder / "weather.bin");
+            auto memory = pfile->as_memory(pathWeatherBin);
 
-         auto pfile = __allocate memory_file(memory);
+            DEBUGF_LINE("abcxxx3");
 
-         binary_stream stream(pfile);
+            auto pfile = __allocate memory_file(memory);
 
+            DEBUGF_LINE("abcxxx4");
+
+            binary_stream stream(pfile);
+
+            DEBUGF_LINE("abcxxx5");
 
             stream >> m_straCity;
+            DEBUGF_LINE("abcxxx5.1 m_straCity.size() == %d", m_straCity.size());
             stream >> m_straCityLo;
+            DEBUGF_LINE("abcxxx5.2 m_straCityLo.size() == %d", m_straCityLo.size());
             stream >> m_iaIds;
+            DEBUGF_LINE("abcxxx5.3 m_iaIds == %d", m_iaIds.size());
             stream >> m_daLon;
+            DEBUGF_LINE("abcxxx5.4 m_daLon == %d", m_daLon.size());
             stream >> m_daLat;
+            DEBUGF_LINE("abcxxx5.5 m_daLat == %d", m_daLat.size());
 
-            for (int i = 0; i < 20; i++)
-            {
-
-               informationf("dump: %s, %s, %d, %f, %f\n", m_straCity[i].c_str(), m_straCityLo[i].c_str(), m_iaIds[i], m_daLon[i], m_daLat[i]);
-
-            }
 
             //file()->to_array(m_straCity,          auto psystem = system();
 
@@ -154,9 +181,23 @@ namespace geo
                && m_daLon.get_size() == m_daLat.get_size()
                && m_straCity.get_size() > 1;
 
+            if (bOk && m_straCity.size() > 20)
+            {
+
+               for (int i = 0; i < 20; i++)
+               {
+
+                  informationf("dump: %s, %s, %d, %f, %f\n", m_straCity[i].c_str(), m_straCityLo[i].c_str(), m_iaIds[i], m_daLon[i], m_daLat[i]);
+
+               }
+
+            }
+
          }
          catch (...)
          {
+
+            DEBUGF_LINE("defxxa1");
 
          }
 
@@ -168,10 +209,16 @@ namespace geo
          try
          {
 
-            if (pfile->exists(pathFolder / "weather.bin"))
+            DEBUGF_LINE("ghixxb1");
+
+            if (pfile->exists(pathWeatherBin))
             {
 
-               pfile->erase(pathFolder / "weather.bin");
+               DEBUGF_LINE("ghixxb2");
+
+               pfile->erase(pathWeatherBin);
+
+               DEBUGF_LINE("ghixxb3");
 
             }
 
@@ -179,7 +226,11 @@ namespace geo
          catch (const ::exception & exception)
          {
 
+            DEBUGF_LINE("jklxxc1");
+
             auto pmessagebox = __initialize_new ::message_box(exception, "geo::defer_check_openweather_city_list");
+
+            DEBUGF_LINE("jklxxc3");
 
             pmessagebox->async();
 
@@ -187,9 +238,15 @@ namespace geo
          catch (...)
          {
 
+            DEBUGF_LINE("jklxxc3");
+
             ::exception exception(error_catch_all_exception);
 
+            DEBUGF_LINE("jklxxc4");
+
             auto pmessagebox = __initialize_new ::message_box(exception, "geo::defer_check_openweather_city_list");
+
+            DEBUGF_LINE("jklxxc5");
 
             pmessagebox->async();
 
@@ -216,6 +273,8 @@ namespace geo
          try
          {
 
+            DEBUGF_LINE("mnoxxd1");
+
             string str;
 
             ::payload payload;
@@ -223,19 +282,46 @@ namespace geo
             payload["nocache"] = true;
             payload["url"] = "https://ca2.software/city-list.json";
 
+            DEBUGF_LINE("mnoxxd2");
+
             str = pfile->as_string(payload);
+
+            DEBUGF_LINE("mnoxxd3");
 
             if (str.has_character())
             {
+
+               DEBUGF_LINE("mnoxxd4");
 
                string_array stra;
 
                stra.add_lines(str);
 
+               DEBUGF_LINE("mnoxxd5");
+
+               int iLine = 1;
+
                for (auto strJson : stra)
                {
 
+                  strJson.trim();
+
+                  if (strJson.is_empty())
+                  {
+
+                     DEBUGF_LINE("mnoxxd6 Line %09d Empty!!");
+
+                     iLine++;
+
+                     continue;
+
+                  }
+
                   const ::ansi_character * pszJson = strJson;
+
+                  DEBUGF_OUT("mnoxxd6 Line %09d %s", iLine, pszJson);
+
+                  iLine++;
 
                   //const ::ansi_character * pszJson = "{\"_id\":6322752, \"name\" : \"Curitiba\", \"country\" : \"BR\", \"coord\" : {\"lon\":-49.290821, \"lat\" : -25.50395}}";
 
@@ -243,29 +329,49 @@ namespace geo
 
                   v.parse_network_payload(pszJson);
 
+                  DEBUGF_OUT(" A");
+
                   string strLine = v["name"] + ", " + v["country"];
+
+                  DEBUGF_OUT("B");
 
                   m_straCity.add(strLine);
 
+                  DEBUGF_OUT("C");
+
                   m_straCityLo.add(strLine.lowered());
+
+                  DEBUGF_OUT("D");
 
                   long long iId;
 
                   iId = v["_id"].as_long_long();
 
+                  DEBUGF_OUT("E");
+
                   m_iaIds.add(iId);
+
+                  DEBUGF_OUT("F");
 
                   double dLon = v["coord"]["lon"].as_double();
 
+                  DEBUGF_OUT("G");
+
                   m_daLon.add(dLon);
+
+                  DEBUGF_OUT("H");
 
                   double dLat = v["coord"]["lat"].as_double();
 
+                  DEBUGF_OUT("I");
+
                   m_daLat.add(dLat);
+
+                  DEBUGF_OUT("J\n");
 
                }
 
-               auto pfileOut = pfile->get_writer(pathFolder / "weather.bin");
+               auto pfileOut = pfile->get_writer(pathWeatherBin);
 
                binary_stream stream(pfileOut);
 
@@ -278,10 +384,26 @@ namespace geo
             }
 
          }
+         catch (const ::exception & exception)
+         {
+
+            DEBUGF_LINE("pqrxxe1 exception type : " + ::type(exception).name());
+
+            auto pmessagebox = __initialize_new ::message_box(exception, "geo::defer_check_openweather_city_list");
+
+            DEBUGF_LINE("pqrxxe2");
+
+            pmessagebox->async();
+
+         }
          catch (...)
          {
 
+            DEBUGF_LINE("pqrxxe3");
+
             auto pmessagebox = __initialize_new::message_box("Unable to download \"https://ca2.software/city-list.json\"");
+
+            DEBUGF_LINE("pqrxxe4");
 
             pmessagebox->async();
 

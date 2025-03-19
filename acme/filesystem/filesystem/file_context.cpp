@@ -42,6 +42,7 @@
 #include "acme/platform/session.h"
 #include "acme/platform/system.h"
 
+#include <string.h>
 //
 //#ifdef WINDOWS_DESKTOP
 //
@@ -4617,3 +4618,24 @@ void file_context::unzip_to_folder(const ::file::path & pathFolder, const ::file
 
 
 
+CLASS_DECL_ACME void * file_as_memory_dup(long & size, const char *psz)
+{
+   
+   try {
+      auto mem = ::system()->application()->file()->as_memory(psz);
+      size = mem.size();
+      
+      if(size>0)
+      {
+         auto p = malloc(size);
+         memcpy(p, mem.data(), size);
+         return p;
+         
+      }
+   } catch (...) {
+      
+   }
+   
+   return nullptr;
+   
+}

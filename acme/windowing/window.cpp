@@ -1728,6 +1728,76 @@ namespace acme
          return puserinteractionOwner->acme_windowing_window();
 
       }
+   int window::control_box_right_when_at_left() const
+   {
+      
+      
+      return -1;
+   }
+   
+   
+   bool window::should_use_desktop_ambient_like_control_box() const
+   {
+      
+      auto pacmeuserinteraction = m_pacmeuserinteraction.m_p;
+      
+      if(::is_null(pacmeuserinteraction))
+      {
+         
+         return false;
+         
+      }
+
+      return pacmeuserinteraction->should_use_desktop_ambient_like_control_box();
+
+   }
+   
+   
+void window::on_control_box_close()
+{
+ 
+   auto pacmeuserinteraction = m_pacmeuserinteraction.m_p;
+   
+   if(::is_set(pacmeuserinteraction))
+   {
+      
+      pacmeuserinteraction->on_control_box_close();
+      
+   }
+ 
+}
+
+
+void window::on_control_box_minimize()
+{
+ 
+   auto pacmeuserinteraction = m_pacmeuserinteraction.m_p;
+   
+   if(::is_set(pacmeuserinteraction))
+   {
+      
+      pacmeuserinteraction->on_control_box_minimize();
+      
+   }
+
+}
+
+
+void window::on_control_box_zoom()
+{
+ 
+   auto pacmeuserinteraction = m_pacmeuserinteraction.m_p;
+   
+   if(::is_set(pacmeuserinteraction))
+   {
+      
+      pacmeuserinteraction->on_control_box_zoom();
+      
+   }
+
+}
+
+
 
 
       //void window::window_message_loop()
@@ -1737,8 +1807,10 @@ namespace acme
       //}
 
    //} // namespace windowing
+   
+   
 
-   } // namespace user
+   } // namespace windowing
 
 
 } //  namespace acme

@@ -95,7 +95,6 @@ namespace acme
          //virtual void do_interchange();
          ::windowing::enum_bias windowing_bias() const;
 
-
          //virtual ::pointer < item_container > item_form();
 
          void on_initialize_particle() override;
@@ -396,7 +395,15 @@ namespace acme
 
 
          virtual void on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem, ::user::activation_token * puseractivationtoken);
+
+         virtual int control_box_right_when_at_left() const;
+
+         virtual bool should_use_desktop_ambient_like_control_box() const;
          
+         virtual void on_control_box_close();
+         virtual void on_control_box_minimize();
+         virtual void on_control_box_zoom();
+
 
       };
 

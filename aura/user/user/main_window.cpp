@@ -130,7 +130,8 @@ namespace user
 
 #endif
 
-      if (m_bEnableDefaultControlBox && should_show_platform_control_box())
+      if (m_bEnableDefaultControlBox && should_show_platform_control_box()
+          && !should_use_desktop_ambient_like_control_box())
       {
 
          {

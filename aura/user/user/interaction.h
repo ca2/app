@@ -2827,6 +2827,9 @@ namespace user
       void window_minimize() override;
       void window_maximize() override;
 
+      void on_control_box_close() override;
+      void on_control_box_minimize() override;
+      void on_control_box_zoom() override;
 
    };
 

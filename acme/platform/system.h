@@ -580,8 +580,6 @@ namespace platform
       bool _handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset) override;
 
 
-      //virtual void windowing_post_quit();
-
       virtual string get_latest_deployment_number(const ::string & strBranch) override;
 
 
@@ -767,8 +765,6 @@ namespace platform
 //
 //       //void node_will_finish_launching() override;
 //
-//
-//       //void windowing_post_quit() override;
 //
 //
 //       virtual ::pointer<::data::node>load_xml(const ::string & pszXml);

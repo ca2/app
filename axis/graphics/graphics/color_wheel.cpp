@@ -69,8 +69,13 @@ namespace graphics
 
       center = sizeImageOffset + ::double_size(diamRound / 2, diamRound / 2);
 
-
       double hue = m_hls.m_dH;
+      
+      int centerX = diamRound / 2;
+
+      int centerY = diamRound / 2;
+
+      double dAlphaThickness = u / 2.0;
 
       ::nano2d::paint paint;
 
@@ -125,12 +130,6 @@ namespace graphics
             m_pimageCircle->map();
 
             m_pimageCircle->fill_byte(0);
-
-            int centerX = diamRound / 2;
-
-            int centerY = diamRound / 2;
-
-            double dAlphaThickness = u / 2.0;
 
             for (int x = 0; x < diamRound; x++)
             {
@@ -219,8 +218,10 @@ namespace graphics
 
          //      pcontext->save();
 
-         double cx = x + w * 0.5;
-         double cy = y + h * 0.5;
+         //double cx = x + w * 0.5;
+         //double cy = y + h * 0.5;
+         double cx = sizeImageOffset.cx() + centerX;
+         double cy = sizeImageOffset.cy() + centerY;
          //double r1 = (w < h ? w : h) * 0.5;
          //double r0 = r1 * .75;
 

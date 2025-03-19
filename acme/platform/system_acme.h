@@ -679,7 +679,6 @@ namespace platform
       //bool _handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset) override;
 
 
-      //virtual void windowing_post_quit();
 
       virtual string get_latest_deployment_number(const ::string & strBranch);
 

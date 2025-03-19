@@ -152,10 +152,17 @@ namespace user
          if (!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child))
          {
 
+            
+            m_puserinteraction->user_thread()->_post([this]()
+                                                     {
+               
+               branch_synchronously();
+               
+            });
+            
+////            m_puserinteraction->m_pus
 
-            branch_synchronously();
-
-            m_puserinteraction->add_task(this);
+            //m_puserinteraction->add_task(this);
 
             //if (!branch())
             //{
@@ -328,7 +335,7 @@ namespace user
 //
 //      }
 
-      m_puserinteraction->add_task(this);
+      //m_puserinteraction->add_task(this);
 
       //m_puserinteraction->m_pthreadUserInteraction->add_task(this);
 
@@ -350,13 +357,30 @@ namespace user
          while (true)
          {
 
-            if (!task_get_run())
+            
+            if(has_finishing_flag())
             {
-
-               information() << "graphics_thread::run !task_get_run()";
-
-               break;
-
+               if (!task_get_run())
+               {
+                  
+                  information() << "graphics_thread::run !task_get_run()";
+                  
+                  break;
+                  
+               }
+               
+            }
+            else
+            {
+               if (!task_get_run())
+               {
+                  
+                  information() << "graphics_thread::run !task_get_run()";
+                  
+                  break;
+                  
+               }
+               
             }
 
             if(!m_bGraphicsThreadEnabled)

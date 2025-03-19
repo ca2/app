@@ -24363,8 +24363,8 @@ if(get_parent())
          if (pitem->m_item.m_eelement == ::e_element_close_button
              || pitem->m_item.m_eelement == ::e_element_close_icon)
          {
-
-            post_message(e_message_close);
+            
+            on_control_box_close();
 
             return true;
 
@@ -24382,38 +24382,7 @@ if(get_parent())
                   || pitem->m_item.m_eelement == ::e_element_maximize_icon)
          {
 
-            information() << "clicked maximize";
-
-            if (is_display_like_maximized())
-            {
-
-               information() << "window is like maximized - going to display e_display_normal";
-
-               auto rectangleWindowNormalStored = this->get_window_normal_stored_rectangle();
-
-               place(rectangleWindowNormalStored);
-
-               display(e_display_normal);
-
-               //               information() << "window is like maximized - going to display_previous";
-
-               //               display_previous();
-
-            }
-            else
-            {
-
-               information() << "window isn't like maximized - going to display e_display_zoomed";
-
-               display(e_display_zoomed);
-
-            }
-
-            set_need_layout();
-
-            set_need_redraw();
-
-            post_redraw();
+            on_control_box_zoom();
 
             return true;
 
@@ -24422,7 +24391,7 @@ if(get_parent())
                   || pitem->m_item.m_eelement == ::e_element_minimize_icon)
          {
 
-            display(e_display_iconic);
+            on_control_box_minimize();
 
             return true;
 
@@ -24433,6 +24402,59 @@ if(get_parent())
       return false;
 
    }
+
+void interaction::on_control_box_close()
+{
+   
+   post_message(e_message_close);
+
+}
+
+void interaction::on_control_box_minimize()
+{
+   
+   display(e_display_iconic);
+
+}
+
+void interaction::on_control_box_zoom(){
+   
+
+   information() << "clicked maximize";
+
+   if (is_display_like_maximized())
+   {
+
+      information() << "window is like maximized - going to display e_display_normal";
+
+      auto rectangleWindowNormalStored = this->get_window_normal_stored_rectangle();
+
+      place(rectangleWindowNormalStored);
+
+      display(e_display_normal);
+
+      //               information() << "window is like maximized - going to display_previous";
+
+      //               display_previous();
+
+   }
+   else
+   {
+
+      information() << "window isn't like maximized - going to display e_display_zoomed";
+
+      display(e_display_zoomed);
+
+   }
+
+   set_need_layout();
+
+   set_need_redraw();
+
+   post_redraw();
+
+
+}
 
 
    bool interaction::on_right_click_generation(::item * pitem, ::user::mouse * pmouse)

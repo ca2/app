@@ -2050,6 +2050,39 @@ namespace acme
 
 
          }
+   
+   
+   bool interaction::should_use_desktop_ambient_like_control_box() const
+   {
+      
+      return false;
+      
+   }
+   
+   void interaction::on_control_box_close()
+   {
+      
+      window_close();
+      
+   }
+   
+   
+   void interaction::on_control_box_minimize()
+      {
+      
+      window_minimize();
+      
+   }
+   
+   
+   void interaction::on_control_box_zoom()
+         {
+      
+      window_maximize();
+      
+   }
+   
+   
 
 
    } // namespace user

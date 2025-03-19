@@ -64,6 +64,8 @@ namespace acme
 
          //map < const ::item *, ::user::item >      m_useritemmap;
 
+         bool                                               m_bPerformingEntireRepositionProcess;
+         bool                                               m_bPerformingEntireResizingProcess;
          bool                                               m_bRepositioningWindowFromCenter;
          bool                                               m_bResizingWindowFromBottomRight;
          //::int_point                                        m_pointDesignRequest;

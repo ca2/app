@@ -4843,6 +4843,14 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
    }
 
 
+   ::string node::dynamic_library_prefix()
+   {
+
+      return {};
+
+   }
+
+
    ::string node::dynamic_library_suffix()
    {
 

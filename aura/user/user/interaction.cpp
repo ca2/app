@@ -795,7 +795,7 @@ namespace user
 
          }
 
-         if (windowing_window() && elayout == e_layout_sketch)
+         if (is_top_level() && windowing_window() && elayout == e_layout_sketch)
          {
 
             auto point = m_layout.m_statea[elayout].origin();
@@ -20770,7 +20770,7 @@ if(get_parent())
 
       }
 
-      if (windowing_window() && elayout == e_layout_sketch)
+      if (is_top_level() && windowing_window() && elayout == e_layout_sketch)
       {
 
          window()->placement_log()->add({ pointNew, sizeNew });

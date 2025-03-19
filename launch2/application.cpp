@@ -387,7 +387,7 @@ szAppExeName[i] = '_';
    char szDownloadCommand[2048];
 if (!strcasecmp(m_pszDistro, "freebsd")) {
 
-strcpy(szDownloadCommand, "curl ");
+strcpy(szDownloadCommand, "curl --http1.1 ");
 strcat(szDownloadCommand, szDownloadUrl);
 strcat(szDownloadCommand, " > ");
 strcat(szDownloadCommand, szZipName);

@@ -1137,9 +1137,7 @@ namespace networking_bsd
                         if (m_reversecacheaRequest.has_elements())
                         {
 
-                           auto pitem = m_reversecacheaRequest[0];
-
-                           m_reversecacheaRequest.erase_at(0);
+                           auto pitem = m_reversecacheaRequest.pick_first();
 
                            synchronouslock.unlock();
 

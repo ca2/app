@@ -291,24 +291,48 @@ namespace text
          {
 
             table = (*pcontext->m_pschema)[atom];
-            if(table.has_character())
+
+            if (table.has_character())
+            {
+
                return table;
+
+            }
 
          }
 
          if(pcontext->m_pschemaLocale != nullptr)
          {
+            
             table = (*pcontext->m_pschemaLocale)[atom];
-            if(table.has_character())
+
+            if (table.has_character())
+            {
+
                return table;
+
+            }
+
          }
 
          for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
 
-            table = (*pcontext->m_schemaptra[i])[atom];
-            if(table.has_character())
-               return table;
+            auto pschema = pcontext->m_schemaptra[i];
+
+            if (::is_set(pschema))
+            {
+
+               table = (*pschema)[atom];
+
+               if (table.has_character())
+               {
+
+                  return table;
+
+               }
+
+            }
 
          }
 

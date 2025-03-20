@@ -114,7 +114,7 @@ void handler_manager::handle_asynchronously(const ::procedure & procedure)
 
       auto phandlermanager = as_pointer(this);
 
-      application()->send([phandlermanager]()
+      application()->post([phandlermanager]()
          {
 
             phandlermanager->m_pthread = phandlermanager->application()->fork([phandlermanager]()

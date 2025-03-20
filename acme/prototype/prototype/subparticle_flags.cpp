@@ -6,20 +6,20 @@ void quantum::set_finishing_flag()
    
    set_flag(e_flag_finishing);
 
-   ::string strType(typeid(*this).name());
+   //::string strType(typeid(*this).name());
 
-   if (strType.contains("user::thread"))
-   {
+   //if (strType.contains("user::thread"))
+   //{
 
-      output_debug_string("quantum::set_finishing_flag user::thread");
+   //   output_debug_string("quantum::set_finishing_flag user::thread");
 
-   }
-   else if (strType.contains("main_frame"))
-   {
+   //}
+   //else if (strType.contains("main_frame"))
+   //{
 
-      output_debug_string("quantum::set_finishing_flag main_frame");
+   //   output_debug_string("quantum::set_finishing_flag main_frame");
 
-   }
+   //}
 
 }
 

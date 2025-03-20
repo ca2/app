@@ -1684,6 +1684,13 @@ namespace platform
    ::string system::http_text(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrKey, const scoped_string & strLocale, const ::scoped_string & strSchema)
    {
 
+      if (!m_papplication->m_bFetchFromNetnode)
+      {
+
+         return {};
+
+      }
+
       ::string str;
       
       if (m_mapText[scopedstrPath].lookup(scopedstrKey, str))

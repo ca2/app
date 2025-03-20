@@ -7,6 +7,7 @@
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/application.h"
 #include "acme/platform/node.h"
 
 
@@ -59,6 +60,13 @@ void component::update()
 
 void component::_update_implementations_on_shelf()
 {
+
+   if (!m_papplication->m_bFetchFromNetnode)
+   {
+
+      return;
+
+   }
 
    ::file::path pathUrl = "https://ca2.network/component_implementations?component_path=" + m_strComponentPath;
 

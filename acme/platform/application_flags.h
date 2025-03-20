@@ -10,7 +10,7 @@ struct CLASS_DECL_ACME APPLICATION_FLAGS // : public ::acme::reference
 
    bool                             m_bFork;
 
-
+   bool                                   m_bFetchFromNetnode = true;
    ::logic::boolean                       m_bResource;
    //::logic::boolean                       m_bCrypto;
    ::logic::boolean                       m_bLocalization;

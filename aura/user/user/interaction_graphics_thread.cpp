@@ -156,7 +156,7 @@ namespace user
             m_puserinteraction->user_thread()->_post([this]()
                                                      {
                
-               branch_synchronously();
+               branch();
                
             });
             

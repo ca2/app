@@ -424,7 +424,6 @@
 		9A979DEC28C835540013DC54 /* control.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A979DDF28C835540013DC54 /* control.cpp */; };
 		9A979DED28C835540013DC54 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A979DE028C835540013DC54 /* _.h */; };
 		9A979DEE28C835540013DC54 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A979DE028C835540013DC54 /* _.h */; };
-		9A9979452D84491E00A1FC11 /* libnano2d.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6CF6A52D84457B00E57B1E /* libnano2d.dylib */; };
 		9A9979782D84622100A1FC11 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9979772D84622100A1FC11 /* libaura.dylib */; };
 		9A9979812D84627A00A1FC11 /* color_wheel.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A99797E2D84627A00A1FC11 /* color_wheel.h */; };
 		9A9979822D84627A00A1FC11 /* color_selector.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A99797C2D84627A00A1FC11 /* color_selector.h */; };
@@ -434,6 +433,7 @@
 		9A9979862D84627A00A1FC11 /* color_selector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A99797D2D84627A00A1FC11 /* color_selector.cpp */; };
 		9A9979872D84627A00A1FC11 /* color_wheel.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A99797E2D84627A00A1FC11 /* color_wheel.h */; };
 		9A9979882D84627A00A1FC11 /* color_selector.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A99797C2D84627A00A1FC11 /* color_selector.h */; };
+		9AA370182D8F63060010C30A /* libnano2d.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8A7F2D2D8445FC00C6509E /* libnano2d.dylib */; };
 		9AA3F9AE2A95E531004283CA /* calculator_edit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA3F9AB2A95E530004283CA /* calculator_edit.cpp */; };
 		9AA3F9AF2A95E531004283CA /* calculator_edit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA3F9AB2A95E530004283CA /* calculator_edit.cpp */; };
 		9AA3F9B02A95E531004283CA /* calculator_edit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA3F9AD2A95E531004283CA /* calculator_edit.h */; };
@@ -612,20 +612,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9A6CF6A12D84457B00E57B1E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A6CF69E2D84457B00E57B1E /* nano2d.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A9E560729F8556C001559E9;
-			remoteInfo = nano2d;
-		};
-		9A6CF6A42D84457B00E57B1E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A6CF69E2D84457B00E57B1E /* nano2d.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A9E560829F8556C001559E9;
-			remoteInfo = nano2d;
-		};
 		9A8A7F2C2D8445FC00C6509E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A6CF68C2D8444EC00E57B1E /* nano2d.xcodeproj */;
@@ -646,6 +632,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9AA652672A3345560082D8B3;
 			remoteInfo = unac;
+		};
+		9ABADB5F2D8F320000219899 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A6CF68C2D8444EC00E57B1E /* nano2d.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A9E560729F8556C001559E9;
+			remoteInfo = nano2d;
 		};
 		9ABE3CB62B6FDB850019F69B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -740,7 +733,6 @@
 		9A5ECCF528CCBE600084D354 /* core_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = core_data.cpp; sourceTree = "<group>"; };
 		9A5ECCF628CCBE600084D354 /* data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data.cpp; sourceTree = "<group>"; };
 		9A6CF68C2D8444EC00E57B1E /* nano2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = nano2d.xcodeproj; path = ../nano2d/nano2d.xcodeproj; sourceTree = SOURCE_ROOT; };
-		9A6CF69E2D84457B00E57B1E /* nano2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = nano2d.xcodeproj; path = /Users/camilo/RedDotLogics/main/source/app/nano2d/nano2d.xcodeproj; sourceTree = "<absolute>"; };
 		9A85D38D2A3014EA00116726 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _.h; path = html/_.h; sourceTree = "<group>"; };
 		9A93B6912846EA94005ACD11 /* libios_axis.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_axis.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A979CAB28C7E41F0013DC54 /* parameter_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parameter_list.h; sourceTree = "<group>"; };
@@ -1007,7 +999,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A9979452D84491E00A1FC11 /* libnano2d.dylib in Frameworks */,
+				9AA370182D8F63060010C30A /* libnano2d.dylib in Frameworks */,
 				9A268D942A3D86DE00AE8FE0 /* libunac.dylib in Frameworks */,
 				9ADB6CB128D1397200608B22 /* libacme.dylib in Frameworks */,
 				9AE64963252A641500BED5B8 /* libsqlite3.tbd in Frameworks */,
@@ -1129,14 +1121,6 @@
 				9A5ECCC128CCBE040084D354 /* text.h */,
 			);
 			path = impl;
-			sourceTree = "<group>";
-		};
-		9A6CF69F2D84457B00E57B1E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A6CF6A52D84457B00E57B1E /* libnano2d.dylib */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		9A8A7F292D8445FC00C6509E /* Products */ = {
@@ -1334,7 +1318,6 @@
 				9AE63EB8252A5BE900BED5B8 /* axis */,
 				9AE63E9C252A5B7800BED5B8 /* Products */,
 				9AE6494B252A638900BED5B8 /* Frameworks */,
-				9A6CF69E2D84457B00E57B1E /* nano2d.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2119,7 +2102,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A6CF6A22D84457B00E57B1E /* PBXTargetDependency */,
+				9ABADB602D8F320000219899 /* PBXTargetDependency */,
 				9AA652A82A3345F10082D8B3 /* PBXTargetDependency */,
 			);
 			name = axis;
@@ -2155,10 +2138,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9A6CF69F2D84457B00E57B1E /* Products */;
-					ProjectRef = 9A6CF69E2D84457B00E57B1E /* nano2d.xcodeproj */;
-				},
-				{
 					ProductGroup = 9A8A7F292D8445FC00C6509E /* Products */;
 					ProjectRef = 9A6CF68C2D8444EC00E57B1E /* nano2d.xcodeproj */;
 				},
@@ -2176,13 +2155,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A6CF6A52D84457B00E57B1E /* libnano2d.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libnano2d.dylib;
-			remoteRef = 9A6CF6A42D84457B00E57B1E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		9A8A7F2D2D8445FC00C6509E /* libnano2d.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -2455,15 +2427,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9A6CF6A22D84457B00E57B1E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = nano2d;
-			targetProxy = 9A6CF6A12D84457B00E57B1E /* PBXContainerItemProxy */;
-		};
 		9AA652A82A3345F10082D8B3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = unac;
 			targetProxy = 9AA652A72A3345F10082D8B3 /* PBXContainerItemProxy */;
+		};
+		9ABADB602D8F320000219899 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = nano2d;
+			targetProxy = 9ABADB5F2D8F320000219899 /* PBXContainerItemProxy */;
 		};
 		9AE0E1272B705D2000D4F550 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

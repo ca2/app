@@ -422,14 +422,25 @@ namespace geo
       if (!pcity)
       {
 
-         pcity = __raw_new openweather_city();
+         auto pcityNew = __raw_new openweather_city();
 
-         pcity->m_iIndex = openweather_find_city2(
+         pcityNew->m_iIndex = openweather_find_city2(
             strQuery,
-            pcity->m_strCit,
-            pcity->m_iId,
-            pcity->m_dLat,
-            pcity->m_dLon);
+            pcityNew->m_strCit,
+            pcityNew->m_iId,
+            pcityNew->m_dLat,
+            pcityNew->m_dLon);
+
+         if (pcityNew->m_iIndex < 0)
+         {
+
+            delete pcityNew;
+
+            return nullptr;
+
+         }
+
+         pcity = pcityNew;
 
       }
 

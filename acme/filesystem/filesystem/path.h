@@ -528,8 +528,16 @@ namespace file
 
       /////force extension to be scopedstrExtension erasing possibly existing extension
       //::file::path& force_extension(const ::scoped_string& scopedstrExtension);
+      
+      using string::_get_count_parts_from_beginning;
+      
+      using string::get_count_parts_from_beginning;
 
+      
+      const_ansi_range _get_count_parts_from_beginning(::collection::count iPathPartCountToConsume) const;
 
+      const_ansi_range get_count_parts_from_beginning(::collection::count iPathPartCountToConsume) const;
+      
    };
 
 

@@ -160,6 +160,28 @@ namespace nanoui
    }
 
 
+::collection::index TabWidgetBase::tab_index(const Widget * pwidgetChild) const
+{
+   return m_children.find_first(pwidgetChild);
+}
+
+bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
+{
+   auto iIndex = tab_index(pwidgetChild);
+   
+   if(iIndex < 0)
+   {
+    
+      return false;
+      
+   }
+   
+   return m_iActiveTab == iIndex;
+  
+}
+
+
+
    void TabWidgetBase::update_visibility()
    {
       

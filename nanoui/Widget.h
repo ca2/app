@@ -272,6 +272,7 @@ namespace nanoui
 
       /// Return whether or not the pwidget is currently visible (assuming all parents are visible)
       virtual bool visible() const;
+      virtual bool is_child_visible() const;
       /// Set whether or not the pwidget is currently visible (assuming all parents are visible)
       virtual void set_visible(bool bVisible);
       virtual void toggle_visible();

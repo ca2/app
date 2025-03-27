@@ -14,6 +14,7 @@
 #include "Screen.h"
 #include "Window.h"
 #include "Button.h"
+#include "TabWidget.h"
 #include "in_place_edit.h"
 #include "TextBox.h"
 #include "VScrollPanel.h"
@@ -78,6 +79,42 @@ namespace nanoui
    {
 
       return m_bVisible;
+
+   }
+
+
+   bool Widget::is_child_visible() const
+   {
+      
+      auto pParent = this->parent();
+      
+      if(pParent)
+      {
+         
+         if(!pParent->is_child_visible())
+         {
+            
+            return false;
+            
+         }
+         
+         ::cast < TabWidgetBase > pTabParent = this->parent();
+         
+         if(pTabParent)
+         {
+            
+            if(!pTabParent->is_tab_selected(this))
+            {
+               
+               return false;
+               
+            }
+            
+         }
+         
+      }
+
+      return this->visible();
 
    }
 

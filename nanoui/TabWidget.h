@@ -79,6 +79,11 @@ namespace nanoui
 
       /// Removes a tab with the specified ID
       virtual void erase_tab(::collection::index iId);
+      
+      virtual ::collection::index tab_index(const Widget * pwidgetChild) const;
+
+      
+      virtual bool is_tab_selected(const Widget * pwidgetChild) const;
 
       /// Return the ID of the currently active tab
       ::collection::index selected_id() const { return m_iaTabIds.empty() ? -1 : tab_id(m_iActiveTab); }

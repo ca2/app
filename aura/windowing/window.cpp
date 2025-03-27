@@ -558,8 +558,6 @@ namespace windowing
 
          _000OnMouseLeave(pmessage);
 
-         return;
-
       }
 
       if (pmessage->m_emessage == e_message_left_button_down ||
@@ -5266,7 +5264,12 @@ void window::set_oswindow(::oswindow oswindow)
 
             synchronouslock.unlock();
 
-            pinteraction->message_handler(e_message_mouse_leave);
+            if (pinteraction != user_interaction())
+            {
+
+               pinteraction->message_handler(e_message_mouse_leave);
+
+            }
 
             synchronouslock._lock();
 

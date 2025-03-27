@@ -25951,6 +25951,23 @@ void interaction::on_control_box_zoom(){
 
          auto pitemFront = update_hover(pmouse, e_zorder_front);
 
+         if (::is_set(pitemFront))
+         {
+
+            // MAYBE TODO HERE!!
+
+            // You should check what would be done (skipped by this
+            // pmouse->m_bRet = true) at on_message_mouse_move
+            // to be done before returning here. What I think
+            // maybe missing here is the on_message_mouse_move's
+            // mouse_set_cursor.
+
+            // END MAYBE TODO HERE!!
+
+            pmouse->m_bRet = true;
+
+         }
+
          if (pmouse->m_bRet)
          {
 
@@ -27704,21 +27721,21 @@ __check_refdbg;
 
             }
 
-            //if (!::is_item_set(pitemOldHover))
-            //{
+            if (!::is_item_set(pitemOldHover))
+            {
 
-            //   try
-            //   {
+               try
+               {
 
-            //      track_mouse_leave();
+                  track_mouse_leave();
 
-            //   }
-            //   catch (...)
-            //   {
+               }
+               catch (...)
+               {
 
-            //   }
+               }
 
-            //}
+            }
 
          }
 

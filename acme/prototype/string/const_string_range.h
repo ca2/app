@@ -1765,6 +1765,44 @@ this->m_erange = e_range_none;
 
 
    STRING_ARRAY explode(const SCOPED_STRING & scopedstrSeparator, bool bAddEmpty = true) const;
+      
+      
+      ::collection::count _count_parts_from_beginning(::collection::count  cPathPartCountToConsume, CHARACTER chSeparator);
+
+      
+      ::collection::count count_parts_from_beginning(::collection::count  cPathPartCountToConsume, CHARACTER chSeparator);
+
+
+      STRING_RANGE _get_count_parts_from_beginning(::collection::count cPathPartCountToConsume, CHARACTER chSeparator) const
+      {
+         
+         auto range = this->operator()();
+         
+         if(cPathPartCountToConsume == range._count_parts_from_beginning(cPathPartCountToConsume, chSeparator))
+         {
+          
+            return range;
+            
+         }
+         
+         return {};
+
+      }
+
+      
+      STRING_RANGE get_count_parts_from_beginning(::collection::count cPathPartCountToConsume, CHARACTER chSeparator) const
+      {
+         
+         if(cPathPartCountToConsume <= 0)
+         {
+          
+            return this->operator()();
+            
+         }
+         
+         return this->_get_count_parts_from_beginning(cPathPartCountToConsume, chSeparator);
+
+      }
 
 };
 

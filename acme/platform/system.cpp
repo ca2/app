@@ -222,7 +222,8 @@ namespace platform
 
       create_task_message_queue();
 
-      factory()->add_factory_item< ::nano::http::get>();
+      factory()->add_factory_item < ::nano::http::get>();
+      factory()->add_factory_item < ::component >();
 
    }
 

@@ -1459,6 +1459,38 @@ namespace file
    }
 
 
+inline const_ansi_range path::_get_count_parts_from_beginning(::collection::count cPathPartCountToConsume) const
+{
+   
+   return ::string::_get_count_parts_from_beginning(cPathPartCountToConsume, '/');
+
+}
+
+
+inline const_ansi_range path::get_count_parts_from_beginning(::collection::count cPathPartCountToConsume) const
+{
+   
+   return ::string::get_count_parts_from_beginning(cPathPartCountToConsume, '/');
+
+}
+
+// bool path::has_count_parts_from_beginning_eat(::collection::count cPathPartCountToConsume)
+//{
+//    
+//    auto range = this->get_count_parts_from_beginning(cPathPartCountToConsume);
+//    
+//    if(::is_null(range.m_begin))
+//    {
+//       
+//       return false;
+//       
+//    }
+//
+//    return this->_assign(range.m_begin, range.size());
+//   
+//}
+
+
 } // namespace file
 
 

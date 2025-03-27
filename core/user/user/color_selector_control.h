@@ -90,7 +90,7 @@ namespace user
       virtual void set_color(const ::color::hls & hls);
 
 
-      virtual void on_color_change();
+      void on_color_change() override;
 
 
    };

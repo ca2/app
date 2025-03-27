@@ -48,6 +48,7 @@
 #ifdef LINUX
 #include <unistd.h>
 #endif
+#include "component.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/directory_context.h"
@@ -61,6 +62,7 @@
 #include "acme/platform/hyperlink.h"
 //#include "acme/platform/system_impl.h"
 #include "acme/prototype/string/base64.h"
+
 
 int file_put_contents(const ::file::path & path, const char * contents);;
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
@@ -193,7 +195,8 @@ namespace apex
 
       factory()->add_factory_item < ::apex::session, ::apex::session >();
       factory()->add_factory_item < ::http::context, ::platform::http >();
-      factory()->add_factory_item< ::http::message, ::nano::http::get>();
+      factory()->add_factory_item < ::http::message, ::nano::http::get>();
+      factory()->add_factory_item < ::apex::component, ::component >();
 
    }
 

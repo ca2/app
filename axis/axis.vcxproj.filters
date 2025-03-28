@@ -708,7 +708,7 @@
     <ClInclude Include="user\user\aaa__component.h">
       <Filter>Header Files\user\form</Filter>
     </ClInclude>
-    <ClInclude Include="mathematics\calculator\error.h">
+    <ClInclude Include="mathematics\calculator\calculator_error.h">
       <Filter>Header Files\mathematics\calculator</Filter>
     </ClInclude>
     <ClInclude Include="database\database\result_set.h">
@@ -1037,7 +1037,7 @@
     <ClCompile Include="database\database\composite.cpp">
       <Filter>Source Files\database\database</Filter>
     </ClCompile>
-    <ClCompile Include="mathematics\calculator\error.cpp">
+    <ClCompile Include="mathematics\calculator\calculator_error.cpp">
       <Filter>Source Files\mathematics\calculator</Filter>
     </ClCompile>
     <ClCompile Include="user\user\line_layout.cpp">

@@ -5009,11 +5009,22 @@ namespace user
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
+      character_count iChar = _plain_edit_line_x_to_sel(pgraphics, iLine, x);
+
+      return iChar;
+
+   }
+
+
+   character_count plain_edit::_plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, int x)
+   {
+
       character_count iChar = plain_edit_line_char_hit_test(pgraphics, x, iLine);
 
       return iChar;
 
    }
+
 
 
    ::collection::index plain_edit::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x)

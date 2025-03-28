@@ -311,13 +311,20 @@ namespace data
       if (::is_set(pparent))
       {
 
-         pparent->m_treeitema.add_unique(this);
+         pparent->m_treeitema2.add_unique(this);
 
       }
 
-      m_pparent->m_treeitema.erase(this);
+      m_pparent->m_treeitema2.erase(this);
 
       m_pparent = pparent;
+
+      for (auto pitem : m_pparent->m_treeitema2)
+      {
+
+         pitem->clear_cache();
+
+      }
 
    }
 
@@ -330,12 +337,31 @@ namespace data
       if(m_pparent)
       {
 
-         if(m_pparent->m_treeitema.contains(this))
-         {
+         m_pparent->erase_child(this);
 
-            m_pparent->m_treeitema.erase(this);
+      }
 
-         }
+   }
+
+
+   void tree_item::erase_child(tree_item * ptreeitem)
+   {
+
+      auto iIndex = m_treeitema2.find_first(ptreeitem);
+
+      if (iIndex < 0)
+      {
+
+         return;
+
+      }
+
+      m_treeitema2.erase_at(iIndex);
+
+      for (auto pitem : m_treeitema2)
+      {
+
+         pitem->clear_cache();
 
       }
 
@@ -345,10 +371,12 @@ namespace data
    void tree_item::erase_tree_item_descendants()
    {
 
-      for (auto & p : m_treeitema)
+      for (auto & p : m_treeitema2)
       {
 
          p->erase_tree_item_descendants();
+
+         p->clear_cache();
 
       }
 
@@ -356,7 +384,9 @@ namespace data
 
       //list_erase_all(this);
 
-      m_treeitema.clear();
+      m_treeitema2.clear();
+
+      clear_cache();
 
    }
 
@@ -389,12 +419,23 @@ namespace data
 
    }
 
+
+   void tree_item::clear_cache()
+   {
+
+      m_bPrevious = false;
+      m_bNext = false;
+      m_iIndex = -2;
+
+   }
+
+
    void tree_item::destroy()
    {
 
       m_pparent.release();
 
-      m_treeitema.destroy();
+      m_treeitema2.destroy();
 
       m_ptree = nullptr;
 
@@ -412,7 +453,7 @@ namespace data
 
       }
 
-      if (!pitem->m_pparent->m_treeitema.contains(pitem))
+      if (!pitem->m_pparent->m_treeitema2.contains(pitem))
       {
 
          // self healing?
@@ -422,8 +463,14 @@ namespace data
 
       }
 
-      pitem->m_pparent->m_treeitema.erase(pitem);
+      pitem->m_pparent->m_treeitema2.erase(pitem);
 
+      for (auto p : pitem->m_pparent->m_treeitema2)
+      {
+
+         p->clear_cache();
+
+      }
       pitem->m_pparent = nullptr;
 
       return true;
@@ -441,7 +488,7 @@ namespace data
 
       }
 
-      for (auto & p : m_treeitema)
+      for (auto & p : m_treeitema2)
       {
 
          if (p->contains(ptreeitem))
@@ -473,7 +520,14 @@ namespace data
 
          pitemNew->erase_item_from_parent();
 
-         m_treeitema.insert_at(0, pitemNew);
+         m_treeitema2.insert_at(0, pitemNew);
+
+         for (auto & pitem : m_treeitema2)
+         {
+
+            pitem->clear_cache();
+
+         }
 
          pitemNew->m_iLevel = m_iLevel + 1;
 
@@ -487,7 +541,14 @@ namespace data
 
          pitemNew->erase_item_from_parent();
 
-         m_treeitema.add(pitemNew);
+         m_treeitema2.add(pitemNew);
+
+         for (auto & pitem : m_treeitema2)
+         {
+
+            pitem->clear_cache();
+
+         }
 
          pitemNew->m_iLevel = m_iLevel + 1;
 
@@ -508,7 +569,7 @@ namespace data
 
          }
 
-         auto iFind = m_pparent->m_treeitema.find_first(this);
+         auto iFind = m_pparent->m_treeitema2.find_first(this);
 
          if(iFind < 0)
          {
@@ -520,7 +581,14 @@ namespace data
 
          }
 
-         m_pparent->m_treeitema.insert_at(iFind, pitemNew);
+         m_pparent->m_treeitema2.insert_at(iFind, pitemNew);
+
+         for (auto & pitem : m_pparent->m_treeitema2)
+         {
+
+            pitem->clear_cache();
+
+         }
 
          pitemNew->m_iLevel = m_iLevel;
 
@@ -539,7 +607,7 @@ namespace data
 
          }
 
-         auto iFind = m_pparent->m_treeitema.find_first(this);
+         auto iFind = m_pparent->m_treeitema2.find_first(this);
 
          if(iFind < 0)
          {
@@ -551,7 +619,14 @@ namespace data
 
          }
 
-         m_pparent->m_treeitema.insert_at(iFind + 1, pitemNew);
+         m_pparent->m_treeitema2.insert_at(iFind + 1, pitemNew);
+
+         for (auto & pitem : m_pparent->m_treeitema2)
+         {
+
+            pitem->clear_cache();
+
+         }
 
          pitemNew->m_iLevel = m_iLevel;
 
@@ -563,7 +638,14 @@ namespace data
       else if(erelative == e_relative_last_sibling)
       {
 
-         m_pparent->m_treeitema.add(pitemNew);
+         m_pparent->m_treeitema2.add(pitemNew);
+
+         for (auto & pitem : m_pparent->m_treeitema2)
+         {
+
+            pitem->clear_cache();
+
+         }
 
          pitemNew->m_iLevel = m_iLevel;
 
@@ -575,7 +657,7 @@ namespace data
       else if(erelative == e_relative_replace)
       {
 
-         auto iFind = m_pparent->m_treeitema.find_first(this);
+         auto iFind = m_pparent->m_treeitema2.find_first(this);
 
          if(iFind < 0)
          {
@@ -586,7 +668,14 @@ namespace data
 
          }
 
-         m_pparent->m_treeitema[iFind] = pitemNew;
+         m_pparent->m_treeitema2[iFind] = pitemNew;
+
+         for (auto & pitem : m_pparent->m_treeitema2)
+         {
+
+            pitem->clear_cache();
+
+         }
 
          m_pparent = nullptr;
 
@@ -606,14 +695,22 @@ namespace data
 
       //data_tree_item_list_sort(this, functionLess);
 
-      m_treeitema.predicate_sort(functionLess);
+      m_treeitema2.predicate_sort(functionLess);
+
+      for (auto & pitem : m_treeitema2)
+      {
+
+         pitem->clear_cache();
+
+      }
+
 
    }
    
    tree_item * tree_item::get_child_by_user_data(uptr iUserData)
    {
 
-      auto iFind = m_treeitema.predicate_find_first([iUserData](auto p)
+      auto iFind = m_treeitema2.predicate_find_first([iUserData](auto p)
          {
 
             return p->m_dwUser == iUserData;
@@ -627,7 +724,7 @@ namespace data
 
       }
 
-      return m_treeitema[iFind];
+      return m_treeitema2[iFind];
 
    }
 
@@ -635,7 +732,7 @@ namespace data
    void tree_item::get_children(tree_item_ptr_array & ptra)
    {
 
-      ptra.append(m_treeitema);
+      ptra.append(m_treeitema2);
 
    }
 
@@ -643,7 +740,7 @@ namespace data
    ::collection::count tree_item::get_children_count()
    {
 
-      return m_treeitema.get_count();
+      return m_treeitema2.get_count();
 
    }
 
@@ -661,7 +758,7 @@ namespace data
 
       ::collection::count c = 0;
       
-      for(auto & p : m_treeitema)
+      for(auto & p : m_treeitema2)
       {
 
          if (p->get_children_count() > 0)
@@ -683,7 +780,7 @@ namespace data
       
       ::collection::count c = 0;
 
-      auto iFind = m_treeitema.predicate_find_first([&c, iIndex](auto& p)
+      auto iFind = m_treeitema2.predicate_find_first([&c, iIndex](auto& p)
          {
 
             if (p->get_children_count() > 0)
@@ -709,7 +806,7 @@ namespace data
 
       }
 
-      return m_treeitema[iFind];
+      return m_treeitema2[iFind];
 
    }
 
@@ -817,95 +914,116 @@ namespace data
    }
 
 
-   ::data::tree_item * tree_item::____previous()
+   ::data::tree_item * tree_item::_____previous()
    {
+
+      m_bPrevious = true;
 
       if (::is_null(m_pparent))
       {
 
+         m_pprevious2.release();
+
          return nullptr;
 
       }
 
-      auto iFind = m_pparent->m_treeitema.find_first(this);
+      auto iFind = _get_index();
 
       if (iFind <= 0)
       {
 
+         m_pprevious2.release();
+
          return nullptr;
 
       }
 
-      return m_pparent->m_treeitema[iFind - 1];
+      return m_pprevious2 = m_pparent->m_treeitema2[iFind - 1];
 
    }
 
 
-   ::data::tree_item * tree_item::____next()
+   ::data::tree_item * tree_item::_____next()
    {
+
+      m_bNext = true;
 
      if (::is_null(m_pparent))
       {
 
+        m_pnext2.release();
+
          return nullptr;
 
       }
 
-      auto iFind = m_pparent->m_treeitema.find_first(this);
+      auto iFind = _get_index();
 
-      if (iFind < 0 || iFind >= m_pparent->m_treeitema.get_upper_bound())
+      if (iFind < 0 || iFind >= m_pparent->m_treeitema2.get_upper_bound())
       {
 
+         m_pnext2.release();
+
          return nullptr;
 
       }
 
-      return m_pparent->m_treeitema[iFind + 1];
+      return m_pnext2=m_pparent->m_treeitema2[iFind + 1];
 
    }
 
 
-   ::data::tree_item * tree_item::____head()
-   {
+   //::data::tree_item * tree_item::____head()
+   //{
 
-      if (m_treeitema.is_empty())
-      {
+   //   if (m_treeitema.is_empty())
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      return m_treeitema.first();
+   //   return m_treeitema.first();
 
-   }
+   //}
 
 
-   ::data::tree_item * tree_item::____tail()
-   {
+   //::data::tree_item * tree_item::____tail()
+   //{
 
-      if (m_treeitema.is_empty())
-      {
+   //   if (m_treeitema.is_empty())
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      return m_treeitema.last();
+   //   return m_treeitema.last();
 
-   }
+   //}
 
 
    ::collection::index tree_item::_get_index()
    {
 
-      if (m_pparent == nullptr)
+      if (m_iIndex >= -1)
       {
 
-         return 0;
+         return m_iIndex;
 
       }
 
-      return m_pparent->m_treeitema.find_first(this);
+      if (m_pparent == nullptr)
+      {
+
+         m_iIndex = -1;
+
+         return -1;
+
+      }
+
+      return m_iIndex = m_pparent->m_treeitema2.find_first(this);
 
    }
 
@@ -1286,7 +1404,7 @@ namespace data
 
       }
 
-      for(auto & p : m_treeitema)
+      for(auto & p : m_treeitema2)
          {
 
             if (p->is_expanded())

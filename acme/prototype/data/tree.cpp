@@ -197,7 +197,9 @@ namespace data
    void tree::sort_children(const ::function < bool(const ::data::tree_item * p1, const ::data::tree_item * p2) > & functionLess)
    {
 
-      m_treeitema.predicate_sort(functionLess);
+      m_treeitema2.predicate_sort(functionLess);
+
+      m_treeitema2.predicate_each([](auto pitem) {pitem->clear_cache(); });
 
    }
 
@@ -356,7 +358,7 @@ namespace data
    }
 
 
-   ::data::tree_item * tree::____previous()
+   ::data::tree_item * tree::_____previous()
    {
 
       return nullptr;
@@ -364,7 +366,7 @@ namespace data
    }
 
 
-   ::data::tree_item * tree::____next()
+   ::data::tree_item * tree::_____next()
    {
 
       return nullptr;

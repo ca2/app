@@ -358,6 +358,17 @@ namespace data
    class CLASS_DECL_ACME tree_item :
       virtual public particle
    {
+   protected:
+
+
+      bool                             m_bPrevious = false;
+      bool                             m_bNext = false;
+
+      ::pointer<tree_item>             m_pprevious2;
+      ::pointer<tree_item>             m_pnext2;
+      ::pointer_array < tree_item >    m_treeitema2;
+      ::collection::index              m_iIndex = -2;
+
    public:
 
 
@@ -377,9 +388,6 @@ namespace data
 
       //::pointer<tree_item>             m_phead; // first child
       //::pointer<tree_item>             m_ptail; // last child
-      //::pointer<tree_item>             m_pprevious;
-      //::pointer<tree_item>             m_pnext;
-      ::pointer_array < tree_item >    m_treeitema;
       ::pointer < tree_item >          m_pparent;
       ::collection::index                            m_iIndexHint;
       tree *                           m_ptree;
@@ -413,7 +421,7 @@ namespace data
 
 
       #endif
-
+      virtual void clear_cache();
       void destroy() override;
       virtual bool      erase_item_from_parent();
 
@@ -433,10 +441,28 @@ namespace data
       ::collection::index _get_index();
 
 
-      virtual ::data::tree_item * ____previous();
-      virtual ::data::tree_item * ____next();
-      virtual ::data::tree_item * ____head();
-      virtual ::data::tree_item * ____tail();
+      inline auto ____previous()
+      {
+         return m_bPrevious ? m_pprevious2.m_p : _____previous();
+      }
+      inline auto ____next()
+      {
+         return m_bNext ? m_pnext2.m_p : _____next();
+      }
+      inline auto ____head()
+      {
+         return m_treeitema2.is_empty() ? nullptr : m_treeitema2.first();
+      }
+      inline auto ____tail()
+      {
+         return m_treeitema2.is_empty() ? nullptr : m_treeitema2.last();
+      }
+
+
+      virtual ::data::tree_item * _____previous();
+      virtual ::data::tree_item * _____next();
+      //virtual ::data::tree_item * _____head();
+      //virtual ::data::tree_item * _____tail();
 
 
       tree_item * get_previous_or_parent(::collection::index * iLevelOffset = nullptr);
@@ -504,7 +530,7 @@ namespace data
 
       void erase_tree_item();
       void erase_tree_item_descendants();
-
+      void erase_child(tree_item * ptreeitem);
 
       virtual bool is_expanded() const;
       virtual bool is_expandable() const;

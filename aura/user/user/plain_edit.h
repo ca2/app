@@ -509,6 +509,7 @@ namespace user
       ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, int & x) override;
       character_count plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::collection::index iColumn) override;
       character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, int x) override;
+      virtual character_count _plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, int x);
       ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, character_count iSel) override;
       bool plain_edit_caret_rect(::draw2d::graphics_pointer& pgraphics, ::int_rectangle * lprect, character_count iSel);
       bool plain_edit_index_range(::draw2d::graphics_pointer& pgraphics, ::int_rectangle * lprect, character_count iSel);

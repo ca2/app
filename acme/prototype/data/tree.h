@@ -64,8 +64,8 @@ namespace data
       virtual void erase(item * pitem, ::collection::index i = 0);
 
 
-      ::data::tree_item * ____previous() override;
-      ::data::tree_item * ____next() override;
+      ::data::tree_item * _____previous() override;
+      ::data::tree_item * _____next() override;
       //template < typename PRED >
       //void sort_children(PRED pred)
       //{

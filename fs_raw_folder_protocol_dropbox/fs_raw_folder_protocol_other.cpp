@@ -65,9 +65,9 @@ namespace fs_raw_folder_protocol_dropbox
             if (platform()->is_desktop_system())
             {
 
-               auto pathHome = directory()->home();
+               auto pathUserConfig = directory_system()->userconfig();
 
-               auto pathTxt = pathHome / "dropbox.txt";
+               auto pathTxt = pathUserConfig / "dropbox.txt";
 
                if (file()->exists(pathTxt))
                {

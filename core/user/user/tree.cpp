@@ -345,7 +345,7 @@ namespace user
 
          auto pitem = m_pitemFirstVisible;
 
-         synchronous_lock synchronouslock(!pitem ? nullptr : pitem->m_ptree->synchronization());
+         synchronous_lock synchronouslock(!pitem ? nullptr : pitem->_get_tree()->synchronization());
 
          ::collection::index iItem = m_iFirstVisibleItemProperIndex;
 
@@ -353,7 +353,7 @@ namespace user
 
          ::collection::index iIndex = 0;
 
-         for (; pitem != nullptr; pitem = pitem->get_item(::data::e_tree_navigation_proper_forward))
+         for (; pitem != nullptr; pitem = pitem->_get_item(::data::e_tree_navigation_proper_forward))
          {
 
             drawitemdata.m_pitem = pitem;
@@ -425,7 +425,7 @@ namespace user
 
       ::pointer<tree>ptree = this;
 
-      ::pointer<::data::tree_item>pitem = data.m_pitem;
+      ::pointer<::data::tree_item_base>pitem = data.m_pitem;
 
       ::image::image_list_pointer pimagelistItem = pitem->get_image_list();
 
@@ -730,7 +730,7 @@ namespace user
 
       //on_click(item);
 
-      ::pointer<::data::tree_item>pitem;
+      ::pointer<::data::tree_item_base>pitem;
 
       ::user::enum_tree_element eelement;
 
@@ -764,7 +764,7 @@ namespace user
 
       auto point = pmouse->m_pointHost;
 
-      ::pointer<::data::tree_item>pitem;
+      ::pointer<::data::tree_item_base>pitem;
 
       ::user::enum_tree_element eelement;
 
@@ -803,7 +803,7 @@ namespace user
 
       auto point = m_pointLButtonUp;
 
-      ::pointer<::data::tree_item>pitem;
+      ::pointer<::data::tree_item_base>pitem;
 
       ::user::enum_tree_element eelement;
 
@@ -854,7 +854,7 @@ namespace user
 
       auto point(pointCursor);
 
-      ::pointer<::data::tree_item>pitem;
+      ::pointer<::data::tree_item_base>pitem;
 
       ::user::enum_tree_element eelement;
 
@@ -933,7 +933,7 @@ namespace user
    }
 
 
-   ::pointer<::data::tree_item>tree::_001HitTest(const ::int_point & point, ::user::enum_tree_element & eelement)
+   ::pointer<::data::tree_item_base>tree::_001HitTest(const ::int_point & point, ::user::enum_tree_element & eelement)
    {
 
       ::collection::index iy = point.y();
@@ -961,7 +961,7 @@ namespace user
 
       synchronous_lock synchronouslock(m_ptreedata ? m_ptreedata->synchronization() : nullptr);
 
-      ::pointer<::data::tree_item>pitem = get_proper_item(iItem);
+      ::pointer<::data::tree_item_base>pitem = get_proper_item(iItem);
 
       if (pitem == nullptr)
       {
@@ -1132,7 +1132,7 @@ namespace user
    }
 
 
-   void tree::_001SelectItem(::data::tree_item * pitem)
+   void tree::_001SelectItem(::data::tree_item_base * pitem)
    {
 
       if (is_selected(pitem))
@@ -1153,7 +1153,7 @@ namespace user
    }
 
 
-   void tree::_001ExpandItem(::data::tree_item * pitem, const ::action_context & context, bool bExpand, /* = true */ bool bRedraw, /*=true*/ bool bLayout /*=true*/)
+   void tree::_001ExpandItem(::data::tree_item_base * pitem, const ::action_context & context, bool bExpand, /* = true */ bool bRedraw, /*=true*/ bool bLayout /*=true*/)
    {
 
       //::data::simple_lock lock(pitem->m_pitem);
@@ -1251,7 +1251,7 @@ namespace user
    }
 
 
-   ::pointer<::data::tree>tree::find_data_tree(::data::tree_item * pitem) const
+   ::pointer<::data::tree_base>tree::find_data_tree(::data::tree_item_base * pitem) const
    {
 
       //return m_ptreedata->contains(pitem);
@@ -1261,10 +1261,10 @@ namespace user
    }
 
 
-   ::pointer<::data::tree_item>tree::find_data_tree_item(::data::item * pitem, ::collection::index * piIndex)
+   ::pointer<::data::tree_item_base>tree::find_data_tree_item(::data::item * pitem, ::collection::index * piIndex)
    {
 
-      return m_ptreedata->find(pitem, piIndex);
+      return m_ptreedata->_find(pitem, piIndex);
 
    }
 
@@ -1277,10 +1277,10 @@ namespace user
    }
 
 
-   bool tree::contains(::data::tree_item * pitem)
+   bool tree::contains(::data::tree_item_base * pitem)
    {
 
-      if (m_ptreedata->contains(pitem))
+      if (m_ptreedata->_contains(pitem))
       {
 
          return true;
@@ -1292,10 +1292,10 @@ namespace user
    }
 
 
-   void tree::_001OnItemExpand(::data::tree_item * pitem, const ::action_context & context)
+   void tree::_001OnItemExpand(::data::tree_item_base * pitem, const ::action_context & context)
    {
 
-      ::pointer<::data::tree>ptreedata = find_data_tree(pitem);
+      ::pointer<::data::tree_base>ptreedata = find_data_tree(pitem);
 
       if (ptreedata.is_set())
       {
@@ -1306,10 +1306,10 @@ namespace user
 
    }
 
-   void tree::_001OnItemCollapse(::data::tree_item * pitem, const ::action_context & context)
+   void tree::_001OnItemCollapse(::data::tree_item_base * pitem, const ::action_context & context)
    {
 
-      ::pointer<::data::tree>ptreedata = find_data_tree(pitem);
+      ::pointer<::data::tree_base>ptreedata = find_data_tree(pitem);
 
       if (ptreedata.is_set())
       {
@@ -1436,7 +1436,7 @@ namespace user
    }
 
 
-   void tree::_001OnOpenItem(::data::tree_item * pitem, const ::action_context & context)
+   void tree::_001OnOpenItem(::data::tree_item_base * pitem, const ::action_context & context)
    {
 
       information() << "tree::_001OnOpenItem";
@@ -1456,12 +1456,12 @@ namespace user
 
       post_redraw();
 
-      pitem->m_ptree->_001OnOpenItem(pitem, context + this);
+      pitem->_get_tree()->_001OnOpenItem(pitem, context + this);
 
    }
 
 
-   void tree::_001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & context, ::user::tree * ptree, const ::int_point & point)
+   void tree::_001OnItemContextMenu(::data::tree_item_base * pitem, const ::action_context & context, ::user::tree * ptree, const ::int_point & point)
    {
 
       if (context.contains(this))
@@ -1471,7 +1471,7 @@ namespace user
 
       }
 
-      pitem->m_ptree->_001OnItemContextMenu(pitem, context + this, ptree, point);
+      pitem->_get_tree()->_001OnItemContextMenu(pitem, context + this, ptree, point);
 
    }
 
@@ -1495,7 +1495,7 @@ namespace user
 
       ::user::enum_tree_element eelement;
 
-      ::pointer<::data::tree_item>pitem = _001HitTest(point, eelement);
+      ::pointer<::data::tree_item_base>pitem = _001HitTest(point, eelement);
 
       //if(eelement != e_tree_element_image && eelement != e_tree_element_text)
       //{
@@ -1582,7 +1582,7 @@ namespace user
 
       ::collection::index iIndent = _001GetIndentation();
 
-      ::pointer<::data::tree_item>pitem = m_pitemFirstVisible;
+      ::pointer<::data::tree_item_base>pitem = m_pitemFirstVisible;
 
       if (pitem == nullptr)
       {
@@ -1603,7 +1603,7 @@ namespace user
 
          }
 
-         pitem = pitem->get_item(::data::e_tree_navigation_proper_forward);
+         pitem = pitem->_get_item(::data::e_tree_navigation_proper_forward);
 
          if (pitem == nullptr)
          {
@@ -1619,7 +1619,7 @@ namespace user
    }
 
 
-   ::pointer<::data::tree_item>tree::CalcFirstVisibleItem(::collection::index & iProperIndex)
+   ::pointer<::data::tree_item_base>tree::CalcFirstVisibleItem(::collection::index & iProperIndex)
    {
 
       synchronous_lock synchronouslock(m_ptreedata ? m_ptreedata->synchronization() : nullptr);
@@ -1644,16 +1644,16 @@ namespace user
 
       auto dOffset = pointOffset.y() / dItemHeight;
 
-      ::data::tree_item * pitem = nullptr;
+      ::data::tree_item_base * pitem = nullptr;
 
       iProperIndex = 0;
 
-      pitem = m_ptreedata->get_base_item();
+      pitem = m_ptreedata->_get_base_item();
 
       for (;;)
       {
 
-         ::data::tree_item * pitemNext = pitem->get_item(::data::e_tree_navigation_proper_forward);
+         ::data::tree_item_base * pitemNext = pitem->_get_item(::data::e_tree_navigation_proper_forward);
 
          if (pitemNext == nullptr)
          {
@@ -1721,7 +1721,7 @@ namespace user
 
       nOffset = INT_MAX;
 
-      ::data::tree_item * pitem = nullptr;
+      ::data::tree_item_base * pitem = nullptr;
 
       int iWidth;
 
@@ -1747,16 +1747,16 @@ namespace user
 
       //on_ui_event(event_calc_item_height, object_tree, this);
 
-      pointer_array < ::data::tree_item > spitema;
+      pointer_array < ::data::tree_item_base > spitema;
 
-      pitem = m_ptreedata->get_base_item();
+      pitem = m_ptreedata->_get_base_item();
 
       iLevel = 0;
 
       for (;;)
       {
 
-         pitem = pitem->get_item(::data::e_tree_navigation_proper_forward, &iLevel);
+         pitem = pitem->_get_item(::data::e_tree_navigation_proper_forward, &iLevel);
 
          if (pitem == nullptr)
          {
@@ -1827,16 +1827,16 @@ namespace user
 
       ::collection::index iLevel;
 
-      ::data::tree_item * ptreeitem = nullptr;
+      ::data::tree_item_base * ptreeitem = nullptr;
 
-      pointer_array < ::data::tree_item > treeitema;
+      pointer_array < ::data::tree_item_base > treeitema;
 
-      ptreeitem = m_ptreedata->get_base_item();
+      ptreeitem = m_ptreedata->_get_base_item();
 
       for (;;)
       {
 
-         ptreeitem = ptreeitem->get_item(::data::e_tree_navigation_proper_forward, &iLevel);
+         ptreeitem = ptreeitem->_get_item(::data::e_tree_navigation_proper_forward, &iLevel);
 
          if (!ptreeitem)
          {
@@ -1845,7 +1845,7 @@ namespace user
 
          }
 
-         if (ptreeitem == m_ptreedata->get_base_item())
+         if (ptreeitem == m_ptreedata->_get_base_item())
          {
 
             break;
@@ -1913,7 +1913,7 @@ namespace user
    }
 
 
-   ::collection::count tree::selection_add(::data::tree_item_ptr_array & itemptra)
+   ::collection::count tree::selection_add(::pointer_array < ::data::tree_item_base > & itemptra)
    {
 
       ::collection::count count = 0;
@@ -1935,7 +1935,7 @@ namespace user
    }
 
 
-   bool tree::selection_add(::data::tree_item * pitem)
+   bool tree::selection_add(::data::tree_item_base * pitem)
    {
       if (!contains(pitem))
       {
@@ -1974,7 +1974,7 @@ namespace user
    }
 
 
-   ::collection::count tree::selection_set(::data::tree_item_ptr_array & itemptra)
+   ::collection::count tree::selection_set(::pointer_array < ::data::tree_item_base > & itemptra)
    {
 
       ::collection::count count = 0;
@@ -1996,7 +1996,7 @@ namespace user
    }
 
 
-   bool tree::selection_set(::data::tree_item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
+   bool tree::selection_set(::data::tree_item_base * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
    {
 
       if (!contains(pitem))
@@ -2013,7 +2013,7 @@ namespace user
 
       }
 
-      if (bIfParentInSelection && !is_selected(pitem->m_pparent))
+      if (bIfParentInSelection && !is_selected(pitem->_get_parent()))
       {
 
          return true;
@@ -2050,7 +2050,7 @@ namespace user
    }
 
 
-   ::collection::count tree::selection_erase(::data::tree_item_ptr_array & itemptra)
+   ::collection::count tree::selection_erase(::pointer_array < ::data::tree_item_base > & itemptra)
    {
 
       ::collection::count count = 0;
@@ -2072,7 +2072,7 @@ namespace user
    }
 
 
-   bool tree::selection_erase(::data::tree_item * pitem)
+   bool tree::selection_erase(::data::tree_item_base * pitem)
    {
 
       return m_pitemptraSelected->erase(pitem) >= 0;
@@ -2098,7 +2098,7 @@ namespace user
    }
 
 
-   bool tree::hover(::data::tree_item * pitem)
+   bool tree::hover(::data::tree_item_base * pitem)
    {
 
       if (pitem == nullptr)
@@ -2122,7 +2122,7 @@ namespace user
    }
 
 
-   bool tree::is_selected(const ::data::tree_item * pitem) const
+   bool tree::is_selected(const ::data::tree_item_base * pitem) const
    {
 
       return m_pitemptraSelected->contains(pitem);
@@ -2143,7 +2143,7 @@ namespace user
       for (int i = 0; i < m_pitemptraSelected->get_count(); i++)
       {
 
-         if (m_pitemptraSelected->element_at(i)->m_pdataitem == pitemdata)
+         if (m_pitemptraSelected->element_at(i)->_data_item() == pitemdata)
          {
 
             return true;
@@ -2157,7 +2157,7 @@ namespace user
    }
 
 
-   bool tree::is_hover(const ::data::tree_item * pitem) const
+   bool tree::is_hover(const ::data::tree_item_base * pitem) const
    {
 
       return pitem && m_pitemHover == pitem;
@@ -2175,7 +2175,7 @@ namespace user
 
       }
 
-      if (m_pitemHover->m_pdataitem != pitem)
+      if (m_pitemHover->_data_item() != pitem)
       {
 
          return false;
@@ -2187,7 +2187,7 @@ namespace user
    }
 
 
-   bool tree::can_merge(const ::data::tree * ptree) const
+   bool tree::can_merge(const ::user::tree_data_base * ptree) const
    {
 
       if (!m_ptreedata)
@@ -2197,12 +2197,12 @@ namespace user
 
       }
 
-      return !m_ptreedata->contains(ptree);
+      return !m_ptreedata->_contains(ptree);
 
    }
 
 
-   bool tree::merge(::data::tree * pdatatree, bool bBind)
+   bool tree::merge(::user::tree_data_base * pdatatree, bool bBind)
    {
 
       if (pdatatree == nullptr)
@@ -2212,57 +2212,47 @@ namespace user
 
       }
 
-      ::user::tree_data * ptree = dynamic_cast <::user::tree_data *>  (pdatatree);
-
-      if (ptree == nullptr)
+      if (!can_merge(pdatatree))
       {
 
          return false;
 
       }
 
-      if (!can_merge(ptree))
-      {
+      m_ptreedata->_insert_item(pdatatree);
 
-         return false;
-
-      }
-
-      m_ptreedata->insert_item(ptree);
-
-      ptree->on_merge_user_tree(this);
+      pdatatree->on_merge_user_tree(this);
 
       if (bBind)
       {
 
-         m_treeaBound.add(ptree);
+         m_treeaBound.add(pdatatree);
 
-         ptree->m_usertreeaBound.add(this);
+         pdatatree->m_usertreeaBound.add(this);
 
-         ptree->on_bind_user_tree(this);
+         pdatatree->on_bind_user_tree(this);
 
       }
 
-      ptree->m_usertreea.add_unique(this);
+      pdatatree->m_usertreea.add_unique(this);
 
       ::pointer<::user::impact>pimpact = this;
 
       if (pimpact.is_set())
       {
 
-         pimpact->get_document()->add_data(ptree);
+         pimpact->get_document()->add_data(pdatatree);
 
       }
 
-      ptree->install_message_routing(this);
+      pdatatree->install_message_routing(this);
 
       return true;
-
 
    }
 
 
-   ::pointer<::data::tree_item>tree::get_proper_item(::collection::index i, ::collection::index * piLevel)
+   ::pointer<::data::tree_item_base>tree::get_proper_item(::collection::index i, ::collection::index * piLevel)
    {
 
       if (!m_ptreedata)
@@ -2272,7 +2262,7 @@ namespace user
 
       }
 
-      ::data::tree_item * pitem = m_ptreedata->get_proper_item(i, piLevel);
+      ::data::tree_item_base * pitem = m_ptreedata->_get_proper_item(i, piLevel);
 
       if (::is_set(pitem))
       {
@@ -2286,7 +2276,7 @@ namespace user
    }
 
 
-   ::pointer<::data::tree_item>tree::_get_proper_item(::collection::index i, ::collection::index * piLevel, ::collection::index * piCount)
+   ::pointer<::data::tree_item_base>tree::_get_proper_item(::collection::index i, ::collection::index * piLevel, ::collection::index * piCount)
    {
 
       if (!m_ptreedata)
@@ -2298,9 +2288,9 @@ namespace user
 
       ::collection::index iCount = 0;
 
-      ::pointer<::data::tree_item>pitem;
+      ::pointer<::data::tree_item_base>pitem;
 
-      pitem = m_ptreedata->_get_proper_item(i, piLevel, &iCount);
+      pitem = m_ptreedata->__get_proper_item(i, piLevel, &iCount);
 
       if (::is_set(pitem))
       {
@@ -2321,14 +2311,14 @@ namespace user
    }
 
 
-   ::collection::index tree::get_proper_item_index(::data::tree_item * pitemParam, ::collection::index * piLevel)
+   ::collection::index tree::get_proper_item_index(::data::tree_item_base * pitemParam, ::collection::index * piLevel)
    {
 
       ::collection::index iCount = 0;
 
       ::collection::index iFound;
 
-      iFound = m_ptreedata->get_proper_item_index(pitemParam, piLevel, &iCount);
+      iFound = m_ptreedata->_get_proper_item_index(pitemParam, piLevel, &iCount);
 
       if (iFound >= 0)
       {
@@ -2363,7 +2353,7 @@ namespace user
    }
 
 
-   void tree::_001EnsureVisible(::data::tree_item * pitem)
+   void tree::_001EnsureVisible(::data::tree_item_base * pitem)
    {
 
       if (pitem == nullptr)
@@ -2373,14 +2363,14 @@ namespace user
 
       }
 
-      ::data::tree_item * pitemExpand = pitem;
+      ::data::tree_item_base * pitemExpand = pitem;
 
       while (pitemExpand != nullptr)
       {
 
          pitemExpand->m_dwState |= ::data::e_tree_item_state_expanded;
 
-         pitemExpand = pitemExpand->m_pparent;
+         pitemExpand = pitemExpand->_get_parent();
 
       }
 

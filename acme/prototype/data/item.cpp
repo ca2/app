@@ -33,10 +33,10 @@ namespace data
    }
 
 
-   void item::data_item_on_fill_children(::data::tree_item * pitem)
-   {
+   //void item::data_item_on_fill_children(::data::tree_item < ::data::item > * pitem)
+   //{
 
-   }
+   //}
 
 
    //::stream & item::write(::stream& s) const

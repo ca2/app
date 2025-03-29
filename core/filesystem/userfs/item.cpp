@@ -34,23 +34,23 @@ namespace userfs
 
 
 
-   ::std::strong_ordering item::CompareArrangeByName(const ::pointer<::data::tree_item>& pitem1, const ::pointer<::data::tree_item> pitem2)
-   {
+   //::std::strong_ordering item::CompareArrangeByName(const ::pointer<::data::tree_item>& pitem1, const ::pointer<::data::tree_item> pitem2)
+   //{
 
-      if(pitem1->m_ptree == pitem2->m_ptree)
-      {
+   //   if(pitem1->m_ptree == pitem2->m_ptree)
+   //   {
 
-         return pitem1->m_pdataitem.cast < item >()->m_strName.case_insensitive_order(pitem2->m_pdataitem.cast < item >()->m_strName);
+   //      return pitem1->m_pdataitem.cast < item >()->m_strName.case_insensitive_order(pitem2->m_pdataitem.cast < item >()->m_strName);
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         return ansi_cmp(typeid(pitem1).name(), typeid(pitem2).name()) <=> 0;
+   //      return ansi_cmp(typeid(pitem1).name(), typeid(pitem2).name()) <=> 0;
 
-      }
+   //   }
 
-   }
+   //}
 
    int item::get_index() const
    {
@@ -109,7 +109,7 @@ namespace userfs
 
       auto psession = m_ptreedata->session();
 
-      auto puser = user();
+      auto puser = psession->user();
 
       auto pshell = puser->shell();
 

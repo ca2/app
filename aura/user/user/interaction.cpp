@@ -81,6 +81,8 @@ CLASS_DECL_AURA int get_last_x_abs()
 }
 #endif
 
+#define REDRAW_LOG_LEVEL 2
+
 
 CLASS_DECL_AURA::int_point __get_top_right();
 CLASS_DECL_AURA void __set_top_right(const ::int_point & pointTopRight);
@@ -2322,7 +2324,11 @@ namespace user
             if (::is_set(pwindow))
             {
 
+#if REDRAW_LOG_LEVEL > 7
+
                information() << "pwindow->post_redraw();";
+
+#endif
 
                pwindow->post_redraw();
 

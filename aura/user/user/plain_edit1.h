@@ -223,7 +223,7 @@ namespace user
       class ::time                          m_timeCaretPeriod;
       string_array                        m_straLines;
       double                              m_dy;
-      bool                                m_bGetTextNeedUpdate;
+      //bool                                m_bGetTextNeedUpdate;
       bool                                m_bNeedScrollUpdate;
       bool                                m_bTabInsertSpaces;
       character_count                             m_iImpactOffset; // in bytes

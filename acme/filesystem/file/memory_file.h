@@ -276,9 +276,14 @@ public:
 
       }
 
-      auto source = m_pmemory->m_begin + m_position;
+      if (target)
+      {
 
-      inline_byte_array_copy(target, source, s);
+         auto source = m_pmemory->m_begin + m_position;
+
+         inline_byte_array_copy(target, source, s);
+
+      }
 
       m_position += s;
 

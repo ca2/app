@@ -968,7 +968,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::add_words(const SCO
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 template < bool bAddEmpty >
-typename Type::const_iterator string_array_base < Type, RawType, t_etypeContainer > ::_____add_lines_rn(const SCOPED_STRING& scopedstr)
+typename Type::const_iterator string_array_base < Type, RawType, t_etypeContainer > ::_____add_lines_rn(const SCOPED_STRING& scopedstr, bool bWithEOL)
 {
 
    auto range = scopedstr();
@@ -992,13 +992,13 @@ typename Type::const_iterator string_array_base < Type, RawType, t_etypeContaine
 
          pNext++;
 
-         if (pNext >= range.end())
-         {
+         //if (pNext >= range.end())
+         //{
 
-            return pNext;
+         //   return pNext;
 
-         }
-         else if (*pNext == '\n')
+         //}
+         if (*pNext == '\n')
          {
 
             pNext++;
@@ -1013,7 +1013,7 @@ typename Type::const_iterator string_array_base < Type, RawType, t_etypeContaine
 
       }
 
-      __add_lines_suffix<bAddEmpty>(range.begin(), p);
+      __add_lines_suffix<bAddEmpty>(range.begin(), bWithEOL ? pNext : p);
 
       range.begin(pNext);
 
@@ -1027,7 +1027,7 @@ typename Type::const_iterator string_array_base < Type, RawType, t_etypeContaine
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 template < bool bAddEmpty >
-void string_array_base < Type, RawType, t_etypeContainer > ::_add_lines(const SCOPED_STRING& strParam)
+void string_array_base < Type, RawType, t_etypeContainer > ::_add_lines(const SCOPED_STRING& strParam, bool bWithEOL)
 {
 
    auto pN = strParam.find_first('\n');
@@ -1042,13 +1042,13 @@ void string_array_base < Type, RawType, t_etypeContainer > ::_add_lines(const SC
       if (pR)
       {
 
-         p = _____add_lines_rn<bAddEmpty>(strParam);
+         p = _____add_lines_rn<bAddEmpty>(strParam, bWithEOL);
 
       }
       else
       {
 
-         p = _____add_lines<'\n', bAddEmpty>(strParam);
+         p = _____add_lines<'\n', bAddEmpty>(strParam, bWithEOL);
 
       }
 
@@ -1056,7 +1056,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::_add_lines(const SC
    else if (pR)
    {
 
-      p = _____add_lines<'\r', bAddEmpty>(strParam);
+      p = _____add_lines<'\r', bAddEmpty>(strParam, bWithEOL);
 
    }
    else

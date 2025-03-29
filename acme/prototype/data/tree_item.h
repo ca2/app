@@ -1,401 +1,77 @@
 #pragma once
 
 
-//#include "acme/prototype/collection/pointer_array.h"
+#include "acme/prototype/data/item.h"
+#include "acme/prototype/data/tree_item_base.h"
 
+template < typename DATA_ITEM >
+concept primitive_data_item = ::std::is_base_of_v < ::data::item, DATA_ITEM >;
 
-//class image_list;
-
-
-template < typename LIST_ITEM >
-bool list_item_is_before(const LIST_ITEM * pitem1, const LIST_ITEM * pitem2)
-{
-
-   if (::is_null(pitem2))
-   {
-
-      return false;
-
-   }
-
-   if (pitem1 == pitem2)
-   {
-
-      return false;
-
-   }
-
-   while (::is_set(pitem1))
-   {
-
-      if (pitem1->m_pnext == pitem2)
-      {
-
-         return true;
-
-      }
-
-      pitem1 = pitem1->m_pnext;
-
-   }
-
-   return false;
-
-}
-
-
-template < typename LIST_ITEM >
-const LIST_ITEM * list_item_calculate_head(const LIST_ITEM * pitem)
-{
-
-   if (::is_null(pitem))
-   {
-
-      return nullptr;
-
-   }
-
-   while(true)
-   {
-
-      if (::is_null(pitem->m_pprevious))
-      {
-
-         return pitem;
-
-      }
-
-      pitem = pitem->m_pprevious;
-
-   }
-
-}
-
-
-template < typename LIST_ITEM >
-const LIST_ITEM * list_item_calculate_tail(const LIST_ITEM * pitem)
-{
-
-   if (::is_null(pitem))
-   {
-
-      return nullptr;
-
-   }
-
-   while (true)
-   {
-
-      if (::is_null(pitem->m_pnext))
-      {
-
-         return pitem;
-
-      }
-
-      pitem = pitem->m_pnext;
-
-   }
-
-}
-
-
-template < typename LIST_ITEM, typename ARRAY >
-void list_set_children(LIST_ITEM* plist, const ARRAY& a)
-{
-
-   list_erase_all(plist);
-
-   if (a.is_empty())
-   {
-
-      return;
-
-   }
-
-   plist->m_phead = a.first();
-
-   plist->m_ptail = a.last();
-
-   LIST_ITEM* pprevious = nullptr;
-
-   for (auto& p : a)
-   {
-
-      if (pprevious)
-      {
-
-         pprevious->m_pnext = p;
-
-      }
-
-      p->m_pprevious = pprevious;
-
-      pprevious = p;
-
-   }
-
-   if (pprevious)
-   {
-
-      pprevious->m_pnext = nullptr;
-
-   }
-
-}
-
-template < typename LIST_ITEM >
-void list_swap(LIST_ITEM* plist, LIST_ITEM* pitemA, LIST_ITEM* pitemB)
-{
-
-   auto pitemAPrevious = pitemA->m_pprevious;
-
-   auto pitemANext = pitemA->m_pnext;
-
-   auto pitemBPrevious = pitemB->m_pprevious;
-
-   auto pitemBNext = pitemB->m_pnext;
-
-   if (pitemAPrevious == pitemB)
-   {
-
-      if (pitemB->m_pnext != pitemA)
-      {
-
-         throw "error";
-
-      }
-
-      pitemANext->m_pprevious = pitemB;
-
-      pitemBPrevious->m_pnext = pitemA;
-
-      pitemA->m_pprevious = pitemB->m_pprevious;
-
-      pitemB->m_pnext = pitemA->m_pnext;
-
-      pitemA->m_pnext = pitemB;
-
-      pitemB->m_pprevious = pitemA;
-
-   }
-   else if (pitemANext == pitemB)
-   {
-
-      if (pitemB->m_pprevious != pitemA)
-      {
-
-         throw "error";
-
-      }
-
-      pitemAPrevious->m_pnext = pitemB;
-
-      pitemBNext->m_pprevious = pitemA;
-
-      pitemA->m_pnext = pitemB->m_pnext;
-
-      pitemB->m_pprevious = pitemA->m_pprevious;
-
-      pitemA->m_pprevious = pitemB;
-
-      pitemB->m_pnext = pitemA;
-
-   }
-   else
-   {
-
-      pitemA->m_pprevious = pitemBPrevious;
-
-      pitemA->m_pnext = pitemBNext;
-
-      pitemB->m_pprevious = pitemAPrevious;
-
-      pitemB->m_pnext = pitemANext;
-
-      if (::is_set(pitemAPrevious))
-      {
-
-         pitemAPrevious->m_pnext = pitemB;
-
-      }
-
-      if (::is_set(pitemANext))
-      {
-
-         pitemANext->m_pprevious = pitemB;
-
-      }
-
-      if (::is_set(pitemBPrevious))
-      {
-
-         pitemBPrevious->m_pnext = pitemA;
-
-      }
-
-      if (::is_set(pitemBNext))
-      {
-
-         pitemBNext->m_pprevious = pitemA;
-
-      }
-
-   }
-
-}
-
-
-
-template < typename LIST_ITEM, typename PRED >
-void list_sort(LIST_ITEM* pitem, PRED pred)
-{
-
-   if (::is_null(pitem->m_phead) || ::is_null(pitem->m_ptail))
-   {
-
-      return;
-
-   }
-
-   ::raw_array < LIST_ITEM* > stackLowerBound;
-   ::raw_array < LIST_ITEM* > stackUpperBound;
-
-   LIST_ITEM* iLowerBound;
-   LIST_ITEM* iUpperBound;
-   LIST_ITEM* iLPos, * iUPos, * iMPos;
-
-   stackLowerBound.push(pitem->m_phead);
-   stackUpperBound.push(pitem->m_ptail);
-   while (true)
-   {
-      iLowerBound = stackLowerBound.pop();
-      iUpperBound = stackUpperBound.pop();
-      iLPos = iLowerBound;
-      iUPos = iUpperBound;
-      auto p1 = iLPos;
-      auto p2 = iUPos;
-      iMPos = p1;
-      while (p1 != p2)
-      {
-         p2 = p2->m_pprevious;
-         if (p1 == p2)
-         {
-            iMPos = p1;
-            break;
-         }
-         p1 = p1->m_pnext;
-         if (p1 == p2)
-         {
-            iMPos = p1;
-            break;
-         }
-      }
-      while (true)
-      {
-         while (true)
-         {
-            if (iMPos == iUPos)
-               break;
-            if (pred(iMPos, iUPos))
-            {
-               iUPos = iUPos->m_pprevious;
-            }
-            else
-            {
-               list_swap(pitem, iMPos, iUPos);
-               break;
-            }
-         }
-         if (iMPos == iUPos)
-            break;
-         iMPos = iUPos;
-         while (true)
-         {
-            if (iMPos == iLPos)
-               break;
-            if (pred(iLPos, iMPos))
-            {
-               iLPos = iLPos->m_pnext;
-            }
-            else
-            {
-               list_swap(pitem, iLPos, iMPos);
-               break;
-            }
-         }
-         if (iMPos == iLPos)
-            break;
-         iMPos = iLPos;
-      }
-      if (list_item_is_before(iLowerBound, (const LIST_ITEM *) iMPos->m_pprevious))
-      {
-         stackLowerBound.push(iLowerBound);
-         stackUpperBound.push(iMPos->m_pprevious);
-      }
-      if (list_item_is_before((const LIST_ITEM *)iMPos->m_pnext, iUpperBound))
-      {
-         stackLowerBound.push(iMPos->m_pnext);
-         stackUpperBound.push(iUpperBound);
-      }
-      if (stackLowerBound.get_size() == 0)
-         break;
-   }
-   pitem->m_phead = list_item_calculate_head((const LIST_ITEM *)pitem->m_phead);
-   pitem->m_ptail = list_item_calculate_tail((const LIST_ITEM *)pitem->m_ptail);
-}
 
 
 namespace data
 {
 
 
+   template < primitive_data_item DATA_ITEM >
+   class tree_item;
+
+   template < primitive_data_item DATA_ITEM >
    class tree_item_ptr_array;
+
+   template < primitive_data_item DATA_ITEM >
    class tree;
 
 
+} // namespace data
 
-   class CLASS_DECL_ACME tree_item :
-      virtual public particle
+
+namespace data
+{
+
+
+   template < primitive_data_item DATA_ITEM >
+   class tree_item :
+      virtual public tree_item_base
    {
    protected:
 
 
-      bool                             m_bPrevious = false;
-      bool                             m_bNext = false;
+      //bool                             m_bPrevious = false;
+      //bool                             m_bNext = false;
 
       ::pointer<tree_item>             m_pprevious2;
       ::pointer<tree_item>             m_pnext2;
       ::pointer_array < tree_item >    m_treeitema2;
-      ::collection::index              m_iIndex = -2;
+      //::collection::index              m_iIndex = -2;
 
    public:
 
 
-      enum enum_flag
-      {
+      //enum enum_flag
+      //{
 
-         flag_previous_or_parent = 1,
-         flag_previous = 2,
-         flag_next = 4,
-         flag_next_or_parent = 8,
-         flag_child_or_next = 16,
-         flag_child_next_or_parent = 32,
-         flag_previoub = flag_previous_or_parent | flag_previous,
-         flag_nexts = flag_next | flag_next_or_parent | flag_child_or_next| flag_child_next_or_parent,
+      //   flag_previous_or_parent = 1,
+      //   flag_previous = 2,
+      //   flag_next = 4,
+      //   flag_next_or_parent = 8,
+      //   flag_child_or_next = 16,
+      //   flag_child_next_or_parent = 32,
+      //   flag_previoub = flag_previous_or_parent | flag_previous,
+      //   flag_nexts = flag_next | flag_next_or_parent | flag_child_or_next| flag_child_next_or_parent,
 
-      };
+      //};
 
       //::pointer<tree_item>             m_phead; // first child
       //::pointer<tree_item>             m_ptail; // last child
       ::pointer < tree_item >          m_pparent;
-      ::collection::index                            m_iIndexHint;
-      tree *                           m_ptree;
-      ::collection::index                            m_iLevel;
-      ::pointer<::data::item>          m_pdataitem;
-      uptr                             m_dwUser;
-      unsigned int                              m_dwState;
-      uptr                             m_dwMetaData;
+      //::collection::index              m_iIndexHint;
+      tree < DATA_ITEM > *             m_ptree;
+      //::collection::index              m_iLevel;
+      ::pointer < DATA_ITEM >          m_pdataitem;
+      //uptr                             m_dwUser;
+      //unsigned int                     m_dwState;
+      //uptr                             m_dwMetaData;
 
 
       tree_item();
@@ -421,20 +97,20 @@ namespace data
 
 
       #endif
-      virtual void clear_cache();
+      void clear_cache();
       void destroy() override;
-      virtual bool      erase_item_from_parent();
+      bool erase_item_from_parent();
 
       tree_item * get_child_by_user_data(uptr iUserData);
       tree_item * find_next_by_user_data(uptr iUserData);
-      void get_children(::data::tree_item_ptr_array &ptra);
+      void get_children(::data::tree_item_ptr_array < DATA_ITEM > &ptra);
       ::collection::count get_children_count();
       tree_item * get_parent();
       ::collection::count get_expandable_children_count();
       ::collection::count get_proper_descendant_count();
       tree_item * get_expandable_child(::collection::index iIndex);
 
-      bool insert(enum_relative erelative, ::data::tree_item * pitemNew);
+      bool insert(enum_relative erelative, tree_item * pitemNew);
 
       ::collection::index calc_level();
       ::collection::index get_level() { return m_iLevel >= 0 ? m_iLevel : calc_level(); }
@@ -459,10 +135,17 @@ namespace data
       }
 
 
-      virtual ::data::tree_item * _____previous();
-      virtual ::data::tree_item * _____next();
+      virtual tree_item * _____previous();
+      virtual tree_item * _____next();
       //virtual ::data::tree_item * _____head();
       //virtual ::data::tree_item * _____tail();
+
+
+
+      virtual tree_item_base * __previous() { return ____previous(); }
+      virtual tree_item_base * __next() { return ____next(); }
+      virtual tree_item_base * __head() { return ____head(); }
+      virtual tree_item_base * __tail() { return ____tail(); }
 
 
       tree_item * get_previous_or_parent(::collection::index * iLevelOffset = nullptr);
@@ -489,7 +172,7 @@ namespace data
       tree_item * first_child();
 
       // [](const ::data::tree_item * pitem1, const ::data::tree_item * pitem2)
-      virtual void sort_children(const ::function < bool(const ::data::tree_item * p1, const ::data::tree_item * p2) > & functionLess);
+      virtual void sort_children(const ::function < bool(const tree_item * p1, const tree_item * p2) > & functionLess);
 
 
 
@@ -511,15 +194,15 @@ namespace data
 
       }
 
-      tree_item * get_item(enum_tree_navigation enavigation, ::collection::index * piLevelOffset = nullptr);
-      tree_item * get_item(enum_relative erelative);
+      virtual tree_item * get_item(enum_tree_navigation enavigation, ::collection::index * piLevelOffset = nullptr);
+      virtual tree_item * get_item(enum_relative erelative);
 
       virtual bool contains(const tree_item * ptreeitem);
       virtual tree_item * get_proper_item(::collection::index iIndex, ::collection::index * piLevel);
       virtual ::collection::index get_proper_item_index(tree_item * pitem, ::collection::index * piLevel);
       virtual ::collection::count get_proper_item_count();
 
-      virtual tree * get_tree();
+      tree < DATA_ITEM > * get_tree();
 
       virtual string get_text() const;
       virtual ::collection::index get_image() const;
@@ -532,20 +215,1252 @@ namespace data
       void erase_tree_item_descendants();
       void erase_child(tree_item * ptreeitem);
 
-      virtual bool is_expanded() const;
-      virtual bool is_expandable() const;
+      bool is_expanded() const;
+      bool is_expandable() const;
 
       virtual void on_fill_children();
 
-      virtual bool is_descendant(tree_item * pitem);
-      virtual bool is_ascendant(tree_item * pitem);
+      bool is_descendant(tree_item * pitem);
+      bool is_ascendant(tree_item * pitem);
+
+      ::collection::index _find_child(tree_item_base * ptreeitem) const override
+      {
+         return m_treeitema2.find_first(dynamic_cast < tree_item <DATA_ITEM >*>(ptreeitem));
+      }
+      tree_item_base * _child_at(::collection::index i) const override
+      {
+         return m_treeitema2[i];
+      }
+      void _erase_child_at(::collection::index i) override
+      {
+         m_treeitema2.erase_at(i);
+      }
+
+      void _insert_child_at(::collection::index i, tree_item_base * ptreeitemNew) override
+      {
+         m_treeitema2.insert_at(i, dynamic_cast < tree_item < DATA_ITEM > *> (ptreeitemNew));
+      }
+      void _add_child(tree_item_base * ptreeitemNew) override
+      {
+         m_treeitema2.add_item(ptreeitemNew);
+      }
+      void _set_child_at(::collection::index i, tree_item_base * ptreeitemSet) override
+      {
+         m_treeitema2[i] = ptreeitemSet;
+      }
+
+      void _erase_children() override
+      {
+         m_treeitema2.clear();
+
+      }
 
 
    };
 
 
-   class CLASS_DECL_ACME tree_item_ptr_array :
-      public pointer_array < tree_item >
+
+   template < primitive_data_item DATA_ITEM > tree_item < DATA_ITEM >::tree_item()
+   {
+
+      m_iIndexHint = -1;
+      m_dwUser = 0;
+      m_dwState = 0;
+      m_ptree = nullptr;
+      m_pparent = nullptr;
+      m_iLevel = -1;
+      m_pparent = nullptr;
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > tree_item < DATA_ITEM >::~tree_item()
+   {
+
+   }
+
+
+    template < primitive_data_item DATA_ITEM > 
+    tree <DATA_ITEM> * tree_item < DATA_ITEM >::get_tree()
+   {
+
+      return m_ptree;
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM >
+   void tree_item < DATA_ITEM >::set_parent(tree_item * pparent)
+   {
+
+      //if(m_pparent == pparent || pparent == this || is_descendant(pparent) || is_ascendant(pparent))
+      if (m_pparent == pparent || pparent == this || is_descendant(pparent))
+      {
+
+         return;
+
+      }
+
+      if (::is_set(pparent))
+      {
+
+         pparent->m_treeitema2.add_unique(this);
+
+      }
+
+      m_pparent->m_treeitema2.erase(this);
+
+      m_pparent = pparent;
+
+      for (auto pitem : m_pparent->m_treeitema2)
+      {
+
+         pitem->clear_cache();
+
+      }
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM >
+   void tree_item < DATA_ITEM >::erase_tree_item()
+   {
+
+      erase_tree_item_descendants();
+
+      if (m_pparent)
+      {
+
+         m_pparent->erase_child(this);
+
+      }
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   void tree_item < DATA_ITEM >::erase_child(tree_item * ptreeitem)
+   {
+
+      auto iIndex = m_treeitema2.find_first(ptreeitem);
+
+      if (iIndex < 0)
+      {
+
+         return;
+
+      }
+
+      m_treeitema2.erase_at(iIndex);
+
+      for (auto pitem : m_treeitema2)
+      {
+
+         pitem->clear_cache();
+
+      }
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   void tree_item < DATA_ITEM >::erase_tree_item_descendants()
+   {
+
+      for (auto & p : m_treeitema2)
+      {
+
+         p->erase_tree_item_descendants();
+
+         p->clear_cache();
+
+      }
+
+      //list_predicate(this, [](auto p) { p->erase_tree_item(); });
+
+      //list_erase_all(this);
+
+      m_treeitema2.clear();
+
+      clear_cache();
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM >
+   tree_item <DATA_ITEM> * tree_item < DATA_ITEM >::find_next_by_user_data(uptr iUserData)
+   {
+
+      auto ptreeitem = this;
+
+      while (true)
+      {
+
+         ptreeitem = ptreeitem->get_item(e_tree_navigation_expanded_forward);
+
+         if (!ptreeitem)
+         {
+
+            return nullptr;
+
+         }
+
+         if (ptreeitem->m_dwUser == (unsigned int)iUserData)
+         {
+
+            return ptreeitem;
+
+         }
+
+      }
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   void tree_item < DATA_ITEM >::clear_cache()
+   {
+
+      m_bPrevious = false;
+      m_bNext = false;
+      m_iIndex = -2;
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   void tree_item < DATA_ITEM >::destroy()
+   {
+
+      m_pparent.release();
+
+      m_treeitema2.destroy();
+
+      m_ptree = nullptr;
+
+   }
+
+   
+   template < primitive_data_item DATA_ITEM > 
+   bool tree_item < DATA_ITEM >::erase_item_from_parent()
+   {
+
+      tree_item * pitem = this;
+
+      if (pitem->m_pparent == nullptr)
+      {
+
+         return true;
+
+      }
+
+      if (!pitem->m_pparent->m_treeitema2.contains(pitem))
+      {
+
+         // self healing?
+         pitem->m_pparent = nullptr;
+
+         return false;
+
+      }
+
+      pitem->m_pparent->m_treeitema2.erase(pitem);
+
+      for (auto p : pitem->m_pparent->m_treeitema2)
+      {
+
+         p->clear_cache();
+
+      }
+      pitem->m_pparent = nullptr;
+
+      return true;
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   bool tree_item < DATA_ITEM >::contains(const tree_item * ptreeitem)
+   {
+
+      if (ptreeitem == this)
+      {
+
+         return true;
+
+      }
+
+      for (auto & p : m_treeitema2)
+      {
+
+         if (p->contains(ptreeitem))
+         {
+
+            return true;
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   bool tree_item < DATA_ITEM >::insert(enum_relative erelative, tree_item * pitemNew)
+   {
+
+      if (contains(pitemNew))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      if (erelative == e_relative_first_child)
+      {
+
+         pitemNew->erase_item_from_parent();
+
+         m_treeitema2.insert_at(0, pitemNew);
+
+         for (auto & pitem : m_treeitema2)
+         {
+
+            pitem->clear_cache();
+
+         }
+
+         pitemNew->m_iLevel = m_iLevel + 1;
+
+         pitemNew->m_pparent = this;
+
+         return true;
+
+      }
+      else if (erelative == e_relative_last_child)
+      {
+
+         pitemNew->erase_item_from_parent();
+
+         m_treeitema2.add(pitemNew);
+
+         for (auto & pitem : m_treeitema2)
+         {
+
+            pitem->clear_cache();
+
+         }
+
+         pitemNew->m_iLevel = m_iLevel + 1;
+
+         pitemNew->m_pparent = this;
+
+         return true;
+
+      }
+      else if (erelative == e_relative_previous_sibling)
+      {
+
+         ASSERT(m_pparent != nullptr);
+
+         if (m_pparent == nullptr)
+         {
+
+            return false;
+
+         }
+
+         auto iFind = m_pparent->m_treeitema2.find_first(this);
+
+         if (iFind < 0)
+         {
+
+            // self-healinng
+            m_pparent = nullptr;
+
+            return false;
+
+         }
+
+         m_pparent->m_treeitema2.insert_at(iFind, pitemNew);
+
+         for (auto & pitem : m_pparent->m_treeitema2)
+         {
+
+            pitem->clear_cache();
+
+         }
+
+         pitemNew->m_iLevel = m_iLevel;
+
+         pitemNew->m_pparent = m_pparent;
+
+         return true;
+
+      }
+      else if (erelative == e_relative_next_sibling)
+      {
+
+         if (m_pparent == nullptr)
+         {
+
+            return false;
+
+         }
+
+         auto iFind = m_pparent->m_treeitema2.find_first(this);
+
+         if (iFind < 0)
+         {
+
+            // self-healing
+            m_pparent = nullptr;
+
+            return false;
+
+         }
+
+         m_pparent->m_treeitema2.insert_at(iFind + 1, pitemNew);
+
+         for (auto & pitem : m_pparent->m_treeitema2)
+         {
+
+            pitem->clear_cache();
+
+         }
+
+         pitemNew->m_iLevel = m_iLevel;
+
+         pitemNew->m_pparent = m_pparent;
+
+         return true;
+
+      }
+      else if (erelative == e_relative_last_sibling)
+      {
+
+         m_pparent->m_treeitema2.add(pitemNew);
+
+         for (auto & pitem : m_pparent->m_treeitema2)
+         {
+
+            pitem->clear_cache();
+
+         }
+
+         pitemNew->m_iLevel = m_iLevel;
+
+         pitemNew->m_pparent = m_pparent;
+
+         return true;
+
+      }
+      else if (erelative == e_relative_replace)
+      {
+
+         auto iFind = m_pparent->m_treeitema2.find_first(this);
+
+         if (iFind < 0)
+         {
+
+            m_pparent = nullptr;
+
+            return false;
+
+         }
+
+         m_pparent->m_treeitema2[iFind] = pitemNew;
+
+         for (auto & pitem : m_pparent->m_treeitema2)
+         {
+
+            pitem->clear_cache();
+
+         }
+
+         m_pparent = nullptr;
+
+         erase_tree_item();
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM >
+   void tree_item < DATA_ITEM >::sort_children(const ::function < bool(const tree_item * p1, const tree_item * p2) > & functionLess)
+   {
+
+      //data_tree_item_list_sort(this, functionLess);
+
+      m_treeitema2.predicate_sort(functionLess);
+
+      for (auto & pitem : m_treeitema2)
+      {
+
+         pitem->clear_cache();
+
+      }
+
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   tree_item <DATA_ITEM> * tree_item < DATA_ITEM >::get_child_by_user_data(uptr iUserData)
+   {
+
+      auto iFind = m_treeitema2.predicate_find_first([iUserData](auto p)
+         {
+
+            return p->m_dwUser == iUserData;
+
+         });
+
+      if (iFind < 0)
+      {
+
+         return nullptr;
+
+      }
+
+      return m_treeitema2[iFind];
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM >
+   void tree_item < DATA_ITEM >::get_children(tree_item_ptr_array<DATA_ITEM> & ptra)
+   {
+
+      ptra.append(m_treeitema2);
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   ::collection::count  tree_item < DATA_ITEM >::get_children_count()
+   {
+
+      return m_treeitema2.get_count();
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   tree_item < DATA_ITEM > * tree_item < DATA_ITEM >::get_parent()
+   {
+
+      return m_pparent;
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM >
+   ::collection::count tree_item < DATA_ITEM >::get_expandable_children_count()
+   {
+
+      ::collection::count c = 0;
+
+      for (auto & p : m_treeitema2)
+      {
+
+         if (p->get_children_count() > 0)
+         {
+
+            c++;
+
+         }
+
+      }
+
+      return c;
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   tree_item <DATA_ITEM>  * tree_item < DATA_ITEM >::get_expandable_child(::collection::index iIndex)
+   {
+
+      ::collection::count c = 0;
+
+      auto iFind = m_treeitema2.predicate_find_first([&c, iIndex](auto & p)
+         {
+
+            if (p->get_children_count() > 0)
+            {
+
+               if (c == iIndex)
+               {
+
+                  return true;
+
+               }
+
+            }
+
+            return false;
+
+         });
+
+      if (iFind < 0)
+      {
+
+         return nullptr;
+
+      }
+
+      return m_treeitema2[iFind];
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   ::collection::count tree_item < DATA_ITEM >::get_proper_descendant_count()
+   {
+
+      ::collection::count iCount = 0;
+
+      ::collection::index iLevel = 0;
+
+      tree_item * pitem = this;
+
+      for (;;)
+      {
+
+         pitem = pitem->get_item(e_tree_navigation_proper_forward, &iLevel);
+
+         if (pitem == nullptr || iLevel <= 0)
+         {
+
+            break;
+
+         }
+
+         iCount++;
+
+      }
+
+      return iCount;
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_previous_or_parent(::collection::index * piLevel)
+   {
+
+      if (____previous())
+      {
+
+         return ____previous();
+
+      }
+
+      if (m_pparent)
+      {
+
+         return m_pparent;
+
+         //if (piLevel)
+         //{
+
+         //   (*piLevel)--;
+
+         //}
+
+         //return m_pparent->get_previous_or_parent(piLevel);
+
+      }
+
+      return nullptr;
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_previous()
+   {
+
+      return ____previous();
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_next()
+   {
+
+      return ____next();
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   ::collection::index tree_item < DATA_ITEM >::calc_level()
+   {
+
+      if (m_iLevel < 0)
+      {
+
+         m_iLevel = -1;
+
+         tree_item * p = this;
+
+         while (p != nullptr)
+         {
+
+            m_iLevel++;
+
+            p = p->m_pparent;
+
+         }
+
+      }
+
+      return m_iLevel;
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::_____previous()
+   {
+
+      m_bPrevious = true;
+
+      if (::is_null(m_pparent))
+      {
+
+         m_pprevious2.release();
+
+         return nullptr;
+
+      }
+
+      auto iFind = _get_index();
+
+      if (iFind <= 0)
+      {
+
+         m_pprevious2.release();
+
+         return nullptr;
+
+      }
+
+      return m_pprevious2 = m_pparent->m_treeitema2[iFind - 1];
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   tree_item <DATA_ITEM> * tree_item < DATA_ITEM >::_____next()
+   {
+
+      m_bNext = true;
+
+      if (::is_null(m_pparent))
+      {
+
+         m_pnext2.release();
+
+         return nullptr;
+
+      }
+
+      auto iFind = _get_index();
+
+      if (iFind < 0 || iFind >= m_pparent->m_treeitema2.get_upper_bound())
+      {
+
+         m_pnext2.release();
+
+         return nullptr;
+
+      }
+
+      return m_pnext2 = m_pparent->m_treeitema2[iFind + 1];
+
+   }
+
+
+   //::data::tree_item * template < primitive_data_item DATA_ITEM > tree_item < DATA_ITEM >::____head()
+   //{
+
+   //   if (m_treeitema.is_empty())
+   //   {
+
+   //      return nullptr;
+
+   //   }
+
+   //   return m_treeitema.first();
+
+   //}
+
+
+   //::data::tree_item * template < primitive_data_item DATA_ITEM > tree_item < DATA_ITEM >::____tail()
+   //{
+
+   //   if (m_treeitema.is_empty())
+   //   {
+
+   //      return nullptr;
+
+   //   }
+
+   //   return m_treeitema.last();
+
+   //}
+
+
+   template < primitive_data_item DATA_ITEM > 
+   ::collection::index tree_item < DATA_ITEM >::_get_index()
+   {
+
+      if (m_iIndex >= -1)
+      {
+
+         return m_iIndex;
+
+      }
+
+      if (m_pparent == nullptr)
+      {
+
+         m_iIndex = -1;
+
+         return -1;
+
+      }
+
+      return m_iIndex = m_pparent->m_treeitema2.find_first(this);
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_next_or_parent_next(::collection::index * piLevel)
+   {
+
+      if (____next())
+      {
+
+         return ____next();
+
+      }
+
+      if (!m_pparent)
+      {
+
+         return nullptr;
+
+      }
+
+      if (piLevel)
+      {
+
+         (*piLevel)--;
+
+      }
+
+      return m_pparent->get_next_or_parent_next(piLevel);
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM >
+   tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_child_or_next(::collection::index * piLevel)
+   {
+
+      if (____head())
+      {
+
+         if (piLevel)
+         {
+
+            (*piLevel)++;
+
+         }
+
+         return ____head();
+
+      }
+
+      return ____next();
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_child_next_or_parent(::collection::index * piLevel)
+   {
+
+      if (____head())
+      {
+
+         if (piLevel)
+         {
+
+            (*piLevel)++;
+
+         }
+
+         return ____head();
+
+      }
+
+      return get_next_or_parent_next(piLevel);
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_item(enum_tree_navigation enavigation, ::collection::index * pindexLevel)
+   {
+
+      switch (enavigation)
+      {
+      case e_tree_navigation_expanded_forward:
+
+         return get_child_next_or_parent(pindexLevel);
+
+      case e_tree_navigation_proper_forward:
+
+         return get_proper_next(pindexLevel);
+
+      default:
+         // Not Expected
+         ASSERT(false);
+         return nullptr;
+      }
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM >
+   tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_item(enum_relative erelative)
+   {
+
+      switch (erelative)
+      {
+      case e_relative_first_child:
+      {
+         return ____head();
+      }
+      break;
+      case e_relative_last_child:
+      {
+         return ____tail();
+      }
+      case e_relative_parent:
+      {
+         return m_pparent;
+      }
+      break;
+      case e_relative_first_sibling:
+      {
+         return m_pparent->____head();
+      }
+      break;
+      case e_relative_previous_sibling:
+      {
+         return ____previous();
+      }
+      break;
+      case e_relative_next_sibling:
+      {
+         return ____next();
+      }
+      break;
+      case e_relative_last_sibling:
+      {
+         return m_pparent->____tail();
+      }
+      break;
+      default:
+         // Not Expected
+         ASSERT(false);
+         return nullptr;
+      }
+   }
+
+
+
+   template < primitive_data_item DATA_ITEM > 
+   tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::first_child()
+   {
+
+      return ____head();
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM >
+   string tree_item < DATA_ITEM >::get_text() const
+   {
+
+      if (!m_pdataitem)
+      {
+
+         return "";
+
+      }
+
+      return m_pdataitem->data_item_get_text(m_ptree);
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   ::collection::index tree_item < DATA_ITEM >::get_image() const
+   {
+
+      if (!m_pdataitem)
+      {
+
+         return -1;
+
+      }
+
+      return m_pdataitem->data_item_get_image(m_ptree);
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   ::image::image_list * tree_item < DATA_ITEM >::get_image_list() const
+   {
+
+      if (!m_pdataitem)
+      {
+
+         return nullptr;
+
+      }
+
+      return m_pdataitem->data_item_get_image_list(m_ptree);
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_proper_item(::collection::index iIndex, ::collection::index * piLevel)
+   {
+
+      if (*piLevel)
+      {
+
+         *piLevel = 0;
+
+      }
+
+      tree_item * pitem = this;
+
+      while (pitem && iIndex >= 0)
+      {
+
+         pitem = pitem->get_item(e_tree_navigation_proper_forward, piLevel);
+
+         iIndex--;
+
+      }
+
+      if (iIndex < 0)
+      {
+
+         return pitem;
+
+      }
+
+      return nullptr;
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM >
+   ::collection::index tree_item < DATA_ITEM >::get_proper_item_index(tree_item * pitemParam, ::collection::index * piLevel)
+   {
+
+      int iIndex = 0;
+
+      if (piLevel)
+      {
+
+         *piLevel = 0;
+
+      }
+
+      tree_item * pitem = this;
+
+      while (pitem)
+      {
+
+         pitem = pitem->get_item(e_tree_navigation_proper_forward, piLevel);
+
+         if (pitem == pitemParam)
+         {
+
+            return iIndex;
+
+         }
+
+         iIndex++;
+
+      }
+
+      return -1;
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   ::collection::count tree_item < DATA_ITEM >::get_proper_item_count()
+   {
+
+      tree_item * pitem = this;
+
+      ::collection::index iLevel = 0;
+
+      ::collection::count iCount = -1;
+
+      while (pitem)
+      {
+
+         pitem = pitem->get_item(e_tree_navigation_proper_forward, &iLevel);
+
+         iCount++;
+
+         if (iCount >= 65536)
+         {
+
+            break;
+
+         }
+
+         if (iLevel <= 0)
+         {
+
+            break;
+
+         }
+
+      }
+
+      return iCount;
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM >
+   bool tree_item < DATA_ITEM >::is_expanded() const
+   {
+
+      return (m_dwState & ::data::e_tree_item_state_expanded) != 0;
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   bool tree_item < DATA_ITEM >::is_expandable() const
+   {
+
+      return (m_dwState & ::data::e_tree_item_state_expandable) != 0;
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   bool tree_item < DATA_ITEM >::is_descendant(tree_item * pitem)
+   {
+
+      if (pitem == nullptr)
+      {
+
+         return false;
+
+      }
+
+      return pitem->is_ascendant(this);
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   bool tree_item < DATA_ITEM >::is_ascendant(tree_item * pitem)
+   {
+
+      if (pitem == nullptr)
+      {
+
+         return false;
+
+      }
+
+      tree_item * pparent = m_pparent;
+
+      if (pparent == nullptr)
+      {
+
+         return false;
+
+      }
+
+      while (pparent != nullptr)
+      {
+
+         if (pparent == pitem)
+            return true;
+
+         pparent = pparent->m_pparent;
+
+      }
+
+      return false;
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM > 
+   void 
+      tree_item < DATA_ITEM >::on_fill_children()
+   {
+
+      //if (m_pdataitem)
+      //{
+
+      //   m_pdataitem->data_item_on_fill_children(this);
+
+      //}
+
+      for (auto & p : m_treeitema2)
+      {
+
+         if (p->is_expanded())
+         {
+
+            p->on_fill_children();
+
+         }
+
+      };
+
+   }
+
+
+
+
+   template < primitive_data_item DATA_ITEM >
+   class tree_item_ptr_array :
+      public pointer_array < tree_item < DATA_ITEM > >
    {
    public:
    };

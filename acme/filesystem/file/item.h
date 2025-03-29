@@ -2,7 +2,7 @@
 
 
 //#include "acme/filesystem/filesystem/path.h"
-//#include "acme/prototype/prototype/element.h"
+#include "acme/prototype/data/item.h"
 
 
 namespace file
@@ -10,7 +10,7 @@ namespace file
 
 
    class CLASS_DECL_ACME item :
-      virtual public ::particle
+      virtual public ::data::item
    {
    protected:
 

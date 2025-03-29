@@ -350,7 +350,7 @@ namespace filemanager
 
       //filemanager_tree_insert(strDir, listing, listingFinal, context, bOnlyParent);
 
-      ::data::tree_item * pitem = find_item_by_user_path(pathUser);
+      auto pitem = find_item_by_user_path(pathUser);
 
       if(pitem != nullptr)
       {
@@ -804,7 +804,7 @@ namespace filemanager
       //set_context_offset(pointOffset);
 
 auto path = filemanager_data()->m_pitem->user_path();
-::pointer<::data::tree_item>pchild = find_item_by_user_path(path);
+auto pchild = find_item_by_user_path(path);
 _001SelectItem(pchild);
 
       auto puser = user();
@@ -880,7 +880,7 @@ _001SelectItem(pchild);
          
          information() << "final path : " << pathFinal;
 
-         ::pointer<::data::tree_item>pchild = find_item_by_user_path(path);
+         auto pchild = find_item_by_user_path(path);
 
          if (!pchild)
          {
@@ -932,7 +932,7 @@ _001SelectItem(pchild);
 
          auto & path = patha[i];
 
-         ::pointer<::data::tree_item>p = find_item_by_user_path(path);
+         auto p = find_item_by_user_path(path);
 
          if (p)
          {
@@ -1158,7 +1158,7 @@ _001SelectItem(pchild);
    void tree_data::GetSelectedFilePath(string_array & stra)
    {
 
-      ::data::tree_item_ptr_array itemptraSelected;
+      ::data::tree_item_ptr_array< ::userfs::item > itemptraSelected;
 
       get_selection(itemptraSelected);
 
@@ -1308,7 +1308,7 @@ _001SelectItem(pchild);
 //#endif
 
 
-   void tree_data::_001OnItemExpand(::data::tree_item * pitem, const ::action_context & context)
+   void tree_data::_001OnItemExpand(::data::tree_item<::userfs::item> * pitem, const ::action_context & context)
    {
 
       auto puserfsitem = pitem->m_pdataitem.cast <::userfs::item>();
@@ -1323,7 +1323,7 @@ _001SelectItem(pchild);
    }
 
 
-   void tree_data::_001OnItemCollapse(::data::tree_item * pitem, const ::action_context & context)
+   void tree_data::_001OnItemCollapse(::data::tree_item<::userfs::item> * pitem, const ::action_context & context)
    {
 
       __UNREFERENCED_PARAMETER(pitem);
@@ -1339,7 +1339,7 @@ _001SelectItem(pchild);
    }
 
 
-   void tree_data::_001OnOpenItem(::data::tree_item * pitem, const ::action_context & context)
+   void tree_data::_001OnOpenItem(::data::tree_item<::userfs::item> * pitem, const ::action_context & context)
    {
 
       information() << "tree_data::_001OnOpenItem";
@@ -1442,18 +1442,18 @@ _001SelectItem(pchild);
    }
 
 
-   void tree_data::on_merge_user_tree(::user::tree * pusertree)
-   {
+   //void tree_data::on_merge_user_tree(::user::tree * pusertree)
+   //{
 
-   }
+   //}
 
 
-   void tree_data::on_bind_user_tree(::user::tree * pusertree)
-   {
+   //void tree_data::on_bind_user_tree(::user::tree * pusertree)
+   //{
 
-      __UNREFERENCED_PARAMETER(pusertree);
+   //   __UNREFERENCED_PARAMETER(pusertree);
 
-   }
+   //}
 
 
    void tree_data::handle(::topic * ptopic, ::context * pcontext)

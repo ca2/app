@@ -16,7 +16,7 @@ namespace file
 
    edit_item_base::edit_item_base()
    {
-
+      
    }
 
 
@@ -28,7 +28,11 @@ namespace file
       return false;
 
    }
+   //void edit_item_base::data_item_on_fill_children(::data::tree_item < edit_item_base > * pitem)
+   //{
 
+
+   //}
 
    filesize edit_item_base::get_position(bool bForward) { __UNREFERENCED_PARAMETER(bForward); return m_position; };
 
@@ -463,7 +467,7 @@ namespace file
 
       m_iBranch = 0;
       m_pgroupitem = nullptr;
-
+      m_ptreeitemIteration = nullptr;
       m_ptreeitem = get_base_item();
       m_ptreeitemFlush = get_base_item();
 
@@ -480,7 +484,7 @@ namespace file
    long long edit_file::increment_reference_count()
    {
 
-      return ::data::tree::increment_reference_count();
+      return ::data::tree<edit_item_base>::increment_reference_count();
 
    }
 
@@ -488,7 +492,7 @@ namespace file
    long long edit_file::decrement_reference_count()
    {
 
-      return ::data::tree::decrement_reference_count();
+      return ::data::tree<edit_item_base>::decrement_reference_count();
 
    }
 
@@ -499,13 +503,13 @@ namespace file
    {
 
       m_pgroupitem.defer_destroy();
-      m_ptreeitemIteration.release();
+      //m_ptreeitemIteration.release();
       m_ptreeitem.release();
       m_ptreeitemFlush.release();
       m_ptreeitemBeg.release();
       m_ptreeitemEnd.release();
 
-      ::data::tree::destroy();
+      ::data::tree<edit_item_base>::destroy();
 
    }
 
@@ -587,7 +591,7 @@ namespace file
       //      unsigned int dwUpperLimit = m_size;
       //      int iOffset =0;
 
-      ::pointer<::data::tree_item>ptreeitem;
+      ::data::tree_item<edit_item_base> * ptreeitem = nullptr;
 
       //      edit_group_item * pitemgroup = nullptr;
 
@@ -652,9 +656,9 @@ namespace file
 
             }
 
-            auto pitem = ptreeitem->m_pdataitem.cast < edit_item_base >();
+            auto pitem = ptreeitem->m_pdataitem.m_p;
 
-            bRead = pitem->read_byte(&b, this);
+            bRead = pitem->read_byte(buf ? buf + uRead:nullptr, this);
 
             if (bRead)
             {
@@ -684,7 +688,7 @@ namespace file
 
             m_pfile->set_position(m_positionIteration);
 
-            bRead = m_pfile->read(&b, 1) == 1;
+            bRead = m_pfile->read(buf ? buf + uRead : nullptr, 1) == 1;
 
          }
 
@@ -695,7 +699,12 @@ namespace file
 
          }
 
-         buf[uRead] = b;
+         //if(buf)
+         //{
+
+         //buf[uRead] = b;
+
+
 
          nCount--;
 
@@ -725,7 +734,7 @@ namespace file
 
       }
 
-      ::pointer<::data::tree_item>pitemNew;
+      ::pointer<::data::tree_item<edit_item_base>>pitemNew;
 
       if(m_ptreeitem != nullptr && m_ptreeitem->get_next() != nullptr)
       {
@@ -958,9 +967,10 @@ namespace file
       for (::collection::index i = 0; i < dwNew; i++)
       {
 
-         unsigned char b;
+         //unsigned char b;
 
-         read(&b, 1);
+         //read(&b, 1);
+         read(nullptr, 1);
 
       }
 
@@ -1118,7 +1128,7 @@ namespace file
 
       }
       
-      ::pointer<::data::tree_item>ptreeitem;
+      ::pointer<::data::tree_item<edit_item_base>>ptreeitem;
 
       if(m_iBranch < m_ptreeitem->get_expandable_children_count())
       {
@@ -1173,13 +1183,28 @@ namespace file
       }
       m_pgroupitem = m_pgroupitem->m_pgroupitem;
    }
+   void edit_file::MacroDiscard()
+   {
 
+
+
+      if (m_pgroupitem == nullptr)
+      {
+         ASSERT(false);
+         return;
+      }
+      //if (m_pgroupitem->m_pgroupitem == nullptr)
+      //{
+      //   TreeInsert(m_pgroupitem);
+      //}
+      m_pgroupitem = m_pgroupitem->m_pgroupitem;
+   }
 
 
    bool edit_file::calc_root_direction()
    {
 
-      ::pointer<::data::tree_item>ptreeitem;
+      ::pointer<::data::tree_item<edit_item_base>>ptreeitem;
       if(m_ptreeitem == m_ptreeitemFlush)
          return false;
       for(ptreeitem  = m_ptreeitem;

@@ -45,6 +45,9 @@
 #include "aura/platform/session.h"
 
 
+#define REDRAW_LOG_LEVEL 2
+
+
 namespace aura
 {
 
@@ -165,6 +168,16 @@ namespace user
 
    void plain_edit::plain_edit_common_construct()
    {
+
+#ifdef WINDOWS
+
+      m_eline = e_line_end_r_n;
+
+#else
+
+      m_eline = e_line_end_n;
+
+#endif
 
       m_econtroltype = e_control_type_edit;
 
@@ -289,7 +302,7 @@ namespace user
             && (timeNow - m_timeNewFocusSelectAll) > 300_ms)
          {
 
-            ((plain_edit*)this)->m_bNewFocusSelectAll = false;
+            ((plain_edit *)this)->m_bNewFocusSelectAll = false;
 
          }
 
@@ -373,7 +386,7 @@ namespace user
    }
 
 
-   void plain_edit::OnDraw(::image::image *pimage)
+   void plain_edit::OnDraw(::image::image * pimage)
    {
 
       __UNREFERENCED_PARAMETER(pimage);
@@ -486,7 +499,7 @@ namespace user
 
       __check_refdbg
 
-      auto pparent = get_parent();
+         auto pparent = get_parent();
 
       ::string strTypeParent;
 
@@ -499,13 +512,13 @@ namespace user
 
          strTypeParent = ::type(pparent).as_string();
 
-//         ::string str;
-//
-//         auto r = pparent->rectangle();
+         //         ::string str;
+         //
+         //         auto r = pparent->rectangle();
 
-//         str.formatf("%d,%d,%d,%d : %s", r.left(), r.top(), r.width(), r.height(), strTypeParent.c_str());
-//
-//         information() << str;
+         //         str.formatf("%d,%d,%d,%d : %s", r.left(), r.top(), r.width(), r.height(), strTypeParent.c_str());
+         //
+         //         information() << str;
 
          auto pparentParent = pparent->get_parent();
 
@@ -514,13 +527,13 @@ namespace user
 
             strTypeParentParent = ::type(pparentParent).as_string();
 
-//            ::string str2;
-//
-//            auto r2 = pparentParent->rectangle();
-//
-//            str2.formatf("%d,%d,%d,%d : %s", r2.left(), r2.top(), r2.width(), r2.height(), strTypeParentParent.c_str());
+            //            ::string str2;
+            //
+            //            auto r2 = pparentParent->rectangle();
+            //
+            //            str2.formatf("%d,%d,%d,%d : %s", r2.left(), r2.top(), r2.width(), r2.height(), strTypeParentParent.c_str());
 
-//            information() << str2;
+            //            information() << str2;
 
             auto pparentParentParent = pparentParent->get_parent();
 
@@ -529,13 +542,13 @@ namespace user
 
                strTypeParentParentParent = ::type(pparentParentParent).as_string();
 
-//               ::string str3;
-//
-//               auto r3 = pparentParentParent->rectangle();
+               //               ::string str3;
+               //
+               //               auto r3 = pparentParentParent->rectangle();
 
-//               str3.formatf("%d,%d,%d,%d : %s", r3.left(), r3.top(), r3.width(), r3.height(), strTypeParentParentParent.c_str());
+               //               str3.formatf("%d,%d,%d,%d : %s", r3.left(), r3.top(), r3.width(), r3.height(), strTypeParentParentParent.c_str());
 
-//               information() << str3;
+               //               information() << str3;
 
             }
 
@@ -550,11 +563,11 @@ namespace user
 
       __check_refdbg
 
-      auto pstyle = get_style(pgraphics);
+         auto pstyle = get_style(pgraphics);
 
       __check_refdbg
 
-      status < ::color::color > crBk;
+         status < ::color::color > crBk;
       status < ::color::color > crBkSel;
       status < ::color::color > crSel;
       status < ::color::color > color32;
@@ -567,21 +580,21 @@ namespace user
 
       __check_refdbg
 
-      auto crEditBackground = get_color(pstyle, e_element_background);
+         auto crEditBackground = get_color(pstyle, e_element_background);
 
       __check_refdbg
 
-      pgraphics->fill_rectangle(rectangleBackground, crEditBackground);
+         pgraphics->fill_rectangle(rectangleBackground, crEditBackground);
 
       __check_refdbg
 
-      bool bComposing = ::is_set(m_pitemComposing);
+         bool bComposing = ::is_set(m_pitemComposing);
 
       bool bStrongSelection = bComposing || has_keyboard_focus();
 
       __check_refdbg
 
-      character_count iComposeBeg = -1;
+         character_count iComposeBeg = -1;
 
       character_count iComposeEnd = -1;
 
@@ -590,11 +603,11 @@ namespace user
 
          __check_refdbg
 
-         iComposeBeg = (character_count)m_pitemComposing->m_position;
+            iComposeBeg = (character_count)m_pitemComposing->m_position;
 
          __check_refdbg
 
-         iComposeEnd = (character_count)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
+            iComposeEnd = (character_count)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
 
          __check_refdbg
 
@@ -602,53 +615,53 @@ namespace user
 
       __check_refdbg
 
-      color32 = get_color(pstyle, e_element_text);
+         color32 = get_color(pstyle, e_element_text);
 
       __check_refdbg
 
-      crBk = get_color(pstyle, e_element_background);
+         crBk = get_color(pstyle, e_element_background);
 
       __check_refdbg
 
-      crSel = get_color(pstyle, e_element_text, e_state_selected);
+         crSel = get_color(pstyle, e_element_text, e_state_selected);
 
       __check_refdbg
 
 
-      crBkSel = get_color(pstyle, e_element_background, e_state_selected);
+         crBkSel = get_color(pstyle, e_element_background, e_state_selected);
 
       __check_refdbg
 
-      status < ::color::color > colorComposeBk;
+         status < ::color::color > colorComposeBk;
 
       __check_refdbg
 
-      colorComposeBk = crBk;
+         colorComposeBk = crBk;
       colorComposeBk.blend(crBkSel, 0.5);
       colorComposeBk.m_uchOpacity = 127;
 
       __check_refdbg
 
-      pstyle->get(m_pcontrolstyle, pgraphics, this);
+         pstyle->get(m_pcontrolstyle, pgraphics, this);
 
       __check_refdbg
 
-      bool bCaretOn = is_caret_on();
+         bool bCaretOn = is_caret_on();
 
       __check_refdbg
 
-      bool bFocus = has_keyboard_focus();
+         bool bFocus = has_keyboard_focus();
 
       __check_refdbg
 
-      if (m_ptree == nullptr)
-      {
+         if (m_ptree == nullptr)
+         {
 
-         information() << "Exiting _001OnDraw Prematurely m_ptree == nullptr";
+            information() << "Exiting _001OnDraw Prematurely m_ptree == nullptr";
 
-         return;
+            return;
 
-      }
+         }
 
       auto rectanglePadding = get_padding(pstyle);
 
@@ -742,7 +755,11 @@ namespace user
       if (m_iCurrentPageLineStart >= m_iCurrentPageLineEnd)
       {
 
+#if REDRAW_LOG_LEVEL > 7
+
          information() << "Exiting _001OnDraw Prematurely m_iCurrentPageLineStart >= m_iCurrentPageLineEnd";
+
+#endif
 
          return;
 
@@ -975,7 +992,7 @@ namespace user
                   ::double_rectangle_dimension((double)((double)left + compose1),
                      ((double)minimum((double)m_dLineHeight, (double)rectangleX.bottom())) - 1.0,
                      (double)minimum(compose2 - compose1, (double)rectangleX.right() - ((double)left + compose1)),
-                     bComposing ? 1.0 : 0.5 ));
+                     bComposing ? 1.0 : 0.5));
 
                //pgraphics->set(pbrushTextSel);
 
@@ -1131,9 +1148,9 @@ namespace user
       if (!m_ptree)
       {
 
-         set_root(__allocate ::user::plain_text_tree(), true);
+         set_root(__allocate::user::plain_text_tree(), true);
 
-         m_ptree->m_pfile = __allocate ::memory_file();
+         m_ptree->m_pfile = __allocate::memory_file();
 
          m_ptree->m_peditfile->SetFile(m_ptree->m_pfile);
 
@@ -1143,7 +1160,7 @@ namespace user
 
          m_ptree->m_iSelEnd = 0;
 
-         m_bGetTextNeedUpdate = true;
+         //m_bGetTextNeedUpdate = true;
 
          queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
             {
@@ -1203,42 +1220,42 @@ namespace user
    {
 
 
-//      set_need_redraw();
+      //      set_need_redraw();
 
-  //    m_bRMouseDown = false;
+        //    m_bRMouseDown = false;
 
-//      auto strXml = file()->as_string();
-//      
-//      print_out(strXml);
-      
-      if(!m_ptrackpopupContextMenu)
+      //      auto strXml = file()->as_string();
+      //      
+      //      print_out(strXml);
+
+      if (!m_ptrackpopupContextMenu)
       {
-         
-         
+
+
          ::pointer < ::message::context_menu > pcontextmenu = pmessage;
 
          auto pointCursor = pcontextmenu->GetPoint();
 
          auto pmenu = user()->menu_from_xml(this, "matter://plain_edit_context_menu.menu");
-         
-         m_ptrackpopupContextMenu = __allocate ::menu::track_popup (pmenu,
+
+         m_ptrackpopupContextMenu = __allocate::menu::track_popup(pmenu,
                                                           this,
                                                           this,
                                                                   pointCursor);
-         
+
          m_ptrackpopupContextMenu->track([this]()
                                          {
-            
-            m_ptrackpopupContextMenu.release();
+
+                                            m_ptrackpopupContextMenu.release();
          }
-                                         
-                                         
-                                         );
-         
+
+
+         );
+
       }
-//                                                       )
-//      
-//      application()->track_popup_menu(this, "matter://plain_edit_context_menu.menu", 0, pointCursor);
+      //                                                       )
+      //      
+      //      application()->track_popup_menu(this, "matter://plain_edit_context_menu.menu", 0, pointCursor);
 
    }
 
@@ -1484,7 +1501,7 @@ namespace user
       if (pkey->m_ekey == ::user::e_key_return)
       {
 
-      auto psession = session();
+         auto psession = session();
 
          if (psession->is_key_pressed(::user::e_key_control)
             && psession->is_key_pressed(::user::e_key_alt))
@@ -1748,13 +1765,57 @@ namespace user
    //}
 
 
-   void plain_edit::get_text(string & str, ::collection::index iBegParam, ::collection::index iEndParam)
+   void plain_edit::get_text(string & str, ::collection::index iBegParam, ::collection::index iEndParam) const
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
+      {
 
-      str = m_textproperty.get_text().substr(iBegParam, iEndParam);
+         if (m_ptree == nullptr)
+         {
+
+            str.empty();
+
+         }
+
+         //_synchronous_lock synchronouslock(this->synchronization());
+
+         if (iEndParam < 0)
+         {
+
+            iEndParam = m_ptree->m_peditfile->get_length();
+
+         }
+
+         filesize iSize = iEndParam - iBegParam;
+
+         //::string str;
+
+         char * psz = str.get_buffer((character_count)(iSize + 1));
+
+         m_ptree->m_peditfile->seek(iBegParam, ::e_seek_set);
+
+         m_ptree->m_peditfile->read(psz, (memsize)iSize);
+
+         psz[(memsize)iSize] = '\0';
+
+         str.release_buffer();
+
+         for (auto & m : m_base64map)
+         {
+
+            string strPack = m.element1();
+
+            str.replace_with(m.element2(), strPack);
+
+         }
+
+         //  return str;
+
+      }
+
+      //str = m_textproperty.get_text(iBegParam, iEndParam);
 
       //::sort_non_negative(iBegParam, iEndParam);
 
@@ -1836,7 +1897,7 @@ namespace user
          if (change.m_atoma.get_size() == 2)
          {
 
-            switch ((::enum_id) change.m_atoma[1].as_eid())
+            switch ((::enum_id)change.m_atoma[1].as_eid())
             {
             case id_text:
                set_text(change.m_payload.as_string(), change.m_actioncontext);
@@ -1866,19 +1927,43 @@ namespace user
       if (m_textproperty && atoma)
       {
 
-         if (atoma.get_size() == 2)
+         if (atoma.get_size() >= 2)
          {
 
-            switch ((::enum_id) atoma[1].as_eid())
+            switch ((::enum_id)atoma[1].as_eid())
             {
             case id_text:
             {
 
                ::string str;
 
-               str = get_text();
+               character_count iBegin = 0;
+
+               if (atoma.get_size() >= 3)
+               {
+
+                  iBegin = atoma[2].as_long_long();
+
+               }
+
+               character_count iEnd = -1;
+
+               if (atoma.get_size() >= 4)
+               {
+
+                  iEnd = atoma[3].as_long_long();
+
+               }
+
+               get_text(str, iBegin, iEnd);
 
                return str;
+
+            }
+            case id_text_length:
+            {
+
+               return m_ptree->m_peditfile->get_length();
 
             }
             case id_text_selection_begin:
@@ -1887,7 +1972,7 @@ namespace user
                character_count iBeg;
 
                character_count iEnd;
-               
+
                get_text_selection(iBeg, iEnd);
 
                return iBeg;
@@ -1932,9 +2017,9 @@ namespace user
 
       //{
 
-         _synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
-         m_textproperty.set_selection_text(scopedstr, actioncontext);
+      m_textproperty.set_selection_text(scopedstr, actioncontext);
 
       //   m_ptree->m_peditfile->seek(m_ptree->m_iSelBeg, ::e_seek_set);
 
@@ -2204,7 +2289,7 @@ namespace user
 
    }
 
-   
+
    void plain_edit::get_text_selection(character_count & iBeg, character_count & iEnd) const
    {
 
@@ -2380,6 +2465,8 @@ namespace user
       queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
       {
 
+         plain_edit_create_line_index(pgraphics);
+
          plain_edit_on_update(pgraphics, ::e_source_system);
 
       });
@@ -2447,7 +2534,7 @@ namespace user
       if (!m_pitemHover || m_pitemHover->m_item.m_eelement != e_element_none)
       {
 
-         m_pitemHover = __allocate ::item(e_element_none);
+         m_pitemHover = __allocate::item(e_element_none);
 
          set_need_redraw();
 
@@ -2458,7 +2545,7 @@ namespace user
 
    void plain_edit::on_message_left_button_down_handle_keyboard_focus(::message::message * pmessage)
    {
-      
+
    }
 
 
@@ -2479,7 +2566,7 @@ namespace user
          host_to_client()(point);
 
          {
-            
+
             _synchronous_lock synchronouslock(this->synchronization());
 
             //m_bLMouseDown = true;
@@ -2493,7 +2580,7 @@ namespace user
             auto psession = session();
 
             bool bShiftKeyPressed = psession->is_key_pressed(::user::e_key_shift);
-            
+
             ::pointer < ::message::message > pmessageHold = pmessage;
 
             queue_graphics_call([this, point, bShiftKeyPressed, bNewFocusSelectAll, pmessageHold](::draw2d::graphics_pointer & pgraphics)
@@ -2551,25 +2638,25 @@ namespace user
 
 #if defined(APPLE_IOS)
             //if(windowing()->is_sandboxed()
-            if(has_keyboard_focus())
+            if (has_keyboard_focus())
             {
-               
+
                auto pcontextmenu = __create_new < ::message::context_menu >();
-               
-               pcontextmenu->m_emessage= e_message_context_menu;
-               
+
+               pcontextmenu->m_emessage = e_message_context_menu;
+
                auto pointHost = pmessageHold->m_union.m_pmouse->m_pointHost;
-               
+
                pcontextmenu->m_pointMessage = pointHost;
-               
+
                post_message(pcontextmenu);
-               
+
             }
-            
+
 #endif
-            
+
             ::user::interaction::on_message_left_button_down_handle_keyboard_focus(pmessageHold);
-            
+
 #if defined(WINDOWS_DESKTOP)
 
             on_text_composition_message(TEXT_COMPOSITION_MESSAGE_UPDATE_CANDIDATE_WINDOW_POSITION);
@@ -2603,7 +2690,7 @@ namespace user
       auto pmouse = pmessage->m_union.m_pmouse;
 
       defer_release_mouse_capture();
-      
+
       m_bNewFocusSelectAll = false;
 
       //m_bLMouseDown = false;
@@ -2650,7 +2737,7 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      _plain_edit_update_lines_and_extents(pgraphics, iOnlyLineToUpdate);
+      _plain_edit_update_extents(pgraphics, iOnlyLineToUpdate);
 
       //synchronous_lock synchronouslock(this->synchronization());
 
@@ -2709,7 +2796,7 @@ namespace user
 
       //m_iCurrentPagePotentialLineCount = (::collection::count) ceil((double)rectangleX.height() / m_dLineHeight);
 
-      //m_iCurrentPageLineOffset = (::collection::index) minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
+      //m_iCurrentPageLineOffset = (::collection::index) minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineIndex.get_upper_bound());
 
       //bool bLoadFullFile = should_load_full_file();
 
@@ -2724,9 +2811,9 @@ namespace user
 
       //}
 
-      //m_iImpactOffset = m_iaLineStart[m_iCurrentPageLineStart];
+      //m_iImpactOffset = m_iaLineIndex[m_iCurrentPageLineStart];
 
-      //character_count iProperBeg = m_iaLineStart[m_iCurrentPageLineEnd - 1];
+      //character_count iProperBeg = m_iaLineIndex[m_iCurrentPageLineEnd - 1];
 
       //character_count iLen = m_iaLineLength[m_iCurrentPageLineEnd - 1];
 
@@ -2759,9 +2846,9 @@ namespace user
 
       //   iLineEnd = iLineStart + 1;
 
-      //   iImpactOffset = m_iaLineStart[iLineStart];
+      //   iImpactOffset = m_iaLineIndex[iLineStart];
 
-      //   iProperBeg = m_iaLineStart[iLineEnd - 1];
+      //   iProperBeg = m_iaLineIndex[iLineEnd - 1];
 
       //   iLen = m_iaLineLength[iLineEnd - 1];
 
@@ -3023,8 +3110,6 @@ namespace user
       if (!m_bMultiLine)
       {
 
-         
-
          string strTextPrevious;
 
          get_text(strTextPrevious);
@@ -3105,7 +3190,7 @@ namespace user
 
       }
 
-      _plain_edit_update_lines_and_extents(pgraphics, iOnlyLineToUpdate);
+      _plain_edit_update_extents(pgraphics, iOnlyLineToUpdate);
 
       //      if (m_ptree == nullptr)
       //      {
@@ -3164,7 +3249,7 @@ namespace user
       //
       //      m_iCurrentPagePotentialLineCount = (::collection::count) ceil((double) rectangleX.height() / m_dLineHeight);
       //
-      //      m_iCurrentPageLineOffset = (::collection::index) minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
+      //      m_iCurrentPageLineOffset = (::collection::index) minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineIndex.get_upper_bound());
       //
       //      bool bLoadFullFile = should_load_full_file();
       //
@@ -3179,9 +3264,9 @@ namespace user
       //
       //      }
       //
-      //      m_iImpactOffset = m_iaLineStart[m_iCurrentPageLineStart];
+      //      m_iImpactOffset = m_iaLineIndex[m_iCurrentPageLineStart];
       //
-      //      character_count iProperBeg = m_iaLineStart[m_iCurrentPageLineEnd - 1];
+      //      character_count iProperBeg = m_iaLineIndex[m_iCurrentPageLineEnd - 1];
       //
       //      character_count iLen = m_iaLineLength[m_iCurrentPageLineEnd - 1];
       //
@@ -3214,9 +3299,9 @@ namespace user
       //
       //         iLineEnd = iLineStart + 1;
       //
-      //         iImpactOffset = m_iaLineStart[iLineStart];
+      //         iImpactOffset = m_iaLineIndex[iLineStart];
       //
-      //         iProperBeg = m_iaLineStart[iLineEnd - 1];
+      //         iProperBeg = m_iaLineIndex[iLineEnd - 1];
       //
       //         iLen = m_iaLineLength[iLineEnd - 1];
       //
@@ -3506,7 +3591,7 @@ namespace user
    }
 
 
-   void plain_edit::_plain_edit_update_lines_and_extents(::draw2d::graphics_pointer & pgraphics, ::collection::index iOnlyLineToUpdate)
+   void plain_edit::_plain_edit_update_extents(::draw2d::graphics_pointer & pgraphics, ::collection::index iOnlyLineStart, ::collection::index iOnlyLineEnd)
    {
 
       //_plain_edit_update_lines(pgraphics, iOnlyLineToUpdate);
@@ -3528,7 +3613,7 @@ namespace user
 
          m_iImpactSize = 0;
 
-         set_total_size({0., 0.});
+         set_total_size({ 0., 0. });
 
          return;
 
@@ -3563,7 +3648,7 @@ namespace user
 
       m_iCurrentPagePotentialLineCount = (::collection::count)ceil((double)rectangleX.height() / m_dLineHeight);
 
-      m_iCurrentPageLineOffset = (::collection::index)minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
+      m_iCurrentPageLineOffset = (::collection::index)minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineIndex.get_upper_bound());
 
       bool bLoadFullFile = should_load_full_file();
 
@@ -3578,15 +3663,15 @@ namespace user
 
       }
 
-      m_iImpactOffset = m_iaLineStart[m_iCurrentPageLineStart];
+      m_iImpactOffset = m_iaLineIndex[m_iCurrentPageLineStart];
 
-      character_count iProperBeg = m_iaLineStart[m_iCurrentPageLineEnd - 1];
+      character_count iProperBeg = m_iaLineIndex[m_iCurrentPageLineEnd - 1];
 
       character_count iLen = m_iaLineLength[m_iCurrentPageLineEnd - 1];
 
       m_iImpactSize = iProperBeg + iLen - m_iImpactOffset;
 
- //     m_pscrollstateVertical->m_iLine = (int)m_dLineHeight;
+      //     m_pscrollstateVertical->m_iLine = (int)m_dLineHeight;
 
       if (m_dLineHeight <= 0)
       {
@@ -3599,7 +3684,7 @@ namespace user
 
       //m_iCurrentPagePotentialLineCount = (::collection::count)ceil((double)rectangleX.height() / m_dLineHeight);
 
-      //m_iCurrentPageLineOffset = (::collection::index)minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
+      //m_iCurrentPageLineOffset = (::collection::index)minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineIndex.get_upper_bound());
 
       //bool bLoadFullFile = should_load_full_file();
 
@@ -3614,9 +3699,9 @@ namespace user
 
       //}
 
-      //m_iImpactOffset = m_iaLineStart[m_iCurrentPageLineStart];
+      //m_iImpactOffset = m_iaLineIndex[m_iCurrentPageLineStart];
 
-      //character_count iProperBeg = m_iaLineStart[m_iCurrentPageLineEnd - 1];
+      //character_count iProperBeg = m_iaLineIndex[m_iCurrentPageLineEnd - 1];
 
       //character_count iLen = m_iaLineLength[m_iCurrentPageLineEnd - 1];
 
@@ -3630,7 +3715,7 @@ namespace user
 
       ::collection::index iImpactSize;
 
-      if (iOnlyLineToUpdate < 0)
+      if (iOnlyLineStart < 0)
       {
 
          iLineStart = m_iCurrentPageLineStart;
@@ -3645,13 +3730,20 @@ namespace user
       else
       {
 
-         iLineStart = iOnlyLineToUpdate;
+         if (iOnlyLineEnd < iOnlyLineStart)
+         {
 
-         iLineEnd = iLineStart + 1;
+            iOnlyLineEnd = iOnlyLineStart;
 
-         iImpactOffset = m_iaLineStart[iLineStart];
+         }
 
-         iProperBeg = m_iaLineStart[iLineEnd - 1];
+         iLineStart = iOnlyLineStart;
+
+         iLineEnd = iOnlyLineEnd + 1;
+
+         iImpactOffset = m_iaLineIndex[iLineStart];
+
+         iProperBeg = m_iaLineIndex[iLineEnd - 1];
 
          iLen = m_iaLineLength[iLineEnd - 1];
 
@@ -3665,13 +3757,15 @@ namespace user
 
       mem.set_size(iImpactSize + 1);
 
+      auto pszData = (char*) mem.data();
+
       character_count iRead;
 
       {
 
          m_ptree->m_peditfile->seek(iImpactOffset, ::e_seek_set);
 
-         iRead = m_ptree->m_peditfile->read(mem.data(), iImpactSize);
+         iRead = m_ptree->m_peditfile->read(pszData, iImpactSize);
 
          if (iRead < iImpactSize)
          {
@@ -3682,7 +3776,7 @@ namespace user
 
          }
 
-         mem.data()[iImpactSize] = 0;
+         pszData[iImpactSize] = 0;
 
       }
 
@@ -3709,7 +3803,11 @@ namespace user
 
          iLen = m_iaLineLength[iLine];
 
-         iStrLen = maximum(0, iLen - (m_iaLineFlags[iLine] & e_line_end_length));
+         auto eol = (enum_line)m_iaLineFlags[iLine];
+
+         auto eolLen = as_length(eol);
+
+         iStrLen = maximum(0, iLen - eolLen);
 
          if (iPos + iStrLen > m_iImpactSize)
          {
@@ -3729,7 +3827,9 @@ namespace user
 
          }
 
-         string strLine = string((const char *)&mem.data()[iPos], iStrLen);
+         auto p = pszData + iPos;
+
+         string strLine = string((const char *)p, iStrLen);
 
          string_array & straLines = m_straLines;
 
@@ -3776,12 +3876,12 @@ namespace user
 //      string_array & straLines = m_plinea->lines;
 //      string_array & straLines = m_straLines;
 
-      if (iOnlyLineToUpdate < 0)
-      {
+      //if (iOnlyLineToUpdate < 0)
+      //{
 
-         //m_sizeTotal.cx() = 0;
+      //   //m_sizeTotal.cx() = 0;
 
-      }
+      //}
 
       double_size size;
 
@@ -3916,7 +4016,7 @@ namespace user
 
       }
 
-      if (iOnlyLineToUpdate < 0)
+      if (iLineEnd - iLineStart >= 2)
       {
 
          sizeTotal.cy() = (int)((m_iaLineLength.get_count() + 1) * m_dLineHeight);
@@ -3938,7 +4038,7 @@ namespace user
 
       if (m_pscrolllayoutY)
       {
-       
+
          m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_dLine = m_dLineHeight;
          m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_dWheel = 3. * m_dLineHeight;
 
@@ -3953,741 +4053,741 @@ namespace user
    }
 
 
-//   void plain_edit::_plain_edit_update_lines(::draw2d::graphics_pointer & pgraphics, ::collection::index iOnlyLineToUpdate)
-//   {
-//
-//      _synchronous_lock synchronouslock(this->synchronization());
-//
-//      ::int_rectangle rectangleX;
-//
-//      GetFocusRect(rectangleX);
-//
-//      if (m_ptree == nullptr)
-//      {
-//
-//         m_iCurrentPagePotentialLineCount = 0;
-//
-//         m_iCurrentPageLineOffset = 0;
-//
-//         m_iCurrentPageLineStart = 0;
-//
-//         m_iCurrentPageLineEnd = 0;
-//
-//         m_iImpactOffset = 0;
-//
-//         m_iImpactSize = 0;
-//
-//         return;
-//
-//      }
-//
-//      ::collection::index i;
-//
-//      ::collection::index iLine;
-//
-//      if (pgraphics.is_null())
-//      {
-//
-//         return;
-//
-//      }
-//
-//      pgraphics->set_font(this, ::e_element_none);
-//
-//      index iLineStart;
-//
-//      index iLineEnd;
-//
-//      index iImpactOffset;
-//
-//      index iImpactSize;
-//
-//      if (iOnlyLineToUpdate < 0)
-//      {
-//
-//         iLineStart = m_iCurrentPageLineStart;
-//
-//         iLineEnd = m_iCurrentPageLineEnd;
-//
-//         iImpactOffset = m_iImpactOffset;
-//
-//         iImpactSize = m_iImpactSize;
-//
-//      }
-//      else
-//      {
-//
-//         iLineStart = iOnlyLineToUpdate;
-//
-//         iLineEnd = iLineStart + 1;
-//
-//         iImpactOffset = m_iaLineStart[iLineStart];
-//
-//         iProperBeg = m_iaLineStart[iLineEnd - 1];
-//
-//         iLen = m_iaLineLength[iLineEnd - 1];
-//
-//         iImpactSize = iProperBeg + iLen - iImpactOffset;
-//
-//      }
-//
-//      string strLine;
-//
-//      memory mem;
-//
-//      mem.set_size(iImpactSize + 1);
-//
-//      character_count iRead;
-//
-//      {
-//
-//         m_ptree->m_peditfile->seek(iImpactOffset, ::e_seek_set);
-//
-//         iRead = m_ptree->m_peditfile->read(mem.data(), iImpactSize);
-//
-//         if (iRead < iImpactSize)
-//         {
-//
-//            informationf("ops1");
-//
-//            iImpactSize = iRead;
-//
-//         }
-//
-//         mem.data()[iImpactSize] = 0;
-//
-//      }
-//
-//      character_count iPos = 0;
-//
-//      //      character_count iLen;
-//
-//      character_count iStrLen;
-//
-//      //m_plinea->lines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
-//      m_straLines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
-//
-//      i = 0;
-//
-//      iLine = iLineStart;
-//
-//      auto iLineLength = m_iaLineLength.get_size();
-//
-//      m_daExtent.set_size(iLineLength);
-//
-//      for (; iLine < iLineEnd; i++, iLine++)
-//      {
-//
-//         iLen = m_iaLineLength[iLine];
-//
-//         iStrLen = maximum(0, iLen - (m_iaLineFlags[iLine] & e_line_end_length));
-//
-//         if (iPos + iStrLen > m_iImpactSize)
-//         {
-//
-//            informationf("ops3");
-//
-//            iStrLen = iImpactSize - iPos;
-//
-//            if (iStrLen <= 0)
-//            {
-//
-//               informationf("ops4");
-//
-//               break;
-//
-//            }
-//
-//         }
-//
-//         string strLine = string((const char *)&mem.data()[iPos], iStrLen);
-//
-//         //if (strLine != m_plinea->lines[i])
-//         if (strLine != m_straLines[i])
-//         {
-//
-//            //m_plinea->lines[i] = strLine;
-//            m_straLines[i] = strLine;
-//
-//            m_daExtent[i + iLineStart].set_size(0);
-//
-//         }
-//         else
-//         {
-//
-//            //informationf("optstr");
-//
-//         }
-//
-//         iPos += iLen;
-//
-//         if (iPos > iImpactSize)
-//         {
-//
-//            informationf("ops2");
-//
-//            break;
-//
-//         }
-//
-//      }
-//
-//      //m_dy = pointOffset.y();
-//
-//      ////::colorertake5::base_editor * pcolorer = colorertake5();
-//
-//      ////if (pcolorer != nullptr)
-//      ////{
-//
-//      ////   pcolorer->visibleTextEvent(m_iCurrentPageLineStart, m_iLineCount);
-//
-//      ////}
-//
-//      ////string_array & straLines = m_plinea->lines;
-//
-//      //string_array & straLines = m_straLines;
-//
-//      //if (iLineUpdate < 0)
-//      //{
-//
-//      //   //m_sizeTotal.cx() = 0;
-//
-//      //}
-//
-//      //double_size size;
-//
-//      //string strLineGraphics;
-//
-//      //strsize_array iaTab;
-//
-//      //character_count iTab;
-//
-//      //character_count iAddUp;
-//
-//      //for (int i = 0; i < straLines.get_size(); i++)
-//      //{
-//
-//      //   strLine = straLines[i];
-//
-//      //   iTab = -1;
-//
-//      //   iaTab.erase_all();
-//
-//      //   strLineGraphics = strLine;
-//
-//      //   ::str::replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
-//
-//      //   const ::ansi_character * pszStart = strLine;
-//
-//      //   const ::ansi_character * psz = pszStart;
-//
-//      //   character_count iLen = 0;
-//
-//      //   iAddUp = 0;
-//
-//      //   iPos = 0;
-//
-//      //   const ::ansi_character * pszNext = pszStart;
-//
-//      //   double_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
-//
-//      //   if (daExtent.get_size() <= 0)
-//      //   {
-//
-//      //      daExtent.set_size(strLine.length() + 1);
-//
-//      //      while (*pszNext != '\0')
-//      //      {
-//
-//      //         pszNext = unicode_next(psz);
-//
-//      //         iLen = pszNext - psz;
-//
-//      //         if (*psz == '\t')
-//      //         {
-//
-//      //            iTab++;
-//
-//      //            iAddUp += iaTab[iTab] - 1;
-//
-//      //         }
-//
-//      //         size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length(), pszNext - pszStart + iAddUp);
-//
-//      //         for (int j = 0; j < iLen; j++)
-//      //         {
-//
-//      //           daExtent [(::collection::index)(psz - pszStart + j)] = size.cx();
-//
-//      //         }
-//
-//      //         psz = pszNext;
-//
-//      //      }
-//
-//      //      if (strLineGraphics.has_character())
-//      //      {
-//
-//      //         size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length());
-//
-//      //         for (int j = 0; j < iLen; j++)
-//      //         {
-//
-//      //            daExtent[(::collection::index)(psz - pszStart)] = size.cx();
-//
-//      //         }
-//
-//      //      }
-//
-//
-//      //      if (size.cx() > m_sizeTotal.cx())
-//      //      {
-//
-//      //         m_sizeTotal.cx() = (int)size.cx();
-//
-//      //      }
-//
-//      //   }
-//
-//
-//      //}
-//
-//      ////if (iLineUpdate < 0)
-//      ////{
-//
-//      ////   m_sizeTotal.cy() = (((int)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
-//
-//      ////   const ::int_size & sizePage;
-//
-//      ////   sizePage = rectangleX.size();
-//
-//      ////   if (m_sizeTotal.cy() < sizePage.cy())
-//      ////   {
-//
-//      ////      sizePage.cy() = m_sizeTotal.cy();
-//
-//      ////   }
-//
-//      ////}
-//
-//      ////on_change_impact_size();
-//
-//      ////m_bCalcLayoutHintNoTextChange = false;
-//
-//   }
-//
-//
-//   void plain_edit::_plain_edit_update_extents(::draw2d::graphics_pointer & pgraphics, ::collection::index iOnlyLineToUpdate)
-//   {
-//
-//      //_synchronous_lock synchronouslock(this->synchronization());
-//
-////::int_rectangle rectangleX;
-//
-////GetFocusRect(rectangleX);
-//
-////if (m_ptree == nullptr)
-////{
-//
-////   m_iCurrentPagePotentialLineCount = 0;
-//
-////   m_iCurrentPageLineOffset = 0;
-//
-////   m_iCurrentPageLineStart = 0;
-//
-////   m_iCurrentPageLineEnd = 0;
-//
-////   m_iImpactOffset = 0;
-//
-////   m_iImpactSize = 0;
-//
-////   return;
-//
-////}
-//
-////::collection::index i;
-//
-////::collection::index iLine;
-//
-////if (pgraphics.is_null())
-////{
-//
-////   return;
-//
-////}
-//
-////pgraphics->set_font(this, ::e_element_none);
-//
-////double_size sizeUniText;
-//
-////::write_text::text_metric metric;
-//
-////pgraphics->get_text_metrics(&metric);
-//
-////m_dLineHeight = metric.get_line_spacing();
-//
-////if (m_dLineHeight <= 0.0)
-////{
-//
-////   m_dLineHeight = 18.0;
-//
-////}
-//
-////auto pointOffset = get_context_offset();
-//
-////m_iCurrentPagePotentialLineCount = (::collection::count) ceil((double)rectangleX.height() / m_dLineHeight);
-//
-////m_iCurrentPageLineOffset = (::collection::index) minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
-//
-////bool bLoadFullFile = should_load_full_file();
-//
-////m_iCurrentPageLineStart = bLoadFullFile ? 0 : maximum(0, m_iCurrentPageLineOffset);
-//
-////m_iCurrentPageLineEnd = bLoadFullFile ? m_iaLineLength.get_size() : minimum(m_iaLineLength.get_size(), m_iCurrentPagePotentialLineCount + m_iCurrentPageLineStart);
-//
-////if (m_iCurrentPageLineOffset < 0)
-////{
-//
-////   return;
-//
-////}
-//
-////m_iImpactOffset = m_iaLineStart[m_iCurrentPageLineStart];
-//
-////character_count iProperBeg = m_iaLineStart[m_iCurrentPageLineEnd - 1];
-//
-////character_count iLen = m_iaLineLength[m_iCurrentPageLineEnd - 1];
-//
-////m_iImpactSize = iProperBeg + iLen - m_iImpactOffset;
-//
-////index iLineStart;
-//
-////index iLineEnd;
-//
-////index iImpactOffset;
-//
-////index iImpactSize;
-//
-////if (iLineUpdate < 0)
-////{
-//
-////   iLineStart = m_iCurrentPageLineStart;
-//
-////   iLineEnd = m_iCurrentPageLineEnd;
-//
-////   iImpactOffset = m_iImpactOffset;
-//
-////   iImpactSize = m_iImpactSize;
-//
-////}
-////else
-////{
-//
-////   iLineStart = iLineUpdate;
-//
-////   iLineEnd = iLineStart + 1;
-//
-////   iImpactOffset = m_iaLineStart[iLineStart];
-//
-////   iProperBeg = m_iaLineStart[iLineEnd - 1];
-//
-////   iLen = m_iaLineLength[iLineEnd - 1];
-//
-////   iImpactSize = iProperBeg + iLen - iImpactOffset;
-//
-////}
-//
-////string strLine;
-//
-////memory mem;
-//
-////mem.set_size(iImpactSize + 1);
-//
-////character_count iRead;
-//
-////{
-//
-////   m_ptree->m_peditfile->seek(iImpactOffset, ::e_seek_set);
-//
-////   iRead = m_ptree->m_peditfile->read(mem.get_data(), iImpactSize);
-//
-////   if (iRead < iImpactSize)
-////   {
-//
-////      informationf("ops1");
-//
-////      iImpactSize = iRead;
-//
-////   }
-//
-////   mem.get_data()[iImpactSize] = 0;
-//
-////}
-//
-////character_count iPos = 0;
-//
-//////      character_count iLen;
-//
-////character_count iStrLen;
-//
-//////m_plinea->lines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
-////m_straLines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
-//
-////i = 0;
-//
-////iLine = iLineStart;
-//
-////auto iLineLength = m_iaLineLength.get_size();
-//
-////m_daExtent.set_size(iLineLength);
-//
-////for (; iLine < iLineEnd; i++, iLine++)
-////{
-//
-////   iLen = m_iaLineLength[iLine];
-//
-////   iStrLen = maximum(0, iLen - (m_iaLineFlags[iLine] & e_line_end_length));
-//
-////   if (iPos + iStrLen > m_iImpactSize)
-////   {
-//
-////      informationf("ops3");
-//
-////      iStrLen = iImpactSize - iPos;
-//
-////      if (iStrLen <= 0)
-////      {
-//
-////         informationf("ops4");
-//
-////         break;
-//
-////      }
-//
-////   }
-//
-////   string strLine = string((const char *)&mem.get_data()[iPos], iStrLen);
-//
-////   //if (strLine != m_plinea->lines[i])
-////   if (strLine != m_straLines[i])
-////   {
-//
-////      //m_plinea->lines[i] = strLine;
-////      m_straLines[i] = strLine;
-//
-////      m_daExtent[i + iLineStart].set_size(0);
-//
-////   }
-////   else
-////   {
-//
-////      //informationf("optstr");
-//
-////   }
-//
-////   iPos += iLen;
-//
-////   if (iPos > iImpactSize)
-////   {
-//
-////      informationf("ops2");
-//
-////      break;
-//
-////   }
-//
-////}
-//
-////m_dy = pointOffset.y();
-//
-//////::colorertake5::base_editor * pcolorer = colorertake5();
-//
-//////if (pcolorer != nullptr)
-//////{
-//
-//////   pcolorer->visibleTextEvent(m_iCurrentPageLineStart, m_iLineCount);
-//
-//////}
-//
-//////string_array & straLines = m_plinea->lines;
-//
-////string_array & straLines = m_straLines;
-//
-////if (iLineUpdate < 0)
-////{
-//
-////   //m_sizeTotal.cx() = 0;
-//
-////}
-//
-//      double_size sizeUniText;
-//
-//      ::write_text::text_metric metric;
-//
-//      pgraphics->get_text_metrics(&metric);
-//
-//      m_dLineHeight = metric.get_line_height();
-//
-//      if (m_dLineHeight <= 0.0)
-//      {
-//
-//         m_dLineHeight = 18.0;
-//
-//      }
-//
-//      auto pointOffset = get_context_offset();
-//
-//      m_iCurrentPagePotentialLineCount = (::collection::count)ceil((double)rectangleX.height() / m_dLineHeight);
-//
-//      m_iCurrentPageLineOffset = (::collection::index)minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
-//
-//      bool bLoadFullFile = should_load_full_file();
-//
-//      m_iCurrentPageLineStart = bLoadFullFile ? 0 : maximum(0, m_iCurrentPageLineOffset);
-//
-//      m_iCurrentPageLineEnd = bLoadFullFile ? m_iaLineLength.get_size() : minimum(m_iaLineLength.get_size(), m_iCurrentPagePotentialLineCount + m_iCurrentPageLineStart);
-//
-//      if (m_iCurrentPageLineOffset < 0)
-//      {
-//
-//         return;
-//
-//      }
-//
-//      m_iImpactOffset = m_iaLineStart[m_iCurrentPageLineStart];
-//
-//      character_count iProperBeg = m_iaLineStart[m_iCurrentPageLineEnd - 1];
-//
-//      character_count iLen = m_iaLineLength[m_iCurrentPageLineEnd - 1];
-//
-//      m_iImpactSize = iProperBeg + iLen - m_iImpactOffset;
-//
-//      ::user::enum_layout elayout = ::user::e_layout_design;
-//
-//      double_size size;
-//
-//      string strLineGraphics;
-//
-//      strsize_array iaTab;
-//
-//      character_count iTab;
-//
-//      character_count iAddUp;
-//
-//      for (int i = 0; i < m_straLines.get_size(); i++)
-//      {
-//
-//         string strLine = m_straLines[i];
-//
-//         iTab = -1;
-//
-//         iaTab.erase_all();
-//
-//         strLineGraphics = strLine;
-//
-//         replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
-//
-//         const ::ansi_character * pszStart = strLine;
-//
-//         const ::ansi_character * psz = pszStart;
-//
-//         character_count iLen = 0;
-//
-//         iAddUp = 0;
-//
-//         character_count iPos = 0;
-//
-//         const ::ansi_character * pszNext = pszStart;
-//
-//         double_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
-//
-//         auto sizeTotal = get_total_size(elayout);
-//
-//         if (daExtent.get_size() <= 0)
-//         {
-//
-//            daExtent.set_size(strLine.length() + 1);
-//
-//            while (::has_character(pszNext))
-//            {
-//
-//               pszNext = unicode_next(psz);
-//
-//               iLen = pszNext - psz;
-//
-//               if (*psz == '\t')
-//               {
-//
-//                  iTab++;
-//
-//                  iAddUp += iaTab[iTab] - 1;
-//
-//               }
-//
-//               size = pgraphics->get_text_extent(strLineGraphics, pszNext - pszStart + iAddUp);
-//
-//               for (int j = 0; j < iLen; j++)
-//               {
-//
-//                  daExtent[(::collection::index)(psz - pszStart + j)] = size.cx();
-//
-//               }
-//
-//               psz = pszNext;
-//
-//            }
-//
-//            if (strLineGraphics.has_character())
-//            {
-//
-//               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length());
-//
-//               for (int j = 0; j < iLen; j++)
-//               {
-//
-//                  daExtent[(::collection::index)(psz - pszStart)] = size.cx();
-//
-//               }
-//
-//            }
-//
-//
-//            if (size.cx() > sizeTotal.cx())
-//            {
-//
-//               sizeTotal.cx() = size.cx();
-//
-//            }
-//
-//         }
-//
-//         set_total_size(sizeTotal, elayout);
-//
-//      }
-//
-//      //if (iLineUpdate < 0)
-//      //{
-//
-//      //   m_sizeTotal.cy() = (((int)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
-//
-//      //   const ::int_size & sizePage;
-//
-//      //   sizePage = rectangleX.size();
-//
-//      //   if (m_sizeTotal.cy() < sizePage.cy())
-//      //   {
-//
-//      //      sizePage.cy() = m_sizeTotal.cy();
-//
-//      //   }
-//
-//      //}
-//
-//      //on_change_impact_size();
-//
-//      //m_bCalcLayoutHintNoTextChange = false;
-//
-//   }
+   //   void plain_edit::_plain_edit_update_lines(::draw2d::graphics_pointer & pgraphics, ::collection::index iOnlyLineToUpdate)
+   //   {
+   //
+   //      _synchronous_lock synchronouslock(this->synchronization());
+   //
+   //      ::int_rectangle rectangleX;
+   //
+   //      GetFocusRect(rectangleX);
+   //
+   //      if (m_ptree == nullptr)
+   //      {
+   //
+   //         m_iCurrentPagePotentialLineCount = 0;
+   //
+   //         m_iCurrentPageLineOffset = 0;
+   //
+   //         m_iCurrentPageLineStart = 0;
+   //
+   //         m_iCurrentPageLineEnd = 0;
+   //
+   //         m_iImpactOffset = 0;
+   //
+   //         m_iImpactSize = 0;
+   //
+   //         return;
+   //
+   //      }
+   //
+   //      ::collection::index i;
+   //
+   //      ::collection::index iLine;
+   //
+   //      if (pgraphics.is_null())
+   //      {
+   //
+   //         return;
+   //
+   //      }
+   //
+   //      pgraphics->set_font(this, ::e_element_none);
+   //
+   //      index iLineStart;
+   //
+   //      index iLineEnd;
+   //
+   //      index iImpactOffset;
+   //
+   //      index iImpactSize;
+   //
+   //      if (iOnlyLineToUpdate < 0)
+   //      {
+   //
+   //         iLineStart = m_iCurrentPageLineStart;
+   //
+   //         iLineEnd = m_iCurrentPageLineEnd;
+   //
+   //         iImpactOffset = m_iImpactOffset;
+   //
+   //         iImpactSize = m_iImpactSize;
+   //
+   //      }
+   //      else
+   //      {
+   //
+   //         iLineStart = iOnlyLineToUpdate;
+   //
+   //         iLineEnd = iLineStart + 1;
+   //
+   //         iImpactOffset = m_iaLineIndex[iLineStart];
+   //
+   //         iProperBeg = m_iaLineIndex[iLineEnd - 1];
+   //
+   //         iLen = m_iaLineLength[iLineEnd - 1];
+   //
+   //         iImpactSize = iProperBeg + iLen - iImpactOffset;
+   //
+   //      }
+   //
+   //      string strLine;
+   //
+   //      memory mem;
+   //
+   //      mem.set_size(iImpactSize + 1);
+   //
+   //      character_count iRead;
+   //
+   //      {
+   //
+   //         m_ptree->m_peditfile->seek(iImpactOffset, ::e_seek_set);
+   //
+   //         iRead = m_ptree->m_peditfile->read(mem.data(), iImpactSize);
+   //
+   //         if (iRead < iImpactSize)
+   //         {
+   //
+   //            informationf("ops1");
+   //
+   //            iImpactSize = iRead;
+   //
+   //         }
+   //
+   //         mem.data()[iImpactSize] = 0;
+   //
+   //      }
+   //
+   //      character_count iPos = 0;
+   //
+   //      //      character_count iLen;
+   //
+   //      character_count iStrLen;
+   //
+   //      //m_plinea->lines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
+   //      m_straLines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
+   //
+   //      i = 0;
+   //
+   //      iLine = iLineStart;
+   //
+   //      auto iLineLength = m_iaLineLength.get_size();
+   //
+   //      m_daExtent.set_size(iLineLength);
+   //
+   //      for (; iLine < iLineEnd; i++, iLine++)
+   //      {
+   //
+   //         iLen = m_iaLineLength[iLine];
+   //
+   //         iStrLen = maximum(0, iLen - (m_iaLineFlags[iLine] & e_line_end_length));
+   //
+   //         if (iPos + iStrLen > m_iImpactSize)
+   //         {
+   //
+   //            informationf("ops3");
+   //
+   //            iStrLen = iImpactSize - iPos;
+   //
+   //            if (iStrLen <= 0)
+   //            {
+   //
+   //               informationf("ops4");
+   //
+   //               break;
+   //
+   //            }
+   //
+   //         }
+   //
+   //         string strLine = string((const char *)&mem.data()[iPos], iStrLen);
+   //
+   //         //if (strLine != m_plinea->lines[i])
+   //         if (strLine != m_straLines[i])
+   //         {
+   //
+   //            //m_plinea->lines[i] = strLine;
+   //            m_straLines[i] = strLine;
+   //
+   //            m_daExtent[i + iLineStart].set_size(0);
+   //
+   //         }
+   //         else
+   //         {
+   //
+   //            //informationf("optstr");
+   //
+   //         }
+   //
+   //         iPos += iLen;
+   //
+   //         if (iPos > iImpactSize)
+   //         {
+   //
+   //            informationf("ops2");
+   //
+   //            break;
+   //
+   //         }
+   //
+   //      }
+   //
+   //      //m_dy = pointOffset.y();
+   //
+   //      ////::colorertake5::base_editor * pcolorer = colorertake5();
+   //
+   //      ////if (pcolorer != nullptr)
+   //      ////{
+   //
+   //      ////   pcolorer->visibleTextEvent(m_iCurrentPageLineStart, m_iLineCount);
+   //
+   //      ////}
+   //
+   //      ////string_array & straLines = m_plinea->lines;
+   //
+   //      //string_array & straLines = m_straLines;
+   //
+   //      //if (iLineUpdate < 0)
+   //      //{
+   //
+   //      //   //m_sizeTotal.cx() = 0;
+   //
+   //      //}
+   //
+   //      //double_size size;
+   //
+   //      //string strLineGraphics;
+   //
+   //      //strsize_array iaTab;
+   //
+   //      //character_count iTab;
+   //
+   //      //character_count iAddUp;
+   //
+   //      //for (int i = 0; i < straLines.get_size(); i++)
+   //      //{
+   //
+   //      //   strLine = straLines[i];
+   //
+   //      //   iTab = -1;
+   //
+   //      //   iaTab.erase_all();
+   //
+   //      //   strLineGraphics = strLine;
+   //
+   //      //   ::str::replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
+   //
+   //      //   const ::ansi_character * pszStart = strLine;
+   //
+   //      //   const ::ansi_character * psz = pszStart;
+   //
+   //      //   character_count iLen = 0;
+   //
+   //      //   iAddUp = 0;
+   //
+   //      //   iPos = 0;
+   //
+   //      //   const ::ansi_character * pszNext = pszStart;
+   //
+   //      //   double_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
+   //
+   //      //   if (daExtent.get_size() <= 0)
+   //      //   {
+   //
+   //      //      daExtent.set_size(strLine.length() + 1);
+   //
+   //      //      while (*pszNext != '\0')
+   //      //      {
+   //
+   //      //         pszNext = unicode_next(psz);
+   //
+   //      //         iLen = pszNext - psz;
+   //
+   //      //         if (*psz == '\t')
+   //      //         {
+   //
+   //      //            iTab++;
+   //
+   //      //            iAddUp += iaTab[iTab] - 1;
+   //
+   //      //         }
+   //
+   //      //         size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length(), pszNext - pszStart + iAddUp);
+   //
+   //      //         for (int j = 0; j < iLen; j++)
+   //      //         {
+   //
+   //      //           daExtent [(::collection::index)(psz - pszStart + j)] = size.cx();
+   //
+   //      //         }
+   //
+   //      //         psz = pszNext;
+   //
+   //      //      }
+   //
+   //      //      if (strLineGraphics.has_character())
+   //      //      {
+   //
+   //      //         size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length());
+   //
+   //      //         for (int j = 0; j < iLen; j++)
+   //      //         {
+   //
+   //      //            daExtent[(::collection::index)(psz - pszStart)] = size.cx();
+   //
+   //      //         }
+   //
+   //      //      }
+   //
+   //
+   //      //      if (size.cx() > m_sizeTotal.cx())
+   //      //      {
+   //
+   //      //         m_sizeTotal.cx() = (int)size.cx();
+   //
+   //      //      }
+   //
+   //      //   }
+   //
+   //
+   //      //}
+   //
+   //      ////if (iLineUpdate < 0)
+   //      ////{
+   //
+   //      ////   m_sizeTotal.cy() = (((int)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
+   //
+   //      ////   const ::int_size & sizePage;
+   //
+   //      ////   sizePage = rectangleX.size();
+   //
+   //      ////   if (m_sizeTotal.cy() < sizePage.cy())
+   //      ////   {
+   //
+   //      ////      sizePage.cy() = m_sizeTotal.cy();
+   //
+   //      ////   }
+   //
+   //      ////}
+   //
+   //      ////on_change_impact_size();
+   //
+   //      ////m_bCalcLayoutHintNoTextChange = false;
+   //
+   //   }
+   //
+   //
+   //   void plain_edit::_plain_edit_update_extents(::draw2d::graphics_pointer & pgraphics, ::collection::index iOnlyLineToUpdate)
+   //   {
+   //
+   //      //_synchronous_lock synchronouslock(this->synchronization());
+   //
+   ////::int_rectangle rectangleX;
+   //
+   ////GetFocusRect(rectangleX);
+   //
+   ////if (m_ptree == nullptr)
+   ////{
+   //
+   ////   m_iCurrentPagePotentialLineCount = 0;
+   //
+   ////   m_iCurrentPageLineOffset = 0;
+   //
+   ////   m_iCurrentPageLineStart = 0;
+   //
+   ////   m_iCurrentPageLineEnd = 0;
+   //
+   ////   m_iImpactOffset = 0;
+   //
+   ////   m_iImpactSize = 0;
+   //
+   ////   return;
+   //
+   ////}
+   //
+   ////::collection::index i;
+   //
+   ////::collection::index iLine;
+   //
+   ////if (pgraphics.is_null())
+   ////{
+   //
+   ////   return;
+   //
+   ////}
+   //
+   ////pgraphics->set_font(this, ::e_element_none);
+   //
+   ////double_size sizeUniText;
+   //
+   ////::write_text::text_metric metric;
+   //
+   ////pgraphics->get_text_metrics(&metric);
+   //
+   ////m_dLineHeight = metric.get_line_spacing();
+   //
+   ////if (m_dLineHeight <= 0.0)
+   ////{
+   //
+   ////   m_dLineHeight = 18.0;
+   //
+   ////}
+   //
+   ////auto pointOffset = get_context_offset();
+   //
+   ////m_iCurrentPagePotentialLineCount = (::collection::count) ceil((double)rectangleX.height() / m_dLineHeight);
+   //
+   ////m_iCurrentPageLineOffset = (::collection::index) minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineIndex.get_upper_bound());
+   //
+   ////bool bLoadFullFile = should_load_full_file();
+   //
+   ////m_iCurrentPageLineStart = bLoadFullFile ? 0 : maximum(0, m_iCurrentPageLineOffset);
+   //
+   ////m_iCurrentPageLineEnd = bLoadFullFile ? m_iaLineLength.get_size() : minimum(m_iaLineLength.get_size(), m_iCurrentPagePotentialLineCount + m_iCurrentPageLineStart);
+   //
+   ////if (m_iCurrentPageLineOffset < 0)
+   ////{
+   //
+   ////   return;
+   //
+   ////}
+   //
+   ////m_iImpactOffset = m_iaLineIndex[m_iCurrentPageLineStart];
+   //
+   ////character_count iProperBeg = m_iaLineIndex[m_iCurrentPageLineEnd - 1];
+   //
+   ////character_count iLen = m_iaLineLength[m_iCurrentPageLineEnd - 1];
+   //
+   ////m_iImpactSize = iProperBeg + iLen - m_iImpactOffset;
+   //
+   ////index iLineStart;
+   //
+   ////index iLineEnd;
+   //
+   ////index iImpactOffset;
+   //
+   ////index iImpactSize;
+   //
+   ////if (iLineUpdate < 0)
+   ////{
+   //
+   ////   iLineStart = m_iCurrentPageLineStart;
+   //
+   ////   iLineEnd = m_iCurrentPageLineEnd;
+   //
+   ////   iImpactOffset = m_iImpactOffset;
+   //
+   ////   iImpactSize = m_iImpactSize;
+   //
+   ////}
+   ////else
+   ////{
+   //
+   ////   iLineStart = iLineUpdate;
+   //
+   ////   iLineEnd = iLineStart + 1;
+   //
+   ////   iImpactOffset = m_iaLineIndex[iLineStart];
+   //
+   ////   iProperBeg = m_iaLineIndex[iLineEnd - 1];
+   //
+   ////   iLen = m_iaLineLength[iLineEnd - 1];
+   //
+   ////   iImpactSize = iProperBeg + iLen - iImpactOffset;
+   //
+   ////}
+   //
+   ////string strLine;
+   //
+   ////memory mem;
+   //
+   ////mem.set_size(iImpactSize + 1);
+   //
+   ////character_count iRead;
+   //
+   ////{
+   //
+   ////   m_ptree->m_peditfile->seek(iImpactOffset, ::e_seek_set);
+   //
+   ////   iRead = m_ptree->m_peditfile->read(mem.get_data(), iImpactSize);
+   //
+   ////   if (iRead < iImpactSize)
+   ////   {
+   //
+   ////      informationf("ops1");
+   //
+   ////      iImpactSize = iRead;
+   //
+   ////   }
+   //
+   ////   mem.get_data()[iImpactSize] = 0;
+   //
+   ////}
+   //
+   ////character_count iPos = 0;
+   //
+   //////      character_count iLen;
+   //
+   ////character_count iStrLen;
+   //
+   //////m_plinea->lines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
+   ////m_straLines.set_size(m_iCurrentPageLineEnd - m_iCurrentPageLineStart);
+   //
+   ////i = 0;
+   //
+   ////iLine = iLineStart;
+   //
+   ////auto iLineLength = m_iaLineLength.get_size();
+   //
+   ////m_daExtent.set_size(iLineLength);
+   //
+   ////for (; iLine < iLineEnd; i++, iLine++)
+   ////{
+   //
+   ////   iLen = m_iaLineLength[iLine];
+   //
+   ////   iStrLen = maximum(0, iLen - (m_iaLineFlags[iLine] & e_line_end_length));
+   //
+   ////   if (iPos + iStrLen > m_iImpactSize)
+   ////   {
+   //
+   ////      informationf("ops3");
+   //
+   ////      iStrLen = iImpactSize - iPos;
+   //
+   ////      if (iStrLen <= 0)
+   ////      {
+   //
+   ////         informationf("ops4");
+   //
+   ////         break;
+   //
+   ////      }
+   //
+   ////   }
+   //
+   ////   string strLine = string((const char *)&mem.get_data()[iPos], iStrLen);
+   //
+   ////   //if (strLine != m_plinea->lines[i])
+   ////   if (strLine != m_straLines[i])
+   ////   {
+   //
+   ////      //m_plinea->lines[i] = strLine;
+   ////      m_straLines[i] = strLine;
+   //
+   ////      m_daExtent[i + iLineStart].set_size(0);
+   //
+   ////   }
+   ////   else
+   ////   {
+   //
+   ////      //informationf("optstr");
+   //
+   ////   }
+   //
+   ////   iPos += iLen;
+   //
+   ////   if (iPos > iImpactSize)
+   ////   {
+   //
+   ////      informationf("ops2");
+   //
+   ////      break;
+   //
+   ////   }
+   //
+   ////}
+   //
+   ////m_dy = pointOffset.y();
+   //
+   //////::colorertake5::base_editor * pcolorer = colorertake5();
+   //
+   //////if (pcolorer != nullptr)
+   //////{
+   //
+   //////   pcolorer->visibleTextEvent(m_iCurrentPageLineStart, m_iLineCount);
+   //
+   //////}
+   //
+   //////string_array & straLines = m_plinea->lines;
+   //
+   ////string_array & straLines = m_straLines;
+   //
+   ////if (iLineUpdate < 0)
+   ////{
+   //
+   ////   //m_sizeTotal.cx() = 0;
+   //
+   ////}
+   //
+   //      double_size sizeUniText;
+   //
+   //      ::write_text::text_metric metric;
+   //
+   //      pgraphics->get_text_metrics(&metric);
+   //
+   //      m_dLineHeight = metric.get_line_height();
+   //
+   //      if (m_dLineHeight <= 0.0)
+   //      {
+   //
+   //         m_dLineHeight = 18.0;
+   //
+   //      }
+   //
+   //      auto pointOffset = get_context_offset();
+   //
+   //      m_iCurrentPagePotentialLineCount = (::collection::count)ceil((double)rectangleX.height() / m_dLineHeight);
+   //
+   //      m_iCurrentPageLineOffset = (::collection::index)minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineIndex.get_upper_bound());
+   //
+   //      bool bLoadFullFile = should_load_full_file();
+   //
+   //      m_iCurrentPageLineStart = bLoadFullFile ? 0 : maximum(0, m_iCurrentPageLineOffset);
+   //
+   //      m_iCurrentPageLineEnd = bLoadFullFile ? m_iaLineLength.get_size() : minimum(m_iaLineLength.get_size(), m_iCurrentPagePotentialLineCount + m_iCurrentPageLineStart);
+   //
+   //      if (m_iCurrentPageLineOffset < 0)
+   //      {
+   //
+   //         return;
+   //
+   //      }
+   //
+   //      m_iImpactOffset = m_iaLineIndex[m_iCurrentPageLineStart];
+   //
+   //      character_count iProperBeg = m_iaLineIndex[m_iCurrentPageLineEnd - 1];
+   //
+   //      character_count iLen = m_iaLineLength[m_iCurrentPageLineEnd - 1];
+   //
+   //      m_iImpactSize = iProperBeg + iLen - m_iImpactOffset;
+   //
+   //      ::user::enum_layout elayout = ::user::e_layout_design;
+   //
+   //      double_size size;
+   //
+   //      string strLineGraphics;
+   //
+   //      strsize_array iaTab;
+   //
+   //      character_count iTab;
+   //
+   //      character_count iAddUp;
+   //
+   //      for (int i = 0; i < m_straLines.get_size(); i++)
+   //      {
+   //
+   //         string strLine = m_straLines[i];
+   //
+   //         iTab = -1;
+   //
+   //         iaTab.erase_all();
+   //
+   //         strLineGraphics = strLine;
+   //
+   //         replace_tab(0, strLineGraphics, m_iTabWidth, &iaTab);
+   //
+   //         const ::ansi_character * pszStart = strLine;
+   //
+   //         const ::ansi_character * psz = pszStart;
+   //
+   //         character_count iLen = 0;
+   //
+   //         iAddUp = 0;
+   //
+   //         character_count iPos = 0;
+   //
+   //         const ::ansi_character * pszNext = pszStart;
+   //
+   //         double_array & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
+   //
+   //         auto sizeTotal = get_total_size(elayout);
+   //
+   //         if (daExtent.get_size() <= 0)
+   //         {
+   //
+   //            daExtent.set_size(strLine.length() + 1);
+   //
+   //            while (::has_character(pszNext))
+   //            {
+   //
+   //               pszNext = unicode_next(psz);
+   //
+   //               iLen = pszNext - psz;
+   //
+   //               if (*psz == '\t')
+   //               {
+   //
+   //                  iTab++;
+   //
+   //                  iAddUp += iaTab[iTab] - 1;
+   //
+   //               }
+   //
+   //               size = pgraphics->get_text_extent(strLineGraphics, pszNext - pszStart + iAddUp);
+   //
+   //               for (int j = 0; j < iLen; j++)
+   //               {
+   //
+   //                  daExtent[(::collection::index)(psz - pszStart + j)] = size.cx();
+   //
+   //               }
+   //
+   //               psz = pszNext;
+   //
+   //            }
+   //
+   //            if (strLineGraphics.has_character())
+   //            {
+   //
+   //               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length());
+   //
+   //               for (int j = 0; j < iLen; j++)
+   //               {
+   //
+   //                  daExtent[(::collection::index)(psz - pszStart)] = size.cx();
+   //
+   //               }
+   //
+   //            }
+   //
+   //
+   //            if (size.cx() > sizeTotal.cx())
+   //            {
+   //
+   //               sizeTotal.cx() = size.cx();
+   //
+   //            }
+   //
+   //         }
+   //
+   //         set_total_size(sizeTotal, elayout);
+   //
+   //      }
+   //
+   //      //if (iLineUpdate < 0)
+   //      //{
+   //
+   //      //   m_sizeTotal.cy() = (((int)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
+   //
+   //      //   const ::int_size & sizePage;
+   //
+   //      //   sizePage = rectangleX.size();
+   //
+   //      //   if (m_sizeTotal.cy() < sizePage.cy())
+   //      //   {
+   //
+   //      //      sizePage.cy() = m_sizeTotal.cy();
+   //
+   //      //   }
+   //
+   //      //}
+   //
+   //      //on_change_impact_size();
+   //
+   //      //m_bCalcLayoutHintNoTextChange = false;
+   //
+   //   }
 
 
    ::collection::index plain_edit::plain_edit_sel_to_line(::draw2d::graphics_pointer & pgraphics, character_count iSel)
@@ -4727,10 +4827,10 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      for (::collection::index iLine = 0; iLine < m_iaLineStart.get_size(); iLine++)
+      for (::collection::index iLine = 0; iLine < m_iaLineIndex.get_size(); iLine++)
       {
 
-         if (iChar >= m_iaLineStart[iLine] && iChar < m_iaLineStart[iLine] + m_iaLineLength[iLine])
+         if (iChar >= m_iaLineIndex[iLine] && iChar < m_iaLineIndex[iLine] + m_iaLineLength[iLine])
          {
 
             return iLine;
@@ -4739,7 +4839,7 @@ namespace user
 
       }
 
-      return m_iaLineStart.get_count();
+      return m_iaLineIndex.get_count();
 
    }
 
@@ -5151,7 +5251,7 @@ namespace user
          iLine = maximum(0, m_iCurrentPageLineStart - 1);
 
       }
-      else if(point.y() > rectangleX.height())
+      else if (point.y() > rectangleX.height())
       {
 
          iLine = minimum(line_count(), m_iCurrentPageLineEnd + 1);
@@ -5241,6 +5341,13 @@ namespace user
 
       string strExtent;
 
+      if (iLine >= m_iaLineIndex.size())
+      {
+
+         return 0;
+
+      }
+
       for (;;)
       {
 
@@ -5270,7 +5377,7 @@ namespace user
          if (px >= lim1 && px <= lim1 + iMid)
          {
 
-            iSel = m_iaLineStart[iLine] + (pszPrevious - psz);
+            iSel = m_iaLineIndex[iLine] + (pszPrevious - psz);
 
             goto end;
 
@@ -5278,7 +5385,7 @@ namespace user
          else if (px >= lim1 + iMid && px <= lim2)
          {
 
-            iSel = m_iaLineStart[iLine] + (pszEnd - psz);
+            iSel = m_iaLineIndex[iLine] + (pszEnd - psz);
 
             goto end;
 
@@ -5293,12 +5400,12 @@ namespace user
 
       }
 
-      if (iLine < m_iaLineStart.get_count()
+      if (iLine < m_iaLineIndex.get_count()
          && iLine < m_iaLineLength.get_count()
          && iLine < m_iaLineFlags.get_count())
       {
 
-         iSel = m_iaLineStart[iLine] + (m_iaLineLength[iLine] - (m_iaLineFlags[iLine] & e_line_end_length));
+         iSel = m_iaLineIndex[iLine] + (m_iaLineLength[iLine] - (m_iaLineFlags[iLine] & e_line_end_length));
 
       }
 
@@ -5441,7 +5548,7 @@ namespace user
    void plain_edit::plain_edit_on_file_update(::draw2d::graphics_pointer & pgraphics)
    {
 
-      m_bGetTextNeedUpdate = true;
+      //m_bGetTextNeedUpdate = true;
 
       plain_edit_create_line_index(pgraphics);
 
@@ -5490,6 +5597,8 @@ namespace user
 
       int iLastR = 0;
 
+      enum_line eline = e_line_end_eof;
+
       while ((uRead = m_ptree->m_peditfile->read(buf, m.size())) > 0)
       {
 
@@ -5531,6 +5640,8 @@ namespace user
 
                   m_iaLineFlags.add(e_line_end_r_n);
 
+                  eline = maximum(eline, e_line_end_r_n);
+
                   iLineSize = 0;
 
                }
@@ -5542,6 +5653,8 @@ namespace user
                   m_iaLineLength.add(iLineSize);
 
                   m_iaLineFlags.add(e_line_end_n);
+
+                  eline = maximum(eline, e_line_end_r_n);
 
                   iLineSize = 0;
 
@@ -5561,6 +5674,8 @@ namespace user
                   m_iaLineLength.add(iLineSize);
 
                   m_iaLineFlags.add(e_line_end_r);
+
+                  eline = maximum(eline, e_line_end_r_n);
 
                   iLineSize = 0;
 
@@ -5589,7 +5704,16 @@ namespace user
 
          m_iaLineFlags.add(e_line_end_r);
 
+         eline = maximum(eline, e_line_end_r);
+
          iLineSize = 0;
+
+      }
+
+      if (eline != e_line_end_eof)
+      {
+
+         m_eline = eline;
 
       }
 
@@ -5597,18 +5721,55 @@ namespace user
 
       m_iaLineFlags.add(e_line_end_eof);
 
-      ::collection::count iAcc = 0;
+      _update_line_start_array();
+
+   }
+
+   
+   void plain_edit::_update_line_start_array(::collection::index iLineStart, ::collection::index iAccumul)
+   {
 
       ::collection::count iLineCount = m_iaLineLength.get_size();
 
-      m_iaLineStart.set_size(iLineCount);
+      m_iaLineIndex.set_size(iLineCount);
 
-      for (::collection::index iLine = 0; iLine < iLineCount; iLine++)
+      ::collection::index iLine;
+
+      if (iAccumul >= 0)
       {
 
-         m_iaLineStart[iLine] = iAcc;
+         iLine = iLineStart;
 
-         iAcc += m_iaLineLength[iLine];
+      }
+      else
+      {
+
+         iLine = 0;
+
+         iAccumul = 0;
+       
+         for (; iLine < iLineStart; iLine++)
+         {
+
+            iAccumul += m_iaLineLength[iLine];
+
+         }
+
+      }
+
+      for (; iLine < iLineCount; iLine++)
+      {
+
+         auto & iLineStart = m_iaLineIndex[iLine];
+
+         if (iAccumul != iLineStart)
+         {
+
+            iLineStart = iAccumul;
+
+         }
+
+         iAccumul += m_iaLineLength[iLine];
 
       }
 
@@ -5796,16 +5957,7 @@ namespace user
 
       }
 
-      ::collection::count iLineCount = m_iaLineLength.get_size();
-
-      for (; iLine < iLineCount; iLine++)
-      {
-
-         m_iaLineStart[iLine] = iOffset;
-
-         iOffset += m_iaLineLength[iLine];
-
-      }
+      _update_line_start_array(iLine, iOffset);
 
    }
 
@@ -6002,6 +6154,460 @@ namespace user
    }
 
 
+   inline const char * _001DeferEOLPrior(const ::ansi_character * psz, const ::ansi_character * pszBeg)
+   {
+
+      psz--;
+
+      if (psz < pszBeg)
+      {
+
+         return nullptr;
+
+      }
+
+      if (*psz == '\n')
+      {
+
+         auto pszTry = psz - 1;
+
+         if (pszTry < pszBeg)
+         {
+
+            return pszBeg;
+
+         }
+
+         if (*pszTry == '\r')
+         {
+
+            return pszTry;
+
+         }
+
+         return psz;
+
+      }
+      else if (*psz == '\r')
+      {
+
+         return psz;
+
+      }
+
+      return nullptr;
+
+   }
+
+
+   inline const char * _001UnicodePrior(const ::ansi_character * psz, const ::ansi_character * pszBeg)
+   {
+
+      auto pszTry = _001DeferEOLPrior(psz, pszBeg);
+
+      if (pszTry)
+      {
+
+         return pszTry;
+
+      }
+
+      return unicode_prior(psz, pszBeg);
+
+   }
+
+
+   inline const char * _001DeferEOLNext(const ::ansi_character * psz)
+   {
+
+      if (!*psz)
+      {
+
+         return nullptr;
+
+      }
+
+      if (*psz == '\n')
+      {
+
+         return psz + 1;
+
+      }
+      else if (*psz == '\r')
+      {
+
+         auto pszTry = psz + 1;
+
+         if (!*pszTry)
+         {
+
+            return pszTry;
+
+         }
+         else if (*pszTry == '\n')
+         {
+
+            return pszTry + 1;
+
+         }
+
+      }
+
+      return nullptr;
+
+   }
+
+
+   inline const char * _001UnicodeNext(const ::ansi_character * psz, int * piError)
+   {
+
+      if (!*psz)
+      {
+
+         return nullptr;
+
+      }
+
+      auto pszTry = _001DeferEOLNext(psz);
+
+      if (pszTry)
+      {
+
+         return pszTry;
+
+      }
+
+      return unicode_next(psz, piError);
+
+   }
+
+
+   bool plain_edit::_plain_edit_on_delete(::collection::index & iLineUpdate, ::character_count & i1, ::character_count & i2, ::draw2d::graphics_pointer & pgraphics, bool bBackIfSelectionEmpty)
+   {
+
+      bool bFullUpdate = false;
+
+      i1 = m_ptree->m_iSelBeg;
+
+      i2 = m_ptree->m_iSelEnd;
+
+      string strSample;
+
+      character_count iSample;
+
+      character_count iSample1;
+
+      character_count iSample2;
+
+      ::string strSel;
+
+      if (i1 == i2)
+      {
+
+         if (bBackIfSelectionEmpty)
+         {
+
+            if (i2 <= 0)
+            {
+
+               return false;
+
+            }
+
+            iSample = ::minimum_maximum(i2, 0, 16);
+
+            iSample1 = ::maximum(0, i2 - 16);;
+
+            iSample2 = i2;
+
+            get_text(strSel, iSample1, iSample2);
+
+            auto pszBefore = _001UnicodePrior(strSel.end(), strSel.begin());
+
+            if (::is_null(pszBefore))
+            {
+
+               return false;
+
+            }
+
+            i1 -= strSel.end() - pszBefore;
+
+         }
+         else
+         {
+
+            if (i2 >= m_ptree->m_peditfile->get_length())
+            {
+
+               return false;
+
+            }
+
+            iSample = i1;
+
+            iSample1 = i1;
+
+            iSample2 = ::minimum(i2 + 16, m_ptree->m_peditfile->get_length());
+
+            get_text(strSel, iSample1, iSample2);
+
+            int iError = 0;
+
+            auto pszNext = _001UnicodeNext(strSel.begin(), &iError);
+
+            if (::is_null(pszNext) || iError > 0)
+            {
+
+               return false;
+
+            }
+
+            i2 += pszNext - strSel.begin();
+
+            i2++;
+
+         }
+
+      }
+
+      //auto psetsel = __allocate plain_text_set_sel_command();
+
+      //psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
+
+      //psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
+
+      ::sort_non_negative(i1, i2);
+
+      //if (i1 != i2)
+      //{
+
+      on_before_change_text();
+
+      get_text(strSel, i1, i2);
+
+      bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
+
+      if (bFullUpdate)
+      {
+
+         int iLine1 = plain_edit_char_to_line(pgraphics, i1);
+
+         int iLine2 = plain_edit_char_to_line(pgraphics, i2);
+
+         ::string_array straLinesDeleted;
+
+         straLinesDeleted.add_lines(strSel);
+
+         auto & iLineLen1 = m_iaLineLength[iLine1];
+
+         auto iDeleted1 = straLinesDeleted.first().size();
+
+         iLineLen1 -= iDeleted1;
+
+         auto & iLineLen2 = m_iaLineLength[iLine2];
+
+         auto iDeleted2 = straLinesDeleted.last().size();
+
+         iLineLen2 -= iDeleted2;
+
+         auto iDeleted = iLine2 - iLine1;
+
+         auto eolDeleted = (enum_line)(m_iaLineFlags[iLine1]);
+
+         iLineLen1 += iLineLen2 - as_length(eolDeleted);
+
+         m_iaLineLength.erase_at(iLine1 + 1, iDeleted);
+
+         m_iaLineFlags.erase_at(iLine1 + 1, iDeleted);
+
+      }
+      else
+      {
+
+         iLineUpdate = plain_edit_sel_to_line(pgraphics, i1);
+
+         m_iaLineLength[iLineUpdate] -= strSel.size();
+
+      }
+
+      m_ptree->m_peditfile->seek(i1, ::e_seek_set);
+
+      m_ptree->m_peditfile->Delete(i2 - i1);
+
+      m_pinsert = nullptr;
+
+      //IndexRegisterDelete(i1, i2 - i1);
+
+      m_ptree->m_iSelEnd = i1;
+
+      //auto iSelBeg = m_ptree->m_iSelEnd;
+
+      //auto iSelEnd = m_ptree->m_iSelEnd;
+
+      //psetsel->m_iSelBeg = iSelBeg;
+
+      //psetsel->m_iSelEnd = iSelEnd;
+
+      //m_ptree->m_iSelBeg = iSelBeg;
+
+      //m_ptree->m_iSelEnd = iSelEnd;
+
+
+      //if (bBackIfSelectionEmpty)
+      //{
+
+      //   psetsel->m_iSelBeg = i1;
+
+      //   psetsel->m_iSelEnd = i1;
+
+      //   m_ptree->m_iSelBeg = i1;
+
+      //   m_ptree->m_iSelEnd = i1;
+
+      //   _unlocked_plain_edit_on_change_text_selection(e_source_sync);
+
+      //}
+
+      //MacroRecord(psetsel);
+
+      //MacroRecord(__allocate plain_text_file_command());
+
+
+      //}
+      //else
+      //{
+
+      //   //if (bBackIfSelectionEmpty)
+      //   //{
+
+      //   //}
+      //   //else
+      //   //{
+
+      //   //   if (m_ptree->m_iSelEnd >= m_ptree->m_peditfile->get_length())
+      //   //   {
+
+      //   //      return;
+
+      //   //   }
+
+      //   //}
+
+      //   //on_before_change_text();
+
+      //   //char buf[512];
+
+      //   //memory_set(buf, 0, sizeof(buf));
+
+      //   //filesize posRead;
+
+      //   //filesize amountToRead;
+
+      //   //if (bBackIfSelectionEmpty)
+      //   //{
+
+      //   //   posRead = maximum(0, m_ptree->m_iSelEnd - (::filesize)sizeof(buf));
+
+      //   //   amountToRead = minimum(sizeof(buf), m_ptree->m_iSelEnd - posRead);
+
+      //   //}
+      //   //else
+      //   //{
+
+      //   //   posRead = m_ptree->m_iSelEnd;
+
+      //   //   amountToRead = sizeof(buf);
+
+      //   //}
+
+      //   //m_ptree->m_peditfile->seek(posRead, ::e_seek_set);
+
+      //   //auto amountRead = m_ptree->m_peditfile->read(buf, amountToRead);
+
+      //   //const ::ansi_character * pszBefore;
+
+      //   //const ::ansi_character * pszNext;
+
+      //   //if (bBackIfSelectionEmpty)
+      //   //{
+
+      //   //   //if(amountRead == amountToRead)
+      //   //   //{
+
+      //   //   pszNext = buf + amountRead;
+
+      //   //   pszBefore = unicode_prior(pszNext, buf);
+
+      //   //   //}
+
+      //   //}
+      //   //else
+      //   //{
+
+      //   //   pszBefore = buf;
+
+      //   //   pszNext = unicode_next(buf);
+
+      //   //}
+
+      //   character_count iMultiByteUtf8DeleteCount = pszNext - pszBefore;
+
+      //   ::collection::index i1;
+
+      //   if (bBackIfSelectionEmpty)
+      //   {
+
+      //      i1 = m_ptree->m_iSelEnd - iMultiByteUtf8DeleteCount;
+
+      //   }
+      //   else
+      //   {
+
+      //      i1 = m_ptree->m_iSelEnd;
+
+      //   }
+
+      //   ::collection::index i2 = i1 + iMultiByteUtf8DeleteCount;
+
+      //   string strSel;
+
+      //   get_text(strSel, i1, i2);
+
+      //   bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
+
+      //   if (!bFullUpdate)
+      //   {
+
+      //      iLineUpdate = plain_edit_sel_to_line(pgraphics, i1);
+
+      //   }
+
+
+      //}
+
+      //MacroBegin();
+
+      //if (psetsel)
+      //{
+
+      //   MacroRecord(psetsel);
+
+      //}
+
+      //MacroRecord(__allocate plain_text_file_command());
+
+      //MacroEnd();
+
+   //}
+
+   //plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
+
+   //_ensure_selection_visible_x(pgraphics);
+      return true;
+   }
+
+
    void plain_edit::plain_edit_on_delete(::draw2d::graphics_pointer & pgraphics, bool bBackIfSelectionEmpty)
    {
 
@@ -6014,189 +6620,342 @@ namespace user
       if (!m_bReadOnly)
       {
 
-         character_count i1 = m_ptree->m_iSelBeg;
+         //MacroBegin();
 
-         character_count i2 = m_ptree->m_iSelEnd;
+         //_plain_edit_on_delete
 
-         ::pointer < plain_text_set_sel_command > psetsel;
+            //character_count i1 = m_ptree->m_iSelBeg;
 
-         if (i1 != i2 || bBackIfSelectionEmpty)
+            //character_count i2 = m_ptree->m_iSelEnd;
+
+            //string strSample;
+
+            //character_count iSample;
+
+            //character_count iSample1;
+
+            //character_count iSample2;
+
+            //if (i1 == i2)
+            //{
+
+            //   if (bBackIfSelectionEmpty)
+            //   {
+
+            //      if (i2 <= 0)
+            //      {
+
+            //         return;
+
+            //      }
+
+            //      iSample = ::minimum_maximum(i2, 0, 16);
+
+            //      iSample1 = ::maximum(0, i2 - 16);;
+
+            //      iSample2 = i2;
+
+            //      get_text(strSel, iSample1, iSample2);
+
+            //      auto pszBefore = unicode_prior(strSel.end(), strSel.begin());
+
+            //      if (::is_null(pszBefore))
+            //      {
+
+            //         return;
+
+            //      }
+
+            //      i1 -= strSel.end() - pszBefore;
+
+            //   }
+            //   else
+            //   {
+
+            //      if (i2 >= m_ptree->m_peditfile->get_length())
+            //      {
+
+            //         return;
+
+            //      }
+
+            //      iSample = i1;
+
+            //      iSample1 = i1;
+
+            //      iSample2 = ::minimum(i2 + 16, m_ptree->m_peditfile->get_length());
+
+            //      get_text(strSel, iSample1, iSample2);
+
+            //      int iError = 0;
+
+            //      auto pszNext = unicode_next(strSel.begin(), &iError);
+
+            //      if (::is_null(pszNext))
+            //      {
+
+            //         return;
+
+            //      }
+
+            //      i2 += pszNext - strSel.begin();
+
+            //      i2++;
+
+            //   }
+
+            //}
+
+            //auto psetsel = __allocate plain_text_set_sel_command();
+
+            //psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
+
+            //psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
+
+            //::sort_non_negative(i1, i2);
+
+            ////if (i1 != i2)
+            //{
+
+            //   on_before_change_text();
+
+            //   string strSel;
+
+            //   get_text(strSel, i1, i2);
+
+            //   bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
+
+            //   //if (bFullUpdate)
+            //   //{
+
+            //      int iLine1 = plain_edit_char_to_line(pgraphics, i1);
+
+            //      int iLine2 = plain_edit_char_to_line(pgraphics, i2);
+
+            //      ::string_array straLinesDeleted;
+
+            //      straLinesDeleted.add_lines(strSel);
+
+            //      m_iaLineLength[iLine1] -= straLinesDeleted.first().size();
+
+            //      m_iaLineLength[iLine2] -= straLinesDeleted.last().size();
+
+            //      auto iDeleted = iLine2 - iLine1;
+
+            //      m_iaLineLength[iLine1] += m_iaLineLength[iLine2];
+
+            //      m_iaLineLength.erase_at(iLine1 + 1, iDeleted);
+
+            //      m_iaLineFlags.erase_at(iLine1 + 1, iDeleted);
+
+            //   }
+            //   else
+            //   {
+
+            //      iLineUpdate = plain_edit_sel_to_line(pgraphics, i1);
+
+            //      m_iaLineLength[iLineUpdate] -= strSel.size();
+
+            //   }
+
+            //   m_ptree->m_peditfile->seek(i1, ::e_seek_set);
+
+            //   m_ptree->m_peditfile->Delete(i2 - i1);
+
+            //   m_pinsert = nullptr;
+
+            //   IndexRegisterDelete(i1, i2 - i1);
+
+            //   m_ptree->m_iSelEnd = i1;
+
+            //   auto iSelBeg = m_ptree->m_iSelEnd;
+
+            //   auto iSelEnd = m_ptree->m_iSelEnd;
+
+            //   psetsel->m_iSelBeg = iSelBeg;
+
+            //   psetsel->m_iSelEnd = iSelEnd;
+
+            //   m_ptree->m_iSelBeg = iSelBeg;
+
+            //   m_ptree->m_iSelEnd = iSelEnd;
+
+            //}
+            //else
+            //{
+
+            //   //if (bBackIfSelectionEmpty)
+            //   //{
+
+            //   //}
+            //   //else
+            //   //{
+
+            //   //   if (m_ptree->m_iSelEnd >= m_ptree->m_peditfile->get_length())
+            //   //   {
+
+            //   //      return;
+
+            //   //   }
+
+            //   //}
+
+            //   //on_before_change_text();
+
+            //   //char buf[512];
+
+            //   //memory_set(buf, 0, sizeof(buf));
+
+            //   //filesize posRead;
+
+            //   //filesize amountToRead;
+
+            //   //if (bBackIfSelectionEmpty)
+            //   //{
+
+            //   //   posRead = maximum(0, m_ptree->m_iSelEnd - (::filesize)sizeof(buf));
+
+            //   //   amountToRead = minimum(sizeof(buf), m_ptree->m_iSelEnd - posRead);
+
+            //   //}
+            //   //else
+            //   //{
+
+            //   //   posRead = m_ptree->m_iSelEnd;
+
+            //   //   amountToRead = sizeof(buf);
+
+            //   //}
+
+            //   //m_ptree->m_peditfile->seek(posRead, ::e_seek_set);
+
+            //   //auto amountRead = m_ptree->m_peditfile->read(buf, amountToRead);
+
+            //   //const ::ansi_character * pszBefore;
+
+            //   //const ::ansi_character * pszNext;
+
+            //   //if (bBackIfSelectionEmpty)
+            //   //{
+
+            //   //   //if(amountRead == amountToRead)
+            //   //   //{
+
+            //   //   pszNext = buf + amountRead;
+
+            //   //   pszBefore = unicode_prior(pszNext, buf);
+
+            //   //   //}
+
+            //   //}
+            //   //else
+            //   //{
+
+            //   //   pszBefore = buf;
+
+            //   //   pszNext = unicode_next(buf);
+
+            //   //}
+
+            //   character_count iMultiByteUtf8DeleteCount = pszNext - pszBefore;
+
+            //   ::collection::index i1;
+
+            //   if (bBackIfSelectionEmpty)
+            //   {
+
+            //      i1 = m_ptree->m_iSelEnd - iMultiByteUtf8DeleteCount;
+
+            //   }
+            //   else
+            //   {
+
+            //      i1 = m_ptree->m_iSelEnd;
+
+            //   }
+
+            //   ::collection::index i2 = i1 + iMultiByteUtf8DeleteCount;
+
+            //   string strSel;
+
+            //   get_text(strSel, i1, i2);
+
+            //   bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
+
+            //   if (!bFullUpdate)
+            //   {
+
+            //      iLineUpdate = plain_edit_sel_to_line(pgraphics, i1);
+
+            //   }
+
+
+            //   if (bBackIfSelectionEmpty)
+            //   {
+
+            //      psetsel->m_iSelBeg = i1;
+
+            //      psetsel->m_iSelEnd = i1;
+
+            //      m_ptree->m_iSelBeg = i1;
+
+            //      m_ptree->m_iSelEnd = i1;
+
+            //      _unlocked_plain_edit_on_change_text_selection(e_source_sync);
+
+            //   }
+
+            //}
+
+
+            /*if (psetsel)
+            {
+
+               MacroRecord(psetsel);
+
+            }*/
+
+            /*MacroRecord(__allocate plain_text_file_command());*/
+
+            //MacroEnd();
+
+         ::character_count i1;
+
+         ::character_count i2;
+
+         auto iSelBegOld = m_ptree->m_iSelBeg;
+
+         auto iSelEndOld = m_ptree->m_iSelEnd;
+
+         if (_plain_edit_on_delete(iLineUpdate, i1, i2, pgraphics, bBackIfSelectionEmpty))
          {
 
-            psetsel = __allocate plain_text_set_sel_command();
-
-            psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
-
-            psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
-
-            ::sort_non_negative(i1, i2);
-
-         }
-
-         if (i1 != i2)
-         {
-
-            on_before_change_text();
-
-            string strSel;
-
-            get_text(strSel, i1, i2);
-
-            bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
-
-            if (!bFullUpdate)
-            {
-
-               iLineUpdate = plain_edit_sel_to_line(pgraphics, i1);
-
-            }
-
-            m_ptree->m_peditfile->seek(i1, ::e_seek_set);
-
-            m_ptree->m_peditfile->Delete((memsize)(i2 - i1));
-
-            m_pinsert = nullptr;
-
-            m_ptree->m_iSelEnd = i1;
-
-            auto iSelBeg = m_ptree->m_iSelEnd;
-
-            auto iSelEnd = m_ptree->m_iSelEnd;
-
-            psetsel->m_iSelBeg = iSelBeg;
-
-            psetsel->m_iSelEnd = iSelEnd;
-
-            m_ptree->m_iSelBeg = iSelBeg;
-
-            m_ptree->m_iSelEnd = iSelEnd;
-
-         }
-         else
-         {
-
             if (bBackIfSelectionEmpty)
             {
 
-               if (m_ptree->m_iSelEnd <= 0)
-               {
-
-                  return;
-
-               }
+               informationf("plain_edit_on_delete: back (%d, %d)", i1, i2);
 
             }
             else
             {
 
-               if (m_ptree->m_iSelEnd >= m_ptree->m_peditfile->get_length())
-               {
-
-                  return;
-
-               }
+               informationf("plain_edit_on_delete: forward (%d, %d)", i1, i2);
 
             }
 
-            on_before_change_text();
+            MacroBegin();
 
-            char buf[512];
 
-            memory_set(buf, 0, sizeof(buf));
-
-            filesize posRead;
-
-            filesize amountToRead;
-
-            if (bBackIfSelectionEmpty)
+            // this i1, i1 is on purpose, deleted from i1 to i2, 
+            // so final selection is [i1, i2]
+            if (i1 != iSelBegOld || i1 != iSelEndOld)
             {
 
-               posRead = maximum(0, m_ptree->m_iSelEnd - (::filesize)sizeof(buf));
+               auto psetsel = __allocate plain_text_set_sel_command();
 
-               amountToRead = minimum(sizeof(buf), m_ptree->m_iSelEnd - posRead);
+               psetsel->m_iPreviousSelBeg = iSelBegOld;
 
-            }
-            else
-            {
-
-               posRead = m_ptree->m_iSelEnd;
-
-               amountToRead = sizeof(buf);
-
-            }
-
-            m_ptree->m_peditfile->seek(posRead, ::e_seek_set);
-
-            auto amountRead = m_ptree->m_peditfile->read(buf, amountToRead);
-
-            const ::ansi_character * pszBefore;
-
-            const ::ansi_character * pszNext;
-
-            if (bBackIfSelectionEmpty)
-            {
-               
-               //if(amountRead == amountToRead)
-               //{
-                  
-               pszNext = buf + amountRead;
-                  
-               pszBefore = unicode_prior(pszNext, buf);
-                  
-               //}
-
-            }
-            else
-            {
-
-               pszBefore = buf;
-
-               pszNext = unicode_next(buf);
-
-            }
-
-            character_count iMultiByteUtf8DeleteCount = pszNext - pszBefore;
-
-            ::collection::index i1;
-
-            if (bBackIfSelectionEmpty)
-            {
-
-               i1 = m_ptree->m_iSelEnd - iMultiByteUtf8DeleteCount;
-
-            }
-            else
-            {
-
-               i1 = m_ptree->m_iSelEnd;
-
-            }
-
-            ::collection::index i2 = i1 + iMultiByteUtf8DeleteCount;
-
-            string strSel;
-
-            get_text(strSel, i1, i2);
-
-            bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
-
-            if (!bFullUpdate)
-            {
-
-               iLineUpdate = plain_edit_sel_to_line(pgraphics, i1);
-
-            }
-
-            m_ptree->m_peditfile->seek(i1, ::e_seek_set);
-
-            m_ptree->m_peditfile->Delete((memsize)(iMultiByteUtf8DeleteCount));
-
-            m_pinsert = nullptr;
-
-            IndexRegisterDelete(i1, iMultiByteUtf8DeleteCount);
-
-            if (bBackIfSelectionEmpty)
-            {
+               psetsel->m_iPreviousSelEnd = iSelEndOld;
 
                psetsel->m_iSelBeg = i1;
 
@@ -6205,31 +6964,27 @@ namespace user
                m_ptree->m_iSelBeg = i1;
 
                m_ptree->m_iSelEnd = i1;
-               
+
                _unlocked_plain_edit_on_change_text_selection(e_source_sync);
+
+               MacroRecord(psetsel);
 
             }
 
+            MacroRecord(__allocate plain_text_file_command());
+
+            MacroEnd();
+
+            _update_line_start_array(iLineUpdate);
+
+            _plain_edit_update_extents(pgraphics, iLineUpdate, iLineUpdate);
+
+            _ensure_selection_visible_x(pgraphics);
+
          }
 
-         MacroBegin();
-
-         if (psetsel)
-         {
-
-            MacroRecord(psetsel);
-
-         }
-
-         MacroRecord(__allocate plain_text_file_command());
-
-         MacroEnd();
 
       }
-
-      plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
-
-      _ensure_selection_visible_x(pgraphics);
 
    }
 
@@ -6267,6 +7022,8 @@ namespace user
       queue_graphics_call([this, bBackIfSelectionEmpty](::draw2d::graphics_pointer & pgraphics)
       {
 
+         on_reset_focus_start_tick();
+
          plain_edit_on_delete(pgraphics, bBackIfSelectionEmpty);
 
       });
@@ -6274,7 +7031,6 @@ namespace user
       set_need_redraw();
 
       post_redraw();
-
 
    }
 
@@ -6515,7 +7271,7 @@ namespace user
 
          string strChar;
 
-         
+
 
          information() << "on_message_key_down (1)";
 
@@ -6690,7 +7446,7 @@ namespace user
                   fork([this]()
                      {
 
-                        clipboard_paste();
+                     clipboard_paste();
 
                      });
 
@@ -6838,35 +7594,35 @@ namespace user
                queue_graphics_call([this, bShift](::draw2d::graphics_pointer & pgraphics)
                   {
 
-                     on_reset_focus_start_tick();
+                  on_reset_focus_start_tick();
 
-                     int x;
+                  int x;
 
-                     ::collection::index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
+                  ::collection::index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
-                     ::int_rectangle rectangleX;
+                  ::int_rectangle rectangleX;
 
-                     GetFocusRect(rectangleX);
+                  GetFocusRect(rectangleX);
 
-                     iLine -= (::collection::index)(rectangleX.height() / m_dLineHeight);
+                  iLine -= (::collection::index)(rectangleX.height() / m_dLineHeight);
 
-                     if (iLine < 0)
-                     {
+                  if (iLine < 0)
+                  {
 
-                        iLine = 0;
+                     iLine = 0;
 
-                     }
+                  }
 
-                     m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, m_iColumnX);
+                  m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, m_iColumnX);
 
-                     if (!bShift)
-                     {
+                  if (!bShift)
+                  {
 
-                        m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
+                     m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
 
-                     }
+                  }
 
-                     _001EnsureVisibleLine(pgraphics, iLine);
+                  _001EnsureVisibleLine(pgraphics, iLine);
 
                   });
 
@@ -6884,34 +7640,34 @@ namespace user
                queue_graphics_call([this, bShift](::draw2d::graphics_pointer & pgraphics)
                   {
 
-                     on_reset_focus_start_tick();
+                  on_reset_focus_start_tick();
 
-                     int x;
+                  int x;
 
-                     ::collection::index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
+                  ::collection::index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
-                     ::int_rectangle rectangleX;
+                  ::int_rectangle rectangleX;
 
-                     GetFocusRect(rectangleX);
+                  GetFocusRect(rectangleX);
 
-                     iLine += (::collection::index)(rectangleX.height() / m_dLineHeight);
+                  iLine += (::collection::index)(rectangleX.height() / m_dLineHeight);
 
-                     if (iLine >= m_iaLineStart.get_size())
-                     {
+                  if (iLine >= m_iaLineIndex.get_size())
+                  {
 
-                        iLine = m_iaLineStart.get_upper_bound();
+                     iLine = m_iaLineIndex.get_upper_bound();
 
-                     }
-                     m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, m_iColumnX);
+                  }
+                  m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, m_iColumnX);
 
-                     if (!bShift)
-                     {
+                  if (!bShift)
+                  {
 
-                        m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
+                     m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
 
-                     }
+                  }
 
-                     _001EnsureVisibleLine(pgraphics, iLine);
+                  _001EnsureVisibleLine(pgraphics, iLine);
 
                   });
 
@@ -6941,7 +7697,7 @@ namespace user
                if (is_window_enabled())
                {
 
-                  on_reset_focus_start_tick();
+                  //on_reset_focus_start_tick();
 
                   if (!m_bReadOnly)
                   {
@@ -7093,40 +7849,40 @@ namespace user
                queue_graphics_call([this, bShift](::draw2d::graphics_pointer & pgraphics)
                   {
 
-                     on_reset_focus_start_tick();
+                  on_reset_focus_start_tick();
 
-                     int x;
+                  int x;
 
-                     ::collection::index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
+                  ::collection::index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
-                     iLine--;
+                  iLine--;
 
-                     if (iLine < 0)
-                     {
+                  if (iLine < 0)
+                  {
 
-                        iLine = 0;
+                     iLine = 0;
 
-                     }
+                  }
 
-                     if (m_iColumnX >= 0)
-                     {
+                  if (m_iColumnX >= 0)
+                  {
 
-                        x = m_iColumnX;
+                     x = m_iColumnX;
 
-                     }
+                  }
 
-                     m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, x);
+                  m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, x);
 
-                     if (!bShift)
-                     {
+                  if (!bShift)
+                  {
 
-                        m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
+                     m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
 
-                     }
+                  }
 
-                     _001EnsureVisibleLine(pgraphics, iLine);
+                  _001EnsureVisibleLine(pgraphics, iLine);
 
-                     _ensure_selection_visible_x(pgraphics);
+                  _ensure_selection_visible_x(pgraphics);
 
                   });
 
@@ -7144,41 +7900,41 @@ namespace user
                queue_graphics_call([this, bShift](::draw2d::graphics_pointer & pgraphics)
                   {
 
-                     on_reset_focus_start_tick();
+                  on_reset_focus_start_tick();
 
-                     int x;
+                  int x;
 
-                     ::collection::index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
+                  ::collection::index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
-                     iLine++;
+                  iLine++;
 
-                     if (iLine >= m_iaLineStart.get_size())
-                     {
+                  if (iLine >= m_iaLineIndex.get_size())
+                  {
 
-                        iLine = m_iaLineStart.get_upper_bound();
+                     iLine = m_iaLineIndex.get_upper_bound();
 
-                     }
+                  }
 
-                     if (m_iColumnX >= 0)
-                     {
+                  if (m_iColumnX >= 0)
+                  {
 
-                        x = m_iColumnX;
+                     x = m_iColumnX;
 
-                     }
+                  }
 
-                     m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, x);
+                  m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, x);
 
-                     if (!bShift)
-                     {
-                        m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
+                  if (!bShift)
+                  {
+                     m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
 
 
 
-                     }
+                  }
 
-                     _001EnsureVisibleLine(pgraphics, iLine);
+                  _001EnsureVisibleLine(pgraphics, iLine);
 
-                     _ensure_selection_visible_x(pgraphics);
+                  _ensure_selection_visible_x(pgraphics);
 
                   });
 
@@ -7291,33 +8047,33 @@ namespace user
                queue_graphics_call([this, bControl, bShift](::draw2d::graphics_pointer & pgraphics)
                   {
 
-                     on_reset_focus_start_tick();
+                  on_reset_focus_start_tick();
 
-                     if (bControl)
-                     {
+                  if (bControl)
+                  {
 
-                        m_ptree->m_iSelEnd = 0;
+                     m_ptree->m_iSelEnd = 0;
 
-                        _001EnsureVisibleLine(pgraphics, 0);
+                     _001EnsureVisibleLine(pgraphics, 0);
 
-                     }
-                     else
-                     {
+                  }
+                  else
+                  {
 
-                        ::collection::index iLine = plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
+                     ::collection::index iLine = plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
 
-                        m_ptree->m_iSelEnd = plain_edit_line_column_to_sel(pgraphics, iLine, 0);
+                     m_ptree->m_iSelEnd = plain_edit_line_column_to_sel(pgraphics, iLine, 0);
 
-                     }
+                  }
 
-                     if (!bShift)
-                     {
+                  if (!bShift)
+                  {
 
-                        m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
+                     m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
 
-                     }
+                  }
 
-                     _ensure_selection_visible_x(pgraphics);
+                  _ensure_selection_visible_x(pgraphics);
 
                      });
 
@@ -7325,7 +8081,7 @@ namespace user
 
                post_redraw();
 
-                  }
+            }
             else if (pkey->m_ekey == ::user::e_key_end)
             {
 
@@ -7339,37 +8095,37 @@ namespace user
                queue_graphics_call([this, bControl, bShift](::draw2d::graphics_pointer & pgraphics)
                   {
 
-                     on_reset_focus_start_tick();
+                  on_reset_focus_start_tick();
 
-                     ::collection::index iSelEnd = -1;
+                  ::collection::index iSelEnd = -1;
 
-                     if (bControl)
-                     {
+                  if (bControl)
+                  {
 
-                        ::collection::index iLine = m_iaLineStart.get_upper_bound();
+                     ::collection::index iLine = m_iaLineIndex.get_upper_bound();
 
-                        m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, int(m_iaLineLength[iLine]));
+                     m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, int(m_iaLineLength[iLine]));
 
-                        _001EnsureVisibleLine(pgraphics, iLine);
+                     _001EnsureVisibleLine(pgraphics, iLine);
 
-                     }
-                     else
-                     {
+                  }
+                  else
+                  {
 
-                        ::collection::index iLine = plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
+                     ::collection::index iLine = plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
 
-                        m_ptree->m_iSelEnd = plain_edit_line_column_to_sel(pgraphics, iLine, -1);
+                     m_ptree->m_iSelEnd = plain_edit_line_column_to_sel(pgraphics, iLine, -1);
 
-                     }
+                  }
 
-                     _ensure_selection_visible_x(pgraphics);
+                  _ensure_selection_visible_x(pgraphics);
 
-                     if (!bShift)
-                     {
+                  if (!bShift)
+                  {
 
-                        m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
+                     m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
 
-                     }
+                  }
 
                   });
 
@@ -7519,25 +8275,25 @@ namespace user
                queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
                   {
 
-                     int iColumnX;
+                  int iColumnX;
 
-                     auto iColumn = plain_edit_sel_to_column_x(pgraphics, m_ptree->m_iSelEnd, iColumnX);
+                  auto iColumn = plain_edit_sel_to_column_x(pgraphics, m_ptree->m_iSelEnd, iColumnX);
 
-                     if (iColumn != m_iColumn)
-                     {
+                  if (iColumn != m_iColumn)
+                  {
 
-                        m_iColumn = iColumn;
-                        m_iColumnX = iColumnX;
+                     m_iColumn = iColumn;
+                     m_iColumnX = iColumnX;
 
-                     }
+                  }
 
                   });
 
             }
 
-            }
-
          }
+
+      }
 
       if (bUpdate)
       {
@@ -7545,7 +8301,7 @@ namespace user
          queue_graphics_call([this, bFullUpdate, iLineUpdate](::draw2d::graphics_pointer & pgraphics)
             {
 
-               plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
+            plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
 
             });
 
@@ -7555,7 +8311,7 @@ namespace user
 
       }
 
-      }
+   }
 
 
    void plain_edit::on_message_char(::message::message * pmessage)
@@ -7567,7 +8323,7 @@ namespace user
 
       string str;
 
-      on_reset_focus_start_tick();
+      //on_reset_focus_start_tick();
 
       if (!m_bReadOnly)
       {
@@ -7668,30 +8424,30 @@ namespace user
          queue_graphics_call([this, i1](::draw2d::graphics_pointer & pgraphics)
             {
 
-               int iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, i1);
+            int iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, i1);
 
-               m_ptree->m_iSelEnd = i1;
-               m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
-               m_ppropertysetsel->m_iSelEnd = m_ptree->m_iSelEnd;
-               m_ppropertysetsel->m_iSelBeg = m_ptree->m_iSelEnd;
+            m_ptree->m_iSelEnd = i1;
+            m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
+            m_ppropertysetsel->m_iSelEnd = m_ptree->m_iSelEnd;
+            m_ppropertysetsel->m_iSelBeg = m_ptree->m_iSelEnd;
 
-               bool bFullUpdate = false;
+            bool bFullUpdate = false;
 
-               plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
+            plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
 
-               if (iLineUpdate < 0)
-               {
+            if (iLineUpdate < 0)
+            {
 
-                  iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
+               iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
 
-               }
+            }
 
-               if (iLineUpdate >= 0)
-               {
+            if (iLineUpdate >= 0)
+            {
 
-                  _001EnsureVisibleLine(pgraphics, iLineUpdate + 1);
+               _001EnsureVisibleLine(pgraphics, iLineUpdate + 1);
 
-               }
+            }
 
             });
 
@@ -7741,30 +8497,30 @@ namespace user
          queue_graphics_call([this, i1](::draw2d::graphics_pointer & pgraphics)
             {
 
-               int iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, i1);
+            int iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, i1);
 
-               m_ptree->m_iSelEnd = i1;
-               m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
-               m_ppropertysetsel->m_iSelEnd = m_ptree->m_iSelEnd;
-               m_ppropertysetsel->m_iSelBeg = m_ptree->m_iSelEnd;
+            m_ptree->m_iSelEnd = i1;
+            m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
+            m_ppropertysetsel->m_iSelEnd = m_ptree->m_iSelEnd;
+            m_ppropertysetsel->m_iSelBeg = m_ptree->m_iSelEnd;
 
-               bool bFullUpdate = false;
+            bool bFullUpdate = false;
 
-               plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
+            plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
 
-               if (iLineUpdate < 0)
-               {
+            if (iLineUpdate < 0)
+            {
 
-                  iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
+               iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
 
-               }
+            }
 
-               if (iLineUpdate >= 0)
-               {
+            if (iLineUpdate >= 0)
+            {
 
-                  _001EnsureVisibleLine(pgraphics, iLineUpdate + 1);
+               _001EnsureVisibleLine(pgraphics, iLineUpdate + 1);
 
-               }
+            }
 
             });
 
@@ -7866,7 +8622,7 @@ namespace user
       queue_graphics_call([this, iBeforeLength, iAfterLength](::draw2d::graphics_pointer & pgraphics)
       {
 
-         plain_edit_on_delete_surrounding_text(pgraphics, iBeforeLength, iAfterLength);
+      plain_edit_on_delete_surrounding_text(pgraphics, iBeforeLength, iAfterLength);
 
       });
 
@@ -7887,176 +8643,176 @@ namespace user
       queue_graphics_call([this, strText, iNewCursorPosition](::draw2d::graphics_pointer & pgraphics)
          {
 
-            if (m_ptextcompositionclient)
+         if (m_ptextcompositionclient)
+         {
+
+            m_ptextcompositionclient->set_text_composition_active();
+
+         }
+
+         bool bTextHasNewLine = strText.contains('\r') || strText.contains('\n');
+
+         bool bAlreadyComposing = m_pitemComposing && !bTextHasNewLine;
+
+         if (bAlreadyComposing)
+         {
+
+            m_ptree->m_peditfile->change_insert_item_data(m_pitemComposing.get(), strText);
+
+            m_ptree->m_iSelBeg = m_pitemComposing->m_position + m_pitemComposing->get_extent();
+
+            m_ptree->m_iSelEnd = m_ptree->m_iSelBeg;
+
+         }
+         else
+         {
+
+            insert_text(pgraphics, strText, false);
+
+            if (!m_pitemComposing)
             {
 
-               m_ptextcompositionclient->set_text_composition_active();
+               m_pitemComposing = m_pinsert;
 
             }
 
-            bool bTextHasNewLine = strText.contains('\r') || strText.contains('\n');
+         }
 
-            bool bAlreadyComposing = m_pitemComposing && !bTextHasNewLine;
+         //bool bAlreadyComposing = m_pitemComposing && !bTextHasNewLine;
 
-            if (bAlreadyComposing)
+         character_count i1 = iNewCursorPosition;
+
+         ::collection::index iAfterComposingCursorPosition = -1;
+
+         //if (::is_set(m_pitemComposing))
+         //{
+
+         //   string strFull;
+
+         //   get_text(strFull);
+
+         //   character_count iOffset = 0;
+
+         //   if (iNewCursorPosition > 0)
+         //   {
+
+         //      iAfterComposingCursorPosition = (index)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
+
+         //      if (iNewCursorPosition > 1)
+         //      {
+
+         //         wd16_string wstrFull(strFull.substr(iAfterComposingCursorPosition));
+
+         //         iOffset = wd16_to_ansi_len(wstrFull, iNewCursorPosition - 1);
+
+         //      }
+
+         //      iAfterComposingCursorPosition += iOffset;
+
+         //   }
+         //   else
+         //   {
+
+         //      iAfterComposingCursorPosition = (index)(m_pitemComposing->m_position);
+
+         //      if (iNewCursorPosition < 0)
+         //      {
+
+         //         wd16_string wstrFull(strFull.left(iAfterComposingCursorPosition));
+
+         //         iOffset = wd16_to_ansi_len(wstrFull, wstrFull.get_length() + iNewCursorPosition);
+
+         //      }
+
+         //      iAfterComposingCursorPosition -= iOffset;
+
+         //   }
+
+         //   //m_ptree->m_iSelEnd = iAfterComposingPosition;
+         //   //m_ptree->m_iSelBeg = iAfterComposingPosition;
+         //   //m_ppropertysetsel->m_iSelEnd = iAfterComposingPosition;
+         //   //m_ppropertysetsel->m_iSelBeg = iAfterComposingPosition;
+
+         //}
+         //else
+
+         iAfterComposingCursorPosition = m_ptree->m_iSelEnd;
+
+         {
+
+            string strFull;
+
+            get_text(strFull);
+
+            character_count iOffset = 0;
+
+            if (iNewCursorPosition > 0)
             {
 
-               m_ptree->m_peditfile->change_insert_item_data(m_pitemComposing.get(), strText);
+               if (iNewCursorPosition > 1)
+               {
 
-               m_ptree->m_iSelBeg = m_pitemComposing->m_position + m_pitemComposing->get_extent();
+                  wd16_string wstrFull(strFull.substr(iAfterComposingCursorPosition));
 
-               m_ptree->m_iSelEnd = m_ptree->m_iSelBeg;
+                  iOffset = wd16_to_ansi_len(wstrFull, iNewCursorPosition - 1);
+
+               }
+
+               iAfterComposingCursorPosition += iOffset;
 
             }
             else
             {
 
-               insert_text(pgraphics, strText, false);
-
-               if (!m_pitemComposing)
+               if (iNewCursorPosition < 0)
                {
 
-                  m_pitemComposing = m_pinsert;
+                  wd16_string wstrFull(strFull.left(iAfterComposingCursorPosition));
+
+                  iOffset = wd16_to_ansi_len(wstrFull, wstrFull.length() + iNewCursorPosition);
 
                }
 
+               iAfterComposingCursorPosition -= iOffset;
+
             }
 
-            //bool bAlreadyComposing = m_pitemComposing && !bTextHasNewLine;
 
-            character_count i1 = iNewCursorPosition;
+         }
 
-            ::collection::index iAfterComposingCursorPosition = -1;
+         if (bAlreadyComposing)
+         {
 
-            //if (::is_set(m_pitemComposing))
-            //{
+            int iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, iAfterComposingCursorPosition);
 
-            //   string strFull;
+            bool bFullUpdate = false;
 
-            //   get_text(strFull);
+            plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
 
-            //   character_count iOffset = 0;
-
-            //   if (iNewCursorPosition > 0)
-            //   {
-
-            //      iAfterComposingCursorPosition = (index)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
-
-            //      if (iNewCursorPosition > 1)
-            //      {
-
-            //         wd16_string wstrFull(strFull.substr(iAfterComposingCursorPosition));
-
-            //         iOffset = wd16_to_ansi_len(wstrFull, iNewCursorPosition - 1);
-
-            //      }
-
-            //      iAfterComposingCursorPosition += iOffset;
-
-            //   }
-            //   else
-            //   {
-
-            //      iAfterComposingCursorPosition = (index)(m_pitemComposing->m_position);
-
-            //      if (iNewCursorPosition < 0)
-            //      {
-
-            //         wd16_string wstrFull(strFull.left(iAfterComposingCursorPosition));
-
-            //         iOffset = wd16_to_ansi_len(wstrFull, wstrFull.get_length() + iNewCursorPosition);
-
-            //      }
-
-            //      iAfterComposingCursorPosition -= iOffset;
-
-            //   }
-
-            //   //m_ptree->m_iSelEnd = iAfterComposingPosition;
-            //   //m_ptree->m_iSelBeg = iAfterComposingPosition;
-            //   //m_ppropertysetsel->m_iSelEnd = iAfterComposingPosition;
-            //   //m_ppropertysetsel->m_iSelBeg = iAfterComposingPosition;
-
-            //}
-            //else
-
-            iAfterComposingCursorPosition = m_ptree->m_iSelEnd;
-
+            if (iLineUpdate < 0)
             {
 
-               string strFull;
-
-               get_text(strFull);
-
-               character_count iOffset = 0;
-
-               if (iNewCursorPosition > 0)
-               {
-
-                  if (iNewCursorPosition > 1)
-                  {
-
-                     wd16_string wstrFull(strFull.substr(iAfterComposingCursorPosition));
-
-                     iOffset = wd16_to_ansi_len(wstrFull, iNewCursorPosition - 1);
-
-                  }
-
-                  iAfterComposingCursorPosition += iOffset;
-
-               }
-               else
-               {
-
-                  if (iNewCursorPosition < 0)
-                  {
-
-                     wd16_string wstrFull(strFull.left(iAfterComposingCursorPosition));
-
-                     iOffset = wd16_to_ansi_len(wstrFull, wstrFull.length() + iNewCursorPosition);
-
-                  }
-
-                  iAfterComposingCursorPosition -= iOffset;
-
-               }
-
+               iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
 
             }
 
-            if (bAlreadyComposing)
+            if (iLineUpdate >= 0)
             {
 
-               int iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, iAfterComposingCursorPosition);
-
-               bool bFullUpdate = false;
-
-               plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
-
-               if (iLineUpdate < 0)
-               {
-
-                  iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
-
-               }
-
-               if (iLineUpdate >= 0)
-               {
-
-                  _001EnsureVisibleLine(pgraphics, iLineUpdate + 1);
-
-               }
+               _001EnsureVisibleLine(pgraphics, iLineUpdate + 1);
 
             }
 
-            if (iAfterComposingCursorPosition >= 0)
-            {
+         }
 
-               set_text_selection(iAfterComposingCursorPosition, iAfterComposingCursorPosition, ::e_source_sync);
+         if (iAfterComposingCursorPosition >= 0)
+         {
 
-            }
+            set_text_selection(iAfterComposingCursorPosition, iAfterComposingCursorPosition, ::e_source_sync);
 
-            _ensure_selection_visible_x(pgraphics);
+         }
+
+         _ensure_selection_visible_x(pgraphics);
 
          });
 
@@ -8071,51 +8827,51 @@ namespace user
       queue_graphics_call([this, iComposingStart, iComposingEnd](::draw2d::graphics_pointer & pgraphics)
          {
 
-            _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
-            character_count iCandidateBeg = iComposingStart;
+         character_count iCandidateBeg = iComposingStart;
 
-            character_count iCandidateEnd = iComposingEnd;
+         character_count iCandidateEnd = iComposingEnd;
 
-            m_ptree->m_peditfile->MacroBegin();
+         m_ptree->m_peditfile->MacroBegin();
 
-            m_pitemComposing.release();
+         m_pitemComposing.release();
 
-            string strText;
+         string strText;
 
-            get_text(strText);
+         get_text(strText);
 
-            __sort(iCandidateBeg, iCandidateEnd);
+         __sort(iCandidateBeg, iCandidateEnd);
 
-            wd16_string wstrText(strText);
+         wd16_string wstrText(strText);
 
-            character_count iStart = wd16_to_ansi_len(wstrText, iCandidateBeg);
+         character_count iStart = wd16_to_ansi_len(wstrText, iCandidateBeg);
 
-            character_count iEnd = wd16_to_ansi_len(wstrText, iCandidateEnd);
+         character_count iEnd = wd16_to_ansi_len(wstrText, iCandidateEnd);
 
-            string strComposition(strText.substr(iStart, iEnd - iStart));
+         string strComposition(strText.substr(iStart, iEnd - iStart));
 
-            m_ptree->m_peditfile->seek(iStart, ::e_seek_set);
+         m_ptree->m_peditfile->seek(iStart, ::e_seek_set);
 
-            m_ptree->m_peditfile->Delete((memsize)(iEnd - iStart));
+         m_ptree->m_peditfile->Delete((memsize)(iEnd - iStart));
 
-            IndexRegisterDelete(iStart, iEnd - iStart);
+         IndexRegisterDelete(iStart, iEnd - iStart);
 
-            m_ptree->m_peditfile->seek(iStart, ::e_seek_set);
+         m_ptree->m_peditfile->seek(iStart, ::e_seek_set);
 
-            auto iLength = strComposition.length();
+         auto iLength = strComposition.length();
 
-            m_pinsert = m_ptree->m_peditfile->Insert(strComposition, iLength);
+         m_pinsert = m_ptree->m_peditfile->Insert(strComposition, iLength);
 
-            IndexRegisterInsert(iStart, strComposition);
+         IndexRegisterInsert(iStart, strComposition);
 
-            m_pitemComposing = m_pinsert;
+         m_pitemComposing = m_pinsert;
 
-            m_ptree->m_peditfile->MacroEnd();
+         m_ptree->m_peditfile->MacroEnd();
 
-            MacroBegin();
-            MacroRecord(__allocate plain_text_file_command());
-            MacroEnd();
+         MacroBegin();
+         MacroRecord(__allocate plain_text_file_command());
+         MacroEnd();
 
          });
 
@@ -8168,16 +8924,16 @@ namespace user
       queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
          {
 
-            m_pitemComposing.release();
+         m_pitemComposing.release();
 
-            if (m_ptextcompositionclient)
-            {
+         if (m_ptextcompositionclient)
+         {
 
-               m_ptextcompositionclient->set_text_composition_active(false);
+            m_ptextcompositionclient->set_text_composition_active(false);
 
-            }
+         }
 
-            m_pinsert = nullptr;
+         m_pinsert = nullptr;
 
          });
 
@@ -8192,26 +8948,26 @@ namespace user
       queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
          {
 
-            auto pwindowing = windowing();
+         auto pwindowing = windowing();
 
-            auto ptexteditorinterface = pwindowing->get_text_editor_interface();
+         auto ptexteditorinterface = pwindowing->get_text_editor_interface();
 
-            if (::is_set(ptexteditorinterface))
-            {
+         if (::is_set(ptexteditorinterface))
+         {
 
-               character_count iSelectionStart = 0;
+            character_count iSelectionStart = 0;
 
-               character_count iSelectionEnd = 0;
+            character_count iSelectionEnd = 0;
 
-               character_count iComposingStart = 0;
+            character_count iComposingStart = 0;
 
-               character_count iComposingEnd = 0;
+            character_count iComposingEnd = 0;
 
-               get_text_selection(iSelectionStart, iSelectionEnd, iComposingStart, iComposingEnd);
+            get_text_selection(iSelectionStart, iSelectionEnd, iComposingStart, iComposingEnd);
 
-               ptexteditorinterface->set_input_method_manager_selection(iSelectionStart, iSelectionEnd, iComposingStart, iComposingEnd);
+            ptexteditorinterface->set_input_method_manager_selection(iSelectionStart, iSelectionEnd, iComposingStart, iComposingEnd);
 
-            }
+         }
 
          });
 
@@ -8457,9 +9213,9 @@ namespace user
          else if (m_ptree->m_iSelEnd < 0)
             m_ptree->m_iSelEnd = 0;
 
-         m_bGetTextNeedUpdate = 1;
+         //m_bGetTextNeedUpdate = 1;
 
-         plain_edit_create_line_index(pgraphics);
+         //plain_edit_create_line_index(pgraphics);
 
          m_dy = -1;
 
@@ -8500,17 +9256,17 @@ namespace user
 
          m_bSetTextSelectionUpdatePending = false;
 
-//         bool bSelectionWasAtEnd = m_bLastSelectionWasAtEnd;
-//
-//         if (bSelectionWasAtEnd)
-//         {
-//
-//            auto iTextLength = get_text_length();
-//
-//            set_text_selection(iTextLength, iTextLength, e_source_sync);
-//
-//         }
-//         else
+         //         bool bSelectionWasAtEnd = m_bLastSelectionWasAtEnd;
+         //
+         //         if (bSelectionWasAtEnd)
+         //         {
+         //
+         //            auto iTextLength = get_text_length();
+         //
+         //            set_text_selection(iTextLength, iTextLength, e_source_sync);
+         //
+         //         }
+         //         else
          {
 
             ::character_count iSelectionBegin = 0;
@@ -8599,7 +9355,7 @@ namespace user
          else if (m_ptree->m_iSelEnd < 0)
             m_ptree->m_iSelEnd = 0;
 
-         m_bGetTextNeedUpdate = 1;
+         //m_bGetTextNeedUpdate = 1;
          plain_edit_update_line_index(pgraphics, iLine);
          m_dy = -1;
 
@@ -8661,6 +9417,20 @@ namespace user
       m_ptree->m_pgroupcommand = m_ptree->m_pgroupcommand->m_pparent;
    }
 
+   void plain_edit::MacroDiscard()
+   {
+      _synchronous_lock synchronouslock(this->synchronization());
+      if (m_ptree->m_pgroupcommand == nullptr)
+      {
+         ASSERT(false);
+         return;
+      }
+      //if (m_ptree->m_pgroupcommand->m_pparent == nullptr)
+      //{
+      //   MacroRecord(m_ptree->m_pgroupcommand);
+      //}
+      m_ptree->m_pgroupcommand = m_ptree->m_pgroupcommand->m_pparent;
+   }
 
    void plain_edit::MacroRecord(::pointer<plain_text_command>pcommand)
    {
@@ -8723,7 +9493,7 @@ namespace user
             return false;
          }
 
-         ::pointer<::data::tree_item>ptreeitem;
+         ::pointer<::data::tree_item<plain_text_command>>ptreeitem;
 
          if (m_ptree->m_iBranch < m_ptreeitem->get_expandable_children_count())
          {
@@ -8771,11 +9541,11 @@ namespace user
       queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
       {
 
-         plain_edit_create_line_index(pgraphics);
+      //plain_edit_create_line_index(pgraphics);
 
-         m_bGetTextNeedUpdate = true;
+      //m_bGetTextNeedUpdate = true;
 
-         plain_edit_on_update(pgraphics, ::e_source_user);
+      plain_edit_on_update(pgraphics, ::e_source_user);
 
       });
 
@@ -8801,12 +9571,12 @@ namespace user
       queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
       {
 
-         plain_edit_create_line_index(pgraphics);
+      //plain_edit_create_line_index(pgraphics);
 
-         m_bGetTextNeedUpdate = true;
+      //m_bGetTextNeedUpdate = true;
 
-         plain_edit_on_update(pgraphics, ::e_source_user);
-         //plain_edit_on_after_change_text(pgraphics, ::e_source_user);
+      plain_edit_on_update(pgraphics, ::e_source_user);
+      //plain_edit_on_after_change_text(pgraphics, ::e_source_user);
 
       });
 
@@ -8848,42 +9618,42 @@ namespace user
 
       __check_refdbg
 
-      get_text_selection(iSelBeg, iSelEnd);
+         get_text_selection(iSelBeg, iSelEnd);
 
       __check_refdbg
 
-//      ::character_count iTextLength = get_text_length();
-//
-//      m_bLastSelectionWasAtEnd = (iSelBeg == iSelEnd) && (iSelEnd == iTextLength);
+         //      ::character_count iTextLength = get_text_length();
+         //
+         //      m_bLastSelectionWasAtEnd = (iSelBeg == iSelEnd) && (iSelEnd == iTextLength);
 
-      string str(scopedstrParam);
+         string str(scopedstrParam);
 
       {
 
          __check_refdbg
 
-         _synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization());
 
          __check_refdbg
 
-         if (m_bParseDataPacks)
-         {
+            if (m_bParseDataPacks)
+            {
 
-            __check_refdbg
+               __check_refdbg
 
-            m_base64map.erase_all();
+                  m_base64map.erase_all();
 
-            __check_refdbg
+               __check_refdbg
 
-            auto psystem = system();
+                  auto psystem = system();
 
-            __check_refdbg
+               __check_refdbg
 
-            psystem->_001AddPacks(m_base64map, str);
+                  psystem->_001AddPacks(m_base64map, str);
 
-            __check_refdbg
+               __check_refdbg
 
-         }
+            }
 
          if (!m_ptree)
          {
@@ -8897,11 +9667,11 @@ namespace user
 
             __check_refdbg
 
-            m_ptree->m_peditfile->seek(0, ::e_seek_set);
+               m_ptree->m_peditfile->seek(0, ::e_seek_set);
 
             __check_refdbg
 
-            m_ptree->m_peditfile->Delete((memsize)m_ptree->m_peditfile->get_length());
+               m_ptree->m_peditfile->Delete((memsize)m_ptree->m_peditfile->get_length());
 
             __check_refdbg
 
@@ -8912,11 +9682,11 @@ namespace user
 
             __check_refdbg
 
-            m_ptree->m_peditfile->seek(0, ::e_seek_set);
+               m_ptree->m_peditfile->seek(0, ::e_seek_set);
 
             __check_refdbg
 
-            m_ptree->m_peditfile->Insert(str, str.length());
+               m_ptree->m_peditfile->Insert(str, str.length());
 
             __check_refdbg
 
@@ -8928,20 +9698,20 @@ namespace user
 
       __check_refdbg
 
-      queue_graphics_call([this, actioncontext](::draw2d::graphics_pointer & pgraphics)
-      {
+         queue_graphics_call([this, actioncontext](::draw2d::graphics_pointer & pgraphics)
+         {
 
          plain_edit_on_update(pgraphics, actioncontext);
 
-      });
+         });
 
       __check_refdbg
 
-      set_need_redraw();
+         set_need_redraw();
 
       __check_refdbg
 
-      post_redraw();
+         post_redraw();
 
       __check_refdbg
 
@@ -8950,15 +9720,15 @@ namespace user
 
    void plain_edit::set_text_and_selection(const ::scoped_string & scopedstrParam, character_count iSelBeg, character_count iSelEnd, const ::action_context & actioncontext)
    {
-      
+
       ::character_count iTextLength = get_text_length();
 
-//      m_bLastSelectionWasAtEnd = (iSelBeg == iSelEnd) && (iSelEnd == iTextLength);
+      //      m_bLastSelectionWasAtEnd = (iSelBeg == iSelEnd) && (iSelEnd == iTextLength);
 
       string str(scopedstrParam);
 
       {
-         
+
          _synchronous_lock synchronouslock(this->synchronization());
 
          if (m_bParseDataPacks)
@@ -9000,7 +9770,7 @@ namespace user
          m_ptree->m_iSelBeg = iSelBeg;
 
          m_ptree->m_iSelEnd = iSelEnd;
-         
+
          m_bNewSel = true;
 
       }
@@ -9008,63 +9778,63 @@ namespace user
       queue_graphics_call([this, actioncontext](::draw2d::graphics_pointer & pgraphics)
       {
 
-         plain_edit_on_update(pgraphics, actioncontext);
+      plain_edit_on_update(pgraphics, actioncontext);
 
       });
 
       set_need_redraw();
 
       post_redraw();
-      
-//      if (actioncontext.is_user_source())
-//      {
-//
-//         auto pwindowing = windowing();
-//
-//         auto ptexteditorinterface = pwindowing->get_text_editor_interface();
-//
-//         if (::is_set(ptexteditorinterface))
-//         {
-//
-//            string strText;
-//
-//            //get_text(strText);
-//
-//            get_text(strText);
-//
-//            //      //operating_system_driver::get()->m_iInputMethodManagerSelectionStart = ansi_to_wd16_len(strText, iBeg);
-//
-//            //      //operating_system_driver::get()->m_iInputMethodManagerSelectionEnd = ansi_to_wd16_len(strText, iEnd);
-//
-//            //auto iSelectionStart = ansi_to_wd32_len(strText, m_ptree->m_iSelBeg);
-//
-//            //auto iSelectionEnd = ansi_to_wd32_len(strText, m_ptree->m_iSelEnd);
-//            auto iSelectionStart = m_ptree->m_iSelBeg;
-//
-//            auto iSelectionEnd = m_ptree->m_iSelEnd;
-//
-//            ptexteditorinterface->set_editor_selection(iSelectionStart, iSelectionEnd);
-//
-//            //      if (m_pitemComposing)
-//            //      {
-//
-//            //         auto iCandidateStart = ansi_to_wd16_len(strText, m_pitemComposing->m_position);
-//
-//            //         auto iCandidateEnd = ansi_to_wd16_len(strText, m_pitemComposing->m_position + m_pitemComposing->get_extent());
-//
-//            //         ptexteditorinterface->set_input_method_manager_candidate_position(iCandidateStart, iCandidateEnd);
-//
-//            //      }
-//            //      else
-//            //      {
-//
-//            //         ptexteditorinterface->synchronize_input_method_manager_with_selection_end();
-//
-//            //      }
-//
-//         }
-//
-//      }
+
+      //      if (actioncontext.is_user_source())
+      //      {
+      //
+      //         auto pwindowing = windowing();
+      //
+      //         auto ptexteditorinterface = pwindowing->get_text_editor_interface();
+      //
+      //         if (::is_set(ptexteditorinterface))
+      //         {
+      //
+      //            string strText;
+      //
+      //            //get_text(strText);
+      //
+      //            get_text(strText);
+      //
+      //            //      //operating_system_driver::get()->m_iInputMethodManagerSelectionStart = ansi_to_wd16_len(strText, iBeg);
+      //
+      //            //      //operating_system_driver::get()->m_iInputMethodManagerSelectionEnd = ansi_to_wd16_len(strText, iEnd);
+      //
+      //            //auto iSelectionStart = ansi_to_wd32_len(strText, m_ptree->m_iSelBeg);
+      //
+      //            //auto iSelectionEnd = ansi_to_wd32_len(strText, m_ptree->m_iSelEnd);
+      //            auto iSelectionStart = m_ptree->m_iSelBeg;
+      //
+      //            auto iSelectionEnd = m_ptree->m_iSelEnd;
+      //
+      //            ptexteditorinterface->set_editor_selection(iSelectionStart, iSelectionEnd);
+      //
+      //            //      if (m_pitemComposing)
+      //            //      {
+      //
+      //            //         auto iCandidateStart = ansi_to_wd16_len(strText, m_pitemComposing->m_position);
+      //
+      //            //         auto iCandidateEnd = ansi_to_wd16_len(strText, m_pitemComposing->m_position + m_pitemComposing->get_extent());
+      //
+      //            //         ptexteditorinterface->set_input_method_manager_candidate_position(iCandidateStart, iCandidateEnd);
+      //
+      //            //      }
+      //            //      else
+      //            //      {
+      //
+      //            //         ptexteditorinterface->synchronize_input_method_manager_with_selection_end();
+      //
+      //            //      }
+      //
+      //         }
+      //
+      //      }
 
    }
 
@@ -9095,6 +9865,22 @@ namespace user
 
    void plain_edit::plain_edit_on_after_change_text(::draw2d::graphics_pointer & pgraphics, const ::action_context & actioncontext)
    {
+
+
+      //auto psystem = system();
+
+      //auto pdraw2d = psystem->draw2d();
+
+      //auto pgraphics = pdraw2d->create_memory_graphics(this);
+
+      //plain_edit_create_line_index(pgraphics);
+
+      //m_bGetTextNeedUpdate = true;
+
+      //set_need_redraw();
+
+      //plain_edit_on_calc_layout(pgraphics);
+
 
       if (m_callbackOnAfterChangeText)
       {
@@ -9713,7 +10499,7 @@ namespace user
 
          char * psz = strLine.get_buffer(iLineLen);
 
-         m_ptree->m_peditfile->seek(m_iaLineStart[iLine], ::e_seek_set);
+         m_ptree->m_peditfile->seek(m_iaLineIndex[iLine], ::e_seek_set);
 
          m_ptree->m_peditfile->read(psz, iLineLen);
 
@@ -9749,14 +10535,16 @@ namespace user
       queue_graphics_call([this, strText, bForceNewStep](::draw2d::graphics_pointer & pgraphics)
          {
 
-            insert_text(pgraphics, strText, bForceNewStep);
+         on_reset_focus_start_tick();
 
-            if (is_text_composition_active() && !m_pitemComposing)
-            {
+         insert_text(pgraphics, strText, bForceNewStep);
 
-               m_pitemComposing = m_pinsert;
+         if (is_text_composition_active() && !m_pitemComposing)
+         {
 
-            }
+            m_pitemComposing = m_pinsert;
+
+         }
 
          });
 
@@ -9829,22 +10617,21 @@ namespace user
 
       bFullUpdate = strText.find_index('\n') >= 0 || strText.find_index('\r') >= 0;
 
+      ::collection::index iLineHere = 0;
+
       if (!bForceNewStep && !bFullUpdate && i1 == i2 && i1 >= 0 && m_pinsert != nullptr
          && m_pinsert->m_position + m_pinsert->m_memstorage.size() == i1
          && m_ptree->m_peditfile->m_ptreeitem != m_ptree->m_peditfile->m_ptreeitemFlush)
       {
 
-         // insert character at the last insert operation
+         iLineUpdate = plain_edit_sel_to_line(pgraphics, i1);
+
          m_pinsert->m_memstorage.append(strText, strText.length());
 
          m_ptree->m_peditfile->m_sizeEditFile += strText.length();
 
-         if (!bFullUpdate)
-         {
+         m_iaLineLength[iLineUpdate] += strText.length();
 
-            iLineUpdate = plain_edit_sel_to_line(pgraphics, i1);
-
-         }
          m_ptree->m_iSelEnd += strText.length();
          m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
          m_ppropertysetsel->m_iSelEnd = m_ptree->m_iSelEnd;
@@ -9854,87 +10641,245 @@ namespace user
       else
       {
 
-         auto psetsel = __allocate plain_text_set_sel_command();
+         //::string_array straLines;
 
-         psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
+         //straLines.add_lines(strText);
 
-         psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
+         m_ppropertysetsel = __allocate plain_text_set_sel_command();
+
+         m_ppropertysetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
+
+         m_ppropertysetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
 
          ::sort_non_negative(i1, i2);
 
-         m_ptree->m_peditfile->MacroBegin();
+         MacroBegin();
 
-         if (!bFullUpdate)
-         {
-
-            string strSel;
-
-            strSel = get_selection_text();
-
-            bFullUpdate = strSel.contains('\n') || strSel.contains('\r');
-
-         }
-
-         if (!bFullUpdate)
-         {
-
-            iLineUpdate = plain_edit_sel_to_line(pgraphics, i1);
-
-         }
+         bool bDeleted = false;
+         
+         auto iLineUpdate = plain_edit_sel_to_line(pgraphics, i1);
+         
+         MacroBegin();
 
          if (i1 != i2)
          {
 
-            m_ptree->m_peditfile->seek(i1, ::e_seek_set);
-
-            m_ptree->m_peditfile->Delete((memsize)(i2 - i1));
-
-            m_pinsert = nullptr;
-
-            IndexRegisterDelete(i1, i2 - i1);
+            bDeleted = _plain_edit_on_delete(iLineUpdate, i1, i2, pgraphics, false);
 
          }
 
-         m_ptree->m_iSelEnd = i1;
+         if (bDeleted)
+         {
 
-         m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
-         m_ptree->m_iSelEnd += strText.length();
-         m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
+            MacroEnd();
+
+         }
+         else
+         {
+
+            MacroDiscard();
+
+         }
+
+         //if (!bFullUpdate)
+         //{
+
+         //   string strSel;
+
+         //   strSel = get_selection_text();
+
+         //   bFullUpdate = strSel.contains('\n') || strSel.contains('\r');
+
+         //}
+
+         //if (!bFullUpdate)
+         //{
+
+         //   iLineUpdate = plain_edit_sel_to_line(pgraphics, i1);
+
+         //}
+
+/*           if (i1 != i2)
+           {
+
+              m_ptree->m_peditfile->seek(i1, ::e_seek_set);
+
+              m_ptree->m_peditfile->Delete((memsize)(i2 - i1));
+
+              m_pinsert = nullptr;
+
+              IndexRegisterDelete(i1, i2 - i1);
+
+           }*/
+
+
+         if (!bDeleted)
+         {
+
+            i2 = i1;
+
+         }
+
+         m_ptree->m_peditfile->MacroBegin();
+
+         ::string strInsertText;
+
+         {
+
+            ::string_array straLines;
+
+            straLines.add_lines(strText, true, true);
+
+            auto iUpperBound = straLines.get_upper_bound();
+
+            enum_line eolOld = m_eline;
+
+            ::character_count eolOldLen = as_length(eolOld);
+
+            ::character_count iLenSecond = 0;
+
+            for (iLineHere; iLineHere < iUpperBound; iLineHere++)
+            {
+
+               auto pszLine = straLines[iLineHere].c_str();
+
+               auto pszEOLInsert = straLines[iLineHere].find_first_character_in("\r\n");
+
+               auto eolInsert = as_enum_line(pszEOLInsert);
+
+               auto eolNew = maximum(m_eline, eolInsert);
+
+               auto eolNewLen = as_length(eolNew);
+
+               auto lenWithEOL = (pszEOLInsert - pszLine) + eolNewLen;
+
+               if (iLineHere == 0)
+               {
+
+                  auto & iLineLength = m_iaLineLength[iLineUpdate];
+
+                  eolOld = (enum_line)m_iaLineFlags[iLineUpdate];
+
+                  eolOldLen = as_length(eolOld);
+
+                  iLenSecond = iLineLength;
+
+                  iLineLength = ::minimum_maximum(0, i1 - m_iaLineIndex[iLineUpdate], iLineLength - eolOldLen);
+
+                  iLenSecond -= (iLineLength + eolOldLen);
+
+                  iLineLength += lenWithEOL;
+
+                  m_iaLineFlags[iLineUpdate] = eolNew;
+
+               }
+               else
+               {
+
+                  m_iaLineLength.insert_at(iLineUpdate + iLineHere, lenWithEOL);
+
+                  m_iaLineFlags.insert_at(iLineUpdate + iLineHere, eolNew);
+
+               }
+
+               strInsertText += ::string(pszLine, pszEOLInsert);
+
+               strInsertText += ::user::as_string(eolNew);
+
+            }
+
+            {
+
+               auto len = straLines.last().size();
+
+               if (iLineHere == 0)
+               {
+
+                  auto & iLineLength = m_iaLineLength[iLineUpdate + iLineHere];
+
+                  m_iaLineLength[iLineUpdate] += len;
+
+               }
+               else
+               {
+
+                  auto eolOldLen = as_length(eolOld);
+
+                  auto lenWithEOL = len + eolOldLen;
+
+                  m_iaLineLength.insert_at(iLineUpdate + iLineHere, lenWithEOL + iLenSecond);
+
+                  m_iaLineFlags.insert_at(iLineUpdate + iLineHere, eolOld);
+
+               }
+
+               strInsertText += straLines.last();
+
+            }
+
+         }
+
+         m_ptree->m_peditfile->seek(i1, ::e_seek_set);
+
+         i2 = i1 + strInsertText.length();
+         //i1 = i2;
          //m_ptree->m_peditfile->seek(m_ptree->m_iSelBeg, ::e_seek_set);
 
+         auto iLength = strInsertText.length();
+         //auto a = m_ptree->m_iSelBeg;
 
-         auto iLength = strText.length();
-         auto a = m_ptree->m_iSelBeg;
+         m_pinsert = m_ptree->m_peditfile->Insert(strInsertText, iLength);
 
-         m_pinsert = m_ptree->m_peditfile->Insert(strText, iLength);
-         IndexRegisterInsert(m_ptree->m_iSelEnd, strText);
+         IndexRegisterInsert(i1, strInsertText);
 
          m_ptree->m_peditfile->MacroEnd();
 
-         psetsel->m_iSelBeg = m_ptree->m_iSelBeg;
 
-         psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
+         m_ppropertysetsel->m_iSelBeg = i2;
 
-         m_ppropertysetsel = psetsel;
+         m_ppropertysetsel->m_iSelEnd = i2;
+
+         m_ptree->m_iSelBeg = i2;
+
+         m_ptree->m_iSelEnd = i2;
 
          MacroBegin();
-         MacroRecord(psetsel);
+         MacroRecord(m_ppropertysetsel);
          MacroRecord(__allocate plain_text_file_command());
          MacroEnd();
 
-         informationf("insert tree->iSelBeg=%lld,iSelEnd=%lld", m_ptree->m_iSelBeg, m_ptree->m_iSelEnd);
-         informationf("insert edit file size=%lld", m_ptree->m_peditfile->m_sizeEditFile);
+         MacroEnd();
 
       }
 
-      plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
+      _update_line_start_array(iLineUpdate);
 
-      if (iLineUpdate < 0)
-      {
+      //m_ptree->m_peditfile->MacroEnd();
 
-         iLineUpdate = plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
 
-      }
+      //auto psetsel = __allocate plain_text_set_sel_command();
+
+      //psetsel->m_iPreviousSelBeg = iSelBegOld;
+
+//            psetsel->m_iPreviousSelEnd = iSelEndOld;
+
+      _unlocked_plain_edit_on_change_text_selection(e_source_sync);
+
+      informationf("insert tree->iSelBeg=%lld,iSelEnd=%lld", m_ptree->m_iSelBeg, m_ptree->m_iSelEnd);
+      informationf("insert edit file size=%lld", m_ptree->m_peditfile->m_sizeEditFile);
+
+      //}
+
+      _plain_edit_update_extents(pgraphics, iLineUpdate, iLineUpdate + iLineHere);
+
+      //plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
+
+      //if (iLineUpdate < 0)
+      //{
+
+      //   iLineUpdate = plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
+
+      //}
 
       int iColumnX = -1;
 
@@ -9969,125 +10914,126 @@ namespace user
 
       _ensure_selection_visible_x(pgraphics);
 
+
    }
 
 
-   void plain_edit::plain_edit_update(::draw2d::graphics_pointer & pgraphics, bool bFullUpdate, ::collection::index iLineUpdate)
-   {
-
-      if (!m_bMultiLine)
+      void plain_edit::plain_edit_update(::draw2d::graphics_pointer & pgraphics, bool bFullUpdate, ::collection::index iLineUpdate)
       {
 
-         if (bFullUpdate || iLineUpdate >= 0)
+         if (!m_bMultiLine)
+         {
+
+            if (bFullUpdate || iLineUpdate >= 0)
+            {
+
+               plain_edit_on_update(pgraphics, ::e_source_user);
+
+            }
+
+         }
+         else if (bFullUpdate)
          {
 
             plain_edit_on_update(pgraphics, ::e_source_user);
 
          }
-
-      }
-      else if (bFullUpdate)
-      {
-
-         plain_edit_on_update(pgraphics, ::e_source_user);
-
-      }
-      else if (iLineUpdate >= 0)
-      {
-
-         plain_edit_on_line_update(pgraphics, iLineUpdate, ::e_source_user);
-
-      }
-
-   }
-
-
-   plain_edit_style::plain_edit_style()
-   {
-
-
-   }
-
-
-   plain_edit_style::~plain_edit_style()
-   {
-
-
-   }
-
-
-
-   void plain_edit_style::on_update(::draw2d::graphics_pointer & pgraphics, ::user::style * pstyle, ::user::interaction * puserinteraction)
-   {
-
-      m_ppenCaret.release();
-
-      m_pbrushText.release();
-
-      m_pbrushTextCr.release();
-
-      m_pbrushTextSel.release();
-
-      m_pbrushTextEmpty.release();
-
-      puserinteraction->__øconstruct(m_ppenCaret);
-
-      puserinteraction->__øconstruct(m_pbrushText);
-
-      puserinteraction->__øconstruct(m_pbrushTextCr);
-
-      puserinteraction->__øconstruct(m_pbrushTextSel);
-
-      puserinteraction->__øconstruct(m_pbrushTextEmpty);
-
-      auto color = puserinteraction->get_color(pstyle, e_element_text);
-
-      m_ppenCaret->create_solid(1.0, color);
-
-      m_pbrushTextCr->create_solid(color);
-
-      color = puserinteraction->get_color(pstyle, e_element_text, e_state_selected);
-
-      m_pbrushTextSel->create_solid(color);
-
-      color = puserinteraction->get_color(pstyle, e_element_text, e_state_new_input);
-
-      m_pbrushTextEmpty->create_solid(color);
-
-   }
-
-
-   void plain_edit::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      ::user::interaction::_001OnNcDraw(pgraphics);
-
-   }
-
-
-
-   void plain_edit::on_updata_data(::data::simple_data * pdata, int iHint)
-   {
-
-      //if (pdata == m_ptree)
-      {
-
-         if (iHint == id_set_file)
+         else if (iLineUpdate >= 0)
          {
 
-            auto psystem = system();
-
-            auto pdraw2d = psystem->draw2d();
-
-            auto pgraphics = pdraw2d->create_memory_graphics(this);
-
-            plain_edit_on_file_update(pgraphics);
+            plain_edit_on_line_update(pgraphics, iLineUpdate, ::e_source_user);
 
          }
 
       }
 
-   }
+
+      plain_edit_style::plain_edit_style()
+      {
+
+
+      }
+
+
+      plain_edit_style::~plain_edit_style()
+      {
+
+
+      }
+
+
+
+      void plain_edit_style::on_update(::draw2d::graphics_pointer & pgraphics, ::user::style * pstyle, ::user::interaction * puserinteraction)
+      {
+
+         m_ppenCaret.release();
+
+         m_pbrushText.release();
+
+         m_pbrushTextCr.release();
+
+         m_pbrushTextSel.release();
+
+         m_pbrushTextEmpty.release();
+
+         puserinteraction->__øconstruct(m_ppenCaret);
+
+         puserinteraction->__øconstruct(m_pbrushText);
+
+         puserinteraction->__øconstruct(m_pbrushTextCr);
+
+         puserinteraction->__øconstruct(m_pbrushTextSel);
+
+         puserinteraction->__øconstruct(m_pbrushTextEmpty);
+
+         auto color = puserinteraction->get_color(pstyle, e_element_text);
+
+         m_ppenCaret->create_solid(1.0, color);
+
+         m_pbrushTextCr->create_solid(color);
+
+         color = puserinteraction->get_color(pstyle, e_element_text, e_state_selected);
+
+         m_pbrushTextSel->create_solid(color);
+
+         color = puserinteraction->get_color(pstyle, e_element_text, e_state_new_input);
+
+         m_pbrushTextEmpty->create_solid(color);
+
+      }
+
+
+      void plain_edit::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+      {
+
+         ::user::interaction::_001OnNcDraw(pgraphics);
+
+      }
+
+
+
+      void plain_edit::on_updata_data(::data::simple_data * pdata, int iHint)
+      {
+
+         //if (pdata == m_ptree)
+         {
+
+            if (iHint == id_set_file)
+            {
+
+               auto psystem = system();
+
+               auto pdraw2d = psystem->draw2d();
+
+               auto pgraphics = pdraw2d->create_memory_graphics(this);
+
+               plain_edit_on_file_update(pgraphics);
+
+            }
+
+         }
+
+      }
 
 
    } // namespace aura

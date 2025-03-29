@@ -61,7 +61,7 @@ namespace user
    {
    public:
 
-      plain_text_command *                m_pparent;
+      ::pointer < plain_text_command >          m_pparent;
       pointer_array < plain_text_command >      m_commanda;
 
       plain_text_group_command();

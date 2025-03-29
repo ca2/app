@@ -3,6 +3,7 @@
 
 #include "core/user/user/tree_data.h"
 #include "apex/message/channel.h"
+#include "core/filesystem/userfs/item.h"
 
 
 namespace userfs
@@ -13,7 +14,7 @@ namespace userfs
 
 
    class CLASS_DECL_CORE tree_data :
-      virtual public ::user::tree_data,
+      virtual public ::user::tree_data < item >,
       virtual public ::channel
    {
    public:
@@ -54,7 +55,7 @@ namespace userfs
       void update_list();
 
 
-      void _001OnItemExpand(::data::tree_item * pitem, const ::action_context & action_context) override;
+      void _001OnItemExpand(::data::tree_item <item> * pitem, const ::action_context & action_context) override;
 
 
       //::userfs::document * get_document();
@@ -67,8 +68,8 @@ namespace userfs
       void install_message_routing(::channel * pchannel) override;
 
 
-      virtual void _001OnOpenItem(::data::tree_item * pitem, const ::action_context & action_context) override;
-      virtual void _001OnItemCollapse(::data::tree_item * pitem, const ::action_context & action_context) override;
+      virtual void _001OnOpenItem(::data::tree_item<item> * pitem, const ::action_context & action_context) override;
+      virtual void _001OnItemCollapse(::data::tree_item<item> * pitem, const ::action_context & action_context) override;
 
 
       //virtual void _017OpenFolder(::pointer<::file::item>pitem, const ::action_context & action_context);
@@ -83,10 +84,10 @@ namespace userfs
       virtual void browse_sync(const ::action_context & action_context);
       void _017EnsureVisible(const ::file::path & pathUser, const ::action_context & action_context);
 
-      ::data::tree_item * find_item_by_user_path(const ::file::path & path, bool bPointerFromPathFromItemFromOwnTree = false, ::data::tree_item * pitemStart = nullptr);
+      ::data::tree_item<item> * find_item_by_user_path(const ::file::path & path, bool bPointerFromPathFromItemFromOwnTree = false, ::data::tree_item<item> * pitemStart = nullptr);
 
-      ::data::tree_item * find_absolute(const ::file::path & path, bool bPointerFromPathFromItemFromOwnTree = false, ::data::tree_item * pitemStart = nullptr);
-      ::data::tree_item * find_user_path(const ::file::path & pathUser, bool bPointerFromPathFromItemFromOwnTree = false, ::data::tree_item * pitemStart = nullptr);
+      ::data::tree_item<item> * find_absolute(const ::file::path & path, bool bPointerFromPathFromItemFromOwnTree = false, ::data::tree_item<item> * pitemStart = nullptr);
+      ::data::tree_item<item> * find_user_path(const ::file::path & pathUser, bool bPointerFromPathFromItemFromOwnTree = false, ::data::tree_item<item> * pitemStart = nullptr);
       void clear(const ::string & pcszPreserve1, const ::string & lpcszPreserve2);
 
       void arrange(::fs::e_arrange earrange);

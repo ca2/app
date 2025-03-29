@@ -3,7 +3,7 @@
 
 #include "acme/prototype/data/tree.h"
 #include "acme/prototype/prototype/memory.h"
-#include "acme/prototype/data/item.h"
+#include "acme/prototype/data/tree_item.h"
 
 
 namespace file
@@ -21,6 +21,9 @@ namespace file
 
       
       edit_item_base();
+
+
+      //virtual void data_item_on_fill_children(::data::tree_item < edit_item_base > * pitem);
 
       virtual bool read_byte(unsigned char* pbyte, ::file::edit_file* pfile);
 
@@ -146,7 +149,7 @@ namespace file
 
 
    class CLASS_DECL_APEX edit_file:
-      virtual public ::data::tree
+      virtual public ::data::tree < edit_item_base >
    {
    protected:
 
@@ -166,11 +169,11 @@ namespace file
       filesize                               m_iStartOffset;
 
 
-      ::pointer<::data::tree_item>          m_ptreeitemIteration;
-      ::pointer<::data::tree_item>          m_ptreeitem;
-      ::pointer<::data::tree_item>          m_ptreeitemFlush;
-      ::pointer<::data::tree_item>          m_ptreeitemBeg;
-      ::pointer<::data::tree_item>          m_ptreeitemEnd;
+      tree_item < edit_item_base> *          m_ptreeitemIteration;
+      ::pointer<tree_item < edit_item_base>>          m_ptreeitem;
+      ::pointer<tree_item < edit_item_base>>          m_ptreeitemFlush;
+      ::pointer<tree_item < edit_item_base>>          m_ptreeitemBeg;
+      ::pointer<tree_item < edit_item_base>>          m_ptreeitemEnd;
       memsize                                m_iBranch;
       ::pointer<edit_group_item>                  m_pgroupitem;
       bool                                   m_bRootDirection;
@@ -235,6 +238,7 @@ namespace file
       bool Redo();
       void MacroBegin();
       void MacroEnd();
+      void MacroDiscard();
 
 
 

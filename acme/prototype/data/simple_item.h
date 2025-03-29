@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/prototype/data/item.h"
+#include "acme/prototype/data/tree_item.h"
 
 
 namespace data
@@ -14,13 +14,13 @@ namespace data
    public:
 
 
-      ::data::tree *             m_pdatatree;
-      ::collection::index                      m_iImage;
-      ::collection::index                      m_iImageSelected;
-      string                     m_str;
+      ::data::tree < ::data::item > *        m_pdatatree;
+      ::collection::index                    m_iImage;
+      ::collection::index                    m_iImageSelected;
+      string                                 m_str;
 
 
-      simple_item(::data::tree * pdatatree);
+      simple_item(::data::tree < ::data::item > * pdatatree);
       virtual ~simple_item();
 
       virtual string data_item_get_text(::particle * pparticle) const;

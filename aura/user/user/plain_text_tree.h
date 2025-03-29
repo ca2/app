@@ -11,7 +11,7 @@ namespace user
 
 
    class CLASS_DECL_AURA plain_text_tree:
-      public ::data::tree
+      public ::data::tree < plain_text_command >
    {
    public:
 

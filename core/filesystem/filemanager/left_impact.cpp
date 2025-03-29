@@ -68,14 +68,14 @@ namespace filemanager
       auto pfilemanagerdocument = filemanager_document();
 
       auto ptreedata = pfilemanagerdocument->__create_new < ::filemanager::tree_data >();
-
+      
       ptreedata->m_puserfsdocument = pfilemanagerdocument;
 
       m_ptreedata = ptreedata;
 
-      m_ptreedata->m_usertreea.add(m_pusertree);
+      ptreedata->m_usertreea.add(m_pusertree);
 
-      m_pusertree->m_ptreedata = ptreedata;
+      ptreedata->m_ptree = ptreedata;
 
       ptreedata->initialize_filemanager_tree(pfilemanagerdocument);
 

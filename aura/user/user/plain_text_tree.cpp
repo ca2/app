@@ -41,7 +41,7 @@ namespace user
       m_pfile.release();
       m_peditfile.defer_destroy();
 
-      ::data::tree::destroy();
+      ::data::tree<plain_text_command>::destroy();
 
    }
 

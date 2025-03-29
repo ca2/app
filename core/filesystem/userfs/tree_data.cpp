@@ -2,6 +2,7 @@
 #include "document.h"
 #include "item.h"
 #include "tree_data.h"
+#include "core/user/user/tree.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/handler/topic.h"
@@ -37,7 +38,7 @@ namespace userfs
    void tree_data::destroy()
    {
 
-      ::user::tree_data::destroy();
+      ::user::tree_data<::userfs::item>::destroy();
       ::channel::destroy();
 
    }
@@ -78,7 +79,7 @@ namespace userfs
    long long tree_data::increment_reference_count()
    {
 
-      return ::user::tree_data::increment_reference_count();
+      return ::user::tree_data<::userfs::item>::increment_reference_count();
 //      auto c = m_countReference++;
 //
 //#if REFERENCING_DEBUGGING
@@ -108,7 +109,7 @@ namespace userfs
 //
 //#endif
 
-      return ::user::tree_data::decrement_reference_count();
+      return ::user::tree_data<::userfs::item>::decrement_reference_count();
 
    }
 
@@ -315,7 +316,7 @@ namespace userfs
    }
 
 
-   ::data::tree_item * tree_data::find_item_by_user_path(const::file::path & pathUser, bool bPathFromItemFromOwnTree, ::data::tree_item * pitemStart)
+   ::data::tree_item<::userfs::item> * tree_data::find_item_by_user_path(const::file::path & pathUser, bool bPathFromItemFromOwnTree, ::data::tree_item<::userfs::item> * pitemStart)
    {
 
       return find_user_path(pathUser, bPathFromItemFromOwnTree, pitemStart);
@@ -352,7 +353,7 @@ namespace userfs
    void tree_data::GetSelectedFilePath(string_array & stra)
    {
 
-      ::data::tree_item_ptr_array itemptraSelected;
+      ::data::tree_item_ptr_array<::userfs::item> itemptraSelected;
 
       get_selection(itemptraSelected);
 
@@ -434,11 +435,11 @@ namespace userfs
    }
    */
 
-   void tree_data::_001OnItemExpand(::data::tree_item * pitem, const ::action_context & context)
+   void tree_data::_001OnItemExpand(::data::tree_item<::userfs::item> * pitem, const ::action_context & context)
    {
    }
 
-   void tree_data::_001OnItemCollapse(::data::tree_item * pitem, const ::action_context & context)
+   void tree_data::_001OnItemCollapse(::data::tree_item<::userfs::item> * pitem, const ::action_context & context)
    {
       __UNREFERENCED_PARAMETER(pitem);
    }
@@ -448,7 +449,7 @@ namespace userfs
       return true;
    }
 
-   void tree_data::_001OnOpenItem(::data::tree_item * ptreeitem, const ::action_context & context)
+   void tree_data::_001OnOpenItem(::data::tree_item<::userfs::item> * ptreeitem, const ::action_context & context)
    {
 
       auto pitem = __allocate ::file::item(*ptreeitem->m_pdataitem.cast < ::userfs::item >());
@@ -478,10 +479,10 @@ namespace userfs
       }
    }
 
-   ::data::tree_item * tree_data::find_absolute(const ::file::path & path, bool bPointerFromPathFromItemFromOwnTree, ::data::tree_item * pitemStart)
+   ::data::tree_item<::userfs::item> * tree_data::find_absolute(const ::file::path & path, bool bPointerFromPathFromItemFromOwnTree, ::data::tree_item<::userfs::item> * pitemStart)
    {
 
-      ::data::tree_item * pitem;
+      ::data::tree_item<::userfs::item> * pitem;
 
       if (pitemStart == nullptr)
       {
@@ -559,10 +560,10 @@ namespace userfs
    }
 
 
-   ::data::tree_item * tree_data::find_user_path(const ::file::path & pathUser, bool bPointerFromPathFromItemFromOwnTree, ::data::tree_item * pitemStart)
+   ::data::tree_item<::userfs::item> * tree_data::find_user_path(const ::file::path & pathUser, bool bPointerFromPathFromItemFromOwnTree, ::data::tree_item<::userfs::item> * pitemStart)
    {
 
-      ::data::tree_item * pitem;
+      ::data::tree_item<::userfs::item> * pitem;
 
       if (pitemStart == nullptr)
       {

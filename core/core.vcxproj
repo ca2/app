@@ -811,7 +811,7 @@
     <ClCompile Include="user\user\tool_tip_tool.cpp" />
     <ClCompile Include="user\user\tool_tip_window.cpp" />
     <ClCompile Include="user\user\tree.cpp" />
-    <ClCompile Include="user\user\tree_data.cpp" />
+    <ClCompile Include="user\user\tree_data_base.cpp" />
     <ClCompile Include="user\user\tree_window.cpp" />
     <ClCompile Include="user\user\user.cpp" />
     <ClCompile Include="user\user\xfplayer_impact_line.cpp" />
@@ -1059,7 +1059,6 @@
     <ClInclude Include="user\user\tool_command.h" />
     <ClInclude Include="user\user\tool_tip_tool.h" />
     <ClInclude Include="user\user\tool_tip_window.h" />
-    <ClInclude Include="user\user\tree.h" />
     <ClInclude Include="user\user\tree_data.h" />
     <ClInclude Include="user\user\xfplayer_impact_line.h" />
     <ClInclude Include="user\user\xfplayer_impact_lines.h" />

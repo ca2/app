@@ -4149,6 +4149,18 @@
     <ClInclude Include="platform\component_implementation.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="prototype\data\tree_base.h">
+      <Filter>Header Files\prototype\data</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\data\tree_item_base.h">
+      <Filter>Header Files\prototype\data</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\data\list.h">
+      <Filter>Header Files\prototype\data</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\data\tree_base_composite.h">
+      <Filter>Header Files\prototype\data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -4640,10 +4652,10 @@
     <ClCompile Include="prototype\data\simple_item.cpp">
       <Filter>Source Files\prototype\data</Filter>
     </ClCompile>
-    <ClCompile Include="prototype\data\tree.cpp">
+    <ClCompile Include="prototype\data\tree_base.cpp">
       <Filter>Source Files\prototype\data</Filter>
     </ClCompile>
-    <ClCompile Include="prototype\data\tree_item.cpp">
+    <ClCompile Include="prototype\data\tree_item_base.cpp">
       <Filter>Source Files\prototype\data</Filter>
     </ClCompile>
     <ClCompile Include="prototype\datetime\datetime.cpp">
@@ -5938,6 +5950,9 @@
     </ClCompile>
     <ClCompile Include="platform\component_implementation.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\data\tree_base_composite.cpp">
+      <Filter>Source Files\prototype\data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

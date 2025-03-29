@@ -1444,10 +1444,14 @@
     <ClInclude Include="prototype\collection\property_set.h" />
     <ClInclude Include="prototype\collection\raw_pointer_array.h" />
     <ClInclude Include="prototype\data\check_property.h" />
+    <ClInclude Include="prototype\data\list.h" />
     <ClInclude Include="prototype\data\property_container.h" />
     <ClInclude Include="prototype\data\property.h" />
     <ClInclude Include="prototype\data\property_listener.h" />
     <ClInclude Include="prototype\data\text_property.h" />
+    <ClInclude Include="prototype\data\tree_base.h" />
+    <ClInclude Include="prototype\data\tree_base_composite.h" />
+    <ClInclude Include="prototype\data\tree_item_base.h" />
     <ClInclude Include="prototype\geometry2d\_impl.h" />
     <ClInclude Include="prototype\prototype\make_particle.h" />
     <ClInclude Include="prototype\prototype\post_procedure_continuation.h" />
@@ -2153,8 +2157,9 @@
     <ClCompile Include="prototype\data\property_listener.cpp" />
     <ClCompile Include="prototype\data\simple_item.cpp" />
     <ClCompile Include="prototype\data\text_property.cpp" />
-    <ClCompile Include="prototype\data\tree.cpp" />
-    <ClCompile Include="prototype\data\tree_item.cpp" />
+    <ClCompile Include="prototype\data\tree_base.cpp" />
+    <ClCompile Include="prototype\data\tree_base_composite.cpp" />
+    <ClCompile Include="prototype\data\tree_item_base.cpp" />
     <ClCompile Include="prototype\datetime\datetime.cpp" />
     <ClCompile Include="prototype\datetime\earth_gregorian_time.cpp" />
     <ClCompile Include="prototype\datetime\earth_time_shift.cpp" />

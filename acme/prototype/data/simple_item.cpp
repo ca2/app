@@ -10,7 +10,7 @@ namespace data
 {
 
 
-   simple_item::simple_item(::data::tree * pdatatree) :
+   simple_item::simple_item(::data::tree <::data::item > * pdatatree) :
       m_pdatatree(pdatatree)
    {
 

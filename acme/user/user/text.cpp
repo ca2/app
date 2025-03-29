@@ -450,6 +450,14 @@ namespace user
    }
 
 
+   ::string text::get_text(character_count iBegin, character_count iEnd) const
+   {
+
+      return m_textproperty.get_text(iBegin, iEnd);
+
+   }
+
+
    character_count text::get_text_length() const
    {
 

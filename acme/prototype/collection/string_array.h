@@ -510,10 +510,20 @@ public:
 
    void add_words(const SCOPED_STRING & str);
 
+
+   /// @brief Add Lines in a string that contains at least one '\r' character and one '\n' character
+   /// @tparam bAddEmpty true to add empty lines
+   /// @param scopedstr lines to add lines for
+   /// @param bWithEOL true to include EOL
+   /// @return Last Line without separator
    template < bool bAddEmpty >
-   typename Type::const_iterator _____add_lines_rn(const SCOPED_STRING & scopedstr);
+   typename Type::const_iterator _____add_lines_rn(const SCOPED_STRING & scopedstr, bool bWithEOL);
    //template < CHARACTER chSeparator, bool bAddEmpty >
    //typename Type::const_iterator _____add_lines(const SCOPED_STRING & scopedstr);
+   /// @brief Add Last Line when adding lines in a string
+   /// @tparam bAddEmpty true to add empty lines
+   /// @param start line start
+   /// @param end line end
    template < bool bAddEmpty >
    void __add_lines_suffix(typename Type::const_iterator start, typename Type::const_iterator end)
    {
@@ -537,15 +547,20 @@ public:
    template < CHARACTER chSeparator, bool bAddEmpty >
    void __add_lines(const SCOPED_STRING & scopedstr) { __add_lines_suffix<bAddEmpty>(__add_lines<chSeparator, bAddEmpty>(scopedstr), scopedstr.end()); }
    template < bool bAddEmpty >
-   void _add_lines(const SCOPED_STRING & scopedstr);
-   void add_lines(const SCOPED_STRING & scopedstr, bool bAddEmpty = true)
+   void _add_lines(const SCOPED_STRING & scopedstr, bool bWithEOL = false);
+   void add_lines(const SCOPED_STRING & scopedstr, bool bAddEmpty = true, bool bWithEOL = false)
    {
-      if (bAddEmpty)_add_lines<true>(scopedstr); else _add_lines<false>(scopedstr);
+      if (bAddEmpty)_add_lines<true>(scopedstr, bWithEOL); else _add_lines<false>(scopedstr, bWithEOL);
    }
 
-
+   /// @brief Add Lines in a string that contains only one type of separator @chSeparator
+   /// @tparam chSeparator the EOL character
+   /// @tparam bAddEmpty true to add empty lines
+   /// @param scopedstr string with lines to add lines for
+   /// @param bWithEOL true to include EOL
+   /// @return Last Line without separator
    template < CHARACTER chSeparator, bool bAddEmpty >
-   typename Type::const_iterator  _____add_lines(const SCOPED_STRING & scopedstr)
+   typename Type::const_iterator  _____add_lines(const SCOPED_STRING & scopedstr, bool bWithEOL = false)
    {
 
       auto range = scopedstr();
@@ -562,7 +577,7 @@ public:
 
          }
 
-         __add_lines_suffix<bAddEmpty>(range.begin(), p);
+         __add_lines_suffix<bAddEmpty>(range.begin(), bWithEOL ? p + 1 : p);
 
          range.begin(p + 1);
 

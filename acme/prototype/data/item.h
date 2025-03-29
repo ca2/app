@@ -9,14 +9,23 @@
 namespace data
 {
 
+   
+   class item;
 
+
+} // namespace data
+
+
+namespace data
+{
+
+   
    class item_data_array;
-   class tree_item;
-   class tree;
+   //class tree;
 
 
    class CLASS_DECL_ACME item :
-      virtual public matter
+      virtual public ::subparticle
    {
    public:
 
@@ -29,7 +38,7 @@ namespace data
       virtual ::image::image_list * data_item_get_image_list(::particle * pparticle) const;
 
 
-      virtual void data_item_on_fill_children(::data::tree_item * pitem);
+      //virtual void data_item_on_fill_children(::data::tree_item < ::data::item > * pitem);
 
 
       //virtual stream & write(stream& s) const override;
@@ -48,6 +57,5 @@ namespace data
    };
 
 
-} // namespace acme
-
+} // namespace data
 

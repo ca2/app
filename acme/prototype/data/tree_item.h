@@ -97,9 +97,9 @@ namespace data
 
 
       #endif
-      void clear_cache();
+      void clear_cache() override;
       void destroy() override;
-      bool erase_item_from_parent();
+      bool erase_item_from_parent() override;
 
       tree_base * _get_tree() const override;
       void _set_tree(tree_base * ptree) override;
@@ -108,17 +108,17 @@ namespace data
       tree_item * get_child_by_user_data(uptr iUserData);
       tree_item * find_next_by_user_data(uptr iUserData);
       void get_children(::data::tree_item_ptr_array < DATA_ITEM > &ptra);
-      ::collection::count get_children_count();
+      ::collection::count get_children_count() override;
       tree_item * get_parent();
-      ::collection::count get_expandable_children_count();
-      ::collection::count get_proper_descendant_count();
-      tree_item * get_expandable_child(::collection::index iIndex);
+      ::collection::count get_expandable_children_count() override;
+      ::collection::count get_proper_descendant_count() override;
+      virtual tree_item * get_expandable_child(::collection::index iIndex);
 
       bool insert(enum_relative erelative, tree_item * pitemNew);
 
-      ::collection::index calc_level();
-      ::collection::index get_level() { return m_iLevel >= 0 ? m_iLevel : calc_level(); }
-      ::collection::index _get_index();
+      ::collection::index calc_level() override;
+      ::collection::index get_level() override { return m_iLevel >= 0 ? m_iLevel : calc_level(); }
+      ::collection::index _get_index() override;
 
 
       inline auto ____previous()
@@ -148,10 +148,10 @@ namespace data
 
 
 
-      virtual tree_item_base * __previous() { return ____previous(); }
-      virtual tree_item_base * __next() { return ____next(); }
-      virtual tree_item_base * __head() { return ____head(); }
-      virtual tree_item_base * __tail() { return ____tail(); }
+      tree_item_base * __previous() override { return ____previous(); }
+      tree_item_base * __next() override { return ____next(); }
+      tree_item_base * __head() override { return ____head(); }
+      tree_item_base * __tail() override { return ____tail(); }
 
 
       tree_item * get_previous_or_parent(::collection::index * iLevelOffset = nullptr);
@@ -206,25 +206,25 @@ namespace data
       virtual bool contains(const tree_item * ptreeitem);
       virtual tree_item * get_proper_item(::collection::index iIndex, ::collection::index * piLevel);
       virtual ::collection::index get_proper_item_index(tree_item * pitem, ::collection::index * piLevel);
-      virtual ::collection::count get_proper_item_count();
+      ::collection::count get_proper_item_count() override;
 
       tree < DATA_ITEM > * get_tree();
 
-      virtual string get_text() const;
-      virtual ::collection::index get_image() const;
-      virtual ::image::image_list * get_image_list() const;
+      string get_text() const override;
+      ::collection::index get_image() const override;
+      ::image::image_list * get_image_list() const override;
 
 
       void set_parent(tree_item * pparent);
 
-      void erase_tree_item();
-      void erase_tree_item_descendants();
+      void erase_tree_item() override;
+      void erase_tree_item_descendants() override;
       void erase_child(tree_item * ptreeitem);
 
-      bool is_expanded() const;
-      bool is_expandable() const;
+      bool is_expanded() const override;
+      bool is_expandable() const override;
 
-      virtual void on_fill_children();
+      void on_fill_children() override;
 
       bool is_descendant(tree_item * pitem);
       bool is_ascendant(tree_item * pitem);

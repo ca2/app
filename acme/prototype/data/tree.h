@@ -51,16 +51,16 @@ namespace data
       tree_base * _tree_at(::collection::index iIndex) override;
 
 
-      virtual void erase_all();
+      void erase_all() override;
 
-      virtual void update_tree();
+      void update_tree() override;
 
       tree_item < DATA_ITEM > * find(const DATA_ITEM * pitem, ::collection::index * piIndex = nullptr);
        bool contains(const DATA_ITEM * pitem);
 
-      bool contains(const tree_item < DATA_ITEM > * pitem);
+      bool contains(const tree_item < DATA_ITEM > * pitem) override;
 
-      virtual void _001OnTreeDataChange();
+      void _001OnTreeDataChange() override;
 
       virtual void _001OnItemExpand(tree_item < DATA_ITEM > * pitem, const ::action_context & action_context);
       virtual void _001OnItemCollapse(tree_item < DATA_ITEM > * pitem, const ::action_context & action_context);
@@ -91,10 +91,10 @@ namespace data
 
       void update_levels();
 
-      tree_item_base * _get_base_item() { return get_base_item(); }
+      tree_item_base * _get_base_item() override { return get_base_item(); }
 
 
-      const tree_item_base * _get_base_item() const { return get_base_item(); }
+      const tree_item_base * _get_base_item() const override { return get_base_item(); }
 
       tree_item < DATA_ITEM > * get_base_item();
 
@@ -126,9 +126,9 @@ namespace data
       virtual void on_fill_children() override;
       //virtual void start_fill_children();
 
-      virtual void on_tree_layout();
+      void on_tree_layout() override;
 
-      virtual void fill_children();
+      void fill_children() override;
 
 
       //virtual void tree_layout(::draw2d::graphics_pointer & pgraphics);

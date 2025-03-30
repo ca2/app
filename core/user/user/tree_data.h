@@ -75,30 +75,30 @@ namespace user
       ::image::image_list * get_image_list() const override;
 
 
-      virtual void _001OnItemExpand(::data::tree_item < DATA_ITEM > * pitem, const ::action_context & action_context) override;
-      virtual void _001OnItemCollapse(::data::tree_item < DATA_ITEM > * pitem, const ::action_context & action_context) override;
-      virtual void _001OnOpenItem(::data::tree_item < DATA_ITEM > * pitem, const ::action_context & action_context) override;
+      void _001OnItemExpand(::data::tree_item < DATA_ITEM > * pitem, const ::action_context & action_context) override;
+      void _001OnItemCollapse(::data::tree_item < DATA_ITEM > * pitem, const ::action_context & action_context) override;
+      void _001OnOpenItem(::data::tree_item < DATA_ITEM > * pitem, const ::action_context & action_context) override;
       virtual void _001OnItemContextMenu(::data::tree_item < DATA_ITEM > * pitem, const ::action_context & action_context,::user::tree * ptree,const ::int_point & point);
 
 
-      virtual void _001ExpandItem(::data::tree_item < DATA_ITEM > * pitem, const ::action_context & action_context,bool bExpand = true,bool bRedraw = true,bool bLayout = true) override;
-      virtual void _001EnsureVisible(::data::tree_item < DATA_ITEM > * pitem) override;
-      virtual void _001SelectItem(::data::tree_item < DATA_ITEM > * pitem) override;
+      void _001ExpandItem(::data::tree_item < DATA_ITEM > * pitem, const ::action_context & action_context,bool bExpand = true,bool bRedraw = true,bool bLayout = true) override;
+      void _001EnsureVisible(::data::tree_item < DATA_ITEM > * pitem) override;
+      void _001SelectItem(::data::tree_item < DATA_ITEM > * pitem) override;
 
-      virtual void get_selection(::data::tree_item_ptr_array < DATA_ITEM > & itemptraSelected) const override;
-      virtual bool is_selected(const ::data::tree_item < DATA_ITEM > * pitem) const override;
-      virtual bool is_selected(const ::data::item * pitem) const;
+      void get_selection(::data::tree_item_ptr_array < DATA_ITEM > & itemptraSelected) const override;
+      bool is_selected(const ::data::tree_item < DATA_ITEM > * pitem) const override;
+      bool is_selected(const DATA_ITEM * pitem) const override;
 
-      virtual ::collection::count   selection_set(::data::tree_item_ptr_array < DATA_ITEM > & itemptraSelected) override;
-      virtual bool      selection_set(::data::tree_item < DATA_ITEM > * pitem,bool bIfNotInSelection = false,bool bIfParentInSelection = false) override;
-      virtual bool      selection_set(DATA_ITEM * pitem,bool bIfNotInSelection = false,bool bIfParentInSelection = false) override;
-      virtual bool      selection_set(::collection::index iIndex,DATA_ITEM * pitem,bool bIfNotInSelection = false,bool bIfParentInSelection = false) override;
+      ::collection::count   selection_set(::data::tree_item_ptr_array < DATA_ITEM > & itemptraSelected) override;
+      bool      selection_set(::data::tree_item < DATA_ITEM > * pitem,bool bIfNotInSelection = false,bool bIfParentInSelection = false) override;
+      bool      selection_set(DATA_ITEM * pitem,bool bIfNotInSelection = false,bool bIfParentInSelection = false) override;
+      bool      selection_set(::collection::index iIndex,DATA_ITEM * pitem,bool bIfNotInSelection = false,bool bIfParentInSelection = false) override;
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
-      virtual void on_fill_children() override;
+      void on_fill_children() override;
 
-      virtual void on_tree_layout() override;
+      void on_tree_layout() override;
 
 
 

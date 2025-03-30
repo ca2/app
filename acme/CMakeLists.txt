@@ -750,12 +750,14 @@ list(APPEND library_source
    prototype/data/property_listener.h
    prototype/data/simple_item.cpp
    prototype/data/simple_item.h
-   prototype/data/tree.cpp
+   prototype/data/tree_base.cpp
    prototype/data/text_property.cpp
    prototype/data/text_property.h
    prototype/data/tree.h
-   prototype/data/tree_item.cpp
+   prototype/data/tree_base.h
+   prototype/data/tree_item_base.cpp
    prototype/data/tree_item.h
+   prototype/data/tree_item_base.h
    #prototype/datetime/_.cpp
    prototype/datetime/_.h
    #prototype/datetime/_c.cpp

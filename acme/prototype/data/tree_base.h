@@ -62,7 +62,7 @@ namespace data
       virtual tree_item_base * _find(const ::data::item * pitem, ::collection::index * piIndex = nullptr);
       virtual bool _contains(const ::data::item * pitem);
 
-      virtual bool _contains(const tree_item_base * pitem);
+      bool _contains(const tree_item_base * pitem) override;
 
       virtual void _001OnTreeDataChange();
 

@@ -329,7 +329,7 @@ namespace user
 
 
    template < primitive_data_item DATA_ITEM >
-   bool tree_data < DATA_ITEM >::is_selected(const ::data::item * pitem) const
+   bool tree_data < DATA_ITEM >::is_selected(const DATA_ITEM * pitem) const
    {
 
       for (::collection::index i = 0; i < m_usertreea.get_count(); i++)

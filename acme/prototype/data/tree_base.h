@@ -33,7 +33,7 @@ namespace data
       ~tree_base() override;
 
 
-      virtual ::pointer<::data::tree_item_base> create_tree_item() = 0;
+      virtual ::pointer<::data::tree_item_base> _create_tree_item() = 0;
 
       void destroy() override;
 

@@ -20,14 +20,14 @@ namespace file
    }
 
 
-   bool edit_item_base::read_byte(unsigned char * pbyte, ::file::edit_file * pfile)
-   {
+   //bool edit_item_base::read_byte(unsigned char * pbyte, ::file::edit_file * pfile)
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-      return false;
+   //   return false;
 
-   }
+   //}
    //void edit_item_base::data_item_on_fill_children(::data::tree_item < edit_item_base > * pitem)
    //{
 
@@ -109,67 +109,67 @@ namespace file
    }
 
 
-   bool delete_item::read_byte(unsigned char * pbyte, ::file::edit_file * pfile)
-   {
+   //bool delete_item::read_byte(unsigned char * pbyte, ::file::edit_file * pfile)
+   //{
 
-      if(pfile->m_bRootDirection)
-      {
+   //   if(pfile->m_bRootDirection)
+   //   {
 
-         if(pfile->m_positionIteration >= m_position)
-         {
+   //      if(pfile->m_positionIteration >= m_position)
+   //      {
 
-            pfile->m_positionIteration += m_memstorage.size();
+   //         pfile->m_positionIteration += m_memstorage.size();
 
-            //if (pfile->m_dwStopPosition != MAX_STOP && m_position < pfile->m_dwStopPosition)
-            //{
+   //         //if (pfile->m_dwStopPosition != MAX_STOP && m_position < pfile->m_dwStopPosition)
+   //         //{
 
-            //   pfile->m_dwStopPosition += m_memstorage.size();
+   //         //   pfile->m_dwStopPosition += m_memstorage.size();
 
-            //}
+   //         //}
 
-         }
-         //else if (pfile->m_dwStopPosition > m_position)
-         //{
+   //      }
+   //      //else if (pfile->m_dwStopPosition > m_position)
+   //      //{
 
-         //   pfile->m_dwStopPosition = m_position;
+   //      //   pfile->m_dwStopPosition = m_position;
 
-         //}
+   //      //}
 
-      }
-      else
-      {
-         if(pfile->m_positionIteration >= m_position)
-         {
+   //   }
+   //   else
+   //   {
+   //      if(pfile->m_positionIteration >= m_position)
+   //      {
 
-            if(pfile->m_positionIteration < (m_position + m_memstorage.size()))
-            {
+   //         if(pfile->m_positionIteration < (m_position + m_memstorage.size()))
+   //         {
 
-               filesize iOffset = pfile->m_positionIteration - m_position;
+   //            filesize iOffset = pfile->m_positionIteration - m_position;
 
-               if (pbyte != nullptr)
-               {
+   //            if (pbyte != nullptr)
+   //            {
 
-                  *pbyte = m_memstorage.data()[iOffset];
+   //               *pbyte = m_memstorage.data()[iOffset];
 
-               }
+   //            }
 
-               return true;
+   //            return true;
 
-            }
-            else
-            {
+   //         }
+   //         else
+   //         {
 
-               pfile->m_positionIteration -= m_memstorage.size();
+   //            pfile->m_positionIteration -= m_memstorage.size();
 
-            }
+   //         }
 
-         }
+   //      }
 
-      }
+   //   }
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
 
@@ -221,144 +221,144 @@ namespace file
 
 
 
-   bool insert_item::read_byte(unsigned char * pbyte, ::file::edit_file * pfile)
-   {
+   //bool insert_item::read_byte(unsigned char * pbyte, ::file::edit_file * pfile)
+   //{
 
-      if(pfile->m_bRootDirection)
-      {
+   //   if(pfile->m_bRootDirection)
+   //   {
 
-         if(pfile->m_positionIteration >= m_position)
-         {
+   //      if(pfile->m_positionIteration >= m_position)
+   //      {
 
-            if(pfile->m_positionIteration < (m_position + m_memstorage.size()))
-            {
+   //         if(pfile->m_positionIteration < (m_position + m_memstorage.size()))
+   //         {
 
-               filesize iOffset = pfile->m_positionIteration - m_position;
+   //            filesize iOffset = pfile->m_positionIteration - m_position;
 
-               if (pbyte != nullptr)
-               {
+   //            if (pbyte != nullptr)
+   //            {
 
-                  *pbyte = m_memstorage.data()[iOffset];
+   //               *pbyte = m_memstorage.data()[iOffset];
 
-               }
+   //            }
 
-               return true;
+   //            return true;
 
-            }
-            else
-            {
+   //         }
+   //         else
+   //         {
 
-               pfile->m_positionIteration -= m_memstorage.size();
+   //            pfile->m_positionIteration -= m_memstorage.size();
 
-            }
+   //         }
 
-            //else
-            //{
+   //         //else
+   //         //{
 
-            //    pfile->m_positionIteration -= m_memstorage.size();
+   //         //    pfile->m_positionIteration -= m_memstorage.size();
 
-            //    if (pfile->m_dwStopPosition != MAX_STOP && m_position  < pfile->m_dwStopPosition)
-            //    {
+   //         //    if (pfile->m_dwStopPosition != MAX_STOP && m_position  < pfile->m_dwStopPosition)
+   //         //    {
 
-            //       if (m_position + m_memstorage.size() < pfile->m_dwStopPosition)
-            //       {
+   //         //       if (m_position + m_memstorage.size() < pfile->m_dwStopPosition)
+   //         //       {
 
-            //          pfile->m_dwStopPosition -= m_memstorage.size();
+   //         //          pfile->m_dwStopPosition -= m_memstorage.size();
 
-            //       }
+   //         //       }
 
-            //    }
+   //         //    }
 
-            //}
+   //         //}
 
-         }
-         //else
-         //{
-         //
-         //   if (pfile->m_dwStopPosition > m_position)
-         //   {
+   //      }
+   //      //else
+   //      //{
+   //      //
+   //      //   if (pfile->m_dwStopPosition > m_position)
+   //      //   {
 
-         //      pfile->m_dwStopPosition = m_position;
+   //      //      pfile->m_dwStopPosition = m_position;
 
-         //   }
+   //      //   }
 
-         //}
+   //      //}
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         //if(pfile->m_position + pfile->m_iOffset >= m_position)
-         //{
+   //      //if(pfile->m_position + pfile->m_iOffset >= m_position)
+   //      //{
 
-         //   pfile->m_iOffset -= m_memstorage.size();
+   //      //   pfile->m_iOffset -= m_memstorage.size();
 
-         //   pfile->m_dwLength -= m_memstorage.size();
+   //      //   pfile->m_dwLength -= m_memstorage.size();
 
-         //}
+   //      //}
 
-         if (pfile->m_positionIteration >= m_position)
-         {
+   //      if (pfile->m_positionIteration >= m_position)
+   //      {
 
-            pfile->m_positionIteration += m_memstorage.size();
+   //         pfile->m_positionIteration += m_memstorage.size();
 
-         }
+   //      }
 
-      }
+   //   }
 
-      return false;
+   //   return false;
 
-   }
-
-
+   //}
 
 
 
 
-   enum_edit_item edit_item::get_type()
-   {
-      return e_edit_item_edit;
-   }
 
-   memsize edit_item::get_extent()
-   {
-      return m_memstorage.size();
-   }
 
-   memsize edit_item::get_file_extent()
-   {
-      return get_extent();
-   }
+   //enum_edit_item edit_item::get_type()
+   //{
+   //   return e_edit_item_edit;
+   //}
 
-   unsigned char * edit_item::data()
-   {
-      return m_memstorage.data();
-   }
+   //memsize edit_item::get_extent()
+   //{
+   //   return m_memstorage.size();
+   //}
 
-   enum_edit_item edit_item::reverse_get_type()
-   {
-      return e_edit_item_edit;
-   }
+   //memsize edit_item::get_file_extent()
+   //{
+   //   return get_extent();
+   //}
 
-   memsize edit_item::reverse_get_extent()
-   {
-      return m_memstorageReverse.size();
-   }
+   //unsigned char * edit_item::data()
+   //{
+   //   return m_memstorage.data();
+   //}
 
-   memsize edit_item::reverse_get_file_extent()
-   {
-      return get_extent();
-   }
+   //enum_edit_item edit_item::reverse_get_type()
+   //{
+   //   return e_edit_item_edit;
+   //}
 
-   unsigned char * edit_item::reverse_get_data()
-   {
-      return m_memstorageReverse.data();
-   }
+   //memsize edit_item::reverse_get_extent()
+   //{
+   //   return m_memstorageReverse.size();
+   //}
 
-   memsize edit_item::get_delta_length()
-   {
-      return 0;
-   }
+   //memsize edit_item::reverse_get_file_extent()
+   //{
+   //   return get_extent();
+   //}
+
+   //unsigned char * edit_item::reverse_get_data()
+   //{
+   //   return m_memstorageReverse.data();
+   //}
+
+   //memsize edit_item::get_delta_length()
+   //{
+   //   return 0;
+   //}
 
 
 
@@ -422,44 +422,44 @@ namespace file
    }
 
 
-   bool edit_group_item::read_byte(unsigned char * pbyte, ::file::edit_file * pfile)
-   {
+   //bool edit_group_item::read_byte_group(unsigned char * pbyte, ::file::edit_file * pfile)
+   //{
 
-      if(pfile->m_bRootDirection)
-      {
+   //   if(pfile->m_bRootDirection)
+   //   {
 
-         for(::collection::index i = m_itema.get_upper_bound(); i >= 0; i--)
-         {
+   //      for(::collection::index i = m_itema.get_upper_bound(); i >= 0; i--)
+   //      {
 
-            if (m_itema[i]->read_byte(pbyte, pfile))
-            {
+   //         if (m_itema[i]->read_byte(pbyte, pfile))
+   //         {
 
-               return true;
+   //            return true;
 
-            }
+   //         }
 
-         }
+   //      }
 
-      }
-      else
-      {
-         for(::collection::index i = 0; i < m_itema.get_count(); i++)
-         {
+   //   }
+   //   else
+   //   {
+   //      for(::collection::index i = 0; i < m_itema.get_count(); i++)
+   //      {
 
-            if (m_itema[i]->read_byte(pbyte, pfile))
-            {
+   //         if (m_itema[i]->read_byte(pbyte, pfile))
+   //         {
 
-               return true;
+   //            return true;
 
-            }
+   //         }
 
-         }
+   //      }
 
-      }
+   //   }
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    edit_file::edit_file()
@@ -498,6 +498,13 @@ namespace file
 
 #endif
 
+
+   //::pointer < ::data::tree_item_base > edit_file::create_tree_item()
+   //{
+
+   //   return __create_new < ::data::tree_item < ::file::edit_item_base > >();
+
+   //}
 
    void edit_file::destroy()
    {
@@ -601,6 +608,7 @@ namespace file
 
       unsigned int uReadItem = 0xffffffff;
 
+
       //unsigned long long uiStopSize;
 
       m_iOffset = 0;
@@ -639,60 +647,132 @@ namespace file
 
          bRead = false;
 
-         while (ptreeitem != nullptr && (!m_bRootDirection || ptreeitem->m_pdataitem.is_set()))
+         filesize next_boundary = m_position + nCount;
+
+         if (m_bRootDirection)
          {
 
-            if (!m_bRootDirection)
+            while (ptreeitem != nullptr && (!m_bRootDirection || ptreeitem->m_pdataitem.is_set()))
             {
 
-               ptreeitem = ptreeitem->get_child_next_or_parent();
+               //if (!m_bRootDirection)
+               //{
 
+               //   ptreeitem = ptreeitem->get_child_next_or_parent();
+
+               //}
+
+               //if (!ptreeitem)
+               //{
+
+               //   break;
+
+               //}
+
+               //if (next_boundary <= m_positionIteration)
+               //{
+
+               //   next_boundary = m_positionIteration + nCount;
+
+               //}
+
+               auto pitem = ptreeitem->m_pdataitem.m_p;
+
+               bRead = pitem->read_byte(next_boundary, buf ? buf + uRead : nullptr, this);
+
+               if (bRead)
+               {
+
+                  break;
+
+               }
+
+               if (ptreeitem == m_ptreeitemBeg)
+               {
+
+                  break;
+
+               }
+
+               //if (m_bRootDirection)
+               {
+
+                  ptreeitem = ptreeitem->get_previous_or_parent();
+
+                  //}
+
+               }
             }
+         }
+         else
+         {
 
-            if (!ptreeitem)
+
+            while (ptreeitem != nullptr && (!m_bRootDirection || ptreeitem->m_pdataitem.is_set()))
             {
 
-               break;
+               //if (!m_bRootDirection)
+               {
+
+                  ptreeitem = ptreeitem->get_child_next_or_parent();
+
+               }
+
+               if (!ptreeitem)
+               {
+
+                  break;
+
+               }
+
+               auto pitem = ptreeitem->m_pdataitem.m_p;
+
+               bRead = pitem->read_byte(next_boundary, buf ? buf + uRead : nullptr, this);
+
+               if (bRead)
+               {
+
+                  break;
+
+               }
+
+               if (ptreeitem == m_ptreeitemBeg)
+               {
+
+                  break;
+
+               }
+
+               ////if (m_bRootDirection)
+               //{
+
+               //   ptreeitem = ptreeitem->get_previous_or_parent();
+
+               //   //}
+
+               //}
 
             }
-
-            auto pitem = ptreeitem->m_pdataitem.m_p;
-
-            bRead = pitem->read_byte(buf ? buf + uRead:nullptr, this);
-
-            if (bRead)
-            {
-
-               break;
-
-            }
-
-            if (ptreeitem == m_ptreeitemBeg)
-            {
-
-               break;
-
-            }
-
-            if (m_bRootDirection)
-            {
-
-               ptreeitem = ptreeitem->get_previous_or_parent();
-
-            }
-
          }
 
-         if(!bRead)
+         filesize iRead = 0;
+
+         if (bRead)
+         {
+
+            iRead = 1;
+
+         }
+         else
          {
 
             m_pfile->set_position(m_positionIteration);
 
-            bRead = m_pfile->read(buf ? buf + uRead : nullptr, 1) == 1;
+            iRead = m_pfile->read(buf ? buf + uRead : nullptr,minimum(next_boundary - m_positionIteration, nCount));
 
          }
 
-         if (!bRead)
+         if (iRead <= 0)
          {
 
             break;
@@ -704,13 +784,11 @@ namespace file
 
          //buf[uRead] = b;
 
+         nCount-=iRead;
 
+         uRead += iRead;
 
-         nCount--;
-
-         uRead++;
-
-         m_position++;
+         m_position+=iRead;
 
       }
       while(nCount > 0 && m_position < m_sizeEditFile);
@@ -763,25 +841,37 @@ namespace file
 
    {
 
+      // ::pointer<insert_item>pinsert;
+      auto pinsert = __allocate ::file::insert_item(m_position, pdata, nCount);
+   //   pinsert->m_position = m_position;
+   //   //pinsert->m_memstorage.set_size(nCount);
+   //pinsert->m_memstorage.assign(pdata, nCount);
+
+TreeInsert(pinsert);
+m_position += nCount;
 
 
-      ::pointer<edit_item>pedit;
-      pedit = __allocate edit_item();
-      pedit->m_position = m_position;
-      pedit->m_memstorage.set_size(nCount);
-      ::memory_copy(pedit->m_memstorage.data(),pdata,nCount);
+      //::pointer<edit_item>pedit;
+      //pedit = __allocate edit_item();
+      //pedit->m_position = m_position;
+      //pedit->m_memstorage.set_size(nCount);
+      //::memory_copy(pedit->m_memstorage.data(),pdata,nCount);
 
-      TreeInsert(pedit);
-      m_position += nCount;
+      //TreeInsert(pedit);
+      //m_position += nCount;
    }
 
    
    void edit_file::change_insert_item_data(class insert_item * pinsertitem, const ::string & str)
    {
 
-      memsize iOldLen = pinsertitem->m_memstorage.size();
+      memsize iOldLen = pinsertitem->m_size;
 
-      pinsertitem->m_memstorage.assign(str);
+      pinsertitem->set_data(str.c_str(), str.size());
+
+      //pinsertitem->m_pdata = pinsertitem->m_memstorage.data();
+
+      //pinsertitem->m_size = pinsertitem->m_memstorage.size();
 
       m_sizeEditFile += (str.length() - iOldLen);
 
@@ -791,9 +881,9 @@ namespace file
    void edit_file::append_insert_item_data(class insert_item * pinsertitem, const ::string & str)
    {
 
-      memsize iOldLen = pinsertitem->m_memstorage.size();
+      //memsize iOldLen = pinsertitem->m_memstorage.size();
 
-      pinsertitem->m_memstorage.append(str);
+      pinsertitem->append_data(str.c_str(), str.size());
 
       m_sizeEditFile += (str.length());
 
@@ -802,11 +892,13 @@ namespace file
    insert_item * edit_file::Insert(const void * pdata,memsize nCount)
    {
 
-      auto pinsert = __allocate class insert_item ();
+      auto pinsert = __allocate class insert_item (m_position, pdata, nCount);
 
-      pinsert->m_position = m_position;
+      //auto p = (char *) pdata;
 
-      pinsert->m_memstorage.assign(pdata, nCount);
+      //pinsert->m_position = m_position;
+
+      //pinsert->m_memstorage.assign(p, nCount);
 
       TreeInsert(pinsert);
 
@@ -834,8 +926,11 @@ namespace file
       pdelete = __allocate delete_item();
       pdelete->m_position = m_position;
       pdelete->m_memstorage.set_size(uiCount);
+      pdelete->m_pdata = pdelete->m_memstorage.data();
+      pdelete->m_size = pdelete->m_memstorage.size();
       seek((filesize)m_position,::e_seek_set);
-      read(pdelete->m_memstorage.data(),uiCount);
+      auto pszData = (char *)pdelete->m_memstorage.data();
+      read(pszData,uiCount);
       TreeInsert(pdelete);
       m_sizeEditFile -= uiCount;
 
@@ -964,13 +1059,13 @@ namespace file
 
       m_pfile->set_position(0);
 
-      for (::collection::index i = 0; i < dwNew; i++)
+      //for (::collection::index i = 0; i < dwNew; i++)
       {
 
          //unsigned char b;
 
          //read(&b, 1);
-         read(nullptr, 1);
+         read(nullptr, dwNew);
 
       }
 
@@ -1099,33 +1194,35 @@ namespace file
    }
 
 
-   bool edit_file::Undo()
+   ::pointer < ::file::edit_item_base > edit_file::Undo()
    {
 
       if (!CanUndo())
       {
 
-         return false;
+         return {};
 
       }
 
-      m_sizeEditFile -= m_ptreeitem->m_pdataitem.cast < edit_item_base>()->get_delta_length();
+      auto pedititembase = m_ptreeitem->m_pdataitem.cast < edit_item_base>();
+
+      m_sizeEditFile -= pedititembase->get_delta_length();
 
       m_ptreeitem = m_ptreeitem->get_previous_or_parent();
 
-      return true;
+      return pedititembase;
 
    }
 
 
-   bool edit_file::Redo()
+   ::pointer < ::file::edit_item_base >  edit_file::Redo()
    {
 
-      if(m_iBranch < 0 || m_iBranch >= GetRedoBranchCount())
+      if (m_iBranch < 0 || m_iBranch >= GetRedoBranchCount())
       {
 
-         return false;
-
+         return {};
+               
       }
       
       ::pointer<::data::tree_item<edit_item_base>>ptreeitem;
@@ -1146,15 +1243,17 @@ namespace file
       if (ptreeitem == nullptr)
       {
 
-         return false;
+         return {};
 
       }
 
-      m_sizeEditFile += ptreeitem->m_pdataitem.cast < edit_item_base > ()->get_delta_length();
+      auto pedititem = ptreeitem->m_pdataitem.cast < edit_item_base >();
+
+      m_sizeEditFile += pedititem->get_delta_length();
 
       m_ptreeitem = ptreeitem;
 
-      return true;
+      return pedititem;
 
    }
 
@@ -1217,6 +1316,147 @@ namespace file
       return ptreeitem == m_ptreeitemFlush;
       
    }
+
+
+   bool edit_item_base::read_byte(filesize & next_boundary,unsigned char * pbyte, ::file::edit_file * pfile)
+   {
+
+      if (m_pitema)
+      {
+
+         if (pfile->m_bRootDirection)
+         {
+
+            for (::collection::index i = m_pitema->get_upper_bound(); i >= 0; i--)
+            {
+
+               if (m_pitema->element_at(i)->read_byte(next_boundary, pbyte, pfile))
+               {
+
+                  return true;
+
+               }
+
+            }
+
+         }
+         else
+         {
+            for (::collection::index i = 0; i < m_pitema->size(); i++)
+            {
+
+               if (m_pitema->element_at(i)->read_byte(next_boundary, pbyte, pfile))
+               {
+
+                  return true;
+
+               }
+
+            }
+
+         }
+
+         return false;
+
+      }
+      else
+      {
+
+
+
+         if (!pfile->m_bRootDirection != !!m_bInsert)
+         {
+
+            if (pfile->m_positionIteration >= m_position)
+            {
+
+               if (pfile->m_positionIteration < (m_position + m_size))
+               {
+
+                  filesize iOffset = pfile->m_positionIteration - m_position;
+
+                  if (pbyte != nullptr)
+                  {
+
+                     *pbyte = m_pdata[iOffset];
+
+                  }
+
+                  return true;
+
+               }
+               else
+               {
+
+                  pfile->m_positionIteration -= m_size;
+
+                  next_boundary -= m_size;
+
+               }
+
+            }
+            else
+            {
+
+               if (m_position < next_boundary)
+               {
+
+                  next_boundary = m_position;
+
+               }
+
+            }
+
+         }
+         else
+         {
+            //if(m_sizeRoot < 0)
+            //{
+
+            if (pfile->m_positionIteration >= m_position)
+            {
+
+               pfile->m_positionIteration += m_size;
+
+               next_boundary += m_size;
+
+               //if (pfile->m_dwStopPosition != MAX_STOP && m_position < pfile->m_dwStopPosition)
+               //{
+
+               //   pfile->m_dwStopPosition += m_memstorage.size();
+
+               //}
+
+            }
+            else
+            {
+
+               if (m_position < next_boundary)
+               {
+
+                  next_boundary = m_position;
+
+               }
+
+            }
+
+            //}
+            //else if (pfile->m_dwStopPosition > m_position)
+            //{
+
+            //   pfile->m_dwStopPosition = m_position;
+
+            //}
+
+         }
+
+
+         return false;
+
+      }
+
+   }
+
 
 
 } // namespace acme

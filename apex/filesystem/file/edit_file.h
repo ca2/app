@@ -9,23 +9,40 @@
 namespace file
 {
 
-
+   class edit_item_array;
 
    class edit_item_base :
       public ::data::item
    {
-   public:
+   protected:
 
+
+
+   public:
+      edit_item_array * m_pitema;
 
       filesize   m_position;
 
-      
+
+      bool m_bInsert;
+      //bool m_bDelete = true;
+
+
+      unsigned char * m_pdata;
+      memsize    m_size;
+
+
       edit_item_base();
+
+
+      bool read_byte(filesize & next_boundary, unsigned char * pbyte, ::file::edit_file * pfile);
+
+
 
 
       //virtual void data_item_on_fill_children(::data::tree_item < edit_item_base > * pitem);
 
-      virtual bool read_byte(unsigned char* pbyte, ::file::edit_file* pfile);
+      //virtual bool read_byte(unsigned char* pbyte, ::file::edit_file* pfile);
 
       virtual filesize get_position(bool bForward);
 
@@ -49,13 +66,25 @@ namespace file
    class delete_item :
       public edit_item_base
    {
-   public:
+   protected:
 
+
+   public:
 
       memory m_memstorage;
 
+      delete_item()
+      {
+         m_pitema = nullptr;
+         //m_position = position;
+         m_bInsert = false;
+         //m_memstorage.assign(pdata, size);
+         //m_pdata = m_memstorage.data();
+         //m_size = size;
 
-      virtual bool read_byte(unsigned char* pbyte, ::file::edit_file* pfile) override;
+      }
+
+      //virtual bool read_byte(unsigned char* pbyte, ::file::edit_file* pfile) override;
 
       virtual enum_edit_item get_type() override;
       virtual memsize get_extent() override;
@@ -73,13 +102,42 @@ namespace file
    class insert_item :
       public edit_item_base
    {
-   public:
-
+   protected:
 
       memory m_memstorage;
 
+   public:
 
-      virtual bool read_byte(unsigned char* pbyte, ::file::edit_file* pfile) override;
+      insert_item(filesize position, const void * pdata, memsize size)
+
+      {
+         m_pitema = nullptr;
+         m_position = position;
+            m_bInsert = true;
+            set_data(pdata, size);
+      }
+
+
+      void set_data(const void * pdata, memsize size)
+      {
+
+         m_memstorage.assign(pdata, size);
+         m_pdata = m_memstorage.data();
+         m_size = m_memstorage.size();
+
+      }
+
+
+      void append_data(const void * pdata, memsize size)
+      {
+
+         m_memstorage.append(pdata, size);
+         m_pdata = m_memstorage.data();
+         m_size = m_memstorage.size();
+
+      }
+
+      //virtual bool read_byte(unsigned char* pbyte, ::file::edit_file* pfile) override;
 
       virtual enum_edit_item get_type()  override;
       virtual memsize get_extent()  override;
@@ -93,27 +151,28 @@ namespace file
 
    };
 
-   class edit_item :
-      public edit_item_base
-   {
-   public:
+   //class edit_item :
+   //   public edit_item_base
+   //{
+   //protected:
+   //   memory m_memstorage;
+   //   memory m_memstorageReverse;
+   //public:
 
 
-      memory m_memstorage;
-      memory m_memstorageReverse;
 
 
-      virtual enum_edit_item get_type() override;
-      virtual memsize get_extent() override;
-      virtual memsize get_file_extent() override;
-      virtual unsigned char* data()  override;
-      virtual enum_edit_item reverse_get_type() override;
-      virtual memsize reverse_get_extent() override;
-      virtual memsize reverse_get_file_extent() override;
-      virtual unsigned char* reverse_get_data()  override;
-      virtual memsize get_delta_length() override;
+   //   virtual enum_edit_item get_type() override;
+   //   virtual memsize get_extent() override;
+   //   virtual memsize get_file_extent() override;
+   //   virtual unsigned char* data()  override;
+   //   virtual enum_edit_item reverse_get_type() override;
+   //   virtual memsize reverse_get_extent() override;
+   //   virtual memsize reverse_get_file_extent() override;
+   //   virtual unsigned char* reverse_get_data()  override;
+   //   virtual memsize get_delta_length() override;
 
-   };
+   //};
 
    class edit_item_array :
       public pointer_array < edit_item_base >
@@ -125,12 +184,19 @@ namespace file
    class edit_group_item :
       public edit_item_base
    {
-   public:
+   protected:
 
+
+   public:
 
       ::pointer<edit_group_item>     m_pgroupitem;
       edit_item_array            m_itema;
 
+      edit_group_item()
+      {
+         m_pitema = &m_itema;
+         
+      }
 
       virtual enum_edit_item get_type() override;
       virtual memsize get_extent() override;
@@ -142,7 +208,7 @@ namespace file
       virtual unsigned char* reverse_get_data()  override;
       virtual memsize get_delta_length() override;
 
-      virtual bool read_byte(unsigned char* pbyte, ::file::edit_file* pfile) override;
+      //virtual bool read_byte(unsigned char* pbyte, ::file::edit_file* pfile) override;
 
    };
 
@@ -189,13 +255,14 @@ namespace file
 
 #endif
 
+
       void destroy() override;
 
       virtual bool is_edit_file_modified() const;
 
       void SetFile(file_pointer  pfile);
 
-      void FillFilePosition(edit_item * pitem);
+      //void FillFilePosition(edit_item * pitem);
 
       virtual bool IsValid() const;
       //void load_string(string & str);
@@ -229,13 +296,13 @@ namespace file
 
 
       void Insert(delete_item * pitem);
-      void Insert(edit_item * pitem);
+      //void Insert(edit_item * pitem);
       void Insert(class insert_item * pitem);
       bool CanUndo();
       bool CanRedo();
       ::collection::count GetRedoBranchCount();
-      bool Undo();
-      bool Redo();
+      ::pointer < ::file::edit_item_base > Undo();
+      ::pointer < ::file::edit_item_base > Redo();
       void MacroBegin();
       void MacroEnd();
       void MacroDiscard();
@@ -251,6 +318,8 @@ namespace file
 
    };
 
+
+   
 
 } // namespace file
 

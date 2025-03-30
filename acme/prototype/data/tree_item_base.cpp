@@ -668,7 +668,7 @@ namespace data
 
          bContains = p->_contains(ptreeitem);
 
-         return bContains;
+         return !bContains;
 
          });
 

@@ -8,6 +8,7 @@
 #include "acme/user/user/text.h"
 #include "apex/filesystem/file/edit_file.h"
 #include "plain_text_data.h"
+#include "plain_text_tree.h"
 
 
 class element_2d;
@@ -146,6 +147,8 @@ namespace user
      , virtual public text_composition_composite
 #endif
       , virtual public ::user::text
+      , virtual public ::user::plain_text_tree
+
    {
    public:
 
@@ -251,7 +254,7 @@ namespace user
       //   }
 
       //};
-
+      //::draw2d::graphics_pointer             m_pgraphicsPlainEdit;
       int                                    m_iDrawTextFlags;
       class ::time                           m_timeLastDraw;
       ::pointer_array < plain_edit_error >   m_errora;
@@ -347,7 +350,15 @@ namespace user
       plain_edit();
       ~plain_edit() override;
 
+      virtual long long increment_reference_count() override
+      {
+         return ::matter::increment_reference_count();
+      }
 
+      virtual long long decrement_reference_count() override
+      {
+         return ::matter::decrement_reference_count();
+      }
       void destroy() override;
 
       void plain_edit_common_construct();
@@ -643,12 +654,19 @@ namespace user
 
       virtual void plain_edit_on_delete(::draw2d::graphics_pointer& pgraphics, bool bBackIfSelectionEmtpy);
 
-      virtual bool _plain_edit_on_delete(::collection::index & iLineUpdate, ::character_count & i1, ::character_count & i2, ::draw2d::graphics_pointer & pgraphics, bool bBackIfSelectionEmtpy);
-
+      virtual bool _plain_edit_on_delete(::draw2d::graphics_pointer & pgraphics, ::collection::index & iLineUpdate, ::character_count & i1, ::character_count & i2, bool bBackIfSelectionEmtpy);
+      virtual void _plain_edit_update_for_delete(::draw2d::graphics_pointer & pgraphics, const ::block & block, ::character_count i1, ::collection::index & iLine1, ::collection::index & iLine2);
+      virtual void _plain_edit_update_for_insert(::draw2d::graphics_pointer & pgraphics, const ::block & block, ::character_count i1, ::collection::index & iLine1, ::collection::index & iLine2);
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       string get_ime_composition() const override;
 
+      void _on_undo_edit_item(::file::edit_item_base * pedititem) override;
+      void _on_redo_edit_item(::file::edit_item_base * pedititem) override;
+      virtual void _on_undo_insert(::file::insert_item * pinsertitem);
+      virtual void _on_undo_delete(::file::delete_item * pinsertitem);
+      virtual void _on_redo_insert(::file::insert_item * pinsertitem);
+      virtual void _on_redo_delete(::file::delete_item * pdeleteitem);
 
    };
 

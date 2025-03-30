@@ -32,7 +32,7 @@ namespace user
       ::collection::index                                      m_iItemCount;
       unsigned int                                             m_uiLButtonUpFlags;
       int_point                                                m_pointLButtonUp;
-      ::data::tree_item_base *                                 m_pitemFirstVisible;
+      ::pointer < ::data::tree_item_base >                     m_pitemFirstVisible;
       ::collection::index                                      m_iFirstVisibleItemProperIndex;
       int                                                      m_iCurrentImpactWidth;
       ::int_size                                               m_sizeItemMaximum;

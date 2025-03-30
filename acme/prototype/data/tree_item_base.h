@@ -157,8 +157,8 @@ namespace data
       virtual ::collection::index _get_proper_item_index(tree_item_base * pitem, ::collection::index * piLevel);
       virtual ::collection::count get_proper_item_count();
 
-      virtual tree_base* _get_tree() const;
-      virtual void _set_tree(tree_base * ptree);
+      virtual tree_base* _get_tree() const =0;
+      virtual void _set_tree(tree_base * ptree) =0;
 
       virtual void _set_data_item(::data::item * pdataitem);
       virtual ::data::item * _data_item() const;

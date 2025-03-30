@@ -5,7 +5,10 @@
 #include "acme/prototype/data/tree.h"
 #include "plain_text_data.h"
 
-
+namespace file
+{
+   class edit_item_base;
+}
 namespace user
 {
 
@@ -38,6 +41,8 @@ namespace user
       
       virtual bool is_tree_modified() const;
 
+      virtual void _on_undo_edit_item(::file::edit_item_base * pedititem);
+      virtual void _on_redo_edit_item(::file::edit_item_base * pedititem);
 
    };
 

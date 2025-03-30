@@ -402,7 +402,7 @@ namespace data
 
       }
 
-      ::pointer<::data::tree_item_base>pitemNew = __allocate tree_item_base();
+      auto pitemNew = create_tree_item();
 
       if (pitemNew == nullptr)
       {

@@ -59,6 +59,15 @@ namespace user
       return m_peditfile->is_edit_file_modified();
    
    }
+   void plain_text_tree::_on_undo_edit_item(::file::edit_item_base * pedititem)
+   {
+
+   }
+   void plain_text_tree::_on_redo_edit_item(::file::edit_item_base * pedititem)
+   {
+
+   }
+
 
 
 } // namespace user

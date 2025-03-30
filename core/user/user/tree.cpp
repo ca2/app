@@ -3,6 +3,7 @@
 #include "tree_data.h"
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
+#include "acme/exception/interface_only.h"
 #include "acme/prototype/data/item.h"
 #include "acme/prototype/data/listener.h"
 #include "acme/prototype/time/frequency.h"
@@ -100,6 +101,7 @@ namespace user
    }
 
 
+
    void tree::on_message_create(::message::message * pmessage)
    {
 
@@ -115,7 +117,7 @@ namespace user
 
       //auto estatus =
 
-      __construct_new(m_ptreedata);
+      //m_ptreedata = create_tree_data();
 
       //if (!estatus)
       //{
@@ -797,6 +799,7 @@ namespace user
       pmouse->m_lresult = 1;
 
    }
+
 
    void tree::perform_click()
    {

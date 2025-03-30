@@ -497,7 +497,7 @@ namespace image
 
       iItem = reserve_image(iItem);
 
-      if (!m_pimage)
+      if (!::is_ok(m_pimage))
       {
 
          return -1;

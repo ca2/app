@@ -29,6 +29,9 @@ namespace data
       tree();
       ~tree() override;
 
+
+      ::pointer < ::data::tree_item_base > create_tree_item() override;
+
       void destroy() override;
 
       virtual void on_insert_tree(tree * ptree);
@@ -42,6 +45,10 @@ namespace data
       {
          return ::matter::decrement_reference_count();
       }
+      
+      
+      ::collection::count _tree_count() override;
+      tree_base * _tree_at(::collection::index iIndex) override;
 
 
       virtual void erase_all();
@@ -59,6 +66,7 @@ namespace data
       virtual void _001OnItemCollapse(tree_item < DATA_ITEM > * pitem, const ::action_context & action_context);
       virtual void _001OnOpenItem(tree_item < DATA_ITEM > * pitem, const ::action_context & action_context);
       virtual void _001OnItemContextMenu(tree_item < DATA_ITEM > * pitem, const ::action_context & action_context, ::user::element * ptree, const ::int_point & point);
+      virtual void _001OnOpenItem(::data::tree_item_base * pitem, const ::action_context & context) override;
 
       void erase(tree_item_ptr_array <DATA_ITEM > & itemptra);
       void erase(tree_item < DATA_ITEM > * pitem);
@@ -528,6 +536,14 @@ namespace data
       return pitemNew;
 
    }
+
+   template < primitive_data_item DATA_ITEM >
+   ::pointer < ::data::tree_item_base > tree < DATA_ITEM >::create_tree_item()
+   {
+
+      return __create_new < ::data::tree_item < DATA_ITEM > >();
+
+   }
    template < primitive_data_item DATA_ITEM >
    void tree < DATA_ITEM >::destroy()
    {
@@ -698,6 +714,25 @@ namespace data
 
    }
 
+
+   template < primitive_data_item DATA_ITEM >
+   ::collection::count tree < DATA_ITEM >::_tree_count()
+   {
+
+      return this->m_treea.size();
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM >
+   tree_base * tree < DATA_ITEM >::_tree_at(::collection::index iIndex)
+   {
+
+      return this->m_treea[iIndex];
+
+   }
+
+
    template < primitive_data_item DATA_ITEM >
    void tree < DATA_ITEM >::update_tree()
    {
@@ -840,6 +875,18 @@ namespace data
 
 
    }
+
+
+   template < primitive_data_item DATA_ITEM >
+   void tree < DATA_ITEM >::_001OnOpenItem(::data::tree_item_base * pitem, const ::action_context & context)
+   {
+
+      ::cast < ::data::tree_item < DATA_ITEM > > ptreeitem = pitem;
+
+      _001OnOpenItem(ptreeitem, context);
+
+   }
+
 
    template < primitive_data_item DATA_ITEM >
    void tree < DATA_ITEM >::_001OnItemContextMenu(::data::tree_item < DATA_ITEM > * pitem, const ::action_context & context, ::user::element * ptree, const ::int_point & point)
@@ -984,6 +1031,22 @@ namespace data
    //{
 
    //}
+
+   template < primitive_data_item DATA_ITEM >
+   tree_base * tree_item < DATA_ITEM >::_get_tree() const
+   {
+
+      return m_ptree;
+
+   }
+
+   template < primitive_data_item DATA_ITEM >
+   void tree_item < DATA_ITEM >::_set_tree(tree_base * ptreebase)
+   {
+
+      m_ptree = dynamic_cast <::data::tree < DATA_ITEM > *>(ptreebase);
+
+   }
 
 
 

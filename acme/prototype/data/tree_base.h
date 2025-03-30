@@ -32,6 +32,9 @@ namespace data
       tree_base();
       ~tree_base() override;
 
+
+      virtual ::pointer<::data::tree_item_base> create_tree_item() = 0;
+
       void destroy() override;
 
       virtual void _insert_tree(tree_base * ptree);
@@ -51,8 +54,8 @@ namespace data
 
       virtual void update_tree();
 
-      virtual ::collection::count _tree_count();
-      virtual tree_base * _tree_at(::collection::index iIndex);
+      virtual ::collection::count _tree_count() = 0;
+      virtual tree_base * _tree_at(::collection::index iIndex) = 0;
 
       virtual void predicate_each_tree(const ::function < void(tree_base *) > & callback);
 

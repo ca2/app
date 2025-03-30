@@ -77,6 +77,8 @@ namespace filemanager
 
       ptreedata->m_ptree = ptreedata;
 
+      pusertree->m_ptreedata = ptreedata;
+
       ptreedata->initialize_filemanager_tree(pfilemanagerdocument);
 
    }

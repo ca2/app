@@ -101,6 +101,10 @@ namespace data
       void destroy() override;
       bool erase_item_from_parent();
 
+      tree_base * _get_tree() const override;
+      void _set_tree(tree_base * ptree) override;
+
+
       tree_item * get_child_by_user_data(uptr iUserData);
       tree_item * find_next_by_user_data(uptr iUserData);
       void get_children(::data::tree_item_ptr_array < DATA_ITEM > &ptra);
@@ -133,6 +137,8 @@ namespace data
       {
          return m_treeitema2.is_empty() ? nullptr : m_treeitema2.last();
       }
+
+      tree_item_base * _get_parent() override;
 
 
       virtual tree_item * _____previous();
@@ -222,7 +228,7 @@ namespace data
 
       bool is_descendant(tree_item * pitem);
       bool is_ascendant(tree_item * pitem);
-
+      ::data::item * _data_item() const override;
       ::collection::index _find_child(tree_item_base * ptreeitem) const override
       {
          return m_treeitema2.find_first(dynamic_cast < tree_item <DATA_ITEM >*>(ptreeitem));
@@ -854,13 +860,15 @@ namespace data
 
 
    template < primitive_data_item DATA_ITEM > 
-   tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_previous_or_parent(::collection::index * piLevel)
+   inline tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_previous_or_parent(::collection::index * piLevel)
    {
 
-      if (____previous())
+      auto p = ____previous();
+
+      if(p)
       {
 
-         return ____previous();
+         return p;
 
       }
 
@@ -930,6 +938,7 @@ namespace data
    }
 
 
+
    template < primitive_data_item DATA_ITEM > 
    tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::_____previous()
    {
@@ -988,6 +997,15 @@ namespace data
       }
 
       return m_pnext2 = m_pparent->m_treeitema2[iFind + 1];
+
+   }
+
+
+   template < primitive_data_item DATA_ITEM >
+   tree_item_base * tree_item < DATA_ITEM >::_get_parent()
+   {
+
+      return m_pparent;
 
    }
 
@@ -1455,7 +1473,13 @@ namespace data
 
    }
 
+   template < primitive_data_item DATA_ITEM >
+   ::data::item * tree_item < DATA_ITEM >::_data_item() const
+   {
 
+      return m_pdataitem;
+
+   }
 
 
    template < primitive_data_item DATA_ITEM >

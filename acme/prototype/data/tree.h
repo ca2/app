@@ -29,8 +29,8 @@ namespace data
       tree();
       ~tree() override;
 
-
-      ::pointer < ::data::tree_item_base > create_tree_item() override;
+      virtual ::pointer < ::data::tree_item < DATA_ITEM > > create_tree_item();
+      ::pointer < ::data::tree_item_base > _create_tree_item() override;
 
       void destroy() override;
 
@@ -538,10 +538,18 @@ namespace data
    }
 
    template < primitive_data_item DATA_ITEM >
-   ::pointer < ::data::tree_item_base > tree < DATA_ITEM >::create_tree_item()
+   ::pointer < ::data::tree_item < DATA_ITEM > > tree < DATA_ITEM >::create_tree_item()
    {
 
       return __create_new < ::data::tree_item < DATA_ITEM > >();
+
+   }
+
+   template < primitive_data_item DATA_ITEM >
+   ::pointer < ::data::tree_item_base > tree < DATA_ITEM >::_create_tree_item()
+   {
+
+      return this->create_tree_item();
 
    }
    template < primitive_data_item DATA_ITEM >

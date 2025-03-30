@@ -402,7 +402,7 @@ namespace data
 
       }
 
-      auto pitemNew = create_tree_item();
+      auto pitemNew = _create_tree_item();
 
       if (pitemNew == nullptr)
       {

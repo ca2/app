@@ -27757,7 +27757,7 @@ __check_refdbg;
 
                //informationf("user::interaction::update_hover should_redraw_on_hover(pitemOldHover)");
 
-               //auto puseritembase = user_item_base(pitemOldHover);
+               //auto puseritem = user_item(pitemOldHover);
 
                auto rectangleBounding = item_rectangle(pitemOldHover, e_layout_design);
 
@@ -28476,7 +28476,7 @@ __check_refdbg;
          if (rectangleX.ok())
          {
 
-            auto puseritembase = user_item_base(pitemClient);
+            auto puseritem = user_item(pitemClient);
 
             puseritem->m_rectangle2 = rectangleX;
 

@@ -557,7 +557,7 @@ int_size simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, ::coll
 
       ::pointer < ::user::tool_item > ptoolitem = main_content().item_at(i);
 
-      auto puseritembase = user_item_base(ptoolitem);
+      auto puseritem = user_item(ptoolitem);
 
       if (ptoolitem->is_hidden())
       {
@@ -1065,7 +1065,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    }
 
-   auto puseritembase = user_item_base(ptoolitem);
+   auto puseritem = user_item(ptoolitem);
 
    if ((ptoolitem->m_estyle & e_tool_item_style_separator) != 0)
    {
@@ -1357,7 +1357,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
       
       ::pointer < ::user::tool_item > ptoolitem = main_content().item_at(iItem);
 
-      auto puseritembase = user_item_base(ptoolitem);
+      auto puseritem = user_item(ptoolitem);
       
       if(ptoolitem->is_hidden())
       {

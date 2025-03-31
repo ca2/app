@@ -77,7 +77,7 @@ namespace user
 
          auto pitemDragScroll = tool().defer_item(e_element_drag_scroll);
 
-         auto puseritembase = user_item_base(pitemDragScroll);
+         auto puseritem = user_item(pitemDragScroll);
 
          puseritembase->m_puseritem->m_ezorder = e_zorder_front;
 
@@ -219,7 +219,7 @@ namespace user
 
       //         auto rectangleX = this->raw_rectangle();
 
-      //         auto puseritembase = user_item_base(pitemDragSrcoll);
+      //         auto puseritem = user_item(pitemDragSrcoll);
 
       //         puseritem->m_rectangle2 = rectangleX;
 

@@ -1,8 +1,13 @@
 //
-// Created by camilo on 2025-03-30.
+// Created by camilo on 2025-03-30 <3ThomasBorregaardSorensen!!
 //
+#pragma once
 
-#ifndef __H
-#define __H
 
-#endif //__H
+
+class item;
+class item_state;
+
+
+
+

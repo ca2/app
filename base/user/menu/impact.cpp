@@ -353,7 +353,7 @@ namespace user
 
       }
 
-      auto puseritem = user_item(pmenuitem);
+      auto puseritembase = user_item_base(pmenuitem);
 
       puseritem->m_rectangle2.top() = (int)( y + (iMenuItemIndex + iSep) * iHeight);
 
@@ -394,7 +394,7 @@ namespace user
 
             auto pmenuitem = pmenuitemPopup->m_pmenuitema->element_at(j);
 
-            auto puseritem = user_item(pmenuitem);
+            auto puseritembase = user_item_base(pmenuitem);
 
             if (puseritem->m_rectangle2.contains(point))
             {

@@ -3,7 +3,7 @@
 
 #include "acme/prototype/data/tree.h"
 #include "acme/prototype/prototype/memory.h"
-#include "acme/prototype/data/tree_item.h"
+#include "acme/handler/item.h"
 
 
 namespace file
@@ -12,7 +12,7 @@ namespace file
    class edit_item_array;
 
    class edit_item_base :
-      public ::data::item
+      public ::item
    {
    protected:
 
@@ -213,7 +213,6 @@ namespace file
    };
 
 
-
    class CLASS_DECL_APEX edit_file:
       virtual public ::data::tree < edit_item_base >
    {
@@ -235,13 +234,13 @@ namespace file
       filesize                               m_iStartOffset;
 
 
-      tree_item < edit_item_base> *          m_ptreeitemIteration;
-      ::pointer<tree_item < edit_item_base>>          m_ptreeitem;
-      ::pointer<tree_item < edit_item_base>>          m_ptreeitemFlush;
-      ::pointer<tree_item < edit_item_base>>          m_ptreeitemBeg;
-      ::pointer<tree_item < edit_item_base>>          m_ptreeitemEnd;
+      tree_item *                            m_ptreeitemIteration;
+      ::pointer<tree_item>                   m_ptreeitem;
+      ::pointer<tree_item>                   m_ptreeitemFlush;
+      ::pointer<tree_item>                   m_ptreeitemBeg;
+      ::pointer<tree_item>                   m_ptreeitemEnd;
       memsize                                m_iBranch;
-      ::pointer<edit_group_item>                  m_pgroupitem;
+      ::pointer<edit_group_item>             m_pgroupitem;
       bool                                   m_bRootDirection;
 
 

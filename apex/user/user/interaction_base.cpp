@@ -3244,7 +3244,7 @@ namespace user
    }
 
 
-   bool interaction_base::is_selected(::data::item * pitem)
+   bool interaction_base::is_selected(::item * pitem)
    {
 
       throw ::interface_only();

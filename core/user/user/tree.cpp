@@ -1264,7 +1264,7 @@ namespace user
    }
 
 
-   ::pointer<::data::tree_item_base>tree::find_data_tree_item(::data::item * pitem, ::collection::index * piIndex)
+   ::pointer<::data::tree_item_base>tree::find_data_tree_item(::item * pitem, ::collection::index * piIndex)
    {
 
       return m_ptreedata->_find(pitem, piIndex);
@@ -1272,7 +1272,7 @@ namespace user
    }
 
 
-   bool tree::contains(::data::item * pitem)
+   bool tree::contains(::item * pitem)
    {
 
       return find_data_tree_item(pitem).is_set();
@@ -1899,7 +1899,7 @@ namespace user
    }
 
 
-   bool tree::selection_add(::data::item * pitemdata, ::collection::index i)
+   bool tree::selection_add(::item * pitemdata, ::collection::index i)
    {
 
       auto ptreedataitem = find_data_tree_item(pitemdata, &i);
@@ -1952,7 +1952,7 @@ namespace user
    }
 
 
-   bool tree::selection_set(::data::item * pitemdata, bool bIfNotInSelection, bool bIfParentInSelection)
+   bool tree::selection_set(::item * pitemdata, bool bIfNotInSelection, bool bIfParentInSelection)
    {
 
       return selection_set(0, pitemdata, bIfNotInSelection, bIfParentInSelection);
@@ -1960,7 +1960,7 @@ namespace user
    }
 
 
-   bool tree::selection_set(::collection::index i, ::data::item * pitemdata, bool bIfNotInSelection, bool bIfParentInSelection)
+   bool tree::selection_set(::collection::index i, ::item * pitemdata, bool bIfNotInSelection, bool bIfParentInSelection)
    {
 
       auto ptreedataitem = find_data_tree_item(pitemdata, &i);
@@ -2036,7 +2036,7 @@ namespace user
    }
 
 
-   bool tree::selection_erase(::data::item * pitemdata, ::collection::index i)
+   bool tree::selection_erase(::item * pitemdata, ::collection::index i)
    {
 
       auto ptreedataitem = find_data_tree_item(pitemdata, &i);
@@ -2091,7 +2091,7 @@ namespace user
    }
 
 
-   bool tree::hover(::data::item * pitemdata, ::collection::index i)
+   bool tree::hover(::item * pitemdata, ::collection::index i)
    {
 
       auto ptreedataitem = find_data_tree_item(pitemdata, &i);
@@ -2133,7 +2133,7 @@ namespace user
    }
 
 
-   bool tree::is_selected(const ::data::item * pitemdata) const
+   bool tree::is_selected(const ::item * pitemdata) const
    {
 
       if (!pitemdata)
@@ -2168,7 +2168,7 @@ namespace user
    }
 
 
-   bool tree::is_hover(const ::data::item * pitem) const
+   bool tree::is_hover(const ::item * pitem) const
    {
 
       if (!pitem || !m_pitemHover)

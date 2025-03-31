@@ -26,7 +26,9 @@ namespace user
    class user;
 
 
+   class item;
 
+   class item_base;
 
 
    class acme_content;

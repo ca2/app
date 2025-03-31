@@ -1,7 +1,8 @@
 #pragma once
 
 
-#include "acme/prototype/data/tree_item.h"
+#include "acme/handler/item.h"
+#include "acme/prototype/data/tree.h"
 
 
 namespace data
@@ -9,23 +10,24 @@ namespace data
 
 
    class CLASS_DECL_ACME simple_item :
-      public item
+      public ::item
    {
    public:
 
 
-      ::data::tree < ::data::item > *        m_pdatatree;
+      ::data::tree < ::item > *              m_pdatatree;
       ::collection::index                    m_iImage;
       ::collection::index                    m_iImageSelected;
       string                                 m_str;
 
 
-      simple_item(::data::tree < ::data::item > * pdatatree);
-      virtual ~simple_item();
+      simple_item(::data::tree < ::item > * pdatatree);
+      ~simple_item() override;
 
-      virtual string data_item_get_text(::particle * pparticle) const;
-      virtual ::collection::index data_item_get_image(::particle * pparticle) const;
-      virtual ::image::image_list * data_item_get_image_list(::particle * pparticle) const;
+
+      string get_item_text(::user::item_base * puseritembase, ::collection::index iSubItem = 0) override;
+      ::collection::index get_item_image(::user::item_base * puseritembase, ::collection::index iSubItem = 0);
+      ::image::image_list * get_item_image_list(::user::item_base * puseritembase, ::collection::index iSubItem = 0);
 
 
    };

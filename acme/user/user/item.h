@@ -292,7 +292,15 @@ namespace user
   //    virtual public ::user::ITEM
    {
    public:
+      bool m_bSelected : 1;
 
+
+      //item()
+      //{
+
+      //   
+
+      //}
 
       //item(enum_element eelement, ::collection::index iItem = -1, ::collection::index iSubItem = -1, ::collection::index iListItem = -1, const unsigned long long uFlags = e_flag_none) :
       //   item(eelement, iItem, iSubItem, iListItem, uFlags) {}
@@ -346,7 +354,7 @@ namespace user
       item(::item * pitem = nullptr) :
          m_pitem(pitem)
       {
-
+         m_bSelected = false;
          m_ezorder = ::user::e_zorder_front;
 
       }
@@ -466,7 +474,10 @@ namespace user
 
       //void set_drawn() { m_uFlags |= ITEM_DRAWN; }
 
-      
+      // virtual string get_user_item_text();
+      // virtual ::collection::index get_user_item_image();
+      // virtual ::image::image_list * get_user_item_image_list();
+
 
       bool is_item_set() const { return ::is_item_set(m_pitem); }
 
@@ -603,10 +614,14 @@ namespace user
 
    using item_pointer = ::pointer < item >;
 
+   using item_base_pointer = ::pointer < item_base >;
+
    //using item_pointer = ::pointer < ::user::item >;
    using item_array = ::pointer_array < item >;
 
    using item_map = map < item_t, item_pointer >;
+
+   using item_base_map = map < item_t, item_base_pointer >;
 
 } // namespace user
 

@@ -1161,6 +1161,7 @@
     <ClInclude Include="handler\source.h" />
     <ClInclude Include="handler\aaa_step.h" />
     <ClInclude Include="handler\sequence_continuation.h" />
+    <ClInclude Include="handler\_.h" />
     <ClInclude Include="memory\allocator.h" />
     <ClInclude Include="memory\allocator\malloc.h" />
     <ClInclude Include="memory\allocator_base.h" />
@@ -1494,12 +1495,14 @@
     <ClInclude Include="user\micro\_.h" />
     <ClInclude Include="user\user\activation.h" />
     <ClInclude Include="user\user\activation_token.h" />
+    <ClInclude Include="user\user\base_item.h" />
     <ClInclude Include="user\user\check.h" />
     <ClInclude Include="user\user\control.h" />
     <ClInclude Include="user\user\controller.h" />
     <ClInclude Include="user\user\aaa_interaction_base.h" />
     <ClInclude Include="user\user\frame_interaction.h" />
     <ClInclude Include="user\user\interaction.h" />
+    <ClInclude Include="user\user\item.h" />
     <ClInclude Include="user\user\key.h" />
     <ClInclude Include="user\user\key_state.h" />
     <ClInclude Include="user\user\message_box.h" />
@@ -1598,7 +1601,7 @@
     <ClInclude Include="user\user\content.h" />
     <ClInclude Include="user\user\drag.h" />
     <ClInclude Include="user\user\drag_client.h" />
-    <ClInclude Include="user\user\item.h" />
+    <ClInclude Include="user\user\aaa_item.h" />
     <ClInclude Include="user\user\tool.h" />
     <ClInclude Include="user\user\tool_item.h" />
     <ClInclude Include="_stdio.h" />
@@ -2158,7 +2161,6 @@
     <ClCompile Include="prototype\data\simple_item.cpp" />
     <ClCompile Include="prototype\data\text_property.cpp" />
     <ClCompile Include="prototype\data\tree_base.cpp" />
-    <ClCompile Include="prototype\data\tree_base_composite.cpp" />
     <ClCompile Include="prototype\data\tree_item_base.cpp" />
     <ClCompile Include="prototype\datetime\datetime.cpp" />
     <ClCompile Include="prototype\datetime\earth_gregorian_time.cpp" />
@@ -2424,6 +2426,8 @@
     <ClCompile Include="user\user\control.cpp" />
     <ClCompile Include="user\user\frame_interaction.cpp" />
     <ClCompile Include="user\user\interaction.cpp" />
+    <ClCompile Include="user\user\item.cpp" />
+    <ClCompile Include="user\user\item_base.cpp" />
     <ClCompile Include="user\user\key.cpp" />
     <ClCompile Include="user\user\message_box.cpp" />
     <ClCompile Include="user\user\property.cpp" />

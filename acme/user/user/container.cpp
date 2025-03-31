@@ -2,6 +2,8 @@
 #include "framework.h"
 #include "content.h"
 #include "container.h"
+#include "item_base.h"
+#include "simple_item_base.h"
 #include "tool.h"
 #include "acme/constant/id.h"
 #include "acme/handler/item.h"
@@ -29,7 +31,7 @@ namespace user
    void acme_container::destroy()
    {
 
-      m_useritemmap.clear();
+      m_useritembasemap.clear();
       m_pacmetool.release();
       m_pacmecontentMain.release();
       m_pitemHover.release();
@@ -184,27 +186,46 @@ namespace user
 
    //}
 
-
-   ::user::item * acme_container::user_item(const ::item * pitem)
+   ::pointer < ::user::item_base > acme_container::allocate_user_item_base(const ::item * pitem)
    {
 
-      auto & puseritem = m_useritemmap[pitem];
+      return {};
 
-      if (!puseritem)
+   }
+
+
+   ::user::item_base * acme_container::user_item_base(const ::item * pitem)
+   {
+
+      auto & puseritembase = m_useritembasemap[pitem];
+
+      if (!puseritembase)
       {
 
-         __construct_new(puseritem);
+         puseritembase = allocate_user_item_base(pitem);
+
+         if (!puseritembase)
+         {
+
+            puseritembase = __allocate ::simple_item_base < ::item>();
+
+         }
+
+         puseritembase->initialize(this);
+
+         puseritembase->_set_item((::item *) pitem);
+
+         puseritembase->__defer_construct_new(puseritembase->m_puseritem);
+
+      }
+      else if (!puseritembase->_item() && pitem)
+      {
+
+         puseritembase->_set_item((::item *)pitem);
 
       }
 
-      if (!puseritem->m_pitem && pitem)
-      {
-
-         puseritem->m_pitem = (::item *)pitem;
-
-      }
-
-      return puseritem;
+      return puseritembase;
 
    }
 

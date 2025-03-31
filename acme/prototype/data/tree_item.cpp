@@ -378,9 +378,9 @@ namespace data
 
       }
 
-      erase_child_at(iIndex);
+      _erase_child_at(iIndex);
 
-      _predicate_each([](auto pitem)
+      predicate_each([](auto pitem)
       {
 
          pitem->clear_cache();
@@ -392,7 +392,7 @@ namespace data
    }
 
 
-   void tree_item_base::_predicate_each(const ::function < bool(tree_item_base *) > & callback)
+   void tree_item_base::predicate_each(const ::function < bool(tree_item_base *) > & callback)
    {
 
       auto c = get_children_count();
@@ -414,7 +414,7 @@ namespace data
    }
 
 
-   ::collection::index tree_item_base::_predicate_find_first(const ::function < bool(tree_item_base *) > & callback)
+   ::collection::index tree_item_base::predicate_find_first(const ::function < bool(tree_item_base *) > & callback)
    {
 
       auto c = get_children_count();
@@ -438,14 +438,14 @@ namespace data
    }
 
 
-//   void tree_item_base::_set_item(::item * pdataitem)
-//   {
-//
-//      throw ::interface_only();
-//
-//   }
+   void tree_item_base::_set_item(::item * pdataitem)
+   {
 
-   void tree_item_base::erase_child_at(::collection::index i)
+      throw ::interface_only();
+
+   }
+
+   void tree_item_base::_erase_child_at(::collection::index i)
    {
 
       throw ::interface_only();
@@ -477,7 +477,7 @@ namespace data
    }
 
 
-   void tree_item_base::erase_children()
+   void tree_item_base::_erase_children()
    {
 
       throw ::interface_only();
@@ -537,7 +537,7 @@ namespace data
    void tree_item_base::erase_tree_item_descendants()
    {
 
-      _predicate_each([](auto p)
+      predicate_each([](auto p)
       {
 
          p->erase_tree_item_descendants();
@@ -552,7 +552,7 @@ namespace data
 
       //list_erase_all(this);
 
-      erase_children();
+      _erase_children();
 
       clear_cache();
 
@@ -634,7 +634,7 @@ namespace data
 
       pitem->_get_parent()->_erase_child(pitem);
 
-      pitem->_get_parent()->_predicate_each([](auto p)
+      pitem->_get_parent()->predicate_each([](auto p)
       {
 
          p->clear_cache();
@@ -663,7 +663,7 @@ namespace data
 
       bool bContains = false;
 
-      _predicate_each([ptreeitem, &bContains](auto p)
+      predicate_each([ptreeitem, &bContains](auto p)
       {
 
          bContains = p->_contains(ptreeitem);
@@ -694,7 +694,7 @@ namespace data
 
          _insert_child_at(0, pitemNew);
 
-         _predicate_each([](auto pitem)
+         predicate_each([](auto pitem)
          {
 
             pitem->clear_cache();
@@ -717,7 +717,7 @@ namespace data
 
          _add_child(pitemNew);
 
-         _predicate_each([](auto pitem)
+         predicate_each([](auto pitem)
          {
 
             pitem->clear_cache();
@@ -759,7 +759,7 @@ namespace data
 
          _get_parent()->_insert_child_at(iFind, pitemNew);
 
-         _get_parent()->_predicate_each([](auto pitem)
+         _get_parent()->predicate_each([](auto pitem)
          {
 
             pitem->clear_cache();
@@ -800,7 +800,7 @@ namespace data
 
          _get_parent()->_insert_child_at(iFind + 1, pitemNew);
 
-         _get_parent()->_predicate_each([](auto & pitem)
+         _get_parent()->predicate_each([](auto & pitem)
          {
 
             pitem->clear_cache();
@@ -821,7 +821,7 @@ namespace data
 
          _get_parent()->_add_child(pitemNew);
 
-         _get_parent()->_predicate_each([](auto & pitem)
+         _get_parent()->predicate_each([](auto & pitem)
          {
 
             pitem->clear_cache();
@@ -853,7 +853,7 @@ namespace data
 
          _get_parent()->_set_child_at(iFind, pitemNew);
 
-         _get_parent()->_predicate_each([](auto & pitem)
+         _get_parent()->predicate_each([](auto & pitem)
          {
 
             pitem->clear_cache();
@@ -895,7 +895,7 @@ namespace data
    tree_item_base * tree_item_base::_get_child_by_user_data(uptr iUserData)
    {
 
-      auto iFind = _predicate_find_first([iUserData](auto p)
+      auto iFind = predicate_find_first([iUserData](auto p)
          {
 
             return p->m_dwUser == iUserData;
@@ -916,7 +916,7 @@ namespace data
    
    void tree_item_base::_get_children(::data::tree_item_base_ptr_array & ptra)
    {
-      _predicate_each([&ptra](auto p)
+      predicate_each([&ptra](auto p)
       {
          ptra.add_item(p);
 
@@ -951,7 +951,7 @@ namespace data
 
       ::collection::count c = 0;
       
-      _predicate_each([&c](auto p)
+      predicate_each([&c](auto p)
       {
 
          if (p->get_children_count() > 0)
@@ -975,7 +975,7 @@ namespace data
       
       ::collection::count c = 0;
 
-      auto iFind = _predicate_find_first([&c, iIndex](auto& p)
+      auto iFind = predicate_find_first([&c, iIndex](auto& p)
          {
 
             if (p->get_children_count() > 0)
@@ -1109,14 +1109,6 @@ namespace data
    }
 
 
-   ::collection::index tree_item_base::get_level()
-   {
-
-     return m_iLevel >= 0 ? m_iLevel : calc_level();
-
-   }
-
-
    ::data::tree_item_base * tree_item_base::__previous()
    {
 
@@ -1131,7 +1123,7 @@ namespace data
 
       }
 
-      auto iFind = get_index();
+      auto iFind = _get_index();
 
       if (iFind <= 0)
       {
@@ -1161,7 +1153,7 @@ namespace data
 
       }
 
-      auto iFind = get_index();
+      auto iFind = _get_index();
 
       if (iFind < 0 || iFind >= _get_parent()->get_children_count() - 1)
       {
@@ -1207,7 +1199,7 @@ namespace data
    }
 
 
-   ::collection::index tree_item_base::get_index()
+   ::collection::index tree_item_base::_get_index()
    {
 
       if (m_iIndex >= -1)
@@ -1382,59 +1374,15 @@ namespace data
    }
 
 
-//   ::item * tree_item_base::_item() const
-//   {
-//
-//      throw ::interface_only();
-//
-//      return nullptr;
-//
-//   }
+   ::item * tree_item_base::_item() const
+   {
 
+      throw ::interface_only();
 
-//   string tree_item_base::get_text() const
-//   {
-//
-//      if (!_item())
-//      {
-//
-//         return "";
-//
-//      }
-//
-//      return _item()->data_item_get_text(_get_tree());
-//
-//   }
-//
-//
-//   ::collection::index tree_item_base::get_image() const
-//   {
-//
-//      if (!_item())
-//      {
-//
-//         return -1;
-//
-//      }
-//
-//      return _item()->data_item_get_image(_get_tree());
-//
-//   }
-//
-//
-//   ::image::image_list * tree_item_base::get_image_list() const
-//   {
-//
-//      if (!_item())
-//      {
-//
-//         return nullptr;
-//
-//      }
-//
-//      return _item()->data_item_get_image_list(_get_tree());
-//
-//   }
+      return nullptr;
+
+   }
+
 
 
    tree_item_base * tree_item_base::_get_proper_item(::collection::index iIndex, ::collection::index * piLevel)
@@ -1558,7 +1506,7 @@ namespace data
    }
 
 
-   bool tree_item_base::_is_descendant(tree_item_base * pitem)
+   bool tree_item_base::is_descendant(tree_item_base * pitem)
    {
 
       if (pitem == nullptr)
@@ -1568,12 +1516,12 @@ namespace data
 
       }
 
-      return pitem->_is_ascendant(this);
+      return pitem->is_ascendant(this);
 
    }
 
 
-   bool tree_item_base::_is_ascendant(tree_item_base * pitem)
+   bool tree_item_base::is_ascendant(tree_item_base * pitem)
    {
 
       if (pitem == nullptr)

@@ -50,15 +50,15 @@ namespace user
 
       virtual void on_merge_user_tree(::user::tree * pusertree);
       virtual void on_bind_user_tree(::user::tree * pusertree);
-      ::image::image_list * get_image_list() const override;
+      ::image::image_list * get_tree_image_list() override;
 
 
    };
 
 
-   template < primitive_data_item DATA_ITEM >
+   template < prototype_item ITEM >
    class tree_data:
-      virtual public ::data::tree < DATA_ITEM >,
+      virtual public ::data::tree < ITEM >,
       virtual public ::user::tree_data_base
    {
    public:
@@ -72,27 +72,27 @@ namespace user
 
 
 
-      ::image::image_list * get_image_list() const override;
+      ::image::image_list * get_tree_image_list() override;
 
 
-      void _001OnItemExpand(::data::tree_item < DATA_ITEM > * pitem, const ::action_context & action_context) override;
-      void _001OnItemCollapse(::data::tree_item < DATA_ITEM > * pitem, const ::action_context & action_context) override;
-      void _001OnOpenItem(::data::tree_item < DATA_ITEM > * pitem, const ::action_context & action_context) override;
-      virtual void _001OnItemContextMenu(::data::tree_item < DATA_ITEM > * pitem, const ::action_context & action_context,::user::tree * ptree,const ::int_point & point);
+      void _001OnItemExpand(::data::tree_item < ITEM > * pitem, const ::action_context & action_context) override;
+      void _001OnItemCollapse(::data::tree_item < ITEM > * pitem, const ::action_context & action_context) override;
+      void _001OnOpenItem(::data::tree_item < ITEM > * pitem, const ::action_context & action_context) override;
+      virtual void _001OnItemContextMenu(::data::tree_item < ITEM > * pitem, const ::action_context & action_context,::user::tree * ptree,const ::int_point & point);
 
 
-      void _001ExpandItem(::data::tree_item < DATA_ITEM > * pitem, const ::action_context & action_context,bool bExpand = true,bool bRedraw = true,bool bLayout = true) override;
-      void _001EnsureVisible(::data::tree_item < DATA_ITEM > * pitem) override;
-      void _001SelectItem(::data::tree_item < DATA_ITEM > * pitem) override;
+      void _001ExpandItem(::data::tree_item < ITEM > * pitem, const ::action_context & action_context,bool bExpand = true,bool bRedraw = true,bool bLayout = true) override;
+      void _001EnsureVisible(::data::tree_item < ITEM > * pitem) override;
+      void _001SelectItem(::data::tree_item < ITEM > * pitem) override;
 
-      void get_selection(::data::tree_item_ptr_array < DATA_ITEM > & itemptraSelected) const override;
-      bool is_selected(const ::data::tree_item < DATA_ITEM > * pitem) const override;
-      bool is_selected(const DATA_ITEM * pitem) const override;
+      void get_selection(::data::tree_item_ptr_array < ITEM > & itemptraSelected) const override;
+      bool is_selected(const ::data::tree_item < ITEM > * pitem) const override;
+      bool is_selected(const ITEM * pitem) const override;
 
-      ::collection::count   selection_set(::data::tree_item_ptr_array < DATA_ITEM > & itemptraSelected) override;
-      bool      selection_set(::data::tree_item < DATA_ITEM > * pitem,bool bIfNotInSelection = false,bool bIfParentInSelection = false) override;
-      bool      selection_set(DATA_ITEM * pitem,bool bIfNotInSelection = false,bool bIfParentInSelection = false) override;
-      bool      selection_set(::collection::index iIndex,DATA_ITEM * pitem,bool bIfNotInSelection = false,bool bIfParentInSelection = false) override;
+      ::collection::count   selection_set(::data::tree_item_ptr_array < ITEM > & itemptraSelected) override;
+      bool      selection_set(::data::tree_item < ITEM > * pitem,bool bIfNotInSelection = false,bool bIfParentInSelection = false) override;
+      bool      selection_set(ITEM * pitem,bool bIfNotInSelection = false,bool bIfParentInSelection = false) override;
+      bool      selection_set(::collection::index iIndex,ITEM * pitem,bool bIfNotInSelection = false,bool bIfParentInSelection = false) override;
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
@@ -105,16 +105,16 @@ namespace user
    };
 
 
-   template < primitive_data_item DATA_ITEM >
-   tree_data < DATA_ITEM >::tree_data()
+   template < prototype_item ITEM >
+   tree_data < ITEM >::tree_data()
    {
 
 
 
    }
 
-   template < primitive_data_item DATA_ITEM >
-   tree_data < DATA_ITEM >::~tree_data()
+   template < prototype_item ITEM >
+   tree_data < ITEM >::~tree_data()
    {
 
    }
@@ -124,11 +124,11 @@ namespace user
 
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //void tree_data < DATA_ITEM >::_001OnTreeDataChange()
+   //template < prototype_item ITEM >
+   //void tree_data < ITEM >::_001OnTreeDataChange()
    //{
 
-   //   ::data::tree<DATA_ITEM>::_001OnTreeDataChange();
+   //   ::data::tree<ITEM>::_001OnTreeDataChange();
 
    //}
 
@@ -136,8 +136,8 @@ namespace user
 
 
 
-   template < primitive_data_item DATA_ITEM >
-   void tree_data < DATA_ITEM >::_001OnItemExpand(::data::tree_item<DATA_ITEM> * pitem, const ::action_context & context)
+   template < prototype_item ITEM >
+   void tree_data < ITEM >::_001OnItemExpand(::data::tree_item<ITEM> * pitem, const ::action_context & context)
    {
 
       if (pitem->is_expanded())
@@ -170,8 +170,8 @@ namespace user
 
    }
 
-   template < primitive_data_item DATA_ITEM >
-   void tree_data < DATA_ITEM >::_001OnItemCollapse(::data::tree_item<DATA_ITEM> * pitem, const ::action_context & context)
+   template < prototype_item ITEM >
+   void tree_data < ITEM >::_001OnItemCollapse(::data::tree_item<ITEM> * pitem, const ::action_context & context)
    {
 
       if (!pitem->is_expanded())
@@ -190,16 +190,16 @@ namespace user
 
    }
    
-   //template < primitive_data_item DATA_ITEM >
-   //::image::image_list * tree_data < DATA_ITEM >::get_image_list() const
+   //template < prototype_item ITEM >
+   //::image::image_list * tree_data < ITEM >::get_image_list() const
    //{
 
    //   return m_pimagelist;
 
    //}
 
-   template < primitive_data_item DATA_ITEM >
-   void tree_data < DATA_ITEM >::on_fill_children()
+   template < prototype_item ITEM >
+   void tree_data < ITEM >::on_fill_children()
    {
 
    }

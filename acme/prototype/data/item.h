@@ -33,12 +33,12 @@
 //       item();
 //       ~item() override;
 //
-//       virtual string data_item_get_text(::particle * pparticle) const;
-//       virtual ::collection::index data_item_get_image(::particle * pparticle) const;
-//       virtual ::image::image_list * data_item_get_image_list(::particle * pparticle) const;
+//       virtual string get_item_text(::particle * pparticle) const;
+//       virtual ::collection::index get_item_image(::particle * pparticle) const;
+//       virtual ::image::image_list * get_item_image_list(::particle * pparticle) const;
 //
 //
-//       //virtual void data_item_on_fill_children(::data::tree_item < ::data::item > * pitem);
+//       //virtual void data_item_on_fill_children(::data::tree_item < ::item > * pitem);
 //
 //
 //       //virtual stream & write(stream& s) const override;

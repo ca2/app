@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "acme/prototype/data/item.h"
+#include "acme/user/user/item_base.h"
 
 
 namespace data
@@ -10,7 +10,7 @@ namespace data
 
 
    class CLASS_DECL_ACME tree_item_base :
-      virtual public particle
+      virtual public ::user::item_base
    {
    protected:
 
@@ -20,7 +20,7 @@ namespace data
 
       //::pointer<tree_item>             m_pprevious2;
       //::pointer<tree_item>             m_pnext2;
-      //::pointer_array < tree_item >    m_treeitema2;
+      //::data::tree_item_ptr_array    m_treeitema2;
       ::collection::index              m_iIndex = -2;
 
    public:
@@ -44,9 +44,9 @@ namespace data
       //::pointer<tree_item>             m_ptail; // last child
       //::pointer < tree_item >          m_pparent;
       ::collection::index              m_iIndexHint;
-      //tree < DATA_ITEM > * m_ptree;
+      //tree  * m_ptree;
       ::collection::index              m_iLevel;
-      //::pointer < DATA_ITEM >          m_pdataitem;
+      //::pointer           m_pdataitem;
       uptr                             m_dwUser;
       unsigned int                     m_dwState;
       uptr                             m_dwMetaData;
@@ -56,7 +56,7 @@ namespace data
       ~tree_item_base() override;
 
 
-#ifdef _DEBUG
+#ifdef DEBUG
 
 
       virtual long long increment_reference_count() override
@@ -79,21 +79,21 @@ namespace data
       void destroy() override;
       virtual bool erase_item_from_parent();
 
-      virtual tree_item_base * _get_child_by_user_data(uptr iUserData);
-      virtual tree_item_base * _find_next_by_user_data(uptr iUserData);
-      virtual void _get_children(::pointer_array < tree_item_base > & ptra);
+      virtual tree_item_base * _get_child_by_user_data(unsigned long long ullUserData);
+      virtual tree_item_base * _find_next_by_user_data(unsigned long long ullUserData);
+      virtual void _get_children(::data::tree_item_base_ptr_array & ptra);
       virtual ::collection::count get_children_count();
       virtual tree_item_base * _get_parent();
-      virtual void _set_parent(tree_item_base * ptreeitembase);
+      virtual void _set_parent(tree_item_base * _ptreeitembase);
       virtual ::collection::count get_expandable_children_count();
       virtual ::collection::count get_proper_descendant_count();
       virtual tree_item_base * _get_expandable_child(::collection::index iIndex);
 
-      virtual bool _insert(enum_relative erelative, tree_item_base * pitemNew);
+      virtual bool _insert(enum_relative erelative, tree_item_base * _pitemNew);
 
       virtual ::collection::index calc_level();
-      virtual ::collection::index get_level() { return m_iLevel >= 0 ? m_iLevel : calc_level(); }
-      virtual ::collection::index _get_index();
+      virtual ::collection::index get_level();
+      virtual ::collection::index get_index();
 
 
       virtual tree_item_base * __previous();
@@ -120,14 +120,14 @@ namespace data
 
       }
 
-      //tree_item * calc_previous(bool bParent = true);
+      //tree_item_base * _calc_previous(bool bParent = true);
 
-      //tree_item * calc_next(bool bChild, bool bParent = true, ::collection::index * pindexLevel = nullptr);
+      //tree_item_base * _calc_next(bool bChild, bool bParent = true, ::collection::index * pindexLevel = nullptr);
 
       virtual tree_item_base * _first_child();
 
-      // [](const ::data::tree_item * pitem1, const ::data::tree_item * pitem2)
-      //virtual void sort_children(const ::function < bool(const tree_item * p1, const tree_item * p2) > & functionLess);
+      // [](const ::data::tree_item_base * _pitem1, const ::data::tree_item_base * _pitem2)
+      //virtual void sort_children(const ::function < bool(const tree_item_base * _p1, const tree_item_base * _p2) > & functionLess);
 
 
 
@@ -152,53 +152,55 @@ namespace data
       virtual tree_item_base * _get_item(enum_tree_navigation enavigation, ::collection::index * piLevelOffset = nullptr);
       virtual tree_item_base * _get_item(enum_relative erelative);
 
-      virtual bool _contains(const tree_item_base * ptreeitem);
+      virtual bool _contains(const tree_item_base * _ptreeitem);
       virtual tree_item_base * _get_proper_item(::collection::index iIndex, ::collection::index * piLevel);
-      virtual ::collection::index _get_proper_item_index(tree_item_base * pitem, ::collection::index * piLevel);
+      virtual ::collection::index _get_proper_item_index(tree_item_base * _pitem, ::collection::index * piLevel);
       virtual ::collection::count get_proper_item_count();
 
       virtual tree_base* _get_tree() const =0;
       virtual void _set_tree(tree_base * ptree) =0;
 
-      virtual void _set_data_item(::data::item * pdataitem);
-      virtual ::data::item * _data_item() const;
-      virtual string get_text() const;
-      virtual ::collection::index get_image() const;
-      virtual ::image::image_list * get_image_list() const;
+      // void set_item(::item * pitem) override;
+      // ::item * item() override;
 
 
-      //void set_parent(tree_item * pparent);
+      // string get_tree_item_text();
+      // ::collection::index get_tree_item_image();
+      // ::image::image_list * get_tree_item_image_list();
+
+
+      //void set_parent(tree_item_base * _pparent);
 
       virtual void erase_tree_item();
       virtual void erase_tree_item_descendants();
-      virtual void _erase_child(tree_item_base * ptreeitem);
+      virtual void _erase_child(tree_item_base * _ptreeitem);
 
-      virtual ::collection::index _find_child(tree_item_base * ptreeitem) const;
-      virtual bool _contains_child(tree_item_base * ptreeitem) const;
+      virtual ::collection::index _find_child(tree_item_base * _ptreeitem) const;
+      virtual bool _contains_child(tree_item_base * _ptreeitem) const;
       virtual tree_item_base * _child_at(::collection::index i) const;
-      virtual void _erase_child_at(::collection::index i);
-      virtual void _insert_child_at(::collection::index i, tree_item_base * ptreeitemNew);
-      virtual void _add_child(tree_item_base * ptreeitemNew);
-      virtual void _set_child_at(::collection::index i, tree_item_base * ptreeitemSet);
-      virtual void _erase_children();
+      virtual void erase_child_at(::collection::index i);
+      virtual void _insert_child_at(::collection::index i, tree_item_base * _ptreeitemNew);
+      virtual void _add_child(tree_item_base * _ptreeitemNew);
+      virtual void _set_child_at(::collection::index i, tree_item_base * _ptreeitemSet);
+      virtual void erase_children();
 
-      virtual void predicate_each(const ::function < bool(tree_item_base *) > & callback);
-      virtual ::collection::index predicate_find_first(const ::function < bool(tree_item_base *) > & callback);
+      virtual void _predicate_each(const ::function < bool(tree_item_base *) > & callback);
+      virtual ::collection::index _predicate_find_first(const ::function < bool(tree_item_base *) > & callback);
 
       virtual bool is_expanded() const;
       virtual bool is_expandable() const;
 
       virtual void on_fill_children();
 
-      virtual bool is_descendant(tree_item_base * pitem);
-      virtual bool is_ascendant(tree_item_base * pitem);
+      virtual bool _is_descendant(tree_item_base * _pitem);
+      virtual bool _is_ascendant(tree_item_base * _pitem);
 
 
    };
 
 
 
-   //template < primitive_data_item DATA_ITEM > tree_item < DATA_ITEM >::tree_item()
+   //template < prototype_item DATA_ITEM > tree_item ::tree_item()
    //{
 
    //   m_iIndexHint = -1;
@@ -212,14 +214,14 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM > tree_item < DATA_ITEM >::~tree_item()
+   //template < prototype_item DATA_ITEM > tree_item ::~tree_item()
    //{
 
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //tree <DATA_ITEM> * tree_item < DATA_ITEM >::get_tree()
+   //template < prototype_item DATA_ITEM >
+   //tree  * tree_item ::get_tree()
    //{
 
    //   return m_ptree;
@@ -227,8 +229,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //void tree_item < DATA_ITEM >::set_parent(tree_item * pparent)
+   //template < prototype_item DATA_ITEM >
+   //void tree_item ::set_parent(tree_item_base * _pparent)
    //{
 
    //   //if(m_pparent == pparent || pparent == this || is_descendant(pparent) || is_ascendant(pparent))
@@ -260,8 +262,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //void tree_item < DATA_ITEM >::erase_tree_item()
+   //template < prototype_item DATA_ITEM >
+   //void tree_item ::erase_tree_item()
    //{
 
    //   erase_tree_item_descendants();
@@ -276,8 +278,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //void tree_item < DATA_ITEM >::erase_child(tree_item * ptreeitem)
+   //template < prototype_item DATA_ITEM >
+   //void tree_item ::erase_child(tree_item_base * _ptreeitem)
    //{
 
    //   auto iIndex = m_treeitema2.find_first(ptreeitem);
@@ -301,8 +303,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //void tree_item < DATA_ITEM >::erase_tree_item_descendants()
+   //template < prototype_item DATA_ITEM >
+   //void tree_item ::erase_tree_item_descendants()
    //{
 
    //   for (auto & p : m_treeitema2)
@@ -325,8 +327,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //tree_item <DATA_ITEM> * tree_item < DATA_ITEM >::find_next_by_user_data(uptr iUserData)
+   //template < prototype_item DATA_ITEM >
+   //tree_item  * tree_item ::find_next_by_user_data(uptr iUserData)
    //{
 
    //   auto ptreeitem = this;
@@ -355,8 +357,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //void tree_item < DATA_ITEM >::clear_cache()
+   //template < prototype_item DATA_ITEM >
+   //void tree_item ::clear_cache()
    //{
 
    //   m_bPrevious = false;
@@ -366,8 +368,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //void tree_item < DATA_ITEM >::destroy()
+   //template < prototype_item DATA_ITEM >
+   //void tree_item ::destroy()
    //{
 
    //   m_pparent.release();
@@ -379,11 +381,11 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //bool tree_item < DATA_ITEM >::erase_item_from_parent()
+   //template < prototype_item DATA_ITEM >
+   //bool tree_item ::erase_item_from_parent()
    //{
 
-   //   tree_item * pitem = this;
+   //   tree_item_base * _pitem = this;
 
    //   if (pitem->m_pparent == nullptr)
    //   {
@@ -417,8 +419,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //bool tree_item < DATA_ITEM >::contains(const tree_item * ptreeitem)
+   //template < prototype_item DATA_ITEM >
+   //bool tree_item ::contains(const tree_item_base * _ptreeitem)
    //{
 
    //   if (ptreeitem == this)
@@ -445,8 +447,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //bool tree_item < DATA_ITEM >::insert(enum_relative erelative, tree_item * pitemNew)
+   //template < prototype_item DATA_ITEM >
+   //bool tree_item ::insert(enum_relative erelative, tree_item_base * _pitemNew)
    //{
 
    //   if (contains(pitemNew))
@@ -631,8 +633,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //void tree_item < DATA_ITEM >::sort_children(const ::function < bool(const tree_item * p1, const tree_item * p2) > & functionLess)
+   //template < prototype_item DATA_ITEM >
+   //void tree_item ::sort_children(const ::function < bool(const tree_item_base * _p1, const tree_item_base * _p2) > & functionLess)
    //{
 
    //   //data_tree_item_list_sort(this, functionLess);
@@ -650,8 +652,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //tree_item <DATA_ITEM> * tree_item < DATA_ITEM >::get_child_by_user_data(uptr iUserData)
+   //template < prototype_item DATA_ITEM >
+   //tree_item  * tree_item ::get_child_by_user_data(uptr iUserData)
    //{
 
    //   auto iFind = m_treeitema2.predicate_find_first([iUserData](auto p)
@@ -673,8 +675,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //void tree_item < DATA_ITEM >::get_children(tree_item_ptr_array<DATA_ITEM> & ptra)
+   //template < prototype_item DATA_ITEM >
+   //void tree_item ::get_children(tree_item_ptr_array & ptra)
    //{
 
    //   ptra.append(m_treeitema2);
@@ -682,8 +684,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //::collection::count  tree_item < DATA_ITEM >::get_children_count()
+   //template < prototype_item DATA_ITEM >
+   //::collection::count  tree_item ::get_children_count()
    //{
 
    //   return m_treeitema2.get_count();
@@ -691,8 +693,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //tree_item < DATA_ITEM > * tree_item < DATA_ITEM >::get_parent()
+   //template < prototype_item DATA_ITEM >
+   //tree_item  * tree_item ::get_parent()
    //{
 
    //   return m_pparent;
@@ -700,8 +702,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //::collection::count tree_item < DATA_ITEM >::get_expandable_children_count()
+   //template < prototype_item DATA_ITEM >
+   //::collection::count tree_item ::get_expandable_children_count()
    //{
 
    //   ::collection::count c = 0;
@@ -723,8 +725,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //tree_item <DATA_ITEM> * tree_item < DATA_ITEM >::get_expandable_child(::collection::index iIndex)
+   //template < prototype_item DATA_ITEM >
+   //tree_item  * tree_item ::get_expandable_child(::collection::index iIndex)
    //{
 
    //   ::collection::count c = 0;
@@ -760,15 +762,15 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //::collection::count tree_item < DATA_ITEM >::get_proper_descendant_count()
+   //template < prototype_item DATA_ITEM >
+   //::collection::count tree_item ::get_proper_descendant_count()
    //{
 
    //   ::collection::count iCount = 0;
 
    //   ::collection::index iLevel = 0;
 
-   //   tree_item * pitem = this;
+   //   tree_item_base * _pitem = this;
 
    //   for (;;)
    //   {
@@ -791,14 +793,14 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_previous_or_parent(::collection::index * piLevel)
+   //template < prototype_item DATA_ITEM >
+   //tree_item_base * _tree_item ::get_previous_or_parent(::collection::index * piLevel)
    //{
 
    //   if (____previous())
    //   {
 
-   //      return ____previous();
+   //      return _previous();
 
    //   }
 
@@ -823,26 +825,26 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_previous()
+   //template < prototype_item DATA_ITEM >
+   //tree_item_base * _tree_item ::get_previous()
    //{
 
-   //   return ____previous();
+   //   return _previous();
 
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_next()
+   //template < prototype_item DATA_ITEM >
+   //tree_item_base * _tree_item ::get_next()
    //{
 
-   //   return ____next();
+   //   return _next();
 
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //::collection::index tree_item < DATA_ITEM >::calc_level()
+   //template < prototype_item DATA_ITEM >
+   //::collection::index tree_item ::calc_level()
    //{
 
    //   if (m_iLevel < 0)
@@ -850,7 +852,7 @@ namespace data
 
    //      m_iLevel = -1;
 
-   //      tree_item * p = this;
+   //      tree_item_base * _p = this;
 
    //      while (p != nullptr)
    //      {
@@ -868,8 +870,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::_____previous()
+   //template < prototype_item DATA_ITEM >
+   //tree_item_base * _tree_item ::_____previous()
    //{
 
    //   m_bPrevious = true;
@@ -883,7 +885,7 @@ namespace data
 
    //   }
 
-   //   auto iFind = _get_index();
+   //   auto iFind = get_index();
 
    //   if (iFind <= 0)
    //   {
@@ -899,8 +901,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //tree_item <DATA_ITEM> * tree_item < DATA_ITEM >::_____next()
+   //template < prototype_item DATA_ITEM >
+   //tree_item  * tree_item ::_____next()
    //{
 
    //   m_bNext = true;
@@ -914,7 +916,7 @@ namespace data
 
    //   }
 
-   //   auto iFind = _get_index();
+   //   auto iFind = get_index();
 
    //   if (iFind < 0 || iFind >= m_pparent->m_treeitema2.get_upper_bound())
    //   {
@@ -930,7 +932,7 @@ namespace data
    //}
 
 
-   ////::data::tree_item * template < primitive_data_item DATA_ITEM > tree_item < DATA_ITEM >::____head()
+   ////::data::tree_item_base * _template < prototype_item DATA_ITEM > tree_item ::____head()
    ////{
 
    ////   if (m_treeitema.is_empty())
@@ -945,7 +947,7 @@ namespace data
    ////}
 
 
-   ////::data::tree_item * template < primitive_data_item DATA_ITEM > tree_item < DATA_ITEM >::____tail()
+   ////::data::tree_item_base * _template < prototype_item DATA_ITEM > tree_item ::____tail()
    ////{
 
    ////   if (m_treeitema.is_empty())
@@ -960,8 +962,8 @@ namespace data
    ////}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //::collection::index tree_item < DATA_ITEM >::_get_index()
+   //template < prototype_item DATA_ITEM >
+   //::collection::index tree_item ::_get_index()
    //{
 
    //   if (m_iIndex >= -1)
@@ -985,14 +987,14 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_next_or_parent_next(::collection::index * piLevel)
+   //template < prototype_item DATA_ITEM >
+   //tree_item_base * _tree_item ::get_next_or_parent_next(::collection::index * piLevel)
    //{
 
    //   if (____next())
    //   {
 
-   //      return ____next();
+   //      return _next();
 
    //   }
 
@@ -1015,8 +1017,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_child_or_next(::collection::index * piLevel)
+   //template < prototype_item DATA_ITEM >
+   //tree_item_base * _tree_item ::get_child_or_next(::collection::index * piLevel)
    //{
 
    //   if (____head())
@@ -1029,17 +1031,17 @@ namespace data
 
    //      }
 
-   //      return ____head();
+   //      return _head();
 
    //   }
 
-   //   return ____next();
+   //   return _next();
 
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_child_next_or_parent(::collection::index * piLevel)
+   //template < prototype_item DATA_ITEM >
+   //tree_item_base * _tree_item ::get_child_next_or_parent(::collection::index * piLevel)
    //{
 
    //   if (____head())
@@ -1052,7 +1054,7 @@ namespace data
 
    //      }
 
-   //      return ____head();
+   //      return _head();
 
    //   }
 
@@ -1061,8 +1063,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_item(enum_tree_navigation enavigation, ::collection::index * pindexLevel)
+   //template < prototype_item DATA_ITEM >
+   //tree_item_base * _tree_item ::get_item(enum_tree_navigation enavigation, ::collection::index * pindexLevel)
    //{
 
    //   switch (enavigation)
@@ -1084,20 +1086,20 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_item(enum_relative erelative)
+   //template < prototype_item DATA_ITEM >
+   //tree_item_base * _tree_item ::get_item(enum_relative erelative)
    //{
 
    //   switch (erelative)
    //   {
    //   case e_relative_first_child:
    //   {
-   //      return ____head();
+   //      return _head();
    //   }
    //   break;
    //   case e_relative_last_child:
    //   {
-   //      return ____tail();
+   //      return __tail();
    //   }
    //   case e_relative_parent:
    //   {
@@ -1111,12 +1113,12 @@ namespace data
    //   break;
    //   case e_relative_previous_sibling:
    //   {
-   //      return ____previous();
+   //      return __previous();
    //   }
    //   break;
    //   case e_relative_next_sibling:
    //   {
-   //      return ____next();
+   //      return __next();
    //   }
    //   break;
    //   case e_relative_last_sibling:
@@ -1133,17 +1135,17 @@ namespace data
 
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::first_child()
+   //template < prototype_item DATA_ITEM >
+   //tree_item_base * _tree_item ::first_child()
    //{
 
-   //   return ____head();
+   //   return __head();
 
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //string tree_item < DATA_ITEM >::get_text() const
+   //template < prototype_item DATA_ITEM >
+   //string tree_item ::get_text() const
    //{
 
    //   if (!m_pdataitem)
@@ -1153,13 +1155,13 @@ namespace data
 
    //   }
 
-   //   return m_pdataitem->data_item_get_text(m_ptree);
+   //   return m_pdataitem->get_item_text(m_ptree);
 
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //::collection::index tree_item < DATA_ITEM >::get_image() const
+   //template < prototype_item DATA_ITEM >
+   //::collection::index tree_item ::get_image() const
    //{
 
    //   if (!m_pdataitem)
@@ -1169,13 +1171,13 @@ namespace data
 
    //   }
 
-   //   return m_pdataitem->data_item_get_image(m_ptree);
+   //   return m_pdataitem->get_item_image(m_ptree);
 
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //::image::image_list * tree_item < DATA_ITEM >::get_image_list() const
+   //template < prototype_item DATA_ITEM >
+   //::image::image_list * tree_item ::get_image_list() const
    //{
 
    //   if (!m_pdataitem)
@@ -1185,13 +1187,13 @@ namespace data
 
    //   }
 
-   //   return m_pdataitem->data_item_get_image_list(m_ptree);
+   //   return m_pdataitem->get_item_image_list(m_ptree);
 
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_proper_item(::collection::index iIndex, ::collection::index * piLevel)
+   //template < prototype_item DATA_ITEM >
+   //tree_item_base * _tree_item ::get_proper_item(::collection::index iIndex, ::collection::index * piLevel)
    //{
 
    //   if (*piLevel)
@@ -1201,7 +1203,7 @@ namespace data
 
    //   }
 
-   //   tree_item * pitem = this;
+   //   tree_item_base * _pitem = this;
 
    //   while (pitem && iIndex >= 0)
    //   {
@@ -1224,8 +1226,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //::collection::index tree_item < DATA_ITEM >::get_proper_item_index(tree_item * pitemParam, ::collection::index * piLevel)
+   //template < prototype_item DATA_ITEM >
+   //::collection::index tree_item ::get_proper_item_index(tree_item_base * _pitemParam, ::collection::index * piLevel)
    //{
 
    //   int iIndex = 0;
@@ -1237,7 +1239,7 @@ namespace data
 
    //   }
 
-   //   tree_item * pitem = this;
+   //   tree_item_base * _pitem = this;
 
    //   while (pitem)
    //   {
@@ -1260,11 +1262,11 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //::collection::count tree_item < DATA_ITEM >::get_proper_item_count()
+   //template < prototype_item DATA_ITEM >
+   //::collection::count tree_item ::get_proper_item_count()
    //{
 
-   //   tree_item * pitem = this;
+   //   tree_item_base * _pitem = this;
 
    //   ::collection::index iLevel = 0;
 
@@ -1298,8 +1300,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //bool tree_item < DATA_ITEM >::is_expanded() const
+   //template < prototype_item DATA_ITEM >
+   //bool tree_item ::is_expanded() const
    //{
 
    //   return (m_dwState & ::data::e_tree_item_state_expanded) != 0;
@@ -1307,8 +1309,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //bool tree_item < DATA_ITEM >::is_expandable() const
+   //template < prototype_item DATA_ITEM >
+   //bool tree_item ::is_expandable() const
    //{
 
    //   return (m_dwState & ::data::e_tree_item_state_expandable) != 0;
@@ -1316,8 +1318,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //bool tree_item < DATA_ITEM >::is_descendant(tree_item * pitem)
+   //template < prototype_item DATA_ITEM >
+   //bool tree_item ::is_descendant(tree_item_base * _pitem)
    //{
 
    //   if (pitem == nullptr)
@@ -1332,8 +1334,8 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //bool tree_item < DATA_ITEM >::is_ascendant(tree_item * pitem)
+   //template < prototype_item DATA_ITEM >
+   //bool tree_item ::is_ascendant(tree_item_base * _pitem)
    //{
 
    //   if (pitem == nullptr)
@@ -1343,7 +1345,7 @@ namespace data
 
    //   }
 
-   //   tree_item * pparent = m_pparent;
+   //   tree_item_base * _pparent = m_pparent;
 
    //   if (pparent == nullptr)
    //   {
@@ -1367,9 +1369,9 @@ namespace data
    //}
 
 
-   //template < primitive_data_item DATA_ITEM >
+   //template < prototype_item DATA_ITEM >
    //void
-   //   tree_item < DATA_ITEM >::on_fill_children()
+   //   tree_item ::on_fill_children()
    //{
 
    //   //if (m_pdataitem)
@@ -1396,12 +1398,12 @@ namespace data
 
 
 
-   //template < primitive_data_item DATA_ITEM >
-   //class tree_item_ptr_array :
-   //   public pointer_array < tree_item < DATA_ITEM > >
-   //{
-   //public:
-   //};
+   //template < prototype_item DATA_ITEM >
+   class tree_item_base_ptr_array :
+      public pointer_array < tree_item_base  >
+   {
+   public:
+   };
 
 
 } // namespace acme

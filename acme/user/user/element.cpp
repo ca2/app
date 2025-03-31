@@ -3437,7 +3437,7 @@ namespace user
    //}
 
 
-   bool element::is_selected(::data::item * pitem)
+   bool element::is_selected(::item * pitem)
    {
 
       throw ::interface_only();

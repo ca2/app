@@ -109,13 +109,28 @@ bool item::is_hidden() const
 }
 
 
-::string item::get_item_text(::collection::index iSubItem)
+::string item::get_item_text(::user::item_base * puseritembase, ::collection::index iSubItem)
 {
 
-   return "";
+   return {};
 
 }
 
+
+::collection::index item::get_item_image(::user::item_base * puseritembase, ::collection::index iSubItem)
+{
+
+   return -1;
+
+}
+
+
+::image::image_list * item::get_item_image_list(::user::item_base * puseritembase, ::collection::index iSubItem)
+{
+
+   return nullptr;
+
+}
 
 //CLASS_DECL_ACME bool is_item_equivalent(const ::ITEM_PRIMARY_KEY * pitem1, const ::ITEM_PRIMARY_KEY * pitem2)
 //{

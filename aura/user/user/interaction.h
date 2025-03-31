@@ -2053,7 +2053,7 @@ namespace user
       virtual bool OnChildNotify(::message::message* pmessage) override;
 
 
-      virtual bool is_selected(::data::item* pitem) override;
+      virtual bool is_selected(::item* pitem) override;
 
       //virtual ::pointer<place_holder>place_hold(::user::interaction* pinteraction) override;
 

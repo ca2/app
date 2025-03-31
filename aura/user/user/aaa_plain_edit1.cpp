@@ -8910,7 +8910,7 @@ namespace user
    }
 
 
-   ::pointer<::data::item>plain_edit::on_allocate_item()
+   ::pointer<::item>plain_edit::on_allocate_item()
    {
 
       return __allocate plain_text_command();

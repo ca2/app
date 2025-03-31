@@ -1,11 +1,9 @@
 #pragma once
 
 
-#include "acme/prototype/data/item.h"
+#include "acme/handler/item.h"
 #include "acme/prototype/data/tree_item_base.h"
 
-template < typename DATA_ITEM >
-concept primitive_data_item = ::std::is_base_of_v < ::data::item, DATA_ITEM >;
 
 
 
@@ -13,13 +11,13 @@ namespace data
 {
 
 
-   template < primitive_data_item DATA_ITEM >
+   template < prototype_item ITEM >
    class tree_item;
 
-   template < primitive_data_item DATA_ITEM >
+   template < prototype_item ITEM >
    class tree_item_ptr_array;
 
-   template < primitive_data_item DATA_ITEM >
+   template < prototype_item ITEM >
    class tree;
 
 
@@ -30,7 +28,7 @@ namespace data
 {
 
 
-   template < primitive_data_item DATA_ITEM >
+   template < prototype_item ITEM >
    class tree_item :
       virtual public tree_item_base
    {
@@ -40,9 +38,9 @@ namespace data
       //bool                             m_bPrevious = false;
       //bool                             m_bNext = false;
 
-      ::pointer<tree_item>             m_pprevious2;
-      ::pointer<tree_item>             m_pnext2;
-      ::pointer_array < tree_item >    m_treeitema2;
+      ::pointer<tree_item>                            m_pprevious2;
+      ::pointer<tree_item>                            m_pnext2;
+      ::pointer < ::pointer_array < tree_item > >     m_ptreeitema2;
       //::collection::index              m_iIndex = -2;
 
    public:
@@ -66,9 +64,9 @@ namespace data
       //::pointer<tree_item>             m_ptail; // last child
       ::pointer < tree_item >          m_pparent;
       //::collection::index              m_iIndexHint;
-      tree < DATA_ITEM > *             m_ptree;
+      tree < ITEM > *             m_ptree;
       //::collection::index              m_iLevel;
-      ::pointer < DATA_ITEM >          m_pdataitem;
+      ::pointer < ITEM >          m_pdataitem;
       //uptr                             m_dwUser;
       //unsigned int                     m_dwState;
       //uptr                             m_dwMetaData;
@@ -107,7 +105,7 @@ namespace data
 
       tree_item * get_child_by_user_data(uptr iUserData);
       tree_item * find_next_by_user_data(uptr iUserData);
-      void get_children(::data::tree_item_ptr_array < DATA_ITEM > &ptra);
+      void get_children(::data::tree_item_ptr_array < ITEM > &ptra);
       ::collection::count get_children_count() override;
       tree_item * get_parent();
       ::collection::count get_expandable_children_count() override;
@@ -117,41 +115,42 @@ namespace data
       bool insert(enum_relative erelative, tree_item * pitemNew);
 
       ::collection::index calc_level() override;
-      ::collection::index get_level() override { return m_iLevel >= 0 ? m_iLevel : calc_level(); }
-      ::collection::index _get_index() override;
+      ::collection::index get_level() override;
+      ::collection::index get_index() override;
 
 
-      inline auto ____previous()
+      inline auto previous()
       {
-         return m_bPrevious ? m_pprevious2.m_p : _____previous();
+         return m_bPrevious ? m_pprevious2.m_p : _previous();
       }
-      inline auto ____next()
+      inline auto next()
       {
-         return m_bNext ? m_pnext2.m_p : _____next();
+         return m_bNext ? m_pnext2.m_p : _next();
       }
-      inline auto ____head()
+      inline auto head()
       {
-         return m_treeitema2.is_empty() ? nullptr : m_treeitema2.first();
+         return !m_ptreeitema2 || m_ptreeitema2->is_empty() ? nullptr : m_ptreeitema2->first();
       }
-      inline auto ____tail()
+      inline auto tail()
       {
-         return m_treeitema2.is_empty() ? nullptr : m_treeitema2.last();
+         return !m_ptreeitema2 || m_ptreeitema2->is_empty() ? nullptr : m_ptreeitema2->last();
       }
 
       tree_item_base * _get_parent() override;
 
 
-      virtual tree_item * _____previous();
-      virtual tree_item * _____next();
-      //virtual ::data::tree_item * _____head();
-      //virtual ::data::tree_item * _____tail();
+      ::pointer_array < tree_item > * itema() {return m_ptreeitema2; }
 
 
+      tree_item_base * __previous() override { return previous(); }
+      tree_item_base * __next() override { return next(); }
+      tree_item_base * __head() override { return head(); }
+      tree_item_base * __tail() override { return tail(); }
 
-      tree_item_base * __previous() override { return ____previous(); }
-      tree_item_base * __next() override { return ____next(); }
-      tree_item_base * __head() override { return ____head(); }
-      tree_item_base * __tail() override { return ____tail(); }
+      virtual tree_item * _previous();
+      virtual tree_item * _next();
+      virtual tree_item * _head();
+      virtual tree_item * _tail();
 
 
       tree_item * get_previous_or_parent(::collection::index * iLevelOffset = nullptr);
@@ -208,11 +207,11 @@ namespace data
       virtual ::collection::index get_proper_item_index(tree_item * pitem, ::collection::index * piLevel);
       ::collection::count get_proper_item_count() override;
 
-      tree < DATA_ITEM > * get_tree();
+      tree < ITEM > * get_tree();
 
-      string get_text() const override;
-      ::collection::index get_image() const override;
-      ::image::image_list * get_image_list() const override;
+      // string get_text() const override;
+      // ::collection::index get_image() const override;
+      // ::image::image_list * get_image_list() const override;
 
 
       void set_parent(tree_item * pparent);
@@ -226,38 +225,94 @@ namespace data
 
       void on_fill_children() override;
 
+
       bool is_descendant(tree_item * pitem);
       bool is_ascendant(tree_item * pitem);
-      ::data::item * _data_item() const override;
+
+
+      ::item * _item() override;
+      void _set_item(::item * pitem) override;
+
+
       ::collection::index _find_child(tree_item_base * ptreeitem) const override
       {
-         return m_treeitema2.find_first(dynamic_cast < tree_item <DATA_ITEM >*>(ptreeitem));
+         if (!m_ptreeitema2)
+         {
+
+            return -1;
+
+         }
+         return m_ptreeitema2->find_first(dynamic_cast < tree_item <ITEM >*>(ptreeitem));
       }
+
+
       tree_item_base * _child_at(::collection::index i) const override
       {
-         return m_treeitema2[i];
+
+         if (!m_ptreeitema2)
+         {
+
+            return nullptr;
+
+         }
+
+         return m_ptreeitema2->element_at(i);
       }
-      void _erase_child_at(::collection::index i) override
+      void erase_child_at(::collection::index i) override
       {
-         m_treeitema2.erase_at(i);
+
+         if (!m_ptreeitema2)
+         {
+
+            return ;
+
+         }
+
+         m_ptreeitema2->erase_at(i);
       }
+
 
       void _insert_child_at(::collection::index i, tree_item_base * ptreeitemNew) override
       {
-         m_treeitema2.insert_at(i, dynamic_cast < tree_item < DATA_ITEM > *> (ptreeitemNew));
-      }
-      void _add_child(tree_item_base * ptreeitemNew) override
-      {
-         m_treeitema2.add_item(ptreeitemNew);
-      }
-      void _set_child_at(::collection::index i, tree_item_base * ptreeitemSet) override
-      {
-         m_treeitema2[i] = ptreeitemSet;
+
+         __defer_construct_new(m_ptreeitema2);
+
+         m_ptreeitema2->insert_at(i, dynamic_cast < tree_item < ITEM > *> (ptreeitemNew));
+
       }
 
-      void _erase_children() override
+
+      void _add_child(tree_item_base * ptreeitemNew) override
       {
-         m_treeitema2.clear();
+
+         __defer_construct_new(m_ptreeitema2);
+
+         m_ptreeitema2->add_item(ptreeitemNew);
+
+      }
+
+
+      void _set_child_at(::collection::index i, tree_item_base * ptreeitemSet) override
+      {
+
+         __defer_construct_new(m_ptreeitema2);
+
+         m_ptreeitema2->set_at_grow(i, dynamic_cast < ::data::tree_item < ITEM > * >(ptreeitemSet));
+
+      }
+
+
+      void erase_children() override
+      {
+
+         if (!m_ptreeitema2)
+         {
+
+            return ;
+
+         }
+
+         m_ptreeitema2->clear();
 
       }
 
@@ -266,7 +321,8 @@ namespace data
 
 
 
-   template < primitive_data_item DATA_ITEM > tree_item < DATA_ITEM >::tree_item()
+   template < prototype_item ITEM >
+   tree_item < ITEM >::tree_item()
    {
 
       m_iIndexHint = -1;
@@ -280,14 +336,15 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM > tree_item < DATA_ITEM >::~tree_item()
+   template < prototype_item ITEM >
+   tree_item < ITEM >::~tree_item()
    {
 
    }
 
 
-    template < primitive_data_item DATA_ITEM > 
-    tree <DATA_ITEM> * tree_item < DATA_ITEM >::get_tree()
+    template < prototype_item ITEM > 
+    tree <ITEM> * tree_item < ITEM >::get_tree()
    {
 
       return m_ptree;
@@ -295,8 +352,8 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM >
-   void tree_item < DATA_ITEM >::set_parent(tree_item * pparent)
+   template < prototype_item ITEM >
+   void tree_item < ITEM >::set_parent(tree_item * pparent)
    {
 
       //if(m_pparent == pparent || pparent == this || is_descendant(pparent) || is_ascendant(pparent))
@@ -310,15 +367,15 @@ namespace data
       if (::is_set(pparent))
       {
 
-         pparent->m_treeitema2.add_unique(this);
+         pparent->m_ptreeitema2->add_unique(this);
 
       }
 
-      m_pparent->m_treeitema2.erase(this);
+      m_pparent->m_ptreeitema2->erase(this);
 
       m_pparent = pparent;
 
-      for (auto pitem : m_pparent->m_treeitema2)
+      for (auto pitem : *m_pparent->m_ptreeitema2)
       {
 
          pitem->clear_cache();
@@ -328,8 +385,8 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM >
-   void tree_item < DATA_ITEM >::erase_tree_item()
+   template < prototype_item ITEM >
+   void tree_item < ITEM >::erase_tree_item()
    {
 
       erase_tree_item_descendants();
@@ -344,11 +401,18 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM > 
-   void tree_item < DATA_ITEM >::erase_child(tree_item * ptreeitem)
+   template < prototype_item ITEM > 
+   void tree_item < ITEM >::erase_child(tree_item * ptreeitem)
    {
 
-      auto iIndex = m_treeitema2.find_first(ptreeitem);
+      if (!m_ptreeitema2)
+      {
+
+         return;
+
+      }
+
+      auto iIndex = m_ptreeitema2->find_first(ptreeitem);
 
       if (iIndex < 0)
       {
@@ -357,9 +421,9 @@ namespace data
 
       }
 
-      m_treeitema2.erase_at(iIndex);
+      m_ptreeitema2->erase_at(iIndex);
 
-      for (auto pitem : m_treeitema2)
+      for (auto pitem : *m_ptreeitema2)
       {
 
          pitem->clear_cache();
@@ -369,11 +433,19 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM > 
-   void tree_item < DATA_ITEM >::erase_tree_item_descendants()
+   template < prototype_item ITEM > 
+   void tree_item < ITEM >::erase_tree_item_descendants()
    {
 
-      for (auto & p : m_treeitema2)
+      if (!m_ptreeitema2)
+      {
+
+         return;
+
+      }
+
+
+      for (auto & p : *m_ptreeitema2)
       {
 
          p->erase_tree_item_descendants();
@@ -386,15 +458,15 @@ namespace data
 
       //list_erase_all(this);
 
-      m_treeitema2.clear();
+      m_ptreeitema2->clear();
 
       clear_cache();
 
    }
 
 
-   template < primitive_data_item DATA_ITEM >
-   tree_item <DATA_ITEM> * tree_item < DATA_ITEM >::find_next_by_user_data(uptr iUserData)
+   template < prototype_item ITEM >
+   tree_item <ITEM> * tree_item < ITEM >::find_next_by_user_data(uptr iUserData)
    {
 
       auto ptreeitem = this;
@@ -423,8 +495,8 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM > 
-   void tree_item < DATA_ITEM >::clear_cache()
+   template < prototype_item ITEM > 
+   void tree_item < ITEM >::clear_cache()
    {
 
       m_bPrevious = false;
@@ -434,21 +506,26 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM > 
-   void tree_item < DATA_ITEM >::destroy()
+   template < prototype_item ITEM > 
+   void tree_item < ITEM >::destroy()
    {
 
       m_pparent.release();
 
-      m_treeitema2.destroy();
+      if (m_ptreeitema2)
+      {
+
+         m_ptreeitema2.defer_destroy();
+
+      }
 
       m_ptree = nullptr;
 
    }
 
    
-   template < primitive_data_item DATA_ITEM > 
-   bool tree_item < DATA_ITEM >::erase_item_from_parent()
+   template < prototype_item ITEM > 
+   bool tree_item < ITEM >::erase_item_from_parent()
    {
 
       tree_item * pitem = this;
@@ -460,7 +537,7 @@ namespace data
 
       }
 
-      if (!pitem->m_pparent->m_treeitema2.contains(pitem))
+      if (!pitem->m_pparent->m_ptreeitema2->contains(pitem))
       {
 
          // self healing?
@@ -470,9 +547,9 @@ namespace data
 
       }
 
-      pitem->m_pparent->m_treeitema2.erase(pitem);
+      pitem->m_pparent->m_ptreeitema2->erase(pitem);
 
-      for (auto p : pitem->m_pparent->m_treeitema2)
+      for (auto p : *pitem->m_pparent->m_ptreeitema2)
       {
 
          p->clear_cache();
@@ -485,8 +562,8 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM > 
-   bool tree_item < DATA_ITEM >::contains(const tree_item * ptreeitem)
+   template < prototype_item ITEM > 
+   bool tree_item < ITEM >::contains(const tree_item * ptreeitem)
    {
 
       if (ptreeitem == this)
@@ -496,7 +573,14 @@ namespace data
 
       }
 
-      for (auto & p : m_treeitema2)
+      if (!m_ptreeitema2)
+      {
+
+         return false;
+
+      }
+
+      for (auto & p: *m_ptreeitema2)
       {
 
          if (p->contains(ptreeitem))
@@ -513,8 +597,8 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM > 
-   bool tree_item < DATA_ITEM >::insert(enum_relative erelative, tree_item * pitemNew)
+   template < prototype_item ITEM > 
+   bool tree_item < ITEM >::insert(enum_relative erelative, tree_item * pitemNew)
    {
 
       if (contains(pitemNew))
@@ -529,9 +613,11 @@ namespace data
 
          pitemNew->erase_item_from_parent();
 
-         m_treeitema2.insert_at(0, pitemNew);
+         __defer_construct_new(m_ptreeitema2);
 
-         for (auto & pitem : m_treeitema2)
+         m_ptreeitema2->insert_at(0, pitemNew);
+
+         for (auto & pitem: *m_ptreeitema2)
          {
 
             pitem->clear_cache();
@@ -550,9 +636,11 @@ namespace data
 
          pitemNew->erase_item_from_parent();
 
-         m_treeitema2.add(pitemNew);
+         __defer_construct_new(m_ptreeitema2);
 
-         for (auto & pitem : m_treeitema2)
+         m_ptreeitema2->add(pitemNew);
+
+         for (auto & pitem: *m_ptreeitema2)
          {
 
             pitem->clear_cache();
@@ -578,7 +666,7 @@ namespace data
 
          }
 
-         auto iFind = m_pparent->m_treeitema2.find_first(this);
+         auto iFind = m_pparent->m_ptreeitema2->find_first(this);
 
          if (iFind < 0)
          {
@@ -590,9 +678,9 @@ namespace data
 
          }
 
-         m_pparent->m_treeitema2.insert_at(iFind, pitemNew);
+         m_pparent->m_ptreeitema2->insert_at(iFind, pitemNew);
 
-         for (auto & pitem : m_pparent->m_treeitema2)
+         for (auto & pitem : *m_pparent->m_ptreeitema2)
          {
 
             pitem->clear_cache();
@@ -616,7 +704,7 @@ namespace data
 
          }
 
-         auto iFind = m_pparent->m_treeitema2.find_first(this);
+         auto iFind = m_pparent->m_ptreeitema2->find_first(this);
 
          if (iFind < 0)
          {
@@ -628,9 +716,9 @@ namespace data
 
          }
 
-         m_pparent->m_treeitema2.insert_at(iFind + 1, pitemNew);
+         m_pparent->m_ptreeitema2->insert_at(iFind + 1, pitemNew);
 
-         for (auto & pitem : m_pparent->m_treeitema2)
+         for (auto & pitem : *m_pparent->m_ptreeitema2)
          {
 
             pitem->clear_cache();
@@ -647,9 +735,11 @@ namespace data
       else if (erelative == e_relative_last_sibling)
       {
 
-         m_pparent->m_treeitema2.add(pitemNew);
+         m_pparent->__defer_construct_new(m_pparent->m_ptreeitema2);
 
-         for (auto & pitem : m_pparent->m_treeitema2)
+         m_pparent->m_ptreeitema2->add(pitemNew);
+
+         for (auto & pitem : *m_pparent->m_ptreeitema2)
          {
 
             pitem->clear_cache();
@@ -666,7 +756,9 @@ namespace data
       else if (erelative == e_relative_replace)
       {
 
-         auto iFind = m_pparent->m_treeitema2.find_first(this);
+         __defer_construct_new(m_pparent->m_ptreeitema2);
+
+         auto iFind = m_pparent->m_ptreeitema2->find_first(this);
 
          if (iFind < 0)
          {
@@ -677,9 +769,9 @@ namespace data
 
          }
 
-         m_pparent->m_treeitema2[iFind] = pitemNew;
+         m_pparent->m_ptreeitema2->element_at(iFind) = pitemNew;
 
-         for (auto & pitem : m_pparent->m_treeitema2)
+         for (auto & pitem : *m_pparent->m_ptreeitema2)
          {
 
             pitem->clear_cache();
@@ -699,15 +791,15 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM >
-   void tree_item < DATA_ITEM >::sort_children(const ::function < bool(const tree_item * p1, const tree_item * p2) > & functionLess)
+   template < prototype_item ITEM >
+   void tree_item < ITEM >::sort_children(const ::function < bool(const tree_item * p1, const tree_item * p2) > & functionLess)
    {
 
       //data_tree_item_list_sort(this, functionLess);
 
-      m_treeitema2.predicate_sort(functionLess);
+      m_ptreeitema2->predicate_sort(functionLess);
 
-      for (auto & pitem : m_treeitema2)
+      for (auto & pitem: *m_ptreeitema2)
       {
 
          pitem->clear_cache();
@@ -718,11 +810,18 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM > 
-   tree_item <DATA_ITEM> * tree_item < DATA_ITEM >::get_child_by_user_data(uptr iUserData)
+   template < prototype_item ITEM > 
+   tree_item <ITEM> * tree_item < ITEM >::get_child_by_user_data(uptr iUserData)
    {
 
-      auto iFind = m_treeitema2.predicate_find_first([iUserData](auto p)
+      if (!m_ptreeitema2)
+      {
+
+         return  nullptr;
+
+      }
+
+      auto iFind = m_ptreeitema2->predicate_find_first([iUserData](auto p)
          {
 
             return p->m_dwUser == iUserData;
@@ -736,31 +835,43 @@ namespace data
 
       }
 
-      return m_treeitema2[iFind];
+      return m_ptreeitema2->element_at(iFind);
 
    }
 
 
-   template < primitive_data_item DATA_ITEM >
-   void tree_item < DATA_ITEM >::get_children(tree_item_ptr_array<DATA_ITEM> & ptra)
+   template < prototype_item ITEM >
+   void tree_item < ITEM >::get_children(tree_item_ptr_array<ITEM> & ptra)
    {
 
-      ptra.append(m_treeitema2);
+      if (m_ptreeitema2)
+      {
+
+         ptra.append(*m_ptreeitema2);
+
+      }
 
    }
 
 
-   template < primitive_data_item DATA_ITEM > 
-   ::collection::count  tree_item < DATA_ITEM >::get_children_count()
+   template < prototype_item ITEM > 
+   ::collection::count  tree_item < ITEM >::get_children_count()
    {
 
-      return m_treeitema2.get_count();
+      if (!m_ptreeitema2)
+      {
+
+         return  0;
+
+      }
+
+      return m_ptreeitema2->get_count();
 
    }
 
 
-   template < primitive_data_item DATA_ITEM > 
-   tree_item < DATA_ITEM > * tree_item < DATA_ITEM >::get_parent()
+   template < prototype_item ITEM > 
+   tree_item < ITEM > * tree_item < ITEM >::get_parent()
    {
 
       return m_pparent;
@@ -768,13 +879,21 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM >
-   ::collection::count tree_item < DATA_ITEM >::get_expandable_children_count()
+   template < prototype_item ITEM >
+   ::collection::count tree_item < ITEM >::get_expandable_children_count()
    {
+
+      if (!m_ptreeitema2)
+      {
+
+         return  0;
+
+      }
+
 
       ::collection::count c = 0;
 
-      for (auto & p : m_treeitema2)
+      for (auto & p: *m_ptreeitema2)
       {
 
          if (p->get_children_count() > 0)
@@ -791,13 +910,21 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM > 
-   tree_item <DATA_ITEM>  * tree_item < DATA_ITEM >::get_expandable_child(::collection::index iIndex)
+   template < prototype_item ITEM > 
+   tree_item <ITEM>  * tree_item < ITEM >::get_expandable_child(::collection::index iIndex)
    {
+
+
+      if (!m_ptreeitema2)
+      {
+
+         return  nullptr;
+
+      }
 
       ::collection::count c = 0;
 
-      auto iFind = m_treeitema2.predicate_find_first([&c, iIndex](auto & p)
+      auto iFind = m_ptreeitema2->predicate_find_first([&c, iIndex](auto & p)
          {
 
             if (p->get_children_count() > 0)
@@ -823,13 +950,13 @@ namespace data
 
       }
 
-      return m_treeitema2[iFind];
+      return m_ptreeitema2->element_at(iFind);
 
    }
 
 
-   template < primitive_data_item DATA_ITEM > 
-   ::collection::count tree_item < DATA_ITEM >::get_proper_descendant_count()
+   template < prototype_item ITEM > 
+   ::collection::count tree_item < ITEM >::get_proper_descendant_count()
    {
 
       ::collection::count iCount = 0;
@@ -859,11 +986,11 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM > 
-   inline tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_previous_or_parent(::collection::index * piLevel)
+   template < prototype_item ITEM > 
+   inline tree_item<ITEM> * tree_item < ITEM >::get_previous_or_parent(::collection::index * piLevel)
    {
 
-      auto p = ____previous();
+      auto p = previous();
 
       if(p)
       {
@@ -893,26 +1020,26 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM > 
-   tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_previous()
+   template < prototype_item ITEM > 
+   tree_item<ITEM> * tree_item < ITEM >::get_previous()
    {
 
-      return ____previous();
+      return previous();
 
    }
 
 
-   template < primitive_data_item DATA_ITEM > 
-   tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_next()
+   template < prototype_item ITEM > 
+   tree_item<ITEM> * tree_item < ITEM >::get_next()
    {
 
-      return ____next();
+      return next();
 
    }
 
 
-   template < primitive_data_item DATA_ITEM > 
-   ::collection::index tree_item < DATA_ITEM >::calc_level()
+   template < prototype_item ITEM > 
+   ::collection::index tree_item < ITEM >::calc_level()
    {
 
       if (m_iLevel < 0)
@@ -938,9 +1065,17 @@ namespace data
    }
 
 
+   template < prototype_item ITEM >
+   ::collection::index tree_item < ITEM >::get_level()
+   {
 
-   template < primitive_data_item DATA_ITEM > 
-   tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::_____previous()
+      return m_iLevel >= 0 ? m_iLevel : calc_level();
+
+   }
+
+
+   template < prototype_item ITEM >
+   tree_item<ITEM> * tree_item < ITEM >::_previous()
    {
 
       m_bPrevious = true;
@@ -954,7 +1089,7 @@ namespace data
 
       }
 
-      auto iFind = _get_index();
+      auto iFind = get_index();
 
       if (iFind <= 0)
       {
@@ -965,13 +1100,13 @@ namespace data
 
       }
 
-      return m_pprevious2 = m_pparent->m_treeitema2[iFind - 1];
+      return m_pprevious2 = m_pparent->m_ptreeitema2->element_at(iFind - 1);
 
    }
 
 
-   template < primitive_data_item DATA_ITEM > 
-   tree_item <DATA_ITEM> * tree_item < DATA_ITEM >::_____next()
+   template < prototype_item ITEM > 
+   tree_item <ITEM> * tree_item < ITEM >::_next()
    {
 
       m_bNext = true;
@@ -985,9 +1120,9 @@ namespace data
 
       }
 
-      auto iFind = _get_index();
+      auto iFind = get_index();
 
-      if (iFind < 0 || iFind >= m_pparent->m_treeitema2.get_upper_bound())
+      if (iFind < 0 || iFind >= m_pparent->m_ptreeitema2->get_upper_bound())
       {
 
          m_pnext2.release();
@@ -996,13 +1131,46 @@ namespace data
 
       }
 
-      return m_pnext2 = m_pparent->m_treeitema2[iFind + 1];
+      return m_pnext2 = m_pparent->m_ptreeitema2->element_at(iFind + 1);
 
    }
 
 
-   template < primitive_data_item DATA_ITEM >
-   tree_item_base * tree_item < DATA_ITEM >::_get_parent()
+
+   template < prototype_item ITEM >
+   tree_item<ITEM> * tree_item < ITEM >::_head()
+   {
+
+      if (::is_null(m_ptreeitema2))
+      {
+
+         return nullptr;
+
+      }
+
+      return m_ptreeitema2->first();
+
+   }
+
+
+   template < prototype_item ITEM >
+   tree_item <ITEM> * tree_item < ITEM >::_tail()
+   {
+
+      if (::is_null(m_ptreeitema2))
+      {
+
+         return nullptr;
+
+      }
+
+      return m_ptreeitema2->last();
+
+   }
+
+
+   template < prototype_item ITEM >
+   tree_item_base * tree_item < ITEM >::_get_parent()
    {
 
       return m_pparent;
@@ -1010,7 +1178,7 @@ namespace data
    }
 
 
-   //::data::tree_item * template < primitive_data_item DATA_ITEM > tree_item < DATA_ITEM >::____head()
+   //::data::tree_item * template < prototype_item ITEM > tree_item < ITEM >::head()
    //{
 
    //   if (m_treeitema.is_empty())
@@ -1025,7 +1193,7 @@ namespace data
    //}
 
 
-   //::data::tree_item * template < primitive_data_item DATA_ITEM > tree_item < DATA_ITEM >::____tail()
+   //::data::tree_item * template < prototype_item ITEM > tree_item < ITEM >::tail()
    //{
 
    //   if (m_treeitema.is_empty())
@@ -1040,8 +1208,8 @@ namespace data
    //}
 
 
-   template < primitive_data_item DATA_ITEM > 
-   ::collection::index tree_item < DATA_ITEM >::_get_index()
+   template < prototype_item ITEM > 
+   ::collection::index tree_item < ITEM >::get_index()
    {
 
       if (m_iIndex >= -1)
@@ -1060,19 +1228,19 @@ namespace data
 
       }
 
-      return m_iIndex = m_pparent->m_treeitema2.find_first(this);
+      return m_iIndex = m_pparent->m_ptreeitema2->find_first(this);
 
    }
 
 
-   template < primitive_data_item DATA_ITEM > 
-   tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_next_or_parent_next(::collection::index * piLevel)
+   template < prototype_item ITEM > 
+   tree_item<ITEM> * tree_item < ITEM >::get_next_or_parent_next(::collection::index * piLevel)
    {
 
-      if (____next())
+      if (next())
       {
 
-         return ____next();
+         return next();
 
       }
 
@@ -1095,11 +1263,11 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM >
-   tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_child_or_next(::collection::index * piLevel)
+   template < prototype_item ITEM >
+   tree_item<ITEM> * tree_item < ITEM >::get_child_or_next(::collection::index * piLevel)
    {
 
-      if (____head())
+      if (head())
       {
 
          if (piLevel)
@@ -1109,20 +1277,20 @@ namespace data
 
          }
 
-         return ____head();
+         return head();
 
       }
 
-      return ____next();
+      return next();
 
    }
 
 
-   template < primitive_data_item DATA_ITEM > 
-   tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_child_next_or_parent(::collection::index * piLevel)
+   template < prototype_item ITEM > 
+   tree_item<ITEM> * tree_item < ITEM >::get_child_next_or_parent(::collection::index * piLevel)
    {
 
-      if (____head())
+      if (head())
       {
 
          if (piLevel)
@@ -1132,7 +1300,7 @@ namespace data
 
          }
 
-         return ____head();
+         return head();
 
       }
 
@@ -1141,8 +1309,8 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM > 
-   tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_item(enum_tree_navigation enavigation, ::collection::index * pindexLevel)
+   template < prototype_item ITEM > 
+   tree_item<ITEM> * tree_item < ITEM >::get_item(enum_tree_navigation enavigation, ::collection::index * pindexLevel)
    {
 
       switch (enavigation)
@@ -1164,20 +1332,20 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM >
-   tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_item(enum_relative erelative)
+   template < prototype_item ITEM >
+   tree_item<ITEM> * tree_item < ITEM >::get_item(enum_relative erelative)
    {
 
       switch (erelative)
       {
       case e_relative_first_child:
       {
-         return ____head();
+         return head();
       }
       break;
       case e_relative_last_child:
       {
-         return ____tail();
+         return tail();
       }
       case e_relative_parent:
       {
@@ -1186,22 +1354,22 @@ namespace data
       break;
       case e_relative_first_sibling:
       {
-         return m_pparent->____head();
+         return m_pparent->head();
       }
       break;
       case e_relative_previous_sibling:
       {
-         return ____previous();
+         return previous();
       }
       break;
       case e_relative_next_sibling:
       {
-         return ____next();
+         return next();
       }
       break;
       case e_relative_last_sibling:
       {
-         return m_pparent->____tail();
+         return m_pparent->tail();
       }
       break;
       default:
@@ -1213,65 +1381,65 @@ namespace data
 
 
 
-   template < primitive_data_item DATA_ITEM > 
-   tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::first_child()
+   template < prototype_item ITEM > 
+   tree_item<ITEM> * tree_item < ITEM >::first_child()
    {
 
-      return ____head();
+      return head();
 
    }
 
 
-   template < primitive_data_item DATA_ITEM >
-   string tree_item < DATA_ITEM >::get_text() const
-   {
+   // template < prototype_item ITEM >
+   // string tree_item < ITEM >::get_text() const
+   // {
+   //
+   //    if (!m_pdataitem)
+   //    {
+   //
+   //       return "";
+   //
+   //    }
+   //
+   //    return m_pdataitem->data_item_get_text(m_ptree);
+   //
+   // }
+   //
+   //
+   // template < prototype_item ITEM >
+   // ::collection::index tree_item < ITEM >::get_image() const
+   // {
+   //
+   //    if (!m_pdataitem)
+   //    {
+   //
+   //       return -1;
+   //
+   //    }
+   //
+   //    return m_pdataitem->data_item_get_image(m_ptree);
+   //
+   // }
+   //
+   //
+   // template < prototype_item ITEM >
+   // ::image::image_list * tree_item < ITEM >::get_image_list() const
+   // {
+   //
+   //    if (!m_pdataitem)
+   //    {
+   //
+   //       return nullptr;
+   //
+   //    }
+   //
+   //    return m_pdataitem->data_item_get_image_list(m_ptree);
+   //
+   // }
 
-      if (!m_pdataitem)
-      {
 
-         return "";
-
-      }
-
-      return m_pdataitem->data_item_get_text(m_ptree);
-
-   }
-
-
-   template < primitive_data_item DATA_ITEM > 
-   ::collection::index tree_item < DATA_ITEM >::get_image() const
-   {
-
-      if (!m_pdataitem)
-      {
-
-         return -1;
-
-      }
-
-      return m_pdataitem->data_item_get_image(m_ptree);
-
-   }
-
-
-   template < primitive_data_item DATA_ITEM > 
-   ::image::image_list * tree_item < DATA_ITEM >::get_image_list() const
-   {
-
-      if (!m_pdataitem)
-      {
-
-         return nullptr;
-
-      }
-
-      return m_pdataitem->data_item_get_image_list(m_ptree);
-
-   }
-
-
-   template < primitive_data_item DATA_ITEM > 
-   tree_item<DATA_ITEM> * tree_item < DATA_ITEM >::get_proper_item(::collection::index iIndex, ::collection::index * piLevel)
+   template < prototype_item ITEM > 
+   tree_item<ITEM> * tree_item < ITEM >::get_proper_item(::collection::index iIndex, ::collection::index * piLevel)
    {
 
       if (*piLevel)
@@ -1304,8 +1472,8 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM >
-   ::collection::index tree_item < DATA_ITEM >::get_proper_item_index(tree_item * pitemParam, ::collection::index * piLevel)
+   template < prototype_item ITEM >
+   ::collection::index tree_item < ITEM >::get_proper_item_index(tree_item * pitemParam, ::collection::index * piLevel)
    {
 
       int iIndex = 0;
@@ -1340,8 +1508,8 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM > 
-   ::collection::count tree_item < DATA_ITEM >::get_proper_item_count()
+   template < prototype_item ITEM > 
+   ::collection::count tree_item < ITEM >::get_proper_item_count()
    {
 
       tree_item * pitem = this;
@@ -1378,8 +1546,8 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM >
-   bool tree_item < DATA_ITEM >::is_expanded() const
+   template < prototype_item ITEM >
+   bool tree_item < ITEM >::is_expanded() const
    {
 
       return (m_dwState & ::data::e_tree_item_state_expanded) != 0;
@@ -1387,8 +1555,8 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM > 
-   bool tree_item < DATA_ITEM >::is_expandable() const
+   template < prototype_item ITEM > 
+   bool tree_item < ITEM >::is_expandable() const
    {
 
       return (m_dwState & ::data::e_tree_item_state_expandable) != 0;
@@ -1396,8 +1564,8 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM > 
-   bool tree_item < DATA_ITEM >::is_descendant(tree_item * pitem)
+   template < prototype_item ITEM > 
+   bool tree_item < ITEM >::is_descendant(tree_item * pitem)
    {
 
       if (pitem == nullptr)
@@ -1412,8 +1580,8 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM > 
-   bool tree_item < DATA_ITEM >::is_ascendant(tree_item * pitem)
+   template < prototype_item ITEM > 
+   bool tree_item < ITEM >::is_ascendant(tree_item * pitem)
    {
 
       if (pitem == nullptr)
@@ -1447,9 +1615,9 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM > 
+   template < prototype_item ITEM > 
    void 
-      tree_item < DATA_ITEM >::on_fill_children()
+      tree_item < ITEM >::on_fill_children()
    {
 
       //if (m_pdataitem)
@@ -1459,7 +1627,7 @@ namespace data
 
       //}
 
-      for (auto & p : m_treeitema2)
+      for (auto & p: *m_ptreeitema2)
       {
 
          if (p->is_expanded())
@@ -1473,8 +1641,8 @@ namespace data
 
    }
 
-   template < primitive_data_item DATA_ITEM >
-   ::data::item * tree_item < DATA_ITEM >::_data_item() const
+   template < prototype_item ITEM >
+   ::item * tree_item < ITEM >::_item()
    {
 
       return m_pdataitem;
@@ -1482,9 +1650,18 @@ namespace data
    }
 
 
-   template < primitive_data_item DATA_ITEM >
+   template < prototype_item ITEM >
+   void tree_item < ITEM >::_set_item(::item * pitem)
+   {
+
+      m_pdataitem = pitem;
+
+   }
+
+
+   template < prototype_item ITEM >
    class tree_item_ptr_array :
-      public pointer_array < tree_item < DATA_ITEM > >
+      public pointer_array < tree_item < ITEM > >
    {
    public:
    };

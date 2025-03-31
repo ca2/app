@@ -512,7 +512,7 @@ namespace user
 
 
 
-      virtual ::pointer<::data::item>on_allocate_item();
+      virtual ::pointer<::item>on_allocate_item();
 
       void set_root(plain_text_tree * pdata, bool bOwnData);
 

@@ -133,7 +133,7 @@ namespace user
    //}
 
 
-   //bool tree_data::is_selected(const ::data::item * pitem) const
+   //bool tree_data::is_selected(const ::item * pitem) const
    //{
 
    //   for(::collection::index i = 0; i < m_usertreea.get_count(); i++)
@@ -269,7 +269,7 @@ namespace user
    //}
 
 
-   //bool      tree_data::selection_set(::data::item * pitem,bool bIfNotInSelection,bool bIfParentInSelection)
+   //bool      tree_data::selection_set(::item * pitem,bool bIfNotInSelection,bool bIfParentInSelection)
    //{
 
    //   bool bAllOk = true;
@@ -287,7 +287,7 @@ namespace user
    //}
 
 
-   //bool      tree_data::selection_set(::collection::index iIndex,::data::item * pitem,bool bIfNotInSelection,bool bIfParentInSelection)
+   //bool      tree_data::selection_set(::collection::index iIndex,::item * pitem,bool bIfNotInSelection,bool bIfParentInSelection)
    //{
 
    //   bool bAllOk = true;

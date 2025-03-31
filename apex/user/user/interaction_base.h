@@ -491,7 +491,7 @@ namespace user
 
 
 
-      bool is_selected(::data::item * pitem) override;
+      bool is_selected(::item * pitem) override;
 
       //virtual ::pointer<place_holder>place_hold(::user::interaction * pinteraction);
 

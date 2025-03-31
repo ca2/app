@@ -64,17 +64,17 @@ namespace userfs
 
 
 
-   string item::data_item_get_text(::particle * pparticle) const
+   string item::get_item_text(::user::item_base * pitembase, ::collection::index iSubItem)
    {
 
-      __UNREFERENCED_PARAMETER(pparticle);
+      __UNREFERENCED_PARAMETER(pitembase);
 
       return m_strName;
 
    }
 
 
-   ::collection::index item::data_item_get_image(::particle * pparticle) const
+   ::collection::index item::get_item_image(::user::item_base * pitembase, ::collection::index iSubItem)
    {
 
       ::user::shell::enum_file_attribute efileattribute;
@@ -94,7 +94,7 @@ namespace userfs
 
       ::user::shell::enum_icon eicon;
 
-      if (m_ptreedata->is_selected(this))
+      if (pitembase->m_eitemstate & ::user::e_item_state_selected)
       {
 
          eicon = ::user::shell::e_icon_open;
@@ -138,7 +138,7 @@ namespace userfs
    }
 
 
-   ::image::image_list * item::data_item_get_image_list(::particle * pparticle) const
+   ::image::image_list * item::get_item_image_list(::user::item_base * pitembase, ::collection::index iSubItem)
    {
 
       return m_ptreedata->m_pimagelist;

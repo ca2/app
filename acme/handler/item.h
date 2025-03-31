@@ -88,23 +88,6 @@ struct item_t
 
 };
 
-class CLASS_DECL_ACME item_state
-{
-public:
-    bool m_bSelected :1;
-
-
-    item_state()
-    {
-
-        m_bSelected = false;
-
-    }
-
-
-
-};
-
 class CLASS_DECL_ACME item :
    virtual public ::matter
 {
@@ -222,9 +205,9 @@ public:
 
    virtual bool is_hidden() const;
 
-   virtual ::string get_item_text(item_state * pitemstate, ::collection::index iSubItem = 0);
-   virtual ::collection::index get_item_image(item_state * pitemstate, ::collection::index iSubItem = 0);
-   virtual ::image::image_list * get_item_image_list(item_state * pitemstate, ::collection::index iSubItem = 0);
+   virtual ::string get_item_text(::user::item_base * puseritembase, ::collection::index iSubItem = 0);
+   virtual ::collection::index get_item_image(::user::item_base * puseritembase, ::collection::index iSubItem = 0);
+   virtual ::image::image_list * get_item_image_list(::user::item_base * puseritembase, ::collection::index iSubItem = 0);
    
 //   operator const ::item_t &() const {return m_item;}
 //   operator ::item_t &() {return m_item;}
@@ -540,6 +523,13 @@ inline bool is_item_equivalent(const ::item * pitem1, const ::item * pitem2)
    return is_item_equivalent(&pitem1->m_item, &pitem2->m_item);
    
 }
+
+
+template < typename ITEM >
+concept prototype_item = ::std::is_base_of_v < ::item, ITEM >;
+
+
+
 
 
 

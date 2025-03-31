@@ -20151,7 +20151,7 @@ if(get_parent())
    }
 
 
-   bool interaction::is_selected(::data::item * pitem)
+   bool interaction::is_selected(::item * pitem)
    {
 
       __UNREFERENCED_PARAMETER(pitem);
@@ -27757,7 +27757,7 @@ __check_refdbg;
 
                //informationf("user::interaction::update_hover should_redraw_on_hover(pitemOldHover)");
 
-               //auto puseritem = user_item(pitemOldHover);
+               //auto puseritembase = user_item_base(pitemOldHover);
 
                auto rectangleBounding = item_rectangle(pitemOldHover, e_layout_design);
 
@@ -28476,7 +28476,7 @@ __check_refdbg;
          if (rectangleX.ok())
          {
 
-            auto puseritem = user_item(pitemClient);
+            auto puseritembase = user_item_base(pitemClient);
 
             puseritem->m_rectangle2 = rectangleX;
 

@@ -4,13 +4,15 @@
 #include "listener.h"
 #include "tree.h"
 #include "tree_item.h"
+#include "acme/user/user/item.h"
+#include "acme/user/user/item_base.h"
 
 
 namespace data
 {
 
 
-   simple_item::simple_item(::data::tree <::data::item > * pdatatree) :
+   simple_item::simple_item(::data::tree <::item > * pdatatree) :
       m_pdatatree(pdatatree)
    {
 
@@ -25,16 +27,22 @@ namespace data
 
    }
 
-   string simple_item::data_item_get_text(::particle * pparticle) const
+
+   string simple_item::get_item_text(::user::item_base * puseritembase, ::collection::index iSubItem)
    {
-      __UNREFERENCED_PARAMETER(pparticle);
+      __UNREFERENCED_PARAMETER(puseritembase);
+      __UNREFERENCED_PARAMETER(iSubItem);
       return m_str;
    }
-   
-   ::collection::index simple_item::data_item_get_image(::particle * pparticle) const
+
+
+   ::collection::index simple_item::get_item_image(::user::item_base * puseritembase, ::collection::index iSubItem)
    {
 
-      if(m_pdatatree->is_selected(this))
+      __UNREFERENCED_PARAMETER(puseritembase);
+      __UNREFERENCED_PARAMETER(iSubItem);
+
+      if(puseritembase->m_eitemstate & ::user::e_item_state_selected)
       {
 
          return m_iImageSelected;
@@ -50,10 +58,10 @@ namespace data
    }
 
 
-   ::image::image_list * simple_item::data_item_get_image_list(::particle * pparticle) const
+   ::image::image_list * simple_item::get_item_image_list(::user::item_base * puseritembase, ::collection::index iSubItem)
    {
 
-      return m_pdatatree->get_image_list();
+      return m_pdatatree->get_tree_image_list();
 
    }
 

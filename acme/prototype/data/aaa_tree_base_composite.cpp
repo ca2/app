@@ -1,14 +1,14 @@
 // From tree.cpp on 2025-03-29 00:34 <3ThomasBorregaardSorensen!!
 #include "framework.h" 
 #include "tree_base_composite.h"
-#include "tree_item_base.h"
+#include "tree_item.h"
 #include "listener.h"
 #include "item.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
 
 
-//void data_tree_item_list_sort(::data::tree_item_base * pitem, const ::function < bool(const ::data::tree_item_base *, const ::data::tree_item_base *) > & functionLess);
+//void data_tree_item_list_sort(::data::tree_item * pitem, const ::function < bool(const ::data::tree_item *, const ::data::tree_item *) > & functionLess);
 
 namespace data
 {
@@ -21,7 +21,7 @@ namespace data
 
       m_bFill = false;
 
-      //m_proot = __allocate tree_item_base();
+      //m_proot = __allocate tree_item();
 
       //if (m_proot == nullptr)
       //{
@@ -36,7 +36,7 @@ namespace data
 
       //_get_tree() = this;
 
-      //m_pparent = __allocate ::data::tree_item_base ();
+      //m_pparent = __allocate ::data::tree_item ();
 
    }
 
@@ -47,15 +47,15 @@ namespace data
    }
 
 
-   tree_item_base * tree_base_composite::_find(const item * pitemdata, ::collection::index * piIndex)
+   tree_item * tree_base_composite::_find(const ::item * pitem, ::collection::index * piIndex)
    {
 
-      return m_ptreebase->_find(pitemdata, piIndex);
+      return m_ptreebase->_find(pitem, piIndex);
 
    }
 
 
-   bool tree_base_composite::_contains(const item * pitemdata)
+   bool tree_base_composite::_contains(const ::item * pitemdata)
    {
 
       return m_ptreebase->_contains(pitemdata);
@@ -63,7 +63,7 @@ namespace data
    }
 
 
-   bool tree_base_composite::_contains(const tree_item_base * pitemParam)
+   bool tree_base_composite::_contains(const tree_item * pitemParam)
    {
 
       return m_ptreebase->_contains(pitemParam);
@@ -79,15 +79,15 @@ namespace data
    }
 
 
-   void tree_base_composite::_erase(item * pitemdata, ::collection::index i)
+   void tree_base_composite::_erase(::item * pitem, ::collection::index i)
    {
 
-      m_ptreebase->_erase(pitemdata, i);
+      m_ptreebase->_erase(pitem, i);
 
    }
 
 
-   void tree_base_composite::_erase(::pointer_array < tree_item_base > & itemptra)
+   void tree_base_composite::_erase(::data::tree_item_ptr_array & itemptra)
    {
 
       m_ptreebase->_erase(itemptra);
@@ -95,7 +95,7 @@ namespace data
    }
 
 
-   void tree_base_composite::_erase(tree_item_base * pitem)
+   void tree_base_composite::_erase(tree_item * pitem)
    {
 
       m_ptreebase->_erase(pitem);
@@ -103,7 +103,7 @@ namespace data
    }
 
 
-   //void tree_base_composite::sort_children(const ::function < bool(const ::data::tree_item_base * p1, const ::data::tree_item_base * p2) > & functionLess)
+   //void tree_base_composite::sort_children(const ::function < bool(const ::data::tree_item * p1, const ::data::tree_item * p2) > & functionLess)
    //{
 
    //   m_treeitema2.predicate_sort(functionLess);
@@ -113,7 +113,7 @@ namespace data
    //}
 
 
-   ::data::tree_item_base * tree_base_composite::__get_proper_item(::collection::index iIndex, ::collection::index * piLevel, ::collection::index * piCount)
+   ::data::tree_item * tree_base_composite::__get_proper_item(::collection::index iIndex, ::collection::index * piLevel, ::collection::index * piCount)
    {
 
       return m_ptreebase->__get_proper_item(iIndex, piLevel, piCount);
@@ -121,7 +121,7 @@ namespace data
    }
 
 
-   ::data::tree_item_base * tree_base_composite::_get_proper_item(::collection::index iIndex, ::collection::index * piLevel)
+   ::data::tree_item * tree_base_composite::_get_proper_item(::collection::index iIndex, ::collection::index * piLevel)
    {
 
       return m_ptreebase->__get_proper_item(iIndex, piLevel);
@@ -129,7 +129,7 @@ namespace data
    }
 
 
-   ::collection::index tree_base_composite::_get_proper_item_index(::data::tree_item_base * pitemParam, ::collection::index * piLevel, ::collection::index * piCount)
+   ::collection::index tree_base_composite::_get_proper_item_index(::data::tree_item * pitemParam, ::collection::index * piLevel, ::collection::index * piCount)
    {
 
       return m_ptreebase->_get_proper_item_index(pitemParam, piLevel, piCount);
@@ -147,7 +147,7 @@ namespace data
    //}
 
 
-   ::data::tree_item_base * tree_base_composite::_get_base_item()
+   ::data::tree_item * tree_base_composite::_get_base_item()
    {
 
       return m_ptreebase->_get_base_item();
@@ -155,7 +155,7 @@ namespace data
    }
 
 
-   const ::data::tree_item_base * tree_base_composite::_get_base_item() const
+   const ::data::tree_item * tree_base_composite::_get_base_item() const
    {
 
       return m_ptreebase->_get_base_item();
@@ -163,7 +163,7 @@ namespace data
    }
 
 
-   //::data::tree_item_base * tree_base_composite::__previous()
+   //::data::tree_item * tree_base_composite::__previous()
    //{
 
    //   return nullptr;
@@ -171,7 +171,7 @@ namespace data
    //}
 
 
-   //::data::tree_item_base * tree_base_composite::__next()
+   //::data::tree_item * tree_base_composite::__next()
    //{
 
    //   return nullptr;
@@ -179,7 +179,7 @@ namespace data
    //}
 
 
-   ::data::tree_item_base * tree_base_composite::_insert_item(::data::item * pitemdataNew, enum_relative erelativeNewItem, ::data::tree_item_base * pitemRelative, bool bVoidTreeDataChangeEvent)
+   ::data::tree_item * tree_base_composite::_insert_item(::item * pitemdataNew, enum_relative erelativeNewItem, ::data::tree_item * pitemRelative, bool bVoidTreeDataChangeEvent)
    {
 
       return m_ptreebase->_insert_item(pitemdataNew, erelativeNewItem, pitemRelative, bVoidTreeDataChangeEvent);
@@ -203,7 +203,7 @@ namespace data
    }
 
 
-   bool tree_base_composite::_insert_item(::data::tree_item_base * pitemNew, enum_relative erelativeNewItem, ::data::tree_item_base * pitemRelative, bool bVoidTreeDataChangeEvent)
+   bool tree_base_composite::_insert_item(::data::tree_item * pitemNew, enum_relative erelativeNewItem, ::data::tree_item * pitemRelative, bool bVoidTreeDataChangeEvent)
    {
 
       return m_ptreebase->_insert_item(pitemNew, erelativeNewItem, pitemRelative, bVoidTreeDataChangeEvent);
@@ -227,11 +227,11 @@ namespace data
    }
 
 
-   //void tree_base_composite::sort(index ( * pfnCompare )(const ::pointer<tree_item_base>&, const ::pointer<tree_item_base>))
+   //void tree_base_composite::sort(index ( * pfnCompare )(const ::pointer<tree_item>&, const ::pointer<tree_item>))
 
    //{
 
-   //   ::pointer<tree_item_base>pitem = get_base_item();
+   //   ::pointer<tree_item>pitem = get_base_item();
 
    //   while(pitem != nullptr)
    //   {
@@ -251,7 +251,7 @@ namespace data
 
       ::collection::index iLevel = -1;
 
-      ::pointer<tree_item_base>pitem = _get_base_item();
+      ::pointer<tree_item>pitem = _get_base_item();
 
       while (pitem != nullptr)
       {
@@ -265,43 +265,34 @@ namespace data
    }
 
 
-   void tree_base_composite::_001ExpandItem(::data::tree_item_base * pitem, const ::action_context & context, bool bExpand, bool bRedraw, bool bLayout)
+   void tree_base_composite::_001ExpandItem(::data::tree_item * pitem, const ::action_context & context, bool bExpand, bool bRedraw, bool bLayout)
    {
 
 
    }
 
-   void tree_base_composite::_001EnsureVisible(::data::tree_item_base * pitem)
-   {
-
-
-   }
-
-
-   void tree_base_composite::_001SelectItem(::data::tree_item_base * pitem)
+   void tree_base_composite::_001EnsureVisible(::data::tree_item * pitem)
    {
 
 
    }
 
 
-   void tree_base_composite::_get_selection(::pointer_array <tree_item_base> & itemptraSelected) const
+   void tree_base_composite::_001SelectItem(::data::tree_item * pitem)
    {
 
 
    }
 
 
-   bool tree_base_composite::_is_selected(const ::data::tree_item_base * pitem) const
+   void tree_base_composite::_get_selection(::data::tree_item_base_ptr_array & itemptraSelected) const
    {
 
-
-      return false;
 
    }
 
 
-   bool tree_base_composite::_is_selected(const ::data::item * pitem) const
+   bool tree_base_composite::_is_selected(const ::data::tree_item * pitem) const
    {
 
 
@@ -310,7 +301,16 @@ namespace data
    }
 
 
-   void tree_base_composite::_001OnItemExpand(::data::tree_item_base * pitem, const ::action_context & context)
+   bool tree_base_composite::_is_selected(const ::item * pitem) const
+   {
+
+
+      return false;
+
+   }
+
+
+   void tree_base_composite::_001OnItemExpand(::data::tree_item * pitem, const ::action_context & context)
    {
 
       if (pitem->is_expanded())
@@ -337,7 +337,7 @@ namespace data
    }
 
 
-   void tree_base_composite::_001OnItemCollapse(::data::tree_item_base * pitem, const ::action_context & context)
+   void tree_base_composite::_001OnItemCollapse(::data::tree_item * pitem, const ::action_context & context)
    {
 
       if (!pitem->is_expanded())
@@ -357,21 +357,21 @@ namespace data
    }
 
 
-   void tree_base_composite::_001OnOpenItem(::data::tree_item_base * pitem, const ::action_context & context)
+   void tree_base_composite::_001OnOpenItem(::data::tree_item * pitem, const ::action_context & context)
    {
 
 
    }
 
 
-   void tree_base_composite::_001OnItemContextMenu(::data::tree_item_base * pitem, const ::action_context & context, ::user::element * ptree, const ::int_point & point)
+   void tree_base_composite::_001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & context, ::user::element * ptree, const ::int_point & point)
    {
 
 
    }
 
 
-   ::collection::count tree_base_composite::_selection_set(::pointer_array < tree_item_base > & itemptra)
+   ::collection::count tree_base_composite::_selection_set(::data::tree_item_ptr_array & itemptra)
    {
 
       return 0;
@@ -379,7 +379,7 @@ namespace data
    }
 
 
-   bool tree_base_composite::_selection_set(::data::tree_item_base * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
+   bool tree_base_composite::_selection_set(::data::tree_item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
    {
 
       return false;
@@ -387,7 +387,7 @@ namespace data
    }
 
 
-   bool tree_base_composite::_selection_set(::data::item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
+   bool tree_base_composite::_selection_set(::item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
    {
 
       return false;
@@ -395,7 +395,7 @@ namespace data
    }
 
 
-   bool tree_base_composite::_selection_set(::collection::index iIndex, ::data::item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
+   bool tree_base_composite::_selection_set(::collection::index iIndex, ::item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
    {
 
       return false;

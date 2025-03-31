@@ -331,7 +331,7 @@ namespace experience_core
 
       auto pitemClient = stock_item(e_element_client);
 
-      auto puseritem = user_item(pitemClient);
+      auto puseritembase = user_item_base(pitemClient);
 
       __øconstruct(puseritem->m_ppath);
 

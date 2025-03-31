@@ -1899,7 +1899,7 @@ namespace user
 
       }
 
-      auto puseritem = user_item(main_content().item_at(iItem));
+      auto puseritembase = user_item_base(main_content().item_at(iItem));
 
       ::status < ::int_rectangle > statusrectangle = puseritem->m_rectangle2;
 

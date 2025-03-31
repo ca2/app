@@ -85,8 +85,8 @@ namespace user
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual ::pointer<::data::tree_base>find_data_tree(::data::tree_item_base * pitem) const;
-      virtual ::pointer<::data::tree_item_base>find_data_tree_item(::data::item * pitem, ::collection::index * piIndex = nullptr);
-      virtual bool contains(::data::item * pitem);
+      virtual ::pointer<::data::tree_item_base>find_data_tree_item(::item * pitem, ::collection::index * piIndex = nullptr);
+      virtual bool contains(::item * pitem);
       virtual bool contains(::data::tree_item_base * pitem);
 
       void update_drawing_objects();
@@ -156,10 +156,10 @@ namespace user
 
 
       virtual bool      hover(::data::tree_item_base * pitem);
-      virtual bool      hover(::data::item * pitem, ::collection::index i = 0);
+      virtual bool      hover(::item * pitem, ::collection::index i = 0);
 
       virtual bool      is_hover(const ::data::tree_item_base * pitem) const;
-      virtual bool      is_hover(const ::data::item * pitem) const;
+      virtual bool      is_hover(const ::item * pitem) const;
 
 
       virtual ::collection::count   clear_selection();
@@ -168,20 +168,20 @@ namespace user
 
 
       virtual bool      is_selected(const ::data::tree_item_base * pitem) const;
-      virtual bool      is_selected(const ::data::item * pitem) const;
+      virtual bool      is_selected(const ::item * pitem) const;
 
       virtual ::collection::count   selection_add(::pointer_array <::data::tree_item_base > & itemptra);
       virtual bool      selection_add(::data::tree_item_base * pitem);
-      virtual bool      selection_add(::data::item * pitem, ::collection::index i = 0);
+      virtual bool      selection_add(::item * pitem, ::collection::index i = 0);
 
       virtual ::collection::count   selection_set(::pointer_array <::data::tree_item_base > & itemptra);
       virtual bool      selection_set(::data::tree_item_base * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
-      virtual bool      selection_set(::data::item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
-      virtual bool      selection_set(::collection::index iIndex, ::data::item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
+      virtual bool      selection_set(::item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
+      virtual bool      selection_set(::collection::index iIndex, ::item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
 
       virtual ::collection::count   selection_erase(::pointer_array <::data::tree_item_base > & itemptra);
       virtual bool      selection_erase(::data::tree_item_base * pitem);
-      virtual bool      selection_erase(::data::item * pitem, ::collection::index i = 0);
+      virtual bool      selection_erase(::item * pitem, ::collection::index i = 0);
 
 
       virtual bool      can_merge(const ::user::tree_data_base * ptree) const;
@@ -226,8 +226,8 @@ namespace user
    typedef show < tree > tree_impact;
 
 
-   template < primitive_data_item DATA_ITEM >
-   void tree_data < DATA_ITEM >::_001OnOpenItem(::data::tree_item<DATA_ITEM> * pitem, const ::action_context & context)
+   template < prototype_item ITEM >
+   void tree_data < ITEM >::_001OnOpenItem(::data::tree_item<ITEM> * pitem, const ::action_context & context)
    {
 
       for (::collection::index i = 0; i < m_usertreea.get_count(); i++)
@@ -239,8 +239,8 @@ namespace user
 
    }
 
-   template < primitive_data_item DATA_ITEM >
-   void tree_data < DATA_ITEM >::_001OnItemContextMenu(::data::tree_item<DATA_ITEM> * pitem, const ::action_context & context, ::user::tree * ptree, const ::int_point & point)
+   template < prototype_item ITEM >
+   void tree_data < ITEM >::_001OnItemContextMenu(::data::tree_item<ITEM> * pitem, const ::action_context & context, ::user::tree * ptree, const ::int_point & point)
    {
 
       for (::collection::index i = 0; i < m_usertreea.get_count(); i++)
@@ -252,8 +252,8 @@ namespace user
 
    }
 
-   template < primitive_data_item DATA_ITEM >
-   void tree_data < DATA_ITEM >::_001ExpandItem(::data::tree_item<DATA_ITEM> * pitem, const ::action_context & context, bool bExpand, bool bRedraw, bool bLayout)
+   template < prototype_item ITEM >
+   void tree_data < ITEM >::_001ExpandItem(::data::tree_item<ITEM> * pitem, const ::action_context & context, bool bExpand, bool bRedraw, bool bLayout)
    {
 
       for (::collection::index i = 0; i < m_usertreea.get_count(); i++)
@@ -269,8 +269,8 @@ namespace user
 
 
 
-   template < primitive_data_item DATA_ITEM >
-   void tree_data < DATA_ITEM >::_001EnsureVisible(::data::tree_item<DATA_ITEM> * pitem)
+   template < prototype_item ITEM >
+   void tree_data < ITEM >::_001EnsureVisible(::data::tree_item<ITEM> * pitem)
    {
 
       for (::collection::index i = 0; i < m_usertreea.get_count(); i++)
@@ -282,8 +282,8 @@ namespace user
 
    }
 
-   template < primitive_data_item DATA_ITEM >
-   void tree_data < DATA_ITEM >::_001SelectItem(::data::tree_item<DATA_ITEM> * pitem)
+   template < prototype_item ITEM >
+   void tree_data < ITEM >::_001SelectItem(::data::tree_item<ITEM> * pitem)
    {
 
       for (::collection::index i = 0; i < m_usertreea.get_count(); i++)
@@ -294,8 +294,8 @@ namespace user
       }
 
    }
-   template < primitive_data_item DATA_ITEM >
-   void tree_data < DATA_ITEM >::get_selection(::data::tree_item_ptr_array <DATA_ITEM> & itemptraSelected) const
+   template < prototype_item ITEM >
+   void tree_data < ITEM >::get_selection(::data::tree_item_ptr_array <ITEM> & itemptraSelected) const
    {
 
       for (::collection::index i = 0; i < m_usertreea.get_count(); i++)
@@ -307,8 +307,8 @@ namespace user
 
    }
 
-   template < primitive_data_item DATA_ITEM >
-   bool tree_data < DATA_ITEM >::is_selected(const ::data::tree_item<DATA_ITEM> * pitem) const
+   template < prototype_item ITEM >
+   bool tree_data < ITEM >::is_selected(const ::data::tree_item<ITEM> * pitem) const
    {
 
       for (::collection::index i = 0; i < m_usertreea.get_count(); i++)
@@ -328,8 +328,8 @@ namespace user
    }
 
 
-   template < primitive_data_item DATA_ITEM >
-   bool tree_data < DATA_ITEM >::is_selected(const DATA_ITEM * pitem) const
+   template < prototype_item ITEM >
+   bool tree_data < ITEM >::is_selected(const ITEM * pitem) const
    {
 
       for (::collection::index i = 0; i < m_usertreea.get_count(); i++)
@@ -349,8 +349,8 @@ namespace user
    }
 
 
-   template < primitive_data_item DATA_ITEM >
-   bool      tree_data < DATA_ITEM >::selection_set(::collection::index iIndex, DATA_ITEM * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
+   template < prototype_item ITEM >
+   bool      tree_data < ITEM >::selection_set(::collection::index iIndex, ITEM * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
    {
 
       bool bAllOk = true;
@@ -367,14 +367,18 @@ namespace user
 
    }
 
-   template < primitive_data_item DATA_ITEM >
-   ::image::image_list * tree_data < DATA_ITEM >::get_image_list() const
+
+   template < prototype_item ITEM >
+   ::image::image_list * tree_data < ITEM >::get_tree_image_list()
    {
-      return tree_data_base::get_image_list();
+
+      return tree_data_base::get_tree_image_list();
 
    }
-   template < primitive_data_item DATA_ITEM >
-   bool      tree_data < DATA_ITEM >::selection_set(DATA_ITEM * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
+
+
+   template < prototype_item ITEM >
+   bool      tree_data < ITEM >::selection_set(ITEM * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
    {
 
       bool bAllOk = true;
@@ -391,8 +395,8 @@ namespace user
 
    }
 
-   template < primitive_data_item DATA_ITEM >
-   void tree_data < DATA_ITEM >::handle(::topic * ptopic, ::context * pcontext)
+   template < prototype_item ITEM >
+   void tree_data < ITEM >::handle(::topic * ptopic, ::context * pcontext)
    {
 
       for (auto & pusertree : m_usertreea)
@@ -404,8 +408,8 @@ namespace user
 
    }
 
-   template < primitive_data_item DATA_ITEM >
-   void tree_data < DATA_ITEM >::on_tree_layout()
+   template < prototype_item ITEM >
+   void tree_data < ITEM >::on_tree_layout()
    {
 
       if (m_usertreea.has_element())
@@ -438,8 +442,8 @@ namespace user
 
    }
 
-   template < primitive_data_item DATA_ITEM >
-   bool      tree_data < DATA_ITEM >::selection_set(::data::tree_item<DATA_ITEM> * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
+   template < prototype_item ITEM >
+   bool      tree_data < ITEM >::selection_set(::data::tree_item<ITEM> * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
    {
 
       bool bAllOk = true;
@@ -458,8 +462,8 @@ namespace user
    }
 
 
-   template < primitive_data_item DATA_ITEM >
-   ::collection::count   tree_data < DATA_ITEM >::selection_set(::data::tree_item_ptr_array<DATA_ITEM> & itemptra)
+   template < prototype_item ITEM >
+   ::collection::count   tree_data < ITEM >::selection_set(::data::tree_item_ptr_array<ITEM> & itemptra)
    {
 
       ::collection::count c = 0;

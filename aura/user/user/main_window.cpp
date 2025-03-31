@@ -4,6 +4,7 @@
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
 #include "acme/handler/request.h"
+#include "acme/user/user/simple_item_base.h"
 #include "acme/user/user/tool.h"
 #include "aura/windowing/window.h"
 #include "aura/platform/application.h"

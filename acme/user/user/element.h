@@ -636,7 +636,7 @@ namespace user
       virtual void add_child_handler(::particle * pparticle, const ::atom & atomChild, bool bPriority = false);
 
 
-      virtual bool is_selected(::data::item * pitem);
+      virtual bool is_selected(::item * pitem);
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 

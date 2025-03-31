@@ -499,7 +499,7 @@ namespace file
 #endif
 
 
-   //::pointer < ::data::tree_item_base > edit_file::create_tree_item()
+   //::pointer < ::data::tree_item > edit_file::create_tree_item()
    //{
 
    //   return __create_new < ::data::tree_item < ::file::edit_item_base > >();

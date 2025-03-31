@@ -47,7 +47,7 @@ namespace data
    }
 
 
-   tree_item_base * tree_base::_find(const item * pitemdata, ::collection::index * piIndex)
+   tree_item_base * tree_base::_find(const ::item * pitemdata, ::collection::index * piIndex)
    {
 
       ::collection::index iIndex;
@@ -77,7 +77,7 @@ namespace data
       for(; pitem != nullptr; pitem = pitem->_get_item(e_tree_navigation_expanded_forward))
       {
          
-         if(pitem->_data_item() == pitemdata)
+         if(pitem->_item() == pitemdata)
          {
 
             iIndex--;
@@ -105,7 +105,7 @@ namespace data
    }
 
    
-   bool tree_base::_contains(const item * pitemdata)
+   bool tree_base::_contains(const ::item * pitemdata)
    {
       
       return _find(pitemdata) != nullptr;
@@ -152,7 +152,7 @@ namespace data
    }
 
 
-   void tree_base::_erase(item * pitemdata, ::collection::index i)
+   void tree_base::_erase(::item * pitemdata, ::collection::index i)
    {
       
       tree_item_base * pitem = _find(pitemdata, &i);
@@ -169,7 +169,7 @@ namespace data
    }
 
 
-   void tree_base::_erase(::pointer_array < tree_item_base > & itemptra)
+   void tree_base::_erase(::data::tree_item_base_ptr_array & itemptra)
    {
 
       for(int i = 0; i < itemptra.get_count(); i++)
@@ -380,7 +380,7 @@ namespace data
    //}
 
 
-   ::data::tree_item_base * tree_base::_insert_item(::data::item * pitemdataNew, enum_relative erelativeNewItem, ::data::tree_item_base *pitemRelative, bool bVoidTreeDataChangeEvent)
+   ::data::tree_item_base * tree_base::_insert_item(::item * pitemdataNew, enum_relative erelativeNewItem, ::data::tree_item_base *pitemRelative, bool bVoidTreeDataChangeEvent)
    {
 
       if (pitemRelative == nullptr)
@@ -396,7 +396,7 @@ namespace data
          if(!_contains(pitemRelative))
             return nullptr;
 
-         pitemRelative->_set_data_item(pitemdataNew);
+         pitemRelative->_set_item(pitemdataNew);
 
          return pitemRelative;
 
@@ -418,7 +418,7 @@ namespace data
 
       }
 
-      pitemNew->_set_data_item(pitemdataNew);
+      pitemNew->_set_item(pitemdataNew);
 
       return pitemNew;
 
@@ -432,6 +432,7 @@ namespace data
       ::data::tree_item_base::destroy();
 
    }
+
 
    void tree_base::_insert_tree(tree_base * ptree)
    {
@@ -542,7 +543,7 @@ namespace data
          pitemNew->m_dwUser         = pitemRelative->m_dwUser;
          pitemNew->m_dwMetaData     = pitemRelative->m_dwMetaData;
          pitemNew->m_dwState        = pitemRelative->m_dwState;
-         pitemNew->_set_data_item(pitemRelative->_data_item());
+         pitemNew->_set_item(pitemRelative->_item());
 
          pitemNew->m_iLevel = pitemRelative->m_iLevel;
 
@@ -663,7 +664,7 @@ namespace data
    }
 
 
-   void tree_base::_get_selection(::pointer_array <tree_item_base> & itemptraSelected) const
+   void tree_base::_get_selection(::data::tree_item_base_ptr_array & itemptraSelected) const
    {
 
 
@@ -679,7 +680,7 @@ namespace data
    }
 
 
-   bool tree_base::_is_selected(const ::data::item * pitem) const
+   bool tree_base::_is_selected(const ::item * pitem) const
    {
 
 
@@ -749,7 +750,7 @@ namespace data
    }
 
 
-   ::collection::count tree_base::_selection_set(::pointer_array < tree_item_base > & itemptra)
+   ::collection::count tree_base::_selection_set(::data::tree_item_base_ptr_array & itemptra)
    {
 
       return 0;
@@ -765,7 +766,7 @@ namespace data
    }
 
 
-   bool tree_base::_selection_set(::data::item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
+   bool tree_base::_selection_set(::item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
    {
 
       return false;
@@ -773,7 +774,7 @@ namespace data
    }
 
 
-   bool tree_base::_selection_set(::collection::index iIndex, ::data::item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
+   bool tree_base::_selection_set(::collection::index iIndex, ::item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
    {
 
       return false;
@@ -781,7 +782,7 @@ namespace data
    }
 
 
-   ::image::image_list * tree_base::get_image_list() const
+   ::image::image_list * tree_base::get_tree_image_list()
    {
 
       return nullptr;

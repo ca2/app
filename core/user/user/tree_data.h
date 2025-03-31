@@ -207,14 +207,6 @@ namespace user
    }
 
 
-   template < prototype_item ITEM >
-   bool tree_data < ITEM >::is_selected()
-   {
-
-      return
-
-   }
-
 
 } // namespace aura
 

@@ -10579,9 +10579,10 @@ namespace user
 
       }
 
-      m_ptree.defer_destroy();
+      m_ptree.release();
 
       ::user::scroll_base::destroy();
+
       ::user::text_composition_composite::destroy();
 
    }

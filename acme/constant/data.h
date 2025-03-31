@@ -32,12 +32,12 @@ namespace data
    enum enum_tree_item_state
    {
 
+      e_tree_item_state_none = 0,
       e_tree_item_state_expandable = 1,
       e_tree_item_state_expanded = 2,
       e_tree_item_state_selected = 4,
 
    };
-
 
 
 } // namespace data

@@ -67,10 +67,18 @@ namespace user
    // }
 
 
+   ::data::tree_item_base * tree::tree_item_base(::item * pitem)
+   {
+
+      return m_ptreedata->_find(pitem);
+
+   }
+
+
    void tree::user_tree_common_construct()
    {
 
-      __construct_new(m_pitemptraSelected);
+      __construct_new(m_ptreeitemptraSelected);
 
       m_bHover = false;
       m_iHoverAlphaInit = 0;
@@ -80,8 +88,8 @@ namespace user
 
       m_econtroltype = ::user::e_control_type_tree;
 
-      m_pitemFirstVisible = nullptr;
-      m_pitemHover = nullptr;
+      m_ptreeitemFirstVisible = nullptr;
+      m_ptreeitemHover = nullptr;
       m_iItemCount = 0;
       m_dItemHeight = 0.;
       m_iImageExpand = -1;
@@ -172,9 +180,9 @@ namespace user
                if (m_treeitemaExpand.has_element())
                {
 
-                  auto pitem = m_treeitemaExpand.pop();
+                  auto ptreeitem = m_treeitemaExpand.pop();
 
-                  _001ExpandItem(pitem, ::e_source_user, !(pitem->m_dwState & ::data::e_tree_item_state_expanded));
+                  _001ExpandItem(ptreeitem, ::e_source_user, !(ptreeitem->m_etreeitemstate & ::data::e_tree_item_state_expanded));
 
                   m_treeitemaExpand.erase_all();
 
@@ -205,11 +213,11 @@ namespace user
                if (m_treeitemaOpen.has_element())
                {
 
-                  auto pitem = m_treeitemaOpen.pop();
+                  auto ptreeitem = m_treeitemaOpen.pop();
 
                   information() << "user::tree has open item";
 
-                  _001OnOpenItem(pitem, ::e_source_user);
+                  _001OnOpenItem(ptreeitem, ::e_source_user);
 
                }
                else
@@ -222,8 +230,6 @@ namespace user
             }
 
          });
-
-
 
    }
 
@@ -345,7 +351,7 @@ namespace user
 
          drawitemdata.m_rectangleX = this->rectangle();
 
-         auto pitem = m_pitemFirstVisible;
+         auto pitem = m_ptreeitemFirstVisible;
 
          synchronous_lock synchronouslock(!pitem ? nullptr : pitem->_get_tree()->synchronization());
 
@@ -427,9 +433,9 @@ namespace user
 
       ::pointer<tree>ptree = this;
 
-      ::pointer<::data::tree_item_base>pitem = data.m_pitem;
+      ::pointer<::data::tree_item_base>ptreeitem = data.m_pitem;
 
-      ::image::image_list_pointer pimagelistItem = pitem->get_image_list();
+      auto pimagelistItem = ptreeitem->get_user_item_image_list();
 
       if (pimagelistItem)
       {
@@ -449,9 +455,9 @@ namespace user
 
       ::image::image_list_pointer pimagelistTree = get_image_list();
 
-      bool bSelected = ptree->is_selected(pitem.m_p);
+      bool bSelected = ptree->is_selected(ptreeitem.m_p);
 
-      bool bHover = ptree->is_hover(pitem);
+      bool bHover = ptree->is_hover(ptreeitem);
 
       data.m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -493,14 +499,14 @@ namespace user
       {
 
 
-         if (ptree != nullptr && pimagelistTree.is_set() && data.m_pitem->m_dwState & ::data::e_tree_item_state_expandable)
+         if (ptree != nullptr && pimagelistTree.is_set() && data.m_pitem->m_etreeitemstate & ::data::e_tree_item_state_expandable)
          {
 
             _001GetItemElementRect(&rectangle, data, e_tree_element_expand_box);
 
             int iImage;
 
-            if (data.m_pitem->m_dwState & ::data::e_tree_item_state_expanded)
+            if (data.m_pitem->m_etreeitemstate & ::data::e_tree_item_state_expanded)
             {
 
                if (pstyle->is_dark_mode())
@@ -605,7 +611,7 @@ namespace user
       if (pimagelistItem != nullptr)
       {
 
-         int iImage = (int)data.m_pitem->get_image();
+         int iImage = (int)data.m_pitem->get_user_item_image();
 
          if (iImage >= 0 && pimagelistItem && pimagelistItem->m_pimage.ok())
          {
@@ -623,7 +629,7 @@ namespace user
 
       auto pitemData = data.m_pitem;
 
-      string strItem = pitemData->get_text();
+      string strItem = pitemData->get_user_item_text();
 
       if (strItem.has_character() && _001GetItemElementRect(&rectangle, data, e_tree_element_text))
       {
@@ -717,7 +723,7 @@ namespace user
 
    void tree::on_message_mouse_leave(::message::message * pmessage)
    {
-      m_pitemHover = nullptr;
+      m_ptreeitemHover = nullptr;
       m_timeLeaveStart.Now();
       m_iLeaveAlphaInit = m_iHoverAlpha;
       add_graphical_output_purpose(this, ::graphics::e_output_purpose_fps);
@@ -748,7 +754,7 @@ namespace user
          if (eelement == e_tree_element_expand_box || eelement == e_tree_element_image || eelement == e_tree_element_text)
          {
 
-            _001ExpandItem(pitem, ::e_source_user, !(pitem->m_dwState & ::data::e_tree_item_state_expanded));
+            _001ExpandItem(pitem, ::e_source_user, !(pitem->m_etreeitemstate & ::data::e_tree_item_state_expanded));
 
          }
 
@@ -1156,7 +1162,7 @@ namespace user
    }
 
 
-   void tree::_001ExpandItem(::data::tree_item_base * pitem, const ::action_context & context, bool bExpand, /* = true */ bool bRedraw, /*=true*/ bool bLayout /*=true*/)
+   void tree::_001ExpandItem(::data::tree_item_base * ptreeitem, const ::action_context & context, bool bExpand, /* = true */ bool bRedraw, /*=true*/ bool bLayout /*=true*/)
    {
 
       //::data::simple_lock lock(pitem->m_pitem);
@@ -1168,21 +1174,21 @@ namespace user
       if (bExpand)
       {
 
-         if (!(pitem->m_dwState & ::data::e_tree_item_state_expanded))
+         if (!(ptreeitem->m_etreeitemstate & ::data::e_tree_item_state_expanded))
          {
 
-            pitem->m_dwState |= ::data::e_tree_item_state_expanded;
+            ptreeitem->m_etreeitemstate |= ::data::e_tree_item_state_expanded;
 
-            _001OnItemExpand(pitem, context);
+            _001OnItemExpand(ptreeitem, context);
 
 
             // scroll properly to show the highest possible number
             // of children while trying to preserve the old position and
             // never passing
             ::collection::index iLevel = 0;
-            ::collection::index iParentIndex = get_proper_item_index(pitem, &iLevel);
+            ::collection::index iParentIndex = get_proper_item_index(ptreeitem, &iLevel);
 
-            ::collection::index iLastChildIndex = iParentIndex + pitem->get_proper_descendant_count();
+            ::collection::index iLastChildIndex = iParentIndex + ptreeitem->get_proper_descendant_count();
 
             ::collection::index iDivision;
 
@@ -1233,12 +1239,12 @@ namespace user
       }
       else
       {
-         if ((pitem->m_dwState & ::data::e_tree_item_state_expanded))
+         if ((ptreeitem->m_etreeitemstate & ::data::e_tree_item_state_expanded))
          {
 
-            pitem->m_dwState &= ~::data::e_tree_item_state_expanded;
+            ptreeitem->m_etreeitemstate -= ::data::e_tree_item_state_expanded;
 
-            _001OnItemCollapse(pitem, context);
+            _001OnItemCollapse(ptreeitem, context);
             bRedraw = true;
 
          }
@@ -1355,7 +1361,7 @@ namespace user
    void tree::on_change_context_offset(::user::enum_layout elayout)
    {
 
-      m_pitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemProperIndex);
+      m_ptreeitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemProperIndex);
 
       //::user::scroll_base::on_context_offset_layout(pgraphics);
 
@@ -1418,7 +1424,7 @@ namespace user
 
       m_iCurrentImpactWidth = _001CalcTotalImpactWidth(pgraphics);
 
-      m_pitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemProperIndex);
+      m_ptreeitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemProperIndex);
 
       auto scrollstatex = get_scroll_state_x(::user::e_layout_design);
 
@@ -1507,10 +1513,10 @@ namespace user
 
       //}
 
-      if (pitem != m_pitemHover)
+      if (pitem != m_ptreeitemHover)
       {
 
-         m_pitemHover = pitem;
+         m_ptreeitemHover = pitem;
 
          set_need_redraw();
 
@@ -1585,7 +1591,7 @@ namespace user
 
       ::collection::index iIndent = _001GetIndentation();
 
-      ::pointer<::data::tree_item_base>pitem = m_pitemFirstVisible;
+      ::pointer<::data::tree_item_base>pitem = m_ptreeitemFirstVisible;
 
       if (pitem == nullptr)
       {
@@ -1788,7 +1794,7 @@ namespace user
 
          nOffset--;
 
-         string strText = pitem->get_text();
+         string strText = pitem->get_user_item_text();
 
          double_size s = pgraphics->get_text_extent(strText);
 
@@ -1899,10 +1905,10 @@ namespace user
    }
 
 
-   bool tree::selection_add(::item * pitemdata, ::collection::index i)
+   bool tree::selection_add(::item * pitem, ::collection::index i)
    {
 
-      auto ptreedataitem = find_data_tree_item(pitemdata, &i);
+      auto ptreedataitem = find_data_tree_item(pitem, &i);
 
       if (!ptreedataitem)
       {
@@ -1947,23 +1953,23 @@ namespace user
 
       }
 
-      return m_pitemptraSelected->add_unique(pitem);
+      return m_ptreeitemptraSelected->add_unique(pitem);
 
    }
 
 
-   bool tree::selection_set(::item * pitemdata, bool bIfNotInSelection, bool bIfParentInSelection)
+   bool tree::selection_set(::item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
    {
 
-      return selection_set(0, pitemdata, bIfNotInSelection, bIfParentInSelection);
+      return selection_set(0, pitem, bIfNotInSelection, bIfParentInSelection);
 
    }
 
 
-   bool tree::selection_set(::collection::index i, ::item * pitemdata, bool bIfNotInSelection, bool bIfParentInSelection)
+   bool tree::selection_set(::collection::index i, ::item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
    {
 
-      auto ptreedataitem = find_data_tree_item(pitemdata, &i);
+      auto ptreedataitem = find_data_tree_item(pitem, &i);
 
       if (!ptreedataitem)
       {
@@ -1985,7 +1991,7 @@ namespace user
       for (int i = 0; i < itemptra.get_count(); i++)
       {
 
-         if (contains(itemptra[i]) && m_pitemptraSelected->add_unique(itemptra[i]))
+         if (contains(itemptra[i]) && m_ptreeitemptraSelected->add_unique(itemptra[i]))
          {
 
             count++;
@@ -2023,23 +2029,23 @@ namespace user
 
       }
 
-      bool bContains = m_pitemptraSelected->contains(pitem);
+      bool bContains = m_ptreeitemptraSelected->contains(pitem);
 
-      m_pitemptraSelected->erase_all();
+      m_ptreeitemptraSelected->erase_all();
 
-      m_pitemptraSelected->add(pitem);
+      m_ptreeitemptraSelected->add(pitem);
 
-      information() << "m_pitemptraSelected add item";
+      information() << "m_ptreeitemptraSelected add item";
 
       return bContains;
 
    }
 
 
-   bool tree::selection_erase(::item * pitemdata, ::collection::index i)
+   bool tree::selection_erase(::item * pitem, ::collection::index i)
    {
 
-      auto ptreedataitem = find_data_tree_item(pitemdata, &i);
+      auto ptreedataitem = find_data_tree_item(pitem, &i);
 
       if (!ptreedataitem)
       {
@@ -2061,7 +2067,7 @@ namespace user
       for (int i = 0; i < itemptra.get_count(); i++)
       {
 
-         if (m_pitemptraSelected->erase(itemptra[i]))
+         if (m_ptreeitemptraSelected->erase(itemptra[i]))
          {
 
             count++;
@@ -2078,7 +2084,7 @@ namespace user
    bool tree::selection_erase(::data::tree_item_base * pitem)
    {
 
-      return m_pitemptraSelected->erase(pitem) >= 0;
+      return m_ptreeitemptraSelected->erase(pitem) >= 0;
 
    }
 
@@ -2086,15 +2092,15 @@ namespace user
    ::collection::count tree::clear_selection()
    {
 
-      return m_pitemptraSelected->erase_all();
+      return m_ptreeitemptraSelected->erase_all();
 
    }
 
 
-   bool tree::hover(::item * pitemdata, ::collection::index i)
+   bool tree::hover(::item * pitem, ::collection::index i)
    {
 
-      auto ptreedataitem = find_data_tree_item(pitemdata, &i);
+      auto ptreedataitem = find_data_tree_item(pitem, &i);
 
       return hover(ptreedataitem);
 
@@ -2107,7 +2113,7 @@ namespace user
       if (pitem == nullptr)
       {
 
-         m_pitemHover = nullptr;
+         m_ptreeitemHover = nullptr;
 
          return true;
 
@@ -2120,7 +2126,7 @@ namespace user
 
       }
 
-      return m_pitemHover == pitem;
+      return m_ptreeitemHover == pitem;
 
    }
 
@@ -2128,25 +2134,25 @@ namespace user
    bool tree::is_selected(const ::data::tree_item_base * pitem) const
    {
 
-      return m_pitemptraSelected->contains(pitem);
+      return m_ptreeitemptraSelected->contains(pitem);
 
    }
 
 
-   bool tree::is_selected(const ::item * pitemdata) const
+   bool tree::is_selected(const ::item * pitem) const
    {
 
-      if (!pitemdata)
+      if (!pitem)
       {
 
          return false;
 
       }
 
-      for (int i = 0; i < m_pitemptraSelected->get_count(); i++)
+      for (int i = 0; i < m_ptreeitemptraSelected->get_count(); i++)
       {
 
-         if (m_pitemptraSelected->element_at(i)->_data_item() == pitemdata)
+         if (m_ptreeitemptraSelected->element_at(i)->_item() == pitem)
          {
 
             return true;
@@ -2163,7 +2169,7 @@ namespace user
    bool tree::is_hover(const ::data::tree_item_base * pitem) const
    {
 
-      return pitem && m_pitemHover == pitem;
+      return pitem && m_ptreeitemHover == pitem;
 
    }
 
@@ -2171,14 +2177,14 @@ namespace user
    bool tree::is_hover(const ::item * pitem) const
    {
 
-      if (!pitem || !m_pitemHover)
+      if (!pitem || !m_ptreeitemHover)
       {
 
          return false;
 
       }
 
-      if (m_pitemHover->_data_item() != pitem)
+      if (m_ptreeitemHover->_item() != pitem)
       {
 
          return false;
@@ -2371,7 +2377,7 @@ namespace user
       while (pitemExpand != nullptr)
       {
 
-         pitemExpand->m_dwState |= ::data::e_tree_item_state_expanded;
+         pitemExpand->m_etreeitemstate |= ::data::e_tree_item_state_expanded;
 
          pitemExpand = pitemExpand->_get_parent();
 

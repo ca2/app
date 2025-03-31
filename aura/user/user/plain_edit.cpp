@@ -9801,7 +9801,7 @@ namespace user
 
       }
 
-      ::pointer<plain_text_command>pcommand = m_ptreeitem->m_pdataitem;
+      ::pointer<plain_text_command>pcommand = m_ptreeitem->m_pitem;
 
       pcommand->Undo(m_ptree);
 
@@ -9865,7 +9865,7 @@ namespace user
 
             m_ptreeitem = ptreeitem;
 
-            ::pointer<plain_text_command>pcommand = ptreeitem->m_pdataitem;
+            ::pointer<plain_text_command>pcommand = ptreeitem->m_pitem;
             //m_pgraphicsPlainEdit = pgraphics;
 
             pcommand->Redo(m_ptree);

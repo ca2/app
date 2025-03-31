@@ -652,7 +652,7 @@ namespace file
          if (m_bRootDirection)
          {
 
-            while (ptreeitem != nullptr && (!m_bRootDirection || ptreeitem->m_pdataitem.is_set()))
+            while (ptreeitem != nullptr && (!m_bRootDirection || ptreeitem->m_pitem.is_set()))
             {
 
                //if (!m_bRootDirection)
@@ -676,7 +676,7 @@ namespace file
 
                //}
 
-               auto pitem = ptreeitem->m_pdataitem.m_p;
+               auto pitem = ptreeitem->m_pitem.m_p;
 
                bRead = pitem->read_byte(next_boundary, buf ? buf + uRead : nullptr, this);
 
@@ -708,7 +708,7 @@ namespace file
          {
 
 
-            while (ptreeitem != nullptr && (!m_bRootDirection || ptreeitem->m_pdataitem.is_set()))
+            while (ptreeitem != nullptr && (!m_bRootDirection || ptreeitem->m_pitem.is_set()))
             {
 
                //if (!m_bRootDirection)
@@ -725,7 +725,7 @@ namespace file
 
                }
 
-               auto pitem = ptreeitem->m_pdataitem.m_p;
+               auto pitem = ptreeitem->m_pitem.m_p;
 
                bRead = pitem->read_byte(next_boundary, buf ? buf + uRead : nullptr, this);
 
@@ -1204,7 +1204,7 @@ m_position += nCount;
 
       }
 
-      auto pedititembase = m_ptreeitem->m_pdataitem.cast < edit_item_base>();
+      auto pedititembase = m_ptreeitem->m_pitem.cast < edit_item_base>();
 
       m_sizeEditFile -= pedititembase->get_delta_length();
 
@@ -1247,7 +1247,7 @@ m_position += nCount;
 
       }
 
-      auto pedititem = ptreeitem->m_pdataitem.cast < edit_item_base >();
+      auto pedititem = ptreeitem->m_pitem.cast < edit_item_base >();
 
       m_sizeEditFile += pedititem->get_delta_length();
 

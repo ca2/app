@@ -137,24 +137,24 @@ namespace user
 
 
    template < prototype_item ITEM >
-   void tree_data < ITEM >::_001OnItemExpand(::data::tree_item<ITEM> * pitem, const ::action_context & context)
+   void tree_data < ITEM >::_001OnItemExpand(::data::tree_item<ITEM> * ptreeitem, const ::action_context & context)
    {
 
-      if (pitem->is_expanded())
+      if (ptreeitem->is_expanded())
       {
 
          return;
 
       }
 
-      pitem->on_fill_children();
+      ptreeitem->on_fill_children();
 
-      if (pitem->get_children_count() > 0)
+      if (ptreeitem->get_children_count() > 0)
       {
 
-         pitem->m_dwState |= ::data::e_tree_item_state_expanded;
+         ptreeitem->m_etreeitemstate |= ::data::e_tree_item_state_expanded;
 
-         pitem->m_dwState |= ::data::e_tree_item_state_expandable;
+         ptreeitem->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
 
       }
 
@@ -171,16 +171,16 @@ namespace user
    }
 
    template < prototype_item ITEM >
-   void tree_data < ITEM >::_001OnItemCollapse(::data::tree_item<ITEM> * pitem, const ::action_context & context)
+   void tree_data < ITEM >::_001OnItemCollapse(::data::tree_item<ITEM> * ptreeitem, const ::action_context & context)
    {
 
-      if (!pitem->is_expanded())
+      if (!ptreeitem->is_expanded())
          return;
-      if (pitem->get_children_count() > 0)
+      if (ptreeitem->get_children_count() > 0)
       {
-         pitem->m_dwState |= ::data::e_tree_item_state_expandable;
+         ptreeitem->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
       }
-      pitem->m_dwState &= ~::data::e_tree_item_state_expanded;
+      ptreeitem->m_etreeitemstate -= ::data::e_tree_item_state_expanded;
       /*for (::collection::index i = 0; i < m_usertreea.get_count(); i++)
       {
 
@@ -189,14 +189,16 @@ namespace user
       }*/
 
    }
-   
-   //template < prototype_item ITEM >
-   //::image::image_list * tree_data < ITEM >::get_image_list() const
-   //{
 
-   //   return m_pimagelist;
 
-   //}
+   template < prototype_item ITEM >
+   ::image::image_list * tree_data < ITEM >::get_tree_image_list()
+   {
+
+      return ::user::tree_data_base::get_tree_image_list();
+
+   }
+
 
    template < prototype_item ITEM >
    void tree_data < ITEM >::on_fill_children()

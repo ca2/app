@@ -30,9 +30,9 @@ namespace data
 
       //}
 
-      m_dwState |= ::data::e_tree_item_state_expandable;
+      m_etreeitemstate |= ::data::e_tree_item_state_expandable;
 
-      m_dwState |= ::data::e_tree_item_state_expanded;
+      m_etreeitemstate |= ::data::e_tree_item_state_expanded;
 
       //_get_tree() = this;
 
@@ -47,12 +47,12 @@ namespace data
    }
 
 
-   tree_item_base * tree_base::_find(const ::item * pitemdata, ::collection::index * piIndex)
+   tree_item_base * tree_base::_find(const ::item * pitem, ::collection::index * piIndex)
    {
 
       ::collection::index iIndex;
 
-      if (pitemdata == nullptr)
+      if (pitem == nullptr)
       {
 
          return nullptr;
@@ -72,12 +72,12 @@ namespace data
 
       }
 
-      ::pointer<::data::tree_item_base>pitem = this;
+      ::data::tree_item_base * ptreeitem = this;
 
-      for(; pitem != nullptr; pitem = pitem->_get_item(e_tree_navigation_expanded_forward))
+      for(; ptreeitem != nullptr; ptreeitem = ptreeitem->_get_item(e_tree_navigation_expanded_forward))
       {
          
-         if(pitem->_item() == pitemdata)
+         if(ptreeitem->_item() == pitem)
          {
 
             iIndex--;
@@ -85,7 +85,7 @@ namespace data
             if (iIndex < 0)
             {
 
-               return pitem;
+               return ptreeitem;
 
             }
 
@@ -105,10 +105,10 @@ namespace data
    }
 
    
-   bool tree_base::_contains(const ::item * pitemdata)
+   bool tree_base::_contains(const ::item * pitem)
    {
       
-      return _find(pitemdata) != nullptr;
+      return _find(pitem) != nullptr;
 
    }
 
@@ -152,19 +152,19 @@ namespace data
    }
 
 
-   void tree_base::_erase(::item * pitemdata, ::collection::index i)
+   void tree_base::_erase(::item * pitem, ::collection::index i)
    {
       
-      tree_item_base * pitem = _find(pitemdata, &i);
+      tree_item_base * ptreeitem = _find(pitem, &i);
 
-      if (pitem == nullptr)
+      if (ptreeitem == nullptr)
       {
 
          return;
 
       }
 
-      return _erase(pitem);
+      return _erase(ptreeitem);
 
    }
 
@@ -542,7 +542,7 @@ namespace data
 
          pitemNew->m_dwUser         = pitemRelative->m_dwUser;
          pitemNew->m_dwMetaData     = pitemRelative->m_dwMetaData;
-         pitemNew->m_dwState        = pitemRelative->m_dwState;
+         pitemNew->m_etreeitemstate = pitemRelative->m_etreeitemstate;
          pitemNew->_set_item(pitemRelative->_item());
 
          pitemNew->m_iLevel = pitemRelative->m_iLevel;
@@ -689,18 +689,21 @@ namespace data
    }
 
 
-   void tree_base::_001OnItemExpand(::data::tree_item_base * pitem, const ::action_context & context)
+   void tree_base::_001OnItemExpand(::data::tree_item_base * ptreeitem, const ::action_context & context)
    {
 
-      if (pitem->is_expanded())
+      if (ptreeitem->is_expanded())
          return;
 
-      pitem->on_fill_children();
+      ptreeitem->on_fill_children();
 
-      if (pitem->get_children_count() > 0)
+      if (ptreeitem->get_children_count() > 0)
       {
-         pitem->m_dwState |= ::data::e_tree_item_state_expanded;
-         pitem->m_dwState |= ::data::e_tree_item_state_expandable;
+
+         ptreeitem->m_etreeitemstate |= ::data::e_tree_item_state_expanded;
+         ptreeitem->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
+
+
       }
 
       /*      for (::collection::index i = 0; i < m_treeptra.get_count(); i++)
@@ -716,16 +719,25 @@ namespace data
    }
 
 
-   void tree_base::_001OnItemCollapse(::data::tree_item_base * pitem, const ::action_context & context)
+   void tree_base::_001OnItemCollapse(::data::tree_item_base * ptreeitem, const ::action_context & context)
    {
 
-      if (!pitem->is_expanded())
-         return;
-      if (pitem->get_children_count() > 0)
+      if (!ptreeitem->is_expanded())
       {
-         pitem->m_dwState |= ::data::e_tree_item_state_expandable;
+
+         return;
+
       }
-      pitem->m_dwState &= ~::data::e_tree_item_state_expanded;
+
+      if (ptreeitem->get_children_count() > 0)
+      {
+
+         ptreeitem->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
+
+      }
+
+      ptreeitem->m_etreeitemstate -= ::data::e_tree_item_state_expanded;
+
       /*for (::collection::index i = 0; i < m_treeptra.get_count(); i++)
       {
 

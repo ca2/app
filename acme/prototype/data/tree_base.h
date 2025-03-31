@@ -168,12 +168,12 @@ namespace data
    //}
 
    //template < prototype_item ::item * >
-   //tree_item_base * tree < ::item * >::find(const ::item * * pitemdata, ::collection::index * piIndex)
+   //tree_item_base * tree < ::item * >::find(const ::item * * pitem, ::collection::index * piIndex)
    //{
 
    //   ::collection::index iIndex;
 
-   //   if (pitemdata == nullptr)
+   //   if (pitem == nullptr)
    //   {
 
    //      return nullptr;
@@ -198,7 +198,7 @@ namespace data
    //   for (; pitem != nullptr; pitem = pitem->get_item(e_tree_navigation_expanded_forward))
    //   {
 
-   //      if (pitem->m_pdataitem == pitemdata)
+   //      if (pitem->m_pdataitem == pitem)
    //      {
 
    //         iIndex--;
@@ -226,10 +226,10 @@ namespace data
    //}
 
    //template < prototype_item ::item * >
-   //bool tree < ::item * >::contains(const ::item * * pitemdata)
+   //bool tree < ::item * >::contains(const ::item * * pitem)
    //{
 
-   //   return find(pitemdata) != nullptr;
+   //   return find(pitem) != nullptr;
 
    //}
    //template < prototype_item ::item * >
@@ -272,10 +272,10 @@ namespace data
    //}
 
    //template < prototype_item ::item * >
-   //void tree < ::item * >::erase(::item * * pitemdata, ::collection::index i)
+   //void tree < ::item * >::erase(::item * * pitem, ::collection::index i)
    //{
 
-   //   tree_item_base * pitem = find(pitemdata, &i);
+   //   tree_item_base * pitem = find(pitem, &i);
 
    //   if (pitem == nullptr)
    //   {

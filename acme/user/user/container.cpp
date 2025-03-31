@@ -217,11 +217,32 @@ namespace user
 
          puseritembase->__defer_construct_new(puseritembase->m_puseritem);
 
+         puseritembase->m_puseritem->m_pitem = pitem;
+
       }
-      else if (!puseritembase->_item() && pitem)
+      else if(pitem)
       {
 
-         puseritembase->_set_item((::item *)pitem);
+         if (!puseritembase->_item())
+         {
+
+            puseritembase->_set_item((::item *)pitem);
+
+         }
+
+         if (!puseritembase->m_puseritem)
+         {
+
+            __defer_construct_new(puseritembase->m_puseritem);
+
+         }
+
+         if (!puseritembase->m_puseritem->m_pitem)
+         {
+
+            puseritembase->m_puseritem->m_pitem = pitem;
+
+         }
 
       }
 

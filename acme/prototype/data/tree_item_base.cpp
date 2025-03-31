@@ -275,7 +275,7 @@ namespace data
 
       m_iIndexHint      = -1;
       m_dwUser          = 0;
-      m_dwState         = 0;
+      //m_etreeitemstate         = 0;
       //m_ptree           = nullptr;
       //_get_parent()         = nullptr;
       m_iLevel          = -1;
@@ -1545,7 +1545,7 @@ namespace data
    bool tree_item_base::is_expanded() const
    {
 
-      return (m_dwState & ::data::e_tree_item_state_expanded) != 0;
+      return (m_etreeitemstate & ::data::e_tree_item_state_expanded) != 0;
 
    }
 
@@ -1553,7 +1553,7 @@ namespace data
    bool tree_item_base::is_expandable() const
    {
 
-      return (m_dwState & ::data::e_tree_item_state_expandable) != 0;
+      return (m_etreeitemstate & ::data::e_tree_item_state_expandable) != 0;
 
    }
 

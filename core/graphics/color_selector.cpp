@@ -1084,9 +1084,9 @@ namespace core
 
          ::color::hsv hsv(m_hls);
 
-         int x = hsv.m_dH * m_pimage->width();
+         int x = (int) (hsv.m_dH * m_pimage->width());
 
-         int y = hsv.m_dS * m_pimage->height();
+         int y = (int) (hsv.m_dS * m_pimage->height());
 
          if (m_callbackHls)
          {

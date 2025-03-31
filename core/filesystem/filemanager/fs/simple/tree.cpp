@@ -207,14 +207,14 @@ namespace filemanager
 
                }
 
-               if(!ptreeitemChild->m_pdataitem)
+               if(!ptreeitemChild->m_pitem)
                {
 
-                  ptreeitemChild->m_pdataitem = __allocate ::data::simple_item(this);
+                  ptreeitemChild->m_pitem = __allocate ::data::simple_item(this);
 
                }
 
-               ptreeitemParent->m_pdataitem.cast < ::data::simple_item >()->m_str = pfolder->m_strName;
+               ptreeitemParent->m_pitem.cast < ::data::simple_item >()->m_str = pfolder->m_strName;
 
                ptreeitemParent->m_dwUser = (uptr) iNewItem;
 

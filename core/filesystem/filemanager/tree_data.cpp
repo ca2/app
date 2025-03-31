@@ -52,7 +52,7 @@ void check_list(LIST_ITEM * plist)
    while(true)
    {
 
-      if (is_null(p->m_pdataitem))
+      if (is_null(p->m_pitem))
       {
 
          throw "error";
@@ -75,7 +75,7 @@ void check_list(LIST_ITEM * plist)
    while (true)
    {
 
-      if (is_null(p->m_pdataitem))
+      if (is_null(p->m_pitem))
       {
 
          throw "error";
@@ -221,25 +221,25 @@ namespace filemanager
 
       string_array stra;
 
-      auto pitem = find_item_by_user_path(pathUser);
+      auto ptreeitem = find_item_by_user_path(pathUser);
 
-      if (!pitem)
+      if (!ptreeitem)
       {
 
          return;
 
       }
 
-      if(!(pitem->m_dwState & ::data::e_tree_item_state_expanded))
+      if(!(ptreeitem->m_etreeitemstate & ::data::e_tree_item_state_expanded))
       {
 
-         _001ExpandItem(pitem,context,true,false,false);
+         _001ExpandItem(ptreeitem,context,true,false,false);
 
       }
 
       m_straUpdatePtrFilter.erase_all();
 
-      _001EnsureVisible(pitem);
+      _001EnsureVisible(ptreeitem);
 
    }
 
@@ -324,7 +324,7 @@ namespace filemanager
          if(pathFinal.is_folder())
          {
 
-            auto pathUser = pitemParent->m_pdataitem.cast <::file::item>()->user_path() /
+            auto pathUser = pitemParent->m_pitem.cast <::file::item>()->user_path() /
                item.name();
             //listingFinal.defer_add(pathFinal);
 
@@ -358,9 +358,9 @@ namespace filemanager
          if(listing.has_elements())
          {
 
-            pitem->m_dwState |= ::data::e_tree_item_state_expanded;
+            pitem->m_etreeitemstate |= ::data::e_tree_item_state_expanded;
 
-            pitem->m_dwState |= ::data::e_tree_item_state_expandable;
+            pitem->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
 
          }
 
@@ -498,7 +498,7 @@ namespace filemanager
       //               if (pitemChild->m_flags.has(::file::e_flag_has_subfolder))
       //               {
 
-      //                  ptreeitemChild->m_dwState |= ::data::e_tree_item_state_expandable;
+      //                  ptreeitemChild->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
 
       //               }
 
@@ -574,14 +574,14 @@ namespace filemanager
 
       //      strName = pcontext->defer_get_file_title(pathUser);
 
-      //      auto pitemChild = ptreeitemChild->m_pdataitem.cast < ::userfs::item >();
+      //      auto pitemChild = ptreeitemChild->m_pitem.cast < ::userfs::item >();
 
       //      if (!pitemChild)
       //      {
 
       //         pitemChild = __allocate ::userfs::item(this);
 
-      //         ptreeitemChild->m_pdataitem = pitemChild;
+      //         ptreeitemChild->m_pitem = pitemChild;
 
       //      }
 
@@ -596,7 +596,7 @@ namespace filemanager
       //      if (pitemChild->m_flags.has(::file::e_flag_has_subfolder))
       //      {
 
-      //         ptreeitemChild->m_dwState |= ::data::e_tree_item_state_expandable;
+      //         ptreeitemChild->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
 
       //      }
 
@@ -655,14 +655,14 @@ namespace filemanager
 
       //      strName = pcontext->defer_get_file_title(pathUser);
 
-      //      auto pitemChild = ptreeitemChild->m_pdataitem.cast < ::userfs::item >();
+      //      auto pitemChild = ptreeitemChild->m_pitem.cast < ::userfs::item >();
 
       //      if (!pitemChild)
       //      {
 
       //         pitemChild = __allocate ::userfs::item(this);
 
-      //         ptreeitemChild->m_pdataitem = pitemChild;
+      //         ptreeitemChild->m_pitem = pitemChild;
 
       //      }
 
@@ -677,7 +677,7 @@ namespace filemanager
       //      if (pitemChild->m_flags.has(::file::e_flag_has_subfolder))
       //      {
 
-      //         ptreeitemChild->m_dwState |= ::data::e_tree_item_state_expandable;
+      //         ptreeitemChild->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
 
       //      }
 
@@ -916,7 +916,7 @@ _001SelectItem(pchild);
             if (filemanager_data()->fs_data()->fast_has_subdir(pitemNew->final_path()))
             {
 
-               pchild->m_dwState |= ::data::e_tree_item_state_expandable;
+               pchild->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
 
             }
 
@@ -940,9 +940,9 @@ _001SelectItem(pchild);
             p->sort_children([](auto p1, auto p2)
                {
 
-                     auto pfileitem1 = p1->m_pdataitem.template cast < ::file::item>();
+                     auto pfileitem1 = p1->m_pitem.template cast < ::file::item>();
 
-                     auto pfileitem2 = p2->m_pdataitem.template cast < ::file::item>();
+                     auto pfileitem2 = p2->m_pitem.template cast < ::file::item>();
 
                   /*   if (::is_null(pfileitem1))
                      {
@@ -1032,7 +1032,7 @@ _001SelectItem(pchild);
    //               if (pitemChild->m_flags.has(::file::e_flag_has_subfolder))
    //               {
 
-   //                  ptreeitemChild->m_dwState |= ::data::e_tree_item_state_expandable;
+   //                  ptreeitemChild->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
 
    //               }
 
@@ -1108,14 +1108,14 @@ _001SelectItem(pchild);
 
    //      strName = pcontext->defer_get_file_title(pathUser);
 
-   //      auto pitemChild = ptreeitemChild->m_pdataitem.cast < ::userfs::item >();
+   //      auto pitemChild = ptreeitemChild->m_pitem.cast < ::userfs::item >();
 
    //      if (!pitemChild)
    //      {
 
    //         pitemChild = __allocate ::userfs::item(this);
 
-   //         ptreeitemChild->m_pdataitem = pitemChild;
+   //         ptreeitemChild->m_pitem = pitemChild;
 
    //      }
 
@@ -1130,7 +1130,7 @@ _001SelectItem(pchild);
    //      if (pitemChild->m_flags.has(::file::e_flag_has_subfolder))
    //      {
 
-   //         ptreeitemChild->m_dwState |= ::data::e_tree_item_state_expandable;
+   //         ptreeitemChild->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
 
    //      }
 
@@ -1165,7 +1165,7 @@ _001SelectItem(pchild);
       for(int i = 0; i < itemptraSelected.get_size(); i++)
       {
 
-         stra.add(((itemptraSelected[0]->m_pdataitem.cast < ::userfs::item > ()))->user_path());
+         stra.add(((itemptraSelected[0]->m_pitem.cast < ::userfs::item > ()))->user_path());
 
       }
 
@@ -1311,7 +1311,7 @@ _001SelectItem(pchild);
    void tree_data::_001OnItemExpand(::data::tree_item<::userfs::item> * pitem, const ::action_context & context)
    {
 
-      auto puserfsitem = pitem->m_pdataitem.cast <::userfs::item>();
+      auto puserfsitem = pitem->m_pitem.cast <::userfs::item>();
 
       if(puserfsitem)
       {
@@ -1344,7 +1344,7 @@ _001SelectItem(pchild);
 
       information() << "tree_data::_001OnOpenItem";
 
-      auto puserfsitem = pitem->m_pdataitem.cast < ::userfs::item > ();
+      auto puserfsitem = pitem->m_pitem.cast < ::userfs::item > ();
 
       auto pfileitem = __allocate ::file::item(*puserfsitem);
 

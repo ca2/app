@@ -360,7 +360,7 @@ namespace userfs
       for (int i = 0; i < itemptraSelected.get_size(); i++)
       {
 
-         stra.add(itemptraSelected[0]->m_pdataitem.cast < ::userfs::item >()->user_path());
+         stra.add(itemptraSelected[0]->m_pitem.cast < ::userfs::item >()->user_path());
 
       }
 
@@ -452,7 +452,7 @@ namespace userfs
    void tree_data::_001OnOpenItem(::data::tree_item<::userfs::item> * ptreeitem, const ::action_context & context)
    {
 
-      auto pitem = __allocate ::file::item(*ptreeitem->m_pdataitem.cast < ::userfs::item >());
+      auto pitem = __allocate ::file::item(*ptreeitem->m_pitem.cast < ::userfs::item >());
 
       m_puserfsdocument->browse(pitem, context);
 
@@ -507,10 +507,10 @@ namespace userfs
       while (pitem != nullptr)
       {
 
-         if (pitem->m_pdataitem)
+         if (pitem->m_pitem)
          {
 
-            ::userfs::item * puserfsitem = pitem->m_pdataitem.cast < ::userfs::item >();
+            ::userfs::item * puserfsitem = pitem->m_pitem.cast < ::userfs::item >();
 
             if (puserfsitem != nullptr)
             {
@@ -588,10 +588,10 @@ namespace userfs
       while (pitem != nullptr)
       {
 
-         if (pitem->m_pdataitem)
+         if (pitem->m_pitem)
          {
 
-            ::userfs::item * puserfsitem = pitem->m_pdataitem.cast < ::userfs::item >();
+            ::userfs::item * puserfsitem = pitem->m_pitem.cast < ::userfs::item >();
 
             if (puserfsitem != nullptr)
             {

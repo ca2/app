@@ -2,11 +2,15 @@
 #pragma once
 
 
+#include "acme/prototype/prototype/enumeration.h"
 #include "acme/user/user/item_base.h"
 
 
 namespace data
 {
+
+
+   DECLARE_ENUMERATION(e_tree_item_state, enum_tree_item_state);
 
 
    class CLASS_DECL_ACME tree_item_base :
@@ -48,7 +52,7 @@ namespace data
       ::collection::index              m_iLevel;
       //::pointer           m_pdataitem;
       uptr                             m_dwUser;
-      unsigned int                     m_dwState;
+      e_tree_item_state                m_etreeitemstate;
       uptr                             m_dwMetaData;
 
 
@@ -134,7 +138,7 @@ namespace data
       inline tree_item_base * _get_proper_next(::collection::index * pindexLevel = nullptr)
       {
 
-         if ((m_dwState & ::data::e_tree_item_state_expanded))
+         if ((m_etreeitemstate & ::data::e_tree_item_state_expanded))
          {
 
             return _get_child_next_or_parent(pindexLevel);

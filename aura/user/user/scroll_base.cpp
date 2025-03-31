@@ -79,7 +79,7 @@ namespace user
 
          auto puseritem = user_item(pitemDragScroll);
 
-         puseritembase->m_puseritem->m_ezorder = e_zorder_front;
+         puseritem->m_ezorder = e_zorder_front;
 
          enable_drag(pitemDragScroll, e_zorder_front);
 

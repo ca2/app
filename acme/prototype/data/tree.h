@@ -100,7 +100,7 @@ namespace data
 
       const tree_item <  ITEM > * get_base_item() const;
 
-      tree_item <  ITEM > * insert_item( ITEM * pitemdataNew, enum_relative erelativeNewItem = e_relative_last_child, tree_item <  ITEM > * pitemRelative = nullptr, bool bVoidTreeDataChangeEvent = false);
+      tree_item <  ITEM > * insert_item( ITEM * pitemNew, enum_relative erelativeNewItem = e_relative_last_child, tree_item <  ITEM > * pitemRelative = nullptr, bool bVoidTreeDataChangeEvent = false);
       bool insert_item(tree_item <  ITEM > * pitemNew, enum_relative erelativeNewItem = e_relative_last_child, tree_item <  ITEM > * pitemRelative = nullptr, bool bVoidTreeDataChangeEvent = false);
 
       ::image::image_list * get_tree_image_list() override;
@@ -153,15 +153,18 @@ namespace data
 
       //}
 
-      this->m_dwState |= ::data::e_tree_item_state_expandable;
+      this->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
 
-      this->m_dwState |= ::data::e_tree_item_state_expanded;
+      this->m_etreeitemstate |= ::data::e_tree_item_state_expanded;
 
       this->m_ptree = this;
 
-      this->m_pparent = __allocate tree_item <  ITEM >();
+      this->m_ptreeitemParent = __allocate tree_item <  ITEM >();
+
+      this->m_ptreeitemParent->insert(e_relative_first_child, this);
 
    }
+
 
    template < prototype_item ITEM >
    tree <  ITEM >::~tree()
@@ -170,12 +173,12 @@ namespace data
    }
 
    template < prototype_item ITEM >
-   tree_item <  ITEM > * tree <  ITEM >::find(const  ITEM * pitemdata, ::collection::index * piIndex)
+   tree_item <  ITEM > * tree <  ITEM >::find(const  ITEM * pitem, ::collection::index * piIndex)
    {
 
       ::collection::index iIndex;
 
-      if (pitemdata == nullptr)
+      if (pitem == nullptr)
       {
 
          return nullptr;
@@ -195,12 +198,12 @@ namespace data
 
       }
 
-      ::pointer<::data::tree_item <  ITEM >>pitem = this;
+      ::data::tree_item <  ITEM > * ptreeitem = this;
 
-      for (; pitem != nullptr; pitem = pitem->get_item(e_tree_navigation_expanded_forward))
+      for (; ptreeitem != nullptr; ptreeitem = ptreeitem->get_item(e_tree_navigation_expanded_forward))
       {
 
-         if (pitem->m_pdataitem == pitemdata)
+         if (ptreeitem->_item() == pitem)
          {
 
             iIndex--;
@@ -208,7 +211,7 @@ namespace data
             if (iIndex < 0)
             {
 
-               return pitem;
+               return ptreeitem;
 
             }
 
@@ -227,18 +230,21 @@ namespace data
 
    }
 
+
    template < prototype_item ITEM >
-   bool tree <  ITEM >::contains(const  ITEM * pitemdata)
+   bool tree <  ITEM >::contains(const ITEM * pitem)
    {
 
-      return find(pitemdata) != nullptr;
+      return find(pitem) != nullptr;
 
    }
+
+
    template < prototype_item ITEM >
-   bool tree <  ITEM >::contains(const tree_item <  ITEM > * pitemParam)
+   bool tree <  ITEM >::contains(const tree_item <  ITEM > * ptreeitemParam)
    {
 
-      return tree_item <  ITEM >::contains(pitemParam);
+      return tree_item <  ITEM >::contains(ptreeitemParam);
 
       //if (pitemParam == this)
       //{
@@ -274,21 +280,22 @@ namespace data
    }
 
    template < prototype_item ITEM >
-   void tree <  ITEM >::erase( ITEM * pitemdata, ::collection::index i)
+   void tree <  ITEM >::erase(ITEM * pitem, ::collection::index i)
    {
 
-      tree_item <  ITEM > * pitem = find(pitemdata, &i);
+      tree_item <  ITEM > * ptreeitem = find(pitem, &i);
 
-      if (pitem == nullptr)
+      if (ptreeitem == nullptr)
       {
 
          return;
 
       }
 
-      return erase(pitem);
+      return erase(ptreeitem);
 
    }
+
 
    template < prototype_item ITEM >
    void tree <  ITEM >::erase(tree_item_ptr_array< ITEM> & itemptra)
@@ -303,14 +310,15 @@ namespace data
 
    }
 
+
    template < prototype_item ITEM >
-   void tree <  ITEM >::erase(tree_item <  ITEM > * pitem)
+   void tree <  ITEM >::erase(tree_item <  ITEM > * ptreeitem)
    {
 
-      if (pitem->m_ptree == this)
+      if (ptreeitem->m_ptree == this)
       {
 
-         pitem->erase_tree_item();
+         ptreeitem->erase_tree_item();
 
       }
 
@@ -507,8 +515,9 @@ return;
 
    }
 
+
    template < prototype_item ITEM >
-   ::data::tree_item <  ITEM > * tree <  ITEM >::insert_item( ITEM * pitemdataNew, enum_relative erelativeNewItem, ::data::tree_item <  ITEM > * pitemRelative, bool bVoidTreeDataChangeEvent)
+   ::data::tree_item <  ITEM > * tree <  ITEM >::insert_item(ITEM * pitem, enum_relative erelativeNewItem, ::data::tree_item <  ITEM > * pitemRelative, bool bVoidTreeDataChangeEvent)
    {
 
       if (pitemRelative == nullptr)
@@ -522,31 +531,40 @@ return;
       {
 
          if (!contains(pitemRelative))
+         {
+
             return nullptr;
 
-         pitemRelative->m_pdataitem = pitemdataNew;
+         }
+
+         pitemRelative->m_pitem = pitem;
 
          return pitemRelative;
 
       }
 
-      ::pointer<::data::tree_item <  ITEM >>pitemNew = __allocate tree_item <  ITEM >();
+      auto ptreeitemNew = __allocate tree_item <  ITEM >();
 
-      if (pitemNew == nullptr)
-         return nullptr;
-
-      if (!insert_item(pitemNew, erelativeNewItem, pitemRelative, bVoidTreeDataChangeEvent))
+      if (!ptreeitemNew)
       {
 
          return nullptr;
 
       }
 
-      pitemNew->m_pdataitem = pitemdataNew;
+      ptreeitemNew->m_pitem = pitem;
 
-      return pitemNew;
+      if (!insert_item(ptreeitemNew, erelativeNewItem, pitemRelative, bVoidTreeDataChangeEvent))
+      {
+
+         return nullptr;
+
+      }
+
+      return ptreeitemNew;
 
    }
+
 
    template < prototype_item ITEM >
    ::pointer < ::data::tree_item <  ITEM > > tree <  ITEM >::create_tree_item()
@@ -556,6 +574,7 @@ return;
 
    }
 
+
    template < prototype_item ITEM >
    ::pointer < ::data::tree_item_base > tree <  ITEM >::_create_tree_item()
    {
@@ -563,6 +582,8 @@ return;
       return this->create_tree_item();
 
    }
+
+
    template < prototype_item ITEM >
    void tree <  ITEM >::destroy()
    {
@@ -571,6 +592,8 @@ return;
       ::data::tree_item <  ITEM >::destroy();
 
    }
+
+
    template < prototype_item ITEM >
    void tree <  ITEM >::on_insert_tree(tree * ptree)
    {
@@ -578,6 +601,7 @@ return;
       m_treea.add(ptree);
 
    }
+
 
    template < prototype_item ITEM >
    bool tree <  ITEM >::insert_item(::data::tree_item <  ITEM > * pitemNew, enum_relative erelativeNewItem, ::data::tree_item <  ITEM > * pitemRelative, bool bVoidTreeDataChangeEvent)
@@ -678,8 +702,8 @@ return;
 
          pitemNew->m_dwUser = pitemRelative->m_dwUser;
          pitemNew->m_dwMetaData = pitemRelative->m_dwMetaData;
-         pitemNew->m_dwState = pitemRelative->m_dwState;
-         pitemNew->m_pdataitem = pitemRelative->m_pdataitem;
+         pitemNew->m_etreeitemstate = pitemRelative->m_etreeitemstate;
+         pitemNew->m_pitem = pitemRelative->m_pitem;
 
          pitemNew->m_iLevel = pitemRelative->m_iLevel;
 
@@ -852,8 +876,8 @@ return;
 
       if (pitem->get_children_count() > 0)
       {
-         pitem->m_dwState |= ::data::e_tree_item_state_expanded;
-         pitem->m_dwState |= ::data::e_tree_item_state_expandable;
+         pitem->m_etreeitemstate |= ::data::e_tree_item_state_expanded;
+         pitem->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
       }
 
       /*      for (::collection::index i = 0; i < m_treeptra.get_count(); i++)
@@ -876,9 +900,9 @@ return;
          return;
       if (pitem->get_children_count() > 0)
       {
-         pitem->m_dwState |= ::data::e_tree_item_state_expandable;
+         pitem->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
       }
-      pitem->m_dwState &= ~::data::e_tree_item_state_expanded;
+      pitem->m_etreeitemstate -= ::data::e_tree_item_state_expanded;
       /*for (::collection::index i = 0; i < m_treeptra.get_count(); i++)
       {
 

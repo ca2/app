@@ -55,10 +55,10 @@ namespace data
    }
 
 
-   bool tree_base_composite::_contains(const ::item * pitemdata)
+   bool tree_base_composite::_contains(const ::item * pitem)
    {
 
-      return m_ptreebase->_contains(pitemdata);
+      return m_ptreebase->_contains(pitem);
 
    }
 

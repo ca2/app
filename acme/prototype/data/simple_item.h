@@ -26,8 +26,8 @@ namespace data
 
 
       string get_item_text(::user::item_base * puseritembase, ::collection::index iSubItem = 0) override;
-      ::collection::index get_item_image(::user::item_base * puseritembase, ::collection::index iSubItem = 0);
-      ::image::image_list * get_item_image_list(::user::item_base * puseritembase, ::collection::index iSubItem = 0);
+      ::collection::index get_item_image(::user::item_base * puseritembase, ::collection::index iSubItem = 0) override;
+      ::image::image_list * get_item_image_list(::user::item_base * puseritembase, ::collection::index iSubItem = 0) override;
 
 
    };

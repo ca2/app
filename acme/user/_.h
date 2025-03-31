@@ -4,9 +4,9 @@
 #pragma once
 
 
-#include "menu/_.h"
-#include "micro/_.h"
-#include "user/_.h"
+#include "acme/user/menu/_.h"
+#include "acme/user/micro/_.h"
+#include "acme/user/user/_.h"
 
 
 namespace message

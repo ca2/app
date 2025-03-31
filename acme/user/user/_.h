@@ -1,19 +1,12 @@
 #pragma once
 
 
-#include  "_constant.h"
-
-
-#include  "_style.h"
 #include "acme/constant/_constant.h"
 
 
 class item;
 
 struct os_theme_colors;
-
-
-DECLARE_ENUMERATION(e_system_command, enum_system_command);
 
 
 namespace user

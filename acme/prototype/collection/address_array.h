@@ -1,9 +1,9 @@
 #pragma once
 
 
-#include "raw_array.h"
-#include "comparable_eq_array.h"
-#include "comparable_array.h"
+#include "acme/prototype/collection/raw_array.h"
+#include "acme/prototype/collection/comparable_eq_array.h"
+#include "acme/prototype/collection/comparable_array.h"
 
 
 template < typename POINTER, class ARRAY_TYPE >

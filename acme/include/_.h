@@ -64,23 +64,23 @@
 
 
 //#include "_macro.h"
-#include "_tags.h"
-#include "_configuration.h"
-#include "_types.h"
-#include "_integer.h"
+#include "acme/include/_tags.h"
+#include "acme/include/_configuration.h"
+#include "acme/include/_types.h"
+#include "acme/include/_integer.h"
 #include "acme/constant/_.h"
-#include "_forward_declaration.h"
-#include "_structures.h"
-#include "_template_forward_declaration.h"
-#include "_initial_concepts.h"
+#include "acme/include/_forward_declaration.h"
+#include "acme/include/_structures.h"
+#include "acme/include/_template_forward_declaration.h"
+#include "acme/include/_initial_concepts.h"
 //#include "_other_initial_concepts.h"
-#include "_template_structures.h"
-#include "_enumeration.h"
+#include "acme/include/_template_structures.h"
+#include "acme/include/_enumeration.h"
 //#include "_c.h"
-#include "_function_declarations.h"
-#include "_template_function_declarations.h"
-#include "_inline_functions.h"
-#include "_template_inline_functions.h"
+#include "acme/include/_function_declarations.h"
+#include "acme/include/_template_function_declarations.h"
+#include "acme/include/_inline_functions.h"
+#include "acme/include/_template_inline_functions.h"
 
 
 #include "acme/crypto/_.h"
@@ -197,10 +197,7 @@
 #include  "acme/platform/url_context.h"
 
 
-#include "_string.h"
-
-
-
+#include "acme/include/_string.h"
 
 
 #include  "acme/filesystem/file/binary_stream.h"
@@ -212,7 +209,7 @@
 #include "acme/prototype/datetime/_impl.h"
 #include "acme/prototype/prototype/_impl.h"
 #include "acme/prototype/string/_impl.h"
-#include "_impl.h"
+#include "acme/include/_impl.h"
 #include "acme/prototype/time/_impl.h"
 #include "acme/prototype/mathematics/_impl.h"
 #include "acme/prototype/_impl.h"

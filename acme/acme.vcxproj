@@ -1495,7 +1495,6 @@
     <ClInclude Include="user\micro\_.h" />
     <ClInclude Include="user\user\activation.h" />
     <ClInclude Include="user\user\activation_token.h" />
-    <ClInclude Include="user\user\base_item.h" />
     <ClInclude Include="user\user\check.h" />
     <ClInclude Include="user\user\control.h" />
     <ClInclude Include="user\user\controller.h" />

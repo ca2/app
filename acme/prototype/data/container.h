@@ -3,7 +3,7 @@
 
 ////#include "acme/prototype/prototype/object.h"
 #include "acme/parallelization/synchronization_array.h"
-#include "data.h"
+#include "acme/prototype/data/data.h"
 
 
 namespace data

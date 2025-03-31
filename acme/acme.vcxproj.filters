@@ -4167,9 +4167,6 @@
     <ClInclude Include="user\user\item.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\base_item.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">

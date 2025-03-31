@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "_function.h"
+#include "acme/prototype/geometry2d/_function.h"
 #include "acme/prototype/geometry/sequence.h"
 
 

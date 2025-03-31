@@ -161,39 +161,44 @@ namespace user
       //   return;
 
       //}
-
-      fork([this]()
+      _user_post([this]
          {
-
-            _001SetExpandImage("matter://list/expand.png");
-            _001SetExpandImageDark("matter://list/expand_dark.png");
-
-            task_set_name(::type(this).name() + "::Expand");
-
-            auto pthread = ::get_task();
-
-            while (pthread->task_get_run())
-            {
-
-               m_happeningExpand.wait(500_ms);
-
-               if (m_treeitemaExpand.has_element())
+            fork([this]()
                {
 
-                  auto ptreeitem = m_treeitemaExpand.pop();
+                  _001SetExpandImage("matter://list/expand.png");
+                  _001SetExpandImageDark("matter://list/expand_dark.png");
 
-                  _001ExpandItem(ptreeitem, ::e_source_user, !(ptreeitem->m_etreeitemstate & ::data::e_tree_item_state_expanded));
+                  task_set_name(::type(this).name() + "::Expand");
 
-                  m_treeitemaExpand.erase_all();
+                  auto pthread = ::get_task();
 
-               }
+                  while (pthread->task_get_run())
+                  {
 
-               m_happeningExpand.reset_happening();
+                     m_happeningExpand.wait(500_ms);
 
-            }
+                     if (m_treeitemaExpand.has_element())
+                     {
 
-         });
+                        auto ptreeitem = m_treeitemaExpand.pop();
 
+                        _001ExpandItem(ptreeitem, ::e_source_user, !(ptreeitem->m_etreeitemstate & ::data::e_tree_item_state_expanded));
+
+                        m_treeitemaExpand.erase_all();
+
+                     }
+
+                     m_happeningExpand.reset_happening();
+
+                  }
+
+               });
+
+               });
+
+      _user_post([this]
+   {
 
       fork([this]()
          {
@@ -208,7 +213,7 @@ namespace user
             while (pthread->task_get_run())
             {
 
-               m_happeningOpen._wait(500_ms);
+               m_happeningOpen.wait(500_ms);
 
                if (m_treeitemaOpen.has_element())
                {
@@ -230,6 +235,8 @@ namespace user
             }
 
          });
+
+      });
 
    }
 

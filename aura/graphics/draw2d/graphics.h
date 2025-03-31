@@ -15,8 +15,8 @@
 #include "acme/prototype/geometry2d/matrix.h"
 #include "acme/prototype/geometry2d/shift.h"
 #include "aura/user/user/redraw.h"
-#include "region.h"
-#include "bitmap.h"
+#include "aura/graphics/draw2d/region.h"
+#include "aura/graphics/draw2d/bitmap.h"
 
 
 //#include "acme/prototype/geometry2d/_geometry2d.h"

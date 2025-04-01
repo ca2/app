@@ -111,7 +111,7 @@ namespace handler
       if (!has_main_loop_happening())
       {
 
-         m_pmanualresethappeningMainLoop->reset_happening();
+         new_main_loop_happening()->reset_happening();
 
       }
 

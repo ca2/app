@@ -35,7 +35,8 @@ namespace platform
    
    session::~session()
    {
-
+      
+      printf_line("platform::session destroyed");
 
    }
 

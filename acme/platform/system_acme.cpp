@@ -3895,7 +3895,7 @@ namespace platform
    }
 
 
-   ::thread_storage * acme_system_layer::thread_storage(const class ::task_index & taskindex)
+   ::thread_storage * acme_system_layer::thread_storage(const ::task_index & taskindex)
    {
 
       return nullptr;
@@ -3903,7 +3903,7 @@ namespace platform
    }
 
 
-   ::thread_storage * acme_system_layer::_thread_storage_unlocked(const class ::task_index & taskindex)
+   ::thread_storage * acme_system_layer::_thread_storage_unlocked(const ::task_index & taskindex)
    {
 
       return nullptr;

@@ -230,9 +230,11 @@ namespace platform
 
    system::~system()
    {
-
+      
       if (m_pmanualresethappeningSystemTaskFinished)
       {
+
+         printf_line("platform::system waiting system task finished");
 
          m_pmanualresethappeningSystemTaskFinished->_wait(2.5_min);
 
@@ -259,7 +261,7 @@ namespace platform
       // m_pbredsystem = nullptr;
       // m_pcoresystem = nullptr;
 
-      debug() << "platform::system::~system() (end)";
+      debug() << "platform::system::~system() (destroyed)";
 
       //::acme::get()->m_pmanualresethappeningReadyToExit->set_happening();
       //on_system_before_destroy();
@@ -461,7 +463,7 @@ namespace platform
    }
 
 
-   ::thread_storage * system::thread_storage(const class ::task_index & taskindex)
+   ::thread_storage * system::thread_storage(const ::task_index & taskindex)
    {
 
       critical_section_lock lock(&m_criticalsectionThreadStorage);
@@ -473,7 +475,7 @@ namespace platform
    }
 
 
-   ::thread_storage * system::_thread_storage_unlocked(const class ::task_index & taskindex)
+   ::thread_storage * system::_thread_storage_unlocked(const ::task_index & taskindex)
    {
 
       auto ppairThreadStorage = m_mapThreadStorage.plookup(taskindex);
@@ -1335,7 +1337,7 @@ namespace platform
    //   }
 
 
-   ::task* system::get_task(const class ::task_index & taskindex)
+   ::task* system::get_task(const ::task_index & taskindex)
    {
 
       //critical_section_lock criticalsectionlock(&m_criticalsectionTask);
@@ -1426,7 +1428,7 @@ namespace platform
    }
 
 
-   bool system::is_task_set(const class ::task_index & taskindex)
+   bool system::is_task_set(const ::task_index & taskindex)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsectionThreadStorage);

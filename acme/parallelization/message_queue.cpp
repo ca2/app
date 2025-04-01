@@ -28,7 +28,6 @@ bool apex_defer_process_x_message(htask htask,MESSAGE * pMsg,::windowing::window
 
 message_queue::message_queue()
 {
-
    __raw_construct_new(m_phappeningNewMessage);
 
    m_bQuit = false;
@@ -322,6 +321,15 @@ bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,unsigned int 
 
       }
 
+   }
+   
+   if(m_messagea.is_empty() &&
+      m_phappeningNewMessage
+      && m_phappeningNewMessage->m_bSignaled)
+   {
+      
+      m_phappeningNewMessage->reset_happening();
+      
    }
 
    synchronouslock.unlock();

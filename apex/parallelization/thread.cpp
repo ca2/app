@@ -1052,9 +1052,10 @@ int thread::_GetMessage(MESSAGE* pmessage, ::windowing::window* pwindow, unsigne
 bool thread::task_iteration()
 {
 
-   auto itaskCurrent = ::current_itask();
+   //auto itaskCurrent = ::current_itask();
 
-   if (m_itask != itaskCurrent)
+   //
+   if(!is_current_task())
    {
 
       throw ::exception(error_wrong_state);
@@ -1473,7 +1474,7 @@ bool thread::handle_message(bool & bContinue)
          informationf(
             "\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " +
             ::as_string(m_message.m_emessage == e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" +
-            ::as_string((unsigned long long)::task_index().m_i) + ")\n\n\n");
+            ::as_string((unsigned long long)::current_task_index()) + ")\n\n\n");
          
          bContinue = false;
 
@@ -2969,12 +2970,12 @@ itask thread::get_itask() const
 //}
 
 
-iptr thread::item() const
-{
-
-   return m_taskindex.m_i;
-
-}
+//iptr thread::item() const
+//{
+//
+//   return m_taskindex;
+//
+//}
 
 
 void thread::__priority_and_affinity()

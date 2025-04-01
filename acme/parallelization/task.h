@@ -87,12 +87,12 @@ DECLARE_ENUMERATION(e_happening, enum_happening);
 class locale;
 
 typedef pointer_array < ::matter > object_array;
-//typedef map < class ::task_index, ::pointer<task >>task_map;
-//typedef map < task *, class ::task_index > task_id_map;
+//typedef map < ::task_index, ::pointer<task >>task_map;
+//typedef map < task *, ::task_index > task_id_map;
 using procedure_list = ::list < procedure >;
 
-//class ::task_index task_index(itask itask);
-CLASS_DECL_ACME class ::task_index task_index();
+//::task_index task_index(itask itask);
+CLASS_DECL_ACME ::task_index current_task_index();
 
 
 class waiting_call_base;
@@ -165,7 +165,7 @@ public:
    //::pointer<::manual_reset_happening>                 m_pmanualresethappeningNewProcedurePosted;
 
    ::synchronization_array                         m_synchronizationaMainLoop;
-   class ::task_index                              m_taskindex;
+   ::task_index                                    m_taskindex;
    htask                                           m_htask;
    itask                                           m_itask;
    string                                          m_strTaskName;

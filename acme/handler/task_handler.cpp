@@ -39,6 +39,8 @@ void task_handler::__task_handle()
 
    }
 
+   printf_line("Going to call task suffix for task %lld %s",::current_task_index(), ::current_task_name().c_str() );
+   
    __task_suffix();
 
 }

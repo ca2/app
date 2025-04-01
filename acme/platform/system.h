@@ -77,8 +77,8 @@ namespace platform
       ::task_message_queue * task_message_queue() override;
 
 
-      ::thread_storage * thread_storage(const class ::task_index & taskindex) override;
-      ::thread_storage * _thread_storage_unlocked(const class ::task_index & taskindex) override;
+      ::thread_storage * thread_storage(const ::task_index & taskindex) override;
+      ::thread_storage * _thread_storage_unlocked(const ::task_index & taskindex) override;
 
 
       void on_initialize_particle() override;
@@ -116,17 +116,17 @@ namespace platform
       virtual void destroy_task_message_queue();
 
 
-      ::task* get_task(const class ::task_index & taskindex);
+      ::task* get_task(const ::task_index & taskindex);
       //itask get_task_id(const ::task* ptask);
-      //void set_task(const class ::task_index & taskindex, ::task* ptask);
-      //void unset_task(const class ::task_index & taskindex, ::task* ptask);
+      //void set_task(const ::task_index & taskindex, ::task* ptask);
+      //void unset_task(const ::task_index & taskindex, ::task* ptask);
       void set_task(::task* ptask);
       void unset_task(::task* ptask);
 
-      virtual bool is_task_set(const class ::task_index & taskindex);
+      virtual bool is_task_set(const ::task_index & taskindex);
       //virtual bool is_active(::task * ptask);
-      //virtual void set_task_on(const class ::task_index & taskindex);
-      //virtual void set_task_off(const class ::task_index & taskindex);
+      //virtual void set_task_on(const ::task_index & taskindex);
+      //virtual void set_task_off(const ::task_index & taskindex);
 
 
       virtual ::mathematics::mathematics * mathematics() override;

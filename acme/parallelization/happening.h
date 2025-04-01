@@ -19,7 +19,7 @@ class notify_lock_notifier :
 public:
 
 
-   ::pointer_array < ::notify_lock > m_notifylocka;
+   ::comparable_eq_list < ::pointer < ::notify_lock > > m_notifylocka;
 
 
    ~notify_lock_notifier() override;

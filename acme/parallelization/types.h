@@ -128,39 +128,38 @@ public:
 
 
 
-// insight by listening lastmiles (Dennis Clarke) talk about pthread_equal (it may end up not to be an int but a pointer in some implementations ?, so should use pthread_equal...)
-class CLASS_DECL_ACME task_index
-{
-public:
-
-
-	iptr	m_i;
-	
-	
-	task_index(iptr i):m_i(i) {}
-
-	task_index():m_i{} {}
-	
-	task_index(nullptr_t):m_i{} {}
-
-	task_index(const task_index & i):m_i(i.m_i) {}	
-	
-	task_index & operator = (const task_index & i) {m_i = i.m_i; return *this;}
-
-	bool operator == (const task_index & i) const { return m_i == i.m_i; }
-	
-	bool is_null() const  { return operator==(nullptr); }
-	
-	bool is_set() const { return !is_null(); }
-	
-	bool operator !() const { return is_null(); }
-	
-	
-	operator hash32() const { return (hash32)m_i; }
-
-	
-};
-
+//class CLASS_DECL_ACME task_index
+//{
+//public:
+//
+//
+//	iptr	m_i;
+//	
+//	
+//	task_index(iptr i):m_i(i) {}
+//
+//	task_index():m_i{} {}
+//	
+//	task_index(nullptr_t):m_i{} {}
+//
+//	task_index(const task_index & i):m_i(i.m_i) {}	
+//	
+//	task_index & operator = (const task_index & i) {m_i = i.m_i; return *this;}
+//
+//	bool operator == (const task_index & i) const { return m_i == i.m_i; }
+//	
+//	bool is_null() const  { return operator==(nullptr); }
+//	
+//	bool is_set() const { return !is_null(); }
+//	
+//	bool operator !() const { return is_null(); }
+//	
+//	
+//	operator hash32() const { return (hash32)m_i; }
+//
+//	
+//};
+//
 
 
 
@@ -169,7 +168,7 @@ class CLASS_DECL_ACME thread_storage
 {
 public:
   
-   class ::task_index               m_taskindex;
+   ::task_index                     m_taskindex;
    htask     	                     m_htask;
    itask     	                     m_itask;
    ::pointer < ::task >             m_ptask;

@@ -52,6 +52,9 @@
 
 constexpr inline color_indexes common_system_image_color_indexes() { return bgra_indexes(); }
 
+#elif defined(__APPLE__)
+
+constexpr inline color_indexes common_system_image_color_indexes() { return rbga_indexes(); }
 
 #else
 

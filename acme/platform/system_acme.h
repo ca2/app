@@ -45,9 +45,9 @@ namespace platform
 
       //task_map                                           m_taskmap;
       //task_id_map                                        m_taskidmap;
-      //::map < class ::task_index, class ::task_index >   m_mapTaskOn;
+      //::map < ::task_index, ::task_index >   m_mapTaskOn;
 
-      ::map < class ::task_index, ::thread_storage >  m_mapThreadStorage;
+      ::map < ::task_index, ::thread_storage >  m_mapThreadStorage;
 
 
       ::critical_section                              m_criticalsectionThreadStorage;
@@ -211,8 +211,8 @@ namespace platform
 
       virtual ::task_message_queue * task_message_queue();
 
-      virtual ::thread_storage * thread_storage(const class ::task_index & taskindex);
-      virtual ::thread_storage * _thread_storage_unlocked(const class ::task_index & taskindex);
+      virtual ::thread_storage * thread_storage(const ::task_index & taskindex);
+      virtual ::thread_storage * _thread_storage_unlocked(const ::task_index & taskindex);
 
 
       //void on_initialize_particle() override;

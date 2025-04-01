@@ -344,7 +344,7 @@ public:
    //virtual void wait();
 
 
-   virtual iptr item() const;
+   //virtual ::task_index item() const;
 
    bool _has_main_loop_happening_unlocked() override;
 

@@ -308,9 +308,13 @@ void task::add_task(::object * pobjectTask)
 bool task::is_current_task() const
 {
 
-   auto itaskCurrent = ::current_itask();
+   //auto itaskCurrent = ::current_itask();
 
-   return itaskCurrent == m_itask;
+   //return itaskCurrent == m_itask;
+   
+   auto taskindexCurrent = ::current_task_index();
+   
+   return taskindexCurrent == m_taskindex;
 
 }
 
@@ -755,7 +759,7 @@ void task::__priority_and_affinity()
 void task::set_task()
 {
 
-   auto taskindex = ::task_index();
+   auto taskindex = ::current_task_index();
 
    auto itask = ::current_itask();
 
@@ -837,7 +841,7 @@ void task::unset_task()
 
    //auto atom = ::current_itask();
 
-   //::system()->set_task_off(::task_index());
+   //::system()->set_task_off(::current_task_index());
 
    system()->unset_task(this);
 
@@ -957,7 +961,7 @@ void task::run()
          while (task_get_run())
          {
 
-            task_run(1_s);
+            task_run(100_ms);
 
          }
 
@@ -1126,7 +1130,7 @@ void task::stop_task()
 
    auto taskindexThis = m_taskindex;
 
-   if (taskindexThis.is_null())
+   if (!taskindexThis)
    {
 
       return;
@@ -2464,7 +2468,7 @@ void task::branch(enum_parallelization eparallelization, const ::create_task_att
 
    increment_reference_count();
 
-   if (m_taskindex.is_set())
+   if (m_taskindex)
    {
 
       throw ::exception(error_wrong_state);
@@ -3717,7 +3721,7 @@ namespace platform
 ::interlocked_long_long g_iNewTaskIndex = 1;
 
 
-static class ::task_index new_task_index()
+static ::task_index new_task_index()
 {
 
    auto iNewTaskIndex = g_iNewTaskIndex++;
@@ -3727,10 +3731,10 @@ static class ::task_index new_task_index()
 }
 
 
-thread_local class ::task_index t_taskindex = new_task_index();
+thread_local ::task_index t_taskindex = new_task_index();
 
 
-class ::task_index task_index()
+::task_index current_task_index()
 {
 
 	return t_taskindex;
@@ -3813,7 +3817,7 @@ static htask g_htaskMain;
 
 static itask g_itaskMain;
 
-static class ::task_index g_taskindexMain;
+static ::task_index g_taskindexMain;
 
 
 CLASS_DECL_ACME void set_main_htask(htask htask)
@@ -3842,7 +3846,7 @@ CLASS_DECL_ACME void set_main_itask(itask itask)
 }
 
 
-CLASS_DECL_ACME void set_main_task_index(const class ::task_index & taskindex)
+CLASS_DECL_ACME void set_main_task_index(const ::task_index & taskindex)
 {
 
    //   MESSAGE msg;
@@ -3871,7 +3875,7 @@ CLASS_DECL_ACME itask main_itask()
 }
 
 
-CLASS_DECL_ACME class ::task_index main_task_index()
+CLASS_DECL_ACME ::task_index main_task_index()
 {
 
    return g_taskindexMain;

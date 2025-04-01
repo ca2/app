@@ -16,7 +16,7 @@ namespace file
 
    edit_item_base::edit_item_base()
    {
-      
+      m_item.m_eelement = e_element_item;
    }
 
 

@@ -3190,6 +3190,10 @@ namespace user
 
       }
 
+      plain_edit_create_line_index(pgraphics);
+
+      _update_line_start_array(iOnlyLineToUpdate);
+
       _plain_edit_update_extents(pgraphics, iOnlyLineToUpdate);
 
       //      if (m_ptree == nullptr)
@@ -10887,7 +10891,7 @@ namespace user
 
       ::string strText(scopedstrText);
 
-      queue_graphics_call([this, strText, bForceNewStep](::draw2d::graphics_pointer & pgraphics)
+      queue_graphics_call([this, strText, bForceNewStep, actioncontext](::draw2d::graphics_pointer & pgraphics)
          {
 
             on_reset_focus_start_tick();
@@ -10900,6 +10904,8 @@ namespace user
                m_pitemComposing = m_pinsert;
 
             }
+
+            plain_edit_on_after_change_text(pgraphics, actioncontext);
 
          });
 

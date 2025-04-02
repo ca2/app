@@ -325,7 +325,7 @@ bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,unsigned int 
    
    if(m_messagea.is_empty() &&
       m_phappeningNewMessage
-      && m_phappeningNewMessage->m_bSignaled)
+      && m_phappeningNewMessage->is_signaled())
    {
       
       m_phappeningNewMessage->reset_happening();

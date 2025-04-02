@@ -105,7 +105,7 @@ task::task()
 
    m_htask = nullptr;
    m_itask = nullptr;
-
+   m_taskindex = 0;
    m_bKeepRunningPostedProcedures = false;
 
 }
@@ -1507,11 +1507,9 @@ void task::__task_init()
 
 }
 
-void os_on_init_thread();
-void os_on_term_thread();
 
-
-
+CLASS_DECL_ACME bool os_on_init_thread();
+CLASS_DECL_ACME void os_on_term_thread();
 
 
 void task::__task_main()

@@ -1327,9 +1327,6 @@
     <ClCompile Include="platform\api_client.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="handler\context.cpp">
-      <Filter>Source Files\handler</Filter>
-    </ClCompile>
     <ClCompile Include="handler\manager.cpp">
       <Filter>Source Files\handler</Filter>
     </ClCompile>

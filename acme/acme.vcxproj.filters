@@ -4167,6 +4167,9 @@
     <ClInclude Include="user\user\item.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="handler\handler_context.h">
+      <Filter>Header Files\handler</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -5962,6 +5965,9 @@
     </ClCompile>
     <ClCompile Include="user\user\item_base.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="handler\handler_context.cpp">
+      <Filter>Source Files\handler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

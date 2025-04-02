@@ -271,6 +271,16 @@ namespace platform
    }
 
 
+void system::application_main()
+{
+   
+   auto papplication = __øcreate < ::platform::application>();
+   
+   papplication->application_main();
+
+   
+}
+
    // void system::on_set_platform()
    // {
    //

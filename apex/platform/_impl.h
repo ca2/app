@@ -574,7 +574,7 @@
 //} // namespace apex
 
 
-#if !defined(DEBUG)
+#if !defined(_DEBUG)
 
 
 //inline void object::set_context(::handler_context* pcontext)

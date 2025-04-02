@@ -127,7 +127,7 @@ typedef long long filesize;
 #define __not_found_index(i) ((i) < 0)
 
 
-#if defined(DEBUG)
+#if defined(_DEBUG)
 
 
 #define RELEASE_INLINE
@@ -204,7 +204,7 @@ typedef long long filesize;
 #endif
 
 
-//#if defined(DEBUG) && !defined(NO_ACME_MEMORY_MANAGEMENT)
+//#if defined(_DEBUG) && !defined(NO_ACME_MEMORY_MANAGEMENT)
 //#define ___new ___new(__FILE__, __LINE__)
 //#else
 //#define memory_new ___new

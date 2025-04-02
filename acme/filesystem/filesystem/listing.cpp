@@ -178,7 +178,7 @@ namespace file
 
             scoped_restore(m_eextract);
             
-            #if defined(DEBUG) && defined(NETBSD)
+            #if defined(_DEBUG) && defined(NETBSD)
             ::information() << "listing  depth>0:" << path;
             #endif
 
@@ -197,14 +197,14 @@ namespace file
             if(m_edepth <= 0)
             {
             
-            #if defined(DEBUG) && defined(NETBSD)
+            #if defined(_DEBUG) && defined(NETBSD)
             ::information() << "listing(2)  depth<=0:" << path;
             #endif
             
          }
          if(::is_null(m_penumerator))
          {
-                        #if defined(DEBUG) && defined(NETBSD)
+                        #if defined(_DEBUG) && defined(NETBSD)
             ::information() << "listing(2)  no enumerator:" << path;
             #endif
 

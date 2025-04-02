@@ -124,3 +124,22 @@
 
 
 
+#ifdef __SANITIZE_ADDRESS__
+
+#define __ASAN_ON__
+
+#elif defined(__has_feature)
+
+#if __has_feature(address_sanitizer)
+
+#define __ASAN_ON__
+
+#endif
+
+#endif
+
+
+
+
+
+

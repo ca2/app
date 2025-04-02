@@ -5,12 +5,12 @@
 
 #include "acme/handler/handler.h"
 #include "acme/platform/ini.h"
-#include "system_acme.h"
-#include "system_apex.h"
-#include "system_aqua.h"
-#include "system_aura.h"
-#include "system_axis.h"
-#include "system_core.h"
+#include "acme/platform/system_acme.h"
+#include "acme/platform/system_apex.h"
+#include "acme/platform/system_aqua.h"
+#include "acme/platform/system_aura.h"
+#include "acme/platform/system_axis.h"
+#include "acme/platform/system_core.h"
 
 
 namespace platform
@@ -73,6 +73,17 @@ namespace platform
 
       //void on_set_platform() override;
 
+//      template < typename APPLICATION >
+//      void main()
+//      {
+//         
+//         auto pfactoryitem = __allocate ::factory::factory_item < APPLICATION, ::platform::application >;
+//
+//         this->application_main(pfactoryitem);
+//         
+//      }
+      
+      virtual void application_main();
 
       ::task_message_queue * task_message_queue() override;
 

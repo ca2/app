@@ -79,6 +79,9 @@ namespace platform
       // m_pbaseapplication = nullptr;
       // m_pbredapplication = nullptr;
       // m_pcoreapplication = nullptr;
+      
+      set_platform();
+
 
    }
 
@@ -263,7 +266,6 @@ namespace platform
    void application::initialize_application()
    {
 
-      set_platform();
 
 
       // if (m_papplication == nullptr)

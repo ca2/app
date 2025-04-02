@@ -194,7 +194,7 @@ namespace aura
 ////#endif
 ////
 ////
-////#if defined(DEBUG) && !defined(NO_AURA_MEMORY_MANAGEMENT)
+////#if defined(_DEBUG) && !defined(NO_AURA_MEMORY_MANAGEMENT)
 ////#define ACME_NEW __allocate<  >(__FILE__, __LINE__)
 ////#else
 ////#define ACME_NEW ___new

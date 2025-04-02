@@ -1693,7 +1693,7 @@
 		9A68AD9925114434008DABD2 /* auto.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A58F2511442F008DABD2 /* auto.h */; };
 		9A68AD9A25114434008DABD2 /* const.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5902511442F008DABD2 /* const.h */; };
 		9A68AD9E25114434008DABD2 /* _platform.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5942511442F008DABD2 /* _platform.h */; };
-		9A68AD9F25114434008DABD2 /* factory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5952511442F008DABD2 /* factory.h */; };
+		9A68AD9F25114434008DABD2 /* aaa_factory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5952511442F008DABD2 /* aaa_factory.h */; };
 		9A68ADA225114434008DABD2 /* packset.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A59A2511442F008DABD2 /* packset.h */; };
 		9A68ADA425114434008DABD2 /* string_list.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A59C2511442F008DABD2 /* string_list.h */; };
 		9A68ADA625114434008DABD2 /* set_node.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A59E2511442F008DABD2 /* set_node.h */; };
@@ -3372,7 +3372,7 @@
 		9AC102202B6AC9BD0053DB45 /* value.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7861EA264B90B4003DF8A0 /* value.h */; };
 		9AC102212B6AC9BD0053DB45 /* _template_inline_functions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0841A52935C8EF009F7FF4 /* _template_inline_functions.h */; };
 		9AC102222B6AC9BD0053DB45 /* map_to_smart_pointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5B42511442F008DABD2 /* map_to_smart_pointer.h */; };
-		9AC102232B6AC9BD0053DB45 /* factory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5952511442F008DABD2 /* factory.h */; };
+		9AC102232B6AC9BD0053DB45 /* aaa_factory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5952511442F008DABD2 /* aaa_factory.h */; };
 		9AC102242B6AC9BD0053DB45 /* byte_stream_memory_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A7D125114430008DABD2 /* byte_stream_memory_file.h */; };
 		9AC102252B6AC9BD0053DB45 /* color.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAE6E8B251920CD00F10692 /* color.h */; };
 		9AC102262B6AC9BD0053DB45 /* _impl_atom.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8660DE2966A848000C82F0 /* _impl_atom.h */; };
@@ -4582,7 +4582,7 @@
 		9AD68F3C251A753A00C0EBD7 /* std_iterator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5A22511442F008DABD2 /* std_iterator.h */; };
 		9AD68F40251A753A00C0EBD7 /* less.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A54B2511442E008DABD2 /* less.h */; };
 		9AD68F41251A753A00C0EBD7 /* map_to_smart_pointer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5B42511442F008DABD2 /* map_to_smart_pointer.h */; };
-		9AD68F43251A753A00C0EBD7 /* factory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5952511442F008DABD2 /* factory.h */; };
+		9AD68F43251A753A00C0EBD7 /* aaa_factory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5952511442F008DABD2 /* aaa_factory.h */; };
 		9AD68F44251A753A00C0EBD7 /* byte_stream_memory_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A7D125114430008DABD2 /* byte_stream_memory_file.h */; };
 		9AD68F46251A753A00C0EBD7 /* color.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAE6E8B251920CD00F10692 /* color.h */; };
 		9AD68F4A251A753A00C0EBD7 /* _papaya.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A7832511442F008DABD2 /* _papaya.h */; };
@@ -5723,7 +5723,7 @@
 		9A68A58F2511442F008DABD2 /* auto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = auto.h; sourceTree = "<group>"; };
 		9A68A5902511442F008DABD2 /* const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = const.h; sourceTree = "<group>"; };
 		9A68A5942511442F008DABD2 /* _platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _platform.h; sourceTree = "<group>"; };
-		9A68A5952511442F008DABD2 /* factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = factory.h; sourceTree = "<group>"; };
+		9A68A5952511442F008DABD2 /* aaa_factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_factory.h; sourceTree = "<group>"; };
 		9A68A59A2511442F008DABD2 /* packset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = packset.h; sourceTree = "<group>"; };
 		9A68A59C2511442F008DABD2 /* string_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string_list.h; sourceTree = "<group>"; };
 		9A68A59E2511442F008DABD2 /* set_node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = set_node.h; sourceTree = "<group>"; };
@@ -7590,7 +7590,7 @@
 				9A08432B29366745009F7FF4 /* enum_names.h */,
 				9A68A5862511442F008DABD2 /* exclusive.h */,
 				9A68A5652511442F008DABD2 /* exclusive.cpp */,
-				9A68A5952511442F008DABD2 /* factory.h */,
+				9A68A5952511442F008DABD2 /* aaa_factory.h */,
 				9AE6DE5B296216B9008A1335 /* factory_function.h */,
 				9AE6DE5C296216BA008A1335 /* factory_function.cpp */,
 				9A68A5732511442F008DABD2 /* filestream.h */,
@@ -9825,7 +9825,7 @@
 				9A786224264B90B5003DF8A0 /* value.h in Headers */,
 				9A0841A62935C8F0009F7FF4 /* _template_inline_functions.h in Headers */,
 				9A68ADBC25114434008DABD2 /* map_to_smart_pointer.h in Headers */,
-				9A68AD9F25114434008DABD2 /* factory.h in Headers */,
+				9A68AD9F25114434008DABD2 /* aaa_factory.h in Headers */,
 				9A68AFC525114436008DABD2 /* byte_stream_memory_file.h in Headers */,
 				9AAE6E92251920CE00F10692 /* color.h in Headers */,
 				9A8660ED2966A849000C82F0 /* _impl_atom.h in Headers */,
@@ -10919,7 +10919,7 @@
 				9AC102202B6AC9BD0053DB45 /* value.h in Headers */,
 				9AC102212B6AC9BD0053DB45 /* _template_inline_functions.h in Headers */,
 				9AC102222B6AC9BD0053DB45 /* map_to_smart_pointer.h in Headers */,
-				9AC102232B6AC9BD0053DB45 /* factory.h in Headers */,
+				9AC102232B6AC9BD0053DB45 /* aaa_factory.h in Headers */,
 				9A523E742CD4103C006ED868 /* interaction.h in Headers */,
 				9AC102242B6AC9BD0053DB45 /* byte_stream_memory_file.h in Headers */,
 				9AC102252B6AC9BD0053DB45 /* color.h in Headers */,
@@ -11931,7 +11931,7 @@
 				9A2706952D921F9200D20305 /* _impl_path.h in Headers */,
 				9A892DF126CD9062008D6412 /* message.h in Headers */,
 				9AD68F41251A753A00C0EBD7 /* map_to_smart_pointer.h in Headers */,
-				9AD68F43251A753A00C0EBD7 /* factory.h in Headers */,
+				9AD68F43251A753A00C0EBD7 /* aaa_factory.h in Headers */,
 				9AD68F44251A753A00C0EBD7 /* byte_stream_memory_file.h in Headers */,
 				9AD68F46251A753A00C0EBD7 /* color.h in Headers */,
 				9A523ED92CD42623006ED868 /* directory_context.h in Headers */,

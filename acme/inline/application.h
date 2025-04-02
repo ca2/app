@@ -1,7 +1,7 @@
 //#include "application_common.h"
 //#include "__apps.inl"
 
-void application_main();
+void application_main(::platform::system * psystem);
 
 #include "acme/_operating_system.h"
 #include "acme/platform/system_setup.h"
@@ -100,7 +100,7 @@ int main(int argc, char * argv[], char * envp[])
    
    {
       
-      auto psystem = ::hold(new ::PLATFORM_LAYER_NAME::system);
+      auto psystem = __allocate ::PLATFORM_LAYER_NAME::system;
       
 #ifdef NETBSD
       
@@ -147,7 +147,7 @@ int main(int argc, char * argv[], char * envp[])
 
          set_main_thread();
          
-         application_main();
+         application_main(psystem);
 
          ::os_on_term_thread();
 

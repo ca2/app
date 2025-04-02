@@ -25,7 +25,7 @@ namespace nanoui
    }
 
 
-   int_size Slider::preferred_size(::nano2d::context *, bool bRecalcTextSize)
+   int_size Slider::preferred_size(::nano2d::context  *, bool bRecalcTextSize)
    {
 
       return { 70, 16 };
@@ -110,7 +110,7 @@ namespace nanoui
    }
 
 
-   void Slider::draw(::nano2d::context * pcontext)
+   void Slider::draw(::nano2d::context  * pcontext)
    {
 
       auto center = float_point(m_pos) + float_size(m_size) * 0.5f;

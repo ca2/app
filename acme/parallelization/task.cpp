@@ -1507,6 +1507,12 @@ void task::__task_init()
 
 }
 
+void os_on_init_thread();
+void os_on_term_thread();
+
+
+
+
 
 void task::__task_main()
 //void task::__task_main(::procedure & procedureTaskEnded)
@@ -1514,14 +1520,15 @@ void task::__task_main()
 {
 
    //::pointer < manual_reset_happening > pmanualresethappeningFinished;
+   ::os_on_init_thread();
 
    try
    {
 
       __check_refdbg
 
-      os_task_init_term ostaskinitterm;
-
+      //os_task_init_term ostaskinitterm;
+      
       __task_init();
          
       //__check_refdbg
@@ -1623,6 +1630,8 @@ void task::__task_main()
    {
 
    }
+   
+   ::os_on_term_thread();
 
 }
 
@@ -2373,7 +2382,7 @@ void task::branch(enum_parallelization eparallelization, const ::create_task_att
    //
    //   }
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
    string strId = id().as_string();
 
@@ -2615,7 +2624,7 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
 
    //}
 
-//#ifdef __DEBUG
+//#ifdef _DEBUG
 //
 //   string strId = id();
 //
@@ -2772,7 +2781,7 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
    //   //
    //   //   }
    //
-   //#ifdef __DEBUG
+   //#ifdef _DEBUG
    //
    //   string strId = id();
    //

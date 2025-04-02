@@ -99,7 +99,7 @@ namespace menu
 //      DECLARE_MESSAGE_HANDLER(_001OnNcCreate);
 //
 //
-//      void handle(::topic * ptopic, ::context * pcontext) override;
+//      void handle(::topic * ptopic, ::handler_context * pcontext) override;
 //
 //      bool on_click(::item * pitem) override;
 //

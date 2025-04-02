@@ -67,9 +67,9 @@ namespace core
          //virtual ::color::hls get_sel_color();
 
 
-         void handle(::topic * ptopic, ::context * pcontext) override;
+         void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
-         //void handle(::topic * ptopic, ::context * pcontext) override;
+         //void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
          virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 

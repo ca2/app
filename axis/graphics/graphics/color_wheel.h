@@ -90,13 +90,13 @@ namespace graphics
 
 
       /// The preferred size of this ColorWheel.
-      //int_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      //int_size preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;
 
       /// Draws the ColorWheel.
       virtual void on_draw(::draw2d::graphics * pgraphics);
-      virtual void _on_draw(::nano2d::context * pcontext);
+      virtual void _on_draw(::nano2d::context  * pcontext);
 
-      //virtual void _on_draw(::nano2d::context * pcontext);
+      //virtual void _on_draw(::nano2d::context  * pcontext);
 
       /// Handles mouse button click happenings for the ColorWheel.
       virtual bool on_mouse_down(const int_point & p);

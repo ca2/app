@@ -76,7 +76,7 @@ namespace browser
    }
 
 
-   void gcom::handle(::topic * ptopic, ::context * pcontext)
+   void gcom::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       __UNREFERENCED_PARAMETER(ptopic);

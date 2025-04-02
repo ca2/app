@@ -655,7 +655,7 @@ namespace user
    }
 
 
-   void form_mesh::handle(::topic * ptopic, ::context * pcontext)
+   void form_mesh::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       return form::handle(ptopic, pcontext);

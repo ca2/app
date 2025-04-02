@@ -60,7 +60,7 @@ namespace data
       ~tree_item_base() override;
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
       virtual long long increment_reference_count() override

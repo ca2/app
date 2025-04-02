@@ -1168,7 +1168,7 @@ namespace user
    }
 
 
-   void menu::handle(::topic * ptopic, ::context * pcontext)
+   void menu::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       //if (ptopic->id() == ::id_click)

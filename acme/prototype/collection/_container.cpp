@@ -6,7 +6,7 @@
 
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
 

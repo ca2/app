@@ -83,7 +83,7 @@ namespace user
    }
 
 
-   void font_combo_box::handle(::topic * ptopic, ::context * pcontext)
+   void font_combo_box::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       if (ptopic->id() == id_font_enumeration)

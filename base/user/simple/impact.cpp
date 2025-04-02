@@ -38,7 +38,7 @@ void simple_impact::install_message_routing(::channel * pchannel)
 //}
 
 
-void simple_impact::handle(::topic * ptopic, ::context * pcontext)
+void simple_impact::handle(::topic * ptopic, ::handler_context * pcontext)
 {
 
    ::user::impact::handle(ptopic, pcontext);

@@ -33,7 +33,7 @@ namespace nanoui
    }
 
 
-   int_size Button::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
+   int_size Button::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
 
       if (bRecalcTextSize || m_fTextWidth < 0.f || m_sizeImage.cx() < 0.f || m_sizeImage.cy() < 0.f)
@@ -325,7 +325,7 @@ namespace nanoui
    }
 
 
-   void Button::draw(::nano2d::context* pcontext)
+   void Button::draw(::nano2d::context * pcontext)
    {
 
       bool bPressed = false;

@@ -90,10 +90,10 @@ namespace nanoui
       //void set_color(const color::color & color);
 
       /// The preferred size of this ColorWheel.
-      int_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      int_size preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;
 
       /// Draws the ColorWheel.
-      void draw(::nano2d::context * pcontext) override;
+      void draw(::nano2d::context  * pcontext) override;
 
       /// Handles mouse button click happenings for the ColorWheel.
       bool mouse_button_event(const int_point & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;

@@ -952,7 +952,7 @@ namespace userex
    }
 
 
-   void pane_tab_impact::handle(::topic * ptopic, ::context * pcontext)
+   void pane_tab_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       ::user::tab_impact::handle(ptopic, pcontext);
@@ -1003,7 +1003,7 @@ namespace userex
 //   }
 
 
-   //void pane_tab_impact::handle(::topic * ptopic, ::context * pcontext)
+   //void pane_tab_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    //{
 
    //   if (ptopic->id() == ::id_context_menu_close)

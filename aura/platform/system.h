@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "context.h"
+//#include "context.h"
 #include "aqua/platform/system.h"
 
 
@@ -717,7 +717,7 @@ namespace aura
 
 //#ifdef _DEBUG
 //
-//      virtual void set_context(::context* pcontext) override;
+//      virtual void set_context(::handler_context* pcontext) override;
 //      virtual void set_context_thread(::thread* pthread) override;
 //      virtual void set_context_app(::aura::application* pappContext) override;
 //      virtual void set_context_session(::aura::session* psessionContext) override;
@@ -786,7 +786,7 @@ namespace aura
 
       //void signal(::signal * psignal) override;
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
       virtual void initialize_estamira() override;
 

@@ -145,7 +145,7 @@ namespace experience
       void install_message_routing(::channel * pchannel) override;
 
       
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
 
       void on_command(::message::command * pcommand) override;

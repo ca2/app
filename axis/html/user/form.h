@@ -36,7 +36,7 @@ public:
    //virtual void on_layout(::html_data * phtmldata);
    void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-   void handle(::topic * ptopic, ::context * pcontext) override;
+   void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
    void install_message_routing(::channel * pchannel) override;
 

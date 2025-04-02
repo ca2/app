@@ -185,7 +185,7 @@ namespace app_integration
    }
 
 
-   void menu::handle(::topic * ptopic, ::context * pcontext)
+   void menu::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       ::pointer < ::user::interaction > puserinteraction = ptopic->m_puserelement;

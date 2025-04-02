@@ -27,7 +27,7 @@ namespace filemanager
 
       virtual void _001OnAfterChangeText(const ::action_context & action_context);
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
       void browse_sync(const ::action_context & action_context) override;
 

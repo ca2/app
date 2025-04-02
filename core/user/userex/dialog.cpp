@@ -48,7 +48,7 @@ dialog::~dialog()
 }
 
 
-void dialog::handle(::topic * ptopic, ::context * pcontext)
+void dialog::handle(::topic * ptopic, ::handler_context * pcontext)
 {
 
    if(::is_set(ptopic->user_interaction()) && m_pform == nullptr)

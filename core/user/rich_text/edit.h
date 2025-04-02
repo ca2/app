@@ -165,7 +165,7 @@ namespace user
          void keyboard_focus_OnChar(::message::message * pmessage) override;
 
 
-         void handle(::topic * ptopic, ::context * pcontext) override;
+         void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
          virtual void draw_text(::draw2d::graphics_pointer & pgraphics, const ::double_rectangle & rectangle);
 

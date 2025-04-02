@@ -6,7 +6,7 @@ class message_queue;
 
 #include "apex/handler/manager.h"
 //#include "apex/handler/source.h"
-#include "apex/handler/context.h"
+//#include "acme/handler/hancontext.h"
 #include "apex/message/channel.h"
 #include "acme/parallelization/task.h"
 #include "acme/operating_system/message.h"
@@ -26,12 +26,9 @@ namespace user
 class CLASS_DECL_APEX thread :
    virtual public ::task,
    virtual public ::channel,
-   virtual public ::manager,
-   virtual public ::context//,
-   //virtual public ::source
-//#ifdef WINDOWS
-//   ,virtual public ::exception_translator
-//#endif
+   virtual public ::manager
+//,
+  // virtual public ::handler_context
 {
 public:
 

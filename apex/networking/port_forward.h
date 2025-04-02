@@ -63,7 +63,7 @@ namespace networking
          string ExternalIPAddress;
          string ExternalPort;
          string InternalPort;
-         string Protocol;
+         string m_strProtocol;
          string InternalClient;
          string Enabled;
          string Description;

@@ -59,7 +59,7 @@ namespace write_text
    }
 
 
-   void font_enumeration::handle(::topic * ptopic, ::context * pcontext)
+   void font_enumeration::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       if (ptopic->id() == id_font_enumeration)

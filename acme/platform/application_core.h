@@ -8,15 +8,15 @@ namespace platform
 {
 
 
-   struct CLASS_DECL_ACME core_application_layer_t
-   {
-
-
-      ::pointer<::userex::pane_tab_impact>     m_ppaneimpactCore;
-      ::pointer < ::filemanager::filemanager> m_pfilemanager;
-
-
-   };
+//   struct CLASS_DECL_ACME core_application_layer_t
+//   {
+//
+//
+//      ::pointer<::userex::pane_tab_impact>     m_ppaneimpactCore;
+//      ::pointer < ::filemanager::filemanager> m_pfilemanager;
+//
+//
+//   };
 
 
    class CLASS_DECL_ACME core_application_layer

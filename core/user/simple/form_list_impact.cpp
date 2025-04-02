@@ -52,7 +52,7 @@ bool simple_form_list_impact::pre_create_window(::user::system * pusersystem)
 }
 
 
-void simple_form_list_impact::handle(::topic * ptopic, ::context * pcontext)
+void simple_form_list_impact::handle(::topic * ptopic, ::handler_context * pcontext)
 {
 
    BASE::handle(ptopic, pcontext);

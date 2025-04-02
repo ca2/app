@@ -61,7 +61,7 @@ public:
    //::pointer < ::subparticle > exception_message_console(const ::exception& exception, const ::string& strMessage = nullptr, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::graphics::icon * picon=nullptr);
    //
    
-   void handle(::topic * ptopic, ::context * pcontext) override;
+   void handle(::topic * ptopic, ::handler_context * pcontext) override;
    
    
    //virtual void sync(const ::procedure & procedure);

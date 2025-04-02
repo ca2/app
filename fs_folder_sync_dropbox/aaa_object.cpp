@@ -56,7 +56,7 @@ namespace draw2d_gdiplus
       return false;
    }
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
    void object::dump(dump_context & dumpcontext) const
    {

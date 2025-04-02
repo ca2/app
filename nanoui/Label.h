@@ -66,10 +66,10 @@ namespace nanoui
       virtual void set_theme(const ::pointer < Theme > & theme) override;
 
       /// Compute the size needed to fully display the label
-      virtual int_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      virtual int_size preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;
 
       /// Draw the label
-      virtual void draw(::nano2d::context * pcontext) override;
+      virtual void draw(::nano2d::context  * pcontext) override;
 
       //void _nanoui_to_user(::user::interaction * puserinteraction) override;
 

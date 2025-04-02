@@ -6,7 +6,7 @@
 #include "acme/prototype/geometry2d/size.h"
 
 
-#pragma pack(push, image_header, 1)
+//#pragma pack(push, image_header, 1)
 
 
 #ifdef __cplusplus
@@ -96,7 +96,7 @@ struct image_header
 
 
 
-#pragma pack(pop, image_header)
+//#pragma pack(pop, image_header)
 
 
 

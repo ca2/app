@@ -665,17 +665,59 @@ inline bool __is_zero(TYPE(&array)[Size]);
 
 // raw_type discorvery
 // raw_type discorvery
-// raw_type discorvery
-
-
-template<typename POINTER>
-class raw_pointer
-{
-public:
-
-   using RAW_POINTER = POINTER;
-
-};
+//// raw_type discorvery
+//struct new_t{};
+//
+//template<typename TYPE>
+//class single_pointer
+//{
+//public:
+//
+//   TYPE * m_p;
+//   
+//   single_pointer() :
+//   m_p(nullptr)
+//   {
+//      
+//      
+//   }
+//
+//   raw_pointer(new_t) :
+//   m_p(new TYPE)
+//   {
+//      
+//      
+//   }
+//   raw_pointer(TYPE * p) :
+//   m_p(p)
+//   {
+//      
+//      m_p = nullptr;
+//      
+//   }
+//   
+//   ~raw_pointer()
+//   {
+//      
+//      destroy();
+//      
+//   }
+//   
+//   void destroy()
+//   {
+//      
+//      if(m_p)
+//      {
+//         
+//         delete m_p;
+//         
+//         m_p = nullptr;
+//         
+//      }
+//      
+//   }
+//
+//};
 
 
 template<typename TYPE>
@@ -844,9 +886,9 @@ using enum_application_capability_array = ::comparable_array < enum_application_
 
 class topic;
 
-class context;
+class handler_context;
 
-using signal_handler = ::function < void(::topic *, ::context *) >;
+using signal_handler = ::function < void(::topic *, ::handler_context *) >;
 //{
 //public:
 //
@@ -862,7 +904,7 @@ using signal_handler = ::function < void(::topic *, ::context *) >;
 //
 //   //inline void operator()() const;
 //
-//   //void operator()(::topic * ptopic, ::context * pcontext)
+//   //void operator()(::topic * ptopic, ::handler_context * pcontext)
 //   //{
 //
 //   //   this-(ptopic, pcontext);

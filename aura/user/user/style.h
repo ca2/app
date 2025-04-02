@@ -80,7 +80,7 @@ namespace user
 
       virtual bool _001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox);
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
       void increment_update_sequence() override;
 

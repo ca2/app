@@ -13,7 +13,7 @@
 //}
 //
 //
-//void menu_impact::handle(::topic * ptopic, ::context * pcontext)
+//void menu_impact::handle(::topic * ptopic, ::handler_context * pcontext)
 //{
 //   ::user::form_impact::handle(ptopic, pcontext);
 //
@@ -53,7 +53,7 @@
 //}
 //
 ////
-////void menu_impact::handle(::topic * ptopic, ::context * pcontext)
+////void menu_impact::handle(::topic * ptopic, ::handler_context * pcontext)
 ////{
 ////
 ////   auto papp = get_app();

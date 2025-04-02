@@ -119,7 +119,7 @@ namespace filemanager
 
       void RenameFile(int iLine, string & str, const ::action_context & action_context);
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_context_menu);

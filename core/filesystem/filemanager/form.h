@@ -18,7 +18,7 @@ namespace filemanager
       form(form&&)=delete;
 
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
 
    };

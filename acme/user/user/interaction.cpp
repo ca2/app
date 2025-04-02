@@ -1712,7 +1712,7 @@ namespace acme
          }
 
 
-         void interaction::handle(::topic * ptopic, ::context * pcontext)
+         void interaction::handle(::topic * ptopic, ::handler_context * pcontext)
          {
 
             if (ptopic->id() == id_operating_system_user_color_change)

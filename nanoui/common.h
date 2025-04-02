@@ -125,7 +125,7 @@ struct NSWindow;
 
 extern "C" {
    /* Opaque handle types */
-   //typedef struct ::nano2d::context ::nano2d::context;
+   //typedef struct ::nano2d::context  ::nano2d::context ;
    typedef struct GLFWwindow GLFWwindow;
 }
 
@@ -354,12 +354,12 @@ extern CLASS_DECL_NANOUI ::string get_utf8_character(uint32_t pwidgetChild);
 
 ///// Load a directory of PNG images and upload them to the GPU (suitable for use with ImagePanel)
 //extern CLASS_DECL_NANOUI ::array<::pair<int, ::string>>
-//load_image_directory(::nano2d::context * pcontext, const ::scoped_string & path);
+//load_image_directory(::nano2d::context  * pcontext, const ::scoped_string & path);
 //
 ///// Convenience function for instanting a PNG icon from the application's data segment (via bin2c)
 //#define ::nano2d::ImageIcon(ctx, name) nanoui::__nanoui_get_image(ctx, #name, name##_png, name##_png_size)
 ///// Helper function used by ::nano2d::_image_icon
-//extern CLASS_DECL_NANOUI int __nanoui_get_image(::nano2d::context * pcontext, const ::scoped_string & name,
+//extern CLASS_DECL_NANOUI int __nanoui_get_image(::nano2d::context  * pcontext, const ::scoped_string & name,
 //   uint8_t * data, uint32_t size);
 
 

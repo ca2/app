@@ -65,7 +65,7 @@ namespace userex
    }
 
 
-   void split_impact::handle(::topic * ptopic, ::context * pcontext)
+   void split_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       ::user::split_impact::handle(ptopic, pcontext);

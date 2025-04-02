@@ -104,7 +104,7 @@ namespace user
       virtual void update_all_impacts(::user::impact * pimpact, const ::atom & atom);
       virtual void update_all_impacts(::topic * ptopic);
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
       virtual Confidence MatchDocType(const ::file::path & pszPathName,::user::document *& rpDocMatch);
 

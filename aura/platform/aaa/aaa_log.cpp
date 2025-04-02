@@ -50,7 +50,7 @@ namespace aura
 
 pdirectorysystem->system() / "trace.txt";
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
       if (!file_system()->exists(pathTrace))
       {

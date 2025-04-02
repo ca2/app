@@ -430,7 +430,7 @@ namespace nano2d
 
 		// Creates font by loading it from the disk from specified file name.
 		// Returns handle to the font.
-		//int CreateFont)(::nano2d::context * pcontext, const ::scoped_string & name, const ::scoped_string & filename);
+		//int CreateFont)(::nano2d::context  * pcontext, const ::scoped_string & name, const ::scoped_string & filename);
 
 		// fontIndex specifies which font face to load from a .ttf/.ttc file.
 		virtual int create_font_at_index(const ::scoped_string& name, const ::scoped_string& filename, const int fontIndex);

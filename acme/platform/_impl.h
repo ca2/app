@@ -298,7 +298,7 @@ const char * memory_counter_id(T * pthis)
 //}
 //
 //
-////#ifndef __DEBUG
+////#ifndef _DEBUG
 ////
 ////#include "acme/prototype/prototype/block.inl"
 ////

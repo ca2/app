@@ -138,6 +138,14 @@ public:
 };
 
 
+template < typename TYPE >
+holder < TYPE > hold(TYPE * p)
+{
+   
+   return {p};
+   
+}
+
 //using cairo_surface_holder = pointer_holder < cairo_surface_t* >;
 
 

@@ -48,7 +48,7 @@ namespace filemanager
    }
 
 
-   void save_as_button_impact::handle(::topic * ptopic, ::context * pcontext)
+   void save_as_button_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       ::filemanager_impact_base::handle(ptopic, pcontext);

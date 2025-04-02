@@ -600,7 +600,7 @@ namespace nanoui
    }
 
 
-   void Screen::clear(::nano2d::context* pcontext)
+   void Screen::clear(::nano2d::context * pcontext)
    {
 
 #if defined(NANOUI_USE_OPENGL) || defined(NANOUI_USE_GLES)
@@ -621,7 +621,7 @@ namespace nanoui
 
 
 
-   void Screen::draw_setup(::nano2d::context* pcontext)
+   void Screen::draw_setup(::nano2d::context * pcontext)
    {
 
 #if defined(NANOUI_USE_OPENGL) || defined(NANOUI_USE_GLES)
@@ -660,7 +660,7 @@ namespace nanoui
    }
 
 
-   void Screen::draw_teardown(::nano2d::context* pcontext) {
+   void Screen::draw_teardown(::nano2d::context * pcontext) {
 #if defined(NANOUI_USE_OPENGL) || defined(NANOUI_USE_GLES)
       glfwSwapBuffers(m_glfw_window);
 #elif defined(NANOUI_USE_METAL)
@@ -679,7 +679,7 @@ namespace nanoui
    }
 
    //
-   void Screen::draw_all(::nano2d::context* pcontext)
+   void Screen::draw_all(::nano2d::context * pcontext)
    {
 
       //if (!m_redraw)
@@ -706,7 +706,7 @@ namespace nanoui
       //}
    }
 
-   void Screen::draw_contents(::nano2d::context* pcontext)
+   void Screen::draw_contents(::nano2d::context * pcontext)
    {
       clear(pcontext);
    }
@@ -718,7 +718,7 @@ namespace nanoui
    //}
    //
 
-   void Screen::draw(::nano2d::context* pcontext)
+   void Screen::draw(::nano2d::context * pcontext)
    {
 
 
@@ -742,7 +742,7 @@ namespace nanoui
    }
 
 
-   void Screen::draw_widgets(::nano2d::context* pcontext)
+   void Screen::draw_widgets(::nano2d::context * pcontext)
    {
       //pcontext->BeginFrame(m_size[0], m_size[1], m_pixel_ratio);
 
@@ -1412,7 +1412,7 @@ namespace nanoui
    }
 
 
-   void Screen::center_window(Window* window, ::nano2d::context* pcontext)
+   void Screen::center_window(Window* window, ::nano2d::context * pcontext)
    {
 
       if (window->size() == 0)

@@ -24,7 +24,7 @@ namespace calculator
    }
 
 
-   void plain_edit_impact::handle(::topic * ptopic, ::context * pcontext)
+   void plain_edit_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       if(eupdate == 2000)

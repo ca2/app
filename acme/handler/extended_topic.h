@@ -28,7 +28,6 @@ public:
 
 
    ::payload                              m_payload;
-   long long                                  m_iUpdateSerial;
    bool                                   m_bModified;
    class ::time                             m_timeSleep;
 

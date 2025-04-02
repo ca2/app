@@ -1157,7 +1157,7 @@ namespace platform
    }
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
    long long application::increment_reference_count()

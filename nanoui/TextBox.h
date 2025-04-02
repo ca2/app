@@ -147,15 +147,15 @@ namespace nanoui
       bool end_in_place_edit() override;
 
 
-      int_size preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
-      void draw(::nano2d::context* pcontext) override;
+      int_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      void draw(::nano2d::context * pcontext) override;
    protected:
       bool check_format(const ::scoped_string& input, const ::scoped_string& format);
       bool copy_selection();
       void paste_from_clipboard();
       bool delete_selection();
 
-      void update_cursor(::nano2d::context* pcontext, float lastx,
+      void update_cursor(::nano2d::context * pcontext, float lastx,
          const ::nano2d::glyphPosition* glyphs, ::character_count size);
       float cursor_index_to_position(::character_count iIndex, float lastx,
          const ::nano2d::glyphPosition* glyphs, ::character_count size);

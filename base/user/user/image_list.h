@@ -118,7 +118,7 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
 
 

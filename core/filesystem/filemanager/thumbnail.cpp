@@ -57,7 +57,7 @@ namespace filemanager
    }
 
 
-   void thumbnail::handle(::topic * ptopic, ::context * pcontext)
+   void thumbnail::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       ::filemanager_impact_base::handle(ptopic, pcontext);

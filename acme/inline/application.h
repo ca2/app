@@ -82,7 +82,9 @@ void set_global_exit_code(int iExitCode);
 extern "C" void netbsd_cleanup(int signo);
 #endif
 	
-	
+void os_on_init_thread();
+void os_on_term_thread();
+
 int __implement();
 
 #if defined(WINDOWS)
@@ -93,68 +95,81 @@ extern "C" int android_main(int argc, char* argv[], char* envp[], const char* p1
 int main(int argc, char * argv[], char * envp[])
 #endif
 {
-
-   ::PLATFORM_LAYER_NAME::system system;
    
+   int iExitCode = -1;
+   
+   {
+      
+      auto psystem = ::hold(new ::PLATFORM_LAYER_NAME::system);
+      
 #ifdef NETBSD
-
-	::print_line("NETBSD SIGINT installation");
- 	::signal(SIGINT, netbsd_cleanup);
-	::print_line("NETBSD SIGTERM installation");
-	::signal(SIGTERM, netbsd_cleanup);
-	::print_line("NETBSD SIGHUP installation");
-	::signal(SIGHUP, netbsd_cleanup);
-	
+      
+      ::print_line("NETBSD SIGINT installation");
+      ::signal(SIGINT, netbsd_cleanup);
+      ::print_line("NETBSD SIGTERM installation");
+      ::signal(SIGTERM, netbsd_cleanup);
+      ::print_line("NETBSD SIGHUP installation");
+      ::signal(SIGHUP, netbsd_cleanup);
+      
 #endif
-
-
-   //if (this->platform()->m_papplication->has_finishing_flag())
-   //{
-
-   //   return ::acme::acme::g_pacme->m_papplication->m_iExitCode;
-
-   //}
-
+      
+      
+      //if (this->platform()->m_papplication->has_finishing_flag())
+      //{
+      
+      //   return ::acme::acme::g_pacme->m_papplication->m_iExitCode;
+      
+      //}
+      
 #if defined(WINDOWS)
-
-   system.initialize_system(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
-
+      
+      psystem->initialize_system(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
+      
 #else
-
-   system.initialize_system(argc, argv, envp);
-
+      
+      psystem->initialize_system(argc, argv, envp);
+      
 #endif
-
+      
 #if defined(LINUX) || defined(__BSD__) || defined(RASPBERRYPIOS)
-
-   system.set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
-
+      
+      system.set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
+      
 #elif defined(ANDROID)
-
-   acme.platform()->set_resource_block(p1, p2);
-
+      
+      acme.platform()->set_resource_block(p1, p2);
+      
 #endif
+      
+      {
+         
+         ::os_on_init_thread();
 
-   os_task_init_term ostaskinitterm;
+         set_main_thread();
+         
+         application_main();
 
-   set_main_thread();
+         ::os_on_term_thread();
 
-   application_main();
+      }
+      
+      iExitCode = psystem->m_iExitCode;
+      
+   }
 
    //system.on_system_before_destroy();
 
 #ifdef NETBSD
 
-set_global_exit_code(system.m_iExitCode);
+set_global_exit_code(iExitCode);
 
 netbsd_cleanup(0);
 
 #else
 
-
-   return system.m_iExitCode;
+   return iExitCode;
    
-   #endif
+#endif
    //::acme::sub_application::g_p->m_pacmeapplicationSub->m_bConsole = true;
 
    ////   application.m_applicationflags.m_bConsole = true;

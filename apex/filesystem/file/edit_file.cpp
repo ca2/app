@@ -479,7 +479,7 @@ namespace file
    }
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
    long long edit_file::increment_reference_count()
    {

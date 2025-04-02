@@ -429,7 +429,7 @@ void subparticle::run()
 class ::time subparticle::get_run_timeout()
 {
 
-#ifdef DEBUG
+#ifdef _DEBUG
    return 5_min;
 #else
    return 5_s;

@@ -833,7 +833,7 @@ namespace experience
    }
 
 
-   void frame_window::handle(::topic * ptopic, ::context * pcontext)
+   void frame_window::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       if (ptopic->id() == ::id_click && m_pframe != nullptr

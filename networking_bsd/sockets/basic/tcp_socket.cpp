@@ -2647,7 +2647,7 @@ m_ibuf(isize)
 
          m_psslcontext->m_pclientcontext = __allocate ssl_client_context(meth_in != nullptr ? meth_in : TLS_server_method());
 
-         m_psslcontext->m_pclientcontext->initialize(m_papplication);
+         m_psslcontext->m_pclientcontext->initialize(this);
 
       }
 
@@ -3219,10 +3219,10 @@ m_ibuf(isize)
 #endif // _WIN32
 
 
-   int tcp_socket::Protocol()
+   int tcp_socket::protocol()
    {
 
-      return m_ptcpsocketInterface->Protocol();
+      return m_ptcpsocketInterface->protocol();
 
    }
 

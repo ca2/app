@@ -40,7 +40,7 @@ public:
    virtual void form_from_user();
    virtual void form_to_user();
    
-   void handle(::topic * ptopic, ::context * pcontext) override;
+   void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
 
 };

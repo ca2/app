@@ -364,7 +364,7 @@ namespace user
    }
 
 
-   void impact::handle(::topic * ptopic, ::context * pcontext)
+   void impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       ::user::box::handle(ptopic, pcontext);
@@ -391,7 +391,7 @@ namespace user
    }
 
 
-   //void impact::handle(::topic * ptopic, ::context * pcontext)
+   //void impact::handle(::topic * ptopic, ::handler_context * pcontext)
    //{
 
    //   ::user::box::handle(ptopic, pcontext);
@@ -852,7 +852,7 @@ namespace user
 
    }
 
-   //void impact::handle(::topic * ptopic, ::context * pcontext)
+   //void impact::handle(::topic * ptopic, ::handler_context * pcontext)
    //{
 
    //   ::pointer<::user::message>pusermessage(pmessage);
@@ -1064,7 +1064,7 @@ namespace user
    }
 
 
-   void impact::call_handle(::topic * ptopic, ::context * pcontext)
+   void impact::call_handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       if (ptopic->id() == id_initial_update)
@@ -1120,7 +1120,7 @@ namespace user
    //}
 
 
-   int impact::get_total_page_count(::context * pcontext)
+   int impact::get_total_page_count(::handler_context * pcontext)
    {
 
       return 1;
@@ -1215,7 +1215,7 @@ namespace user
    // ::user::impact drawing support
 
 
-   /*void impact::handle(::topic * ptopic, ::context * pcontext)
+   /*void impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
    call_update(id_initial_update);        // initial update
    }*/
@@ -1480,7 +1480,7 @@ namespace user
    }
 
    ::pointer<::user::impact>pimpact =  (pimpact);
-   pimpact->handle(::topic * ptopic, ::context * pcontext);
+   pimpact->handle(::topic * ptopic, ::handler_context * pcontext);
    if (::windows_definition::Data.bWin4 && (pimpact->GetExStyle() & WS_EX_CLIENTEDGE))
    {
    // erase the 3d style from the frame, since the ::user::impact is
@@ -1516,7 +1516,7 @@ namespace user
    return nullptr;        // can't continue without a ::user::impact
    }
 
-   ( (pimpact))->handle(::topic * ptopic, ::context * pcontext);
+   ( (pimpact))->handle(::topic * ptopic, ::handler_context * pcontext);
    if (::windows_definition::Data.bWin4 && (pimpact->GetExStyle() & WS_EX_CLIENTEDGE))
    {
    // erase the 3d style from the frame, since the ::user::impact is

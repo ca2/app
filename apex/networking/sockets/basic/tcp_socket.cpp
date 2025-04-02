@@ -2623,10 +2623,10 @@ return true;
 #endif // _WIN32
 
 
-   int tcp_socket::Protocol()
+   int tcp_socket::protocol()
    {
 
-      return m_ptcpsocketImpl->Protocol();
+      return m_ptcpsocketImpl->protocol();
       ////return IPPROTO_TCP;
 
       //return 0;

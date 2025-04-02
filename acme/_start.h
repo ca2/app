@@ -53,7 +53,7 @@
 
 
 // From __setup.h by camilo on 2022-11-25 14:53 <3ThomasBorregaardSorensen!!
-#ifdef DEBUG
+#ifdef _DEBUG
 #ifndef _DEBUG
 #define _DEBUG 1
 #endif
@@ -61,7 +61,7 @@
 
 
 #ifdef _DEBUG
-#ifndef DEBUG
+#ifndef _DEBUG
 #define DEBUG 1
 #endif
 #endif
@@ -69,7 +69,7 @@
 
 // From __setup.h by camilo on 2022-11-25 14:53 <3ThomasBorregaardSorensen!!
 #ifdef _DEBUG
-#ifndef __DEBUG
+#ifndef _DEBUG
 #define __DEBUG
 #endif
 #else

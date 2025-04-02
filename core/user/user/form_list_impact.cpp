@@ -75,7 +75,7 @@ namespace user
    }
 
 
-   void form_list_impact::handle(::topic * ptopic, ::context * pcontext)
+   void form_list_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       ::user::form_impact::handle(ptopic, pcontext);
@@ -292,7 +292,7 @@ namespace user
    }
 
 
-   //void form_list_impact::handle(::topic * ptopic, ::context * pcontext)
+   //void form_list_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    //{
 
    //   form_impact::handle(ptopic, pcontext);

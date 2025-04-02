@@ -51,7 +51,7 @@ public:
    message_box(const ::exception & exception, const ::scoped_string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox = {}, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
    ~message_box() override;
 
-#ifdef DEBUG
+#ifdef _DEBUG
    long long increment_reference_count() override;
    long long decrement_reference_count() override;
 #endif

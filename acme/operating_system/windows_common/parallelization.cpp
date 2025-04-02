@@ -473,7 +473,7 @@ CLASS_DECL_ACME class ::time default_run_timeout()
 
    class ::time timeDefaultTimeout;
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
    timeDefaultTimeout = 5_min;
 

@@ -890,7 +890,7 @@ namespace user
    //}
 
 
-   void image_list_impact::handle(::topic * ptopic, ::context * pcontext)
+   void image_list_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       ::user::impact::handle(ptopic, pcontext);

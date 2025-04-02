@@ -140,7 +140,7 @@ namespace user
       virtual void reset_content();
 
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
 
    };

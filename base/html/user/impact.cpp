@@ -178,7 +178,7 @@ void html_impact::on_document_complete(const ::string & strUrl)
 
 
 //
-//void html_impact::handle(::topic * ptopic, ::context * pcontext)
+//void html_impact::handle(::topic * ptopic, ::handler_context * pcontext)
 //{
 //
 //   ::html_form::handle(ptopic, pcontext);
@@ -217,7 +217,7 @@ void html_impact::on_document_complete(const ::string & strUrl)
 //}
 
 
-void html_impact::handle(::topic * ptopic, ::context * pcontext)
+void html_impact::handle(::topic * ptopic, ::handler_context * pcontext)
 {
 
    ::user::form_impact::handle(ptopic, pcontext);

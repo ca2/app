@@ -53,7 +53,7 @@ namespace nanoui
    }
 
 
-   void VScrollPanel::perform_layout(::nano2d::context* pcontext, bool bRecalcTextSize)
+   void VScrollPanel::perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
 
       ///Widget::perform_layout(pcontext);
@@ -104,7 +104,7 @@ namespace nanoui
    }
 
 
-   int_size VScrollPanel::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
+   int_size VScrollPanel::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
 
       if (m_children.empty())
@@ -341,7 +341,7 @@ namespace nanoui
    }
 
 
-   void VScrollPanel::draw(::nano2d::context* pcontext)
+   void VScrollPanel::draw(::nano2d::context * pcontext)
    {
 
       if (m_children.empty())

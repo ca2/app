@@ -456,7 +456,7 @@ namespace user
 //   }
 
 
-   void impact_system::handle(::topic * ptopic, ::context * pcontext)
+   void impact_system::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       update_all_impacts(ptopic);

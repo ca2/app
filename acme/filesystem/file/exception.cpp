@@ -421,7 +421,7 @@ namespace file
 //   void throw ::exception(const ::e_status & estatus, int lOsError, const ::file::path& path)
 //   {
 //
-//#ifdef __DEBUG
+//#ifdef _DEBUG
 //
 //      const ::scoped_string & scopedstr = ::file:status_short_description(estatus);
 //

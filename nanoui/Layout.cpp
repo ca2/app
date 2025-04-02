@@ -27,7 +27,7 @@ namespace nanoui
    }
 
 
-   int_size BoxLayout::preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   int_size BoxLayout::preferred_size(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
       int_size size(m_rectangleMargin.left() + m_rectangleMargin.right(),
@@ -112,7 +112,7 @@ namespace nanoui
    }
 
 
-   void BoxLayout::perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   void BoxLayout::perform_layout(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
       int_size sizeFixed = pwidget->fixed_size();
@@ -222,7 +222,7 @@ namespace nanoui
    }
 
 
-   int_size GroupLayout::preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   int_size GroupLayout::preferred_size(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
       int height = m_iMargin, width = 2 * m_iMargin;
@@ -287,7 +287,7 @@ namespace nanoui
    }
 
 
-   void GroupLayout::perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   void GroupLayout::perform_layout(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
       int height = m_iMargin;
@@ -361,7 +361,7 @@ namespace nanoui
    }
 
 
-   int_size GridLayout::preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   int_size GridLayout::preferred_size(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
       /* Compute minimum row / column sizes */
@@ -390,7 +390,7 @@ namespace nanoui
    }
 
 
-   void GridLayout::compute_layout(::nano2d::context* pcontext, Widget* pwidget, ::int_array * grid, bool bRecalcTextSize) const
+   void GridLayout::compute_layout(::nano2d::context * pcontext, Widget* pwidget, ::int_array * grid, bool bRecalcTextSize) const
    {
 
       auto iAxisIndex1 = index_of(m_eorientation);
@@ -482,7 +482,7 @@ namespace nanoui
    }
 
 
-   void GridLayout::perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   void GridLayout::perform_layout(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
       auto sizeFixed = pwidget->fixed_size();
@@ -607,7 +607,7 @@ namespace nanoui
    }
 
    
-   int_size AdvancedGridLayout::preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   int_size AdvancedGridLayout::preferred_size(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
       /* Compute minimum row / column sizes */
@@ -633,7 +633,7 @@ namespace nanoui
    }
 
 
-   void AdvancedGridLayout::perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   void AdvancedGridLayout::perform_layout(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
       ::int_array grid[2];
@@ -724,7 +724,7 @@ namespace nanoui
 
    }
 
-   void AdvancedGridLayout::compute_layout(::nano2d::context* pcontext, Widget* pwidget, ::int_array* _grid)
+   void AdvancedGridLayout::compute_layout(::nano2d::context * pcontext, Widget* pwidget, ::int_array* _grid)
    {
 
       sequence2_int fs_w = pwidget->fixed_size();

@@ -2916,9 +2916,6 @@
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/operating_system",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include/configuration_selection/$(CONFIGURATION)",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
 					"$(WorkspaceDir)/source/app",
@@ -2933,8 +2930,6 @@
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include/configuration_selection/$(CONFIGURATION)",
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/port/_",
-					"$(WorkspaceDir)/port/include",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",
@@ -3038,9 +3033,6 @@
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/operating_system",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include/configuration_selection/$(CONFIGURATION)",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/port/_",
 					"$(WorkspaceDir)/port/include",
 					"$(WorkspaceDir)/source/app",
@@ -3055,8 +3047,6 @@
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include/configuration_selection/$(CONFIGURATION)",
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/port/_",
-					"$(WorkspaceDir)/port/include",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/..",
 					"$(PROJECT_DIR)/../..",

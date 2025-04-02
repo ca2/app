@@ -638,7 +638,7 @@ namespace user
 
       virtual bool is_selected(::item * pitem);
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
       //virtual void on_notify_control_event(control_event* phappening);
 
@@ -849,7 +849,7 @@ namespace user
       //virtual bool SetPlacement(const ::int_rectangle & rectangle, unsigned int nFlags = SWP_SHOWWINDOW);
 
 
-      virtual int get_total_page_count(::context * pcontext);
+      virtual int get_total_page_count(::handler_context * pcontext);
 
 
       virtual void edit_on_text(string str);

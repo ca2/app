@@ -120,7 +120,7 @@ namespace data
 
 
       //void signal(::signal * psignal) override;
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
 
       virtual void on_fill_children() override;
@@ -986,7 +986,7 @@ return;
    //}
 
    template < prototype_item ITEM >
-   void tree <  ITEM >::handle(::topic * ptopic, ::context * pcontext)
+   void tree <  ITEM >::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       for (auto & ptree : m_treea)
@@ -1000,7 +1000,7 @@ return;
 
 
 
-   //void tree <  ITEM >::handle(::topic * ptopic, ::context * pcontext)
+   //void tree <  ITEM >::handle(::topic * ptopic, ::handler_context * pcontext)
    //{
 
    //}

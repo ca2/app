@@ -56,7 +56,7 @@ namespace filemanager
       //void FileSize();
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * pcontext) override;
       bool pre_create_window(::user::system * pusersystem) override;
 
       void on_command_probe(::message::command * pcommand) override;

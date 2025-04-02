@@ -35,7 +35,7 @@ void Label::set_theme(const ::pointer < Theme > & theme) {
 }
 
 
-int_size Label::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
+int_size Label::preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize)
 {
    
    if (bRecalcTextSize)
@@ -73,7 +73,7 @@ int_size Label::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSiz
 }
 
 
-void Label::draw(::nano2d::context * pcontext) 
+void Label::draw(::nano2d::context  * pcontext) 
 {
    
    Widget::draw(pcontext);

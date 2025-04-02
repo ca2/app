@@ -479,7 +479,7 @@ namespace core
       //}
 
 
-      void color_selector::handle(::topic * ptopic, ::context * pcontext)
+      void color_selector::handle(::topic * ptopic, ::handler_context * pcontext)
       {
 
          //::user::impact::handle(ptopic, pcontext);
@@ -487,7 +487,7 @@ namespace core
       }
 
 
-      //void color_selector::handle(::topic * ptopic, ::context * pcontext)
+      //void color_selector::handle(::topic * ptopic, ::handler_context * pcontext)
       //{
 
       //   ::user::impact::handle(ptopic, pcontext);

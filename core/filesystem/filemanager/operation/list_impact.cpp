@@ -176,7 +176,7 @@ namespace filemanager
    }
 
 
-   void operation_list_impact::handle(::topic * ptopic, ::context * pcontext)
+   void operation_list_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       BASE::handle(ptopic, pcontext);

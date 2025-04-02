@@ -7,7 +7,7 @@
 // #ifndef ___NO_DEBUG_CRT
 // //static _CRT_DUMP_CLIENT pfnOldCrtDumpClient = nullptr;
 
-// #ifdef __DEBUG
+// #ifdef _DEBUG
 
 
 // void __cdecl __crt_dump_client(void * pvData, size_t nBytes)

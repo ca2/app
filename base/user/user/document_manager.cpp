@@ -947,7 +947,7 @@ namespace user
    }
 
 
-   void document_manager::handle(::topic * ptopic, ::context * pcontext)
+   void document_manager::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       for(auto & pimpactsystem : m_mapImpactSystem.payloads())

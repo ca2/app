@@ -28,7 +28,7 @@ template < typename LIST_ITEM >
 void check_list(LIST_ITEM * plist)
 {
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
    if (::is_null(plist->m_ptail))
    {
@@ -1456,7 +1456,7 @@ _001SelectItem(pchild);
    //}
 
 
-   void tree_data::handle(::topic * ptopic, ::context * pcontext)
+   void tree_data::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       ::filemanager_impact_base::handle(ptopic, pcontext);

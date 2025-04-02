@@ -133,7 +133,7 @@ block & block::from_base64(const ::scoped_string & scopedstr) const
 //
 
 
-//#ifdef __DEBUG
+//#ifdef _DEBUG
 
 //#include "block.inl"
 

@@ -54,7 +54,7 @@ namespace nanoui
       //
       //protected:
       //   GLFWwindow * m_glfw_window = nullptr;
-      //   ::nano2d::context * m_nano2d_context = nullptr;
+      //   ::nano2d::context  * m_nano2d_context = nullptr;
       //   GLFWcursor * m_cursors[(size_t)Cursor::CursorCount];
       //   Cursor m_cursor;
       ::pointer < Widget >                m_pwidgetMouseCapture;
@@ -196,7 +196,7 @@ namespace nanoui
       //    *
       //    * \sa redraw
       //    */
-      virtual void draw_all(::nano2d::context* pcontext);
+      virtual void draw_all(::nano2d::context * pcontext);
 
       /**
        * \brief Clear the pscreen with the background color (glClearColor, glClear, etc.)
@@ -204,7 +204,7 @@ namespace nanoui
        * You typically won't need to call this function yourself, as it is called by
        * the default implementation of \::pointer draw_contents() (which is called by \::pointer draw_all())
        */
-      virtual void clear(::nano2d::context* pcontext);
+      virtual void clear(::nano2d::context * pcontext);
 
       /**
        * \brief Prepare the graphics pipeline for the next frame
@@ -215,10 +215,10 @@ namespace nanoui
        * You typically won't need to call this function yourself, as it is called
        * by \::pointer draw_all(), which is executed by the run loop.
        */
-      virtual void draw_setup(::nano2d::context* pcontext);
+      virtual void draw_setup(::nano2d::context * pcontext);
 
       /// Calls clear() and draws the window contents --- put your rendering code here.
-      virtual void draw_contents(::nano2d::context* pcontext);
+      virtual void draw_contents(::nano2d::context * pcontext);
 
       /**
        * \brief Wrap up drawing of the current frame
@@ -229,7 +229,7 @@ namespace nanoui
        * You typically won't need to call this function yourself, as it is called
        * by \::pointer draw_all(), which is executed by the run loop.
        */
-      virtual void draw_teardown(::nano2d::context* pcontext);
+      virtual void draw_teardown(::nano2d::context * pcontext);
 
       /// Return the ratio between pixel and device coordinates (e.g. >= 2 on Mac Retina displays)
       float pixel_ratio() const { return m_pixel_ratio; }
@@ -266,7 +266,7 @@ namespace nanoui
       //   GLFWwindow * glfw_window() const { return m_glfw_window; }
       //
       //   /// Return a pointer to the underlying NanoVG draw context
-      //   ::nano2d::context * ::nano2d::_context() const { return m_nano2d_context; }
+      //   ::nano2d::context  * ::nano2d::_context() const { return m_nano2d_context; }
       //
       //   /// Return the component format underlying the pscreen
       //   Texture::ComponentFormat component_format() const;
@@ -349,10 +349,10 @@ namespace nanoui
       //   /* Internal helper functions */
       void update_focus(Widget* pwidget);
       void dispose_window(Window* window);
-      void center_window(Window* window, ::nano2d::context* pcontext);
+      void center_window(Window* window, ::nano2d::context * pcontext);
       void move_window_to_front(Window* window);
-      void draw(::nano2d::context* pcontext) override;
-      void draw_widgets(::nano2d::context* pcontext);
+      void draw(::nano2d::context * pcontext) override;
+      void draw_widgets(::nano2d::context * pcontext);
 
       void set_size(const int_size& size) override;
 

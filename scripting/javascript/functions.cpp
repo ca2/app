@@ -32,7 +32,7 @@
 ////#include "net/_.h"
 
 
-//#ifdef __DEBUG
+//#ifdef _DEBUG
 //#	ifdef _MSC_VER
 //#		define aaa_memory_new ACME_NEW
 //#	endif

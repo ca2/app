@@ -40,7 +40,7 @@ namespace draw2d_opengl
 
       //bool        m_bGladInitialized;
 
-      //::pointer<::opengl::context>          m_popenglcontext;
+      //::pointer<::opengl::handler_context>          m_popenglcontext;
 
 
       draw2d();

@@ -66,7 +66,7 @@ namespace userex
    }
 
 
-   void font_impact::handle(::topic * ptopic, ::context * pcontext)
+   void font_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       ::user::split_impact::handle(ptopic, pcontext);
@@ -228,7 +228,7 @@ namespace userex
    }
 
 
-   //void font_impact::handle(::topic * ptopic, ::context * pcontext)
+   //void font_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    //{
 
    //   ::user::impact::handle(ptopic, pcontext);

@@ -259,7 +259,7 @@ namespace windowing
    }
 
 
-   void simple_ui_display::on_subject(::topic * ptopic, ::context * pcontext)
+   void simple_ui_display::on_subject(::topic * ptopic, ::handler_context * pcontext)
    {
 
       if (ptopic->id() == id_os_user_theme)

@@ -131,7 +131,7 @@ namespace filemanager
    }
 
 
-   void folder_selection_list_impact::handle(::topic * ptopic, ::context * pcontext)
+   void folder_selection_list_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       ::filemanager_impact_base::handle(ptopic, pcontext);

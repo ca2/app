@@ -32,8 +32,8 @@ namespace nanoui
       float value() { return m_value; }
       void set_value(float value) { m_value = value; }
 
-      virtual int_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
-      virtual void draw(::nano2d::context * pcontext) override;
+      virtual int_size preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;
+      virtual void draw(::nano2d::context  * pcontext) override;
    protected:
       float m_value;
 };

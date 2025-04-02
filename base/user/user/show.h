@@ -131,7 +131,7 @@ namespace user
 
 
       //using ::user::impact::update;
-      void handle(::topic * ptopic, ::context * pcontext) override
+      void handle(::topic * ptopic, ::handler_context * pcontext) override
       {
 
          ::user::impact::handle(ptopic, pcontext);
@@ -220,7 +220,7 @@ namespace user
       }
 
 
-      //virtual void handle(::topic * ptopic, ::context * pcontext) override
+      //virtual void handle(::topic * ptopic, ::handler_context * pcontext) override
       //{
 
       //   VIEW::handle(ptopic, pcontext);

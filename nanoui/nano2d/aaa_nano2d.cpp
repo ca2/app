@@ -28,17 +28,17 @@
 #include NANO2D_INCLUDE
 #include "context.h"
 
-#define __NANO2D_CONTEXT(ctx) ((::nano2d::context *) (ctx)->p)
+#define __NANO2D_CONTEXT(ctx) ((::nano2d::context  *) (ctx)->p)
 
 
 namespace nano2d
 {
 
 
-	::object * get_nano2d_object(::nano2d::context * pcontext)
+	::object * get_nano2d_object(::nano2d::context  * pcontext)
 	{
 
-		auto pnano2dcontext = ((::nano2d::context *)(pcontext)->p);
+		auto pnano2dcontext = ((::nano2d::context  *)(pcontext)->p);
 
 		::pointer < ::nano2d::draw2d_context > pdraw2dcontext = pnano2dcontext;
 

@@ -149,7 +149,7 @@ namespace userex
    }
 
 
-   void top_edit_impact::handle(::topic * ptopic, ::context * pcontext)
+   void top_edit_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
    }

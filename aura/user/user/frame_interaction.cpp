@@ -962,7 +962,7 @@ namespace user
    }
 
 
-   void frame_interaction::handle(::topic * ptopic, ::context * pcontext)
+   void frame_interaction::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       if (ptopic->id() == id_user_style_change)

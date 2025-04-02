@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "session.h"
 #include "system.h"
 #include "context.h"
 #include "machine_event_data.h"
@@ -265,7 +266,7 @@ namespace apex
    // void system::on_set_platform()
    // {
    //
-   //    apex::context::on_set_platform();
+   //    apex::handler_context::on_set_platform();
    //
    //    platform::system::on_set_platform();
    //
@@ -480,7 +481,7 @@ namespace apex
 
       }
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
       //estatus =
       //__construct_new(m_pdumpcontext);
@@ -4865,7 +4866,7 @@ namespace apex
    }
 
 
-   void system::handle(::topic * ptopic, ::context * pcontext)
+   void system::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       ::thread::handle(ptopic, pcontext);

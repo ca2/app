@@ -46,7 +46,7 @@ namespace filemanager
       
       void page2();
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * pcontext) override;
       
       //virtual ::form_property_set * get_form_property_set() override;
       

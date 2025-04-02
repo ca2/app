@@ -71,7 +71,7 @@ matter::~matter()
 
 
 
-void matter::operator()(::topic * ptopic, ::context * pcontext)
+void matter::operator()(::topic * ptopic, ::handler_context * pcontext)
 {
 
    ::particle::operator ()(ptopic, pcontext);
@@ -655,14 +655,14 @@ void matter::notify_on_destroy(::property_object * pparticle)
 //}
 
 
-//void matter::route(::topic * ptopic, ::context * pcontext)
+//void matter::route(::topic * ptopic, ::handler_context * pcontext)
 //{
 //
 //
 //}
 
 
-//void matter::post_process(::topic * ptopic, ::context * pcontext)
+//void matter::post_process(::topic * ptopic, ::handler_context * pcontext)
 //{
 //
 //

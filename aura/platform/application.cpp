@@ -380,7 +380,7 @@ namespace aura
                pframe->destroy_window();
 
             }
-#ifdef DEBUG
+#ifdef _DEBUG
             if (timeStartDestroying.elapsed() > 10_min)
 #else
             if (timeStartDestroying.elapsed() > 20_s)
@@ -417,7 +417,7 @@ namespace aura
                pframe->destroy_window();
 
             }
-#ifdef DEBUG
+#ifdef _DEBUG
             if (timeStartDestroying.elapsed() > 10_min)
 #else
             if (timeStartDestroying.elapsed() > 20_s)
@@ -446,7 +446,7 @@ namespace aura
 
             m_pacmeuserinteractionMain->destroy_window();
 
-#ifdef DEBUG
+#ifdef _DEBUG
             if (timeStartDestroying.elapsed() > 10_min)
 #else
             if (timeStartDestroying.elapsed() > 20_s)
@@ -3136,7 +3136,7 @@ retry_license:
 //   }
 //
 //
-//   void application::handle(::topic * ptopic, ::context * pcontext)
+//   void application::handle(::topic * ptopic, ::handler_context * pcontext)
 //   {
 //
 //
@@ -5436,7 +5436,7 @@ retry_license:
 //
 //
 
-   //void application::handle(::topic * ptopic, ::context * pcontext)
+   //void application::handle(::topic * ptopic, ::handler_context * pcontext)
    //{
 
    //}
@@ -5468,7 +5468,7 @@ retry_license:
 
    //}
 
-   //void application::handle(::topic * ptopic, ::context * pcontext)
+   //void application::handle(::topic * ptopic, ::handler_context * pcontext)
    //{
 
    //}
@@ -5481,7 +5481,7 @@ retry_license:
    //}
 
 
-   //void application::route(::topic * ptopic, ::context * pcontext)
+   //void application::route(::topic * ptopic, ::handler_context * pcontext)
    //{
 
    //   handle(ptopic);
@@ -8480,7 +8480,7 @@ namespace aura
    //   }
 
 
-   void application::handle(::topic * ptopic, ::context * pcontext)
+   void application::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       //::aqua::application::handle(ptopic, pcontext);

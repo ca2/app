@@ -58,7 +58,7 @@ struct color32_t
 
 
 
-#pragma pack( push , color32, 1 )
+//#pragma pack( push , color32, 1 )
 
 
 class COLOR32
@@ -90,7 +90,7 @@ public:
 };
 
 
-#pragma pack( pop , color32 )
+//#pragma pack( pop , color32 )
 
 
 #ifndef CLASS_DECL_ACME

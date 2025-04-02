@@ -40,17 +40,17 @@ namespace platform
 {
 
 
-   struct CLASS_DECL_ACME base_application_layer_t
-   {
-
-
-      //::pointer<::aura::application_menu>      m_pappmenu;
-
-      ::pointer < ::user::tab_impact >                m_ptabimpactBase;
-      ::pointer < ::user::options_impact_handler >    m_poptionsimpacthandler;
-
-
-   };
+//   struct CLASS_DECL_ACME base_application_layer_t
+//   {
+//
+//
+//      //::pointer<::aura::application_menu>      m_pappmenu;
+//
+//      ::pointer < ::user::tab_impact >                m_ptabimpactBase;
+//      ::pointer < ::user::options_impact_handler >    m_poptionsimpacthandler;
+//
+//
+//   };
 
 
    class CLASS_DECL_ACME base_application_layer

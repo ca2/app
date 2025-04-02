@@ -92,7 +92,7 @@ namespace user
    }
 
 
-   void line_layout::handle(::topic * ptopic, ::context * pcontext)
+   void line_layout::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       ::user::interaction::handle(ptopic, pcontext);

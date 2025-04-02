@@ -158,7 +158,7 @@ namespace user
          void on_kill_keyboard_focus() override;
 
 
-         void handle(::topic * ptopic, ::context * pcontext) override;
+         void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
 
          //character_count get_text_length() override;

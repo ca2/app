@@ -151,7 +151,7 @@ namespace experience
       virtual bool get_font(::write_text::font_pointer & font);
 
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
 
    };

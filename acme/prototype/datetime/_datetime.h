@@ -1,7 +1,7 @@
 #pragma once
 
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
 
 CLASS_DECL_ACME dump_context & operator <<(dump_context & dumpcontext, ::earth::time time);

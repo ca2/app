@@ -294,7 +294,7 @@
 // // // #undef VERIFY
 // // // #endif // VERIFY
 
-// // // #ifdef __DEBUG
+// // // #ifdef _DEBUG
 // // // #define VERIFY(x) ASSERT(x)
 // // // #else // __DEBUG
 // // // #define VERIFY(x) (x)

@@ -6,6 +6,7 @@
 
 
 class item;
+class handler_context;
 
 
 

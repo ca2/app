@@ -289,7 +289,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 
 
 
-//#ifdef __DEBUG
+//#ifdef _DEBUG
 //#include "acme/inline/factory_item.cpp"
 //#endif
 

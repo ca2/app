@@ -49,14 +49,14 @@ namespace user
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
       void on_command(::message::command* pcommand) override;
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
       //void set_context_offset(::draw2d::graphics_pointer & pgraphics, int, int) override;
       void set_context_offset(const ::double_point & point, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
       ::double_point get_context_offset(::user::enum_layout elayout = ::user::e_layout_sketch) override;
       ::double_size get_total_size(::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
-      //void handle(::topic * ptopic, ::context * pcontext) override;
+      //void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
       virtual void OnActivateImpact(bool bActivate, ::pointer<::user::impact>pActivateImpact, ::pointer<::user::impact>viewDeactivate) override;
 

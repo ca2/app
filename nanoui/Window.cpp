@@ -40,7 +40,7 @@ void Window::on_destroy_window()
    
 }
 
-   void Window::on_begin_draw(::nano2d::context* pcontext)
+   void Window::on_begin_draw(::nano2d::context * pcontext)
    {
 
       Widget::on_begin_draw(pcontext);
@@ -57,7 +57,7 @@ void Window::on_destroy_window()
    }
 
 
-   int_size Window::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
+   int_size Window::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
 
       bool bButtonPanelWasVisible = true;
@@ -113,7 +113,7 @@ void Window::on_destroy_window()
    }
 
 
-   void Window::perform_layout(::nano2d::context* pcontext, bool bRecalcTextSize) 
+   void Window::perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize) 
    {
 
       if (!m_button_panel) 
@@ -152,7 +152,7 @@ void Window::on_destroy_window()
    }
 
 
-   void Window::draw(::nano2d::context* pcontext)
+   void Window::draw(::nano2d::context * pcontext)
    {
 
       information() << "Draw Window!! " << typeid(*this).name();
@@ -268,7 +268,7 @@ void Window::on_destroy_window()
    }
 
 
-   void Window::_center(::nano2d::context* pcontext) 
+   void Window::_center(::nano2d::context * pcontext) 
    {
 
       screen()->center_window(this, pcontext);

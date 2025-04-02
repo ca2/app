@@ -54,7 +54,7 @@ namespace userex
    //}
 
 
-   void group_image_list_impact::handle(::topic * ptopic, ::context * pcontext)
+   void group_image_list_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       ::user::impact::handle(ptopic, pcontext);
@@ -360,7 +360,7 @@ namespace userex
    }
 
 
-   //void group_image_list_impact::handle(::topic * ptopic, ::context * pcontext)
+   //void group_image_list_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    //{
 
    //   if (ptopic->id() == ::id_item_clicked)

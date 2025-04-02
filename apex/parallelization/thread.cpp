@@ -2722,7 +2722,7 @@ void thread::branch(enum_parallelization eparallelization,
 
    //}
 
-   //#ifdef __DEBUG
+   //#ifdef _DEBUG
    //
    //   string strId = id();
    //

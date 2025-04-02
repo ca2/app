@@ -510,7 +510,7 @@ namespace platform
 
       void system_id_update(int iUpdate, long long iPayload) override;
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * pcontext) override;
       
       void call_message(const ::enum_message & emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle) override;
     
@@ -1334,7 +1334,7 @@ namespace platform
 //
 //       //#ifdef _DEBUG
 //       //
-//       //      virtual void set_context(::context* pcontext) override;
+//       //      virtual void set_context(::handler_context* pcontext) override;
 //       //      virtual void set_context_thread(::thread* pthread) override;
 //       //      virtual void set_context_app(::aura::application* pappContext) override;
 //       //      virtual void set_context_session(::aura::session* psessionContext) override;
@@ -1403,7 +1403,7 @@ namespace platform
 //
 //       //void signal(::signal * psignal) override;
 //
-//       //void handle(::topic * ptopic, ::context * pcontext) override;
+//       //void handle(::topic * ptopic, ::handler_context * pcontext) override;
 //
 //       virtual void initialize_estamira();
 //

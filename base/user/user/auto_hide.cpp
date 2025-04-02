@@ -418,7 +418,7 @@ namespace user
    }
 
 
-   void auto_hide::handle(::topic * ptopic, ::context * pcontext)
+   void auto_hide::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       if (m_bForceHiddenControl)

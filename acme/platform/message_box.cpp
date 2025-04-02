@@ -154,7 +154,7 @@ message_box::~message_box()
 }
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
 long long message_box::increment_reference_count()

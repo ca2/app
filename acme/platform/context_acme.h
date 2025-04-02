@@ -8,46 +8,46 @@ namespace platform
 {
 
 
-   struct CLASS_DECL_ACME acme_context_layer_t
-   {
-
-
-
-
-      //::platform::platform *                          m_pplatform;
-
-
-      //::platform::context *                               m_papexcontext;
-      //::aura::context *                               m_pauracontext;
-
-
-      //::platform::application*                        m_papplication;
-      ::platform::session *                           m_psession;
-      ::platform::system *                            m_psystem;
-      //::platform::node *                              m_pnode;
-
-      ::pointer<::text::translator>                   m_ptexttranslator;
-
-      ::pointer<::image::image_context>               m_pimagecontext;
-      ::pointer<::directory_context>                  m_pdirectorycontext;
-      ::pointer<::file_context>                       m_pfilecontext;
-      //::pointer<::http::context>                      m_phttpcontext;
-
-      //::pointer < ::os_context >                      m_poscontext;
-
-
-      ::string                                        m_strLocale;
-      ::string                                        m_strSchema;
-
-
-      string_array                                    m_straMatterLocatorPriority;
-      string_array                                    m_straMatterLocator;
-
-      ::pointer<::platform::http>                     m_phttp;
-
-
-   };
-
+//   struct CLASS_DECL_ACME acme_context_layer_t
+//   {
+//
+//
+//
+//
+//      //::platform::platform *                          m_pplatform;
+//
+//
+//      //::platform::context *                               m_papexcontext;
+//      //::aura::context *                               m_pauracontext;
+//
+//
+//      //::platform::application*                        m_papplication;
+//      ::platform::session *                           m_psession;
+//      ::platform::system *                            m_psystem;
+//      //::platform::node *                              m_pnode;
+//
+//      ::pointer<::text::translator>                   m_ptexttranslator;
+//
+//      ::pointer<::image::image_context>               m_pimagecontext;
+//      ::pointer<::directory_context>                  m_pdirectorycontext;
+//      ::pointer<::file_context>                       m_pfilecontext;
+//      //::pointer<::http::context>                      m_phttpcontext;
+//
+//      //::pointer < ::os_context >                      m_poscontext;
+//
+//
+//      ::string                                        m_strLocale;
+//      ::string                                        m_strSchema;
+//
+//
+//      string_array                                    m_straMatterLocatorPriority;
+//      string_array                                    m_straMatterLocator;
+//
+//      ::pointer<::platform::http>                     m_phttp;
+//
+//
+//   };
+//
 
    class CLASS_DECL_ACME acme_context_layer
    {

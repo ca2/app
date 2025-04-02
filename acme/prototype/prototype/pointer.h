@@ -56,6 +56,8 @@ public:
    ::e_status           m_estatus;
 #if REFERENCING_DEBUGGING
    reference_referer *  m_preferer = nullptr;
+#else
+   xxx xxx
 #endif
 
 

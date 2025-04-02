@@ -138,10 +138,10 @@ namespace nanoui
       void set_popup_callback(const ::function<Popup* (::collection::index, Screen*)>& popup_callback) { m_popupcallback = popup_callback; }
 
       // Widget implementation
-      void perform_layout(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
-      int_size preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
+      void perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      int_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
       
-      void draw(::nano2d::context* pcontext) override;
+      void draw(::nano2d::context * pcontext) override;
 
       bool mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
       bool mouse_enter_event(const int_point& p, bool enter, const ::user::e_key& ekeyModifiers) override;
@@ -222,8 +222,8 @@ namespace nanoui
       /// Remove pwidgetChild widgets when the associated tab is closed/erased?
       void set_erase_children(bool value) { m_bEraseChildren = value; }
 
-      void perform_layout(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
-      int_size preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
+      void perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      int_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
       void update_visibility() override;
 
 

@@ -121,7 +121,7 @@ namespace data
    //}
 
 
-   void data::handle(::topic * ptopic, ::context * pcontext)
+   void data::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       //if (m_pdatacontainerbase)

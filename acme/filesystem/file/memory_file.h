@@ -4,17 +4,17 @@
 #include "acme/prototype/prototype/memory_container.h"
 #include "file.h"
 
-#pragma pack(push, custom__integers__, 1)
-
-struct u24 { unsigned char m_u[3]; };
-
-struct u40 { unsigned char m_u[5]; };
-
-struct u48 { unsigned char m_u[6]; };
-
-struct u56 { unsigned char m_u[7]; };
-
-#pragma pack(pop, custom__integers__)
+//#pragma pack(push, custom__integers__, 1)
+//
+//struct u24 { unsigned char m_u[3]; };
+//
+//struct u40 { unsigned char m_u[5]; };
+//
+//struct u48 { unsigned char m_u[6]; };
+//
+//struct u56 { unsigned char m_u[7]; };
+//
+//#pragma pack(pop, custom__integers__)
 
 class memory_file;
 
@@ -34,19 +34,36 @@ inline void inline_byte_array_copy(unsigned char * target, const unsigned char *
       *(unsigned short *)target = *(unsigned short *)source;
       break;
    case 3:
-      *(::u24 *)target = *(::u24 *)source;
+     target[0] = source[0];
+         target[1] = source[1];
+         target[2] = source[2];
       break;
    case 4:
       *(unsigned int *)target = *(unsigned int *)source;
       break;
    case 5:
-      *(::u40 *)target = *(::u40 *)source;
+         target[0] = source[0];
+             target[1] = source[1];
+             target[2] = source[2];
+         target[3] = source[3];
+         target[4] = source[4];
       break;
    case 6:
-      *(::u48 *)target = *(::u48 *)source;
+         target[0] = source[0];
+             target[1] = source[1];
+             target[2] = source[2];
+         target[3] = source[3];
+         target[4] = source[4];
+         target[5] = source[5];
       break;
    case 7:
-      *(::u56 *)target = *(::u56 *)source;
+         target[0] = source[0];
+             target[1] = source[1];
+             target[2] = source[2];
+         target[3] = source[3];
+         target[4] = source[4];
+         target[5] = source[5];
+         target[6] = source[6];
       break;
    case 8:
       *(unsigned long long *)target = *(unsigned long long *)source;

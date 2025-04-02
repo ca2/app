@@ -629,7 +629,7 @@ namespace user
    }
 
 
-   void check_box::handle(::topic * ptopic, ::context * pcontext)
+   void check_box::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       interaction::handle(ptopic, pcontext);

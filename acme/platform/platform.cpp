@@ -1183,7 +1183,7 @@ g_bWindowingOutputDebugString = true;
 
       }
       
-      // #ifdef DEBUG
+      // #ifdef _DEBUG
       //
       // information() << "Library was opened: \"" << strLibrary << "\".";
       //

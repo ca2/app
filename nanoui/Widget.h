@@ -29,7 +29,7 @@ namespace nanoui
 
    class in_place_edit;
    
-   using layout_callback = ::function < void(::nano2d::context*) >;
+   using layout_callback = ::function < void(::nano2d::context *) >;
 
    enum class Cursor; // do not put a docstring, this is already documented
 
@@ -109,7 +109,7 @@ namespace nanoui
        *
        *    .. code-block:: cpp
        *
-       *       virtual void draw(::nano2d::context *ctx) {
+       *       virtual void draw(::nano2d::context  *ctx) {
        *           // fontSize depends on the kind of Widget.  Search for `FontSize`
        *           // in the Theme class (e.g., standard vs button)
        *           float ih = font_size;
@@ -126,7 +126,7 @@ namespace nanoui
       float                m_icon_extra_scale;
       Cursor               m_cursor;
 
-      //::function < void(::nano2d::context *) >    m_callbackSizing;
+      //::function < void(::nano2d::context  *) >    m_callbackSizing;
       layout_callback      m_callbackLayout;
 
       ::pointer < in_place_edit > m_pinplaceedit;
@@ -427,27 +427,27 @@ namespace nanoui
       /// Handle text input (UTF-32 format) (default implementation: do nothing)
       virtual bool keyboard_character_event(unsigned int codepoint);
 
-      virtual bool need_to_draw(::nano2d::context* pcontext);
+      virtual bool need_to_draw(::nano2d::context * pcontext);
 
-      virtual void on_begin_draw(::nano2d::context* pcontext);
+      virtual void on_begin_draw(::nano2d::context * pcontext);
 
       /// Compute the preferred size of the pwidget
-      virtual int_size preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true);
+      virtual int_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true);
 
 
       virtual void set_need_layout();
 
 
       /// Invoke the associated layout generator to properly place pwidgetChild widgets, if any
-      virtual void perform_layout(::nano2d::context* pcontext, bool bRecalcTextSize = true);
+      virtual void perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize = true);
 
 
       /// Draw the pwidget (and all pwidgetChild widgets)
-      virtual void call_draw(::nano2d::context* pcontext);
+      virtual void call_draw(::nano2d::context * pcontext);
 
 
       /// Draw the pwidget (and all pwidgetChild widgets)
-      virtual void draw(::nano2d::context* pcontext);
+      virtual void draw(::nano2d::context * pcontext);
 
       //protected:
          /// Free all resources used by the pwidget and any children

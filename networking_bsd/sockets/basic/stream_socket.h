@@ -104,7 +104,7 @@ namespace sockets_bsd
       int GetShutdownStatus() override;
 
       /** Returns IPPROTO_TCP or IPPROTO_SCTP */
-      int Protocol() override;
+      int protocol() override;
 
    };
 

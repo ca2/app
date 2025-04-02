@@ -336,7 +336,7 @@ namespace user
       virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
 
       ::pointer<::user::interaction>WindowDataGetWnd();

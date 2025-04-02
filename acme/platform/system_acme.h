@@ -611,7 +611,7 @@ namespace platform
 
       virtual void system_id_update(int iUpdate, long long iPayload);
 
-      //void handle(::topic * ptopic, ::context * pcontext) override;
+      //void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
       //virtual void add_handler(::particle * pmatter);
 

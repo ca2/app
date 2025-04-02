@@ -386,7 +386,7 @@ namespace opengl
    void context_win32::render()
    {
 
-      ::opengl::context::render();
+      ::opengl::handler_context::render();
 
       
 

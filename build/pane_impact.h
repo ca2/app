@@ -34,7 +34,7 @@ namespace app_build
       // void dump(dump_context & dumpcontext) const override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * pcontext) override;
       void on_change_cur_sel() override;
 
 

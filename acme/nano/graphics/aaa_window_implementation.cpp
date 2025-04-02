@@ -233,7 +233,7 @@
 // }
 //
 //
-// void window_implementation::handle(::topic * ptopic, ::context * pcontext)
+// void window_implementation::handle(::topic * ptopic, ::handler_context * pcontext)
 // {
 //
 //    if(ptopic->id() == id_operating_system_user_color_change)

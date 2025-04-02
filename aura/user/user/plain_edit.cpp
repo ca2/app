@@ -394,7 +394,7 @@ namespace user
    }
 
 
-   void plain_edit::handle(::topic * ptopic, ::context * pcontext)
+   void plain_edit::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       if (ptopic->id() == id_current_text_changed)

@@ -680,9 +680,9 @@ namespace aura
 //CLASS_DECL_APEX ::acme::library & get_library(const ::scoped_string & scopedstr);
 //CLASS_DECL_APEX void register_apex_library(const ::scoped_string & scopedstr, ::acme::library* plibrary);
 
-//CLASS_DECL_APEX ::context * get_context();
-//CLASS_DECL_APEX ::context * get_context(::particle * pparticle);
-//CLASS_DECL_APEX inline ::context * get_context(::context * pcontext);
+//CLASS_DECL_APEX ::handler_context * get_context();
+//CLASS_DECL_APEX ::handler_context * get_context(::particle * pparticle);
+//CLASS_DECL_APEX inline ::handler_context * get_context(::handler_context * pcontext);
 
 
 //inline ::object * this;

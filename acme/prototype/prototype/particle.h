@@ -143,7 +143,7 @@ public:
    void set_synchronization(::particle * pparticleSynchronization);
    void defer_create_synchronization();
 
-   void operator()(::topic * ptopic, ::context * pcontext) override;
+   void operator()(::topic * ptopic, ::handler_context * pcontext) override;
    //void operator()(::sequencer & sequencer) override;
 
    //virtual void destroy();
@@ -227,7 +227,7 @@ public:
    virtual ::factory::factory_pointer & factory(const ::string& strComponent, const ::string& strImplementation) const;
    //::factory::factory* factory(const ::atom& atom);
 
-   //virtual void handle(::topic * ptopic, ::context * pcontext);
+   //virtual void handle(::topic * ptopic, ::handler_context * pcontext);
 
 
 
@@ -259,7 +259,7 @@ public:
    virtual void call_member(long long hi);
    // <3ThomasBS_!! handle -> handle <3ThomasBS_!!
    //void handle(const  emessage, long long iData = 0, ::matter * pmatter = nullptr) override;
-   //void handle(::topic * ptopic, ::context * pcontext) override;
+   //void handle(::topic * ptopic, ::handler_context * pcontext) override;
    //void handle(::message::message * pmessage) override;
 
 
@@ -446,14 +446,14 @@ public:
 
    // ThomasBorregaardSorensen!! Like handlers
    virtual lresult message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam);
-   virtual void handle(::topic * ptopic, ::context * pcontext);
+   virtual void handle(::topic * ptopic, ::handler_context * pcontext);
    virtual void handle_message(::message::message * pmessage);
    virtual void handle_item(::item * pitem);
 
    using subparticle::call;
    // ThomasBorregaardSorensen!! Like handlers
    virtual lresult message_call(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
-   virtual void call_handle(::topic * ptopic, ::context * pcontext);
+   virtual void call_handle(::topic * ptopic, ::handler_context * pcontext);
    virtual void call_handle_message(::message::message* pmessage);
    virtual void call_handle_item(::item* pitem);
 
@@ -463,8 +463,8 @@ public:
    // <3ThomasBorregaardSorensen__!! likes handler concept...
    //void route(::signal * psignal) override;
    //void signal(::signal * psignal) override;
-   //void route(::topic * ptopic, ::context * pcontext) override;
-   //void post_process(::topic * ptopic, ::context * pcontext) override;
+   //void route(::topic * ptopic, ::handler_context * pcontext) override;
+   //void post_process(::topic * ptopic, ::handler_context * pcontext) override;
 
 
 
@@ -832,11 +832,11 @@ public:
 //#define OPTIONAL_BASE_BODY                                                          \
 //public:                                                                             \
 //   void on_initialize_particle() override {}         \
-//   void handle(::topic *, ::context *) override {}
+//   void handle(::topic *, ::handler_context *) override {}
 //
 ////   void assert_ok() const override {}                                    \
 ////   void dump(dump_context&) const override {}                               \
-//   //void on_subject(::topic::topic*, ::context*) override {} \
+//   //void on_subject(::topic::topic*, ::handler_context*) override {} \
 //
 //#define OPTIONAL_INTERACTION_BODY                                                   \
 //   OPTIONAL_BASE_BODY                                                               \

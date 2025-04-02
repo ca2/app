@@ -20,7 +20,7 @@ namespace apex
 
    class CLASS_DECL_APEX application :
       virtual public ::platform::application,
-      virtual public ::apex::context,
+      virtual public ::apex::context ,
       virtual public scalar_source,
       virtual public ::database::client,
       virtual public ::networking::application_handler
@@ -35,7 +35,7 @@ namespace apex
       //       ::string m_strNetworkingApplicationHostname;
       //       //class application_impl *                     m_pappimpl;
       //
-      //       // 2020-01-25: removing from ::apex::system, placing here (at ::context)
+      //       // 2020-01-25: removing from ::apex::system, placing here (at ::handler_context)
       //       // 2020-07-23: now at ::application
       //       ::pointer<::user::language_map>              m_puserlanguagemap;
       //
@@ -166,7 +166,7 @@ namespace apex
       ~application() override;
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
       long long increment_reference_count() override;
       long long decrement_reference_count() override;
@@ -877,7 +877,7 @@ namespace apex
 
 
       //void signal(::signal * psignal) override;
-      //void handle(::topic * ptopic, ::context * pcontext) override;
+      //void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
       //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 
@@ -956,7 +956,7 @@ namespace apex
 
       //virtual ::image::icon * get_icon(object * pparticle, bool bBigIcon) const;
 
-      //virtual void handle(::topic * ptopic, ::context * pcontext);
+      //virtual void handle(::topic * ptopic, ::handler_context * pcontext);
 
 
       //      virtual ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);

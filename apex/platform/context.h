@@ -207,13 +207,13 @@ namespace apex
       file_pointer get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception = nullptr) override;
 
 
-//      using acme::context::http_text;
+//      using acme::handler_context::http_text;
 //      ::string http_text(const ::scoped_string & scopedstrUrl, ::property_set & set) override;
 //
-//      using acme::context::http_download;
+//      using acme::handler_context::http_download;
 //      void http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set) override;
 
-//      using acme::context::http_get;
+//      using acme::handler_context::http_get;
       //::pointer < ::nano::http::response > http_get(const ::scoped_string& scopedstrUrl, const ::property_set& set) override;
 
       //virtual void perform(::nano::http::get * pget);

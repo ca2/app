@@ -34,7 +34,7 @@ namespace graphics
    }
 
 
-   void color_wheel::_on_draw(::nano2d::context * pcontext)
+   void color_wheel::_on_draw(::nano2d::context  * pcontext)
    {
 
       //Widget::draw(pcontext);
@@ -395,7 +395,7 @@ namespace graphics
 
       //context.set_font_sink(m_pfontsink);
 
-      ::nano2d::context * pcontext = &context;
+      ::nano2d::context  * pcontext = &context;
 
       _on_draw(pcontext);
 

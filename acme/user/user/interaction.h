@@ -240,7 +240,7 @@ namespace acme
                virtual ::pointer < ::operating_system::a_system_menu > create_system_menu(bool bContextual = true);
 
 
-               void handle(::topic * ptopic, ::context * pcontext) override;
+               void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
 
                ////virtual void do_interchange();

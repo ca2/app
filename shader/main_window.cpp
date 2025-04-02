@@ -181,7 +181,7 @@ namespace app_shader
    }
 
 
-   void main_window::handle(::topic * ptopic, ::context * pcontext)
+   void main_window::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       if (ptopic->id() == "simple_checkbox"

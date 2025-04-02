@@ -108,7 +108,7 @@ namespace turboc
 
 
 
-   void main_impact::handle(::topic * ptopic, ::context * pcontext)
+   void main_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       if(ptopic->id() == ::id_click)

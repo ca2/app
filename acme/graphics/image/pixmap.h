@@ -14,7 +14,7 @@
 #define __sizeof(TYPE) ((memsize)sizeof(TYPE))
 
 
-#pragma pack(push, pixmap)
+//#pragma pack(push, pixmap)
 
 // POD
 
@@ -216,7 +216,7 @@ struct pixmap
 
 };
 
-#pragma pack(pop, pixmap)
+//#pragma pack(pop, pixmap)
 
 
 

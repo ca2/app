@@ -91,7 +91,7 @@ namespace nanoui
    }
 
 
-   int_size TextBox::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
+   int_size TextBox::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
 
       int_size size(0, (int)(font_size() * 1.4f));
@@ -123,7 +123,7 @@ namespace nanoui
    }
 
 
-   void TextBox::draw(::nano2d::context* pcontext)
+   void TextBox::draw(::nano2d::context * pcontext)
    {
 
       if (m_colorBackground == argb(0.8, 0, 0, 0))
@@ -1156,7 +1156,7 @@ namespace nanoui
    }
 
 
-   void TextBox::update_cursor(::nano2d::context*, float lastx, const ::nano2d::glyphPosition* glyphs, ::character_count size)
+   void TextBox::update_cursor(::nano2d::context *, float lastx, const ::nano2d::glyphPosition* glyphs, ::character_count size)
    {
 
       // handle mouse cursor happenings

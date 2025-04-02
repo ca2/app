@@ -5307,7 +5307,7 @@ namespace user
             if (pgraphics->m_bDraw)
             {
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
                auto timeStart = ::time::now();
 
@@ -5331,7 +5331,7 @@ namespace user
                //_001OnNcDraw(pgraphics);
 
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
                auto timeEnd = ::time::now();
 
@@ -5359,7 +5359,7 @@ namespace user
 
          {
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
             auto timeStart = ::time::now();
 
@@ -5383,7 +5383,7 @@ namespace user
             }
 
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
             auto timeElapsed = timeStart.elapsed();
 
@@ -5430,7 +5430,7 @@ namespace user
 
          {
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
             auto timeStart = ::time::now();
 
@@ -5439,7 +5439,7 @@ namespace user
             on_after_graphical_update();
 
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
             auto timeEnd = ::time::now();
 
@@ -5505,7 +5505,7 @@ namespace user
 
       //on_context_offset(pgraphics);
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
       auto timeStartWithLock = ::time::now();
 
@@ -5518,7 +5518,7 @@ namespace user
          if (pgraphics->m_bDraw)
          {
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
             auto timeStart = ::time::now();
 
@@ -5534,7 +5534,7 @@ namespace user
 
             _001OnDraw(pgraphics);
 
-            //#ifdef __DEBUG
+            //#ifdef _DEBUG
             //
             //            auto puseritemHover = user_item(m_pitemHover);
             //
@@ -5581,7 +5581,7 @@ namespace user
 
       }
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
       auto timeEndWithLock = ::time::now();
 
@@ -7119,7 +7119,7 @@ namespace user
                                     //if (pgraphics->m_bDraw)
                                     //{
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
                auto timeStart = ::time::now();
 
@@ -23754,7 +23754,7 @@ if(get_parent())
    }
 
 
-   void interaction::handle(::topic * ptopic, ::context * pcontext)
+   void interaction::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       //auto phappening = pmessage->m_lparam.cast < ::user::control_event >();
@@ -29030,7 +29030,7 @@ __check_refdbg;
    }
 
 
-   //void interaction::handle(::topic * ptopic, ::context * pcontext)
+   //void interaction::handle(::topic * ptopic, ::handler_context * pcontext)
    //{
 
    //   if (ptopic->id() == id_redraw || ptopic->id() == id())
@@ -30848,7 +30848,7 @@ __check_refdbg;
    //}
 
 
-   // ::aura::context * interaction::context()
+   // ::aura::context * interaction::handler_context()
    // {
    //
    //    return m_papplication ? m_papplication->m_pauracontext : nullptr;

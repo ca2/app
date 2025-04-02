@@ -285,7 +285,7 @@ short GeoIP_update_database (char * license_key, int verbose, void (*f)( char * 
 //
 //      //MD5_Init(&ctx);
 //
-//      //::crypto::md5::context ctx(this);
+//      //::crypto::md5::handler_context ctx(this);
 //
 //
 //      MD5_Init(&context);
@@ -630,7 +630,7 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //   if ((cur_db_fh = fopen (geoipfilename, "rb")) == nullptr) {
 //    GeoIP_printf(f, NoCurrentDB, geoipfilename);
 //   } else {
-////      ::crypto::md5::context ctx(this);
+////      ::crypto::md5::handler_context ctx(this);
 //      MD5_Init(&context);
 //      while ((len = fread (buffer, 1, 1024, cur_db_fh)) > 0)
 //        // ctx.update(buffer, len);
@@ -720,7 +720,7 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //   /* make a md5 sum of ip address and license_key and store it in hex_digest2 */
 //   request_uri_len = sizeof(char) * 2036;
 //   request_uri = (char *) malloc(request_uri_len);
-//   //::crypto::md5::context ctx2(this);
+//   //::crypto::md5::handler_context ctx2(this);
 //   MD5_Init(&context2);
 //   uchar bufMd5[16];
 ////   ctx2.update(license_key,12);

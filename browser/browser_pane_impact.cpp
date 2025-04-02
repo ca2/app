@@ -339,7 +339,7 @@ namespace browser
    }
 
 
-   void pane_impact::handle(::topic * ptopic, ::context * pcontext)
+   void pane_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       if(m_pdocMenu != nullptr && ptopic->is_about(m_pdocMenu->get_impact(0)))
@@ -607,7 +607,7 @@ namespace browser
    }
 
 
-   void pane_impact::handle(::topic * ptopic, ::context * pcontext)
+   void pane_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
 

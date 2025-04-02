@@ -139,7 +139,7 @@ namespace aura
 ////extern CLASS_DECL_AURA __LPFN_MAIN_DEFERRED_RUN __main_deferred_run;
 ////
 ////
-////#ifdef __DEBUG
+////#ifdef _DEBUG
 ////
 ////#define INLINE
 ////
@@ -252,7 +252,7 @@ namespace aura
 ////#else
 ////
 ////
-////#ifdef __DEBUG
+////#ifdef _DEBUG
 ////
 ////
 ////#define ASSERT(f)          ((void) ((f) || (is_debugger_attached() && !::__assert_failed_line(__FILE__, __LINE__) && (::debug_break(), 0)) || (!is_debugger_attached() && (throw_assert_exception(__FILE__, __LINE__), 0))))
@@ -1331,9 +1331,9 @@ namespace aura
 //////CLASS_DECL_AURA ::acme::library & get_library(const ::string & psz);
 //////CLASS_DECL_AURA void register_aura_library(const ::string & psz, ::acme::library* plibrary);
 //////
-//////CLASS_DECL_AURA ::context * get_context();
-//////CLASS_DECL_AURA inline ::context * get_context(::particle * pparticle);
-//////CLASS_DECL_AURA inline ::context * get_context(::context * pcontext);
+//////CLASS_DECL_AURA ::handler_context * get_context();
+//////CLASS_DECL_AURA inline ::handler_context * get_context(::particle * pparticle);
+//////CLASS_DECL_AURA inline ::handler_context * get_context(::handler_context * pcontext);
 ////
 ////
 ////CLASS_DECL_AURA void set_global_application(::aura::application * papp);

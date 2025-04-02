@@ -317,7 +317,7 @@ void object::dev_log(string strMessage)
 
    information() << strMessage.c_str();
 
-//#ifdef __DEBUG
+//#ifdef _DEBUG
 //
 //   if (get_app())
 //   {
@@ -2687,7 +2687,7 @@ void call_sync(const ::procedure_array& methoda)
 #ifdef _DEBUG
 
 
-//void object::set_context(::context* pcontext)
+//void object::set_context(::handler_context* pcontext)
 //{
 //
 //   m_papplication.reset(pcontext);
@@ -3077,7 +3077,7 @@ void object::initialize(::particle * pparticle)
 
 //inline ::object_meta * get_meta() { defer_object_meta(); return m_pmeta; }
 
-//inline ::context* object::get_context() const { return m_papplication; }
+//inline ::handler_context* object::get_context() const { return m_papplication; }
 
 //inline ::thread* object::get_thread() const { return m_pthread; }
 
@@ -3099,14 +3099,14 @@ void object::initialize(::particle * pparticle)
 //}
 ////
 //#ifdef _DEBUG
-//    void set_context(::context* pcontext);
+//    void set_context(::handler_context* pcontext);
 //    void set_context_thread(::thread* pthread);
 //    void set_context_app(::apex::application* pappContext);
 //    void set_context_session(::apex::session* psessionContext);
 //   // void set_context_system(::apex::system* psystemContext);
 //   // void set_context_user(::object * puserContext);
 //#else
-//   inline void set_context(::context* pcontext);
+//   inline void set_context(::handler_context* pcontext);
 //   inline void set_context_thread(::thread* pthread);
 //   inline void set_context_app(::apex::application* pappContext);
 //   inline void set_context_session(::apex::session* psessionContext);

@@ -9,7 +9,7 @@
 #include "acme/prototype/geometry2d/_collection.h"
 
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
 #define PRODEVIAN_QUIT_TIMEOUT_SECONDS 180
 

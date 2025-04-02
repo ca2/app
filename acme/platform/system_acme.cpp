@@ -167,7 +167,7 @@ namespace platform
    //
    //       m_etracelevelMinimum = e_trace_level_undefined;
    //
-   // #ifdef DEBUG
+   // #ifdef _DEBUG
    //       ::atom atom;
    //       int iAtom1 = sizeof(atom);
    //       int iAtomType = sizeof(atom.m_etype);
@@ -2537,7 +2537,7 @@ namespace platform
    //
    //    }
    //
-   //    void acme_system_layer::system::handle(::topic * ptopic, ::context * pcontext)
+   //    void acme_system_layer::system::handle(::topic * ptopic, ::handler_context * pcontext)
    //    {
    //
    //       if (ptopic->id() == id_get_operating_system_dark_mode_reply)
@@ -4655,7 +4655,7 @@ return nullptr;
    }
 
 
-   //void acme_system_layer::handle(::topic * ptopic, ::context * pcontext) override{}
+   //void acme_system_layer::handle(::topic * ptopic, ::handler_context * pcontext) override{}
 
    // void acme_system_layer::add_handler(::particle * pmatter)
    // {

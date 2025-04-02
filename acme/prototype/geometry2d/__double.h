@@ -1,7 +1,7 @@
 #pragma once
 
 
-#pragma pack(push, geometry2d_double, 1)
+//#pragma pack(push, geometry2d_double, 1)
 
 
 struct DOUBLE_SIZE
@@ -41,6 +41,6 @@ struct DOUBLE_RECTANGLE
 typedef const DOUBLE_RECTANGLE * LPCRECTANGE_F64;
 
 
-#pragma pack(pop, geometry2d_double)
+//#pragma pack(pop, geometry2d_double)
 
 

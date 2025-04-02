@@ -27,7 +27,7 @@ void CLASS_DECL_NANOUI file_dialog_from_platform(
    bool multiple);
 
 
-//::object * get_nano2d_object(::nano2d::context * pcontext);
+//::object * get_nano2d_object(::nano2d::context  * pcontext);
 
 
 
@@ -274,7 +274,7 @@ static float emscripten_refresh = 0;
    return ::string(seq, seq + n);
 }
 
-int __nanoui_get_image(::nano2d::context * pcontext, const ::scoped_string & name, uint8_t * data, uint32_t size) {
+int __nanoui_get_image(::nano2d::context  * pcontext, const ::scoped_string & name, uint8_t * data, uint32_t size) {
    static string_map < int> icon_cache;
    auto it = icon_cache.plookup(name);
    if (it != icon_cache.end())
@@ -290,7 +290,7 @@ int __nanoui_get_image(::nano2d::context * pcontext, const ::scoped_string & nam
 
 
 
-void CLASS_DECL_NANOUI load_image_directory(::nano2d::context * pcontext, ::array<::pair<int, ::string>> & images, const ::scoped_string & path)
+void CLASS_DECL_NANOUI load_image_directory(::nano2d::context  * pcontext, ::array<::pair<int, ::string>> & images, const ::scoped_string & path)
 {
 
 //   ::array<::pair<int, ::string> > result;

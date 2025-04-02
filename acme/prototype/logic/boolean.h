@@ -8,7 +8,7 @@ namespace logic
 {
 
 
-#pragma pack(push, boolean, 1)
+//#pragma pack(push, boolean, 1)
 
 
    class boolean
@@ -175,7 +175,7 @@ namespace logic
 } // namespace logic
 
 
-#pragma pack(pop, boolean)
+//#pragma pack(pop, boolean)
 
 //inline bool __is_true(bool b) { return b; }
 //

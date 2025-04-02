@@ -9,7 +9,7 @@ namespace opengl
 
 
    class CLASS_DECL_GPU_OPENGL context_win32 :
-      virtual public ::opengl::context
+      virtual public ::opengl::handler_context
    {
    public:
 

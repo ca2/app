@@ -56,7 +56,7 @@ namespace prompt
    }
 
 
-   void pane_impact::handle(::topic * ptopic, ::context * pcontext)
+   void pane_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       ::user::tab_impact::handle(ptopic, pcontext);
@@ -329,7 +329,7 @@ namespace prompt
    }
 
 
-   void pane_impact::handle(::topic * ptopic, ::context * pcontext)
+   void pane_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       ::prompt::form_callback::handle(ptopic, pcontext);

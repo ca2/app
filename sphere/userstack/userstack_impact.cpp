@@ -91,7 +91,7 @@ namespace userstack
    }
 
 
-   void impact::handle(::topic * ptopic, ::context * pcontext)
+   void impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       __UNREFERENCED_PARAMETER(ptopic);

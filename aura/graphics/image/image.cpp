@@ -5,11 +5,11 @@
 #include "framework.h"
 #include "frame_array.h"
 #include "drawing.h"
-//#include "save_image.h"
 #include "context.h"
 #include "acme/exception/interface_only.h"
 #include "acme/graphics/image/_exif.h"
 #include "acme/graphics/image/image32.h"
+#include "acme/platform/application.h"
 #include "acme/prototype/mathematics/mathematics.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/task_tool.h"
@@ -10641,7 +10641,6 @@ void image::_draw_raw(const ::image::image_drawing& imagedrawing)
    return true;*/
 
 }
-
 
 
 ::image::image_pointer image::get_resized_image(const ::int_size & size)

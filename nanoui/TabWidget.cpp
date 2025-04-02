@@ -53,7 +53,7 @@ namespace nanoui
 
       }
 
-      m_callbackLayout = [this](::nano2d::context* pcontext)
+      m_callbackLayout = [this](::nano2d::context * pcontext)
       {
 
          perform_layout(pcontext);
@@ -96,7 +96,7 @@ namespace nanoui
 
       //TabWidgetBase::perform_layout(screen()->::nano2d::_context());
 
-      m_callbackLayout = [this](::nano2d::context* pcontext)
+      m_callbackLayout = [this](::nano2d::context * pcontext)
       {
          
          perform_layout(pcontext);
@@ -190,7 +190,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
    }
 
 
-   void TabWidgetBase::perform_layout(::nano2d::context* pcontext, bool bRecalcTextSize) 
+   void TabWidgetBase::perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize) 
    {
 
       m_iaTabOffsets.clear();
@@ -218,7 +218,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
    }
 
 
-   int_size TabWidgetBase::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
+   int_size TabWidgetBase::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
       pcontext->font_face(m_font.c_str());
       pcontext->font_size(font_size());
@@ -237,7 +237,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
          (int)(font_size() + 2.f * m_ptheme->m_iVerticalPaddingTabButton + 2.f * m_iPadding));
    }
 
-   void TabWidgetBase::draw(::nano2d::context* pcontext) {
+   void TabWidgetBase::draw(::nano2d::context * pcontext) {
       if (m_callbackLayout)
       {
          m_callbackLayout(pcontext);
@@ -503,7 +503,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
          }
 
          m_ppopup->m_callbackLayout =
-            [this](::nano2d::context* pcontext)
+            [this](::nano2d::context * pcontext)
          {
             
             m_ppopup->set_size(m_ppopup->preferred_size(pcontext) + int_size(40, 0));
@@ -663,7 +663,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
                ::swap(m_iaTabIds[pitem->m_item.m_iItem], m_iaTabIds[m_iTabDragIndex]);
 
                //TabWidgetBase::perform_layout(screen()->::nano2d::_context());
-               m_callbackLayout = [this](::nano2d::context* pcontext)
+               m_callbackLayout = [this](::nano2d::context * pcontext)
                {
 
                   TabWidgetBase::perform_layout(pcontext);
@@ -720,7 +720,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
    }
 
 
-   void TabWidget::perform_layout(::nano2d::context* pcontext, bool bRecalcTextSize) 
+   void TabWidget::perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize) 
    {
 
       TabWidgetBase::perform_layout(pcontext, bRecalcTextSize);
@@ -769,7 +769,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
    }
 
 
-   int_size TabWidget::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
+   int_size TabWidget::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
 
       auto sizeBase = TabWidgetBase::preferred_size(pcontext, bRecalcTextSize);

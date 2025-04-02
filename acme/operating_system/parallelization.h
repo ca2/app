@@ -23,21 +23,21 @@ CLASS_DECL_ACME htask main_htask();
 CLASS_DECL_ACME itask main_itask();
 
 
-
-class CLASS_DECL_ACME os_task_init_term
-{
-public:
-
-
-   //static thread_local thread_local_particle * t_pthreadlocalparticleList;
-
-
-   os_task_init_term();
-
-   ~os_task_init_term();
-
-
-};
+//
+//class CLASS_DECL_ACME os_task_init_term
+//{
+//public:
+//
+//
+//   //static thread_local thread_local_particle * t_pthreadlocalparticleList;
+//
+//
+//   os_task_init_term();
+//
+//   ~os_task_init_term();
+//
+//
+//};
 
 
 

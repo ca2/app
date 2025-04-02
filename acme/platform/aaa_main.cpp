@@ -1094,7 +1094,7 @@ extern thread_local ::task_pointer t_pthread;
       //::thread::g_pthreadmap = aaa_primitive_new ::thread_map();
 
       // acme commented
-      //add_factory_item < ::context >();
+      //add_factory_item < ::handler_context >();
 
 
 #if OBJECT_TYPE_COUNTER

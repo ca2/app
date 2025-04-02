@@ -194,9 +194,9 @@ namespace platform
 
    //void aura_application_layer::on_update_impact(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint){}
 
-   //void handle(::topic * ptopic, ::context * pcontext) override{}
+   //void handle(::topic * ptopic, ::handler_context * pcontext) override{}
    //void aura_application_layer::on_notify_control_event(::user::control_event* phappening){}
-   //void aura_application_layer::route(::topic * ptopic, ::context * pcontext){}
+   //void aura_application_layer::route(::topic * ptopic, ::handler_context * pcontext){}
 
 
    //user bool aura_application_layer::on_open_document(::user::document * pdocument, ::payload payloadFile){}
@@ -603,7 +603,7 @@ namespace platform
 
    //::string aura_application_layer::get_app_user_friendly_task_bar_name() override{}
 
-   //void handle(::topic * ptopic, ::context * pcontext) override{}
+   //void handle(::topic * ptopic, ::handler_context * pcontext) override{}
 
    //bool aura_application_layer::compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed){}
 
@@ -687,7 +687,7 @@ namespace platform
 
    //virtual ::image::icon * get_icon(object * pparticle, bool bBigIcon) const{}
 
-   //void aura_application_layer::handle(::topic * ptopic, ::context * pcontext){}
+   //void aura_application_layer::handle(::topic * ptopic, ::handler_context * pcontext){}
 
 
    //      virtual ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch, bool bInteractive = true){}

@@ -65,7 +65,7 @@ namespace user
 
          virtual void show_for_ui(::user::interaction * puserinteraction, ::user::rich_text::selection * pselection);
 
-         void handle(::topic * ptopic, ::context * pcontext) override;
+         void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
 
          void update_data(bool bSaveAndValidate) override;

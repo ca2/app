@@ -44,7 +44,7 @@ namespace user
       virtual void set_notify_user_interaction(::user::interaction* puserinteractionNotify);
 
 
-      void call_handle(::topic * ptopic, ::context * pcontext) override;
+      void call_handle(::topic * ptopic, ::handler_context * pcontext) override;
 
      
       bool is_impact() override;
@@ -179,7 +179,7 @@ namespace user
 
       // TODO: could return a kind of - also TODO - JOB object in case of assynchronous call
       //virtual void collaborate(::job * pjob);
-      virtual int  get_total_page_count(::context * ptopic) override;
+      virtual int  get_total_page_count(::handler_context * ptopic) override;
 
 
       //virtual void on_simple_impact_update_hint(::pointer<::user::impact>pviewSender, e_hint ehint, object * pupdate);
@@ -215,7 +215,7 @@ namespace user
       //virtual void OnActivateImpact(bool bActivate, ::pointer<::user::impact>pActivateImpact, ::pointer<::user::impact>DeactiveImpact);
       //virtual void OnActivateFrame(unsigned int nState, ::pointer<::user::frame_window>pFrameWnd);
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
       //      virtual void dump(dump_context &) const;
       //    // void assert_ok() const override;

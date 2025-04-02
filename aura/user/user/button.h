@@ -162,7 +162,7 @@ namespace user
       //virtual ::color::color get_button_text_color();
 
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
 
       bool on_click_generation(::item * pitem, ::user::mouse * pmouse) override;

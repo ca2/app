@@ -180,7 +180,7 @@ namespace compare_swap
 
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
 

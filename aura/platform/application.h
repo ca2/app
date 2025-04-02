@@ -351,9 +351,9 @@ namespace aura
 
       //virtual void on_update_impact(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint);
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * pcontext) override;
       //virtual void on_notify_control_event(::user::control_event* phappening);
-      //virtual void route(::topic * ptopic, ::context * pcontext);
+      //virtual void route(::topic * ptopic, ::handler_context * pcontext);
 
 
 
@@ -772,7 +772,7 @@ namespace aura
 
       //virtual string get_app_user_friendly_task_bar_name() override;
 
-      //void handle(::topic * ptopic, ::context * pcontext) override;
+      //void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
       //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 
@@ -840,7 +840,7 @@ namespace aura
 
       //virtual ::image::icon * get_icon(object * pparticle, bool bBigIcon) const;
 
-      //virtual void handle(::topic * ptopic, ::context * pcontext);
+      //virtual void handle(::topic * ptopic, ::handler_context * pcontext);
 void initialize_context() override;
          void initialize_context_1() override;
 

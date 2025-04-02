@@ -27,7 +27,7 @@ namespace aura
 CLASS_DECL_AURA int profile_sleep()
 {
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
    printf("aura::profiler SLEEPING!!\n");
    

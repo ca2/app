@@ -3457,7 +3457,7 @@ namespace user
    //}
 
 
-   void element::handle(::topic * ptopic, ::context * pcontext)
+   void element::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
 
@@ -4223,7 +4223,7 @@ namespace user
 //   }
 
 
-   int element::get_total_page_count(::context * pcontext)
+   int element::get_total_page_count(::handler_context * pcontext)
    {
 
       return 1;
@@ -4296,7 +4296,7 @@ namespace user
    }
 
 
-   //void element::route(::topic * ptopic, ::context * pcontext)
+   //void element::route(::topic * ptopic, ::handler_context * pcontext)
    //{
 
    //   handle(ptopic, pcontext);

@@ -166,7 +166,7 @@ namespace hellobase
    }
 
 
-   void impact::handle(::topic * ptopic, ::context * pcontext)
+   void impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       impact_base::handle(ptopic, pcontext);

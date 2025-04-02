@@ -44,7 +44,7 @@ namespace simple_shader
    }
 
 
-   void main_impact::handle(::topic * ptopic, ::context * pcontext)
+   void main_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       ::user::split_impact::handle(ptopic, pcontext);

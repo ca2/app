@@ -57,7 +57,7 @@ public:
    //void create_window() override;
    void on_click(const ::payload & payload, ::user::mouse * pmouse) override;
    
-   void handle(::topic * ptopic, ::context * pcontext) override;
+   void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
 
 };

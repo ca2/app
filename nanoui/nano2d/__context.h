@@ -11,7 +11,7 @@ namespace nano2d
 
    class CLASS_DECL_NANOUI context :
       virtual public ::particle,
-		public ::nano2d::context
+		public ::nano2d::context 
 	{
 	public:
 		

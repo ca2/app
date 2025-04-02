@@ -130,7 +130,7 @@ namespace draw2d_opengl
 
    }
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
    long long graphics::increment_reference_count()
    {

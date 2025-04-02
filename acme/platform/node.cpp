@@ -2833,7 +2833,7 @@ return false;
    string node::process_configuration_name()
    {
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
       return "debug";
 

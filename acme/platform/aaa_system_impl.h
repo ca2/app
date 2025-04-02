@@ -596,7 +596,7 @@ namespace acme
 
       virtual void system_id_update(long long iUpdate, long long iPayload);
       
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
       //virtual void add_handler(::particle * pmatter, bool bPriority = false);
 
@@ -1428,7 +1428,7 @@ namespace acme
 //
 //       //#ifdef _DEBUG
 //       //
-//       //      virtual void set_context(::context* pcontext) override;
+//       //      virtual void set_context(::handler_context* pcontext) override;
 //       //      virtual void set_context_thread(::thread* pthread) override;
 //       //      virtual void set_context_app(::aura::application* pappContext) override;
 //       //      virtual void set_context_session(::aura::session* psessionContext) override;
@@ -1497,7 +1497,7 @@ namespace acme
 //
 //       //void signal(::signal * psignal) override;
 //
-//       //void handle(::topic * ptopic, ::context * pcontext) override;
+//       //void handle(::topic * ptopic, ::handler_context * pcontext) override;
 //
 //       virtual void initialize_estamira();
 //

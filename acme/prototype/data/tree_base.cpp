@@ -845,7 +845,7 @@ namespace data
    }
 
 
-   void tree_base::handle(::topic * ptopic, ::context * pcontext)
+   void tree_base::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       predicate_each_tree ([ptopic, pcontext](auto& ptree)
@@ -859,7 +859,7 @@ namespace data
 
 
 
-   //void tree_base::handle(::topic * ptopic, ::context * pcontext)
+   //void tree_base::handle(::topic * ptopic, ::handler_context * pcontext)
    //{
 
    //}

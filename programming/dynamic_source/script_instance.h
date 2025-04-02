@@ -27,7 +27,7 @@ namespace dynamic_source
       //void assert_ok(void) const override;
       //void matter::dump(dump_context&) const override;
       //e_status on_initialize_particle(void) override;
-      //void on_subject(topic::topic*, topic::context*) override;
+      //void on_subject(topic::topic*, topic::handler_context*) override;
       //C : \netnode\time - windows\dynamic_source\C\netnodenet\net\system\seed.ds.cpp(76, 33) : error C2385 : ambiguous access of 'get_app'
 
 

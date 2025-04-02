@@ -329,7 +329,7 @@ namespace user
    //}
 
 
-   void list2::handle(::topic * ptopic, ::context * pcontext)
+   void list2::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       ::user::scroll_base::handle(ptopic, pcontext);

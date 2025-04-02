@@ -381,7 +381,7 @@ namespace account
    class ::time department::get_session_timeout()
    {
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
       return 3_minutes;
 

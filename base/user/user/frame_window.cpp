@@ -2014,7 +2014,7 @@ namespace user
       catch (const ::exception & exception)
       {
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
          auto pmessagebox = __initialize_new ::message_box(exception, "Failed to create toolbar \"" + idToolbar.as_string() + "\"");
 
@@ -2026,7 +2026,7 @@ namespace user
       catch (...)
       {
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
          ::exception exception(error_catch_all_exception);
 
@@ -2041,7 +2041,7 @@ namespace user
 //      catch (::exception & exception)
 //      {
 //
-//#ifdef DEBUG
+//#ifdef _DEBUG
 //
 //         throw ::exception(error_catch_all_exception, "Failed to create toolbar \"" + idToolbar.as_string() + "\"");
 //
@@ -2051,7 +2051,7 @@ namespace user
 //      catch (...)
 //      {
 //
-//#ifdef DEBUG
+//#ifdef _DEBUG
 //
 //         throw ::exception(error_catch_all_exception, "Failed to create toolbar \"" + idToolbar.as_string() + "\"");
 //
@@ -2938,7 +2938,7 @@ namespace user
    }
 
 
-   void frame_window::handle(::topic * ptopic, ::context * pcontext)
+   void frame_window::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       ::user::main_window::handle(ptopic, pcontext);

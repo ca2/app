@@ -41,7 +41,7 @@ namespace helloworld
    }
 
 
-   void switcher_impact::handle(::topic * ptopic, ::context * pcontext)
+   void switcher_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
       ::user::split_impact::handle(ptopic, pcontext);
    }
@@ -93,7 +93,7 @@ namespace helloworld
 
 
 
-   void switcher_impact::handle(::topic * ptopic, ::context * pcontext)
+   void switcher_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       if(ptopic->id() == ::id_click)

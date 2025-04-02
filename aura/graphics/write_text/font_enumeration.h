@@ -34,7 +34,7 @@ namespace write_text
 
 
       //void signal(::signal * psignal) override;
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
 
       virtual void defer_download_font(const ::file::path & pathCache);

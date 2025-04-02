@@ -169,13 +169,13 @@ namespace platform
 
 #endif
 
-#ifdef DEBUG
+#ifdef _DEBUG
       m_etracelevelMinimum = e_trace_level_information;
 #else
       m_etracelevelMinimum = e_trace_level_warning;
 #endif
 
-#ifdef DEBUG
+#ifdef _DEBUG
       ::atom atom;
       int iAtom1 = sizeof(atom);
       int iAtomType = sizeof(atom.m_etype);
@@ -3351,7 +3351,7 @@ particle* system::matter_mutex()
    }
 
 
-   void system::handle(::topic * ptopic, ::context * pcontext)
+   void system::handle(::topic * ptopic, ::handler_context * pcontext)
    {
       
       if(ptopic->id() == id_initialize_host_window)

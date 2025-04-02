@@ -32,7 +32,7 @@ namespace userex
    }
 
 
-   void wait_message_dialog::handle(::topic * ptopic, ::context * pcontext)
+   void wait_message_dialog::handle(::topic * ptopic, ::handler_context * pcontext)
    {
       
       dialog::handle(ptopic, pcontext);

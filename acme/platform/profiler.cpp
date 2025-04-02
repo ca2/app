@@ -21,7 +21,7 @@ namespace acme
       CLASS_DECL_ACME int profile_sleep()
       {
 
-         #ifdef __DEBUG
+         #ifdef _DEBUG
 
             printf("acme::profiler SLEEPING!!\n");
 

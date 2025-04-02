@@ -247,7 +247,7 @@ namespace file
       edit_file();
       ~edit_file() override;
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
       long long increment_reference_count() override;
       long long decrement_reference_count() override;

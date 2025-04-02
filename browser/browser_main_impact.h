@@ -25,9 +25,9 @@ namespace browser
 
       void on_create_split_impact();
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * pcontext) override;
 
-      virtual void handle(::topic * ptopic, ::context * pcontext);
+      virtual void handle(::topic * ptopic, ::handler_context * pcontext);
 
 
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics);

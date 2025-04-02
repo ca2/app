@@ -19,7 +19,7 @@
 #include "aura/user/user/interaction.h"
 
 
-#define __NANO2D_CONTEXT(ctx) ((::nano2d::context *) (ctx)->p)
+#define __NANO2D_CONTEXT(ctx) ((::nano2d::context  *) (ctx)->p)
 //#include <nanoui/pscreen.h>
 //#include <nanoui/canvas.h>
 //#include <nanoui/texture.h>
@@ -154,9 +154,9 @@ void Canvas::set_background_color(const ::color::color & colorBackground)
 
 }
 
-void Canvas::draw_contents(::nano2d::context * pcontext) { /* No-op. */ }
+void Canvas::draw_contents(::nano2d::context  * pcontext) { /* No-op. */ }
 
-void Canvas::draw(::nano2d::context * pcontext) {
+void Canvas::draw(::nano2d::context  * pcontext) {
    if (!m_pimage)
    {
 

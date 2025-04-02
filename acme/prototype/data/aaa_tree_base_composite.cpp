@@ -443,7 +443,7 @@ namespace data
    }
 
 
-   void tree_base_composite::handle(::topic * ptopic, ::context * pcontext)
+   void tree_base_composite::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
       m_ptreebase->handle(ptopic, pcontext);
@@ -452,7 +452,7 @@ namespace data
 
 
 
-   //void tree_base_composite::handle(::topic * ptopic, ::context * pcontext)
+   //void tree_base_composite::handle(::topic * ptopic, ::handler_context * pcontext)
    //{
 
    //}

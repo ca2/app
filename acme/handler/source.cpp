@@ -134,7 +134,7 @@ void source::add_handler(::particle * pparticle, bool bPriority)
 //}
 
 
-void source::route(::topic * ptopic, ::context * pcontext)
+void source::route(::topic * ptopic, ::handler_context * pcontext)
 {
 
    //if (m_psignalhandlera)
@@ -168,7 +168,7 @@ void source::route(::topic * ptopic, ::context * pcontext)
 }
 
 
-void source::on_topic(const ::atom & atom, ::particle * pparticle, ::context * pcontext)
+void source::on_topic(const ::atom & atom, ::particle * pparticle, ::handler_context * pcontext)
 {
 
    notify_topic(atom, pparticle, pcontext);
@@ -176,7 +176,7 @@ void source::on_topic(const ::atom & atom, ::particle * pparticle, ::context * p
 }
 
 
-void source::notify_topic(const ::atom & atom, ::particle * pparticle, ::context * pcontext)
+void source::notify_topic(const ::atom & atom, ::particle * pparticle, ::handler_context * pcontext)
 {
 
    auto ptopic = create_topic(atom);

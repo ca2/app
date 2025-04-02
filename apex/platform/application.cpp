@@ -306,7 +306,7 @@ namespace apex
    }
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
    long long application::increment_reference_count()
@@ -1999,7 +1999,7 @@ namespace apex
 
                class time timeTimeout;
 
-               //#ifdef __DEBUG
+               //#ifdef _DEBUG
                //
                //          timeTimeout = minutes(5);
                //
@@ -4149,7 +4149,7 @@ namespace apex
 
 #define TEST_DATA_REMOTE 0
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
          for (::collection::index i = 0; i < TEST_DATA_REMOTE; i++)
          {
@@ -4829,7 +4829,7 @@ namespace apex
    //}
 
 
-   //void application::handle(::topic * ptopic, ::context * pcontext)
+   //void application::handle(::topic * ptopic, ::handler_context * pcontext)
    //{
 
 
@@ -7252,7 +7252,7 @@ namespace apex
 
 
 
-   //void application::handle(::topic * ptopic, ::context * pcontext)
+   //void application::handle(::topic * ptopic, ::handler_context * pcontext)
    //{
 
    //}
@@ -7284,7 +7284,7 @@ namespace apex
 
    //}
 
-   //void application::handle(::topic * ptopic, ::context * pcontext)
+   //void application::handle(::topic * ptopic, ::handler_context * pcontext)
    //{
 
    //}
@@ -7297,7 +7297,7 @@ namespace apex
    //}
 
 
-   //void application::route(::topic * ptopic, ::context * pcontext)
+   //void application::route(::topic * ptopic, ::handler_context * pcontext)
    //{
 
    //   handle(ptopic, pcontext);

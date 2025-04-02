@@ -54,13 +54,13 @@ namespace nanoui
 
       virtual float y_coordinate_vertical_scroll(int y);
 
-      virtual void perform_layout(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
-      virtual int_size preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
+      virtual void perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      virtual int_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
       virtual bool mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
       virtual bool mouse_motion_event(const int_point& p, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
       //virtual bool mouse_drag_event(const sequence2_int & p, const sequence2_int & rel, const ::user::e_key & ekeyModifiers) override;
       virtual bool scroll_event(const int_point& p, const float_size& rel) override;
-      virtual void draw(::nano2d::context* pcontext) override;
+      virtual void draw(::nano2d::context * pcontext) override;
       int_size get_scroll_offset() const override;
 
       virtual float get_track_bar_height() const;

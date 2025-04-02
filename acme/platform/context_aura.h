@@ -8,11 +8,11 @@ namespace platform
 {
 
 
-   struct CLASS_DECL_ACME aura_context_layer_t
-   {
-
-
-   };
+//   struct CLASS_DECL_ACME aura_context_layer_t
+//   {
+//
+//
+//   };
 
 
    class CLASS_DECL_ACME aura_context_layer

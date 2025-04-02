@@ -6,7 +6,7 @@
 //#include "acme/prototype/prototype/function.h"
 //#include "acme/prototype/prototype/object.h"
 //#include "acme/prototype/collection/procedure_array.h"
-#include "counter.h"
+#include "acme/parallelization/counter.h"
 #include "acme/constant/happening.h"
 #include "acme/handler/handler.h"
 #include "acme/handler/source.h"
@@ -106,10 +106,10 @@ class task_handler;
 
 
 class CLASS_DECL_ACME task :
-   virtual public object,
-   virtual public acme::implementable,
+   virtual public ::object,
+   virtual public ::acme::implementable,
    virtual public ::handler::handler,
-   virtual public tracer,
+   virtual public ::tracer,
    virtual public ::source,
    virtual public ::data::property_container
 {
@@ -189,7 +189,7 @@ public:
    error_code                                      m_errorcodeHresultCoInitialize;
 #endif
 
-#ifdef __DEBUG
+#ifdef _DEBUG
    char *                                          m_pszDebug;
 #endif
    ::pointer < ::parallelization::counter >        m_pcounter;

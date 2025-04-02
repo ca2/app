@@ -394,7 +394,7 @@ application_array application_container::get_applicationa()
 
          bool bConvenientInstallation = false;
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
          bConvenientInstallation = true;
 

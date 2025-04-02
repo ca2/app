@@ -316,9 +316,9 @@ int isEndOfCentralDir(uchar * buf);
 
 int isEndOfCentralDir(uchar * buf)
 {
-   long * pl = (long *) buf;
-   if(*pl == 0x06054b50
-         || * pl == 0x0D004A11)
+   int * pi = (int *) buf;
+   if(*pi == 0x06054b50
+         || * pi == 0x0D004A11)
    {
       return 1;
    }

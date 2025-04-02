@@ -146,7 +146,7 @@ namespace platform
 
    system::system()
    {
-
+      
       if (!s_p)
       {
 
@@ -274,12 +274,27 @@ namespace platform
 void system::application_main()
 {
    
-   auto papplication = __øcreate < ::platform::application>();
+   if(!m_papplicationMain)
+   {
+      
+      __øconstruct(m_papplicationMain);
+      
+   }
    
-   papplication->application_main();
+   application_main(m_papplicationMain);
 
+}
+
+
+void system::transfer_application(::pointer < ::platform::application > && papplication)
+{
+   
+   m_papplicationMain = ::transfer(papplication);
+   
+   m_papplication = m_papplicationMain;
    
 }
+
 
    // void system::on_set_platform()
    // {

@@ -100,7 +100,7 @@ int main(int argc, char * argv[], char * envp[])
    
    {
       
-      auto psystem = __allocate ::PLATFORM_LAYER_NAME::system;
+      auto psystem = ::as_pointer(new ::PLATFORM_LAYER_NAME::system());
       
 #ifdef NETBSD
       

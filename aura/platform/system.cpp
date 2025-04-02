@@ -133,11 +133,11 @@ namespace aura
       common_construct();
 
 
-      factory()->add_factory_item < ::aura::session, ::apex::session >();
-      //factory()->add_factory_item < ::aura::application, ::apex::application >();
-      //factory()->add_factory_item < ::aura::idpool, ::acme::idpool >();
-      factory()->add_factory_item < ::user::user >();
-      factory()->add_factory_item < ::aura::component, ::component >();
+//      factory()->add_factory_item < ::aura::session, ::platform::session >();
+//      //factory()->add_factory_item < ::aura::application, ::apex::application >();
+//      //factory()->add_factory_item < ::aura::idpool, ::acme::idpool >();
+//      factory()->add_factory_item < ::user::user >();
+//      factory()->add_factory_item < ::aura::component, ::component >();
 
    }
 

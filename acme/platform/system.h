@@ -56,7 +56,7 @@ namespace platform
 
       ::pointer < ::particle >               m_pparticleHttpTextSynchronization;
       ::string_map < ::string_to_string >    m_mapText;
-
+      ::pointer < ::platform::application >  m_papplicationMain;
 
       system();
       ~system() override;
@@ -84,6 +84,7 @@ namespace platform
 //      }
       
       virtual void application_main();
+      virtual void transfer_application(::pointer < ::platform::application > && papplication);
 
       ::task_message_queue * task_message_queue() override;
 

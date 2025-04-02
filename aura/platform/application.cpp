@@ -29,6 +29,7 @@
 #include "apex/user/user/message.h"
 #include "aqua/game/game.h"
 #include "aura/constant/idpool.h"
+#include "aura/platform/component.h"
 #include "aura/platform/node.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/user/user/interaction_array.h"
@@ -300,9 +301,13 @@ namespace aura
 
       ::aqua::application::on_set_platform();
 
-      factory()->add_factory_item<::aura::system, ::platform::system>();
+      factory()->add_factory_item < ::aura::system, ::platform::system >();
+      
       factory()->add_factory_item < ::aura::session, ::platform::session >();
 
+      factory()->add_factory_item < ::user::user >();
+      
+      factory()->add_factory_item < ::aura::component, ::component >();
 
    }
 

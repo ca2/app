@@ -277,7 +277,7 @@ void system::application_main()
    if(!m_papplicationMain)
    {
       
-      __øconstruct(m_papplicationMain);
+      __raw_construct(m_papplicationMain);
       
    }
    

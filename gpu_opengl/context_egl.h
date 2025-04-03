@@ -2,7 +2,7 @@
 
 
 #include "acme/_operating_system.h"
-#include "context.h"
+#include "gpu_opengl/context.h"
 //#include "aura/os/_os.h"
 ///#include "glad_egl.h"
 
@@ -15,7 +15,7 @@ namespace opengl
 
 
    class CLASS_DECL_GPU_OPENGL context_egl :
-      virtual public ::opengl::handler_context
+      virtual public ::opengl::context
    {
    public:
 

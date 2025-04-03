@@ -4,7 +4,7 @@
 
 //app_just_message_box::application g_appjustmessageboxapplication;
 
-void application_main()
+void application_main(::platform::system * psystem)
 {
 
    app_just_aura_message_box::application application;

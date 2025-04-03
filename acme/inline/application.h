@@ -133,11 +133,11 @@ int main(int argc, char * argv[], char * envp[])
       
 #if defined(LINUX) || defined(__BSD__) || defined(RASPBERRYPIOS)
       
-      system.set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
+      psystem->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
       
 #elif defined(ANDROID)
       
-      acme.platform()->set_resource_block(p1, p2);
+      psystem->set_resource_block(p1, p2);
       
 #endif
       

@@ -113,7 +113,7 @@ namespace platform
       virtual void on_error_icloud_not_available(::particle * pparticle = nullptr, long long hi = 0, void * p = nullptr);
 
 
-      //virtual void application_main();
+      //virtual void application_main(::platform::system * psystem);
 
       virtual int application_main();
 

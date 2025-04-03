@@ -256,6 +256,8 @@ list(APPEND library_source
    handler/extended_topic.h
    handler/handler.cpp
    handler/handler.h
+   handler/handler_context.cpp
+   handler/handler_context.h
    handler/item.cpp
    handler/item.h
    handler/item_container.cpp
@@ -1904,7 +1906,7 @@ list(APPEND library_source
    platform/enum.h
    #platform/error.h
    platform/exclusive.h
-   platform/factory.h
+   #platform/factory.h
    platform/filestream.h
    platform/fixed_alloc.h
    platform/fixed_alloc_impl.h

@@ -961,7 +961,7 @@ void task::run()
          while (task_get_run())
          {
 
-            task_run(100_ms);
+            task_run(1_s);
 
          }
 

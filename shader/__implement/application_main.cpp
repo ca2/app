@@ -11,7 +11,7 @@
 
 
 
-void application_main()
+void application_main(::platform::system * psystem)
 {
 
    app_shader::application application;

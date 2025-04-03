@@ -3,7 +3,7 @@
 #include "acme/application.h"
 
 
-void application_main()
+void application_main(::platform::system * psystem)
 {
 
    app_app::application application;

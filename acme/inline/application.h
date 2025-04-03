@@ -82,7 +82,7 @@ void set_global_exit_code(int iExitCode);
 extern "C" void netbsd_cleanup(int signo);
 #endif
 	
-void os_on_init_thread();
+bool os_on_init_thread();
 void os_on_term_thread();
 
 int __implement();

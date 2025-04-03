@@ -5,7 +5,7 @@
 #include "acme/_operating_system.h"
 
 
-bool os_on_init_thread()
+CLASS_DECL_ACME bool os_on_init_thread()
 {
 
    SetThreadLocale(65001);
@@ -26,7 +26,7 @@ bool os_on_init_thread()
 }
 
 
-void os_on_term_thread()
+CLASS_DECL_ACME void os_on_term_thread()
 {
 
    // acme commented for apex

@@ -1498,3 +1498,57 @@ void notify_lock_notifier::notify_lock_notify_all()
    }
 
 }
+
+
+
+void happening::add_notify_lock(::notify_lock * pnotifylock)
+{
+
+   pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
+
+   try {
+      notify_lock_notifier::add_notify_lock(pnotifylock);
+   }
+   catch(...)
+   {
+   }
+
+   pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
+}
+
+
+void happening::erase_notify_lock(::notify_lock * pnotifylock)
+{
+
+   pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
+
+   try {
+   notify_lock_notifier::erase_notify_lock(pnotifylock);
+   }
+   catch(...)
+   {
+
+   }
+
+   pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
+
+}
+
+
+
+void happening::notify_lock_notify_all()
+{
+   pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
+
+   try {
+      notify_lock_notifier::notify_lock_notify_all();
+   }
+   catch(...)
+   {
+
+   }
+
+   pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
+
+
+}

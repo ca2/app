@@ -1,7 +1,12 @@
 //#include "application_common.h"
 //#include "__apps.inl"
 
-void application_main(::platform::system * psystem);
+namespace APPLICATION_NAMESPACE
+{
+   
+   CLASS_DECL_IMPORT void application_factory(::factory::factory * pfactory);
+
+}
 
 #include "acme/_operating_system.h"
 #include "acme/platform/system_setup.h"
@@ -17,11 +22,11 @@ void application_main(::platform::system * psystem);
 DO_FACTORY(REFERENCE_FACTORY)
 #endif
 
-#include "_main_hold.h"
+#include "_include_user_and_system.h"
 
 
-#include "acme/operating_system/acme_initialize.h"
-#include "acme/operating_system/parallelization.h"
+//#include "acme/operating_system/acme_initialize.h"
+//#include "acme/operating_system/parallelization.h"
 
 
 //DECLARE_APPLICATION(APPLICATION);
@@ -51,7 +56,7 @@ processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 //#endif
 
 
-#include "acme/platform/acme.h"
+//#include "acme/platform/acme.h"
 
 
 #if defined(LINUX) || defined(__BSD__) || defined(RASPBERRYPIOS)
@@ -147,7 +152,9 @@ int main(int argc, char * argv[], char * envp[])
 
          set_main_thread();
          
-         application_main(psystem);
+         ::APPLICATION_NAMESPACE::application_factory(psystem->factory());
+         
+         psystem->::platform::system::application_main();
 
          ::os_on_term_thread();
 

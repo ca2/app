@@ -1336,8 +1336,13 @@ namespace nanoui
 
       for (auto pwidget : m_focus_path)
       {
-
-         pwidget->focus_event(false);
+         
+         if(pwidget)
+         {
+            
+            pwidget->focus_event(false);
+            
+         }
 
       }
 

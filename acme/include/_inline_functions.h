@@ -105,7 +105,7 @@ inline bool is_memory_segment_ok(const void * pMemory, memsize s)
          if (s >= 2)
          {
 
-            sum += e[-1]; // tests read of unsigned char e[-1]
+            sum += *(e-1); // tests read of unsigned char e[-1]
 
          }
 

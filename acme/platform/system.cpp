@@ -624,6 +624,8 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
    void system::application_main(::platform::application * papplication)
    {
       
+      papplication->initialize_application();
+      
       
       m_pdynamiclibrary->initialize(papplication);
       

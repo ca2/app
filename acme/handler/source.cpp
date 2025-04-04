@@ -146,7 +146,7 @@ void source::route(::topic * ptopic, ::handler_context * pcontext)
          try
          {
 
-            pparticle->call_handle(ptopic, pcontext);
+            pparticle->call_handle(ptopic, phandlercontext);
 
          }
          catch (...)
@@ -194,9 +194,9 @@ void source::notify_topic(const ::atom & atom, ::particle * pparticle, ::handler
 
    }
 
-   call_handle(ptopic, pcontext);
+   call_handle(ptopic, phandlercontext);
 
-   route(ptopic, pcontext);
+   route(ptopic, phandlercontext);
 
 }
 

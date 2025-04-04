@@ -3422,7 +3422,7 @@ particle* system::matter_mutex()
          if (m_pnano)
          {
 
-            m_pnano->handle(ptopic, pcontext);
+            m_pnano->handle(ptopic, phandlercontext);
 
          }
 
@@ -3481,7 +3481,7 @@ particle* system::matter_mutex()
          if (::is_set(application()))
          {
 
-            application()->handle(ptopic, pcontext);
+            application()->handle(ptopic, phandlercontext);
 
          }
 

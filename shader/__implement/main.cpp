@@ -1,6 +1,6 @@
 #include "framework.h"
 #define APPLICATION_NAMESPACE app_shader
-#include "__implement.h"
+#include "acme/inline/application/main.inl"
 
 
 // //app_shader::application g_appshaderapplication;

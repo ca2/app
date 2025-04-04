@@ -93,7 +93,7 @@ namespace user
 
       }
 
-      ::user::combo_box::handle(ptopic, pcontext);
+      ::user::combo_box::handle(ptopic, phandlercontext);
 
    }
 

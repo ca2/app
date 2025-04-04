@@ -29,9 +29,9 @@ namespace user
    void form_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
-      //::user::impact::handle(ptopic, pcontext);
+      //::user::impact::handle(ptopic, phandlercontext);
 
-      form_window::handle(ptopic, pcontext);
+      form_window::handle(ptopic, phandlercontext);
 
       if (ptopic->id() == ::id_form_initialize && ptopic->user_interaction() == this)
       {
@@ -90,7 +90,7 @@ namespace user
 
          ptopic->payload(id_form) = this;
 
-         m_pcallback->handle(ptopic, pcontext);
+         m_pcallback->handle(ptopic, phandlercontext);
 
       }
 
@@ -337,7 +337,7 @@ namespace user
    //void form_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    //{
 
-   //   form_window::handle(ptopic, pcontext);
+   //   form_window::handle(ptopic, phandlercontext);
 
    //   if (ptopic->id() == ::id_form_initialize && ptopic->user_interaction() == this)
    //   {

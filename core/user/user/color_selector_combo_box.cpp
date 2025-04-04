@@ -161,7 +161,7 @@ namespace user
 
       }
 
-      ::user::interaction::handle(ptopic, pcontext);
+      ::user::interaction::handle(ptopic, phandlercontext);
 
    }
 

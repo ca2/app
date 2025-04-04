@@ -179,7 +179,7 @@ namespace filemanager
    void operation_list_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
-      BASE::handle(ptopic, pcontext);
+      BASE::handle(ptopic, phandlercontext);
 
       if (ptopic->id() == id_initial_update)
       {

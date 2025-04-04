@@ -1114,7 +1114,7 @@ namespace user
       ////if(m_bEdit)
       //{
 
-      //   ::user::plain_edit::handle(ptopic, pcontext);
+      //   ::user::plain_edit::handle(ptopic, phandlercontext);
 
       //}
 

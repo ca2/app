@@ -186,7 +186,7 @@ namespace helloworld
    void impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
-      impact_base::handle(ptopic, pcontext);
+      impact_base::handle(ptopic, phandlercontext);
 
       ::update * pupdate = dynamic_cast < ::update *> (pupdate);
 

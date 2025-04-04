@@ -192,7 +192,7 @@ namespace app_shader
 
       }
 
-      ::user::interaction::handle(ptopic, pcontext);
+      ::user::interaction::handle(ptopic, phandlercontext);
 
    }
 

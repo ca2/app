@@ -907,7 +907,7 @@ using signal_handler = ::function < void(::topic *, ::handler_context *) >;
 //   //void operator()(::topic * ptopic, ::handler_context * pcontext)
 //   //{
 //
-//   //   this-(ptopic, pcontext);
+//   //   this-(ptopic, phandlercontext);
 //
 //   //}
 //

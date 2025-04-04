@@ -7300,7 +7300,7 @@ namespace apex
    //void application::route(::topic * ptopic, ::handler_context * pcontext)
    //{
 
-   //   handle(ptopic, pcontext);
+   //   handle(ptopic, phandlercontext);
 
    //   if (ptopic->m_bRet)
    //   {

@@ -78,9 +78,9 @@ namespace user
    void form_list_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
-      ::user::form_impact::handle(ptopic, pcontext);
+      ::user::form_impact::handle(ptopic, phandlercontext);
 
-      ::user::list_impact::handle(ptopic, pcontext);
+      ::user::list_impact::handle(ptopic, phandlercontext);
 
       ////__update(::update)
       {
@@ -117,7 +117,7 @@ namespace user
 
          ptopic->payload(id_form) = this;
 
-         m_pcallback->handle(ptopic, pcontext);
+         m_pcallback->handle(ptopic, phandlercontext);
 
       }
 
@@ -295,9 +295,9 @@ namespace user
    //void form_list_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    //{
 
-   //   form_impact::handle(ptopic, pcontext);
+   //   form_impact::handle(ptopic, phandlercontext);
 
-   //   list_impact::handle(ptopic, pcontext);
+   //   list_impact::handle(ptopic, phandlercontext);
 
    //}
 

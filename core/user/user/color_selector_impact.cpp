@@ -86,7 +86,7 @@ namespace user
    void color_selector_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
-      ::user::color_selector_control::handle(ptopic, pcontext);
+      ::user::color_selector_control::handle(ptopic, phandlercontext);
 
    }
 
@@ -94,7 +94,7 @@ namespace user
    //void color_selector_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    //{
 
-   //   ::user::impact::handle(ptopic, pcontext);
+   //   ::user::impact::handle(ptopic, phandlercontext);
 
    //}
 

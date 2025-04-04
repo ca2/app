@@ -47,7 +47,7 @@ namespace app_build
    void impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
-      ::user::impact::handle(ptopic, pcontext);
+      ::user::impact::handle(ptopic, phandlercontext);
 
    }
 

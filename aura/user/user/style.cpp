@@ -122,7 +122,7 @@ namespace user
 
       }
 
-      style_base::handle(ptopic, pcontext);
+      style_base::handle(ptopic, phandlercontext);
 
    }
 

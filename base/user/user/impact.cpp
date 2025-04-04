@@ -367,7 +367,7 @@ namespace user
    void impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
-      ::user::box::handle(ptopic, pcontext);
+      ::user::box::handle(ptopic, phandlercontext);
 
       if (ptopic)
       {
@@ -394,7 +394,7 @@ namespace user
    //void impact::handle(::topic * ptopic, ::handler_context * pcontext)
    //{
 
-   //   ::user::box::handle(ptopic, pcontext);
+   //   ::user::box::handle(ptopic, phandlercontext);
 
    //   //if (pHint != nullptr)
    //   //{
@@ -1086,7 +1086,7 @@ namespace user
 
       }
 
-      ::user::box::call_handle(ptopic, pcontext);
+      ::user::box::call_handle(ptopic, phandlercontext);
 
    }
 
@@ -1222,7 +1222,7 @@ namespace user
 
    /*   void impact::on_update(::user::impact * pSender, LPARAM lHint, object * pHint)
    {
-   ::user::impact::handle(ptopic, pcontext);
+   ::user::impact::handle(ptopic, phandlercontext);
    }
    */
    /////////////////////////////////////////////////////////////////////////////

@@ -1157,7 +1157,7 @@ namespace user
          }
 
 
-         return ::user::interaction::handle(ptopic, pcontext);
+         return ::user::interaction::handle(ptopic, phandlercontext);
 
       }
 

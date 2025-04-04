@@ -3702,7 +3702,7 @@ void simple_frame_window::handle(::topic * ptopic, ::handler_context * pcontext)
 
    }
 
-   ::experience::frame_window::handle(ptopic, pcontext);
+   ::experience::frame_window::handle(ptopic, phandlercontext);
 
 }
 

@@ -655,7 +655,7 @@ namespace user
       ////if(m_bEdit)
       //{
 
-      //   ::user::interaction::handle(ptopic, pcontext);
+      //   ::user::interaction::handle(ptopic, phandlercontext);
 
       //}
 

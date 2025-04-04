@@ -86,7 +86,7 @@ namespace userstack
    void pane_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
-      ::user::tab_impact::handle(ptopic, pcontext);
+      ::user::tab_impact::handle(ptopic, phandlercontext);
       
    }
 

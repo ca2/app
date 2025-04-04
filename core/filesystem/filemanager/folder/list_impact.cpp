@@ -200,7 +200,7 @@ namespace filemanager
       void list_impact::handle(::topic * ptopic, ::handler_context * pcontext)
       {
 
-         FILEMANAGER_SHOW_IMPACT::handle(ptopic, pcontext);
+         FILEMANAGER_SHOW_IMPACT::handle(ptopic, phandlercontext);
 
          if (ptopic->id() == id_initialize)
          {

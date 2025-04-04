@@ -43,7 +43,7 @@ namespace browser
 
    void switcher_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
-      ::user::split_impact::handle(ptopic, pcontext);
+      ::user::split_impact::handle(ptopic, phandlercontext);
    }
 
 
@@ -117,7 +117,7 @@ namespace browser
 
       }
 
-      ::user::split_impact::handle(ptopic, pcontext);
+      ::user::split_impact::handle(ptopic, phandlercontext);
 
    }
 

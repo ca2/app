@@ -145,7 +145,7 @@ namespace acme
 
             for (auto & pnanowindowingwindow : windowa)
             {
-               pnanowindowingwindow->handle(ptopic, pcontext);
+               pnanowindowingwindow->handle(ptopic, phandlercontext);
             }
          }
       }

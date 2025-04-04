@@ -271,7 +271,7 @@ namespace filemanager
          void list_impact::handle(::topic * ptopic, ::handler_context * pcontext)
          {
 
-            simple_list_impact::handle(ptopic, pcontext);
+            simple_list_impact::handle(ptopic, phandlercontext);
 
             //if(::is_null(pparticle))
             {

@@ -102,8 +102,8 @@ public:
    virtual void handle(::topic * ptopic, ::handler_context * pcontext) override
    {
 
-      IMPACT::handle(ptopic, pcontext);
-      ::filemanager_impact_base::handle(ptopic, pcontext);
+      IMPACT::handle(ptopic, phandlercontext);
+      ::filemanager_impact_base::handle(ptopic, phandlercontext);
 
    }
 

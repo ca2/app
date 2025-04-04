@@ -219,7 +219,7 @@ namespace html
    void core_data::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
-      html_data::handle(ptopic, pcontext);
+      html_data::handle(ptopic, phandlercontext);
 
    }
 

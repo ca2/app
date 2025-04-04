@@ -603,7 +603,7 @@ class ::user::user * particle::user() const
 void particle::operator()(::topic * ptopic, ::handler_context * pcontext)
 {
 
-   handle(ptopic, pcontext);
+   handle(ptopic, phandlercontext);
 
 }
 
@@ -671,7 +671,7 @@ void particle::handle(::topic * ptopic, ::handler_context * pcontext)
 void particle::call_handle(::topic * ptopic, ::handler_context * pcontext)
 {
 
-   handle(ptopic, pcontext);
+   handle(ptopic, phandlercontext);
 
 }
 

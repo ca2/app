@@ -2941,7 +2941,7 @@ namespace user
    void frame_window::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
-      ::user::main_window::handle(ptopic, pcontext);
+      ::user::main_window::handle(ptopic, phandlercontext);
 
    }
 

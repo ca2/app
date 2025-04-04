@@ -851,7 +851,7 @@ namespace data
       predicate_each_tree ([ptopic, pcontext](auto& ptree)
       {
 
-         ptree->handle(ptopic, pcontext);
+         ptree->handle(ptopic, phandlercontext);
 
       });
 

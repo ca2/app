@@ -6429,7 +6429,7 @@ if(!m_pimaging)
 
       }
 
-      ::aqua::system::handle(ptopic, pcontext);
+      ::aqua::system::handle(ptopic, phandlercontext);
 
    }
 

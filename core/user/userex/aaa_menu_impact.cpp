@@ -15,11 +15,11 @@
 //
 //void menu_impact::handle(::topic * ptopic, ::handler_context * pcontext)
 //{
-//   ::user::form_impact::handle(ptopic, pcontext);
+//   ::user::form_impact::handle(ptopic, phandlercontext);
 //
 //   auto papp = get_app();
 //
-//   papp->handle(ptopic, pcontext);
+//   papp->handle(ptopic, phandlercontext);
 //
 //   if (ptopic->m_bRet)
 //   {
@@ -31,14 +31,14 @@
 //   if (m_pcallback != nullptr)
 //   {
 //
-//      m_pcallback->handle(ptopic, pcontext);
+//      m_pcallback->handle(ptopic, phandlercontext);
 //
 //   }
 //
 //   if (get_parent() != nullptr)
 //   {
 //
-//      get_parent()->handle(ptopic, pcontext);
+//      get_parent()->handle(ptopic, phandlercontext);
 //
 //      if (ptopic->m_bRet)
 //      {
@@ -58,7 +58,7 @@
 ////
 ////   auto papp = get_app();
 ////
-////   papp->handle(ptopic, pcontext);
+////   papp->handle(ptopic, phandlercontext);
 ////
 ////   if(ptopic->m_bRet)
 ////   {
@@ -70,14 +70,14 @@
 ////   if(m_pcallback != nullptr)
 ////   {
 ////
-////      m_pcallback->handle(ptopic, pcontext);
+////      m_pcallback->handle(ptopic, phandlercontext);
 ////
 ////   }
 ////
 ////   if(get_parent() != nullptr)
 ////   {
 ////
-////      get_parent()->handle(ptopic, pcontext);
+////      get_parent()->handle(ptopic, phandlercontext);
 ////
 ////      if(ptopic->m_bRet)
 ////      {

@@ -298,7 +298,7 @@ void filemanager_impact_base::_001OnOperationDocMessage(::message::message * pme
 void filemanager_impact_base::handle(::topic * ptopic, ::handler_context * pcontext)
 {
 
-   ::user::impact::handle(ptopic, pcontext);
+   ::user::impact::handle(ptopic, phandlercontext);
 
    if (ptopic->id() == id_initialize)
    {

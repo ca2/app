@@ -35,7 +35,7 @@ namespace userex
    void wait_message_dialog::handle(::topic * ptopic, ::handler_context * pcontext)
    {
       
-      dialog::handle(ptopic, pcontext);
+      dialog::handle(ptopic, phandlercontext);
       
       if(ptopic->user_interaction() == m_pform)
       {

@@ -398,7 +398,7 @@ namespace user
       else
       {
 
-         ::user::interaction::handle(ptopic, pcontext);
+         ::user::interaction::handle(ptopic, phandlercontext);
 
       }
 

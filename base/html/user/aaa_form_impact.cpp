@@ -168,7 +168,7 @@ form_document * html_form_impact::get_document()
 void html_form_impact::handle(::topic * ptopic, ::handler_context * pcontext)
 {
 
-   ::html_form::handle(ptopic, pcontext);
+   ::html_form::handle(ptopic, phandlercontext);
 
    ////__update(::update)
    {
@@ -240,7 +240,7 @@ void html_form_impact::handle(::topic * ptopic, ::handler_context * pcontext)
 
          ptopic->payload(id_form) = this;
 
-         m_pcallback->handle(ptopic, pcontext);
+         m_pcallback->handle(ptopic, phandlercontext);
 
       }
 

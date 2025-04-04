@@ -87,9 +87,9 @@ namespace filemanager
    void left_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
-      ::filemanager_impact_base::handle(ptopic, pcontext);
+      ::filemanager_impact_base::handle(ptopic, phandlercontext);
 
-      ::user::split_impact::handle(ptopic, pcontext);
+      ::user::split_impact::handle(ptopic, phandlercontext);
 
 //      //__update(::update)
 //      {

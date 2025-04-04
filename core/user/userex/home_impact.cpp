@@ -77,7 +77,7 @@ namespace userex
    void home_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
-      ::user::impact::handle(ptopic, pcontext);
+      ::user::impact::handle(ptopic, phandlercontext);
 
    }
 
@@ -85,7 +85,7 @@ namespace userex
    //void home_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    //{
 
-   //   ::user::impact::handle(ptopic, pcontext);
+   //   ::user::impact::handle(ptopic, phandlercontext);
 
    //}
 

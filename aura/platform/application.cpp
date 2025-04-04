@@ -8488,9 +8488,9 @@ namespace aura
    void application::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
-      //::aqua::application::handle(ptopic, pcontext);
+      //::aqua::application::handle(ptopic, phandlercontext);
 
-      //::user::form_callback::handle(ptopic, pcontext);
+      //::user::form_callback::handle(ptopic, phandlercontext);
 
       if(ptopic->id() == id_app_activated)
       {

@@ -134,11 +134,11 @@ namespace user
       void handle(::topic * ptopic, ::handler_context * pcontext) override
       {
 
-         ::user::impact::handle(ptopic, pcontext);
+         ::user::impact::handle(ptopic, phandlercontext);
 
-         VIEW::handle(ptopic, pcontext);
+         VIEW::handle(ptopic, phandlercontext);
 
-         ////VIEW::handle(ptopic, pcontext);
+         ////VIEW::handle(ptopic, phandlercontext);
 
          //if (ptopic->m_bRet)
          //{
@@ -223,7 +223,7 @@ namespace user
       //virtual void handle(::topic * ptopic, ::handler_context * pcontext) override
       //{
 
-      //   VIEW::handle(ptopic, pcontext);
+      //   VIEW::handle(ptopic, phandlercontext);
 
       //   if(ptopic->m_bRet)
       //   {
@@ -235,7 +235,7 @@ namespace user
       //   if(m_puserinteractionImpactNotify)
       //   {
 
-      //      m_puserinteractionImpactNotify->handle(ptopic, pcontext);
+      //      m_puserinteractionImpactNotify->handle(ptopic, phandlercontext);
 
       //   }
 
@@ -244,7 +244,7 @@ namespace user
       //   if (puiParent != nullptr)
       //   {
 
-      //      puiParent->handle(ptopic, pcontext);
+      //      puiParent->handle(ptopic, phandlercontext);
 
       //      if (ptopic->m_bRet)
       //      {

@@ -2872,7 +2872,7 @@ namespace platform
          if (m_pnano)
          {
 
-            m_pnano->handle(ptopic, pcontext);
+            m_pnano->handle(ptopic, phandlercontext);
 
          }
 
@@ -2924,7 +2924,7 @@ namespace platform
          if (::is_set(application()))
          {
 
-            application()->handle(ptopic, pcontext);
+            application()->handle(ptopic, phandlercontext);
 
          }
 

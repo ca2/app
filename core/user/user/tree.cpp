@@ -2436,7 +2436,7 @@ namespace user
       if (m_ptreedata)
       {
 
-         m_ptreedata->handle(ptopic, pcontext);
+         m_ptreedata->handle(ptopic, phandlercontext);
 
       }
 

@@ -57,7 +57,7 @@ namespace userex
    void group_image_list_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
-      ::user::impact::handle(ptopic, pcontext);
+      ::user::impact::handle(ptopic, phandlercontext);
 
       if (ptopic->id() == ::id_item_clicked)
       {
@@ -76,7 +76,7 @@ namespace userex
 
       }
 
-      return ::user::impact::handle(ptopic, pcontext);
+      return ::user::impact::handle(ptopic, phandlercontext);
 
 
    }
@@ -380,7 +380,7 @@ namespace userex
 
    //   }
 
-   //   return ::user::impact::handle(ptopic, pcontext);
+   //   return ::user::impact::handle(ptopic, phandlercontext);
 
    //}
 

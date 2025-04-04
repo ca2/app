@@ -854,7 +854,7 @@ bool html_form::load_html(const ::string & str)
 void html_form::handle(::topic * ptopic, ::handler_context * pcontext)
 {
 
-   ::user::form_window::handle(ptopic, pcontext);
+   ::user::form_window::handle(ptopic, phandlercontext);
 
    ////__update(::update)
    {

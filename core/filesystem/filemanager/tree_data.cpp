@@ -1459,7 +1459,7 @@ _001SelectItem(pchild);
    void tree_data::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
-      ::filemanager_impact_base::handle(ptopic, pcontext);
+      ::filemanager_impact_base::handle(ptopic, phandlercontext);
 
       if (ptopic->id() == id_browse)
       {

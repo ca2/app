@@ -936,7 +936,7 @@ namespace acme
          if (ptopic->id() == id_set_application_dark_mode)
          {
 
-            m_pacmeuserinteraction->handle(ptopic, pcontext);
+            m_pacmeuserinteraction->handle(ptopic, phandlercontext);
 
          }
 

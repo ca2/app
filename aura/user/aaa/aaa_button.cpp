@@ -551,7 +551,7 @@ namespace user
    void button::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
-      interaction::handle(ptopic, pcontext);
+      interaction::handle(ptopic, phandlercontext);
 
    }
 

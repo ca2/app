@@ -147,7 +147,7 @@ namespace micro
 
             for (auto & pacmewindowingwindow : windowa)
             {
-               pacmewindowingwindow->handle(ptopic, pcontext);
+               pacmewindowingwindow->handle(ptopic, phandlercontext);
             }
          }
       }

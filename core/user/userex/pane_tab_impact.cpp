@@ -955,7 +955,7 @@ namespace userex
    void pane_tab_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
-      ::user::tab_impact::handle(ptopic, pcontext);
+      ::user::tab_impact::handle(ptopic, phandlercontext);
 
       for (auto & phandler : m_handlera)
       {
@@ -987,7 +987,7 @@ namespace userex
 
       }
 
-      ::user::tab_impact::handle(ptopic, pcontext);
+      ::user::tab_impact::handle(ptopic, phandlercontext);
 
 
    }
@@ -1022,7 +1022,7 @@ namespace userex
 
    //   }
 
-   //   ::user::tab_impact::handle(ptopic, pcontext);
+   //   ::user::tab_impact::handle(ptopic, phandlercontext);
 
    //}
 

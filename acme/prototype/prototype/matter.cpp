@@ -74,7 +74,7 @@ matter::~matter()
 void matter::operator()(::topic * ptopic, ::handler_context * pcontext)
 {
 
-   ::particle::operator ()(ptopic, pcontext);
+   ::particle::operator ()(ptopic, phandlercontext);
 
 }
 
@@ -453,19 +453,19 @@ void matter::notify_on_destroy(::property_object * pparticle)
 //   if (!ptopic->is_up_to_date())
 //   {
 //
-//      handle(ptopic, pcontext);
+//      handle(ptopic, phandlercontext);
 //
 //      if(!ptopic->m_bitProcessed)
 //      {
 //
-//         handle(ptopic, pcontext);
+//         handle(ptopic, phandlercontext);
 //
 //      }
 //
 //      if(ptopic->m_bitProcessed)
 //      {
 //
-//         handle(ptopic, pcontext);
+//         handle(ptopic, phandlercontext);
 //
 //      }
 //

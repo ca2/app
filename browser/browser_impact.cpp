@@ -257,7 +257,7 @@ namespace browser
    void impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
-      impact_base::handle(ptopic, pcontext);
+      impact_base::handle(ptopic, phandlercontext);
 
       if (ptopic->id() == id_after_change_text)
       {

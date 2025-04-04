@@ -50,7 +50,7 @@ namespace filemanager
    void save_as_impact::handle(::topic * ptopic, ::handler_context * pcontext)
    {
 
-      ::user::impact::handle(ptopic, pcontext);
+      ::user::impact::handle(ptopic, phandlercontext);
 
       ////__update(::update)
       {

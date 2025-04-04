@@ -978,7 +978,7 @@ namespace experience
 
       }
 
-      ::user::frame_window::handle(ptopic, pcontext);
+      ::user::frame_window::handle(ptopic, phandlercontext);
 
    }
 

@@ -29,7 +29,7 @@ namespace prompt
       if(pinteraction != nullptr && pinteraction->get_parent() != nullptr)
       {
 
-         return pinteraction->get_parent()->handle(ptopic, pcontext);
+         return pinteraction->get_parent()->handle(ptopic, phandlercontext);
 
       }
 

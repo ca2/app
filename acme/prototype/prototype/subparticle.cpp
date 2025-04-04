@@ -31,8 +31,7 @@ bool g_bDefaultEnableObjectReferenceCountDebug = false;
 
 
 subparticle::subparticle() :
-   m_countReference(1),
-   m_psequence(nullptr)
+   m_countReference(1)
 {
 
 #if REFERENCING_DEBUGGING

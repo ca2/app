@@ -447,6 +447,8 @@ namespace apex
 
       bool _handle_uri(const ::string & str) override;
 
+      using ::platform::system::application_main;
+
       virtual void application_main(int argc, char *argv[], const ::string & pszCommandLine) override;
 
       virtual int console_end(::e_status estatus) override;

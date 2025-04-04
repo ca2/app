@@ -1,5 +1,5 @@
 #include "framework.h"
-#define APPLICATION_NAMESPACE app_core_
+#define APPLICATION_NAMESPACE app_just_acme_message_box
 #include "acme/inline/application/main.inl"
 
 //app_just_message_box::application g_appjustmessageboxapplication;

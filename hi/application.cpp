@@ -286,6 +286,7 @@ void test_002()
 
 
 __IMPLEMENT_APPLICATION_RELEASE_TIME(console_hello);
+IMPLEMENT_APPLICATION_FACTORY(console_hello);
 
 
 //#error "error_compiled back function"

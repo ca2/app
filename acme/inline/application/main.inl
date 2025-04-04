@@ -152,7 +152,7 @@ int main(int argc, char * argv[], char * envp[])
 
          set_main_thread();
          
-         ::APPLICATION_NAMESPACE::APPLICATION_NAMESPACEapplication_main(psystem);
+         ::APPLICATION_NAMESPACE::application_factory(psystem->factory());
 
          psystem->application_main();
 

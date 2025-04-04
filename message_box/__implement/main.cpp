@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "application.h"
-#include "acme/application.h"
+#define APPLICATION_NAMESPACE app_core_
+#include "acme/inline/application/main.inl"
 
 
 //app_message_box::application g_appmessageboxapplication;

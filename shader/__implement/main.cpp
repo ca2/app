@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "application.h"
+#define APPLICATION_NAMESPACE app_core_
 #include "__implement.h"
 
 

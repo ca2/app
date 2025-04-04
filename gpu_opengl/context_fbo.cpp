@@ -47,7 +47,7 @@ namespace opengl
 void context_fbo::on_initialize_particle()
 {
  
-   ::opengl::handler_context::on_initialize_particle();
+   ::opengl::context::on_initialize_particle();
    
    branch();
 

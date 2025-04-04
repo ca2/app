@@ -22,7 +22,7 @@ namespace APPLICATION_NAMESPACE
 DO_FACTORY(REFERENCE_FACTORY)
 #endif
 
-#include "_include_user_and_system.h"
+#include "acme/inline/_include_user_and_system.h"
 
 
 //#include "acme/operating_system/acme_initialize.h"
@@ -152,9 +152,9 @@ int main(int argc, char * argv[], char * envp[])
 
          set_main_thread();
          
-         ::APPLICATION_NAMESPACE::application_factory(psystem->factory());
-         
-         psystem->::platform::system::application_main();
+         ::APPLICATION_NAMESPACE::APPLICATION_NAMESPACEapplication_main(psystem);
+
+         psystem->application_main();
 
          ::os_on_term_thread();
 

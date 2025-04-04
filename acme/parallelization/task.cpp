@@ -2230,7 +2230,7 @@ void task::term_task()
 //
 //   _do_tasks();
 //
-//   if (platform()->m_bConsole || (m_eflagElement & e_flag_running))
+//   if (::system()->m_bConsole || (m_eflagElement & e_flag_running))
 //   {
 //
 //      run_posted_procedures();

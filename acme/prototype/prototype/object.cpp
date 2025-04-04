@@ -3279,11 +3279,7 @@ void object::initialize(::particle * pparticle)
 //template < typename SOURCE >
 //inline void add_reference(::pointer<SOURCE> psource);
 
-//void object::delete_this()
-//{
-//
-//
-//}
+
 
 //void object::destruct()
 //{

@@ -237,7 +237,7 @@ namespace acme
 
       //information() << "acme::library::open success : " << m_strMessage;
       
-      // if(platform()->is_verbose_log())
+      // if(::system()->is_verbose_log())
       // {
       //
       //    if(::is_set(m_plibrary))
@@ -262,7 +262,7 @@ namespace acme
 
          __refdbg_add_referer
 
-         platform()->m_mapLibrary[m_strName] = this;
+         ::system()->m_mapLibrary[m_strName] = this;
 
       }
 
@@ -511,7 +511,7 @@ namespace acme
 
       }
 
-      critical_section_lock synchronouslock(&platform()->m_criticalsection);
+      critical_section_lock synchronouslock(&::system()->m_criticalsection);
 
       try
       {
@@ -529,7 +529,7 @@ namespace acme
                if (m_plibrary != nullptr)
                {
 
-                  if(platform()->is_verbose_log())
+                  if(::system()->is_verbose_log())
                   {
 
                      information() <<  "Closing library : " << m_strName << "\n";

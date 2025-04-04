@@ -33,25 +33,6 @@ namespace multimedia
    //}
 
 
-   //void decoder::delete_this()
-   //{
-
-   //   //if(m_pplugin != nullptr)
-   //   //{
-
-   //   //   m_pplugin->DeleteDecoder(this);
-
-   //   //}
-   //   //else
-   //   //{
-
-   //      ::object::delete_this();
-
-   //   //}
-
-   //}
-
-
    void decoder::multimedia_open(::file::file * pfile)
    {
 

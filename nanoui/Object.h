@@ -12,7 +12,7 @@
 
 #pragma once
 
-#include "common.h"
+#include "nanoui/common.h"
 #include <atomic>
 
 namespace nanoui

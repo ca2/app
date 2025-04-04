@@ -185,7 +185,7 @@ namespace apex
          m_bLog = true;
 
       }
-      else if(platform()->has_argument("--log"))
+      else if(::system()->has_argument("--log"))
       {
 
          printf("--log argument present (2)\n");

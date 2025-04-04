@@ -15,8 +15,8 @@
 #pragma once
 
 
-#include "_constant.h"
-#include "Object.h"
+#include "nanoui/_constant.h"
+#include "nanoui/Object.h"
 #include "acme/prototype/collection/numeric_array.h"
 #include "acme/prototype/geometry2d/size.h"
 //#include "acme/prototype/geometry2d/vector.h"
@@ -408,12 +408,7 @@ namespace nanoui
          }
 
          /// Allows for printing out Anchor position, size, and alignment.
-         operator ::string() const {
-            char buf[80];
-            std::snprintf(buf, 80, "Format[pos=(%i, %i), size=(%i, %i), align=(%i, %i)]",
-               pos[0], pos[1], size[0], size[1], (int)align[0], (int)align[1]);
-            return buf;
-         }
+         operator ::string() const;
       };
 
 
@@ -474,7 +469,7 @@ namespace nanoui
          if (m_anchor.is_end(p))
          {
 
-            throw std::runtime_error("Widget was not registered with the grid layout!");
+            throw ::exception(error_failed, "Widget was not registered with the grid layout!");
 
          }
 

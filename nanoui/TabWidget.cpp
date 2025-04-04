@@ -249,7 +249,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
       }
       if (m_iaTabOffsets.size() != m_straTabCaptions.size() + 1)
-         throw std::runtime_error("Must run TabWidget::perform_layout() after adding/removing tabs!");
+         throw ::exception(error_failed, "Must run TabWidget::perform_layout() after adding/removing tabs!");
 
       int tab_height = (int)(font_size() + 2.f * m_ptheme->m_iVerticalPaddingTabButton);
 

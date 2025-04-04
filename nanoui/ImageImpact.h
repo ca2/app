@@ -12,7 +12,7 @@
 #pragma once
 
 
-#include "Canvas.h"
+#include "nanoui/Canvas.h"
 
 
 namespace nanoui

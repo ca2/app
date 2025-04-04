@@ -14,7 +14,7 @@
 #pragma once
 
 
-#include "Widget.h"
+#include "nanoui/Widget.h"
 
 
 namespace nanoui

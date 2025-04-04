@@ -12,9 +12,9 @@
 #pragma once
 
 
-#include "Object.h"
-#include "Theme.h"
-#include "in_place_edit_mapper.h"
+#include "nanoui/Object.h"
+#include "nanoui/Theme.h"
+#include "nanoui/in_place_edit_mapper.h"
 ///#include "acme/prototype/geometry2d/_geometry2d.h"
 #include "acme/handler/item.h"
 #include "acme/prototype/geometry2d/size.h"

@@ -281,7 +281,7 @@ int __nanoui_get_image(::nano2d::context  * pcontext, const ::scoped_string & na
       return it->m_element2;
    int icon_id = pcontext->create_image_mem(0, data, size);
    if (icon_id == 0)
-      throw std::runtime_error("Unable to load resource data.");
+      throw ::exception(error_failed, "Unable to load resource data.");
    icon_cache[name] = icon_id;
    return icon_id;
 }

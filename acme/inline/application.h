@@ -42,13 +42,13 @@ processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 
 //__embed_resource(g_app)
 
-#if defined(CUBE)
-#include "acme/memory/_new.inl" // works for Windows Desktop(at CUBE/static builds)
-#else
-#include "acme/memory/_new.inl"
-#include "_new_impl.h"
-//#include "acme/_library.h"
-#endif
+//#if defined(CUBE)
+//#include "acme/memory/_new.inl" // works for Windows Desktop(at CUBE/static builds)
+//#else
+//#include "acme/memory/_new.inl"
+//#include "_new_impl.h"
+////#include "acme/_library.h"
+//#endif
 
 
 #include "acme/platform/acme.h"
@@ -114,7 +114,7 @@ int main(int argc, char * argv[], char * envp[])
 #endif
       
       
-      //if (this->platform()->m_papplication->has_finishing_flag())
+      //if (this->::system()->m_papplication->has_finishing_flag())
       //{
       
       //   return ::acme::acme::g_pacme->m_papplication->m_iExitCode;

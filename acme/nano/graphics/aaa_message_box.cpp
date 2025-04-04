@@ -524,7 +524,7 @@ CLASS_DECL_ACME ::pointer < ::subparticle > message_box_sequencer(::particle * p
 
 #if defined(UNIVERSAL_WINDOWS)
 
-   if(pparticle->platform()->m_bConsole || !is_ui_possible())
+   if(pparticle->::system()->m_bConsole || !is_ui_possible())
    {
 
       auto psequencer = pparticle->__create_new < ::sequencer < ::conversation > >();
@@ -636,7 +636,7 @@ CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const 
 
 #if defined(UNIVERSAL_WINDOWS)
 
-   if(pparticle->platform()->m_bConsole || !is_ui_possible())
+   if(pparticle->::system()->m_bConsole || !is_ui_possible())
    {
 
       return message_box_for_console(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
@@ -733,7 +733,7 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload 
 
 #if defined(UNIVERSAL_WINDOWS)
 
-   if(pparticle->platform()->m_bConsole || !is_ui_possible())
+   if(pparticle->::system()->m_bConsole || !is_ui_possible())
    {
 
       auto result = message_box_for_console(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);

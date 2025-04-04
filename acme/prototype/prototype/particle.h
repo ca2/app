@@ -90,13 +90,12 @@ class CLASS_DECL_ACME particle :
 public:
 
 
-   mutable ::platform::application *            m_papplication;
-   mutable ::particle_pointer                   m_pparticleSynchronization;
+   ::platform::application *        m_papplication;
+   ::particle_pointer               m_pparticleSynchronization;
 
 //#if REFERENCING_DEBUGGING
    particle() :
-      m_papplication(nullptr),
-      m_pparticleSynchronization(nullptr)
+      m_papplication(nullptr)
    {
          
          
@@ -120,20 +119,22 @@ public:
    inline bool is_ok() const { return is_set() && _is_ok(); }
    inline bool nok() const { return !is_ok(); }
 
-
+   bool _is_ok() const override;
+   
+   
 
    void initialize(::particle * pparticle) override;
    //void finalize() override;
 
 
-   bool _is_ok() const override;
+   void delete_this() override;
+
 
 
    virtual void on_notify(::particle * pparticle, enum_id eid);
 
    virtual bool on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken);
 
-//   virtual void delete_this();
 
    inline ::particle * trace_this() const { return (::particle *) this; }
 
@@ -162,7 +163,7 @@ public:
 
 
    //class ::platform::platform * platform() const;
-   static class ::platform::platform * platform();
+   //static class ::platform::platform * platform();
 
    //virtual class ::platform::platform * _platform() const;
 
@@ -189,7 +190,6 @@ public:
 
    //::aura::application* auraapplication() const;
 
-   void delete_this() override;
 
 
    //::file_system * file_system() const;
@@ -980,25 +980,6 @@ inline long long global_release(T*& p);
 //
 //}
 //
-//
-//long long particle::release()
-//{
-//
-//   long long i = decrement_reference_count();
-//
-//   if (i == 0)
-//   {
-//
-//      delete_this();
-//
-//   }
-//
-//   return i;
-//
-//}
-//
-//
-//#endif
 
 
 

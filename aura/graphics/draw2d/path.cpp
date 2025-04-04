@@ -1685,14 +1685,14 @@ namespace draw2d
       if (iDiameter > rectangle.height())	iDiameter = rectangle.height();
 
       // define a corner
-      auto Corner = double_rectangle_dimension(rectangle.left(), rectangle.top(), iDiameter, iDiameter);
+      auto rectangleCorder = double_rectangle_dimension(rectangle.left(), rectangle.top(), iDiameter, iDiameter);
 
       // begin path
       //path.m_ppath->Reset();
 
 
       // top left
-      //   path.m_ppath->AddArc(Corner, 180, 90);
+      //   path.m_ppath->AddArc(rectangleCorder, 180, 90);
 
       // tweak needed for radius of 10 (iDiameter of 20)
       double iDiameter2 = iDiameter;
@@ -1700,35 +1700,35 @@ namespace draw2d
       //if (iDiameter % 2 == 0)
       //{
       //   iDiameter2++;
-      //   //Corner.Height += 1;
+      //   //rectangleCorder.Height += 1;
       //   //rectangle.height() -=1; //rectangle.height() -= 1;
       //}
 
       // top right
-      Corner.left() += (rectangle.width() - iDiameter - 1);
-      //path.m_ppath->AddArc(Corner, 270, 90);
+      rectangleCorder.left() += (rectangle.width() - iDiameter - 1);
+      //path.m_ppath->AddArc(rectangleCorder, 270, 90);
 
       // bottom right
-      Corner.top() += (rectangle.height() - iDiameter - 1);
-      //path.m_ppath->AddArc(Corner,   0, 90);
+      rectangleCorder.top() += (rectangle.height() - iDiameter - 1);
+      //path.m_ppath->AddArc(rectangleCorder,   0, 90);
 
       // bottom left
-      Corner.left() -= (rectangle.width() - iDiameter - 1);
-      Corner.right() = Corner.left() + iDiameter2;
-      add_arc(Corner, 135_degree, 45_degree);
+      rectangleCorder.left() -= (rectangle.width() - iDiameter - 1);
+      rectangleCorder.right() = rectangleCorder.left() + iDiameter2;
+      add_arc(rectangleCorder, 135_degree, 45_degree);
 
       add_line(rectangle.left(), rectangle.top() + rectangle.height() - iDiameter / 2, rectangle.left(), rectangle.top() + iDiameter / 2);
 
 
-      Corner.top() -= (rectangle.height() - iDiameter - 1);
-      Corner.bottom() = Corner.top() + iDiameter2;
-      add_arc(Corner, 180_degree, 90_degree);
+      rectangleCorder.top() -= (rectangle.height() - iDiameter - 1);
+      rectangleCorder.bottom() = rectangleCorder.top() + iDiameter2;
+      add_arc(rectangleCorder, 180_degree, 90_degree);
 
       add_line(rectangle.left() + iDiameter / 2, rectangle.top(), rectangle.left() + rectangle.width() - iDiameter / 2, rectangle.top());
 
-      Corner.left() += (rectangle.width() - iDiameter - 1);
-      Corner.right() = Corner.left() + iDiameter2;
-      add_arc(Corner, 270_degree, 45_degree);
+      rectangleCorder.left() += (rectangle.width() - iDiameter - 1);
+      rectangleCorder.right() = rectangleCorder.left() + iDiameter2;
+      add_arc(rectangleCorder, 270_degree, 45_degree);
 
 
       // end path
@@ -1747,53 +1747,53 @@ namespace draw2d
       if (iDiameter > rectangle.height())	iDiameter = rectangle.height();
 
       // define a corner
-      auto Corner = double_rectangle_dimension(rectangle.left(), rectangle.top(), iDiameter, iDiameter);
+      auto rectangleCorder = double_rectangle_dimension(rectangle.left(), rectangle.top(), iDiameter, iDiameter);
 
       // begin path
       //path.m_ppath->Reset();
 
 
       // top left
-      //   path.m_ppath->AddArc(Corner, 180, 90);
+      //   path.m_ppath->AddArc(rectangleCorder, 180, 90);
 
       // tweak needed for radius of 10 (iDiameter of 20)
       double iDiameter2 = iDiameter;
       //if (iDiameter % 2 == 0)
       //{
       //   iDiameter2++;
-      //   //Corner.Height += 1;
+      //   //rectangleCorder.Height += 1;
       //   //rectangle.height() -=1; //rectangle.height() -= 1;
       //}
 
       // top right
-      Corner.left() += (rectangle.width() - iDiameter - 1);
-      Corner.right() = Corner.left() + iDiameter2;
-      add_arc(Corner, 315_degree, 45_degree);
+      rectangleCorder.left() += (rectangle.width() - iDiameter - 1);
+      rectangleCorder.right() = rectangleCorder.left() + iDiameter2;
+      add_arc(rectangleCorder, 315_degree, 45_degree);
 
       add_line(rectangle.left() + rectangle.width(), rectangle.top() + iDiameter / 2, rectangle.left() + rectangle.width(), rectangle.top() + rectangle.height() - iDiameter / 2);
 
       // bottom right
-      Corner.top() += (rectangle.height() - iDiameter - 1);
-      Corner.bottom() = Corner.top() + iDiameter2;
-      add_arc(Corner, 0_degrees, 90_degrees);
+      rectangleCorder.top() += (rectangle.height() - iDiameter - 1);
+      rectangleCorder.bottom() = rectangleCorder.top() + iDiameter2;
+      add_arc(rectangleCorder, 0_degrees, 90_degrees);
 
       add_line(rectangle.left() + iDiameter / 2, rectangle.top() + rectangle.height(), rectangle.left() + rectangle.width() - iDiameter / 2, rectangle.top() + rectangle.height());
 
       // bottom left
-      Corner.left() -= (rectangle.width() - iDiameter - 1);
-      Corner.right() = Corner.left() + iDiameter2;
-      add_arc(Corner, 90_degrees, 45_degrees);
+      rectangleCorder.left() -= (rectangle.width() - iDiameter - 1);
+      rectangleCorder.right() = rectangleCorder.left() + iDiameter2;
+      add_arc(rectangleCorder, 90_degrees, 45_degrees);
 
 
 
 
-      //Corner.Y -= (rectangle.height() - iDiameter - 1);
-      //path.m_ppath->AddArc(Corner, 180, 90);
+      //rectangleCorder.Y -= (rectangle.height() - iDiameter - 1);
+      //path.m_ppath->AddArc(rectangleCorder, 180, 90);
 
 
 
-      //Corner.X += (rectangle.width() - iDiameter - 1);
-      //path.m_ppath->AddArc(Corner, 275, 45);
+      //rectangleCorder.X += (rectangle.width() - iDiameter - 1);
+      //path.m_ppath->AddArc(rectangleCorder, 275, 45);
 
 
       // end path

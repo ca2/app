@@ -1430,7 +1430,7 @@ g_bWindowingOutputDebugString = true;
 //CLASS_DECL_ACME::factory::factory * get_system_factory()
 //{
 //
-//   return this->platform()->m_pfactory;
+//   return this->::system()->m_pfactory;
 //
 //}
 

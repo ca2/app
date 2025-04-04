@@ -18,7 +18,7 @@
 
 
 //#include "acme/prototype/geometry2d/vector.h"
-#include "Object.h"
+#include "nanoui/Object.h"
 //#include "nano2d/color.h"
 
 

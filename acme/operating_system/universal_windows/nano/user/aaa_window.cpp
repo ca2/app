@@ -41,7 +41,7 @@ namespace universal_windows
          void window::create()
          {
 
-            if (platform()->m_bConsole)
+            if (::system()->m_bConsole)
             {
 
                _console_create();
@@ -82,7 +82,7 @@ namespace universal_windows
          void window::display()
          {
 
-            if (platform()->m_bConsole)
+            if (::system()->m_bConsole)
             {
 
                _display_console();

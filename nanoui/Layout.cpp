@@ -14,11 +14,22 @@
 #include "Layout.h"
 #include "Window.h"
 #include "Label.h"
+//#include <stdio.h>
 //#include <numeric>
 
 namespace nanoui
 {
 
+
+AdvancedGridLayout::Anchor::operator ::string() const
+{
+   
+   ::string str;
+      str.formatf("Format[pos=(%i, %i), size=(%i, %i), align=(%i, %i)]",
+         pos[0], pos[1], size[0], size[1], (int)align[0], (int)align[1]);
+   return str;
+   
+}
 
    BoxLayout::BoxLayout(enum_orientation orientation, enum_alignment alignment,
       ::int_rectangle margin, int spacing)
@@ -773,7 +784,7 @@ namespace nanoui
                }
 
                if (anchor.pos[iAxisIndex] + anchor.size[iAxisIndex] > (int)grid.size())
-                  throw std::runtime_error(
+                  throw ::exception(error_failed,
                      "Advanced grid layout: pwidget is out of bounds: " +
                      (::string)anchor);
 
@@ -789,7 +800,8 @@ namespace nanoui
                if (sizeTarget <= current_size)
                   continue;
                if (total_stretch == 0)
-                  throw std::runtime_error(
+                  throw ::exception(
+                                    error_failed, 
                      "Advanced grid layout: no space to place pwidget: " +
                      (::string)anchor);
                float amt = (sizeTarget - current_size) / total_stretch;

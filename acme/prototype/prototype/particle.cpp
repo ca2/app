@@ -36,6 +36,16 @@ particle::~particle()
    m_pparticleSynchronization.release();
 
 }
+//#if REFERENCING_DEBUGGING
+//
+//#message "REFERENCING_DEBUGGING > 0"
+//
+//#else
+//
+//#message "REFERENCING_DEBUGGING is 0"
+//
+//#endif
+
 
 
 void particle::initialize(::particle * pparticle)
@@ -203,13 +213,13 @@ const char * particle::topic_text() const
 //}
 
 
-::platform::platform * particle::platform()
-{
-
-   return ::platform::get();
-   //return ::is_set(m_papplication) ? m_papplication : _platform();
-
-}
+//::platform::platform * particle::platform()
+//{
+//
+//   return ::platform::get();
+//   //return ::is_set(m_papplication) ? m_papplication : _platform();
+//
+//}
 
 
 // class ::platform::platform * particle::_platform() const
@@ -563,7 +573,7 @@ class ::user::user * particle::user() const
 ::factory::factory_pointer & particle::factory() const
 {
 
-   return platform()->factory();
+   return ::system()->factory();
 
 }
 
@@ -571,7 +581,7 @@ class ::user::user * particle::user() const
 ::factory::factory_pointer & particle::factory(const ::string & strLibrary) const
 {
 
-   return platform()->factory(strLibrary);
+   return ::system()->factory(strLibrary);
 
 }
 
@@ -581,7 +591,7 @@ class ::user::user * particle::user() const
 
    //informationf("particle::factory(\"%s\", \"%s\");\n", strComponent.c_str(), strImplementation.c_str());
 
-   return platform()->factory(strComponent, strImplementation);
+   return ::system()->factory(strComponent, strImplementation);
 
 }
 
@@ -2167,7 +2177,7 @@ void particle::kick_idle()
     if (::is_null(pfactory))
     {
 
-       pfactory = platform()->factory();
+       pfactory = ::system()->factory();
 
     }
 
@@ -2333,7 +2343,7 @@ void particle::_main_post(const ::procedure & procedure)
 //   if (!ptask)
 //   {
 //
-//      return this->platform()->m_papplication;
+//      return this->::system()->m_papplication;
 //
 //   }
 //

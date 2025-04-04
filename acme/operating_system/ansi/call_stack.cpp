@@ -209,7 +209,7 @@ namespace platform
    string node::get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string & strFormat, int iSkip, void *caller_address, int iCount)
    {
 
-      auto psynchronization = this->platform()->system()->synchronization();
+      auto psynchronization = ::system()->synchronization();
 
       _synchronous_lock sl(psynchronization);
 

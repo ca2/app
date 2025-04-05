@@ -396,7 +396,9 @@ namespace experience
 
       auto puser = user();
 
-      auto pframe = puser->experience()->frame_experience(this, strExperience, strFrame);
+      auto pexperience = puser->experience();
+
+      auto pframe = pexperience->frame_experience(this, strExperience, strFrame);
 
       pframe->m_pframewindow = this;
 

@@ -991,7 +991,7 @@ namespace platform
 
 
       //void signal(::signal * psignal) override;
-      //void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 
@@ -1071,7 +1071,7 @@ namespace platform
 
       //virtual ::image::icon * get_icon(object * pparticle, bool bBigIcon) const;
 
-      //virtual void handle(::topic * ptopic, ::handler_context * pcontext);
+      //virtual void handle(::topic * ptopic, ::handler_context * phandlercontext);
 
 
       //      virtual ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);

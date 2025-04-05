@@ -30,7 +30,7 @@ namespace filemanager
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       ::pointer<document>get_document();
 

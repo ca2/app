@@ -176,7 +176,7 @@ public:
    //::atom do_synchronously() override;
    
    
-   void handle(::topic * ptopic, ::handler_context * pcontext) override;
+   void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
    //::user::item & user_item(const ::item * pitem) override;

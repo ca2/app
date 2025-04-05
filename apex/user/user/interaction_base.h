@@ -497,9 +497,9 @@ namespace user
 
       bool has_command_handler(::message::command * pcommand) override;
 
-      //virtual void route(::topic * ptopic, ::handler_context * pcontext);
+      //virtual void route(::topic * ptopic, ::handler_context * phandlercontext);
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       //virtual void on_notify_control_event(control_event* phappening);
 

@@ -187,7 +187,7 @@ namespace userfs
 //   }
 
 
-   void list::handle(::topic * ptopic, ::handler_context * pcontext)
+   void list::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if (ptopic->id() == id_browse)

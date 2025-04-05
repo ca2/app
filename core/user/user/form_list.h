@@ -88,7 +88,7 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       void on_column_update() override;
 

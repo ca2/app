@@ -330,7 +330,7 @@ namespace user
       }
 
 
-      void format_tool::handle(::topic * ptopic, ::handler_context * pcontext)
+      void format_tool::handle(::topic * ptopic, ::handler_context * phandlercontext)
       {
 
          if (ptopic->m_actioncontext.is_user_source())

@@ -381,7 +381,7 @@ namespace user
    }
 
 
-   void form_control::handle(::topic * ptopic, ::handler_context * pcontext)
+   void form_control::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       //for(auto pinteraction : proper_children())
@@ -1363,7 +1363,7 @@ namespace user
    }
 
 
-   //void form_control::handle(::topic * ptopic, ::handler_context * pcontext)
+   //void form_control::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
    //   if (ptopic->id() == ::id_create)

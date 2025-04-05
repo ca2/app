@@ -649,7 +649,7 @@ namespace user
    //}
 
 
-   void multiple_option::handle(::topic * ptopic, ::handler_context * pcontext)
+   void multiple_option::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       ////if(m_bEdit)

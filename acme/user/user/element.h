@@ -638,7 +638,7 @@ namespace user
 
       virtual bool is_selected(::item * pitem);
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       //virtual void on_notify_control_event(control_event* phappening);
 

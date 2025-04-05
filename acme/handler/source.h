@@ -38,7 +38,7 @@ public:
 
    virtual void notify_topic(const ::atom & atom, ::particle * pparticle = nullptr, ::handler_context * pcontext = nullptr);
 
-   //void signal(::topic * ptopic, ::handler_context * pcontext) override;
+   //void signal(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
 };

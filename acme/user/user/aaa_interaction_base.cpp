@@ -821,7 +821,7 @@
 //   }
 //
 //
-//   void interaction_base::handle(::topic * ptopic, ::handler_context * pcontext)
+//   void interaction_base::handle(::topic * ptopic, ::handler_context * phandlercontext)
 //   {
 //
 //      if (ptopic->id() == id_operating_system_user_color_change)

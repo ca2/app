@@ -54,7 +54,7 @@ void on_initialize_particle() override                                          
                                                                                        \
 }                                                                                      \
                                                                                        \
-void handle(::topic * ptopic, ::handler_context * pcontext) override \
+void handle(::topic * ptopic, ::handler_context * phandlercontext) override \
 {                                                                                      \
                                                                                        \
    BASE1::handle(ptopic, phandlercontext);                                              \

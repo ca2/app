@@ -43,7 +43,7 @@ namespace userstack
       void check_desktop_dir(const ::file::path & psz);
 
       void _001InitializeFormPreData(::user::form * pform) override;
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       /*   virtual void OnFileManagerOpenContextMenuFolder(
             ::filemanager::data * pdata,
@@ -55,7 +55,7 @@ namespace userstack
 
       virtual void set_display(int iDisplay);
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
 

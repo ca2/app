@@ -888,7 +888,10 @@ class topic;
 
 class handler_context;
 
+
 using signal_handler = ::function < void(::topic *, ::handler_context *) >;
+
+
 //{
 //public:
 //
@@ -904,7 +907,7 @@ using signal_handler = ::function < void(::topic *, ::handler_context *) >;
 //
 //   //inline void operator()() const;
 //
-//   //void operator()(::topic * ptopic, ::handler_context * pcontext)
+//   //void operator()(::topic * ptopic, ::handler_context * phandlercontext)
 //   //{
 //
 //   //   this-(ptopic, phandlercontext);

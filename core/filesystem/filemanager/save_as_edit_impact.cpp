@@ -125,7 +125,7 @@ namespace filemanager
    }
 
 
-   void save_as_edit_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void save_as_edit_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       ::user::impact::handle(ptopic, phandlercontext);

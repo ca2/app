@@ -1456,7 +1456,7 @@ _001SelectItem(pchild);
    //}
 
 
-   void tree_data::handle(::topic * ptopic, ::handler_context * pcontext)
+   void tree_data::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       ::filemanager_impact_base::handle(ptopic, phandlercontext);

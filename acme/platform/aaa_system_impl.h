@@ -596,7 +596,7 @@ namespace acme
 
       virtual void system_id_update(long long iUpdate, long long iPayload);
       
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       //virtual void add_handler(::particle * pmatter, bool bPriority = false);
 
@@ -1497,7 +1497,7 @@ namespace acme
 //
 //       //void signal(::signal * psignal) override;
 //
-//       //void handle(::topic * ptopic, ::handler_context * pcontext) override;
+//       //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 //
 //       virtual void initialize_estamira();
 //

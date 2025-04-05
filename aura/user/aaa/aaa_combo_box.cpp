@@ -922,7 +922,7 @@ namespace user
    }
 
 
-   void combo_box::handle(::topic * ptopic, ::handler_context * pcontext)
+   void combo_box::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if(m_bEdit)
@@ -934,7 +934,7 @@ namespace user
       //else
       //{
 
-      //   ::user::interaction::handle(::topic * ptopic, ::handler_context * pcontext);
+      //   ::user::interaction::handle(::topic * ptopic, ::handler_context * phandlercontext);
 
       //}
 
@@ -1668,7 +1668,7 @@ namespace user
    }
 
 
-   void combo_box::handle(::topic * ptopic, ::handler_context * pcontext)
+   void combo_box::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if(ptopic->id() == ::id_after_change_cur_sel)

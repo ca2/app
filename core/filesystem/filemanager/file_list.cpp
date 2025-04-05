@@ -2059,7 +2059,7 @@ namespace filemanager
    }
 
 
-   void file_list::handle(::topic * ptopic, ::handler_context * pcontext)
+   void file_list::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       ::filemanager_impact_base::handle(ptopic, phandlercontext);

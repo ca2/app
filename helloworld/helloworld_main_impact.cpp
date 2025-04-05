@@ -43,7 +43,7 @@ namespace helloworld
    }
 
 
-   void main_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void main_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
       ::user::split_impact::handle(ptopic, phandlercontext);
    }
@@ -138,7 +138,7 @@ namespace helloworld
    }
 
 
-   void main_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void main_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if(ptopic->id() == ::id_click)

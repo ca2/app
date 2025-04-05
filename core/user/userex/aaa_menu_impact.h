@@ -13,8 +13,8 @@ public:
    menu_impact();
 
 
-   void handle(::topic * ptopic, ::handler_context * pcontext) override;
-   //virtual void handle(::topic * ptopic, ::handler_context * pcontext);
+   void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
+   //virtual void handle(::topic * ptopic, ::handler_context * phandlercontext);
    DECLARE_MESSAGE_HANDLER(on_message_create);
    void on_timer(::timer * ptimer) override;
    //DECLARE_MESSAGE_HANDLER(_001OnUser123);

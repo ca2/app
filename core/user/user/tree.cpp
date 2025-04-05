@@ -2430,7 +2430,7 @@ namespace user
    }
 
 
-   void tree::handle(::topic * ptopic, ::handler_context * pcontext)
+   void tree::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if (m_ptreedata)

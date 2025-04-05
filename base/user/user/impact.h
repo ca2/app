@@ -44,7 +44,7 @@ namespace user
       virtual void set_notify_user_interaction(::user::interaction* puserinteractionNotify);
 
 
-      void call_handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void call_handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
      
       bool is_impact() override;
@@ -215,7 +215,7 @@ namespace user
       //virtual void OnActivateImpact(bool bActivate, ::pointer<::user::impact>pActivateImpact, ::pointer<::user::impact>DeactiveImpact);
       //virtual void OnActivateFrame(unsigned int nState, ::pointer<::user::frame_window>pFrameWnd);
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       //      virtual void dump(dump_context &) const;
       //    // void assert_ok() const override;

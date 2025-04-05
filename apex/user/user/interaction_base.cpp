@@ -3264,7 +3264,7 @@ namespace user
    }
 
 
-   void interaction_base::handle(::topic * ptopic, ::handler_context * pcontext)
+   void interaction_base::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
 

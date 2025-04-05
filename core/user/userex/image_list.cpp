@@ -386,7 +386,7 @@ namespace userex
    }
 
 
-   void image_list_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void image_list_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       ::user::image_list_impact::handle(ptopic, phandlercontext);

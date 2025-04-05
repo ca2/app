@@ -165,7 +165,7 @@ form_document * html_form_impact::get_document()
 }
 
 
-void html_form_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+void html_form_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
 {
 
    ::html_form::handle(ptopic, phandlercontext);

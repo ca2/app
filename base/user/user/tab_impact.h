@@ -114,7 +114,7 @@ namespace user
 
       void _001OnTabClick(::collection::index iTab) override;
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       bool pre_create_window(::user::system * pusersystem) override;
 

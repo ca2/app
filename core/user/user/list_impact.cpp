@@ -26,7 +26,7 @@ namespace user
    }
 
 
-   void list_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void list_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       BASE_VIEW::handle(ptopic, phandlercontext);

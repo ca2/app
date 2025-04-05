@@ -94,7 +94,7 @@ namespace user
       bool      selection_set(ITEM * pitem,bool bIfNotInSelection = false,bool bIfParentInSelection = false) override;
       bool      selection_set(::collection::index iIndex,ITEM * pitem,bool bIfNotInSelection = false,bool bIfParentInSelection = false) override;
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       void on_fill_children() override;
 

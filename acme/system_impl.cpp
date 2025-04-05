@@ -2850,7 +2850,7 @@ namespace platform
 
    }
 
-   void system::handle(::topic * ptopic, ::handler_context * pcontext)
+   void system::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if (ptopic->id() == id_get_operating_system_dark_mode_reply)

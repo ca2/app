@@ -4866,7 +4866,7 @@ namespace apex
    }
 
 
-   void system::handle(::topic * ptopic, ::handler_context * pcontext)
+   void system::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       ::thread::handle(ptopic, phandlercontext);

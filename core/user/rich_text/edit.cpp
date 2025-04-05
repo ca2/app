@@ -1398,7 +1398,7 @@ namespace user
       }
 
 
-      void edit::handle(::topic * ptopic, ::handler_context * pcontext)
+      void edit::handle(::topic * ptopic, ::handler_context * phandlercontext)
       {
 
          return ::user::interaction::handle(ptopic, phandlercontext);

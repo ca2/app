@@ -216,7 +216,7 @@ namespace html
    }
 
 
-   void core_data::handle(::topic * ptopic, ::handler_context * pcontext)
+   void core_data::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       html_data::handle(ptopic, phandlercontext);

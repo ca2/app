@@ -66,7 +66,7 @@ namespace user
 
 
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
       virtual ::item_pointer current_item() override;

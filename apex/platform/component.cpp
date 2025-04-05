@@ -35,7 +35,7 @@ namespace apex
    }
 
 
-   void component::handle(::topic * ptopic, ::handler_context * pcontext)
+   void component::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if (ptopic->id() == id_implementation_enabled)

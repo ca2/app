@@ -46,7 +46,7 @@ public:
    //::filemanager::document * get_document() { return m_pfilemanagerdocument; }
 
 
-   void handle(::topic * ptopic, ::handler_context * pcontext) override;
+   void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
    virtual void browse_sync(const ::action_context & action_context);
@@ -99,7 +99,7 @@ public:
    }
 
 
-   virtual void handle(::topic * ptopic, ::handler_context * pcontext) override
+   virtual void handle(::topic * ptopic, ::handler_context * phandlercontext) override
    {
 
       IMPACT::handle(ptopic, phandlercontext);

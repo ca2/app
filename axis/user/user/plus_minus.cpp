@@ -228,7 +228,7 @@ namespace user
    }
 
 
-   void plus_minus::handle(::topic * ptopic, ::handler_context * pcontext)
+   void plus_minus::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if (ptopic->id() == ::id_click)

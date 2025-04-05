@@ -32,7 +32,7 @@ namespace userex
    }
 
 
-   void top_toggle_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void top_toggle_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       ::user::impact::handle(ptopic, phandlercontext);

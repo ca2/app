@@ -276,7 +276,7 @@ namespace user
       virtual void update_all_impacts(::topic * ptopic) override;
 
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       //void send_update(::pointer<::user::impact>pSender, LPARAM lHint = 0L,
       //                 ::object* pHint = nullptr);

@@ -489,7 +489,7 @@ namespace experience_tranquillum
    }
 
 
-   //void frame::handle(::topic * ptopic, ::handler_context * pcontext)
+   //void frame::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
    //   if(ptopic->id() == id_user_style_change)

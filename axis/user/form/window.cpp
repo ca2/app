@@ -403,7 +403,7 @@ namespace user
    }
 
 
-   void form_window::handle(::topic * ptopic, ::handler_context * pcontext)
+   void form_window::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
       
       
@@ -1227,7 +1227,7 @@ throw_todo();
    //}
 
 
-   //void form_window::handle(::topic * ptopic, ::handler_context * pcontext)
+   //void form_window::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
    //   ::user::form_control::handle(ptopic, phandlercontext);

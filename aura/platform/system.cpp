@@ -6414,7 +6414,7 @@ if(!m_pimaging)
 //   }
 
 
-   void system::handle(::topic * ptopic, ::handler_context * pcontext)
+   void system::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if (ptopic->id() == id_font_enumeration)

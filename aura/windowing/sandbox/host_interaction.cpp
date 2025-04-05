@@ -223,7 +223,7 @@ void host_interaction::hide()
 }
 
 
-void host_interaction::handle(::topic * ptopic, ::handler_context * pcontext)
+void host_interaction::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
       
       ::user::interaction::handle(ptopic, phandlercontext);

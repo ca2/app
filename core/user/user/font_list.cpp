@@ -288,7 +288,7 @@ namespace user
    }
 
 
-   void font_list::handle(::topic * ptopic, ::handler_context * pcontext)
+   void font_list::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       list_box::handle(ptopic, phandlercontext);

@@ -254,7 +254,7 @@ namespace browser
    }
 
 
-   void impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       impact_base::handle(ptopic, phandlercontext);

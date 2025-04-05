@@ -2719,7 +2719,7 @@ namespace user
    }
 
 
-   void tab::handle(::topic * ptopic, ::handler_context * pcontext)
+   void tab::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       ::user::interaction::handle(ptopic, phandlercontext);

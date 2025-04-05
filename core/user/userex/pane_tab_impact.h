@@ -90,7 +90,7 @@ namespace userex
 
       virtual void interactive_credentials(::account::credentials * pcredentials);
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       void prepare_form(const ::atom & atom, ::form_document * pformdocument) override;
 

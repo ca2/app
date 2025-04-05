@@ -443,7 +443,7 @@ namespace apex
       
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant) override;
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       bool _handle_uri(const ::string & str) override;
 

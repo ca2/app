@@ -52,9 +52,9 @@ namespace userex
 
       void install_message_routing(::channel * pchannel) override;
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-      //void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       virtual string get_group_title(group * pgroup);
 

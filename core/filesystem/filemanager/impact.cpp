@@ -116,7 +116,7 @@ namespace filemanager
    }
 
 
-   void impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       ::filemanager_impact_base::handle(ptopic, phandlercontext);

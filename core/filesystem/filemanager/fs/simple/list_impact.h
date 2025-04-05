@@ -149,7 +149,7 @@ namespace filemanager
             ::collection::count _001GetItemCount() override;
             void _001SearchGetSubItemText(::user::mesh_subitem * psubitem) override;
 
-            void handle(::topic * ptopic, ::handler_context * pcontext) override;
+            void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
             bool on_click(::item * pitem, ::user::mouse * pmouse) override;
 

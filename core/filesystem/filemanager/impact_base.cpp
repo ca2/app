@@ -295,7 +295,7 @@ void filemanager_impact_base::_001OnOperationDocMessage(::message::message * pme
 
 
 
-void filemanager_impact_base::handle(::topic * ptopic, ::handler_context * pcontext)
+void filemanager_impact_base::handle(::topic * ptopic, ::handler_context * phandlercontext)
 {
 
    ::user::impact::handle(ptopic, phandlercontext);

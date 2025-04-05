@@ -596,11 +596,7 @@ class ::user::user * particle::user() const
 }
 
 
-
-
-
-
-void particle::operator()(::topic * ptopic, ::handler_context * pcontext)
+void particle::operator()(::topic * ptopic, ::handler_context * phandlercontext)
 {
 
    handle(ptopic, phandlercontext);
@@ -655,7 +651,7 @@ void particle::operator()(::topic * ptopic, ::handler_context * pcontext)
 //}
 
 
-void particle::handle(::topic * ptopic, ::handler_context * pcontext)
+void particle::handle(::topic * ptopic, ::handler_context * phandlercontext)
 {
 
 
@@ -668,7 +664,7 @@ void particle::handle(::topic * ptopic, ::handler_context * pcontext)
 //}
 
 
-void particle::call_handle(::topic * ptopic, ::handler_context * pcontext)
+void particle::call_handle(::topic * ptopic, ::handler_context * phandlercontext)
 {
 
    handle(ptopic, phandlercontext);
@@ -1765,7 +1761,7 @@ lresult particle::message_handler(::enum_message emessage, ::wparam wparam, ::lp
 
 //
 //
-//void particle::handle(::topic * ptopic, ::handler_context * pcontext)
+//void particle::handle(::topic * ptopic, ::handler_context * phandlercontext)
 //{
 //
 //

@@ -44,7 +44,7 @@ namespace database
       //
       // auto psignal = get_app()->get_signal(linkedproperty->id());
       //
-      // psignal->add_signal_handler([this, atom, linkedproperty](::topic * ptopic, ::handler_context * pcontext)
+      // psignal->add_signal_handler([this, atom, linkedproperty](::topic * ptopic, ::handler_context * phandlercontext)
       //
       // //connect(atom, [atom, linkedproperty](::message::message* pmessage)
       //    {

@@ -101,7 +101,7 @@ void on_before_create_window(acme::windowing::window* pacmewindowingwindow) over
       enum_window_type get_window_type() override;
 
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
       void display_previous_restore() override;

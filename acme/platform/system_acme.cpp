@@ -2537,7 +2537,7 @@ namespace platform
    //
    //    }
    //
-   //    void acme_system_layer::system::handle(::topic * ptopic, ::handler_context * pcontext)
+   //    void acme_system_layer::system::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //    {
    //
    //       if (ptopic->id() == id_get_operating_system_dark_mode_reply)
@@ -4655,7 +4655,7 @@ return nullptr;
    }
 
 
-   //void acme_system_layer::handle(::topic * ptopic, ::handler_context * pcontext) override{}
+   //void acme_system_layer::handle(::topic * ptopic, ::handler_context * phandlercontext) override{}
 
    // void acme_system_layer::add_handler(::particle * pmatter)
    // {

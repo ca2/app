@@ -62,6 +62,7 @@ public:
 
    virtual ::string get_short_debug_text(int i) const;
 
+   virtual void operator()();
    virtual void run();
 
    virtual class ::time get_run_timeout();

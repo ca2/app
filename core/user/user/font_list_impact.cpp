@@ -75,7 +75,7 @@ namespace user
    }
 
 
-   void font_list_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void font_list_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       ::user::show < font_list > ::handle(ptopic, phandlercontext);
@@ -265,7 +265,7 @@ namespace user
    //}
 
 
-   //void font_list_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   //void font_list_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
    //   form_impact::handle(ptopic, phandlercontext);

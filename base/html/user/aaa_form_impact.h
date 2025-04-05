@@ -30,10 +30,10 @@ public:
    void install_message_routing(::channel * pchannel) override;
    bool pre_create_window(::user::system * pusersystem) override;
    //virtual void OnDraw(::draw2d::graphics_pointer & pgraphics);      // overridden to draw this ::user::impact
-   void handle(::topic * ptopic, ::handler_context * pcontext) override;
+   void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
-   //virtual void handle(::topic * ptopic, ::handler_context * pcontext) override;
+   //virtual void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
    DECLARE_MESSAGE_HANDLER(on_message_set_focus);
    DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
 

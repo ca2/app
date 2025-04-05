@@ -2938,7 +2938,7 @@ namespace user
    }
 
 
-   void frame_window::handle(::topic * ptopic, ::handler_context * pcontext)
+   void frame_window::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       ::user::main_window::handle(ptopic, phandlercontext);

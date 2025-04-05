@@ -147,7 +147,7 @@ namespace user
    }
 
 
-   void color_combo_box::handle(::topic * ptopic, ::handler_context * pcontext)
+   void color_combo_box::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if(ptopic->m_puserelement == m_pcolorselectorpopup)

@@ -3378,7 +3378,7 @@ particle* system::matter_mutex()
    }
 
 
-   void system::handle(::topic * ptopic, ::handler_context * pcontext)
+   void system::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
       
       if(ptopic->id() == id_initialize_host_window)

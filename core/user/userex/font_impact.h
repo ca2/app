@@ -32,9 +32,9 @@ namespace userex
 
       virtual void on_create_split_impact() override;
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-      //void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       void defer_do_graphics(::draw2d::graphics_pointer & pgraphics) override;
 

@@ -305,7 +305,7 @@ void window_base::on_create_window()
 }
 
 
-void window_base::handle(::topic * ptopic, ::handler_context * pcontext)
+void window_base::handle(::topic * ptopic, ::handler_context * phandlercontext)
 {
 
    // if(ptopic->id() == id_operating_system_user_color_change)

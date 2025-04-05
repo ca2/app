@@ -79,7 +79,8 @@ public:
    
 
 
-   void operator()(::topic * ptopic, ::handler_context * pcontext) override;
+   void operator()(::topic * ptopic, ::handler_context * phandlercontext) override;
+
 
    virtual void operator()(::message::message * pmessage);
    //virtual void operator()(const ::payload & payload);

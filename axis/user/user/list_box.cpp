@@ -356,7 +356,7 @@ namespace user
    }
 
 
-   void list_box::handle(::topic * ptopic, ::handler_context * pcontext)
+   void list_box::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if (ptopic->id() == ::id_click)

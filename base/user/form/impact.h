@@ -37,7 +37,7 @@ namespace user
       // //inline ::axis::user * axisuser() { return form_control::axisuser(); }
 
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       bool open_document(const ::payload & payloadFile) override;
       
@@ -59,7 +59,7 @@ namespace user
 
       void set_need_load_form_data() override;
 
-      //void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       
       form_document * get_document();
       

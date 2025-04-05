@@ -29,7 +29,7 @@ namespace usernet
 
       void on_show();
 
-      void handle(::topic * ptopic, ::handler_context * pcontext);
+      void handle(::topic * ptopic, ::handler_context * phandlercontext);
 
    };
 

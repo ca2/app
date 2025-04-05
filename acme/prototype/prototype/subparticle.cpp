@@ -285,6 +285,13 @@ enum_type subparticle::get_payload_type() const
 }
 
 
+//void subparticle::operator()()
+//{
+//
+//   run();
+//
+//}
+
 
 bool subparticle::_is_set() const
 {
@@ -395,6 +402,14 @@ void subparticle::read_from_stream(::binary_stream & stream)
 //   ::memory_free(p);
 //
 //}
+
+
+void subparticle::operator()()
+{
+
+   run();
+
+}
 
 
 void subparticle::run()

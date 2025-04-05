@@ -10,6 +10,7 @@ class CLASS_DECL_ACME handler_context :
 {
 public:
 
+
    // 0 update serial is not ok
    unsigned long long       m_uUpdateSerial;
 
@@ -21,7 +22,7 @@ public:
    virtual void start_task();
 
 
-   virtual void set_up_to_date(const ::topic * phandler);
+   virtual void set_up_to_date(const ::topic * ptopic);
 
    inline bool is_up_to_date(const ::topic * ptopic) const
    {

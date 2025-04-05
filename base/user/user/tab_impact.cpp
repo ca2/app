@@ -75,7 +75,7 @@ namespace user
    }
 
 
-   void tab_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void tab_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       tab::handle(ptopic, phandlercontext);

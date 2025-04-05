@@ -194,7 +194,7 @@ namespace user
 
       virtual void      _001EnsureVisible(::data::tree_item_base * ptreeitem);
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       bool keyboard_focus_is_focusable() override;
 
@@ -388,7 +388,7 @@ namespace user
    }
 
    template < prototype_item ITEM >
-   void tree_data < ITEM >::handle(::topic * ptopic, ::handler_context * pcontext)
+   void tree_data < ITEM >::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       for (auto & pusertree : m_usertreea)

@@ -3141,7 +3141,7 @@ retry_license:
 //   }
 //
 //
-//   void application::handle(::topic * ptopic, ::handler_context * pcontext)
+//   void application::handle(::topic * ptopic, ::handler_context * phandlercontext)
 //   {
 //
 //
@@ -5441,7 +5441,7 @@ retry_license:
 //
 //
 
-   //void application::handle(::topic * ptopic, ::handler_context * pcontext)
+   //void application::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
    //}
@@ -5473,7 +5473,7 @@ retry_license:
 
    //}
 
-   //void application::handle(::topic * ptopic, ::handler_context * pcontext)
+   //void application::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
    //}
@@ -5486,7 +5486,7 @@ retry_license:
    //}
 
 
-   //void application::route(::topic * ptopic, ::handler_context * pcontext)
+   //void application::route(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
    //   handle(ptopic);
@@ -8485,7 +8485,7 @@ namespace aura
    //   }
 
 
-   void application::handle(::topic * ptopic, ::handler_context * pcontext)
+   void application::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       //::aqua::application::handle(ptopic, phandlercontext);

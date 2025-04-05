@@ -24,7 +24,7 @@ namespace userex
       public:
 
 
-         virtual void handle(pane_tab_impact * ppanetabimpact, ::topic * ptopic, ::handler_context * pcontext) = 0;
+         virtual void handle(pane_tab_impact * ppanetabimpact, ::topic * ptopic, ::handler_context * phandlercontext) = 0;
 
 
       };

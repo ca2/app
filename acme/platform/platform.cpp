@@ -924,7 +924,9 @@ g_bWindowingOutputDebugString = true;
 
       information() << "system::factory Going to create factory from library \"" << strLibrary << "\".";
 
-      plibrary->create_factory(pfactory);
+      plibrary->create_factory();
+
+      pfactory = plibrary->m_pfactory;
 
       if (!pfactory)
       {
@@ -1029,7 +1031,9 @@ g_bWindowingOutputDebugString = true;
 
       }
 
-      plibrary->create_factory(pfactory);
+      plibrary->create_factory();
+
+      pfactory = plibrary->m_pfactory;
 
       return pfactory;
 

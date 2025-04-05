@@ -20,6 +20,7 @@ namespace acme
       library_t *                                     m_plibrary;
       string                                          m_strMessage;
       PFN_factory                                     m_pfnFactory;
+      ::factory::factory_pointer                      m_pfactory;
 
 
       //static ::pointer< ::mutex >                                s_pmutexLoading;
@@ -122,7 +123,9 @@ namespace acme
       //virtual void factory_exchange(const ::string & strName = nullptr, ::factory::factory * pfactory = nullptr);
       //virtual ::pointer<::factory::factory>create_factory(const ::string& strLibrary);
 
-      virtual void create_factory(::pointer<::factory::factory> & pfactory);
+      virtual ::factory::factory_pointer & factory() const override;
+
+      virtual void create_factory();
 
 
    };

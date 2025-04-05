@@ -32,7 +32,7 @@ public:
 
    virtual void add_handler(::particle * pmatter, bool bPriority = false);
 
-   virtual void route(::topic * ptopic, ::handler_context * pcontext = nullptr);
+   virtual void route(::topic * ptopic, ::handler_context * phandlercontext = nullptr);
 
    virtual void on_topic(const ::atom & atom, ::particle * pparticle = nullptr, ::handler_context * pcontext = nullptr);
 

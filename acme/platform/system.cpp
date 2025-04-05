@@ -3947,9 +3947,9 @@ particle* system::matter_mutex()
 
             }
 
-            ::factory::factory_pointer pfactory;
+            plibrary->create_factory();
 
-            plibrary->create_factory(pfactory);
+            auto pfactory = plibrary->m_pfactory;
 
             if (pfactory)
             {

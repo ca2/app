@@ -127,9 +127,11 @@ namespace factory
       if (pfactory->m_plibrary)
       {
 
-         ::factory::factory_pointer pfactoryImplicit;
+         //::factory::factory_pointer pfactoryImplicit;
             
-         pfactory->m_plibrary->create_factory(pfactoryImplicit);
+         pfactory->m_plibrary->create_factory();
+
+         auto pfactoryImplicit = pfactory->m_plibrary->m_pfactory;
 
          for (auto& pair : *pfactoryImplicit)
          {

@@ -933,8 +933,33 @@ namespace acme
 
    }
 
+
+   ::factory::factory_pointer& library::factory() const
+   {
+
+      if (!m_pfactory)
+      {
+
+         try
+         {
+
+            ((library*)this)->create_factory();
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+      }
+
+      return ((library *)this)->m_pfactory;
+
+   }
    
-   void library::create_factory(::pointer<::factory::factory>& pfactory)
+
+   void library::create_factory()
    {
 
       string strName = m_strName;
@@ -990,9 +1015,9 @@ namespace acme
 
       }
 
-      __defer_construct_new(pfactory);
+      __defer_construct_new(m_pfactory);
 
-      m_pfnFactory(pfactory);
+      m_pfnFactory(m_pfactory);
 
       debugf("Factory has succeeded for library : \"%s\"", strName.c_str());
 

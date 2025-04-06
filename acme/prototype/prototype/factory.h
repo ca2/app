@@ -198,7 +198,7 @@ namespace factory
       //inline ::pointer<::factory::factory_item_interface>& get_factory_item_from(const ::atom& atom, const ::atom & atomSource);
 
       inline ::factory::factory_item_interface * get_factory_item(const ::atom& atom) const;
-      inline bool has_factory_item(const ::atom& atom) const;
+      bool has_factory_item(const ::atom& atom) const;
 
       //inline ::factory::factory_item_interface * get_factory_item_from(const ::atom& atom, const ::atom & atomSource) const;
 

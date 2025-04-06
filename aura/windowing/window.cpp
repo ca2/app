@@ -814,12 +814,29 @@ namespace windowing
       //this->windowing() = pwindowing;
 
       //pwindow->this->windowing() = pwindowing;
-      main_send([this]()
-      {
+      //try
+      //{
+         main_send([this]()
+            {
 
-         _create_window();
+               _create_window();
 
-      });
+            });
+
+      //}
+      //catch (::exception& e)
+      //{
+
+      //   pexception = e.clone();
+
+      //}
+      //catch (...)
+      //{
+
+      //   pexception = __allocate::exception(error_catch_all_exception);
+
+      //}
+
 
       user_interaction()->m_ewindowflag |= e_window_flag_window_created;
 

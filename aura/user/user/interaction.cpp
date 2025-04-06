@@ -22172,12 +22172,38 @@ if(get_parent())
 
       }
 
-      main_send([this]()
+      ::pointer< ::exception > pexception;
+
+      main_send([this, &pexception]()
          {
 
-            _create_window();
+            try
+            {
+
+               _create_window();
+
+            }
+            catch (::exception & e)
+            {
+
+               pexception = e.clone();
+
+            }
+            catch (...)
+            {
+
+               pexception = __allocate::exception(::error_catch_all_exception, "Failed to create window");
+
+            }
 
          });
+
+      if (pexception)
+      {
+
+         throw* pexception;
+
+      }
 
    }
 

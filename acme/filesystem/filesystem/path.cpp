@@ -17,4 +17,25 @@ namespace file
 } // namespace file
 
 
+CLASS_DECL_ACME bool path_begins_eat(::string& strUri, const ::scoped_string& scopedstrPrefix)
+{
+
+   if (strUri.begins_eat(scopedstrPrefix + "/"))
+   {
+
+      return true;
+
+   }
+   else if (strUri == scopedstrPrefix)
+   {
+
+      strUri.empty();
+
+      return true;
+
+   }
+
+   return false;
+
+}
 

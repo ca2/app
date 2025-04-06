@@ -99,8 +99,11 @@ namespace programming
 
 #else
 
-      m_strDynamicSourceConfiguration = "profiler";
-      m_strDynamicSourceStage = "profiler";
+      //m_strDynamicSourceConfiguration = "profiler";
+      //m_strDynamicSourceStage = "profiler";
+
+      m_strDynamicSourceConfiguration = "release";
+      m_strDynamicSourceStage = "release";
 
 #endif
 

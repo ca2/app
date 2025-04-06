@@ -29,7 +29,7 @@
 
 #include "acme/_operating_system.h"
 #include "programming/dynamic_source/httpd_socket.h"
-
+#include "programming/heating_up_exception.h"
 
 namespace dynamic_source
 {
@@ -488,6 +488,12 @@ namespace dynamic_source
             {
 
                pinstance->run();
+
+            }
+            catch (const ::heating_up_exception& e)
+            {
+
+               throw e;
 
             }
             catch (const exit_exception&)

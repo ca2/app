@@ -8,7 +8,7 @@
 #include "acme/prototype/prototype/url.h"
 #include "acme/platform/system.h"
 #include "apex/networking/sockets/httpd/socket_thread.h"
-
+#include "programming/heating_up_exception.h"
 
 namespace dynamic_source
 {
@@ -344,6 +344,14 @@ namespace dynamic_source
       {
 
          run();
+
+      }
+      catch (const ::heating_up_exception& e)
+      {
+
+         destroy();
+
+         throw e;
 
       }
       catch (const ::dynamic_source::exit_exception& e)

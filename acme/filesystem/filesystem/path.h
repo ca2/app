@@ -621,6 +621,7 @@ CLASS_DECL_ACME ::file::e_type file_type(const ::file::path& path);
 CLASS_DECL_ACME void create_directory(const ::file::path & path);
 CLASS_DECL_ACME void delete_file(const ::file::path & path);
 CLASS_DECL_ACME void erase_directory(const ::file::path & path);
+CLASS_DECL_ACME bool path_begins_eat(::string& strUri, const ::scoped_string& scopedstrPrefix);
 
 
 

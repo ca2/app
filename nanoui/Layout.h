@@ -15,8 +15,8 @@
 #pragma once
 
 
-#include "_constant.h"
-#include "Object.h"
+#include "nanoui/_constant.h"
+#include "nanoui/Object.h"
 #include "acme/prototype/collection/numeric_array.h"
 #include "acme/prototype/geometry2d/size.h"
 //#include "acme/prototype/geometry2d/vector.h"
@@ -49,7 +49,7 @@ namespace nanoui
        * \param pwidget
        *     The Widget whose pwidgetChild widgets will be positioned by the layout class..
        */
-      virtual void perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) = 0;
+      virtual void perform_layout(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) = 0;
 
       /**
        * Compute the preferred size for a given layout and pwidget
@@ -64,7 +64,7 @@ namespace nanoui
        *     The preferred size, accounting for things such as spacing, padding
        *     for icons, etc.
        */
-      virtual int_size preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) = 0;
+      virtual int_size preferred_size(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) = 0;
    };
 
    /**
@@ -137,10 +137,10 @@ namespace nanoui
       /* Implementation of the layout interface */
 
       /// See \::pointer Layout::preferred_size.
-      virtual int_size preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
+      virtual int_size preferred_size(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
       /// See \::pointer Layout::perform_layout.
-      virtual void perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
+      virtual void perform_layout(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
    };
 
@@ -205,10 +205,10 @@ namespace nanoui
       /* Implementation of the layout interface */
 
       /// See \::pointer Layout::preferred_size.
-      virtual int_size preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
+      virtual int_size preferred_size(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
       /// See \::pointer Layout::perform_layout.
-      virtual void perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
+      virtual void perform_layout(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
    protected:
       /// The margin of this GroupLayout.
@@ -330,14 +330,14 @@ namespace nanoui
 
       /* Implementation of the layout interface */
       /// See \::pointer Layout::preferred_size.
-      virtual int_size preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
+      virtual int_size preferred_size(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
       /// See \::pointer Layout::perform_layout.
-      virtual void perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
+      virtual void perform_layout(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
 
       // Compute the maximum row and column sizes
-      void compute_layout(::nano2d::context* pcontext, Widget* pwidget, ::int_array * grid, bool bRecalcTextSize) const;
+      void compute_layout(::nano2d::context * pcontext, Widget* pwidget, ::int_array * grid, bool bRecalcTextSize) const;
 
    };
 
@@ -408,12 +408,7 @@ namespace nanoui
          }
 
          /// Allows for printing out Anchor position, size, and alignment.
-         operator ::string() const {
-            char buf[80];
-            std::snprintf(buf, 80, "Format[pos=(%i, %i), size=(%i, %i), align=(%i, %i)]",
-               pos[0], pos[1], size[0], size[1], (int)align[0], (int)align[1]);
-            return buf;
-         }
+         operator ::string() const;
       };
 
 
@@ -474,7 +469,7 @@ namespace nanoui
          if (m_anchor.is_end(p))
          {
 
-            throw std::runtime_error("Widget was not registered with the grid layout!");
+            throw ::exception(error_failed, "Widget was not registered with the grid layout!");
 
          }
 
@@ -486,13 +481,13 @@ namespace nanoui
       /* Implementation of the layout interface */
 
       /// See \::pointer Layout::preferred_size.
-      virtual int_size preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
+      virtual int_size preferred_size(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
       /// See \::pointer Layout::perform_layout.
-      virtual void perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
+      virtual void perform_layout(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
       // Compute the maximum row and column sizes
-      void compute_layout(::nano2d::context* pcontext, Widget* pwidget, ::int_array* grid);
+      void compute_layout(::nano2d::context * pcontext, Widget* pwidget, ::int_array* grid);
 
    };
 

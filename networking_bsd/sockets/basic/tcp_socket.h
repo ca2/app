@@ -267,7 +267,7 @@ namespace sockets_bsd
       virtual string get_connect_host() override;
       virtual ::networking::port_t get_connect_port() override;
 
-      virtual int Protocol() override;
+      int protocol() override;
 
       /** Trigger limit for callback OnTransferLimit. */
       void SetTransferLimit(memsize sz) override;

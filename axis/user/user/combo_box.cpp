@@ -1108,13 +1108,13 @@ namespace user
    }
 
 
-   void combo_box::handle(::topic * ptopic, ::context * pcontext)
+   void combo_box::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       ////if(m_bEdit)
       //{
 
-      //   ::user::plain_edit::handle(ptopic, pcontext);
+      //   ::user::plain_edit::handle(ptopic, phandlercontext);
 
       //}
 

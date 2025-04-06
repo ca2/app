@@ -237,7 +237,7 @@ namespace userex
    }
 
 
-   void progress_impact::handle(::topic * ptopic, ::context * pcontext)
+   void progress_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
    }

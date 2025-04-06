@@ -74,7 +74,7 @@ namespace nanoui
    }
 
 
-   int_size CheckBox::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
+   int_size CheckBox::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
 
       if (bRecalcTextSize)
@@ -145,7 +145,7 @@ namespace nanoui
    }
 
 
-   void CheckBox::draw(::nano2d::context* pcontext) 
+   void CheckBox::draw(::nano2d::context * pcontext) 
    {
 
       Widget::draw(pcontext);

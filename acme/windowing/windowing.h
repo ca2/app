@@ -105,7 +105,7 @@ namespace acme
          
 
          
-         void handle(::topic * ptopic, ::context * pcontext) override;
+         void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
          void _main_send(const ::procedure & procedure) override;

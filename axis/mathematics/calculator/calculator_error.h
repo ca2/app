@@ -6,7 +6,7 @@ namespace calculator
 {
 
 
-   class CLASS_DECL_AXIS error :
+   class CLASS_DECL_AXIS calculator_error :
       virtual public ::particle
    {
    public:

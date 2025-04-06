@@ -45,6 +45,7 @@ namespace base
       ::axis::application::on_set_platform();
 
       factory()->add_factory_item< ::base::system, ::platform::system>();
+      factory()->add_factory_item< ::base::user, ::user::user>();
 
    }
 

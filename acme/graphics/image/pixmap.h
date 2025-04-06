@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "header.h"
+#include "acme/graphics/image/header.h"
 #include "acme/graphics/image/image32.h"
 #include "acme/graphics/image/_configuration.h"
 //#include "acme/prototype/geometry2d/_geometry2d.h"
@@ -14,7 +14,7 @@
 #define __sizeof(TYPE) ((memsize)sizeof(TYPE))
 
 
-#pragma pack(push, pixmap)
+//#pragma pack(push, pixmap)
 
 // POD
 
@@ -216,7 +216,7 @@ struct pixmap
 
 };
 
-#pragma pack(pop, pixmap)
+//#pragma pack(pop, pixmap)
 
 
 

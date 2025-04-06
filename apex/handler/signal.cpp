@@ -3,8 +3,9 @@
 #include "signal.h"
 #include "manager.h"
 #include "manager_room.h"
-#include "context.h"
+#include "acme/handler/handler_context.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/application.h"
 #include "acme/platform/system.h"
 
 
@@ -135,7 +136,7 @@ namespace handler
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      for (auto & pair : m_objectcontext)
+      for (auto & pair : m_objecthandlercontext)
       {
 
          auto & pobject = pair.m_element1;
@@ -145,7 +146,7 @@ namespace handler
          if (!pcontext)
          {
 
-            pcontext = __allocate ::context();
+            pcontext = __allocate ::handler_context();
 
          }
 
@@ -168,7 +169,7 @@ namespace handler
 
       }
 
-      for (auto & pair : m_signalhandlercontext2)
+      for (auto & pair : m_signalhandlercontext)
       {
 
          auto & signalhandler = pair.m_element1;
@@ -178,7 +179,7 @@ namespace handler
          if (!pcontext)
          {
 
-            pcontext = __allocate ::context();
+            pcontext = __allocate ::handler_context();
 
          }
 
@@ -204,17 +205,17 @@ namespace handler
    }
 
 
-   ::context * signal::listener_context(const ::signal_handler & signalhandler)
+   ::handler_context * signal::listener_context(const ::signal_handler & signalhandler)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      auto & pcontext = m_signalhandlercontext2[signalhandler];
+      auto & pcontext = m_signalhandlercontext[signalhandler];
 
       if (!pcontext)
       {
 
-         pcontext = __allocate ::context();
+         pcontext = __allocate ::handler_context();
 
       }
 
@@ -238,7 +239,7 @@ namespace handler
    //}
    //
 
-   bool signal::is_up_to_date(const ::context * pcontext) const
+   bool signal::is_up_to_date(const ::handler_context * pcontext) const
    {
 
       if (::is_null(m_pmanager))
@@ -248,7 +249,7 @@ namespace handler
 
       }
 
-      if (m_iUpdateSerial < 0)
+      if (!m_uUpdateSerial)
       {
 
          return false;
@@ -260,7 +261,7 @@ namespace handler
    }
 
 
-   void signal::set_up_to_date(::context * pcontext)
+   void signal::set_up_to_date(::handler_context * pcontext)
    {
 
       pcontext->set_up_to_date(this);
@@ -280,7 +281,7 @@ namespace handler
 
          _synchronous_lock synchronouslock(this->synchronization());
 
-         m_objectcontext.erase_item(pobject);
+         m_objecthandlercontext.erase_item(pobject);
 
       }
 
@@ -294,12 +295,12 @@ namespace handler
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      auto & pcontext = m_objectcontext[pobject];
+      auto & pcontext = m_objecthandlercontext[pobject];
 
       if (!pcontext)
       {
 
-         pcontext = __allocate ::context();
+         pcontext = __allocate ::handler_context();
 
       }
 
@@ -313,7 +314,7 @@ namespace handler
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      m_objectcontext.erase_item(pobject);
+      m_objecthandlercontext.erase_item(pobject);
 
    }
 
@@ -344,12 +345,12 @@ namespace handler
 
       //}
 
-      auto & pcontext = m_signalhandlercontext2[signalhandler];
+      auto & pcontext = m_signalhandlercontext[signalhandler];
 
       if (!pcontext)
       {
 
-         pcontext = __allocate ::context();
+         pcontext = __allocate ::handler_context();
 
       }
 
@@ -365,7 +366,7 @@ namespace handler
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      m_signalhandlercontext2.erase_item(signalhandler);
+      m_signalhandlercontext.erase_item(signalhandler);
 
    }
 
@@ -406,7 +407,7 @@ namespace handler
 
       m_bModified = true;
 
-      m_iUpdateSerial++;
+      m_uUpdateSerial++;
 
       if (!should_poll(poll_time()))
       {
@@ -439,16 +440,16 @@ namespace handler
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      m_signalhandlercontext2.erase_all();
+      m_signalhandlercontext.erase_all();
 
-      for (auto & pair : m_objectcontext)
+      for (auto & pair : m_objecthandlercontext)
       {
 
          pair.m_element1->notifya().erase(this);
 
       }
 
-      m_objectcontext.erase_all();
+      m_objecthandlercontext.erase_all();
 
    }
 

@@ -7,13 +7,11 @@ using atom_array = ::comparable_array < atom >;
 namespace data
 {
 
+   //class item;
 
-   class tree_item;
-   class tree_item_ptr_array;
-
-
-   class tree;
-
+   class tree_base;
+   class tree_item_base;
+   class tree_item_base_ptr_array;
 
    class property;
 

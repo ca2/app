@@ -1,7 +1,7 @@
 #pragma once
 
 
-#pragma pack(push, geometry2d_long_long, 1)
+//#pragma pack(push, geometry2d_long_long, 1)
 
 
 struct LONG_LONG_SIZE
@@ -41,6 +41,6 @@ struct LONG_LONG_RECTANGLE
 typedef const LONG_LONG_RECTANGLE * LPCRECTANGE_I64;
 
 
-#pragma pack(pop, geometry2d_long_long)
+//#pragma pack(pop, geometry2d_long_long)
 
 

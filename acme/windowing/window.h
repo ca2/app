@@ -172,7 +172,7 @@ namespace acme
          //::atom do_synchronously() override;
 
 
-         void handle(::topic * ptopic, ::context * pcontext) override;
+         void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
          //::user::item & user_item(const ::item * pitem) override;
@@ -358,7 +358,7 @@ namespace acme
          virtual void set_mouse_cursor(::windowing::cursor* pcursor);
 
 
-         //void handle(::topic * ptopic, ::context * pcontext) override;
+         //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
          //virtual ::int_size get_main_screen_size();

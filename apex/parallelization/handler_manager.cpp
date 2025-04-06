@@ -4,6 +4,7 @@
 #include "acme/parallelization/manual_reset_happening.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task.h"
+#include "acme/platform/application.h"
 
 
 handler_manager::handler_manager()

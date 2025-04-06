@@ -133,11 +133,11 @@ namespace aura
       common_construct();
 
 
-      factory()->add_factory_item < ::aura::session, ::apex::session >();
-      //factory()->add_factory_item < ::aura::application, ::apex::application >();
-      //factory()->add_factory_item < ::aura::idpool, ::acme::idpool >();
-      factory()->add_factory_item < ::user::user >();
-      factory()->add_factory_item < ::aura::component, ::component >();
+//      factory()->add_factory_item < ::aura::session, ::platform::session >();
+//      //factory()->add_factory_item < ::aura::application, ::apex::application >();
+//      //factory()->add_factory_item < ::aura::idpool, ::acme::idpool >();
+//      factory()->add_factory_item < ::user::user >();
+//      factory()->add_factory_item < ::aura::component, ::component >();
 
    }
 
@@ -6414,7 +6414,7 @@ if(!m_pimaging)
 //   }
 
 
-   void system::handle(::topic * ptopic, ::context * pcontext)
+   void system::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if (ptopic->id() == id_font_enumeration)
@@ -6429,7 +6429,7 @@ if(!m_pimaging)
 
       }
 
-      ::aqua::system::handle(ptopic, pcontext);
+      ::aqua::system::handle(ptopic, phandlercontext);
 
    }
 

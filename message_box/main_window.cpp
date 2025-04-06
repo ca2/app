@@ -127,7 +127,7 @@ namespace app_message_box
    }
 
 
-   void main_window::handle(::topic * ptopic, ::context * pcontext)
+   void main_window::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if (ptopic->id() == ::id_click)

@@ -471,24 +471,33 @@ namespace folder_zip
 
       pathTargetFolder = pathTargetDir;
 
-      for (auto& path : listing)
+      for (auto& pathItem : listing)
       {
-
+         
+         auto range = pathItem.get_count_parts_from_beginning(m_iConsumeFromPathBeginningWhenExtracting);
+         
+         if(::is_null(range.m_begin))
+         {
+            
+            continue;
+            
+         }
+      
          ::memory memory;
 
          if (functionCallback)
          {
 
-            functionCallback(path);
+            functionCallback(pathItem);
 
          }
 
-         extract(memory, path);
+         extract(memory, pathItem);
 
          if (memory.is_set())
          {
 
-            auto pathTarget = pathTargetFolder / path;
+            auto pathTarget = pathTargetFolder / range;
 
             file_system()->put_block(pathTarget, memory);
 

@@ -239,10 +239,10 @@ void host_interaction::post_redraw(bool bAscendants)
 //}
 
 
-void host_interaction::handle(::topic * ptopic, ::context * pcontext)
+void host_interaction::handle(::topic * ptopic, ::handler_context * phandlercontext)
 {
    
-   ::micro::main_window::handle(ptopic, pcontext);
+   ::micro::main_window::handle(ptopic, phandlercontext);
    
 }
 

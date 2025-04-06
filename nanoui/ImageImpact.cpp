@@ -17,7 +17,7 @@
 #include "aura/graphics/image/image.h"
 
 
-#define __NANO2D_CONTEXT(ctx) ((::nano2d::context *) (ctx)->p)
+#define __NANO2D_CONTEXT(ctx) ((::nano2d::context  *) (ctx)->p)
 
 
 //#include <nanoui/renderpass.h>
@@ -220,7 +220,7 @@ bool ImageImpact::scroll_event(const int_point & p, const float_size & rel)
 }
 
 
-void ImageImpact::draw(::nano2d::context * pcontext) 
+void ImageImpact::draw(::nano2d::context  * pcontext) 
 {
 
    //if (!m_bEnabled || !m_pimage)
@@ -289,7 +289,7 @@ void ImageImpact::draw(::nano2d::context * pcontext)
    //pcontext->restore();
 }
 
-void ImageImpact::draw_contents(::nano2d::context * pcontext) 
+void ImageImpact::draw_contents(::nano2d::context  * pcontext) 
 {
    //if (!m_pimage)
       //return;

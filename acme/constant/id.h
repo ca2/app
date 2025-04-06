@@ -42,6 +42,7 @@ enum enum_id : ::uptr
    id_text_selection_end,
    id_visible,
    id_default,
+   id_text_length,
 
 
 

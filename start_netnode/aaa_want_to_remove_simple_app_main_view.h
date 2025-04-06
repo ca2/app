@@ -25,7 +25,7 @@ namespace simple_drawing
 
       void on_create_split_impact() override;
 
-      virtual void handle(::topic * ptopic, ::context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 

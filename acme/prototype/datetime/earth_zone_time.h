@@ -49,7 +49,7 @@ namespace earth
 } // namespace earth
 
 
-//#ifdef __DEBUG
+//#ifdef _DEBUG
 //CLASS_DECL_ACME dump_context & operator <<(dump_context & dumpcontext, ::earth::zone_time time);
 //#endif
 

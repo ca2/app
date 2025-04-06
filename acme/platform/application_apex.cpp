@@ -965,7 +965,7 @@ namespace platform
 
 
    //void signal(::signal * psignal) override{}
-   //void handle(::topic * ptopic, ::context * pcontext) override{}
+   //void handle(::topic * ptopic, ::handler_context * phandlercontext) override{}
 
    //bool apex_application_layer::compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed){}
 
@@ -1090,7 +1090,7 @@ namespace platform
 
    //virtual ::image::icon * get_icon(object * pparticle, bool bBigIcon) const{}
 
-   //void apex_application_layer::handle(::topic * ptopic, ::context * pcontext){}
+   //void apex_application_layer::handle(::topic * ptopic, ::handler_context * phandlercontext){}
 
 
    //      virtual ::account::user * get_user(::file::path pathUrl, bool bFetch = false, bool bInteractive){}

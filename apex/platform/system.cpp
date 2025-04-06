@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "session.h"
 #include "system.h"
 #include "context.h"
 #include "machine_event_data.h"
@@ -48,6 +49,7 @@
 #ifdef LINUX
 #include <unistd.h>
 #endif
+#include "component.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/directory_context.h"
@@ -61,6 +63,7 @@
 #include "acme/platform/hyperlink.h"
 //#include "acme/platform/system_impl.h"
 #include "acme/prototype/string/base64.h"
+
 
 int file_put_contents(const ::file::path & path, const char * contents);;
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
@@ -193,7 +196,8 @@ namespace apex
 
       factory()->add_factory_item < ::apex::session, ::apex::session >();
       factory()->add_factory_item < ::http::context, ::platform::http >();
-      factory()->add_factory_item< ::http::message, ::nano::http::get>();
+      factory()->add_factory_item < ::http::message, ::nano::http::get>();
+      factory()->add_factory_item < ::apex::component, ::component >();
 
    }
 
@@ -262,7 +266,7 @@ namespace apex
    // void system::on_set_platform()
    // {
    //
-   //    apex::context::on_set_platform();
+   //    apex::handler_context::on_set_platform();
    //
    //    platform::system::on_set_platform();
    //
@@ -477,7 +481,7 @@ namespace apex
 
       }
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
       //estatus =
       //__construct_new(m_pdumpcontext);
@@ -1616,7 +1620,7 @@ pdirectorysystem->create("/ca2core");
    //void system::post_request(::request* prequest)
    //{
 
-   //   auto straArguments = platform()->get_arguments();
+   //   auto straArguments = ::system()->get_arguments();
 
    //   if (straArguments.has_element())
    //   {
@@ -4862,10 +4866,10 @@ namespace apex
    }
 
 
-   void system::handle(::topic * ptopic, ::context * pcontext)
+   void system::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::thread::handle(ptopic, pcontext);
+      ::thread::handle(ptopic, phandlercontext);
       //      auto psignal = get_signal((::enum_id) iUpdate);
       //
       //      psignal->m_payload = iPayload;

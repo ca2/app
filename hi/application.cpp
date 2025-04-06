@@ -286,6 +286,7 @@ void test_002()
 
 
 __IMPLEMENT_APPLICATION_RELEASE_TIME(console_hello);
+IMPLEMENT_APPLICATION_FACTORY(console_hello);
 
 
 //#error "error_compiled back function"
@@ -1557,7 +1558,7 @@ namespace console_hello
 
 //console_hello::application g_consolehelloapplication;
 
-void application_main()
+void application_main(::platform::system * psystem)
 {
 
    auto papplication = __allocate console_hello::application();

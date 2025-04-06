@@ -277,7 +277,7 @@ namespace html
 
       int create_font(::html::element* pelemental);
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
    };

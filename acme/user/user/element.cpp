@@ -3437,7 +3437,7 @@ namespace user
    //}
 
 
-   bool element::is_selected(::data::item * pitem)
+   bool element::is_selected(::item * pitem)
    {
 
       throw ::interface_only();
@@ -3457,7 +3457,7 @@ namespace user
    //}
 
 
-   void element::handle(::topic * ptopic, ::context * pcontext)
+   void element::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
 
@@ -4223,7 +4223,7 @@ namespace user
 //   }
 
 
-   int element::get_total_page_count(::context * pcontext)
+   int element::get_total_page_count(::handler_context * pcontext)
    {
 
       return 1;
@@ -4296,10 +4296,10 @@ namespace user
    }
 
 
-   //void element::route(::topic * ptopic, ::context * pcontext)
+   //void element::route(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
-   //   handle(ptopic, pcontext);
+   //   handle(ptopic, phandlercontext);
 
    //}
 

@@ -160,7 +160,7 @@
 //#endif // ASSERT
 //
 //#ifndef VERIFY
-//#ifdef __DEBUG
+//#ifdef _DEBUG
 //#define VERIFY(expr) ASSERT(expr)
 //#else
 //#define VERIFY(expr) expr

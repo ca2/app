@@ -53,7 +53,7 @@
 
 
 // From __setup.h by camilo on 2022-11-25 14:53 <3ThomasBorregaardSorensen!!
-#ifdef DEBUG
+#ifdef _DEBUG
 #ifndef _DEBUG
 #define _DEBUG 1
 #endif
@@ -61,7 +61,7 @@
 
 
 #ifdef _DEBUG
-#ifndef DEBUG
+#ifndef _DEBUG
 #define DEBUG 1
 #endif
 #endif
@@ -69,7 +69,7 @@
 
 // From __setup.h by camilo on 2022-11-25 14:53 <3ThomasBorregaardSorensen!!
 #ifdef _DEBUG
-#ifndef __DEBUG
+#ifndef _DEBUG
 #define __DEBUG
 #endif
 #else
@@ -127,7 +127,7 @@ typedef long long filesize;
 #define __not_found_index(i) ((i) < 0)
 
 
-#if defined(DEBUG)
+#if defined(_DEBUG)
 
 
 #define RELEASE_INLINE
@@ -204,7 +204,7 @@ typedef long long filesize;
 #endif
 
 
-//#if defined(DEBUG) && !defined(NO_ACME_MEMORY_MANAGEMENT)
+//#if defined(_DEBUG) && !defined(NO_ACME_MEMORY_MANAGEMENT)
 //#define ___new ___new(__FILE__, __LINE__)
 //#else
 //#define memory_new ___new

@@ -29,7 +29,7 @@ namespace userex
       void on_command(::message::command * pcommand) override;
 
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       bool create_pane(int iPane, bool bFixedSize, ::atom atom);
 

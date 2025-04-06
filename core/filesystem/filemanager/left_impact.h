@@ -33,7 +33,7 @@ namespace filemanager
       void FileManagerBrowse(const ::string & pcwstr, const ::action_context & action_context);
 
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
    };
 

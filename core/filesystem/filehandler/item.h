@@ -2,7 +2,7 @@
 
 
 //#include "acme/prototype/collection/string_array.h"
-#include "acme/prototype/data/item.h"
+#include "acme/handler/item.h"
 
 
 
@@ -11,7 +11,7 @@ namespace filehandler
 
 
    class CLASS_DECL_CORE item :
-      public ::data::item
+      public ::item
    {
    public:
 
@@ -31,8 +31,8 @@ namespace filehandler
       string_array        m_straApp;
 
 
-      string data_item_get_text(object * pparticle) const;
-     ::collection::index data_item_get_image(object * pparticle) const;
+      string get_item_text(object * pparticle) const;
+     ::collection::index get_item_image(object * pparticle) const;
 
 
    

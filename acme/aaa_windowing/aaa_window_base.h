@@ -136,7 +136,7 @@ namespace windowing
                virtual ::int_point try_absolute_mouse_position(const ::int_point & point);
 
 
-               void handle(::topic * ptopic, ::context * pcontext) override;
+               void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
                virtual ::int_size get_main_screen_size();

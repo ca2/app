@@ -214,7 +214,7 @@ namespace micro
          void _on_window_simple_action(const char * pszActionName, ::user::activation_token * puseractivationtoken) override;
          
 
-         void handle(::topic * ptopic, ::context * pcontext) override;
+         void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
          ////virtual void do_interchange();

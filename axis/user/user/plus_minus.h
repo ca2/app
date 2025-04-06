@@ -51,7 +51,7 @@ namespace user
 
       //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
       virtual string calc_still_label();

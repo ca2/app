@@ -446,7 +446,7 @@ CLASS_DECL_ACME const char * e_trace_level_name(enum_trace_level elevel);
 CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFileName, int iLine, const ::scoped_string & scopedstr)
 {
 
-#ifndef DEBUG
+#ifndef _DEBUG
 
    if (elevel < e_trace_level_error)
    {

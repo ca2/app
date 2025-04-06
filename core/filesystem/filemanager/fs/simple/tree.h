@@ -54,7 +54,7 @@ namespace filemanager
 
 
          class CLASS_DECL_CORE tree :
-            virtual public ::user::tree_data
+            virtual public ::user::tree_data < ::item>
          {
          public:
 
@@ -74,14 +74,14 @@ namespace filemanager
 
             virtual void initialize(::particle * pparticle) override;
 
-            void _001OnItemExpand(::data::tree_item * pitem, const ::action_context & action_context) override;
+            void _001OnItemExpand(::data::tree_item<::item> * pitem, const ::action_context & action_context) override;
 
 
             void parse(const ::string & pszSource);
 
 
-            ::pointer<::data::tree_item>FindTreeItem(long long iFolder);
-            ::collection::index _001GetItemImage(::pointer<::data::tree_item>pitem, bool bSelected);
+            ::pointer<::data::tree_item<::item>> FindTreeItem(long long iFolder);
+            ::collection::index _001GetItemImage(::pointer<::data::tree_item<::item>>pitem, bool bSelected);
 
 
             // void assert_ok() const override;

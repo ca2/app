@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "in_place_edit.h"
+#include "nanoui/in_place_edit.h"
 
 
 namespace nanoui

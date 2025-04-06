@@ -167,7 +167,7 @@ namespace platform
    //
    //       m_etracelevelMinimum = e_trace_level_undefined;
    //
-   // #ifdef DEBUG
+   // #ifdef _DEBUG
    //       ::atom atom;
    //       int iAtom1 = sizeof(atom);
    //       int iAtomType = sizeof(atom.m_etype);
@@ -2537,7 +2537,7 @@ namespace platform
    //
    //    }
    //
-   //    void acme_system_layer::system::handle(::topic * ptopic, ::context * pcontext)
+   //    void acme_system_layer::system::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //    {
    //
    //       if (ptopic->id() == id_get_operating_system_dark_mode_reply)
@@ -2559,7 +2559,7 @@ namespace platform
    //          if (m_pnano)
    //          {
    //
-   //             m_pnano->handle(ptopic, pcontext);
+   //             m_pnano->handle(ptopic, phandlercontext);
    //
    //          }
    //
@@ -2611,7 +2611,7 @@ namespace platform
    //          if (::is_set(application()))
    //          {
    //
-   //             application()->handle(ptopic, pcontext);
+   //             application()->handle(ptopic, phandlercontext);
    //
    //          }
    //
@@ -3895,7 +3895,7 @@ namespace platform
    }
 
 
-   ::thread_storage * acme_system_layer::thread_storage(const class ::task_index & taskindex)
+   ::thread_storage * acme_system_layer::thread_storage(const ::task_index & taskindex)
    {
 
       return nullptr;
@@ -3903,7 +3903,7 @@ namespace platform
    }
 
 
-   ::thread_storage * acme_system_layer::_thread_storage_unlocked(const class ::task_index & taskindex)
+   ::thread_storage * acme_system_layer::_thread_storage_unlocked(const ::task_index & taskindex)
    {
 
       return nullptr;
@@ -4655,7 +4655,7 @@ return nullptr;
    }
 
 
-   //void acme_system_layer::handle(::topic * ptopic, ::context * pcontext) override{}
+   //void acme_system_layer::handle(::topic * ptopic, ::handler_context * phandlercontext) override{}
 
    // void acme_system_layer::add_handler(::particle * pmatter)
    // {

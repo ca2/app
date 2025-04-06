@@ -48,7 +48,7 @@ namespace data
       virtual ::user::element * get_data_bound_impact(::collection::index iInteraction);
 
       //void signal(::signal * psignal) override;
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       virtual void on_update_data(int iHint);
 

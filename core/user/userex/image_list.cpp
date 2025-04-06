@@ -386,10 +386,10 @@ namespace userex
    }
 
 
-   void image_list_impact::handle(::topic * ptopic, ::context * pcontext)
+   void image_list_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::user::image_list_impact::handle(ptopic, pcontext);
+      ::user::image_list_impact::handle(ptopic, phandlercontext);
 
       if (ptopic->id() == id_after_change_text)
       {

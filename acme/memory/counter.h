@@ -153,10 +153,10 @@ namespace heap
 //void memory_counter_increment(T* pthis)
 //{
 //
-//   if (this->platform()->m_pmemorycounter)
+//   if (this->::system()->m_pmemorycounter)
 //   {
 //
-//      this->platform()->m_pmemorycounter->memory_counter_increment(pthis);
+//      this->::system()->m_pmemorycounter->memory_counter_increment(pthis);
 //
 //   }
 //
@@ -167,10 +167,10 @@ namespace heap
 //void memory_counter_decrement(T* pthis)
 //{
 //
-//   if (this->platform()->m_pmemorycounter)
+//   if (this->::system()->m_pmemorycounter)
 //   {
 //
-//      this->platform()->m_pmemorycounter->memory_counter_decrement(pthis);
+//      this->::system()->m_pmemorycounter->memory_counter_decrement(pthis);
 //
 //   }
 //

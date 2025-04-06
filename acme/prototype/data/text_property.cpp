@@ -222,6 +222,13 @@ namespace data
    }
 
 
+   ::string text_property::as_text(character_count iBegin, character_count iEnd) const
+   {
+
+      return this->get_property({ id_text, iBegin, iEnd }).as_string();
+   }
+
+
    ::character_count text_property::selection_begin() const
    {
 
@@ -287,7 +294,15 @@ namespace data
    character_count text_property::get_size() const
    {
 
-      return this->as_text().size();
+      return this->get_text_length();
+
+   }
+
+
+   character_count text_property::get_text_length() const
+   {
+
+      return this->get_property({ id_text_length }).as_long_long();
 
    }
 
@@ -309,6 +324,13 @@ namespace data
 
    }
 
+
+   ::string text_property::get_text(character_count iBegin, character_count iEnd) const
+   {
+
+      return this->as_text(iBegin, iEnd);
+
+   }
 
    //void text_property::get_text(::string & str, character_count iBeg, character_count iEnd) const
    //{

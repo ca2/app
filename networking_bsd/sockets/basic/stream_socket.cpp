@@ -208,7 +208,7 @@ namespace sockets_bsd
    }
 
 
-   int stream_socket::Protocol()
+   int stream_socket::protocol()
    {
       
       throw ::interface_only();

@@ -13,7 +13,7 @@
 #pragma once
 
 
-#include "Widget.h"
+#include "nanoui/Widget.h"
 
 
 namespace nanoui
@@ -55,10 +55,10 @@ namespace nanoui
 
       bool mouse_motion_event(const int_point& p, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
       bool mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
-      int_size preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
-      void draw(::nano2d::context* pcontext) override;
+      int_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      void draw(::nano2d::context * pcontext) override;
 
-      void _defer_load_image_directory(::nano2d::context* pcontext);
+      void _defer_load_image_directory(::nano2d::context * pcontext);
 
       int_size grid_size() const;
       

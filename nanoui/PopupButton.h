@@ -13,8 +13,8 @@
 #pragma once
 
 
-#include "Button.h"
-#include "Popup.h"
+#include "nanoui/Button.h"
+#include "nanoui/Popup.h"
 
 
 namespace nanoui
@@ -55,9 +55,9 @@ namespace nanoui
       Popup* popup() { return m_ppopup; }
       const Popup* popup() const { return m_ppopup; }
 
-      virtual void draw(::nano2d::context* pcontext) override;
-      virtual int_size preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
-      virtual void perform_layout(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
+      virtual void draw(::nano2d::context * pcontext) override;
+      virtual int_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      virtual void perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
 
 
    };

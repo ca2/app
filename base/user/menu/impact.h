@@ -54,7 +54,7 @@ namespace user
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       ::user::document * get_document();
 

@@ -8,15 +8,15 @@ namespace platform
 {
 
 
-   struct CLASS_DECL_ACME aqua_application_layer_t
-   {
-
-
-      ::pointer<::aqua::game>                      m_paquagame;
-      //::pointer<::networking::application>         m_p_networkingapplication;
-
-
-   };
+   //struct CLASS_DECL_ACME aqua_application_layer_t
+//   {
+//
+//
+//      ::pointer<::aqua::game>                      m_paquagame;
+//      //::pointer<::networking::application>         m_p_networkingapplication;
+//
+//
+//   };
 
 
    class CLASS_DECL_ACME aqua_application_layer

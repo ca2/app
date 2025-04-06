@@ -6,9 +6,11 @@
 #include "acme/exception/no_memory.h"
 
 
-#include "_impl_pointer.h"
-#include "_impl_ptr.h"
+#include "acme/prototype/prototype/_impl_pointer.h"
+#include "acme/prototype/prototype/_impl_ptr.h"
 
+
+#include "acme/prototype/prototype/_impl_factory.h"
 
 
 //inline bool __enum_is_failed(const ::e_status & e)
@@ -19,8 +21,8 @@
 //}
 
 
-#include "_impl_atom.h"
-#include "_impl_prototype.h"
+#include "acme/prototype/prototype/_impl_atom.h"
+#include "acme/prototype/prototype/_impl_prototype.h"
 
 
 //inline bool succeeded(const ::property & property)

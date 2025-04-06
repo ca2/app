@@ -1,8 +1,7 @@
 #pragma once
 
 
-//#include "aura/windowing/::menu::item.h"
-//#include "aura/windowing/menu.h"
+#include "acme/user/user/_style.h"
 #include "acme/user/user/frame_interaction.h"
 #include "aura/user/user/box.h"
 
@@ -102,7 +101,7 @@ void on_before_create_window(acme::windowing::window* pacmewindowingwindow) over
       enum_window_type get_window_type() override;
 
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
       void display_previous_restore() override;

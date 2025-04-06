@@ -22,7 +22,7 @@
 #endif
 
 
-#pragma pack(push, heap_memory, 1)
+//#pragma pack(push, heap_memory, 1)
 
 
 #define HEAP_PADDING_SIZE 8
@@ -57,7 +57,7 @@ struct  heap_memory :
 };
 
 
-#pragma pack(pop, heap_memory)
+//#pragma pack(pop, heap_memory)
 
 
 inline static struct heap_memory * heap_memory_get(void * pmemory)

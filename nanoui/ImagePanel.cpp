@@ -21,14 +21,14 @@
 
 
 
-//::object * get_nano2d_object(::nano2d::context * pcontext);
+//::object * get_nano2d_object(::nano2d::context  * pcontext);
 
 namespace nanoui
 {
 
 
 
-   void CLASS_DECL_NANOUI load_image_directory(::nano2d::context * pcontext, ::array<::pair<int, ::string>> & images, const ::scoped_string & path);
+   void CLASS_DECL_NANOUI load_image_directory(::nano2d::context  * pcontext, ::array<::pair<int, ::string>> & images, const ::scoped_string & path);
 
 
    ImagePanel::ImagePanel(Widget * parent)
@@ -120,7 +120,7 @@ namespace nanoui
    }
 
 
-   void ImagePanel::_defer_load_image_directory(::nano2d::context * pcontext)
+   void ImagePanel::_defer_load_image_directory(::nano2d::context  * pcontext)
    {
 
       if (m_bPendingLoad)
@@ -140,7 +140,7 @@ namespace nanoui
    }
 
 
-   int_size ImagePanel::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
+   int_size ImagePanel::preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize)
    {
 
       ((ImagePanel *)this)->_defer_load_image_directory(pcontext);
@@ -154,7 +154,7 @@ namespace nanoui
    }
 
 
-   void ImagePanel::draw(::nano2d::context * pcontext)
+   void ImagePanel::draw(::nano2d::context  * pcontext)
    {
 
       _defer_load_image_directory(pcontext);

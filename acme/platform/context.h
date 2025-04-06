@@ -19,10 +19,10 @@ namespace platform
       virtual public ::task,
       //virtual public ::handler::handler,
       virtual public ::reificator < ::message_box >,
-   virtual public ::platform::acme_context_layer_t,
-   virtual public ::platform::apex_context_layer_t,
-   virtual public ::platform::aqua_context_layer_t,
-   virtual public ::platform::aura_context_layer_t,
+//   virtual public ::platform::acme_context_layer_t,
+//   virtual public ::platform::apex_context_layer_t,
+//   virtual public ::platform::aqua_context_layer_t,
+//   virtual public ::platform::aura_context_layer_t,
    virtual public ::platform::acme_context_layer,
    virtual public ::platform::apex_context_layer,
    virtual public ::platform::aqua_context_layer,
@@ -60,6 +60,64 @@ namespace platform
       // string_array                                    m_straMatterLocatorPriority;
       // string_array                                    m_straMatterLocator;
       //
+      
+      
+      //struct CLASS_DECL_ACME acme_context_layer_t
+      //{
+
+
+
+
+         //::platform::platform *                          m_pplatform;
+
+
+         //::platform::context *                               m_papexcontext;
+         //::aura::context *                               m_pauracontext;
+
+
+         //::platform::application*                        m_papplication;
+         ::platform::session *                           m_psession;
+         ::platform::system *                            m_psystem;
+         //::platform::node *                              m_pnode;
+
+         ::pointer<::text::translator>                   m_ptexttranslator;
+
+         ::pointer<::image::image_context>               m_pimagecontext;
+         ::pointer<::directory_context>                  m_pdirectorycontext;
+         ::pointer<::file_context>                       m_pfilecontext;
+         //::pointer<::http::context>                      m_phttpcontext;
+
+         //::pointer < ::os_context >                      m_poscontext;
+
+
+         ::string                                        m_strLocale;
+         ::string                                        m_strSchema;
+
+
+         string_array                                    m_straMatterLocatorPriority;
+         string_array                                    m_straMatterLocator;
+
+         ::pointer<::platform::http>                     m_phttp;
+
+
+      //}; // end acme_context_layer_t
+
+
+      
+      //struct CLASS_DECL_ACME apex_context_layer_t
+      //{
+
+
+
+         string                                    m_strStoreServerBaseUrl;
+
+         string_to_string                          m_mapCachedLatestBuild;
+         //::pointer<::os_context>                 m_poscontext;
+
+
+
+      //} ; // end apex_context_layer_t
+
 
       context();
       ~context() override;

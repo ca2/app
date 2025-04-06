@@ -86,9 +86,9 @@ namespace filemanager
       void install_message_routing(::channel * pchannel) override;
 
 
-      virtual void _001OnOpenItem(::data::tree_item * pitem, const ::action_context & action_context) override;
-      virtual void _001OnItemExpand(::data::tree_item * pitem, const ::action_context & action_context) override;
-      virtual void _001OnItemCollapse(::data::tree_item * pitem, const ::action_context & action_context) override;
+      virtual void _001OnOpenItem(::data::tree_item<::userfs::item> * pitem, const ::action_context & action_context) override;
+      virtual void _001OnItemExpand(::data::tree_item<::userfs::item> * pitem, const ::action_context & action_context) override;
+      virtual void _001OnItemCollapse(::data::tree_item<::userfs::item> * pitem, const ::action_context & action_context) override;
 
 
       //virtual void _017OpenFolder(::pointer<::file::item>pitem, const ::action_context & action_context) override;
@@ -119,7 +119,7 @@ namespace filemanager
 
       void RenameFile(int iLine, string & str, const ::action_context & action_context);
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_context_menu);
@@ -127,8 +127,8 @@ namespace filemanager
       DECLARE_MESSAGE_HANDLER(_001OnShellCommand);
 
 
-      virtual void on_merge_user_tree(::user::tree * pusertree) override;
-      virtual void on_bind_user_tree(::user::tree * pusertree) override;
+      //virtual void on_merge_user_tree(::user::tree * pusertree) override;
+      //virtual void on_bind_user_tree(::user::tree * pusertree) override;
 
 
    };

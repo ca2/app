@@ -744,7 +744,7 @@ namespace acme
 
       //#include <mach/clock.h>
       //#include <mach/mach.h>
-#include <mach/mach_time.h>
+//#include <mach/mach_time.h>
 
 //clock_serv_t   g_cclock;
       g_machtime_conversion_factor = 0.0;
@@ -1060,9 +1060,6 @@ namespace acme
       //::thread::g_criticalsection = ___new mutex();
 
       //::thread::g_pthreadmap = ___new ::thread_map ();
-
-      // acme commented
-      //add_factory_item < ::context >();
 
 
 #if OBJECT_TYPE_COUNTER

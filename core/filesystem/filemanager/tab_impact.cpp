@@ -308,12 +308,12 @@ namespace filemanager
 
 
 
-   void tab_impact::handle(::topic * ptopic, ::context * pcontext)
+   void tab_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      impact::handle(ptopic, pcontext);
+      impact::handle(ptopic, phandlercontext);
 
-      ::user::tab_impact::handle(ptopic, pcontext);
+      ::user::tab_impact::handle(ptopic, phandlercontext);
 
       ////__update(::update)
       {

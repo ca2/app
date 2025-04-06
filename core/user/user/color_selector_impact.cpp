@@ -83,18 +83,18 @@ namespace user
    //}
 
 
-   void color_selector_impact::handle(::topic * ptopic, ::context * pcontext)
+   void color_selector_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::user::color_selector_control::handle(ptopic, pcontext);
+      ::user::color_selector_control::handle(ptopic, phandlercontext);
 
    }
 
 
-   //void color_selector_impact::handle(::topic * ptopic, ::context * pcontext)
+   //void color_selector_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
-   //   ::user::impact::handle(ptopic, pcontext);
+   //   ::user::impact::handle(ptopic, phandlercontext);
 
    //}
 

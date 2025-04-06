@@ -757,7 +757,7 @@ CLASS_DECL_ACME void set_task(task * ptask)
 // #endif
 //    //::increment_reference_count(ptask);
 
-   auto taskindex = ::task_index();
+   auto taskindex = ::current_task_index();
 
    if (ptask->m_taskindex != taskindex)
    {

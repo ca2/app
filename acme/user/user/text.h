@@ -52,6 +52,7 @@ namespace user
 
       virtual ::string as_text() const;
       virtual ::string get_text() const;
+      virtual ::string get_text(character_count iBegin, character_count iEnd) const;
       virtual character_count get_text_length() const;
       virtual ::string get_selection_text() const;
       virtual void get_text_selection(character_count & iBegin, character_count & iEnd) const;

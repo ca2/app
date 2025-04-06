@@ -99,7 +99,7 @@ namespace filehandler
 
          }
 
-         auto pitem = ptreeitem->m_pdataitem.cast < item >();
+         auto pitem = ptreeitem->m_pitem.cast < item >();
 
          if (!pitem)
          {
@@ -130,7 +130,7 @@ namespace filehandler
 
          }
 
-         auto pitem = ptreeitem->m_pdataitem.cast < item >();
+         auto pitem = ptreeitem->m_pitem.cast < item >();
 
          if (!pitem)
          {
@@ -166,7 +166,7 @@ namespace filehandler
 
          }
 
-         auto pitem = ptreeitem->m_pdataitem.cast < item >();
+         auto pitem = ptreeitem->m_pitem.cast < item >();
 
          if (!pitem)
          {
@@ -197,7 +197,7 @@ namespace filehandler
 
          }
 
-         auto pitem = ptreeitem->m_pdataitem.cast < item >();
+         auto pitem = ptreeitem->m_pitem.cast < item >();
 
          if (pitem)
          {
@@ -215,7 +215,7 @@ namespace filehandler
    }
 
 
-   ::pointer<::data::tree_item>handler::get_extension_tree_item(const ::string & pszExtension, bool bCreate)
+   ::pointer<::data::tree_item<item>>handler::get_extension_tree_item(const ::string & pszExtension, bool bCreate)
    {
 
       auto ptreeitem = m_ptree->get_base_item()->get_next();
@@ -226,7 +226,7 @@ namespace filehandler
          while(ptreeitem)
          {
 
-            auto pitem = ptreeitem->m_pdataitem.cast < item >();
+            auto pitem = ptreeitem->m_pitem.cast < item >();
 
             if (pitem && pitem->m_etopictype == item::topic_type_root)
             {
@@ -248,7 +248,7 @@ namespace filehandler
 
          ptreeitem = m_ptree->insert_item(__allocate item(), ::data::e_relative_last_child, m_ptree->get_base_item());
 
-         ptreeitem->m_pdataitem.cast < item > ()->m_etopictype = item::topic_type_root;
+         ptreeitem->m_pitem.cast < item > ()->m_etopictype = item::topic_type_root;
 
       }
       else
@@ -257,7 +257,7 @@ namespace filehandler
          while(ptreeitem)
          {
 
-            auto pitem = ptreeitem->m_pdataitem.cast < item >();
+            auto pitem = ptreeitem->m_pitem.cast < item >();
 
             if(pitem && pitem->m_etopictype == item::topic_type_extension
                   && pitem->m_strTopic.case_insensitive_order(pszExtension) == 0)
@@ -280,7 +280,7 @@ namespace filehandler
 
          ptreeitem = m_ptree->insert_item(__allocate item(), ::data::e_relative_last_child, m_ptree->get_base_item());
 
-         auto pitem = ptreeitem->m_pdataitem.cast < item >();
+         auto pitem = ptreeitem->m_pitem.cast < item >();
 
          pitem->m_etopictype      = item::topic_type_extension;
 
@@ -293,7 +293,7 @@ namespace filehandler
    }
 
 
-   ::pointer<::data::tree_item>handler::get_mime_type_tree_item(const ::string & pszMimeType, bool bCreate)
+   ::pointer<::data::tree_item<item>>handler::get_mime_type_tree_item(const ::string & pszMimeType, bool bCreate)
    {
 
       auto ptreeitem = m_ptree->get_base_item()->get_child_next_or_parent();
@@ -301,7 +301,7 @@ namespace filehandler
       while(ptreeitem)
       {
 
-         auto pitem = ptreeitem->m_pdataitem.cast < item >();
+         auto pitem = ptreeitem->m_pitem.cast < item >();
 
          if (pitem && pitem->m_etopictype == item::topic_type_mime_type
             && pitem->m_strTopic.case_insensitive_order(pszMimeType) == 0)
@@ -324,7 +324,7 @@ namespace filehandler
 
       ptreeitem = m_ptree->insert_item(__allocate item(), ::data::e_relative_last_child, m_ptree->get_base_item());
 
-      auto pdataitem = ptreeitem->m_pdataitem.cast < item >();
+      auto pdataitem = ptreeitem->m_pitem.cast < item >();
 
       pdataitem->m_etopictype      = item::topic_type_mime_type;
 
@@ -347,7 +347,7 @@ namespace filehandler
 
       }
 
-      auto pitem = ptreeitem->m_pdataitem.cast < item >();
+      auto pitem = ptreeitem->m_pitem.cast < item >();
 
       if (pitem)
       {
@@ -371,7 +371,7 @@ namespace filehandler
 
       }
 
-      auto pitem = ptreeitem->m_pdataitem.cast < item >();
+      auto pitem = ptreeitem->m_pitem.cast < item >();
 
       if (pitem)
       {

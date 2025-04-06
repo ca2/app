@@ -721,7 +721,7 @@ virtual ::apex::session * session(::collection::index iEdge = 0) override;*/
 
       //#ifdef _DEBUG
       //
-      //      virtual void set_context(::context* pcontext) override;
+      //      virtual void set_context(::handler_context* pcontext) override;
       //      virtual void set_context_thread(::thread* pthread) override;
       //      virtual void set_context_app(::aura::application* pappContext) override;
       //      virtual void set_context_session(::aura::session* psessionContext) override;
@@ -790,7 +790,7 @@ virtual ::apex::session * session(::collection::index iEdge = 0) override;*/
 
       //void signal(::signal * psignal) override;
 
-      //void handle(::topic * ptopic, ::context * pcontext) override;
+      //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       virtual void initialize_estamira();
 

@@ -14,7 +14,9 @@
 #include "ColorPicker.h"
 #include "Layout.h"
 #include "ColorWheel.h"
+#include "IntBox.h"
 #include "Label.h"
+#include "TabWidget.h"
 #include "acme/constant/source.h"
 #include "acme/prototype/prototype/action_context.h"
 

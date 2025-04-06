@@ -321,7 +321,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
    bool session::on_get_task_name(string& strThreadName)
    {
 
-      if (platform()->is_console())
+      if (::system()->is_console())
       {
 
          return false;

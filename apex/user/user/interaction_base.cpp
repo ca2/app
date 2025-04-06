@@ -3244,7 +3244,7 @@ namespace user
    }
 
 
-   bool interaction_base::is_selected(::data::item * pitem)
+   bool interaction_base::is_selected(::item * pitem)
    {
 
       throw ::interface_only();
@@ -3264,7 +3264,7 @@ namespace user
    }
 
 
-   void interaction_base::handle(::topic * ptopic, ::context * pcontext)
+   void interaction_base::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
 
@@ -4007,7 +4007,7 @@ namespace user
 //   }
 
 
-   int interaction_base::get_total_page_count(::context * pcontext)
+   int interaction_base::get_total_page_count(::handler_context * pcontext)
    {
 
       return 1;

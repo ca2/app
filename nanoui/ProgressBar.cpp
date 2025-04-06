@@ -21,11 +21,11 @@ namespace nanoui
 ProgressBar::ProgressBar(Widget * parent)
    : Widget(parent), m_value(0.0f) {}
 
-int_size ProgressBar::preferred_size(::nano2d::context *, bool bRecalcTextSize) {
+int_size ProgressBar::preferred_size(::nano2d::context  *, bool bRecalcTextSize) {
    return {70, 12};
 }
 
-void ProgressBar::draw(::nano2d::context * pcontext) {
+void ProgressBar::draw(::nano2d::context  * pcontext) {
    Widget::draw(pcontext);
 
    ::nano2d::paint paint = pcontext->box_gradient(

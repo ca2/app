@@ -39,7 +39,7 @@ namespace filemanager
       void OnFileOperationStep(int iOperation,bool bFinal);
 
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
       ::pointer<operation_document>get_document();

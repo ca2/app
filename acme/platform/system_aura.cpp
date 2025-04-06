@@ -734,7 +734,7 @@ namespace platform
 
    //#ifdef _DEBUG
    //
-   //      void aura_system_layer::set_context(::context* pcontext) override{}
+   //      void aura_system_layer::set_context(::handler_context* pcontext) override{}
    //      void aura_system_layer::set_context_thread(::thread* pthread) override{}
    //      void aura_system_layer::set_context_app(::aura::application* pappContext) override{}
    //      void aura_system_layer::set_context_session(::aura::session* psessionContext) override{}
@@ -810,7 +810,7 @@ namespace platform
 
    //void signal(::signal * psignal) override{}
 
-   //void handle(::topic * ptopic, ::context * pcontext) override{}
+   //void handle(::topic * ptopic, ::handler_context * phandlercontext) override{}
 
    void aura_system_layer::initialize_estamira()
    {

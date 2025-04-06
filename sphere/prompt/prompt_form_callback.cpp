@@ -21,7 +21,7 @@ namespace prompt
    }
 
 
-   void form_callback::handle(::topic * ptopic, ::context * pcontext)
+   void form_callback::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       ::pointer<::user::interaction>pinteraction =  (this);
@@ -29,7 +29,7 @@ namespace prompt
       if(pinteraction != nullptr && pinteraction->get_parent() != nullptr)
       {
 
-         return pinteraction->get_parent()->handle(ptopic, pcontext);
+         return pinteraction->get_parent()->handle(ptopic, phandlercontext);
 
       }
 

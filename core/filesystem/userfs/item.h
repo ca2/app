@@ -2,7 +2,6 @@
 
 
 #include "acme/filesystem/file/item.h"
-#include "acme/prototype/data/item.h"
 
 
 namespace userfs
@@ -13,7 +12,6 @@ namespace userfs
 
 
    class CLASS_DECL_CORE item:
-      virtual public ::data::item,
       virtual public ::file::item
    {
    public:
@@ -28,11 +26,11 @@ namespace userfs
       item(::userfs::tree_data * ptree);
       virtual ~item();
 
-      virtual string data_item_get_text(::particle * pparticle) const override;
-      virtual ::collection::index data_item_get_image(::particle * pparticle) const override;
-      virtual ::image::image_list * data_item_get_image_list(::particle * pparticle) const override;
+      string get_item_text(::user::item_base * pitemstate, ::collection::index iSubItem = 0) override;
+      ::collection::index get_item_image(::user::item_base  * pitemstate, ::collection::index iSubItem = 0) override;
+      ::image::image_list * get_item_image_list(::user::item_base * pitemstate, ::collection::index iSubItem = 0) override;
 
-      static ::std::strong_ordering CompareArrangeByName(const ::pointer<::data::tree_item>& pitema, const ::pointer<::data::tree_item> pitemb);
+      //static ::std::strong_ordering CompareArrangeByName(const ::pointer<::data::tree_item<item>>& pitema, const ::pointer<::data::tree_item<item>> pitemb);
       int get_index() const;
       bool is_folder() const;
 

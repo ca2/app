@@ -94,7 +94,7 @@ void file_context::initialize(::particle * pparticle)
 
    __refdbg_add_referer
 
-   defer_create_synchronization();
+      defer_create_synchronization();
 
    //if (!estatus)
    //{
@@ -108,7 +108,7 @@ void file_context::initialize(::particle * pparticle)
 }
 
 
-bool file_context::exists(const ::file::path &pathParam)
+bool file_context::exists(const ::file::path & pathParam)
 {
 
    if (::is_null(m_papplication))
@@ -158,7 +158,7 @@ bool file_context::exists(const ::file::path &pathParam)
 //}
 
 
-::file::enum_type file_context::get_type(const ::file::path &path, ::payload *pvarQuery)
+::file::enum_type file_context::get_type(const ::file::path & path, ::payload * pvarQuery)
 {
 
    if (path.begins("http://") || path.begins("https://"))
@@ -231,7 +231,7 @@ bool file_context::exists(const ::file::path &pathParam)
 }
 
 
-::file::enum_type file_context::safe_get_type(const ::file::path& path, ::payload* pvarQuery)
+::file::enum_type file_context::safe_get_type(const ::file::path & path, ::payload * pvarQuery)
 {
 
    if (path.begins("http://") || path.begins("https://"))
@@ -304,7 +304,7 @@ bool file_context::exists(const ::file::path &pathParam)
 }
 
 
-::payload file_context::length(const ::file::path &pszPath)
+::payload file_context::length(const ::file::path & pszPath)
 {
 
    return length(pszPath, nullptr);
@@ -312,7 +312,7 @@ bool file_context::exists(const ::file::path &pathParam)
 }
 
 
-::payload file_context::length(const ::file::path &path, ::payload *pvarQuery)
+::payload file_context::length(const ::file::path & path, ::payload * pvarQuery)
 {
 
    throw ::interface_only();
@@ -399,7 +399,7 @@ bool file_context::exists(const ::file::path &pathParam)
 //}
 
 
-::file::path file_context::time_square(const string &pszPrefix, const string &pszSuffix)
+::file::path file_context::time_square(const string & pszPrefix, const string & pszSuffix)
 {
 
    return time(directory()->time_square(), 25, pszPrefix, pszSuffix);
@@ -407,14 +407,14 @@ bool file_context::exists(const ::file::path &pathParam)
 }
 
 
-::file::path file_context::time_log(const string &pszId)
+::file::path file_context::time_log(const string & pszId)
 {
    return time(directory()->time_log(pszId), 9);
 }
 
 
 ::file::path
-file_context::time(const ::file::path &psz, int iMaxLevel, const string &pszPrefix, const string &pszSuffix,
+file_context::time(const ::file::path & psz, int iMaxLevel, const string & pszPrefix, const string & pszSuffix,
                    bool bTryDelete)
 {
 
@@ -430,7 +430,7 @@ file_context::time(const ::file::path &psz, int iMaxLevel, const string &pszPref
 
    string strSuffix(pszSuffix);
 
-   restart:
+restart:
 
    str.empty();
 
@@ -582,7 +582,7 @@ file_context::time(const ::file::path &psz, int iMaxLevel, const string &pszPref
 }
 
 
-int file_context::filterex_time_square(const ::scoped_string & scopedstrPrefix, ::file::path_array &stra)
+int file_context::filterex_time_square(const ::scoped_string & scopedstrPrefix, ::file::path_array & stra)
 {
 
    int iMax = -1;
@@ -638,7 +638,7 @@ int file_context::filterex_time_square(const ::scoped_string & scopedstrPrefix, 
 
 
 // fail if exists, create if not exists
-bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
+bool file_context::try_create_file(const ::file::path & path, bool bTryDelete)
 {
 
    if (file()->exists(path))
@@ -701,7 +701,7 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 
    }
 
-   const char *pszJson = str;
+   const char * pszJson = str;
 
    ::payload v;
 
@@ -726,7 +726,7 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 
    }
 
-   const char *pszJson = str;
+   const char * pszJson = str;
 
    ::payload v;
 
@@ -765,7 +765,7 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 
    ::string all_extensions = path.all_extensions();
 
-   if(all_extensions.is_empty())
+   if (all_extensions.is_empty())
    {
 
       ::string strMessage;
@@ -802,7 +802,7 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 
    auto signature = _005Signature(payloadFile);
 
-   if(!memory.begins_eat(signature))
+   if (!memory.begins_eat(signature))
    {
 
       ::string strMessage;
@@ -840,32 +840,32 @@ string file_context::as_string(const ::payload & payloadFile)
 }
 
 
-::string file_context::get_configuration_text(const ::scoped_string &scopedConfigurationFile)
+::string file_context::get_configuration_text(const ::scoped_string & scopedConfigurationFile)
 {
-   
+
    ::string str;
-   
+
    try
    {
-      
+
       str = as_string(directory_system()->config() / scopedConfigurationFile);
-      
+
    }
-   catch(...)
+   catch (...)
    {
-    
+
       information() << "get_configuration_text failed!! : \"" << scopedConfigurationFile << "\"";
-      
+
    }
-   
+
    return str;
-   
+
 }
 
 
 
 
-void file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
+void file_context::as_memory(const ::payload & payloadFile, memory_base & mem)
 {
 
    file_pointer pfile;
@@ -873,64 +873,64 @@ void file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
    //try
    //{
 
-      pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary);
+   pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary);
 
-//      if (!pfile)
-//      {
-//
-//         return false;
-//
-//      }
-//      else if (::failed(pfile->m_estatus))
-//      {
-//
-//         return false;
-//
-//      }
-//
-//   }
-//   catch (const ::exception & exception)
-//   {
-//
-//      if (bNoExceptionOnFail)
-//      {
-//
-//         return false;
-//
-//      }
-//
-//      throw exception;
-//
-//   }
+   //      if (!pfile)
+   //      {
+   //
+   //         return false;
+   //
+   //      }
+   //      else if (::failed(pfile->m_estatus))
+   //      {
+   //
+   //         return false;
+   //
+   //      }
+   //
+   //   }
+   //   catch (const ::exception & exception)
+   //   {
+   //
+   //      if (bNoExceptionOnFail)
+   //      {
+   //
+   //         return false;
+   //
+   //      }
+   //
+   //      throw exception;
+   //
+   //   }
 
-//   try
-  // {
+   //   try
+     // {
 
    mem = pfile->full_memory();
 
 
-//      {
-//
-//         return false;
-//
-//      }
+   //      {
+   //
+   //         return false;
+   //
+   //      }
 
-     //return true;
+        //return true;
 
-  // }
-  // catch (...)
-  // {
+     // }
+     // catch (...)
+     // {
 
-  // }
+     // }
 
-   //return false;
+      //return false;
 
 }
 
 
 
 
-::memory file_context::as_memory(const ::payload &payloadFile)
+::memory file_context::as_memory(const ::payload & payloadFile)
 {
 
    ::memory memory;
@@ -944,7 +944,7 @@ void file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 
 
 
-memsize file_context::read(const ::payload& payloadFile, void * p, filesize position, memsize size, bool bNoExceptionOnFail)
+memsize file_context::read(const ::payload & payloadFile, void * p, filesize position, memsize size, bool bNoExceptionOnFail)
 {
 
    file_pointer pfile;
@@ -968,7 +968,7 @@ memsize file_context::read(const ::payload& payloadFile, void * p, filesize posi
       }
 
    }
-   catch (const ::exception& exception)
+   catch (const ::exception & exception)
    {
 
       if (bNoExceptionOnFail)
@@ -982,7 +982,7 @@ memsize file_context::read(const ::payload& payloadFile, void * p, filesize posi
 
    }
 
-   memsize sizeToRead = (memsize) minimum(size, pfile->size() - position);
+   memsize sizeToRead = (memsize)minimum(size, pfile->size() - position);
 
    if (position > 0)
    {
@@ -998,7 +998,7 @@ memsize file_context::read(const ::payload& payloadFile, void * p, filesize posi
 }
 
 
-memsize file_context::read_beginning(const ::payload& payloadFile, void* p, memsize size, bool bNoExceptionOnFail)
+memsize file_context::read_beginning(const ::payload & payloadFile, void * p, memsize size, bool bNoExceptionOnFail)
 {
 
    return read(payloadFile, p, 0, size, bNoExceptionOnFail);
@@ -1006,7 +1006,7 @@ memsize file_context::read_beginning(const ::payload& payloadFile, void* p, mems
 }
 
 
-memory file_context::beginning(const ::payload& payloadFile, memsize size, bool bNoExceptionOnFail)
+memory file_context::beginning(const ::payload & payloadFile, memsize size, bool bNoExceptionOnFail)
 {
 
    memory mem;
@@ -1022,39 +1022,39 @@ memory file_context::beginning(const ::payload& payloadFile, memsize size, bool 
 }
 
 
-void file_context::put_lines(const ::payload &payloadFile, const string_array &stra, const plain_text_file_options & options)
+void file_context::put_lines(const ::payload & payloadFile, const string_array & stra, const plain_text_file_options & options)
 {
 
    //try
    //{
 
-      auto pfile = get_file(payloadFile, ::file::e_open_write | ::file::e_open_truncate | ::file::e_open_create | ::file::e_open_defer_create_directory);
+   auto pfile = get_file(payloadFile, ::file::e_open_write | ::file::e_open_truncate | ::file::e_open_create | ::file::e_open_defer_create_directory);
 
-      if (!pfile)
-      {
+   if (!pfile)
+   {
 
-         throw ::exception(error_failed);
+      throw ::exception(error_failed);
 
-      }
+   }
 
-      if (options.m_bUtf8Bom)
-      {
+   if (options.m_bUtf8Bom)
+   {
 
-         pfile->write({ UTF8_BOM, STATIC_ASCII_STRING_LENGTH(UTF8_BOM) });
+      pfile->write({ UTF8_BOM, STATIC_ASCII_STRING_LENGTH(UTF8_BOM) });
 
-      }
+   }
 
-      pfile->put_lines(stra);
+   pfile->put_lines(stra);
 
-      //return success;
+   //return success;
 
-   //}
-   //catch (...)
-   //{
+//}
+//catch (...)
+//{
 
-   //}
+//}
 
-   //return error_exception;
+//return error_exception;
 
 }
 
@@ -1111,8 +1111,8 @@ void file_context::put_lines(const ::payload &payloadFile, const string_array &s
 //}
 
 
-void file_context::get_lines(string_array &stra, const ::payload &payloadFile, bool bAddEmpty, bool bNoExceptionIfFailToOpen)
- {
+void file_context::get_lines(string_array & stra, const ::payload & payloadFile, bool bAddEmpty, bool bNoExceptionIfFailToOpen)
+{
 
    file_pointer pfile;
 
@@ -1121,7 +1121,7 @@ void file_context::get_lines(string_array &stra, const ::payload &payloadFile, b
 
       pfile = get_file(payloadFile, ::file::e_open_file |
       ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary
-      |(bNoExceptionIfFailToOpen ? ::file::e_open_no_exception_on_open : 0));
+      | (bNoExceptionIfFailToOpen ? ::file::e_open_no_exception_on_open : 0));
 
       if (bNoExceptionIfFailToOpen)
       {
@@ -1136,7 +1136,7 @@ void file_context::get_lines(string_array &stra, const ::payload &payloadFile, b
       }
 
    }
-   catch (const ::exception& exception)
+   catch (const ::exception & exception)
    {
 
       if (bNoExceptionIfFailToOpen)
@@ -1169,7 +1169,7 @@ void file_context::get_lines(string_array &stra, const ::payload &payloadFile, b
 }
 
 
-void file_context::put_memory(const ::payload &payloadFile, const block & block)
+void file_context::put_memory(const ::payload & payloadFile, const block & block)
 {
 
    file_pointer pfile;
@@ -1191,7 +1191,7 @@ void file_context::put_memory(const ::payload &payloadFile, const block & block)
 
    pfile->set_size(0);
 
-   if(block.size() > 0)
+   if (block.size() > 0)
    {
 
       pfile->write(block);
@@ -1230,7 +1230,7 @@ void file_context::_005PutSignedMemory(const ::payload & payloadFile, const bloc
 
    pfile->write(signature);
 
-   if(block.size() > 0)
+   if (block.size() > 0)
    {
 
       pfile->write(block);
@@ -1241,7 +1241,7 @@ void file_context::_005PutSignedMemory(const ::payload & payloadFile, const bloc
 
 
 
-void file_context::add_contents(const ::payload &payloadFile, const ::scoped_string & scopedstr)
+void file_context::add_contents(const ::payload & payloadFile, const ::scoped_string & scopedstr)
 {
 
    file_pointer pfile;
@@ -1249,9 +1249,9 @@ void file_context::add_contents(const ::payload &payloadFile, const ::scoped_str
    //try
    //{
 
-      pfile = get_file(payloadFile,
-                        ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_no_truncate |
-                        ::file::e_open_share_exclusive | ::file::e_open_defer_create_directory);
+   pfile = get_file(payloadFile,
+                     ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_no_truncate |
+                     ::file::e_open_share_exclusive | ::file::e_open_defer_create_directory);
 
    //}
    //catch (...)
@@ -1275,7 +1275,7 @@ void file_context::add_contents(const ::payload &payloadFile, const ::scoped_str
 }
 
 
-void file_context::put_text(const ::payload& payloadFile, const ::scoped_string & scopedstr)
+void file_context::put_text(const ::payload & payloadFile, const ::scoped_string & scopedstr)
 {
 
    if (scopedstr.data() == nullptr || scopedstr.is_empty())
@@ -1294,7 +1294,7 @@ void file_context::put_text(const ::payload& payloadFile, const ::scoped_string 
 }
 
 
-void file_context::_005PutSignedText(const ::payload& payloadFile, const ::scoped_string & scopedstr)
+void file_context::_005PutSignedText(const ::payload & payloadFile, const ::scoped_string & scopedstr)
 {
 
    return _005PutSignedMemory(payloadFile, scopedstr);
@@ -1309,7 +1309,7 @@ void file_context::_005PutSignedText(const ::payload& payloadFile, const ::scope
 //}
 
 
-void file_context::put_memory(const ::payload &payloadFile, ::file::file *pfileSrc)
+void file_context::put_memory(const ::payload & payloadFile, ::file::file * pfileSrc)
 {
 
    auto pfile = get_file(payloadFile,
@@ -1332,7 +1332,7 @@ void file_context::put_memory(const ::payload &payloadFile, ::file::file *pfileS
 
       auto remainingByteCount = pfileSrc->get_remaining_byte_count();
 
-      mem.set_size(minimum((memsize) remainingByteCount, (memsize) 8_MiB));
+      mem.set_size(minimum((memsize)remainingByteCount, (memsize)8_MiB));
 
       memsize uRead;
 
@@ -1358,7 +1358,7 @@ void file_context::put_memory(const ::payload &payloadFile, ::file::file *pfileS
 //}
 
 
-void file_context::put_text_utf8(const ::payload &payloadFile, const ::scoped_string & scopedstr)
+void file_context::put_text_utf8(const ::payload & payloadFile, const ::scoped_string & scopedstr)
 {
 
    auto pfile = get_file(payloadFile,
@@ -1395,10 +1395,10 @@ void file_context::calculate_main_resource_memory()
 ::block file_context::get_main_resource_block()
 {
 
-   if(platform()->m_blockMatter.is_set())
+   if (::system()->m_blockMatter.is_set())
    {
 
-      return platform()->m_blockMatter;
+      return ::system()->m_blockMatter;
 
    }
 
@@ -1423,7 +1423,7 @@ void file_context::calculate_main_resource_memory()
 }
 
 
-::folder* file_context::resource_folder()
+::folder * file_context::resource_folder()
 {
 
    try
@@ -1460,7 +1460,7 @@ void file_context::calculate_main_resource_memory()
 
       auto pmemory = __allocate read_only_memory(block);
 
-      auto pfile = __allocate ::memory_file(pmemory);
+      auto pfile = __allocate::memory_file(pmemory);
 
       system()->folder_factory()->__øconstruct(m_papplication, m_pfolderResource);
 
@@ -1544,14 +1544,14 @@ void file_context::calculate_main_resource_memory()
 
    pfileOutput->set_ok_flag();
 
-   if(strPath.contains("256"))
+   if (strPath.contains("256"))
    {
 
       informationf("contains 256");
 
       fflush(stdout);
 
-      if(pfileOutput.nok())
+      if (pfileOutput.nok())
       {
 
          informationf("output file nok");
@@ -1587,7 +1587,7 @@ void file_context::calculate_main_resource_memory()
 ::file::enum_type file_context::resource_get_type(const ::file::path & path)
 {
 
-   ::folder* pfolder = nullptr;
+   ::folder * pfolder = nullptr;
 
    {
 
@@ -1700,7 +1700,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
    bool bSourceEmpty = varSource.as_file_path().is_empty();
 
-   if(bSourceEmpty && preader.nok())
+   if (bSourceEmpty && preader.nok())
    {
 
       throw ::exception(error_bad_argument);
@@ -1719,7 +1719,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
    }
 
 
-   if(pwriter.nok())
+   if (pwriter.nok())
    {
 
       if (!directory()->is(varTarget.as_file_path().folder()))
@@ -1737,7 +1737,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
    ::file::path pathTarget;
 
-   if(pwriter.nok())
+   if (pwriter.nok())
    {
 
       pathTarget = application()->defer_process_path(varTarget.as_file_path());
@@ -1746,7 +1746,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
    ::file::path pathSource;
 
-   if(preader.nok())
+   if (preader.nok())
    {
 
       pathSource = application()->defer_process_path(varSource.as_file_path());
@@ -1776,7 +1776,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
    ::payload varNew;
 
-   if (pwriter.nok()&& directory()->is(varTarget) && (varSource.as_file_path().name().has_character() && preader.nok()))
+   if (pwriter.nok() && directory()->is(varTarget) && (varSource.as_file_path().name().has_character() && preader.nok()))
    {
 
       varNew = ::file::path(varTarget) / varSource.as_file_path().name();
@@ -1798,9 +1798,9 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
    try
    {
 
-      information() << "preader : " << (iptr) preader.m_p;
+      information() << "preader : " << (iptr)preader.m_p;
 
-      if(preader.nok())
+      if (preader.nok())
       {
 
          preader = get_reader(varSource,
@@ -1822,7 +1822,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
       }
 
-      if(pwriter.nok())
+      if (pwriter.nok())
       {
 
          pwriter = get_file(varNew,
@@ -1969,7 +1969,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 //
 //}
 
-void file_context::transfer(const ::file::path &pszNew, const ::file::path &psz)
+void file_context::transfer(const ::file::path & pszNew, const ::file::path & psz)
 {
 
    throw ::interface_only();
@@ -2149,7 +2149,7 @@ void file_context::erase(const ::file::path & path)
 }
 
 
-::file::path file_context::duplicate(const ::file::path &psz)
+::file::path file_context::duplicate(const ::file::path & psz)
 {
    string strCopy("copy");
    string strNew;
@@ -2190,7 +2190,7 @@ void file_context::erase(const ::file::path & path)
 }
 
 
-::file::path file_context::paste(const ::file::path &pathLocation, const ::file::path &path)
+::file::path file_context::paste(const ::file::path & pathLocation, const ::file::path & path)
 {
 
    ::file::path pathDir = path.folder();
@@ -2219,7 +2219,7 @@ void file_context::erase(const ::file::path & path)
 }
 
 
-void file_context::trash_that_is_not_trash(const ::file::path &psz)
+void file_context::trash_that_is_not_trash(const ::file::path & psz)
 {
 
    ::file::path strDir = directory()->trash_that_is_not_trash(psz);
@@ -2232,7 +2232,7 @@ void file_context::trash_that_is_not_trash(const ::file::path &psz)
 
 
 
-void file_context::trash_that_is_not_trash(::file::path_array& stra)
+void file_context::trash_that_is_not_trash(::file::path_array & stra)
 {
 
    if (stra.size() <= 0)
@@ -2256,7 +2256,7 @@ void file_context::trash_that_is_not_trash(::file::path_array& stra)
 }
 
 
-::file::path file_context::get_filesystem_file(const ::file::path& path)
+::file::path file_context::get_filesystem_file(const ::file::path & path)
 {
 
    if (file_system()->exists(path))
@@ -2273,10 +2273,10 @@ void file_context::trash_that_is_not_trash(::file::path_array& stra)
 
    return pathTemp;
 
- }
+}
 
 
-void file_context::get_status(::file::file_status & status, const ::file::path &path)
+void file_context::get_status(::file::file_status & status, const ::file::path & path)
 {
 
    __UNREFERENCED_PARAMETER(status);
@@ -2289,7 +2289,7 @@ void file_context::get_status(::file::file_status & status, const ::file::path &
 }
 
 
-void file_context::set_status(const ::file::path &path, const ::file::file_status &status)
+void file_context::set_status(const ::file::path & path, const ::file::file_status & status)
 {
 
    __UNREFERENCED_PARAMETER(path);
@@ -2347,13 +2347,13 @@ void file_context::replace_with(const ::file::path & pathContext, const string &
 }
 
 
-void file_context::transfer(::file::file *pfileOut, ::file::file *pfileIn)
+void file_context::transfer(::file::file * pfileOut, ::file::file * pfileIn)
 {
 
    //try
    //{
 
-      pfileOut->write(pfileIn);
+   pfileOut->write(pfileIn);
 
    //}
    //catch (...)
@@ -2368,40 +2368,40 @@ void file_context::transfer(::file::file *pfileOut, ::file::file *pfileIn)
 }
 
 
-bool file_context::is_read_only(const ::file::path &psz)
+bool file_context::is_read_only(const ::file::path & psz)
 {
 
    //throw ::interface_only();
 
    return false;
 
-//#ifdef WINDOWS_DESKTOP
-//
-//   unsigned int dwAttrib = windows_get_file_attributes(psz);
-//
-//   if (dwAttrib & FILE_ATTRIBUTE_READONLY)
-//   {
-//
-//      return true;
-//
-//   }
-//
-//   return false;
-//
-//#elif defined(UNIVERSAL_WINDOWS)
-//
-//   throw ::exception(todo);
-//
-//#else
-//
-//   struct stat st;
-//
-//   if (stat(psz, &st) != 0)
-//      return true;
-//
-//   return !(st.st_mode & S_IWUSR);
-//
-//#endif
+   //#ifdef WINDOWS_DESKTOP
+   //
+   //   unsigned int dwAttrib = windows_get_file_attributes(psz);
+   //
+   //   if (dwAttrib & FILE_ATTRIBUTE_READONLY)
+   //   {
+   //
+   //      return true;
+   //
+   //   }
+   //
+   //   return false;
+   //
+   //#elif defined(UNIVERSAL_WINDOWS)
+   //
+   //   throw ::exception(todo);
+   //
+   //#else
+   //
+   //   struct stat st;
+   //
+   //   if (stat(psz, &st) != 0)
+   //      return true;
+   //
+   //   return !(st.st_mode & S_IWUSR);
+   //
+   //#endif
 
 }
 
@@ -2459,7 +2459,7 @@ file_pointer file_context::resource_get_file(const ::file::path & path)
 }
 
 
-::file::path file_context::sys_temp_unique(const ::file::path &lpszName)
+::file::path file_context::sys_temp_unique(const ::file::path & lpszName)
 {
 
    return directory_system()->sys_temp() / lpszName;
@@ -2467,7 +2467,7 @@ file_pointer file_context::resource_get_file(const ::file::path & path)
 }
 
 
-file_pointer file_context::time_square_file(const string &pszPrefix, const string &pszSuffix)
+file_pointer file_context::time_square_file(const string & pszPrefix, const string & pszSuffix)
 {
 
    return get(time_square(pszPrefix, pszSuffix));
@@ -2475,26 +2475,26 @@ file_pointer file_context::time_square_file(const string &pszPrefix, const strin
 }
 
 
-file_pointer file_context::get(const ::file::path &path)
+file_pointer file_context::get(const ::file::path & path)
 {
 
    directory()->create(path.folder());
 
    file_pointer fileOut = get_file(path, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 
-//   if (fileOut.is_null())
-//   {
+   //   if (fileOut.is_null())
+   //   {
 
-//      throw ::file::exception(error_file_not_found, -1L, -1, name);
+   //      throw ::file::exception(error_file_not_found, -1L, -1, name);
 
-//   }
+   //   }
 
    return fileOut;
 
 }
 
 
-::file_pointer file_context::get_temporary_upload_file(const ::file::path &pathCurrent)
+::file_pointer file_context::get_temporary_upload_file(const ::file::path & pathCurrent)
 {
 
    int i = 0;
@@ -2591,7 +2591,7 @@ void file_context::set_extension(::file::path & path, const ::scoped_string & sc
 //}
 
 
-void file_context::normalize(string &str)
+void file_context::normalize(string & str)
 {
 
    if (str.is_empty())
@@ -2603,7 +2603,7 @@ void file_context::normalize(string &str)
 
    while (str.has_character() &&
           (str.right(1) == "\\" ||
-           str.right(1) == "/"))
+             str.right(1) == "/"))
    {
 
       str = str.left(str.length() - 1);
@@ -2613,7 +2613,7 @@ void file_context::normalize(string &str)
 }
 
 
-::std::strong_ordering file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
+::std::strong_ordering file_context::cmp(const ::file::path & psz1, const ::file::path & psz2)
 {
    string str1(psz1);
    normalize(str1);
@@ -2623,7 +2623,7 @@ void file_context::normalize(string &str)
 }
 
 
-void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
+void file_context::rename(const ::file::path & pszNew, const ::file::path & psz)
 {
 
    ::file::path strDir = psz.folder();
@@ -2895,7 +2895,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //}
 
 
-string file_context::get_hash(const ::payload &payloadFile, enum_hash ehash)
+string file_context::get_hash(const ::payload & payloadFile, enum_hash ehash)
 {
 
    auto pfile = get_file(payloadFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
@@ -2919,10 +2919,10 @@ string file_context::get_hash(const ::payload &payloadFile, enum_hash ehash)
 
    memsize iRead;
 
-   while ((iRead = (memsize) pfile->read(mem)) > 0)
+   while ((iRead = (memsize)pfile->read(mem)) > 0)
    {
 
-      phasher->update({mem.data(), iRead});
+      phasher->update({ mem.data(), iRead });
 
    }
 
@@ -2931,7 +2931,7 @@ string file_context::get_hash(const ::payload &payloadFile, enum_hash ehash)
 }
 
 
-string file_context::md5(const ::payload &payloadFile)
+string file_context::md5(const ::payload & payloadFile)
 {
 
    return get_hash(payloadFile, e_hash_md5);
@@ -2939,7 +2939,7 @@ string file_context::md5(const ::payload &payloadFile)
 }
 
 
-string file_context::nessie(const ::payload &payloadFile)
+string file_context::nessie(const ::payload & payloadFile)
 {
 
    throw ::exception(todo, "nessie");
@@ -2977,7 +2977,7 @@ string file_context::nessie(const ::payload &payloadFile)
 }
 
 
-void file_context::get_last_write_time(file_time_t *pfile_time, const string &strFilename)
+void file_context::get_last_write_time(file_time_t * pfile_time, const string & strFilename)
 {
 
    throw ::interface_only();
@@ -2990,18 +2990,18 @@ void file_context::get_last_write_time(file_time_t *pfile_time, const string &st
 void file_context::init_system()
 {
 
-//   auto psystem = system();
-//
-//   auto estatus = psystem->m_pfilesystem->update_module_path();
-//
-//   if (!estatus)
-//   {
-//
-//      return estatus;
-//
-//   }
-//
-   //return ::success;
+   //   auto psystem = system();
+   //
+   //   auto estatus = psystem->m_pfilesystem->update_module_path();
+   //
+   //   if (!estatus)
+   //   {
+   //
+   //      return estatus;
+   //
+   //   }
+   //
+      //return ::success;
 
 }
 
@@ -3270,7 +3270,7 @@ file_pointer file_context::data_get_file(string strData, ::file::e_open eopen)
 }
 
 
-folder_pointer file_context::get_folder(::file::file *pfile, const ::scoped_string & scopedstrImplementation, ::file::e_open eopen)
+folder_pointer file_context::get_folder(::file::file * pfile, const ::scoped_string & scopedstrImplementation, ::file::e_open eopen)
 {
 
    auto pfactory = system()->folder_factory();
@@ -3278,7 +3278,7 @@ folder_pointer file_context::get_folder(::file::file *pfile, const ::scoped_stri
    if (!pfactory)
    {
 
-     throw ::exception(::error_failed);
+      throw ::exception(::error_failed);
 
    }
 
@@ -3291,7 +3291,7 @@ folder_pointer file_context::get_folder(::file::file *pfile, const ::scoped_stri
 
    }
 
-   if(eopen & ::file::e_open_read)
+   if (eopen & ::file::e_open_read)
    {
 
       pfolder->open_for_reading(pfile);
@@ -3299,7 +3299,7 @@ folder_pointer file_context::get_folder(::file::file *pfile, const ::scoped_stri
 
          //information() << "::file::file_context::zip_get_file Succeeded";
 
-         return pfolder;
+      return pfolder;
 
       //}
 
@@ -3313,7 +3313,7 @@ folder_pointer file_context::get_folder(::file::file *pfile, const ::scoped_stri
 
         // information() << "::file::file_context::zip_get_file Succeeded";
 
-         return pfolder;
+      return pfolder;
 
       //}
 
@@ -3446,9 +3446,9 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
    }
 
    auto pget = __øcreate < ::nano::http::get >();
-   
+
    pget->m_url = url;
-   
+
    pget->m_timeSyncTimeout = 5_hour;
 
    auto pmemoryfile = create_memory_file();
@@ -3457,12 +3457,12 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
    pget->call();
 
-   const char * pszData = (const char *) pmemoryfile->get_memory()->data();
+   const char * pszData = (const char *)pmemoryfile->get_memory()->data();
 
    auto size = static_cast<size_t>(pmemoryfile->get_memory()->size());
-   
+
    //*pmemoryfile->get_primitive_memory() = ;
-   
+
   /// property_set& set = payloadFile["http_set"].property_set_reference();
 
    pmemoryfile->payload("http_set") = ::transfer(pget->get_property_set());
@@ -3511,7 +3511,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
 }
 
-::file_pointer file_context::shared_reader(const ::payload &payloadFile, ::file::e_open eopen)
+::file_pointer file_context::shared_reader(const ::payload & payloadFile, ::file::e_open eopen)
 {
 
    return get_reader(payloadFile, eopen | ::file::e_open_share_deny_none);
@@ -3519,7 +3519,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 }
 
 
-::file_pointer file_context::get_reader(const ::payload &payloadFile, ::file::e_open eopen)
+::file_pointer file_context::get_reader(const ::payload & payloadFile, ::file::e_open eopen)
 {
 
    ::file_pointer preader;
@@ -3543,7 +3543,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 }
 
 
-::file_pointer file_context::get_writer(const ::payload &payloadFile, ::file::e_open eopen)
+::file_pointer file_context::get_writer(const ::payload & payloadFile, ::file::e_open eopen)
 {
 
    ::file_pointer pwriter;
@@ -3567,7 +3567,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 }
 
 
-file_pointer file_context::get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* pfileexception)
+file_pointer file_context::get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
 {
 
    auto p = _get_file(payloadFile, eopen, pfileexception);
@@ -3607,7 +3607,7 @@ file_pointer file_context::get_file(const ::payload& payloadFile, ::file::e_open
 }
 
 
-file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
+file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
 {
 
    ::file_pointer pfile;
@@ -3646,16 +3646,16 @@ file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_ope
 
    ::file::path path = payloadFile.as_file_path();
 
-   if(path.is_empty())
+   if (path.is_empty())
    {
 
-      if(eopen & ::file::e_open_file)
+      if (eopen & ::file::e_open_file)
       {
 
-         if(eopen & ::file::e_open_no_exception_on_open)
+         if (eopen & ::file::e_open_no_exception_on_open)
          {
 
-            pfile = __allocate ::file::file();
+            pfile = __allocate::file::file();
 
             pfile->m_estatus = error_not_a_file;
 
@@ -3705,7 +3705,7 @@ file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_ope
 
    }
 
-   if(path == "matter://main/icon.png")
+   if (path == "matter://main/icon.png")
    {
 
       informationf("Ok let's hey hohohou");
@@ -3717,7 +3717,7 @@ file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_ope
 
    auto pathProcessed = m_papplication->defer_process_path(path);
 
-   if(path == "matter://main/icon-256.png")
+   if (path == "matter://main/icon-256.png")
    {
 
       informationf("for icon-2456 processed path is : %s", pathProcessed.c_str());
@@ -3732,7 +3732,7 @@ file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_ope
 
       //information() << "::file::file_context::get_file file with empty name!!";
 
-      if(eopen & ::file::e_open_no_exception_on_open)
+      if (eopen & ::file::e_open_no_exception_on_open)
       {
 
          __construct_new(pfile);
@@ -3754,21 +3754,21 @@ file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_ope
       return nullptr;
 
    }
-   
+
    auto strProtocol = ::url::url(pathProcessed).connect().protocol();
-   
-   if(strProtocol.has_character())
+
+   if (strProtocol.has_character())
    {
-      
+
       auto pfile = defer_get_protocol_file(strProtocol, pathProcessed, eopen, pfileexception);
-      
-      if(pfile)
+
+      if (pfile)
       {
-         
+
          return pfile;
-         
+
       }
-      
+
    }
 
    path = pathProcessed;
@@ -3809,7 +3809,7 @@ file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_ope
       return create_resource_file(path);
 
    }
-   else if(path.case_insensitive_begins_eat("file://"))
+   else if (path.case_insensitive_begins_eat("file://"))
    {
 
       return create_native_file(path, eopen);
@@ -3817,7 +3817,7 @@ file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_ope
    }
    else
    {
-      
+
       return create_native_file(path, eopen);
 
    }
@@ -3829,9 +3829,9 @@ file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_ope
 
 ::file_pointer file_context::defer_get_protocol_file(const ::scoped_string & scopedstrProtocol, const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
 {
-   
+
    return nullptr;
-   
+
 }
 
 
@@ -4054,12 +4054,12 @@ bool file_context::is_link(const ::file::path & path)
 //}
 
 
-::file::enum_type file_context::get_type(const ::file::path &path)
+::file::enum_type file_context::get_type(const ::file::path & path)
 {
 
    auto etype = get_type(path, nullptr);
 
-   if(etype != ::file::e_type_unknown)
+   if (etype != ::file::e_type_unknown)
    {
 
       return etype;
@@ -4071,7 +4071,7 @@ bool file_context::is_link(const ::file::path & path)
 }
 
 
-::file::enum_type file_context::safe_get_type(const ::file::path& path)
+::file::enum_type file_context::safe_get_type(const ::file::path & path)
 {
 
    auto etype = safe_get_type(path, nullptr);
@@ -4106,160 +4106,160 @@ bool file_context::is_link(const ::file::path & path)
    }*/
 
 
-//::payload file_context::length(const ::file::path & pszPath)
-//{
-//
-//   return psystem->m_spfile->length(pszPath, get_app());
-//
-//}
+   //::payload file_context::length(const ::file::path & pszPath)
+   //{
+   //
+   //   return psystem->m_spfile->length(pszPath, get_app());
+   //
+   //}
 
 
-//::payload file_context::length(const ::string & strPath)
-//{
+   //::payload file_context::length(const ::string & strPath)
+   //{
 
 
-//   return psystem->m_spfile->length(strPath, get_app());
+   //   return psystem->m_spfile->length(strPath, get_app());
 
-//}
-
-
-//::payload file_context::length(const ::payload & payload)
-//{
-
-//   return psystem->m_spfile->length(payload.get_string(), get_app());
-
-//}
-
-//
-//::file::path file_context::time(const ::file::path & pszBasePath, int iDepth, const string & pszPrefix, const string & pszSuffix)
-//{
-//
-//   return psystem->m_spfile->time(get_app(), pszBasePath, iDepth, pszPrefix, pszSuffix);
-//
-//}
+   //}
 
 
-//::file::path file_context::time_square(const string & pszPrefix, const string & pszSuffix)
-//{
-//
-//   return psystem->m_spfile->time_square(get_app(), pszPrefix, pszSuffix);
-//
-//}
+   //::payload file_context::length(const ::payload & payload)
+   //{
 
-//::file::path file_context::time_log(const string & pszId)
-//{
-//   return psystem->m_spfile->time_log(get_app(), pszId);
-//}
-//
-//file_pointer file_context::time_square_file(const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix)
-//{
-//   return psystem->m_spfile->time_square_file(get_app(), pszPrefix, pszSuffix);
-//}
+   //   return psystem->m_spfile->length(payload.get_string(), get_app());
+
+   //}
+
+   //
+   //::file::path file_context::time(const ::file::path & pszBasePath, int iDepth, const string & pszPrefix, const string & pszSuffix)
+   //{
+   //
+   //   return psystem->m_spfile->time(get_app(), pszBasePath, iDepth, pszPrefix, pszSuffix);
+   //
+   //}
 
 
-//file_pointer file_context::get(const ::file::path & name)
-//{
-//
-//   return psystem->m_spfile->get(name, get_app());
-//
-//}
+   //::file::path file_context::time_square(const string & pszPrefix, const string & pszSuffix)
+   //{
+   //
+   //   return psystem->m_spfile->time_square(get_app(), pszPrefix, pszSuffix);
+   //
+   //}
+
+   //::file::path file_context::time_log(const string & pszId)
+   //{
+   //   return psystem->m_spfile->time_log(get_app(), pszId);
+   //}
+   //
+   //file_pointer file_context::time_square_file(const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix)
+   //{
+   //   return psystem->m_spfile->time_square_file(get_app(), pszPrefix, pszSuffix);
+   //}
 
 
-//::payload file_context::as_network_payload(const ::payload & payloadFile)
-//{
-//
-//   return psystem->m_spfile->as_network_payload(get_app(), payloadFile);
-//
-//}
+   //file_pointer file_context::get(const ::file::path & name)
+   //{
+   //
+   //   return psystem->m_spfile->get(name, get_app());
+   //
+   //}
 
 
-//string file_context::as_string(const ::payload & payloadFile)
-//{
-//
-//   return psystem->m_spfile->as_string(get_app(), payloadFile);
-//
-//}
-//
-//
-//bool file_context::as_memory(const ::payload & payloadFile, memory_base & mem)
-//{
-//
-//   return psystem->m_spfile->as_memory(get_app(), payloadFile, mem);
-//
-//}
-
-//
-//void file_context::lines(string_array & stra, const ::payload & payloadFile)
-//{
-//
-//   return psystem->m_spfile->lines(stra, payloadFile, get_app());
-//
-//}
-//
-//
-//void file_context::put_lines(const ::payload & payloadFile, const string_array & stra)
-//{
-//   return psystem->m_spfile->put_lines(payloadFile, stra, get_app());
-//}
-//
-//bool file_context::put_contents(const ::payload & payloadFile, const void * pvoidContents, ::collection::count count)
-//{
-//   return psystem->m_spfile->put_contents(payloadFile, pvoidContents, count, get_app());
-//}
-//
-//bool file_context::put_contents(const ::payload & payloadFile, const ::scoped_string & scopedstrContents)
-//
-//{
-//   return psystem->m_spfile->put_contents(payloadFile, pcszContents, get_app());
-//
-//}
-//
-//
-//bool file_context::add_contents(const ::payload & payloadFile, const ::scoped_string & scopedstrContents)
-//{
-//
-//   return psystem->m_spfile->add_contents(payloadFile, pcszContents, get_app());
-//
-//}
+   //::payload file_context::as_network_payload(const ::payload & payloadFile)
+   //{
+   //
+   //   return psystem->m_spfile->as_network_payload(get_app(), payloadFile);
+   //
+   //}
 
 
-//bool file_context::put_contents(const ::payload & payloadFile, const ::stream & stream)
-//{
+   //string file_context::as_string(const ::payload & payloadFile)
+   //{
+   //
+   //   return psystem->m_spfile->as_string(get_app(), payloadFile);
+   //
+   //}
+   //
+   //
+   //bool file_context::as_memory(const ::payload & payloadFile, memory_base & mem)
+   //{
+   //
+   //   return psystem->m_spfile->as_memory(get_app(), payloadFile, mem);
+   //
+   //}
 
-//   return psystem->m_spfile->put_contents(payloadFile, stream, get_app());
+   //
+   //void file_context::lines(string_array & stra, const ::payload & payloadFile)
+   //{
+   //
+   //   return psystem->m_spfile->lines(stra, payloadFile, get_app());
+   //
+   //}
+   //
+   //
+   //void file_context::put_lines(const ::payload & payloadFile, const string_array & stra)
+   //{
+   //   return psystem->m_spfile->put_lines(payloadFile, stra, get_app());
+   //}
+   //
+   //bool file_context::put_contents(const ::payload & payloadFile, const void * pvoidContents, ::collection::count count)
+   //{
+   //   return psystem->m_spfile->put_contents(payloadFile, pvoidContents, count, get_app());
+   //}
+   //
+   //bool file_context::put_contents(const ::payload & payloadFile, const ::scoped_string & scopedstrContents)
+   //
+   //{
+   //   return psystem->m_spfile->put_contents(payloadFile, pcszContents, get_app());
+   //
+   //}
+   //
+   //
+   //bool file_context::add_contents(const ::payload & payloadFile, const ::scoped_string & scopedstrContents)
+   //{
+   //
+   //   return psystem->m_spfile->add_contents(payloadFile, pcszContents, get_app());
+   //
+   //}
 
-//}
+
+   //bool file_context::put_contents(const ::payload & payloadFile, const ::stream & stream)
+   //{
+
+   //   return psystem->m_spfile->put_contents(payloadFile, stream, get_app());
+
+   //}
 
 
-//bool file_context::put_contents(const ::payload & payloadFile, memory & mem)
-//{
-//
-//   return psystem->m_spfile->put_contents(payloadFile, mem, get_app());
-//
-//}
-//
-//
-//bool file_context::put_text_utf8(const ::payload & payloadFile, const ::scoped_string & scopedstrContents)
-//{
-//
-//   return psystem->m_spfile->put_text_utf8(payloadFile, pcszContents, get_app());
-//
-//}
+   //bool file_context::put_contents(const ::payload & payloadFile, memory & mem)
+   //{
+   //
+   //   return psystem->m_spfile->put_contents(payloadFile, mem, get_app());
+   //
+   //}
+   //
+   //
+   //bool file_context::put_text_utf8(const ::payload & payloadFile, const ::scoped_string & scopedstrContents)
+   //{
+   //
+   //   return psystem->m_spfile->put_text_utf8(payloadFile, pcszContents, get_app());
+   //
+   //}
 
-//
-//string file_context::sys_temp(const char * lpszName, const ::scoped_string & scopedstrExtension)
-//{
-//   return psystem->m_spfile->sys_temp(lpszName, pszExtension, get_app());
-//}
+   //
+   //string file_context::sys_temp(const char * lpszName, const ::scoped_string & scopedstrExtension)
+   //{
+   //   return psystem->m_spfile->sys_temp(lpszName, pszExtension, get_app());
+   //}
 
 
-::file_pointer file_context::friendly_get_file(const ::payload &payloadFile, ::file::e_open eopen)
+::file_pointer file_context::friendly_get_file(const ::payload & payloadFile, ::file::e_open eopen)
 {
 
    //try
    //{
 
-      return get_file(payloadFile, eopen);
+   return get_file(payloadFile, eopen);
 
    //}
    //catch (const ::exception & e)
@@ -4319,7 +4319,7 @@ bool file_context::is_link(const ::file::path & path)
 //}
 
 
-void file_context::crypto_set(const ::payload &payloadFile, const ::scoped_string & scopedstrData, const ::scoped_string & scopedstrSalt)
+void file_context::crypto_set(const ::payload & payloadFile, const ::scoped_string & scopedstrData, const ::scoped_string & scopedstrSalt)
 {
 
    throw ::interface_only();
@@ -4329,7 +4329,7 @@ void file_context::crypto_set(const ::payload &payloadFile, const ::scoped_strin
 }
 
 
-void file_context::crypto_get(const ::payload &payloadFile, string &str, const ::scoped_string & scopedstrSalt)
+void file_context::crypto_get(const ::payload & payloadFile, string & str, const ::scoped_string & scopedstrSalt)
 {
 
    throw ::interface_only();
@@ -4339,7 +4339,7 @@ void file_context::crypto_get(const ::payload &payloadFile, string &str, const :
 }
 
 
-void file_context::save_lines(const ::payload &payloadFile, string_array &stra)
+void file_context::save_lines(const ::payload & payloadFile, string_array & stra)
 {
 
    string str = stra.implode("\n");
@@ -4351,7 +4351,7 @@ void file_context::save_lines(const ::payload &payloadFile, string_array &stra)
 }
 
 
-void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
+void file_context::load_lines(string_array & stra, const ::payload & payloadFile)
 {
 
    string str = as_string(payloadFile);
@@ -4437,7 +4437,7 @@ void file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 //}
 
 
-void file_context::touch(const ::file::path &path)
+void file_context::touch(const ::file::path & path)
 {
 
    if (!exists(path))
@@ -4477,10 +4477,10 @@ void set_bypass_cache_if_empty(::payload & payloadFile)
 
    auto etype = payloadFile.m_etype;
 
-   if(etype != e_type_element)
+   if (etype != e_type_element)
    {
 
-      if(etype != e_type_property_set)
+      if (etype != e_type_property_set)
       {
 
          auto path = payloadFile.as_file_path();
@@ -4499,10 +4499,10 @@ void set_bypass_cache_if_empty(::payload & payloadFile)
 bool get_bypass_cache_if_empty(const ::payload & payloadFile)
 {
 
-   if(payloadFile.m_etype == e_type_property_set)
+   if (payloadFile.m_etype == e_type_property_set)
    {
 
-      if(payloadFile.is_property_true("bypass_cache_if_empty"))
+      if (payloadFile.is_property_true("bypass_cache_if_empty"))
       {
 
          return true;
@@ -4521,7 +4521,7 @@ void set_bypass_cache(::payload & payloadFile)
 
    auto etype = payloadFile.m_etype;
 
-   if(payloadFile.m_etype == e_type_path)
+   if (payloadFile.m_etype == e_type_path)
    {
 
       payloadFile.m_ppath->m_flags += ::file::e_flag_bypass_cache;
@@ -4530,7 +4530,7 @@ void set_bypass_cache(::payload & payloadFile)
    else
    {
 
-      if(etype != e_type_property_set)
+      if (etype != e_type_property_set)
       {
 
          auto path = payloadFile.as_file_path();
@@ -4549,16 +4549,16 @@ void set_bypass_cache(::payload & payloadFile)
 bool get_bypass_cache(const ::payload & payloadFile)
 {
 
-   if(payloadFile.m_etype == e_type_path)
+   if (payloadFile.m_etype == e_type_path)
    {
 
       return payloadFile.m_ppath->m_flags & ::file::e_flag_bypass_cache;
 
    }
-   else if(payloadFile.m_etype == e_type_property_set)
+   else if (payloadFile.m_etype == e_type_property_set)
    {
 
-      if(payloadFile.is_property_true("nocache"))
+      if (payloadFile.is_property_true("nocache"))
       {
 
          return true;
@@ -4583,7 +4583,7 @@ void file_context::set(const ::payload & payloadFile, const ::memory_base & memo
 }
 
 
-void file_context::unzip_to_folder(const ::file::path & pathFolder, const ::file::path & pathZip, ::function<void(const::scoped_string& scopedstr) > functionCallback)
+void file_context::unzip_to_folder(const ::file::path & pathFolder, const ::file::path & pathZip, ::function<void(const::scoped_string & scopedstr) > functionCallback)
 {
 
    auto pfileZip = get_reader(pathZip);
@@ -4599,7 +4599,7 @@ void file_context::unzip_to_folder(const ::file::path & pathFolder, const ::file
 }
 
 
-::file::path file_context::unzip_exe(const ::file::path& pathZip)
+::file::path file_context::unzip_exe(const ::file::path & pathZip)
 {
 
    auto pfileZip = get_reader(pathZip);
@@ -4617,25 +4617,36 @@ void file_context::unzip_to_folder(const ::file::path & pathFolder, const ::file
 }
 
 
-
-CLASS_DECL_ACME void * file_as_memory_dup(long & size, const char *psz)
+CLASS_DECL_ACME void * file_as_memory_dup(long & size, const char * psz)
 {
-   
-   try {
+
+   try
+   {
+
       auto mem = ::system()->application()->file()->as_memory(psz);
-      size = mem.size();
-      
-      if(size>0)
+
+      size = (long)mem.size();
+
+      if (size > 0)
       {
+
          auto p = malloc(size);
+
          memcpy(p, mem.data(), size);
+
          return p;
-         
+
       }
-   } catch (...) {
       
    }
-   
+   catch (...) 
+   {
+
+   }
+
    return nullptr;
-   
+
 }
+
+
+

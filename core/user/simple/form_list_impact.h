@@ -29,7 +29,7 @@ public:
    // void dump(dump_context & dumpcontext) const override;
 
    
-   void handle(::topic * ptopic, ::context * pcontext) override;
+   void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
 };

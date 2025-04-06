@@ -2690,7 +2690,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //      //if (pgraphics->m_bDraw)
 //      //{
 //
-//#ifdef __DEBUG
+//#ifdef _DEBUG
 //
 //      auto timeStart = ::time::now();
 //
@@ -3635,7 +3635,7 @@ void simple_frame_window::_001OnQueryEndSession(::message::message * pmessage)
 }
 
 
-void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
+void simple_frame_window::handle(::topic * ptopic, ::handler_context * phandlercontext)
 {
 
    if (ptopic->id() == id_task_bar_created)
@@ -3702,7 +3702,7 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
 
    }
 
-   ::experience::frame_window::handle(ptopic, pcontext);
+   ::experience::frame_window::handle(ptopic, phandlercontext);
 
 }
 

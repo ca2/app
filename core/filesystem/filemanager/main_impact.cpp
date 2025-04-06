@@ -188,12 +188,12 @@ namespace filemanager
    }
 
 
-   void main_impact::handle(::topic * ptopic, ::context * pcontext)
+   void main_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::filemanager_impact_base::handle(ptopic, pcontext);
+      ::filemanager_impact_base::handle(ptopic, phandlercontext);
 
-      ::user::split_impact::handle(ptopic, pcontext);
+      ::user::split_impact::handle(ptopic, phandlercontext);
 
       if (ptopic->id() == id_initialize)
       {

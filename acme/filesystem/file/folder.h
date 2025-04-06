@@ -17,6 +17,7 @@ public:
    filesize             m_iFilePosition;
    ::string             m_strCurrent;
    ::file::enum_type    m_etypeCurrent;
+   int                  m_iConsumeFromPathBeginningWhenExtracting;
 
 
    folder();

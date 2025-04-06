@@ -340,7 +340,7 @@ namespace parallelization
 //}
 
 
-//::context * get_context()
+//::handler_context * get_context()
 //{
 //
 //   thread * pthread = get_thread();

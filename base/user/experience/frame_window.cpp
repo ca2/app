@@ -396,7 +396,9 @@ namespace experience
 
       auto puser = user();
 
-      auto pframe = puser->experience()->frame_experience(this, strExperience, strFrame);
+      auto pexperience = puser->experience();
+
+      auto pframe = pexperience->frame_experience(this, strExperience, strFrame);
 
       pframe->m_pframewindow = this;
 
@@ -833,7 +835,7 @@ namespace experience
    }
 
 
-   void frame_window::handle(::topic * ptopic, ::context * pcontext)
+   void frame_window::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if (ptopic->id() == ::id_click && m_pframe != nullptr
@@ -978,7 +980,7 @@ namespace experience
 
       }
 
-      ::user::frame_window::handle(ptopic, pcontext);
+      ::user::frame_window::handle(ptopic, phandlercontext);
 
    }
 

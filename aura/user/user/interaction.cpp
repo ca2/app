@@ -81,6 +81,8 @@ CLASS_DECL_AURA int get_last_x_abs()
 }
 #endif
 
+#define REDRAW_LOG_LEVEL 2
+
 
 CLASS_DECL_AURA::int_point __get_top_right();
 CLASS_DECL_AURA void __set_top_right(const ::int_point & pointTopRight);
@@ -2322,7 +2324,11 @@ namespace user
             if (::is_set(pwindow))
             {
 
+#if REDRAW_LOG_LEVEL > 7
+
                information() << "pwindow->post_redraw();";
+
+#endif
 
                pwindow->post_redraw();
 
@@ -5301,7 +5307,7 @@ namespace user
             if (pgraphics->m_bDraw)
             {
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
                auto timeStart = ::time::now();
 
@@ -5325,7 +5331,7 @@ namespace user
                //_001OnNcDraw(pgraphics);
 
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
                auto timeEnd = ::time::now();
 
@@ -5353,7 +5359,7 @@ namespace user
 
          {
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
             auto timeStart = ::time::now();
 
@@ -5377,7 +5383,7 @@ namespace user
             }
 
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
             auto timeElapsed = timeStart.elapsed();
 
@@ -5424,7 +5430,7 @@ namespace user
 
          {
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
             auto timeStart = ::time::now();
 
@@ -5433,7 +5439,7 @@ namespace user
             on_after_graphical_update();
 
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
             auto timeEnd = ::time::now();
 
@@ -5499,7 +5505,7 @@ namespace user
 
       //on_context_offset(pgraphics);
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
       auto timeStartWithLock = ::time::now();
 
@@ -5512,7 +5518,7 @@ namespace user
          if (pgraphics->m_bDraw)
          {
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
             auto timeStart = ::time::now();
 
@@ -5528,7 +5534,7 @@ namespace user
 
             _001OnDraw(pgraphics);
 
-            //#ifdef __DEBUG
+            //#ifdef _DEBUG
             //
             //            auto puseritemHover = user_item(m_pitemHover);
             //
@@ -5575,7 +5581,7 @@ namespace user
 
       }
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
       auto timeEndWithLock = ::time::now();
 
@@ -7113,7 +7119,7 @@ namespace user
                                     //if (pgraphics->m_bDraw)
                                     //{
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
                auto timeStart = ::time::now();
 
@@ -20145,7 +20151,7 @@ if(get_parent())
    }
 
 
-   bool interaction::is_selected(::data::item * pitem)
+   bool interaction::is_selected(::item * pitem)
    {
 
       __UNREFERENCED_PARAMETER(pitem);
@@ -23748,12 +23754,12 @@ if(get_parent())
    }
 
 
-   void interaction::handle(::topic * ptopic, ::context * pcontext)
+   void interaction::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       //auto phappening = pmessage->m_lparam.cast < ::user::control_event >();
 
-      //handle(ptopic, pcontext);
+      //handle(ptopic, phandlercontext);
 
       if (ptopic)
       {
@@ -25951,6 +25957,23 @@ void interaction::on_control_box_zoom(){
 
          auto pitemFront = update_hover(pmouse, e_zorder_front);
 
+         if (pitemFront.is_set())
+         {
+
+            // MAYBE TODO HERE!!
+
+            // You should check what would be done (skipped by this
+            // pmouse->m_bRet = true) at on_message_mouse_move
+            // to be done before returning here. What I think
+            // maybe missing here is the on_message_mouse_move's
+            // mouse_set_cursor.
+
+            // END MAYBE TODO HERE!!
+
+            pmouse->m_bRet = true;
+
+         }
+
          if (pmouse->m_bRet)
          {
 
@@ -27704,21 +27727,21 @@ __check_refdbg;
 
             }
 
-            //if (!::is_item_set(pitemOldHover))
-            //{
+            if (!::is_item_set(pitemOldHover))
+            {
 
-            //   try
-            //   {
+               try
+               {
 
-            //      track_mouse_leave();
+                  track_mouse_leave();
 
-            //   }
-            //   catch (...)
-            //   {
+               }
+               catch (...)
+               {
 
-            //   }
+               }
 
-            //}
+            }
 
          }
 
@@ -29007,7 +29030,7 @@ __check_refdbg;
    }
 
 
-   //void interaction::handle(::topic * ptopic, ::context * pcontext)
+   //void interaction::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
    //   if (ptopic->id() == id_redraw || ptopic->id() == id())
@@ -30825,7 +30848,7 @@ __check_refdbg;
    //}
 
 
-   // ::aura::context * interaction::context()
+   // ::aura::context * interaction::handler_context()
    // {
    //
    //    return m_papplication ? m_papplication->m_pauracontext : nullptr;

@@ -14,6 +14,7 @@
 #include "Screen.h"
 #include "Window.h"
 #include "Button.h"
+#include "TabWidget.h"
 #include "in_place_edit.h"
 #include "TextBox.h"
 #include "VScrollPanel.h"
@@ -78,6 +79,42 @@ namespace nanoui
    {
 
       return m_bVisible;
+
+   }
+
+
+   bool Widget::is_child_visible() const
+   {
+      
+      auto pParent = this->parent();
+      
+      if(pParent)
+      {
+         
+         if(!pParent->is_child_visible())
+         {
+            
+            return false;
+            
+         }
+         
+         ::cast < TabWidgetBase > pTabParent = this->parent();
+         
+         if(pTabParent)
+         {
+            
+            if(!pTabParent->is_tab_selected(this))
+            {
+               
+               return false;
+               
+            }
+            
+         }
+         
+      }
+
+      return this->visible();
 
    }
 
@@ -207,7 +244,7 @@ namespace nanoui
    }
 
 
-   void Widget::on_begin_draw(::nano2d::context* pcontext)
+   void Widget::on_begin_draw(::nano2d::context * pcontext)
    {
 
       if (m_callbackLayout)
@@ -224,7 +261,7 @@ namespace nanoui
    }
 
 
-   int_size Widget::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
+   int_size Widget::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
 
       if (m_playout)
@@ -248,7 +285,7 @@ namespace nanoui
 
       m_bNeedLayout = true;
 
-      m_callbackLayout = [this](::nano2d::context* pcontext)
+      m_callbackLayout = [this](::nano2d::context * pcontext)
          {
 
             parent()->perform_layout(pcontext);
@@ -280,7 +317,7 @@ namespace nanoui
    }
 
 
-   void Widget::perform_layout(::nano2d::context* pcontext, bool bRecalcTextSize)
+   void Widget::perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
 
       if (m_callbackLayout)
@@ -891,7 +928,7 @@ namespace nanoui
    }
 
 
-   bool Widget::need_to_draw(::nano2d::context* pcontext)
+   bool Widget::need_to_draw(::nano2d::context * pcontext)
    {
 
       ::pointer < ::nano2d::draw2d_context > pdraw2dcontext;
@@ -930,7 +967,7 @@ namespace nanoui
    }
 
 
-   void Widget::call_draw(::nano2d::context* pcontext)
+   void Widget::call_draw(::nano2d::context * pcontext)
    {
 
       if (m_bNeedLayout)
@@ -954,7 +991,7 @@ namespace nanoui
    }
 
 
-   void Widget::draw(::nano2d::context* pcontext)
+   void Widget::draw(::nano2d::context * pcontext)
    {
 
       //#if defined(NANOUI_SHOW_WIDGET_BOUNDS)

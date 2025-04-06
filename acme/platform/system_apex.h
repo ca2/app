@@ -414,7 +414,7 @@ namespace platform
 
       virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant);
 
-      virtual void handle(::topic * ptopic, ::context * pcontext);
+      virtual void handle(::topic * ptopic, ::handler_context * phandlercontext);
 
       virtual bool _handle_uri(const ::block & block);
 

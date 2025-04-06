@@ -35,7 +35,7 @@ namespace apex
    }
 
 
-   void component::handle(::topic * ptopic, ::context * pcontext)
+   void component::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if (ptopic->id() == id_implementation_enabled)
@@ -65,7 +65,7 @@ namespace apex
 
             auto pfolder = system()->create < ::folder >("folder", "zip");
 
-            pfolder->initialize(m_papplication);
+            pfolder->initialize(this);
 
             pfolder->open_for_reading(pfileZip);
 

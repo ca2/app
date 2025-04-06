@@ -14,7 +14,7 @@ NATURAL_DATA* __nil() { return nullptr; }
 #define NATURAL_METADATA_ALIGN 32
 
 
-#pragma pack(push, meta_data, 1)
+//#pragma pack(push, meta_data, 1)
 
 
 template < typename TYPE_DATA >
@@ -61,7 +61,7 @@ public:
 };
 
 
-#pragma pack(pop, meta_data)
+//#pragma pack(pop, meta_data)
 
 
 template < typename BASE_META_DATA >
@@ -125,7 +125,7 @@ public:
 };
 
 
-#pragma pack(push,1)
+//#pragma pack(push,1)
 
 
 template < typename RANGE_TYPE, typename BASE_META_DATA, ::heap::enum_memory t_ememory >
@@ -431,7 +431,7 @@ public:
 };
 
 
-#pragma pack(pop)
+//#pragma pack(pop)
 
 
 

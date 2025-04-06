@@ -228,7 +228,7 @@ namespace user
    }
 
 
-   void message_box::handle(::topic * ptopic, ::context * pcontext)
+   void message_box::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if (ptopic->id() == id_user_style_change)
@@ -250,7 +250,7 @@ namespace user
 
       }
 
-      ::user::interaction::handle(ptopic, pcontext);
+      ::user::interaction::handle(ptopic, phandlercontext);
 
    }
 
@@ -449,7 +449,7 @@ namespace user
 
 
    ////bool message_box::process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie)
-   //void message_box::handle(::topic * ptopic, ::context * pcontext)
+   //void message_box::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
    //   if (ptopic->id() == ::id_click)

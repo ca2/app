@@ -30,7 +30,7 @@ Graph::Graph(Widget * parent, const ::scoped_string & caption)
 }
 
 
-int_size Graph::preferred_size(::nano2d::context *, bool bRecalcTextSize)
+int_size Graph::preferred_size(::nano2d::context  *, bool bRecalcTextSize)
 {
 
    return {180, 45 };
@@ -38,7 +38,7 @@ int_size Graph::preferred_size(::nano2d::context *, bool bRecalcTextSize)
 }
 
 
-void Graph::draw(::nano2d::context * pcontext) {
+void Graph::draw(::nano2d::context  * pcontext) {
    Widget::draw(pcontext);
 
    pcontext->begin_path();

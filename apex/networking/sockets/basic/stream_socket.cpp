@@ -199,10 +199,10 @@ namespace sockets
    }
 
 
-   int stream_socket::Protocol()
+   int stream_socket::protocol()
    {
       
-      return stream_socket_impl()->Protocol();
+      return stream_socket_impl()->protocol();
 
    }
 

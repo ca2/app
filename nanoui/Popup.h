@@ -14,7 +14,7 @@
 #pragma once
 
 
-#include "Window.h"
+#include "nanoui/Window.h"
 
 
 namespace nanoui
@@ -65,10 +65,10 @@ namespace nanoui
       //void toggle_visible() override;
 
       /// Invoke the associated layout generator to properly place pwidgetChild widgets, if any
-      virtual void perform_layout(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
+      virtual void perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
 
       /// Draw the popup window
-      virtual void draw(::nano2d::context* pcontext) override;
+      virtual void draw(::nano2d::context * pcontext) override;
    protected:
       /// Internal helper function to maintain nested window position values
       virtual void refresh_relative_placement() override;

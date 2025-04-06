@@ -356,7 +356,7 @@ namespace user
    }
 
 
-   void list_box::handle(::topic * ptopic, ::context * pcontext)
+   void list_box::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if (ptopic->id() == ::id_click)
@@ -1287,7 +1287,7 @@ namespace user
       if (i < 0)
       {
 
-         m_pcombo->get_parent()->window_rectangle(rectangleMonitor);
+         m_pcombo->::user::interaction::get_parent()->window_rectangle(rectangleMonitor);
 
       }
 
@@ -1377,7 +1377,7 @@ namespace user
       if (i < 0)
       {
 
-         m_pcombo->get_parent()->screen_to_client()(rectangleList);
+         m_pcombo->::user::interaction::get_parent()->screen_to_client()(rectangleList);
 
       }
 
@@ -1460,7 +1460,7 @@ namespace user
          else
          {
 
-            create_child(m_pcombo->get_parent());
+            create_child(m_pcombo->::user::interaction::get_parent());
 
          }
 

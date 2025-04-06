@@ -20,7 +20,7 @@ namespace filemanager
    }
 
 
-   void form::handle(::topic * ptopic, ::context * pcontext)
+   void form::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if(ptopic->id() == ::id_click)

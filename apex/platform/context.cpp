@@ -562,15 +562,33 @@ namespace apex
 
          auto pfsrawfolderprotocol = pair.element2();
 
-         if(::is_set(pfsrawfolderprotocol)
-            && pfsrawfolderprotocol->is_installed() 
-            && _001IsProtocol(path, strProtocol + ":/"))
-         { 
+         if (::is_set(pfsrawfolderprotocol)
+            && pfsrawfolderprotocol->is_installed())
+         {
 
-            path = pfsrawfolderprotocol->raw_path(path);
+            if (_001IsProtocol(path, strProtocol + ":/"))
+            {
 
-            return true;
-         
+               path = pfsrawfolderprotocol->raw_path(path);
+
+               return true;
+
+            }
+            else if (_001IsProtocol(path, strProtocol + "-app:/"))
+            {
+
+               ::file::path pathApp = "application";
+
+               pathApp /= application()->m_strAppId;
+
+               pathApp /= path;
+
+               path = pfsrawfolderprotocol->raw_path(pathApp);
+
+               return true;
+
+            }
+
          }
 
       }

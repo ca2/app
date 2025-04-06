@@ -45,17 +45,25 @@ namespace user
       pplaintexttree->m_iSelEnd = m_iSelEnd;
    }
 
+
    void plain_text_file_command::Undo(plain_text_tree * pplaintexttree)
    {
-      pplaintexttree->m_peditfile->Undo();
+      
+      auto pedititem = pplaintexttree->m_peditfile->Undo();
+
+      pplaintexttree->_on_undo_edit_item(pedititem);
+
    }
+
 
    void plain_text_file_command::Redo(plain_text_tree * pplaintexttree)
    {
-      pplaintexttree->m_peditfile->Redo();
+      
+      auto pedititem = pplaintexttree->m_peditfile->Redo();
+
+      pplaintexttree->_on_redo_edit_item(pedititem);
+
    }
-
-
 
 
    plain_text_group_command::plain_text_group_command()

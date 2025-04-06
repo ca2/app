@@ -43,7 +43,7 @@ namespace app_integration
 
       void on_change_cur_sel() override;
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
    };

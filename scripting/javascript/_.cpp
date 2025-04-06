@@ -134,7 +134,7 @@
 /*using namespace std;
 
 #ifdef _WIN32
-#ifdef __DEBUG
+#ifdef _DEBUG
    #ifndef DBG_NEW
       #define DBG_NEW __allocate<  >( _NORMAL_BLOCK , __FILE__ , __LINE__ )
       #define ___new DBG_NEW

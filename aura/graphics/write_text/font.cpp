@@ -4,6 +4,7 @@
 #include "internal_font.h"
 #include "acme/exception/bad_unit_exception.h"
 #include "acme/exception/interface_only.h"
+#include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"

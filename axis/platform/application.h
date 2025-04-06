@@ -37,7 +37,7 @@ namespace axis
    public:
 
 
-      ::pointer<::simpledb::server>                        m_psimpledb;
+      //::pointer<::simpledb::server>                        m_psimpledb;
       
 
       application();

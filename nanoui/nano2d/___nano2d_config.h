@@ -8,7 +8,7 @@
 #define __NANO2D_TYPE(type) type
 
 #define NANO2D_INCLUDE "nano2d.h"
-#define NANO2D_CONTEXT ::nano2d::context
+#define NANO2D_CONTEXT ::nano2d::context 
 
 
 

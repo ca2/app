@@ -317,7 +317,7 @@ namespace sockets
       virtual string get_connect_host();
       virtual ::networking::port_t get_connect_port();
 
-      virtual int Protocol() override;
+      int protocol() override;
 
       /** Trigger limit for callback OnTransferLimit. */
       virtual void SetTransferLimit(memsize sz);

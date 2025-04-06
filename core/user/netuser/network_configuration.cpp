@@ -115,7 +115,7 @@ namespace usernet
    }
 
 
-   void network_configuration::handle(::topic * ptopic, ::context * )
+   void network_configuration::handle(::topic * ptopic, ::handler_context * )
    {
 
       //// auto pcontext = get_context();

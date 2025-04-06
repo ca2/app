@@ -8,11 +8,11 @@ namespace platform
 {
 
 
-   struct CLASS_DECL_ACME bred_application_layer_t
-   {
-
-
-   };
+//   struct CLASS_DECL_ACME bred_application_layer_t
+//   {
+//
+//
+//   };
 
 
    class CLASS_DECL_ACME bred_application_layer

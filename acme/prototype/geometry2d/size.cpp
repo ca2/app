@@ -3,7 +3,7 @@
 #include "size.h"
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
 void image_impact_center_debug()

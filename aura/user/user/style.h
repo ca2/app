@@ -1,7 +1,8 @@
 #pragma once
 
 
-#include "style_base.h"
+#include "acme/user/user/_style.h"
+#include "aura/user/user/style_base.h"
 
 
 namespace user
@@ -79,7 +80,7 @@ namespace user
 
       virtual bool _001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox);
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       void increment_update_sequence() override;
 

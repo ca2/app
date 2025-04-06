@@ -49,7 +49,7 @@ void channel::erase_handler(::particle * pparticle)
 void channel::erase_message_handler(::particle * pparticle)
 {
 
-   critical_section_lock synchronouslock(platform()->channel_critical_section());
+   critical_section_lock synchronouslock(::system()->channel_critical_section());
 
    auto payloads = get_message_map()->payloads();
 
@@ -78,7 +78,7 @@ void channel::erase_message_handler(::particle * pparticle)
 void channel::erase_command_handler(::particle * pparticle)
 {
 
-   critical_section_lock synchronouslock(platform()->channel_critical_section());
+   critical_section_lock synchronouslock(::system()->channel_critical_section());
 
    auto payloads = get_command_map()->payloads();
 
@@ -107,7 +107,7 @@ void channel::erase_command_handler(::particle * pparticle)
 void channel::erase_command_probe_handler(::particle * pparticle)
 {
 
-   critical_section_lock synchronouslock(platform()->channel_critical_section());
+   critical_section_lock synchronouslock(::system()->channel_critical_section());
 
    auto payloads = get_command_probe_map()->payloads();
 
@@ -146,7 +146,7 @@ void channel::transfer_handler(::channel * pchannelReceiver, ::particle * pparti
 void channel::transfer_message_handler(::channel * pchannelReceiver, ::particle * pparticle)
 {
 
-   critical_section_lock synchronouslock(platform()->channel_critical_section());
+   critical_section_lock synchronouslock(::system()->channel_critical_section());
 
    {
 
@@ -194,7 +194,7 @@ void channel::transfer_message_handler(::channel * pchannelReceiver, ::particle 
 void channel::transfer_command_handler(::channel * pchannelReceiver, ::particle * pparticle)
 {
 
-   critical_section_lock synchronouslock(platform()->channel_critical_section());
+   critical_section_lock synchronouslock(::system()->channel_critical_section());
 
    {
 
@@ -242,7 +242,7 @@ void channel::transfer_command_handler(::channel * pchannelReceiver, ::particle 
 void channel::transfer_command_probe_handler(::channel * pchannelReceiver, ::particle * pparticle)
 {
 
-   critical_section_lock synchronouslock(platform()->channel_critical_section());
+   critical_section_lock synchronouslock(::system()->channel_critical_section());
 
    {
 
@@ -380,7 +380,7 @@ void channel::transfer_command_probe_handler(::channel * pchannelReceiver, ::par
 void channel::route_message(::message::message * pmessage)
 {
 
-   if (::is_null(pmessage)) { ASSERT(false); return; } { critical_section_lock synchronouslock(platform()->channel_critical_section()); pmessage->m_pdispatchera = get_message_map()->pget(pmessage->m_emessage); } if (pmessage->m_pdispatchera == nullptr || pmessage->m_pdispatchera->is_empty()) return;
+   if (::is_null(pmessage)) { ASSERT(false); return; } { critical_section_lock synchronouslock(::system()->channel_critical_section()); pmessage->m_pdispatchera = get_message_map()->pget(pmessage->m_emessage); } if (pmessage->m_pdispatchera == nullptr || pmessage->m_pdispatchera->is_empty()) return;
 
    for (pmessage->m_pchannel = this, pmessage->m_iRouteIndex = pmessage->m_pdispatchera->get_upper_bound(); pmessage->m_pdispatchera && pmessage->m_iRouteIndex >= 0; pmessage->m_iRouteIndex--)
    {
@@ -406,7 +406,7 @@ void channel::_route_command(::message::command * pcommand)
 
    ASSERT(!pcommand->m_bProbing);
 
-   if (::is_null(pcommand)) { ASSERT(false); return; } { critical_section_lock synchronouslock(platform()->channel_critical_section()); pcommand->m_pdispatchera = get_command_map()->pget(pcommand->command_id()); } if (pcommand->m_pdispatchera == nullptr || pcommand->m_pdispatchera->is_empty()) return;
+   if (::is_null(pcommand)) { ASSERT(false); return; } { critical_section_lock synchronouslock(::system()->channel_critical_section()); pcommand->m_pdispatchera = get_command_map()->pget(pcommand->command_id()); } if (pcommand->m_pdispatchera == nullptr || pcommand->m_pdispatchera->is_empty()) return;
 
    for (pcommand->m_pchannel = this, pcommand->m_iRouteIndex = pcommand->m_pdispatchera->get_upper_bound(); pcommand->m_pdispatchera && pcommand->m_iRouteIndex >= 0; pcommand->m_iRouteIndex--)
    {
@@ -432,7 +432,7 @@ void channel::_route_command_probe(::message::command * pcommand)
 
    ASSERT(pcommand->m_bProbing);
 
-   if (::is_null(pcommand)) { ASSERT(false); return; } { critical_section_lock synchronouslock(platform()->channel_critical_section()); pcommand->m_pdispatchera = get_command_probe_map()->pget(pcommand->command_id()); } if (pcommand->m_pdispatchera == nullptr || pcommand->m_pdispatchera->is_empty()) return;
+   if (::is_null(pcommand)) { ASSERT(false); return; } { critical_section_lock synchronouslock(::system()->channel_critical_section()); pcommand->m_pdispatchera = get_command_probe_map()->pget(pcommand->command_id()); } if (pcommand->m_pdispatchera == nullptr || pcommand->m_pdispatchera->is_empty()) return;
 
    for (pcommand->m_pchannel = this, pcommand->m_iRouteIndex = pcommand->m_pdispatchera->get_upper_bound(); pcommand->m_pdispatchera && pcommand->m_iRouteIndex >= 0; pcommand->m_iRouteIndex--)
    {
@@ -569,7 +569,7 @@ void channel::erase_all_routes()
 
       {
 
-         critical_section_lock synchronouslock(platform()->channel_critical_section());
+         critical_section_lock synchronouslock(::system()->channel_critical_section());
 
          //for (auto & i : m_dispatchermapNormal)
          //{
@@ -838,7 +838,7 @@ void channel::command_handler(::message::command * pcommand)
 bool channel::has_command_handler(::message::command * pcommand)
 {
 
-   critical_section_lock synchronouslock(platform()->channel_critical_section());
+   critical_section_lock synchronouslock(::system()->channel_critical_section());
 
    if (m_atomaHandledCommands.contains(pcommand->command_id()))
    {

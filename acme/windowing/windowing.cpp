@@ -241,13 +241,13 @@ namespace acme
       //}
 
 
-      void windowing::handle(::topic* ptopic, ::context* pcontext)
+      void windowing::handle(::topic * ptopic, ::handler_context * phandlercontext)
       {
          if (ptopic->id() == id_set_application_dark_mode)
          {
             for (auto& pwindow: m_windowa)
             {
-               pwindow->handle(ptopic, pcontext);
+               pwindow->handle(ptopic, phandlercontext);
             }
          }
       }

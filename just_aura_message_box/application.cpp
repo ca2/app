@@ -3,6 +3,7 @@
 
 
 __IMPLEMENT_APPLICATION_RELEASE_TIME(app_just_aura_message_box);
+IMPLEMENT_APPLICATION_FACTORY(app_just_aura_message_box);
 
 
 namespace app_just_aura_message_box

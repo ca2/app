@@ -370,7 +370,7 @@ namespace platform
 
          auto prequest = __create_new < ::request >();
 
-         prequest->initialize_command_line2(platform()->m_strCommandLine);
+         prequest->initialize_command_line2(::system()->m_strCommandLine);
 
          psystem->m_papplication->get_property_set().merge(prequest->get_property_set());
 
@@ -407,7 +407,7 @@ namespace platform
 
       auto psystem = system();
 
-      if (psystem->m_pfnImplement || platform()->is_console())
+      if (psystem->m_pfnImplement || ::system()->is_console())
       {
 
          node_implement_main();
@@ -428,7 +428,7 @@ namespace platform
 
       //system()->defer_post_initial_request();
 
-      if(!platform()->is_console())
+      if(!::system()->is_console())
       {
 
          system()->m_htask = nullptr;
@@ -2833,7 +2833,7 @@ return false;
    string node::process_configuration_name()
    {
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
       return "debug";
 
@@ -3278,7 +3278,7 @@ bool node::_is_smart_git_installed()
    //   if (!file()->exists(pathNetworkPayload))
    //   {
 
-   //      if (platform()->is_desktop_system())
+   //      if (::system()->is_desktop_system())
    //      {
 
    //         auto pathHome = directory()->home();

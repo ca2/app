@@ -259,7 +259,7 @@ namespace app_integration
 
 
 
-   void impact::handle(::topic * ptopic, ::context * pcontext)
+   void impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
 
@@ -297,7 +297,7 @@ namespace app_integration
 
       }
 
-      ::user::impact::handle(ptopic, pcontext);
+      ::user::impact::handle(ptopic, phandlercontext);
    }
 
 

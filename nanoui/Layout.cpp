@@ -14,11 +14,22 @@
 #include "Layout.h"
 #include "Window.h"
 #include "Label.h"
+//#include <stdio.h>
 //#include <numeric>
 
 namespace nanoui
 {
 
+
+AdvancedGridLayout::Anchor::operator ::string() const
+{
+   
+   ::string str;
+      str.formatf("Format[pos=(%i, %i), size=(%i, %i), align=(%i, %i)]",
+         pos[0], pos[1], size[0], size[1], (int)align[0], (int)align[1]);
+   return str;
+   
+}
 
    BoxLayout::BoxLayout(enum_orientation orientation, enum_alignment alignment,
       ::int_rectangle margin, int spacing)
@@ -27,7 +38,7 @@ namespace nanoui
    }
 
 
-   int_size BoxLayout::preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   int_size BoxLayout::preferred_size(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
       int_size size(m_rectangleMargin.left() + m_rectangleMargin.right(),
@@ -112,7 +123,7 @@ namespace nanoui
    }
 
 
-   void BoxLayout::perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   void BoxLayout::perform_layout(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
       int_size sizeFixed = pwidget->fixed_size();
@@ -222,7 +233,7 @@ namespace nanoui
    }
 
 
-   int_size GroupLayout::preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   int_size GroupLayout::preferred_size(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
       int height = m_iMargin, width = 2 * m_iMargin;
@@ -287,7 +298,7 @@ namespace nanoui
    }
 
 
-   void GroupLayout::perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   void GroupLayout::perform_layout(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
       int height = m_iMargin;
@@ -361,7 +372,7 @@ namespace nanoui
    }
 
 
-   int_size GridLayout::preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   int_size GridLayout::preferred_size(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
       /* Compute minimum row / column sizes */
@@ -390,7 +401,7 @@ namespace nanoui
    }
 
 
-   void GridLayout::compute_layout(::nano2d::context* pcontext, Widget* pwidget, ::int_array * grid, bool bRecalcTextSize) const
+   void GridLayout::compute_layout(::nano2d::context * pcontext, Widget* pwidget, ::int_array * grid, bool bRecalcTextSize) const
    {
 
       auto iAxisIndex1 = index_of(m_eorientation);
@@ -482,7 +493,7 @@ namespace nanoui
    }
 
 
-   void GridLayout::perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   void GridLayout::perform_layout(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
       auto sizeFixed = pwidget->fixed_size();
@@ -607,7 +618,7 @@ namespace nanoui
    }
 
    
-   int_size AdvancedGridLayout::preferred_size(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   int_size AdvancedGridLayout::preferred_size(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
       /* Compute minimum row / column sizes */
@@ -633,7 +644,7 @@ namespace nanoui
    }
 
 
-   void AdvancedGridLayout::perform_layout(::nano2d::context* pcontext, Widget* pwidget, bool bRecalcTextSize)
+   void AdvancedGridLayout::perform_layout(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize)
    {
 
       ::int_array grid[2];
@@ -724,7 +735,7 @@ namespace nanoui
 
    }
 
-   void AdvancedGridLayout::compute_layout(::nano2d::context* pcontext, Widget* pwidget, ::int_array* _grid)
+   void AdvancedGridLayout::compute_layout(::nano2d::context * pcontext, Widget* pwidget, ::int_array* _grid)
    {
 
       sequence2_int fs_w = pwidget->fixed_size();
@@ -773,7 +784,7 @@ namespace nanoui
                }
 
                if (anchor.pos[iAxisIndex] + anchor.size[iAxisIndex] > (int)grid.size())
-                  throw std::runtime_error(
+                  throw ::exception(error_failed,
                      "Advanced grid layout: pwidget is out of bounds: " +
                      (::string)anchor);
 
@@ -789,7 +800,8 @@ namespace nanoui
                if (sizeTarget <= current_size)
                   continue;
                if (total_stretch == 0)
-                  throw std::runtime_error(
+                  throw ::exception(
+                                    error_failed, 
                      "Advanced grid layout: no space to place pwidget: " +
                      (::string)anchor);
                float amt = (sizeTarget - current_size) / total_stretch;

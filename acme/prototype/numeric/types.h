@@ -142,4 +142,9 @@ namespace collection
 #define __pricount PRIiPTR
 
 
+// insight by listening lastmiles (Dennis Clarke) talk about pthread_equal (it may end up not to be an int but a pointer in some implementations ?, so should use pthread_equal...)
+/// task_index starts at 1, task_index 0 is not ok
+using task_index = unsigned long long;
+
+
 

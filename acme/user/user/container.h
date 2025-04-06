@@ -3,6 +3,7 @@
 #pragma once
 
 
+#include "item_base.h"
 #include "acme/user/user/item.h"
 #include "acme/handler/item_container_map.h"
 
@@ -17,7 +18,7 @@ namespace user
    public:
 
 
-      ::user::item_map                             m_useritemmap;
+      ::user::item_base_map                        m_useritembasemap;
       ::pointer < acme_tool >                      m_pacmetool;
       ::pointer < acme_content >                   m_pacmecontentMain;
       ::item_pointer                               m_pitemHover;
@@ -26,6 +27,9 @@ namespace user
 
       acme_container();
       ~acme_container() override;
+
+
+      virtual ::pointer < ::user::item_base > allocate_user_item_base(const ::item * pitem);
 
 
       void destroy() override;
@@ -70,7 +74,18 @@ namespace user
 
       //virtual ::collection::index content_item_index(const ::item * pitem);
 
-      virtual ::user::item * user_item(const ::item * pitem);
+      virtual ::user::item_base * user_item_base(const ::item * pitem);
+
+      inline ::user::item * user_item(const ::item * pitem)
+      {
+
+         auto puseritembase = user_item_base(pitem);
+
+         auto puseritem = puseritembase->m_puseritem;
+
+         return puseritem;
+
+      }
 
       //virtual ::user::item * user_item(const ::atom & atom);
 

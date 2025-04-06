@@ -1,7 +1,7 @@
 #pragma once
 
 
-#pragma pack(push, geometry2d_int, 1)
+//#pragma pack(push, geometry2d_int, 1)
 
 
 struct INT_SIZE
@@ -42,5 +42,5 @@ struct INT_RECTANGLE
  
 
 
-#pragma pack(pop, geometry2d_int)
+//#pragma pack(pop, geometry2d_int)
 

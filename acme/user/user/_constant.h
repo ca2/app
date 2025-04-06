@@ -11,11 +11,15 @@
 #include "acme/prototype/prototype/enumeration.h"
 
 
+DECLARE_ENUMERATION(e_system_command, enum_system_command);
+
+
 namespace user
 {
 
    DECLARE_ENUMERATION(e_mouse, enum_mouse);
    DECLARE_ENUMERATION(e_key, enum_key);
+   DECLARE_ENUMERATION(e_zorder, enum_zorder);
 
 
    DECLARE_ENUMERATION(e_interaction, enum_interaction);

@@ -34,7 +34,7 @@ namespace app_shader
 
       void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item & useritem, const ::user::e_state & estate) override;
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

@@ -105,7 +105,7 @@ namespace sockets
       virtual int GetShutdownStatus();
 
       /** Returns IPPROTO_TCP or IPPROTO_SCTP */
-      virtual int Protocol();
+      virtual int protocol();
 
    };
 

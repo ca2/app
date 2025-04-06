@@ -148,7 +148,7 @@ namespace datetime
 //         else if(strChar == "+")
 //         {
 //
-//#ifdef __DEBUG
+//#ifdef _DEBUG
 //
 //            if(bAdd)
 //            {
@@ -168,7 +168,7 @@ namespace datetime
 //         else if(strChar == "-")
 //         {
 //
-//#ifdef __DEBUG
+//#ifdef _DEBUG
 //
 //            if(bAdd)
 //            {

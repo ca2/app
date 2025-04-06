@@ -31,7 +31,7 @@ CLASS_DECL_AURA int __assert_failed_line(const ::string & pszFileName, int iLine
 //
 //   }
 //
-//#ifdef __DEBUG
+//#ifdef _DEBUG
 //
 //   char szTitle[1024];
 //   char szMessage[1024*4];

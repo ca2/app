@@ -1214,7 +1214,7 @@ namespace data
 
 
    class node;
-   class item;
+//   class item;
 
 
 } // namespace data
@@ -2378,16 +2378,6 @@ namespace base
 
 
 class app_core;
-
-
-namespace data
-{
-
-
-   class item;
-
-
-} // namespace data
 
 
 namespace xml

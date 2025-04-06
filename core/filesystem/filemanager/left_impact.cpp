@@ -68,26 +68,28 @@ namespace filemanager
       auto pfilemanagerdocument = filemanager_document();
 
       auto ptreedata = pfilemanagerdocument->__create_new < ::filemanager::tree_data >();
-
+      
       ptreedata->m_puserfsdocument = pfilemanagerdocument;
 
       m_ptreedata = ptreedata;
 
-      m_ptreedata->m_usertreea.add(m_pusertree);
+      ptreedata->m_usertreea.add(m_pusertree);
 
-      m_pusertree->m_ptreedata = ptreedata;
+      ptreedata->m_ptree = ptreedata;
+
+      pusertree->m_ptreedata = ptreedata;
 
       ptreedata->initialize_filemanager_tree(pfilemanagerdocument);
 
    }
 
 
-   void left_impact::handle(::topic * ptopic, ::context * pcontext)
+   void left_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::filemanager_impact_base::handle(ptopic, pcontext);
+      ::filemanager_impact_base::handle(ptopic, phandlercontext);
 
-      ::user::split_impact::handle(ptopic, pcontext);
+      ::user::split_impact::handle(ptopic, phandlercontext);
 
 //      //__update(::update)
 //      {

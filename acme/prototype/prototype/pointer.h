@@ -434,6 +434,24 @@ public:
 
 
    template < class T2 >
+   inline non_const < T2 > * raw_cast()
+   {
+
+      return dynamic_cast <non_const < T2 > * > (m_p);
+
+   }
+
+
+   template < class T2 >
+   inline const non_const < T2 > * raw_cast() const
+   {
+
+      return (const non_const < T2 > *) dynamic_cast <non_const < T2 > * > ((non_const < T > *)m_p);
+
+   }
+
+
+   template < class T2 >
    inline bool is() const
    {
 

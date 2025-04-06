@@ -51,7 +51,7 @@ void log::initialize(::particle * pparticle)
       m_bLog = true;
 
    }
-   else if(platform()->has_argument("--log"))
+   else if(::system()->has_argument("--log"))
    {
 
       ::output_debug_string("--log argument present\n");
@@ -70,7 +70,7 @@ void log::initialize(::particle * pparticle)
 
    //return estatus;
 
-   platform()->m_bOutputDebugString = m_bLog;
+   ::system()->m_bOutputDebugString = m_bLog;
 
 
 }

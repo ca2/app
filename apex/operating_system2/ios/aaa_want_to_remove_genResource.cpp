@@ -60,7 +60,7 @@ namespace gen
            catch(::ca2::file_exception_pointer * pe)
            {
 
-         #ifdef __DEBUG
+         #ifdef _DEBUG
               
               //::windows_definition::dump << "File could not be opened " << (*pe)->m_cause << "\n";
 

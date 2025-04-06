@@ -62,9 +62,9 @@ namespace user
       void graphics_redraw() override;
 
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-      //void handle(::topic * ptopic, ::context * pcontext) override;
+      //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -90,7 +90,7 @@ namespace user
       virtual void set_color(const ::color::hls & hls);
 
 
-      virtual void on_color_change();
+      void on_color_change() override;
 
 
    };

@@ -146,7 +146,7 @@ namespace platform
 
    system::system()
    {
-
+      
       if (!s_p)
       {
 
@@ -169,13 +169,13 @@ namespace platform
 
 #endif
 
-#ifdef DEBUG
+#ifdef _DEBUG
       m_etracelevelMinimum = e_trace_level_information;
 #else
       m_etracelevelMinimum = e_trace_level_warning;
 #endif
 
-#ifdef DEBUG
+#ifdef _DEBUG
       ::atom atom;
       int iAtom1 = sizeof(atom);
       int iAtomType = sizeof(atom.m_etype);
@@ -222,16 +222,19 @@ namespace platform
 
       create_task_message_queue();
 
-      factory()->add_factory_item< ::nano::http::get>();
+      factory()->add_factory_item < ::nano::http::get>();
+      factory()->add_factory_item < ::component >();
 
    }
 
 
    system::~system()
    {
-
+      
       if (m_pmanualresethappeningSystemTaskFinished)
       {
+
+         printf_line("platform::system waiting system task finished");
 
          m_pmanualresethappeningSystemTaskFinished->_wait(2.5_min);
 
@@ -258,7 +261,7 @@ namespace platform
       // m_pbredsystem = nullptr;
       // m_pcoresystem = nullptr;
 
-      debug() << "platform::system::~system() (end)";
+      debug() << "platform::system::~system() (destroyed)";
 
       //::acme::get()->m_pmanualresethappeningReadyToExit->set_happening();
       //on_system_before_destroy();
@@ -266,6 +269,31 @@ namespace platform
 
 
    }
+
+
+void system::application_main()
+{
+   
+   if(!m_papplicationMain)
+   {
+      
+      __raw_construct(m_papplicationMain);
+      
+   }
+   
+   application_main(m_papplicationMain);
+
+}
+
+
+void system::transfer_application(::pointer < ::platform::application > && papplication)
+{
+   
+   m_papplicationMain = ::transfer(papplication);
+   
+   m_papplication = m_papplicationMain;
+   
+}
 
 
    // void system::on_set_platform()
@@ -460,7 +488,7 @@ namespace platform
    }
 
 
-   ::thread_storage * system::thread_storage(const class ::task_index & taskindex)
+   ::thread_storage * system::thread_storage(const ::task_index & taskindex)
    {
 
       critical_section_lock lock(&m_criticalsectionThreadStorage);
@@ -472,7 +500,7 @@ namespace platform
    }
 
 
-   ::thread_storage * system::_thread_storage_unlocked(const class ::task_index & taskindex)
+   ::thread_storage * system::_thread_storage_unlocked(const ::task_index & taskindex)
    {
 
       auto ppairThreadStorage = m_mapThreadStorage.plookup(taskindex);
@@ -595,6 +623,8 @@ namespace platform
 
    void system::application_main(::platform::application * papplication)
    {
+      
+      papplication->initialize_application();
       
       
       m_pdynamiclibrary->initialize(papplication);
@@ -1334,7 +1364,7 @@ namespace platform
    //   }
 
 
-   ::task* system::get_task(const class ::task_index & taskindex)
+   ::task* system::get_task(const ::task_index & taskindex)
    {
 
       //critical_section_lock criticalsectionlock(&m_criticalsectionTask);
@@ -1425,7 +1455,7 @@ namespace platform
    }
 
 
-   bool system::is_task_set(const class ::task_index & taskindex)
+   bool system::is_task_set(const ::task_index & taskindex)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsectionThreadStorage);
@@ -3348,7 +3378,7 @@ particle* system::matter_mutex()
    }
 
 
-   void system::handle(::topic * ptopic, ::context * pcontext)
+   void system::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
       
       if(ptopic->id() == id_initialize_host_window)
@@ -3392,7 +3422,7 @@ particle* system::matter_mutex()
          if (m_pnano)
          {
 
-            m_pnano->handle(ptopic, pcontext);
+            m_pnano->handle(ptopic, phandlercontext);
 
          }
 
@@ -3451,7 +3481,7 @@ particle* system::matter_mutex()
          if (::is_set(application()))
          {
 
-            application()->handle(ptopic, pcontext);
+            application()->handle(ptopic, phandlercontext);
 
          }
 
@@ -3917,9 +3947,9 @@ particle* system::matter_mutex()
 
             }
 
-            ::factory::factory_pointer pfactory;
+            plibrary->create_factory();
 
-            plibrary->create_factory(pfactory);
+            auto pfactory = plibrary->m_pfactory;
 
             if (pfactory)
             {

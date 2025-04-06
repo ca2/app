@@ -27,7 +27,7 @@ namespace turboc
    void edit_impact::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
 
-      ::user::edit_plain_text_impact::handle(ptopic, pcontext);
+      ::user::edit_plain_text_impact::handle(ptopic, phandlercontext);
 
    }
 

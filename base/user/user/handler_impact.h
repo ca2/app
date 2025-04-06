@@ -51,7 +51,7 @@ namespace user
 
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
       virtual void call_handler(::function < void(::user::interaction *) > handler);

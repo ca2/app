@@ -152,7 +152,7 @@ namespace apex
 
       ::file::path pathTrace = directory_system()->userconfig() / "trace.txt";
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
       if (!file_system()->exists(pathTrace))
       {
@@ -185,7 +185,7 @@ namespace apex
          m_bLog = true;
 
       }
-      else if(platform()->has_argument("--log"))
+      else if(::system()->has_argument("--log"))
       {
 
          printf("--log argument present (2)\n");
@@ -348,7 +348,7 @@ namespace apex
 ////      if (!m_bLog)
 ////      {
 ////
-////#ifndef DEBUG
+////#ifndef _DEBUG
 ////
 ////         if (elevel >= e_trace_level_error)
 ////         {
@@ -383,7 +383,7 @@ namespace apex
 ////
 ////            information(str);
 ////
-////#ifndef DEBUG
+////#ifndef _DEBUG
 ////
 ////         }
 ////

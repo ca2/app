@@ -17,7 +17,7 @@ namespace nano2d
 
 
    class CLASS_DECL_NANO2D draw2d_context :
-      virtual public ::nano2d::context
+      virtual public ::nano2d::context 
    {
    public:
 
@@ -138,9 +138,9 @@ namespace nano2d
       float text_bounds(float x, float y, const ::scoped_string & scopedstr, ::float_rectangle * prectangle) override;
       void text_metrics(float * ascender, float * descender, float * lineh) override;
 
-      using ::nano2d::context::move_to;
+      using ::nano2d::context ::move_to;
       void move_to(float x, float y) override;
-      using ::nano2d::context::line_to;
+      using ::nano2d::context ::line_to;
       void line_to(float x, float y) override;
 
 

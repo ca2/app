@@ -19,15 +19,15 @@ class notify_lock_notifier :
 public:
 
 
-   ::pointer_array < ::notify_lock > m_notifylocka;
+   ::comparable_eq_list < ::pointer < ::notify_lock > > m_notifylocka;
 
 
    ~notify_lock_notifier() override;
 
-   void add_notify_lock(::notify_lock * pnotifylock);
-   void erase_notify_lock(::notify_lock * pnotifylock);
+   virtual void add_notify_lock(::notify_lock * pnotifylock);
+   virtual void erase_notify_lock(::notify_lock * pnotifylock);
 
-   void notify_lock_notify_all();
+   virtual void notify_lock_notify_all();
 
 };
 
@@ -106,6 +106,9 @@ public:
 
    bool is_signaled() const;
 
+   void add_notify_lock(::notify_lock * pnotifylock) override;
+   void erase_notify_lock(::notify_lock * pnotifylock) override;
+   void notify_lock_notify_all() override;
 
 };
 

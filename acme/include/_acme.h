@@ -123,4 +123,35 @@
 #endif
 
 
+#if defined(__clang__)
+
+//#error "__clang__"
+
+#if defined(__has_feature)
+
+//#error "__has_feature"
+
+//#include <sanitizer/asan_interface.h>
+
+#if __has_feature(address_sanitizer)
+
+//#error "address_sanitizer"
+
+#define __ADDRESS_SANITIZER__
+
+#endif
+
+#endif
+
+#elif defined(__GNUC__)
+
+#ifdef __SANITIZE_ADDRESS__
+
+#define __ADDRESS_SANITIZER__
+
+#endif
+
+#endif
+
+
 

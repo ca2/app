@@ -133,11 +133,11 @@ namespace app_build
    }
 
 
-   void pane_impact::handle(::topic * ptopic, ::context * pcontext)
+   void pane_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
 
-      ::userex::pane_tab_impact::handle(ptopic, pcontext);
+      ::userex::pane_tab_impact::handle(ptopic, phandlercontext);
 
    }
 

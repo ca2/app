@@ -12,7 +12,7 @@
 #pragma once
 
 
-#include "Canvas.h"
+#include "nanoui/Canvas.h"
 
 
 namespace nanoui
@@ -96,8 +96,8 @@ namespace nanoui
       bool mouse_motion_event(const int_point& p, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
       //bool mouse_drag_event(const sequence2_int & p, const sequence2_int & rel, const ::user::e_key & ekeyModifiers) override;
       bool scroll_event(const int_point & p, const float_size & rel) override;
-      void draw(::nano2d::context * pcontext) override;
-      void draw_contents(::nano2d::context * pcontext) override;
+      void draw(::nano2d::context  * pcontext) override;
+      void draw_contents(::nano2d::context  * pcontext) override;
 
    
 };

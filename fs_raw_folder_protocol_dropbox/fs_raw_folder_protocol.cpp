@@ -449,7 +449,7 @@ namespace fs_raw_folder_protocol_dropbox
 //   //   if (!file()->exists(pathNetworkPayload))
 //   //   {
 //
-//   //      if (platform()->is_desktop_system())
+//   //      if (::system()->is_desktop_system())
 //   //      {
 //
 //   //         auto pathHome = directory()->home();

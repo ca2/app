@@ -250,11 +250,14 @@ list(APPEND library_source
    graphics/image/image32_array.cpp
    graphics/image/image32_array.h
    graphics/image/pixmap.cpp
+   handler/_.h
    handler/command_handler.cpp
    handler/extended_topic.cpp
    handler/extended_topic.h
    handler/handler.cpp
    handler/handler.h
+   handler/handler_context.cpp
+   handler/handler_context.h
    handler/item.cpp
    handler/item.h
    handler/item_container.cpp
@@ -750,12 +753,14 @@ list(APPEND library_source
    prototype/data/property_listener.h
    prototype/data/simple_item.cpp
    prototype/data/simple_item.h
-   prototype/data/tree.cpp
    prototype/data/text_property.cpp
    prototype/data/text_property.h
+   prototype/data/tree_base.cpp
    prototype/data/tree.h
-   prototype/data/tree_item.cpp
+   prototype/data/tree_base.h
+   prototype/data/tree_item_base.cpp
    prototype/data/tree_item.h
+   prototype/data/tree_item_base.h
    #prototype/datetime/_.cpp
    prototype/datetime/_.h
    #prototype/datetime/_c.cpp
@@ -1345,7 +1350,10 @@ list(APPEND library_source
    user/user/frame_interaction.h
    user/user/interaction.cpp
    user/user/interaction.h
+   user/user/item.cpp
    user/user/item.h
+   user/user/item_base.cpp
+   user/user/item_base.h
    user/user/key.cpp
    user/user/key.h
    user/user/key_state.cpp
@@ -1361,6 +1369,8 @@ list(APPEND library_source
    user/user/property.h
    #user/user/text.cpp
    #user/user/text.h
+   user/user/simple_item_base.cpp
+   user/user/simple_item_base.h
    user/user/text.cpp
    user/user/text.h
    user/user/text_property.cpp
@@ -1896,7 +1906,7 @@ list(APPEND library_source
    platform/enum.h
    #platform/error.h
    platform/exclusive.h
-   platform/factory.h
+   #platform/factory.h
    platform/filestream.h
    platform/fixed_alloc.h
    platform/fixed_alloc_impl.h

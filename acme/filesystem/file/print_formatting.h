@@ -2,9 +2,6 @@
 #pragma once
 
 
-#pragma pack(push, print_formatting, 1)
-
-
 class CLASS_DECL_ACME print_formatting
 {
 public:
@@ -50,8 +47,5 @@ public:
 
 
 };
-
-
-#pragma pack(pop, print_formatting)
 
 

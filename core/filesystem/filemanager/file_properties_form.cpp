@@ -208,7 +208,7 @@ namespace filemanager
       }
    }
 
-   void file_properties_form::handle(::topic * ptopic, ::context * pcontext)
+   void file_properties_form::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if(ptopic->id() == ::id_click)

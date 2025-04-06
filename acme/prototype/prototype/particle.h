@@ -90,13 +90,12 @@ class CLASS_DECL_ACME particle :
 public:
 
 
-   mutable ::platform::application *            m_papplication;
-   mutable ::particle_pointer                   m_pparticleSynchronization;
+   ::platform::application *        m_papplication;
+   ::particle_pointer               m_pparticleSynchronization;
 
 //#if REFERENCING_DEBUGGING
    particle() :
-      m_papplication(nullptr),
-      m_pparticleSynchronization(nullptr)
+      m_papplication(nullptr)
    {
          
          
@@ -120,20 +119,22 @@ public:
    inline bool is_ok() const { return is_set() && _is_ok(); }
    inline bool nok() const { return !is_ok(); }
 
-
+   bool _is_ok() const override;
+   
+   
 
    void initialize(::particle * pparticle) override;
    //void finalize() override;
 
 
-   bool _is_ok() const override;
+   void delete_this() override;
+
 
 
    virtual void on_notify(::particle * pparticle, enum_id eid);
 
    virtual bool on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken);
 
-//   virtual void delete_this();
 
    inline ::particle * trace_this() const { return (::particle *) this; }
 
@@ -143,7 +144,10 @@ public:
    void set_synchronization(::particle * pparticleSynchronization);
    void defer_create_synchronization();
 
-   void operator()(::topic * ptopic, ::context * pcontext) override;
+   
+   void operator()(::topic * ptopic, ::handler_context * phandlercontext) override;
+
+
    //void operator()(::sequencer & sequencer) override;
 
    //virtual void destroy();
@@ -162,7 +166,7 @@ public:
 
 
    //class ::platform::platform * platform() const;
-   static class ::platform::platform * platform();
+   //static class ::platform::platform * platform();
 
    //virtual class ::platform::platform * _platform() const;
 
@@ -189,7 +193,6 @@ public:
 
    //::aura::application* auraapplication() const;
 
-   void delete_this() override;
 
 
    //::file_system * file_system() const;
@@ -227,7 +230,7 @@ public:
    virtual ::factory::factory_pointer & factory(const ::string& strComponent, const ::string& strImplementation) const;
    //::factory::factory* factory(const ::atom& atom);
 
-   //virtual void handle(::topic * ptopic, ::context * pcontext);
+   //virtual void handle(::topic * ptopic, ::handler_context * phandlercontext);
 
 
 
@@ -259,7 +262,7 @@ public:
    virtual void call_member(long long hi);
    // <3ThomasBS_!! handle -> handle <3ThomasBS_!!
    //void handle(const  emessage, long long iData = 0, ::matter * pmatter = nullptr) override;
-   //void handle(::topic * ptopic, ::context * pcontext) override;
+   //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
    //void handle(::message::message * pmessage) override;
 
 
@@ -446,14 +449,14 @@ public:
 
    // ThomasBorregaardSorensen!! Like handlers
    virtual lresult message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam);
-   virtual void handle(::topic * ptopic, ::context * pcontext);
+   virtual void handle(::topic * ptopic, ::handler_context * phandlercontext);
    virtual void handle_message(::message::message * pmessage);
    virtual void handle_item(::item * pitem);
 
    using subparticle::call;
    // ThomasBorregaardSorensen!! Like handlers
    virtual lresult message_call(::enum_message emessage, ::wparam wparam = {}, ::lparam lparam = {});
-   virtual void call_handle(::topic * ptopic, ::context * pcontext);
+   virtual void call_handle(::topic * ptopic, ::handler_context * phandlercontext);
    virtual void call_handle_message(::message::message* pmessage);
    virtual void call_handle_item(::item* pitem);
 
@@ -463,8 +466,8 @@ public:
    // <3ThomasBorregaardSorensen__!! likes handler concept...
    //void route(::signal * psignal) override;
    //void signal(::signal * psignal) override;
-   //void route(::topic * ptopic, ::context * pcontext) override;
-   //void post_process(::topic * ptopic, ::context * pcontext) override;
+   //void route(::topic * ptopic, ::handler_context * phandlercontext) override;
+   //void post_process(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
 
@@ -832,11 +835,11 @@ public:
 //#define OPTIONAL_BASE_BODY                                                          \
 //public:                                                                             \
 //   void on_initialize_particle() override {}         \
-//   void handle(::topic *, ::context *) override {}
+//   void handle(::topic *, ::handler_context *) override {}
 //
 ////   void assert_ok() const override {}                                    \
 ////   void dump(dump_context&) const override {}                               \
-//   //void on_subject(::topic::topic*, ::context*) override {} \
+//   //void on_subject(::topic::topic*, ::handler_context*) override {} \
 //
 //#define OPTIONAL_INTERACTION_BODY                                                   \
 //   OPTIONAL_BASE_BODY                                                               \
@@ -980,25 +983,6 @@ inline long long global_release(T*& p);
 //
 //}
 //
-//
-//long long particle::release()
-//{
-//
-//   long long i = decrement_reference_count();
-//
-//   if (i == 0)
-//   {
-//
-//      delete_this();
-//
-//   }
-//
-//   return i;
-//
-//}
-//
-//
-//#endif
 
 
 

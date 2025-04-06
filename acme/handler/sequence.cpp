@@ -715,7 +715,7 @@ void sequence::destroy()
 //::payload get_last_result();
 
 
-#if defined(DEBUG)
+#if defined(_DEBUG)
 
 long long sequence::increment_reference_count()
 {

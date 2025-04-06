@@ -7,15 +7,15 @@
 namespace platform
 {
 
-
-   struct CLASS_DECL_ACME axis_application_layer_t
-   {
-
-
-      ::pointer<::simpledb::server>                        m_psimpledb;
-
-
-   };
+//
+//   struct CLASS_DECL_ACME axis_application_layer_t
+//   {
+//
+//
+//      ::pointer<::simpledb::server>                        m_psimpledb;
+//
+//
+//   };
 
 
    class CLASS_DECL_ACME axis_application_layer

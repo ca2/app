@@ -54,7 +54,7 @@ namespace nanoui
          Scalar res = 0;
          double r = tinyexpr::te_interp(::string(scopedstr), nullptr);
          if (!std::isnan(r))
-            res = std::max(static_cast<decltype(res)>(r), static_cast<decltype(res)>(0));
+            res = ::maximum(static_cast<decltype(res)>(r), static_cast<decltype(res)>(0));
          return res;
       }
 

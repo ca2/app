@@ -288,10 +288,10 @@ namespace user
    }
 
 
-   void font_list::handle(::topic * ptopic, ::context * pcontext)
+   void font_list::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      list_box::handle(ptopic, pcontext);
+      list_box::handle(ptopic, phandlercontext);
 
       if (ptopic->id() == id_font_list_total_size)
       {

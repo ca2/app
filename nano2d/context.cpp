@@ -39,7 +39,7 @@ enum NANO2D_CHAR_TYPE
    NANO2D_NEWLINE,
 };
 
-#define __NANO2D_CONTEXT(ctx) ((::nano2d::context *) (ctx)->p)
+#define __NANO2D_CONTEXT(ctx) ((::nano2d::context  *) (ctx)->p)
 
 
 namespace nano2d
@@ -3461,7 +3461,7 @@ void TransformSkewX(float* t, float a)
 
 
 
-CLASS_DECL_NANO2D ::object* get_nano2d_object(::nano2d::context* pcontext)
+CLASS_DECL_NANO2D ::object* get_nano2d_object(::nano2d::context * pcontext)
 {
 
 	::pointer < ::nano2d::draw2d_context > pdraw2dcontext = pcontext;

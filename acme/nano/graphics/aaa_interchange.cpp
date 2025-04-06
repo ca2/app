@@ -919,13 +919,13 @@ void interchange::_run_modal_loop()
 
 
 
-void interchange::handle(::topic * ptopic, ::context * pcontext)
+void interchange::handle(::topic * ptopic, ::handler_context * phandlercontext)
 {
    
    if (ptopic->id() == id_set_application_dark_mode)
    {
       
-      m_pwindowbase->handle(ptopic, pcontext);
+      m_pwindowbase->handle(ptopic, phandlercontext);
       
    }
    

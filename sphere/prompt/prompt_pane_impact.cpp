@@ -56,10 +56,10 @@ namespace prompt
    }
 
 
-   void pane_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void pane_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::user::tab_impact::handle(ptopic, pcontext);
+      ::user::tab_impact::handle(ptopic, phandlercontext);
 
    }
 
@@ -329,10 +329,10 @@ namespace prompt
    }
 
 
-   void pane_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void pane_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::prompt::form_callback::handle(ptopic, pcontext);
+      ::prompt::form_callback::handle(ptopic, phandlercontext);
 
       if(ptopic->m_bRet)
       {
@@ -341,7 +341,7 @@ namespace prompt
 
       }
 
-      ::userex::pane_tab_impact::handle(ptopic, pcontext);
+      ::userex::pane_tab_impact::handle(ptopic, phandlercontext);
 
    }
 

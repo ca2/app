@@ -299,7 +299,7 @@ namespace helloworld
    }
 
 
-   void pane_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void pane_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (pimpact) == m_pdocMenu->get_impact(0) && ptopic->user_interaction() != nullptr)
@@ -506,7 +506,7 @@ namespace helloworld
    }
 
 
-   void pane_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void pane_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       ::update * pupdate = dynamic_cast <::update *> (pupdate);
@@ -556,7 +556,7 @@ namespace helloworld
 
       }
 
-      ::userex::pane_tab_impact::handle(ptopic, pcontext);
+      ::userex::pane_tab_impact::handle(ptopic, phandlercontext);
 
    }
 

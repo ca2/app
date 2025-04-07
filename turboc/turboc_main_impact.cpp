@@ -39,7 +39,7 @@ namespace turboc
 
    void main_impact::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
-      ::user::split_impact::handle(ptopic, pcontext);
+      ::user::split_impact::handle(ptopic, phandlercontext);
    }
 
 
@@ -108,7 +108,7 @@ namespace turboc
 
 
 
-   void main_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void main_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if(ptopic->id() == ::id_click)

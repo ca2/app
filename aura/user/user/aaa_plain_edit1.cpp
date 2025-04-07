@@ -377,7 +377,7 @@ namespace user
    }
 
 
-   void plain_edit::handle(::topic * ptopic, ::handler_context * pcontext)
+   void plain_edit::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if (ptopic->id() == id_current_text_changed)
@@ -398,7 +398,7 @@ namespace user
       else
       {
 
-         ::user::interaction::handle(ptopic, pcontext);
+         ::user::interaction::handle(ptopic, phandlercontext);
 
       }
 

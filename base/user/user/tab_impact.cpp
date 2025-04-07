@@ -75,12 +75,12 @@ namespace user
    }
 
 
-   void tab_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void tab_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      tab::handle(ptopic, pcontext);
+      tab::handle(ptopic, phandlercontext);
 
-      impact::handle(ptopic, pcontext);
+      impact::handle(ptopic, phandlercontext);
 
       if (!m_bCreatedTabs)
       {

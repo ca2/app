@@ -181,7 +181,7 @@ namespace app_shader
    }
 
 
-   void main_window::handle(::topic * ptopic, ::handler_context * pcontext)
+   void main_window::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if (ptopic->id() == "simple_checkbox"
@@ -192,7 +192,7 @@ namespace app_shader
 
       }
 
-      ::user::interaction::handle(ptopic, pcontext);
+      ::user::interaction::handle(ptopic, phandlercontext);
 
    }
 

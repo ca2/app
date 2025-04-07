@@ -2719,12 +2719,12 @@ namespace user
    }
 
 
-   void tab::handle(::topic * ptopic, ::handler_context * pcontext)
+   void tab::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::user::interaction::handle(ptopic, pcontext);
+      ::user::interaction::handle(ptopic, phandlercontext);
 
-      ::user::auto_hide::handle(ptopic, pcontext);
+      ::user::auto_hide::handle(ptopic, phandlercontext);
 
       if (ptopic->id() == id_get_topic_impact_id)
       {

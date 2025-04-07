@@ -74,18 +74,18 @@ namespace userex
    }
 
 
-   void home_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void home_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::user::impact::handle(ptopic, pcontext);
+      ::user::impact::handle(ptopic, phandlercontext);
 
    }
 
 
-   //void home_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   //void home_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
-   //   ::user::impact::handle(ptopic, pcontext);
+   //   ::user::impact::handle(ptopic, phandlercontext);
 
    //}
 

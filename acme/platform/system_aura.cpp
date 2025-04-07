@@ -810,7 +810,7 @@ namespace platform
 
    //void signal(::signal * psignal) override{}
 
-   //void handle(::topic * ptopic, ::handler_context * pcontext) override{}
+   //void handle(::topic * ptopic, ::handler_context * phandlercontext) override{}
 
    void aura_system_layer::initialize_estamira()
    {

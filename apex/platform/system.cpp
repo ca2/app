@@ -4866,10 +4866,10 @@ namespace apex
    }
 
 
-   void system::handle(::topic * ptopic, ::handler_context * pcontext)
+   void system::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::thread::handle(ptopic, pcontext);
+      ::thread::handle(ptopic, phandlercontext);
       //      auto psignal = get_signal((::enum_id) iUpdate);
       //
       //      psignal->m_payload = iPayload;

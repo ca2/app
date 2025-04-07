@@ -83,10 +83,10 @@ namespace userstack
    }
 
 
-   void pane_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void pane_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::user::tab_impact::handle(ptopic, pcontext);
+      ::user::tab_impact::handle(ptopic, phandlercontext);
       
    }
 
@@ -581,7 +581,7 @@ namespace userstack
    }
 
 
-   void pane_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void pane_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       __UNREFERENCED_PARAMETER(pevent);

@@ -364,10 +364,10 @@ namespace user
    }
 
 
-   void impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::user::box::handle(ptopic, pcontext);
+      ::user::box::handle(ptopic, phandlercontext);
 
       if (ptopic)
       {
@@ -391,10 +391,10 @@ namespace user
    }
 
 
-   //void impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   //void impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
-   //   ::user::box::handle(ptopic, pcontext);
+   //   ::user::box::handle(ptopic, phandlercontext);
 
    //   //if (pHint != nullptr)
    //   //{
@@ -852,7 +852,7 @@ namespace user
 
    }
 
-   //void impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   //void impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
    //   ::pointer<::user::message>pusermessage(pmessage);
@@ -1064,7 +1064,7 @@ namespace user
    }
 
 
-   void impact::call_handle(::topic * ptopic, ::handler_context * pcontext)
+   void impact::call_handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if (ptopic->id() == id_initial_update)
@@ -1086,7 +1086,7 @@ namespace user
 
       }
 
-      ::user::box::call_handle(ptopic, pcontext);
+      ::user::box::call_handle(ptopic, phandlercontext);
 
    }
 
@@ -1215,14 +1215,14 @@ namespace user
    // ::user::impact drawing support
 
 
-   /*void impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   /*void impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
    call_update(id_initial_update);        // initial update
    }*/
 
    /*   void impact::on_update(::user::impact * pSender, LPARAM lHint, object * pHint)
    {
-   ::user::impact::handle(ptopic, pcontext);
+   ::user::impact::handle(ptopic, phandlercontext);
    }
    */
    /////////////////////////////////////////////////////////////////////////////
@@ -1480,7 +1480,7 @@ namespace user
    }
 
    ::pointer<::user::impact>pimpact =  (pimpact);
-   pimpact->handle(::topic * ptopic, ::handler_context * pcontext);
+   pimpact->handle(::topic * ptopic, ::handler_context * phandlercontext);
    if (::windows_definition::Data.bWin4 && (pimpact->GetExStyle() & WS_EX_CLIENTEDGE))
    {
    // erase the 3d style from the frame, since the ::user::impact is
@@ -1516,7 +1516,7 @@ namespace user
    return nullptr;        // can't continue without a ::user::impact
    }
 
-   ( (pimpact))->handle(::topic * ptopic, ::handler_context * pcontext);
+   ( (pimpact))->handle(::topic * ptopic, ::handler_context * phandlercontext);
    if (::windows_definition::Data.bWin4 && (pimpact->GetExStyle() & WS_EX_CLIENTEDGE))
    {
    // erase the 3d style from the frame, since the ::user::impact is

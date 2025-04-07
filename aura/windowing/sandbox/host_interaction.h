@@ -68,7 +68,7 @@ namespace sandbox_windowing
       ::int_rectangle get_rectangle() override;
       
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
    };
 

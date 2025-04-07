@@ -26,7 +26,7 @@ namespace userex
 
       virtual void on_create_split_impact() override;
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       virtual bool is_this_visible(::user::enum_layout elayout = ::user::e_layout_design) override;
 

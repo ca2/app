@@ -27,7 +27,7 @@ namespace prompt
 
       void install_message_routing(::channel * pchannel) override;
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
 
@@ -35,7 +35,7 @@ namespace prompt
 
       DECLARE_MESSAGE_HANDLER(_001OnMenuMessage);
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;

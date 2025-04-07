@@ -522,7 +522,7 @@ namespace platform
 
       void system_id_update(int iUpdate, long long iPayload) override;
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       
       void call_message(const ::enum_message & emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle) override;
     
@@ -1415,7 +1415,7 @@ namespace platform
 //
 //       //void signal(::signal * psignal) override;
 //
-//       //void handle(::topic * ptopic, ::handler_context * pcontext) override;
+//       //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 //
 //       virtual void initialize_estamira();
 //

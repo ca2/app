@@ -23754,12 +23754,12 @@ if(get_parent())
    }
 
 
-   void interaction::handle(::topic * ptopic, ::handler_context * pcontext)
+   void interaction::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       //auto phappening = pmessage->m_lparam.cast < ::user::control_event >();
 
-      //handle(ptopic, pcontext);
+      //handle(ptopic, phandlercontext);
 
       if (ptopic)
       {
@@ -29030,7 +29030,7 @@ __check_refdbg;
    }
 
 
-   //void interaction::handle(::topic * ptopic, ::handler_context * pcontext)
+   //void interaction::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
    //   if (ptopic->id() == id_redraw || ptopic->id() == id())

@@ -178,10 +178,10 @@ void html_impact::on_document_complete(const ::string & strUrl)
 
 
 //
-//void html_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+//void html_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
 //{
 //
-//   ::html_form::handle(ptopic, pcontext);
+//   ::html_form::handle(ptopic, phandlercontext);
 //
 //   ////__update(::update)
 //   {
@@ -217,10 +217,10 @@ void html_impact::on_document_complete(const ::string & strUrl)
 //}
 
 
-void html_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+void html_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
 {
 
-   ::user::form_impact::handle(ptopic, pcontext);
+   ::user::form_impact::handle(ptopic, phandlercontext);
 
    if (ptopic->m_bRet)
    {
@@ -229,7 +229,7 @@ void html_impact::handle(::topic * ptopic, ::handler_context * pcontext)
 
    }
 
-   ::html_form::handle(ptopic, pcontext);
+   ::html_form::handle(ptopic, phandlercontext);
 
    ////__update(::update)
    {

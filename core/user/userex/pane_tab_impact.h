@@ -24,7 +24,7 @@ namespace userex
       public:
 
 
-         virtual void handle(pane_tab_impact * ppanetabimpact, ::topic * ptopic, ::handler_context * pcontext) = 0;
+         virtual void handle(pane_tab_impact * ppanetabimpact, ::topic * ptopic, ::handler_context * phandlercontext) = 0;
 
 
       };
@@ -90,7 +90,7 @@ namespace userex
 
       virtual void interactive_credentials(::account::credentials * pcredentials);
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       void prepare_form(const ::atom & atom, ::form_document * pformdocument) override;
 

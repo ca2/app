@@ -97,7 +97,7 @@ namespace userfs
 
       void RenameFile(int iLine, string & str, const ::action_context & action_context);
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
       DECLARE_MESSAGE_HANDLER(on_message_context_menu);

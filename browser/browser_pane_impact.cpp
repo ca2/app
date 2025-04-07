@@ -339,7 +339,7 @@ namespace browser
    }
 
 
-   void pane_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void pane_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if(m_pdocMenu != nullptr && ptopic->is_about(m_pdocMenu->get_impact(0)))
@@ -536,7 +536,7 @@ namespace browser
       }
 
 
-      ::userex::pane_tab_impact::handle(ptopic, pcontext);
+      ::userex::pane_tab_impact::handle(ptopic, phandlercontext);
 
    }
 
@@ -607,12 +607,12 @@ namespace browser
    }
 
 
-   void pane_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void pane_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
 
 
-      ::userex::pane_tab_impact::handle(ptopic, pcontext);
+      ::userex::pane_tab_impact::handle(ptopic, phandlercontext);
 
    }
 

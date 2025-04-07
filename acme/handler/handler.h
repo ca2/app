@@ -95,7 +95,7 @@ namespace handler
 
 
       // ThomasBorregaardSorensen!! Like handlers
-      virtual void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      virtual void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       virtual void handle(::message::message * pmessage);
       virtual void handle(::request * prequest);
 

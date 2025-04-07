@@ -136,7 +136,7 @@ namespace acme
       }
 
 
-      void user::handle(::topic * ptopic, ::handler_context * pcontext)
+      void user::handle(::topic * ptopic, ::handler_context * phandlercontext)
       {
          if (ptopic->id() == id_set_application_dark_mode)
          {
@@ -145,7 +145,7 @@ namespace acme
 
             for (auto & pnanowindowingwindow : windowa)
             {
-               pnanowindowingwindow->handle(ptopic, pcontext);
+               pnanowindowingwindow->handle(ptopic, phandlercontext);
             }
          }
       }

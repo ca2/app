@@ -786,7 +786,7 @@ namespace aura
 
       //void signal(::signal * psignal) override;
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       virtual void initialize_estamira() override;
 

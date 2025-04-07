@@ -1943,7 +1943,7 @@ namespace user
 
 
 
-   void form_list::handle(::topic * ptopic, ::handler_context * pcontext)
+   void form_list::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if (ptopic->id() == ::id_set_check)
@@ -2187,7 +2187,7 @@ namespace user
 
       }
 
-      return form_mesh::handle(ptopic, pcontext);
+      return form_mesh::handle(ptopic, phandlercontext);
    }
 
 

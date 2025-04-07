@@ -69,7 +69,7 @@ namespace hotplugin
       virtual bool         reload_plugin();
 
       virtual void delete_this() override;
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       // Host location is not the updated url - if there is a way to update the url and
       // maintain the same plugin instance, what would lead to an out-of-date location url.
       // It is the location url of the page that hosts the plugin when the plugin was created.
@@ -188,7 +188,7 @@ namespace hotplugin
 
       virtual void destroy() override;
       //void install_message_routing(::channel * pchannel) override;
-      //void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
    };

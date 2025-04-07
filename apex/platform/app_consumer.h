@@ -54,16 +54,16 @@ void on_initialize_particle() override                                          
                                                                                        \
 }                                                                                      \
                                                                                        \
-void handle(::topic * ptopic, ::handler_context * pcontext) override \
+void handle(::topic * ptopic, ::handler_context * phandlercontext) override \
 {                                                                                      \
                                                                                        \
-   BASE1::handle(ptopic, pcontext);                                              \
+   BASE1::handle(ptopic, phandlercontext);                                              \
                                                                                        \
-   BASE2::handle(ptopic, pcontext);                                              \
+   BASE2::handle(ptopic, phandlercontext);                                              \
                                                                                        \
-   BASE3::handle(ptopic, pcontext);                                              \
+   BASE3::handle(ptopic, phandlercontext);                                              \
                                                                                        \
-   BASE4::handle(ptopic, pcontext);                                              \
+   BASE4::handle(ptopic, phandlercontext);                                              \
                                                                                        \
 }            
 //void signal(::signal * psignal) override                            \

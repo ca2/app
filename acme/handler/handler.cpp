@@ -335,7 +335,7 @@ namespace handler
    // }
 
 
-   void handler::handle(::topic * ptopic, ::handler_context * pcontext)
+   void handler::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
 

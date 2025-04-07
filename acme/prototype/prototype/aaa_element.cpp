@@ -21,7 +21,7 @@
 //
 
 
-//void element::handle(::topic * ptopic, ::handler_context * pcontext)
+//void element::handle(::topic * ptopic, ::handler_context * phandlercontext)
 //{
 //
 //

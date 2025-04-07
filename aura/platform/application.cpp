@@ -3141,7 +3141,7 @@ retry_license:
 //   }
 //
 //
-//   void application::handle(::topic * ptopic, ::handler_context * pcontext)
+//   void application::handle(::topic * ptopic, ::handler_context * phandlercontext)
 //   {
 //
 //
@@ -5441,7 +5441,7 @@ retry_license:
 //
 //
 
-   //void application::handle(::topic * ptopic, ::handler_context * pcontext)
+   //void application::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
    //}
@@ -5473,7 +5473,7 @@ retry_license:
 
    //}
 
-   //void application::handle(::topic * ptopic, ::handler_context * pcontext)
+   //void application::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
    //}
@@ -5486,7 +5486,7 @@ retry_license:
    //}
 
 
-   //void application::route(::topic * ptopic, ::handler_context * pcontext)
+   //void application::route(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
    //   handle(ptopic);
@@ -8485,12 +8485,12 @@ namespace aura
    //   }
 
 
-   void application::handle(::topic * ptopic, ::handler_context * pcontext)
+   void application::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      //::aqua::application::handle(ptopic, pcontext);
+      //::aqua::application::handle(ptopic, phandlercontext);
 
-      //::user::form_callback::handle(ptopic, pcontext);
+      //::user::form_callback::handle(ptopic, phandlercontext);
 
       if(ptopic->id() == id_app_activated)
       {

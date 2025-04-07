@@ -443,16 +443,16 @@ namespace data
    }
 
 
-   void tree_base_composite::handle(::topic * ptopic, ::handler_context * pcontext)
+   void tree_base_composite::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      m_ptreebase->handle(ptopic, pcontext);
+      m_ptreebase->handle(ptopic, phandlercontext);
 
    }
 
 
 
-   //void tree_base_composite::handle(::topic * ptopic, ::handler_context * pcontext)
+   //void tree_base_composite::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
    //}

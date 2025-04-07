@@ -123,7 +123,7 @@ namespace user
       virtual ::user::impact_data * get_impact_data(const atom& atom, bool bCallOnCreateImpact = true);
 
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
       virtual ::collection::count get_impact_count();

@@ -403,7 +403,7 @@ namespace user
    }
 
 
-   void form_window::handle(::topic * ptopic, ::handler_context * pcontext)
+   void form_window::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
       
       
@@ -418,7 +418,7 @@ namespace user
       //   _001Update(pinteraction);
       //}
 
-      ::user::form_control::handle(ptopic, pcontext);
+      ::user::form_control::handle(ptopic, phandlercontext);
 
       if (ptopic->m_bRet)
       {
@@ -1227,10 +1227,10 @@ throw_todo();
    //}
 
 
-   //void form_window::handle(::topic * ptopic, ::handler_context * pcontext)
+   //void form_window::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
-   //   ::user::form_control::handle(ptopic, pcontext);
+   //   ::user::form_control::handle(ptopic, phandlercontext);
 
    //   if (ptopic->m_bRet)
    //   {

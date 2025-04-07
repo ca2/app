@@ -110,7 +110,7 @@ namespace user
    }
 
 
-   void style::handle(::topic * ptopic, ::handler_context * pcontext)
+   void style::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if (ptopic->id() == id_user_style_change 
@@ -122,7 +122,7 @@ namespace user
 
       }
 
-      style_base::handle(ptopic, pcontext);
+      style_base::handle(ptopic, phandlercontext);
 
    }
 

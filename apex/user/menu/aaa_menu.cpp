@@ -950,7 +950,7 @@ menu::~menu()
 //   }
 //
 //
-//   void menu::handle(::topic * ptopic, ::handler_context * pcontext)
+//   void menu::handle(::topic * ptopic, ::handler_context * phandlercontext)
 //   {
 //
 //      //if (ptopic->id() == ::id_click)
@@ -1076,7 +1076,7 @@ menu::~menu()
 //      ////
 //      ////      }
 //
-//      ::user::interaction::handle(ptopic, pcontext);
+//      ::user::interaction::handle(ptopic, phandlercontext);
 //
 //   }
 //

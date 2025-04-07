@@ -233,7 +233,7 @@ public:
 
    void _001OnQueryEndSession(::message::message * pmessage);
 
-   void handle(::topic * ptopic, ::handler_context * pcontext) override;
+   void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
    void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 

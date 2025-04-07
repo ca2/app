@@ -3376,7 +3376,7 @@ particle* system::matter_mutex()
    }
 
 
-   void system::handle(::topic * ptopic, ::handler_context * pcontext)
+   void system::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
       
       if(ptopic->id() == id_initialize_host_window)
@@ -3420,7 +3420,7 @@ particle* system::matter_mutex()
          if (m_pnano)
          {
 
-            m_pnano->handle(ptopic, pcontext);
+            m_pnano->handle(ptopic, phandlercontext);
 
          }
 
@@ -3479,7 +3479,7 @@ particle* system::matter_mutex()
          if (::is_set(application()))
          {
 
-            application()->handle(ptopic, pcontext);
+            application()->handle(ptopic, phandlercontext);
 
          }
 

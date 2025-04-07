@@ -2093,7 +2093,7 @@ void elemental::back_on_right_button_up(::user::mouse* pmouse)
    }
 
 
-   void elemental::handle(::topic * ptopic, ::handler_context * pcontext)
+   void elemental::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if (ptopic->id() == id_operating_system_user_color_change)

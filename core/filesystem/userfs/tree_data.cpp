@@ -669,7 +669,7 @@ namespace userfs
 
 
 
-   void tree_data::handle(::topic * ptopic, ::handler_context * pcontext)
+   void tree_data::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       ////__update(::update)

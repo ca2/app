@@ -247,7 +247,7 @@ namespace acme
          {
             for (auto& pwindow: m_windowa)
             {
-               pwindow->handle(ptopic, pcontext);
+               pwindow->handle(ptopic, phandlercontext);
             }
          }
       }

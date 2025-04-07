@@ -4829,7 +4829,7 @@ namespace apex
    //}
 
 
-   //void application::handle(::topic * ptopic, ::handler_context * pcontext)
+   //void application::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
 
@@ -7252,7 +7252,7 @@ namespace apex
 
 
 
-   //void application::handle(::topic * ptopic, ::handler_context * pcontext)
+   //void application::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
    //}
@@ -7284,7 +7284,7 @@ namespace apex
 
    //}
 
-   //void application::handle(::topic * ptopic, ::handler_context * pcontext)
+   //void application::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
    //}
@@ -7297,10 +7297,10 @@ namespace apex
    //}
 
 
-   //void application::route(::topic * ptopic, ::handler_context * pcontext)
+   //void application::route(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
-   //   handle(ptopic, pcontext);
+   //   handle(ptopic, phandlercontext);
 
    //   if (ptopic->m_bRet)
    //   {

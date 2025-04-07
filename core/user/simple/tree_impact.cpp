@@ -26,11 +26,11 @@ void simple_tree_impact::install_message_routing(::channel * pchannel)
 }
 
 
-void simple_tree_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+void simple_tree_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
 {
 
-   ::user::impact::handle(ptopic, pcontext);
-   ::user::tree::handle(ptopic, pcontext);
+   ::user::impact::handle(ptopic, phandlercontext);
+   ::user::tree::handle(ptopic, phandlercontext);
 
 }
 

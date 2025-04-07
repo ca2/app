@@ -37,7 +37,7 @@ public:
 
    void install_message_routing(::channel * pchannel) override;
 
-   void handle(::topic * ptopic, ::handler_context * pcontext) override;
+   void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
    virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

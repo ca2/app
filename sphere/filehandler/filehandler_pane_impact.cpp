@@ -87,7 +87,7 @@ namespace filehandler
    }
 
 
-   void pane_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void pane_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       __UNREFERENCED_PARAMETER(ptopic);

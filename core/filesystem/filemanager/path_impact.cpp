@@ -182,10 +182,10 @@ namespace filemanager
    }
 
 
-   void path_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void path_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::filemanager_impact_base::handle(ptopic, pcontext);
+      ::filemanager_impact_base::handle(ptopic, phandlercontext);
 
       if (ptopic->id() == id_initialize)
       {

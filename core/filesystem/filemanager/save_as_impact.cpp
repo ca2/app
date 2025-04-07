@@ -47,10 +47,10 @@ namespace filemanager
    }
 
 
-   void save_as_impact::handle(::topic * ptopic, ::handler_context * pcontext)
+   void save_as_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::user::impact::handle(ptopic, pcontext);
+      ::user::impact::handle(ptopic, phandlercontext);
 
       ////__update(::update)
       {

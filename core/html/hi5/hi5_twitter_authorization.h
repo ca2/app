@@ -56,7 +56,7 @@ namespace hi5
          virtual void on_change_cur_sel();
 
 
-         void handle(::topic * ptopic, ::handler_context * pcontext) override;
+         void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
          virtual bool style_translucency(::user::enum_translucency & etranslucency, ::enum_element);
 

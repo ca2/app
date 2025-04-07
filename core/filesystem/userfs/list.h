@@ -95,7 +95,7 @@ namespace userfs
       bool on_click(::item * pitem, ::user::mouse * pmouse) override;
 
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       bool pre_create_window(::user::system * pusersystem) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_scroll_x);

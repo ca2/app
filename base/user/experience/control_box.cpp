@@ -1363,12 +1363,12 @@ namespace experience
    }
 
 
-   void control_box::handle(::topic * ptopic, ::handler_context * pcontext)
+   void control_box::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::user::box::handle(ptopic, pcontext);
+      ::user::box::handle(ptopic, phandlercontext);
 
-      ::user::auto_hide::handle(ptopic, pcontext);
+      ::user::auto_hide::handle(ptopic, phandlercontext);
 
    }
 

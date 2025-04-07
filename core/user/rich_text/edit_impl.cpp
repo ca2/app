@@ -1068,7 +1068,7 @@ namespace user
       }
 
 
-      void edit_impl::handle(::topic * ptopic, ::handler_context * pcontext)
+      void edit_impl::handle(::topic * ptopic, ::handler_context * phandlercontext)
       {
 
          if (ptopic->id() == ::id_after_change_cur_sel)
@@ -1157,7 +1157,7 @@ namespace user
          }
 
 
-         return ::user::interaction::handle(ptopic, pcontext);
+         return ::user::interaction::handle(ptopic, phandlercontext);
 
       }
 

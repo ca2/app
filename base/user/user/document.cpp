@@ -2257,7 +2257,7 @@ namespace user
    }
 
 
-   void document::handle(::topic * ptopic, ::handler_context * pcontext)
+   void document::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       update_all_impacts(ptopic);

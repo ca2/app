@@ -44,7 +44,7 @@ namespace user
 
       void on_timer(::timer * ptimer) override;
 
-      void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       DECLARE_MESSAGE_HANDLER(auto_hide_on_message_create);
       DECLARE_MESSAGE_HANDLER(auto_hide_on_message_mouse_move);

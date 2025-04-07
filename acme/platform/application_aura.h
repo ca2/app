@@ -337,9 +337,9 @@ namespace platform
 
       //virtual void on_update_impact(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint);
 
-      //void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       //virtual void on_notify_control_event(::user::control_event* phappening);
-      //virtual void route(::topic * ptopic, ::handler_context * pcontext);
+      //virtual void route(::topic * ptopic, ::handler_context * phandlercontext);
 
 
 
@@ -757,7 +757,7 @@ namespace platform
 
       //virtual string get_app_user_friendly_task_bar_name() override;
 
-      //void handle(::topic * ptopic, ::handler_context * pcontext) override;
+      //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 
@@ -825,7 +825,7 @@ namespace platform
 
       //virtual ::image::icon * get_icon(object * pparticle, bool bBigIcon) const;
 
-      //virtual void handle(::topic * ptopic, ::handler_context * pcontext);
+      //virtual void handle(::topic * ptopic, ::handler_context * phandlercontext);
 
 
 

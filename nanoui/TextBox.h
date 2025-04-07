@@ -15,8 +15,8 @@
 #pragma once
 
 
-#include "Widget.h"
-#include "Screen.h"
+#include "nanoui/Widget.h"
+#include "nanoui/Screen.h"
 #include "aura/user/user/interaction.h"
 //#include <sstream>
 //#include <limits>

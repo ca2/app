@@ -176,7 +176,7 @@ void source::on_topic(const ::atom & atom, ::particle * pparticle, ::handler_con
 }
 
 
-void source::notify_topic(const ::atom & atom, ::particle * pparticle, ::handler_context * pcontext)
+void source::notify_topic(const ::atom & atom, ::particle * pparticle, ::handler_context * phandlercontext)
 {
 
    auto ptopic = create_topic(atom);

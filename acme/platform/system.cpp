@@ -624,6 +624,8 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
    void system::application_main(::platform::application * papplication)
    {
       
+      papplication->initialize_application();
+      
       
       m_pdynamiclibrary->initialize(papplication);
       
@@ -3945,9 +3947,9 @@ particle* system::matter_mutex()
 
             }
 
-            ::factory::factory_pointer pfactory;
+            plibrary->create_factory();
 
-            plibrary->create_factory(pfactory);
+            auto pfactory = plibrary->m_pfactory;
 
             if (pfactory)
             {

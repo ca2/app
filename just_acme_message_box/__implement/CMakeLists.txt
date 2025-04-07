@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 project(_app_just_acme_message_box CXX)
 
 
-list(APPEND application_source application_main.cpp)
+list(APPEND application_source main.cpp)
 
 
 if(MSVC)

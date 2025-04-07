@@ -140,7 +140,7 @@ void netbsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolNam
 
       int status = 0;
 
-      auto psynchronization = pparticle->platform()->system()->synchronization();
+      auto psynchronization = pparticle->::system()->system()->synchronization();
 
       synchronous_lock sl(psynchronization);
 

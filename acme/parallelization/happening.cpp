@@ -1504,7 +1504,11 @@ void notify_lock_notifier::notify_lock_notify_all()
 void happening::add_notify_lock(::notify_lock * pnotifylock)
 {
 
+#ifdef PTHREAD_PARALLELIZATION
+
    pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
+
+#endif
 
    try {
       notify_lock_notifier::add_notify_lock(pnotifylock);
@@ -1513,14 +1517,23 @@ void happening::add_notify_lock(::notify_lock * pnotifylock)
    {
    }
 
+#ifdef PTHREAD_PARALLELIZATION
+
    pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
+
+#endif
+
 }
 
 
 void happening::erase_notify_lock(::notify_lock * pnotifylock)
 {
 
+#ifdef PTHREAD_PARALLELIZATION
+
    pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
+
+#endif
 
    try {
    notify_lock_notifier::erase_notify_lock(pnotifylock);
@@ -1530,7 +1543,11 @@ void happening::erase_notify_lock(::notify_lock * pnotifylock)
 
    }
 
+#ifdef PTHREAD_PARALLELIZATION
+
    pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
+
+#endif
 
 }
 
@@ -1538,7 +1555,10 @@ void happening::erase_notify_lock(::notify_lock * pnotifylock)
 
 void happening::notify_lock_notify_all()
 {
+
+#ifdef PTHREAD_PARALLELIZATION
    pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
+#endif
 
    try {
       notify_lock_notifier::notify_lock_notify_all();
@@ -1548,7 +1568,8 @@ void happening::notify_lock_notify_all()
 
    }
 
+#ifdef PTHREAD_PARALLELIZATION
    pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
-
+#endif
 
 }

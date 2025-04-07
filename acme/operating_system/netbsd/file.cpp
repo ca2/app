@@ -224,7 +224,7 @@ char * get_current_dir_name()
 /*
     ::string narrow;
     static kvm_t *kd = nullptr;
-	narrow=  ::platform()->get()->m_argv[0]
+	narrow=  ::::system()->get()->m_argv[0]
     // not sure if I am doing this right??
     null_environment_t vars = null_environment_t();
     auto path = path_get_path(wargv0, vars);

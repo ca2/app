@@ -1844,13 +1844,33 @@ void task::_send(const ::procedure & procedure)
 
    wait_for_end_of_sequence waitforendofsequence(pmanualresethappeningOnEndOfSequence, psequence, pwaitingcall);
 
+   ::pointer < ::exception > pexception;
+
    if (pmanualresethappeningOnEndOfSequenceToSetInProcedure)
    {
 
-      post([procedure, pmanualresethappeningOnEndOfSequenceToSetInProcedure]()
+      post([procedure, pmanualresethappeningOnEndOfSequenceToSetInProcedure, &pexception]()
          {
 
-               procedure();
+               try
+               {
+
+                  procedure();
+
+               }
+               catch (::exception& e)
+               {
+
+                  pexception = e.clone();
+
+               }
+               catch (...)
+               {
+
+                  pexception = __allocate::exception(error_catch_all_exception);
+
+               }
+
 
                if (pmanualresethappeningOnEndOfSequenceToSetInProcedure)
                {
@@ -1865,10 +1885,29 @@ void task::_send(const ::procedure & procedure)
    else
    {
 
-      post([procedure]()
+      post([procedure, &pexception]()
          {
 
+            try
+            {
+
             procedure();
+
+
+         }
+         catch (::exception& e)
+      {
+
+         pexception = e.clone();
+
+      }
+      catch (...)
+      {
+
+         pexception = __allocate::exception(error_catch_all_exception);
+
+      }
+
 
             });
    }
@@ -1877,6 +1916,13 @@ void task::_send(const ::procedure & procedure)
    {
 
       procedure.m_pbase->on_timed_out();
+
+   }
+
+   if (pexception)
+   {
+
+      throw* pexception;
 
    }
 
@@ -2230,7 +2276,7 @@ void task::term_task()
 //
 //   _do_tasks();
 //
-//   if (platform()->m_bConsole || (m_eflagElement & e_flag_running))
+//   if (::system()->m_bConsole || (m_eflagElement & e_flag_running))
 //   {
 //
 //      run_posted_procedures();

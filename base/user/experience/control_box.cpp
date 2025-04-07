@@ -429,7 +429,7 @@ namespace experience
 
       }
 
-      if (platform()->is_sandboxed() && m_pframewindow->get_parent() == nullptr)
+      if (::system()->is_sandboxed() && m_pframewindow->get_parent() == nullptr)
       {
 
          return false;

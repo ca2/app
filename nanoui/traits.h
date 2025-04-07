@@ -9,7 +9,9 @@
 
 #pragma once
 
-#include "common.h"
+
+#include "nanoui/common.h"
+
 
 namespace nanoui
 {

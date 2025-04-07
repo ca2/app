@@ -1620,7 +1620,7 @@ pdirectorysystem->create("/ca2core");
    //void system::post_request(::request* prequest)
    //{
 
-   //   auto straArguments = platform()->get_arguments();
+   //   auto straArguments = ::system()->get_arguments();
 
    //   if (straArguments.has_element())
    //   {

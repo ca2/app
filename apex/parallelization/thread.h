@@ -401,8 +401,6 @@ public:
    virtual bool is_session() const;
    virtual bool is_system() const;
 
-   //virtual void delete_this();
-
    ///// thread implementation
    //void __task_init() override;
    //void __task_term() override;

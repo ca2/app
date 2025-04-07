@@ -35,23 +35,13 @@ public:
    subparticle();
 #else
    subparticle() :
-      m_countReference(1),
-      m_psequence(nullptr)
+      m_countReference(1)
    {
          
          
    }
 #endif
    ~subparticle() override;
-
-
-#if REFERENCING_DEBUGGING
-   
-   
-   virtual void on_after_construct(::reference_referer* preferer);
-
-
-#endif
 
 
    virtual void initialize(::particle * pparticle);
@@ -72,6 +62,7 @@ public:
 
    virtual ::string get_short_debug_text(int i) const;
 
+   virtual void operator()();
    virtual void run();
 
    virtual class ::time get_run_timeout();
@@ -130,8 +121,8 @@ public:
    void *                              m_pType = nullptr;
    memsize                             m_sType = sizeof(::subparticle);
    ::reference_referer *               m_prefererTransfer2 = nullptr;
-   bool                                m_bReferencingDebuggingEnabled : 1 = true;
-   bool                                m_bIncludeCallStackTrace : 1 = false;
+   bool                                m_bReferencingDebuggingEnabled = true;
+   bool                                m_bIncludeCallStackTrace = false;
 
    void set_size_type(memsize s) { m_sType = s; }
 
@@ -155,6 +146,9 @@ public:
       return m_bReferencingDebuggingEnabled;
 
    }
+
+   virtual void on_after_construct(::reference_referer* preferer);
+
 
    void disable_referencing_debugging();
 

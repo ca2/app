@@ -258,7 +258,7 @@ namespace platform
    //::factory::factory_pointer& application::factory()
    //{
 
-   //   return this->platform()->factory();
+   //   return this->::system()->factory();
 
    //}
 
@@ -309,7 +309,7 @@ namespace platform
    void application::_001TryCloseApplication()
    {
 
-      if (!platform()->is_console())
+      if (!::system()->is_console())
       {
 
          //system()->acme_windowing()->windowing_system_post_quit();
@@ -399,7 +399,7 @@ namespace platform
 
       string strAppId;
 
-      if (!platform()->is_console())
+      if (!::system()->is_console())
       {
 
          strAppId = m_strAppId;
@@ -421,7 +421,7 @@ namespace platform
 
       //main.m_bAudio = main_hold_base::is_audio_enabled();
 
-      //auto pfactoryitem = this->platform()->m_pfactory->get_factory_item<::platform::system>();
+      //auto pfactoryitem = this->::system()->m_pfactory->get_factory_item<::platform::system>();
 
       //::pointer<::platform::system> psystem = pfactoryitem->create_particle();
 
@@ -491,7 +491,7 @@ namespace platform
       if (m_bDraw2d.undefined())
       {
 
-         m_bDraw2d = !platform()->is_console();
+         m_bDraw2d = !::system()->is_console();
 
       }
 
@@ -505,28 +505,28 @@ namespace platform
       if (m_bUser.undefined())
       {
 
-         m_bUser = !platform()->is_console();
+         m_bUser = !::system()->is_console();
 
       }
 
       if (m_bUserEx.undefined())
       {
 
-         m_bUserEx = !platform()->is_console();
+         m_bUserEx = !::system()->is_console();
 
       }
 
       if (m_bImaging.undefined())
       {
 
-         m_bImaging = !platform()->is_console();
+         m_bImaging = !::system()->is_console();
 
       }
 
 //      if (m_bCrypto.undefined())
 //      {
 //
-//         m_bCrypto = !platform()->is_console();
+//         m_bCrypto = !::system()->is_console();
 //
 //      }
 
@@ -544,7 +544,7 @@ namespace platform
       if (m_bGdiplus.undefined())
       {
 
-         m_bGdiplus = !platform()->is_console();
+         m_bGdiplus = !::system()->is_console();
 
       }
 
@@ -555,7 +555,7 @@ namespace platform
       if (m_bGtkApp.undefined())
       {
 
-         m_bGtkApp = !platform()->is_console();
+         m_bGtkApp = !::system()->is_console();
 
       }
 
@@ -568,7 +568,7 @@ namespace platform
 
       }
 
-      if (platform()->is_console())
+      if (::system()->is_console())
       {
 
          if (m_bSession.undefined())
@@ -1182,7 +1182,7 @@ namespace platform
    ::release_time_for_project application::release_time()
    {
 
-      return platform()->as_release_time_for_project("(not set)");
+      return ::system()->as_release_time_for_project("(not set)");
 
    }
 

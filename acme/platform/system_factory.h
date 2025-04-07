@@ -28,9 +28,7 @@ namespace platform
 
             _synchronous_lock(system()->synchronization());
 
-            auto pplatform = platform();
-
-            auto pfactory = pplatform->factory();
+            auto pfactory = ::system()->factory();
 
             bool bHasFactoryRepresentativeType = pfactory->has<FACTORY_REPRESENTATIVE_TYPE>();
 

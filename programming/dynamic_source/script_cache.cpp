@@ -4,7 +4,7 @@
 #include "ds_script.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/crypto/rsa.h"
-
+#include "programming/heating_up_exception.h"
 
 namespace dynamic_source
 {
@@ -184,7 +184,14 @@ namespace dynamic_source
 
       }
 
-      _synchronous_lock slScript(pscript->synchronization());
+      _single_lock slScript(pscript->synchronization());
+
+      if (!slScript._wait(5_s))
+      {
+         
+         throw ::heating_up_exception("Compiling script " + lpcszName);
+
+      }
 
       int iTry = 0;
 

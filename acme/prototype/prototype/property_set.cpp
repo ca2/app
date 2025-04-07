@@ -1016,7 +1016,7 @@ void property_set::parse_network_payload(const ::string & strNetworkPayload)
 
 // #ifdef LINUX
 //
-//    uselocale(this->platform()->m_localeC);
+//    uselocale(this->::system()->m_localeC);
 //
 // #endif
 
@@ -1037,7 +1037,7 @@ void property_set::parse_network_payload(const ::string & strNetworkPayload)
 //{
 //
 //#ifdef LINUX
-//   uselocale(this->platform()->m_localeC);
+//   uselocale(this->::system()->m_localeC);
 //#endif
 //
 //   parse_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
@@ -1050,7 +1050,7 @@ void property_set::parse_network_payload(::ansi_range & range)
 
 
 // #ifdef LINUX
-//    uselocale(this->platform()->m_localeC);
+//    uselocale(this->::system()->m_localeC);
 // #endif
    __check_refdbg
    range.consume_spaces(0);

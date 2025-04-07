@@ -102,11 +102,40 @@ m_errorcodea(errorcodea)
 }
 
 
+
+exception::exception(const ::exception& exception) :
+m_estatus(exception.m_estatus),
+m_bDumpCallStackTrace(exception.m_bDumpCallStackTrace),
+m_strCallStackTrace(exception.m_strCallStackTrace),
+m_bHandled(exception.m_bHandled),
+m_bContinue(exception.m_bContinue),
+m_econsequenceUserDefault(exception.m_econsequenceUserDefault),
+m_strTitle(exception.m_strTitle),
+m_strMessage(exception.m_strMessage),
+m_strDetails(exception.m_strDetails),
+m_strLink(exception.m_strLink),
+m_strFile(exception.m_strFile),
+m_iLine(exception.m_iLine),
+m_errorcodea(exception.m_errorcodea)
+{
+
+}
+
+
 exception::~exception()
 {
 
 }
 
+
+::pointer < ::subparticle > exception::clone()
+{
+
+   auto pexception = __allocate::exception(*this);
+
+   return pexception;
+
+}
 
 void exception::enable_call_stack_back_trace(bool bEnable)
 {

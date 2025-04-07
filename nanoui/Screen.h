@@ -16,7 +16,7 @@
 
 
 #include "aura/user/appearance/appearance.h"
-#include "Widget.h"
+#include "nanoui/Widget.h"
 //#include <nanoui/texture.h>
 
 

@@ -119,6 +119,7 @@ public:
 
 
    using ::subparticle::clear_flag;
+   using MEMORY::operator();
 
 
    virtual string as_utf8() const;

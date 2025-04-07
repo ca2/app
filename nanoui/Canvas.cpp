@@ -48,7 +48,7 @@ Canvas::Canvas(Widget * parent, uint8_t samples,
    if (pscreen == nullptr)
    {
 
-      throw std::runtime_error("Canvas::Canvas(): could not find parent pscreen!");
+      throw ::exception(error_failed, "Canvas::Canvas(): could not find parent pscreen!");
 
    }
 
@@ -61,7 +61,7 @@ Canvas::Canvas(Widget * parent, uint8_t samples,
      // * depth_texture = nullptr;
 
    if (has_stencil_buffer && !has_depth_buffer)
-      throw std::runtime_error("Canvas::Canvas(): has_stencil implies has_depth!");
+      throw ::exception(error_failed, "Canvas::Canvas(): has_stencil implies has_depth!");
 
 
 //   if (!m_render_to_texture) {

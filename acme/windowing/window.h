@@ -39,7 +39,7 @@ namespace acme
       {
       public:
 
-
+         ::pointer_array < ::exception >     m_exceptiona;
 
          //::pointer < ::acme::windowing::window >                m_pwindowOwner;
 

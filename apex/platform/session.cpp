@@ -575,7 +575,7 @@ class ::fs::data * session::fs()
    bool session::on_get_task_name(string& strTaskName)
    {
 
-      if (platform()->is_console())
+      if (::system()->is_console())
       {
 
          return false;

@@ -31,8 +31,7 @@ bool g_bDefaultEnableObjectReferenceCountDebug = false;
 
 
 subparticle::subparticle() :
-   m_countReference(1),
-   m_psequence(nullptr)
+   m_countReference(1)
 {
 
 #if REFERENCING_DEBUGGING
@@ -286,6 +285,13 @@ enum_type subparticle::get_payload_type() const
 }
 
 
+//void subparticle::operator()()
+//{
+//
+//   run();
+//
+//}
+
 
 bool subparticle::_is_set() const
 {
@@ -396,6 +402,14 @@ void subparticle::read_from_stream(::binary_stream & stream)
 //   ::memory_free(p);
 //
 //}
+
+
+void subparticle::operator()()
+{
+
+   run();
+
+}
 
 
 void subparticle::run()

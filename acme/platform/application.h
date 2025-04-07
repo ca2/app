@@ -755,4 +755,19 @@ namespace platform
 } // namespace platform
 
 
+#include "acme/prototype/prototype/factory.h"
+
+#define IMPLEMENT_APPLICATION_FACTORY(APPLICATION_NAMESPACE) \
+namespace APPLICATION_NAMESPACE \
+{ \
+CLASS_DECL_EXPORT void application_factory(::factory::factory * pfactory) \
+{ \
+   \
+   pfactory->add_factory_item<::APPLICATION_NAMESPACE::application, ::platform::application>(); \
+   \
+} \
+}
+
+
+
 

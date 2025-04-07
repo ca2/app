@@ -1,15 +1,9 @@
 #include "framework.h"
-////#include "acme/exception/exception.h"
-//#include "acme/platform/acme.h"
+#include "acme/exception/interface_only.h"
 #include "acme/platform/simple_log.h"
 #include "acme/platform/library.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/prototype/factory.h"
-
-
-
-
-//CLASS_DECL_ACME ::platform::system * system();
 
 
 namespace factory
@@ -32,6 +26,44 @@ namespace factory
    {
 
 
+   }
+
+
+   string factory_item_interface::base_type_name() const
+   {
+   
+      throw ::interface_only();
+      
+      return {};
+   
+   }
+
+
+   string factory_item_interface::__type_name() const
+   {
+
+      throw ::interface_only();
+   
+      return {};
+
+   }
+
+
+   ::pointer < ::subparticle > factory_item_interface::__call__create_particle()
+   {
+
+      throw ::interface_only();
+
+      return {};
+
+   }
+
+
+   void factory_item_interface::return_back(::subparticle * pelement)
+   {
+      
+      throw ::interface_only();
+      
    }
 
 
@@ -95,9 +127,11 @@ namespace factory
       if (pfactory->m_plibrary)
       {
 
-         ::factory::factory_pointer pfactoryImplicit;
+         //::factory::factory_pointer pfactoryImplicit;
             
-         pfactory->m_plibrary->create_factory(pfactoryImplicit);
+         pfactory->m_plibrary->create_factory();
+
+         auto pfactoryImplicit = pfactory->m_plibrary->m_pfactory;
 
          for (auto& pair : *pfactoryImplicit)
          {

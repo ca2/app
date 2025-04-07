@@ -68,7 +68,7 @@ namespace nanoui
       if (m_children.size() > 1)
       {
 
-         throw std::runtime_error("VScrollPanel should have one pwidgetChild.");
+         throw ::exception(error_failed, "VScrollPanel should have one pwidgetChild.");
 
       }
 

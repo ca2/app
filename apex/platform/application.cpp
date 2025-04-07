@@ -1986,7 +1986,7 @@ namespace apex
 
       bool bHandled = false;
 
-      if (!platform()->is_sandboxed())
+      if (!::system()->is_sandboxed())
       {
 
          if (!check_exclusive(m_prequest, bHandled))
@@ -3829,7 +3829,7 @@ namespace apex
 
 #endif
 
-      ::file::path pathPreviousLocation = platform()->get_argument_begins_eat("--previous-location");
+      ::file::path pathPreviousLocation = ::system()->get_argument_begins_eat("--previous-location");
 
       if (pathPreviousLocation.has_character())
       {
@@ -5644,8 +5644,8 @@ namespace apex
       if (!is_service())
       {
 
-         if ((platform()->is_console() && m_bCreateAppShorcut.is_set_true())
-            || (!platform()->is_console() && m_bCreateAppShorcut.is_true_or_undefined()))
+         if ((::system()->is_console() && m_bCreateAppShorcut.is_set_true())
+            || (!::system()->is_console() && m_bCreateAppShorcut.is_true_or_undefined()))
          {
 
             on_create_app_shortcut();

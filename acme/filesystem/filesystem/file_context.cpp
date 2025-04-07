@@ -1395,10 +1395,10 @@ void file_context::calculate_main_resource_memory()
 ::block file_context::get_main_resource_block()
 {
 
-   if (platform()->m_blockMatter.is_set())
+   if (::system()->m_blockMatter.is_set())
    {
 
-      return platform()->m_blockMatter;
+      return ::system()->m_blockMatter;
 
    }
 

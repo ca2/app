@@ -123,10 +123,30 @@ namespace file
       }
 
 
-      //exception::~exception()
-      //{
+      exception::exception(const ::file::exception & exception) :
+         ::exception(exception)
+      {
 
-      //}
+
+      }
+
+
+
+      exception::~exception()
+      {
+
+      }
+
+
+      ::pointer < ::subparticle > exception::clone()
+      {
+
+         auto pexception = __allocate ::file::exception(*this);
+
+         return pexception;
+
+      }
+
 
 
     /*  void exception::get_status()

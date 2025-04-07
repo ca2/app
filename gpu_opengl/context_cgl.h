@@ -18,7 +18,7 @@ namespace opengl
 
 
    class CLASS_DECL_GPU_OPENGL context_cgl :
-      virtual public ::opengl::handler_context
+      virtual public ::opengl::context
    {
    public:
 

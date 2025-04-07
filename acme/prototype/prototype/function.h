@@ -354,19 +354,33 @@ class function :
 //};
 
 
+//class function_base_1 :
+//   virtual public ::subparticle
+//{
+//public:
+//
+//
+//   virtual void operator()() = 0;
+//
+//
+//};
+//
+
 class function_composite_1 :
    public function_composite_base < ::subparticle >
 {
 public:
 
+
    function_composite_1(base * pbase, const class ::time & timeTimeout) :
       function_composite_base < ::subparticle >(pbase, timeTimeout)
    {
 
+
    }
 
 
-   void operator()()
+   void operator()() override
    {
 
       this->m_pbase->call();
@@ -374,12 +388,12 @@ public:
    }
 
 
-   void run() override
-   {
+   //void run() override
+   //{
 
-      this->m_pbase->call();
+   //   this->operator()();
 
-   }
+   //}
 
 
 };
@@ -391,8 +405,10 @@ class function < void() > :
 {
 public:
 
+   
    using base_function = function_common < ::subparticle, ::function_composite_1 >;
 
+   
    template < typename ELEMENT >
    class implementation :
       public base_implementation
@@ -413,18 +429,10 @@ public:
       }
 
 
-      void operator()()
+      void operator()() override
       {
 
          m_element();
-
-      }
-
-
-      void run() override
-      {
-
-         this->operator()();
 
       }
 
@@ -514,20 +522,13 @@ public:
    }
 
 
-   void operator()()
-   {
-
-      m_pbase->call();
-
-   }
-
-
    void operator()() const
    {
 
-      m_pbase->call();
+      m_pbase->operator()();
 
    }
+
 
    function & operator = (const function & function)
    {
@@ -555,15 +556,19 @@ public:
 //
 //};
 
+
 template < typename RETURN_TYPE >
 class function_base_2 :
    virtual public ::subparticle
 {
 public:
 
-   virtual RETURN_TYPE operator()() = 0;
+
+   virtual RETURN_TYPE get() = 0;
+
 
 };
+
 
 template < typename RETURN_TYPE >
 class function_composite_2 :
@@ -580,7 +585,7 @@ public:
    }
 
 
-   RETURN_TYPE operator()() override
+   RETURN_TYPE get() override
    {
 
       return ::transfer(this->m_pbase->operator()());
@@ -634,16 +639,15 @@ public:
       }
 
 
-
-      RETURN_TYPE operator()() override
+      RETURN_TYPE get() override
       {
 
          return m_predicate();
 
       }
 
-   };
 
+   };
 
 
    function() { }
@@ -707,7 +711,7 @@ public:
    RETURN_TYPE operator()() const
    {
 
-      return this->m_pbase->operator()();
+      return this->m_pbase->get();
 
    }
 
@@ -779,7 +783,9 @@ class function_base_3 :
 {
 public:
 
+
    virtual RETURN_TYPE operator()(TYPES... args) = 0;
+
 
 };
 
@@ -858,13 +864,13 @@ public:
       }
 
 
-
       RETURN_TYPE operator()(TYPES... args) override
       {
 
          return m_predicate(args...);
 
       }
+
 
    };
 
@@ -1009,7 +1015,9 @@ class function_base_4 :
 {
 public:
 
+   
    virtual void operator()(TYPES... args) = 0;
+
 
 };
 
@@ -1095,13 +1103,13 @@ public:
       }
 
 
-
       void operator()(TYPES... args) override
       {
 
          m_predicate(args...);
 
       }
+
 
    };
 
@@ -1151,7 +1159,7 @@ public:
       else
       {
 
-         this->m_pbase = __allocate implementation < PREDICATE > (predicate);
+         this->m_pbase = __allocate implementation<PREDICATE >(predicate, timeTimeout);
 
       }
 

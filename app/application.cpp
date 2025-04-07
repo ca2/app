@@ -5,6 +5,7 @@
 
 
 __IMPLEMENT_APPLICATION_RELEASE_TIME(app_app);
+IMPLEMENT_APPLICATION_FACTORY(app_app);
 
 
 namespace app_app

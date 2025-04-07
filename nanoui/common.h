@@ -17,10 +17,10 @@
 
 #include <stdint.h>
 
-#include <functional>
-#include <vector>
-#include <string>
-#include <stdexcept>
+//#include <functional>
+//#include <vector>
+//#include <string>
+//#include <stdexcept>
 
 struct NSWindow;
 
@@ -326,7 +326,7 @@ CLASS_DECL_NANOUI void ___save_image(::particle * pparticle, const ::file::path 
 extern CLASS_DECL_NANOUI void pick_multiple_file(
     void * poswindow, 
     const ::array<::pair<::string, ::string>> & filetypes, 
-    ::std::function < void(const ::string_array &) > promisseFiles);
+    ::function < void(const ::string_array &) > promisseFiles);
 
 
 #if defined(__APPLE__) || defined(DOXYGEN_DOCUMENTATION_BUILD)

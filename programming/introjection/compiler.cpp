@@ -1098,7 +1098,7 @@ pdirectorysystem->create("/var/tmp/ca2/intermediate");
             + "time-windows/intermediate/" 
             + m_pintegrationcontext->m_strPlatform + "/"
             + m_strDynamicSourceConfiguration 
-            + "/app-core/app_core_resident_desktop/" 
+            + "/app-core/resident_resident_desktop/" 
             + strTransformName);
 
       directory()->create(pathOutputFolder);

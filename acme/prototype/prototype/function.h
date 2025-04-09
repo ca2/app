@@ -585,7 +585,7 @@ public:
    }
 
 
-   RETURN_TYPE call_function() override
+   RETURN_TYPE get() override
    {
 
       return ::transfer(this->m_pbase->operator()());
@@ -639,7 +639,7 @@ public:
       }
 
 
-      RETURN_TYPE operator()() override
+      RETURN_TYPE get() override
       {
 
          return m_predicate();

@@ -81,7 +81,6 @@ public:
 
    void operator()(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-
    virtual void operator()(::message::message * pmessage);
    //virtual void operator()(const ::payload & payload);
 
@@ -159,6 +158,9 @@ public:
 
 
    //virtual ::task * defer_branch(const ::atom & atom, const ::procedure & procedure);
+
+
+   //void delete_this() override;
 
 
    //::particle * clone() const override;

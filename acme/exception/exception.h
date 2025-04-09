@@ -56,7 +56,11 @@ public:
    exception(const ::e_status & estatus, const char * pszMessage = nullptr, const char * pszDetails = nullptr, int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
 //#endif
    exception(const ::e_status & estatus, const ::array_non_particle < error_code > & errorcodea, const char * pszMessage = nullptr, const char * pszDetails = nullptr, int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
-   virtual ~exception();
+   exception(const ::exception& exception);
+   ~exception() override;
+
+
+   ::pointer < ::subparticle > clone() override;
 
 
    static void enable_call_stack_back_trace(bool bEnable);

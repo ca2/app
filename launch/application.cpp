@@ -106,6 +106,7 @@ namespace launch
          print_line("This is FreeBSD System...");
 
          m_strBranch = strBranch;
+         
 
       }
       else if (m_strDistro == "openbsd")
@@ -114,6 +115,8 @@ namespace launch
          print_line("This is OpenBSD System...");
 
          m_strBranch = strBranch;
+         
+         printf_line("Branch is \"%s\"", m_strBranch.c_str());
 
       }
       else if (m_strDistro == "netbsd")

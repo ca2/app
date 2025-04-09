@@ -69,10 +69,12 @@ matter::~matter()
 //}
 
 
+
+
 void matter::operator()(::topic * ptopic, ::handler_context * phandlercontext)
 {
 
-   ::particle::operator()(ptopic, phandlercontext);
+   ::particle::operator ()(ptopic, phandlercontext);
 
 }
 
@@ -374,6 +376,22 @@ void matter::notify_on_destroy(::property_object * pparticle)
 //}
 
 
+
+//void matter::delete_this()
+//{
+//
+//   try
+//   {
+//
+//      delete this;
+//
+//   }
+//   catch (...)
+//   {
+//
+//   }
+//
+//}
 
 
 //void matter::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const

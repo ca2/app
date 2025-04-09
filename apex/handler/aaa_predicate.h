@@ -18,7 +18,7 @@ using handle_function = ::function < void(::topic *, ::handler_context *) >;
 //
 //   //inline void operator()() const;
 //
-//   //void operator()(::topic * ptopic, ::handler_context * phandlercontext) 
+//   //void operator()(::topic * ptopic, ::handler_context * phandlercontext)
 //   //{
 //
 //   //   this-(ptopic, phandlercontext);

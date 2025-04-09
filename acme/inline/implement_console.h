@@ -1,7 +1,10 @@
 
 #include "acme/exception/exception.h"
+namespace APPLICATION_NAMESPACE
+{
+void application_factory(::factory::factory * pfactory);
 
-void application_main(::platform::system * psystem);
+}
 
 #include "acme/_operating_system.h"
 #include "acme/operating_system/process.h"
@@ -109,7 +112,9 @@ int main(int argc, char ** argv, char ** envp)
    try
    {
 
-      application_main(psystem);
+      APPLICATION_NAMESPACE::application_factory(psystem->factory());
+      
+      psystem->application_main();
 
    }
    catch (const ::exception& exception)

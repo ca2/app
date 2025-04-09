@@ -203,12 +203,12 @@ namespace sockets
 
       }
 
-      if (m_b_keepalive)
-      {
+      //if (m_b_keepalive)
+      //{
 
-         tcp_socket_impl()->set_keep_connection_after_last_write_time(2_s);
+      //   tcp_socket_impl()->set_keep_connection_after_last_write_time(2_s);
 
-      }
+      //}
 
       // prepare page
       OnExecute();

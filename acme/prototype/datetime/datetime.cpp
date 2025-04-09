@@ -1314,6 +1314,66 @@ namespace datetime
    }
 
 
+   ::string datetime::friendly_elapsed(const class ::time& time)
+   {
+
+      ::string str;
+
+      auto iSeconds = time.integral_second();
+
+      if (iSeconds < 60)
+      {
+
+         str.formatf("%llds", iSeconds);
+
+      }
+      else
+      {
+
+         auto secs = iSeconds % 60;
+
+         auto iMinutes = iSeconds / 60;
+
+         if (iMinutes < 60)
+         {
+
+            str.formatf("%lld minutes %llds", iMinutes, secs);
+
+         }
+         else
+         {
+
+            auto mins = iMinutes % 60;
+
+            auto iHours = iMinutes / 60;
+
+            if (iHours < 24)
+            {
+
+               str.formatf("%lld hours %lld minutes %llds", iHours, mins, secs);
+
+            }
+            else
+            {
+               
+               auto hours = iHours % 24;
+
+               auto iDays = iHours / 24;
+
+               str.formatf("%lld days %lld hours %lld minutes %llds", iDays, hours, mins, secs);
+
+            }
+
+         }
+
+      }
+
+      return str;
+
+   }
+
+
+
 } // namespace datetime
 
 

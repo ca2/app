@@ -302,8 +302,7 @@ namespace sockets_bsd
 
          ::pointer < ::sockets_bsd::base_socket > psocketImpl = psocket->base_socket_impl();
 
-         if (psocketImpl->m_timeKeepConnectionAfterLastRead > 0_s
-            || psocketImpl->m_timeKeepConnectionAfterLastWrite > 0_s)
+         if (psocketImpl->m_timeKeepConnectionAfterLastIO > 0_s)
          {
 
             socket_id_list_add(psocket->GetSocketId(), e_list_timeout);
@@ -362,8 +361,7 @@ namespace sockets_bsd
 
          ::pointer < ::sockets_bsd::base_socket > psocketImpl = passociation->m_psocket;
 
-         if (psocketImpl->m_timeKeepConnectionAfterLastRead > 0_s
-            || psocketImpl->m_timeKeepConnectionAfterLastWrite > 0_s)
+         if (psocketImpl->m_timeKeepConnectionAfterLastIO > 0_s)
          {
 
             ::pointer < ::sockets_bsd::base_socket > psocket2 = passociation->m_psocket;

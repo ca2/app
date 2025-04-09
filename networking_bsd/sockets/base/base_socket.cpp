@@ -121,12 +121,13 @@ namespace sockets_bsd
       m_pmemfileInput = nullptr;
       m_iBindPort    = -1;
       m_timeStart.Now();
+      m_timeConnectionLastRead.Now();
+      m_timeConnectionLastWrite.Now();
       //m_pcallback    = nullptr;
       m_bEnablePool  = true;
 
       m_timeConnectionMaximum = 30_s;
-      m_timeKeepConnectionAfterLastRead = 30_s;
-      m_timeKeepConnectionAfterLastWrite = 30_s;
+      m_timeKeepConnectionAfterLastIO = 30_s;
 
    }
 
@@ -2647,24 +2648,25 @@ bool base_socket::SetSoNosigpipe(bool x)
    {
 
       m_timeStart.Now();
+      m_timeConnectionLastRead.Now();
+      m_timeConnectionLastWrite.Now();
 
       //set_connection_last_operation();
 
    }
 
 
-   void base_socket::set_keep_connection_after_last_read_time(const class time & time)
+   void base_socket::set_keep_connection_after_last_io_time(const class time & time)
    {
 
-      m_timeKeepConnectionAfterLastRead = time;
+      m_timeKeepConnectionAfterLastIO = time;
 
       ::pointer < ::sockets_bsd::socket_handler > phandler = socket_handler();
 
       if (phandler)
       {
 
-         if (m_timeKeepConnectionAfterLastRead > 0_s
-            || m_timeKeepConnectionAfterLastWrite > 0_s)
+         if (m_timeKeepConnectionAfterLastIO > 0_s)
          {
 
             phandler->socket_id_list_add(GetSocketId(), e_list_timeout);
@@ -2682,33 +2684,33 @@ bool base_socket::SetSoNosigpipe(bool x)
    }
 
 
-   void base_socket::set_keep_connection_after_last_write_time(const class time& time)
-   {
+   //void base_socket::set_keep_connection_after_last_write_time(const class time& time)
+   //{
 
-      m_timeKeepConnectionAfterLastWrite = time;
+   //   m_timeKeepConnectionAfterLastWrite = time;
 
-      ::pointer < ::sockets_bsd::socket_handler > phandler = socket_handler();
+   //   ::pointer < ::sockets_bsd::socket_handler > phandler = socket_handler();
 
-      if (phandler)
-      {
+   //   if (phandler)
+   //   {
 
-         if (m_timeKeepConnectionAfterLastRead > 0_s
-            || m_timeKeepConnectionAfterLastWrite > 0_s)
-         {
+   //      if (m_timeKeepConnectionAfterLastRead > 0_s
+   //         || m_timeKeepConnectionAfterLastWrite > 0_s)
+   //      {
 
-            phandler->socket_id_list_add(GetSocketId(), e_list_timeout);
+   //         phandler->socket_id_list_add(GetSocketId(), e_list_timeout);
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            phandler->socket_id_list_erase(GetSocketId(), e_list_timeout);
+   //         phandler->socket_id_list_erase(GetSocketId(), e_list_timeout);
 
-         }
+   //      }
 
-      }
+   //   }
 
-   }
+   //}
 
    void base_socket::on_timeout()
    {
@@ -2748,13 +2750,16 @@ bool base_socket::SetSoNosigpipe(bool x)
       else
       {
          
-         if (m_timeKeepConnectionAfterLastRead > 0_s 
-            && m_timeConnectionLastRead > 0_s)
+         if (m_timeKeepConnectionAfterLastIO > 0_s)
          {
 
-            auto tElapsed = m_timeConnectionLastRead.elapsed();
+            auto tIO = maximum(
+               m_timeConnectionLastRead,
+               m_timeConnectionLastWrite);
 
-            if (tElapsed > m_timeKeepConnectionAfterLastRead)
+            auto tElapsed = tIO.elapsed();
+
+            if (tElapsed > m_timeKeepConnectionAfterLastIO)
             {
 
                return true;
@@ -2763,20 +2768,20 @@ bool base_socket::SetSoNosigpipe(bool x)
 
          }
 
-         if (m_timeKeepConnectionAfterLastWrite > 0_s
-            && m_timeConnectionLastWrite > 0_s)
-         {
+         //if (m_timeKeepConnectionAfterLastWrite > 0_s
+         //   && m_timeConnectionLastWrite > 0_s)
+         //{
 
-            auto tElapsed = m_timeConnectionLastWrite.elapsed();
+         //   auto tElapsed = m_timeConnectionLastWrite.elapsed();
 
-            if (tElapsed > m_timeKeepConnectionAfterLastWrite)
-            {
+         //   if (tElapsed > m_timeKeepConnectionAfterLastWrite)
+         //   {
 
-               return true;
+         //      return true;
 
-            }
+         //   }
 
-         }
+         //}
 
       }
 

@@ -88,10 +88,9 @@ namespace sockets_bsd
       class ::time               m_timeLastWrite;
       class ::time               m_timeConnectionMaximum; ///< Defined by SetTimeout
       class ::time               m_timeConnectionStart; ///< Set by SetTimeout
-      class ::time               m_timeConnectionLastRead; ///< Set by SetTimeout
-      class ::time               m_timeConnectionLastWrite; ///< Set by SetTimeout
-      class ::time               m_timeKeepConnectionAfterLastRead; ///< Defined by SetTimeout
-      class ::time               m_timeKeepConnectionAfterLastWrite; ///< Defined by SetTimeout
+      class ::time               m_timeConnectionLastRead;
+      class ::time               m_timeConnectionLastWrite;
+      class ::time               m_timeKeepConnectionAfterLastIO;
       class ::time               m_timeStart; ///< Set by SetTimeout
       bool                       m_bNonBlocking;
       //    unsigned long           m_flags; ///< boolean flags, replacing old 'bool' members
@@ -323,9 +322,9 @@ namespace sockets_bsd
 
       void set_start_time() override;
 
-      void set_keep_connection_after_last_read_time(const class ::time& time) override;
+      void set_keep_connection_after_last_io_time(const class ::time& time) override;
 
-      void set_keep_connection_after_last_write_time(const class ::time& time) override;
+      //void set_keep_connection_after_last_write_time(const class ::time& time) override;
 
       /** Check timeout. \return true if time limit reached */
       bool has_timed_out() override;

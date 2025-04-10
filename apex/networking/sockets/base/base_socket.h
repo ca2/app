@@ -349,9 +349,9 @@ namespace sockets
 
       virtual void set_start_time();
 
-      virtual void set_keep_connection_after_last_read_time(const class ::time& time);
+      virtual void set_keep_connection_after_last_io_time(const class ::time& time);
 
-      virtual void set_keep_connection_after_last_write_time(const class ::time& time);
+      //virtual void set_keep_connection_after_last_write_time(const class ::time& time);
 
       /** Check timeout. \return true if time limit reached */
       virtual bool has_timed_out();

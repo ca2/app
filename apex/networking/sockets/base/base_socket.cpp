@@ -3010,20 +3010,20 @@ namespace sockets
    }
 
 
-   void base_socket::set_keep_connection_after_last_read_time(const class time & time)
+   void base_socket::set_keep_connection_after_last_io_time(const class time & time)
    {
 
-      base_socket_impl()->set_keep_connection_after_last_read_time(time);
+      base_socket_impl()->set_keep_connection_after_last_io_time(time);
 
    }
 
 
-   void base_socket::set_keep_connection_after_last_write_time(const class time& time)
-   {
+   //void base_socket::set_keep_connection_after_last_write_time(const class time& time)
+   //{
 
-      base_socket_impl()->set_keep_connection_after_last_write_time(time);
+   //   base_socket_impl()->set_keep_connection_after_last_write_time(time);
 
-   }
+   //}
 
 
    void base_socket::on_timeout()

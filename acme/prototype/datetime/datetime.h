@@ -183,6 +183,7 @@ namespace datetime
 
       virtual string _001FriendTime(const ::text::context* pcontext, const ::earth::time& timeNow, const ::earth::time& time, const class ::time& timeshift = {});
 
+      virtual ::string friendly_elapsed(const ::time& time);
 
       ::posix_time parse(const string& str);
 

@@ -479,7 +479,9 @@ public:
    static constexpr bool _initialize_equals(bool & b, const THIS_RAW_RANGE & range, const THIS_RAW_RANGE & rangeBlock)
    {
 
-      if (range.size() != rangeBlock.size())
+      auto sizeRange = range.size();
+
+      if (sizeRange != rangeBlock.size())
       {
 
          b = false;
@@ -487,7 +489,7 @@ public:
          return true;
 
       }
-      else if (range.is_empty())
+      else if (sizeRange <= 0)
       {
 
          b = true;

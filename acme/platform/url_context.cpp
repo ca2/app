@@ -68,6 +68,49 @@ namespace url
    }
 
    
+   ::string query_parameter_set(const ::scoped_string& scopedstrQuery, const ::scoped_string& scopedstrKey, const ::scoped_string& scopedstr)
+   {
+
+      ::string strQuery = _001GetQuery(scopedstrQuery);
+
+      if (scopedstrKey.is_empty() && scopedstr.is_empty())
+      {
+
+         return strQuery;
+
+      }
+
+      if (strQuery.has_character())
+      {
+
+         strQuery += "&";
+
+      }
+
+      if (scopedstrKey.is_empty())
+      {
+
+         strQuery += ::url::encode(scopedstr);
+
+      }
+      else if (scopedstr.is_empty())
+      {
+
+         strQuery += ::url::encode(scopedstrKey) + "=1";
+
+      }
+      else
+      {
+
+         strQuery += ::url::encode(scopedstrKey) + "=" + ::url::encode(scopedstr);
+
+      }
+
+      return strQuery;
+
+   }
+
+
    void erase_parameter(::string& str, const ::scoped_string& scopedstrKey)
    {
 
@@ -80,6 +123,14 @@ namespace url
    {
 
       str = parameter_set(str, scopedstrKey, scopedstr);
+
+   }
+
+
+   void query_set_parameter(::string& strQuery, const ::scoped_string& scopedstrKey, const ::scoped_string& scopedstr)
+   {
+
+      strQuery = query_parameter_set(strQuery, scopedstrKey, scopedstr);
 
    }
 
@@ -572,6 +623,54 @@ namespace url
       }
 
       return str(query + 1);
+
+   }
+
+
+   ::string _001GetQuery(const ::scoped_string& scopedstr)
+   {
+
+      string str(scopedstr);
+
+      auto query = str.find('?');
+
+      if (not_found(query))
+      {
+
+         return {};
+
+      }
+
+      ::string strQuery(str(query + 1));
+
+      strQuery.find_replace(":", "");
+
+      strQuery.find_replace("/", "");
+
+      return strQuery;
+
+   }
+
+
+   ::string object_set_query(const ::scoped_string& scopedstrObject, const ::scoped_string& scopedstrQuery)
+   {
+
+      ::string strObject(scopedstrObject);
+
+      ::string strQuery(scopedstrQuery);
+
+      strObject.ends_eat("?");
+
+      strQuery.begins_eat("?");
+
+      if (strQuery.is_empty())
+      {
+
+         return strObject;
+
+      }
+
+      return strObject + "?" + strQuery;
 
    }
 

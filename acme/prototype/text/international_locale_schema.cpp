@@ -609,21 +609,22 @@ namespace text
 //
 //step2:
 //
-//         idSchema2 = m_atomSchema;
-//
-//         if(idSchema2.is_empty())
-//         {
-//            idSchema2 = "std";
-//         }
-//
-//         for(int i = 0; i < m_idaLocale.get_count() && i < m_idaSchema.get_count(); i++)
-//         {
-//            if(m_idaLocale[i] == idLocale && m_idaSchema[i] == idSchema2)
-//               return bAdded;
-//         }
-//
-//         m_idaLocale.add(idLocale);
-//         m_idaSchema.add(idSchema2);
+
+         for(int i = 0; i < m_straLocale.get_count() && i < m_straSchema.get_count(); i++)
+         {
+
+            if (m_straLocale[i] == scopedstrLocale
+               && m_straSchema[i] == scopedstrSchema)
+            {
+
+               return false;
+
+            }
+
+         }
+
+         m_straLocale.add(scopedstrLocale);
+         m_straSchema.add(scopedstrSchema);
 
          return true;
 

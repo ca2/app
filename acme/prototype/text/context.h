@@ -97,6 +97,7 @@ namespace text
       inline auto& operator[](const ::atom& atom)const { return m_map[atom]; }
 
       void set(const ::atom & atom, const ::atom & idLocale, const ::atom & idSchema, const ::scoped_string & scopedstr);
+      bool _get(::string & str, const ::text::context* pcontext, const ::atom& atom) const;
       string get(const ::text::context * pcontext, const ::atom & atom, bool bIdAsDefaultValue = true) const;
       string get(const ::text::context * pcontext,const ::atom & atom,const ::scoped_string & scopedstrLocale,const ::scoped_string & scopedstrSchema,bool bIdAsDefaultValue = true) const;
       void get(string_array & stra, const ::text::context * pcontext, const ::atom & atom) const;
@@ -190,10 +191,10 @@ namespace text
       const string_array & schema_ex() const;
 
 
-      inline ::text::international::locale_schema & localeschema()
+      inline ::text::international::locale_schema * localeschema()
       {
          
-         return *m_plocaleschema;
+         return m_plocaleschema;
 
       }
 

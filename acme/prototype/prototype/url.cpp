@@ -147,6 +147,13 @@ namespace url
    ::string connect_part::as_string() const
    {
 
+      if (m_strProtocol.is_empty() || m_strHost.is_empty())
+      {
+
+         return {};
+
+      }
+
       ::string strConnectUrl;
 
       if (m_iPort < 0
@@ -258,7 +265,7 @@ namespace url
          || m_strFragment.has_character())
       {
 
-         if (!strRequest.begins("/"))
+         if (strRequest.has_character() && !strRequest.begins("/"))
          {
 
             strRequest = "/" + strRequest;
@@ -268,7 +275,14 @@ namespace url
          if (m_psetArguments && m_psetArguments->has_element())
          {
 
-            strRequest += "?" + m_psetArguments->get_network_arguments();
+            if (strRequest.has_character())
+            {
+
+               strRequest += "?";
+
+            }
+
+            strRequest += m_psetArguments->get_network_arguments();
 
          }
 

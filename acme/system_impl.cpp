@@ -1711,7 +1711,7 @@ namespace platform
 
       }
 
-      //::string strRoot = "ca2.network";
+      //::string strRoot = "ca2network.com";
 
       //::file::path pathGooglePayload = "C:\\sensitive\\sensitive\\api\\google\\account\\" + strRoot + ".network_payload";
 
@@ -2128,7 +2128,7 @@ namespace platform
    void system::get_public_internet_domain_extension_list(string_array & stra)
    {
 
-      //::file::path pathPublicDomainExtensionList = "https://ca2.network/public_internet_domain_extension_list.txt";
+      //::file::path pathPublicDomainExtensionList = "https://ca2network.com/public_internet_domain_extension_list.txt";
 
       //file()->load_lines(stra, pathPublicDomainExtensionList);
 

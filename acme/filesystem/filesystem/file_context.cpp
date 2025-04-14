@@ -430,6 +430,8 @@ file_context::time(const ::file::path & psz, int iMaxLevel, const string & pszPr
 
    string strSuffix(pszSuffix);
 
+   int iIncLevel = 0;
+
 restart:
 
    str.empty();
@@ -441,8 +443,6 @@ restart:
    ::file::listing listing;
 
    string strFormat;
-
-   int iIncLevel = 0;
 
    for (int i = 1; i <= iMaxLevel;)
    {

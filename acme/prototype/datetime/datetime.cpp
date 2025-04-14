@@ -706,15 +706,79 @@ namespace datetime
    string datetime::get_tiny_week_day_str(const ::text::context * pcontext, int iWeekDay) // 1 - domingo
    {
 
-      return system()->texttable()->get(pcontext, "datetimestr_weekday_tiny[" + ::as_string(iWeekDay - 1) + "]");
+      ::string str;
+
+      if(system()->texttable()->_get(str,  pcontext, "datetimestr_weekday_tiny[" + ::as_string(iWeekDay - 1) + "]"))
+      {
+      
+         return str;
+      
+      }
+
+      switch (iWeekDay)
+      {
+      case 1:
+         return "M";
+      case 2:
+         return "T";
+      case 3:
+         return "W";
+      case 4:
+         return "T";
+      case 5:
+         return "F";
+      case 6:
+         return "S";
+      case 7:
+         return "S";
+      default:
+         return "";
+      }
 
    }
 
 
    string datetime::get_month_str(const ::text::context * pcontext, int iMonth)
    {
+
+      ::string str;
    
-      return system()->texttable()->get(pcontext, "datetimestr_month[" + ::as_string(iMonth - 1) + "]");
+      if (system()->texttable()->_get(str, pcontext, "datetimestr_month[" + ::as_string(iMonth - 1) + "]"))
+      {
+
+         return str;
+
+      }
+
+      switch (iMonth)
+      {
+      case 1:
+         return "January";
+      case 2:
+         return "February";
+      case 3:
+         return "March";
+      case 4:
+         return "April";
+      case 5:
+         return "May";
+      case 6:
+         return "June";
+      case 7:
+         return "July";
+      case 8:
+         return "August";
+      case 9:
+         return "September";
+      case 10:
+         return "October";
+      case 11:
+         return "November";
+      case 12:
+         return "December";
+      default:
+         return "";
+      }
 
    }
 

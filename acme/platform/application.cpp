@@ -1316,12 +1316,12 @@ namespace platform
 
          auto ptextcontext = psession->text_context();
 
-         for (int i = 0; i < ptextcontext->localeschema().m_straLocale.get_count(); i++)
+         for (int i = 0; i < ptextcontext->localeschema()->m_straLocale.get_count(); i++)
          {
 
-            auto strLocale = ptextcontext->localeschema().m_straLocale[i];
+            auto strLocale = ptextcontext->localeschema()->m_straLocale[i];
 
-            auto strSchema = ptextcontext->localeschema().m_straSchema[i];
+            auto strSchema = ptextcontext->localeschema()->m_straSchema[i];
 
             matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 

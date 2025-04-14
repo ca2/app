@@ -7067,17 +7067,17 @@ namespace user
    }
 
 
-   void plain_edit::_001EditCut()
+   void plain_edit::_001EditCut(const ::action_context & actioncontext)
    {
 
       clipboard_copy();
 
-      _001DeleteSel();
+      _001DeleteSel(false, actioncontext);
 
    }
 
 
-   void plain_edit::_001DeleteSel(bool bBackIfSelectionEmpty)
+   void plain_edit::_001DeleteSel(bool bBackIfSelectionEmpty, const ::action_context & actioncontext)
    {
 
       //bool bFullUpdate = true;
@@ -7097,12 +7097,14 @@ namespace user
 
       //}
 
-      queue_graphics_call([this, bBackIfSelectionEmpty](::draw2d::graphics_pointer & pgraphics)
+      queue_graphics_call([this, bBackIfSelectionEmpty, actioncontext](::draw2d::graphics_pointer & pgraphics)
       {
 
          on_reset_focus_start_tick();
 
          plain_edit_on_delete(pgraphics, bBackIfSelectionEmpty);
+
+         plain_edit_on_after_change_text(pgraphics, actioncontext);
 
       });
 
@@ -7790,7 +7792,7 @@ namespace user
 
                pkey->m_bRet = true;
 
-               _001EditCut();
+               _001EditCut(e_source_user);
 
                //clipboard_copy();
 
@@ -8037,7 +8039,7 @@ namespace user
                   if (!m_bReadOnly)
                   {
 
-                     _001DeleteSel(true);
+                     _001DeleteSel(true, e_source_user);
 
                      //character_count i1 = m_ptree->m_iSelBeg;
 
@@ -8154,7 +8156,7 @@ namespace user
                if (is_window_enabled())
                {
 
-                  _001DeleteSel();
+                  _001DeleteSel(false, e_source_user);
                   //queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
                   //{
 
@@ -10243,7 +10245,7 @@ namespace user
       if (m_callbackOnAfterChangeText)
       {
 
-         m_callbackOnAfterChangeText(this);
+         m_callbackOnAfterChangeText(this, actioncontext);
 
       }
 
@@ -10647,7 +10649,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      _001EditCut();
+      _001EditCut(e_source_user);
 
       pmessage->m_bRet = true;
 
@@ -10733,7 +10735,7 @@ namespace user
    bool plain_edit::on_edit_delete(const ::action_context & actioncontext)
    {
 
-      _001DeleteSel();
+      _001DeleteSel(false, actioncontext);
       //::draw2d::graphics_pointer pgraphics;
 
       //if (is_window_enabled())

@@ -48,7 +48,7 @@ public:
    virtual void send_signal(const ::atom & atom, const ::action_context & actioncontext);
 
 
-   virtual void on_property_changed(property * pproperty, const ::action_context & actioncontext) override;
+   virtual void on_property_changed(::property * pproperty, const ::action_context & actioncontext) override;
 
 
    virtual void destroy_signal_handling();

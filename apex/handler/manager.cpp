@@ -355,7 +355,7 @@ void manager::send_signal(const ::atom & atom, const ::action_context & actionco
 }
 
 
-void manager::on_property_changed(property * pproperty, const ::action_context & actioncontext)
+void manager::on_property_changed(::property * pproperty, const ::action_context & actioncontext)
 {
 
    send_signal(pproperty->name(), actioncontext);

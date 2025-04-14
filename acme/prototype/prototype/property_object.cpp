@@ -2,7 +2,7 @@
 //#include "property_object.h"
 //#include "payload.h"
 #include "acme/constant/message.h"
-#include "acme/filesystem/filesystem/file_system.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
@@ -422,7 +422,7 @@ void property_object::write_ini_configuration()
 void property_object::read_configuration_from_ini(const ::payload & payloadFile)
 {
 
-   auto strIni = file_system()->safe_get_string(payloadFile);
+   auto strIni = file()->safe_get_string(payloadFile);
 
    get_property_set().parse_ini(strIni);
 
@@ -435,7 +435,7 @@ void property_object::write_configuration_to_ini(const ::payload & payloadFile)
 
    auto strIni = get_property_set().get_ini();
 
-   file_system()->put_block(payloadFile, strIni);
+   file()->put_text(payloadFile, strIni);
 
 }
 

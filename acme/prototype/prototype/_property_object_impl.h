@@ -167,10 +167,10 @@
 //}
 //
 //
-////inline bool property_object::__is_true(const ::atom & atom, const ::payload & varDefault, bool bDefault = false) const
+////inline bool property_object::__is_true(const ::atom & atom, const ::payload & payloadDefault, bool bDefault = false) const
 ////{
 ////
-////   return payload(atom).__is_true(varDefault, bDefault);
+////   return payload(atom).__is_true(payloadDefault, bDefault);
 ////
 ////}
 //
@@ -181,15 +181,15 @@
 //
 //inline ::payload property_object::payload(const ::atom & atom) const { return find_property(atom); }
 //
-//inline ::payload property_object::payload(const ::atom & atom, const ::payload & varDefault) const { return operator()(atom, varDefault); }
+//inline ::payload property_object::payload(const ::atom & atom, const ::payload & payloadDefault) const { return operator()(atom, payloadDefault); }
 //
 //inline ::payload property_object::operator()(const ::atom & atom) const { return find_payload(atom, ::error_not_found); }
 //
-//inline ::payload property_object::operator()(const ::atom & atom, const ::payload & varDefault) const { return find_payload(atom, varDefault); }
+//inline ::payload property_object::operator()(const ::atom & atom, const ::payload & payloadDefault) const { return find_payload(atom, payloadDefault); }
 //
 //inline ::payload property_object::find_payload(const ::atom & atom) const { return find_payload(atom, ::error_not_found); }
 //
-//inline ::payload property_object::find_payload(const ::atom & atom, const ::payload & varDefault) const
+//inline ::payload property_object::find_payload(const ::atom & atom, const ::payload & payloadDefault) const
 //{
 //
 //   auto pproperty = find_property(atom);
@@ -197,7 +197,7 @@
 //   if (!pproperty)
 //   {
 //
-//      return varDefault;
+//      return payloadDefault;
 //
 //   }
 //

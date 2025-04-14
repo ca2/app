@@ -34,7 +34,7 @@ public:
 
    virtual ::particle * source_channel();
 
-   ::payload operator()(const atom & atom, const ::payload & varDefault = ::error_not_found) const;
+   ::payload operator()(const atom & atom, const ::payload & payloadDefault = ::error_not_found) const;
 
    string _001Replace(const ::string & str) const;
 
@@ -204,7 +204,7 @@ public:
 
    ::payload value(const atom & idName) const;
 
-   ::payload value(const atom & idName, ::payload varDefault) const;
+   ::payload value(const atom & idName, ::payload payloadDefault) const;
 
    bool payload_bool(const atom & atom, bool bDefault = false) const;
    ::string payload_string(const atom & atom, const ::string & strDefault = nullptr) const;

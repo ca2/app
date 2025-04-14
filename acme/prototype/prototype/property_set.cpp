@@ -2589,7 +2589,7 @@ property & property_set::get(const ::atom_array & atoma)
 //}
 
 
-::payload property_set::operator()(const ::atom & atom, const ::payload & varDefault) const
+::payload property_set::operator()(const ::atom & atom, const ::payload & payloadDefault) const
 {
 
    auto pproperty = find(atom);
@@ -2597,7 +2597,7 @@ property & property_set::get(const ::atom_array & atoma)
    if (!pproperty)
    {
 
-      return varDefault;
+      return payloadDefault;
 
    }
 
@@ -2779,7 +2779,7 @@ bool property_set::is_true_or_empty(const atom & atom) const
 }
 
 
-::payload property_set::value(const atom & idName, ::payload varDefault) const
+::payload property_set::value(const atom & idName, ::payload payloadDefault) const
 {
 
    property * pproperty = find(idName);
@@ -2787,7 +2787,7 @@ bool property_set::is_true_or_empty(const atom & atom) const
    if (pproperty == nullptr)
    {
 
-      return varDefault;
+      return payloadDefault;
 
    }
 

@@ -505,7 +505,7 @@ namespace platform
       static inline ::atom atom(long long i);
       //static inline ::atom_space & atom();
       inline ::atom atom(const ::payload & payload);
-      inline ::atom atom(const property & prop);
+      inline ::atom atom(const ::property & property);
 
       virtual void check_exit() override;
 

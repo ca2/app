@@ -1851,9 +1851,6 @@
     <ClInclude Include="parallelization\_.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
-    <ClInclude Include="platform\ini.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="prototype\string\string.h">
       <Filter>Header Files\prototype\string</Filter>
     </ClInclude>
@@ -5008,9 +5005,6 @@
     </ClCompile>
     <ClCompile Include="prototype\string\string.cpp">
       <Filter>Source Files\prototype\string</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\ini.cpp">
-      <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="prototype\prototype\integral_byte.cpp">
       <Filter>Source Files\prototype\mathematics</Filter>

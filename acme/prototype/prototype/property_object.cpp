@@ -2,6 +2,7 @@
 //#include "property_object.h"
 //#include "payload.h"
 #include "acme/constant/message.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/platform/application.h"
 #include "acme/platform/system.h"
 //#include "acme/prototype/mathematics/c_number.h"
@@ -339,6 +340,77 @@ void property_object::on_catch_all_exception()
    m_estatus = error_catch_all_exception;
 
    set_fail_flag();
+
+}
+
+
+::string property_object::get_object_file_name()
+{
+
+   ::string str = ::type(*this).name();
+
+   str.find_replace("::", "_");
+
+   return str;
+
+}
+
+
+::file::path property_object::get_ini_configuration_path()
+{
+
+   ::file::path path;
+
+   path = "dropbox-app://";
+
+   ::string strFileName;
+
+   strFileName = get_object_file_name() + ".ini";
+
+   path /= strFileName;
+
+   return path;
+
+}
+
+
+void property_object::read_ini_configuration()
+{
+
+   auto pathIni = get_ini_configuration_path();
+
+   read_configuration_from_ini(pathIni);
+
+}
+
+
+void property_object::write_ini_configuration()
+{
+
+   auto pathIni = get_ini_configuration_path();
+
+   write_configuration_to_ini(pathIni);
+
+}
+
+
+void property_object::read_configuration_from_ini(const ::payload & payloadFile)
+{
+
+   auto strIni = file_system()->safe_get_string(payloadFile);
+
+   get_property_set().parse_ini(strIni);
+
+
+}
+
+
+void property_object::write_configuration_to_ini(const ::payload & payloadFile)
+{
+
+   auto strIni = get_property_set().get_ini();
+
+   file_system()->put_block(payloadFile, strIni);
 
 }
 

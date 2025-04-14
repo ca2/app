@@ -222,7 +222,7 @@ namespace platform
 
 
       virtual ::file::path get_app_localconfig_folder();
-      virtual ::pointer<::handle::ini>get_ini();
+      //virtual ::pointer<::handle::ini>get_ini();
 
 
       virtual ::string get_visual_studio_build();

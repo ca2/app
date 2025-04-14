@@ -3,7 +3,7 @@
 //
 #include "framework.h"
 #include "context_apex.h"
-#include "acme/platform/ini.h"
+//#include "acme/platform/ini.h"
 
 
 namespace platform
@@ -58,16 +58,16 @@ namespace platform
    //::file_system * file_system() override{}
 
 
-   ::handle::ini apex_context_layer::ini_from_path(::file::path& path)
-   {
-      return {};
-   }
+   //::handle::ini apex_context_layer::ini_from_path(::file::path& path)
+   //{
+   //   return {};
+   //}
 
 
-   ::handle::ini apex_context_layer::local_ini()
-   {
-      return {};
-   }
+   //::handle::ini apex_context_layer::local_ini()
+   //{
+   //   return {};
+   //}
 
 
    //bool apex_context_layer::http_download(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrFile){}

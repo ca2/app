@@ -83,7 +83,15 @@ public:
 
 //#endif
 
+   virtual ::string get_object_file_name();
 
+   virtual ::file::path get_ini_configuration_path();
+
+   virtual void read_ini_configuration();
+   virtual void write_ini_configuration();
+
+   virtual void read_configuration_from_ini(const ::payload & payloadFile);
+   virtual void write_configuration_to_ini(const ::payload & payloadFile);
 
    bool has_property(const atom & atom) const;
    property * lookup_property(const atom & atom) const;

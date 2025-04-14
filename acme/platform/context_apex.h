@@ -75,9 +75,9 @@ namespace platform
       //::file_system * file_system() override;
 
 
-      virtual ::handle::ini ini_from_path(::file::path& path);
+      //virtual ::handle::ini ini_from_path(::file::path& path);
 
-      virtual ::handle::ini local_ini();
+      //virtual ::handle::ini local_ini();
 
 
 

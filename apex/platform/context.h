@@ -88,9 +88,9 @@ namespace apex
       //::file_system * file_system() override;
 
 
-      ::handle::ini ini_from_path(::file::path& path) override;
+      //::handle::ini ini_from_path(::file::path& path) override;
 
-      ::handle::ini local_ini() override;
+      //::handle::ini local_ini() override;
 
 
 

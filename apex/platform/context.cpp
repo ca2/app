@@ -17,7 +17,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/component_implementation.h"
 #include "acme/platform/http.h"
-#include "acme/platform/ini.h"
+//#include "acme/platform/ini.h"
 #include "acme/handler/request.h"
 #include "acme/prototype/string/str.h"
 #include "apex/filesystem/fs/raw_folder_protocol.h"
@@ -908,55 +908,55 @@ namespace apex
    // }
    //
 
-   ::handle::ini context::ini_from_path(::file::path & path)
-   {
+   //::handle::ini context::ini_from_path(::file::path & path)
+   //{
 
-      ::handle::ini ini;
+   //   ::handle::ini ini;
 
-      ::file_pointer pfile;
+   //   ::file_pointer pfile;
 
-      if (directory()->is(path))
-      {
+   //   if (directory()->is(path))
+   //   {
 
-         pfile = file()->get_reader(path / "this.ini");
+   //      pfile = file()->get_reader(path / "this.ini");
 
-         //string str;
+   //      //string str;
 
-         //pfile->full_read_string(str);
+   //      //pfile->full_read_string(str);
 
-         //ini.parse_ini(str);
+   //      //ini.parse_ini(str);
 
-      }
-      else if (file()->exists(path))
-      {
+   //   }
+   //   else if (file()->exists(path))
+   //   {
 
-         pfile = file()->get_reader(path);
-         //ini.parse_ini_file(file()->get_file());
+   //      pfile = file()->get_reader(path);
+   //      //ini.parse_ini_file(file()->get_file());
 
-      }
+   //   }
 
-      if (pfile)
-      {
+   //   if (pfile)
+   //   {
 
-         auto str = pfile->full_string();
+   //      auto str = pfile->full_string();
 
-         ini.parse_ini(str);
+   //      ini.parse_ini(str);
 
-      }
+   //   }
 
-      return ini;
+   //   return ini;
 
-   }
+   //}
 
 
-   ::handle::ini context::local_ini()
-   {
+   //::handle::ini context::local_ini()
+   //{
 
-      ::file::path pathFolder = directory_system()->localconfig();
+   //   ::file::path pathFolder = directory_system()->localconfig();
 
-      return ini_from_path(pathFolder);
+   //   return ini_from_path(pathFolder);
 
-   }
+   //}
 
 
 

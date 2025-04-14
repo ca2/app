@@ -2473,7 +2473,6 @@
     <ClCompile Include="platform\flags.cpp" />
     <ClCompile Include="platform\hyperlink.cpp" />
     <ClCompile Include="platform\implementable.cpp" />
-    <ClCompile Include="platform\ini.cpp" />
     <ClCompile Include="platform\integration_context.cpp" />
     <ClCompile Include="platform\library.cpp" />
     <ClCompile Include="platform\log.cpp" />
@@ -3352,7 +3351,6 @@
     <ClInclude Include="platform\flags.h" />
     <ClInclude Include="platform\hyperlink.h" />
     <ClInclude Include="platform\implementable.h" />
-    <ClInclude Include="platform\ini.h" />
     <ClInclude Include="platform\keep.h" />
     <ClInclude Include="platform\less.h" />
     <ClInclude Include="platform\library.h" />

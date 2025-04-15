@@ -1145,18 +1145,31 @@ namespace platform
    }
 
 
-   //::pointer<::handle::ini>application::get_ini()
-   //{
+   ::property_set application::get_ini(const ::scoped_string& scopedstrIniName)
+   {
 
-   //   auto pathFolder = get_app_localconfig_folder();
+      ::string strIniName(scopedstrIniName);
 
-   //   auto pathIni = pathFolder / "this.ini";
+      if (strIniName.is_empty())
+      {
 
-   //   auto pini = file_system()->get_ini(pathIni);
+         strIniName = "this";
 
-   //   return pini;
+      }
 
-   //}
+      ::string strIniFileName;
+
+      strIniFileName = strIniName + ".ini";
+
+      auto pathFolder = get_app_localconfig_folder();
+
+      auto pathIni = pathFolder / "this.ini";
+
+      auto set = file()->get_ini(pathIni);
+
+      return ::transfer(set);
+
+   }
 
 
 #ifdef _DEBUG

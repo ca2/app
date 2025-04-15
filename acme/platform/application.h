@@ -676,7 +676,7 @@ namespace platform
 
 
       virtual ::file::path get_app_localconfig_folder() override;
-      //virtual ::pointer<::handle::ini>get_ini() override;
+      virtual ::property_set get_ini(const ::scoped_string& scopedstrIniName = {}) override;
 
 
       virtual ::string get_visual_studio_build() override;

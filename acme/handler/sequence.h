@@ -119,7 +119,7 @@ public:
    ~sequence() override;
    
 
-#if defined(DEBUG)
+#if defined(_DEBUG)
 
    long long increment_reference_count() override;
    long long decrement_reference_count() override;

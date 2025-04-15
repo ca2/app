@@ -315,7 +315,7 @@ string time_binary_platform(string strPlatform)
 string process_configuration_name()
 {
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
    return "basis";
 

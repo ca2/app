@@ -6,7 +6,7 @@
 
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
 namespace test_compilation_some_range_functions

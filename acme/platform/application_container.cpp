@@ -505,7 +505,7 @@ namespace platform
    //
    //            bool bConvenientInstallation = false;
    //
-   //#ifdef __DEBUG
+   //#ifdef _DEBUG
    //
    //            bConvenientInstallation = true;
    //

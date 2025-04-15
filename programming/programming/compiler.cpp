@@ -89,7 +89,7 @@ namespace programming
 #if MEMDLEAK
 
       m_strDynamicSourceConfiguration = "memdleak";
-      m_strDynamicSourceStage = "stage";
+      m_strDynamicSourceStage = "time-" OPERATING_SYSTEM_NAME;
 
 
 #elif defined(_DEBUG)
@@ -99,8 +99,11 @@ namespace programming
 
 #else
 
-      m_strDynamicSourceConfiguration = "profiler";
-      m_strDynamicSourceStage = "profiler";
+      //m_strDynamicSourceConfiguration = "profiler";
+      //m_strDynamicSourceStage = "profiler";
+
+      m_strDynamicSourceConfiguration = "release";
+      m_strDynamicSourceStage = "time-" OPERATING_SYSTEM_NAME;
 
 #endif
 

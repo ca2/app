@@ -77,8 +77,8 @@ NAMESPACE_BEGIN(nanoui)
       bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key & ekeyModifiers, const ::string & strText) override;
       bool mouse_drag_event(const sequence2_int & p, const sequence2_int & rel, const ::user::e_key & ekeyModifiers) override;
       bool scroll_event(const int_point & p, const float_size & rel) override;
-      void draw(::nano2d::context * pcontext) override;
-      void draw_contents(::nano2d::context * pcontext) override;
+      void draw(::nano2d::context  * pcontext) override;
+      void draw_contents(::nano2d::context  * pcontext) override;
 
    protected:
       // opengl

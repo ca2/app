@@ -14,7 +14,7 @@
 #pragma once
 
 
-#include "Widget.h"
+#include "nanoui/Widget.h"
 
 
 namespace nanoui
@@ -98,10 +98,10 @@ namespace nanoui
       virtual bool mouse_button_event(const int_point & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
 
       /// The preferred size of this CheckBox.
-      virtual int_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      virtual int_size preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;
 
       /// Draws this CheckBox.
-      virtual void draw(::nano2d::context * pcontext) override;
+      virtual void draw(::nano2d::context  * pcontext) override;
 };
 
 

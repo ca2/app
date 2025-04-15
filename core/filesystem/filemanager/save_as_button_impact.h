@@ -24,7 +24,7 @@ namespace filemanager
 
 
       bool on_click(::item * pitem, ::user::mouse * pmouse) override;
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
       virtual void save_document(::file::path path);

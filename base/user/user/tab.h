@@ -100,7 +100,7 @@ namespace user
       virtual void _001CloseTab(::collection::index iTab);
 
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       virtual void rotate();
 

@@ -1,9 +1,9 @@
 #pragma once
 
 
-#include "session.h"
-#include "context.h"
-#include "acme/constant/os_text.h"
+//#include "apex/platform/session.h"
+//#include "apex/platform/context.h"
+//#include "acme/constant/os_text.h"
 #include "acme/platform/system.h"
 #include "apex/parallelization/thread.h"
 
@@ -99,17 +99,17 @@ namespace apex
       void defer_innate_ui() override;
 
 
-#ifdef WINDOWS_DESKTOP
-
-#elif defined(UNIVERSAL_WINDOWS)
-
-      void system_construct(const ::string_array & stra);
-
-#else
-
-      void system_construct(const ::string & pszCommandLine, const ::e_display& edisplay = ::e_display_none);
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//#elif defined(UNIVERSAL_WINDOWS)
+//
+//      void system_construct(const ::string_array & stra);
+//
+//#else
+//
+//      void system_construct(const ::string & pszCommandLine, const ::e_display& edisplay = ::e_display_none);
+//
+//#endif
 
       void do_operating_ambient_factory() override;
 
@@ -333,12 +333,12 @@ namespace apex
       //void request(::request * prequest) override;
 
 
-#ifdef ANDROID
-//#pragma message("at macos??")
-      virtual bool android_set_user_wallpaper(string strUrl);
-      virtual bool android_get_user_wallpaper(string & strUrl);
-
-#endif
+//#ifdef ANDROID
+////#pragma message("at macos??")
+//      virtual bool android_set_user_wallpaper(string strUrl);
+//      virtual bool android_get_user_wallpaper(string & strUrl);
+//
+//#endif
 
       virtual bool defer_accumulate_on_open_file(string_array stra, string strExtra) override;
 
@@ -393,17 +393,17 @@ namespace apex
 
       bool sync_load_url(string& str, const ::string & pszUrl,  ::http::cookies* pcookies = nullptr) override;
 
-
-
-
-
-#ifdef UNIVERSAL_WINDOWS
-
-      virtual bool window_rectangle(::int_rectangle* prectangle);
-
-
-#endif
-
+//
+//
+//
+//
+//#ifdef UNIVERSAL_WINDOWS
+//
+//      virtual bool window_rectangle(::int_rectangle* prectangle);
+//
+//
+//#endif
+//
 
 
 
@@ -443,9 +443,11 @@ namespace apex
       
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant) override;
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       bool _handle_uri(const ::string & str) override;
+
+      using ::platform::system::application_main;
 
       virtual void application_main(int argc, char *argv[], const ::string & pszCommandLine) override;
 
@@ -472,7 +474,7 @@ namespace apex
 
 
 
-//#ifndef __DEBUG
+//#ifndef _DEBUG
 //
 //#include "apex/inline/factory_item.cpp"
 //
@@ -486,8 +488,8 @@ CLASS_DECL_APEX ::apex::system * create_apex_system();
 
 
 
-#define STRINGIFY(x) #x
-#define TOSTRING(x) STRINGIFY(x)
+//#define STRINGIFY(x) #x
+//#define TOSTRING(x) STRINGIFY(x)
 //#define SET_ENUM_TEXT(enum_value) psystem->set_enum_text(enum_value, TOSTRING(enum_value))
 
 
@@ -516,9 +518,9 @@ CLASS_DECL_APEX ::apex::system * create_apex_system();
 
 // void CLASS_DECL_APEX __start_core_system_main(::base::system * psystem);
 
-#ifdef UNIVERSAL_WINDOWS
-
-CLASS_DECL_APEX int app_core_main(const ::string & psz);
-
-#endif
+//#ifdef UNIVERSAL_WINDOWS
+//
+//CLASS_DECL_APEX int app_core_main(const ::string & psz);
+//
+//#endif
 

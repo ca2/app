@@ -1,7 +1,7 @@
-LIBRARY "wallpaper_system_summary"
+LIBRARY "wallpaper_tranform_system_summary"
 
 EXPORTS
-wallpaper_system_summary_factory
+wallpaper_transform_system_summary_factory
 
 
 

@@ -66,7 +66,7 @@ namespace http
       //}
 
 
-      operator property() const
+      operator ::property() const
       {
 
          return property(m_strName,m_payload);

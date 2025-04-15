@@ -54,7 +54,7 @@ thread_local ::message_queue * t_pmessagequeue = nullptr;
    if (!t_pmessagequeue)
    {
 
-      auto taskindex = ::task_index();
+      auto taskindex = ::current_task_index();
 
       t_pmessagequeue=  system()->m_ptaskmessagequeue->get_message_queue(taskindex, false);
 
@@ -64,6 +64,10 @@ thread_local ::message_queue * t_pmessagequeue = nullptr;
 
 }
 
+thread_local ::pointer < ::manual_reset_happening >
+t_phappeningNotifyLock;
+//thread_local ::pointer_array < ::subparticle >
+//t_synca;
 
 ::e_status MsgWaitForMultipleObjectsEx(unsigned int dwSize, hsynchronization * pparticle, const class ::time & timeWait, unsigned int dwWakeMask, unsigned int dwFlags)
 {
@@ -165,15 +169,23 @@ thread_local ::message_queue * t_pmessagequeue = nullptr;
 
       int i;
 
-      auto pnotifylock = __allocate notify_lock();
-
       //while (true)
       //{
+      
+      if(!t_phappeningNotifyLock)
+      {
+         
+         __raw_construct_new(t_phappeningNotifyLock);
+         
+      }
+      //auto pnotifylock = __allocate notify_lock(t_phappeningNotifyLock);
+      notify_lock notifylock(t_phappeningNotifyLock);
 
          if (::is_set(pmq))
          {
 
-            if (pmq->m_phappeningNewMessage->start_notify_lock(pnotifylock))
+            
+            if (pmq->m_phappeningNewMessage->start_notify_lock(&notifylock))
             {
 
                return (enum_status)(((int) signaled_base) + dwSize);
@@ -187,7 +199,7 @@ thread_local ::message_queue * t_pmessagequeue = nullptr;
 
             auto psync = pparticle[i];
 
-            if (psync->start_notify_lock(pnotifylock))
+            if (psync->start_notify_lock(&notifylock))
             {
 
                auto estatus = signaled_base + i;
@@ -198,7 +210,7 @@ thread_local ::message_queue * t_pmessagequeue = nullptr;
 
          }
 
-   if (!pnotifylock->m_manualresethappening._wait(timeWait))
+   if (notifylock.m_pmanualresethappening->_wait(timeWait))
    {
 
       return error_wait_timeout;

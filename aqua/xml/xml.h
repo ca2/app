@@ -35,11 +35,11 @@ namespace xml
       string special_chars(const ::scoped_string & scopedstr);
 
       // get XML from the property considering it a node
-      string from(const property* pprop, ::xml::disp_option* opt /*= &optDefault*/);
+      string from(const ::property* pprop, ::xml::disp_option* opt /*= &optDefault*/);
     
 
       // get XML from the property considering it XML attributes part of a node
-      string from(const property& prop, ::xml::disp_option* opt /*= &optDefault*/);
+      string from(const ::property& prop, ::xml::disp_option* opt /*= &optDefault*/);
 
 
    };

@@ -49,7 +49,7 @@ namespace networking_bsd
       else
       {
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
          informationf("The Winsock 2.2 dll was found. OK.\n");
 

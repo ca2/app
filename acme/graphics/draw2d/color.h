@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "color32.h"
-#include "opacity.h"
+#include "acme/graphics/draw2d/color32.h"
+#include "acme/graphics/draw2d/opacity.h"
 #include "acme/graphics/image/color_indexes.h"
 
 

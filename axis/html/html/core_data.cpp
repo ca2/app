@@ -8,10 +8,11 @@
 #include "acme/parallelization/task_keep.h"
 #include "acme/prototype/prototype/url.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/application.h"
+#include "acme/platform/hyperlink.h"
 #include "acme/prototype/data/listener.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/context.h"
-#include "acme/platform/hyperlink.h"
 #include "axis/html/element/element.h"
 #include "axis/html/impl/element.h"
 #include "axis/html/graphics/font.h"
@@ -215,10 +216,10 @@ namespace html
    }
 
 
-   void core_data::handle(::topic * ptopic, ::context * pcontext)
+   void core_data::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      html_data::handle(ptopic, pcontext);
+      html_data::handle(ptopic, phandlercontext);
 
    }
 

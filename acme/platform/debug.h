@@ -76,7 +76,7 @@ So we've done a broad replace of all the member-related ASSERT to ASSUME.
 #endif // ASSERT
 
 #ifndef VERIFY
-#ifdef __DEBUG
+#ifdef _DEBUG
 #define VERIFY(expr) ASSERT(expr)
 #else
 #define VERIFY(expr) (expr ? void() : throw ::exception());
@@ -246,7 +246,7 @@ typedef struct _MEMORY_STATE
 #define _STATIC_ASSERT(expr) typedef char __static_assert_t[ (expr) ]
 #endif
 
-#ifndef __DEBUG
+#ifndef _DEBUG
 
 ////////////////////////////////////////////////////////////////////////////////////
 //

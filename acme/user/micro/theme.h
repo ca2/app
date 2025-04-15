@@ -41,7 +41,7 @@ namespace micro
 
       virtual void update_drawing_objects();
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
    };

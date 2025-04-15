@@ -175,7 +175,7 @@ namespace user
       friend class BaseDockBar;
 
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
 

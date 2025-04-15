@@ -32,7 +32,7 @@ namespace nanoui
    }
 
 
-   int_size ColorWheel::preferred_size(::nano2d::context*, bool bRecalcTextSize) 
+   int_size ColorWheel::preferred_size(::nano2d::context *, bool bRecalcTextSize) 
    {
 
       return { 100, 100 };
@@ -42,7 +42,7 @@ namespace nanoui
 
    //#define ::nano2d::f_pi MATH_PI
 
-   void ColorWheel::draw(::nano2d::context* pcontext)
+   void ColorWheel::draw(::nano2d::context * pcontext)
    {
 
       Widget::draw(pcontext);

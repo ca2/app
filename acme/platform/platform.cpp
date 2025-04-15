@@ -924,7 +924,9 @@ g_bWindowingOutputDebugString = true;
 
       information() << "system::factory Going to create factory from library \"" << strLibrary << "\".";
 
-      plibrary->create_factory(pfactory);
+      plibrary->create_factory();
+
+      pfactory = plibrary->m_pfactory;
 
       if (!pfactory)
       {
@@ -1029,7 +1031,9 @@ g_bWindowingOutputDebugString = true;
 
       }
 
-      plibrary->create_factory(pfactory);
+      plibrary->create_factory();
+
+      pfactory = plibrary->m_pfactory;
 
       return pfactory;
 
@@ -1183,7 +1187,7 @@ g_bWindowingOutputDebugString = true;
 
       }
       
-      // #ifdef DEBUG
+      // #ifdef _DEBUG
       //
       // information() << "Library was opened: \"" << strLibrary << "\".";
       //
@@ -1430,7 +1434,7 @@ g_bWindowingOutputDebugString = true;
 //CLASS_DECL_ACME::factory::factory * get_system_factory()
 //{
 //
-//   return this->platform()->m_pfactory;
+//   return this->::system()->m_pfactory;
 //
 //}
 

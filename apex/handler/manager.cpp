@@ -348,14 +348,14 @@ void manager::send_signal(const ::atom & atom, const ::action_context & actionco
 
    //ptopic->notify();
 
-   ////::context context;
+   ////::handler_context context;
 
    ////on_subject(ptopic, &context);
 
 }
 
 
-void manager::on_property_changed(property * pproperty, const ::action_context & actioncontext)
+void manager::on_property_changed(::property * pproperty, const ::action_context & actioncontext)
 {
 
    send_signal(pproperty->name(), actioncontext);
@@ -500,7 +500,7 @@ void manager::erase_signal_handler(const ::signal_handler::base * pbase)
       while(true)
       {
       
-         auto p = psignal->m_signalhandlercontext2.predicate_find([pbase](auto & iterator)
+         auto p = psignal->m_signalhandlercontext.predicate_find([pbase](auto & iterator)
                                                                  {
             return iterator->m_element1.m_pbase == pbase;
             
@@ -513,7 +513,7 @@ void manager::erase_signal_handler(const ::signal_handler::base * pbase)
             
          }
          
-         psignal->m_signalhandlercontext2.erase(p);
+         psignal->m_signalhandlercontext.erase(p);
          
       }
 

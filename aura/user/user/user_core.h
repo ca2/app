@@ -164,7 +164,7 @@ namespace user
       virtual void will_use_impact_hint(::atom idImpact);
 
 
-      //virtual virtual void term_instance() override;
+      //virtual void term_instance() override;
 
 
       virtual void LoadStdProfileSettings(unsigned int nMaxMRU = 10);

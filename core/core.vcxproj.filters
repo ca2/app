@@ -305,9 +305,6 @@
     <ClInclude Include="user\user\toolbar_control.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\tree.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\xfplayer_impact_line.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -1045,7 +1042,7 @@
     <ClCompile Include="user\user\tree.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\tree_data.cpp">
+    <ClCompile Include="user\user\tree_data_base.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\tree_window.cpp">

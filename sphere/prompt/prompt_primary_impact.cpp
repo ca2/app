@@ -25,7 +25,7 @@ namespace prompt
    }
 
 
-   void primary_impact::handle(::topic * ptopic, ::context * pcontext)
+   void primary_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       __UNREFERENCED_PARAMETER(ptopic);

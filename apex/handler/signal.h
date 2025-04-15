@@ -5,14 +5,14 @@
 
 #include "acme/handler/extended_topic.h"
 #include "acme/prototype/collection/map.h"
-#include "context.h"
+//#include "acmee/handler/context.h"
 
 
-class context;
+class handler_context;
 
-using signal_handler_context = map < ::signal_handler, ::pointer < ::context > >;
+using signal_handler_context = ::map < ::signal_handler, ::pointer < ::handler_context > >;
 
-using object_context = map < ::object *, ::pointer < ::context > >;
+using object_handler_context = ::map < ::object *, ::pointer < ::handler_context > >;
 
 
 namespace handler
@@ -26,9 +26,9 @@ namespace handler
    public:
 
 
-      ::manager * m_pmanager;
-      ::signal_handler_context               m_signalhandlercontext2;
-      ::object_context                       m_objectcontext;
+      ::manager *                      m_pmanager;
+      ::signal_handler_context         m_signalhandlercontext;
+      ::object_handler_context         m_objecthandlercontext;
 
 
       signal(const ::atom & atom, ::manager * pmanager = nullptr);
@@ -69,7 +69,7 @@ namespace handler
 
       virtual bool is_modified() const;
 
-      virtual ::context * listener_context(const signal_handler & signalhandler);
+      virtual ::handler_context * listener_context(const signal_handler & signalhandler);
 
       void post_destroy_all();
 
@@ -101,9 +101,9 @@ namespace handler
 
       virtual void start_task();
 
-      virtual bool is_up_to_date(const ::context * pcontext) const;
+      virtual bool is_up_to_date(const ::handler_context * pcontext) const;
 
-      virtual void set_up_to_date(::context * pcontext);
+      virtual void set_up_to_date(::handler_context * pcontext);
 
 
 

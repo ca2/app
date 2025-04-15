@@ -166,7 +166,7 @@ namespace experience
       virtual void OnMove(::pointer<::user::interaction>pframewindow);
 
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       virtual void on_style_change();
 

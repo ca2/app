@@ -16,7 +16,7 @@ namespace earth
 
 
 
-//#ifdef __DEBUG
+//#ifdef _DEBUG
 //
 //
 //dump_context & operator <<(dump_context & dumpcontext,::earth::time_span timeSpan)

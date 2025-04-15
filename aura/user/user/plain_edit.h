@@ -4,7 +4,11 @@
 #include "scroll_base.h"
 #include "text_composition_composite.h"
 #include "acme/prototype/data/listener.h"
+#include "acme/prototype/data/tree_item.h"
 #include "acme/user/user/text.h"
+#include "apex/filesystem/file/edit_file.h"
+#include "plain_text_data.h"
+#include "plain_text_tree.h"
 
 
 class element_2d;
@@ -38,9 +42,82 @@ namespace user
       e_line_end_r = _e_line_end_length_1 | _e_line_end_r,
       e_line_end_n = _e_line_end_length_1 | _e_line_end_n,
       e_line_end_r_n = _e_line_end_length_2 | _e_line_end_r | _e_line_end_n,
+      e_line_end_not_eof = 1024,
 
    };
 
+   inline enum_line as_enum_line(const char * psz)
+   {
+
+      if (*psz == '\r')
+      {
+
+         if (*(psz + 1) == '\n')
+         {
+
+            return e_line_end_r_n;
+
+         }
+         else
+         {
+
+            return e_line_end_r;
+
+         }
+
+      }
+      else if (*psz == '\n')
+      {
+
+         return e_line_end_n;
+
+      }
+      else if (!*psz)
+      {
+
+         return e_line_end_eof;
+
+      }
+      else
+      {
+
+         throw e_line_end_not_eof;
+
+      }
+
+   }
+   inline const char * as_string(enum_line eline)
+   {
+
+      if (eline == e_line_end_r_n)
+      {
+
+         return "\r\n";
+      }
+      else if (eline == e_line_end_r)
+      {
+
+         return "\r";
+
+      }
+      else if (eline == e_line_end_n)
+      {
+
+         return "\n";
+
+      }
+      else
+      {
+
+         return nullptr;
+
+      }
+
+   }
+   inline int as_length(enum_line eline)
+   {
+      return eline & e_line_end_length;
+   }
 
    class plain_edit_error :
       virtual public ::particle
@@ -70,6 +147,8 @@ namespace user
      , virtual public text_composition_composite
 #endif
       , virtual public ::user::text
+      , virtual public ::user::plain_text_tree
+
    {
    public:
 
@@ -175,7 +254,7 @@ namespace user
       //   }
 
       //};
-
+      //::draw2d::graphics_pointer             m_pgraphicsPlainEdit;
       int                                    m_iDrawTextFlags;
       class ::time                           m_timeLastDraw;
       ::pointer_array < plain_edit_error >   m_errora;
@@ -186,7 +265,7 @@ namespace user
       //bool                                m_bPendingOnSetText;
       //bool                                m_bPendingOnUpdate;
       //::action_context                    m_actioncontextPending;
-
+      enum_line                           m_eline;
       bool                                m_bNewSel;
       bool                                m_bCaretVisible;
       string                              m_strEmtpyText;
@@ -230,7 +309,7 @@ namespace user
       class ::time                          m_timeCaretPeriod;
       string_array                        m_straLines;
       double                              m_dy;
-      bool                                m_bGetTextNeedUpdate;
+      //bool                                m_bGetTextNeedUpdate;
       bool                                m_bNeedScrollUpdate;
       bool                                m_bTabInsertSpaces;
       character_count                             m_iImpactOffset; // in bytes
@@ -249,29 +328,37 @@ namespace user
       // Used for whatever it can make faster for large files (scroll for example)
       // keep each line flags
       index_array                         m_iaLineFlags;
-      index_array                         m_iaLineStart;
+      index_array                         m_iaLineIndex;
 
       bool                                m_bOwnData;
       ::pointer<plain_text_tree>       m_ptree;
-      ::data::tree_item *                 m_ptreeitem;
+      ::data::tree_item < plain_text_command > *                 m_ptreeitem;
 
 
       //bool                              m_bActionHover;
       array < double_array >              m_daExtent;
       ::file::insert_item *               m_pinsert;
-      plain_text_set_sel_command *        m_ppropertysetsel;
+      ::pointer < plain_text_set_sel_command >       m_ppropertysetsel;
       bool                                m_bParseDataPacks;
       bool                                m_bLastCaret;
 
 
-      ::function <void(::user::plain_edit *) >     m_callbackOnAfterChangeText;
+      ::function <void(::user::plain_edit *, const ::action_context &) >     m_callbackOnAfterChangeText;
 
 
 
       plain_edit();
       ~plain_edit() override;
 
+      virtual long long increment_reference_count() override
+      {
+         return ::matter::increment_reference_count();
+      }
 
+      virtual long long decrement_reference_count() override
+      {
+         return ::matter::decrement_reference_count();
+      }
       void destroy() override;
 
       void plain_edit_common_construct();
@@ -317,9 +404,9 @@ namespace user
       //virtual void on_context_offset(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual void _001EditCut();
+      virtual void _001EditCut(const ::action_context & actioncontext);
 
-      virtual void _001DeleteSel(bool bBackIfSelectionEmpty = false);
+      virtual void _001DeleteSel(bool bBackIfSelectionEmpty, const ::action_context & actioncontext);
       ///virtual bool plain_edit_delete_sel(::draw2d::graphics_pointer& pgraphics, bool & bFullUpdate, ::collection::index & iLineUpdate);
 
       virtual void _001ReplaceSel(const ::string & pszText);
@@ -413,7 +500,7 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
       virtual void OnDraw(::image::image *pimage);      // overridden to draw this ::user::impact
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
 
@@ -426,6 +513,7 @@ namespace user
       string plain_edit_get_line(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine);
       double plain_edit_get_line_extent(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, character_count iChar);
 
+      virtual void _update_line_start_array(::collection::index iLineStart = 0, ::collection::index iAccumul = -1);
       virtual void plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context & actioncontext);
 
       virtual void plain_edit_on_update(::draw2d::graphics_pointer & pgraphics, const ::action_context & actioncontext);
@@ -460,7 +548,7 @@ namespace user
       //virtual void get_text(string & str) override;
       //virtual void get_selection_text(string & str) override;
       //virtual void get_text(string & str, ::collection::index iBeg, ::collection::index iEnd) override;
-      virtual void get_text(string & str, ::collection::index iBeg = 0, ::collection::index iEnd = -1);
+      virtual void get_text(string & str, ::collection::index iBeg = 0, ::collection::index iEnd = -1) const;
 
       //void get_text_selection(character_count &iSelStart, character_count &iSelEnd) override;
       //void get_text_selection(character_count & iSelStart, character_count & iSelEnd);
@@ -492,7 +580,7 @@ namespace user
 
       void plain_edit_on_context_offset_layout(::draw2d::graphics_pointer & pgraphics, ::collection::index iOnlyLineToUpdate = -1);
       void plain_edit_on_calc_layout(::draw2d::graphics_pointer& pgraphics, ::collection::index iOnlyLineToUpdate = -1);
-      void _plain_edit_update_lines_and_extents(::draw2d::graphics_pointer& pgraphics, ::collection::index iOnlyLineToUpdate = -1);
+      void _plain_edit_update_extents(::draw2d::graphics_pointer& pgraphics, ::collection::index iOnlyLineStart = -1, ::collection::index iOnlyLineEnd = -1);
       //void _plain_edit_update_lines(::draw2d::graphics_pointer& pgraphics, ::collection::index iOnlyLineToUpdate = -1);
       //void _plain_edit_update_extents(::draw2d::graphics_pointer& pgraphics, ::collection::index iOnlyLineToUpdate = -1);
       //void _001OnCalcLayoutProc(::user::interaction_base * pimpact);
@@ -509,6 +597,7 @@ namespace user
       ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, character_count iSel, int & x) override;
       character_count plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::collection::index iColumn) override;
       character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, int x) override;
+      virtual character_count _plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, int x);
       ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, character_count iSel) override;
       bool plain_edit_caret_rect(::draw2d::graphics_pointer& pgraphics, ::int_rectangle * lprect, character_count iSel);
       bool plain_edit_index_range(::draw2d::graphics_pointer& pgraphics, ::int_rectangle * lprect, character_count iSel);
@@ -523,6 +612,7 @@ namespace user
       virtual void MacroBegin();
       void MacroRecord(::pointer<plain_text_command>pcommand);
       virtual void MacroEnd();
+      virtual void MacroDiscard();
 
       virtual bool __plain_edit_undo();
       virtual bool __plain_edit_redo();
@@ -537,7 +627,7 @@ namespace user
 
 
 
-      virtual ::pointer<::data::item>on_allocate_item();
+      virtual ::pointer<::item>on_allocate_item();
 
       void set_root(plain_text_tree * pdata, bool bOwnData);
 
@@ -564,10 +654,19 @@ namespace user
 
       virtual void plain_edit_on_delete(::draw2d::graphics_pointer& pgraphics, bool bBackIfSelectionEmtpy);
 
+      virtual bool _plain_edit_on_delete(::draw2d::graphics_pointer & pgraphics, ::collection::index & iLineUpdate, ::character_count & i1, ::character_count & i2, bool bBackIfSelectionEmtpy);
+      virtual void _plain_edit_update_for_delete(::draw2d::graphics_pointer & pgraphics, const ::block & block, ::character_count i1, ::collection::index & iLine1, ::collection::index & iLine2);
+      virtual void _plain_edit_update_for_insert(::draw2d::graphics_pointer & pgraphics, const ::block & block, ::character_count i1, ::collection::index & iLine1, ::collection::index & iLine2);
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       string get_ime_composition() const override;
 
+      void _on_undo_edit_item(::file::edit_item_base * pedititem) override;
+      void _on_redo_edit_item(::file::edit_item_base * pedititem) override;
+      virtual void _on_undo_insert(::file::insert_item * pinsertitem);
+      virtual void _on_undo_delete(::file::delete_item * pinsertitem);
+      virtual void _on_redo_insert(::file::insert_item * pinsertitem);
+      virtual void _on_redo_delete(::file::delete_item * pdeleteitem);
 
    };
 

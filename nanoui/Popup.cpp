@@ -27,7 +27,7 @@ namespace nanoui
    
    }
 
-   void Popup::perform_layout(::nano2d::context* pcontext, bool bRecalcTextSize) 
+   void Popup::perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize) 
    {
 
       if (m_playout || m_children.size() != 1) {
@@ -85,7 +85,7 @@ namespace nanoui
    }
 
 
-   void Popup::draw(::nano2d::context* pcontext)
+   void Popup::draw(::nano2d::context * pcontext)
    {
 
       refresh_relative_placement();

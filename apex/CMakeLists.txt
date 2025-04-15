@@ -104,8 +104,6 @@ list(APPEND apex_source
    filesystem/fs/set.h
    filesystem/_impl.h
    filesystem/filesystem.h
-   handler/context.cpp
-   handler/context.h
    handler/manager.cpp
    handler/manager.h
    handler/manager_room.cpp

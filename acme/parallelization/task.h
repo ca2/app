@@ -6,7 +6,7 @@
 //#include "acme/prototype/prototype/function.h"
 //#include "acme/prototype/prototype/object.h"
 //#include "acme/prototype/collection/procedure_array.h"
-#include "counter.h"
+#include "acme/parallelization/counter.h"
 #include "acme/constant/happening.h"
 #include "acme/handler/handler.h"
 #include "acme/handler/source.h"
@@ -87,12 +87,12 @@ DECLARE_ENUMERATION(e_happening, enum_happening);
 class locale;
 
 typedef pointer_array < ::matter > object_array;
-//typedef map < class ::task_index, ::pointer<task >>task_map;
-//typedef map < task *, class ::task_index > task_id_map;
+//typedef map < ::task_index, ::pointer<task >>task_map;
+//typedef map < task *, ::task_index > task_id_map;
 using procedure_list = ::list < procedure >;
 
-//class ::task_index task_index(itask itask);
-CLASS_DECL_ACME class ::task_index task_index();
+//::task_index task_index(itask itask);
+CLASS_DECL_ACME ::task_index current_task_index();
 
 
 class waiting_call_base;
@@ -106,10 +106,10 @@ class task_handler;
 
 
 class CLASS_DECL_ACME task :
-   virtual public object,
-   virtual public acme::implementable,
+   virtual public ::object,
+   virtual public ::acme::implementable,
    virtual public ::handler::handler,
-   virtual public tracer,
+   virtual public ::tracer,
    virtual public ::source,
    virtual public ::data::property_container
 {
@@ -165,7 +165,7 @@ public:
    //::pointer<::manual_reset_happening>                 m_pmanualresethappeningNewProcedurePosted;
 
    ::synchronization_array                         m_synchronizationaMainLoop;
-   class ::task_index                              m_taskindex;
+   ::task_index                                    m_taskindex;
    htask                                           m_htask;
    itask                                           m_itask;
    string                                          m_strTaskName;
@@ -189,7 +189,7 @@ public:
    error_code                                      m_errorcodeHresultCoInitialize;
 #endif
 
-#ifdef __DEBUG
+#ifdef _DEBUG
    char *                                          m_pszDebug;
 #endif
    ::pointer < ::parallelization::counter >        m_pcounter;

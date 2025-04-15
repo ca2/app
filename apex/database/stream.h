@@ -57,7 +57,18 @@ namespace database
 
          stream.set_loading_flag();
 
-         stream >> t;
+         try
+         {
+
+            stream >> t;
+
+         }
+         catch (...)
+         {
+
+            return false;
+
+         }
 
          if (stream.nok())
          {

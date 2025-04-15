@@ -122,7 +122,7 @@ namespace user
    }
 
 
-   void split_impact::handle(::topic * ptopic, ::context * pcontext)
+   void split_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
    }

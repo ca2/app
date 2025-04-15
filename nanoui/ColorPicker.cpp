@@ -14,7 +14,9 @@
 #include "ColorPicker.h"
 #include "Layout.h"
 #include "ColorWheel.h"
+#include "IntBox.h"
 #include "Label.h"
+#include "TabWidget.h"
 #include "acme/constant/source.h"
 #include "acme/prototype/prototype/action_context.h"
 
@@ -56,15 +58,15 @@ namespace nanoui
       m_peditBlue->set_value(color.byte_blue(), e_source_sync);
       if (bForceH || fabs(m_peditHSV_H->value() - (int)(hsv.m_dH * 360.0)) > 2.0)
       {
-         m_peditHSV_H->set_value(hsv.m_dH * 360.0, e_source_sync);
+         m_peditHSV_H->set_value((int) (hsv.m_dH * 360.0), e_source_sync);
       }
       if (bForceS || fabs(m_peditHSV_S->value() - (int)(hsv.m_dS * 100.0)) > 5.0)
       {
-         m_peditHSV_S->set_value(hsv.m_dS * 100.0, e_source_sync);
+         m_peditHSV_S->set_value((int) (hsv.m_dS * 100.0), e_source_sync);
       }
       if (bForceB || fabs(m_peditHSV_V->value() - (int)(hsv.m_dV * 100.0)) > 5.0)
       {
-         m_peditHSV_V->set_value(hsv.m_dV * 100.0, e_source_sync);
+         m_peditHSV_V->set_value((int)(hsv.m_dV * 100.0), e_source_sync);
       }
 
       ::string strHex;

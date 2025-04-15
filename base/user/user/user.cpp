@@ -1746,7 +1746,7 @@ namespace base
       catch (const ::exception & exception)
       {
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
          auto pmessagebox = __initialize_new::message_box(exception, "Failed to create form \"" + pathFile + "\"");
 
@@ -1758,7 +1758,7 @@ namespace base
       catch (...)
       {
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
          ::exception exception(error_catch_all_exception);
 

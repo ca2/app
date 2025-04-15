@@ -29,7 +29,7 @@ task_message_queue::~task_message_queue()
 }
 
 
-message_queue * task_message_queue::get_message_queue(const class ::task_index & taskindex, bool bCreate)
+message_queue * task_message_queue::get_message_queue(const ::task_index & taskindex, bool bCreate)
 {
 
    if (!taskindex)
@@ -92,7 +92,7 @@ message_queue * task_message_queue::get_message_queue(const class ::task_index &
 }
 
 
-void task_message_queue::erase_message_queue(const class ::task_index & taskindex)
+void task_message_queue::erase_message_queue(const ::task_index & taskindex)
 {
 
    critical_section_lock synchronouslock(&system()->m_criticalsectionThreadStorage);
@@ -106,7 +106,7 @@ void task_message_queue::erase_message_queue(const class ::task_index & taskinde
 }
 
 
-void task_message_queue::clear_message_queue(const class ::task_index & taskindex)
+void task_message_queue::clear_message_queue(const ::task_index & taskindex)
 {
    
    critical_section_lock synchronouslock(&system()->m_criticalsectionThreadStorage);

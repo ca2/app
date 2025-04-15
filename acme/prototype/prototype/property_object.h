@@ -83,7 +83,17 @@ public:
 
 //#endif
 
+   virtual ::string get_object_file_name();
 
+   virtual ::file::path get_ini_configuration_path();
+
+   virtual bool include_hostname_in_configuration_path();
+
+   virtual void read_ini_configuration();
+   virtual void write_ini_configuration();
+
+   virtual void read_configuration_from_ini(const ::payload & payloadFile);
+   virtual void write_configuration_to_ini(const ::payload & payloadFile);
 
    bool has_property(const atom & atom) const;
    property * lookup_property(const atom & atom) const;
@@ -118,19 +128,26 @@ public:
    ::payload & get_object(const ::atom & atom);
 
    //::payload operator()(const ::atom & atom) const;
-   //::payload operator()(const ::atom & atom, const ::payload & varDefault) const;
+   //::payload operator()(const ::atom & atom, const ::payload & payloadDefault) const;
 
    //::payload & operator[](const ::atom & atom);
 
    //::payload operator[](const ::atom & atom) const;
 
+   ::property & property(const ::atom & atom);
+
+   ::property property(const ::atom & atom) const;
+   ::property property(const ::atom & atom, const ::payload & payloadDefault) const;
+
+
    ::payload & payload(const ::atom & atom);
 
    ::payload payload(const ::atom & atom) const;
-   ::payload payload(const ::atom & atom, const ::payload & varDefault) const;
+   ::payload payload(const ::atom & atom, const ::payload & payloadDefault) const;
 
    ::payload find_payload(const ::atom & atom) const;
-   ::payload find_payload(const ::atom & atom, const ::payload & varDefault) const;
+   ::payload find_payload(const ::atom & atom, const ::payload & payloadDefault) const;
+
 
    string find_string(const ::atom & atom, const ::ansi_character * pszDefault = nullptr) const;
 
@@ -149,7 +166,7 @@ public:
    bool is_true(const ::atom & atom) const;
    bool is_false(const ::atom & atom) const;
    bool is_true_or_empty(const ::atom & atom) const;
-   //inline bool is_true(const ::atom & atom, const ::payload & varDefault, bool bDefault) const;
+   //inline bool is_true(const ::atom & atom, const ::payload & payloadDefault, bool bDefault) const;
 
    //virtual string get_text(const ::payload & payload, const ::atom & atom);
 
@@ -164,9 +181,9 @@ public:
 
    //virtual atom translate_property_id(const ::atom & atom);
 
-   virtual void notify_property_changed(property* pproperty, const ::action_context& actioncontext);
+   virtual void notify_property_changed(::property* pproperty, const ::action_context& actioncontext);
 
-   virtual void on_property_changed(property * pproperty, const ::action_context& actioncontext);
+   virtual void on_property_changed(::property * pproperty, const ::action_context& actioncontext);
 
    //virtual ::linked_property fetch_property(const ::atom & atom, bool bCreate = true);
 

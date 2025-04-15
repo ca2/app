@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/prototype/data/item.h"
+#include "acme/handler/item.h"
 
 
 namespace user
@@ -19,7 +19,7 @@ namespace user
    };
 
 
-   class CLASS_DECL_AURA plain_text_command : public ::data::item
+   class CLASS_DECL_AURA plain_text_command : public ::item
    {
    public:
       virtual e_plain_text_command get_command();
@@ -61,7 +61,7 @@ namespace user
    {
    public:
 
-      plain_text_command *                m_pparent;
+      ::pointer < plain_text_command >          m_pparent;
       pointer_array < plain_text_command >      m_commanda;
 
       plain_text_group_command();

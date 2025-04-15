@@ -1781,13 +1781,13 @@ namespace user
       //virtual void ShowOwnedPopups(bool bShow = true);
 
 
-      //virtual void route(::topic * ptopic, ::context * pcontext);
-      //void handle(::topic * ptopic, ::context * pcontext) override;
+      //virtual void route(::topic * ptopic, ::handler_context * phandlercontext);
+      //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
       /*void pre_create_window(::user::system* pusersystem);*/
       using ::user::interaction_base::handle;
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
       void on_after_impact_update() override;
@@ -2053,7 +2053,7 @@ namespace user
       virtual bool OnChildNotify(::message::message* pmessage) override;
 
 
-      virtual bool is_selected(::data::item* pitem) override;
+      virtual bool is_selected(::item* pitem) override;
 
       //virtual ::pointer<place_holder>place_hold(::user::interaction* pinteraction) override;
 
@@ -2318,7 +2318,7 @@ namespace user
 
 
 
-      //void handle(::topic * ptopic, ::context * pcontext) override;
+      //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
       virtual void keyboard_focus_OnKeyDown(::message::message* pmessage) override;
@@ -2578,9 +2578,9 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnEditDelete);
       //DECLARE_MESSAGE_HANDLER(on_message_set_focus);
       //DECLARE_MESSAGE_HANDLER(on_message_kill_focus);
-      //virtual void route(::topic * ptopic, ::context * pcontext) override;
+      //virtual void route(::topic * ptopic, ::handler_context * phandlercontext) override;
       //virtual void on_notify_control_event(control_event* phappening) override;
-      //void handle(::topic * ptopic, ::context * pcontext) override;
+      //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       //virtual bool simple_on_control_event(::message::message * pmessage, ::enum_topic etopic) override;
       //virtual void walk_pre_translate_tree(::message::message * pmessage,::pointer<::user::interaction>puiStop);
       //virtual bool get_element_rectangle(::int_rectangle* prectangle, enum_element eelement);

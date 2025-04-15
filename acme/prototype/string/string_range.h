@@ -1491,7 +1491,7 @@ public:
 
          this->m_begin += size;
 
-         this->m_erange -= e_range_string;
+         this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
 
       }
 
@@ -1506,7 +1506,7 @@ public:
 
          this->m_end += size;
 
-         this->m_erange -= e_range_string | e_range_null_terminated;
+         this->m_erange = (enum_range)(this->m_erange & ~(e_range_string | e_range_null_terminated));
 
       }
 
@@ -1521,7 +1521,7 @@ public:
 
          this->m_begin = p;
 
-         this->m_erange -= e_range_string;
+         this->m_erange = (enum_range) (this->m_erange  & ~e_range_string);
 
       }
 
@@ -1536,7 +1536,7 @@ public:
 
          this->m_end = p;
 
-         this->m_erange -= e_range_string | e_range_null_terminated;
+         this->m_erange = (enum_range)(this->m_erange & ~(e_range_string | e_range_null_terminated));
 
       }
 

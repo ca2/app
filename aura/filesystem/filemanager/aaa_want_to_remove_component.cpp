@@ -131,7 +131,7 @@ namespace filemanager
    }
 
 
-   ::file::path filemanager_project_entry(string& strManagerId, const ::string & psz, ::context* pcontext)
+   ::file::path filemanager_project_entry(string& strManagerId, const ::string & psz, ::handler_context* pcontext)
    {
 
       if (is_valid_filemanager_project_entry(psz))

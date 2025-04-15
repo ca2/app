@@ -4,13 +4,13 @@
 
 
 #include "acme/handler/handler.h"
-#include "acme/platform/ini.h"
-#include "system_acme.h"
-#include "system_apex.h"
-#include "system_aqua.h"
-#include "system_aura.h"
-#include "system_axis.h"
-#include "system_core.h"
+//#include "acme/platform/ini.h"
+#include "acme/platform/system_acme.h"
+#include "acme/platform/system_apex.h"
+#include "acme/platform/system_aqua.h"
+#include "acme/platform/system_aura.h"
+#include "acme/platform/system_axis.h"
+#include "acme/platform/system_core.h"
 
 
 namespace platform
@@ -56,7 +56,7 @@ namespace platform
 
       ::pointer < ::particle >               m_pparticleHttpTextSynchronization;
       ::string_map < ::string_to_string >    m_mapText;
-
+      ::pointer < ::platform::application >  m_papplicationMain;
 
       system();
       ~system() override;
@@ -73,12 +73,24 @@ namespace platform
 
       //void on_set_platform() override;
 
+//      template < typename APPLICATION >
+//      void main()
+//      {
+//         
+//         auto pfactoryitem = __allocate ::factory::factory_item < APPLICATION, ::platform::application >;
+//
+//         this->application_main(pfactoryitem);
+//         
+//      }
+      
+      virtual void application_main();
+      virtual void transfer_application(::pointer < ::platform::application > && papplication);
 
       ::task_message_queue * task_message_queue() override;
 
 
-      ::thread_storage * thread_storage(const class ::task_index & taskindex) override;
-      ::thread_storage * _thread_storage_unlocked(const class ::task_index & taskindex) override;
+      ::thread_storage * thread_storage(const ::task_index & taskindex) override;
+      ::thread_storage * _thread_storage_unlocked(const ::task_index & taskindex) override;
 
 
       void on_initialize_particle() override;
@@ -116,17 +128,17 @@ namespace platform
       virtual void destroy_task_message_queue();
 
 
-      ::task* get_task(const class ::task_index & taskindex);
+      ::task* get_task(const ::task_index & taskindex);
       //itask get_task_id(const ::task* ptask);
-      //void set_task(const class ::task_index & taskindex, ::task* ptask);
-      //void unset_task(const class ::task_index & taskindex, ::task* ptask);
+      //void set_task(const ::task_index & taskindex, ::task* ptask);
+      //void unset_task(const ::task_index & taskindex, ::task* ptask);
       void set_task(::task* ptask);
       void unset_task(::task* ptask);
 
-      virtual bool is_task_set(const class ::task_index & taskindex);
+      virtual bool is_task_set(const ::task_index & taskindex);
       //virtual bool is_active(::task * ptask);
-      //virtual void set_task_on(const class ::task_index & taskindex);
-      //virtual void set_task_off(const class ::task_index & taskindex);
+      //virtual void set_task_on(const ::task_index & taskindex);
+      //virtual void set_task_off(const ::task_index & taskindex);
 
 
       virtual ::mathematics::mathematics * mathematics() override;
@@ -493,7 +505,7 @@ namespace platform
       static inline ::atom atom(long long i);
       //static inline ::atom_space & atom();
       inline ::atom atom(const ::payload & payload);
-      inline ::atom atom(const property & prop);
+      inline ::atom atom(const ::property & property);
 
       virtual void check_exit() override;
 
@@ -510,7 +522,7 @@ namespace platform
 
       void system_id_update(int iUpdate, long long iPayload) override;
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       
       void call_message(const ::enum_message & emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle) override;
     
@@ -1334,7 +1346,7 @@ namespace platform
 //
 //       //#ifdef _DEBUG
 //       //
-//       //      virtual void set_context(::context* pcontext) override;
+//       //      virtual void set_context(::handler_context* pcontext) override;
 //       //      virtual void set_context_thread(::thread* pthread) override;
 //       //      virtual void set_context_app(::aura::application* pappContext) override;
 //       //      virtual void set_context_session(::aura::session* psessionContext) override;
@@ -1403,7 +1415,7 @@ namespace platform
 //
 //       //void signal(::signal * psignal) override;
 //
-//       //void handle(::topic * ptopic, ::context * pcontext) override;
+//       //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 //
 //       virtual void initialize_estamira();
 //

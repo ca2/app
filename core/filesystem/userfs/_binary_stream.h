@@ -6,7 +6,7 @@
 binary_stream &  operator <<(binary_stream & s, const ::userfs::item & item)
 {
 
-   s << (::data::item &)item;
+   s << (::item &)item;
    s << (::file::item &)item;
 
    return s;
@@ -18,10 +18,10 @@ binary_stream &  operator <<(binary_stream & s, const ::userfs::item & item)
 binary_stream & operator >>(binary_stream & s, ::userfs::item & item)
 {
 
-   //::data::item::read(s);
+   //::item::read(s);
    //::file::item::read(s);
 
-   s >> (::data::item &) item;
+   s >> (::item &) item;
    s >> (::file::item &)item;
 
    return s;

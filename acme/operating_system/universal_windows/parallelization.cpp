@@ -292,7 +292,7 @@ namespace platform
 //
 //   }
 //
-//   auto psystem = this->platform()->system();
+//   auto psystem = this->::system()->system();
 //
 //   psystem->windowing_post(procedure);
 //

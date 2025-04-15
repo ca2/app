@@ -1,9 +1,9 @@
 #pragma once
 
 
-#include "_function.h"
-#include "point.h"
-#include "size.h"
+#include "acme/prototype/geometry2d/_function.h"
+#include "acme/prototype/geometry2d/point.h"
+#include "acme/prototype/geometry2d/size.h"
 #include "acme/prototype/mathematics/numeric_info.h"
 
 template < typename RECTANGLE_SOURCE >
@@ -478,10 +478,10 @@ public:
 
       rectangle_type rectangle;
 
-      rectangle.top() = maximum(0, rect1.top() - this->top());
-      rectangle.bottom() = maximum(0, this->bottom() - rect1.bottom());
-      rectangle.left() = maximum(0, rect1.left() - this->left());
-      rectangle.bottom() = maximum(0, this->right() - rect1.right());
+      rectangle.top() = maximum((NUMBER)0, rect1.top() - this->top());
+      rectangle.bottom() = maximum((NUMBER)0, this->bottom() - rect1.bottom());
+      rectangle.left() = maximum((NUMBER)0, rect1.left() - this->left());
+      rectangle.bottom() = maximum((NUMBER)0, this->right() - rect1.right());
 
       return rectangle;
 

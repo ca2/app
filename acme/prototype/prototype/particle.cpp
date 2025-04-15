@@ -420,7 +420,7 @@ class ::user::user * particle::user() const
 // }
 
 
-// ::platform::context* particle::context() const
+// ::platform::context* particle::handler_context() const
 // {
 //
 //    return m_papplication;
@@ -590,10 +590,10 @@ class ::user::user * particle::user() const
 
 
 
-void particle::operator()(::topic * ptopic, ::context * pcontext)
+void particle::operator()(::topic * ptopic, ::handler_context * phandlercontext)
 {
 
-   handle(ptopic, pcontext);
+   handle(ptopic, phandlercontext);
 
 }
 
@@ -645,7 +645,7 @@ void particle::operator()(::topic * ptopic, ::context * pcontext)
 //}
 
 
-void particle::handle(::topic * ptopic, ::context * pcontext)
+void particle::handle(::topic * ptopic, ::handler_context * phandlercontext)
 {
 
 
@@ -658,10 +658,10 @@ void particle::handle(::topic * ptopic, ::context * pcontext)
 //}
 
 
-void particle::call_handle(::topic * ptopic, ::context * pcontext)
+void particle::call_handle(::topic * ptopic, ::handler_context * phandlercontext)
 {
 
-   handle(ptopic, pcontext);
+   handle(ptopic, phandlercontext);
 
 }
 
@@ -1755,7 +1755,7 @@ lresult particle::message_handler(::enum_message emessage, ::wparam wparam, ::lp
 
 //
 //
-//void particle::handle(::topic * ptopic, ::context * pcontext)
+//void particle::handle(::topic * ptopic, ::handler_context * phandlercontext)
 //{
 //
 //

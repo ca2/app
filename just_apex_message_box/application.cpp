@@ -2,6 +2,7 @@
 
 
 __IMPLEMENT_APPLICATION_RELEASE_TIME(app_just_apex_message_box);
+IMPLEMENT_APPLICATION_FACTORY(app_just_apex_message_box);
 
 
 namespace app_just_apex_message_box

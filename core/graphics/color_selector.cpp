@@ -479,18 +479,18 @@ namespace core
       //}
 
 
-      void color_selector::handle(::topic * ptopic, ::context * pcontext)
+      void color_selector::handle(::topic * ptopic, ::handler_context * phandlercontext)
       {
 
-         //::user::impact::handle(ptopic, pcontext);
+         //::user::impact::handle(ptopic, phandlercontext);
 
       }
 
 
-      //void color_selector::handle(::topic * ptopic, ::context * pcontext)
+      //void color_selector::handle(::topic * ptopic, ::handler_context * phandlercontext)
       //{
 
-      //   ::user::impact::handle(ptopic, pcontext);
+      //   ::user::impact::handle(ptopic, phandlercontext);
 
       //}
 
@@ -1084,9 +1084,9 @@ namespace core
 
          ::color::hsv hsv(m_hls);
 
-         int x = hsv.m_dH * m_pimage->width();
+         int x = (int) (hsv.m_dH * m_pimage->width());
 
-         int y = hsv.m_dS * m_pimage->height();
+         int y = (int) (hsv.m_dS * m_pimage->height());
 
          if (m_callbackHls)
          {

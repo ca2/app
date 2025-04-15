@@ -189,6 +189,7 @@ namespace data
       ::character_count selection_begin() const;
       ::character_count selection_end() const;
 
+      ::string as_text(character_count iBegin, character_count iEnd) const;
 
       bool set_selection_text(const ::scoped_string & scopedstrNewSelectionText, const ::action_context & actioncontext);
 
@@ -196,10 +197,14 @@ namespace data
 
       character_count get_size() const;
 
+      character_count get_text_length() const;
+
       //void get_text(char * psz, character_count len);
 
 
       ::string get_text() const;
+
+      ::string get_text(character_count iBegin, character_count iEnd) const;
 
       //void get_text(::string & str, character_count iBeg, character_count iEnd = -1) const;
 

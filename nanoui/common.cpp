@@ -27,7 +27,7 @@ void CLASS_DECL_NANOUI file_dialog_from_platform(
    bool multiple);
 
 
-//::object * get_nano2d_object(::nano2d::context * pcontext);
+//::object * get_nano2d_object(::nano2d::context  * pcontext);
 
 
 
@@ -274,14 +274,14 @@ static float emscripten_refresh = 0;
    return ::string(seq, seq + n);
 }
 
-int __nanoui_get_image(::nano2d::context * pcontext, const ::scoped_string & name, uint8_t * data, uint32_t size) {
+int __nanoui_get_image(::nano2d::context  * pcontext, const ::scoped_string & name, uint8_t * data, uint32_t size) {
    static string_map < int> icon_cache;
    auto it = icon_cache.plookup(name);
    if (it != icon_cache.end())
       return it->m_element2;
    int icon_id = pcontext->create_image_mem(0, data, size);
    if (icon_id == 0)
-      throw std::runtime_error("Unable to load resource data.");
+      throw ::exception(error_failed, "Unable to load resource data.");
    icon_cache[name] = icon_id;
    return icon_id;
 }
@@ -290,7 +290,7 @@ int __nanoui_get_image(::nano2d::context * pcontext, const ::scoped_string & nam
 
 
 
-void CLASS_DECL_NANOUI load_image_directory(::nano2d::context * pcontext, ::array<::pair<int, ::string>> & images, const ::scoped_string & path)
+void CLASS_DECL_NANOUI load_image_directory(::nano2d::context  * pcontext, ::array<::pair<int, ::string>> & images, const ::scoped_string & path)
 {
 
 //   ::array<::pair<int, ::string> > result;

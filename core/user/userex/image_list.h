@@ -47,7 +47,7 @@ namespace userex
 #endif
       void install_message_routing(::channel * pchannel) override;
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       virtual void load_images();
 

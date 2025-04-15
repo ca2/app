@@ -491,15 +491,15 @@ namespace user
 
 
 
-      bool is_selected(::data::item * pitem) override;
+      bool is_selected(::item * pitem) override;
 
       //virtual ::pointer<place_holder>place_hold(::user::interaction * pinteraction);
 
       bool has_command_handler(::message::command * pcommand) override;
 
-      //virtual void route(::topic * ptopic, ::context * pcontext);
+      //virtual void route(::topic * ptopic, ::handler_context * phandlercontext);
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       //virtual void on_notify_control_event(control_event* phappening);
 
@@ -654,7 +654,7 @@ namespace user
       //virtual bool SetPlacement(const ::int_rectangle & rectangle, unsigned int nFlags = SWP_SHOWWINDOW);
 
       
-      int get_total_page_count(::context * pcontext) override;
+      int get_total_page_count(::handler_context * pcontext) override;
 
 
       void edit_on_text(string str) override;

@@ -66,7 +66,7 @@
 //
 //      }
 //
-//      auto pitem = __load_object< ::data::item>(s);
+//      auto pitem = __load_object< ::item>(s);
 //
 //      if (iLevel == iPreviousLevel)
 //      {

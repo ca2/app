@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "dispatcher.h"
+#include "apex/message/dispatcher.h"
 #include "acme/prototype/collection/atom_array.h"
 ////#include "acme/prototype/prototype/object.h"
 #include "acme/constant/message_prototype.h"
@@ -14,13 +14,15 @@ public:
 
 
    //static critical_section                            s_criticalsectionChannel;
+   
+   bool m_bTestChannel1 = true;
    ::pointer<::channel>                               m_pchannel;
    atom_array                                         m_atomaHandledCommands;
    ::message::command_map                             m_commandmap;
    ::message::command_map                             m_commandmapProbe;
    ::message::message_map                             m_messagemap;
    //::procedure_map                                  m_proceduremap;
-
+   bool m_bTestChannel2 = true;
 
    channel();
    ~channel() override;

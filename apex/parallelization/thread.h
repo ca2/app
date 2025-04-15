@@ -6,7 +6,7 @@ class message_queue;
 
 #include "apex/handler/manager.h"
 //#include "apex/handler/source.h"
-#include "apex/handler/context.h"
+//#include "acme/handler/hancontext.h"
 #include "apex/message/channel.h"
 #include "acme/parallelization/task.h"
 #include "acme/operating_system/message.h"
@@ -26,12 +26,9 @@ namespace user
 class CLASS_DECL_APEX thread :
    virtual public ::task,
    virtual public ::channel,
-   virtual public ::manager,
-   virtual public ::context//,
-   //virtual public ::source
-//#ifdef WINDOWS
-//   ,virtual public ::exception_translator
-//#endif
+   virtual public ::manager
+//,
+  // virtual public ::handler_context
 {
 public:
 
@@ -344,7 +341,7 @@ public:
    //virtual void wait();
 
 
-   virtual iptr item() const;
+   //virtual ::task_index item() const;
 
    bool _has_main_loop_happening_unlocked() override;
 
@@ -403,8 +400,6 @@ public:
    virtual bool is_application() const;
    virtual bool is_session() const;
    virtual bool is_system() const;
-
-   //virtual void delete_this();
 
    ///// thread implementation
    //void __task_init() override;

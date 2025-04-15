@@ -4,6 +4,7 @@
 
 
 __IMPLEMENT_APPLICATION_RELEASE_TIME(app_message_box);
+IMPLEMENT_APPLICATION_FACTORY(app_message_box);
 
 
 namespace app_message_box

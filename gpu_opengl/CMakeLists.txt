@@ -121,7 +121,7 @@ elseif(${LINUX} OR ${__BSD__})
 
    if(${OPENBSD})
       #list(APPEND extra_pkg_modules glm gl)
-      list(APPEND extra_pkg_modules osmesa)
+      list(APPEND extra_pkg_modules gl osmesa)
    elseif(${FREEBSD})
       list(APPEND extra_pkg_modules gl osmesa)
    endif()

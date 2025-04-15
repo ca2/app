@@ -1016,7 +1016,7 @@ void property_set::parse_network_payload(const ::string & strNetworkPayload)
 
 // #ifdef LINUX
 //
-//    uselocale(this->platform()->m_localeC);
+//    uselocale(this->::system()->m_localeC);
 //
 // #endif
 
@@ -1037,7 +1037,7 @@ void property_set::parse_network_payload(const ::string & strNetworkPayload)
 //{
 //
 //#ifdef LINUX
-//   uselocale(this->platform()->m_localeC);
+//   uselocale(this->::system()->m_localeC);
 //#endif
 //
 //   parse_network_payload(pszJson, pszJson + strlen(pszJson) - 1);
@@ -1050,7 +1050,7 @@ void property_set::parse_network_payload(::ansi_range & range)
 
 
 // #ifdef LINUX
-//    uselocale(this->platform()->m_localeC);
+//    uselocale(this->::system()->m_localeC);
 // #endif
    __check_refdbg
    range.consume_spaces(0);
@@ -2589,7 +2589,7 @@ property & property_set::get(const ::atom_array & atoma)
 //}
 
 
-::payload property_set::operator()(const ::atom & atom, const ::payload & varDefault) const
+::payload property_set::operator()(const ::atom & atom, const ::payload & payloadDefault) const
 {
 
    auto pproperty = find(atom);
@@ -2597,7 +2597,7 @@ property & property_set::get(const ::atom_array & atoma)
    if (!pproperty)
    {
 
-      return varDefault;
+      return payloadDefault;
 
    }
 
@@ -2779,7 +2779,7 @@ bool property_set::is_true_or_empty(const atom & atom) const
 }
 
 
-::payload property_set::value(const atom & idName, ::payload varDefault) const
+::payload property_set::value(const atom & idName, ::payload payloadDefault) const
 {
 
    property * pproperty = find(idName);
@@ -2787,7 +2787,7 @@ bool property_set::is_true_or_empty(const atom & atom) const
    if (pproperty == nullptr)
    {
 
-      return varDefault;
+      return payloadDefault;
 
    }
 

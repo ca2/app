@@ -37,7 +37,7 @@
 #define TINYJS_callstack
 #ifdef __MCRTDBG
 #ifdef _WIN32
-#ifdef __DEBUG
+#ifdef _DEBUG
 #define _CRTDBG_MAP_ALLOC
 #include <crtdbg.h>
 #endif //__DEBUG

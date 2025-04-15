@@ -28,7 +28,7 @@
  */
 #include "framework.h"
 
-#if defined(_MSC_VER) && defined(__DEBUG)
+#if defined(_MSC_VER) && defined(_DEBUG)
 #	define aaa_memory_new DEBUG_NEW
 #endif //__DEBUG
 
@@ -76,7 +76,7 @@ int main(int UNUSED(argc), char **UNUSED(argv))
     }
   }
   delete js;
-#if defined(_WIN32) && defined(__DEBUG) && !defined(_MSC_VER)
+#if defined(_WIN32) && defined(_DEBUG) && !defined(_MSC_VER)
   // by Visual Studio we use the DEBUG_NEW stuff
   _CrtDumpMemoryLeaks();
 #endif //__DEBUG

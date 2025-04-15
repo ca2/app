@@ -49,7 +49,7 @@ namespace user
       //void _001OnSort() override;
       /// bool GetSongPath(string& str, ::collection::index iItem);
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

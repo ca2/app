@@ -156,7 +156,7 @@ namespace platform
 
       m_etracelevelMinimum = e_trace_level_undefined;
 
-#ifdef DEBUG
+#ifdef _DEBUG
       ::atom atom;
       int iAtom1 = sizeof(atom);
       int iAtomType = sizeof(atom.m_etype);
@@ -268,7 +268,7 @@ namespace platform
 
       auto pathTraceLevelInformation = pathCa2ConfigSystemFolder / "trace_level_information.txt";
 
-      if (platform()->has_argument("--log"))
+      if (::system()->has_argument("--log"))
       {
 
          informationf("selecting informational trace\n");
@@ -599,7 +599,7 @@ namespace platform
       //}
 
       /*estatus =*/
-      if (platform()->is_console())
+      if (::system()->is_console())
       {
 
          process_init();
@@ -1055,14 +1055,14 @@ namespace platform
 
       {
 
-         string strExecutable = platform()->get_executable();
+         string strExecutable = ::system()->get_executable();
 
          string_array straArguments;
 
-         for (int i = 0; i < platform()->get_argument_count1(); i++)
+         for (int i = 0; i < ::system()->get_argument_count1(); i++)
          {
 
-            string strArgument = platform()->get_argument1(i);
+            string strArgument = ::system()->get_argument1(i);
 
             straArguments.add(strArgument);
 
@@ -1084,12 +1084,12 @@ namespace platform
 
          string_array straEnv;
 #ifdef WINDOWS_DESKTOP
-         if (platform()->m_wenvp)
+         if (::system()->m_wenvp)
          {
 
             int iIndex = 0;
 
-            for (auto wenv = platform()->m_wenvp; *wenv != 0; wenv++, iIndex++)
+            for (auto wenv = ::system()->m_wenvp; *wenv != 0; wenv++, iIndex++)
             {
 
                auto thisEnv = *wenv;
@@ -1120,10 +1120,10 @@ namespace platform
          }
          else
 #endif
-            if (platform()->m_envp)
+            if (::system()->m_envp)
             {
 
-               for (auto env = platform()->m_envp; *env != 0; env++)
+               for (auto env = ::system()->m_envp; *env != 0; env++)
                {
 
                   auto thisEnv = *env;
@@ -2427,7 +2427,7 @@ namespace platform
 
          auto prequest = __create_new< ::request>();
 
-         auto strCommandLine = platform()->m_strCommandLine;
+         auto strCommandLine = ::system()->m_strCommandLine;
 
          strCommandLine.trim();
 
@@ -2537,7 +2537,7 @@ namespace platform
 
       process_init();
 
-      if (platform()->is_console())
+      if (::system()->is_console())
       {
 
          application()->main();
@@ -2729,7 +2729,7 @@ namespace platform
 
          ::file::path path = pathFolder / (strModifier + "_command_line.txt");
 
-         file_system()->put_contents(path, platform()->m_strCommandLine);
+         file_system()->put_contents(path, ::system()->m_strCommandLine);
 
          ::file::path pathExecutable = file_system()->module();
 
@@ -2850,7 +2850,7 @@ namespace platform
 
    }
 
-   void system::handle(::topic * ptopic, ::context * pcontext)
+   void system::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       if (ptopic->id() == id_get_operating_system_dark_mode_reply)
@@ -2872,7 +2872,7 @@ namespace platform
          if (m_pnano)
          {
 
-            m_pnano->handle(ptopic, pcontext);
+            m_pnano->handle(ptopic, phandlercontext);
 
          }
 
@@ -2924,7 +2924,7 @@ namespace platform
          if (::is_set(application()))
          {
 
-            application()->handle(ptopic, pcontext);
+            application()->handle(ptopic, phandlercontext);
 
          }
 
@@ -3296,7 +3296,7 @@ namespace platform
       if (!papp)
       {
 
-         if (strAppId.is_empty() || platform()->is_console())
+         if (strAppId.is_empty() || ::system()->is_console())
          {
 
             papp = __øcreate < ::platform::application >();

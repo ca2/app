@@ -252,7 +252,7 @@ namespace platform
    }
 
 
-   ::pointer<::handle::ini> acme_application_layer::get_ini()
+   ::property_set acme_application_layer::get_ini(const ::scoped_string& scopedstrIniName)
    {
       return {};
    }

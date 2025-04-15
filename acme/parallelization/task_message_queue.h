@@ -6,7 +6,7 @@
 #include "acme/prototype/collection/map.h"
 
 
-//using task_message_queue_map = ::map < class ::task_index, ::pointer < message_queue > >;
+//using task_message_queue_map = ::map < ::task_index, ::pointer < message_queue > >;
 
 
 class CLASS_DECL_ACME task_message_queue :
@@ -23,9 +23,9 @@ public:
    ~task_message_queue() override;
 
 
-   ::message_queue * get_message_queue(const class ::task_index & taskindex, bool bCreate);
-   void erase_message_queue(const class ::task_index & taskindex);
-   void clear_message_queue(const class ::task_index & taskindex);
+   ::message_queue * get_message_queue(const ::task_index & taskindex, bool bCreate);
+   void erase_message_queue(const ::task_index & taskindex);
+   void clear_message_queue(const ::task_index & taskindex);
 
 
    ::message_queue * current_task_message_queue(bool bCreate);

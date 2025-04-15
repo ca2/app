@@ -235,14 +235,14 @@ public:
 
 
 
-template < typename POINTER_TYPE >
-class raw_pointer < ::pointer<POINTER_TYPE >>
-{
-public:
-
-   using RAW_POINTER = typename ::pointer<POINTER_TYPE>::RAW_POINTER;
-
-};
+//template < typename POINTER_TYPE >
+//class raw_pointer < ::pointer<POINTER_TYPE >>
+//{
+//public:
+//
+//   using RAW_POINTER = typename ::pointer<POINTER_TYPE>::RAW_POINTER;
+//
+//};
 
 //
 //class CLASS_DECL_ACME property_set_stream :

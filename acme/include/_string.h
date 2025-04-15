@@ -52,7 +52,7 @@ template < typename TYPE, enum_type t_etypeContainer >
 
 #include "acme/prototype/collection/_impl_string_array.h"
 #include "acme/prototype/prototype/_impl_atom.h"
-#include "acme/prototype/collection/_impl_factory.h"
+//#include "acme/prototype/collection/_impl_factory.h"
 #include "acme/prototype/prototype/_impl_payload.h"
 #include "acme/prototype/prototype/_impl_type.h"
 #include "acme/filesystem/file/_impl_write_text_stream.h"

@@ -381,7 +381,7 @@ namespace user
    }
 
 
-   void form_control::handle(::topic * ptopic, ::context * pcontext)
+   void form_control::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
       //for(auto pinteraction : proper_children())
@@ -432,7 +432,7 @@ namespace user
       //if(m_pcallback != nullptr)
       //{
 
-      //   m_pcallback->handle(ptopic, pcontext);
+      //   m_pcallback->handle(ptopic, phandlercontext);
 
       //   if(ptopic->m_bRet)
       //   {
@@ -443,7 +443,7 @@ namespace user
 
       //}
 
-      ::user::interaction::handle(ptopic, pcontext);
+      ::user::interaction::handle(ptopic, phandlercontext);
 
       if (ptopic->m_bRet)
       {
@@ -556,7 +556,7 @@ namespace user
       if (::is_set(m_pcallback))
       {
 
-         m_pcallback->handle(ptopic, pcontext);
+         m_pcallback->handle(ptopic, phandlercontext);
 
          if (ptopic->m_bRet)
          {
@@ -1363,7 +1363,7 @@ namespace user
    }
 
 
-   //void form_control::handle(::topic * ptopic, ::context * pcontext)
+   //void form_control::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
    //   if (ptopic->id() == ::id_create)
@@ -1407,7 +1407,7 @@ namespace user
    //   //if(m_pcallback != nullptr)
    //   //{
 
-   //   //   m_pcallback->handle(ptopic, pcontext);
+   //   //   m_pcallback->handle(ptopic, phandlercontext);
 
    //   //   if(ptopic->m_bRet)
    //   //   {
@@ -1418,7 +1418,7 @@ namespace user
 
    //   //}
 
-   //   ::user::interaction::handle(ptopic, pcontext);
+   //   ::user::interaction::handle(ptopic, phandlercontext);
 
    //   if(ptopic->m_bRet)
    //   {
@@ -1529,7 +1529,7 @@ namespace user
    //   if (::is_set(m_pcallback))
    //   {
 
-   //      m_pcallback->handle(ptopic, pcontext);
+   //      m_pcallback->handle(ptopic, phandlercontext);
 
    //      if (ptopic->m_bRet)
    //      {

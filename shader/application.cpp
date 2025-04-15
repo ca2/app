@@ -7,6 +7,7 @@
 
 
 __IMPLEMENT_APPLICATION_RELEASE_TIME(app_shader);
+IMPLEMENT_APPLICATION_FACTORY(app_shader);
 
 
 namespace app_shader

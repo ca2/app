@@ -6,7 +6,7 @@ namespace filehandler
 {
 
 
-   string item::data_item_get_text(object * pparticle) const
+   string item::get_item_text(object * pparticle) const
    {
 
       __UNREFERENCED_PARAMETER(pparticle);
@@ -16,7 +16,7 @@ namespace filehandler
    }
 
 
-   ::collection::index item::data_item_get_image(object * pparticle) const
+   ::collection::index item::get_item_image(object * pparticle) const
    {
 
       return -1;

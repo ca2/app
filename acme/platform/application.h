@@ -44,14 +44,14 @@ namespace platform
       virtual public ::data::client,
       virtual public ::application_exit,
       virtual public ::command_handler,
-      virtual public ::platform::acme_application_layer_t,
-      virtual public ::platform::apex_application_layer_t,
-      virtual public ::platform::aqua_application_layer_t,
-      virtual public ::platform::aura_application_layer_t,
-      virtual public ::platform::axis_application_layer_t,
-      virtual public ::platform::base_application_layer_t,
-      virtual public ::platform::bred_application_layer_t,
-      virtual public ::platform::core_application_layer_t,
+//      virtual public ::platform::acme_application_layer_t,
+//      virtual public ::platform::apex_application_layer_t,
+//      virtual public ::platform::aqua_application_layer_t,
+//      virtual public ::platform::aura_application_layer_t,
+//      virtual public ::platform::axis_application_layer_t,
+//      virtual public ::platform::base_application_layer_t,
+//      virtual public ::platform::bred_application_layer_t,
+//      virtual public ::platform::core_application_layer_t,
       virtual public ::platform::acme_application_layer,
       virtual public ::platform::apex_application_layer,
       virtual public ::platform::aqua_application_layer,
@@ -62,6 +62,78 @@ namespace platform
       virtual public ::platform::core_application_layer
       {
    public:
+
+         
+         
+         // mutable ::apex::application* m_papexapplication;
+         // mutable ::aqua::application* m_paquaapplication;
+         // mutable ::aura::application* m_pauraapplication;
+         // mutable ::axis::application* m_paxisapplication;
+         // mutable ::base::application* m_pbaseapplication;
+         // mutable ::bred::application* m_pbredapplication;
+         // mutable ::core::application* m_pcoreapplication;
+
+         class user_message :
+         virtual public ::particle
+         {
+
+            public:
+
+            ::e_status m_estatus;
+            ::particle_pointer m_pparticle;
+            long long m_hi;
+            void * m_p;
+
+         };
+
+         //bool                                            m_bTransferToContainer;
+         //bool                                            m_bTransferredToContainer;
+   #if REFERENCING_DEBUGGING
+         ::reference_referer* m_prefererCreation = nullptr;
+   #endif
+         //mutable ::platform::platform *               m_pplatform;
+
+         //::APPLICATION_FLAGS                      m_applicationflags;
+         ::pointer<main_hold_base>                       m_pmainholdbase;
+         // FROM ::main (Now main2)
+         ::pointer < ::filesystem::file_system_options > m_pfilesystemoptions;
+         ::pointer_array < user_message >                m_usermessagea;
+         bool                                            m_bGUIReady = false;
+         bool                                            m_bModulePath = false;
+         ::file::path                                    m_pathModule;
+
+         bool                                            m_bModuleFolder = false;
+         ::file::path                                    m_pathModuleFolder;
+
+
+         string                              m_strProgName;
+         string                           m_strStandalone;
+         //int                              m_iExitCode = 0;
+         bool                             m_bApplicationFirstRequest;
+         //::pointer < ::request >                         m_prequest;
+
+
+         // END FROM ::main (Now main2 : merge)
+
+         //::pointer < ::platform::platform >              m_pplatform;
+         string                                          m_strAppId;
+         string                                          m_strAppName;
+         string                                          m_strRoot;
+         string                                          m_strDomain;
+         string                                          m_strLibraryName;
+         string                                          m_strBuild;
+         string                                          m_strInstallToken;
+         string_array                                    m_straAppCategory;
+         bool                                            m_bLicense;
+
+         enum_application_capability_array               m_eapplicationcapabilitya;
+         ::text::text                                    m_textAppTitle;
+         ::text::text                                    m_textAppName;
+
+         ::pointer < ::mutex >                                      m_pmutexMatterLocator;
+
+         ::pointer < ::mutex >                                      m_pmutexStr;
+
 
 //
 //       // mutable ::apex::application* m_papexapplication;
@@ -132,12 +204,336 @@ namespace platform
 //       ::pointer < ::mutex >                                      m_pmutexMatterLocator;
 //
 //       ::pointer < ::mutex >                                      m_pmutexStr;
+         //struct apex_application_layer_t
+         //{
+            //__creatable(application);
+
+            void* m_pnativeapp;
+
+            ::string m_strNetworkingApplicationHostname;
+            //class application_impl *                     m_pappimpl;
+
+            // 2020-01-25: removing from ::apex::system, placing here (at ::handler_context)
+            // 2020-07-23: now at ::application
+            ::pointer<::user::language_map> m_puserlanguagemap;
+
+            //::pointer<::apex::application>             m_pappParent;
+            string m_strBaseSupportId;
+            string m_strDatabaseAppId;
+            string m_strRelativeFolder;
+            string m_strInstallTraceLabel;
+            string m_strInstallBuild;
+            string m_strHttpUserAgentToken;
+            string m_strHttpUserAgentVersion;
+            bool m_bRequiresInstallation;
+
+            bool m_bReadStringTable;
+
+            ::pointer<class ::application_menu> m_papplicationmenu;
+            //::pointer<::apex::menu>                 m_pmainmenu;
+
+            //::pointer<::game::game>                    m_pgame;
+
+            ::pointer<::user::interaction_base> m_puiCurrent;
+            bool m_bContextTheme;
+
+            // #if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
+            //       bool                                         m_bSnLauncheeSetup;
+            // #endif
+            //semaphore                                    m_semCompiler;
+            // former ::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
+            string_array m_straActivationMessage;
+
+            unsigned int m_dwInstallGoodToCheckAgain;
+
+            bool m_bAppHasInstallerProtected;
+            bool m_bAppHasInstallerChangedProtected;
+            ::pointer<::install::installer> m_pinstaller;
+
+            particle_address_array m_particleaddressaEventHook;
+
+            bool m_bAttendedFirstRequest;
+
+            //bool                                       m_bAgreeExit;
+            //bool                                       m_bAgreeExitOk;
+            //bool                                       m_bFranceExit;
+
+            bool m_bEnableAutoStartOption;
+            bool m_bInterprocessCommunication;
+            ::pointer<::interprocess::communication> m_pinterprocesscommunication;
+            ::pointer<::interprocess::handler> m_pinterprocesshandler;
+            //::pointer<service>                         m_pservice;
+
+            //::string_array                               m_straInterprocessCommunicationPendingHandleUri;
 
 
+            // apex commented
+            //::pointer < ::mutex >                                         m_pmutexFrame;
+            //::pointer<::user::interaction_pointer_array> m_puiptraFrame;
+
+            enum_thread_context m_ethreadcontextClose;
+
+            enum_exclusive_instance m_eexclusiveinstance;
+
+            bool m_bService;
+
+            bool m_bUpdateMatterOnInstall;
+
+            //::user::interaction *                      m_puiMainContainer;
+
+            string_table m_stringtable;
+            string_table m_stringtableStd;
+            atom_map<string> m_stringmap;
+
+            atom_map<::pointer<::channel>> m_mapNotify;
+
+            string m_strLicense;
+
+            int m_iWaitCursorCount; // for wait cursor (>0 => waiting)
+
+            bool m_bEnableFsRawFolderProtocols = true;
+
+            //::pointer<::simpledb::server>              m_psimpledb;
+
+            //::userex::pane_tab_impact *                m_pmainpane;
+
+
+            string m_strHelpFilePath;
+
+            //#ifdef WINDOWS
+            //
+            //      HGLOBAL                                         m_hDevMode;             // printer Dev Mode
+            //      HGLOBAL                                         m_hDevNames;            // printer Device Names
+            //
+            //#endif
+
+            unsigned int m_dwPromptContext; // help action_context override for message box
+            // LKG
+            unsigned int m_dwPolicies; // block for storing boolean system policies
+
+            // Support for Shift+F1 help mode.
+            // true if we're in SHIFT+F1 mode.
+            bool m_bHelpMode;
+
+            //::userex::pane_tab_impact *                m_ppaneimpactMain;
+
+            string m_strProfileName;
+
+            //#ifdef WINDOWS
+            //      ATOM                                 m_atomApp;
+            //      ATOM                                 m_atomSystemTopic;   // for DDE open
+            //#endif
+
+            unsigned int m_nNumThumbnailPages; // number of default printed pages
+
+            string m_strId;
+
+            int m_iResourceId;
+
+            //::pointer<::experience::department>        m_pexperience;
+            //::pointer<::apex::theme>                   m_ptheme;
+
+
+            string_array m_straAppInterest;
+
+            ::pointer<::service_handler> m_pservicehandler;
+
+            ::pointer<::networking::application> m_pnetworkingapplication;
+
+            ::string_map<::pointer<::fs::folder_sync>> m_fsfoldersyncmap;
+
+
+         //}; // end apex_application_t
+
+         //struct CLASS_DECL_ACME aqua_application_layer_t
+         //{
+
+
+            ::pointer<::aqua::game>                      m_paquagame;
+            //::pointer<::networking::application>         m_p_networkingapplication;
+
+
+         //}; // end aqua_application_layer_t
+
+         //struct CLASS_DECL_ACME aura_application_layer_t
+         //{
+
+
+            //__creatable_from_base(application, ::apex::application);
+
+
+            //void* m_pnativeapp;
+
+
+            ::aura::application *                           m_pappParent;
+            //string                                          m_strAppName;
+            //string                                          m_strAppTitle;
+            //string                                          m_XstrAppId;
+            //string                                          m_strBaseSupportId;
+            //string                                          m_strRoot;
+            //string                                          m_strDomain;
+            //string                                          m_strLibraryName;
+            //string                                          m_strRelativeFolder;
+            //string                                          m_strBuild;
+            //string                                          m_strInstallToken;
+            //string                                          m_strInstallTraceLabel;
+            //string                                          m_strInstallBuild;
+            //string                                          m_strHttpUserAgentToken;
+            //string                                          m_strHttpUserAgentVersion;
+            //string_array                                    m_straAppCategory;
+            //bool                                            m_bLicense;
+            //bool                                            m_bRequiresInstallation;
+
+            //bool                                            m_bReadStringTable;
+
+            //::pointer<::application_menu>            m_pappmenu;
+
+            //::pointer<::game::game>                      m_pgame;
+            //::pointer<::user::interaction>               m_pacmeuserinteractionMain;
+
+            ::pointer<shell_open>                        m_pshellopen;
+
+            ::string_array                               m_straOptionsFormMakerLibrary;
+            //::user::interaction_base *                             m_puiCurrent;
+            //bool                                            m_bContextTheme;
+
+      // #if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
+      //       bool                                            m_bSnLauncheeSetup;
+      // #endif
+            //semaphore                                       m_semCompiler;
+            // former ::aura::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
+
+            //unsigned int                                           m_dwInstallGoodToCheckAgain;
+
+            //bool                                            m_bAppHasInstallerProtected;
+            //bool                                            m_bAppHasInstallerChangedProtected;
+            //::install::installer *                          m_pinstaller;
+
+            //particle_address_array                         m_particleaddressaEventHook;
+
+            ::pointer < ::mutex >                                           m_pmutexFrame;
+            ::pointer<::user::interaction_array>           m_puserinteractiona;
+            ::pointer<::user::interaction_array>           m_puserinteractionaFrame;
+
+            //e_thread                                        m_ethreadClose;
+
+            //enum_exclusive_instance                              m_eexclusiveinstance;
+
+            //string_map < ::pointer<::acme::exclusive >>    m_mapExclusive;
+
+            //bool                                            m_bService;
+
+            //bool                                            m_bUpdateMatterOnInstall;
+
+            ::user::interaction *                              m_puiMainContainer;
+
+            //::pointer < ::mutex >                                           m_pmutexMatterLocator;
+
+            //::pointer < ::mutex >                                         m_pmutexStr;
+            //string_table                                    m_stringtable;
+            //string_table                                    m_stringtableStd;
+            //map < atom, atom, string, string >                  m_stringmap;
+
+            //atom_map < ::pointer<::channel >>                m_mapNotify;
+
+            //::pointer<image_context>                       m_pimagecontext;
+
+            //bool                                            m_bInitializeDataCentral;
+
+            //string                                          m_strLicense;
+
+            //int                                             m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
+
+            //::pointer<::simpledb::server>                  m_psimpledb;
+
+            //::userex::pane_tab_impact *                       m_pmainpane;
+
+
+      //      string                                          m_strHelpFilePath;
+      //
+      //#ifdef WINDOWS
+      //
+      //      HGLOBAL                                         m_hDevMode;             // printer Dev Mode
+      //      HGLOBAL                                         m_hDevNames;            // printer Device Names
+      //
+      //#endif
+      //
+      //      unsigned int                                             m_dwPromptContext;        // help action_context override for message box
+      //      // LKG
+      //      unsigned int                                             m_dwPolicies;            // block for storing boolean system policies
+      //
+      //      // Support for Shift+F1 help mode.
+      //      // true if we're in SHIFT+F1 mode.
+      //      bool                                            m_bHelpMode;
+      //
+      //      //::userex::pane_tab_impact *                       m_ppaneimpactMain;
+      //
+      //      string                                          m_strProfileName;
+      //
+      //      ATOM                                            m_atomApp;
+      //      ATOM                                            m_atomSystemTopic;   // for DDE open
+      //      unsigned int                                            m_nNumThumbnailPages; // number of default printed pages
+      //
+      //      string                                          m_strId;
+
+      //      int                                             m_iResourceId;
+
+            //::pointer<::experience::department>          m_pexperience;
+            ::pointer<::aura::theme>                       m_ptheme;
+
+
+            //string_array                                    m_straAppInterest;
+            //string_map < oswindow, oswindow >               m_mapAppInterest;
+
+            //int                                             m_iGcomBackgroundUpdateMillis;
+
+
+
+
+         //}; // end aura_application_layer_t
+
+         //struct CLASS_DECL_ACME axis_application_layer_t
+         //{
+
+
+            ::pointer<::simpledb::server>                        m_psimpledb;
+
+
+        // }; // end axis_application_layer_t
+
+         //struct CLASS_DECL_ACME base_application_layer_t
+         //{
+
+
+            //::pointer<::aura::application_menu>      m_pappmenu;
+
+            ::pointer < ::user::tab_impact >                m_ptabimpactBase;
+            ::pointer < ::user::options_impact_handler >    m_poptionsimpacthandler;
+
+
+         //}; // end base_application_layer_t
+
+//         struct CLASS_DECL_ACME bred_application_layer_t
+//         {
+//
+//
+//         }; // bred_application_layer_t
+         
+         
+//         struct CLASS_DECL_ACME core_application_layer_t
+//         {
+
+
+            ::pointer<::userex::pane_tab_impact>     m_ppaneimpactCore;
+            ::pointer < ::filemanager::filemanager> m_pfilemanager;
+
+
+         //}; // end core_application_layer_t
+         
       application();
       ~application() override;
       
-#ifdef DEBUG
+#ifdef _DEBUG
 
       long long increment_reference_count() override;
       long long decrement_reference_count() override;
@@ -165,7 +561,7 @@ namespace platform
       virtual void on_error_icloud_not_available(::particle * pparticle = nullptr, long long hi = 0, void * p = nullptr) override;
 
 
-      //virtual void application_main();
+      //virtual void application_main(::platform::system * psystem);
 
       virtual int application_main() override;
 
@@ -280,7 +676,7 @@ namespace platform
 
 
       virtual ::file::path get_app_localconfig_folder() override;
-      virtual ::pointer<::handle::ini>get_ini() override;
+      virtual ::property_set get_ini(const ::scoped_string& scopedstrIniName = {}) override;
 
 
       virtual ::string get_visual_studio_build() override;
@@ -357,6 +753,21 @@ namespace platform
 
 
 } // namespace platform
+
+
+#include "acme/prototype/prototype/factory.h"
+
+#define IMPLEMENT_APPLICATION_FACTORY(APPLICATION_NAMESPACE) \
+namespace APPLICATION_NAMESPACE \
+{ \
+CLASS_DECL_EXPORT void application_factory(::factory::factory * pfactory) \
+{ \
+   \
+   pfactory->add_factory_item<::APPLICATION_NAMESPACE::application, ::platform::application>(); \
+   \
+} \
+}
+
 
 
 

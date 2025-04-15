@@ -426,8 +426,8 @@ namespace platform
 
       ////::collection::index task_index(itask itask, bool bAddIfNotInList = false);
       ////::collection::index new_task_index();
-      //::thread_storage * thread_storage(const class ::task_index & taskindex);
-      //::thread_storage * _thread_storage_unlocked(const class ::task_index & taskindex);
+      //::thread_storage * thread_storage(const ::task_index & taskindex);
+      //::thread_storage * _thread_storage_unlocked(const ::task_index & taskindex);
 
 
 

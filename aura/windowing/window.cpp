@@ -558,8 +558,6 @@ namespace windowing
 
          _000OnMouseLeave(pmessage);
 
-         return;
-
       }
 
       if (pmessage->m_emessage == e_message_left_button_down ||
@@ -816,12 +814,29 @@ namespace windowing
       //this->windowing() = pwindowing;
 
       //pwindow->this->windowing() = pwindowing;
-      main_send([this]()
-      {
+      //try
+      //{
+         main_send([this]()
+            {
 
-         _create_window();
+               _create_window();
 
-      });
+            });
+
+      //}
+      //catch (::exception& e)
+      //{
+
+      //   pexception = e.clone();
+
+      //}
+      //catch (...)
+      //{
+
+      //   pexception = __allocate::exception(error_catch_all_exception);
+
+      //}
+
 
       user_interaction()->m_ewindowflag |= e_window_flag_window_created;
 
@@ -2566,7 +2581,7 @@ void window::set_oswindow(::oswindow oswindow)
          ::int_rectangle rectangleOutput(pointOutput, sizeOutput);
 
          //information() << "::windowing::window::_set_window_position_unlocked l:" << r.left() << ", t:" << r.top()
-         //              << ", r:" << r.right() << ", b:" << r.bottom() << ", thrd:" << ::task_index();
+         //              << ", r:" << r.right() << ", b:" << r.bottom() << ", thrd:" << ::current_task_index();
 
          static ::int_point s_pointInitialTopRight;
 
@@ -2717,7 +2732,7 @@ void window::set_oswindow(::oswindow oswindow)
 
 
          //information() << "::windowing::window::_set_window_position_unlocked l:" << r.left() << ", t:" << r.top()
-         //              << ", r:" << r.right() << ", b:" << r.bottom() << ", thrd:" << ::task_index();
+         //              << ", r:" << r.right() << ", b:" << r.bottom() << ", thrd:" << ::current_task_index();
 
          static ::int_point s_pointInitialTopRight;
 
@@ -5266,7 +5281,12 @@ void window::set_oswindow(::oswindow oswindow)
 
             synchronouslock.unlock();
 
-            pinteraction->message_handler(e_message_mouse_leave);
+            if (pinteraction != user_interaction())
+            {
+
+               pinteraction->message_handler(e_message_mouse_leave);
+
+            }
 
             synchronouslock._lock();
 

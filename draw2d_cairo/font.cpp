@@ -4,7 +4,7 @@
 #include "graphics.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/host.h"
-
+#include "acme/platform/application.h"
 
 
 

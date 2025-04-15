@@ -218,7 +218,7 @@ memory::memory(memory_container * pcontainer, memsize dwAllocationAddUp, unsigne
    this->m_pcontainer         = pcontainer;
    if(dwAllocationAddUp == 0)
    {
-#ifdef __DEBUG
+#ifdef _DEBUG
       dwAllocationAddUp = 16 * 1024; // 16k
 #else //__DEBUG
       dwAllocationAddUp = 4 * 1024; // 4k

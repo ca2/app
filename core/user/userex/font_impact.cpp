@@ -66,10 +66,10 @@ namespace userex
    }
 
 
-   void font_impact::handle(::topic * ptopic, ::context * pcontext)
+   void font_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::user::split_impact::handle(ptopic, pcontext);
+      ::user::split_impact::handle(ptopic, phandlercontext);
 
       if (ptopic->id() == id_after_change_text)
       {
@@ -115,7 +115,7 @@ namespace userex
 
       }
 
-      ::user::impact::handle(ptopic, pcontext);
+      ::user::impact::handle(ptopic, phandlercontext);
 
    }
 
@@ -228,10 +228,10 @@ namespace userex
    }
 
 
-   //void font_impact::handle(::topic * ptopic, ::context * pcontext)
+   //void font_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
-   //   ::user::impact::handle(ptopic, pcontext);
+   //   ::user::impact::handle(ptopic, phandlercontext);
 
    //   if (ptopic->user_interaction_id() == impact_font_sel)
    //   {

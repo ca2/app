@@ -14,10 +14,10 @@
 #include "aura/graphics/draw2d/graphics.h"
 
 
-#include "extension.h"
+#include "aura/graphics/image/extension.h"
 
 
-#include "dynamic.h"
+#include "aura/graphics/image/dynamic.h"
 
 
 namespace image

@@ -357,6 +357,8 @@ namespace user
       ::pointer<::message::mouse_wheel>pmousewheel(pmessage);
 
       auto Δ = pmousewheel->m_Δ;
+      
+      informationf("on_message_mouse_wheel Δ=%d", Δ);
 
       if (Δ > 0)
       {

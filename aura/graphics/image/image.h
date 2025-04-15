@@ -1,11 +1,11 @@
 #pragma once
 
 
-#include "meta.h"
+#include "aura/graphics/image/meta.h"
 
-#include "drawer.h"
+#include "aura/graphics/image/drawer.h"
 
-#include "source.h"
+#include "aura/graphics/image/source.h"
 
 #include "acme/handler/item.h"
 

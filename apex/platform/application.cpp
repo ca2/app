@@ -306,7 +306,7 @@ namespace apex
    }
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
    long long application::increment_reference_count()
@@ -1986,7 +1986,7 @@ namespace apex
 
       bool bHandled = false;
 
-      if (!platform()->is_sandboxed())
+      if (!::system()->is_sandboxed())
       {
 
          if (!check_exclusive(m_prequest, bHandled))
@@ -1999,7 +1999,7 @@ namespace apex
 
                class time timeTimeout;
 
-               //#ifdef __DEBUG
+               //#ifdef _DEBUG
                //
                //          timeTimeout = minutes(5);
                //
@@ -3829,7 +3829,7 @@ namespace apex
 
 #endif
 
-      ::file::path pathPreviousLocation = platform()->get_argument_begins_eat("--previous-location");
+      ::file::path pathPreviousLocation = ::system()->get_argument_begins_eat("--previous-location");
 
       if (pathPreviousLocation.has_character())
       {
@@ -4149,7 +4149,7 @@ namespace apex
 
 #define TEST_DATA_REMOTE 0
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
          for (::collection::index i = 0; i < TEST_DATA_REMOTE; i++)
          {
@@ -4829,7 +4829,7 @@ namespace apex
    //}
 
 
-   //void application::handle(::topic * ptopic, ::context * pcontext)
+   //void application::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
 
@@ -5644,8 +5644,8 @@ namespace apex
       if (!is_service())
       {
 
-         if ((platform()->is_console() && m_bCreateAppShorcut.is_set_true())
-            || (!platform()->is_console() && m_bCreateAppShorcut.is_true_or_undefined()))
+         if ((::system()->is_console() && m_bCreateAppShorcut.is_set_true())
+            || (!::system()->is_console() && m_bCreateAppShorcut.is_true_or_undefined()))
          {
 
             on_create_app_shortcut();
@@ -7252,7 +7252,7 @@ namespace apex
 
 
 
-   //void application::handle(::topic * ptopic, ::context * pcontext)
+   //void application::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
    //}
@@ -7284,7 +7284,7 @@ namespace apex
 
    //}
 
-   //void application::handle(::topic * ptopic, ::context * pcontext)
+   //void application::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
    //}
@@ -7297,10 +7297,10 @@ namespace apex
    //}
 
 
-   //void application::route(::topic * ptopic, ::context * pcontext)
+   //void application::route(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
-   //   handle(ptopic, pcontext);
+   //   handle(ptopic, phandlercontext);
 
    //   if (ptopic->m_bRet)
    //   {

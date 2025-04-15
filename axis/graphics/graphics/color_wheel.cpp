@@ -34,7 +34,7 @@ namespace graphics
    }
 
 
-   void color_wheel::_on_draw(::nano2d::context * pcontext)
+   void color_wheel::_on_draw(::nano2d::context  * pcontext)
    {
 
       //Widget::draw(pcontext);
@@ -62,8 +62,10 @@ namespace graphics
       int diamRound = (((int)ceil(diam1) - 1) / 2) * 2;
 
       int_size sizeImageOffset;
-      sizeImageOffset.cx() = x + (w - diam1) / 2.0;
-      sizeImageOffset.cy() = y + (h - diam1) / 2.0;
+
+      sizeImageOffset.cx() = (int) (x + (w - diam1) / 2.0);
+
+      sizeImageOffset.cy() = (int) (y + (h - diam1) / 2.0);
 
       ::double_point center;
 
@@ -265,14 +267,14 @@ namespace graphics
             // Selector
             ::nano2d::guard guard(pcontext);
             //pcontext->save();
-            pcontext->translate(cx, cy);
-            pcontext->rotate(hue * ::nano2d::f_pi * 2);
+            pcontext->translate((float) cx, (float) cy);
+            pcontext->rotate((float) (hue * ::nano2d::f_pi * 2));
 
-            pcontext->stroke_width(u);
+            pcontext->stroke_width((float)u);
 
             pcontext->begin_path();
-            pcontext->circle(0, 0, r0 - 0.5f);
-            pcontext->circle(0, 0, r1 + 0.5f);
+            pcontext->circle(0, 0, (float) (r0 - 0.5));
+            pcontext->circle(0, 0, (float) (r1 + 0.5f));
             pcontext->stroke_color(rgba(0, 0, 0, 64));
             //pcontext->stroke_width(1.0f);
             pcontext->stroke();
@@ -280,24 +282,24 @@ namespace graphics
 
             // Marker on
             pcontext->begin_path();
-            pcontext->rectangle(r0 - 1, -2 * u, r1 - r0 + 2, 4 * u);
+            pcontext->rectangle((float) (r0 - 1.),(float)(- 2. * u), (float) (r1 - r0 + 2.), (float) (4.0 * u));
             pcontext->stroke_color(rgba(255, 255, 255, 192));
             pcontext->stroke();
 
-            paint = pcontext->box_gradient(r0 - 3, -5, r1 - r0 + 6, 10, 2, 4, rgba(0, 0, 0, 128), rgba(0, 0, 0, 0));
+            paint = pcontext->box_gradient((float)(r0 - 3.), (float)( - 5.), (float)(r1 - r0 + 6.), (float)(10.), (float)(2), (float)(4.), rgba(0, 0, 0, 128), rgba(0, 0, 0, 0));
             pcontext->begin_path();
-            pcontext->rectangle(r0 - 2 - 10, -4 - 10, r1 - r0 + 4 + 20, 8 + 20);
-            pcontext->rectangle(r0 - 2, -4, r1 - r0 + 4, 8);
+            pcontext->rectangle((float)(r0 - 2. -10.), (float)(-4. -10.), (float)(r1 - r0 + 4. + 20.), (float)(8. + 20.));
+            pcontext->rectangle((float)(r0 - 2.), (float)(-4.), (float)(r1 - r0 + 4.), (float)(8.));
             pcontext->path_winding(::nano2d::e_solidity_hole);
             pcontext->fill_paint(paint);
             pcontext->fill();
 
             //// Center triangle
-            float r = r0 - 6.0;
-            float ax = -0.5f * r;
-            float ay = 0.5f * ::sqrt(3.f) * r;
-            float bx = -0.5f * r;
-            float by = -0.5f * ::sqrt(3.f) * r;
+            float r = (float)(r0 - 6.0);
+            float ax = (float)(-0.5 * r);
+            float ay = (float)(0.5 * ::sqrt(3.) * r);
+            float bx = (float)(-0.5 * r);
+            float by = (float)(-0.5 * ::sqrt(3.) * r);
             pcontext->begin_path();
             pcontext->move_to(r, 0);
             pcontext->line_to(ax, ay);
@@ -351,21 +353,21 @@ namespace graphics
 
 //   };
 
-            float sx = bx + (dTriangleHeight * m_hls.m_dS);
-            float sy = dTriangleSide * (m_hls.m_dL - 0.5);
+            float sx = (float)(bx + (dTriangleHeight * m_hls.m_dS));
+            float sy = (float)(dTriangleSide * (m_hls.m_dL - 0.5));
 
             auto max_sx_for_given_sx = triangle_x_right(sy);
 
             if (sx > max_sx_for_given_sx)
             {
-               sx = max_sx_for_given_sx;
+               sx = (float)(max_sx_for_given_sx);
 
             }
 
 
-            pcontext->stroke_width(u);
+            pcontext->stroke_width((float)(u));
             pcontext->begin_path();
-            pcontext->circle(sx, sy, 2 * u);
+            pcontext->circle((float)(sx), (float)(sy), (float)(2. * u));
             pcontext->stroke_color(rgba(255, 255, 255, 192));
             pcontext->stroke();
 
@@ -393,7 +395,7 @@ namespace graphics
 
       //context.set_font_sink(m_pfontsink);
 
-      ::nano2d::context * pcontext = &context;
+      ::nano2d::context  * pcontext = &context;
 
       _on_draw(pcontext);
 
@@ -484,8 +486,10 @@ namespace graphics
       int diamRound = (((int)ceil(diam1) - 1) / 2) * 2;
 
       int_size sizeImageOffset;
-      sizeImageOffset.cx() = x + (w - diam1) / 2.0;
-      sizeImageOffset.cy() = y + (h - diam1) / 2.0;
+
+      sizeImageOffset.cx() = (int) (x + (w - diam1) / 2.0);
+
+      sizeImageOffset.cy() = (int) (y + (h - diam1) / 2.0);
 
       ::double_point center;
 

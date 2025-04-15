@@ -123,10 +123,30 @@ namespace file
       }
 
 
-      //exception::~exception()
-      //{
+      exception::exception(const ::file::exception & exception) :
+         ::exception(exception)
+      {
 
-      //}
+
+      }
+
+
+
+      exception::~exception()
+      {
+
+      }
+
+
+      ::pointer < ::subparticle > exception::clone()
+      {
+
+         auto pexception = __allocate ::file::exception(*this);
+
+         return pexception;
+
+      }
+
 
 
     /*  void exception::get_status()
@@ -421,7 +441,7 @@ namespace file
 //   void throw ::exception(const ::e_status & estatus, int lOsError, const ::file::path& path)
 //   {
 //
-//#ifdef __DEBUG
+//#ifdef _DEBUG
 //
 //      const ::scoped_string & scopedstr = ::file:status_short_description(estatus);
 //

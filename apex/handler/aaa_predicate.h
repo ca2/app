@@ -2,7 +2,7 @@
 #pragma once
 
 
-using handle_function = ::function < void(::topic *, ::context *) >;
+using handle_function = ::function < void(::topic *, ::handler_context *) >;
 //{
 //public:
 //
@@ -18,10 +18,10 @@ using handle_function = ::function < void(::topic *, ::context *) >;
 //
 //   //inline void operator()() const;
 //
-//   //void operator()(::topic * ptopic, ::context * pcontext) 
+//   //void operator()(::topic * ptopic, ::handler_context * phandlercontext)
 //   //{
 //
-//   //   this-(ptopic, pcontext);
+//   //   this-(ptopic, phandlercontext);
 //
 //   //}
 //

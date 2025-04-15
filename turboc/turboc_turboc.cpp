@@ -17,7 +17,7 @@ void getch(short c)
 }
 
 
-CLASS_DECL_TURBOC ::turboc::context & get_turboc_context()
+CLASS_DECL_TURBOC ::turboc::handler_context & get_turboc_context()
 {
 
    return *get_turboc_application().m_papplication;

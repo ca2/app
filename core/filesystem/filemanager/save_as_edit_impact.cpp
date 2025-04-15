@@ -125,10 +125,10 @@ namespace filemanager
    }
 
 
-   void save_as_edit_impact::handle(::topic * ptopic, ::context * pcontext)
+   void save_as_edit_impact::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::user::impact::handle(ptopic, pcontext);
+      ::user::impact::handle(ptopic, phandlercontext);
 
       if (ptopic->id() == id_initialize && ptopic->m_puserelement == this)
       {

@@ -2,13 +2,16 @@
 #pragma once
 
 
-#include "property_object.h"
+#include "acme/prototype/prototype/property_object.h"
+#include "acme/handler/handler_context.h"
 #include "acme/parallelization/create_task_attributes.h"
 
 
 class CLASS_DECL_ACME object :
-   virtual public property_object
+   virtual public property_object,
+   virtual public handler_context
 {
+   
 protected:
 
 

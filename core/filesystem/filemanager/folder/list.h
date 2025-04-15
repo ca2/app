@@ -61,7 +61,7 @@ namespace filemanager
       virtual ~folder_list ();
 
       void install_message_routing(::channel * pchannel) override;
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
 

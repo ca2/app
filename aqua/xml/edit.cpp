@@ -34,7 +34,7 @@ namespace xml
    }
 
 
-   void edit_item::set_attribute(const ::pointer<::xml::node>pnode, const property * pproperty)
+   void edit_item::set_attribute(const ::pointer<::xml::node>pnode, const ::property * pproperty)
    {
 
       m_eaction      = ::xml::action_set_attribute;
@@ -129,7 +129,7 @@ namespace xml
    }
 
 
-   void edit::set_attribute(const ::pointer<::xml::node>pnode, const property * pproperty)
+   void edit::set_attribute(const ::pointer<::xml::node>pnode, const ::property * pproperty)
    {
 
       if (pnode->get_document() != m_pdocument)

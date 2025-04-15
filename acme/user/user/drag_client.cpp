@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "drag_client.h"
 #include "drag.h"
+#include "item_base.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/user/user/mouse.h"

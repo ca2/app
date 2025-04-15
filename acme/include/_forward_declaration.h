@@ -1214,7 +1214,7 @@ namespace data
 
 
    class node;
-   class item;
+//   class item;
 
 
 } // namespace data
@@ -1721,14 +1721,14 @@ namespace draw2d
 } // namespace draw2d
 
 
-namespace handle
-{
-
-
-   class ini;
-
-
-} // namespace handle
+//namespace handle
+//{
+//
+//
+//   class ini;
+//
+//
+//} // namespace handle
 
 
 struct system_time_t;
@@ -2378,16 +2378,6 @@ namespace base
 
 
 class app_core;
-
-
-namespace data
-{
-
-
-   class item;
-
-
-} // namespace data
 
 
 namespace xml

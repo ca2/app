@@ -38,7 +38,7 @@ namespace filemanager
 
             //auto estatus = 
             
-            ::user::tree_data::initialize(pparticle);
+            ::user::tree_data<::item>::initialize(pparticle);
 
             //if (!estatus)
             //{
@@ -100,9 +100,9 @@ namespace filemanager
 
             m_iParentFolder = pxmldocument->root()->attribute("id");
 
-            ::pointer<::data::tree_item>ptreeitemParent;
+            ::pointer<::data::tree_item<::item>>ptreeitemParent;
 
-            ::pointer<::data::tree_item>ptreeitemChild;
+            ::pointer<::data::tree_item<::item>>ptreeitemChild;
 
             ptreeitemParent = FindTreeItem(m_iParentFolder);
 
@@ -207,14 +207,14 @@ namespace filemanager
 
                }
 
-               if(!ptreeitemChild->m_pdataitem)
+               if(!ptreeitemChild->m_pitem)
                {
 
-                  ptreeitemChild->m_pdataitem = __allocate ::data::simple_item(this);
+                  ptreeitemChild->m_pitem = __allocate ::data::simple_item(this);
 
                }
 
-               ptreeitemParent->m_pdataitem.cast < ::data::simple_item >()->m_str = pfolder->m_strName;
+               ptreeitemParent->m_pitem.cast < ::data::simple_item >()->m_str = pfolder->m_strName;
 
                ptreeitemParent->m_dwUser = (uptr) iNewItem;
 
@@ -225,7 +225,7 @@ namespace filemanager
          }
 
 
-         ::pointer<::data::tree_item>tree::FindTreeItem(long long iFolder)
+         ::pointer<::data::tree_item<::item>>tree::FindTreeItem(long long iFolder)
          {
             int iUser;
 
@@ -270,7 +270,7 @@ namespace filemanager
          }
 
 
-         ::collection::index tree::_001GetItemImage(::pointer<::data::tree_item>pitem, bool bSelected)
+         ::collection::index tree::_001GetItemImage(::pointer<::data::tree_item<::item>>pitem, bool bSelected)
          {
 
             if(bSelected)
@@ -289,7 +289,7 @@ namespace filemanager
          }
 
 
-         void tree::_001OnItemExpand(::data::tree_item * pitem, const ::action_context & context)
+         void tree::_001OnItemExpand(::data::tree_item<::item> * pitem, const ::action_context & context)
          {
 
             m_pserver->open_folder(m_foldera[pitem->m_dwUser]->m_iFolder);

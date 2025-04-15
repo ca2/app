@@ -3,7 +3,7 @@
 //
 #include "framework.h"
 #include "context_apex.h"
-#include "acme/platform/ini.h"
+//#include "acme/platform/ini.h"
 
 
 namespace platform
@@ -58,16 +58,16 @@ namespace platform
    //::file_system * file_system() override{}
 
 
-   ::handle::ini apex_context_layer::ini_from_path(::file::path& path)
-   {
-      return {};
-   }
+   //::handle::ini apex_context_layer::ini_from_path(::file::path& path)
+   //{
+   //   return {};
+   //}
 
 
-   ::handle::ini apex_context_layer::local_ini()
-   {
-      return {};
-   }
+   //::handle::ini apex_context_layer::local_ini()
+   //{
+   //   return {};
+   //}
 
 
    //bool apex_context_layer::http_download(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrFile){}
@@ -238,13 +238,13 @@ namespace platform
    //file_pointer get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception = nullptr) override{}
 
 
-   //      using acme::context::http_text{}
+   //      using acme::handler_context::http_text{}
    //      ::string http_text(const ::scoped_string & scopedstrUrl, ::property_set & set) override{}
    //
-   //      using acme::context::http_download{}
+   //      using acme::handler_context::http_download{}
    //      void http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set) override{}
 
-   //      using acme::context::http_get{}
+   //      using acme::handler_context::http_get{}
    //::pointer < ::nano::http::response > http_get(const ::scoped_string& scopedstrUrl, const ::property_set& set) override{}
 
    //void apex_context_layer::perform(::nano::http::get * pget){}

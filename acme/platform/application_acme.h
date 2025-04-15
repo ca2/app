@@ -11,80 +11,80 @@ namespace platform
 {
 
 
-   struct CLASS_DECL_ACME acme_application_layer_t
-   {
-
-      // mutable ::apex::application* m_papexapplication;
-      // mutable ::aqua::application* m_paquaapplication;
-      // mutable ::aura::application* m_pauraapplication;
-      // mutable ::axis::application* m_paxisapplication;
-      // mutable ::base::application* m_pbaseapplication;
-      // mutable ::bred::application* m_pbredapplication;
-      // mutable ::core::application* m_pcoreapplication;
-
-      class user_message :
-      virtual public ::particle
-      {
-
-         public:
-
-         ::e_status m_estatus;
-         ::particle_pointer m_pparticle;
-         long long m_hi;
-         void * m_p;
-
-      };
-
-      //bool                                            m_bTransferToContainer;
-      //bool                                            m_bTransferredToContainer;
-#if REFERENCING_DEBUGGING
-      ::reference_referer* m_prefererCreation = nullptr;
-#endif
-      //mutable ::platform::platform *               m_pplatform;
-
-      //::APPLICATION_FLAGS                      m_applicationflags;
-      ::pointer<main_hold_base>                       m_pmainholdbase;
-      // FROM ::main (Now main2)
-      ::pointer < ::filesystem::file_system_options > m_pfilesystemoptions;
-      ::pointer_array < user_message >                m_usermessagea;
-      bool                                            m_bGUIReady = false;
-      bool                                            m_bModulePath = false;
-      ::file::path                                    m_pathModule;
-
-      bool                                            m_bModuleFolder = false;
-      ::file::path                                    m_pathModuleFolder;
-
-
-      string                              m_strProgName;
-      string                           m_strStandalone;
-      //int                              m_iExitCode = 0;
-      bool                             m_bApplicationFirstRequest;
-      //::pointer < ::request >                         m_prequest;
-
-
-      // END FROM ::main (Now main2 : merge)
-
-      //::pointer < ::platform::platform >              m_pplatform;
-      string                                          m_strAppId;
-      string                                          m_strAppName;
-      string                                          m_strRoot;
-      string                                          m_strDomain;
-      string                                          m_strLibraryName;
-      string                                          m_strBuild;
-      string                                          m_strInstallToken;
-      string_array                                    m_straAppCategory;
-      bool                                            m_bLicense;
-
-      enum_application_capability_array               m_eapplicationcapabilitya;
-      ::text::text                                    m_textAppTitle;
-      ::text::text                                    m_textAppName;
-
-      ::pointer < ::mutex >                                      m_pmutexMatterLocator;
-
-      ::pointer < ::mutex >                                      m_pmutexStr;
-
-
-   };
+//   struct CLASS_DECL_ACME acme_application_layer_t
+//   {
+//
+//      // mutable ::apex::application* m_papexapplication;
+//      // mutable ::aqua::application* m_paquaapplication;
+//      // mutable ::aura::application* m_pauraapplication;
+//      // mutable ::axis::application* m_paxisapplication;
+//      // mutable ::base::application* m_pbaseapplication;
+//      // mutable ::bred::application* m_pbredapplication;
+//      // mutable ::core::application* m_pcoreapplication;
+//
+//      class user_message :
+//      virtual public ::particle
+//      {
+//
+//         public:
+//
+//         ::e_status m_estatus;
+//         ::particle_pointer m_pparticle;
+//         long long m_hi;
+//         void * m_p;
+//
+//      };
+//
+//      //bool                                            m_bTransferToContainer;
+//      //bool                                            m_bTransferredToContainer;
+//#if REFERENCING_DEBUGGING
+//      ::reference_referer* m_prefererCreation = nullptr;
+//#endif
+//      //mutable ::platform::platform *               m_pplatform;
+//
+//      //::APPLICATION_FLAGS                      m_applicationflags;
+//      ::pointer<main_hold_base>                       m_pmainholdbase;
+//      // FROM ::main (Now main2)
+//      ::pointer < ::filesystem::file_system_options > m_pfilesystemoptions;
+//      ::pointer_array < user_message >                m_usermessagea;
+//      bool                                            m_bGUIReady = false;
+//      bool                                            m_bModulePath = false;
+//      ::file::path                                    m_pathModule;
+//
+//      bool                                            m_bModuleFolder = false;
+//      ::file::path                                    m_pathModuleFolder;
+//
+//
+//      string                              m_strProgName;
+//      string                           m_strStandalone;
+//      //int                              m_iExitCode = 0;
+//      bool                             m_bApplicationFirstRequest;
+//      //::pointer < ::request >                         m_prequest;
+//
+//
+//      // END FROM ::main (Now main2 : merge)
+//
+//      //::pointer < ::platform::platform >              m_pplatform;
+//      string                                          m_strAppId;
+//      string                                          m_strAppName;
+//      string                                          m_strRoot;
+//      string                                          m_strDomain;
+//      string                                          m_strLibraryName;
+//      string                                          m_strBuild;
+//      string                                          m_strInstallToken;
+//      string_array                                    m_straAppCategory;
+//      bool                                            m_bLicense;
+//
+//      enum_application_capability_array               m_eapplicationcapabilitya;
+//      ::text::text                                    m_textAppTitle;
+//      ::text::text                                    m_textAppName;
+//
+//      ::pointer < ::mutex >                                      m_pmutexMatterLocator;
+//
+//      ::pointer < ::mutex >                                      m_pmutexStr;
+//
+//
+//   };
 
 
    class CLASS_DECL_ACME acme_application_layer
@@ -113,7 +113,7 @@ namespace platform
       virtual void on_error_icloud_not_available(::particle * pparticle = nullptr, long long hi = 0, void * p = nullptr);
 
 
-      //virtual void application_main();
+      //virtual void application_main(::platform::system * psystem);
 
       virtual int application_main();
 
@@ -222,7 +222,7 @@ namespace platform
 
 
       virtual ::file::path get_app_localconfig_folder();
-      virtual ::pointer<::handle::ini>get_ini();
+      virtual ::property_set get_ini(const ::scoped_string& scopedstrIniName = {});
 
 
       virtual ::string get_visual_studio_build();

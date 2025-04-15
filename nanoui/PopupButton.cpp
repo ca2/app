@@ -46,7 +46,7 @@ namespace nanoui
    }
 
 
-   int_size PopupButton::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
+   int_size PopupButton::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
 
       return Button::preferred_size(pcontext) + int_size(15, 0);
@@ -54,7 +54,7 @@ namespace nanoui
    }
 
 
-   void PopupButton::draw(::nano2d::context* pcontext) 
+   void PopupButton::draw(::nano2d::context * pcontext) 
    {
 
       // if (!m_bEnabled && m_bChecked)
@@ -89,7 +89,7 @@ namespace nanoui
    }
 
    
-   void PopupButton::perform_layout(::nano2d::context* pcontext, bool bRecalcTextSize) 
+   void PopupButton::perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize) 
    {
 
       Widget::perform_layout(pcontext);

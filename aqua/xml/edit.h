@@ -38,7 +38,7 @@ namespace xml
 
       void set_name(const ::pointer<::xml::node>pnode);
       void set_value(const ::pointer<::xml::node>pnode);
-      void set_attribute(const ::pointer<::xml::node>pnode, const property * pproperty);
+      void set_attribute(const ::pointer<::xml::node>pnode, const ::property * pproperty);
 
 
       //virtual ::stream & write(::stream & stream) const override;
@@ -65,7 +65,7 @@ namespace xml
 
       void set_name(const ::pointer<::xml::node>pnode);
       void set_value(const ::pointer<::xml::node>pnode);
-      void set_attribute(const ::pointer<::xml::node>pnode, const property * pproperty);
+      void set_attribute(const ::pointer<::xml::node>pnode, const ::property * pproperty);
 
 
    };

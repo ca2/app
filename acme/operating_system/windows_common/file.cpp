@@ -53,10 +53,23 @@ namespace windows
          dwCreationDisposition,
          pextendedparameters);
 
+      if (m_u == (::uptr)INVALID_HANDLE_VALUE)
+      {
+
+         auto dwLastError = ::GetLastError();
+
+         debugf("safe_create_file : CreateFileW failed %S %u dwDesiredAccess=%u dwShareMode=%u", m_windowspath.extended_path().c_str(), dwLastError, dwDesiredAccess, dwShareMode);
+
+         return false;
+
+      }
+
 #else
 
+      auto wstrPath = m_windowspath.extended_path();
+
       m_u = (::uptr) CreateFileW(
-         m_windowspath.extended_path(),
+         wstrPath,
          dwDesiredAccess,
          dwShareMode,
          lpSecurityAttributes,
@@ -64,9 +77,53 @@ namespace windows
          dwFlagsAndAttributes,
          hTemplateFile);
 
+      if (m_u == (::uptr)INVALID_HANDLE_VALUE)
+      {
+
+         auto dwLastError = ::GetLastError();
+
+         auto strLastErrorMessage = ::windows::last_error_message(dwLastError);
+
+         warningf("safe_create_file : CreateFileW failed "
+            "%S %u dwDesiredAccess=%u dwShareMode=%u lpSecurityAttributes=0x%llx "
+            "dwCreationDisposition=%u dwFlagsAndAttributes=%u "
+            "hTemplateFile=0x%llx",
+            wstrPath.c_str(), 
+            dwLastError, 
+            dwDesiredAccess, 
+            dwShareMode,
+            (::uptr)lpSecurityAttributes,
+            dwCreationDisposition,
+            dwFlagsAndAttributes,
+            (::uptr) hTemplateFile
+         );
+
+         if (dwLastError == ERROR_FILE_NOT_FOUND)
+         {
+            
+            //warningf("safe_create_file : CreateFileW failed \"%s\".", strLastErrorMessage.c_str());
+
+         }
+         else if (dwLastError == ERROR_PATH_NOT_FOUND)
+         {
+
+            //warningf("safe_create_file : CreateFileW failed \"%s\".", strLastErrorMessage.c_str());
+
+         }
+         else
+         {
+
+            warningf("safe_create_file : CreateFileW failed \"%s\".", strLastErrorMessage.c_str());
+
+         }
+
+         return false;
+
+      }
+
 #endif
 
-      return m_u != (::uptr) INVALID_HANDLE_VALUE;
+      return true;
 
    }
 

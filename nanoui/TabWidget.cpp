@@ -53,7 +53,7 @@ namespace nanoui
 
       }
 
-      m_callbackLayout = [this](::nano2d::context* pcontext)
+      m_callbackLayout = [this](::nano2d::context * pcontext)
       {
 
          perform_layout(pcontext);
@@ -96,7 +96,7 @@ namespace nanoui
 
       //TabWidgetBase::perform_layout(screen()->::nano2d::_context());
 
-      m_callbackLayout = [this](::nano2d::context* pcontext)
+      m_callbackLayout = [this](::nano2d::context * pcontext)
       {
          
          perform_layout(pcontext);
@@ -160,6 +160,28 @@ namespace nanoui
    }
 
 
+::collection::index TabWidgetBase::tab_index(const Widget * pwidgetChild) const
+{
+   return m_children.find_first(pwidgetChild);
+}
+
+bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
+{
+   auto iIndex = tab_index(pwidgetChild);
+   
+   if(iIndex < 0)
+   {
+    
+      return false;
+      
+   }
+   
+   return m_iActiveTab == iIndex;
+  
+}
+
+
+
    void TabWidgetBase::update_visibility()
    {
       
@@ -168,7 +190,7 @@ namespace nanoui
    }
 
 
-   void TabWidgetBase::perform_layout(::nano2d::context* pcontext, bool bRecalcTextSize) 
+   void TabWidgetBase::perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize) 
    {
 
       m_iaTabOffsets.clear();
@@ -196,7 +218,7 @@ namespace nanoui
    }
 
 
-   int_size TabWidgetBase::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
+   int_size TabWidgetBase::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
       pcontext->font_face(m_font.c_str());
       pcontext->font_size(font_size());
@@ -215,7 +237,7 @@ namespace nanoui
          (int)(font_size() + 2.f * m_ptheme->m_iVerticalPaddingTabButton + 2.f * m_iPadding));
    }
 
-   void TabWidgetBase::draw(::nano2d::context* pcontext) {
+   void TabWidgetBase::draw(::nano2d::context * pcontext) {
       if (m_callbackLayout)
       {
          m_callbackLayout(pcontext);
@@ -227,7 +249,7 @@ namespace nanoui
 
       }
       if (m_iaTabOffsets.size() != m_straTabCaptions.size() + 1)
-         throw std::runtime_error("Must run TabWidget::perform_layout() after adding/removing tabs!");
+         throw ::exception(error_failed, "Must run TabWidget::perform_layout() after adding/removing tabs!");
 
       int tab_height = (int)(font_size() + 2.f * m_ptheme->m_iVerticalPaddingTabButton);
 
@@ -481,7 +503,7 @@ namespace nanoui
          }
 
          m_ppopup->m_callbackLayout =
-            [this](::nano2d::context* pcontext)
+            [this](::nano2d::context * pcontext)
          {
             
             m_ppopup->set_size(m_ppopup->preferred_size(pcontext) + int_size(40, 0));
@@ -641,7 +663,7 @@ namespace nanoui
                ::swap(m_iaTabIds[pitem->m_item.m_iItem], m_iaTabIds[m_iTabDragIndex]);
 
                //TabWidgetBase::perform_layout(screen()->::nano2d::_context());
-               m_callbackLayout = [this](::nano2d::context* pcontext)
+               m_callbackLayout = [this](::nano2d::context * pcontext)
                {
 
                   TabWidgetBase::perform_layout(pcontext);
@@ -698,7 +720,7 @@ namespace nanoui
    }
 
 
-   void TabWidget::perform_layout(::nano2d::context* pcontext, bool bRecalcTextSize) 
+   void TabWidget::perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize) 
    {
 
       TabWidgetBase::perform_layout(pcontext, bRecalcTextSize);
@@ -747,7 +769,7 @@ namespace nanoui
    }
 
 
-   int_size TabWidget::preferred_size(::nano2d::context* pcontext, bool bRecalcTextSize)
+   int_size TabWidget::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
 
       auto sizeBase = TabWidgetBase::preferred_size(pcontext, bRecalcTextSize);

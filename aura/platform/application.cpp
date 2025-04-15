@@ -29,6 +29,7 @@
 #include "apex/user/user/message.h"
 #include "aqua/game/game.h"
 #include "aura/constant/idpool.h"
+#include "aura/platform/component.h"
 #include "aura/platform/node.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/user/user/interaction_array.h"
@@ -300,9 +301,13 @@ namespace aura
 
       ::aqua::application::on_set_platform();
 
-      factory()->add_factory_item<::aura::system, ::platform::system>();
+      factory()->add_factory_item < ::aura::system, ::platform::system >();
+      
       factory()->add_factory_item < ::aura::session, ::platform::session >();
 
+      factory()->add_factory_item < ::user::user >();
+      
+      factory()->add_factory_item < ::aura::component, ::component >();
 
    }
 
@@ -380,7 +385,7 @@ namespace aura
                pframe->destroy_window();
 
             }
-#ifdef DEBUG
+#ifdef _DEBUG
             if (timeStartDestroying.elapsed() > 10_min)
 #else
             if (timeStartDestroying.elapsed() > 20_s)
@@ -417,7 +422,7 @@ namespace aura
                pframe->destroy_window();
 
             }
-#ifdef DEBUG
+#ifdef _DEBUG
             if (timeStartDestroying.elapsed() > 10_min)
 #else
             if (timeStartDestroying.elapsed() > 20_s)
@@ -446,7 +451,7 @@ namespace aura
 
             m_pacmeuserinteractionMain->destroy_window();
 
-#ifdef DEBUG
+#ifdef _DEBUG
             if (timeStartDestroying.elapsed() > 10_min)
 #else
             if (timeStartDestroying.elapsed() > 20_s)
@@ -3136,7 +3141,7 @@ retry_license:
 //   }
 //
 //
-//   void application::handle(::topic * ptopic, ::context * pcontext)
+//   void application::handle(::topic * ptopic, ::handler_context * phandlercontext)
 //   {
 //
 //
@@ -5436,7 +5441,7 @@ retry_license:
 //
 //
 
-   //void application::handle(::topic * ptopic, ::context * pcontext)
+   //void application::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
    //}
@@ -5468,7 +5473,7 @@ retry_license:
 
    //}
 
-   //void application::handle(::topic * ptopic, ::context * pcontext)
+   //void application::handle(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
    //}
@@ -5481,7 +5486,7 @@ retry_license:
    //}
 
 
-   //void application::route(::topic * ptopic, ::context * pcontext)
+   //void application::route(::topic * ptopic, ::handler_context * phandlercontext)
    //{
 
    //   handle(ptopic);
@@ -8480,12 +8485,12 @@ namespace aura
    //   }
 
 
-   void application::handle(::topic * ptopic, ::context * pcontext)
+   void application::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      //::aqua::application::handle(ptopic, pcontext);
+      //::aqua::application::handle(ptopic, phandlercontext);
 
-      //::user::form_callback::handle(ptopic, pcontext);
+      //::user::form_callback::handle(ptopic, phandlercontext);
 
       if(ptopic->id() == id_app_activated)
       {

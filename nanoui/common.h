@@ -17,10 +17,10 @@
 
 #include <stdint.h>
 
-#include <functional>
-#include <vector>
-#include <string>
-#include <stdexcept>
+//#include <functional>
+//#include <vector>
+//#include <string>
+//#include <stdexcept>
 
 struct NSWindow;
 
@@ -125,7 +125,7 @@ struct NSWindow;
 
 extern "C" {
    /* Opaque handle types */
-   //typedef struct ::nano2d::context ::nano2d::context;
+   //typedef struct ::nano2d::context  ::nano2d::context ;
    typedef struct GLFWwindow GLFWwindow;
 }
 
@@ -326,7 +326,7 @@ CLASS_DECL_NANOUI void ___save_image(::particle * pparticle, const ::file::path 
 extern CLASS_DECL_NANOUI void pick_multiple_file(
     void * poswindow, 
     const ::array<::pair<::string, ::string>> & filetypes, 
-    ::std::function < void(const ::string_array &) > promisseFiles);
+    ::function < void(const ::string_array &) > promisseFiles);
 
 
 #if defined(__APPLE__) || defined(DOXYGEN_DOCUMENTATION_BUILD)
@@ -354,12 +354,12 @@ extern CLASS_DECL_NANOUI ::string get_utf8_character(uint32_t pwidgetChild);
 
 ///// Load a directory of PNG images and upload them to the GPU (suitable for use with ImagePanel)
 //extern CLASS_DECL_NANOUI ::array<::pair<int, ::string>>
-//load_image_directory(::nano2d::context * pcontext, const ::scoped_string & path);
+//load_image_directory(::nano2d::context  * pcontext, const ::scoped_string & path);
 //
 ///// Convenience function for instanting a PNG icon from the application's data segment (via bin2c)
 //#define ::nano2d::ImageIcon(ctx, name) nanoui::__nanoui_get_image(ctx, #name, name##_png, name##_png_size)
 ///// Helper function used by ::nano2d::_image_icon
-//extern CLASS_DECL_NANOUI int __nanoui_get_image(::nano2d::context * pcontext, const ::scoped_string & name,
+//extern CLASS_DECL_NANOUI int __nanoui_get_image(::nano2d::context  * pcontext, const ::scoped_string & name,
 //   uint8_t * data, uint32_t size);
 
 

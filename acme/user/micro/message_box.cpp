@@ -754,7 +754,7 @@ namespace micro
 //
 //#if defined(UNIVERSAL_WINDOWS)
 //
-//   if(pparticle->platform()->m_bConsole || !is_ui_possible())
+//   if(pparticle->::system()->m_bConsole || !is_ui_possible())
 //   {
 //
 //      auto psequencer = pparticle->__create_new < ::sequencer < ::conversation > >();
@@ -868,7 +868,7 @@ namespace micro
 //
 //#if defined(UNIVERSAL_WINDOWS)
 //
-//   if(pparticle->platform()->m_bConsole || !is_ui_possible())
+//   if(pparticle->::system()->m_bConsole || !is_ui_possible())
 //   {
 //
 //      return message_box_for_console(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
@@ -965,7 +965,7 @@ namespace micro
 //
 //#if defined(UNIVERSAL_WINDOWS)
 //
-//   if(pparticle->platform()->m_bConsole || !is_ui_possible())
+//   if(pparticle->::system()->m_bConsole || !is_ui_possible())
 //   {
 //
 //      auto result = message_box_for_console(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);

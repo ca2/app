@@ -16,7 +16,7 @@ namespace nano2d
 
 
    class CLASS_DECL_NANOUI draw2d_context :
-      virtual public ::nano2d::context
+      virtual public ::nano2d::context 
    {
    protected:
 

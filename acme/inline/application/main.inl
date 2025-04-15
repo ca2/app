@@ -1,7 +1,12 @@
 //#include "application_common.h"
 //#include "__apps.inl"
 
-void application_main();
+namespace APPLICATION_NAMESPACE
+{
+   
+   CLASS_DECL_IMPORT void application_factory(::factory::factory * pfactory);
+
+}
 
 #include "acme/_operating_system.h"
 #include "acme/platform/system_setup.h"
@@ -17,11 +22,11 @@ void application_main();
 DO_FACTORY(REFERENCE_FACTORY)
 #endif
 
-#include "_main_hold.h"
+#include "acme/inline/_include_user_and_system.h"
 
 
-#include "acme/operating_system/acme_initialize.h"
-#include "acme/operating_system/parallelization.h"
+//#include "acme/operating_system/acme_initialize.h"
+//#include "acme/operating_system/parallelization.h"
 
 
 //DECLARE_APPLICATION(APPLICATION);
@@ -42,16 +47,16 @@ processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 
 //__embed_resource(g_app)
 
-#if defined(CUBE)
-#include "acme/memory/_new.inl" // works for Windows Desktop(at CUBE/static builds)
-#else
-#include "acme/memory/_new.inl"
-#include "_new_impl.h"
-//#include "acme/_library.h"
-#endif
+//#if defined(CUBE)
+//#include "acme/memory/_new.inl" // works for Windows Desktop(at CUBE/static builds)
+//#else
+//#include "acme/memory/_new.inl"
+//#include "_new_impl.h"
+////#include "acme/_library.h"
+//#endif
 
 
-#include "acme/platform/acme.h"
+//#include "acme/platform/acme.h"
 
 
 #if defined(LINUX) || defined(__BSD__) || defined(RASPBERRYPIOS)
@@ -82,7 +87,9 @@ void set_global_exit_code(int iExitCode);
 extern "C" void netbsd_cleanup(int signo);
 #endif
 	
-	
+bool os_on_init_thread();
+void os_on_term_thread();
+
 int __implement();
 
 #if defined(WINDOWS)
@@ -93,68 +100,83 @@ extern "C" int android_main(int argc, char* argv[], char* envp[], const char* p1
 int main(int argc, char * argv[], char * envp[])
 #endif
 {
-
-   ::PLATFORM_LAYER_NAME::system system;
    
+   int iExitCode = -1;
+   
+   {
+      
+      auto psystem = ::as_pointer(new ::PLATFORM_LAYER_NAME::system());
+      
 #ifdef NETBSD
-
-	::print_line("NETBSD SIGINT installation");
- 	::signal(SIGINT, netbsd_cleanup);
-	::print_line("NETBSD SIGTERM installation");
-	::signal(SIGTERM, netbsd_cleanup);
-	::print_line("NETBSD SIGHUP installation");
-	::signal(SIGHUP, netbsd_cleanup);
-	
+      
+      ::print_line("NETBSD SIGINT installation");
+      ::signal(SIGINT, netbsd_cleanup);
+      ::print_line("NETBSD SIGTERM installation");
+      ::signal(SIGTERM, netbsd_cleanup);
+      ::print_line("NETBSD SIGHUP installation");
+      ::signal(SIGHUP, netbsd_cleanup);
+      
 #endif
-
-
-   //if (this->platform()->m_papplication->has_finishing_flag())
-   //{
-
-   //   return ::acme::acme::g_pacme->m_papplication->m_iExitCode;
-
-   //}
-
+      
+      
+      //if (this->::system()->m_papplication->has_finishing_flag())
+      //{
+      
+      //   return ::acme::acme::g_pacme->m_papplication->m_iExitCode;
+      
+      //}
+      
 #if defined(WINDOWS)
-
-   system.initialize_system(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
-
+      
+      psystem->initialize_system(hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
+      
 #else
-
-   system.initialize_system(argc, argv, envp);
-
+      
+      psystem->initialize_system(argc, argv, envp);
+      
 #endif
-
+      
 #if defined(LINUX) || defined(__BSD__) || defined(RASPBERRYPIOS)
-
-   system.set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
-
+      
+      psystem->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
+      
 #elif defined(ANDROID)
-
-   acme.platform()->set_resource_block(p1, p2);
-
+      
+      psystem->set_resource_block(p1, p2);
+      
 #endif
+      
+      {
+         
+         ::os_on_init_thread();
 
-   os_task_init_term ostaskinitterm;
+         set_main_thread();
+         
+         ::APPLICATION_NAMESPACE::application_factory(psystem->factory());
 
-   set_main_thread();
+         psystem->application_main();
 
-   application_main();
+         ::os_on_term_thread();
+
+      }
+      
+      iExitCode = psystem->m_iExitCode;
+      
+   }
 
    //system.on_system_before_destroy();
 
 #ifdef NETBSD
 
-set_global_exit_code(system.m_iExitCode);
+set_global_exit_code(iExitCode);
 
 netbsd_cleanup(0);
 
 #else
 
-
-   return system.m_iExitCode;
+   return iExitCode;
    
-   #endif
+#endif
    //::acme::sub_application::g_p->m_pacmeapplicationSub->m_bConsole = true;
 
    ////   application.m_applicationflags.m_bConsole = true;

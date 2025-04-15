@@ -237,7 +237,7 @@ namespace acme
 
       //information() << "acme::library::open success : " << m_strMessage;
       
-      // if(platform()->is_verbose_log())
+      // if(::system()->is_verbose_log())
       // {
       //
       //    if(::is_set(m_plibrary))
@@ -262,7 +262,7 @@ namespace acme
 
          __refdbg_add_referer
 
-         platform()->m_mapLibrary[m_strName] = this;
+         ::system()->m_mapLibrary[m_strName] = this;
 
       }
 
@@ -511,7 +511,7 @@ namespace acme
 
       }
 
-      critical_section_lock synchronouslock(&platform()->m_criticalsection);
+      critical_section_lock synchronouslock(&::system()->m_criticalsection);
 
       try
       {
@@ -529,7 +529,7 @@ namespace acme
                if (m_plibrary != nullptr)
                {
 
-                  if(platform()->is_verbose_log())
+                  if(::system()->is_verbose_log())
                   {
 
                      information() <<  "Closing library : " << m_strName << "\n";
@@ -933,8 +933,33 @@ namespace acme
 
    }
 
+
+   ::factory::factory_pointer& library::factory() const
+   {
+
+      if (!m_pfactory)
+      {
+
+         try
+         {
+
+            ((library*)this)->create_factory();
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+      }
+
+      return ((library *)this)->m_pfactory;
+
+   }
    
-   void library::create_factory(::pointer<::factory::factory>& pfactory)
+
+   void library::create_factory()
    {
 
       string strName = m_strName;
@@ -990,9 +1015,9 @@ namespace acme
 
       }
 
-      __defer_construct_new(pfactory);
+      __defer_construct_new(m_pfactory);
 
-      m_pfnFactory(pfactory);
+      m_pfnFactory(m_pfactory);
 
       debugf("Factory has succeeded for library : \"%s\"", strName.c_str());
 

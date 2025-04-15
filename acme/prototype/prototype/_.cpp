@@ -35,7 +35,7 @@ void __assert_particle_ok(const ::particle * pOb, const ::ansi_character * pszFi
 
    }
 
-   if (!is_memory_segment_ok(pOb, sizeof(matter)))
+   if (!is_memory_segment_ok(pOb, sizeof(::particle)))
    {
 
       if (__assert_failed_line(pszFileName, nLine))

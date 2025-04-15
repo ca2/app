@@ -129,7 +129,7 @@ void freebsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolNa
 
       int status = 0;
 
-      auto psynchronization = pparticle->platform()->system()->synchronization();
+      auto psynchronization = ::system()->synchronization();
 
       synchronous_lock sl(psynchronization);
 

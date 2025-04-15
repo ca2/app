@@ -54,16 +54,16 @@ void on_initialize_particle() override                                          
                                                                                        \
 }                                                                                      \
                                                                                        \
-void handle(::topic * ptopic, ::context * pcontext) override \
+void handle(::topic * ptopic, ::handler_context * phandlercontext) override \
 {                                                                                      \
                                                                                        \
-   BASE1::handle(ptopic, pcontext);                                              \
+   BASE1::handle(ptopic, phandlercontext);                                              \
                                                                                        \
-   BASE2::handle(ptopic, pcontext);                                              \
+   BASE2::handle(ptopic, phandlercontext);                                              \
                                                                                        \
-   BASE3::handle(ptopic, pcontext);                                              \
+   BASE3::handle(ptopic, phandlercontext);                                              \
                                                                                        \
-   BASE4::handle(ptopic, pcontext);                                              \
+   BASE4::handle(ptopic, phandlercontext);                                              \
                                                                                        \
 }            
 //void signal(::signal * psignal) override                            \
@@ -84,11 +84,11 @@ void handle(::topic * ptopic, ::context * pcontext) override \
 #define OPTIONAL_BASE_BODY                                                          \
 public:                                                                             \
    void on_initialize_particle() override {}         \
-   void handle(::topic *, ::context *) override {}
+   void handle(::topic *, ::handler_context *) override {}
 
 //   void assert_ok() const override {}                                    \
 //   void dump(dump_context&) const override {}                               \
-   //void on_subject(::topic::topic*, ::context*) override {} \
+   //void on_subject(::topic::topic*, ::handler_context*) override {} \
 
 #define OPTIONAL_INTERACTION_BODY                                                   \
    OPTIONAL_BASE_BODY                                                               \

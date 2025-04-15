@@ -296,7 +296,7 @@ void object::process_exit_status(const ::e_status & estatus)
 
    //inline ::object_meta * get_meta() { defer_object_meta(); return m_pmeta; }
 
-   //inline ::context* object::get_context() const { return m_papplication; }
+   //inline ::handler_context* object::get_context() const { return m_papplication; }
 
    //inline ::thread* object::get_thread() const { return m_pthread; }
 
@@ -318,14 +318,14 @@ void object::process_exit_status(const ::e_status & estatus)
     }
 //
 //#ifdef _DEBUG
-//    void set_context(::context* pcontext);
+//    void set_context(::handler_context* pcontext);
 //    void set_context_thread(::thread* pthread);
 //    void set_context_app(::apex::application* pappContext);
 //    void set_context_session(::apex::session* psessionContext);
 //   // void set_context_system(::apex::system* psystemContext);
 //   // void set_context_user(::object * puserContext);
 //#else
-//   inline void set_context(::context* pcontext);
+//   inline void set_context(::handler_context* pcontext);
 //   inline void set_context_thread(::thread* pthread);
 //   inline void set_context_app(::apex::application* pappContext);
 //   inline void set_context_session(::apex::session* psessionContext);

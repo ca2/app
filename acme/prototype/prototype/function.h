@@ -354,19 +354,33 @@ class function :
 //};
 
 
+//class function_base_1 :
+//   virtual public ::subparticle
+//{
+//public:
+//
+//
+//   virtual void operator()() = 0;
+//
+//
+//};
+//
+
 class function_composite_1 :
    public function_composite_base < ::subparticle >
 {
 public:
 
+
    function_composite_1(base * pbase, const class ::time & timeTimeout) :
       function_composite_base < ::subparticle >(pbase, timeTimeout)
    {
 
+
    }
 
 
-   void operator()()
+   void operator()() override
    {
 
       this->m_pbase->call();
@@ -374,12 +388,12 @@ public:
    }
 
 
-   void run() override
-   {
+   //void run() override
+   //{
 
-      this->m_pbase->call();
+   //   this->operator()();
 
-   }
+   //}
 
 
 };
@@ -391,8 +405,10 @@ class function < void() > :
 {
 public:
 
+   
    using base_function = function_common < ::subparticle, ::function_composite_1 >;
 
+   
    template < typename ELEMENT >
    class implementation :
       public base_implementation
@@ -413,18 +429,10 @@ public:
       }
 
 
-      void operator()()
+      void operator()() override
       {
 
          m_element();
-
-      }
-
-
-      void run() override
-      {
-
-         this->operator()();
 
       }
 
@@ -493,7 +501,7 @@ public:
       else
       {
 
-         this->m_pbase = __allocate implementation < PREDICATE > (predicate, timeTimeout);
+         this->m_pbase = __allocate implementation (predicate, timeTimeout);
 
       }
 
@@ -514,20 +522,13 @@ public:
    }
 
 
-   void operator()()
-   {
-
-      m_pbase->call();
-
-   }
-
-
    void operator()() const
    {
 
-      m_pbase->call();
+      m_pbase->operator()();
 
    }
+
 
    function & operator = (const function & function)
    {
@@ -555,15 +556,19 @@ public:
 //
 //};
 
+
 template < typename RETURN_TYPE >
 class function_base_2 :
    virtual public ::subparticle
 {
 public:
 
-   virtual RETURN_TYPE operator()() = 0;
+
+   virtual RETURN_TYPE get() = 0;
+
 
 };
+
 
 template < typename RETURN_TYPE >
 class function_composite_2 :
@@ -580,7 +585,7 @@ public:
    }
 
 
-   RETURN_TYPE operator()() override
+   RETURN_TYPE get() override
    {
 
       return ::transfer(this->m_pbase->operator()());
@@ -634,16 +639,15 @@ public:
       }
 
 
-
-      RETURN_TYPE operator()() override
+      RETURN_TYPE get() override
       {
 
          return m_predicate();
 
       }
 
-   };
 
+   };
 
 
    function() { }
@@ -683,7 +687,7 @@ public:
       else
       {
 
-         this->m_pbase = __allocate implementation < PREDICATE > (predicate, timeTimeout);
+         this->m_pbase = __allocate implementation<PREDICATE >(predicate, timeTimeout);
 
       }
 
@@ -707,7 +711,7 @@ public:
    RETURN_TYPE operator()() const
    {
 
-      return this->m_pbase->operator()();
+      return this->m_pbase->get();
 
    }
 
@@ -779,7 +783,9 @@ class function_base_3 :
 {
 public:
 
+
    virtual RETURN_TYPE operator()(TYPES... args) = 0;
+
 
 };
 
@@ -858,13 +864,13 @@ public:
       }
 
 
-
       RETURN_TYPE operator()(TYPES... args) override
       {
 
          return m_predicate(args...);
 
       }
+
 
    };
 
@@ -909,7 +915,7 @@ public:
       else
       {
 
-         this->m_pbase = __allocate implementation < PREDICATE > (predicate, timeTimeout);
+         this->m_pbase = __allocate implementation <PREDICATE > (predicate, timeTimeout);
 
       }
 
@@ -1009,7 +1015,27 @@ class function_base_4 :
 {
 public:
 
-   virtual void operator()(TYPES... args) = 0;
+
+   function_base_4()
+   {
+
+
+   }
+
+
+   ~function_base_4() override
+   {
+
+
+   }
+
+   
+   virtual void operator()(TYPES... args)
+   {
+
+
+   }
+
 
 };
 
@@ -1042,86 +1068,88 @@ public:
 
 
 template < typename... TYPES >
-class function < void(TYPES...) > :
-   public function_common < 
-   function_base_4 < TYPES... > ,
+using base_function_4 = function_common <
+   function_base_4 < TYPES... >,
    function_composite_4 < TYPES... >
-   >
+>;
+
+
+template < typename PREDICATE, typename... TYPES >
+class function_4_implementation :
+   virtual public add_particle_timeout < function_base_4 < TYPES... > >
 {
 public:
 
 
-   using base_function = function_common <
-      function_base_4 < TYPES... >,
-      function_composite_4 < TYPES... >
-   >;
-
-   using base_implementation = base_function::base_implementation;
-
-   using base = base_function::base;
+   PREDICATE m_predicate;
 
 
-   template < typename PREDICATE >
-   class implementation :
-      public base_implementation
+   function_4_implementation(PREDICATE implementation, const class ::time & timeTimeout = 0_s) :
+      m_predicate(implementation),
+      add_particle_timeout < function_base_4 < TYPES... > >(timeTimeout)
    {
-   public:
 
 
-      PREDICATE m_predicate;
+   }
 
 
-      implementation(PREDICATE implementation, const class ::time & timeTimeout = 0_s) :
-         m_predicate(implementation),
-         base_implementation(timeTimeout)
-      {
+   ~function_4_implementation() override
+   {
 
 
-      }
-
-      
-      ~implementation() override
-      {
-
-      
-      }
+   }
 
 
-      void get_debug_title(char * sz, character_count c) const override
-      {
+   void get_debug_title(char * sz, character_count c) const override
+   {
 
-         ::string_count_copy(sz, "function with argument(s) and no return type", c);
+      ::string_count_copy(sz, "function with argument(s) and no return type", c);
 
-      }
+   }
+
+
+   void operator()(TYPES... args) override
+   {
+
+      m_predicate(args...);
+
+   }
+
+
+};
+
+
+template < typename... TYPES >
+class function < void(TYPES...) > :
+   public base_function_4 < TYPES... >
+{
+public:
 
 
 
-      void operator()(TYPES... args) override
-      {
+   //using base_implementation = base_function::base_implementation;
 
-         m_predicate(args...);
+   using base = base_function_4 < TYPES... > ::base;
 
-      }
 
-   };
 
    
    //pointer < base >     m_pbase;
 
    function() { }
    template < typename T2 >
-   function(transfer_t, T2 * p) :base_function(place_t{}, p) {}
+   function(transfer_t, T2 * p) :base_function_4 < TYPES... > (place_t{}, p) {}
    template < typename T2 >
-   function(place_t, T2 * p) : base_function(place_t{}, p) {}
+   function(place_t, T2 * p) : base_function_4 < TYPES... > (place_t{}, p) {}
    template < typename T2 >
-   function(pointer < T2 > && p) : base_function(::transfer(p)) { }
-   function(enum_as_lparam, iptr iptr) : base_function(e_as_lparam, iptr) { }
-   function(const function & function) : base_function(function) { }
-   function(function && function) : base_function(::transfer(function)) {}
+   function(pointer < T2 > && p) : base_function_4 < TYPES... > (::transfer(p)) { }
+   function(enum_as_lparam, iptr iptr) : base_function_4 < TYPES... > (e_as_lparam, iptr) { }
+   function(const function & function) : base_function_4 < TYPES... > (function) { }
+   function(function && function) : base_function_4 < TYPES... > (::transfer(function)) {}
 
 
    template < typename PREDICATE >
-   function(const PREDICATE & predicate, const class ::time & timeTimeout = 0_s) 
+   function(PREDICATE predicate, const class ::time & timeTimeout = 0_s) 
    {
 
       if constexpr(::std::is_same_v<PREDICATE, nullptr_t>)
@@ -1151,7 +1179,7 @@ public:
       else
       {
 
-         this->m_pbase = __allocate implementation < PREDICATE > (predicate);
+         this->m_pbase = __allocate function_4_implementation< PREDICATE, TYPES... >(predicate, timeTimeout);
 
       }
 
@@ -1215,7 +1243,7 @@ public:
    function & operator = (const function & function)
    {
 
-      base_function::operator=(function);
+      base_function_4< TYPES... >::operator=(function);
 
       return *this;
 
@@ -1226,6 +1254,11 @@ public:
 };
 
 
+class topic;
+
+class handler_context;
+
+using signal_handler = ::function < void(::topic *, ::handler_context *) >;
 
 
 

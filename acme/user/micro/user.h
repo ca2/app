@@ -53,7 +53,7 @@ namespace micro
 
 
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
       //virtual void sync(const ::procedure & procedure);

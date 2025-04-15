@@ -19,6 +19,10 @@ namespace nanoui
    class Screen;
 
 
+   template < typename NUMBER >
+   class IntBox;
+
+
 } // namespace nanoui
 
 

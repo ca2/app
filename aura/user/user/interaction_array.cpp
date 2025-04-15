@@ -369,7 +369,7 @@ namespace user
    }
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
    long long interaction_array::increment_reference_count()

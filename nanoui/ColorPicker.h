@@ -12,11 +12,11 @@
 
 
 #include "acme/constant/user_key.h"
-#include "aura/user/user/interaction.h"
-#include "IntBox.h"
-#include "FloatBox.h"
-#include "PopupButton.h"
-#include "TabWidget.h"
+//#include "aura/user/user/interaction.h"
+//#include "nanoui/IntBox.h"
+//#include "nanoui/FloatBox.h"
+#include "nanoui/PopupButton.h"
+//#include "nanoui/TabWidget.h"
 
 
 namespace nanoui

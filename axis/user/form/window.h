@@ -61,7 +61,7 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
       void _001InitializeFormPreData() override;
-      void handle(::topic * ptopic, ::context * pcontext)  override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext)  override;
       void _001Update(interaction * pinteraction) override;
       void _001UpdateCheckBox(interaction * pinteraction) override;
       void _001UpdateComboBox(interaction * pinteraction) override;
@@ -93,7 +93,7 @@ namespace user
 
       bool operator == (const interaction & interaction) const;
 
-      //void handle(::topic * ptopic, ::context * pcontext) override;
+      //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       void _001SetControlFactory();
 
 

@@ -15,7 +15,7 @@ namespace apex
       virtual public ::platform::session,
    virtual public ::thread
    //,
-      //virtual public ::apex::context
+      //virtual public ::apex::context 
       //virtual public ::apex::application_container
       //,
       //virtual public ::filemanager::item_action //,

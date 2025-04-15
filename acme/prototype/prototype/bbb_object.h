@@ -122,7 +122,7 @@ public:
 
    inline ::object_meta* get_meta() { defer_object_meta(); return m_pmeta; }
 
-   inline ::context* get_context() const { return m_papplication; }
+   inline ::handler_context* get_context() const { return m_papplication; }
 
    inline ::thread* get_thread() const { return m_pthread; }
 
@@ -139,14 +139,14 @@ public:
    virtual string get_text(const ::payload& payload, const ::atom& atom) override;
 
 #ifdef _DEBUG
-   virtual void set_context(::context* pcontext);
+   virtual void set_context(::handler_context* pcontext);
    virtual void set_context_thread(::thread* pthread);
    virtual void set_context_app(::apex::application* pappContext);
    virtual void set_context_session(::apex::session* psessionContext);
    //virtual void set_context_system(::apex::system* psystemContext);
    //virtual void set_context_user(::object * puserContext);
 #else
-   inline void set_context(::context* pcontext);
+   inline void set_context(::handler_context* pcontext);
    inline void set_context_thread(::thread* pthread);
    inline void set_context_app(::apex::application* pappContext);
    inline void set_context_session(::apex::session* psessionContext);

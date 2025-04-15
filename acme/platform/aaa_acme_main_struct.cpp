@@ -13,7 +13,7 @@ apex_main_struct::apex_main_struct()
 
    m_iMatterFromHttpCache = 1;
 
-#elif defined(MACOS) || (defined(LINUX) && defined(DEBUG))
+#elif defined(MACOS) || (defined(LINUX) && defined(_DEBUG))
 
    m_iMatterFromHttpCache = -1; // -1 = overridable
 

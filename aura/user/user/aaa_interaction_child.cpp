@@ -588,7 +588,7 @@ namespace user
 
       //   ::user::control_event * phappening = pmessage->m_lparam.cast < ::user::control_event >();
 
-      //   m_puserinteraction->handle(ptopic, pcontext);
+      //   m_puserinteraction->handle(ptopic, phandlercontext);
 
       //   return;
 

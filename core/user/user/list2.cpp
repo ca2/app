@@ -329,10 +329,10 @@ namespace user
    //}
 
 
-   void list2::handle(::topic * ptopic, ::context * pcontext)
+   void list2::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::user::scroll_base::handle(ptopic, pcontext);
+      ::user::scroll_base::handle(ptopic, phandlercontext);
 
       //if(::is_null(pparticle))
       {
@@ -951,7 +951,9 @@ namespace user
 
          auto pitem = main_content().m_pitema->element_at(i);
 
-         auto puseritem = user_item(pitem);
+         auto puseritembase = user_item_base(pitem);
+
+         auto puseritem = puseritembase->m_puseritem;
 
          puseritem->m_rectangle2.left() = 0;
          puseritem->m_rectangle2.right() = rectangleX.width();
@@ -971,7 +973,7 @@ namespace user
 
          pgraphics->set_text_color(color);
 
-         pgraphics->text_out(x, (int) y, pitem->get_item_text());
+         pgraphics->text_out(x, (int) y, pitem->get_item_text(puseritembase));
 
          y = (int) (y + iLineHeight);
 

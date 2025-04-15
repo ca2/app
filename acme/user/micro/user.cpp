@@ -137,7 +137,7 @@ namespace micro
       //}
 
 
-      void user::handle(::topic * ptopic, ::context * pcontext)
+      void user::handle(::topic * ptopic, ::handler_context * phandlercontext)
       {
          
          if (ptopic->id() == id_set_application_dark_mode)
@@ -147,7 +147,7 @@ namespace micro
 
             for (auto & pacmewindowingwindow : windowa)
             {
-               pacmewindowingwindow->handle(ptopic, pcontext);
+               pacmewindowingwindow->handle(ptopic, phandlercontext);
             }
          }
       }

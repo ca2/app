@@ -4,7 +4,7 @@
 //#include "aura/_defer.h"
 
 
-//#if !defined(DEBUG) && !defined(CUBE)
+//#if !defined(_DEBUG) && !defined(CUBE)
 //
 //
 //#include "aura/inline/_new_impl.h"

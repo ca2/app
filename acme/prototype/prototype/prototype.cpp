@@ -22,7 +22,7 @@ namespace prototype
 
    }
 
-#ifdef DEBUG
+#ifdef _DEBUG
    long long prototype::increment_reference_count()
    {
 

@@ -1458,7 +1458,7 @@ notify_lock_notifier::~notify_lock_notifier()
    for (auto & pnotifylock : m_notifylocka)
    {
 
-      pnotifylock->m_synca.erase(this);
+      pnotifylock->erase(this);
 
    }
 
@@ -1470,7 +1470,7 @@ void notify_lock_notifier::add_notify_lock(::notify_lock * pnotifylock)
 
    m_notifylocka.add(pnotifylock);
 
-   pnotifylock->m_synca.add(this);
+   pnotifylock->add(this);
 
 }
 
@@ -1479,9 +1479,9 @@ void notify_lock_notifier::erase_notify_lock(::notify_lock * pnotifylock)
 {
 
 
-   m_notifylocka.erase(pnotifylock);
+   m_notifylocka.erase_item(pnotifylock);
 
-   pnotifylock->m_synca.erase(this);
+   pnotifylock->erase(this);
 
 }
 
@@ -1493,8 +1493,83 @@ void notify_lock_notifier::notify_lock_notify_all()
    for (auto pnotifylock:m_notifylocka)
    {
 
-      pnotifylock->m_manualresethappening.set_happening();
+      pnotifylock->m_pmanualresethappening->set_happening();
 
    }
+
+}
+
+
+
+void happening::add_notify_lock(::notify_lock * pnotifylock)
+{
+
+#ifdef PTHREAD_PARALLELIZATION
+
+   pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
+
+#endif
+
+   try {
+      notify_lock_notifier::add_notify_lock(pnotifylock);
+   }
+   catch(...)
+   {
+   }
+
+#ifdef PTHREAD_PARALLELIZATION
+
+   pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
+
+#endif
+
+}
+
+
+void happening::erase_notify_lock(::notify_lock * pnotifylock)
+{
+
+#ifdef PTHREAD_PARALLELIZATION
+
+   pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
+
+#endif
+
+   try {
+   notify_lock_notifier::erase_notify_lock(pnotifylock);
+   }
+   catch(...)
+   {
+
+   }
+
+#ifdef PTHREAD_PARALLELIZATION
+
+   pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
+
+#endif
+
+}
+
+
+
+void happening::notify_lock_notify_all()
+{
+
+#ifdef PTHREAD_PARALLELIZATION
+   pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
+#endif
+
+   try {
+      notify_lock_notifier::notify_lock_notify_all();
+   }
+   catch(...)
+   {
+
+   }
+
+#ifdef PTHREAD_PARALLELIZATION
+   pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
+#endif
 
 }

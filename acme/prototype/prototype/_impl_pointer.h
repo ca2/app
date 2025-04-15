@@ -256,14 +256,7 @@ template < class T >
 inline T * pointer < T > ::operator ->()
 {
 
-   if (is_null())
-   {
-
-      return nullptr;
-
-   }
-
-   return m_p;
+   return is_null() ? nullptr : m_p;
 
 }
 
@@ -272,14 +265,7 @@ template < class T >
 inline T * pointer < T > ::operator ->() const
 {
 
-   if (is_null())
-   {
-
-      return nullptr;
-
-   }
-
-   return m_p;
+   return is_null() ? nullptr : m_p;
 
 }
 
@@ -306,14 +292,7 @@ template < class T >
 inline pointer < T > ::operator T * ()
 {
 
-   if (is_null())
-   {
-
-      return nullptr;
-
-   }
-
-   return m_p;
+   return is_null() ? nullptr : m_p;
 
 }
 
@@ -322,14 +301,7 @@ template < class T >
 inline pointer < T > ::operator T * const () const
 {
 
-   if (is_null())
-   {
-
-      return nullptr;
-
-   }
-
-   return m_p;
+   return is_null() ? nullptr : m_p;
 
 }
 
@@ -338,15 +310,7 @@ template < class T >
 inline T * pointer < T > ::get()
 {
 
-   if (is_null())
-   {
-
-      return nullptr;
-
-   }
-
-
-   return m_p;
+   return is_null() ? nullptr : m_p;
 
 }
 
@@ -355,14 +319,7 @@ template < class T >
 inline const T * pointer < T > ::get() const
 {
 
-   if (is_null())
-   {
-
-      return nullptr;
-
-   }
-
-   return m_p;
+   return is_null() ? nullptr : m_p;
 
 }
 

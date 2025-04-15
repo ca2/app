@@ -2,7 +2,9 @@
 //#include "property_object.h"
 //#include "payload.h"
 #include "acme/constant/message.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/platform/application.h"
+#include "acme/platform/node.h"
 #include "acme/platform/system.h"
 //#include "acme/prototype/mathematics/c_number.h"
 
@@ -343,6 +345,101 @@ void property_object::on_catch_all_exception()
 }
 
 
+::string property_object::get_object_file_name()
+{
+
+   ::string str = ::type(*this).name();
+
+   str.find_replace("::", "_");
+
+   return str;
+
+}
+
+
+::file::path property_object::get_ini_configuration_path()
+{
+
+   ::file::path path;
+
+   path = "dropbox-app://";
+
+   if (include_hostname_in_configuration_path())
+   {
+
+      auto strComputerName = node()->get_computer_name();
+
+      if (strComputerName.is_empty())
+      {
+
+         strComputerName = "localhost";
+
+      }
+
+      path /= strComputerName;
+
+   }
+
+   ::string strFileName;
+
+   strFileName = get_object_file_name() + ".ini";
+
+   path /= strFileName;
+
+   return path;
+
+}
+
+
+bool property_object::include_hostname_in_configuration_path()
+{
+
+   return false;
+
+}
+
+
+void property_object::read_ini_configuration()
+{
+
+   auto pathIni = get_ini_configuration_path();
+
+   read_configuration_from_ini(pathIni);
+
+}
+
+
+void property_object::write_ini_configuration()
+{
+
+   auto pathIni = get_ini_configuration_path();
+
+   write_configuration_to_ini(pathIni);
+
+}
+
+
+void property_object::read_configuration_from_ini(const ::payload & payloadFile)
+{
+
+   auto strIni = file()->safe_get_string(payloadFile);
+
+   get_property_set().parse_ini(strIni);
+
+
+}
+
+
+void property_object::write_configuration_to_ini(const ::payload & payloadFile)
+{
+
+   auto strIni = get_property_set().get_ini();
+
+   file()->put_text(payloadFile, strIni);
+
+}
+
+
 //stream & property_object::write(::stream & stream) const
 //{
 //
@@ -566,7 +663,7 @@ void property_object::property_set_replace(string & str) const
 }
 
 
-void property_object::notify_property_changed(property* pproperty, const ::action_context & actioncontext)
+void property_object::notify_property_changed(::property* pproperty, const ::action_context & actioncontext)
 {
 
    on_property_changed(pproperty, actioncontext);
@@ -574,7 +671,7 @@ void property_object::notify_property_changed(property* pproperty, const ::actio
 }
 
 
-void property_object::on_property_changed(property* pproperty, const action_context & actioncontext)
+void property_object::on_property_changed(::property* pproperty, const action_context & actioncontext)
 {
 
 
@@ -901,6 +998,15 @@ template < typename TYPE > TYPE & property_object::get_cast(const ::atom & atom,
 }
 
 
+::property & property_object::property(const atom & atom)
+{
+
+   auto & set = get_property_set();
+
+   return set.get(atom);
+
+}
+
 bool property_object::is_true(const ::atom & atom) const
 {
 
@@ -925,10 +1031,10 @@ bool property_object::is_true_or_empty(const ::atom & atom) const
 }
 
 
-//bool property_object::__is_true(const ::atom & atom, const ::payload & varDefault, bool bDefault = false) const
+//bool property_object::__is_true(const ::atom & atom, const ::payload & payloadDefault, bool bDefault = false) const
 //{
 //
-//   return payload(atom).__is_true(varDefault, bDefault);
+//   return payload(atom).__is_true(payloadDefault, bDefault);
 //
 //}
 
@@ -969,15 +1075,7 @@ bool property_object::is_true_or_empty(const ::atom & atom) const
 }
 
 
-::payload property_object::payload(const ::atom & atom, const ::payload & varDefault) const { return find_payload(atom, varDefault); }
-
-// ::payload property_object::operator()(const ::atom & atom) const { return find_payload(atom, ::error_not_found); }
-//
-// ::payload property_object::operator()(const ::atom & atom, const ::payload & varDefault) const { return find_payload(atom, varDefault); }
-
-::payload property_object::find_payload(const ::atom & atom) const { return find_payload(atom, ::error_not_found); }
-
-::payload property_object::find_payload(const ::atom & atom, const ::payload & varDefault) const
+::property property_object::property(const ::atom & atom) const
 {
 
    auto pproperty = find_property(atom);
@@ -985,7 +1083,58 @@ bool property_object::is_true_or_empty(const ::atom & atom) const
    if (!pproperty)
    {
 
-      return varDefault;
+      return { atom, e_type_new };
+
+   }
+
+   return *pproperty;
+
+}
+
+
+::payload property_object::payload(const ::atom & atom, const ::payload & payloadDefault) const
+{
+
+   return find_payload(atom, payloadDefault); 
+
+}
+
+
+::property property_object::property(const ::atom & atom, const ::payload & payloadDefault) const
+{
+
+   auto pproperty = find_property(atom);
+
+   if (!pproperty)
+   {
+
+      return { atom, payloadDefault };
+
+   }
+
+   return *pproperty;
+
+}
+
+
+
+
+
+// ::payload property_object::operator()(const ::atom & atom) const { return find_payload(atom, ::error_not_found); }
+//
+// ::payload property_object::operator()(const ::atom & atom, const ::payload & payloadDefault) const { return find_payload(atom, payloadDefault); }
+
+::payload property_object::find_payload(const ::atom & atom) const { return find_payload(atom, ::error_not_found); }
+
+::payload property_object::find_payload(const ::atom & atom, const ::payload & payloadDefault) const
+{
+
+   auto pproperty = find_property(atom);
+
+   if (!pproperty)
+   {
+
+      return payloadDefault;
 
    }
 

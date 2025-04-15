@@ -7,20 +7,20 @@
 namespace platform
 {
 
-
-   struct CLASS_DECL_ACME apex_context_layer_t
-   {
-
-
-
-      string                                    m_strStoreServerBaseUrl;
-
-      string_to_string                          m_mapCachedLatestBuild;
-      //::pointer<::os_context>                 m_poscontext;
-
-
-
-   };
+//
+//   struct CLASS_DECL_ACME apex_context_layer_t
+//   {
+//
+//
+//
+//      string                                    m_strStoreServerBaseUrl;
+//
+//      string_to_string                          m_mapCachedLatestBuild;
+//      //::pointer<::os_context>                 m_poscontext;
+//
+//
+//
+//   };
 
 
    class CLASS_DECL_ACME apex_context_layer
@@ -75,9 +75,9 @@ namespace platform
       //::file_system * file_system() override;
 
 
-      virtual ::handle::ini ini_from_path(::file::path& path);
+      //virtual ::handle::ini ini_from_path(::file::path& path);
 
-      virtual ::handle::ini local_ini();
+      //virtual ::handle::ini local_ini();
 
 
 
@@ -193,13 +193,13 @@ namespace platform
       //file_pointer get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception = nullptr) override;
 
 
-//      using acme::context::http_text;
+//      using acme::handler_context::http_text;
 //      ::string http_text(const ::scoped_string & scopedstrUrl, ::property_set & set) override;
 //
-//      using acme::context::http_download;
+//      using acme::handler_context::http_download;
 //      void http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set) override;
 
-//      using acme::context::http_get;
+//      using acme::handler_context::http_get;
       //::pointer < ::nano::http::response > http_get(const ::scoped_string& scopedstrUrl, const ::property_set& set) override;
 
       //virtual void perform(::nano::http::get * pget);

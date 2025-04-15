@@ -31,7 +31,7 @@ namespace gpu
 
 
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
    long long render::increment_reference_count()
    {

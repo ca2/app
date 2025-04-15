@@ -1063,7 +1063,7 @@
 //
 //   void * p = (void *)(((iptr)pmemory) - pheapmemory->m_back);
 //
-//#ifdef __DEBUG
+//#ifdef _DEBUG
 //
 //   heap_memory_check_padding_after(pheapmemory);
 //

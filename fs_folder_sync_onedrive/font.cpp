@@ -65,7 +65,7 @@ namespace draw2d_gdiplus
    }
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
    void font::dump(dump_context & dumpcontext) const
    {

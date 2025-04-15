@@ -24,7 +24,7 @@ namespace draw2d_gdiplus
    }
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
    void brush::dump(dump_context & dumpcontext) const
    {

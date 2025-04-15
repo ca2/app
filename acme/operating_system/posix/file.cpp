@@ -1389,7 +1389,7 @@ void create_directory(const ::file::path & path)
       if(estatus == error_already_exists)
       {
          
-//#ifdef DEBUG
+//#ifdef _DEBUG
 //         
 //         throw exception(error_already_exists, "Why the program is creating directory if it is alredy a directory");
 //         

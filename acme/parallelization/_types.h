@@ -11,7 +11,7 @@ class htask;
 
 class itask;
 
-class task_index;
+//class task_index;
 
 class thread_storage;
 

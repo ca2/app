@@ -422,10 +422,10 @@ namespace filemanager
 
 
 
-   void folder_list::handle(::topic * ptopic, ::context * pcontext)
+   void folder_list::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::filemanager_impact_base::handle(ptopic, pcontext);
+      ::filemanager_impact_base::handle(ptopic, phandlercontext);
 
       if (ptopic->id() == id_initialize)
       {

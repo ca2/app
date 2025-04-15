@@ -2,7 +2,7 @@
 #pragma once
 
 
-#pragma pack(push, color_indexes, 1)
+//#pragma pack(push, color_indexes, 1)
 
 
 struct color_indexes
@@ -73,11 +73,12 @@ struct color_indexes
 };
 
 
-#pragma pack(pop, color_indexes)
+//#pragma pack(pop, color_indexes)
 
 
 constexpr inline color_indexes bgra_indexes() { return { 2, 1, 0, 3 }; }
 constexpr inline color_indexes rgba_indexes() { return { 0, 1, 2, 3 }; }
+constexpr inline color_indexes rbga_indexes() { return { 0, 2, 1, 3 }; }
 
 
 #include "_configuration.h"

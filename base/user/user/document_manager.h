@@ -70,7 +70,7 @@ namespace user
       virtual void close_all_documents(bool bEndApp); // close documents before exiting
       virtual ::collection::count get_open_document_count();
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 

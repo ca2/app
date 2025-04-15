@@ -277,7 +277,7 @@
 //}
 
 
-//CLASS_DECL_APEX inline ::context * get_context(::context * pcontext)
+//CLASS_DECL_APEX inline ::handler_context * get_context(::handler_context * pcontext)
 //{
 //
 //   return pcontext;
@@ -574,10 +574,10 @@
 //} // namespace apex
 
 
-#if !defined(DEBUG)
+#if !defined(_DEBUG)
 
 
-//inline void object::set_context(::context* pcontext)
+//inline void object::set_context(::handler_context* pcontext)
 //{
 //
 //   m_papplication = pcontext;

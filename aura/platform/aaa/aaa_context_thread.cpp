@@ -87,7 +87,7 @@ namespace aura
 
       ::thread::destroy();
 
-      ::context::destroy();
+      ::handler_context::destroy();
 
    }
 

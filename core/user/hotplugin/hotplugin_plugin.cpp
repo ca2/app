@@ -183,10 +183,10 @@ namespace hotplugin
    }
 
 
-   void plugin::handle(::topic * ptopic, ::context * pcontext)
+   void plugin::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::user::interaction::handle(ptopic, pcontext);
+      ::user::interaction::handle(ptopic, phandlercontext);
 
    }
 

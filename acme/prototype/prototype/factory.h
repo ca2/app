@@ -33,13 +33,13 @@ namespace factory
       ~factory_item_interface() override;
 
 
-      virtual string base_type_name() const = 0;
+      virtual string base_type_name() const;
 
-      virtual string __type_name() const = 0;
+      virtual string __type_name() const;
 
-      virtual ::pointer < ::subparticle > __call__create_particle() = 0;
+      virtual ::pointer < ::subparticle > __call__create_particle();
 
-      virtual void return_back(::subparticle * pelement) = 0;
+      virtual void return_back(::subparticle * pelement);
 
 
    };
@@ -52,6 +52,19 @@ namespace factory
    public:
 
 
+      factory_item_base()
+      {
+         
+         
+      }
+
+      ~factory_item_base() override
+      {
+         
+         
+      }
+
+      
       string base_type_name() const override { return ::demangle(::type < ORIGIN_TYPE>().name()); }
 
       virtual ::pointer<ORIGIN_TYPE> __call__create() = 0;
@@ -83,7 +96,20 @@ namespace factory
    {
    public:
 
+      
+      factory_item()
+      {
+         
+         
+      }
 
+      ~factory_item() override
+      {
+         
+         
+      }
+
+      
       string __type_name() const override { return ::demangle(typeid(TYPE).name()); }
 
 
@@ -172,7 +198,7 @@ namespace factory
       //inline ::pointer<::factory::factory_item_interface>& get_factory_item_from(const ::atom& atom, const ::atom & atomSource);
 
       inline ::factory::factory_item_interface * get_factory_item(const ::atom& atom) const;
-      inline bool has_factory_item(const ::atom& atom) const;
+      bool has_factory_item(const ::atom& atom) const;
 
       //inline ::factory::factory_item_interface * get_factory_item_from(const ::atom& atom, const ::atom & atomSource) const;
 

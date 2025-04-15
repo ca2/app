@@ -1,7 +1,7 @@
 #pragma once
 
 
-#if !defined(DEBUG) && !defined(CUBE)
+#if !defined(_DEBUG) && !defined(CUBE)
 
 
 #include "acme/inline/_new_impl.h"

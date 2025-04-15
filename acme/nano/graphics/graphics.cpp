@@ -119,13 +119,13 @@ namespace nano
 //        }
 //
 
-        void graphics::handle(::topic * ptopic, ::context * pcontext)
+        void graphics::handle(::topic * ptopic, ::handler_context * phandlercontext)
         {
 ////            if (ptopic->id() == id_set_application_dark_mode)
 ////            {
 ////                for (auto& pinterchange : m_interchangea)
 ////                {
-////                    pinterchange->handle(ptopic, pcontext);
+////                    pinterchange->handle(ptopic, phandlercontext);
 ////                }
 ////            }
         }

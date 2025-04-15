@@ -14,7 +14,7 @@ NATURAL_DATA* __nil() { return nullptr; }
 #define NATURAL_METADATA_ALIGN 32
 
 
-#pragma pack(push, meta_data, 1)
+//#pragma pack(push, meta_data, 1)
 
 
 template < typename TYPE_DATA >
@@ -61,7 +61,7 @@ public:
 };
 
 
-#pragma pack(pop, meta_data)
+//#pragma pack(pop, meta_data)
 
 
 template < typename BASE_META_DATA >
@@ -91,9 +91,10 @@ public:
    inline static natural_meta_data < BASE_META_DATA > * from_data(const DATA* pdata)
    {
 
-      return ::is_set(pdata) ?
-         (natural_meta_data < BASE_META_DATA >*)BASE_META_DATA::meta_data_from_data(pdata) :
-         nullptr;
+      //return ::is_set(pdata) ?
+      //   (natural_meta_data < BASE_META_DATA >*)BASE_META_DATA::meta_data_from_data(pdata) :
+      //   nullptr;
+      return (natural_meta_data < BASE_META_DATA >*)BASE_META_DATA::meta_data_from_data(pdata);
 
    }
 
@@ -125,7 +126,7 @@ public:
 };
 
 
-#pragma pack(push,1)
+//#pragma pack(push,1)
 
 
 template < typename RANGE_TYPE, typename BASE_META_DATA, ::heap::enum_memory t_ememory >
@@ -284,7 +285,8 @@ public:
    inline NATURAL_META_DATA * metadata() const
    {
 
-      return ::is_set(this) && ::is_set(this->m_begin) ? NATURAL_META_DATA::from_data(this->m_begin) : nullptr;
+      //return ::is_set(this) && ::is_set(this->m_begin) ? NATURAL_META_DATA::from_data(this->m_begin) : nullptr;
+      return NATURAL_META_DATA::from_data(this->m_begin);
 
    }
 
@@ -431,7 +433,7 @@ public:
 };
 
 
-#pragma pack(pop)
+//#pragma pack(pop)
 
 
 

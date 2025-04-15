@@ -253,7 +253,7 @@ int gdb_check()
 //void output_debug_string(const ::wide_character * pOutputString)
 //{
 //
-//   if(this->platform()->m_bOutputDebugString)
+//   if(this->::system()->m_bOutputDebugString)
 //   {
 //
 //      output_debug_string(string(pOutputString));

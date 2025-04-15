@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "session.h"
 #include "system.h"
 #include "context.h"
 #include "machine_event_data.h"
@@ -265,7 +266,7 @@ namespace apex
    // void system::on_set_platform()
    // {
    //
-   //    apex::context::on_set_platform();
+   //    apex::handler_context::on_set_platform();
    //
    //    platform::system::on_set_platform();
    //
@@ -480,7 +481,7 @@ namespace apex
 
       }
 
-#ifdef __DEBUG
+#ifdef _DEBUG
 
       //estatus =
       //__construct_new(m_pdumpcontext);
@@ -1619,7 +1620,7 @@ pdirectorysystem->create("/ca2core");
    //void system::post_request(::request* prequest)
    //{
 
-   //   auto straArguments = platform()->get_arguments();
+   //   auto straArguments = ::system()->get_arguments();
 
    //   if (straArguments.has_element())
    //   {
@@ -4865,10 +4866,10 @@ namespace apex
    }
 
 
-   void system::handle(::topic * ptopic, ::context * pcontext)
+   void system::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::thread::handle(ptopic, pcontext);
+      ::thread::handle(ptopic, phandlercontext);
       //      auto psignal = get_signal((::enum_id) iUpdate);
       //
       //      psignal->m_payload = iPayload;

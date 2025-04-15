@@ -66,13 +66,13 @@ struct __mach_timespec
 
 //void utc_timespec(timespec * ptimespec);
 
-
+thread_local __mach_timespec t_machtimespec;
 void utc_timespec(timespec * ptimespec)
 {
    
-   __mach_timespec machtimespec;
    
-   machtimespec.get(ptimespec);
+   
+   t_machtimespec.get(ptimespec);
    
 }
 
@@ -104,8 +104,8 @@ class ::time & time::Now()
 
    struct timespec timespec;
    
-   if (__builtin_available(macOS 10.15, *))
-   {
+//   if (__builtin_available(macOS 10.15, *))
+//   {
       
       if (timespec_get(&timespec, TIME_UTC) != TIME_UTC)
       {
@@ -114,13 +114,13 @@ class ::time & time::Now()
          
       }
       
-   }
-   else
-   {
-      
-      utc_timespec(&timespec);
-
-   }
+   //}
+//   else
+//   {
+//      
+//      utc_timespec(&timespec);
+//
+//   }
    
    m_iSecond = timespec.tv_sec;
 

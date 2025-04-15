@@ -1,7 +1,7 @@
 #pragma once
 
 
-#pragma pack(push, system_time, 1)
+//#pragma pack(push, system_time, 1)
 
 
 class CLASS_DECL_ACME system_time
@@ -52,7 +52,7 @@ unsigned short ushMilliseconds = 0
 };
 
 
-#pragma pack(pop, system_time)
+//#pragma pack(pop, system_time)
 
 
 

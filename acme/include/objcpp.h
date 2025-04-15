@@ -19,19 +19,27 @@
 // So what is the int_point of method objective?? Or using adjective? like suhper fast and objective C++?
 //
 //
-
 #pragma once
-
 
 #define __OBJECTIVE_CPP__
 
 #ifdef MACOS
 
+
+#include <AppKit/AppKit.h>
+
+
 #include "_simple_templates.h"
+
 
 #else
 
+
+#include <UIKit/UIKit.h>
+
+
 #include "acme/operating_system/ios/_mm.h"
+
 
 #endif
 

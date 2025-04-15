@@ -20,7 +20,7 @@ namespace apex
       void _update_enabled_implementations() override;
 
 
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
       void destroy() override;

@@ -80,7 +80,7 @@ void directory_system::init_system()
 
    auto pdirectorysystem = directory_system();
 
-#if defined(__APPLE__) || (defined(DEBUG)) || defined(ANDROID) || defined(UNIVERSAL_WINDOWS)
+#if defined(__APPLE__) || (defined(_DEBUG)) || defined(ANDROID) || defined(UNIVERSAL_WINDOWS)
 
    if ( pdirectorysystem->is(application()->side_get_matter_path("app/_matter/main")))
    {

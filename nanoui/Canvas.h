@@ -16,7 +16,7 @@
 #pragma once
 
 
-#include "Widget.h"
+#include "nanoui/Widget.h"
 
 
 namespace nanoui
@@ -97,10 +97,10 @@ namespace nanoui
       ::color::color colorBackground() const;
 
       /// Draw the pwidget contents. Override this method.
-      virtual void draw_contents(::nano2d::context * pcontext);
+      virtual void draw_contents(::nano2d::context  * pcontext);
 
       /// Draw the pwidget
-      virtual void draw(::nano2d::context * pcontext) override;
+      virtual void draw(::nano2d::context  * pcontext) override;
 
    protected:
       ::color::color     m_colorClear;

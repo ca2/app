@@ -355,7 +355,6 @@
 		9A75103E282B948800C4861B /* cookie.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A239D9026CDF9AE00F98012 /* cookie.cpp */; };
 		9A751041282B94EA00C4861B /* manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230BE27EACE7F00B5A78D /* manager.cpp */; };
 		9A751043282B94EA00C4861B /* signal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230BF27EACE7F00B5A78D /* signal.cpp */; };
-		9A751047282B94EA00C4861B /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230B727EACE7F00B5A78D /* context.cpp */; };
 		9A75104E282B95B500C4861B /* idpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC0191B274896BF006BEBCC /* idpool.cpp */; };
 		9A754F852B211EA500FFB669 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A754F842B211EA500FFB669 /* _.h */; };
 		9A754F862B211EA500FFB669 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A754F842B211EA500FFB669 /* _.h */; };
@@ -441,10 +440,8 @@
 		9A919E532CF29AF500272FF2 /* application_incoming_socket_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A919E4E2CF29AF500272FF2 /* application_incoming_socket_thread.cpp */; };
 		9A919E542CF29AF500272FF2 /* application_incoming_socket_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A919E4D2CF29AF500272FF2 /* application_incoming_socket_thread.h */; };
 		9A9230C527EACE8000B5A78D /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9230B427EACE7F00B5A78D /* _impl.h */; };
-		9A9230C827EACE8000B5A78D /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230B727EACE7F00B5A78D /* context.cpp */; };
 		9A9230C927EACE8000B5A78D /* promise1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9230B827EACE7F00B5A78D /* promise1.h */; };
 		9A9230CA27EACE8000B5A78D /* manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9230B927EACE7F00B5A78D /* manager.h */; };
-		9A9230CD27EACE8000B5A78D /* context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9230BC27EACE7F00B5A78D /* context.h */; };
 		9A9230CE27EACE8000B5A78D /* signal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9230BD27EACE7F00B5A78D /* signal.h */; };
 		9A9230CF27EACE8000B5A78D /* manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230BE27EACE7F00B5A78D /* manager.cpp */; };
 		9A9230D027EACE8000B5A78D /* signal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230BF27EACE7F00B5A78D /* signal.cpp */; };
@@ -700,7 +697,6 @@
 		9AC97F5F2A71B39E00B1BCF3 /* _setup.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5B62511444B008DABD2 /* _setup.h */; };
 		9AC97F602A71B39E00B1BCF3 /* dispatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF8CDEC271A9A8D00BF80B7 /* dispatcher.h */; };
 		9AC97F612A71B39E00B1BCF3 /* server.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B41E2511444A008DABD2 /* server.h */; };
-		9AC97F622A71B39E00B1BCF3 /* context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9230BC27EACE7F00B5A78D /* context.h */; };
 		9AC97F632A71B39E00B1BCF3 /* department.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6DFB7296555CA008A1335 /* department.h */; };
 		9AC97F642A71B39E00B1BCF3 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B40D2511444A008DABD2 /* _impl.h */; };
 		9AC97F652A71B39E00B1BCF3 /* _sockets.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A239CF826CDF9AE00F98012 /* _sockets.h */; };
@@ -861,7 +857,6 @@
 		9AC980172A71B39E00B1BCF3 /* idpool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC0191B274896BF006BEBCC /* idpool.cpp */; };
 		9AC980182A71B39E00B1BCF3 /* get_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A239D9826CDF9AE00F98012 /* get_socket.cpp */; };
 		9AC980192A71B39E00B1BCF3 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B60A2511444B008DABD2 /* _.cpp */; };
-		9AC9801A2A71B39E00B1BCF3 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230B727EACE7F00B5A78D /* context.cpp */; };
 		9AC9801B2A71B39E00B1BCF3 /* websocket_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A239CC226CDF9AE00F98012 /* websocket_client.cpp */; };
 		9AC9801C2A71B39E00B1BCF3 /* message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A24D16F28516CB5000C9873 /* message.cpp */; };
 		9AC9801D2A71B39E00B1BCF3 /* socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BFA828C83B0000A43004 /* socket_handler.cpp */; };
@@ -1455,10 +1450,8 @@
 		9A919E4D2CF29AF500272FF2 /* application_incoming_socket_thread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = application_incoming_socket_thread.h; sourceTree = "<group>"; };
 		9A919E4E2CF29AF500272FF2 /* application_incoming_socket_thread.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = application_incoming_socket_thread.cpp; sourceTree = "<group>"; };
 		9A9230B427EACE7F00B5A78D /* _impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
-		9A9230B727EACE7F00B5A78D /* context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
 		9A9230B827EACE7F00B5A78D /* promise1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = promise1.h; sourceTree = "<group>"; };
 		9A9230B927EACE7F00B5A78D /* manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = manager.h; sourceTree = "<group>"; };
-		9A9230BC27EACE7F00B5A78D /* context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = context.h; sourceTree = "<group>"; };
 		9A9230BD27EACE7F00B5A78D /* signal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = signal.h; sourceTree = "<group>"; };
 		9A9230BE27EACE7F00B5A78D /* manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = manager.cpp; sourceTree = "<group>"; };
 		9A9230BF27EACE7F00B5A78D /* signal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = signal.cpp; sourceTree = "<group>"; };
@@ -2160,18 +2153,16 @@
 		9A9230B327EACE7F00B5A78D /* handler */ = {
 			isa = PBXGroup;
 			children = (
-				9A7551592B21809C00FFB669 /* manager_room.cpp */,
-				9A75515A2B21809C00FFB669 /* manager_room.h */,
-				9A9230B727EACE7F00B5A78D /* context.cpp */,
-				9A9230BE27EACE7F00B5A78D /* manager.cpp */,
-				9A9230BF27EACE7F00B5A78D /* signal.cpp */,
 				9A9230C427EACE7F00B5A78D /* _.h */,
 				9A9230B427EACE7F00B5A78D /* _impl.h */,
-				9A9230BC27EACE7F00B5A78D /* context.h */,
 				9A9230B927EACE7F00B5A78D /* manager.h */,
+				9A9230BE27EACE7F00B5A78D /* manager.cpp */,
+				9A75515A2B21809C00FFB669 /* manager_room.h */,
+				9A7551592B21809C00FFB669 /* manager_room.cpp */,
 				9A9230C027EACE7F00B5A78D /* promise.h */,
 				9A9230B827EACE7F00B5A78D /* promise1.h */,
 				9A9230BD27EACE7F00B5A78D /* signal.h */,
+				9A9230BF27EACE7F00B5A78D /* signal.cpp */,
 			);
 			path = handler;
 			sourceTree = "<group>";
@@ -2488,7 +2479,6 @@
 				9A68BC9E2511444E008DABD2 /* _setup.h in Headers */,
 				9AF8CDEE271A9A8E00BF80B7 /* dispatcher.h in Headers */,
 				9A68BB4D2511444D008DABD2 /* server.h in Headers */,
-				9A9230CD27EACE8000B5A78D /* context.h in Headers */,
 				9AE6DFBC296555CA008A1335 /* department.h in Headers */,
 				9A68BB3C2511444D008DABD2 /* _impl.h in Headers */,
 				9A2FCDD32C9D3366000CF701 /* innate_ui.h in Headers */,
@@ -2744,7 +2734,6 @@
 				9AC97F602A71B39E00B1BCF3 /* dispatcher.h in Headers */,
 				9A523E412CD3C377006ED868 /* window_base.h in Headers */,
 				9AC97F612A71B39E00B1BCF3 /* server.h in Headers */,
-				9AC97F622A71B39E00B1BCF3 /* context.h in Headers */,
 				9AC97F632A71B39E00B1BCF3 /* department.h in Headers */,
 				9AC97F642A71B39E00B1BCF3 /* _impl.h in Headers */,
 				9AC97F652A71B39E00B1BCF3 /* _sockets.h in Headers */,
@@ -3238,7 +3227,6 @@
 				9ABBFE8F2B3FF6090036DF8C /* incoming_socket_thread.cpp in Sources */,
 				9A239E6B26CDF9AF00F98012 /* get_socket.cpp in Sources */,
 				9A68BCEF2511444E008DABD2 /* _.cpp in Sources */,
-				9A9230C827EACE8000B5A78D /* context.cpp in Sources */,
 				9A239DA626CDF9AE00F98012 /* websocket_client.cpp in Sources */,
 				9A99795D2D8460FE00A1FC11 /* raw_folder.cpp in Sources */,
 				9A99795E2D8460FE00A1FC11 /* raw_folder_protocol.cpp in Sources */,
@@ -3408,7 +3396,6 @@
 				9A9979672D8460FE00A1FC11 /* raw_folder.cpp in Sources */,
 				9A9979682D8460FE00A1FC11 /* raw_folder_protocol.cpp in Sources */,
 				9AC980192A71B39E00B1BCF3 /* _.cpp in Sources */,
-				9AC9801A2A71B39E00B1BCF3 /* context.cpp in Sources */,
 				9AC9801B2A71B39E00B1BCF3 /* websocket_client.cpp in Sources */,
 				9AC9801C2A71B39E00B1BCF3 /* message.cpp in Sources */,
 				9AC9801D2A71B39E00B1BCF3 /* socket_handler.cpp in Sources */,
@@ -3582,7 +3569,6 @@
 				9A751036282B948800C4861B /* request.cpp in Sources */,
 				9AD69543251A754800C0EBD7 /* console_application.cpp in Sources */,
 				9AC88B1E2B6B503B008F1C20 /* socket_thread.cpp in Sources */,
-				9A751047282B94EA00C4861B /* context.cpp in Sources */,
 				9AC88B152B6B4F30008F1C20 /* remote_native.cpp in Sources */,
 				9A81ECAD274EDFCA003F38EC /* api_client.cpp in Sources */,
 				9A751041282B94EA00C4861B /* manager.cpp in Sources */,
@@ -3752,7 +3738,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
-				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_REUSE_STRINGS = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
@@ -3876,7 +3861,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_REUSE_STRINGS = YES;
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;

@@ -1,7 +1,10 @@
 
 #include "acme/exception/exception.h"
+namespace APPLICATION_NAMESPACE
+{
+void application_factory(::factory::factory * pfactory);
 
-void application_main();
+}
 
 #include "acme/_operating_system.h"
 #include "acme/operating_system/process.h"
@@ -65,7 +68,7 @@ int main(int argc, char ** argv, char ** envp)
 #endif
 {
 
-   ::PLATFORM_LAYER_NAME::system system;
+   auto psystem = ::hold(new ::PLATFORM_LAYER_NAME::system);
 
    
 
@@ -88,9 +91,9 @@ int main(int argc, char ** argv, char ** envp)
    }
 #endif
 
-   system.initialize_system(argc, argv, envp);
+   psystem->initialize_system(argc, argv, envp);
 
-   system.m_bConsole = true;
+   psystem->m_bConsole = true;
 
    //::acme::acme::g_pacme->m_papplication->m_bConsole = true;
 
@@ -109,13 +112,15 @@ int main(int argc, char ** argv, char ** envp)
    try
    {
 
-      application_main();
+      APPLICATION_NAMESPACE::application_factory(psystem->factory());
+      
+      psystem->application_main();
 
    }
    catch (const ::exception& exception)
    {
 
-      if (system.m_bConsole)
+      if (psystem->m_bConsole)
       {
 
          
@@ -161,13 +166,13 @@ int main(int argc, char ** argv, char ** envp)
 
       }
 
-      system.m_iExitCode = exception.m_estatus.exit_code();
+      psystem->m_iExitCode = exception.m_estatus.exit_code();
 
    }
    catch (...)
    {
 
-      if (system.m_bConsole)
+      if (psystem->m_bConsole)
       {
 
          fprintf(stderr, "%s", "Unhandled Exception");
@@ -188,7 +193,7 @@ int main(int argc, char ** argv, char ** envp)
    
    //return ::acme::acme::g_pacme->m_papplication->m_iExitCode;
 
-   return system.m_iExitCode;
+   return psystem->m_iExitCode;
 
 
 //   //sub_system subsystem(&acme);

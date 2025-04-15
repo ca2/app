@@ -242,7 +242,7 @@ NAMESPACE_END(detail)
          m_pwindow = pwindow;
          m_playout = dynamic_cast<AdvancedGridLayout *>(pwindow->layout());
          if (m_playout == nullptr)
-            throw std::runtime_error(
+            throw ::exception(error_failed,
                "Internal error: window has an incompatible layout!");
       }
 

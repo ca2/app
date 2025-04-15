@@ -2,6 +2,8 @@
 
 
 #include "acme/prototype/data/tree.h"
+#include "acme/prototype/data/tree_item.h"
+#include "item.h"
 
 
 namespace filehandler
@@ -9,7 +11,7 @@ namespace filehandler
 
 
    class CLASS_DECL_CORE tree_interface :
-      virtual public ::data::tree
+      virtual public ::data::tree < item >
    {
    public:
 

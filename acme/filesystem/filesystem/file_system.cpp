@@ -10,7 +10,7 @@
 #include "acme/exception/io.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/file/memory_map.h"
-#include "acme/platform/ini.h"
+//#include "acme/platform/ini.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/datetime/datetime.h"
@@ -1689,51 +1689,6 @@ void file_system::_erase(const ::file::path& path)
 }
 
 
-::pointer<::handle::ini> file_system::get_ini(const ::payload& payloadFile)
-{
-
-   auto preader = this->get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read);
-
-   if (preader.nok())
-   {
-
-      throw ::io_exception(error_io);
-
-   }
-
-   string str;
-
-   preader->right_string(str);
-
-   auto pini = __create_new<handle::ini>();
-
-   if (!pini)
-   {
-
-      return pini;
-
-   }
-
-   pini->parse_ini(str);
-
-   return ::transfer(pini);
-
-}
-
-
-::property_set file_system::parse_standard_configuration(const ::payload& payloadFile)
-{
-
-
-   auto str = as_string(payloadFile);
-
-   ::property_set set;
-
-   set.parse_standard_configuration(str);
-
-   return ::transfer(set);
-
-}
 
 
 // file_system::file_system()

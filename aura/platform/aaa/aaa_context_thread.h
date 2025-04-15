@@ -7,7 +7,7 @@ namespace aura
 
    class CLASS_DECL_AURA context_thread :
       virtual public ::thread,
-      virtual public ::context
+      virtual public ::handler_context
    {
    public:
 

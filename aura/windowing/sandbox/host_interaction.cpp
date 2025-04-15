@@ -223,10 +223,10 @@ void host_interaction::hide()
 }
 
 
-void host_interaction::handle(::topic * ptopic, ::context * pcontext)
+void host_interaction::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
       
-      ::user::interaction::handle(ptopic, pcontext);
+      ::user::interaction::handle(ptopic, phandlercontext);
       
       if(ptopic->m_bRet)
       {
@@ -235,7 +235,7 @@ void host_interaction::handle(::topic * ptopic, ::context * pcontext)
          
       }
       
-      ::acme::sandbox_windowing::host_interaction::handle(ptopic, pcontext);
+      ::acme::sandbox_windowing::host_interaction::handle(ptopic, phandlercontext);
       
    }
 

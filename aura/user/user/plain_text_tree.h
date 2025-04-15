@@ -5,13 +5,16 @@
 #include "acme/prototype/data/tree.h"
 #include "plain_text_data.h"
 
-
+namespace file
+{
+   class edit_item_base;
+}
 namespace user
 {
 
 
    class CLASS_DECL_AURA plain_text_tree:
-      public ::data::tree
+      public ::data::tree < plain_text_command >
    {
    public:
 
@@ -38,6 +41,8 @@ namespace user
       
       virtual bool is_tree_modified() const;
 
+      virtual void _on_undo_edit_item(::file::edit_item_base * pedititem);
+      virtual void _on_redo_edit_item(::file::edit_item_base * pedititem);
 
    };
 

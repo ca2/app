@@ -12,7 +12,7 @@
 #pragma once
 
 
-#include "Widget.h"
+#include "nanoui/Widget.h"
 
 
 namespace nanoui
@@ -64,10 +64,10 @@ namespace nanoui
    /// Center the window in the current \::pointer Screen
    void center() { m_bPendingCentering = true; }
 
-   void _center(::nano2d::context * pcontext);
+   void _center(::nano2d::context  * pcontext);
 
    /// Draw the window
-   virtual void draw(::nano2d::context * pcontext) override;
+   virtual void draw(::nano2d::context  * pcontext) override;
    /// Handle mouse enter/leave happenings
    virtual bool mouse_enter_event(const int_point & p, bool enter, const ::user::e_key & ekeyModifiers) override;
    /// Handle window drag happenings
@@ -77,13 +77,13 @@ namespace nanoui
    virtual bool mouse_button_event(const int_point & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
    /// Accept scroll happenings and propagate them to the pwidget under the mouse cursor
       
-      void on_begin_draw(::nano2d::context * pcontext) override;
+      void on_begin_draw(::nano2d::context  * pcontext) override;
             
    virtual bool scroll_event(const int_point & p, const float_size & rel) override;
    /// Compute the preferred size of the pwidget
-   virtual int_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+   virtual int_size preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;
    /// Invoke the associated layout generator to properly place pwidgetChild widgets, if any
-   virtual void perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+   virtual void perform_layout(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;
    //protected:
    /// Internal helper function to maintain nested window position values; overridden in \::pointer Popup
    virtual void refresh_relative_placement();

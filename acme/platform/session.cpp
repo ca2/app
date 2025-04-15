@@ -35,7 +35,8 @@ namespace platform
    
    session::~session()
    {
-
+      
+      printf_line("platform::session destroyed");
 
    }
 
@@ -62,7 +63,7 @@ namespace platform
    ::user::user * session::user()
    {
 
-      throw ::interface_only("imaging requires aura layer or upper layer");
+      throw ::interface_only("user requires aura layer or upper layer");
 
       return nullptr;
 

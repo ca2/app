@@ -4,6 +4,7 @@
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
 #include "acme/handler/request.h"
+#include "acme/user/user/simple_item_base.h"
 #include "acme/user/user/tool.h"
 #include "aura/windowing/window.h"
 #include "aura/platform/application.h"
@@ -130,8 +131,16 @@ namespace user
 
 #endif
 
+      bool bMacOS = false;
+
+#if defined(MACOS)
+
+      bMacOS = true;
+
+#endif
+
       if (m_bEnableDefaultControlBox && should_show_platform_control_box()
-          && !should_use_desktop_ambient_like_control_box())
+          && (!bMacOS || !should_use_desktop_ambient_like_control_box()))
       {
 
          {

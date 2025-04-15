@@ -106,6 +106,7 @@ namespace launch
          print_line("This is FreeBSD System...");
 
          m_strBranch = strBranch;
+         
 
       }
       else if (m_strDistro == "openbsd")
@@ -114,6 +115,8 @@ namespace launch
          print_line("This is OpenBSD System...");
 
          m_strBranch = strBranch;
+         
+         printf_line("Branch is \"%s\"", m_strBranch.c_str());
 
       }
       else if (m_strDistro == "netbsd")
@@ -333,14 +336,14 @@ namespace launch
       if(m_strLaunchAppId.is_empty())
       {
 
-         if(platform()->m_argc <= 1)
+         if(::system()->m_argc <= 1)
          {
 
             throw "Wrong number of arguments";
 
          }
 
-         m_strLaunchAppId = platform()->m_args[1];
+         m_strLaunchAppId = ::system()->m_args[1];
          ;
       }
 
@@ -536,8 +539,8 @@ namespace launch
 
       install_dependencies();
 
-      if(platform()->has_argument("--install-only")
-         || platform()->has_argument("--only-install"))
+      if(::system()->has_argument("--install-only")
+         || ::system()->has_argument("--only-install"))
       {
 
          print_line("Installed \"" + m_strAppRoot + "/" + m_strAppName + "\".");
@@ -552,7 +555,7 @@ namespace launch
 
       strCommand = pathExecutable;
 
-      auto strTraceLevel = platform()->get_argument_begins_eat("--trace-level=");
+      auto strTraceLevel = ::system()->get_argument_begins_eat("--trace-level=");
 
       if(strTraceLevel.has_character())
       {

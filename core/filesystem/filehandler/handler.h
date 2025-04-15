@@ -1,7 +1,8 @@
 #pragma once
 
-
-////#include "acme/prototype/prototype/object.h"
+#include "acme/prototype/data/tree_item.h"
+#include "acme/prototype/data/tree.h"
+#include "item.h"
 
 
 namespace filehandler
@@ -40,8 +41,8 @@ namespace filehandler
       virtual void initialize(::particle * pparticle) override;
 
 
-      string get_text(::pointer<::data::tree>ptree);
-      ::collection::index get_image(::pointer<::data::tree>ptree);
+      string get_text(::pointer<::data::tree<item>>ptree);
+      ::collection::index get_image(::pointer<::data::tree<item>>ptree);
 
 
       void defer_add_library(::acme::library * plibrary);
@@ -49,8 +50,8 @@ namespace filehandler
       void add_menu_library(menu_library * plibrary);
 
 
-      ::pointer<::data::tree_item>get_extension_tree_item(const ::string & pszExtension, bool bCreate);
-      ::pointer<::data::tree_item>get_mime_type_tree_item(const ::string & pszMimeType, bool bCreate);
+      ::pointer<::data::tree_item<item>>get_extension_tree_item(const ::string & pszExtension, bool bCreate);
+      ::pointer<::data::tree_item<item>>get_mime_type_tree_item(const ::string & pszMimeType, bool bCreate);
 
 
       virtual void get_extension_app(string_array & straAppId, const ::string & pszExtension);

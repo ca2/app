@@ -293,6 +293,14 @@ public:
    virtual ::file::path onedrive_global_ini();
    virtual ::file::path onedrive_cid_ini();
 
+
+   virtual ::property_set get_ini(const ::payload& payloadFile);
+   virtual void set_ini(const ::payload& payloadFile, const ::property_set& set);
+
+
+   virtual ::property_set get_standard_configuration(const ::payload& payloadFile);
+
+
 //   virtual ::extended::status copy(::payload varTarget, ::payload varSource, bool bFailIfExists = false, enum_extract eextract = e_extract_first);
    //virtual ::extended::status transfer(const ::file::path & pszNew, const ::file::path & psz);
    //virtual ::extended::status del(const ::file::path & psz);

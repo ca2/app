@@ -1689,43 +1689,6 @@ void file_system::_erase(const ::file::path& path)
 }
 
 
-property_set file_system::parse_ini(const ::payload & payloadFile)
-{
-
-   auto str = this->safe_get_string(payloadFile);
-
-   ::property_set set;
-
-   set.parse_ini(str);
-
-   return ::transfer(set);
-
-}
-
-
-void file_system::set_ini(const ::payload & payloadFile, const ::property_set & set)
-{
-
-   auto str = set.get_ini();
-
-   put_block(payloadFile, str);
-
-}
-
-
-::property_set file_system::parse_standard_configuration(const ::payload& payloadFile)
-{
-
-
-   auto str = as_string(payloadFile);
-
-   ::property_set set;
-
-   set.parse_standard_configuration(str);
-
-   return ::transfer(set);
-
-}
 
 
 // file_system::file_system()

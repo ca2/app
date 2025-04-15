@@ -229,11 +229,6 @@ public:
    virtual ::file::path time_put_contents(const ::file::path& pathFolder, const ::string& strPrefix, const ::string& strExtension, const ::string& str);
 
 
-   virtual ::property_set parse_ini(const ::payload & payloadFile);
-   virtual void set_ini(const ::payload & payloadFile, const ::property_set & set);
-
-
-   virtual ::property_set parse_standard_configuration(const ::payload & payloadFile);
 
 
    virtual void initialize(::particle * pparticle) override;

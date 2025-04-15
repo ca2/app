@@ -4650,3 +4650,42 @@ CLASS_DECL_ACME void * file_as_memory_dup(long & size, const char * psz)
 
 
 
+
+
+property_set file_context::get_ini(const ::payload& payloadFile)
+{
+
+   auto str = this->safe_get_string(payloadFile);
+
+   ::property_set set;
+
+   set.parse_ini(str);
+
+   return ::transfer(set);
+
+}
+
+
+void file_context::set_ini(const ::payload& payloadFile, const ::property_set& set)
+{
+
+   auto str = set.get_ini();
+
+   put_text(payloadFile, str);
+
+}
+
+
+::property_set file_context::get_standard_configuration(const ::payload& payloadFile)
+{
+
+
+   auto str = as_string(payloadFile);
+
+   ::property_set set;
+
+   set.parse_standard_configuration(str);
+
+   return ::transfer(set);
+
+}

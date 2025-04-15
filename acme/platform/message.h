@@ -4,8 +4,7 @@
 #pragma once
 
 
-////#include "acme/prototype/prototype/property_object.h"
-//#include "acme/prototype/mathematics/c_number.h"
+#include "acme/prototype/prototype/property_object.h"
 #include "acme/prototype/geometry2d/point.h"
 
 

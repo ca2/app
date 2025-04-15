@@ -1234,6 +1234,11 @@ public:
 };
 
 
+class topic;
+
+class handler_context;
+
+using signal_handler = ::function < void(::topic *, ::handler_context *) >;
 
 
 

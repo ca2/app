@@ -687,7 +687,7 @@ public:
       else
       {
 
-         this->m_pbase = __allocate implementation(predicate, timeTimeout);
+         this->m_pbase = __allocate implementation<PREDICATE >(predicate, timeTimeout);
 
       }
 
@@ -915,7 +915,7 @@ public:
       else
       {
 
-         this->m_pbase = __allocate implementation (predicate, timeTimeout);
+         this->m_pbase = __allocate implementation <PREDICATE > (predicate, timeTimeout);
 
       }
 

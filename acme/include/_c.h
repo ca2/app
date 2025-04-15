@@ -2,7 +2,7 @@
 #pragma once
 
 
-inline constexpr bool is_null(const void* p, memsize s)
+inline bool is_null(const void* p, memsize s)
 {
 
    return ((iptr)p <= s);

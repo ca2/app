@@ -190,7 +190,7 @@ public:
 
    this_iterator     m_begin;
    this_iterator     m_end;
-   e_range           m_erange;
+   enum_range        m_erange;
 
 
    constexpr range(no_initialize_t)
@@ -285,8 +285,8 @@ public:
 
 
    constexpr bool is_string() const { return m_erange & e_range_string; }
-   void set_string_flag() { m_erange |= e_range_string; }
-   void clear_string_flag() { m_erange -= e_range_string; }
+   constexpr void set_string_flag() { m_erange = (enum_range)(m_erange | e_range_string); }
+   constexpr void clear_string_flag() { m_erange = (enum_range) (m_erange & ~e_range_string); }
 
 
    template < primitive_integral START >

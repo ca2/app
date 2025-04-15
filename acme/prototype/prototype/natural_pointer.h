@@ -91,9 +91,10 @@ public:
    inline static natural_meta_data < BASE_META_DATA > * from_data(const DATA* pdata)
    {
 
-      return ::is_set(pdata) ?
-         (natural_meta_data < BASE_META_DATA >*)BASE_META_DATA::meta_data_from_data(pdata) :
-         nullptr;
+      //return ::is_set(pdata) ?
+      //   (natural_meta_data < BASE_META_DATA >*)BASE_META_DATA::meta_data_from_data(pdata) :
+      //   nullptr;
+      return (natural_meta_data < BASE_META_DATA >*)BASE_META_DATA::meta_data_from_data(pdata);
 
    }
 
@@ -284,7 +285,8 @@ public:
    inline NATURAL_META_DATA * metadata() const
    {
 
-      return ::is_set(this) && ::is_set(this->m_begin) ? NATURAL_META_DATA::from_data(this->m_begin) : nullptr;
+      //return ::is_set(this) && ::is_set(this->m_begin) ? NATURAL_META_DATA::from_data(this->m_begin) : nullptr;
+      return NATURAL_META_DATA::from_data(this->m_begin);
 
    }
 

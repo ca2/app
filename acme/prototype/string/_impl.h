@@ -673,7 +673,7 @@ template < typename ITERATOR_TYPE >
 
          this->m_begin = this->m_end;
 
-         this->m_erange -= e_range_string;
+         this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
 
       }
       
@@ -783,7 +783,7 @@ bool string_range < ITERATOR_TYPE >::begins_consume(const ::scoped_string & scop
       if(this->m_erange & e_range_string)
       {
 
-         this->m_erange -= e_range_string;
+         this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
 
       }
 
@@ -813,7 +813,7 @@ bool string_range < ITERATOR_TYPE >::begins_eat(const ::scoped_string & scopedst
       if(this->m_erange & e_range_string)
       {
 
-         this->m_erange -= e_range_string;
+         this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
 
       }
 
@@ -843,7 +843,7 @@ bool string_range < ITERATOR_TYPE >::ends_eat(const ::scoped_string & scopedstr)
       if(this->m_erange & e_range_string)
       {
 
-         this->m_erange -= e_range_string;
+         this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
 
       }
 
@@ -874,7 +874,7 @@ bool string_range < ITERATOR_TYPE >::case_insensitive_begins_eat(const ::scoped_
       if(this->m_erange & e_range_string)
       {
 
-         this->m_erange -= e_range_string;
+         this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
 
       }
 
@@ -904,7 +904,7 @@ bool string_range < ITERATOR_TYPE >::case_insensitive_ends_eat(const ::scoped_st
       if(this->m_erange & e_range_string)
       {
 
-         this->m_erange -= e_range_string;
+         this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
 
       }
 

@@ -520,7 +520,7 @@
 
       ::file::path pathFolder;
 
-      pathFolder = "https://ca2network.com/image/cc/ca2core/bkimageoftheday/common/";
+      pathFolder = "https://ca2.network/image/cc/ca2core/bkimageoftheday/common/";
 
       for (auto & str : stra)
       {

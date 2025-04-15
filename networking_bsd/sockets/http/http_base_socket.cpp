@@ -410,7 +410,7 @@ namespace sockets
       string_array straAllowedOrigin;
 
       straAllowedOrigin.add("ca2.software");
-      straAllowedOrigin.add("ca2network.com");
+      straAllowedOrigin.add("ca2.network");
 
       bool bAllowedOrigin = false;
 

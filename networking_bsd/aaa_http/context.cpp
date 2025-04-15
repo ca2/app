@@ -52,7 +52,7 @@ namespace http
 
       string strServer = purl->get_root(pszUrl);
 
-      if (strServer == "ca2network.com")
+      if (strServer == "ca2.network")
       {
 
          set["raw_http"] = true;

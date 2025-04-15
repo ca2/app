@@ -203,6 +203,9 @@
 #include  "acme/filesystem/file/binary_stream.h"
 
 
+#include  "acme/handler/topic.h"
+#include  "acme/handler/handler_context.h"
+
 
 #include "acme/filesystem/_impl.h"
 #include "acme/platform/_impl.h"

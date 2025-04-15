@@ -57,8 +57,6 @@ class trace_statement;
 //};
 
 
-#include "subparticle.h"
-
 #include "acme/handler/sequence_continuation.h"
 #include "acme/platform/trace_statement.h"
 #include "acme/prototype/string/string.h"

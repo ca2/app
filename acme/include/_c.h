@@ -10,10 +10,10 @@ inline bool is_null(const void* p, memsize s)
 }
 
 
-inline constexpr bool is_null(const void* p) { return ::is_null(p, 65535); }
+inline bool is_null(const void* p) { return ::is_null(p, 65535); }
 
 
-inline constexpr int is_set(const void* p) { return !is_null(p); }
+inline int is_set(const void* p) { return !is_null(p); }
 
 
 CLASS_DECL_ACME character_count safe_strlen(void* p, character_count n);

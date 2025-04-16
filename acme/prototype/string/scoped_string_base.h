@@ -99,6 +99,10 @@ public:
       else
       {
 
+         this->m_begin = nullptr;
+         this->m_end = nullptr;
+         this->m_erange = e_range_none;
+
          this->str({ start, end - start });
 
       }

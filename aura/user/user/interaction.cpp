@@ -3907,29 +3907,31 @@ namespace user
 
       }
 
-      auto puserinteractiona = get_app()->m_puserinteractionaFrame;
+      get_app()->erase_user_interaction(this);
 
-      if (puserinteractiona)
-      {
+      //auto puserinteractiona = get_app()->m_puserinteractionaFrame;
 
-         auto iErase = puserinteractiona->erase_interaction(this);
+      //if (puserinteractiona)
+      //{
 
-         if (iErase >= 0)
-         {
+      //   auto iErase = puserinteractiona->erase_interaction(this);
 
-            information() << "erased interaction frame from aura application";
+      //   if (iErase >= 0)
+      //   {
 
-         }
-         else
-         {
+      //      information() << "erased interaction frame from aura application";
 
-            information() << "interaction frame to be erased not found in aura application";
+      //   }
+      //   else
+      //   {
 
-         }
+      //      information() << "interaction frame to be erased not found in aura application";
 
-      }
+      //   }
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      //}
+
+      //__UNREFERENCED_PARAMETER(pmessage);
 
       user_interaction_on_destroy();
 

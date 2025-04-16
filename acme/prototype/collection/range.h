@@ -207,7 +207,7 @@ public:
    }
 
    constexpr range(const range & range) : m_begin(range.m_begin), m_end(range.m_end), m_erange(range.m_erange) {}
-   constexpr range(range && range) : m_begin(range.m_begin), m_end(range.m_end), m_erange(range.m_erange) { range.m_begin = nullptr; range.m_end = nullptr; }
+   constexpr range(range&& range) : m_begin(range.m_begin), m_end(range.m_end), m_erange(range.m_erange) { range.m_begin = nullptr; range.m_end = nullptr; range.m_erange = e_range_none; }
 
    template<typed_range<iterator> RANGE>
    constexpr range(const RANGE & range) : m_begin((this_iterator)range.begin()), m_end((this_iterator)range.end()), m_erange(range.m_erange)
@@ -220,7 +220,7 @@ public:
    }
 
    template<typename TYPE>
-   constexpr range(TYPE *& p) : m_begin((this_iterator)p), m_end((this_iterator)find_first_null_character(p))
+   constexpr range(TYPE *& p) : m_begin((this_iterator)p), m_end((this_iterator)find_first_null_character(p)),m_erange(e_range_null_terminated)
    {
    }
 

@@ -230,6 +230,8 @@ public:
    ::payload & payload(const ::atom & atom, const ::payload & payloadDefault) const;
 
    bool get_bool(const ::atom & atom, bool bDefault = false) const;
+   int get_int(const ::atom & atom, int iDefault = 0) const;
+   unsigned int get_unsigned_int(const ::atom & atom, unsigned int uDefault = 0) const;
    ::string get_string(const ::atom & atom, const ::string & strDefault = nullptr) const;
    ::file::path get_file_path(const ::atom & atom, const ::file::path & pathDefault ={}) const;
 

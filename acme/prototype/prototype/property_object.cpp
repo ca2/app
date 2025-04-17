@@ -900,21 +900,12 @@ string property_object::get_string(const ::atom & atom, const ::scoped_string & 
 
    }
 
-   auto pproperty = m_ppropertyset->find(atom);
-
-   if (!pproperty)
-   {
-
-      return pszDefault;
-
-   }
-
-   return pproperty->as_string(pszDefault);
+   return m_ppropertyset->get_string(atom, scopedstrDefault);
 
 }
 
 
-int property_object::find_int(const ::atom & atom, int iDefault) const
+int property_object::get_int(const ::atom & atom, int iDefault) const
 {
 
    if (!m_ppropertyset)
@@ -924,16 +915,7 @@ int property_object::find_int(const ::atom & atom, int iDefault) const
 
    }
 
-   auto pproperty = m_ppropertyset->find(atom);
-
-   if (!pproperty)
-   {
-
-      return iDefault;
-
-   }
-
-   return pproperty->as_int(iDefault);
+   return m_ppropertyset->get_int(atom, iDefault);
 
 }
 

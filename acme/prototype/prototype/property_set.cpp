@@ -2399,6 +2399,55 @@ bool property_set::get_bool(const atom & atom, bool bDefault) const
 }
 
 
+int property_set::get_int(const atom & atom, int iDefault) const
+{
+
+   auto pproperty = lookup(atom);
+
+   if (::is_null(pproperty))
+   {
+
+      return iDefault;
+
+   }
+
+   if (pproperty->is_empty())
+   {
+
+      return iDefault;
+
+   }
+
+   return pproperty->as_int();
+
+}
+
+
+unsigned int property_set::get_unsigned_int(const atom & atom, unsigned int uDefault) const
+{
+
+   auto pproperty = lookup(atom);
+
+   if (::is_null(pproperty))
+   {
+
+      return uDefault;
+
+   }
+
+   if (pproperty->is_empty())
+   {
+
+      return uDefault;
+
+   }
+
+   return pproperty->as_unsigned_int();
+
+}
+
+
+
 ::string property_set::get_string(const atom & atom, const ::string & strDefault) const
 {
 

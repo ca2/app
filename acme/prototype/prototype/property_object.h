@@ -96,11 +96,11 @@ public:
    virtual void write_configuration_to_ini(const ::payload & payloadFile);
 
    bool has_property(const atom & atom) const;
-   property * lookup_property(const atom & atom) const;
+   ::property * lookup_property(const atom & atom) const;
    bool erase_key(const atom & atom);
 
-   property_set & get_property_set();
-   const property_set & get_property_set() const;
+   ::property_set & property_set();
+   ::property_set get_property_set() const;
    bool contains(const ::property_set & set) const;
 
    using matter::set_flag;
@@ -113,19 +113,23 @@ public:
 
    ::payload & topic(const ::atom & atom);
 
-   property * find_property(const ::atom & atom) const;
+   ::collection::index index_of_property(const ::atom & atom) const;
 
    //::extended::status run_property(const ::atom& atom);
 
    void defer_run_property(const ::atom& atom);
 
-   ::payload attribute(const ::atom & atom);
-   ::property * find_attribute(const ::atom & atom);
+   ::collection::index index_of_attribute(const ::atom & atom);
+   ::property & lookup_attribute(const ::atom& atom);
+   ::property& attribute(const ::atom& atom);
 
    template < typename TYPE >
-   inline bool find_attribute(const ::atom & atom, TYPE & t);
+   inline bool lookup_attribute(const ::atom & atom, TYPE & t);
 
-   ::payload & get_object(const ::atom & atom);
+   template < typename TYPE >
+   inline TYPE & get_attribute(const ::atom& atom, TYPE& t);
+
+   //::payload & get_object(const ::atom & atom);
 
    //::payload operator()(const ::atom & atom) const;
    //::payload operator()(const ::atom & atom, const ::payload & payloadDefault) const;
@@ -136,30 +140,30 @@ public:
 
    ::property & property(const ::atom & atom);
 
-   ::property property(const ::atom & atom) const;
-   ::property property(const ::atom & atom, const ::payload & payloadDefault) const;
+   ::property & property(const ::atom & atom) const;
+   ::payload get_payload(const ::atom & atom, const ::payload & payloadDefault) const;
 
 
-   ::payload & payload(const ::atom & atom);
+   ::payload& payload(const ::atom& atom) { return this->property(atom); }
 
-   ::payload payload(const ::atom & atom) const;
-   ::payload payload(const ::atom & atom, const ::payload & payloadDefault) const;
+   ::payload payload(const ::atom & atom) const { return this->property(atom); }
+   //::payload payload(const ::atom & atom, const ::payload & payloadDefault) const;
 
-   ::payload find_payload(const ::atom & atom) const;
-   ::payload find_payload(const ::atom & atom, const ::payload & payloadDefault) const;
+   ::collection::index index_of_payload(const ::atom & atom) const;
+   //::payload find_payload(const ::atom & atom, const ::payload & payloadDefault) const;
 
 
-   string find_string(const ::atom & atom, const ::ansi_character * pszDefault = nullptr) const;
+   string get_string(const ::atom& atom, const ::scoped_string& scopedstrDefault = {}) const;
 
-   int find_int(const ::atom & atom, int iDefault = 0) const;
+   int get_int(const ::atom & atom, int iDefault = 0) const;
 
-   unsigned int find_unsigned_int(const ::atom & atom, unsigned int iDefault = 0) const;
+   unsigned int get_unsigned_int(const ::atom & atom, unsigned int uDefault = 0) const;
 
-   template < typename TYPE > inline TYPE & get_cast(const ::atom & atom, TYPE * pDefault = nullptr);
+   //template < typename TYPE > inline TYPE & get_cast(const ::atom & atom, TYPE * pDefault = nullptr);
 
    using matter::cast;
 
-   template < typename TYPE > inline ::pointer<TYPE>cast(const ::atom & atom) const;
+   template < ::primitive_subparticle TYPE > inline TYPE * cast(const ::atom & atom) const;
 
    void defer_propset();
 
@@ -212,10 +216,11 @@ using reference_pointer = ::pointer<::property_object>;
 
 
 
-template < typename TYPE > inline ::pointer<TYPE>property_object::cast(const ::atom & atom) const
+template < primitive_subparticle TYPE >
+inline TYPE * property_object::cast(const ::atom & atom) const
 {
 
-   auto pproperty = find_property(atom);
+   auto pproperty = this->lookup_property(atom);
 
    if (!pproperty)
    {
@@ -224,7 +229,7 @@ template < typename TYPE > inline ::pointer<TYPE>property_object::cast(const ::a
 
    }
 
-   return pproperty->cast < TYPE >();
+   return property.cast < TYPE >();
 
 }
 

@@ -3893,7 +3893,7 @@ particle* system::matter_mutex()
             if (application()->m_bVerbose)
             {
 
-               informationf("\n\n::apex::session::get_new_application assembled library path " + strLibrary + "\n\n");
+               information("\n\n::apex::session::get_new_application assembled library path " + strLibrary + "\n\n");
 
             }
 
@@ -3910,7 +3910,7 @@ particle* system::matter_mutex()
 
                //output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. ", "ca2", e_message_box_icon_error);
 
-               informationf(
+               information(
                   "papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary +
                   "\" could not be loaded. " + "ca2");
 
@@ -3923,7 +3923,7 @@ particle* system::matter_mutex()
             if (application()->m_bVerbose)
             {
 
-               informationf("\n\n::apex::session::get_new_application Found library : " + strLibrary + "\n\n");
+               information("\n\n::apex::session::get_new_application Found library : " + strLibrary + "\n\n");
 
             }
 
@@ -3943,7 +3943,7 @@ particle* system::matter_mutex()
             if (application()->m_bVerbose)
             {
 
-               informationf("\n\n::apex::session::get_new_application Opened library : " + strLibrary + "\n\n");
+               information("\n\n::apex::session::get_new_application Opened library : " + strLibrary + "\n\n");
 
             }
 
@@ -3959,7 +3959,7 @@ particle* system::matter_mutex()
                if (!papp)
                {
 
-                  informationf(
+                  information(
                      "\n\n::apex::session::get_new_application\n...but this ___new found library:\n\n   -->  " +
                      strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  " + strAppId
                      + "  <--\n\nIs it missing application factory_item?\n\n\n");
@@ -3975,11 +3975,11 @@ particle* system::matter_mutex()
                //
                //         }
 
-               informationf("\n\n\n|(4)----");
-               informationf("| app : " + strAppId + "(papp=0x" + ::hex::upper_case_from((uptr)papp.m_p) + ")\n");
-               informationf("|\n");
-               informationf("|\n");
-               informationf("|----");
+               information("\n\n\n|(4)----");
+               information("| app : " + strAppId + "(papp=0x" + ::hex::upper_case_from((uptr)papp.m_p) + ")\n");
+               information("|\n");
+               information("|\n");
+               information("|----");
 
             }
 

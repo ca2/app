@@ -233,7 +233,7 @@ namespace simpledb
 
          {
 
-            property_set set;
+            ::property_set set;
 
             ::string strApi = "/api/account/str_set_load";
 

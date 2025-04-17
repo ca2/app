@@ -1485,7 +1485,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 //}
 
 
-property_set::property_set(const property_set & set)
+property_set::property_set(const ::property_set & set)
 {
 
    operator = (set);
@@ -1622,7 +1622,7 @@ property_set & property_set::operator = (const ::payload & payload)
 }
 
 
-property_set & property_set::operator = (const property_set & set)
+property_set & property_set::operator = (const ::property_set & set)
 {
 
    if (&set != this)
@@ -1637,7 +1637,7 @@ property_set & property_set::operator = (const property_set & set)
 }
 
 
-property_set & property_set::append(const property_set & set)
+property_set & property_set::append(const ::property_set & set)
 {
 
    if (&set != this)
@@ -1657,7 +1657,7 @@ property_set & property_set::append(const property_set & set)
 }
 
 
-property_set & property_set::merge(const property_set & set)
+property_set & property_set::merge(const ::property_set & set)
 {
 
    if (::is_reference_set(set) && &set != this)
@@ -1784,7 +1784,7 @@ property_set & property_set::merge(const property & property)
 }
 
 
-property_set & property_set::operator += (const property_set & set)
+property_set & property_set::operator += (const ::property_set & set)
 {
 
    return append(set);
@@ -1792,7 +1792,7 @@ property_set & property_set::operator += (const property_set & set)
 }
 
 
-property_set & property_set::operator |= (const property_set & set)
+property_set & property_set::operator |= (const ::property_set & set)
 {
 
    return merge(set);
@@ -1879,7 +1879,7 @@ property * property_set::str_find(const property & property) const
 }
 
 
-bool property_set::str_contains(const property_set & set) const
+bool property_set::str_contains(const ::property_set & set) const
 {
 
    for (auto & pproperty : *this)
@@ -1899,7 +1899,7 @@ bool property_set::str_contains(const property_set & set) const
 }
 
 
-bool property_set::contains(const property_set & set) const
+bool property_set::contains(const ::property_set & set) const
 {
 
    for (auto & pproperty : *this)
@@ -2441,43 +2441,39 @@ property* property_set::find_by_text(const ::scoped_string & scopedstr, ::collec
 }
 
 
-::property * property_set::find(const ::atom & atom, ::collection::index iStart) const
+::collection::index property_set::find(const ::atom & atom, ::collection::index iStart) const
 {
 
-   auto p = this->begin() + iStart;
-
-   for (; !this->is_end(p); p++)
+   for(::collection::index iIndex = iStart; iIndex < this->size(); iIndex++)
    {
 
-      if ((*p)->name() == atom)
+      if (this->element_at(iIndex)->name() == atom)
       {
 
-         return (::property *) (::holder < ::property > &) (*p);
+         return iIndex;
 
       }
 
    }
 
-   return nullptr;
+   return -1;
 
 }
 
 
-property & property_set::get(const ::atom & atom, ::collection::index iStart)
+property & property_set::property(const ::atom & atom, ::collection::index iStart)
 {
 
-   auto pproperty = find(atom, iStart);
+   auto iIndex = find(atom, iStart);
 
-   if (!pproperty)
+   if (iIndex < 0)
    {
 
-      auto iNewlyAdded = add_property({atom, e_type_new});
-
-      pproperty = element_at(iNewlyAdded);
+      iIndex = add_property({atom, e_type_new});
 
    }
 
-   return *pproperty;
+   return *this->element_at(iIndex);
 
 }
 

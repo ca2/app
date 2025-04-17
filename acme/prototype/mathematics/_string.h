@@ -62,7 +62,7 @@ inline character_count utoa_base(char* psz, character_count size, unsigned long 
    if (base < 2 || base > 36)
    {
 
-      throw exception(error_bad_argument);
+      throw error_bad_argument;
 
       return -1;
 

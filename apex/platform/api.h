@@ -85,7 +85,7 @@ public:
 
    virtual bool is_api_get_ok(const ::scoped_string& scopedstrUrl, const ::scoped_string & scopedstr, const ::payload & payload, ::property_set & set);
 
-   virtual bool is_http_status_ok(const ::scoped_string& scopedstrUrl, const ::scoped_string& scopedstr, const ::payload& payload, ::property_set& set, int iHttpStatusCode);
+   virtual bool is_http_status_ok(const ::scoped_string& scopedstrUrl, const ::scoped_string& scopedstr, const ::payload& payload, ::property_set & set, int iHttpStatusCode);
 
 
    virtual void on_login_authentication_failed();

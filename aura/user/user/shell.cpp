@@ -1779,7 +1779,7 @@ namespace user
          if (::is_null(pimage))
          {
 
-            informationf("error loading image: \"" + path + "\"\n");
+            information("error loading image: \"" + path + "\"\n");
 
          }
 

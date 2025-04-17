@@ -249,7 +249,5 @@ public:
 };
 
 
-
-
-
+inline bool is_nok(const ::subparticle * p) { return !::is_set(p) || p->_is_ok(); }
 

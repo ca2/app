@@ -5342,9 +5342,9 @@ namespace user
                if (timeElapsed > 100_ms)
                {
 
-                  informationf("\ndrawing took " + ::as_string(timeElapsed.integral_millisecond()) + "!!");
-                  informationf("\ndrawing took more than 100ms to complete!!");
-                  informationf("\n");
+                  information("\ndrawing took " + ::as_string(timeElapsed.integral_millisecond()) + "!!");
+                  information("\ndrawing took more than 100ms to complete!!");
+                  information("\n");
 
                   // let's trye to see what happened?
                   //_001OnNcDraw(pgraphics);

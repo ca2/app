@@ -143,7 +143,7 @@ namespace app_net
       fork([this]()
          {
 
-            property_set set;
+            ::property_set set;
 
             set["raw_http"] = true;
 

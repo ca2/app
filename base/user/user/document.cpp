@@ -2174,7 +2174,7 @@ namespace user
    //}
 
 
-   void document::form_document_set_property_set(const property_set & set)
+   void document::form_document_set_property_set(const ::property_set & set)
    {
       __UNREFERENCED_PARAMETER(set);
    }

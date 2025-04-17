@@ -1471,7 +1471,7 @@ bool thread::handle_message(bool & bContinue)
       if (m_message.m_emessage == e_message_quit)
       {
 
-         informationf(
+         information(
             "\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " +
             ::as_string(m_message.m_emessage == e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" +
             ::as_string((unsigned long long)::current_task_index()) + ")\n\n\n");
@@ -1845,7 +1845,7 @@ void thread::destroy()
    if (m_strTaskName.contains("main_frame"))
    {
 
-      informationf("I am main_frame xxpost_quit at " + strType + "\n");
+      information("I am main_frame xxpost_quit at " + strType + "\n");
 
    }
 
@@ -1855,7 +1855,7 @@ void thread::destroy()
       if (strType.contains("shell_thread"))
       {
 
-         informationf("I am shell_thread xxpost_quit at " + strType + "\n");
+         information("I am shell_thread xxpost_quit at " + strType + "\n");
 
       }
 
@@ -4096,7 +4096,7 @@ void thread::get_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFilt
 
          auto lasterror = ::GetLastError();
 
-         informationf("Last Error : " + ::as_string(lasterror) + "\n");
+         information("Last Error : " + ::as_string(lasterror) + "\n");
 
          auto estatus = ::windows::last_error_status(lasterror);
 

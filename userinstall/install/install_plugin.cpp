@@ -417,7 +417,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
       m_phost->m_pbasecomposer->m_strEntryHallText = "***papp started.";
 
-      property_set set;
+      ::property_set set;
 
       set.parse_network_arguments(m_straLinesNativeLaunch[1]);
 
@@ -591,7 +591,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
          m_phost->m_bOk = false;
 
-         property_set set;
+         ::property_set set;
 
          set.parse_network_arguments(purl->get_query(m_phost->m_pbasecomposer->m_strPluginUrl));
 
@@ -624,7 +624,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
          m_phost->m_bOk = false;
 
-         property_set set;
+         ::property_set set;
 
          set.parse_network_arguments(purl->get_query(m_phost->m_pbasecomposer->m_strPluginUrl));
 
@@ -685,7 +685,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
                string strUrl = m_phost->m_pbasecomposer->m_strPluginUrl;
 
-               property_set set;
+               ::property_set set;
 
                set["raw_http"] = true;
 
@@ -1410,7 +1410,7 @@ run_install:
 
 retry_get_prompt:
 
-            property_set set;
+            ::property_set set;
 
             set["raw_http"] = true;
 
@@ -1556,7 +1556,7 @@ restart:
          sleep(iAttemptUrl * 84);
       }
 
-      property_set set;
+      ::property_set set;
 
       while((str = http()->get(m_phost->m_pbasecomposer->m_strPluginUrl,set)).is_empty())
       {

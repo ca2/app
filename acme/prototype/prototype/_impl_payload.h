@@ -467,8 +467,8 @@ inline payload & copy(payload & payload, const class time & time)
 //}
 
 
-template < class T >
-inline pointer < T > payload::cast(T * pDefault)
+template < primitive_subparticle T >
+inline T * payload::cast(T * pDefault)
 {
 
    //if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
@@ -484,9 +484,18 @@ inline pointer < T > payload::cast(T * pDefault)
 
    //}
 
-   auto p = cast < T >();
+   auto psubparticle = get_subparticle();
 
-   if (!p)
+   if (!psubparticle)
+   {
+
+      return pDefault;
+
+   }
+
+   auto p = dynamic_cast<T*>(psubparticle);
+
+   if (!psubparticle)
    {
 
       return pDefault;
@@ -501,67 +510,67 @@ inline pointer < T > payload::cast(T * pDefault)
 
 
 
-template < class T >
-inline T & payload::get_cast(T * pDefault)
-{
-
-   //if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
-   //{
-
-   //   return m_ppayload->get_cast <T>(pDefault);
-
-   //}
-
-   //if (m_etype == e_type_property && m_pproperty != nullptr)
-   //{
-
-   //   return m_pproperty->payload().get_cast <T>(pDefault);
-
-   //}
-
-   if (m_etype != e_type_element)
-   {
-
-      return defer_create_type < T >(pDefault);
-
-   }
-
-   auto p = cast < T >();
-
-   if (!p)
-   {
-
-      return defer_create_type < T >(pDefault);
-
-   }
-
-   return *p;
-
-}
-
-
-template < class T >
-inline pointer < T > payload::cast()
-{
-
-   //if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
-   //{
-
-   //   return m_ppayload->cast < T >();
-
-   //}
-
-   //if (m_etype == e_type_property && m_pproperty != nullptr)
-   //{
-
-   //   return m_pproperty->cast < T >();
-
-   //}
+//template < class T >
+//inline T & payload::get_cast(T * pDefault)
+//{
+//
+//   //if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
+//   //{
+//
+//   //   return m_ppayload->get_cast <T>(pDefault);
+//
+//   //}
+//
+//   //if (m_etype == e_type_property && m_pproperty != nullptr)
+//   //{
+//
+//   //   return m_pproperty->payload().get_cast <T>(pDefault);
+//
+//   //}
+//
+//   if (m_etype != e_type_element)
+//   {
+//
+//      return defer_create_type < T >(pDefault);
+//
+//   }
+//
+//   auto p = cast < T >();
+//
+//   if (!p)
+//   {
+//
+//      return defer_create_type < T >(pDefault);
+//
+//   }
+//
+//   return *p;
+//
+//}
 
 
-   return get_subparticle();
-
-}
+//template < class T >
+//inline pointer < T > payload::cast()
+//{
+//
+//   //if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
+//   //{
+//
+//   //   return m_ppayload->cast < T >();
+//
+//   //}
+//
+//   //if (m_etype == e_type_property && m_pproperty != nullptr)
+//   //{
+//
+//   //   return m_pproperty->cast < T >();
+//
+//   //}
+//
+//
+//   return get_subparticle();
+//
+//}
 
 
 

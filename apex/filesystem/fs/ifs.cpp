@@ -148,7 +148,7 @@ bool ifs::enumerate(::file::listing & listing)
 
    //string strSource;
 
-   //property_set set;
+   //::property_set set;
 
    //strSource = http()->get(strUrl, set);
 

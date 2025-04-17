@@ -255,7 +255,7 @@ public:
 //
 //
 //   property_set_stream() : m_ppropertyset(nullptr) { }
-//   property_set_stream(property_set & set) : m_ppropertyset(&set) { }
+//   property_set_stream(::property_set & set) : m_ppropertyset(&set) { }
 //
 //   virtual binary_stream * branch(const ::atom & atom);
 //
@@ -475,7 +475,7 @@ public:
 //   virtual void write(const ::string & str) ;
 //   virtual void write(const ::particle * pparticle);
 //   virtual void write(const ::matter & matter);
-//   virtual void write(const property_set & set);
+//   virtual void write(const ::property_set & set);
 //   virtual void write(const block & block);
 //
 //   //::filesize tellp();
@@ -564,7 +564,7 @@ public:
 //   virtual void exchange(const ::atom & atom, string & str) ;
 //   virtual void exchange(const ::atom & atom, ::particle * pparticle);
 //   virtual void exchange(const ::atom & atom, ::matter & matter);
-//   virtual void exchange(const ::atom & atom, property_set & set);
+//   virtual void exchange(const ::atom & atom, ::property_set & set);
 //   virtual void exchange(const ::atom & atom, block & block);
 //
 //

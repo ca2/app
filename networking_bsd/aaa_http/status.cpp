@@ -45,7 +45,7 @@ namespace http
 //
 //   }
 
-   CLASS_DECL_APEX string conn_status(property_set & set)
+   CLASS_DECL_APEX string conn_status(::property_set & set)
    {
 
       ::e_status      estatus = (::e_status)set["get_status"].as_int();

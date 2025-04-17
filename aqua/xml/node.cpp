@@ -136,7 +136,7 @@ namespace xml
    //}
 
 
-   //bool node::contains(const property_set & set) const
+   //bool node::contains(const ::property_set & set) const
    //{
 
    //   return propset().contains(set);
@@ -168,7 +168,7 @@ namespace xml
    }
 
 
-   ::collection::index node::find(const ::scoped_string & scopedstrName, const property_set & set, ::collection::index iStart)
+   ::collection::index node::find(const ::scoped_string & scopedstrName, const ::property_set & set, ::collection::index iStart)
    {
 
       for(::collection::index i = iStart; i < m_nodea.get_count(); i++)
@@ -2188,7 +2188,7 @@ namespace xml
    }
 
 
-   node * node::rear_find(const ::scoped_string & scopedstrName, const property_set & set, ::collection::index iDepth)
+   node * node::rear_find(const ::scoped_string & scopedstrName, const ::property_set & set, ::collection::index iDepth)
    {
 
       for (auto & pnode : m_nodea)
@@ -2331,7 +2331,7 @@ namespace xml
    }
 
 
-   node * node::add_child(const ::string & strName, const property_set & set, const ::scoped_string & scopedstrValue)
+   node * node::add_child(const ::string & strName, const ::property_set & set, const ::scoped_string & scopedstrValue)
    {
 
       auto pnode = __allocate node((node *) this);

@@ -506,10 +506,10 @@ namespace hi5
    * @output: oAuthHttpHeader - OAuth header
    *
    *--*/
-   bool oauth::getOAuthHeader(const eOAuthHttpRequestType eType, const string & rawUrl, property_set & set, const bool includeOAuthVerifierPin)
+   bool oauth::getOAuthHeader(const eOAuthHttpRequestType eType, const string & rawUrl, ::property_set & set, const bool includeOAuthVerifierPin)
    {
-      property_set setHeader;
-      property_set setSignature;
+      ::property_set setHeader;
+      ::property_set setSignature;
       string rawParams( "" );
       string oauthSignature( "" );
       string paramsSeperator( "" );
@@ -535,7 +535,7 @@ namespace hi5
          /* Get only key=value data part */
          string dataPart = rawUrl.substr( nPos + 1 );
 
-         property_set setUrl;
+         ::property_set setUrl;
          setUrl.parse_network_arguments(dataPart);
 
          setSignature.merge(setUrl);

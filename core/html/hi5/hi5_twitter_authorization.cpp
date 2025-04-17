@@ -170,9 +170,9 @@ namespace hi5
 
          strUrl += "&key=name";
 
-         property_set set;
+         ::property_set set;
 
-         property_set & setDoc = m_pformdocumentAuth->form_document_property_set();
+         ::property_set & setDoc = m_pformdocumentAuth->form_document_property_set();
 
          // auto pcontext = get_context();
 
@@ -251,7 +251,7 @@ namespace hi5
       }
 
 
-      void authorization::pageMessage(const ::string & pszMatter, property_set & set)
+      void authorization::pageMessage(const ::string & pszMatter, ::property_set & set)
       {
 
          ensure_main_document();

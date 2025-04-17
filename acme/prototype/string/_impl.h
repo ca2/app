@@ -284,17 +284,6 @@ inline ::string as_string(FLOATING f, const ::ansi_character * pszFormat)
 }
 
 
-template < character_range CHARACTER_RANGE >
-payload::payload(const CHARACTER_RANGE & range) :
-   payload(no_initialize_t{})
-{
-
-   m_etype = e_type_string;
-   zero(m_str);
-   m_str = range;
-
-}
-
 
 template < >
 inline ::hash32 as_hash32 < scoped_ansi_string >(const scoped_ansi_string & scopedstr) {

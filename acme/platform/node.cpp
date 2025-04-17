@@ -4510,7 +4510,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
    }
 
 
-   //void node::browse_file_open(property_set & set)
+   //void node::browse_file_open(::property_set & set)
    //{
 
    //   throw ::interface_only();
@@ -4520,7 +4520,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
    //}
 
 
-   //void node::browse_file_save(property_set & set)
+   //void node::browse_file_save(::property_set & set)
    //{
 
    //   throw ::interface_only();
@@ -4530,7 +4530,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
    //}
 
 
-   //void node::browse_folder(property_set & set)
+   //void node::browse_folder(::property_set & set)
    //{
 
    //   throw ::interface_only();
@@ -4540,7 +4540,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
    //}
 
    //
-   //void node::browse_file_or_folder(property_set & set)
+   //void node::browse_file_or_folder(::property_set & set)
    //{
 
    //   throw ::interface_only();

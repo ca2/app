@@ -61,7 +61,7 @@ int main()
     stream >> *pinteraction;
 
 
-    property_set set;
+    ::property_set set;
 
 
     id_stream idstream(set);

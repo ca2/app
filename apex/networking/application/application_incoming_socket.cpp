@@ -42,7 +42,7 @@ namespace networking
 
    //   strUrl = request().a_url();
 
-   //   property_set setPost;
+   //   ::property_set setPost;
 
    //   setPost = request().form().post();
 

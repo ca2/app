@@ -58,7 +58,7 @@ namespace datetime
 
       //   ::posix_time parse(const string & str);
 
-      //   void parse_str(const string & str, property_set & set);
+      //   void parse_str(const string & str, ::property_set & set);
       //   ::earth::time parse_str(const string & str);
 
 
@@ -187,7 +187,7 @@ namespace datetime
 
       ::posix_time parse(const string& str);
 
-      void parse_text(const string& str, property_set& set);
+      void parse_text(const string& str, ::property_set & set);
       ::earth::time parse_text(const string& str);
 
 

@@ -1001,7 +1001,7 @@ namespace user
 
    //   string str;
 
-   //   property_set set;
+   //   ::property_set set;
 
    //   //auto purl = system()->url();
 
@@ -1086,7 +1086,7 @@ namespace user
 
    //   string str;
 
-   //   property_set set;
+   //   ::property_set set;
 
    //   //auto purl = system()->url();
 
@@ -1123,7 +1123,7 @@ namespace user
 
    //   string str;
 
-   //   property_set set;
+   //   ::property_set set;
 
    //   //auto purl = system()->url();
 

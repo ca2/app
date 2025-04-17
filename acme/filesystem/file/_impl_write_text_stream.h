@@ -591,7 +591,7 @@
 //    }
 //
 //
-//    //text_stream & operator <<(const property_set& set) ;
+//    //text_stream & operator <<(const ::property_set & set) ;
 //
 //
 //   // template < typename FILE >
@@ -651,7 +651,7 @@
 ////   text_stream& operator >>(float& f);
 ////   text_stream& operator >>(double& d);
 ////   text_stream& operator >>(string& str);
-////   //text_stream & operator >>(property_set& set) ;
+////   //text_stream & operator >>(::property_set & set) ;
 ////   //text_stream & operator >>(::atom & atom) ;
 ////
 ////   template < typename TYPE >
@@ -774,7 +774,7 @@
 ////   return *this;
 ////
 ////}
-//////text_stream & operator <<(const property_set& set) ;
+//////text_stream & operator <<(const ::property_set & set) ;
 ////// template < typename FILE >
 ////write_text_stream < FILE > & write_text_stream < FILE >::write(const TYPE& t)
 ////{

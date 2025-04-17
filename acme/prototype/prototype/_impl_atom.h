@@ -498,15 +498,6 @@ inline atom::atom(const ::inline_number_string & inline_number_string) :
 }
 
 
-template < character_range RANGE >
-atom::atom(const RANGE & range) :
-   m_str(range)
-{
-
-   m_etype = e_type_text;
-
-}
-
 
 template < primitive_signed SIGNED >
 inline atom::atom(SIGNED i)

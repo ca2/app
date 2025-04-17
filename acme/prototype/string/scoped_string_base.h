@@ -30,14 +30,18 @@ public:
    using STRING = ::string_base < ITERATOR_TYPE >;
 
 
+   scoped_string_base(no_initialize_t) :RANGE(no_initialize_t{}) {}
    scoped_string_base():RANGE(nullptr) {}
    scoped_string_base(nullptr_t) :RANGE(nullptr) {}
    scoped_string_base(const scoped_ansi_string & scopedstr) : RANGE(nullptr) { construct_range(scopedstr); }
    scoped_string_base(const scoped_wd16_string & scopedstr) : RANGE(nullptr) { construct_range(scopedstr); }
    scoped_string_base(const scoped_wd32_string & scopedstr) : RANGE(nullptr) { construct_range(scopedstr); }
 
-   template < primitive_string STRING >
-   scoped_string_base(const STRING & str) { construct_range(str); }
+   template < primitive_string STRING2 >
+   scoped_string_base(const STRING2& str) : RANGE(no_initialize_t{}) { construct_range(str); }
+
+   template < typename ITERATOR_TYPE2, int t_size >
+   scoped_string_base(const const_string_range_static_array<ITERATOR_TYPE2, t_size >& a) : RANGE((const STRING &) a ) { }
 
    template < has_as_string HAS_AS_STRING >
    scoped_string_base(const HAS_AS_STRING & has_as_string) : RANGE(nullptr) { this->str(has_as_string.as_string()); }
@@ -78,7 +82,16 @@ public:
 //   scoped_string_base(const ::atom & atom):m_str(atom.as_string()), RANGE(m_str) { }
 //   scoped_string_base(const ::payload & payload):m_str(payload.as_string()), RANGE(m_str) { }
 //   scoped_string_base(const ::property & property):m_str(property.as_string()), RANGE(m_str) { }
-//   scoped_string_base(const ::inline_number_string & inline_number_string) : RANGE(inline_number_string) {}
+   
+   
+   scoped_string_base(const ::inline_number_string & inlinenumberstring) : RANGE(nullptr)
+   {
+   
+      this->str(inlinenumberstring);
+   
+   }
+
+
    template < primitive_character CHARACTER2 >
    scoped_string_base(const CHARACTER2 * start) : scoped_string_base(start, start + string_safe_length(start)) {}
    template < primitive_character CHARACTER2 >
@@ -176,8 +189,7 @@ public:
    void construct_range(const GENERIC_RANGE & range)
    {
 
-      if (sizeof(typename GENERIC_RANGE::ITEM) == sizeof(CHARACTER)
-         && !(range.m_erange & e_range_string))
+      if constexpr(sizeof(typename GENERIC_RANGE::ITEM) == sizeof(CHARACTER))
       {
 
          this->m_begin = (ITERATOR_TYPE) range.m_begin;
@@ -193,6 +205,7 @@ public:
       }
 
    }
+
 
    inline bool operator ==(const ::ansi_string & str) const { return this->equals((const scoped_string_base&)str); }
    inline bool operator ==(const ::wd16_string & str) const { return this->equals((const scoped_string_base&)str); }
@@ -303,8 +316,8 @@ public:
 //}
 
 
-template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > operator + (const scoped_string_base < ITERATOR_TYPE > & scopedstr, const string_base < ITERATOR_TYPE > & str)
+template < typename ITERATOR_TYPE, primitive_string STRING >
+inline string_base < ITERATOR_TYPE > operator + (const scoped_string_base < ITERATOR_TYPE > & scopedstr, const STRING & str)
 {
 
    return ::transfer(::string(scopedstr) + str);
@@ -411,6 +424,4 @@ struct std::formatter<::scoped_string > :
 
 
 #endif
-
-
 

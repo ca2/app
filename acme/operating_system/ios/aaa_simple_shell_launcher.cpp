@@ -12,7 +12,7 @@ namespace acme
       if(m_iMode == 0)
       {
          
-         property_set set;
+         ::property_set set;
 
          if(m_strOperation.is_empty())
          {

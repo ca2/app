@@ -35,7 +35,7 @@ namespace acme
       //}
 
 
-      inline bool get_string(string & strResult, const ::property_set& set, const string& strKey)
+      inline bool get_string(string & strResult, const ::property_set & set, const string& strKey)
       {
 
          return set.get_string(strResult, strKey);

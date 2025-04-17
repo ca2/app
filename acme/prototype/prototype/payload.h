@@ -16,7 +16,7 @@
 //#include "acme/prototype/datetime/file_time.h"
 #include "acme/prototype/string/sz.h"
 #include "acme/prototype/prototype/make_particle.h"
-
+#include "acme/prototype/string/character_range.h"
 
 inline payload & copy(payload & payload, const class time & time);
 
@@ -1198,8 +1198,11 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    }
 
 
-   template < class T >
-   ::pointer< T > cast(T * pDefault);
+   //template < primitive_subparticle T >
+   //T * cast();
+
+   template < primitive_subparticle T >
+   T * cast(T* pDefault = nullptr);
 
    template < class T >
    T & defer_create_type(T * pdefault = nullptr)
@@ -1221,8 +1224,8 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    }
 
 
-   template < class T >
-   T & get_cast(T * pDefault);
+   template < typename T >
+   T & as_type();
 
 
    //template < class T >
@@ -1232,8 +1235,8 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    //}
 
 
-   template < class T >
-   ::pointer< T > cast();
+   //template < class T >
+   //::pointer< T > cast();
 
    ::subparticle * as_subparticle()
    {
@@ -1243,7 +1246,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
 
    ::subparticle * as_subparticle() const { return ((payload *)this)->as_subparticle(); }
 
-   template < class T >
+   template < primitive_particle T >
    T * cast() const
    {
       return ((payload *)this)->cast < T >();
@@ -1810,8 +1813,8 @@ inline PAYLOAD1 & operator +=(PAYLOAD1 & payload1, const PAYLOAD2 & payload2)
 }
 
 
-template < primitive_payload PAYLOAD, primitive_character CHARACTER >
-inline ::string operator +(const PAYLOAD & payload, const CHARACTER * psz)
+template < primitive_payload PAYLOAD, character_pointer CHARACTER_POINTER >
+inline ::string operator +(const PAYLOAD & payload, CHARACTER_POINTER psz)
 {
 
    ::string str(payload);
@@ -1847,28 +1850,6 @@ inline PAYLOAD & operator +=(PAYLOAD & payload, const CHARACTER * psz)
 //}
 
 
-template < primitive_payload PAYLOAD, character_range RANGE >
-::string operator + (const PAYLOAD & payload, const RANGE & range)
-{
-
-   return ::transfer(::string(payload) + ::string(range));
-
-}
-
-
-template < primitive_payload PAYLOAD, character_range RANGE >
-PAYLOAD & operator += (PAYLOAD& payload, const RANGE& range)
-{
-
-   string str = payload.as_string() + ::string(range);
-
-   payload = str;
-
-   return payload;
-
-}
-
-
 CLASS_DECL_ACME void copy(::string & str, const ::payload & payload);
 CLASS_DECL_ACME void copy(::payload & payload, const int & i);
 CLASS_DECL_ACME  void copy(::payload & payload, const ::string & str);
@@ -1884,3 +1865,15 @@ inline bool operator == (const PAYLOAD1 & payload1, const PAYLOAD2 & payload2)
 
 
 
+
+
+template < character_range CHARACTER_RANGE >
+payload::payload(const CHARACTER_RANGE& range) :
+   payload(no_initialize_t{})
+{
+
+   m_etype = e_type_string;
+   zero(m_str);
+   m_str = range;
+
+}

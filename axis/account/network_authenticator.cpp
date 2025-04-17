@@ -215,7 +215,7 @@ namespace account
 
       string strDeferRegistration;
 
-      ::property_set setAuthUrlQuery;
+      ::::property_set setAuthUrlQuery;
 
       if(puser->m_bDeferRegistration)
       {
@@ -233,7 +233,7 @@ namespace account
 
       setAuthUrlQuery["sessid"] = puser->m_strSessId;
 
-      property_set set;
+      ::property_set set;
 
       if (pcredentials->m_strPasshash.is_empty())
       {

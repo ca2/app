@@ -116,7 +116,7 @@ void html_document::data_on_after_change(::message::message * pmessage)
 }
 
 
-void html_document::form_document_set_property_set(const property_set & set)
+void html_document::form_document_set_property_set(const ::property_set & set)
 {
 
    get_html_data()->get_property_set() = set;

@@ -354,6 +354,20 @@ inline void string_base < ITERATOR_TYPE >::construct1(const ITERATOR_TYPE p, cha
 
 
 template < typename ITERATOR_TYPE >
+template < int t_size >
+inline string_base < ITERATOR_TYPE >::string_base(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a)
+{
+
+   create_string(a.size());
+
+   a.concatenate_to((CHARACTER *) this->m_begin);
+
+   *(CHARACTER*)this->m_end = (CHARACTER)0;
+
+}
+
+
+template < typename ITERATOR_TYPE >
 inline void string_base < ITERATOR_TYPE >::construct2(const RANGE& range)
 {
 
@@ -389,6 +403,42 @@ inline void string_base < ITERATOR_TYPE >::construct5(const CHARACTER2* p, chara
    create_string(dstlen);
 
    utf_to_utf((CHARACTER *)this->m_begin, p, len);
+
+   *(CHARACTER*)this->m_end = (CHARACTER)0;
+
+}
+
+
+template < typename ITERATOR_TYPE >
+template < typename ITERATOR_TYPE2, int t_size >
+inline string_base < ITERATOR_TYPE >::string_base(const const_string_range_static_array < ITERATOR_TYPE2, t_size > & a)
+{
+
+   character_count len = 0;
+
+   character_count iaLen[t_size];
+
+   for (int i = 0; i < t_size; i++)
+   {
+
+      iaLen[i] = __utf_to_utf_length(this->begin(), a.element_at(i)->begin(), a.element_at(i)->size());
+
+      len += iaLen[i];
+
+   }
+
+   create_string(len);
+
+   auto p = (CHARACTER * ) this->m_begin;
+
+   for (int i = 0; i < t_size; i++)
+   {
+
+      utf_to_utf(p, a.element_at(i)->begin(), a.element_at(i)->size());
+
+      p += iaLen[i];
+
+   }
 
    *(CHARACTER*)this->m_end = (CHARACTER)0;
 
@@ -6746,6 +6796,13 @@ inline string_base < ITERATOR_TYPE > operator +(const scoped_string_base < ITERA
 
 }
 
+template < character_count n >
+inline const_string_range_static_array < const char * , 2 > operator +(const char (&s)[n], const inline_number_string& inlinenumberstring)
+{
+
+   return { ::as_string_literal<char, n>(s), inlinenumberstring };
+
+}
 
 
 //template < character_count m_sizeMaximumLength >
@@ -6769,12 +6826,6 @@ inline string_base < ITERATOR_TYPE > operator +(const scoped_string_base < ITERA
 
 
 
-inline ::string operator +(char ch, const ::string & str)
-{
-
-   return ::string(ch) + str;
-
-}
 
 
 //template < ::collection::count c, character_count m_sizeMaximumLength >
@@ -6829,6 +6880,11 @@ inline string_base < ITERATOR_TYPE >::string_base(const property & property) :
 
 
 }
+
+
+
+
+
 
 
 

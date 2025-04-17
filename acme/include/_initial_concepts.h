@@ -8,6 +8,9 @@
 //
 #pragma once
 
+template < typename ITERATOR_TYPE >
+class scoped_string_base;
+
 
 template < typename SEQUENCE >
 concept primitive_sequence = ::std::is_same < typename SEQUENCE::sequence_tag, sequence_t >::value;
@@ -171,14 +174,77 @@ std::is_same < T, const ::wd16_character * & >::value ||
 std::is_same < T, const ::wd32_character * & >::value;
 
 
-template < typename T >
-concept character_range = requires(T t)
-{
+template < typename T, typename CHARACTER >
+concept typed_primitive_character_iterator_reference =
+std::is_same < T, CHARACTER*& >::value ||
+std::is_same < T, const CHARACTER*& >::value;
 
-   { t.begin() } -> primitive_character_iterator_reference;
-   { t.end() } -> primitive_character_iterator_reference;
+template < typename T, typename CHARACTER >
+concept other_primitive_character_iterator_reference =
+primitive_character < T > &&
+!std::is_same < T, CHARACTER*& >::value &&
+!std::is_same < T, const CHARACTER*& >::value;
 
-};
+template < typename T, typename CHARACTER >
+concept other_primitive_character =
+primitive_character < T > &&
+!std::is_same < T, CHARACTER >::value;
+
+
+template < typename CHARACTER_POINTER >
+concept character_pointer =
+::std::is_pointer_v<CHARACTER_POINTER>
+&& !::std::is_array_v<CHARACTER_POINTER>
+&& primitive_character<::non_const <::erase_pointer<CHARACTER_POINTER>>>;
+
+
+template < typename TYPED_CHARACTER_POINTER, typename CHARACTER >
+concept typed_character_pointer = 
+::std::is_pointer_v<TYPED_CHARACTER_POINTER> 
+&& !::std::is_array_v<TYPED_CHARACTER_POINTER>
+&& ::std::is_same_v < CHARACTER, ::non_const <::erase_pointer<TYPED_CHARACTER_POINTER>>>;
+
+
+//template < typename CHARACTER_POINTER >
+//concept character_array =
+//::std::is_pointer_v<CHARACTER_POINTER>
+//&& ::std::is_array_v<CHARACTER_POINTER>
+//&& primitive_character<::non_const <::erase_pointer<CHARACTER_POINTER>>>;
+//
+//
+//template < typename TYPED_CHARACTER_POINTER, typename CHARACTER >
+//concept typed_character_array =
+//::std::is_pointer_v<TYPED_CHARACTER_POINTER>
+//&& ::std::is_array_v<CHARACTER_POINTER>
+//&& ::std::is_same_v < CHARACTER, ::non_const <::erase_pointer<TYPED_CHARACTER_POINTER>>>;
+
+
+template<typename ITERATOR_TYPE>
+class range;
+
+
+template < typename CHARACTER_RANGE >
+concept character_range =
+(::std::is_base_of_v < ::range< const typename CHARACTER_RANGE::CHARACTER* >, CHARACTER_RANGE >
+&& ::primitive_character < typename CHARACTER_RANGE::CHARACTER > )||
+(::std::is_same_v < ::range< const typename CHARACTER_RANGE::ITEM* >, CHARACTER_RANGE > &&
+::primitive_character < typename CHARACTER_RANGE::ITEM >);
+
+
+
+template < typename TYPED_CHARACTER_RANGE, typename CHARACTER >
+concept typed_character_range =
+(::std::is_base_of_v < ::range< const CHARACTER* >, TYPED_CHARACTER_RANGE >
+   || ::std::is_same_v < ::range< const CHARACTER* >, TYPED_CHARACTER_RANGE >)
+   && ::primitive_character < CHARACTER >;
+
+
+template < typename OTHER_CHARACTER_RANGE, typename CHARACTER >
+concept other_character_range = 
+(::std::is_base_of_v < ::range< const typename OTHER_CHARACTER_RANGE::CHARACTER* >, OTHER_CHARACTER_RANGE >
+   && ::other_primitive_character < typename OTHER_CHARACTER_RANGE::CHARACTER, CHARACTER >) ||
+   (::std::is_same_v < ::range< const typename OTHER_CHARACTER_RANGE::ITEM* >, OTHER_CHARACTER_RANGE > &&
+      ::other_primitive_character < typename OTHER_CHARACTER_RANGE::ITEM, CHARACTER >);
 
 
 struct ITERATOR_TYPE_TAG {};
@@ -321,7 +387,7 @@ namespace std
 //concept primitive_container = ::std::is_same < typename CONTAINER::PRIMITIVE_CONTAINER_TAG, PRIMITIVE_CONTAINER_TAG_TYPE >::value;
 
 template < typename PAYLOAD >
-concept primitive_payload = ::std::is_same < typename PAYLOAD::PRIMITIVE_PAYLOAD_TAG, PRIMITIVE_PAYLOAD_TAG_TYPE >::value;
+concept primitive_payload = ::std::is_base_of_v < ::payload, PAYLOAD >;
 
 
 template < typename A_CONST >

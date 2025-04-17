@@ -107,7 +107,7 @@ public:
 
    const_string_range(THIS_RANGE&& range) : BASE_RANGE(::transfer(range)) {}
 
-   const_string_range(this_iterator begin, this_iterator end) : BASE_RANGE(begin, end) {}
+   const_string_range(this_iterator begin, this_iterator end, enum_range erange = e_range_none) : BASE_RANGE(begin, end, erange) {}
 
    //explicit const_string_range(const ::atom& atom);
 
@@ -1811,6 +1811,151 @@ using const_ansi_range = ::const_string_range < const ::ansi_character* >;
 using const_wd16_range = ::const_string_range < const ::wd16_character* >;
 using const_wd32_range = ::const_string_range < const ::wd32_character* >;
 using const_wide_range = ::const_string_range < const ::wide_character* >;
+
+
+
+
+template < typename ITERATOR_TYPE, int t_size >
+class const_string_range_static_array;
+
+template < typename ITERATOR_TYPE >
+class const_string_range_static_array < ITERATOR_TYPE, 0>
+{
+public:
+
+
+   const_string_range_static_array() = delete;
+
+   consteval character_count size() const { return 0; }
+
+   ::range < ITERATOR_TYPE >* element_at(int i) const { return nullptr; }
+
+   void concatenate_to(::non_const < ITERATOR_TYPE > p) const
+   {
+
+   }
+
+};
+
+
+template < typename ITERATOR_TYPE >
+class const_string_range_static_array < ITERATOR_TYPE, 1>
+{
+public:
+
+   range < ITERATOR_TYPE > m_range;
+
+
+   const_string_range_static_array() = delete;
+
+
+   const_string_range_static_array(const range < ITERATOR_TYPE >& range) :
+      m_range(range)
+   {
+
+
+   }
+
+   range < ITERATOR_TYPE >* element_at(int i) const { i == 0 ? &((const_string_range_static_array*)this)->m_range : nullptr; }
+
+   constexpr character_count size() const { return this->m_range.size(); }
+
+
+   void concatenate_to(::non_const < ITERATOR_TYPE> p) const
+   {
+
+      memory_copy(p, m_range.begin(), m_range.size());
+
+   }
+
+
+};
+
+
+template < typename ITERATOR_TYPE, int t_size >
+class const_string_range_static_array
+{
+public:
+
+   ::range < ITERATOR_TYPE > m_stringrangea[t_size];
+
+   const_string_range_static_array() = delete;
+
+   const_string_range_static_array(const const_string_range_static_array < ITERATOR_TYPE, t_size - 1 >& a, const ::range < ITERATOR_TYPE >& range)
+   {
+
+      *((const_string_range_static_array < ITERATOR_TYPE, t_size - 1 > *)this) = a;
+
+      *((::range <ITERATOR_TYPE>*)(&((const_string_range_static_array < ITERATOR_TYPE, t_size - 1 > *)this)[1])) = range;
+
+   }
+
+   ::range < ITERATOR_TYPE >* element_at(int i) const { return (::range < ITERATOR_TYPE >*) & m_stringrangea[i]; }
+
+   character_count size() const
+   {
+
+      return element_at(0)->size() +
+         ((const_string_range_static_array < ITERATOR_TYPE, t_size - 1 > *) element_at(1))->size();
+
+   }
+
+   void concatenate_to(::non_const < ITERATOR_TYPE > p) const
+   {
+
+      memory_copy(p, m_stringrangea[0].begin(), m_stringrangea[0].size());
+
+      ((const_string_range_static_array < ITERATOR_TYPE, t_size - 1 > *) & m_stringrangea[0])->concatenate_to(p + m_stringrangea[0].size());
+
+   }
+
+};
+
+
+
+
+template < primitive_character CHARACTER, character_count n >
+constexpr class const_string_range < const CHARACTER* > as_string_literal(const CHARACTER * s)
+{
+
+   if constexpr (n >= 1)
+   {
+
+      if (s[n - 1] == CHARACTER{})
+      {
+
+         return { s, s + n - 1, e_range_null_terminated };
+
+      }
+
+   }
+
+   return { s, s + n, e_range_none };
+
+}
+
+
+template < primitive_character CHARACTER >
+const_string_range_static_array < const CHARACTER*, 2 > operator + (
+   const ::range < const CHARACTER* >& range1,
+   const ::range < const CHARACTER* >& range2)
+{
+
+   return { range1, range2 };
+
+}
+
+
+
+template < primitive_character CHARACTER, character_count n >
+const_string_range_static_array < const CHARACTER*, 2 > operator + (
+   const ::range < const CHARACTER* >& range1,
+   const CHARACTER(&s)[n])
+{
+
+   return { range1, ::as_string_literal <CHARACTER,n>(s) };
+
+}
 
 
 

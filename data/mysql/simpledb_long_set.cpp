@@ -141,7 +141,7 @@ repeat:;
           }
 
 
-          property_set set;
+          ::property_set set;
 
           string strUrl;
 
@@ -222,7 +222,7 @@ bool db_long_set::load(const ::string & lpKey, long long * plValue)
 
 
 
-      property_set set;
+      ::property_set set;
 
       string strUrl;
 

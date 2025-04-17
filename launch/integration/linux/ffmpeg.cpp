@@ -64,7 +64,7 @@ namespace console_integration
          if(m_papplication->m_strRelease.is_empty())
          {
             
-            property_set set;
+            ::property_set set;
             
             auto psystem = acmesystem();
             

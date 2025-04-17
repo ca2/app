@@ -66,7 +66,6 @@ template < typename ITERATOR_TYPE >
 using get_word_function = ::function < const_string_range < ITERATOR_TYPE >(const scoped_string_base < ITERATOR_TYPE > &, ITERATOR_TYPE *) >;
 
 
-
 template < typename ITERATOR_TYPE >
 class string_base :
    public string_natural_pointer < ITERATOR_TYPE >
@@ -79,7 +78,7 @@ public:
    using META_DATA = typename NATURAL_POINTER::META_DATA;
    using PRIMITIVE_STRING_TAG = PRIMITIVE_STRING_TAG_TYPE;
    using ITEM_POINTER = get_type_item_pointer< ITERATOR_TYPE>;
-   using ITEM = dereference < ITEM_POINTER >;
+   using ITEM = erase_pointer < non_const < ITEM_POINTER > >;
    using CHARACTER = ITEM;
    using RANGE = ::const_string_range < ITERATOR_TYPE >;
    using this_iterator = typename RANGE::this_iterator;
@@ -152,6 +151,9 @@ public:
    template<typed_range<const ::wd32_character *> RANGE>
    explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
 
+   template < int t_size >
+   inline string_base(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a);
+
 
 
 //   template<typed_range<::ansi_character *> RANGE>
@@ -186,15 +188,19 @@ public:
    // 
    //string_base(const const_wd32_range & wd32range, character_count length) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd32range, start, length); }
    string_base(const ::block block) : string_base((const CHARACTER *)block.begin(), (const CHARACTER *)block.end()) {}
-    template < primitive_character CHARACTER2 >
-    string_base(const CHARACTER2 * start, const CHARACTER2 * end) : string_base(start, end-start) {}
+   template < primitive_character CHARACTER2 >
+   string_base(const CHARACTER2 * start, const CHARACTER2 * end) : string_base(start, end-start) {}
+   template < primitive_character CHARACTER2 >
+   string_base(const CHARACTER2* s1, const CHARACTER2* e1, const CHARACTER2* s2, const CHARACTER2* e2) : string_base(s1, e1 - s1, s2, e2 - s2) {}
    template < primitive_character CHARACTER2 >
    string_base(const CHARACTER2 * start) : string_base(start, string_safe_length(start), e_range_null_terminated) {}
    template < primitive_character CHARACTER2 >
    string_base(const CHARACTER2* start, character_count length, enum_range erange) : string_base(no_initialize_t{}) { construct20(start, length, erange); }
    template < primitive_character CHARACTER2 >
    string_base(const CHARACTER2 * start, character_count length) : string_base(no_initialize_t{}) { construct5(start, length); }
-//   template < primitive_character CHARACTER2 >
+   template < typename ITERATOR_TYPE2, int t_size >
+   string_base(const const_string_range_static_array < ITERATOR_TYPE2, t_size >& a);
+   //   template < primitive_character CHARACTER2 >
 //   string_base(const CHARACTER2 * pszSource, character_count length);
    template < primitive_character CHARACTER2, character_count sizeMaximumLength >
    string_base(const inline_string < CHARACTER2, sizeMaximumLength > & inlinestring) :
@@ -273,6 +279,9 @@ public:
 
    template < primitive_character CHARACTER2 >
    inline void construct20(const CHARACTER2* psz, character_count length, enum_range erange);
+
+   //template < primitive_character CHARACTER2 >
+   //inline void construct40(const CHARACTER2* s1, character_count n1, const CHARACTER2* s2, character_count n2);
 
    //   template < primitive_character CHARACTER2 >
 //   inline void construct2(const ::range < const CHARACTER2 * > & str);
@@ -499,6 +508,8 @@ public:
    string_base & operator += (const ::atom & atom);
    string_base & operator += (const ::payload & payload);
    string_base & operator += (const ::property & property);
+   template < typename ITERATOR_TYPE2, int t_size >
+   string_base & operator += (const const_string_range_static_array < ITERATOR_TYPE2, t_size >& a) { append((const string_base &)a); return *this; }
 #ifdef __STD_FORMAT__
    string_base& operator += (const ::std::string& str) { operator +=(str.c_str()); return *this; }
 #endif
@@ -1868,28 +1879,6 @@ template < >
 inline ::hash32 as_hash32 < wide_string >(const wide_string & widestr);
 
 
-template < primitive_character CHARACTER, character_range RANGE >
-string_base < const CHARACTER * > operator + (const CHARACTER * psz, const RANGE & range)
-{ 
-   
-   string_base < const CHARACTER * > str(psz); 
-   
-   return ::transfer(str + range); 
-
-}
-
-
-template < character_range RANGE1, character_range RANGE2 >
-string_base < typename RANGE1::const_iterator > operator + (const RANGE1 & range1, const RANGE2 & range2)
-{
-
-   string_base < typename RANGE1::const_iterator > str(range1);
-
-   str.append(range2.begin(), range2.size());
-
-   return str;
-
-}
 
 
 //template < typed_range < ::wd16_character * > WD16_RANGE >
@@ -1917,31 +1906,29 @@ template < primitive_character CHARACTER2, has_as_string HAS_AS_STRING >
 }
 
 
-template < character_range RANGE, has_as_string HAS_AS_STRING >
-::string_base < typename RANGE::const_iterator > operator + (const RANGE & range, const HAS_AS_STRING & has_as_string)
+
+
+
+
+
+template < primitive_character CHARACTER, int t_size, character_count n >
+const_string_range_static_array < const CHARACTER *, t_size + 1 > operator + (const const_string_range_static_array < const CHARACTER *, t_size > & a, const CHARACTER(&s)[n])
 {
 
-   return ::transfer(::string_base < typename RANGE::const_iterator >(range) + has_as_string.as_string());
+   return { a, ::as_string_literal< CHARACTER, n>(s) };
 
 }
 
 
-template < character_range RANGE, primitive_character CHARACTER >
-::string_base < typename RANGE::const_iterator > operator + (const RANGE & range, const CHARACTER * psz)
+template < primitive_character CHARACTER, int t_size, typed_character_pointer < CHARACTER > TYPED_CHARACTER_POINTER >
+const_string_range_static_array < const CHARACTER *, t_size + 1 > operator + (const const_string_range_static_array < const CHARACTER *, t_size > & a, TYPED_CHARACTER_POINTER psz)
 {
 
-   return ::transfer(::string_base < typename RANGE::const_iterator >(range) + ::string_base < typename RANGE::const_iterator >(psz));
+   return { a, {psz, psz + string_safe_length(psz), e_range_null_terminated } };
 
 }
 
 
-template < character_range RANGE, primitive_character CHARACTER >
-::string_base < typename RANGE::const_iterator > operator + (const RANGE & range, const CHARACTER ch)
-{
-
-   return ::transfer(::string_base < typename RANGE::const_iterator >(range) + ::string_base < typename RANGE::const_iterator >(ch));
-
-}
 
 //template < primitive_character CHARACTER, primitive_character CHARACTER2 >
 //::string_base < const CHARACTER * > operator + (const CHARACTER * psz, const CHARACTER2 * psz2)
@@ -1958,23 +1945,6 @@ template < character_range RANGE, primitive_character CHARACTER >
 //::std::is_base_of<T, ::wd16_string >::value ||
 //::std::is_base_of<T, ::wd32_string >::value;
 
-
-//template < typename T >
-//concept character_range_not_string = character_range<T> && !primitive_string<T>;
-//
-//
-//template < typename T >
-//concept character_range_not_string_neither_scoped_string = character_range<T> && !primitive_string<T> && !primitive_scoped_string<T>;
-
-template < character_range RANGE >
-inline string& operator <<(string& str, const RANGE & r)
-{
-
-   str.append(r);
-
-   return str;
-
-}
 
 
 inline string & operator <<(string & str, const ::ansi_character * psz)
@@ -2154,14 +2124,6 @@ string_base<ITERATOR_TYPE> const_string_range<ITERATOR_TYPE>::surrounded(const S
 }
 
 template<typename ITERATOR_TYPE>
-string_base<ITERATOR_TYPE> const_string_range<ITERATOR_TYPE>::surrounded(const SCOPED_STRING& scopedstrLeft, const SCOPED_STRING& scopedstrRight) const
-{
-
-   return scopedstrLeft + *this + scopedstrRight;
-
-}
-
-template<typename ITERATOR_TYPE>
 string_base<ITERATOR_TYPE> const_string_range<ITERATOR_TYPE>::double_quoted(bool bEscape) const
 {
 
@@ -2256,5 +2218,20 @@ string_base<ITERATOR_TYPE>& string_base<ITERATOR_TYPE>::single_quote(bool bEscap
 
 
 CLASS_DECL_ACME ::string _(const ::scoped_string & scopedstr);
+
+
+
+
+
+
+template < primitive_character CHARACTER, other_primitive_character < CHARACTER > CHARACTER2 >
+::string_base < const CHARACTER* > operator + (
+   const ::range < const CHARACTER* >& range1,
+   const ::range < const CHARACTER2* >& range2)
+{
+
+   return range1 + ::string_base < const CHARACTER* >(range2);
+
+}
 
 

@@ -108,7 +108,7 @@ void ifs_file::set_file_data()
 
       strUrl = "http://file.ca2.software/ifs/xmledit?path=" + ::url::encode(m_payloadFile["url"].as_string());
 
-      property_set setRequest;
+      ::property_set setRequest;
 
       setRequest["get_response"] = "";  // touch/create property to get_response
 
@@ -116,7 +116,7 @@ void ifs_file::set_file_data()
 
       string strResponse(setRequest["get_response"].as_string());
 
-      property_set set;
+      ::property_set set;
 
       set.parse_network_arguments(strResponse);
 
@@ -137,7 +137,7 @@ void ifs_file::set_file_data()
 
       strUrl = "http://file.ca2.software/ifs/set?path=" + ::url::encode(m_payloadFile["url"].as_string());
 
-      property_set setPut;
+      ::property_set setPut;
 
       http()->put(strUrl, m_payloadFile["xml"].cast < ::memory_file >(), setPut);
 
@@ -147,7 +147,7 @@ void ifs_file::set_file_data()
 
    strUrl = "http://file.ca2.software/ifs/set?path=" + ::url::encode(m_path);
 
-   property_set setPut;
+   ::property_set setPut;
 
    http()->put(strUrl, m_pmemfile, setPut);
 

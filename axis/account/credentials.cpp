@@ -478,7 +478,7 @@ namespace account
 
       string strUrl("https://api.ca2.software/account/check_hash");
 
-      property_set set;
+      ::property_set set;
 
       string strResponse;
 

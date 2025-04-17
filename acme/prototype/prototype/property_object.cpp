@@ -285,7 +285,7 @@ bool property_object::is_pinging() const
 //
 //   ASSERT(stream.is_storing());
 //
-//   property_set set;
+//   ::property_set set;
 //
 //   set += object_storing;
 //
@@ -834,13 +834,13 @@ void property_object::defer_run_property(const ::atom& atom)
 
 
 bool property_object::has_property(const atom & atom) const { return m_ppropertyset && m_ppropertyset->has_property(atom); }
-property * property_object::lookup_property(const atom& atom) const { return m_ppropertyset ? m_ppropertyset->find(atom) : nullptr; }
+property * property_object::lookup_property(const atom& atom) const { return m_ppropertyset ? m_ppropertyset->lookup(atom) : nullptr; }
 bool property_object::erase_key(const atom & atom) { return m_ppropertyset && m_ppropertyset->erase_by_name(atom); }
 property_set & property_object::get_property_set() { defer_propset(); return *m_ppropertyset; }
 const property_set & property_object::get_property_set() const { ((property_object *)this)->defer_propset(); return *m_ppropertyset; }
 
 
-bool property_object::contains(const property_set & set) const
+bool property_object::contains(const ::property_set & set) const
 {
 
    if (set.is_empty())
@@ -1075,19 +1075,12 @@ bool property_object::is_true_or_empty(const ::atom & atom) const
 }
 
 
-::property property_object::property(const ::atom & atom) const
+::property & property_object::property(const ::atom & atom) const
 {
 
-   auto pproperty = find_property(atom);
+   auto & property = this->property_set()[atom];
 
-   if (!pproperty)
-   {
-
-      return { atom, e_type_new };
-
-   }
-
-   return *pproperty;
+   return property;
 
 }
 

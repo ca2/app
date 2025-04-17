@@ -306,7 +306,7 @@ public:
 
    void to_hex(string & str, memsize iStart = 0, memsize size = -1);
    string to_hex(memsize iStart = 0, memsize size = -1);
-   character_count from_hex(const ::scoped_string & scopedstr);
+   character_count from_hex(const ::block & block);
 
    void to_base64(string & str, memsize iStart = 0, memsize size = -1);
    string to_base64(memsize iStart = 0, memsize size = -1);

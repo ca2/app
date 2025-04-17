@@ -241,7 +241,7 @@ CLASS_DECL_APEX unsigned int call_sync(const ::file::path & path, const ::scoped
 bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, ::duration durationTimeout )
 {
    
-   property_set set;
+   ::property_set set;
 
    return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), e_display_none, durationTimeout, set);
 

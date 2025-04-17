@@ -21,7 +21,7 @@
 //inline const property_set & property_object::get_property_set() const { ((property_object *)this)->defer_propset(); return *m_ppropertyset; }
 //
 //
-//inline bool property_object::contains(const property_set & set) const
+//inline bool property_object::contains(const ::property_set & set) const
 //{
 //
 //  if (set.is_empty())

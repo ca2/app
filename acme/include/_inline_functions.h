@@ -342,11 +342,11 @@ inline bool is_string_ok(const ::ansi_character * p)
 }
 
 
-inline int_bool address_overlaps(const void * pszDst, const void * pszSrc, character_count srclen)
+inline int_bool address_overlaps(const void * p1, const void * p2, character_count len)
 {
 
-   return (((unsigned char*)pszSrc) <= ((unsigned char*)pszDst) && ((unsigned char*)pszSrc) + srclen > ((unsigned char*)pszDst))
-      || (((unsigned char*)pszDst) <= ((unsigned char*)pszSrc) && ((unsigned char*)pszDst) + srclen > ((unsigned char*)pszSrc));
+   return (((unsigned char*)p1) <= (((unsigned char*)p2) + len))
+       && (((unsigned char*)p2) <= (((unsigned char*)p1) + len));
 
 }
 

@@ -4979,7 +4979,7 @@ retry_license:
          while (true)
          {
 
-            property_set setEmpty;
+            ::property_set setEmpty;
 
             if (phttpcontext->open(psession, strUrl, setEmpty, nullptr))
             {
@@ -4994,7 +4994,7 @@ retry_license:
 
       }
 
-      property_set set;
+      ::property_set set;
 
       set["get_memory"] = "";
 

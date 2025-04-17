@@ -239,7 +239,7 @@ payload::payload(const payload_array & payload)
 }
 
 
-payload::payload(const property_set & set)
+payload::payload(const ::property_set & set)
 {
 
    m_etype  = e_type_new;
@@ -4167,7 +4167,7 @@ property_set payload::propset() const
    else if (m_etype != e_type_property_set)
    {
 
-      property_set set;
+      ::property_set set;
 
       if (is_empty() || !get_bool())
       {

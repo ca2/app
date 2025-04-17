@@ -346,7 +346,7 @@ namespace integration
          if (m_pathDownloadURL.case_insensitive_ends(".tar.gz"))
          {
 
-            property_set set;
+            ::property_set set;
 
             set["raw_http"] = true;
 

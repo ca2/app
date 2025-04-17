@@ -887,7 +887,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//void stream::read(::property_set& set)
+//void stream::read(::property_set & set)
 //{
 //
 //   throw ::exception(error_io);
@@ -1041,7 +1041,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//void stream::exchange(const ::atom & atom, property_set & set)
+//void stream::exchange(const ::atom & atom, ::property_set & set)
 //{
 //
 //   stream_exchange(atom, set);

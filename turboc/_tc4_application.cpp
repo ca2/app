@@ -107,7 +107,7 @@ namespace tc4
          }
       }
 
-      property_set set;
+      ::property_set set;
 
       set["c"] = 0;
       set["ABC"] = 0;

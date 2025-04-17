@@ -229,7 +229,7 @@ public:
    }
 
 
-   text_reader & operator >>(property_set & set)
+   text_reader & operator >>(::property_set & set)
    {
 
       set.parse_network_payload(m_psz);

@@ -1470,7 +1470,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //   comparable_array < ::atom > idaSchema;
 //
-//   property_set set;
+//   ::property_set set;
 //
 //   idaSchema.add(set["prop1"]);
 //

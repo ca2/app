@@ -718,7 +718,7 @@ namespace sockets
                   if (m_strWebSocketProtocol.has_character())
                   {
 
-                     informationf("Sec-WebSocket-Protocol: " + m_strWebSocketProtocol + "\n");
+                     information("Sec-WebSocket-Protocol: " + m_strWebSocketProtocol + "\n");
 
                   }
 

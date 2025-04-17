@@ -74,9 +74,9 @@ namespace xml
       virtual ::collection::index find(node * pnode);
       virtual ::collection::index find(const ::scoped_string & scopedstrName, ::collection::index iStart = 0);
 
-      virtual ::collection::index find(const ::scoped_string & scopedstrName, const property_set & set, ::collection::index iStart = 0);
+      virtual ::collection::index find(const ::scoped_string & scopedstrName, const ::property_set & set, ::collection::index iStart = 0);
 
-      //virtual bool contains(const property_set & set) const;
+      //virtual bool contains(const ::property_set & set) const;
       virtual node * get_next_sibling();
 
 
@@ -144,7 +144,7 @@ namespace xml
 
       // search node
       node *                  rear_find( const char * name, int iDepth = -1);
-      node *                  rear_find(const ::scoped_string & scopedstrName, const property_set & set, ::collection::index iDepth = -1);
+      node *                  rear_find(const ::scoped_string & scopedstrName, const ::property_set & set, ::collection::index iDepth = -1);
       
       ::collection::index find_child_with_name_and_value(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrValue);
       node * child_with_name_and_value(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrValue);
@@ -158,7 +158,7 @@ namespace xml
       node *                  child_at(::collection::index i);
       //node *                create_node( const char * name = nullptr, const char * value = nullptr );
       node *                  add_child(const ::string & strName = nullptr, const ::scoped_string & scopedstrValue = nullptr);
-      node *                  add_child(const ::string & strName, const property_set & set, const ::scoped_string & scopedstrValue = nullptr);
+      node *                  add_child(const ::string & strName, const ::property_set & set, const ::scoped_string & scopedstrValue = nullptr);
       node *                  add_child( node * node );
       bool                    erase_child( node * node );
       node *                  detach_child( node * node );

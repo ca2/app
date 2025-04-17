@@ -91,7 +91,7 @@ namespace console_integration
       void ffmpeg::prepare()
       {
 
-         //property_set set;
+         //::property_set set;
 
          //acmesystem()->url()->defer_raw_http(set);
 

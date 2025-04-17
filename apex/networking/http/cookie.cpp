@@ -267,7 +267,7 @@ namespace http
       for(::collection::index i = 0; i < this->get_size(); i++)
       {
 
-         strCookie += (const char *) (this->element_at(i)->m_strName + "=" + this->element_at(i)->m_payload);
+         strCookie += (this->element_at(i)->m_strName + "=" + this->element_at(i)->m_payload);
 
          strCookie += ";";
 

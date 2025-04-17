@@ -110,6 +110,13 @@ namespace file
 
    }
 
+   template < typename ITERATOR_TYPE, int t_size >
+   inline path::path(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a, enum_path epath, e_type etype, bool bNormalize, long long iSize) :
+      path((const ::ansi_string&)a, epath, etype, bNormalize, iSize)
+   {
+
+
+   }
 
    inline path::path(const ::ansi_string & str, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
       string(str)
@@ -1252,12 +1259,12 @@ namespace file
    }
 
 
-   inline path path::operator / (const ::scoped_string & scopedstr) const
-   {
+   //inline path path::operator / (const ::scoped_string & scopedstr) const
+   //{
 
-      return ::transfer(slashed_path(scopedstr));
+   //   return ::transfer(slashed_path(scopedstr));
 
-   }
+   //}
 
 
    inline ::file::path & path::patch_base_path(const ::file::path & pathBase)

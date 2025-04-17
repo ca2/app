@@ -4156,7 +4156,7 @@ namespace apex
 
             string str1 = "please_help_me";
 
-            property_set set;
+            ::property_set set;
 
             set["oh_my_god"].as_string_array().add(str1);
             set["oh_my_god2"].int_array_reference() = ::int_array({ 1, 2, 3 });
@@ -4176,7 +4176,7 @@ namespace apex
 
             datastream()->set("test", set);
 
-            property_set set2;
+            ::property_set set2;
 
             datastream()->get("test", set2);
 
@@ -6759,7 +6759,7 @@ namespace apex
          while (true)
          {
 
-            property_set setEmpty;
+            ::property_set setEmpty;
 
             if (phttpcontext->open(psession, strUrl, setEmpty, nullptr))
             {
@@ -6774,7 +6774,7 @@ namespace apex
 
       }
 
-      property_set set;
+      ::property_set set;
 
       set["get_memory"] = "";
 
@@ -10311,7 +10311,7 @@ namespace apex
       
       string strHtml;
       
-      property_set setPost;
+      ::property_set setPost;
 
       auto estatus = on_html_response(nullptr, strHtml, strUri, setPost);
 

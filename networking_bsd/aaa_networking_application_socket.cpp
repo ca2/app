@@ -26,7 +26,7 @@ void networking_application_socket::on_send_response()
 
    strUrl = request().a_url();
 
-   property_set setPost;
+   ::property_set setPost;
 
    setPost = request().form().post();
 

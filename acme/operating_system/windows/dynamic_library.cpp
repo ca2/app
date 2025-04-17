@@ -596,7 +596,7 @@ namespace windows
 
       }
 
-      informationf("\n" + strMessage + "\n\n");
+      information("\n" + strMessage + "\n\n");
 
       return (library_t*)p;
 

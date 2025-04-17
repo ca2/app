@@ -164,7 +164,7 @@ bool file_context::exists(const ::file::path & pathParam)
    if (path.begins("http://") || path.begins("https://"))
    {
 
-      property_set set;
+      ::property_set set;
 
       if (path.flags() & ::file::e_flag_required)
       {
@@ -237,7 +237,7 @@ bool file_context::exists(const ::file::path & pathParam)
    if (path.begins("http://") || path.begins("https://"))
    {
 
-      property_set set;
+      ::property_set set;
 
       if (path.flags() & ::file::e_flag_required)
       {
@@ -1700,7 +1700,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
    bool bSourceEmpty = varSource.as_file_path().is_empty();
 
-   if (bSourceEmpty && preader.nok())
+   if (bSourceEmpty && ::is_nok(preader))
    {
 
       throw ::exception(error_bad_argument);
@@ -3463,7 +3463,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
    //*pmemoryfile->get_primitive_memory() = ;
 
-  /// property_set& set = payloadFile["http_set"].property_set_reference();
+  /// ::property_set & set = payloadFile["http_set"].property_set_reference();
 
    pmemoryfile->payload("http_set") = ::transfer(pget->get_property_set());
    //{
@@ -4666,7 +4666,7 @@ property_set file_context::get_ini(const ::payload& payloadFile)
 }
 
 
-void file_context::set_ini(const ::payload& payloadFile, const ::property_set& set)
+void file_context::set_ini(const ::payload& payloadFile, const ::property_set & set)
 {
 
    auto str = set.get_ini();

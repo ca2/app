@@ -74,7 +74,7 @@ namespace datetime
 //      string str(pszSpanExpression);
 //      str.trim();
 //      str += " ";
-//      property_set set;
+//      ::property_set set;
 //      bool bAdd = false;
 //      bool bMinus = false;
 //      const ::scoped_string & scopedstr = str;
@@ -196,7 +196,7 @@ namespace datetime
 //      }
 //      return time;
 //   }
-//   void parse_br_str(const ::scoped_string & scopedstr,property_set & set)
+//   void parse_br_str(const ::scoped_string & scopedstr,::property_set & set)
 //   {
 //      string src(psz);
 //      src.trim();
@@ -270,7 +270,7 @@ namespace datetime
 //      string str(psz);
 //      str.trim();
 //      str += " ";
-//      property_set set;
+//      ::property_set set;
 //      bool bBaseTime = false;
 //      int iStart = 0;
 //

@@ -764,9 +764,9 @@ namespace dynamic_source
       string strBuildCmd;
 
 #if defined(LINUX) || defined(MACOS) || defined(FREEBSD) || defined(OPENBSD)
-      strBuildCmd.formatf(m_pintegrationcontext->m_pathBuildFolder  / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash");
+      strBuildCmd = m_pintegrationcontext->m_pathBuildFolder  / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash";
 #else
-      strBuildCmd.formatf(m_pintegrationcontext->m_pathBuildFolder  / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_pintegrationcontext->payload("vstools").as_string() / m_strDynamicSourceConfiguration + "_c_" + m_pintegrationcontext->m_strPlatform + ".bat");
+      strBuildCmd = m_pintegrationcontext->m_pathBuildFolder  / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_pintegrationcontext->payload("vstools").as_string() / m_strDynamicSourceConfiguration + "_c_" + m_pintegrationcontext->m_strPlatform + ".bat";
 #endif
 
       str = file()->as_string(strBuildCmd);
@@ -930,9 +930,9 @@ namespace dynamic_source
          //strBuildCmd;
 
 #if defined(LINUX) || defined(MACOS) || defined(FREEBSD) || defined(OPENBSD)
-         strBuildCmd.formatf(m_pintegrationcontext->m_pathBuildFolder  / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash");
+         strBuildCmd = m_pintegrationcontext->m_pathBuildFolder  / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash";
 #else
-         strBuildCmd.formatf(m_pintegrationcontext->m_pathBuildFolder  / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" /m_pintegrationcontext->payload("vstools").as_string() / m_strDynamicSourceConfiguration + "_l_" + m_pintegrationcontext->m_strPlatform + ".bat");
+         strBuildCmd = m_pintegrationcontext->m_pathBuildFolder  / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" /m_pintegrationcontext->payload("vstools").as_string() / m_strDynamicSourceConfiguration + "_l_" + m_pintegrationcontext->m_strPlatform + ".bat";
 #endif
 
          str = file()->as_string(strBuildCmd);
@@ -1362,7 +1362,7 @@ namespace dynamic_source
          for(int i = 1; i < m_straSync.get_count(); i++)
          {
 
-            property_set set;
+            ::property_set set;
 
             //auto purl = psystem->url();
 
@@ -1581,9 +1581,9 @@ namespace dynamic_source
 //         strCmd = m_pintegrationcontext->m_pathBuildFolder  / m_strDynamicSourceStage / "front" / m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat";
 //#endif
 #ifdef LINUX
-         strCmd.formatf(m_pintegrationcontext->m_pathBuildFolder  / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libc_" + m_pintegrationcontext->m_strPlatform + ".bash");
+         strCmd = m_pintegrationcontext->m_pathBuildFolder  / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libc_" + m_pintegrationcontext->m_strPlatform + ".bash";
 #else
-         strCmd.formatf(m_pintegrationcontext->m_pathBuildFolder  / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libc") + m_pintegrationcontext->m_strPlatform + ".bat");
+         strCmd = m_pintegrationcontext->m_pathBuildFolder  / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + ::file::path("_libc") + m_pintegrationcontext->m_strPlatform + ".bat";
 #endif
 
          //#else
@@ -1746,9 +1746,9 @@ namespace dynamic_source
 //         ".bat";
 //#endif
 #ifdef LINUX
-      strCmd.formatf(m_pintegrationcontext->m_pathBuildFolder  / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl_" + m_pintegrationcontext->m_strPlatform + ".bash");
+      strCmd = m_pintegrationcontext->m_pathBuildFolder  / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl_" + m_pintegrationcontext->m_strPlatform + ".bash";
 #else
-      strCmd.formatf(m_pintegrationcontext->m_pathBuildFolder  / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl" + m_pintegrationcontext->m_strPlatform + ".bat");
+      strCmd = m_pintegrationcontext->m_pathBuildFolder  / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_libl" + m_pintegrationcontext->m_strPlatform + ".bat";
 #endif
       //#else
       // strCmd.formatf(strFolder, "app\\_stage\\aura\\account\\app\\main\\front\\dynamic_source_libl.bat", false));

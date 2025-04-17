@@ -143,7 +143,7 @@ namespace xml
       {
          auto & pitem = this->sp_at(i);
          pitem->create(this);
-         property_set set;
+         ::property_set set;
          set["array_index"] = i;
          xmlif.import_node(xmlif.get_node_name(m_iNodeNameIndex), set, *pitem);
       }

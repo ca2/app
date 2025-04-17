@@ -89,7 +89,7 @@ namespace account
 
 //      throw ::exception(todo("xml->js"));
 //
-//      property_set set;
+//      ::property_set set;
 //
 //      set["post"]["entered_license"] = m_XstrAppId;
 //

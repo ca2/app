@@ -102,7 +102,7 @@ public:
    inline ::file::fmtflags fmtflags() const { return m_pprintingformat->m_fmtflags; }
 
 
-   void print(const ::scoped_string & str);
+   void print(const ::range < const ansi_character * > & str);
    void print(::ansi_character ansicharacter) { write(&ansicharacter, 1); }
    void print(::wd16_character wd16character) { char sz[8]; write(&sz, wd16_to_ansi(sz, &wd16character, 1)); }
    void print(::wd32_character wd32character) { char sz[8]; write(&sz, wd32_to_ansi(sz, &wd32character, 1)); }
@@ -500,7 +500,7 @@ public:
    //
    //    }
 
-   write_text_stream & operator <<(const ::string & str);
+   write_text_stream & operator <<(const ::range < const char * > & range);
    //    {
    //
    //       return this->operator <<((const ::scoped_string &)str);
@@ -509,6 +509,13 @@ public:
 
        //text_stream & operator <<(const ::atom & atom) ;
    write_text_stream & operator <<(const ::scoped_string & scopedstr);
+   template < typename ITERATOR_TYPE2, int t_size>
+   write_text_stream& operator <<(const ::const_string_range_static_array < ITERATOR_TYPE2, t_size >& a)
+   {
+
+      return this->operator <<((const ::string&)a);
+
+   }
    //    {
    //
    //       if (m_fmtflags & ::file::network_payload)
@@ -569,7 +576,7 @@ public:
    //       return *this;
    //
    //    }
-       //text_stream & operator <<(const property_set& set) ;
+       //text_stream & operator <<(const ::property_set & set) ;
    template < typename TYPE >
    write_text_stream & write(const TYPE & t);
    //    {
@@ -627,7 +634,7 @@ public:
 //   text_stream& operator >>(float& f);
 //   text_stream& operator >>(double& d);
 //   text_stream& operator >>(string& str);
-//   //text_stream & operator >>(property_set& set) ;
+//   //text_stream & operator >>(::property_set & set) ;
 //   //text_stream & operator >>(::atom & atom) ;
 //
 //   template < typename TYPE >

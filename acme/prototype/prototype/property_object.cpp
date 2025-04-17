@@ -424,8 +424,7 @@ void property_object::read_configuration_from_ini(const ::payload & payloadFile)
 
    auto strIni = file()->safe_get_string(payloadFile);
 
-   get_property_set().parse_ini(strIni);
-
+   property_set().parse_ini(strIni);
 
 }
 
@@ -433,7 +432,7 @@ void property_object::read_configuration_from_ini(const ::payload & payloadFile)
 void property_object::write_configuration_to_ini(const ::payload & payloadFile)
 {
 
-   auto strIni = get_property_set().get_ini();
+   auto strIni = property_set().get_ini();
 
    file()->put_text(payloadFile, strIni);
 
@@ -876,28 +875,28 @@ void property_object::defer_propset()
 }
 
 
-property * property_object::find_property(const atom & atom) const
+::collection::index property_object::index_of_property(const atom & atom) const
 {
 
    if (!m_ppropertyset)
    {
 
-      return nullptr;
+      return -1;
 
    }
 
-   return m_ppropertyset->find(atom);
+   return m_ppropertyset->index_of(atom);
 
 }
 
 
-string property_object::find_string(const ::atom & atom, const ::ansi_character * pszDefault) const
+string property_object::get_string(const ::atom & atom, const ::scoped_string & scopedstrDefault) const
 {
 
    if (!m_ppropertyset)
    {
 
-      return pszDefault;
+      return scopedstrDefault;
 
    }
 

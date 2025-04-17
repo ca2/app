@@ -148,6 +148,7 @@ public:
    //::payload_reference reference(const atom& atom); { return topic(atom); }
 
    ::payload_reference reference(const atom& atom);
+   ::payload_reference reference(const atom_array & atom);
 
    //::payload & set(const ::atom & atom);
 
@@ -176,6 +177,7 @@ public:
 
    bool payload_contains(const ::property_set & set) const;
    bool string_contains(const ::property_set & set) const;
+   bool contains_keys(const ::property_set & set) const;
    bool contains(const ::property_set & set) const;
 
    bool case_insensitive_erase_first_payload(const ::payload & payload, ::collection::index iStart = 0);
@@ -315,6 +317,8 @@ public:
    ::collection::count property_count() const { return this->get_count(); }
    
    
+   ::collection::index add_property(const ::atom & atom) { return this->add_item(new ::property(atom)); }
+   ::property * add_property(const ::atom_array & atoma);
    ::collection::index add_property(const ::property & property) { return this->add_item(new ::property(property)); }
 
 

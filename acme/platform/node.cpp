@@ -372,7 +372,7 @@ namespace platform
 
          prequest->initialize_command_line2(::system()->m_strCommandLine);
 
-         psystem->m_papplication->get_property_set().merge(prequest->get_property_set());
+         psystem->m_papplication->property_set().merge(prequest->property_set());
 
          psystem->m_papplication->main();
 

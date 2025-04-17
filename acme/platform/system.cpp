@@ -2053,7 +2053,7 @@ particle* system::matter_mutex()
 
       m_papplication->initialize(this);
 
-      m_papplication->get_property_set().merge(get_property_set());
+      m_papplication->property_set().merge(property_set());
 
       //*((::APPLICATION_FLAGS *)this) = *application();
 
@@ -2975,7 +2975,7 @@ particle* system::matter_mutex()
 
             prequest->m_strCommandLine = strCommandLine;
 
-            prequest->get_property_set()._008ParseCommandFork(
+            prequest->property_set()._008ParseCommandFork(
                strCommandLine,
                prequest->m_payloadFile,
                strApp);
@@ -3020,7 +3020,7 @@ particle* system::matter_mutex()
                if (strArgument.begins("-"))
                {
 
-                  prequest->get_property_set()._008AddArgument(strArgument);
+                  prequest->property_set()._008AddArgument(strArgument);
 
                }
                else
@@ -3056,7 +3056,7 @@ particle* system::matter_mutex()
 
          payload("command_line_arg0") = strApp;
 
-         application()->get_property_set().merge(prequest->get_property_set());
+         application()->property_set().merge(prequest->property_set());
 
          post_request(prequest);
 

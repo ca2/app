@@ -99,10 +99,10 @@ property_set::~property_set()
 
 
 //
-//property & property_set::defer_auto_add(atom idName)
+//property & property_set::defer_auto_add(atom atom)
 //{
 //
-//   return *add(idName);
+//   return *add(atom);
 //
 //}
 
@@ -412,7 +412,7 @@ bool property_set::erase_first_string(const ::scoped_string & scopedstr, ::colle
 }
 
 
-::collection::count property_set::unset(const atom & idName)
+::collection::count property_set::unset(const ::atom & atom)
 {
 
    ::collection::count c = 0;
@@ -422,7 +422,7 @@ bool property_set::erase_first_string(const ::scoped_string & scopedstr, ::colle
    while (true)
    {
 
-      iFind = index_of(idName, iFind);
+      iFind = index_of(atom, iFind);
 
       if (iFind < 0)
       {
@@ -440,12 +440,12 @@ bool property_set::erase_first_string(const ::scoped_string & scopedstr, ::colle
 }
 
 
-bool property_set::is_new(const atom & idName) const
+bool property_set::is_new(const ::atom & atom) const
 {
 
-   const property * pproperty = find(idName);
+   auto pproperty = lookup(atom);
 
-   if (pproperty == nullptr)
+   if (::is_null(pproperty))
    {
 
       return true;
@@ -457,12 +457,12 @@ bool property_set::is_new(const atom & idName) const
 }
 
 
-bool property_set::is_null(const atom & idName) const
+bool property_set::is_null(const ::atom & atom) const
 {
 
-   const property * pproperty = find(idName);
+   auto pproperty = lookup(atom);
 
-   if (pproperty == nullptr)
+   if (::is_null(pproperty))
    {
 
       return true;
@@ -474,12 +474,12 @@ bool property_set::is_null(const atom & idName) const
 }
 
 
-bool property_set::is_new_or_null(const atom & idName) const
+bool property_set::is_new_or_null(const ::atom & atom) const
 {
 
-   const property * pproperty = find(idName);
+   auto pproperty = lookup(atom);
 
-   if (pproperty == nullptr)
+   if (::is_null(pproperty))
    {
 
       return true;
@@ -491,12 +491,12 @@ bool property_set::is_new_or_null(const atom & idName) const
 }
 
 
-bool property_set::is_empty(const atom & idName) const
+bool property_set::is_empty(const ::atom & atom) const
 {
 
-   const property * pproperty = find(idName);
+   auto pproperty = lookup(atom);
 
-   if (pproperty == nullptr)
+   if (::is_null(pproperty))
    {
 
       return true;
@@ -1362,15 +1362,15 @@ string property_set::_001Replace(const ::string & str) const
 ::particle * property_set::source_channel()
 {
 
-   return set("source_channel").cast < ::particle >();
+   return cast < ::particle >("source_channel");
 
 }
 
 
-::collection::count property_set::erase_by_name(const atom & idName)
+::collection::count property_set::erase_by_name(const ::atom & atom)
 {
 
-   return unset(idName);
+   return unset(atom);
 
 }
 
@@ -1538,54 +1538,64 @@ property_set::property_set(property_set && set) :
 //}
 
 
-property & property_set::at(::collection::index iIndex)
+//property & property_set::at(::collection::index iIndex)
+//{
+//
+//   return operator[](iIndex);
+//
+//}
+
+
+//::payload property_set::at(::collection::index iIndex) const
+//{
+//
+//   return operator[](iIndex);
+//
+//}
+
+
+//::property & property_set::property(const ::atom_array& atoma)
+//{
+//
+//   auto iIndex = index_of(atoma);
+//   
+//   if (iIndex < 0)
+//   {
+//
+//      iIndex = add_property(atoma);
+//
+//   }
+//
+//   return this->element_at(iIndex);
+//
+//}
+
+//
+//::property & property_set::property(const ::atom& atom)
+//{
+//
+//   auto pproperty = lookup(atom);
+//
+//   if (!pproperty)
+//   {
+//
+//      auto iIndex = add_property(atom);
+//
+//      pproperty = element_at(iIndex);
+//
+//   }
+//
+//   return *pproperty;
+//
+//}
+
+::property * property_set::add_property(const ::atom_array & atoma)
 {
 
-   return operator[](iIndex);
+   return &property(atoma);
 
 }
 
-
-::payload property_set::at(::collection::index iIndex) const
-{
-
-   return operator[](iIndex);
-
-}
-
-
-::payload property_set::operator[](const ::atom_array& atoma) const
-{
-
-   auto pproperty = find(atoma);
-   
-   if (!pproperty)
-   {
-
-      return e_type_new;
-
-   }
-
-   return *pproperty;
-
-}
-
-
-::payload property_set::operator[](const ::atom& atom) const
-{
-
-   auto pproperty = find(atom);
-
-   if (!pproperty)
-   {
-
-      return e_type_new;
-
-   }
-
-   return *pproperty;
-
-}
 
 
 property_set & property_set::operator = (const ::payload & payload)
@@ -1684,29 +1694,35 @@ property_set & property_set::merge(const ::property_set & set)
       for (auto & pproperty : set)
       {
 
-         atom idName = pproperty->name();
+         atom atom = pproperty->name();
 
-         auto ppropertyThis = find(idName);
+         auto &propertyHere = property(atom);
 
-         if (!pproperty->is_new())
+         if (pproperty->is_new())
          {
 
-            if (ppropertyThis != nullptr)
+            propertyHere.set_type(e_type_new);
+
+         }
+         else
+         {
+
+            if (!propertyHere.is_null())
             {
 
-               if (ppropertyThis->get_type() == ::e_type_element || pproperty->get_type() == ::e_type_element)
+               if (propertyHere.get_type() == ::e_type_element || pproperty->get_type() == ::e_type_element)
                {
 
                   operator[](pproperty->name()) = *pproperty;
 
                }
-               else if (ppropertyThis->get_type() == ::e_type_property_set)
+               else if (propertyHere.get_type() == ::e_type_property_set)
                {
 
                   if (pproperty->get_type() == ::e_type_property_set)
                   {
 
-                     ppropertyThis->property_set_reference().merge(pproperty->as_property_set());
+                     propertyHere.property_set_reference().merge(pproperty->as_property_set());
 
                   }
                   else
@@ -1733,10 +1749,10 @@ property_set & property_set::merge(const ::property_set & set)
                   }
 
                }
-               else if (operator[](pproperty->name()).is_empty())
+               else if (propertyHere.is_empty())
                {
 
-                  operator[](pproperty->name()) = *pproperty;
+                  propertyHere = *pproperty;
 
                }
                else
@@ -1745,7 +1761,7 @@ property_set & property_set::merge(const ::property_set & set)
                   try
                   {
 
-                     if (operator[](pproperty->name()) == *pproperty)
+                     if (propertyHere == *pproperty)
                      {
 
                         continue;
@@ -1758,7 +1774,7 @@ property_set & property_set::merge(const ::property_set & set)
 
                   }
 
-                  operator[](pproperty->name()).payload_array_reference().append_unique(operator[](pproperty->name()).as_payload_array());
+                  propertyHere.payload_array_reference().append_unique(pproperty->as_payload_array());
 
                }
 
@@ -1766,7 +1782,7 @@ property_set & property_set::merge(const ::property_set & set)
             else
             {
 
-               operator[](pproperty->name()) = *pproperty;
+               propertyHere = *pproperty;
 
             }
 
@@ -1781,7 +1797,7 @@ property_set & property_set::merge(const ::property_set & set)
 }
 
 
-property_set & property_set::merge(const property & property)
+property_set & property_set::merge(const ::property & property)
 {
 
    if (property.get_type() == e_type_property_set)
@@ -1818,11 +1834,11 @@ property_set & property_set::operator |= (const ::property_set & set)
 }
 
 
-bool property_set::case_insensitive_contains_value(const ::payload & payload) const { return case_insensitive_find_value(payload) != nullptr; }
-bool property_set::case_insensitive_contains_value(const ::scoped_string & scopedstr) const { return case_insensitive_find_value(scopedstr) != nullptr; }
-
-bool property_set::contains_payload(const ::payload & payload) const { return find_payload(payload) != nullptr; }
-bool property_set::contains_payload(const ::scoped_string & scopedstr) const { return find_payload(scopedstr) != nullptr; }
+//bool property_set::case_insensitive_contains_value(const ::payload & payload) const { return case_insensitive_find_value(payload) != nullptr; }
+//bool property_set::case_insensitive_contains_value(const ::scoped_string & scopedstr) const { return case_insensitive_find_value(scopedstr) != nullptr; }
+//
+//bool property_set::contains_payload(const ::payload & payload) const { return find_payload(payload) != nullptr; }
+//bool property_set::contains_payload(const ::scoped_string & scopedstr) const { return find_payload(scopedstr) != nullptr; }
 
 
 
@@ -1877,33 +1893,33 @@ bool property_set::contains_payload(const ::scoped_string & scopedstr) const { r
 //}
 
 
-property * property_set::str_find(const property & property) const
+//property * property_set::str_find(const property & property) const
+//{
+//
+//   for (auto & pproperty : *this)
+//   {
+//
+//      if (pproperty->str_compare(property) == 0)
+//      {
+//
+//         return (::property *) (::holder < ::property > &)pproperty;
+//
+//      }
+//
+//   }
+//
+//   return nullptr;
+//
+//}
+
+
+bool property_set::payload_contains(const ::property_set & set) const
 {
 
-   for (auto & pproperty : *this)
+   for (auto & pproperty : set)
    {
 
-      if (pproperty->str_compare(property) == 0)
-      {
-
-         return (::property *) (::holder < ::property > &)pproperty;
-
-      }
-
-   }
-
-   return nullptr;
-
-}
-
-
-bool property_set::str_contains(const ::property_set & set) const
-{
-
-   for (auto & pproperty : *this)
-   {
-
-      if (str_find(*pproperty) == nullptr)
+      if (!contains_payload(*pproperty))
       {
 
          return false;
@@ -1917,15 +1933,58 @@ bool property_set::str_contains(const ::property_set & set) const
 }
 
 
+bool property_set::string_contains(const ::property_set & set) const
+{
+
+   for (auto & pproperty : set)
+   {
+
+      if (!contains_string(*pproperty))
+      {
+
+         return false;
+
+      }
+
+   }
+
+   return true;
+
+}
+
+
+bool property_set::contains_keys(const ::property_set & set) const
+{
+
+   for (auto & pproperty : set)
+   {
+
+      auto iIndex = index_of(pproperty->name());
+
+      if (iIndex < 0)
+      {
+
+         return false;
+
+      }
+
+   }
+
+   return true;
+
+}
+
+
+
 bool property_set::contains(const ::property_set & set) const
 {
 
-   for (auto & pproperty : *this)
+   for (auto & pproperty : set)
    {
 
-      auto ppropertyHere = find(pproperty->name());
+      auto ppropertyHere = lookup(pproperty->name());
 
-      if (!ppropertyHere)
+      if (::is_null(ppropertyHere))
       {
 
          return false;
@@ -2120,9 +2179,9 @@ string property_set::get_command_line(const string_array & straKeys) const
    for (auto & strKey : straKeys)
    {
 
-      property * pproperty = find(strKey);
+      auto pproperty = lookup(strKey);
 
-      if (pproperty == nullptr)
+      if (::is_null(pproperty))
       {
 
          continue;
@@ -2316,11 +2375,10 @@ void property_set::parse_environment_variable(const string_array & straEnvironme
 }
 
 
-
-bool property_set::payload_bool(const atom & atom, bool bDefault) const
+bool property_set::get_bool(const atom & atom, bool bDefault) const
 {
 
-   auto pproperty = find(atom);
+   auto pproperty = lookup(atom);
 
    if (::is_null(pproperty))
    {
@@ -2341,10 +2399,10 @@ bool property_set::payload_bool(const atom & atom, bool bDefault) const
 }
 
 
-::string property_set::payload_string(const atom & atom, const ::string & strDefault) const
+::string property_set::get_string(const atom & atom, const ::string & strDefault) const
 {
 
-   auto pproperty = find(atom);
+   auto pproperty = lookup(atom);
 
    if (::is_null(pproperty))
    {
@@ -2358,10 +2416,10 @@ bool property_set::payload_bool(const atom & atom, bool bDefault) const
 }
 
 
-::file::path property_set::payload_file_path(const atom & atom, const ::file::path & pathDefault) const
+::file::path property_set::get_file_path(const atom & atom, const ::file::path & pathDefault) const
 {
 
-   auto pproperty = find(atom);
+   auto pproperty = lookup(atom);
 
    if (::is_null(pproperty))
    {
@@ -2437,57 +2495,57 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
 }
 
 
-property* property_set::find_by_text(const ::scoped_string & scopedstr, ::collection::index iStart) const
+//property* property_set::find_by_text(const ::scoped_string & scopedstr, ::collection::index iStart) const
+//{
+//
+//   auto p = this->begin() + iStart;
+//
+//   for (; !this->is_end(p); p++)
+//   {
+//
+//      if ((*p)->name() == scopedstr)
+//      {
+//
+//         return (::property*)(::holder < ::property > &) (*p);
+//
+//      }
+//
+//   }
+//
+//   return nullptr;
+//
+//}
+
+
+//::collection::index property_set::index_of(const ::atom & atom, ::collection::index iStart) const
+//{
+//
+//   for(::collection::index iIndex = iStart; iIndex < this->size(); iIndex++)
+//   {
+//
+//      if (this->element_at(iIndex)->name() == atom)
+//      {
+//
+//         return iIndex;
+//
+//      }
+//
+//   }
+//
+//   return -1;
+//
+//}
+
+
+property & property_set::property(const ::atom & atom)
 {
 
-   auto p = this->begin() + iStart;
-
-   for (; !this->is_end(p); p++)
-   {
-
-      if ((*p)->name() == scopedstr)
-      {
-
-         return (::property*)(::holder < ::property > &) (*p);
-
-      }
-
-   }
-
-   return nullptr;
-
-}
-
-
-::collection::index property_set::find(const ::atom & atom, ::collection::index iStart) const
-{
-
-   for(::collection::index iIndex = iStart; iIndex < this->size(); iIndex++)
-   {
-
-      if (this->element_at(iIndex)->name() == atom)
-      {
-
-         return iIndex;
-
-      }
-
-   }
-
-   return -1;
-
-}
-
-
-property & property_set::property(const ::atom & atom, ::collection::index iStart)
-{
-
-   auto iIndex = find(atom, iStart);
+   auto iIndex = index_of(atom);
 
    if (iIndex < 0)
    {
 
-      iIndex = add_property({atom, e_type_new});
+      iIndex = add_property(atom);
 
    }
 
@@ -2496,70 +2554,53 @@ property & property_set::property(const ::atom & atom, ::collection::index iStar
 }
 
 
-property * property_set::find(const ::atom_array & atoma) const
+property & property_set::property(const ::atom_array & atoma)
 {
 
-   const ::property_set * pset = this;
-
-   ::property * pproperty = nullptr;
-
-   for(auto & atom : atoma)
+   if (atoma.is_empty())
    {
 
-      if(::is_set(pproperty))
-      {
-
-         if(pproperty->get_type() != e_type_property_set)
-         {
-
-            return nullptr;
-
-         }
-
-         pset = &pproperty->property_set_reference();
-
-      }
-
-      pproperty = pset->find(atom);
-
-      if(::is_null(pproperty))
-      {
-
-         return nullptr;
-
-      }
+      throw ::exception(error_bad_argument);
 
    }
 
-   return pproperty;
+   auto pset = this;
 
-}
-
-
-property & property_set::get(const ::atom_array & atoma)
-{
-
-   ::property_set * pset = this;
-
-   ::property * pproperty = nullptr;
-
-   for(auto & atom : atoma)
+   for (int i = 0; i < atoma.get_upper_bound(); i++)
    {
 
-      if(::is_set(pproperty))
-      {
-
-         pset = &pproperty->property_set_reference();
-
-      }
-
-      pproperty = &pset->get(atom);
+      pset = &pset->property(atoma[i]).property_set_reference();
 
    }
 
-   return *pproperty;
-
+   return pset->property(atoma.last());
 }
+
+
+//property & property_set::get(const ::atom_array & atoma)
+//{
+//
+//   ::property_set * pset = this;
+//
+//   ::property * pproperty = nullptr;
+//
+//   for(auto & atom : atoma)
+//   {
+//
+//      if(::is_set(pproperty))
+//      {
+//
+//         pset = &pproperty->property_set_reference();
+//
+//      }
+//
+//      pproperty = &pset->get(atom);
+//
+//   }
+//
+//   return *pproperty;
+//
+//}
 
 
 
@@ -2603,47 +2644,46 @@ property & property_set::get(const ::atom_array & atoma)
 //}
 
 
-::payload property_set::operator()(const ::atom & atom, const ::payload & payloadDefault) const
+//::payload property_set::operator()(const ::atom & atom, const ::payload & payloadDefault) const
+//{
+//
+//   auto pproperty = find(atom);
+//
+//   if (!pproperty)
+//   {
+//
+//      return payloadDefault;
+//
+//   }
+//
+//   return *pproperty;
+//
+//}
+
+
+//::payload & property_set::topic(const atom & atom)
+//{
+//
+//   return set(atom);
+//
+//}
+
+
+::payload_reference property_set::reference(const ::atom & atom)
 {
 
-   auto pproperty = find(atom);
-
-   if (!pproperty)
-   {
-
-      return payloadDefault;
-
-   }
-
-   return *pproperty;
+   return property(atom);
 
 }
 
 
-::payload & property_set::topic(const atom & atom)
+
+::payload_reference property_set::reference(const ::atom_array & atoma)
 {
 
-   return set(atom);
+   return property(atoma);
 
 }
-
-
-::payload & property_set::set(const ::atom & atom)
-{
-
-   auto pproperty = find(atom);
-
-   if (!pproperty)
-   {
-
-      add_property({ atom, e_type_new });
-
-   }
-
-   return *pproperty;
-
-}
-
 
 
 
@@ -2776,10 +2816,10 @@ bool property_set::is_true_or_empty(const atom & atom) const
 }
 
 
-::payload property_set::value(const atom & idName) const
+::payload property_set::value(const ::atom & atom) const
 {
 
-   property * pproperty = find(idName);
+   property * pproperty = find(atom);
 
    if (pproperty == nullptr)
    {
@@ -2793,10 +2833,10 @@ bool property_set::is_true_or_empty(const atom & atom) const
 }
 
 
-::payload property_set::value(const atom & idName, ::payload payloadDefault) const
+::payload property_set::value(const ::atom & atom, ::payload payloadDefault) const
 {
 
-   property * pproperty = find(idName);
+   property * pproperty = find(atom);
 
    if (pproperty == nullptr)
    {

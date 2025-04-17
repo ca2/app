@@ -84,7 +84,7 @@ namespace platform
 
       pget->m_url = url;
 
-      pget->get_property_set() = set;
+      pget->property_set() = set;
 
       pget->m_timeSyncTimeout = timeTimeout;
 
@@ -98,7 +98,7 @@ namespace platform
 
       str = pmemory->as_utf8();
 
-      set = pget->get_property_set();
+      set = pget->property_set();
 
       return str;
 
@@ -142,7 +142,7 @@ namespace platform
 
       pget->m_url = url;
 
-      pget->get_property_set() = set;
+      pget->property_set() = set;
 
       pget->want_memory_response();
 
@@ -150,7 +150,7 @@ namespace platform
 
       pget->call();
 
-      set = pget->get_property_set();
+      set = pget->property_set();
 
       pfile->write(*pget->get_memory_response());
 

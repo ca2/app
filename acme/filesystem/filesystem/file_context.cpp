@@ -1711,15 +1711,14 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
    bool bTargetEmpty = varTarget.as_file_path().is_empty();
 
-   if (bTargetEmpty && pwriter.nok())
+   if (bTargetEmpty && ::is_nok(pwriter))
    {
 
       throw ::exception(error_bad_argument);
 
    }
 
-
-   if (pwriter.nok())
+   if (::is_nok(pwriter))
    {
 
       if (!directory()->is(varTarget.as_file_path().folder()))
@@ -1737,7 +1736,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
    ::file::path pathTarget;
 
-   if (pwriter.nok())
+   if (::is_nok(pwriter))
    {
 
       pathTarget = application()->defer_process_path(varTarget.as_file_path());
@@ -1746,7 +1745,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
    ::file::path pathSource;
 
-   if (preader.nok())
+   if (::is_nok(preader))
    {
 
       pathSource = application()->defer_process_path(varSource.as_file_path());
@@ -1776,7 +1775,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
    ::payload varNew;
 
-   if (pwriter.nok() && directory()->is(varTarget) && (varSource.as_file_path().name().has_character() && preader.nok()))
+   if (::is_nok(pwriter) && directory()->is(varTarget) && (varSource.as_file_path().name().has_character() && ::is_nok(preader)))
    {
 
       varNew = ::file::path(varTarget) / varSource.as_file_path().name();
@@ -1798,15 +1797,15 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
    try
    {
 
-      information() << "preader : " << (iptr)preader.m_p;
+      information() << "preader : " << (iptr)preader;
 
-      if (preader.nok())
+      if (::is_nok(preader))
       {
 
          preader = get_reader(varSource,
                               ::file::e_open_read | ::file::e_open_binary | ::file::e_open_share_deny_none);
 
-         if (preader.nok())
+         if (::is_nok(preader))
          {
 
             string strError;
@@ -1822,7 +1821,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
       }
 
-      if (pwriter.nok())
+      if (::is_nok(pwriter))
       {
 
          pwriter = get_file(varNew,
@@ -1830,7 +1829,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
                             ::file::e_open_defer_create_directory |
                             ::file::e_open_share_deny_write);
 
-         if (pwriter.nok())
+         if (::is_nok(pwriter))
          {
 
             string strError;
@@ -3465,7 +3464,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
   /// ::property_set & set = payloadFile["http_set"].property_set_reference();
 
-   pmemoryfile->payload("http_set") = ::transfer(pget->get_property_set());
+   pmemoryfile->payload("http_set") = ::transfer(pget->property_set());
    //{
 
    //   return ::error_failed;

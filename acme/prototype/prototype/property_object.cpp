@@ -761,7 +761,7 @@ void property_object::on_property_changed(::property* pproperty, const action_co
 void property_object::defer_run_property(const ::atom& atom)
 {
 
-   auto pproperty = find_property(atom);
+   auto pproperty = lookup_property(atom);
 
    if (!pproperty)
    {
@@ -836,8 +836,8 @@ void property_object::defer_run_property(const ::atom& atom)
 bool property_object::has_property(const atom & atom) const { return m_ppropertyset && m_ppropertyset->has_property(atom); }
 property * property_object::lookup_property(const atom& atom) const { return m_ppropertyset ? m_ppropertyset->lookup(atom) : nullptr; }
 bool property_object::erase_key(const atom & atom) { return m_ppropertyset && m_ppropertyset->erase_by_name(atom); }
-property_set & property_object::get_property_set() { defer_propset(); return *m_ppropertyset; }
-const property_set & property_object::get_property_set() const { ((property_object *)this)->defer_propset(); return *m_ppropertyset; }
+property_set & property_object::property_set() { defer_propset(); return *m_ppropertyset; }
+bool property_object::has_property_set() const { return ::is_set(m_ppropertyset); }
 
 
 bool property_object::contains(const ::property_set & set) const

@@ -118,92 +118,99 @@ bool property_set::has_properties(::collection::count countMinimum) const
 }
 
 
-property * property_set::case_insensitive_find_value(const ::payload & payload) const
+::collection::index property_set::index_of_case_insensitive_payload(const ::payload & payload, ::collection::index iStart) const
 {
 
-   for (auto & pproperty : *this)
+   for (::collection::index iIndex = iStart; iIndex < this->size(); iIndex++)
    {
+
+      auto pproperty = this->element_at(iIndex);
 
       if (pproperty->case_insensitive_order(payload) == 0)
       {
 
-         return (::property *) (::holder<::property > &) pproperty;
+         return iIndex;
 
       }
 
    }
 
-   return nullptr;
+   return -1;
 
 }
 
 
-property * property_set::case_insensitive_find_value(const ::scoped_string & scopedstr) const
+::collection::index property_set::index_of_case_insensitive_string(const ::scoped_string & scopedstr, ::collection::index iStart) const
 {
 
-   for (auto & pproperty : *this)
+   for (::collection::index iIndex = iStart; iIndex < this->size(); iIndex++)
    {
+
+      auto pproperty = this->element_at(iIndex);
 
       if (pproperty->case_insensitive_equals(scopedstr))
       {
 
-         return (::property *)(::holder<::property > &)pproperty;
+         return iIndex;
 
       }
 
    }
 
-   return nullptr;
+   return -1;
 
 }
 
 
-
-
-property * property_set::find_payload(const ::payload & payload) const
+::collection::index property_set::index_of_payload(const ::payload & payload, ::collection::index iStart) const
 {
 
-   for (auto & pproperty : *this)
+   for (::collection::index iIndex = iStart; iIndex < this->size(); iIndex++)
    {
+
+      auto pproperty = this->element_at(iIndex);
 
       if (*pproperty == payload)
       {
 
-         return (::property *)(::holder<::property > &)pproperty;
+         return iIndex;
 
       }
 
    }
 
-   return nullptr;
+   return -1;
 
 }
 
 
-property * property_set::find_payload(const ::scoped_string & scopedstr) const
+::collection::index property_set::index_of_string(const ::scoped_string & scopedstr, ::collection::index iStart) const
 {
 
-   for (auto & pproperty : *this)
+   for (::collection::index iIndex = iStart; iIndex < this->size(); iIndex++)
    {
+
+      auto pproperty = this->element_at(iIndex);
 
       if (*pproperty == scopedstr)
       {
 
-         return (::property *)(::holder<::property > &)  pproperty;
+         return iIndex;
 
       }
 
    }
 
-   return nullptr;
+   return -1;
 
 }
 
 
-bool property_set::case_insensitive_contains_value(const ::payload & payload, ::collection::count countMin, ::collection::count countMax) const
+bool property_set::case_insensitive_contains_payload_count(const ::payload & payload, ::collection::count countMin, ::collection::count countMax) const
 {
    ::collection::count count = 0;
-   while ((count < countMin || (countMax >= 0 && count <= countMax)) && case_insensitive_find_value(payload) != nullptr)
+   ::collection::index iIndex = -1;
+   while ((count < countMin || (countMax >= 0 && count <= countMax)) && (iIndex = index_of_case_insensitive_payload(payload, iIndex + 1)>= 0))
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
@@ -211,110 +218,121 @@ bool property_set::case_insensitive_contains_value(const ::payload & payload, ::
 
 
 
-bool property_set::case_insensitive_contains_value(const ::scoped_string & scopedstr, ::collection::count countMin, ::collection::count countMax) const
+bool property_set::case_insensitive_contains_string_count(const ::scoped_string & scopedstr, ::collection::count countMin, ::collection::count countMax) const
 {
    ::collection::count count = 0;
-   while ((count < countMin || (countMax >= 0 && count <= countMax)) && case_insensitive_find_value(scopedstr) != nullptr)
+   ::collection::index iIndex = -1;
+   while ((count < countMin || (countMax >= 0 && count <= countMax)) && (iIndex = index_of_case_insensitive_string(scopedstr, iIndex + 1) >= 0))
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
 
 
-bool property_set::contains_payload(const ::payload & payload, ::collection::count countMin, ::collection::count countMax) const
+bool property_set::contains_payload_count(const ::payload & payload, ::collection::count countMin, ::collection::count countMax) const
 {
    ::collection::count count = 0;
-   while ((count < countMin || (countMax >= 0 && count <= countMax)) && (find_payload(payload)) != nullptr)
+   ::collection::index iIndex = -1;
+   while ((count < countMin || (countMax >= 0 && count <= countMax)) && (iIndex = index_of_payload(payload, iIndex + 1))>= 0)
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
 
 
-bool property_set::contains_payload(const ::scoped_string & scopedstr, ::collection::count countMin, ::collection::count countMax) const
+bool property_set::contains_string_count(const ::scoped_string & scopedstr, ::collection::count countMin, ::collection::count countMax) const
 {
    ::collection::count count = 0;
-   while ((count < countMin || (countMax >= 0 && count <= countMax)) && find_payload(scopedstr) != nullptr)
+   ::collection::index iIndex = -1;
+   while ((count < countMin || (countMax >= 0 && count <= countMax)) && (iIndex= index_of_string(scopedstr))>= 0)
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
 
 
-bool property_set::case_insensitive_erase_first_value(const ::payload & payload)
+bool property_set::case_insensitive_erase_first_payload(const ::payload & payload, ::collection::index iStart)
 {
 
-   property * pproperty = case_insensitive_find_value(payload);
+   auto iIndex = index_of_case_insensitive_payload(payload, iStart);
 
-   if (pproperty != nullptr)
+   if (iIndex < 0)
    {
 
-      return erase_by_name(pproperty->m_atomName);
+      return false;
 
    }
 
-   return false;
+   this->erase_at(iIndex);
+
+   return true;
 
 }
 
 
-bool property_set::case_insensitive_erase_first_value(const ::scoped_string & scopedstr)
+bool property_set::case_insensitive_erase_first_string(const ::scoped_string & scopedstr, ::collection::index iStart)
 {
 
-   property * pproperty = case_insensitive_find_value(scopedstr);
+   auto iIndex = index_of_case_insensitive_string(scopedstr, iStart);
 
-   if (pproperty != nullptr)
+   if (iIndex < 0)
    {
 
-      return erase_by_name(pproperty->name());
+      return false;
 
    }
 
-   return false;
+   this->erase_at(iIndex);
+
+   return true;
 
 }
 
 
-bool property_set::erase_first_value(const ::payload & payload)
+bool property_set::erase_first_payload(const ::payload & payload, ::collection::index iStart)
 {
 
-   property * pproperty = find_payload(payload);
+   auto iIndex = index_of_payload(payload, iStart);
 
-   if (pproperty != nullptr)
+   if (iIndex < 0)
    {
 
-      return erase_by_name(pproperty->name());
+      return false;
 
    }
 
-   return false;
+   this->erase_at(iIndex);
+
+   return true;
 
 }
 
 
-bool property_set::erase_first_value(const ::scoped_string & scopedstr)
+bool property_set::erase_first_string(const ::scoped_string & scopedstr, ::collection::index iStart)
 {
 
-   property * pproperty = find_payload(scopedstr);
+   auto iIndex = index_of_string(scopedstr, iStart);
 
-   if (pproperty != nullptr)
+   if (iIndex < 0)
    {
 
-      return erase_by_name(pproperty->name());
+      return false;
 
    }
 
-   return false;
+   this->erase_at(iIndex);
+
+   return true;
 
 }
 
 
-::collection::count property_set::case_insensitive_erase_value(const ::payload & payload, ::collection::count countMin, ::collection::count countMax)
+::collection::count property_set::case_insensitive_erase_payload_count(const ::payload & payload, ::collection::count countMin, ::collection::count countMax)
 {
 
    ::collection::count count = 0;
 
-   if (case_insensitive_contains_value(payload, countMin, countMax))
+   if (case_insensitive_contains_payload_count(payload, countMin, countMax))
    {
 
-      while (conditional(countMax >= 0, count < countMax) && (case_insensitive_erase_first_value(payload)))
+      while (conditional(countMax >= 0, count < countMax) && (case_insensitive_erase_first_payload(payload)))
       {
 
          count++;
@@ -328,15 +346,15 @@ bool property_set::erase_first_value(const ::scoped_string & scopedstr)
 }
 
 
-::collection::count property_set::case_insensitive_erase_value(const ::scoped_string & scopedstr, ::collection::count countMin, ::collection::count countMax)
+::collection::count property_set::case_insensitive_erase_string_count(const ::scoped_string & scopedstr, ::collection::count countMin, ::collection::count countMax)
 {
 
    ::collection::count count = 0;
 
-   if (case_insensitive_contains_value(scopedstr, countMin, countMax))
+   if (case_insensitive_contains_string_count(scopedstr, countMin, countMax))
    {
 
-      while (conditional(countMax >= 0, count < countMax) && case_insensitive_erase_first_value(scopedstr))
+      while (conditional(countMax >= 0, count < countMax) && case_insensitive_erase_first_string(scopedstr))
       {
 
          count++;
@@ -350,15 +368,15 @@ bool property_set::erase_first_value(const ::scoped_string & scopedstr)
 }
 
 
-::collection::count property_set::erase_value(const ::payload & payload, ::collection::count countMin, ::collection::count countMax)
+::collection::count property_set::erase_payload_count(const ::payload & payload, ::collection::count countMin, ::collection::count countMax)
 {
 
    ::collection::count count = 0;
 
-   if (contains_payload(payload, countMin, countMax))
+   if (contains_payload_count(payload, countMin, countMax))
    {
 
-      while (conditional(countMax >= 0, count < countMax && erase_first_value(payload)))
+      while (conditional(countMax >= 0, count < countMax && erase_first_payload(payload)))
       {
 
          count++;
@@ -372,15 +390,15 @@ bool property_set::erase_first_value(const ::scoped_string & scopedstr)
 }
 
 
-::collection::count property_set::erase_value(const ::scoped_string & scopedstr, ::collection::count countMin, ::collection::count countMax)
+::collection::count property_set::erase_string_count(const ::scoped_string & scopedstr, ::collection::count countMin, ::collection::count countMax)
 {
 
    ::collection::count count = 0;
 
-   if (contains_payload(scopedstr, countMin, countMax))
+   if (contains_string_count(scopedstr, countMin, countMax))
    {
 
-      while (conditional(countMax >= 0, count < countMax) && erase_first_value(scopedstr))
+      while (conditional(countMax >= 0, count < countMax) && erase_first_string(scopedstr))
       {
 
          count++;

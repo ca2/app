@@ -178,17 +178,17 @@ public:
    bool string_contains(const ::property_set & set) const;
    bool contains(const ::property_set & set) const;
 
-   bool case_insensitive_erase_first_payload(const ::payload & payload);
-   bool case_insensitive_erase_first_string(const ::scoped_string & scopedstr);
+   bool case_insensitive_erase_first_payload(const ::payload & payload, ::collection::index iStart = 0);
+   bool case_insensitive_erase_first_string(const ::scoped_string & scopedstr, ::collection::index iStart = 0);
 
-   bool erase_first_payload(const ::payload & payload);
-   bool erase_first_string(const ::scoped_string & scopedstr);
+   bool erase_first_payload(const ::payload & payload, ::collection::index iStart = 0);
+   bool erase_first_string(const ::scoped_string & scopedstr, ::collection::index iStart = 0);
 
-   ::collection::count case_insensitive_erase_payload(const  ::payload & payload, ::collection::count countMin = 0, ::collection::count countMax = -1);
-   ::collection::count case_insensitive_erase_string(const ::scoped_string & scopedstr, ::collection::count countMin = 0, ::collection::count countMax = -1);
+   ::collection::count case_insensitive_erase_payload_count(const  ::payload & payload, ::collection::count countMin = 0, ::collection::count countMax = -1);
+   ::collection::count case_insensitive_erase_string_count(const ::scoped_string & scopedstr, ::collection::count countMin = 0, ::collection::count countMax = -1);
 
-   ::collection::count erase_payload(const ::payload & payload, ::collection::count countMin = 0, ::collection::count countMax = -1);
-   ::collection::count erase_string(const ::scoped_string & scopedstr, ::collection::count countMin = 0, ::collection::count countMax = -1);
+   ::collection::count erase_payload_count(const ::payload & payload, ::collection::count countMin = 0, ::collection::count countMax = -1);
+   ::collection::count erase_string_count(const ::scoped_string & scopedstr, ::collection::count countMin = 0, ::collection::count countMax = -1);
 
    bool has_property(const ::atom & atom) const;
 

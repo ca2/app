@@ -100,7 +100,7 @@ public:
    bool erase_key(const atom & atom);
 
    ::property_set & property_set();
-   ::property_set get_property_set() const;
+   bool has_property_set() const;
    bool contains(const ::property_set & set) const;
 
    using matter::set_flag;

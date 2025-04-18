@@ -1905,3 +1905,16 @@ payload::payload(const CHARACTER_RANGE& range) :
    m_str = range;
 
 }
+
+
+template < character_range CHARACTER_RANGE, primitive_payload PAYLOAD >
+inline ::file::path operator / (
+   const CHARACTER_RANGE & range,
+   const PAYLOAD & payload)
+{
+
+   return ::file::path(range) / payload.as_file_path();
+
+}
+
+

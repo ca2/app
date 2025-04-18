@@ -17,7 +17,7 @@ namespace experience
 
 
       ::pointer<::factory::factory>       m_pfactory;
-      property_set                        m_set;
+      ::property_set                      m_set;
       string                              m_strExperience;
 
 

@@ -215,7 +215,7 @@ namespace account
 
       string strDeferRegistration;
 
-      ::::property_set setAuthUrlQuery;
+      ::property_set setAuthUrlQuery;
 
       if(puser->m_bDeferRegistration)
       {

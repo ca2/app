@@ -55,6 +55,7 @@ namespace file
 
       using RANGE = typename ::string::RANGE;
       using CHARACTER = typename RANGE::CHARACTER;
+      using ITEM = CHARACTER;
 
 
       path() { m_epath = e_path_file; }
@@ -670,8 +671,6 @@ template < character_pointer CHARACTER_POINTER >
 }
 
 
-
-
 template < primitive_character CHARACTER, int t_size >
 ::file::path operator / (
    const ::range < const CHARACTER* >& range,
@@ -681,3 +680,7 @@ template < primitive_character CHARACTER, int t_size >
    return ::file::path(range) / ::file::path(::string(a));
 
 }
+
+
+
+

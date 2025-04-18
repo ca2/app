@@ -812,7 +812,7 @@ namespace user
 
          auto pdatetime = psystem->datetime();
 
-         strPathName = pdatetime->date_time_text() + "." + get_document_template()->find_string("default_extension");
+         strPathName = pdatetime->date_time_text() + "." + get_document_template()->get_string("default_extension");
 
       }
       else

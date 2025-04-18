@@ -5912,6 +5912,7 @@ bool payload::array_contains(const ::scoped_string & scopedstr, ::collection::in
    return false;
 }
 
+
 bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr, ::collection::index find, ::collection::index last) const
 {
    switch(m_etype)

@@ -27209,7 +27209,7 @@ __check_refdbg;
 
       auto pszType = typeid(*this).name();
 
-      informationf("interaction::on_message_left_button_double_click" + ::string(pszType));
+      information("interaction::on_message_left_button_double_click" + ::string(pszType));
 
       if (!is_window_enabled())
       {

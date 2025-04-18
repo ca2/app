@@ -392,7 +392,7 @@ namespace calculator
                   perror = __create_new < ::user::plain_edit_error >();
 
                }
-               perror->m_iStart = (strExp + string(" ")).length();
+               perror->m_iStart = ::string(strExp + string(" ")).length();
                perror->m_iEnd = perror->m_iStart + strSource.length();
 
             }

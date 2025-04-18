@@ -215,9 +215,9 @@ concept typed_character_pointer =
 template < typename CHARACTER_RANGE >
 concept character_range =
 (::std::is_base_of_v < ::range< const typename CHARACTER_RANGE::CHARACTER* >, CHARACTER_RANGE >
-&& ::primitive_character < typename CHARACTER_RANGE::CHARACTER > )||
+&& primitive_character < typename CHARACTER_RANGE::CHARACTER > )||
 (::std::is_same_v < ::range< const typename CHARACTER_RANGE::ITEM* >, CHARACTER_RANGE > &&
-::primitive_character < typename CHARACTER_RANGE::ITEM >);
+primitive_character < typename CHARACTER_RANGE::ITEM >);
 
 
 
@@ -376,7 +376,9 @@ namespace std
 //concept primitive_container = ::std::is_same < typename CONTAINER::PRIMITIVE_CONTAINER_TAG, PRIMITIVE_CONTAINER_TAG_TYPE >::value;
 
 template < typename PAYLOAD >
-concept primitive_payload = ::std::is_base_of_v < ::payload, PAYLOAD >;
+concept primitive_payload = 
+::std::is_base_of_v < ::payload, PAYLOAD >
+|| ::std::is_same_v < ::payload, PAYLOAD >;
 
 
 template < typename A_CONST >

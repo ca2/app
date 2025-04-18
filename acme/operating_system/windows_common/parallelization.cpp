@@ -287,19 +287,16 @@ namespace parallelization
 } // namespace acme
 
 
-
-
-
-void task_set_name(const char * pszThreadName)
+void task_set_name(const ::scoped_string & scopedstrThreadName)
 {
 
-   if (::string(pszThreadName) == "task")
+   if (::string(scopedstrThreadName) == "task")
    {
       output_debug_string("task");
 
    }
 
-   /*return*/ task_set_name((htask)(::uptr) ::GetCurrentThread(), pszThreadName);
+   /*return*/ task_set_name((htask)(::uptr) ::GetCurrentThread(), scopedstrThreadName);
 
 }
 

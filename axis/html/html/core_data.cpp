@@ -742,7 +742,7 @@ namespace html
 
       }
 
-      payloadFile2["http_set"] = get_property_set()["http_propset"].as_property_set();
+      payloadFile2["http_set"] = property_set()["http_propset"].as_property_set();
 
       bool bNoCache = payloadFile["nocache"].get_bool();
 

@@ -2448,7 +2448,7 @@ unsigned int property_set::get_unsigned_int(const atom & atom, unsigned int uDef
 
 
 
-::string property_set::_get_string(const atom & atom, const ::string & strDefault) const
+::string property_set::get_string(const atom & atom, const ::string & strDefault) const
 {
 
    auto pproperty = lookup(atom);

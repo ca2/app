@@ -961,12 +961,12 @@ unsigned int property_object::get_unsigned_int(const ::atom & atom, unsigned int
 //}
 
 
-::payload & property_object::payload(const atom & atom)
-{
-
-   return property(atom);
-
-}
+//::payload & property_object::payload(const atom & atom)
+//{
+//
+//   return property(atom);
+//
+//}
 
 
 ::property & property_object::property(const atom & atom)
@@ -1027,57 +1027,57 @@ bool property_object::is_true_or_empty(const ::atom & atom) const
 // }
 
 
-::payload property_object::payload(const ::atom & atom) const 
-{
-   
-   auto pproperty = find_property(atom); 
-
-   if (!pproperty)
-   {
-
-      return e_type_new;
-
-   }
-
-   return *pproperty;
-
-}
-
-
-::property & property_object::property(const ::atom & atom) const
-{
-
-   auto & property = this->property_set()[atom];
-
-   return property;
-
-}
+//::payload property_object::payload(const ::atom & atom) const 
+//{
+//   
+//   auto pproperty = lookup_property(atom); 
+//
+//   if (::is_null(pproperty))
+//   {
+//
+//      return e_type_new;
+//
+//   }
+//
+//   return *pproperty;
+//
+//}
 
 
-::payload property_object::payload(const ::atom & atom, const ::payload & payloadDefault) const
-{
+//::property & property_object::property(const ::atom & atom)
+//{
+//
+//   auto & property = this->property_set()[atom];
+//
+//   return property;
+//
+//}
 
-   return find_payload(atom, payloadDefault); 
 
-}
-
-
-::property property_object::property(const ::atom & atom, const ::payload & payloadDefault) const
-{
-
-   auto pproperty = find_property(atom);
-
-   if (!pproperty)
-   {
-
-      return { atom, payloadDefault };
-
-   }
-
-   return *pproperty;
-
-}
-
+//::payload property_object::payload(const ::atom & atom, const ::payload & payloadDefault) const
+//{
+//
+//   return find_payload(atom, payloadDefault); 
+//
+//}
+//
+//
+//::property property_object::property(const ::atom & atom, const ::payload & payloadDefault) const
+//{
+//
+//   auto pproperty = find_property(atom);
+//
+//   if (!pproperty)
+//   {
+//
+//      return { atom, payloadDefault };
+//
+//   }
+//
+//   return *pproperty;
+//
+//}
+//
 
 
 
@@ -1086,84 +1086,84 @@ bool property_object::is_true_or_empty(const ::atom & atom) const
 //
 // ::payload property_object::operator()(const ::atom & atom, const ::payload & payloadDefault) const { return find_payload(atom, payloadDefault); }
 
-::payload property_object::find_payload(const ::atom & atom) const { return find_payload(atom, ::error_not_found); }
+//::payload property_object::find_payload(const ::atom & atom) const { return find_payload(atom, ::error_not_found); }
+//
+//::payload property_object::find_payload(const ::atom & atom, const ::payload & payloadDefault) const
+//{
+//
+//   auto pproperty = find_property(atom);
+//
+//   if (!pproperty)
+//   {
+//
+//      return payloadDefault;
+//
+//   }
+//
+//   return *pproperty;
+//
+//}
 
-::payload property_object::find_payload(const ::atom & atom, const ::payload & payloadDefault) const
-{
+//::property & property_object::attribute(const ::atom & atom) { return payload(atom); }
+//
+//::property * property_object::find_attribute(const ::atom & atom) { return find_property(atom); }
+//
+//template < typename TYPE >
+//bool property_object::find_attribute(const ::atom & atom, TYPE & t)
+//{
+//
+//   auto p = find_property(atom);
+//
+//   if (!p)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   t = *p;
+//
+//   return true;
+//
+//}
 
-   auto pproperty = find_property(atom);
-
-   if (!pproperty)
-   {
-
-      return payloadDefault;
-
-   }
-
-   return *pproperty;
-
-}
-
-::payload property_object::attribute(const ::atom & atom) { return payload(atom); }
-
-::property * property_object::find_attribute(const ::atom & atom) { return find_property(atom); }
-
-template < typename TYPE >
-bool property_object::find_attribute(const ::atom & atom, TYPE & t)
-{
-
-   auto p = find_property(atom);
-
-   if (!p)
-   {
-
-      return false;
-
-   }
-
-   t = *p;
-
-   return true;
-
-}
-
-
-::payload & property_object::get_object(const ::atom & atom)
-{
-
-   auto pproperty = &payload(atom);
-
-   if (!pproperty)
-   {
-
-      throw ::exception(error_resource);
-
-   }
-
-   return *pproperty;
-
-}
-
-
+//
+//::payload & property_object::get_object(const ::atom & atom)
+//{
+//
+//   auto pproperty = &payload(atom);
+//
+//   if (!pproperty)
+//   {
+//
+//      throw ::exception(error_resource);
+//
+//   }
+//
+//   return *pproperty;
+//
+//}
 
 
-::payload & property_object::topic(const ::atom& atom)
-{
-
-   // auto property = fetch_property(atom);
-   //
-   // if (!property)
-   // {
-
-      throw ::exception(error_resource);
-   //
-   // }
-   //
-   // return *property.m_pproperty;
-
-   return *((::payload *)nullptr);
-
-}
-
+//
+//
+//::payload & property_object::topic(const ::atom& atom)
+//{
+//
+//   // auto property = fetch_property(atom);
+//   //
+//   // if (!property)
+//   // {
+//
+//      throw ::exception(error_resource);
+//   //
+//   // }
+//   //
+//   // return *property.m_pproperty;
+//
+//   return *((::payload *)nullptr);
+//
+//}
+//
 
 

@@ -111,7 +111,7 @@ public:
 //   template < typename TYPE >
 //   inline void get(const ::atom & atom, TYPE & t);
 
-   ::payload & topic(const ::atom & atom);
+   //::payload & topic(const ::atom & atom);
 
    ::collection::index index_of_property(const ::atom & atom) const;
 

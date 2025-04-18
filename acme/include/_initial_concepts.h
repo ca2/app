@@ -72,25 +72,16 @@ concept primitive_fundamental = std::is_fundamental < T >::value || std::is_poin
 template < typename T >
 concept primitive_type = !std::is_fundamental < T >::value && !std::is_pointer < T >::value;
 
+template<typename ITERATOR_TYPE>
+class range;
 
 template < typename T >
-concept primitive_range = requires(T t)
-{
+concept primitive_range = ::std::is_base_of_v < ::range< typename T::this_iterator >, T >;
 
-   t.begin();
-   t.end();
-
-};
 
 
 template < typename T, typename ITERATOR_TYPE >
-concept typed_range = requires(T t, ITERATOR_TYPE iterator)
-{
-
-   {t.begin()}-> ::std::convertible_to<ITERATOR_TYPE &>;
-   {t.end()}->std::convertible_to<ITERATOR_TYPE &>;
-
-};
+concept typed_range = ::std::is_base_of_v < ::range< ITERATOR_TYPE >, T >;
 
 
 template < typename FROM, typename TO >
@@ -219,8 +210,6 @@ concept typed_character_pointer =
 //&& ::std::is_same_v < CHARACTER, ::non_const <::erase_pointer<TYPED_CHARACTER_POINTER>>>;
 
 
-template<typename ITERATOR_TYPE>
-class range;
 
 
 template < typename CHARACTER_RANGE >
@@ -236,15 +225,15 @@ template < typename TYPED_CHARACTER_RANGE, typename CHARACTER >
 concept typed_character_range =
 (::std::is_base_of_v < ::range< const CHARACTER* >, TYPED_CHARACTER_RANGE >
    || ::std::is_same_v < ::range< const CHARACTER* >, TYPED_CHARACTER_RANGE >)
-   && ::primitive_character < CHARACTER >;
+   && primitive_character < CHARACTER >;
 
 
 template < typename OTHER_CHARACTER_RANGE, typename CHARACTER >
 concept other_character_range = 
 (::std::is_base_of_v < ::range< const typename OTHER_CHARACTER_RANGE::CHARACTER* >, OTHER_CHARACTER_RANGE >
-   && ::other_primitive_character < typename OTHER_CHARACTER_RANGE::CHARACTER, CHARACTER >) ||
+   && other_primitive_character < typename OTHER_CHARACTER_RANGE::CHARACTER, CHARACTER >) ||
    (::std::is_same_v < ::range< const typename OTHER_CHARACTER_RANGE::ITEM* >, OTHER_CHARACTER_RANGE > &&
-      ::other_primitive_character < typename OTHER_CHARACTER_RANGE::ITEM, CHARACTER >);
+      other_primitive_character < typename OTHER_CHARACTER_RANGE::ITEM, CHARACTER >);
 
 
 struct ITERATOR_TYPE_TAG {};

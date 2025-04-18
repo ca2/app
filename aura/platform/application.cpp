@@ -5278,7 +5278,7 @@ retry_license:
    //}
 
 
-   string application::dialog_box(const ::string & pszMatter, property_set& propertyset)
+   string application::dialog_box(const ::string & pszMatter, ::property_set& propertyset)
    {
 
       throw ::exception(todo, "core and os");

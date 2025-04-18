@@ -876,7 +876,35 @@ public:
    void payload_increment_reference_count();
 
 
+   template < typename TYPE >
+   TYPE & _as(TYPE & t) const
+   {
 
+      static_assert(false, "template specialization required");
+
+      return t;
+
+   }
+
+   template <>
+   int & _as<int>(int & i) const
+   {
+
+      i = as_int();
+
+      return i;
+
+   }
+
+   template <>
+   ::string & _as<::string>(::string & str) const
+   {
+
+      str = as_string();
+
+      return str;
+
+   }
 
    payload & operator = (const ::subparticle & o);
 

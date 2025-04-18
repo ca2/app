@@ -331,8 +331,9 @@ namespace file
 {
 
 
-    inline path::path(const ::scoped_string & scopedstr, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
-            path(::ansi_string(scopedstr), epath, etype, bNormalizePath, iSize)
+   template < character_range CHARACTER_RANGE >
+    inline path::path(const CHARACTER_RANGE & range, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+            path(::ansi_string(range), epath, etype, bNormalizePath, iSize)
     {
 
 

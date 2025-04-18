@@ -41,7 +41,7 @@ namespace xml
       bool load_attribute(const ::atom & atom, TYPE & t, const ::payload & payload = e_type_new)
       {
 
-         if (m_pnode->find_attribute(atom, t))
+         if (m_pnode->_get_attribute(atom, t))
          {
 
             return true;

@@ -456,9 +456,9 @@ public:
       //string_base & operator = (const ::range < const CHARACTER2 * > & str);
       //string_base & operator = (string_base && str);
    string_base & operator = (const ::inline_number_string & inline_number_string) {assign(inline_number_string.begin(), inline_number_string.end()); return *this;}
-   string_base & operator = (const scoped_ansi_string & ansistr) { assign_range(ansistr); return *this; }
-   string_base & operator = (const scoped_wd16_string & wd16str) { assign_range(wd16str); return *this; }
-   string_base & operator = (const scoped_wd32_string & wd32str) { assign_range(wd32str); return *this; }
+   string_base & operator = (const scoped_ansi_string & ansistr);
+   string_base & operator = (const scoped_wd16_string & wd16str);
+   string_base & operator = (const scoped_wd32_string & wd32str);
 #ifdef __STD_FORMAT__
    string_base& operator = (const ::std::string &str) { operator =(str.c_str()); return *this; }
 #endif
@@ -602,11 +602,11 @@ public:
 //   }
 
 
-   template < primitive_range RANGE >
-   inline string_base & assign_range(const RANGE & range)
+   template < typed_character_range < CHARACTER > TYPED_CHARACTER_RANGE >
+   inline string_base & assign_range(const TYPED_CHARACTER_RANGE & range)
    {
 
-      if (sizeof(CHARACTER) == sizeof(typename RANGE::CHARACTER) && range.m_erange & e_range_string)
+      if (range.m_erange & e_range_string)
       {
 
          NATURAL_POINTER::operator = (*(string_base *)&range);
@@ -623,12 +623,11 @@ public:
 
    }
 
-
-   template < primitive_range RANGE >
-   inline string_base & assign_range(RANGE && range)
+   template < typed_character_range < CHARACTER > TYPED_CHARACTER_RANGE >
+   inline string_base & assign_range(TYPED_CHARACTER_RANGE && range)
    {
 
-      if (sizeof(CHARACTER) == sizeof(typename non_reference < RANGE >::CHARACTER) && (range.m_erange & e_range_string))
+      if (range.m_erange & e_range_string)
       {
 
          NATURAL_POINTER::operator = (::transfer(*(string_base *)&range));
@@ -644,6 +643,31 @@ public:
          range.m_erange = e_range_none;
 
       }
+
+      return *this;
+
+   }
+   template < other_character_range < CHARACTER > OTHER_CHARACTER_RANGE >
+   inline string_base & assign_range(const OTHER_CHARACTER_RANGE & range)
+   {
+
+      this->assign(range.m_begin, range.m_end);
+
+      return *this;
+
+   }
+
+
+
+   template < other_character_range < CHARACTER > OTHER_CHARACTER_RANGE >
+   inline string_base & assign_range(OTHER_CHARACTER_RANGE && range)
+   {
+
+      this->assign(range.m_begin, range.m_end);
+
+      range.m_begin = nullptr;
+      range.m_end = nullptr;
+      range.m_erange = e_range_none;
 
       return *this;
 
@@ -2225,7 +2249,7 @@ CLASS_DECL_ACME ::string _(const ::scoped_string & scopedstr);
 
 
 template < primitive_character CHARACTER, other_primitive_character < CHARACTER > CHARACTER2 >
-::string_base < const CHARACTER* > operator + (
+::const_string_range_static_array < const CHARACTER*, 2 > operator + (
    const ::range < const CHARACTER* >& range1,
    const ::range < const CHARACTER2* >& range2)
 {
@@ -2234,4 +2258,35 @@ template < primitive_character CHARACTER, other_primitive_character < CHARACTER 
 
 }
 
+
+
+
+template < character_pointer CHARACTER_POINTER >
+::const_string_range_static_array < const  ::decay<CHARACTER_POINTER> *, 2 > operator + (
+   CHARACTER_POINTER p,
+   const ::range < const ::decay< CHARACTER_POINTER > * > & range
+   )
+{
+
+   return { {p, p + string_safe_length(p), _initialize_range_contains_null_terminated},
+      range };
+
+}
+
+
+
+template < character_pointer CHARACTER_POINTER, other_character_range < ::decay < CHARACTER_POINTER > > OTHER_CHARACTER_RANGE >
+::string_base < typename OTHER_CHARACTER_RANGE::const_iterator > operator + (
+   CHARACTER_POINTER p,
+   const OTHER_CHARACTER_RANGE & range
+   )
+{
+
+   ::string_base < typename OTHER_CHARACTER_RANGE::const_iterator > str(p);
+
+   str += range;
+
+   return ::transfer(str);
+
+}
 

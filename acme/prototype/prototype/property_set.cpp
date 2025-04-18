@@ -2544,6 +2544,24 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
 }
 
 
+::property * property_set::lookup(const ::atom & atom, ::collection::index iStart) const
+{
+
+   auto iIndex = index_of(atom, iStart);
+
+   if (iIndex < 0)
+   {
+
+      return nullptr;
+
+   }
+
+   return (::property*)this->element_at(iIndex).operator const ::property *();
+
+
+}
+
+
 //property* property_set::find_by_text(const ::scoped_string & scopedstr, ::collection::index iStart) const
 //{
 //

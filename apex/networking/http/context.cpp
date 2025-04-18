@@ -119,11 +119,11 @@ namespace http
    void context::perform(::nano::http::get * pget)
    {
 
-      ::property_set set(pget->get_property_set());
+      ::property_set set(pget->property_set());
       
       get(pget->get_memory_response(), pget->url(), set);
       
-      pget->get_property_set() = set;
+      pget->property_set() = set;
    
    }
 
@@ -1927,7 +1927,7 @@ namespace http
 
       //bool bPut;
 
-      if (set["put"].cast < ::file::file >() || set("http_method") == "PUT")
+      if (set["put"].cast < ::file::file >() || set["http_method"] == "PUT")
       {
 
          //bPost = false;
@@ -1945,7 +1945,7 @@ namespace http
          psocket->m_emethod = ::sockets::http_method_put;
 
       }
-      else if (set["post"].property_set_reference().has_property() || set("http_method") == "POST")
+      else if (set["post"].property_set_reference().has_property() || set["http_method"] == "POST")
       {
 
          //bPost = true;
@@ -1983,7 +1983,7 @@ namespace http
 
          psocket = psocketGet;
 
-         psocket->m_emethod = ::sockets::string_http_method(set("http_method", "GET").as_string());
+         psocket->m_emethod = ::sockets::string_http_method(set.get_string("http_method", "GET"));
 
       }
 
@@ -2664,7 +2664,7 @@ namespace http
       if (pdomain->m_strRadix == "ca2" && string_begins(pmessageMessage->m_url.request().as_string(), "/matter/"))
       {
 
-         ::property_set & set = pmessage->get_property_set();
+         ::property_set & set = pmessage->property_set();
 
          single_lock synchronouslock(system()->m_pmutexHttpDownload, true);
 
@@ -2687,7 +2687,7 @@ namespace http
 
       //auto phandler = __øcreate< ::sockets::socket_handler >();
 
-      ::property_set & set = pmessage->get_property_set();
+      ::property_set & set = pmessage->property_set();
 
       if (pmessageMessage->payload("post").as_property_set().property_count() > 0)
       {

@@ -117,16 +117,16 @@ namespace sockets
       }
 
       ::property & inattr(const ::atom & atom);
-      property_set & inattrs();
+      ::property_set & inattrs();
 
       ::property & inheader(const ::atom& atom);
-      property_set & inheaders();
+      ::property_set & inheaders();
 
       ::property & outattr(const ::atom& atom);
-      property_set & outattrs();
+      ::property_set & outattrs();
 
       ::property & outheader(const ::atom& atom);
-      property_set & outheaders();
+      ::property_set & outheaders();
 
       ::http::request & request();
       ::http::response & response();

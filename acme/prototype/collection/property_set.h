@@ -338,24 +338,24 @@ public:
 
    //auto is_end(property_arraytra::const_iterator iterator) const { return propertyptra().is_end(iterator); }
 
-   //template < typename TYPE >
-   //bool find(const ::atom & atom, TYPE & t)
-   //{
+   template < typename TYPE >
+   bool _get(const ::atom & atom, TYPE & t)
+   {
 
-   //   auto pproperty = find(atom);
+      auto pproperty = lookup(atom);
 
-   //   if (!pproperty)
-   //   {
+      if (!pproperty)
+      {
 
-   //      return false;
+         return false;
 
-   //   }
+      }
 
-   //   t = (TYPE &) *pproperty;
+      pproperty->_as(t);
 
-   //   return true;
-
-   //}
+      return true;
+  
+   }
 
 
    void _008ParseCommandLine(const ::scoped_string & scopedstrCmdLine, ::payload & payloadFile);

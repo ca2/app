@@ -121,7 +121,7 @@ enum enum_timeout
 
 
 
-#define _as(p) { e_use, p }
+///#define _as(p) { e_use, p }
 
 template < typename BASE_TYPE >
 class function_composite_base :

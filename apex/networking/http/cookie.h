@@ -13,7 +13,7 @@ namespace http
 
 
    class CLASS_DECL_APEX cookie :
-      virtual public ::object
+      virtual public ::subparticle
    {
    public:
 
@@ -55,7 +55,7 @@ namespace http
       }
 
 
-      string as_string() const override;
+      ::string as_string() const;
 
 
       //inline string to_string() const
@@ -69,7 +69,7 @@ namespace http
       operator ::property() const
       {
 
-         return property(m_strName,m_payload);
+         return ::property(m_strName,m_payload);
 
       }
 

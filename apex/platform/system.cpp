@@ -665,7 +665,7 @@ namespace apex
 
          //printf("%s", ("Process PID: " + ::as_string(iPid) + "\n").c_str());
 
-         informationf("Process PID: " + ::as_string(iPid));
+         information("Process PID: " + ::as_string(iPid));
 
       }
 

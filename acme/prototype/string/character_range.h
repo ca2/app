@@ -91,7 +91,14 @@ template < character_range RANGE >
 inline const_string_range_static_array < const typename RANGE::CHARACTER *, 2 > operator +(const typename RANGE::CHARACTER & ch, const RANGE & range)
 {
 
-   return { {&ch, &ch + 1, e_range_none}, range };
+   return   { 
+               ::range < const typename RANGE::CHARACTER *>(
+                  (const typename RANGE::CHARACTER *) & ch,
+                  ((const typename RANGE::CHARACTER *) (&ch)) + 1,
+                  e_range_none
+               ),
+               range
+            };
 
 }
 

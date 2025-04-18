@@ -5588,12 +5588,12 @@ string payload::implode(const ::scoped_string & scopedstrGlue) const
    if (m_etype == e_type_property_set)
    {
 
-      auto pproperty = m_ppropertyset->find_by_text(scopedstr);
+      auto iIndex = m_ppropertyset->index_of_string(scopedstr);
 
-      if (pproperty)
+      if (iIndex >= 0)
       {
 
-         return *pproperty;
+         return m_ppropertyset->property_at(iIndex);
 
       }
 
@@ -5627,7 +5627,7 @@ string payload::implode(const ::scoped_string & scopedstrGlue) const
       if (m_etype == e_type_property_set)
       {
 
-         auto pproperty = m_ppropertyset->find_by_text(atom.m_str);
+         auto pproperty = m_ppropertyset->lookup(atom);
 
          if (pproperty)
          {
@@ -5647,7 +5647,7 @@ string payload::implode(const ::scoped_string & scopedstrGlue) const
       if (casts_to(e_type_property_set))
       {
 
-         auto pproperty = property_set_reference().find(atom);
+         auto pproperty = property_set_reference().lookup(atom);
 
          if (pproperty)
          {
@@ -5693,7 +5693,7 @@ property & payload::get_property(const ::atom & atom)
       else*/ if (m_etype == e_type_property_set)
       {
 
-         return m_ppropertyset->get(atom);
+         return m_ppropertyset->property(atom);
 
       }
 
@@ -5704,7 +5704,7 @@ property & payload::get_property(const ::atom & atom)
       if (casts_to(e_type_property_set))
       {
 
-         return property_set_reference().get(atom);
+         return property_set_reference().property(atom);
 
       }
 
@@ -5896,7 +5896,7 @@ bool payload::array_contains(const ::scoped_string & scopedstr, ::collection::in
    case e_type_payload_array:
       return as_payload_array().contains(scopedstr, find, count);
    case e_type_property_set:
-      return as_property_set().contains_payload(scopedstr, find, count);
+      return as_property_set().contains_payload_count(scopedstr, find, count);
    default:
    {
       ::collection::index upperbound = minimum(array_get_upper_bound(), find + count - 1);
@@ -5925,7 +5925,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
    case e_type_payload_array:
       return as_payload_array().case_insensitive_contains(scopedstr, find, last);
    case e_type_property_set:
-      return as_property_set().case_insensitive_contains_value(scopedstr, find, last);
+      return as_property_set().case_insensitive_contains_string_count(scopedstr, find, last);
    default:
    {
       ::collection::index upperbound = minimum(array_get_upper_bound(), last);

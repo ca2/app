@@ -4705,7 +4705,7 @@ bool thread::set_thread_priority(::enum_priority epriority)
 
       ::e_status estatus = ::get_last_status();
 
-      informationf("thread::SetThreadPriority LastError = " + ::as_string(estatus));
+      information("thread::SetThreadPriority LastError = " + ::as_string(estatus));
 
    }
 

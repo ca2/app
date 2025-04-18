@@ -21,7 +21,7 @@ class CLASS_DECL_ACME property_object :
 public:
 
 
-   ::pointer<property_set>                        m_ppropertyset;
+   ::pointer<::property_set>                        m_ppropertyset;
 
 
    property_object() { }
@@ -140,7 +140,14 @@ public:
 
    ::property & property(const ::atom & atom);
 
-   ::property & property(const ::atom & atom) const;
+   ::property & property(const ::atom & atom) const
+   {
+
+      return ((::property_object *)this)->property(atom);
+
+   }
+
+
    ::payload get_payload(const ::atom & atom, const ::payload & payloadDefault) const;
 
 
@@ -230,7 +237,7 @@ inline TYPE * property_object::cast(const ::atom & atom) const
 
    }
 
-   return property.cast < TYPE >();
+   return pproperty->cast < TYPE >();
 
 }
 

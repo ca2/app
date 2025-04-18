@@ -450,7 +450,7 @@ namespace apex
       void install_message_routing(::channel* pchannel) override;
 
 
-      virtual string dialog_box(const ::string& pszMatter, property_set& propertyset) override;
+      virtual string dialog_box(const ::string& pszMatter, ::property_set& propertyset) override;
 
 
       virtual void application_menu_update() override;

@@ -1040,7 +1040,7 @@ namespace apex
          try
          {
 
-            prequest->get_property_set().unset("document");
+            prequest->property_set().unset("document");
 
          }
          catch (...)
@@ -7060,7 +7060,7 @@ namespace apex
    }
 
 
-   string application::dialog_box(const ::string & pszMatter, property_set & propertyset)
+   string application::dialog_box(const ::string & pszMatter, ::property_set & propertyset)
    {
 
       throw ::exception(todo, "core and os");

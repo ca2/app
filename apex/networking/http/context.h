@@ -89,7 +89,7 @@ namespace http
 
       void http_application_destruct();
 
-      property_set & process_set(::property_set & set, const ::url::url & url);
+      ::property_set & process_set(::property_set & set, const ::url::url & url);
 
       void get(::http::message * pmessage) override;
 

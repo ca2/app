@@ -1131,7 +1131,7 @@ namespace apex
 
       }
 
-      get_property_set().merge(prequest->get_property_set());
+      property_set().merge(prequest->property_set());
 
       on_request(prequest);
 

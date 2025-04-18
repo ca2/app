@@ -147,7 +147,7 @@ namespace xml
    property & node::set_attribute(const ::atom & atom, const ::payload & payload)
    {
 
-      auto & property = m_set.get(atom);
+      auto & property = m_set.property(atom);
 
       property = payload;
 
@@ -444,7 +444,7 @@ namespace xml
 
          _SetString({pszStart, rangeXml.m_begin}, &strName);
 
-         auto & property = m_set.get(strName);
+         auto & property = m_set.property(strName);
 
          rangeXml.consume_spaces(0);
 
@@ -2134,7 +2134,7 @@ namespace xml
 
       node * node = get_child(lpszName);
 
-      return node ? node->find_attribute(attrname) : nullptr;
+      return node ? node->lookup_attribute(attrname) : nullptr;
 
    }
 

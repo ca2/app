@@ -320,7 +320,7 @@ namespace user
       flags < enum_control_function >           m_flagsfunction;
       enum_control_data_type                    m_edatatype;
       ::int_rectangle                           m_rectangle;
-      property_set                              m_setValue;
+      ::property_set                            m_setValue;
       int                                       m_iSubItemDisableCheckBox;
       int                                       m_iSubItemDuplicateCheckBox;
       ::int_array                               m_iaSubItemDuplicate;
@@ -329,7 +329,7 @@ namespace user
       string                                    m_strClass;
       string_to_string                          m_mapClassStyle;
       string                                    m_strStyle;
-      property_set                              m_setStyle;
+      ::property_set                            m_setStyle;
 
       //::user::interaction *                     m_puserinteractionTopLevel;
       //::user::frame_interaction *                           m_puserframeTopLevel;

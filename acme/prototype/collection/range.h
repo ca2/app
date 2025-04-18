@@ -230,12 +230,12 @@ public:
    }
 
    template<primitive_integral INTEGRAL>
-   constexpr range(this_iterator begin, INTEGRAL count, e_range erange = e_range_none) :
+   constexpr range(this_iterator begin, INTEGRAL count, enum_range erange = e_range_none) :
       m_begin(begin), m_end(begin + count), m_erange(erange)
    {
    }
 
-   constexpr range(this_iterator begin, this_iterator end, e_range erange = e_range_none) :
+   constexpr range(this_iterator begin, this_iterator end, enum_range erange = e_range_none) :
       m_begin(begin), m_end(end), m_erange(erange)
    {
    }

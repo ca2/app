@@ -171,10 +171,10 @@ namespace xml
 
       bool contains(const ::property_set & set) const { return m_set.contains(set); }
       
-      ::property *            find_attribute(const ::scoped_string & scopedstr) { return m_set.find(scopedstr); }
+      ::property * lookup_attribute(const ::scoped_string & scopedstr) { return m_set.lookup(scopedstr); }
 
-      //template < typename TYPE >
-      //bool find_attribute(const ::atom & atom, TYPE & t) { return m_set.find(atom, t); }
+      template < typename TYPE >
+      bool _get_attribute(const ::atom & atom, TYPE & t) { return m_set._get(atom, t); }
 
       ::property              attribute(const ::atom & atom) { return m_set[atom]; }
       ::property &            attribute_at(::collection::index i) { return m_set.property_at(i); }

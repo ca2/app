@@ -920,36 +920,28 @@ int property_object::get_int(const ::atom & atom, int iDefault) const
 }
 
 
-unsigned int property_object::find_unsigned_int(const ::atom & atom, unsigned int iDefault) const
+unsigned int property_object::get_unsigned_int(const ::atom & atom, unsigned int uDefault) const
 {
 
    if (!m_ppropertyset)
    {
 
-      return iDefault;
+      return uDefault;
 
    }
 
-   auto pproperty = m_ppropertyset->find(atom);
-
-   if (!pproperty)
-   {
-
-      return iDefault;
-
-   }
-
-   return pproperty->as_unsigned_int(iDefault);
+   return m_ppropertyset->get_unsigned_int(atom, uDefault);
 
 }
 
 
-template < typename TYPE > TYPE & property_object::get_cast(const ::atom & atom, TYPE * pDefault)
-{
-
-   return payload(atom).get_cast <TYPE>(pDefault);
-
-}
+//template < primitive_subparticle TYPE >
+//TYPE * property_object::cast(const ::atom & atom) const
+//{
+//
+//   return payload(atom).cast <TYPE>();
+//
+//}
 
 
 //template < typename TYPE > ::pointer<TYPE>property_object::cast(const ::atom & atom) const
@@ -972,9 +964,7 @@ template < typename TYPE > TYPE & property_object::get_cast(const ::atom & atom,
 ::payload & property_object::payload(const atom & atom)
 {
 
-   auto & set = get_property_set();
-
-   return set.get(atom);
+   return property(atom);
 
 }
 
@@ -982,9 +972,7 @@ template < typename TYPE > TYPE & property_object::get_cast(const ::atom & atom,
 ::property & property_object::property(const atom & atom)
 {
 
-   auto & set = get_property_set();
-
-   return set.get(atom);
+   return property_set()[atom];
 
 }
 

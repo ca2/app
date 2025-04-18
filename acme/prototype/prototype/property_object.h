@@ -163,7 +163,8 @@ public:
 
    using matter::cast;
 
-   template < ::primitive_subparticle TYPE > inline TYPE * cast(const ::atom & atom) const;
+   template < ::primitive_subparticle TYPE > 
+   inline TYPE * cast(const ::atom & atom) const;
 
    void defer_propset();
 

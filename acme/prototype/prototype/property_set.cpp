@@ -2448,7 +2448,7 @@ unsigned int property_set::get_unsigned_int(const atom & atom, unsigned int uDef
 
 
 
-::string property_set::get_string(const atom & atom, const ::string & strDefault) const
+::string property_set::_get_string(const atom & atom, const ::string & strDefault) const
 {
 
    auto pproperty = lookup(atom);
@@ -2824,9 +2824,10 @@ bool property_set::has_property(const atom & atom) const
 
    }
 
-   const property * pproperty = find(atom);
+   auto pproperty = lookup(atom);
 
-   return pproperty != nullptr && pproperty->m_etype != ::e_type_new;
+   return ::is_set(pproperty) && 
+      !(pproperty->is_new_or_null() || pproperty->get_type() == e_type_not_found);
 
 }
 
@@ -2834,9 +2835,9 @@ bool property_set::has_property(const atom & atom) const
 bool property_set::is_true(const atom & atom) const
 {
 
-   const property * pproperty = find(atom);
+   auto pproperty = lookup(atom);
 
-   if (pproperty == nullptr)
+   if (::is_null(pproperty))
    {
 
       return false;
@@ -2851,9 +2852,9 @@ bool property_set::is_true(const atom & atom) const
 bool property_set::is_true_or_empty(const atom & atom) const
 {
 
-   const property * pproperty = find(atom);
+   auto pproperty = lookup(atom);
 
-   if (pproperty == nullptr)
+   if (::is_null(pproperty))
    {
 
       return true;
@@ -2865,39 +2866,39 @@ bool property_set::is_true_or_empty(const atom & atom) const
 }
 
 
-::payload property_set::value(const ::atom & atom) const
-{
-
-   property * pproperty = find(atom);
-
-   if (pproperty == nullptr)
-   {
-
-      return ::error_not_found;
-
-   }
-
-   return *pproperty;
-
-}
-
-
-::payload property_set::value(const ::atom & atom, ::payload payloadDefault) const
-{
-
-   property * pproperty = find(atom);
-
-   if (pproperty == nullptr)
-   {
-
-      return payloadDefault;
-
-   }
-
-   return *pproperty;
-
-}
-
+//::payload property_set::value(const ::atom & atom) const
+//{
+//
+//   auto pproperty = lookup(atom);
+//
+//   if (::is_null(pproperty))
+//   {
+//
+//      return ::error_not_found;
+//
+//   }
+//
+//   return *pproperty;
+//
+//}
+//
+//
+//::payload property_set::value(const ::atom & atom, ::payload payloadDefault) const
+//{
+//
+//   property * pproperty = find(atom);
+//
+//   if (pproperty == nullptr)
+//   {
+//
+//      return payloadDefault;
+//
+//   }
+//
+//   return *pproperty;
+//
+//}
+//
 
 
 // ::property_set set;
@@ -2960,7 +2961,7 @@ string property_set::evaluate(const ::string & strSource) const
 
          string strEval;
 
-         if (get_string(strEval, strKey))
+         if (_get_string(strEval, strKey))
          {
 
             str = str(0, pPos) + strEval + str(0, pEnd + 1);

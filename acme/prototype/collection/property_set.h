@@ -221,7 +221,7 @@ public:
 
    }
 
-   bool get_string(string& strResult, const ::atom & atom) const;
+   bool _get_string(string& strResult, const ::atom & atom) const;
 
    ::payload get_payload(const ::atom & atom);
 
@@ -476,7 +476,7 @@ CLASS_DECL_ACME void property_set_skip_network_payload(::ansi_range & range);
 //inline ::pointer<::property_set>localconfigini();
 
 
-inline bool property_set::get_string(string & strResult, const ::atom & atom) const
+inline bool property_set::_get_string(string & strResult, const ::atom & atom) const
 {
 
    auto pproperty = lookup(atom);

@@ -71,21 +71,24 @@ class string_base :
    public string_natural_pointer < ITERATOR_TYPE >
 {
 public:
+   
 
-
-   using NATURAL_POINTER = string_natural_pointer < ITERATOR_TYPE >;
-   using NATURAL_META_DATA = typename NATURAL_POINTER::NATURAL_META_DATA;
-   using META_DATA = typename NATURAL_POINTER::META_DATA;
-   using PRIMITIVE_STRING_TAG = PRIMITIVE_STRING_TAG_TYPE;
-   using ITEM_POINTER = get_type_item_pointer< ITERATOR_TYPE>;
-   using ITEM = erase_pointer < non_const < ITEM_POINTER > >;
-   using CHARACTER = ITEM;
    using RANGE = ::const_string_range < ITERATOR_TYPE >;
    using this_iterator = typename RANGE::this_iterator;
    using iterator = typename RANGE::iterator;
    using const_iterator = typename RANGE::const_iterator;
+
+
+
+   using NATURAL_POINTER = string_natural_pointer < this_iterator >;
+   using NATURAL_META_DATA = typename NATURAL_POINTER::NATURAL_META_DATA;
+   using META_DATA = typename NATURAL_POINTER::META_DATA;
+   using PRIMITIVE_STRING_TAG = PRIMITIVE_STRING_TAG_TYPE;
+   using ITEM_POINTER = get_type_item_pointer< this_iterator >;
+   using ITEM = ::const_string_range < ITERATOR_TYPE >::ITEM;
+   using CHARACTER = ::const_string_range < ITERATOR_TYPE >::CHARACTER;
    //using THIS_RAW_RANGE = typename RANGE::THIS_RAW_RANGE;
-   using SCOPED_STRING = scoped_string_base < ITERATOR_TYPE >;
+   using SCOPED_STRING = scoped_string_base < this_iterator >;
 
 
    string_base() { }
@@ -154,7 +157,8 @@ public:
    template < int t_size >
    inline string_base(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a);
 
-
+   template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, int t_size >
+   inline string_base(const const_string_range_static_array < const OTHER_CHARACTER *, t_size > & a);
 
 //   template<typed_range<::ansi_character *> RANGE>
 //   string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str); }
@@ -269,7 +273,7 @@ public:
 
    inline void construct1(const ITERATOR_TYPE psz, character_count length);
 
-   inline void construct2(const RANGE & range);
+   inline void construct2(const RANGE & str);
 
    template < primitive_character CHARACTER2 >
    inline void construct5(const CHARACTER2 * psz, character_count length);
@@ -771,6 +775,13 @@ public:
 
    template < primitive_character CHARACTER2 >
    inline string_base < ITERATOR_TYPE > & _append(const CHARACTER2 * pszSrc, character_count count);
+
+
+   //template <int t_size >
+   //inline string_base < ITERATOR_TYPE > & append(const const_string_range_static_array < ITERATOR_TYPE, t_size > & a);
+
+   //template <other_primitive_character<typename string_base < ITERATOR_TYPE >::CHARACTER> CHARACTER2, int t_size >
+   //inline string_base < ITERATOR_TYPE > & append(const const_string_range_static_array < const CHARACTER2 *, t_size > & a);
 
    //inline string_base & append(const ::wd16_character * pszSrc);
    //inline string_base & append(const ::wd16_character * pszSrc, character_count nLength);
@@ -2287,6 +2298,29 @@ template < character_pointer CHARACTER_POINTER, other_character_range < ::decay 
    str += range;
 
    return ::transfer(str);
+
+}
+
+
+
+
+template < typename ITERATOR_TYPE >
+template < primitive_character CHARACTER >
+character_count range<ITERATOR_TYPE>::__utf_length(CHARACTER * ptrigger, character_count *& plen)
+{
+
+   return *plen++ = __utf_to_utf_length(ptrigger, this->m_begin, this->size());
+
+}
+
+template < typename ITERATOR_TYPE >
+template < primitive_character CHARACTER >
+void range<ITERATOR_TYPE>::__utf_concatenate_to(CHARACTER *& p, character_count *& plen)
+{
+
+   utf_to_utf(p, this->m_begin, this->size());
+
+   p += *plen++;
 
 }
 

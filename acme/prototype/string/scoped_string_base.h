@@ -194,7 +194,7 @@ public:
 
          this->m_begin = (ITERATOR_TYPE) range.m_begin;
          this->m_end = (ITERATOR_TYPE) range.m_end;
-         this->m_erange = range.m_erange;
+         this->m_erange = (!this->m_end || *this->m_end) ? e_range_none : e_range_null_terminated;
 
       }
       else

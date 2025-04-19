@@ -1,6 +1,8 @@
 // Refactored around 2022-09-12 by camilo <3ThomasBorregaardSorensen!!
 #pragma once
 
+//template < typename SAME_AS, typename COMPARE >
+//concept same_as = ::std::is_same_v< SAME_AS, COMPARE >;
 
 enum enum_range : int
 {
@@ -182,7 +184,7 @@ public:
    using ITEM_POINTER = get_type_item_pointer<iterator>;
 
 
-   using THIS_ITEM = get_iterator_item<ITERATOR_TYPE>;
+   using THIS_ITEM = get_iterator_item<this_iterator>;
    using ITEM = non_const<THIS_ITEM>;
    using CONST_ITEM = add_const<THIS_ITEM>;
    using ARG_ITEM = argument_of < ITEM >;
@@ -303,6 +305,47 @@ public:
    {
 
       return { m_begin + start, (count < 0) ? m_end + count + 1 : m_begin + start + count };
+
+   }
+
+
+   template < primitive_character CHARACTER >
+   character_count __utf_length(CHARACTER * ptrigger, character_count *& plen);
+
+
+   template < primitive_character CHARACTER >
+   void __utf_concatenate_to(CHARACTER *& p, character_count *& plen);
+
+
+   template < same_as < ITEM > A_ITEM > 
+   void block_concatenate_to(A_ITEM * & p)
+   {
+
+      auto s = size();
+
+      if (s < 32)
+      {
+
+         auto psrc = this->m_begin;
+
+         while (s > 0)
+         {
+
+            *p++ = *psrc++;
+
+            s--;
+
+         }
+
+      }
+      else
+      {
+
+         ::memory_copy(p, this->m_begin, s*sizeof(ITEM));
+         
+         p += s;
+
+      }
 
    }
 

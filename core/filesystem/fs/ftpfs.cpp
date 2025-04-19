@@ -252,7 +252,7 @@ retry:
 
    auto purl = psystem->url();
 
-   strPath = purl->get_object(listing.m_pathUser);
+   strPath = purl->get_string(listing.m_pathUser);
 
    if (!pclient->List(strPath, ptra, true))
    {
@@ -451,7 +451,7 @@ retry:
 
       auto purl = psystem->url();
 
-      string strRemoteFile = purl->get_object(payloadFile);
+      string strRemoteFile = purl->get_string(payloadFile);
 
       if (!pclient->DownloadFile(strRemoteFile, pathTemp))
       {

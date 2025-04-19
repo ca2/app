@@ -294,7 +294,7 @@ namespace filemanager
 
          information() << "\n Could not open dest file("<<m_iFile<<")=" << strDst;
 
-         property_set propertyset;
+         ::property_set propertyset;
 
          propertyset["filepath"] = strDst;
 

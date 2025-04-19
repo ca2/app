@@ -256,7 +256,7 @@ namespace hi5
 
          ensure_main_document();
 
-         m_pformdocumentAuth->get_form_data()->m_pimpl->get_property_set() = set;
+         m_pformdocumentAuth->get_form_data()->m_pimpl->property_set() = set;
 
          // auto pcontext = get_context();
 

@@ -27,13 +27,13 @@ constexpr void __utosz_internal(UNSIGNED u, CHARACTER * & p, int base, enum_digi
       if (digit <= 9)
       {
 
-         *p = (CHARACTER)(digit + '0');
+         *((char *&)p) = (CHARACTER)(digit + '0');
 
       }
       else
       {
 
-         *p = (CHARACTER)(digit - 10 + edigitcase);
+         *((char *&)p) = (CHARACTER)(digit - 10 + edigitcase);
 
       }
 
@@ -83,8 +83,10 @@ constexpr void __rear_tosz(SIGNED i, CHARACTER *& p, int base, enum_digit_case e
 /// @param base base to convert
 /// @param edigitcase base greater than decimal base, the case of output characters 
 template < primitive_integral INTEGRAL, primitive_character CHARACTER >
-constexpr void __tosz(INTEGRAL i, CHARACTER * & p, int base, enum_digit_case edigitcase)
+constexpr void __tosz(INTEGRAL i, CHARACTER * & pcharacter, int base, enum_digit_case edigitcase)
 {
+
+   auto & p = (non_const <CHARACTER> * &) pcharacter;
 
    if (i == 0)
    {

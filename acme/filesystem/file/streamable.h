@@ -43,7 +43,7 @@ namespace file
       {
          for (int i = 0; i < t_size; i++)
          {
-            write(a.element_at(i)->begin(), a.element_at(i)->size());
+            write(a.element_at(i).begin(), a.element_at(i).size());
          }
       }
       

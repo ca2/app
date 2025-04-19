@@ -74,7 +74,7 @@ template < character_range RANGE, int t_size >
 const_string_range_static_array < typename RANGE::const_iterator, t_size + 1 > operator + (const const_string_range_static_array < typename RANGE::const_iterator, t_size >& a, const RANGE& range)
 {
 
-   return { a, {(const const_string_range < typename RANGE::const_iterator> &) range} };
+   return { a, range };
 
 }
 

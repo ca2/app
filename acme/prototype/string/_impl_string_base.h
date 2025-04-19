@@ -360,9 +360,11 @@ inline string_base < ITERATOR_TYPE >::string_base(const const_string_range_stati
 
    create_string(a.size());
 
-   a.concatenate_to((CHARACTER *) this->m_begin);
+   auto p = (CHARACTER*) this->begin();
 
-   *(CHARACTER*)this->m_end = (CHARACTER)0;
+   a.block_concatenate_to(p);
+
+   p = {};
 
 }
 
@@ -410,37 +412,25 @@ inline void string_base < ITERATOR_TYPE >::construct5(const CHARACTER2* p, chara
 
 
 template < typename ITERATOR_TYPE >
-template < typename ITERATOR_TYPE2, int t_size >
-inline string_base < ITERATOR_TYPE >::string_base(const const_string_range_static_array < ITERATOR_TYPE2, t_size > & a)
+template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, int t_size >
+inline string_base < ITERATOR_TYPE >::string_base(const const_string_range_static_array < const OTHER_CHARACTER *, t_size > & a)
 {
-
-   character_count len = 0;
 
    character_count iaLen[t_size];
 
-   for (int i = 0; i < t_size; i++)
-   {
+   character_count * plen = iaLen;
 
-      iaLen[i] = __utf_to_utf_length(this->begin(), a.element_at(i)->begin(), a.element_at(i)->size());
-
-      len += iaLen[i];
-
-   }
+   auto len = a.__utf_length(this->begin(), plen);
 
    create_string(len);
 
    auto p = (CHARACTER * ) this->m_begin;
 
-   for (int i = 0; i < t_size; i++)
-   {
+   plen = iaLen;
 
-      utf_to_utf(p, a.element_at(i)->begin(), a.element_at(i)->size());
+   a.__utf_concatenate_to(p, plen);
 
-      p += iaLen[i];
-
-   }
-
-   *(CHARACTER*)this->m_end = (CHARACTER)0;
+   *p = {};
 
 }
 

@@ -1907,9 +1907,9 @@ payload::payload(const CHARACTER_RANGE& range) :
 }
 
 
-template < character_range CHARACTER_RANGE, primitive_payload PAYLOAD >
+template < primitive_character CHARACTER, primitive_payload PAYLOAD >
 inline ::file::path operator / (
-   const CHARACTER_RANGE & range,
+   const ::range < const CHARACTER * > & range,
    const PAYLOAD & payload)
 {
 

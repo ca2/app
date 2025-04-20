@@ -1163,7 +1163,7 @@ namespace platform
 
       auto pathFolder = get_app_localconfig_folder();
 
-      auto pathIni = pathFolder / "this.ini";
+      auto pathIni = pathFolder / strIniFileName;
 
       auto set = file()->get_ini(pathIni);
 

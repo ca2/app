@@ -370,6 +370,34 @@ inline string_base < ITERATOR_TYPE >::string_base(const const_string_range_stati
 
 
 template < typename ITERATOR_TYPE >
+template < typename ITERATOR_TYPE2, int t_size >
+string_base< ITERATOR_TYPE>& string_base< ITERATOR_TYPE>::operator += (const const_string_range_static_array < ITERATOR_TYPE2, t_size >& a)
+{
+
+   auto oldlen = this->size();
+
+   character_count iaLen[t_size];
+
+   character_count* plen = iaLen;
+
+   auto dstlen = a.__utf_length(this->begin(), plen);
+
+   auto p = get_buffer(dstlen);
+
+   p += oldlen;
+
+   plen = iaLen;
+
+   a.__utf_concatenate_to(p, plen);
+
+   *p = {};
+
+   return *this;
+
+}
+
+
+template < typename ITERATOR_TYPE >
 inline void string_base < ITERATOR_TYPE >::construct2(const RANGE& range)
 {
 
@@ -436,33 +464,59 @@ inline string_base < ITERATOR_TYPE >::string_base(const const_string_range_stati
 
 
 template < typename ITERATOR_TYPE >
-template < primitive_character CHARACTER2 >
-inline void string_base < ITERATOR_TYPE >::construct10(const ::range <  const CHARACTER2 * > & range)
+void string_base< ITERATOR_TYPE >::construct1(const string_base& str)
 {
 
-   if constexpr(sizeof(CHARACTER) == sizeof(CHARACTER2))
-   {
+   this->m_begin = str.m_begin;
+   this->m_end = str.m_end;
+   this->m_erange = str.m_erange;
 
-      if (range.m_erange & e_range_string)
-      {
+   auto pmetadata = string_base::NATURAL_META_DATA::from_data(this->m_begin);
 
-         this->construct2(*(const RANGE *) &range);
+   pmetadata->natural_increment_reference_count();
 
-      }
-      else
-      {
+}
 
-         this->construct5(range.data(), range.size());
 
-      }
+//template < typename ITERATOR_TYPE >
+//template < typename RANGE >
+//void string_base< ITERATOR_TYPE >::construct10(const RANGE& range)/* requires 
+//::std::is_base_of_v < ::range < const typename string_base < ITERATOR_TYPE >::CHARACTER* >, RANGE >
+//&& !
+//(::std::is_base_of_v < string_base < ITERATOR_TYPE >, RANGE >
+//   || ::std::is_same_v < string_base < ITERATOR_TYPE >, RANGE >)*/
+//{
+//
+//   if (range.m_erange & e_range_string)
+//   {
+//
+//      this->construct1(*(const string_base*)&range);
+//
+//   }
+//   else
+//   {
+//
+//      this->construct5(range.data(), range.size());
+//
+//   }
+//
+//}
 
-   }
-   else
-   {
 
-      this->construct5(range.data(), range.size());
+template < typename ITERATOR_TYPE >
+template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
+inline void string_base < ITERATOR_TYPE >::construct20(const ::range < const OTHER_CHARACTER* > & range)
+{
 
-   }
+   character_count len = __utf_to_utf_length(this->m_begin, range.m_begin, range.size());
+
+   auto p = create_string(len);
+
+   auto plen = &len;
+
+   range.__utf_concatenate_to(p, plen);
+
+   *p = {};
 
 }
 
@@ -1509,7 +1563,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::_append(co
 
    character_count nNewLength = nOldLength + utf_to_utf_length(this->begin(), pszSrc, count);
 
-   auto pszBuffer = get_buffer(nNewLength);
+   auto pszBuffer = get_buffer(nNewLength, true);
 
    utf_to_utf(pszBuffer + nOldLength, pszSrc, count);
 
@@ -1610,7 +1664,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(cha
 
       character_count nNewLength = nOldLength + len;
 
-      CHARACTER * pszBuffer = this->get_buffer(nNewLength);
+      CHARACTER * pszBuffer = this->get_buffer(nNewLength, true);
 
       auto pch = pszBuffer + nOldLength;
 
@@ -2491,7 +2545,7 @@ inline void string_base < ITERATOR_TYPE >::get_string(CHARACTER * psz) const noe
 
 
 template < typename ITERATOR_TYPE >
-void string_base < ITERATOR_TYPE >::create_string(character_count characterCount)
+typename string_base < ITERATOR_TYPE >::CHARACTER * string_base < ITERATOR_TYPE >::create_string(character_count characterCount)
 {
 
    auto pNew = this->create_meta_data(characterCount);
@@ -2502,14 +2556,16 @@ void string_base < ITERATOR_TYPE >::create_string(character_count characterCount
 
    this->set_string_flag();
 
+   return (CHARACTER *) this->m_begin;
+
 }
 
 
 template < typename ITERATOR_TYPE >
-void string_base < ITERATOR_TYPE >::fork_string(character_count characterCount)
+void string_base < ITERATOR_TYPE >::fork_string(character_count characterCount, bool bPreserve)
 {
 
-   auto pNew = this->fork_meta_data(characterCount);
+   auto pNew = this->fork_meta_data(characterCount, bPreserve);
 
    this->m_begin = pNew->begin();
 
@@ -2654,7 +2710,7 @@ inline void string_base < ITERATOR_TYPE >::set_at(character_count iChar, CHARACT
    if (p->natural_is_shared())
    {
 
-      fork_string(maximum(p->character_count(), iChar + 1));
+      fork_string(maximum(p->character_count(), iChar + 1), true);
 
    }
 
@@ -5386,7 +5442,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append_formatf_ar
 
    va_end(argsForCount);
 
-   CHARACTER * pszBuffer = get_buffer(nCurrentLength + nAppendLength);
+   CHARACTER * pszBuffer = get_buffer(nCurrentLength + nAppendLength, true);
 
    _string_format(pszBuffer + nCurrentLength, nAppendLength + 1, pszFormat, args);
 

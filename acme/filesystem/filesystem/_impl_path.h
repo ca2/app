@@ -110,6 +110,7 @@ namespace file
 
    }
 
+
    template < typename ITERATOR_TYPE, int t_size >
    inline path::path(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a, enum_path epath, e_type etype, bool bNormalize, long long iSize) :
       path((const ::ansi_string&)a, epath, etype, bNormalize, iSize)
@@ -118,92 +119,48 @@ namespace file
 
    }
 
-   inline path::path(const ::ansi_string & str, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
-      string(str)
-   {
-
-      m_iSize = iSize;
-
-      if (epath == e_path_none)
-      {
-
-         m_epath = file_path_get_type(str, epath);
-
-      }
-      else
-      {
-
-         m_epath = epath;
-
-      }
-
-      if (bNormalizePath)
-      {
-
-         bool bCertainlySyntathicallyDir = file_path_normalize_inline(*this, m_epath);
-
-         if (bCertainlySyntathicallyDir)
-         {
-
-            m_etype = (enum_type) ((etype | e_type_folder2) & ~e_type_file2);
-
-         }
-         else
-         {
-
-            m_etype = etype;
-
-         }
-
-      }
-      else
-      {
-
-         m_etype = etype;
-
-      }
-
-   }
 
 
-   inline path::path(const ::wd16_string & wd16str, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
-      path(::string(wd16str), epath, etype, bNormalizePath, iSize)
-   {
+
+   //inline path::path(const ::wd16_string & wd16str, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   //   path(::string(wd16str), epath, etype, bNormalizePath, iSize)
+   //{
 
 
-   }
+   //}
 
 
-   inline path::path(const ::wd32_string & wd32str, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
-      path(::string(wd32str), epath, etype, bNormalizePath, iSize)
-   {
+   //template < typename ITERATOR_TYPE >
+   //inline path::path(const ::range < ITERATOR_TYPE > & range, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   //   path(::string(range), epath, etype, bNormalizePath, iSize)
+   //{
 
 
-   }
+   //}
 
 
-   inline path::path(const ::ansi_character * pansisz, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
-      path(::ansi_string(pansisz), epath, etype, bNormalizePath, iSize)
-   {
+   //inline path::path(const ::ansi_character * pansisz, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   //   path(::ansi_string(pansisz), epath, etype, bNormalizePath, iSize)
+   //{
 
 
-   }
+   //}
 
 
-   inline path::path(const ::wd16_character * pwd16sz, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
-      path(::wd16_string(pwd16sz), epath, etype, bNormalizePath, iSize)
-   {
+   //inline path::path(const ::wd16_character * pwd16sz, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   //   path(::string(pwd16sz), epath, etype, bNormalizePath, iSize)
+   //{
 
 
-   }
+   //}
 
 
-   inline path::path(const ::wd32_character * pwd32sz, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
-      path(::wd32_string(pwd32sz), epath, etype, bNormalizePath, iSize)
-   {
+   //inline path::path(const ::wd32_character * pwd32sz, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   //   path(::string(pwd32sz), epath, etype, bNormalizePath, iSize)
+   //{
 
 
-   }
+   //}
 
 
    inline path_meta::~path_meta()

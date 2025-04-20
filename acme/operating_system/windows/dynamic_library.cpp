@@ -407,7 +407,11 @@ namespace windows
       try
       {
 
-         plibrary = ::LoadLibraryW(wstring(path));
+         wstring wstr(path);
+
+         auto pwsz = wstr.c_str();
+
+         plibrary = ::LoadLibraryW(pwsz);
 
       }
       catch (...)

@@ -217,7 +217,7 @@ public:
    }
 
    template<typed_range<const_iterator> RANGE>
-   constexpr range(const RANGE & range) : m_begin((this_iterator)range.m_begin), m_end((this_iterator)range.m_end), m_erange(range.m_erange)
+   constexpr range(const RANGE & range) : m_begin((this_iterator)range.m_begin), m_end((this_iterator)range.m_end), m_erange(e_range_none)
    {
    }
 
@@ -310,11 +310,11 @@ public:
 
 
    template < primitive_character CHARACTER >
-   character_count __utf_length(CHARACTER * ptrigger, character_count *& plen);
+   character_count __utf_length(CHARACTER * ptrigger, character_count *& plen) const;
 
 
    template < primitive_character CHARACTER >
-   void __utf_concatenate_to(CHARACTER *& p, character_count *& plen);
+   void __utf_concatenate_to(CHARACTER *& p, character_count *& plen) const;
 
 
    template < same_as < ITEM > A_ITEM > 

@@ -401,7 +401,7 @@ inline atom::atom(enum_type etypeAdd, const ::atom & atom)
 
       m_etype = (enum_type) (etypeAdd | e_type_text);
 
-      m_str._construct(atom.m_str);
+      m_str.construct1(atom.m_str);
 
    }
    else if (atom.is_integer())
@@ -427,13 +427,16 @@ inline atom::atom(enum_type etypeAdd, const ::atom & atom)
 inline atom::atom(::atom && atom)
 {
    m_etype = atom.m_etype;
-   if (atom.m_etype & e_type_text)
+   if (atom.m_etype >= 0)
    {
-      m_str._construct(::transfer(atom.m_str));
-   }
-   else
-   {
-      m_uLargest = atom.m_uLargest;
+      if (atom.m_etype & e_type_text)
+      {
+         m_str.construct1(::transfer(atom.m_str));
+      }
+      else
+      {
+         m_uLargest = atom.m_uLargest;
+      }
    }
    atom.m_etype = e_type_integer;
    atom.m_uLargest = 0;
@@ -448,7 +451,7 @@ inline atom::atom(const atom & atom)
 
       m_etype = atom.m_etype;
 
-      m_str._construct(atom.m_str);
+      m_str.construct1(atom.m_str);
 
    }
    else
@@ -671,7 +674,7 @@ inline atom & atom::operator = (const atom & atom)
       else if (atom.is_text())
       {
 
-         m_str._construct(atom.m_str);
+         m_str.construct1(atom.m_str);
 
       }
       else
@@ -1700,6 +1703,60 @@ string_base < CHAR > & string_base < CHAR >::operator+=(const ::atom & atom)
 {
 
    return append(atom);
+
+}
+
+
+template < typename ITERATOR_TYPE >
+template < int t_size >
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const const_string_range_static_array< ITERATOR_TYPE, t_size > & a)
+{
+
+   auto oldLen = size();
+
+   auto newLen = oldLen + a.size();
+
+   get_buffer(newLen, true);
+
+   auto p = (CHARACTER *) this->m_begin;
+
+   p += oldLen;
+
+   a.block_concatenate_to(p);
+
+   *p = {};
+
+   return *this;
+
+}
+
+
+template < typename ITERATOR_TYPE >
+template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, int t_size >
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const const_string_range_static_array< const OTHER_CHARACTER, t_size >& a)
+{
+
+   auto oldLen = size();
+
+   character_count iaLen[t_size];
+
+   character_count* plen = iaLen;
+
+   auto newLen = oldLen + a.__utf_length(this->m_begin, plen);
+
+   set_size(newLen);
+
+   auto p = (CHARACTER*)this->m_begin;
+
+   p += oldLen;
+
+   plen = iaLen;
+
+   a.__utf_concatenate_to(p, plen);
+
+   *p = {};
+
+   return *this;
 
 }
 

@@ -336,3 +336,14 @@ void this_type_term(const ::scoped_string & scopedstr)
 
 
 
+void __what__(int i)
+{
+
+   if (i == 1)
+   {
+
+      printf_line("an assert at string_base");
+
+   }
+
+}

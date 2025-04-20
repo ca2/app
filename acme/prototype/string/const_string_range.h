@@ -1693,13 +1693,20 @@ this->m_erange = e_range_none;
 
    //bool equals(const string_base &str) const;
    //bool case_insensitive_equals(const string_base &str) const;
-   inline bool operator==(const ::ansi_string& str) const;
+   //inline bool operator==(const ::ansi_string& str) const;
 
-   inline bool operator==(const ::wd16_string& str) const;
+   //inline bool operator==(const ::wd16_string& str) const;
 
-   inline bool operator==(const ::wd32_string& str) const;
+   //inline bool operator==(const ::wd32_string& str) const;
+
+//   template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
+   inline bool operator==(const ::range < const CHARACTER* >& range) const;
+
+   template < other_primitive_character < typename const_string_range < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
+   inline bool operator==(const ::range < const OTHER_CHARACTER * > & range) const;
 
    //inline bool operator ==(const SCOPED_STRING & scopedstr) const { return this->equals(scopedstr); }
+   
    inline bool operator==(const ::ansi_character* psz) const { return this->equals(psz); }
 
    inline bool operator==(const ::wd16_character* psz) const { return this->equals(psz); }

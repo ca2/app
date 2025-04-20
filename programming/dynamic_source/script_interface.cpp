@@ -808,9 +808,9 @@ namespace dynamic_source
    property& script_interface::gprop(const ::atom& atom)
    {
 
-      auto& set = m_pmain->get_property_set();
+      auto& set = m_pmain->property_set();
 
-      return set.get(atom);
+      return set.property(atom);
 
    }
 

@@ -316,13 +316,13 @@ public:
 //}
 
 
-template < typename ITERATOR_TYPE, primitive_string STRING >
-inline string_base < ITERATOR_TYPE > operator + (const scoped_string_base < ITERATOR_TYPE > & scopedstr, const STRING & str)
-{
-
-   return ::transfer(::string(scopedstr) + str);
-
-}
+//template < typename ITERATOR_TYPE, primitive_string STRING >
+//inline string_base < ITERATOR_TYPE > operator + (const scoped_string_base < ITERATOR_TYPE > & scopedstr, const STRING & str)
+//{
+//
+//   return ::transfer(::string(scopedstr) + str);
+//
+//}
 
 //template < typename ITERATOR_TYPE1, typename ITERATOR_TYPE2 >
 //inline string_base < ITERATOR_TYPE1 > operator + (const scoped_string_base < ITERATOR_TYPE1 > & scopedstr1, const scoped_string_base < ITERATOR_TYPE2 > & scopedstr2)

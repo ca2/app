@@ -2,18 +2,18 @@
 #pragma once
 
 
-inline bool is_null(const void* p, memsize s)
+inline bool is_set(const void* p, memsize s)
 {
 
-   return ((iptr)p <= s);
+   return ((::iptr)p >= s);
 
 }
 
 
-inline bool is_null(const void* p) { return ::is_null(p, 65535); }
+inline int is_set(const void* p) { return ::is_set(p, 65536); }
 
 
-inline int is_set(const void* p) { return !is_null(p); }
+inline bool is_null(const void* p) { return !::is_set(p); }
 
 
 CLASS_DECL_ACME character_count safe_strlen(void* p, character_count n);

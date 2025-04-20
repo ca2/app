@@ -252,74 +252,83 @@ inline pointer < T > ::~pointer()
 }
 
 
+//template < class T >
+//inline T * pointer < T > ::operator ->()
+//{
+//
+//   return is_null() ? nullptr : m_p;
+//
+//}
+//
+//
+//template < class T >
+//inline T * pointer < T > ::operator ->() const
+//{
+//
+//   return is_null() ? nullptr : m_p;
+//
+//}
+
+
+//template < class T >
+//inline T & pointer < T > ::operator * ()
+//{
+//
+//   return *m_p;
+//
+//}
+//
+//
+//template < class T >
+//inline T & pointer < T > ::operator * () const
+//{
+//
+//   return *m_p;
+//
+//}
+//
+//
+//template < class T >
+//inline pointer < T > ::operator T * ()
+//{
+//
+//   return is_null() ? nullptr : m_p;
+//
+//}
+//
+//
+//template < class T >
+//inline pointer < T > ::operator T * const () const
+//{
+//
+//   return is_null() ? nullptr : m_p;
+//
+//}
+//
+//
+//template < class T >
+//inline T * pointer < T > ::get()
+//{
+//
+//   return is_null() ? nullptr : m_p;
+//
+//}
+//
+//
+//template < class T >
+//inline const T * pointer < T > ::get() const
+//{
+//
+//   return is_null() ? nullptr : m_p;
+//
+//}
+
+
 template < class T >
-inline T * pointer < T > ::operator ->()
+inline bool pointer < T > ::is_set() const
 {
 
-   return is_null() ? nullptr : m_p;
-
-}
-
-
-template < class T >
-inline T * pointer < T > ::operator ->() const
-{
-
-   return is_null() ? nullptr : m_p;
-
-}
-
-
-template < class T >
-inline T & pointer < T > ::operator * ()
-{
-
-   return *m_p;
-
-}
-
-
-template < class T >
-inline T & pointer < T > ::operator * () const
-{
-
-   return *m_p;
-
-}
-
-
-template < class T >
-inline pointer < T > ::operator T * ()
-{
-
-   return is_null() ? nullptr : m_p;
-
-}
-
-
-template < class T >
-inline pointer < T > ::operator T * const () const
-{
-
-   return is_null() ? nullptr : m_p;
-
-}
-
-
-template < class T >
-inline T * pointer < T > ::get()
-{
-
-   return is_null() ? nullptr : m_p;
-
-}
-
-
-template < class T >
-inline const T * pointer < T > ::get() const
-{
-
-   return is_null() ? nullptr : m_p;
+   return !!m_p && !!m_psubparticle;
 
 }
 
@@ -328,19 +337,29 @@ template < class T >
 inline bool pointer < T > ::is_null() const
 {
 
-   return ::is_null(this) || ::is_null(m_p) || ::is_null(m_psubparticle);
+   return !this->is_set();
+
+}
+
+
+
+
+template < class T >
+inline bool pointer < T > ::ok() const
+{
+
+   return ::is_set(m_p) && ::is_set(m_psubparticle) && m_psubparticle->_is_ok();
 
 }
 
 
 template < class T >
-inline bool pointer < T > ::is_set() const
+inline bool pointer < T > ::nok() const
 {
 
-   return !is_null() && m_psubparticle->_is_set();
+   return !this->ok();
 
 }
-
 
 
 template < class T >
@@ -2135,13 +2154,13 @@ inline void copy(::pointer < TARGET > & pTarget, const ::pointer < SOURCE > & pS
 //}
 
 
-template < typename T >
-inline bool pointer < T > ::ok() const
-{
-
-   return is_set() && m_psubparticle->_is_ok();
-
-}
+//template < typename T >
+//inline bool pointer < T > ::ok() const
+//{
+//
+//   return is_set() && m_psubparticle->_is_ok();
+//
+//}
 
 
 template < typename T >

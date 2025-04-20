@@ -67,14 +67,72 @@ namespace file
       path(const path & path) : string(path), path_meta(path) {}
       template < typename ITERATOR_TYPE, int t_size >
       path(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
-      path(const ::ansi_string & str, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
-      path(const ::wd16_string & str, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
-      path(const ::wd32_string & str, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
-      path(const ::ansi_character * pansisz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
-      path(const ::wd16_character * pansisz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
-      path(const ::wd32_character * pansisz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
-      template < character_range CHARACTER_RANGE >
-      path(const CHARACTER_RANGE & range, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
+      //template < character_range RANGE >
+      //path(const RANGE & range, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
+      // 
+      // 
+      // 
+      
+      template < character_range RANGE >
+      inline path(const RANGE& range, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalizePath = true, long long iSize = -1)
+         requires
+         !(::std::is_base_of_v < path, RANGE >
+            || ::std::is_same_v < path, RANGE >) :
+         string(range)
+      {
+
+         m_iSize = iSize;
+
+         if (epath == e_path_none)
+         {
+
+            m_epath = file_path_get_type(*this, epath);
+
+         }
+         else
+         {
+
+            m_epath = epath;
+
+         }
+
+         if (bNormalizePath)
+         {
+
+            bool bCertainlySyntathicallyDir = file_path_normalize_inline(*this, m_epath);
+
+            if (bCertainlySyntathicallyDir)
+            {
+
+               m_etype = (enum_type)((etype | e_type_folder2) & ~e_type_file2);
+
+            }
+            else
+            {
+
+               m_etype = etype;
+
+            }
+
+         }
+         else
+         {
+
+            m_etype = etype;
+
+         }
+
+      }
+
+
+
+      //path(const ::wd16_string & str, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
+      //path(const ::wd32_string & str, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
+      //path(const ::ansi_character * pansisz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
+      //path(const ::wd16_character * pansisz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
+      //path(const ::wd32_character * pansisz, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
+      //template < character_range CHARACTER_RANGE >
+      //path(const CHARACTER_RANGE & range, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
 
       //template<typed_range<::ansi_character *> RANGE>
       //path(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str); }
@@ -131,11 +189,14 @@ namespace file
       //path(const const_wd16_range & wd16range, character_count start, character_count len) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd16range, start, len); }
       //path(const const_wd32_range & wd32range, character_count start, character_count len) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd32range, start, len); }
       template < primitive_character CHARACTER2 >
-      path(const CHARACTER2 * start, const CHARACTER2 * end) : path(start, end-start) {}
+      path(const CHARACTER2 * start, const CHARACTER2 * end, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1) : 
+         path(::string(start, end), epath, etype, bNormalize, iSize) {}
       template < primitive_character CHARACTER2 >
-      path(const CHARACTER2 * start) : path(start, 0, string_safe_length(start)) {}
+      path(const CHARACTER2 * start, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1) : 
+         path(::string(start), epath, etype, bNormalize, iSize) {}
       template < primitive_character CHARACTER2 >
-      path(const CHARACTER2 * start, character_count len) : path(::string(start, len)) {}
+      path(const CHARACTER2 * start, character_count len, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1) :
+         path(::string(start, len), epath, etype, bNormalize, iSize) {}
 //      template < primitive_character CHARACTER2 >
 //      path(const CHARACTER2 * pszSource, character_count start, character_count len) :path(::string(pszSource, start, len)){}
       template < primitive_character CHARACTER2, character_count sizeMaximumLength >
@@ -175,7 +236,7 @@ namespace file
       path(const ::atom & atom);
       path(const ::payload & payload);
       path(const ::property & property);
-      path(const ::range < const ::ansi_character * > & range) : path(::string(range)) { }
+      //path(const ::range < const ::ansi_character * > & range) : path(::string(range)) { }
 
 
       ::url::url as_url() const;

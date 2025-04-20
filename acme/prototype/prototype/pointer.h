@@ -302,20 +302,22 @@ public:
 
    //inline static const char * ::type(this).name();
 
-   inline T * operator ->();
-   inline T * operator ->() const;
-   inline T & operator *();
-   inline T & operator *() const;
-   inline operator T * ();
-   inline operator T * const () const;
-   inline T * get();
-   inline const T * get() const;
+   inline T* operator ->() { return m_p; }
+   inline T* operator ->() const { return m_p; }
+   inline T & operator *() { return *m_p; }
+   inline T & operator *() const { return *m_p; }
+   inline operator T * () { return m_p; }
+   inline operator T * const () const { return m_p; }
+   inline T * get() { return m_p; }
+   inline const T * get() const { return m_p; }
 
    inline ::iptr iptr() const { return (::iptr) m_p;}
 
-   inline bool is_null() const;
    inline bool is_set() const;
+   inline bool is_null() const;
 
+   inline bool ok() const;
+   inline bool nok() const;
 
    template < class T2 >
    inline pointer & operator = (T2 * p)
@@ -460,15 +462,15 @@ public:
    }
 
 
-   inline bool ok() const;
+   //inline bool ok() const;
 
 
-   inline bool nok() const
-   {
+   //inline bool nok() const
+   //{
 
-      return !ok();
+   //   return !ok();
 
-   }
+   //}
 
 
    //template < typename CONTAINER, typename OBJECT, typename ATTRIBUTE >

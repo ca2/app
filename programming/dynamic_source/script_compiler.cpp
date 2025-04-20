@@ -359,9 +359,9 @@ namespace dynamic_source
       //::file::path strSO2;
       //::file::path strDO1;
       //::file::path strDO2;
-      ::file::path strClog;
-      ::file::path strLlog;
-      ::file::path strObj;
+      ::file::path pathClog;
+      ::file::path pathLlog;
+      ::file::path pathObj;
 
 
       /*string strScript(strName);
@@ -432,8 +432,8 @@ namespace dynamic_source
 
       }
 
-      strClog.formatf(m_pathTime / "dynamic_source/%s-compile-log-%s.txt",strTransformName.c_str(), strCompileLogUnique.c_str());
-      strLlog.formatf(m_pathTime / "dynamic_source/%s-link-log.txt",strTransformName.c_str());
+      pathClog = string().formatf(m_pathTime / "dynamic_source/%s-compile-log-%s.txt",strTransformName.c_str(), strCompileLogUnique.c_str());
+      pathLlog = string().formatf(m_pathTime / "dynamic_source/%s-link-log.txt", strTransformName.c_str());
 
       string strPathCompiler;
       strPathCompiler.formatf(m_pathTime / "dynamic_source/%s-compiler.txt", strTransformName.c_str());
@@ -508,7 +508,7 @@ namespace dynamic_source
       //strSO1 = strDynamicSourceScriptFolder / "framework.obj";
       //strSO2 = strDynamicSourceScriptFolder / m_pmanager->m_strNamespace + "_dynamic_source_script.obj";
 
-      strObj = strDynamicSourceScriptFolder / strTransformName / strTransformName.name() + ".obj";
+      pathObj = strDynamicSourceScriptFolder / strTransformName / strTransformName.name() + ".obj";
 
       strO = strDynamicSourceScriptFolder / strTransformName.name() / strTransformName + ".bat";
 

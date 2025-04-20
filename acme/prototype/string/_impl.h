@@ -331,13 +331,13 @@ namespace file
 {
 
 
-   template < character_range CHARACTER_RANGE >
-    inline path::path(const CHARACTER_RANGE & range, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
-            path(::ansi_string(range), epath, etype, bNormalizePath, iSize)
-    {
+   //template < character_range CHARACTER_RANGE >
+   // inline path::path(const CHARACTER_RANGE & range, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   //         path(::ansi_string(range), epath, etype, bNormalizePath, iSize)
+   // {
 
 
-    }
+   // }
 
 
     inline path& path::operator /= (const ::scoped_string & scopedstr)
@@ -475,18 +475,24 @@ string surround_and_implode(const numeric_array < TYPE, t_etypeContainer > & a, 
 
 
 template < typename ITERATOR_TYPE >
-inline bool const_string_range < ITERATOR_TYPE > ::operator==(const ::ansi_string &str) const
+inline bool const_string_range < ITERATOR_TYPE > ::operator==(const ::range < const CHARACTER * > &range) const
 {
 
-   return this->equals(string_base(str));
+   return this->equals(range);
 
 }
 
-template < typename ITERATOR_TYPE >
-inline bool const_string_range < ITERATOR_TYPE > ::operator==(const ::wd16_string &str) const { return this->equals(string_base(str)); }
 
 template < typename ITERATOR_TYPE >
-inline bool const_string_range < ITERATOR_TYPE > ::operator==(const ::wd32_string &str) const { return this->equals(string_base(str)); }
+template < other_primitive_character < typename const_string_range < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
+inline bool const_string_range < ITERATOR_TYPE > ::operator==(const ::range < const OTHER_CHARACTER * > &range) const 
+{ 
+   return this->equals(string_base(range)); 
+
+}
+
+//template < typename ITERATOR_TYPE >
+//inline bool const_string_range < ITERATOR_TYPE > ::operator==(const ::wd32_string &str) const { return this->equals(string_base(str)); }
 
 
 

@@ -167,6 +167,10 @@ public:
    payload(enum_type etype);
    payload(nullptr_t);
    payload(const ::payload & payload);
+   template < typename ITERATOR_TYPE, int t_size >
+   payload(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a) :
+      payload(::string(a))
+   {  }
    payload(::payload && payload) :
       m_etype(payload.m_etype)
    {
@@ -261,12 +265,27 @@ public:
 
    //}
 
+
    template < typename BLOCK_TYPE >
-   payload(const ::raw_block < BLOCK_TYPE > & rawblock)
+   payload(const ::raw_block < BLOCK_TYPE > & rawblock) :
+      payload(e_type_new)
    {
-      m_etype = e_type_new;
+
+      //m_etype = e_type_new;
       operator = (rawblock.block());
+
    }
+
+
+   payload(const ::inline_number_string & a) :
+      payload(e_type_new)
+   {
+      
+      //m_etype = e_type_new;
+      operator = (a);
+
+   }
+
 
    //   template < primitive_character CHARACTER2, character_count sizeMaximumLength >
    //   payload(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring) :
@@ -1499,6 +1518,9 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    //::payload & operator += (const ::inline_number_string & inline_number_string);
    //template < character_count n >
    //::payload & operator += (const ::ansi_character (&cha)[n]) { return *this += ::scoped_string(cha);}
+
+   template < typename ITERATOR_TYPE, int t_size >
+   ::payload & operator += (const const_string_range_static_array < ITERATOR_TYPE, t_size > & a) { return *this += ::string(a);}
 
    template < primitive_integral INTEGRAL >
    ::payload & operator /= (INTEGRAL i);

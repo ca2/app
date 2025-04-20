@@ -528,9 +528,9 @@ namespace dynamic_source
       }
       try
       {
-         if(file()->exists(strObj))
+         if(file()->exists(pathObj))
          {
-            file()->erase(strObj);
+            file()->erase(pathObj);
          }
       }
       catch(...)
@@ -622,10 +622,10 @@ namespace dynamic_source
       try
       {
 
-         if(file()->exists(strClog))
+         if(file()->exists(pathClog))
          {
 
-            file()->erase(strClog);
+            file()->erase(pathClog);
 
          }
 
@@ -638,10 +638,10 @@ namespace dynamic_source
       try
       {
 
-         if(file()->exists(strLlog))
+         if(file()->exists(pathLlog))
          {
 
-            file()->erase(strLlog);
+            file()->erase(pathLlog);
 
          }
 
@@ -873,7 +873,7 @@ namespace dynamic_source
          if(str.has_character())
          {
 
-            file()->put_text_utf8(strClog, strLog);
+            file()->put_text_utf8(pathClog, strLog);
 
             ostreamError << "<pre>";
 
@@ -1047,7 +1047,7 @@ namespace dynamic_source
             if(str.has_character())
             {
 
-               file()->put_text_utf8(strLlog,strLog);
+               file()->put_text_utf8(pathLlog,strLog);
                ostreamError << "Linking...\n";
                //ostreamError << "Linker Command File" << "\n";
                //ostreamError << pathLinker << "\n";

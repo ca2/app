@@ -618,12 +618,12 @@ public:
 //   bool operator!=(const rectangle_type & rectangle) const  { return !operator ==(rectangle); }
 
    template < primitive_point POINT >
-   rectangle_type & operator+=(const POINT & point)  { return ::offset(*this, point.x(), point.y()); }
+   rectangle_type & operator +=(const POINT & point)  { return ::offset(*this, point.x(), point.y()); }
 
    template < primitive_size SIZE >
-   rectangle_type & operator+=(const SIZE & size)  { return ::offset(*this, size.cx(), size.cy()); }
+   rectangle_type & operator +=(const SIZE & size)  { return ::offset(*this, size.cx(), size.cy()); }
 
-   rectangle_type & operator+=(const rectangle_type & rectangle)  { return ::inflate(*this, rectangle); }
+   rectangle_type & operator +=(const rectangle_type & rectangle)  { return ::inflate(*this, rectangle); }
    rectangle_type & operator*=(const rectangle_type & rectangle)  { return ::multiply_inline(*this, rectangle); }
 
    template < primitive_number NUMBER2 >
@@ -640,14 +640,14 @@ public:
    }
 
 
-//   inline rectangle_type & operator+=(const SHIFT_I32 & shift)  { this->left() = (UNIT_TYPE)(this->left() + shift.Δx); this->top() = (UNIT_TYPE)(this->top() + shift.Δy); this->right() = (UNIT_TYPE)(this->right() + shift.Δx); this->bottom() = (UNIT_TYPE)(this->bottom() + shift.Δy); return *this; }
+//   inline rectangle_type & operator +=(const SHIFT_I32 & shift)  { this->left() = (UNIT_TYPE)(this->left() + shift.Δx); this->top() = (UNIT_TYPE)(this->top() + shift.Δy); this->right() = (UNIT_TYPE)(this->right() + shift.Δx); this->bottom() = (UNIT_TYPE)(this->bottom() + shift.Δy); return *this; }
 //   inline rectangle_type & operator-=(const SHIFT_I32 & shift)  { this->left() = (UNIT_TYPE)(this->left() - shift.Δx); this->top() = (UNIT_TYPE)(this->top() - shift.Δy); this->right() = (UNIT_TYPE)(this->right() + shift.Δx); this->bottom() = (UNIT_TYPE)(this->bottom() + shift.Δy); return *this; }
 //
 //
 //   inline rectangle_type & operator()(const SHIFT_I32 & shift)  { return operator +=(shift); }
 //
 //
-//   inline rectangle_type operator+(const SHIFT_I32 & shift)  { return { (UNIT_TYPE)(this->left() + shift.Δx), (UNIT_TYPE)(this->top() + shift.Δy), (UNIT_TYPE)(this->right() + shift.Δx), (UNIT_TYPE)(this->bottom() + shift.Δy) }; }
+//   inline rectangle_type operator +(const SHIFT_I32 & shift)  { return { (UNIT_TYPE)(this->left() + shift.Δx), (UNIT_TYPE)(this->top() + shift.Δy), (UNIT_TYPE)(this->right() + shift.Δx), (UNIT_TYPE)(this->bottom() + shift.Δy) }; }
 //   inline rectangle_type operator-(const SHIFT_I32 & shift)  { return { (UNIT_TYPE)(this->left() - shift.Δx), (UNIT_TYPE)(this->top() - shift.Δy), (UNIT_TYPE)(this->right() - shift.Δx), (UNIT_TYPE)(this->bottom() - shift.Δy) }; }
 
 
@@ -661,7 +661,7 @@ public:
    rectangle_type & operator&=(const rectangle_type & rectangle)  { ::intersect(*this, *this, rectangle); return*this; }
    rectangle_type & operator|=(const rectangle_type & rectangle)  { return unite(rectangle); }
 
-   rectangle_type operator+(const POINT_TYPE & point) const 
+   rectangle_type operator +(const POINT_TYPE & point) const 
    {
       rectangle_type rectangle(*this); rectangle.offset(point.x(), point.y()); return rectangle;
    }
@@ -671,7 +671,7 @@ public:
    }
 
    template < primitive_size SIZE >
-   rectangle_type operator+(const SIZE & size) const 
+   rectangle_type operator +(const SIZE & size) const 
    {
 
       rectangle_type rectangle(*this); rectangle.offset(size.cx(), size.cy()); return rectangle;
@@ -686,7 +686,7 @@ public:
 
    }
 
-   rectangle_type operator+(const rectangle_type & rectangleAdd) const 
+   rectangle_type operator +(const rectangle_type & rectangleAdd) const 
    {
       rectangle_type rectangle(*this); rectangle.inflate(rectangleAdd); return rectangle;
    }

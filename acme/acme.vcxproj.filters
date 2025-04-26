@@ -4167,6 +4167,15 @@
     <ClInclude Include="handler\handler_context.h">
       <Filter>Header Files\handler</Filter>
     </ClInclude>
+    <ClInclude Include="prototype\string\_impl_string_base_allocation.h">
+      <Filter>Header Files\prototype\string</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\string\_impl_const_string_range.h">
+      <Filter>Header Files\prototype\string</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\string\const_string_range_static_array.h">
+      <Filter>Header Files\prototype\string</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">

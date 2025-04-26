@@ -25,7 +25,7 @@ namespace sockets
 
 
 
-      http_session(const ::url::connect_part & connectpart);
+      http_session(const ::url::connect_range & connectrange);
       ~http_session();
 
 

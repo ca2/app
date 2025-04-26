@@ -113,7 +113,7 @@ namespace earth
    }
 
 
-   constexpr earth::time time::operator+(class ::time& time) const
+   constexpr earth::time time::operator +(class ::time& time) const
    {
 
       return { posix_time({ posix_time_t {}, this->m_iSecond + time.m_iSecond }) };

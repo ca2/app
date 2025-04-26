@@ -15,8 +15,8 @@ public:
     { container->add(value); return *this; }
   back_insert_iterator<Container>& operator* ()
     { return *this; }
-  back_insert_iterator<Container>& operator++ ()
+  back_insert_iterator<Container>& operator ++ ()
     { return *this; }
-  back_insert_iterator<Container> operator++ (int)
+  back_insert_iterator<Container> operator ++ (int)
     { return *this; }
 };

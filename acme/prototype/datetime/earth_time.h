@@ -77,15 +77,15 @@ namespace earth
 
       bool is_positive() const { return m_iSecond > 0; }
 
-      time &operator+=(date_span span);
+      time &operator +=(date_span span);
 
       time &operator-=(date_span span);
 
-      constexpr time &operator+=(time_span span) noexcept;
+      constexpr time &operator +=(time_span span) noexcept;
 
       constexpr time &operator-=(time_span span) noexcept;
 
-      //time& operator+=( const time & span ) noexcept;
+      //time& operator +=( const time & span ) noexcept;
       //time& operator-=( const time & span ) noexcept;
 
       constexpr class ::time operator % (class ::time & time) const noexcept
@@ -99,16 +99,16 @@ namespace earth
 
       constexpr time operator-(time_span span) const noexcept;
 
-      constexpr time operator+(time_span span) const noexcept;
+      constexpr time operator +(time_span span) const noexcept;
 
       time operator-(date_span span) const;
 
-      time operator+(date_span span) const;
+      time operator +(date_span span) const;
 
-      constexpr time operator+(class ::time & time) const;
+      constexpr time operator +(class ::time & time) const;
 
       //time operator-(const class time & time) const;
-      //time operator+(const class time & time) const;
+      //time operator +(const class time & time) const;
 
       constexpr bool operator==(time time) const noexcept;
 
@@ -234,7 +234,7 @@ namespace earth
    }
 
 
-   constexpr  ::earth::time time::operator+(time_span span) const noexcept
+   constexpr  ::earth::time time::operator +(time_span span) const noexcept
    {
 
       return posix_time::operator + (span);
@@ -273,10 +273,10 @@ namespace earth
    }
 
 
-   constexpr ::earth::time & time::operator+=(time_span span) noexcept
+   constexpr ::earth::time & time::operator +=(time_span span) noexcept
    {
 
-      posix_time::operator+=(span);
+      posix_time::operator +=(span);
 
       return *this;
 

@@ -45,7 +45,7 @@ public:
    inline vector4(__m128 m) : mmvalue(m) {}
 
    // arithmetic operators with vector4
-   inline vector4 operator+(const vector4 & b) const
+   inline vector4 operator +(const vector4 & b) const
    {
       return _mm_add_ps(mmvalue, b.mmvalue);
    }
@@ -63,7 +63,7 @@ public:
    }
 
    // op= operators
-   inline vector4 & operator+=(const vector4 & b)
+   inline vector4 & operator +=(const vector4 & b)
    {
       mmvalue = _mm_add_ps(mmvalue, b.mmvalue);
       return *this;
@@ -85,7 +85,7 @@ public:
    }
 
    // arithmetic operators with float
-   inline vector4 operator+(float b) const
+   inline vector4 operator +(float b) const
    {
       return _mm_add_ps(mmvalue, _mm_set1_ps(b));
    }
@@ -103,7 +103,7 @@ public:
    }
 
    // op= operators with float
-   inline vector4 & operator+=(float b)
+   inline vector4 & operator +=(float b)
    {
       mmvalue = _mm_add_ps(mmvalue, _mm_set1_ps(b));
       return *this;
@@ -178,7 +178,7 @@ public:
 
 };
 
-inline vector4 operator+(float a, const vector4 & b)
+inline vector4 operator +(float a, const vector4 & b)
 {
    return b + a;
 }
@@ -194,11 +194,11 @@ inline vector4 operator/(float a, const vector4 & b)
 {
    return vector4(_mm_set1_ps(a)) / b;
 }
-//inline vector4 operator+(const vector4& a,const vector4& b) { return _mm_add_ps(a.mmvalue,b.mmvalue); }
+//inline vector4 operator +(const vector4& a,const vector4& b) { return _mm_add_ps(a.mmvalue,b.mmvalue); }
 //inline vector4 operator-(const vector4& a,const vector4& b) { return _mm_sub_ps(a.mmvalue,b.mmvalue); }
 //inline vector4 operator*(const vector4& a,const vector4& b) { return _mm_mul_ps(a.mmvalue,b.mmvalue); }
 //inline vector4 operator/(const vector4& a,const vector4& b) { return _mm_div_ps(a.mmvalue,b.mmvalue); }
-//inline vector4& operator+=(vector4& a,const vector4& b) { a.mmvalue = _mm_add_ps(a.mmvalue,b.mmvalue); return a; }
+//inline vector4& operator +=(vector4& a,const vector4& b) { a.mmvalue = _mm_add_ps(a.mmvalue,b.mmvalue); return a; }
 //inline vector4& operator-=(vector4& a,const vector4& b) { a.mmvalue = _mm_sub_ps(a.mmvalue,b.mmvalue); return a; }
 //inline vector4& operator*=(vector4& a,const vector4& b) { a.mmvalue = _mm_mul_ps(a.mmvalue,b.mmvalue); return a; }
 //inline vector4& operator/=(vector4& a,const vector4& b) { a.mmvalue = _mm_div_ps(a.mmvalue,b.mmvalue); return a; }

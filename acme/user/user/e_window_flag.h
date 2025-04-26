@@ -112,7 +112,7 @@ DECLARE_ENUMERATION(e_window_flag, enum_window_flag);
 //
 //      }
 //
-//      this->operator++(0);
+//      this->operator ++(0);
 //
 //      return this->operator %=(eenum);
 //

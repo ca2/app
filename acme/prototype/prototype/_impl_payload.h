@@ -728,7 +728,7 @@ namespace file
 
 
 //template < typename TYPE_CHAR >
-//string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const ::payload & payload)
+//string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator +=(const ::payload & payload)
 //{
 //
 //   return append(payload);
@@ -902,7 +902,7 @@ inline ::payload & copy(::payload & payload1, const ::payload & payload2)
 //}
 
 
-//inline ::string operator+(const ::scoped_string & scopedstr, const ::payload & payload)
+//inline ::string operator +(const ::scoped_string & scopedstr, const ::payload & payload)
 //{
 //
 //   return ::string(psz) + ::string(payload);
@@ -911,7 +911,7 @@ inline ::payload & copy(::payload & payload1, const ::payload & payload2)
 
 
 //template < primitive_character CHARACTER >
-//inline ::string_base < CHARACTER > & operator+=(::string_base < CHARACTER > & str, const ::payload & payload)
+//inline ::string_base < CHARACTER > & operator +=(::string_base < CHARACTER > & str, const ::payload & payload)
 //{
 //
 //   return str.operator += ((::string) payload);

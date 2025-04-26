@@ -115,9 +115,9 @@ namespace datetime
       bool operator>=(const float_time_span& dateSpan) const RELEASENOTHROW;
 
       // DateTimeSpan math
-      float_time_span operator+(const float_time_span& dateSpan) const RELEASENOTHROW;
+      float_time_span operator +(const float_time_span& dateSpan) const RELEASENOTHROW;
       float_time_span operator-(const float_time_span& dateSpan) const RELEASENOTHROW;
-      float_time_span& operator+=(const float_time_span dateSpan) RELEASENOTHROW;
+      float_time_span& operator +=(const float_time_span dateSpan) RELEASENOTHROW;
       float_time_span& operator-=(const float_time_span dateSpan) RELEASENOTHROW;
       float_time_span operator-() const RELEASENOTHROW;
 
@@ -222,9 +222,9 @@ namespace datetime
       bool operator>=(const float_time& date) const RELEASENOTHROW;
 
       // DateTime math
-      float_time operator+(float_time_span dateSpan) const RELEASENOTHROW;
+      float_time operator +(float_time_span dateSpan) const RELEASENOTHROW;
       float_time operator-(float_time_span dateSpan) const RELEASENOTHROW;
-      float_time& operator+=(float_time_span dateSpan) RELEASENOTHROW;
+      float_time& operator +=(float_time_span dateSpan) RELEASENOTHROW;
       float_time& operator-=(float_time_span dateSpan) RELEASENOTHROW;
 
       // DateTimeSpan math
@@ -412,7 +412,7 @@ inline float_time_span::float_time_span(double dblSpanSrc) RELEASENOTHROW :
       return operator>(dateSpan) || operator==(dateSpan);
    }
 
-   inline float_time_span float_time_span::operator+(
+   inline float_time_span float_time_span::operator +(
    const float_time_span& dateSpan) const RELEASENOTHROW
    {
       float_time_span dateSpanTemp;
@@ -464,7 +464,7 @@ inline float_time_span::float_time_span(double dblSpanSrc) RELEASENOTHROW :
       return dateSpanTemp;
    }
 
-   inline float_time_span& float_time_span::operator+=(
+   inline float_time_span& float_time_span::operator +=(
    const float_time_span dateSpan) RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
@@ -915,7 +915,7 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
       return operator>(date) || operator==(date);
    }
 
-   inline float_time float_time::operator+(float_time_span dateSpan) const RELEASENOTHROW
+   inline float_time float_time::operator +(float_time_span dateSpan) const RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
       ASSERT(dateSpan.get_status() == e_status_valid);
@@ -929,7 +929,7 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
       return( float_time( DateFromDouble( DoubleFromDate( m_dt )-(double)dateSpan ) ) );
    }
 
-   inline float_time& float_time::operator+=(float_time_span dateSpan) RELEASENOTHROW
+   inline float_time& float_time::operator +=(float_time_span dateSpan) RELEASENOTHROW
    {
       ASSERT(get_status() == e_status_valid);
       ASSERT(dateSpan.get_status() == e_status_valid);

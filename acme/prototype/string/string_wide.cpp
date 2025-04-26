@@ -3,10 +3,10 @@
 
 
 template < >
-CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd16_character > > * __nil < natural_meta_data < string_meta_data < ::wd16_character > > >()
+CLASS_DECL_ACME base_data < string_heap_data < ::wd16_character > > * __nil < base_data < string_heap_data < ::wd16_character > > >()
 {
 
-   static natural_meta_data < string_meta_data < ::wd16_character > > s_wd16stringNil;
+   static base_data < string_heap_data < ::wd16_character > > s_wd16stringNil;
 
    return &s_wd16stringNil;
 
@@ -14,10 +14,10 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd16_character > > * __
 
 
 template < >
-CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __nil < natural_meta_data < string_meta_data < ::wd32_character > > >()
+CLASS_DECL_ACME base_data < string_heap_data < ::wd32_character > > * __nil < base_data < string_heap_data < ::wd32_character > > >()
 {
 
-   static natural_meta_data < string_meta_data < ::wd32_character > > s_wd32stringNil;
+   static base_data < string_heap_data < ::wd32_character > > s_wd32stringNil;
 
    return &s_wd32stringNil;
 

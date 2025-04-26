@@ -253,13 +253,13 @@ write_text_stream & write_text_stream::operator <<(bool b)
    if (b)
    {
 
-      print("1");
+      print("1"_ansi);
 
    }
    else
    {
 
-      print("0");
+      print("0"_ansi);
 
    }
 
@@ -331,7 +331,7 @@ write_text_stream & write_text_stream::operator <<(unichar wch)
 
    wd16_to_ansi(sz, &wch, 1);
 
-   print(sz);
+   print(as_range(sz));
 
    if (this->fmtflags() & ::file::separated)
    {
@@ -437,7 +437,7 @@ write_text_stream & write_text_stream::operator <<(const ::ansi_character * psz)
    if (this->fmtflags() & ::file::network_payload)
    {
 
-      print("\"");
+      print("\""_ansi);
 
    }
 
@@ -446,7 +446,7 @@ write_text_stream & write_text_stream::operator <<(const ::ansi_character * psz)
    if (this->fmtflags() & ::file::network_payload)
    {
 
-      print("\"");
+      print("\""_ansi);
 
    }
 
@@ -480,7 +480,7 @@ write_text_stream & write_text_stream::operator <<(const ::scoped_string & scope
    if (this->fmtflags() & ::file::network_payload)
    {
 
-      print("\"");
+      print("\""_ansi);
 
    }
 
@@ -489,7 +489,7 @@ write_text_stream & write_text_stream::operator <<(const ::scoped_string & scope
    if (this->fmtflags() & ::file::network_payload)
    {
 
-      print("\"");
+      print("\""_ansi);
 
    }
 

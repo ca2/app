@@ -184,3 +184,71 @@ bool const_string_range < ITERATOR_TYPE > ::is_trimmed_empty() const
 
 }
 
+
+
+template < typename ITERATOR_TYPE >
+string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE > ::consume_token_until_any_character_in(const SCOPED_STRING& scopedstrCharacters, bool bReturnSeparator, bool bSkipAnyCharactersIn)
+{
+
+   auto p1 = this->find_first_character_in(scopedstrCharacters);
+
+   if (!p1)
+   {
+
+      auto range = (*this)();
+
+      if (this->m_begin != this->m_end)
+      {
+
+         this->m_begin = this->m_end;
+
+         this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
+
+      }
+
+      return range;
+
+   }
+
+   if (bSkipAnyCharactersIn)
+   {
+
+      auto p2 = (*this)(p1).skip_any_character_in(scopedstrCharacters);
+
+      if (bReturnSeparator)
+      {
+
+         auto range = string_range < ITERATOR_TYPE >(this->m_begin, p2);
+
+         this->set_begin(p2);
+
+         return range;
+
+      }
+
+      auto range = string_range < ITERATOR_TYPE >(this->m_begin, p1);
+
+      this->set_begin(p2);
+
+      return range;
+
+   }
+
+   if (bReturnSeparator)
+   {
+
+      auto range = string_range < ITERATOR_TYPE >(this->m_begin, p1 + 1);
+
+      this->set_begin(p1 + 1);
+
+      return range;
+
+   }
+
+   auto range = string_range < ITERATOR_TYPE >(this->m_begin, p1);
+
+   this->set_begin(p1 + 1);
+
+   return range;
+
+}

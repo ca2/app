@@ -53,10 +53,10 @@ namespace http
       //virtual void clean_proxy_auth(::account::user * puser);
 
 
-      virtual bool open(::pointer<::sockets::http_session>& psession, const ::url::connect & connect, ::property_set & set, const ::string & strVersion) override;
+      virtual bool open(::pointer<::sockets::http_session>& psession, const ::url::connect_range & connectrange, ::property_set & set, const ::string & strVersion) override;
 
 
-      virtual bool request(::pointer<::sockets::http_session>& spsession, const ::url::request & request, ::property_set & set) override;
+      virtual bool request(::pointer<::sockets::http_session>& spsession, const ::url::request_range & requestrange, ::property_set & set) override;
 
       virtual ::payload get(const ::url::url & url, ::property_set & set);
 

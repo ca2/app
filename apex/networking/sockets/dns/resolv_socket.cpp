@@ -155,7 +155,7 @@ namespace sockets
    void resolv_socket::OnLine(const string & line)
    {
 
-      ::parse pa(line, ":");
+      ::parse pa(line, ":"_ansi);
 
       if (m_bServer)
       {

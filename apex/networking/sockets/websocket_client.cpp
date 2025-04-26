@@ -553,7 +553,8 @@ namespace sockets
 
       if (!m_bWebSocket)
       {
-         inheader("Host") = m_urlparts.connect().m_strHost();
+
+         inheader("Host") = m_urlparts.connect().host();
 
 
          //      if (!(bool)inattr("minimal_headers"))

@@ -53,8 +53,8 @@ namespace file
    public:
 
 
-      using RANGE = typename ::string::RANGE;
-      using CHARACTER = typename RANGE::CHARACTER;
+      using BASe_RANGE = typename ::string::BASE_RANGE;
+      using CHARACTER = typename BASE_RANGE::CHARACTER;
       using ITEM = CHARACTER;
 
 
@@ -455,7 +455,7 @@ namespace file
       //path & operator += (const path & path);
       path & operator += (const ::string & str);
       //path & operator += (const ::const_ansi_range & ansirange);
-      //using path_meta::operator+=;
+      //using path_meta::operator +=;
 
       //template < typename T > path slashed_path(const T & t) const {return ::transfer(_slashed_path(::file::path(t)));}
       path slashed_path(const ::scoped_string & scopedstr) const;
@@ -596,7 +596,7 @@ namespace file
       
       using string::_get_count_parts_from_beginning;
       
-      using string::get_count_parts_from_beginning;
+      //using string::get_count_parts_from_beginning;
 
       
       const_ansi_range _get_count_parts_from_beginning(::collection::count iPathPartCountToConsume) const;

@@ -193,7 +193,15 @@ template < typename TYPED_CHARACTER_POINTER, typename CHARACTER >
 concept typed_character_pointer = 
 ::std::is_pointer_v<TYPED_CHARACTER_POINTER> 
 && !::std::is_array_v<TYPED_CHARACTER_POINTER>
-&& ::std::is_same_v < CHARACTER, ::non_const <::erase_pointer<TYPED_CHARACTER_POINTER>>>;
+&& ::std::is_same_v < ::non_const<CHARACTER>, ::non_const <::erase_pointer<TYPED_CHARACTER_POINTER>>>;
+
+
+template < typename OTHER_CHARACTER_POINTER, typename CHARACTER >
+concept other_character_pointer =
+::std::is_pointer_v<OTHER_CHARACTER_POINTER>
+&& !::std::is_array_v<OTHER_CHARACTER_POINTER>
+&& primitive_character< ::non_const < ::erase_pointer<OTHER_CHARACTER_POINTER>>>
+&& !::std::is_same_v < CHARACTER, ::non_const <::erase_pointer<OTHER_CHARACTER_POINTER>>>;
 
 
 //template < typename CHARACTER_POINTER >
@@ -396,6 +404,20 @@ concept primitive_atom = ::std::is_same < typename ATOM::PRIMITIVE_ATOM_TAG, PRI
 
 template < typename STRING >
 concept primitive_string = ::std::is_same < typename STRING::PRIMITIVE_STRING_TAG, PRIMITIVE_STRING_TAG_TYPE >::value;
+
+template < typename TYPED_PRIMITIVE_STRING, typename CHARACTER >
+concept typed_primitive_string =
+(::std::is_base_of_v < ::string_base< const CHARACTER* >, TYPED_PRIMITIVE_STRING >
+   || ::std::is_same_v < ::string_base< const CHARACTER* >, TYPED_PRIMITIVE_STRING >)
+   && primitive_character < CHARACTER >;
+
+
+template < typename OTHER_PRIMITIVE_STRING, typename CHARACTER >
+concept other_primitive_string =
+(::std::is_base_of_v < ::string_base< const typename OTHER_PRIMITIVE_STRING::CHARACTER* >, OTHER_PRIMITIVE_STRING >
+   && other_primitive_character < typename OTHER_PRIMITIVE_STRING::CHARACTER, CHARACTER >) ||
+   (::std::is_same_v < ::string_base< const typename OTHER_PRIMITIVE_STRING::ITEM* >, OTHER_PRIMITIVE_STRING > &&
+      other_primitive_character < typename OTHER_PRIMITIVE_STRING::ITEM, CHARACTER >);
 
 template < typename SCOPED_STRING >
 concept primitive_scoped_string = ::std::is_same < typename SCOPED_STRING::PRIMITIVE_SCOPED_STRING_TAG, PRIMITIVE_SCOPED_STRING_TAG_TYPE >::value;
@@ -783,6 +805,11 @@ template < primitive_enum ENUM >
 inline long long as_long_long(const ENUM & e) { return (long long)(::raw_enum_of<ENUM>) e; }
 
 
+template < typename CONST_STRING_CASTABLE >
+concept const_string =
+::std::is_convertible < CONST_STRING_CASTABLE, ::const_ansi_range >::value ||
+::std::is_convertible < CONST_STRING_CASTABLE, ::string >::value ||
+::std::is_convertible < CONST_STRING_CASTABLE, ::scoped_string >::value;
 
 
 template < typename CONST_STRING_CASTABLE >

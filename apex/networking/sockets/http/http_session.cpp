@@ -13,7 +13,7 @@ namespace sockets
 {
 
 
-   http_session::http_session(const ::url::connect_part & connectpart) //:
+   http_session::http_session(const ::url::connect_range & connectrange) //:
      /* ::object(&handler),
       base_socket(handler),
       socket(handler),
@@ -29,21 +29,21 @@ namespace sockets
 
       //::url::url url(connect);
 
-      m_urlparts.m_connectpart = connectpart;
+      m_urlparts.set(connectrange);
 
       //m_urlparts.m_strHost      = host;
 
-      inattr("http_protocol") = connectpart.m_strProtocol;
+      inattr("http_protocol") = connectrange.protocol();
 
-      m_request.m_propertysetHeader["host"] = connectpart.m_strHost;
+      m_request.m_propertysetHeader["host"] = connectrange.host();
 
       //set_url(protocol + "://" + host);
 
-      set_url(connectpart);
+      set_url(connectrange.as_string());
 
-      set_connect_host(connectpart.m_strHost);
+      set_connect_host(connectrange.host());
 
-      set_connect_port(connectpart.m_iPort);
+      set_connect_port(connectrange.port());
 
       m_bRequestComplete = false;
 
@@ -69,8 +69,8 @@ namespace sockets
 
       m_emethod                  = emethod;
       inattr("request_uri")      = strRequest;
-      inattr("http_protocol")    = m_urlparts.connect().m_strProtocol;
-      m_urlparts.request() = strRequest;
+      inattr("http_protocol")    = m_urlparts.connect().protocol();
+      m_urlparts.request().parse(strRequest);
       set_url(m_urlparts.as_url());
       inattr("http_version")    = "HTTP/1.1";
       //m_b_keepalive                 = true;

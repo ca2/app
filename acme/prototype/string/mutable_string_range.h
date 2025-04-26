@@ -9,17 +9,17 @@ template<typename ITERATOR_TYPE>
 class mutable_string_range :
         //public ::comparable_range < ::comparable_eq_range < ::array_range < ::range < ITERATOR_TYPE > > > >
         //public ::array_range < ::range < ITERATOR_TYPE > > >
-public ::string_range<ITERATOR_TYPE> {
+public ::const_string_range<ITERATOR_TYPE> {
 public:
    
    
    //using BASE_RANGE = ::comparable_range < ::comparable_eq_range < ::array_range < ::range < ITERATOR_TYPE > > > >;
    
-   using BASE_RANGE = ::string_range<ITERATOR_TYPE>;
+   using BASE_RANGE = ::const_string_range<ITERATOR_TYPE>;
    
    using THIS_RANGE = ::mutable_string_range<ITERATOR_TYPE>;
    
-   using STRING_RANGE = ::string_range<ITERATOR_TYPE>;
+   using STRING_RANGE = ::string_range < BASE_RANGE >;
    
    using ITEM_POINTER = get_type_item_pointer<ITERATOR_TYPE>;
    using ITEM = non_const<dereference<ITEM_POINTER> >;
@@ -54,23 +54,23 @@ public:
    constexpr mutable_string_range(const_iterator begin, INTEGRAL count) : BASE_RANGE((this_iterator) begin,
                                                                              (this_iterator) (begin + count)) {}
    
-   mutable_string_range(no_initialize_t) : ::string_range<ITERATOR_TYPE>(no_initialize_t{}) {}
+   mutable_string_range(no_initialize_t) : BASE_RANGE(no_initialize_t{}) {}
    
-   mutable_string_range(nullptr_t) : ::string_range<ITERATOR_TYPE>(nullptr) {}
+   mutable_string_range(nullptr_t) : BASE_RANGE(nullptr) {}
    
    mutable_string_range() {}
    
    template<typed_range<iterator> RANGE>
-   explicit mutable_string_range(const RANGE &range) : ::string_range<ITERATOR_TYPE>(range) {}
+   explicit mutable_string_range(const RANGE &range) : BASE_RANGE(range) {}
    
    template<typed_range<const_iterator> RANGE>
-   explicit mutable_string_range(const RANGE &range) : ::string_range<ITERATOR_TYPE>(range) {}
+   explicit mutable_string_range(const RANGE &range) : BASE_RANGE(range) {}
    
-   mutable_string_range(THIS_RANGE &range) : ::string_range<ITERATOR_TYPE>(range) {}
+   mutable_string_range(THIS_RANGE &range) : BASE_RANGE(range) {}
    
-   mutable_string_range(THIS_RANGE &&range) : ::string_range<ITERATOR_TYPE>(::transfer(range)) {}
+   mutable_string_range(THIS_RANGE &&range) : BASE_RANGE(::transfer(range)) {}
    
-   mutable_string_range(this_iterator begin, this_iterator end) : ::string_range<ITERATOR_TYPE>(begin, end) {}
+   mutable_string_range(this_iterator begin, this_iterator end) : BASE_RANGE(begin, end) {}
    
    explicit mutable_string_range(const ::block &block);
    
@@ -236,9 +236,9 @@ unicode_rear_find_first_character_in(const ::range<CHARACTER> &block, const ::ra
 }
 
 
-using ansi_range = ::string_range<const ::ansi_character *>;
-using wd16_range = ::string_range<const ::wd16_character *>;
-using wd32_range = ::string_range<const ::wd32_character *>;
+using ansi_range = ::string_range< const ::ansi_character * >;
+using wd16_range = ::string_range< const ::wd16_character * >;
+using wd32_range = ::string_range< const ::wd32_character * >;
 
 
 template<primitive_character CHARACTER>
@@ -259,28 +259,28 @@ inline ::hash32 _string_range_unsigned_int_hash(::string_range<const CHARACTER *
 }
 
 
-inline ::hash32 as_hash32(const_ansi_range range)
-{
-
-   return _string_range_unsigned_int_hash((::string_range<const ::ansi_character *>) range);
-
-}
-
-
-inline ::hash32 as_hash32(const_wd16_range range)
-{
-
-   return _string_range_unsigned_int_hash((::string_range<const ::wd16_character *>) range);
-
-}
-
-
-inline ::hash32 as_hash32(const_wd32_range range)
-{
-
-   return _string_range_unsigned_int_hash<::wd32_character>((::string_range<const ::wd32_character *>) range);
-
-}
+//inline ::hash32 as_hash32(const_ansi_range range)
+//{
+//
+//   return _string_range_unsigned_int_hash((::string_range<const ::ansi_character *>) range);
+//
+//}
+//
+//
+//inline ::hash32 as_hash32(const_wd16_range range)
+//{
+//
+//   return _string_range_unsigned_int_hash((::string_range<const ::wd16_character *>) range);
+//
+//}
+//
+//
+//inline ::hash32 as_hash32(const_wd32_range range)
+//{
+//
+//   return _string_range_unsigned_int_hash<::wd32_character>((::string_range<const ::wd32_character *>) range);
+//
+//}
 
 
 template<primitive_character CHARACTER>

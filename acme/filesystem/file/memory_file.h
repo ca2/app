@@ -312,6 +312,13 @@ public:
    void write_inline(const void * p, ::memsize s)
    {
 
+      if (s <= 0)
+      {
+
+         return;
+
+      }
+
       auto source = (const unsigned char *)p;
 
       auto e = m_position + s;

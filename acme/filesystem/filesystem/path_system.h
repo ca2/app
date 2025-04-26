@@ -95,7 +95,7 @@ public:
    virtual ::string get_default_path();
 
    /// get next entry in a PATH-environment-variable-like value
-   bool get_next_path(::scoped_string & scopedstr, ::string::RANGE & rangePath);
+   bool get_next_path(::scoped_string & scopedstr, ::string::BASE_RANGE & rangePath);
 
 
    virtual ::file::path _path_get_path(const scoped_string & scopedstrCommand, const ::scoped_string & scopedstrPath, string_to_string_lookup * plookupEnvironment);

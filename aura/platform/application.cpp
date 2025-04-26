@@ -4958,18 +4958,20 @@ retry_license:
 
       ::file::path strFile = directory()->install() / strRelative;
 
-      ::file::path strUrl(::e_path_url);
+      ::string strUrl1;
 
       if (node()->is_debug_build())
       {
-         strUrl = "http://basis-ca2.network/api/spaignition/download?authnone&configuration=basis&stage=";
+         strUrl1 = "http://basis-ca2.network/api/spaignition/download?authnone&configuration=basis&stage=";
       }
       else
       {
-         strUrl = "http://stage-ca2.network/api/spaignition/download?authnone&configuration=stage&stage=";
+         strUrl1 = "http://stage-ca2.network/api/spaignition/download?authnone&configuration=stage&stage=";
       }
 
-      strUrl += ::url::encode(strRelative);
+      strUrl1 += ::url::encode(strRelative);
+
+      ::url::url url(strUrl1);
 
       ::cast <::http::context > phttpcontext = http();
 
@@ -4981,7 +4983,7 @@ retry_license:
 
             ::property_set setEmpty;
 
-            if (phttpcontext->open(psession, strUrl, setEmpty, nullptr))
+            if (phttpcontext->open(psession, url.connect(), setEmpty, nullptr))
             {
 
                break;
@@ -5000,7 +5002,7 @@ retry_license:
 
       //::cast < ::http::context > phttpcontext = http();
 
-      phttpcontext->request(psession, strUrl, set);
+      phttpcontext->request(psession, url.request(), set);
 
       //if (!http()->request(psession, strUrl, set))
       //{

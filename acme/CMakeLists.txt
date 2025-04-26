@@ -716,7 +716,7 @@ list(APPEND library_source
    #prototype/collection/point_array.cpp
    prototype/collection/procedure_array.cpp
    prototype/collection/procedure_array.h
-   prototype/collection/::property_set.h
+   prototype/collection/property_set.h
    #prototype/collection/rectangle_array.cpp
    prototype/collection/sort.cpp
    prototype/collection/str_array.cpp
@@ -997,7 +997,7 @@ list(APPEND library_source
    prototype/prototype/property_object.cpp
    prototype/prototype/property_object.h
    prototype/prototype/property_object.h
-   prototype/prototype/::property_set.cpp
+   prototype/prototype/property_set.cpp
    #prototype/prototype/property_set_composite.cpp
    #prototype/prototype/property_set_papaya.cpp
    prototype/prototype/property_set_papaya.h

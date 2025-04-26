@@ -735,5 +735,15 @@ template < primitive_character CHARACTER, int t_size >
 }
 
 
+template < primitive_character CHARACTER >
+::file::path operator / (
+   const ::range < const CHARACTER* >& range,
+   const ::atom & atom)
+{
+
+   return ::file::path(range) / ::file::path(atom.as_string());
+
+}
+
 
 

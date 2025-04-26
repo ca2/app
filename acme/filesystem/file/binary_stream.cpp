@@ -371,12 +371,12 @@ binary_stream & binary_stream::operator <<(const ::ansi_character * psz)
 
 
 
-binary_stream & binary_stream::operator <<(const ::string & str)
+binary_stream & binary_stream::operator <<(const ::range < const char * > & range)
 {
 
-   write_buffer_length(str.length());
+   write_buffer_length(range.size());
 
-   write(str.as_block());
+   write(::as_block(range));
 
    return *this;
 

@@ -2,9 +2,11 @@
 
 
 #include "_const_string_range_impl.h"
-#include "_string_range_impl.h"
+#include "_impl_const_string_range.h"
 #include "_impl_string_base.h"
+#include "_impl_string_base_allocation.h"
 #include "_impl_string_meta_data.h"
+#include "_impl_string_range.h"
 
 #include "c/_impl.h"
 //#include "sz/_impl.h"
@@ -83,7 +85,7 @@ inline ::hash32 as_hash32 < const wide_string & >(const wide_string & widestr)
 
 
 //template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR > operator+(const string_base < TYPE_CHAR > & str1, const string_base < TYPE_CHAR > & str2)
+//inline string_base < TYPE_CHAR > operator +(const string_base < TYPE_CHAR > & str1, const string_base < TYPE_CHAR > & str2)
 //{
 //
 //   string_base < TYPE_CHAR > str;
@@ -309,22 +311,6 @@ inline ::hash32 as_hash32 < scoped_wd32_string >(const scoped_wd32_string & scop
 }
 
 
-template < character_count n >
-inline bool atom::operator == (const ::ansi_character (&cha)[n]) const
-{
-
-   return *this == ::scoped_string(cha);
-
-}
-
-
-template < character_count n >
-inline ::std::strong_ordering atom::operator <=> (const ::ansi_character (&cha)[n]) const
-{
-
-   return *this <=> ::scoped_string(cha);
-
-}
 
 
 namespace file
@@ -474,8 +460,10 @@ string surround_and_implode(const numeric_array < TYPE, t_etypeContainer > & a, 
 }
 
 
+
+
 template < typename ITERATOR_TYPE >
-inline bool const_string_range < ITERATOR_TYPE > ::operator==(const ::range < const CHARACTER * > &range) const
+inline bool const_string_range < ITERATOR_TYPE > ::operator==(const ::range < const CHARACTER* >& range) const
 {
 
    return this->equals(range);
@@ -485,9 +473,9 @@ inline bool const_string_range < ITERATOR_TYPE > ::operator==(const ::range < co
 
 template < typename ITERATOR_TYPE >
 template < other_primitive_character < typename const_string_range < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
-inline bool const_string_range < ITERATOR_TYPE > ::operator==(const ::range < const OTHER_CHARACTER * > &range) const 
-{ 
-   return this->equals(string_base(range)); 
+inline bool const_string_range < ITERATOR_TYPE > ::operator==(const ::range < const OTHER_CHARACTER* >& range) const
+{
+   return this->equals(string_base(range));
 
 }
 
@@ -496,8 +484,8 @@ inline bool const_string_range < ITERATOR_TYPE > ::operator==(const ::range < co
 
 
 
-template<typename ITERATOR_TYPE>
-::collection::count string_range < ITERATOR_TYPE>::consume(bool(*character_is_function)(CHARACTER character), character_count minimum_count)
+template<typename BASE_TYPE>
+::collection::count string_range < BASE_TYPE>::consume(bool(*character_is_function)(CHARACTER character), character_count minimum_count)
 {
 
    auto c = this->begins_count(character_is_function);
@@ -530,12 +518,9 @@ string_base < ITERATOR_TYPE > const_string_range < ITERATOR_TYPE > ::lowered() c
 }
 
 
-
 template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE >  string_range < ITERATOR_TYPE > ::consume_quoted_value()
+string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE > ::consume_quoted_value()
 {
-
-   string_base < ITERATOR_TYPE > str;
 
    auto pszStart = this->m_begin;
 
@@ -544,9 +529,11 @@ string_base < ITERATOR_TYPE >  string_range < ITERATOR_TYPE > ::consume_quoted_v
 
       throw_parsing_exception("Quote character is required here");
 
-      return str;
+      return {};
 
    }
+
+   string_base <ITERATOR_TYPE> str;
 
    if (!defer_consume_quoted_value(str))
    {
@@ -560,9 +547,8 @@ string_base < ITERATOR_TYPE >  string_range < ITERATOR_TYPE > ::consume_quoted_v
 }
 
 
-
 template < typename ITERATOR_TYPE >
-bool string_range < ITERATOR_TYPE > ::defer_consume_quoted_value(string_base < ITERATOR_TYPE >& str)
+bool string_range < ITERATOR_TYPE > ::defer_consume_quoted_value(string_base <ITERATOR_TYPE> & str)
 {
 
    str.empty();
@@ -646,79 +632,13 @@ bool string_range < ITERATOR_TYPE > ::defer_consume_quoted_value(string_base < I
 
    }
 
-   str.release_buffer();
+   //str.release_buffer();
 
    return true;
 
 }
 
 
-template < typename ITERATOR_TYPE >
-::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE > ::consume_token_until_any_character_in(const SCOPED_STRING & scopedstrCharacters, bool bReturnSeparator, bool bSkipAnyCharactersIn)
-{
-          
-   auto p1 = this->find_first_character_in(scopedstrCharacters);
-          
-   if(!p1)
-   {
-      
-      auto range = (*this)();
-
-      if(this->m_begin != this->m_end)
-      {
-
-         this->m_begin = this->m_end;
-
-         this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
-
-      }
-      
-      return range;
-             
-   }
-   
-   if(bSkipAnyCharactersIn)
-   {
-      
-      auto p2 = (*this)(p1).skip_any_character_in(scopedstrCharacters).begin();
-      
-      if(bReturnSeparator)
-      {
-         
-         auto range = string_range < ITERATOR_TYPE >(this->m_begin, p2);
-         
-         this->set_begin(p2);
-
-         return range;
-         
-      }
-         
-      auto range = string_range < ITERATOR_TYPE >(this->m_begin, p1);
-      
-      this->set_begin(p2);
-
-      return range;
-      
-   }
-      
-   if(bReturnSeparator)
-   {
-      
-      auto range = string_range < ITERATOR_TYPE >(this->m_begin, p1 + 1);
-
-      this->set_begin(p1 + 1);
-
-      return range;
-      
-   }
-      
-   auto range = string_range < ITERATOR_TYPE >(this->m_begin, p1);
-   
-   this->set_begin(p1 + 1);
-
-   return range;
-
-}
 
 
 template < >
@@ -1073,7 +993,7 @@ unsigned long long string_range < ITERATOR_TYPE >::consume_natural(unsigned long
 
 
 template < typename ITERATOR_TYPE >
-::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_non_spaces()
+string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_non_spaces()
 {
 
    auto pszStart = this->m_begin;
@@ -1098,7 +1018,7 @@ template < typename ITERATOR_TYPE >
 
 
 template < typename ITERATOR_TYPE >
-::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_hex()
+string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_hex()
 {
    
    auto pszStart = this->m_begin;
@@ -1130,7 +1050,7 @@ template < typename ITERATOR_TYPE >
 
       throw_parsing_exception("no hex consumed");
       
-      return "";
+      return {};
 
    }
    
@@ -1140,7 +1060,7 @@ template < typename ITERATOR_TYPE >
 
 
 template < typename ITERATOR_TYPE >
-::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_nc_name()
+string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_nc_name()
 {
    
    auto pszStart = this->m_begin;
@@ -1150,7 +1070,7 @@ template < typename ITERATOR_TYPE >
 
       throw_parsing_exception("NCName required here");
 
-      return "";
+      return {};
 
    }
    
@@ -1267,7 +1187,7 @@ template < typename ITERATOR_TYPE >
 
 
 template < typename ITERATOR_TYPE >
-::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::no_escape_consume_quoted_value()
+string_base<ITERATOR_TYPE> string_range < ITERATOR_TYPE >::no_escape_consume_quoted_value()
 {
 
    const ::ansi_character * pszStart = this->m_begin;
@@ -1318,10 +1238,10 @@ void string_range < ITERATOR_TYPE >::no_escape_skip_quoted_value()
 
 
 template < typename ITERATOR_TYPE >
-::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_quoted_value_ex()
+string_base<ITERATOR_TYPE> string_range < ITERATOR_TYPE >::consume_quoted_value_ex()
 {
 
-   string str;
+   string_base<ITERATOR_TYPE> str;
 
    this->_consume_quoted_value_ex<true>(&str);
 
@@ -1340,7 +1260,7 @@ void string_range < ITERATOR_TYPE >::skip_quoted_value_ex()
 
 
 template < typename ITERATOR_TYPE >
-::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_spaced_value()
+string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_spaced_value()
 {
 
    this->consume_spaces(0);
@@ -1407,7 +1327,7 @@ template < typename ITERATOR_TYPE >
 
 
 template < typename ITERATOR_TYPE >
-::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_command_line_argument()
+string_base<ITERATOR_TYPE> string_range < ITERATOR_TYPE >::consume_command_line_argument()
 {
 
    this->consume_spaces(0);
@@ -1478,7 +1398,7 @@ void string_range < ITERATOR_TYPE >::consume_until_any_character_in(const ::scop
 
 
 template < typename ITERATOR_TYPE >
-::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_c_quoted_value()
+string_base<ITERATOR_TYPE> string_range < ITERATOR_TYPE >::consume_c_quoted_value()
 {
 
    //auto pszStart = this->m_begin;
@@ -1559,7 +1479,7 @@ template < typename ITERATOR_TYPE >
 
 template < typename ITERATOR_TYPE >
 template < bool bWriteOutput >
-void string_range < ITERATOR_TYPE >::_consume_quoted_value_ex(string * pstrOut)
+void string_range < ITERATOR_TYPE >::_consume_quoted_value_ex(string_base<ITERATOR_TYPE>* pstrOut)
 {
 
    char quoting_character = *this->m_begin;
@@ -1788,17 +1708,10 @@ void string_range < ITERATOR_TYPE >::_consume_quoted_value_ex(string * pstrOut)
 }
 
 
-template < typename ITERATOR_TYPE >
-bool const_string_range < ITERATOR_TYPE >::xml_is_comment() const
-{
-
-   return this->size() > 3 && this->m_begin[0] == '<' && this->m_begin[1] == '!' && this->m_begin[2] == '-';
-
-}
 
 
 template < typename ITERATOR_TYPE >
-::string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::xml_consume_comment()
+string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::xml_consume_comment()
 {
 
    this->consume("<!--");
@@ -1905,62 +1818,6 @@ void string_range < ITERATOR_TYPE >::escape_skip_to_first_character_in(const cha
   }
   
 }
-//========================================================
-// Name   : _tcsenicmp
-// Desc   : similar with case_insensitive_ansi_count_compare with escape process
-// Param  : escape - will be escape character
-// Return :
-//--------------------------------------------------------
-// Coder    Date                      Desc
-// bro      2002-10-29
-//========================================================
- template < typename ITERATOR_TYPE >
-::std::strong_ordering const_string_range < ITERATOR_TYPE >::escape_case_insensitive_count_order(const ::scoped_string & scopedstr, int escape) const
-{
-
-  auto rangeCompare = scopedstr();
-
-  ::std::strong_ordering order = ::std::strong_ordering::equal;
-
-  const CHARACTER * prev_escape = nullptr;
-
-  auto r = (*this)();
-
-  while (r.has_character() && *r.m_begin && rangeCompare.has_character())
-  {
-     
-     if (escape != 0 && *r.m_begin == escape && prev_escape == nullptr)
-     {
-
-        prev_escape = r.m_begin;
-
-     }
-     else
-     {
-
-        prev_escape = nullptr;
-
-        order = unicode_to_lower_case(unicode_index(r.m_begin)) <=> unicode_to_lower_case(unicode_index(rangeCompare.m_begin));
-
-        if (order != 0)
-        {
-
-           break;
-
-        }
-
-        rangeCompare.m_begin++;
-
-     }
-
-     r.m_begin++;
-
-  }
-
-  return order;
-
-}
-
 
 //========================================================
 // Name   : _tcsenistr
@@ -2063,22 +1920,10 @@ void mutable_string_range < ITERATOR_TYPE >::escape_copy(char escape, const ::co
 }
 
 
-template < typename ITERATOR_TYPE >
-typename const_string_range < ITERATOR_TYPE >::THIS_RANGE const_string_range < ITERATOR_TYPE >::get_utf8_char() const
-{
-
-   auto pszStart = this->m_begin;
-
-   auto pszNext = unicode_next(pszStart);
-
-   return { pszStart, minimum(pszNext, this->m_end) };
-
-}
-
 
 
 template < typename ITERATOR_TYPE >
-typename string_range < ITERATOR_TYPE >::THIS_RANGE string_range < ITERATOR_TYPE >::consume_utf8_char()
+string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_utf8_char()
 {
 
    auto pszStart = this->m_begin;
@@ -2113,7 +1958,7 @@ inline write_text_stream & write_text_stream::operator <<(const ::inline_string 
    if (this->fmtflags() & ::file::network_payload)
    {
 
-      print("\"");
+      print("\""_ansi);
 
    }
 
@@ -2122,7 +1967,7 @@ inline write_text_stream & write_text_stream::operator <<(const ::inline_string 
    if (this->fmtflags() & ::file::network_payload)
    {
 
-      print("\"");
+      print("\""_ansi);
 
    }
 

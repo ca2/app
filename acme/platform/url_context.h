@@ -30,7 +30,7 @@ namespace url
    }
 
 
-   CLASS_DECL_ACME void path_set_href(::string& strPath, const ::scoped_string& scopedstrHref);
+   CLASS_DECL_ACME ::string request_set_href(const ::scoped_string& scopedstrRequest, const ::scoped_string& scopedstrHref);
    CLASS_DECL_ACME ::string parameter_erased(const ::scoped_string& scopedstrUrl, const ::scoped_string& scopedstrKey);
    CLASS_DECL_ACME ::string parameter_set(const ::scoped_string& scopedstrUrl, const ::scoped_string& scopedstrKey, const ::scoped_string& scopedstr);
    CLASS_DECL_ACME ::string query_parameter_set(const ::scoped_string& scopedstrQuery, const ::scoped_string& scopedstrKey, const ::scoped_string& scopedstr);

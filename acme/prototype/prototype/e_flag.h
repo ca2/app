@@ -119,7 +119,7 @@ inline bool __enum_is_failed(const ::enum_flag& e) { return (e & e_flag_failure)
 //
 //      }
 //
-//      this->operator++(0);
+//      this->operator ++(0);
 //
 //      return this->operator %=(eenum);
 //

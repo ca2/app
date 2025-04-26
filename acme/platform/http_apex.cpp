@@ -52,7 +52,7 @@ namespace platform
    //virtual void clean_proxy_auth(::account::user * puser){}
 
 
-   bool apex_http_layer::open(::pointer<::sockets::http_session>& psession, const ::url::connect& connect,
+   bool apex_http_layer::open(::pointer<::sockets::http_session>& psession, const ::url::connect_range & connectrange,
                               ::property_set & set, const ::string& strVersion)
    {
 
@@ -61,7 +61,7 @@ namespace platform
    }
 
 
-   bool apex_http_layer::request(::pointer<::sockets::http_session>& spsession, const ::url::request& request,
+   bool apex_http_layer::request(::pointer<::sockets::http_session>& spsession, const ::url::request_range & requestrange,
                                          ::property_set & set)
    {
 

@@ -16,8 +16,10 @@ constexpr CHARACTER * __zerotosz(CHARACTER * & p)
 
 
 template < primitive_unsigned UNSIGNED, primitive_character CHARACTER >
-constexpr void __utosz_internal(UNSIGNED u, CHARACTER * & p, int base, enum_digit_case edigitcase)
+constexpr void __utosz_internal(UNSIGNED u, CHARACTER * & pParam, int base, enum_digit_case edigitcase)
 {
+
+   auto & p = (::non_const < CHARACTER * > &) pParam;
 
    while (u != 0)
    {
@@ -27,13 +29,13 @@ constexpr void __utosz_internal(UNSIGNED u, CHARACTER * & p, int base, enum_digi
       if (digit <= 9)
       {
 
-         *((char *&)p) = (CHARACTER)(digit + '0');
+         *p = (CHARACTER)(digit + '0');
 
       }
       else
       {
 
-         *((char *&)p) = (CHARACTER)(digit - 10 + edigitcase);
+         *p = (CHARACTER)(digit - 10 + edigitcase);
 
       }
 

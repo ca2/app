@@ -591,7 +591,7 @@ namespace earth
 
 
 
-   string format(const ::string & strFormat, const ::earth::time & time, const class ::time& timeshift)
+   string format(const ::scoped_string & scopedstrFormat, const ::earth::time & time, const class ::time& timeshift)
    {
 
       string str;
@@ -599,8 +599,39 @@ namespace earth
       time_t timeUtc = time.m_iSecond;
 
       timeUtc += timeshift.m_iSecond;
+#if _SECURE_TEMPLATE
 
-   #if defined(LINUX) || defined(ANDROID) || defined(SOLARIS) || defined(__APPLE__)
+char* szBuffer = str.get_buffer(maxTimeBufferSize);
+
+struct tm ptmTemp;
+
+errno_t err = _gmbtime64_s(&ptmTemp, &m_posixtime);
+
+if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, strFormat, &ptmTemp))
+{
+
+   szBuffer[0] = '\0';
+
+}
+
+
+str.ReleaseBuffer();
+
+return str;
+
+//#elif defined(ANDROID) || defined(SOLARIS)
+//
+//      struct tm* ptmTemp = localtime(&m_posixtime);
+//
+//      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
+//      {
+//
+//         szBuffer[0] = '\0';
+//
+//      }
+//
+ #else
+   //#if defined(LINUX) || defined(ANDROID) || defined(SOLARIS) || defined(__APPLE__)
       char * szBuffer = str.get_buffer(maxTimeBufferSize);
 //   #if OSBIT == 32
   //    const posix_time timet = (const posix_time) timeUtc;
@@ -608,7 +639,7 @@ namespace earth
      // #else
       struct tm * ptmTemp = gmtime(&timeUtc);
       //#endif
-      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat.c_str(), ptmTemp))
+      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, scopedstrFormat.c_str(), ptmTemp))
       {
          szBuffer[0] = '\0';
       }
@@ -616,6 +647,8 @@ namespace earth
       str.release_buffer();
 
       return str;
+
+#endif
 
 //   #elif defined(__APPLE__)
 //
@@ -638,40 +671,10 @@ namespace earth
 //
 //      return str;
 
-   #elif _SECURE_TEMPLATE
 
-      char * szBuffer = str.get_buffer(maxTimeBufferSize);
+  /* #else
 
-      struct tm ptmTemp;
-
-      errno_t err = _gmbtime64_s(&ptmTemp, &m_posixtime);
-
-      if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, strFormat, &ptmTemp))
-      {
-
-         szBuffer[0] = '\0';
-
-      }
-
-
-      str.ReleaseBuffer();
-
-      return str;
-
-      //#elif defined(ANDROID) || defined(SOLARIS)
-      //
-      //      struct tm* ptmTemp = localtime(&m_posixtime);
-      //
-      //      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
-      //      {
-      //
-      //         szBuffer[0] = '\0';
-      //
-      //      }
-      //
-   #else
-
-      str = strFormat;
+      str = scopedstrFormat;
 
       str.replace_with(as_string(time.year(timeshift)), "%Y");
       str.replace_with(::str::zero_padded(as_string(time.month(timeshift)), 2), "%m");
@@ -682,7 +685,7 @@ namespace earth
 
       return str;
 
-   #endif
+   #endif*/
 
    }
 
@@ -738,7 +741,7 @@ namespace earth
    //}
 
 
-   ::earth::time & time::operator+=(date_span span)
+   ::earth::time & time::operator +=(date_span span)
    {
 
       __UNREFERENCED_PARAMETER(span);
@@ -774,7 +777,7 @@ namespace earth
    }
 
 
-   ::earth::time time::operator+(date_span span) const
+   ::earth::time time::operator +(date_span span) const
    {
 
       __UNREFERENCED_PARAMETER(span);

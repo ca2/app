@@ -227,15 +227,15 @@
 //{
 //   return !::is_equal(this, &long_long_rectangle);
 //}
-//TEMPLATE void long_long_rectangle::operator+=(::long_long_point long_long_point) noexcept
+//TEMPLATE void long_long_rectangle::operator +=(::long_long_point long_long_point) noexcept
 //{
 //   ::offset(this, long_long_point.x(), long_long_point.y());
 //}
-//TEMPLATE void long_long_rectangle::operator+=(::long_long_size long_long_size) noexcept
+//TEMPLATE void long_long_rectangle::operator +=(::long_long_size long_long_size) noexcept
 //{
 //   ::offset(this, long_long_size.cx(), long_long_size.cy());
 //}
-//TEMPLATE void long_long_rectangle::operator+=(const ::long_long_rectangle * RECT_TEMPLATE) noexcept
+//TEMPLATE void long_long_rectangle::operator +=(const ::long_long_rectangle * RECT_TEMPLATE) noexcept
 //
 //{
 //   inflate(RECT_TEMPLATE);
@@ -263,7 +263,7 @@
 //{
 //   ::unite(this, this, &long_long_rectangle);
 //}
-//long_long_rectangle long_long_rectangle::operator+(::long_long_point int_point) const noexcept
+//long_long_rectangle long_long_rectangle::operator +(::long_long_point int_point) const noexcept
 //{
 //   long_long_rectangle long_long_rectangle(*this); ::offset(&long_long_rectangle, point.x(), point.y()); return long_long_rectangle;
 //}
@@ -271,7 +271,7 @@
 //{
 //   long_long_rectangle long_long_rectangle(*this); ::offset(&long_long_rectangle, -point.x(), -point.y()); return long_long_rectangle;
 //}
-//long_long_rectangle long_long_rectangle::operator+(::long_long_size long_long_size) const noexcept
+//long_long_rectangle long_long_rectangle::operator +(::long_long_size long_long_size) const noexcept
 //{
 //   long_long_rectangle long_long_rectangle(*this); ::offset(&long_long_rectangle, long_long_size.cx(), long_long_size.cy()); return long_long_rectangle;
 //}
@@ -279,7 +279,7 @@
 //{
 //   long_long_rectangle long_long_rectangle(*this); ::offset(&long_long_rectangle, -long_long_size.cx(), -long_long_size.cy()); return long_long_rectangle;
 //}
-//long_long_rectangle long_long_rectangle::operator+(const ::long_long_rectangle * RECT_TEMPLATE) const noexcept
+//long_long_rectangle long_long_rectangle::operator +(const ::long_long_rectangle * RECT_TEMPLATE) const noexcept
 //
 //{
 //   long_long_rectangle long_long_rectangle(this); long_long_rectangle.inflate(RECT_TEMPLATE); return long_long_rectangle;
@@ -569,15 +569,15 @@
 //   {
 //      return !::is_equal((const double_rectangle&)this, (const double_rectangle&)& double_rectangle) != false;
 //   }
-//  TEMPLATE void double_rectangle::operator+=(::double_point int_point) noexcept
+//  TEMPLATE void double_rectangle::operator +=(::double_point int_point) noexcept
 //   {
 //      ::offset(this, point.x(), point.y());
 //   }
-//  TEMPLATE void double_rectangle::operator+=(::double_size int_size) noexcept
+//  TEMPLATE void double_rectangle::operator +=(::double_size int_size) noexcept
 //   {
 //      ::offset(this, size.cx(), size.cy());
 //   }
-//  TEMPLATE void double_rectangle::operator+=(const double_rectangle & RECT_TEMPLATE) noexcept
+//  TEMPLATE void double_rectangle::operator +=(const double_rectangle & RECT_TEMPLATE) noexcept
 //
 //   {
 //      inflate(RECT_TEMPLATE);
@@ -605,7 +605,7 @@
 //   {
 //      ::unite(this, this, (const double_rectangle&)& double_rectangle);
 //   }
-//  TEMPLATE double_rectangle double_rectangle::operator+(::double_point int_point) const noexcept
+//  TEMPLATE double_rectangle double_rectangle::operator +(::double_point int_point) const noexcept
 //   {
 //      double_rectangle double_rectangle(*this); ::offset(&double_rectangle, point.x(), point.y()); return double_rectangle;
 //   }
@@ -613,7 +613,7 @@
 //   {
 //      double_rectangle double_rectangle(*this); ::offset(&double_rectangle, -point.x(), -point.y()); return double_rectangle;
 //   }
-//  TEMPLATE double_rectangle double_rectangle::operator+(::double_size int_size) const noexcept
+//  TEMPLATE double_rectangle double_rectangle::operator +(::double_size int_size) const noexcept
 //   {
 //      double_rectangle double_rectangle(*this); ::offset(&double_rectangle, size.cx(), size.cy()); return double_rectangle;
 //   }
@@ -621,7 +621,7 @@
 //   {
 //      double_rectangle double_rectangle(*this); ::offset(&double_rectangle, -size.cx(), -size.cy()); return double_rectangle;
 //   }
-//  TEMPLATE double_rectangle double_rectangle::operator+(const double_rectangle & RECT_TEMPLATE) const noexcept
+//  TEMPLATE double_rectangle double_rectangle::operator +(const double_rectangle & RECT_TEMPLATE) const noexcept
 //
 //   {
 //      ::double_rectangle double_rectangle((const double_rectangle&)this); double_rectangle.inflate(RECT_TEMPLATE); return double_rectangle;

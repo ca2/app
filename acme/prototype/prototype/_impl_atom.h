@@ -71,7 +71,8 @@ inline const_string_range < ITERATOR_TYPE > & const_string_range < ITERATOR_TYPE
 
 
 template < typename ITERATOR_TYPE >
-inline string_range < ITERATOR_TYPE >::string_range(const block & block) :
+template < primitive_block BLOCK >
+inline string_range < ITERATOR_TYPE >::string_range(const BLOCK & block) :
    const_string_range < ITERATOR_TYPE >(block)
 {
 
@@ -187,7 +188,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator =
 //string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator += (const ::atom & atom)
 //{
 //
-//   return operator+=(atom.operator ::string());
+//   return operator +=(atom.operator ::string());
 //
 //}
 
@@ -1699,7 +1700,7 @@ inline void from_string(::atom & atom, const ::ansi_character * psz)
 
 
 template < typename CHAR >
-string_base < CHAR > & string_base < CHAR >::operator+=(const ::atom & atom)
+string_base < CHAR > & string_base < CHAR >::operator +=(const ::atom & atom)
 {
 
    return append(atom);
@@ -1707,58 +1708,56 @@ string_base < CHAR > & string_base < CHAR >::operator+=(const ::atom & atom)
 }
 
 
-template < typename ITERATOR_TYPE >
-template < int t_size >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const const_string_range_static_array< ITERATOR_TYPE, t_size > & a)
-{
-
-   auto oldLen = size();
-
-   auto newLen = oldLen + a.size();
-
-   get_buffer(newLen, true);
-
-   auto p = (CHARACTER *) this->m_begin;
-
-   p += oldLen;
-
-   a.block_concatenate_to(p);
-
-   *p = {};
-
-   return *this;
-
-}
+//template < typename ITERATOR_TYPE >
+//template < int t_size >
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const const_string_range_static_array< const CHARACTER *, t_size > & a)
+//{
+//
+//   auto old_len = size();
+//
+//   auto add_len = a.size();
+//
+//   auto new_len = old_len + add_len;
+//
+//   auto p = get_buffer<true>(new_len);
+//
+//   a.block_concatenate_to(p);
+//
+//   *p = {};
+//
+//   return *this;
+//
+//}
 
 
-template < typename ITERATOR_TYPE >
-template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, int t_size >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const const_string_range_static_array< const OTHER_CHARACTER, t_size >& a)
-{
-
-   auto oldLen = size();
-
-   character_count iaLen[t_size];
-
-   character_count* plen = iaLen;
-
-   auto newLen = oldLen + a.__utf_length(this->m_begin, plen);
-
-   set_size(newLen);
-
-   auto p = (CHARACTER*)this->m_begin;
-
-   p += oldLen;
-
-   plen = iaLen;
-
-   a.__utf_concatenate_to(p, plen);
-
-   *p = {};
-
-   return *this;
-
-}
+//template < typename ITERATOR_TYPE >
+//template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, int t_size >
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const const_string_range_static_array< const OTHER_CHARACTER *, t_size >& a)
+//{
+//
+//   auto old_len = size();
+//
+//   character_count iaLen[t_size];
+//
+//   character_count* plen = iaLen;
+//
+//   auto newLen = oldLen + a.__utf_length(this->m_begin, plen);
+//
+//   set_size(newLen);
+//
+//   auto p = (CHARACTER*)this->m_begin;
+//
+//   p += oldLen;
+//
+//   plen = iaLen;
+//
+//   a.__utf_concatenate_to(p, plen);
+//
+//   *p = {};
+//
+//   return *this;
+//
+//}
 
 
 template < typename CHAR >
@@ -1796,7 +1795,7 @@ string_base < CHAR > & string_base < CHAR >::append(const ::atom & atom)
 
 
 //template < primitive_character CHARACTER, character_count sizeMaximumLength >
-//inline ::string_base < const CHARACTER * > operator+(const inline_string < CHARACTER, sizeMaximumLength > & inlinestring, const ::atom & atom)
+//inline ::string_base < const CHARACTER * > operator +(const inline_string < CHARACTER, sizeMaximumLength > & inlinestring, const ::atom & atom)
 //{
 //
 //   return ::string_base< const CHARACTER *>(inlinestring) + ::string_base< const CHARACTER *>(atom);
@@ -1804,7 +1803,7 @@ string_base < CHAR > & string_base < CHAR >::append(const ::atom & atom)
 //}
 
 
-//inline ::string operator+(const ::ansi_character * psz, const ::atom & atom)
+//inline ::string operator +(const ::ansi_character * psz, const ::atom & atom)
 //{
 //
 //   return ::string(psz) + atom.as_string();
@@ -1812,7 +1811,7 @@ string_base < CHAR > & string_base < CHAR >::append(const ::atom & atom)
 //}
 
 
-//inline ::string operator+(const ::string & str, const ::atom & atom)
+//inline ::string operator +(const ::string & str, const ::atom & atom)
 //{
 //
 //   return str + atom.as_string();
@@ -1830,7 +1829,7 @@ string_base < CHAR > & string_base < CHAR >::append(const ::atom & atom)
 
 
 //template < primitive_character CHARACTER, primitive_character CHARACTER2 >
-//inline ::string_base<CHARACTER2> operator+(const ::range < CHARACTER > & block, const ::string_base < CHARACTER2 > & str)
+//inline ::string_base<CHARACTER2> operator +(const ::range < CHARACTER > & block, const ::string_base < CHARACTER2 > & str)
 //{
 //
 //   return ::string_base<CHARACTER2>(block) + str;
@@ -1838,7 +1837,7 @@ string_base < CHAR > & string_base < CHAR >::append(const ::atom & atom)
 //}
 
 //template < primitive_character CHARACTER >
-//inline ::string_base < CHARACTER > & operator+=(::string_base < CHARACTER > & str, const ::atom & atom)
+//inline ::string_base < CHARACTER > & operator +=(::string_base < CHARACTER > & str, const ::atom & atom)
 //{
 //
 //   return str.operator += ((::string) atom);
@@ -1937,6 +1936,24 @@ inline ::string atom::operator +(const ::string & str) const
 {
 
    return this->as_string() + str;
+
+}
+
+
+template < character_count n >
+inline bool atom::operator == (const ::ansi_character (&cha)[n]) const
+{
+
+   return *this == ::scoped_string(cha);
+
+}
+
+
+template < character_count n >
+inline ::std::strong_ordering atom::operator <=> (const ::ansi_character (&cha)[n]) const
+{
+
+   return *this <=> ::scoped_string(cha);
 
 }
 

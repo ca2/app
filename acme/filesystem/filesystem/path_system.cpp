@@ -990,7 +990,7 @@ void path_system::determine_executable(::file::path & path)
 }
 
 
-bool path_system::get_next_path(::scoped_string & scopedstr, ::string::RANGE & rangePath)
+bool path_system::get_next_path(::scoped_string & scopedstr, ::string::BASE_RANGE & rangePath)
 {
 
    if(rangePath.is_empty())

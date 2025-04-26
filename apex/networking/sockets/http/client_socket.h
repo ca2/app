@@ -87,13 +87,13 @@ namespace sockets
       virtual void OnContent();
 
       /** get response headers. */
-      const string & GetContent();
+      ::string GetContent();
 
       /** get int_size of response body. */
       memsize GetContentLength();
 
       /** get content type from response header. */
-      const string & GetContentType();
+      ::string GetContentType();
 
       /** get int_size of received response body. */
       memsize GetContentPtr();
@@ -114,10 +114,10 @@ namespace sockets
       virtual void SetCloseOnComplete(bool = true);
 
       /** get protocol used from url. */
-      const string & GetUrlProtocol();
+      ::string GetUrlProtocol();
 
       /** get filename part of url. */
-      const string & GetUrlFilename();
+      ::string GetUrlFilename();
 
       virtual void OnDataComplete() override;
 

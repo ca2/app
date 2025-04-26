@@ -1,5 +1,7 @@
-// to string_heap_data on 2025-04-21 15:38 <3ThomasBorregaardSørensen!!
 #pragma once
+
+
+
 
 
 
@@ -30,23 +32,23 @@ public:
    inline ::character_count storage_character_count() const;
 
 
-   /// always char count (before first [and possibly final, but not necessarily final] null terminator)
+   ///// always char count (before first [and possibly final, but not necessarily final] null terminator)
    //inline ::character_count character_count() const { return (::character_count) this->m_countData; }
    //inline ::memsize character_count_in_bytes() const;
    //inline ::memsize null_terminated_character_count_in_bytes() const;
-   
+   //
 
    //inline void raw_set_character_count(::character_count character_count);
    //inline void set_character_count(::character_count character_count);
 
 
-   operator const CHARACTER * () const noexcept { return this->begin(); }
+   operator const CHARACTER * () const noexcept { return this->c_data(); }
 
 
    operator CHARACTER * () noexcept { return this->data(); }
 
 
-   const CHARACTER * c_str() const noexcept { return this->begin(); }
+   const CHARACTER * c_str() const noexcept { return this->c_data(); }
 
 
 };

@@ -6750,7 +6750,6 @@ namespace apex
 
       strUrl += ::url::encode(strRelative);
 
-
       ::cast < ::http::context > phttpcontext = http();
 
       if (psession == nullptr)
@@ -6760,8 +6759,10 @@ namespace apex
          {
 
             ::property_set setEmpty;
+            
+            ::url::connect connect(strUrl);
 
-            if (phttpcontext->open(psession, strUrl, setEmpty, nullptr))
+            if (phttpcontext->open(psession, connect, setEmpty, nullptr))
             {
 
                break;
@@ -6778,7 +6779,9 @@ namespace apex
 
       set["get_memory"] = "";
 
-      phttpcontext->request(psession, strUrl, set);
+      ::url::request request(strUrl);
+
+      phttpcontext->request(psession, request, set);
       //{
       //
       //m_pdraw2d->init()

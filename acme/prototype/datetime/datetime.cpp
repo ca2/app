@@ -1885,7 +1885,7 @@ namespace datetime
       if (bBaseTime)
       {
 
-         if (str.substr(iStart).trimmed().length() == 0)
+         if (str.substr(iStart).trimmed().size() == 0)
          {
 
             return result(time);

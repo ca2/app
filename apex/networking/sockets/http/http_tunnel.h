@@ -44,7 +44,7 @@ namespace sockets
 
       void initialize(::particle * pparticle) override;
 
-      virtual const string & GetUrlHost();
+      virtual ::string GetUrlHost();
       /** get port from url. */
       virtual ::networking::port_t GetUrlPort();
 

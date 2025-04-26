@@ -4,7 +4,7 @@
 
 
 #include "acme/prototype/string/string_base.h"
-#include "acme/prototype/string/scoped_string_base.h"
+#include "acme/prototype/string/string_base.h"
 
 
 //template < typename T >
@@ -15,13 +15,14 @@
 //concept character_range_not_string_neither_scoped_string = character_range<T> && !primitive_string<T> && !primitive_scoped_string<T>;
 
 
-template < primitive_character CHARACTER, character_count n, typed_character_range < CHARACTER > TYPED_CHARACTER_RANGE >
-const_string_range_static_array < const CHARACTER*, 2 > operator + (const CHARACTER(&s)[n], const TYPED_CHARACTER_RANGE& range)
-{
-
-   return { ::as_string_literal< CHARACTER, n>(s), range };
-
-}
+//template < primitive_character CHARACTER, character_count n, typed_character_range < CHARACTER > TYPED_CHARACTER_RANGE >
+//const_string_range_static_array < const CHARACTER*, 2 > operator + (const CHARACTER(&s)[n], const TYPED_CHARACTER_RANGE& range)
+//{
+//
+//   //return { ::as_string_literal< CHARACTER, n>(s), range };
+//    return { s, range };
+//
+//}
 
 
 
@@ -57,13 +58,14 @@ const_string_range_static_array < typename RANGE::const_iterator, 2 > operator +
 }
 
 
-template < character_range RANGE, character_count n >
-const_string_range_static_array < typename RANGE::const_iterator, 2 > operator + (const RANGE& range, const typename RANGE::CHARACTER(&s)[n])
-{
-
-   return { range, ::as_string_literal<typename RANGE::CHARACTER, n>(s) };
-
-}
+//template < character_count n >
+//const_string_range_static_array < const char *, 2 > operator + (const ::range < const char * > & range, const ansi_string_literal<n> & literal)
+//{
+//
+//   //return { range, ::as_string_literal<typename RANGE::CHARACTER, n>(s) };
+//    return { range, literal };
+//
+//}
 
 
 
@@ -115,10 +117,10 @@ inline string& operator <<(string& str, const RANGE& r)
 
 
 template<typename ITERATOR_TYPE>
-inline string_base<ITERATOR_TYPE> const_string_range<ITERATOR_TYPE>::surrounded(const SCOPED_STRING& scopedstrLeft, const SCOPED_STRING& scopedstrRight) const
+inline string_base<ITERATOR_TYPE> const_string_range<ITERATOR_TYPE>::surrounded(const SCOPED_STRING& strLeft, const SCOPED_STRING& strRight) const
 {
 
-   return scopedstrLeft + *this + scopedstrRight;
+   return strLeft + *this + strRight;
 
 }
 

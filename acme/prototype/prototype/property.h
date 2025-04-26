@@ -279,7 +279,7 @@ using property_holder_array = ::array < ::holder < ::property > >;
 
 
 //template < typename TYPE_CHAR >
-//string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const ::property & property)
+//string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator +=(const ::property & property)
 //{
 //
 //   return append(property);

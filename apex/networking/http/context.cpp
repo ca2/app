@@ -775,7 +775,7 @@ namespace http
 
       ::string strPort;
       
-      strPort = url.connect().port();
+      strPort = url.connect().port_range();
 
       //::networking::address ad(strHost, port);
 
@@ -1091,7 +1091,7 @@ namespace http
    //}
 
 
-   bool context::open(::pointer<::sockets::http_session>& psession, const ::url::connect & connect, ::property_set & set, const string &strVersionParam)
+   bool context::open(::pointer<::sockets::http_session>& psession, const ::url::connect_range & connectrange, ::property_set & set, const string &strVersionParam)
    {
 
       auto tickTimeProfile1 = ::time::now();
@@ -1151,14 +1151,14 @@ namespace http
 
       string strSessId;
 
-      psession = __allocate ::sockets::http_session(connect);
+      psession = __allocate ::sockets::http_session(connectrange);
 
       /*::pointer<::account::user>puser;
 
       on_auth(set, papp, strUrl, strSessId, puser);*/
 
-      if (connect.protocol().case_insensitive_equals("https")||
-         connect.protocol().case_insensitive_equals("wss"))
+      if (connectrange.protocol().case_insensitive_equals("https")||
+         connectrange.protocol().case_insensitive_equals("wss"))
       {
 
          psession->EnableSSL();
@@ -1181,7 +1181,7 @@ namespace http
       if (!psession->open(bConfigProxy))
       {
 
-         information() << "Not Opened/Connected Result Total time ::http::platform::context::get(\"" << connect.as_string() << "\") " << tick1.elapsed().integral_second();
+         information() << "Not Opened/Connected Result Total time ::http::platform::context::get(\"" << connectrange.as_string() << "\") " << tick1.elapsed().integral_second();
 
          return false;
 
@@ -1194,7 +1194,7 @@ namespace http
    }
 
 
-   bool context::request(::pointer<::sockets::http_session>& psession, const ::url::request & request, ::property_set & set)
+   bool context::request(::pointer<::sockets::http_session>& psession, const ::url::request_range & requestrange, ::property_set & set)
    {
 
 //      information() << "http context request : " << pszRequest;
@@ -2760,7 +2760,9 @@ namespace http
 
       set["file"] = spfile;
 
-      bool bOk = request(psession, scopedstrRequest, set);
+      ::url::request request(scopedstrRequest);
+
+      bool bOk = this->request(psession, request, set);
 
       set["file"].null();
 

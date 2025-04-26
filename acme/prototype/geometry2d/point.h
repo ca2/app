@@ -227,28 +227,28 @@ public:
    inline point_type& operator -=(const POINT& point) noexcept { this->x() = (UNIT_TYPE)(this->x() - point.x()); this->y() = (UNIT_TYPE)(this->y() - point.y()); return *this; }
 
    template < primitive_number NUMBER1 >
-   inline point_type < largest_number < UNIT_TYPE, NUMBER1 > > operator+(const sequence_type < NUMBER1, 2 > & sequence) const noexcept { return point_type < largest_number < UNIT_TYPE, NUMBER1 > >(this->x() + sequence.a(), this->y() + sequence.b()); }
+   inline point_type < largest_number < UNIT_TYPE, NUMBER1 > > operator +(const sequence_type < NUMBER1, 2 > & sequence) const noexcept { return point_type < largest_number < UNIT_TYPE, NUMBER1 > >(this->x() + sequence.a(), this->y() + sequence.b()); }
 
 //   template < primitive_point POINT >
-//   inline point_type operator+(const POINT & point) const noexcept { return point_type(this->x() + point.x(), this->y() + point.y()); }
+//   inline point_type operator +(const POINT & point) const noexcept { return point_type(this->x() + point.x(), this->y() + point.y()); }
 
 
    template < primitive_number NUMBER1 >
    inline point_type < largest_number < UNIT_TYPE, NUMBER1 > > operator-(const sequence_type < NUMBER1, 2 > & sequence) const noexcept { return point_type < largest_number < UNIT_TYPE, NUMBER1 > >(this->x() - sequence.a(), this->y() - sequence.b()); }
 
    inline point_type operator-() const noexcept { return point_type(-this->x(), -this->y()); }
-   inline point_type operator+() const noexcept { return point_type(this->x(), this->y()); }
-   //inline point_type operator+(const point_type& point) const noexcept { return point_type(this->x() + point.x(), this->y() + point.y()); }
+   inline point_type operator +() const noexcept { return point_type(this->x(), this->y()); }
+   //inline point_type operator +(const point_type& point) const noexcept { return point_type(this->x() + point.x(), this->y() + point.y()); }
    //inline SIZE_TYPE operator-(const point_type& point) const noexcept { return SIZE_TYPE(this->x() - point.x(), this->y() - point.y()); }
 
-//   inline RECTANGLE_TYPE operator+(const RECTANGLE_TYPE & rectangle) const noexcept { return RECTANGLE_TYPE(rectangle) + *this; }
+//   inline RECTANGLE_TYPE operator +(const RECTANGLE_TYPE & rectangle) const noexcept { return RECTANGLE_TYPE(rectangle) + *this; }
 //   inline RECTANGLE_TYPE operator-(const RECTANGLE_TYPE & rectangle) const noexcept { return RECTANGLE_TYPE(rectangle) - *this; }
 
 
-//   inline point_type& operator+=(const SHIFT_I32& shift) noexcept { this->x() = (UNIT_TYPE)(this->x() + shift.Δx); this->y() = (UNIT_TYPE)(this->y() + shift.Δy); return *this; }
+//   inline point_type& operator +=(const SHIFT_I32& shift) noexcept { this->x() = (UNIT_TYPE)(this->x() + shift.Δx); this->y() = (UNIT_TYPE)(this->y() + shift.Δy); return *this; }
 //   inline point_type& operator-=(const SHIFT_I32& shift) noexcept { this->x() = (UNIT_TYPE)(this->x() - shift.Δx); this->y() = (UNIT_TYPE)(this->y() - shift.Δy); return *this; }
 //
-//   inline point_type operator+(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->x() + shift.Δx), (UNIT_TYPE)(this->y() + shift.Δy) }; }
+//   inline point_type operator +(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->x() + shift.Δx), (UNIT_TYPE)(this->y() + shift.Δy) }; }
 //   inline point_type operator-(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->x() - shift.Δx), (UNIT_TYPE)(this->y() - shift.Δy) }; }
 
 

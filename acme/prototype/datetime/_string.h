@@ -9,8 +9,8 @@ namespace earth
 {
 
 
-   CLASS_DECL_ACME string format(const ::string& strFormat, const time_span& timespan, const class ::time & timeshift = {});
-   CLASS_DECL_ACME string format(const ::string& strFormat, const time& time, const class ::time& timeshift = {});
+   CLASS_DECL_ACME string format(const ::scoped_string & scopedstrFormat, const time_span& timespan, const class ::time & timeshift = {});
+   CLASS_DECL_ACME string format(const ::scoped_string & scopedstrFormat, const time& time, const class ::time& timeshift = {});
 
 
 } // namespace earth

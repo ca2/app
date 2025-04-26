@@ -137,7 +137,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
    character_count iLen = str.length();
 
-   char * psz = str.get_buffer(iLen, true);
+   char * psz = str.get_buffer<true>(iLen);
 
    //string strAbsolute(strParam);
 

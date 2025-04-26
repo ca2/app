@@ -22,27 +22,31 @@ namespace url
    }
 
 
-   void path_set_href(::string& strPath, const ::scoped_string& scopedstrHref)
+   ::string request_set_href(const ::scoped_string& scopedstrRequest, const ::scoped_string& scopedstrHref)
    {
+
+      ::string strRequest;
 
       if (scopedstrHref.begins("/"))
       {
 
-         strPath = scopedstrHref;
+         strRequest = scopedstrHref;
 
       }
-      else if (strPath.ends("/"))
+      else if (scopedstrRequest.ends("/"))
       {
 
-         strPath += scopedstrHref;
+         strRequest = scopedstrRequest + scopedstrHref;
 
       }
       else
       {
 
-         strPath = file_path_folder(strPath) + "/" + scopedstrHref;
+         strRequest = file_path_folder(scopedstrRequest) + "/" + scopedstrHref;
 
       }
+
+      return strRequest;
 
    }
 
@@ -50,18 +54,18 @@ namespace url
    ::string parameter_set(const ::scoped_string& scopedstrUrl, const ::scoped_string& scopedstrKey, const ::scoped_string& scopedstr)
    {
 
-      ::url::parts url(scopedstrUrl);
+      ::url::parts urlparts(scopedstrUrl);
 
-      if (!url.m_requestpart.m_psetArguments)
-      {
+      //if (!urlparts.request().arguments())
+      //{
 
-         url.m_requestpart.m_psetArguments = __allocate ::property_set ();
+      //   urlparts.m_request.m_psetArguments = __allocate ::property_set ();
 
-      }
+      //}
 
-      url.arguments()[scopedstrKey] = scopedstr;
+      urlparts.arguments()[scopedstrKey] = scopedstr;
 
-      ::string strUrl = url.as_string();
+      ::string strUrl = urlparts.as_string();
 
       return strUrl;
 

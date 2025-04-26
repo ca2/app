@@ -1,6 +1,10 @@
 //#include "application_common.h"
 //#include "__apps.inl"
 
+
+CLASS_DECL_ACME void string_short_test();
+
+
 namespace APPLICATION_NAMESPACE
 {
    
@@ -145,6 +149,8 @@ int main(int argc, char * argv[], char * envp[])
       psystem->set_resource_block(p1, p2);
       
 #endif
+
+      string_short_test();
       
       {
          

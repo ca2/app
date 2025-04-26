@@ -9,6 +9,7 @@
 
 #include "matter.h"
 //#include "linked_property.h"
+#include "acme/prototype/string/scoped_string_base.h"
 #include "payload.h"
 
 

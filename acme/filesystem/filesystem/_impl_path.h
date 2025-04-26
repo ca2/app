@@ -572,7 +572,7 @@ namespace file
 
       auto pathThis = *this;
 
-      ::string::operator = (file_path_normalize(pathThis + str, this->m_epath));
+      ::string::operator = (file_path_normalize(((const ::string &)pathThis) + str, this->m_epath));
 
       return *this;
 
@@ -1260,7 +1260,7 @@ namespace file
 } // namespace file
 
 
-//inline ::file::path operator+(const ::file::path & path1, const ::file::path & path2)
+//inline ::file::path operator +(const ::file::path & path1, const ::file::path & path2)
 //{
 //
 //   return ::transfer(::file::path(((const::string &)path1) + ((const ::string&)path2)));
@@ -1269,21 +1269,21 @@ namespace file
 
 
 // For MSVC, but not for GCC?
-//inline ::file::path operator+(const ::file::path & path, const ::string & str)
+//inline ::file::path operator +(const ::file::path & path, const ::string & str)
 //{
 //
 //   return ((const::string &)path) + str;
 //}
 
 
-//inline ::file::path operator+ (const ::file::path & path, const ::scoped_string & scopedstr)
+//inline ::file::path operator + (const ::file::path & path, const ::scoped_string & scopedstr)
 //{
 //
 //   return ((const::string &)path) + scopedstr;
 //}
 
 
-//inline ::file::path operator+ (const ::file::path & path, const ::atom & atom)
+//inline ::file::path operator + (const ::file::path & path, const ::atom & atom)
 //{
 //
 //   return ((const::string &)path) + atom;
@@ -1291,7 +1291,7 @@ namespace file
 //}
 //
 //
-//inline ::file::path operator+(const ::file::path & path, const ::file::path::RANGE & range)
+//inline ::file::path operator +(const ::file::path & path, const ::file::path::RANGE & range)
 //{
 //
 //   return ((const::string &)path) + ::string(range);
@@ -1318,14 +1318,14 @@ namespace file
 //}
 //
 //
-//inline ::file::path operator+(const ::string & str, const ::file::path & path)
+//inline ::file::path operator +(const ::string & str, const ::file::path & path)
 //{
 //
 //   return str + ((const::string &)path);
 //}
 //
 //
-//inline ::file::path operator+(const ::const_ansi_range & range, const ::file::path & path)
+//inline ::file::path operator +(const ::const_ansi_range & range, const ::file::path & path)
 //{
 //
 //   return ::string(range) + ((const::string &)path);
@@ -1434,7 +1434,7 @@ inline const_ansi_range path::_get_count_parts_from_beginning(::collection::coun
 inline const_ansi_range path::get_count_parts_from_beginning(::collection::count cPathPartCountToConsume) const
 {
    
-   return ::string::get_count_parts_from_beginning(cPathPartCountToConsume, '/');
+   return ::string::_get_count_parts_from_beginning(cPathPartCountToConsume, '/');
 
 }
 

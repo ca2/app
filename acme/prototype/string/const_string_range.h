@@ -962,6 +962,7 @@ public:
    // Convert the string_base < ITERATOR_TYPE > to lowercase
    //template < typename ITERATOR_TYPE >
    string_base < ITERATOR_TYPE > lowered() const;
+   string_base < ITERATOR_TYPE > uppered() const;
 
 
    //   using BASE_RANGE::_find_first_character_in_start;

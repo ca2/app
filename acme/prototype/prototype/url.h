@@ -51,9 +51,13 @@ namespace url
    class parts;
 
 
-   CLASS_DECL_ACME::string decode(const ::block& block);
-   CLASS_DECL_ACME::string encode(const ::block& block);
-   CLASS_DECL_ACME::string encode_path(const ::block& block);
+   //CLASS_DECL_ACME::string decode_block(const ::block& block);
+   //CLASS_DECL_ACME::string encode_block(const ::block& block);
+   //CLASS_DECL_ACME::string encode_path_block(const ::block& block);
+
+   CLASS_DECL_ACME::string decode(const ::scoped_string & scopedstr);
+   CLASS_DECL_ACME::string encode(const ::scoped_string & scopedstr);
+   CLASS_DECL_ACME::string encode_path(const ::scoped_string & scopedstr);
 
 
    class CLASS_DECL_ACME connect_range

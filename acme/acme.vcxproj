@@ -406,10 +406,10 @@
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
       <SDLCheck>true</SDLCheck>
       <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <FunctionLevelLinking>false</FunctionLevelLinking>
-      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>archive.lib;Winhttp.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -981,10 +981,10 @@
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <OmitFramePointers>false</OmitFramePointers>
-      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>archive.lib;Winhttp.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>

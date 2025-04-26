@@ -348,8 +348,8 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <SDLCheck>true</SDLCheck>
       <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
-      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -814,8 +814,8 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <OmitFramePointers>false</OmitFramePointers>
       <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
-      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>

@@ -309,8 +309,8 @@
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
-      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
@@ -665,8 +665,8 @@
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <OmitFramePointers>false</OmitFramePointers>
       <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
-      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>

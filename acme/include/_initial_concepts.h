@@ -805,6 +805,18 @@ template < primitive_enum ENUM >
 inline long long as_long_long(const ENUM & e) { return (long long)(::raw_enum_of<ENUM>) e; }
 
 
+template<typename ITERATOR_TYPE>
+class const_string_range;
+
+
+
+using const_ansi_range = ::const_string_range < const ::ansi_character* >;
+using const_wd16_range = ::const_string_range < const ::wd16_character* >;
+using const_wd32_range = ::const_string_range < const ::wd32_character* >;
+using const_wide_range = ::const_string_range < const ::wide_character* >;
+
+
+
 template < typename CONST_STRING_CASTABLE >
 concept const_string =
 ::std::is_convertible < CONST_STRING_CASTABLE, ::const_ansi_range >::value ||

@@ -11,6 +11,11 @@ template < > consteval auto typed_##NAME<wchar_t>() { return L##LITERAL; } \
 template < > consteval auto typed_##NAME<char16_t>() { return u##LITERAL; } \
 template < > consteval auto typed_##NAME<char32_t>() { return U##LITERAL; }
 
+
+template<primitive_character CHARACTER>
+constexpr ::range<const CHARACTER *>
+inline _start_count_string_range(const CHARACTER *psz, memsize start, memsize count);
+
 //
 //template < typename T >
 //consteval auto typed_whitespace() { throw "interface onlye"; return nullptr; }
@@ -2370,10 +2375,6 @@ public:
 };
 
 
-using const_ansi_range = ::const_string_range < const ::ansi_character* >;
-using const_wd16_range = ::const_string_range < const ::wd16_character* >;
-using const_wd32_range = ::const_string_range < const ::wd32_character* >;
-using const_wide_range = ::const_string_range < const ::wide_character* >;
 
 
 #include "const_string_range_static_array.h"

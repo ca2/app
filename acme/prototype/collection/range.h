@@ -253,7 +253,7 @@ public:
    template<::collection::count count>
    constexpr range(const ITEM(&array)[count], enum_range erange = e_range_none) 
       requires
-      !primitive_character < ITEM >
+      (!primitive_character < ITEM >)
       : range(array, count, erange)
    {
    }

@@ -280,8 +280,8 @@ namespace url
    public:
 
 
-      connect      m_connect;
-      request      m_request;
+      ::url::connect       m_connect;
+      ::url::request       m_request;
 
 
       parts();

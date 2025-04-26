@@ -150,10 +150,10 @@ public:
 
    template < typename RANGE >
    string_base(const RANGE & str) requires
-      ::std::is_base_of_v < ::range < const typename string_base < ITERATOR_TYPE >::CHARACTER* >, RANGE >
+      (::std::is_base_of_v < ::range < const typename string_base < ITERATOR_TYPE >::CHARACTER* >, RANGE >
       && !
       (::std::is_base_of_v < string_base < ITERATOR_TYPE >, RANGE >
-         || ::std::is_same_v < string_base < ITERATOR_TYPE >, RANGE >) : 
+         || ::std::is_same_v < string_base < ITERATOR_TYPE >, RANGE >)) :
       ::const_string_range < ITERATOR_TYPE >(no_initialize_t{})
    {
       
@@ -607,6 +607,8 @@ public:
    string_base & operator = (const ::atom & atom);
    string_base & operator = (const ::payload & payload);
    string_base & operator = (const ::property & property);
+   template < typename ITERATOR_TYPE2, int t_size >
+   string_base& operator = (const const_string_range_static_array < ITERATOR_TYPE2, t_size >& a) { return assign(a); }
    template < character_count n >
    string_base & operator = (const ::inline_string < ::ansi_character, n > & inlinestring) { assign(inlinestring.begin(), inlinestring.size()); return *this; }
    //   template < has_as_string HAS_AS_STRING >
@@ -932,6 +934,18 @@ public:
    //template < int t_nSize >
    //inline string_base & assign(const static_string<CHARACTER, t_nSize > & ansistrSrc);
 
+
+   template < int t_size >
+   inline string_base & assign(const const_string_range_static_array< const CHARACTER *, t_size > & a);
+
+   template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, int t_size >
+   inline string_base & assign(const const_string_range_static_array< const OTHER_CHARACTER *, t_size > & a);
+
+
+
+
+
+
    inline string_base & append(character_count length, CHARACTER ch);
    template < primitive_character CHARACTER2 >
    inline string_base & append_character_array(const CHARACTER2 * psz, character_count length)
@@ -994,14 +1008,15 @@ public:
    //inline string_base & append(const ::wd32_character * pszSrc, character_count nLength);
    //inline string_base & append(const wd32_string & ansistrSrc);
 
+   inline string_base & append(const ::atom & atom);
+   inline string_base & append(const ::payload & payload);
+   inline string_base & append(const ::property & property);
    template < int t_size >
    inline string_base & append(const const_string_range_static_array< const CHARACTER *, t_size > & a);
 
    template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, int t_size >
    inline string_base & append(const const_string_range_static_array< const OTHER_CHARACTER *, t_size > & a);
-   inline string_base & append(const ::atom & atom);
-   inline string_base & append(const ::payload & payload);
-   inline string_base & append(const ::property & property);
+
 
 
    inline string_base & concatenate_with_separator(const SCOPED_STRING & scopedstrSeparator, const SCOPED_STRING & scopedstr);
@@ -1110,7 +1125,7 @@ public:
 
          auto pbasedata = this->base_data_from_data(this->m_begin);
 
-#if _DEBUG
+#ifdef _DEBUG
 
          if (::is_set(pbasedata) && pbasedata->m_countReference <= 0)
          {

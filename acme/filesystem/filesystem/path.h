@@ -76,8 +76,8 @@ namespace file
       template < character_range RANGE >
       inline path(const RANGE& range, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalizePath = true, long long iSize = -1)
          requires
-         !(::std::is_base_of_v < path, RANGE >
-            || ::std::is_same_v < path, RANGE >) :
+         (!(::std::is_base_of_v < path, RANGE >
+            || ::std::is_same_v < path, RANGE >)) :
          string(range)
       {
 
@@ -650,14 +650,6 @@ inline ::hash32 as_hash32 < const ::file::path & >(const ::file::path & key);
 
 
 
-template < typename ITERATOR_TYPE2, character_count n, int t_size >
-::file::path operator / (const ::erase_pointer < non_const <ITERATOR_TYPE2>>(&sz)[n], const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a)
-{
-
-   return ::transfer(::file::path(sz) / ::string(a));
-
-}
-
 
 CLASS_DECL_ACME ::file::enum_type safe_get_file_system_item_type(const ::file::path & path);
 CLASS_DECL_ACME ::file::enum_type get_file_system_item_type(const ::file::path & path);
@@ -682,7 +674,7 @@ template < primitive_character CHARACTER >
    const ::range < const CHARACTER* >& range2)
 {
 
-   return ::file::path(range1).slashed_path(::string(range2));
+   return ::file::path(range1).slashed_path(range2);
 
 }
 

@@ -1849,7 +1849,7 @@ void task::_send(const ::procedure & procedure)
    if (pmanualresethappeningOnEndOfSequenceToSetInProcedure)
    {
 
-      post([procedure, pmanualresethappeningOnEndOfSequenceToSetInProcedure, &pexception]()
+      post([this, procedure, pmanualresethappeningOnEndOfSequenceToSetInProcedure, &pexception]()
          {
 
                try
@@ -1885,7 +1885,7 @@ void task::_send(const ::procedure & procedure)
    else
    {
 
-      post([procedure, &pexception]()
+      post([this, procedure, &pexception]()
          {
 
             try

@@ -79,7 +79,7 @@ public:
    string_range(const CHARACTER(&s)[n]) : BASE_RANGE(s) {}
 
 
-   template < typed_character_pointer < typename ::string_range<BASE_TYPE>::CHARACTER > CHARACTER_POINTER >
+   template < typed_character_pointer < typename ::string_range<ITERATOR_TYPE>::CHARACTER > CHARACTER_POINTER >
    string_range(CHARACTER_POINTER start, CHARACTER_POINTER end, e_range erange) :
       BASE_RANGE(start, end, erange) { }
 

@@ -677,14 +677,14 @@ namespace file
 //      return operator /=(::file::path(::string(inlinenumberstring)));
 //
 //   }
-//
-//
-//   inline path& path::operator /= (const ::atom & atom)
-//   {
-//
-//      return operator /=(::file::path(atom));
-//
-//   }
+
+
+   // inline path path::operator / (const ::atom & atom)
+   // {
+   //
+   //    return operator /(::file::path(atom));
+   //
+   // }
 
 
 
@@ -1216,12 +1216,12 @@ namespace file
    }
 
 
-   //inline path path::operator / (const ::scoped_string & scopedstr) const
-   //{
-
-   //   return ::transfer(slashed_path(scopedstr));
-
-   //}
+   // inline path path::operator / (const ::scoped_string & scopedstr) const
+   // {
+   //
+   //    return ::transfer(slashed_path(scopedstr));
+   //
+   // }
 
 
    inline ::file::path & path::patch_base_path(const ::file::path & pathBase)

@@ -2382,10 +2382,10 @@ public:
 
 
 template<primitive_character CHARACTER>
-constexpr ::string_range<const CHARACTER*> _string_range(const CHARACTER* psz);
+constexpr ::range<const CHARACTER*> _string_range(const CHARACTER* psz);
 
 template<primitive_character CHARACTER>
-constexpr ::string_range<const CHARACTER*>
+constexpr ::range<const CHARACTER*>
 _start_count_string_range(const CHARACTER* psz, memsize start, memsize count);
 
 

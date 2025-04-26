@@ -31,7 +31,7 @@ namespace xml
       //node::array              m_nodea;            // children pointer node array
       //e_node                   m_etype;            // node type
       ::xml::document *          m_pdocument;             // document
-      //property_set             m_set;
+      //::property_set             m_set;
       ::collection::index                    m_iFirstXmlNode;
 
 

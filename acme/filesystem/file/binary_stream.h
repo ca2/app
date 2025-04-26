@@ -633,7 +633,7 @@ public:
    //
    //   throw ::exception(todo);
    //
-   //   //__exchange_save_array(*this, (property_set &) set);
+   //   //__exchange_save_array(*this, (::property_set &) set);
    //
    //   return *this;
    //

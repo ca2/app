@@ -8,7 +8,7 @@ namespace acme
 {
 
 
-   namespace property_set
+   namespace ::property_set
    {
 
 
@@ -70,7 +70,7 @@ namespace acme
       }
 
 
-   } // namespace property_set
+   } // namespace ::property_set
 
 
 } // namespace acme
@@ -85,7 +85,7 @@ namespace acme
 {
 
 
-   namespace property_set
+   namespace ::property_set
    {
 
 
@@ -306,7 +306,7 @@ namespace acme
 
 
 
-   } // namespace property_set
+   } // namespace ::property_set
 
 
 } // namespace acme

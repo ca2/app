@@ -1404,7 +1404,7 @@ class memory;
 class istring;
 
 
-class property_set;
+class ::property_set;
 
 
 class payload_array;

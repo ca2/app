@@ -445,7 +445,7 @@ void user::destroy()
 //   }
 //
 //
-//   pointer< ::sequence < ::conversation > > user::dialog_box(::particle * pparticle, const ::string & pszMatter, property_set & propertyset)
+//   pointer< ::sequence < ::conversation > > user::dialog_box(::particle * pparticle, const ::string & pszMatter, ::property_set & propertyset)
 //   {
 //
 //      return nullptr;
@@ -485,7 +485,7 @@ void user::destroy()
 //
 //      //auto pfuture = pbox->::extended::asynchronous< ::conversation >::sequence();
 //
-//      //property_set & propertyset = pbox->get_property_set();
+//      //::property_set & propertyset = pbox->get_property_set();
 //
 //      //propertyset["message"] = pszMessage;
 //

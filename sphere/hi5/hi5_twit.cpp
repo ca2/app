@@ -485,7 +485,7 @@ namespace hi5
 
       log_line(m_strRequest);
 
-      property_set post;
+      ::property_set post;
 
       post["command"] = "INIT";
 
@@ -562,7 +562,7 @@ namespace hi5
 
       log_line("mediaUploadAppend(\"" + strMediaId + "\", " + as_string(iIndex) + ", memory(size=" + as_string(iSize) + "))");
 
-      property_set post;
+      ::property_set post;
 
       ::sockets::multipart multipart(this);
 
@@ -614,7 +614,7 @@ namespace hi5
 
       log_line("mediaUploadFinalize(\"" + strMediaId + "\")");
 
-      property_set post;
+      ::property_set post;
 
       post["command"] = "FINALIZE";
 
@@ -682,7 +682,7 @@ namespace hi5
 
       log_line("mediaUploadFinalize(\"" + strMediaId + "\")");
 
-      property_set post;
+      ::property_set post;
 
       string strUrl("https://upload.twitter.com/1.1/media/upload.network_payload");
 
@@ -776,7 +776,7 @@ namespace hi5
 
       bool bOk;
 
-      property_set post;
+      ::property_set post;
 
       post["status"] = newStatus;
 
@@ -1122,7 +1122,7 @@ namespace hi5
       if( true && userInfo.get_length() && dMsg.get_length() )
       {
          /* Prepare ___new direct message */
-         property_set post;
+         ::property_set post;
          post["text"] = dMsg;
 
          /* Prepare URL */
@@ -1207,7 +1207,7 @@ namespace hi5
          strUrl = build_url(TWIT_FRIENDSHIPSCREATE_URL, userInfo, isUserId );
 
          /* Send some dummy data in POST */
-         property_set post;
+         ::property_set post;
          post["text"] = "dummy";
 
          /* Perform POST */
@@ -1404,7 +1404,7 @@ namespace hi5
          strUrl.append( TWIT_EXTENSIONFORMAT );
 
          /* Send some dummy data in POST */
-         property_set post;
+         ::property_set post;
          post["text"] = "dummy";
 
          /* Perform POST */
@@ -1464,7 +1464,7 @@ namespace hi5
          strUrl.append( TWIT_EXTENSIONFORMAT );
 
          /* Send some dummy data in POST */
-         property_set post;
+         ::property_set post;
          post["text"] = "dummy";
 
          /* Perform POST */
@@ -1573,7 +1573,7 @@ namespace hi5
          strUrl = TWIT_SAVEDSEARCHCREATE_URL;
 
          /* Send some dummy data in POST */
-         property_set post;
+         ::property_set post;
          post["query"] = query;
 
          /* Perform POST */
@@ -1844,7 +1844,7 @@ namespace hi5
    * @remarks: internal method
    *
    *--*/
-   bool twit::performGet( const string & getUrl, property_set & headers)
+   bool twit::performGet( const string & getUrl, ::property_set & headers)
    {
 
       string dataStrDummy( "" );
@@ -1865,7 +1865,7 @@ namespace hi5
    }
 
 
-//   bool twit::performPost( const string & getUrl, property_set & headers, property_set & post)
+//   bool twit::performPost( const string & getUrl, ::property_set & headers, ::property_set & post)
 //      {
 //
 //         string dataStrDummy( "" );

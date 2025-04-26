@@ -71,7 +71,7 @@ namespace platform
 
       void http_application_destruct();
 
-      property_set & process_set(::property_set & set, const ::url::url & url);
+      ::property_set & process_set(::property_set & set, const ::url::url & url);
 
       //DECLARE_MESSAGE_HANDLER(get);
 

@@ -642,7 +642,7 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
    {
       throw ::exception(todo);
 
-      //__exchange_load_array(*this, (property_set &) payload);
+      //__exchange_load_array(*this, (::property_set &) payload);
 
 
 

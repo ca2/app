@@ -2315,6 +2315,31 @@ template < primitive_floating FLOATING >
 inline ::string as_string(FLOATING f, const ::ansi_character * pszFormat = "%f"_ansi);
 
 
+inline ::string as_string(const ::block & block)
+{
+   
+   char chNull = '\0';
+
+   auto p = memory_find(block.data(), block.size(), &chNull, 1);
+
+   auto offset = ((char *)p - (char *)block.data());
+
+   if (::is_set(p) && offset < block.size())
+   {
+
+      return { (const char *) block.data(), offset };
+
+   }
+   else
+   {
+
+      return { (const char *) block.data(), block.size() };
+
+   }
+
+}
+
+
 template < >
 inline ::hash32 as_hash32 < const ansi_string & >(const ansi_string & ansistr);
 

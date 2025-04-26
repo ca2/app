@@ -252,7 +252,7 @@ namespace platform
 
    //void install_message_routing(::channel * pchannel) override{}
 
-   //::string aura_application_layer::dialog_box(const ::string & pszMatter, property_set & propertyset) override{}
+   //::string aura_application_layer::dialog_box(const ::string & pszMatter, ::property_set & propertyset) override{}
 
    //void aura_application_layer::application_menu_update() override{}
 

@@ -284,7 +284,7 @@ inline ::hash32 _string_range_unsigned_int_hash(::string_range<const CHARACTER *
 
 
 template<primitive_character CHARACTER>
-constexpr ::string_range<const CHARACTER *> _string_range(const CHARACTER *psz) {
+constexpr ::range<const CHARACTER *> _string_range(const CHARACTER *psz) {
 
    return {psz, psz + string_safe_length(psz)};
 
@@ -292,7 +292,7 @@ constexpr ::string_range<const CHARACTER *> _string_range(const CHARACTER *psz) 
 
 
 template<primitive_character CHARACTER>
-constexpr ::string_range<const CHARACTER *>
+constexpr ::range<const CHARACTER *>
 _start_count_string_range(const CHARACTER *psz, memsize start, memsize count) {
 
    auto pend = psz + string_safe_length(psz);

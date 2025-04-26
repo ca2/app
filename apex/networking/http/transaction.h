@@ -14,8 +14,8 @@ namespace http
    public:
 
 
-      property_set         m_propertysetHeader;
-      property_set         m_propertysetAttribute;
+      ::property_set         m_propertysetHeader;
+      ::property_set         m_propertysetAttribute;
       http::cookies        m_cookies;
       string               m_null;
 
@@ -59,10 +59,10 @@ namespace http
       void SetUserAgent(const string & value);
       string UserAgent();
 
-      property_set & headers();
+      ::property_set & headers();
       property & header(atom idKey);
 
-      property_set & attrs();
+      ::property_set & attrs();
       property & attr(atom idKey);
 
 
@@ -73,7 +73,7 @@ namespace http
 
    }; // end of class
 
-   inline property_set & transaction::attrs()
+   inline ::property_set & transaction::attrs()
    {
       return m_propertysetAttribute;
    }
@@ -83,7 +83,7 @@ namespace http
       return m_propertysetAttribute[idKey];
    }
 
-   inline property_set & transaction::headers()
+   inline ::property_set & transaction::headers()
    {
       return m_propertysetHeader;
    }

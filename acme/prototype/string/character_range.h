@@ -49,11 +49,11 @@ template < character_range RANGE, has_as_string HAS_AS_STRING >
 
 
 
-template < character_range RANGE, character_pointer CHARACTER_POINTER >
+template < character_range RANGE, typed_character_pointer < typename RANGE::CHARACTER > CHARACTER_POINTER >
 const_string_range_static_array < typename RANGE::const_iterator, 2 > operator + (const RANGE& range, CHARACTER_POINTER psz)
 {
 
-   return { { range }, { psz, psz + string_safe_length(psz), e_range_null_terminated } };
+   return { range, { psz, psz + string_safe_length(psz), e_range_null_terminated } };
 
 }
 

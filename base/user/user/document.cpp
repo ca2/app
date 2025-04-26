@@ -2180,14 +2180,14 @@ namespace user
    }
 
 
-   property_set * document::form_document_get_property_set()
+   ::property_set * document::form_document_get_property_set()
    {
 
       return nullptr;
 
    }
 
-   property_set & document::form_document_property_set()
+   ::property_set & document::form_document_property_set()
    {
 
       return *form_document_get_property_set();

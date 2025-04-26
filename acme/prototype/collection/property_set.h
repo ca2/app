@@ -13,7 +13,7 @@
 
 // ::property set key is case insensitive
 // PROPERTY_ARRAY Property set ordered
-class CLASS_DECL_ACME property_set :
+class CLASS_DECL_ACME ::property_set :
    virtual public ::property_holder_array
 {
 public:
@@ -26,7 +26,7 @@ public:
    property_set() {}
    property_set(::std::initializer_list < ::payload > list);
    property_set(const ::property_set & set);
-   property_set(property_set && set);
+   property_set(::property_set && set);
    ~property_set() override;
 
 
@@ -54,7 +54,7 @@ public:
    const ::property& property(const ::atom& atom) const
    {
 
-      return ((property_set*)this)->property(atom);
+      return ((::property_set*)this)->property(atom);
 
    }
 
@@ -415,19 +415,19 @@ public:
    //::collection::count get_count() const;
 
 
-   property_set & operator = (const ::payload & payload);
-   property_set & operator = (const ::property_set & set);
-//   property_set & operator = (const pair_set_interface & set);
-//   property_set & operator = (const str_str_interface & set);
+   ::property_set & operator = (const ::payload & payload);
+   ::property_set & operator = (const ::property_set & set);
+//   ::property_set & operator = (const pair_set_interface & set);
+//   ::property_set & operator = (const str_str_interface & set);
 
-   property_set & operator += (const ::property_set & set);
-   property_set & operator |= (const ::property_set & set);
+   ::property_set & operator += (const ::property_set & set);
+   ::property_set & operator |= (const ::property_set & set);
 
 
-   property_set & append(const ::property_set & set);
-   property_set & merge(const ::property_set & set);
+   ::property_set & append(const ::property_set & set);
+   ::property_set & merge(const ::property_set & set);
 
-   property_set & merge(const ::property & property);
+   ::property_set & merge(const ::property & property);
 
 
 
@@ -452,7 +452,7 @@ public:
    T * cast(const ::atom & atom, T * pDefault = nullptr) const
    {
 
-      return ((property_set *) this)->cast < T >(atom, pDefault);
+      return ((::property_set *) this)->cast < T >(atom, pDefault);
 
    }
 
@@ -476,7 +476,7 @@ CLASS_DECL_ACME void property_set_skip_network_payload(::ansi_range & range);
 //inline ::pointer<::property_set>localconfigini();
 
 
-inline bool property_set::_get_string(string & strResult, const ::atom & atom) const
+inline bool ::property_set::_get_string(string & strResult, const ::atom & atom) const
 {
 
    auto pproperty = lookup(atom);

@@ -153,7 +153,7 @@ namespace core
       virtual void init() override;
 
 
-      //virtual pointer< ::sequence < ::conversation > > dialog_box(::particle * pparticle, const ::string & pszMatter, property_set & propertyset);
+      //virtual pointer< ::sequence < ::conversation > > dialog_box(::particle * pparticle, const ::string & pszMatter, ::property_set & propertyset);
 
 
       //virtual pointer< ::sequence < ::conversation > > ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);

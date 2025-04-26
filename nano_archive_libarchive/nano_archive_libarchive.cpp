@@ -82,7 +82,7 @@ namespace libarchive
 
                      }
 
-                     p = path(p).skip_any_character_in("/\\").begin();
+                     p = path(p).skip_any_character_in("/\\");
 
                      path = p;
 
@@ -107,7 +107,7 @@ namespace libarchive
 
                         }
 
-                        p = pathSymlinkSource(p).skip_any_character_in("/\\").begin();
+                        p = pathSymlinkSource(p).skip_any_character_in("/\\");
 
                         pathSymlinkSource = p;
 

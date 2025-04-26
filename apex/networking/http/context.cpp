@@ -67,7 +67,7 @@ namespace http
    }
 
 
-   property_set & context::process_set(::property_set & set, const ::url::url & url)
+   ::property_set & context::process_set(::property_set & set, const ::url::url & url)
    {
 
       set["app"] = get_app();

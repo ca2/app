@@ -23,7 +23,7 @@ namespace user
       ::pointer<::aura::application>     m_papplication;
       bool                                m_bMakeVisible;
       ::pointer<::user::interaction>     m_puserinteractionParent;
-      property_set                        m_setParameters;
+      ::property_set                        m_setParameters;
 
       run_application();
 

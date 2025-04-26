@@ -7,7 +7,7 @@
 void prop_id_debug(::particle * pparticle);
 
 
-//property::property(property_set * pset) :
+//property::property(::property_set * pset) :
 //   m_ppropertyset(pset)
 //{
 //
@@ -114,7 +114,7 @@ void prop_id_debug(::particle * pparticle);
 ////}
 //
 //
-////property::property(property_set * pset, const atom & atom) :
+////property::property(::property_set * pset, const atom & atom) :
 ////   m_ppropertyset(pset)
 ////{
 ////
@@ -130,7 +130,7 @@ void prop_id_debug(::particle * pparticle);
 ////}
 //
 //
-////property::property(property_set * pset, const atom & atom, const ::payload &  ::payload, ::particle * pparticle) :
+////property::property(::property_set * pset, const atom & atom, const ::payload &  ::payload, ::particle * pparticle) :
 ////   m_ppropertyset(pset),
 ////   m_var(payload)
 ////{
@@ -278,7 +278,7 @@ string & property::get_network_arguments(::string & str) const
 //   return payloada();
 //}
 //
-//property_set & property::propset()
+//::property_set & property::propset()
 //{
 //   return propset();
 //}
@@ -298,7 +298,7 @@ string & property::get_network_arguments(::string & str) const
 //   return payloada();
 //}
 //
-//const property_set & property::propset() const
+//const ::property_set & property::propset() const
 //{
 //   return propset();
 //}

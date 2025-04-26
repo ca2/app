@@ -158,8 +158,8 @@ namespace url
       auto fragment() const { return decode(m_rangeFragment); }// param1=1&param2=2
       //bool is_scoped() const { return m_bScoped; }
 
-      const property_set& arguments() const;
-      property_set& arguments();
+      const ::property_set& arguments() const;
+      ::property_set& arguments();
 
       ::payload get(const ::atom& atom) const;
 
@@ -246,7 +246,7 @@ namespace url
 
 
       //::string                      m_strPath;
-      //::pointer < property_set >    m_psetArguments;
+      //::pointer < ::property_set >    m_psetArguments;
       //::string                      m_strFragment;
 
       request();
@@ -264,7 +264,7 @@ namespace url
       void set(const ::scoped_string& scopedstrPath, const ::scoped_string & scopedstrQuery, const ::scoped_string & scopedstrFragment);
 
       void set_query(const ::scoped_string& scopedstrKey);
-      void set_query(const property_set & set);
+      void set_query(const ::property_set & set);
 
 
 
@@ -510,7 +510,7 @@ namespace url
       //string string_set(string & strUrl, const ::string & strKey, ::payload payload);
       //string string_set_if_not_empty(string& strUrl, const ::string & strKey, ::payload payload);
       //::payload & var_set(::payload & varUrl, const ::string & strKey, ::payload payload);
-      //property & property_set(property & propUrl, const ::string & strKey, ::payload payload);
+      //property & ::property_set(property & propUrl, const ::string & strKey, ::payload payload);
 
       //string set_script(const ::string & strUrl, const ::string & strScript);
       

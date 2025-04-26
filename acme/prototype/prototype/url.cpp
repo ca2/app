@@ -73,7 +73,7 @@ namespace url
    }
    
    
-   const property_set& request_range::arguments() const
+   const ::property_set& request_range::arguments() const
    {
 
       return ((request*)this)->arguments();
@@ -81,7 +81,7 @@ namespace url
    }
 
 
-   property_set& request_range::arguments()
+   ::property_set& request_range::arguments()
    {
 
       __defer_raw_construct_new(m_psetArguments);

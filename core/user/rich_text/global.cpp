@@ -59,7 +59,7 @@ namespace user
 
             }
 
-            iFind3 = str.skip_any_character_in_index(" \t\r\n", iFind2);
+            iFind3 = str.index_of(str(iFind2).skip_any_character_in(" \t\r\n"));
 
             if (::not_found(iFind3))
             {

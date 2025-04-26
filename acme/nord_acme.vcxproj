@@ -558,7 +558,7 @@
     <ClCompile Include="primitive\primitive\payload.cpp" />
     <ClCompile Include="primitive\primitive\property.cpp" />
     <ClCompile Include="primitive\primitive\property_object.cpp" />
-    <ClCompile Include="primitive\primitive\property_set.cpp" />
+    <ClCompile Include="primitive\primitive\::property_set.cpp" />
     <ClCompile Include="primitive\primitive\read_only_memory.cpp" />
     <ClCompile Include="primitive\primitive\type.cpp" />
     <ClCompile Include="primitive\primitive\url.cpp" />
@@ -1341,7 +1341,7 @@
     <ClInclude Include="primitive\primitive\primitive_update.h" />
     <ClInclude Include="primitive\primitive\promise.h" />
     <ClInclude Include="primitive\primitive\property.h" />
-    <ClInclude Include="primitive\primitive\property_set.h" />
+    <ClInclude Include="primitive\primitive\::property_set.h" />
     <ClInclude Include="primitive\primitive\property_set_papaya.h" />
     <ClInclude Include="primitive\primitive\request_interface.h" />
     <ClInclude Include="primitive\primitive\request_signal.h" />
@@ -1372,7 +1372,7 @@
     <ClInclude Include="primitive\primitive\_papaya_impl.h" />
     <ClInclude Include="primitive\primitive\_property_set_composite_impl.h" />
     <ClInclude Include="primitive\property.h" />
-    <ClInclude Include="primitive\property_set.h" />
+    <ClInclude Include="primitive\::property_set.h" />
     <ClInclude Include="primitive\relation_set.h" />
     <ClInclude Include="primitive\request_interface.h" />
     <ClInclude Include="primitive\request_signal.h" />

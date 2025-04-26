@@ -2874,8 +2874,8 @@
 		<Unit filename="primitive/primitive/promise.h" />
 		<Unit filename="primitive/primitive/property.cpp" />
 		<Unit filename="primitive/primitive/property.h" />
-		<Unit filename="primitive/primitive/property_set.cpp" />
-		<Unit filename="primitive/primitive/property_set.h" />
+		<Unit filename="primitive/primitive/::property_set.cpp" />
+		<Unit filename="primitive/primitive/::property_set.h" />
 		<Unit filename="primitive/primitive/property_set_composite.cpp" />
 		<Unit filename="primitive/primitive/property_set_papaya.cpp" />
 		<Unit filename="primitive/primitive/property_set_papaya.h" />

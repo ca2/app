@@ -5622,7 +5622,7 @@ string payload::implode(const ::scoped_string & scopedstrGlue) const
          return m_pproperty->find_property_by_text(atom.m_str);
 
       }
-      else*/ 
+      else*/
       
       if (m_etype == e_type_property_set)
       {
@@ -5714,7 +5714,7 @@ property & payload::get_property(const ::atom & atom)
 
    auto iNew = propertyset.add_property(atom);
 
-   return propertyset[iNew];
+   return propertyset.property_at(iNew);
 
 }
 

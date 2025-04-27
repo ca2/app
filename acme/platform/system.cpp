@@ -2070,7 +2070,7 @@ namespace platform
 
       m_papplication->initialize(this);
 
-      m_papplication->property_set().merge(::property_set());
+      m_papplication->property_set().merge(property_set());
 
       //*((::APPLICATION_FLAGS *)this) = *application();
 

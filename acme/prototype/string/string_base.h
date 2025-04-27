@@ -625,8 +625,8 @@ public:
    string_base & operator = (const ::atom & atom);
    string_base & operator = (const ::payload & payload);
    string_base & operator = (const ::property & property);
-   template < typename ITERATOR_TYPE2, int t_size >
-   string_base& operator = (const const_string_range_static_array < ITERATOR_TYPE2, t_size >& a) { return assign(a); }
+   //template < typename ITERATOR_TYPE2, int t_size >
+   //string_base& operator = (const const_string_range_static_array < ITERATOR_TYPE2, t_size >& a) { return assign(a); }
    template < character_count n >
    string_base & operator = (const ::inline_string < ::ansi_character, n > & inlinestring) { assign(inlinestring.begin(), inlinestring.size()); return *this; }
    //   template < has_as_string HAS_AS_STRING >
@@ -953,11 +953,11 @@ public:
    //inline string_base & assign(const static_string<CHARACTER, t_nSize > & ansistrSrc);
 
 
-   template < int t_size >
-   inline string_base & assign(const const_string_range_static_array< const CHARACTER *, t_size > & a);
+   //template < int t_size >
+   //inline string_base & assign(const const_string_range_static_array< const CHARACTER *, t_size > & a);
 
-   template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, int t_size >
-   inline string_base & assign(const const_string_range_static_array< const OTHER_CHARACTER *, t_size > & a);
+   //template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, int t_size >
+   //inline string_base & assign(const const_string_range_static_array< const OTHER_CHARACTER *, t_size > & a);
 
 
 

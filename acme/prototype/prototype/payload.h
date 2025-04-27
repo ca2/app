@@ -1128,13 +1128,13 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    payload & operator = (const ::property & prop);
    //payload & operator = (const ::property * pproperty);
 
-   template < primitive_character CHARACTER, int t_size >
-   payload & operator = (const const_string_range_static_array< const CHARACTER *, t_size > & a)
-   {
+   //template < primitive_character CHARACTER, int t_size >
+   //payload & operator = (const const_string_range_static_array< const CHARACTER *, t_size > & a)
+   //{
 
-      return this->operator=(::string(a));
+   //   return this->operator=(::string(a));
 
-   }
+   //}
    payload & operator = (const ::payload & payload);
    payload & operator = (const ::int_array & ia);
    payload & operator = (const ::string_array & stra);

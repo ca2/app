@@ -465,7 +465,9 @@ namespace dynamic_source
       
       ::file::path pathSourceNetnodeDSS = m_pintegrationcontext->m_pathBuildFolder / "time-" OPERATING_SYSTEM_NAME "/intermediate/x64" / m_strDynamicSourceConfiguration / "app-core/netnode_dynamic_source_script";
 
-      ::file::path pathSourceDVP = pathSourceNetnodeDSS / (m_pintegrationcontext->payload("sdk1").as_string() + ".pdb");
+      ::string strSDK1 = m_pintegrationcontext->payload("sdk1").as_string();
+
+      ::file::path pathSourceDVP = pathSourceNetnodeDSS / (strSDK1 + ".pdb");
 
       //::file::path pathCompiler;
 

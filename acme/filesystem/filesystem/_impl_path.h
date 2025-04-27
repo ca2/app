@@ -1492,13 +1492,13 @@ template < character_range RANGE, character_count n >
 
 
 
-template < primitive_character ITERATOR_TYPE2, int t_size, character_range RANGE >
-::file::path operator / (const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a, const RANGE& range)
-{
-
-   return ::transfer(::file::path(a) / ::string(range));
-
-}
+//template < primitive_character ITERATOR_TYPE2, int t_size, character_range RANGE >
+//::file::path operator / (const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a, const RANGE& range)
+//{
+//
+//   return ::transfer(::file::path(a) / ::string(range));
+//
+//}
 
 
 template < character_range RANGE, character_pointer CHARACTER_POINTER >
@@ -1510,21 +1510,21 @@ template < character_range RANGE, character_pointer CHARACTER_POINTER >
 }
 
 
-template < character_range RANGE, typename ITERATOR_TYPE2, int t_size >
-::file::path operator / (const RANGE& range, const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a)
-{
+//template < character_range RANGE, typename ITERATOR_TYPE2, int t_size >
+//::file::path operator / (const RANGE& range, const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a)
+//{
+//
+//   return ::transfer(::file::path(range) / ::file::path(a));
+//
+//}
+//
 
-   return ::transfer(::file::path(range) / ::file::path(a));
-
-}
-
-
-template < typename ITERATOR_TYPE2, character_count n, int t_size >
-::file::path operator / (const ::erase_pointer < non_const <ITERATOR_TYPE2>>(&sz)[n], const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a)
-{
-
-   return ::transfer(::file::path(sz) / ::string(a));
-
-}
+//template < typename ITERATOR_TYPE2, character_count n, int t_size >
+//::file::path operator / (const ::erase_pointer < non_const <ITERATOR_TYPE2>>(&sz)[n], const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a)
+//{
+//
+//   return ::transfer(::file::path(sz) / ::string(a));
+//
+//}
 
 

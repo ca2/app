@@ -424,7 +424,7 @@ void property_object::read_configuration_from_ini(const ::payload & payloadFile)
 
    auto strIni = file()->safe_get_string(payloadFile);
 
-   ::property_set().parse_ini(strIni);
+   property_set().parse_ini(strIni);
 
 }
 
@@ -432,7 +432,7 @@ void property_object::read_configuration_from_ini(const ::payload & payloadFile)
 void property_object::write_configuration_to_ini(const ::payload & payloadFile)
 {
 
-   auto strIni = ::property_set().get_ini();
+   auto strIni = property_set().get_ini();
 
    file()->put_text(payloadFile, strIni);
 
@@ -972,7 +972,7 @@ unsigned int property_object::get_unsigned_int(const ::atom & atom, unsigned int
 ::property & property_object::property(const atom & atom)
 {
 
-   return ::property_set()[atom];
+   return property_set()[atom];
 
 }
 

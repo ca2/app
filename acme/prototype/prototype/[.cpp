@@ -4197,7 +4197,7 @@ payload_array & payload::payloada_reference()
 
       //m_ppropertyset = ___new ::property_set();
 
-      return ::property_set();
+      return {};
 
    }
 

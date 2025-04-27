@@ -274,7 +274,7 @@ public:
    //binary_stream & operator <<(const ::string & str);
    ////binary_stream & operator <<(const ::particle * pparticle) ;
    ////binary_stream & operator <<(const matter& matter) ;
-   ////binary_stream & operator <<(const property_set & set);
+   ////binary_stream & operator <<(const ::property_set & set);
    //binary_stream & operator <<(const block & block);
    //binary_stream & operator <<(const element & element);
 
@@ -327,7 +327,7 @@ public:
    //binary_stream & operator >>(string & str);
    //// void read(::particle * pparticle);
    ////binary_stream & operator >>(matter& matter) ;
-   ////binary_stream & operator >>(property_set & set);
+   ////binary_stream & operator >>(::property_set & set);
    //binary_stream & operator >>(block & block);
    //binary_stream & operator >>(element & element);
 
@@ -628,12 +628,12 @@ public:
 
 
 
-   //binary_stream & operator <<(const property_set& set)
+   //binary_stream & operator <<(const ::property_set & set)
    //{
    //
    //   throw ::exception(todo);
    //
-   //   //__exchange_save_array(*this, (property_set &) set);
+   //   //__exchange_save_array(*this, (::property_set &) set);
    //
    //   return *this;
    //
@@ -673,7 +673,7 @@ public:
    binary_stream & operator <<(const ::ansi_character * psz);
 
 
-   virtual binary_stream & operator <<(const ::string & str);
+   virtual binary_stream & operator <<(const ::range < const char * > & str);
 
 
    //binary_stream & operator <<(const ::particle * pparticle)
@@ -1072,7 +1072,7 @@ public:
    //}
    //
 
-   //binary_stream & operator >>(property_set & set)
+   //binary_stream & operator >>(::property_set & set)
    //{
    //
    //   throw ::exception(todo);

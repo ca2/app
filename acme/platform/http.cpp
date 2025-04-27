@@ -38,7 +38,7 @@ namespace platform
    }
 
 
-   ::file::enum_type http::get_type(const ::url::url & url, property_set & set)
+   ::file::enum_type http::get_type(const ::url::url & url, ::property_set & set)
    {
 
       throw ::interface_only();
@@ -48,7 +48,7 @@ namespace platform
    }
 
 
-   ::file::enum_type http::get_type(const ::url::url & url, ::payload * pvarQuery, property_set & set)
+   ::file::enum_type http::get_type(const ::url::url & url, ::payload * pvarQuery, ::property_set & set)
    {
 
       throw ::interface_only();
@@ -84,7 +84,7 @@ namespace platform
 
       pget->m_url = url;
 
-      pget->get_property_set() = set;
+      pget->property_set() = set;
 
       pget->m_timeSyncTimeout = timeTimeout;
 
@@ -98,7 +98,7 @@ namespace platform
 
       str = pmemory->as_utf8();
 
-      set = pget->get_property_set();
+      set = pget->property_set();
 
       return str;
 
@@ -142,7 +142,7 @@ namespace platform
 
       pget->m_url = url;
 
-      pget->get_property_set() = set;
+      pget->property_set() = set;
 
       pget->want_memory_response();
 
@@ -150,7 +150,7 @@ namespace platform
 
       pget->call();
 
-      set = pget->get_property_set();
+      set = pget->property_set();
 
       pfile->write(*pget->get_memory_response());
 
@@ -159,7 +159,7 @@ namespace platform
    }
 
 
-   bool http::put(const ::url::url & url, memory_base & memory, property_set & set)
+   bool http::put(const ::url::url & url, memory_base & memory, ::property_set & set)
    {
 
       throw ::interface_only();
@@ -170,7 +170,7 @@ namespace platform
    }
 
 
-   bool http::put(const ::url::url & url, file_pointer  pfile, property_set & set)
+   bool http::put(const ::url::url & url, file_pointer  pfile, ::property_set & set)
    {
 
       throw ::interface_only();
@@ -181,7 +181,7 @@ namespace platform
    }
 
 
-   bool http::put(const ::url::url & url, memory_base * pmemory, property_set & set)
+   bool http::put(const ::url::url & url, memory_base * pmemory, ::property_set & set)
    {
 
       throw ::interface_only();
@@ -189,7 +189,7 @@ namespace platform
       return false;
 
    }
-   //virtual bool put(const ::url::url & url, file_pointer  pfile, property_set & set);
+   //virtual bool put(const ::url::url & url, file_pointer  pfile, ::property_set & set);
 
 
 } // namespace platform

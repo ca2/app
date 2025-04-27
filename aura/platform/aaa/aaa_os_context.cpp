@@ -628,7 +628,7 @@
    }
 
 
-   bool os_context::browse_file_open(::user::interaction* pinteraction, property_set & set)
+   bool os_context::browse_file_open(::user::interaction* pinteraction, ::property_set & set)
    {
 
       throw ::interface_only();
@@ -638,7 +638,7 @@
    }
 
 
-   bool os_context::browse_file_save(::user::interaction* pinteraction, property_set & set)
+   bool os_context::browse_file_save(::user::interaction* pinteraction, ::property_set & set)
    {
 
       throw ::interface_only();
@@ -648,7 +648,7 @@
    }
 
 
-   bool os_context::browse_folder(::user::interaction* pinteraction, property_set & set)
+   bool os_context::browse_folder(::user::interaction* pinteraction, ::property_set & set)
    {
 
       throw ::interface_only();
@@ -657,7 +657,7 @@
 
    }
 
-   bool os_context::browse_file_or_folder(::user::interaction* pinteraction, property_set & set)
+   bool os_context::browse_file_or_folder(::user::interaction* pinteraction, ::property_set & set)
    {
 
       throw ::interface_only();

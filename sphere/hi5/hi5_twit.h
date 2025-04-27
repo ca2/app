@@ -92,7 +92,7 @@ namespace hi5
 
       /* cURL flags */
       bool m_curlLoginParamsSet;
-      property_set m_setHttp;
+      ::property_set m_setHttp;
 
 
       /* Twitter data */
@@ -196,11 +196,11 @@ namespace hi5
       void prepareCurlUserPass();
       void prepareStandardParams();
       bool performGet(const string & getUrl);
-      bool performGet(const string & getUrl, property_set & headers);
+      bool performGet(const string & getUrl, ::property_set & headers);
       bool performDelete(const string & deleteUrl);
-      bool performPost(const string & postUrl, property_set & post);
-      bool performMultiPartPost(const string & postUrl, property_set & post, bool bMultiPartPost);
-      //bool performPost( const string & postUrl, property_set & headers, property_set & post );
+      bool performPost(const string & postUrl, ::property_set & post);
+      bool performMultiPartPost(const string & postUrl, ::property_set & post, bool bMultiPartPost);
+      //bool performPost( const string & postUrl, ::property_set & headers, ::property_set & post );
 
       string build_url(const ::string & baseUrl, const ::string & userInfo, bool isUserId);
 

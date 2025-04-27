@@ -68,14 +68,14 @@ string get_task_name(htask htask)
 typedef HRESULT WINAPI FN_SetThreadDescription(_In_ htask htask, _In_ PCWSTR pThreadDescription);
 
 
-CLASS_DECL_ACME void task_set_name(htask htask, const char * pszName)
+CLASS_DECL_ACME void task_set_name(htask htask, const ::scoped_string & scopedstr)
 {
 
    bool bOk1 = false;
 
 #ifdef UNIVERSAL_WINDOWS
 
-   bOk1 = SUCCEEDED(SetThreadDescription(htask, wstring(pszName)));
+   bOk1 = SUCCEEDED(SetThreadDescription(htask, wstring(scopedstr)));
 
 #else
 
@@ -84,14 +84,14 @@ CLASS_DECL_ACME void task_set_name(htask htask, const char * pszName)
    if (pfn_set_thread_description)
    {
 
-      bOk1 = SUCCEEDED(pfn_set_thread_description(htask, wstring(pszName)));
+      bOk1 = SUCCEEDED(pfn_set_thread_description(htask, wstring(scopedstr)));
 
    }
 
    if (!bOk1 && ::is_debugger_attached())
    {
 
-      bOk1 = SetThreadName(GetThreadId((HANDLE) htask.m_h), pszName) != false;
+      bOk1 = SetThreadName(GetThreadId((HANDLE) htask.m_h), ::string(scopedstr)) != false;
 
    }
 
@@ -287,19 +287,16 @@ namespace parallelization
 } // namespace acme
 
 
-
-
-
-void task_set_name(const char * pszThreadName)
+void task_set_name(const ::scoped_string & scopedstrThreadName)
 {
 
-   if (::string(pszThreadName) == "task")
+   if (::string(scopedstrThreadName) == "task")
    {
       output_debug_string("task");
 
    }
 
-   /*return*/ task_set_name((htask)(::uptr) ::GetCurrentThread(), pszThreadName);
+   /*return*/ task_set_name((htask)(::uptr) ::GetCurrentThread(), scopedstrThreadName);
 
 }
 

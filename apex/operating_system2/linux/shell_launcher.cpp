@@ -22,7 +22,7 @@ namespace ansios
          if (m_strOperation.is_empty())
          {
 
-            property_set set;
+            ::property_set set;
 
             ///m_estatus =
             ///
@@ -32,7 +32,7 @@ namespace ansios
          else if (case_insensitive_ansi_compare(m_strOperation, "open") == 0)
          {
 
-            property_set set;
+            ::property_set set;
 
             pnode->call_sync("gnome-open", m_strFile, m_strDirectory, m_edisplay, 1_min, set);
 

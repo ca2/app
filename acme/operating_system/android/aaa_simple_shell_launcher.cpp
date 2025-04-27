@@ -10,7 +10,7 @@ void ::acme::shell_launcher::execute()
       if(m_strOperation.is_empty())
       {
          
-         property_set set;
+         ::property_set set;
 
          m_dwResult = call_sync(m_strFile, m_strParameters, m_strDirectory, m_edisplay, 1_min, set);
 
@@ -18,7 +18,7 @@ void ::acme::shell_launcher::execute()
       else if(case_insensitive_ansi_compare(m_strOperation, "open") == 0)
       {
 
-         property_set set;
+         ::property_set set;
 
          m_dwResult = call_sync("gnome-open", m_strFile, m_strDirectory, m_edisplay, 1_min, set);
 

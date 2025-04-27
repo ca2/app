@@ -1071,7 +1071,7 @@ namespace image
 
       auto dt = t2 - t1;
 
-      informationf("file_as_memory time " + ::as_string(dt.floating_millisecond()) + "ms");
+      information("file_as_memory time " + ::as_string(dt.floating_millisecond()) + "ms");
 
       const ::ansi_character * psz = (const char *)memory.data();
 

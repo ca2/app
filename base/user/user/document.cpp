@@ -812,7 +812,7 @@ namespace user
 
          auto pdatetime = psystem->datetime();
 
-         strPathName = pdatetime->date_time_text() + "." + get_document_template()->find_string("default_extension");
+         strPathName = pdatetime->date_time_text() + "." + get_document_template()->get_string("default_extension");
 
       }
       else
@@ -2174,20 +2174,20 @@ namespace user
    //}
 
 
-   void document::form_document_set_property_set(const property_set & set)
+   void document::form_document_set_property_set(const ::property_set & set)
    {
       __UNREFERENCED_PARAMETER(set);
    }
 
 
-   property_set * document::form_document_get_property_set()
+   ::property_set * document::form_document_get_property_set()
    {
 
       return nullptr;
 
    }
 
-   property_set & document::form_document_property_set()
+   ::property_set & document::form_document_property_set()
    {
 
       return *form_document_get_property_set();

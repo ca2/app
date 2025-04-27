@@ -688,7 +688,7 @@
 //bool shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, ::time timeTimeout )
 //{
 //
-//   property_set set;
+//   ::property_set set;
 //
 //   return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), e_display_none, timeTimeout, set);
 //

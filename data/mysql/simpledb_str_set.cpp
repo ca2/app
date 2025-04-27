@@ -173,7 +173,7 @@ repeat:;
           {
 
 
-             property_set set;
+             ::property_set set;
 
              string strUrl;
 
@@ -293,7 +293,7 @@ bool db_str_set::load(const ::string & lpKey, string & strValue)
 
       single_lock slDatabase(m_pcore->db()->get_database()->mutex(),true);
 
-      property_set set;
+      ::property_set set;
 
       set["interactive_user"] = true;
 

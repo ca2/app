@@ -313,7 +313,7 @@ struct sequence_type
    }
 
    
-   friend sequence_type operator+(const sequence_type& a, const sequence_type& b)
+   friend sequence_type operator +(const sequence_type& a, const sequence_type& b)
    {
       sequence_type result;
       for (::collection::count i = 0; i < SIZE; ++i)
@@ -321,7 +321,7 @@ struct sequence_type
       return result;
    }
 
-   sequence_type& operator+=(const sequence_type& a) {
+   sequence_type& operator +=(const sequence_type& a) {
       for (::collection::count i = 0; i < SIZE; ++i)
          m_coordinatea[i] += a.m_coordinatea[i];
       return *this;

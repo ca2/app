@@ -64,7 +64,7 @@ namespace xml
       ARRAY::set_size(iSize);
       for(int i = 0; i < this->get_size(); i++)
       {
-         property_set set;
+         ::property_set set;
          set.set_at("array_index", i);
          xmlif.import_node(xmlif.get_node_name(m_iNodeNameIndex), set, *this->element_at(i));
       }

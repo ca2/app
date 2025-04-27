@@ -499,7 +499,7 @@
     <ClInclude Include="primitive\memory_container.h" />
     <ClInclude Include="primitive\object.h" />
     <ClInclude Include="primitive\property.h" />
-    <ClInclude Include="primitive\property_set.h" />
+    <ClInclude Include="primitive\::property_set.h" />
     <ClInclude Include="primitive\relation_set.h" />
     <ClInclude Include="primitive\request_interface.h" />
     <ClInclude Include="primitive\request_signal.h" />

@@ -17,8 +17,8 @@ public:
     { iter=container->insert(iter,value); ++iter; return *this; }
   insert_iterator<Container>& operator* ()
     { return *this; }
-  insert_iterator<Container>& operator++ ()
+  insert_iterator<Container>& operator ++ ()
     { return *this; }
-  insert_iterator<Container> operator++ (int)
+  insert_iterator<Container> operator ++ (int)
     { return *this; }
 };

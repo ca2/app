@@ -31,17 +31,17 @@ public:
    ::collection::index append(const payload_array & payloada);
    ::collection::index append(const std::initializer_list < ::payload > & list);
 
-   inline ::collection::index add(const ::string & str) { return add((const ::payload &) str); }
-   inline ::collection::index add(const ::scoped_string & scopedstr) { return add((const string &) scopedstr); }
+//   inline ::collection::index add(const ::string & str) { return add((const ::payload &) str); }
+   //inline ::collection::index add(const ::scoped_string & scopedstr) { return add((const payload &) scopedstr); }
 
-   inline ::collection::index add(char ch) { return add((const ::payload &) ch); }
-   inline ::collection::index add(unsigned char uch) { return add((const ::payload &) uch); }
-   inline ::collection::index add(short sh) { return add((const ::payload &) sh); }
-   inline ::collection::index add(unsigned short ush) { return add((const ::payload &) ush); }
-   inline ::collection::index add(int i) { return add((const ::payload &) i); }
-   inline ::collection::index add(unsigned int ui) { return add((const ::payload &) ui); }
-   inline ::collection::index add(long long hi) { return add((const ::payload &) hi); }
-   inline ::collection::index add(unsigned long long hn) { return add((const ::payload &) hn); }
+   //inline ::collection::index add(char ch) { return add((const ::payload &) ch); }
+   //inline ::collection::index add(unsigned char uch) { return add((const ::payload &) uch); }
+   //inline ::collection::index add(short sh) { return add((const ::payload &) sh); }
+   //inline ::collection::index add(unsigned short ush) { return add((const ::payload &) ush); }
+   //inline ::collection::index add(int i) { return add((const ::payload &) i); }
+   //inline ::collection::index add(unsigned int ui) { return add((const ::payload &) ui); }
+   //inline ::collection::index add(long long hi) { return add((const ::payload &) hi); }
+   //inline ::collection::index add(unsigned long long hn) { return add((const ::payload &) hn); }
 
    ::collection::count append_unique(const payload_array & payloada);
 

@@ -24,8 +24,8 @@ exception::exception()
 
 
 //#ifdef ANDROID
-exception::exception(const ::e_status & estatus, const char * pszMessage, const char * pszDetails, int iSkip, void * caller_address) :
-exception(estatus, {::error_code(e_error_code_type_unknown, 0)}, pszMessage, pszDetails, iSkip, caller_address)
+exception::exception(const ::e_status & estatus, const ::scoped_string& scopedstrMessage, const ::scoped_string& scopedstrDetails, int iSkip, void * caller_address) :
+exception(estatus, {::error_code(e_error_code_type_unknown, 0)}, scopedstrMessage, scopedstrDetails, iSkip, caller_address)
 {
    
    
@@ -33,7 +33,7 @@ exception(estatus, {::error_code(e_error_code_type_unknown, 0)}, pszMessage, psz
 
 
 //#else
-exception::exception(const ::e_status & estatus, const ::array_non_particle < error_code > & errorcodea, const char * pszMessage, const char * pszDetails, int iSkip, void * caller_address):
+exception::exception(const ::e_status & estatus, const ::array_non_particle < error_code > & errorcodea, const ::scoped_string& scopedstrMessage, const ::scoped_string& scopedstrDetails, int iSkip, void * caller_address):
 m_errorcodea(errorcodea)
 //#endif
 {
@@ -95,9 +95,9 @@ m_errorcodea(errorcodea)
 
    m_bContinue = true;
 
-   m_strMessage = pszMessage;
+   m_strMessage = scopedstrMessage;
 
-   m_strDetails = pszDetails;
+   m_strDetails = scopedstrDetails;
 
 }
 

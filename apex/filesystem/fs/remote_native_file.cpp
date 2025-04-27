@@ -119,7 +119,7 @@ namespace fs
          strUrl = "http://fs.veriwell.net/fs/xmledit?path=" + ::url::encode(url.request().path())
             + "&host=" + ::url::encode(url.connect().host());
 
-         property_set setRequest;
+         ::property_set setRequest;
 
          setRequest["get_response"] = ""; // touch/create property to get_response
 
@@ -127,7 +127,7 @@ namespace fs
 
          string strResponse(setRequest["get_response"].as_string());
 
-         property_set set;
+         ::property_set set;
 
          set.parse_network_arguments(strResponse);
 
@@ -145,7 +145,7 @@ namespace fs
          strUrl = "http://fs.veriwell.net/fs/set?path=" + ::url::encode(url.request().path())
                   + "&host=" + ::url::encode(url.connect().host());
 
-         property_set setPut;
+         ::property_set setPut;
 
          http()->put(strUrl, m_payloadFile["xml"].cast < ::memory_file >(), setPut);
 
@@ -157,7 +157,7 @@ namespace fs
       strUrl = "http://fs.veriwell.net/fs/set?path=" + ::url::encode(url.request().path())
                + "&host=" + ::url::encode(url.connect().host());
 
-      property_set set;
+      ::property_set set;
 
       http()->put(strUrl, m_pmemfile, set);
 

@@ -8,6 +8,9 @@
 //
 #pragma once
 
+template < typename ITERATOR_TYPE >
+class scoped_string_base;
+
 
 template < typename SEQUENCE >
 concept primitive_sequence = ::std::is_same < typename SEQUENCE::sequence_tag, sequence_t >::value;
@@ -69,25 +72,16 @@ concept primitive_fundamental = std::is_fundamental < T >::value || std::is_poin
 template < typename T >
 concept primitive_type = !std::is_fundamental < T >::value && !std::is_pointer < T >::value;
 
+template<typename ITERATOR_TYPE>
+class range;
 
 template < typename T >
-concept primitive_range = requires(T t)
-{
+concept primitive_range = ::std::is_base_of_v < ::range< typename T::this_iterator >, T >;
 
-   t.begin();
-   t.end();
-
-};
 
 
 template < typename T, typename ITERATOR_TYPE >
-concept typed_range = requires(T t, ITERATOR_TYPE iterator)
-{
-
-   {t.begin()}-> ::std::convertible_to<ITERATOR_TYPE &>;
-   {t.end()}->std::convertible_to<ITERATOR_TYPE &>;
-
-};
+concept typed_range = ::std::is_base_of_v < ::range< ITERATOR_TYPE >, T >;
 
 
 template < typename FROM, typename TO >
@@ -171,14 +165,83 @@ std::is_same < T, const ::wd16_character * & >::value ||
 std::is_same < T, const ::wd32_character * & >::value;
 
 
-template < typename T >
-concept character_range = requires(T t)
-{
+template < typename T, typename CHARACTER >
+concept typed_primitive_character_iterator_reference =
+std::is_same < T, CHARACTER*& >::value ||
+std::is_same < T, const CHARACTER*& >::value;
 
-   { t.begin() } -> primitive_character_iterator_reference;
-   { t.end() } -> primitive_character_iterator_reference;
+template < typename T, typename CHARACTER >
+concept other_primitive_character_iterator_reference =
+primitive_character < T > &&
+!std::is_same < T, CHARACTER*& >::value &&
+!std::is_same < T, const CHARACTER*& >::value;
 
-};
+template < typename T, typename CHARACTER >
+concept other_primitive_character =
+primitive_character < T > &&
+!std::is_same < T, CHARACTER >::value;
+
+
+template < typename CHARACTER_POINTER >
+concept character_pointer =
+::std::is_pointer_v<CHARACTER_POINTER>
+&& !::std::is_array_v<CHARACTER_POINTER>
+&& primitive_character<::non_const <::erase_pointer<CHARACTER_POINTER>>>;
+
+
+template < typename TYPED_CHARACTER_POINTER, typename CHARACTER >
+concept typed_character_pointer = 
+::std::is_pointer_v<TYPED_CHARACTER_POINTER> 
+&& !::std::is_array_v<TYPED_CHARACTER_POINTER>
+&& ::std::is_same_v < ::non_const<CHARACTER>, ::non_const <::erase_pointer<TYPED_CHARACTER_POINTER>>>;
+
+
+template < typename OTHER_CHARACTER_POINTER, typename CHARACTER >
+concept other_character_pointer =
+::std::is_pointer_v<OTHER_CHARACTER_POINTER>
+&& !::std::is_array_v<OTHER_CHARACTER_POINTER>
+&& primitive_character< ::non_const < ::erase_pointer<OTHER_CHARACTER_POINTER>>>
+&& !::std::is_same_v < CHARACTER, ::non_const <::erase_pointer<OTHER_CHARACTER_POINTER>>>;
+
+
+//template < typename CHARACTER_POINTER >
+//concept character_array =
+//::std::is_pointer_v<CHARACTER_POINTER>
+//&& ::std::is_array_v<CHARACTER_POINTER>
+//&& primitive_character<::non_const <::erase_pointer<CHARACTER_POINTER>>>;
+//
+//
+//template < typename TYPED_CHARACTER_POINTER, typename CHARACTER >
+//concept typed_character_array =
+//::std::is_pointer_v<TYPED_CHARACTER_POINTER>
+//&& ::std::is_array_v<CHARACTER_POINTER>
+//&& ::std::is_same_v < CHARACTER, ::non_const <::erase_pointer<TYPED_CHARACTER_POINTER>>>;
+
+
+
+
+template < typename CHARACTER_RANGE >
+concept character_range =
+(::std::is_base_of_v < ::range< const typename CHARACTER_RANGE::CHARACTER* >, CHARACTER_RANGE >
+&& primitive_character < typename CHARACTER_RANGE::CHARACTER > )||
+(::std::is_same_v < ::range< const typename CHARACTER_RANGE::ITEM* >, CHARACTER_RANGE > &&
+primitive_character < typename CHARACTER_RANGE::ITEM >);
+
+
+
+template < typename TYPED_CHARACTER_RANGE, typename CHARACTER >
+concept typed_character_range =
+(::std::is_base_of_v < ::range< const CHARACTER* >, TYPED_CHARACTER_RANGE >
+   || ::std::is_same_v < ::range< const CHARACTER* >, TYPED_CHARACTER_RANGE >)
+   && primitive_character < CHARACTER >;
+
+
+template < typename OTHER_CHARACTER_RANGE, typename CHARACTER >
+concept other_character_range = 
+(::std::is_base_of_v < ::range< const typename OTHER_CHARACTER_RANGE::CHARACTER* >, OTHER_CHARACTER_RANGE >
+   && other_primitive_character < typename OTHER_CHARACTER_RANGE::CHARACTER, CHARACTER >) ||
+   (::std::is_same_v < ::range< const typename OTHER_CHARACTER_RANGE::ITEM* >, OTHER_CHARACTER_RANGE > &&
+      other_primitive_character < typename OTHER_CHARACTER_RANGE::ITEM, CHARACTER >);
 
 
 struct ITERATOR_TYPE_TAG {};
@@ -321,7 +384,9 @@ namespace std
 //concept primitive_container = ::std::is_same < typename CONTAINER::PRIMITIVE_CONTAINER_TAG, PRIMITIVE_CONTAINER_TAG_TYPE >::value;
 
 template < typename PAYLOAD >
-concept primitive_payload = ::std::is_same < typename PAYLOAD::PRIMITIVE_PAYLOAD_TAG, PRIMITIVE_PAYLOAD_TAG_TYPE >::value;
+concept primitive_payload = 
+::std::is_base_of_v < ::payload, PAYLOAD >
+|| ::std::is_same_v < ::payload, PAYLOAD >;
 
 
 template < typename A_CONST >
@@ -339,6 +404,20 @@ concept primitive_atom = ::std::is_same < typename ATOM::PRIMITIVE_ATOM_TAG, PRI
 
 template < typename STRING >
 concept primitive_string = ::std::is_same < typename STRING::PRIMITIVE_STRING_TAG, PRIMITIVE_STRING_TAG_TYPE >::value;
+
+template < typename TYPED_PRIMITIVE_STRING, typename CHARACTER >
+concept typed_primitive_string =
+(::std::is_base_of_v < ::string_base< const CHARACTER* >, TYPED_PRIMITIVE_STRING >
+   || ::std::is_same_v < ::string_base< const CHARACTER* >, TYPED_PRIMITIVE_STRING >)
+   && primitive_character < CHARACTER >;
+
+
+template < typename OTHER_PRIMITIVE_STRING, typename CHARACTER >
+concept other_primitive_string =
+(::std::is_base_of_v < ::string_base< const typename OTHER_PRIMITIVE_STRING::CHARACTER* >, OTHER_PRIMITIVE_STRING >
+   && other_primitive_character < typename OTHER_PRIMITIVE_STRING::CHARACTER, CHARACTER >) ||
+   (::std::is_same_v < ::string_base< const typename OTHER_PRIMITIVE_STRING::ITEM* >, OTHER_PRIMITIVE_STRING > &&
+      other_primitive_character < typename OTHER_PRIMITIVE_STRING::ITEM, CHARACTER >);
 
 template < typename SCOPED_STRING >
 concept primitive_scoped_string = ::std::is_same < typename SCOPED_STRING::PRIMITIVE_SCOPED_STRING_TAG, PRIMITIVE_SCOPED_STRING_TAG_TYPE >::value;
@@ -726,6 +805,23 @@ template < primitive_enum ENUM >
 inline long long as_long_long(const ENUM & e) { return (long long)(::raw_enum_of<ENUM>) e; }
 
 
+template<typename ITERATOR_TYPE>
+class const_string_range;
+
+
+
+using const_ansi_range = ::const_string_range < const ::ansi_character* >;
+using const_wd16_range = ::const_string_range < const ::wd16_character* >;
+using const_wd32_range = ::const_string_range < const ::wd32_character* >;
+using const_wide_range = ::const_string_range < const ::wide_character* >;
+
+
+
+template < typename CONST_STRING_CASTABLE >
+concept const_string =
+::std::is_convertible < CONST_STRING_CASTABLE, ::const_ansi_range >::value ||
+::std::is_convertible < CONST_STRING_CASTABLE, ::string >::value ||
+::std::is_convertible < CONST_STRING_CASTABLE, ::scoped_string >::value;
 
 
 template < typename CONST_STRING_CASTABLE >

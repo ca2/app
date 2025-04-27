@@ -227,7 +227,7 @@
     <ClCompile Include="..\primitive\primitive\property.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="..\primitive\primitive\property_set.cpp">
+    <ClCompile Include="..\primitive\primitive\::property_set.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="..\primitive\primitive\property_set_composite.cpp">
@@ -1191,7 +1191,7 @@
     <ClInclude Include="..\primitive\property.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="..\primitive\property_set.h">
+    <ClInclude Include="..\primitive\::property_set.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
     <ClInclude Include="..\primitive\relation_set.h">
@@ -2070,7 +2070,7 @@
     <ClInclude Include="..\primitive\primitive\property.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="..\primitive\primitive\property_set.h">
+    <ClInclude Include="..\primitive\primitive\::property_set.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="..\primitive\primitive\property_set_papaya.h">

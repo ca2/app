@@ -145,8 +145,8 @@ public:
    virtual void load_stra(const ::file::path & pathName, string_array & stra, bool bAddEmpty = true);
 
 
-   virtual void put_contents(const ::file::path & path, const memory_base & memory);
-   virtual void put_contents(const ::file::path & path, const scoped_string & contents);
+   virtual void put_contents(const ::file::path & path, const block & block);
+   // virtual void put_contents(const ::file::path& path, const scoped_string& contents);
 
    template < typename CONTAINER >
    inline void put_lines(const ::file::path & path, const CONTAINER & container)

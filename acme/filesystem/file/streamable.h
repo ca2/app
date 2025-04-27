@@ -37,6 +37,15 @@ namespace file
       virtual void write(const void * p, ::memsize s);
 
       inline void write(const ::block & block) { write(block.data(), block.size()); }
+
+      template < typename ITERATOR_TYPE2, int t_size >
+      inline void write(const ::const_string_range_static_array < ITERATOR_TYPE2, t_size > & a) 
+      {
+         for (int i = 0; i < t_size; i++)
+         {
+            write(a.element_at(i).begin(), a.element_at(i).size());
+         }
+      }
       
       virtual ::memsize defer_write(const void * p, ::memsize s);
 

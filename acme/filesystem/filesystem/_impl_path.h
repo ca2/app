@@ -111,92 +111,56 @@ namespace file
    }
 
 
-   inline path::path(const ::ansi_string & str, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
-      string(str)
-   {
-
-      m_iSize = iSize;
-
-      if (epath == e_path_none)
-      {
-
-         m_epath = file_path_get_type(str, epath);
-
-      }
-      else
-      {
-
-         m_epath = epath;
-
-      }
-
-      if (bNormalizePath)
-      {
-
-         bool bCertainlySyntathicallyDir = file_path_normalize_inline(*this, m_epath);
-
-         if (bCertainlySyntathicallyDir)
-         {
-
-            m_etype = (enum_type) ((etype | e_type_folder2) & ~e_type_file2);
-
-         }
-         else
-         {
-
-            m_etype = etype;
-
-         }
-
-      }
-      else
-      {
-
-         m_etype = etype;
-
-      }
-
-   }
-
-
-   inline path::path(const ::wd16_string & wd16str, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
-      path(::string(wd16str), epath, etype, bNormalizePath, iSize)
+   template < typename ITERATOR_TYPE, int t_size >
+   inline path::path(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a, enum_path epath, e_type etype, bool bNormalize, long long iSize) :
+      path((const ::ansi_string&)a, epath, etype, bNormalize, iSize)
    {
 
 
    }
 
 
-   inline path::path(const ::wd32_string & wd32str, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
-      path(::string(wd32str), epath, etype, bNormalizePath, iSize)
-   {
 
 
-   }
+   //inline path::path(const ::wd16_string & wd16str, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   //   path(::string(wd16str), epath, etype, bNormalizePath, iSize)
+   //{
 
 
-   inline path::path(const ::ansi_character * pansisz, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
-      path(::ansi_string(pansisz), epath, etype, bNormalizePath, iSize)
-   {
+   //}
 
 
-   }
+   //template < typename ITERATOR_TYPE >
+   //inline path::path(const ::range < ITERATOR_TYPE > & range, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   //   path(::string(range), epath, etype, bNormalizePath, iSize)
+   //{
 
 
-   inline path::path(const ::wd16_character * pwd16sz, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
-      path(::wd16_string(pwd16sz), epath, etype, bNormalizePath, iSize)
-   {
+   //}
 
 
-   }
+   //inline path::path(const ::ansi_character * pansisz, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   //   path(::ansi_string(pansisz), epath, etype, bNormalizePath, iSize)
+   //{
 
 
-   inline path::path(const ::wd32_character * pwd32sz, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
-      path(::wd32_string(pwd32sz), epath, etype, bNormalizePath, iSize)
-   {
+   //}
 
 
-   }
+   //inline path::path(const ::wd16_character * pwd16sz, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   //   path(::string(pwd16sz), epath, etype, bNormalizePath, iSize)
+   //{
+
+
+   //}
+
+
+   //inline path::path(const ::wd32_character * pwd32sz, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   //   path(::string(pwd32sz), epath, etype, bNormalizePath, iSize)
+   //{
+
+
+   //}
 
 
    inline path_meta::~path_meta()
@@ -608,7 +572,7 @@ namespace file
 
       auto pathThis = *this;
 
-      ::string::operator = (file_path_normalize(pathThis + str, this->m_epath));
+      ::string::operator = (file_path_normalize(((const ::string &)pathThis) + str, this->m_epath));
 
       return *this;
 
@@ -713,14 +677,14 @@ namespace file
 //      return operator /=(::file::path(::string(inlinenumberstring)));
 //
 //   }
-//
-//
-//   inline path& path::operator /= (const ::atom & atom)
-//   {
-//
-//      return operator /=(::file::path(atom));
-//
-//   }
+
+
+   // inline path path::operator / (const ::atom & atom)
+   // {
+   //
+   //    return operator /(::file::path(atom));
+   //
+   // }
 
 
 
@@ -1252,12 +1216,12 @@ namespace file
    }
 
 
-   inline path path::operator / (const ::scoped_string & scopedstr) const
-   {
-
-      return ::transfer(slashed_path(scopedstr));
-
-   }
+   // inline path path::operator / (const ::scoped_string & scopedstr) const
+   // {
+   //
+   //    return ::transfer(slashed_path(scopedstr));
+   //
+   // }
 
 
    inline ::file::path & path::patch_base_path(const ::file::path & pathBase)
@@ -1296,7 +1260,7 @@ namespace file
 } // namespace file
 
 
-//inline ::file::path operator+(const ::file::path & path1, const ::file::path & path2)
+//inline ::file::path operator +(const ::file::path & path1, const ::file::path & path2)
 //{
 //
 //   return ::transfer(::file::path(((const::string &)path1) + ((const ::string&)path2)));
@@ -1305,21 +1269,21 @@ namespace file
 
 
 // For MSVC, but not for GCC?
-//inline ::file::path operator+(const ::file::path & path, const ::string & str)
+//inline ::file::path operator +(const ::file::path & path, const ::string & str)
 //{
 //
 //   return ((const::string &)path) + str;
 //}
 
 
-//inline ::file::path operator+ (const ::file::path & path, const ::scoped_string & scopedstr)
+//inline ::file::path operator + (const ::file::path & path, const ::scoped_string & scopedstr)
 //{
 //
 //   return ((const::string &)path) + scopedstr;
 //}
 
 
-//inline ::file::path operator+ (const ::file::path & path, const ::atom & atom)
+//inline ::file::path operator + (const ::file::path & path, const ::atom & atom)
 //{
 //
 //   return ((const::string &)path) + atom;
@@ -1327,7 +1291,7 @@ namespace file
 //}
 //
 //
-//inline ::file::path operator+(const ::file::path & path, const ::file::path::RANGE & range)
+//inline ::file::path operator +(const ::file::path & path, const ::file::path::RANGE & range)
 //{
 //
 //   return ((const::string &)path) + ::string(range);
@@ -1354,14 +1318,14 @@ namespace file
 //}
 //
 //
-//inline ::file::path operator+(const ::string & str, const ::file::path & path)
+//inline ::file::path operator +(const ::string & str, const ::file::path & path)
 //{
 //
 //   return str + ((const::string &)path);
 //}
 //
 //
-//inline ::file::path operator+(const ::const_ansi_range & range, const ::file::path & path)
+//inline ::file::path operator +(const ::const_ansi_range & range, const ::file::path & path)
 //{
 //
 //   return ::string(range) + ((const::string &)path);
@@ -1470,7 +1434,7 @@ inline const_ansi_range path::_get_count_parts_from_beginning(::collection::coun
 inline const_ansi_range path::get_count_parts_from_beginning(::collection::count cPathPartCountToConsume) const
 {
    
-   return ::string::get_count_parts_from_beginning(cPathPartCountToConsume, '/');
+   return ::string::_get_count_parts_from_beginning(cPathPartCountToConsume, '/');
 
 }
 
@@ -1495,5 +1459,72 @@ inline const_ansi_range path::get_count_parts_from_beginning(::collection::count
 
 
 
+
+
+template < character_range RANGE1, character_range RANGE2 >
+::file::path operator / (const RANGE1& range1, const RANGE2& range2)
+{
+
+   return ::transfer(::file::path(range1).slashed_path(range2));
+
+}
+
+
+
+template < character_pointer CHARACTER_POINTER, character_range RANGE >
+::file::path operator / (CHARACTER_POINTER p, const RANGE& range)
+{
+
+   return ::transfer(::file::path(p) / ::string(range));
+
+}
+
+
+
+
+template < character_range RANGE, character_count n >
+::file::path operator / (const typename RANGE::CHARACTER(&sz)[n], const RANGE& range)
+{
+
+   return ::transfer(::file::path(sz) / ::string(range));
+
+}
+
+
+
+template < primitive_character ITERATOR_TYPE2, int t_size, character_range RANGE >
+::file::path operator / (const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a, const RANGE& range)
+{
+
+   return ::transfer(::file::path(a) / ::string(range));
+
+}
+
+
+template < character_range RANGE, character_pointer CHARACTER_POINTER >
+::file::path operator / (const RANGE& range, CHARACTER_POINTER p)
+{
+
+   return ::transfer(::file::path(range) / ::file::path(p));
+
+}
+
+
+template < character_range RANGE, typename ITERATOR_TYPE2, int t_size >
+::file::path operator / (const RANGE& range, const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a)
+{
+
+   return ::transfer(::file::path(range) / ::file::path(a));
+
+}
+
+
+template < typename ITERATOR_TYPE2, character_count n, int t_size >
+::file::path operator / (const ::erase_pointer < non_const <ITERATOR_TYPE2>>(&sz)[n], const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a)
+{
+
+   return ::transfer(::file::path(sz) / ::string(a));
+
+}
 
 

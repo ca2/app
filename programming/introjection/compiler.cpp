@@ -495,7 +495,7 @@ namespace introjection
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//      property_set setEnvironment;
+//      ::property_set setEnvironment;
 //
 //      setEnvironment.parse_environment_variable(stra);
 //
@@ -949,7 +949,7 @@ pdirectorysystem->create("/var/tmp/ca2/intermediate");
       catch(string strError)
       {
 
-         informationf("%s", (strError + "\n").c_str());
+         information(strError + "\n");
 
       }
       //try

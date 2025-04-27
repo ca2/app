@@ -54,7 +54,7 @@ namespace core
       void create_options_footer(::user::interaction * pparent) override;
 
 
-      bool handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, property_set & propertyset) override;
+      bool handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset) override;
 
 
       void create_auto_start_option(::user::interaction * pparent) override;

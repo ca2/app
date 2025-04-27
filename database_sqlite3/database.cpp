@@ -723,7 +723,7 @@ namespace sqlite
 
          string strBase64(base64.encode(block));
 
-         property_set set;
+         ::property_set set;
 
          string strSql;
 

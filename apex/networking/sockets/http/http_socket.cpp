@@ -134,7 +134,7 @@ namespace sockets
 
                         m_chunk_line = m_chunk_line.left(m_chunk_line.length() - 2);
 
-                        ::parse pa(m_chunk_line, ";");
+                        ::parse pa(m_chunk_line, ";"_ansi);
 
                         string size_str = pa.getword();
 
@@ -804,7 +804,7 @@ namespace sockets
 
       m_urlparts.from(url);
 
-      if (m_urlparts.connect().m_bSecure)
+      if (m_urlparts.connect().is_secure())
       {
 
          ////#ifdef HAVE_OPENSSL

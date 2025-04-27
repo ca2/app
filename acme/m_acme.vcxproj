@@ -745,7 +745,7 @@
     <ClInclude Include="primitive\memory_container.h" />
     <ClInclude Include="primitive\generic.h" />
     <ClInclude Include="primitive\property.h" />
-    <ClInclude Include="primitive\property_set.h" />
+    <ClInclude Include="primitive\::property_set.h" />
     <ClInclude Include="primitive\relation_set.h" />
     <ClInclude Include="primitive\request_interface.h" />
     <ClInclude Include="primitive\request_signal.h" />
@@ -3821,7 +3821,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="primitive\property_set.cpp">
+    <ClCompile Include="primitive\::property_set.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>

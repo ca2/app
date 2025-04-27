@@ -320,7 +320,7 @@ namespace user
       flags < enum_control_function >           m_flagsfunction;
       enum_control_data_type                    m_edatatype;
       ::int_rectangle                           m_rectangle;
-      property_set                              m_setValue;
+      ::property_set                            m_setValue;
       int                                       m_iSubItemDisableCheckBox;
       int                                       m_iSubItemDuplicateCheckBox;
       ::int_array                               m_iaSubItemDuplicate;
@@ -329,7 +329,7 @@ namespace user
       string                                    m_strClass;
       string_to_string                          m_mapClassStyle;
       string                                    m_strStyle;
-      property_set                              m_setStyle;
+      ::property_set                            m_setStyle;
 
       //::user::interaction *                     m_puserinteractionTopLevel;
       //::user::frame_interaction *                           m_puserframeTopLevel;
@@ -745,6 +745,7 @@ namespace user
       virtual ::write_text::font_pointer get_font(::user::style * pstyle, enum_element eelement, ::user::enum_state estate = e_state_none);
       inline ::write_text::font_pointer get_font(::user::style* pstyle, ::user::enum_state estate = e_state_none) { return get_font(pstyle, get_default_element(), estate); }
       virtual enum_translucency get_translucency(::user::style* pstyle);
+      using ::user::interaction_base::get_int;
       virtual int get_int(::user::style* pstyle, enum_int eint, ::user::enum_state estate = e_state_none, int iDefault = 0);
       virtual double get_double(::user::style* pstyle, enum_double edouble, ::user::enum_state estate = e_state_none, double dDefault = 0.);
       virtual status < ::double_rectangle > get_border(::user::style* pstyle, enum_element eelement, ::user::enum_state estate = e_state_none);

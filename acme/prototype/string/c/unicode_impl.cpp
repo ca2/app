@@ -45,6 +45,15 @@
 //}
 
 
+
+CLASS_DECL_ACME character_count _utf_to_utf_length(const ::ansi_character*, const ::ansi_character* psource, character_count srclen)
+{
+
+   return srclen >= 0 ? srclen : string_get_length(psource) + srclen + 1;
+
+}
+
+
 CLASS_DECL_ACME character_count utf_to_utf_length(const ::ansi_character *, const ::ansi_character * psource, character_count srclen)
 {
 
@@ -106,6 +115,14 @@ CLASS_DECL_ACME character_count utf_to_utf_length(const ::wd16_character *, cons
 
 }
 
+
+
+CLASS_DECL_ACME character_count __utf_to_utf_length(const ::wd16_character*, const ::ansi_character* psource, character_count srclen)
+{
+
+   return ansi_to_wd16_len(psource, srclen);
+
+}
 
 
 CLASS_DECL_ACME character_count utf_to_utf_length(const ::ansi_character *, const ::wd32_character * psource, character_count srclen)

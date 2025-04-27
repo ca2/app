@@ -14,112 +14,117 @@ NATURAL_DATA* __nil() { return nullptr; }
 #define NATURAL_METADATA_ALIGN 32
 
 
-//#pragma pack(push, meta_data, 1)
+//#pragma pack(push, base_data, 1)
 
 
 template < typename TYPE_DATA >
-class meta_data
+class heap_data
 {
 public:
 
 
-   using META = meta_data < TYPE_DATA >;
+   using BASE_DATA_BASE = heap_data < TYPE_DATA >;
 
    using DATA = non_const < TYPE_DATA >;
 
 
    interlocked_count                   m_countReference;
    memsize_storage                     m_sizeStorageInBytes;
-   memsize_storage                     m_countData;
+   //memsize_storage                     m_countData;
 
 
-   meta_data(): m_countData(0), m_sizeStorageInBytes(0), m_countReference(1) {}
-   meta_data(enum_zero_init) : m_countData(0), m_sizeStorageInBytes(0), m_countReference(1) {}
+   //heap_data(): m_countData(0), m_sizeStorageInBytes(0), m_countReference(1) {}
+   //heap_data(enum_zero_init) : m_countData(0), m_sizeStorageInBytes(0), m_countReference(1) {}
 
-   
-   bool natural_is_shared() const { return m_countReference >= 2; }
+   heap_data() : m_sizeStorageInBytes(0), m_countReference(1) {}
+   //heap_data(enum_zero_init) :  m_sizeStorageInBytes(0), m_countReference(1) {}
 
-   
-   auto natural_increment_reference_count() { return ++m_countReference; }
-
-   
-   auto natural_decrement_reference_count() { return --m_countReference; }
+   bool base_data_is_shared() const { return m_countReference >= 2; }
 
    
-   //constexpr static ::memsize natural_offset() { return (offsetof(meta_data, m_endofmetadata) + NATURAL_METADATA_ALIGN - 1) & (~(NATURAL_METADATA_ALIGN - 1)); }
+   auto base_data_increment_reference_count() { return ++m_countReference; }
 
    
-   DATA * begin() const { return (DATA *)&(this[1]); }
+   auto base_data_decrement_reference_count() { return --m_countReference; }
+
+   
+   //constexpr static ::memsize base_dataoffset() { return (offsetof(base_data, m_endofmetadata) + NATURAL_METADATA_ALIGN - 1) & (~(NATURAL_METADATA_ALIGN - 1)); }
+
+   
+   DATA * data() const { return (DATA *)&(this[1]); }
+
+   const DATA* c_data() const { return (const DATA*)&(this[1]); }
 
 
-   DATA * end() const { return (DATA *)(begin() + this->m_countData); }
+   //DATA * end() const { return (DATA *)(begin() + this->m_countData); }
 
 
-   static meta_data * meta_data_from_data(const DATA * pdata) { return &((meta_data *) pdata)[-1]; }
+   static heap_data * base_data_from_data(const DATA * pdata) { return &((heap_data *) pdata)[-1]; }
 
 
 };
 
 
-//#pragma pack(pop, meta_data)
+//#pragma pack(pop, base_data)
 
 
-template < typename BASE_META_DATA >
-class natural_meta_data :
-   public BASE_META_DATA
+template < typename BASE_DATA_BASE >
+class base_data :
+   public BASE_DATA_BASE
 {
 public:
 
 
-   typedef typename BASE_META_DATA::META                    META;
-   typedef typename BASE_META_DATA::DATA                    DATA;
+   using BASE_DATA         = typename BASE_DATA_BASE::BASE_DATA_BASE;
+   using DATA              = typename BASE_DATA_BASE::DATA;
 
    unsigned char            m_data[sizeof(DATA)] = {};
 
 
-   natural_meta_data() {}
+   base_data() {}
 
-   natural_meta_data(enum_zero_init) :BASE_META_DATA(e_zero_init){}
-
-   
-   bool is_set() { return ::is_set(this->m_begin); }
+   base_data(enum_zero_init) :BASE_DATA_BASE(e_zero_init){}
 
    
-   bool is_null() { return !is_null(); }
+   /*bool is_set() { return ::is_set(this->m_begin); }
 
    
-   inline static natural_meta_data < BASE_META_DATA > * from_data(const DATA* pdata)
+   bool is_null() { return !is_null(); }*/
+
+   
+   inline static base_data * base_data_from_data(const DATA* pdata)
    {
 
-      return ::is_set(pdata) ?
-         (natural_meta_data < BASE_META_DATA >*)BASE_META_DATA::meta_data_from_data(pdata) :
-         nullptr;
+      //return ::is_set(pdata) ?
+      //   (BASE_DATA*)BASE_DATA_BASE::base_data_from_data(pdata) :
+      //   nullptr;
+      return (base_data*) BASE_DATA_BASE::base_data_from_data(pdata);
 
    }
 
 
-   inline static DATA* to_data(const natural_meta_data < BASE_META_DATA >* pmetadata)
+   inline static DATA* base_data_to_data(const BASE_DATA * pbasedata)
    {
 
-      return (DATA *) pmetadata->get_data();
+      return (DATA *) pbasedata->data();
 
    }
 
 
-   inline natural_meta_data < BASE_META_DATA >* metadata()
-   {
+   //inline BASE_DATA* metadata()
+   //{
 
-      return from_data(this->m_begin);
+   //   return from_data(this->m_begin);
 
-   }
+   //}
 
 
-   inline natural_meta_data < BASE_META_DATA >* metadata() const
-   {
+   //inline BASE_DATA* metadata() const
+   //{
 
-      return from_data(this->m_begin);
+   //   return from_data(this->m_begin);
 
-   }
+   //}
 
 
 };
@@ -128,31 +133,32 @@ public:
 //#pragma pack(push,1)
 
 
-template < typename RANGE_TYPE, typename BASE_META_DATA, ::heap::enum_memory t_ememory >
-class natural_pointer :
-   public RANGE_TYPE
+template < typename BASE_DATA_BASE, ::heap::enum_memory t_ememory >
+class natural_pointer
+//class natural_pointer :
+  // public RANGE_TYPE
 {
 public:
 
 
-   using NATURAL_META_DATA = natural_meta_data < BASE_META_DATA >;
-   using META_DATA = BASE_META_DATA;
-   using META = typename BASE_META_DATA::META;
-   using DATA = typename BASE_META_DATA::DATA;
-   using iterator = typename RANGE_TYPE::iterator;
+   using BASE_DATA = base_data < BASE_DATA_BASE >;
+   //using META_DATA = BASE_DATA_BASE;
+   using BASE = BASE_DATA_BASE;
+   using DATA = typename BASE_DATA::DATA;
+   //using iterator = typename RANGE_TYPE::iterator;
 
 
-   inline natural_pointer(no_initialize_t) : RANGE_TYPE(no_initialize_t{}) { }
-   inline natural_pointer(nullptr_t) : RANGE_TYPE(nullptr) { }
-   inline natural_pointer(const natural_pointer & natural_pointer)
-   {
+   //inline natural_pointer() : RANGE_TYPE(no_initialize_t{}) { }
+   //inline natural_pointer(nullptr_t) : RANGE_TYPE(nullptr) { }
+   //inline natural_pointer(const natural_pointer & natural_pointer)
+   //{
 
-      natural_pointer.metadata()->natural_increment_reference_count();
+   //   natural_pointer.metadata()->base_data_increment_reference_count();
 
-      RANGE_TYPE::operator = (natural_pointer);
+   //   RANGE_TYPE::operator = (natural_pointer);
 
-   }
-   inline natural_pointer(natural_pointer && natural_pointer)
+   //}
+   /*inline natural_pointer(natural_pointer && natural_pointer)
    {
 
       RANGE_TYPE::operator = (::transfer(natural_pointer));
@@ -163,270 +169,282 @@ public:
 
       natural_pointer_default_construct();
 
-   }
-   ~natural_pointer()
+   }*/
+   /*~natural_pointer()
    {
 
       destroy();
 
-   }
+   }*/
 
    inline static ::heap::memory * memory() { return ::acme::get()->m_pheapmanagement->memory(t_ememory); }
 
-   void destroy()
-   {
+//   void base_data_destroy()
+//   {
+//
+//      //if (this->is_natural_pointer() && ::is_set(this->begin()))
+//      if (this->is_string() && ::is_set(this->begin()))
+//      {
+//
+//         //if (this->is_string())
+//         //{
+//
+//            this->base_data_release(base_data_from_data(this->begin()));
+//
+////            this->clear_string_flag();
+//
+//  //       }
+//
+//         this->m_begin = nullptr;
+//
+//         this->m_end = nullptr;
+//
+//      }
+//
+//   }
 
-      //if (this->is_natural_pointer() && ::is_set(this->begin()))
-      if (this->is_string() && ::is_set(this->begin()))
-      {
 
-         //if (this->is_string())
-         //{
+   //natural_pointer & operator = (const natural_pointer & natural_pointer)
+   //{
 
-            this->_natural_release(NATURAL_META_DATA::from_data(this->begin()));
+   //   if (this != &natural_pointer)
+   //   {
 
-//            this->clear_string_flag();
+   //      if (natural_pointer.is_string())
+   //      {
 
-  //       }
+   //         natural_pointer.metadata()->natural_increment_reference_count();
 
-         this->m_begin = nullptr;
+   //      }
 
-         this->m_end = nullptr;
+   //      destroy();
 
-      }
+   //      RANGE_TYPE::operator = (natural_pointer);
 
-   }
+   //   }
 
+   //   return *this;
 
-   natural_pointer & operator = (const natural_pointer & natural_pointer)
-   {
-
-      if (this != &natural_pointer)
-      {
-
-         if (natural_pointer.is_string())
-         {
-
-            natural_pointer.metadata()->natural_increment_reference_count();
-
-         }
-
-         destroy();
-
-         RANGE_TYPE::operator = (natural_pointer);
-
-      }
-
-      return *this;
-
-   }
+   //}
 
    
-   inline static NATURAL_META_DATA * _create_meta_data(memsize sizeStorageInBytes)
+   inline static BASE_DATA * base_data_create(character_count n)
    {
 
-      auto p = memory()->allocate(sizeStorageInBytes + sizeof(META_DATA), &sizeStorageInBytes);
+      memsize sizeStorageInBytes = n * sizeof(DATA);
 
-      auto pmetadata = __raw_new (p) natural_meta_data < META_DATA >();
+      auto p = memory()->allocate(sizeStorageInBytes + sizeof(BASE), &sizeStorageInBytes);
 
-      pmetadata->m_sizeStorageInBytes = sizeStorageInBytes - sizeof(META_DATA);
+      auto pbasedata = __raw_new (p) BASE_DATA();
 
-      return pmetadata;
+      pbasedata->m_sizeStorageInBytes = sizeStorageInBytes - sizeof(BASE);
+
+      return pbasedata;
 
    }
 
 
-   natural_pointer & operator = (natural_pointer && natural_pointer) 
-   { 
+   //natural_pointer & operator = (natural_pointer && natural_pointer) 
+   //{ 
 
-      if (this->begin() != natural_pointer.begin())
-      {
+   //   if (this->begin() != natural_pointer.begin())
+   //   {
 
-         destroy();
+   //      destroy();
 
-         RANGE_TYPE::operator = (::transfer(natural_pointer));
+   //      RANGE_TYPE::operator = (::transfer(natural_pointer));
 
-      }
-      
-      return *this; 
-   
-   }
+   //   }
+   //   
+   //   return *this; 
+   //
+   //}
 
 
-   void natural_pointer_default_construct()
+   //void base_data_default_data()
+   //{
+
+   //   auto p = this->default_construct_natural_pointer();
+
+   //   this->m_begin = (iterator) p->begin();
+
+   //   this->m_end = (iterator) p->end();
+
+   //   this->set_string_flag();
+
+   //}
+
+
+   inline BASE_DATA * base_data_default_data()
    {
 
-      auto p = this->default_construct_natural_pointer();
-
-      this->m_begin = (iterator) p->begin();
-
-      this->m_end = (iterator) p->end();
-
-      this->set_string_flag();
-
-   }
-
-
-   inline static NATURAL_META_DATA * default_construct_natural_pointer()
-   {
-
-      auto pnil = __nil< natural_meta_data < BASE_META_DATA > >();
-
-      pnil->natural_increment_reference_count();
+      auto pnil = __nil< BASE_DATA >();
 
       return pnil;
 
-   }
+      //pnil->natural_increment_reference_count();
 
-
-
-
-   inline NATURAL_META_DATA * metadata() const
-   {
-
-      return ::is_set(this) && ::is_set(this->m_begin) ? NATURAL_META_DATA::from_data(this->m_begin) : nullptr;
+      //return pnil;
 
    }
 
 
-   inline void static natural_destroy(NATURAL_META_DATA * pmetadata)
+
+
+   //inline BASE_DATA * metadata() const
+   //{
+
+   //   //return ::is_set(this) && ::is_set(this->m_begin) ? BASE_DATA::from_data(this->m_begin) : nullptr;
+   //   return BASE_DATA::from_data(this->m_begin);
+
+   //}
+
+
+   inline void base_data_destroy(BASE_DATA * pbasedata)
    {
 
-      memory()->free(pmetadata);
+      memory()->free(pbasedata);
 
    }
 
 
-   void assign_natural_pointer(const natural_pointer& pointer)
+   //void assign_natural_pointer(const natural_pointer& pointer)
+   //{
+
+   //   assign_natural_base_data(BASE_DATA::from_data(pointer.m_begin));
+
+   //}
+
+
+   //void create_assign_natural_base_data(BASE_DATA * p)
+   //{
+
+   //   p->natural_increment_reference_count();
+
+   //   this->m_begin = (iterator) p->begin();
+
+   //   this->m_end = (iterator) p->end();
+   //   
+   //   this->set_string_flag();
+
+   //}
+
+
+   //void assign_natural_base_data(BASE_DATA * pNew)
+   //{
+
+   //   auto pOld = BASE_DATA::from_data(this->m_begin);
+
+   //   if (pOld != pNew)
+   //   {
+
+   //      pNew->natural_increment_reference_count();
+
+   //      this->m_begin = (iterator)pNew->begin();
+
+   //      this->m_end = (iterator)pNew->end();
+
+   //      this->set_string_flag();
+
+   //      natural_release(pOld);
+
+   //   }
+
+   //}
+
+
+   //void place_natural_base_data(BASE_DATA * pNew)
+   //{
+
+   //   auto pOld = BASE_DATA::from_data(this->m_begin);
+
+   //   if (pOld != pNew)
+   //   {
+
+   //      this->m_begin = (iterator)pNew->begin();
+
+   //      this->m_end = (iterator)pNew->end();
+
+   //      this->set_string_flag();
+
+   //      natural_release(pOld);
+
+   //   }
+
+   //}
+
+
+   //void natural_release()
+   //{
+
+   //   DATA * pdataOld = nullptr;
+   //   
+   //   if (this->is_string())
+   //   {
+
+   //      pdataOld = (DATA *)this->m_begin;
+
+   //   }
+
+   //   auto p = default_construct_natural_pointer();
+
+   //   this->m_begin = (iterator)p->begin();
+
+   //   this->m_end = (iterator)p->end();
+
+   //   this->set_string_flag();
+
+   //   if (::is_set(pdataOld))
+   //   {
+
+   //      natural_release(pdataOld);
+
+   //   }
+
+   //}
+
+
+   //static void natural_release(DATA * pdata)
+   //{
+
+   //   natural_release(BASE_DATA::from_data(pdata));
+
+   //}
+
+  /* static void base_data_release(BASE_DATA * pbasedata)
    {
 
-      assign_natural_meta_data(NATURAL_META_DATA::from_data(pointer.m_begin));
-
-   }
-
-
-   void create_assign_natural_meta_data(NATURAL_META_DATA * p)
-   {
-
-      p->natural_increment_reference_count();
-
-      this->m_begin = (iterator) p->begin();
-
-      this->m_end = (iterator) p->end();
-      
-      this->set_string_flag();
-
-   }
-
-
-   void assign_natural_meta_data(natural_meta_data < BASE_META_DATA > * pNew)
-   {
-
-      auto pOld = NATURAL_META_DATA::from_data(this->m_begin);
-
-      if (pOld != pNew)
-      {
-
-         pNew->natural_increment_reference_count();
-
-         this->m_begin = (iterator)pNew->begin();
-
-         this->m_end = (iterator)pNew->end();
-
-         this->set_string_flag();
-
-         natural_release(pOld);
-
-      }
-
-   }
-
-
-   void place_natural_meta_data(natural_meta_data < BASE_META_DATA > * pNew)
-   {
-
-      auto pOld = NATURAL_META_DATA::from_data(this->m_begin);
-
-      if (pOld != pNew)
-      {
-
-         this->m_begin = (iterator)pNew->begin();
-
-         this->m_end = (iterator)pNew->end();
-
-         this->set_string_flag();
-
-         natural_release(pOld);
-
-      }
-
-   }
-
-
-   void natural_release()
-   {
-
-      DATA * pdataOld = nullptr;
-      
-      if (this->is_string())
-      {
-
-         pdataOld = (DATA *)this->m_begin;
-
-      }
-
-      auto p = default_construct_natural_pointer();
-
-      this->m_begin = (iterator)p->begin();
-
-      this->m_end = (iterator)p->end();
-
-      this->set_string_flag();
-
-      if (::is_set(pdataOld))
-      {
-
-         natural_release(pdataOld);
-
-      }
-
-   }
-
-
-   static void natural_release(DATA * pdata)
-   {
-
-      natural_release(NATURAL_META_DATA::from_data(pdata));
-
-   }
-
-   static void natural_release(natural_meta_data < BASE_META_DATA > * pmetadata)
-   {
-
-      if (::is_null(pmetadata))
+      if (::is_null(pbasedata))
       {
 
          return;
 
       }
 
-      _natural_release(pmetadata);
+      _natural_release(pbasedata);
 
-   }
+   }*/
 
 
-   static void _natural_release(natural_meta_data < BASE_META_DATA > * pmetadata)
+   void base_data_release(BASE_DATA * pbasedata)
    {
 
-      if (pmetadata->natural_decrement_reference_count() == 0)
+      if (pbasedata->base_data_decrement_reference_count() == 0)
       {
 
-         natural_destroy(pmetadata);
+         base_data_destroy(pbasedata);
 
       }
 
    }
 
+
+   BASE_DATA* base_data_from_data(const DATA* pdata)const
+   {
+      
+      return BASE_DATA::base_data_from_data(pdata);
+   
+   }
 
 };
 

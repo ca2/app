@@ -164,7 +164,7 @@ bool file_context::exists(const ::file::path & pathParam)
    if (path.begins("http://") || path.begins("https://"))
    {
 
-      property_set set;
+      ::property_set set;
 
       if (path.flags() & ::file::e_flag_required)
       {
@@ -237,7 +237,7 @@ bool file_context::exists(const ::file::path & pathParam)
    if (path.begins("http://") || path.begins("https://"))
    {
 
-      property_set set;
+      ::property_set set;
 
       if (path.flags() & ::file::e_flag_required)
       {
@@ -1700,7 +1700,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
    bool bSourceEmpty = varSource.as_file_path().is_empty();
 
-   if (bSourceEmpty && preader.nok())
+   if (bSourceEmpty && ::is_nok(preader))
    {
 
       throw ::exception(error_bad_argument);
@@ -1711,15 +1711,14 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
    bool bTargetEmpty = varTarget.as_file_path().is_empty();
 
-   if (bTargetEmpty && pwriter.nok())
+   if (bTargetEmpty && ::is_nok(pwriter))
    {
 
       throw ::exception(error_bad_argument);
 
    }
 
-
-   if (pwriter.nok())
+   if (::is_nok(pwriter))
    {
 
       if (!directory()->is(varTarget.as_file_path().folder()))
@@ -1737,7 +1736,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
    ::file::path pathTarget;
 
-   if (pwriter.nok())
+   if (::is_nok(pwriter))
    {
 
       pathTarget = application()->defer_process_path(varTarget.as_file_path());
@@ -1746,7 +1745,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
    ::file::path pathSource;
 
-   if (preader.nok())
+   if (::is_nok(preader))
    {
 
       pathSource = application()->defer_process_path(varSource.as_file_path());
@@ -1776,7 +1775,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
    ::payload varNew;
 
-   if (pwriter.nok() && directory()->is(varTarget) && (varSource.as_file_path().name().has_character() && preader.nok()))
+   if (::is_nok(pwriter) && directory()->is(varTarget) && (varSource.as_file_path().name().has_character() && ::is_nok(preader)))
    {
 
       varNew = ::file::path(varTarget) / varSource.as_file_path().name();
@@ -1798,15 +1797,15 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
    try
    {
 
-      information() << "preader : " << (iptr)preader.m_p;
+      information() << "preader : " << (iptr)preader;
 
-      if (preader.nok())
+      if (::is_nok(preader))
       {
 
          preader = get_reader(varSource,
                               ::file::e_open_read | ::file::e_open_binary | ::file::e_open_share_deny_none);
 
-         if (preader.nok())
+         if (::is_nok(preader))
          {
 
             string strError;
@@ -1822,7 +1821,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
       }
 
-      if (pwriter.nok())
+      if (::is_nok(pwriter))
       {
 
          pwriter = get_file(varNew,
@@ -1830,7 +1829,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
                             ::file::e_open_defer_create_directory |
                             ::file::e_open_share_deny_write);
 
-         if (pwriter.nok())
+         if (::is_nok(pwriter))
          {
 
             string strError;
@@ -3463,9 +3462,9 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
    //*pmemoryfile->get_primitive_memory() = ;
 
-  /// property_set& set = payloadFile["http_set"].property_set_reference();
+  /// ::property_set & set = payloadFile["http_set"].property_set_reference();
 
-   pmemoryfile->payload("http_set") = ::transfer(pget->get_property_set());
+   pmemoryfile->payload("http_set") = ::transfer(pget->property_set());
    //{
 
    //   return ::error_failed;
@@ -4652,7 +4651,7 @@ CLASS_DECL_ACME void * file_as_memory_dup(long & size, const char * psz)
 
 
 
-property_set file_context::get_ini(const ::payload& payloadFile)
+::property_set file_context::get_ini(const ::payload& payloadFile)
 {
 
    auto str = this->safe_get_string(payloadFile);
@@ -4666,7 +4665,7 @@ property_set file_context::get_ini(const ::payload& payloadFile)
 }
 
 
-void file_context::set_ini(const ::payload& payloadFile, const ::property_set& set)
+void file_context::set_ini(const ::payload& payloadFile, const ::property_set & set)
 {
 
    auto str = set.get_ini();

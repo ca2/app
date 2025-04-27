@@ -8,7 +8,7 @@ namespace acme
 {
 
 
-   namespace property_set
+   namespace ::property_set
    {
 
 
@@ -35,7 +35,7 @@ namespace acme
       //}
 
 
-      inline bool get_string(string & strResult, const ::property_set& set, const string& strKey)
+      inline bool get_string(string & strResult, const ::property_set & set, const string& strKey)
       {
 
          return set.get_string(strResult, strKey);
@@ -70,7 +70,7 @@ namespace acme
       }
 
 
-   } // namespace property_set
+   } // namespace ::property_set
 
 
 } // namespace acme
@@ -85,7 +85,7 @@ namespace acme
 {
 
 
-   namespace property_set
+   namespace ::property_set
    {
 
 
@@ -306,7 +306,7 @@ namespace acme
 
 
 
-   } // namespace property_set
+   } // namespace ::property_set
 
 
 } // namespace acme

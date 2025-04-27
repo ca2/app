@@ -18,7 +18,7 @@ namespace hi5
    } eOAuthHttpRequestType;
 
    typedef string_array oAuthKeyValueList;
-   typedef property_set oAuthKeyValuePairs;
+   typedef ::property_set oAuthKeyValuePairs;
 
    class CLASS_DECL_SPHERE oauth :
       virtual public ::simple_log
@@ -67,7 +67,7 @@ namespace hi5
 
       bool getOAuthHeader(const eOAuthHttpRequestType eType, /* in */
                           const string & rawUrl, /* in */
-                          property_set & set, /* in(set["post"])/out(set["headers"]) */
+                          ::property_set & set, /* in(set["post"])/out(set["headers"]) */
                           const bool includeOAuthVerifierPin = false /* in */);
 
       bool extractOAuthTokenKeySecret( const string& requestTokenResponse /* in */ );

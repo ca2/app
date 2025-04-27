@@ -485,7 +485,7 @@ namespace hi5
 
       log_line(m_strRequest);
 
-      property_set post;
+      ::property_set post;
 
       post["command"] = "INIT";
 
@@ -562,7 +562,7 @@ namespace hi5
 
       log_line("mediaUploadAppend(\"" + strMediaId + "\", " + as_string(iIndex) + ", memory(size=" + as_string(iSize) + "))");
 
-      property_set post;
+      ::property_set post;
 
       ::sockets::multipart multipart(this);
 
@@ -614,7 +614,7 @@ namespace hi5
 
       log_line("mediaUploadFinalize(\"" + strMediaId + "\")");
 
-      property_set post;
+      ::property_set post;
 
       post["command"] = "FINALIZE";
 
@@ -682,7 +682,7 @@ namespace hi5
 
       log_line("mediaUploadFinalize(\"" + strMediaId + "\")");
 
-      property_set post;
+      ::property_set post;
 
       string strUrl("https://upload.twitter.com/1.1/media/upload.network_payload");
 
@@ -776,7 +776,7 @@ namespace hi5
 
       bool bOk;
 
-      property_set post;
+      ::property_set post;
 
       post["status"] = newStatus;
 
@@ -1122,7 +1122,7 @@ namespace hi5
       if( true && userInfo.get_length() && dMsg.get_length() )
       {
          /* Prepare ___new direct message */
-         property_set post;
+         ::property_set post;
          post["text"] = dMsg;
 
          /* Prepare URL */
@@ -1207,7 +1207,7 @@ namespace hi5
          strUrl = build_url(TWIT_FRIENDSHIPSCREATE_URL, userInfo, isUserId );
 
          /* Send some dummy data in POST */
-         property_set post;
+         ::property_set post;
          post["text"] = "dummy";
 
          /* Perform POST */
@@ -1404,7 +1404,7 @@ namespace hi5
          strUrl.append( TWIT_EXTENSIONFORMAT );
 
          /* Send some dummy data in POST */
-         property_set post;
+         ::property_set post;
          post["text"] = "dummy";
 
          /* Perform POST */
@@ -1464,7 +1464,7 @@ namespace hi5
          strUrl.append( TWIT_EXTENSIONFORMAT );
 
          /* Send some dummy data in POST */
-         property_set post;
+         ::property_set post;
          post["text"] = "dummy";
 
          /* Perform POST */
@@ -1573,7 +1573,7 @@ namespace hi5
          strUrl = TWIT_SAVEDSEARCHCREATE_URL;
 
          /* Send some dummy data in POST */
-         property_set post;
+         ::property_set post;
          post["query"] = query;
 
          /* Perform POST */
@@ -1812,7 +1812,7 @@ namespace hi5
    bool twit::performGet( const string & getUrl )
    {
 
-      property_set set;
+      ::property_set set;
 
       /* set OAuth header */
       m_oauth.getOAuthHeader(eOAuthHttpGet, getUrl, set);
@@ -1844,12 +1844,12 @@ namespace hi5
    * @remarks: internal method
    *
    *--*/
-   bool twit::performGet( const string & getUrl, property_set & headers)
+   bool twit::performGet( const string & getUrl, ::property_set & headers)
    {
 
       string dataStrDummy( "" );
 
-      property_set set;
+      ::property_set set;
 
       set["headers"] = headers;
 
@@ -1865,12 +1865,12 @@ namespace hi5
    }
 
 
-//   bool twit::performPost( const string & getUrl, property_set & headers, property_set & post)
+//   bool twit::performPost( const string & getUrl, ::property_set & headers, ::property_set & post)
 //      {
 //
 //         string dataStrDummy( "" );
 //
-//         property_set set;
+//         ::property_set set;
 //
 //         if (headers.m_propertya.get_count() > 0)
 //         {
@@ -1908,7 +1908,7 @@ namespace hi5
    bool twit::performDelete( const string & deleteUrl )
    {
 
-      property_set set;
+      ::property_set set;
 
       /* set OAuth header */
       m_oauth.getOAuthHeader(eOAuthHttpDelete, deleteUrl, set);
@@ -1942,7 +1942,7 @@ namespace hi5
    * @remarks: internal method
    *
    *--*/
-   bool twit::performPost( const string & postUrl, property_set & set)
+   bool twit::performPost( const string & postUrl, ::property_set & set)
    {
 
       bool bOk = false;
@@ -1970,7 +1970,7 @@ namespace hi5
       else
       {
 
-         property_set setHttp;
+         ::property_set setHttp;
 
          setHttp["post"] = set;
 
@@ -1995,7 +1995,7 @@ namespace hi5
 
    }
 
-   bool twit::performMultiPartPost(const string & postUrl, property_set & set, bool bMultiPartPost)
+   bool twit::performMultiPartPost(const string & postUrl, ::property_set & set, bool bMultiPartPost)
    {
 
       bool bOk = false;
@@ -2023,7 +2023,7 @@ namespace hi5
       else
       {
 
-         property_set setHttp;
+         ::property_set setHttp;
 
          if (!bMultiPartPost)
          {
@@ -2155,7 +2155,7 @@ namespace hi5
       if( true )
       {
          /* Get OAuth header for request token */
-         property_set set;
+         ::property_set set;
          long long iTime = ::time(nullptr);
          if (m_oauth.getOAuthHeader(eOAuthHttpPost, "https://twitter.com/oauth/request_token", set))
          {
@@ -2200,7 +2200,7 @@ namespace hi5
       if( true )
       {
          /* Get OAuth header for access token */
-         property_set set;
+         ::property_set set;
          if(m_oauth.getOAuthHeader( eOAuthHttpGet, m_oauth.OAUTHLIB_TWITTER_ACCESS_TOKEN_URL, set, true))
          {
             if (performGet(m_oauth.OAUTHLIB_TWITTER_ACCESS_TOKEN_URL, set["headers"].propset()))

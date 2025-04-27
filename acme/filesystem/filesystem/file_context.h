@@ -295,7 +295,7 @@ public:
 
 
    virtual ::property_set get_ini(const ::payload& payloadFile);
-   virtual void set_ini(const ::payload& payloadFile, const ::property_set& set);
+   virtual void set_ini(const ::payload& payloadFile, const ::property_set & set);
 
 
    virtual ::property_set get_standard_configuration(const ::payload& payloadFile);

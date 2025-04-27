@@ -119,7 +119,7 @@ namespace simpledb
 
                ///string strBase64(pitem->m_block.to_base64());
 
-               //property_set set;
+               //::property_set set;
 
                //auto pstorage = m_pstorage;
 

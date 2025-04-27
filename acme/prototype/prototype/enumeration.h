@@ -150,7 +150,7 @@ public:
 
       }
 
-      this->operator++(0);
+      this->operator ++(0);
 
       return this->operator %=(eenum);
 

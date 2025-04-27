@@ -566,7 +566,7 @@ void file_system::clear_application_data()
 }
 
 
-void file_system::find_replace(const ::file::path& path, const ::property_set& set)
+void file_system::find_replace(const ::file::path& path, const ::property_set & set)
 {
 
    auto str = as_string(path);
@@ -1112,15 +1112,15 @@ void file_system::load_stra(const ::file::path& pathName, string_array& stra, bo
 }
 
 
-void file_system::put_contents(const ::file::path& path, const memory_base& memory)
-{
+//void file_system::put_contents(const ::file::path& path, const memory_base& memory)
+//{
+//
+//   put_block(path, memory);
+//
+//}
 
-   put_block(path, memory);
 
-}
-
-
-void file_system::put_contents(const ::file::path& path, const ::scoped_string& scopedstrContents)
+void file_system::put_contents(const ::file::path& path, const ::block& block)
 {
 
 

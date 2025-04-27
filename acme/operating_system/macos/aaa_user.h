@@ -125,12 +125,12 @@
 ////   bool operator==(const wxSize& sz) const { return x == sz.x() && y == sz.y(); }
 ////   bool operator!=(const wxSize& sz) const { return x != sz.x() || y != sz.y(); }
 ////   
-////   wxSize operator+(const wxSize& sz) const { return wxSize(x + sz.x(),y + sz.y()); }
+////   wxSize operator +(const wxSize& sz) const { return wxSize(x + sz.x(),y + sz.y()); }
 ////   wxSize operator-(const wxSize& sz) const { return wxSize(x - sz.x(),y - sz.y()); }
 ////   wxSize operator/(int i) const { return wxSize(x / i,y / i); }
 ////   wxSize operator*(int i) const { return wxSize(x * i,y * i); }
 ////   
-////   wxSize& operator+=(const wxSize& sz) { x += sz.x(); y += sz.y(); return *this; }
+////   wxSize& operator +=(const wxSize& sz) { x += sz.x(); y += sz.y(); return *this; }
 ////   wxSize& operator-=(const wxSize& sz) { x -= sz.x(); y -= sz.y(); return *this; }
 ////   wxSize& operator/=(const int i) { x /= i; y /= i; return *this; }
 ////   wxSize& operator*=(const int i) { x *= i; y *= i; return *this; }
@@ -199,16 +199,16 @@
 ////   bool operator!=(const wxPoint& point) const { return !(*this == point); }
 ////   
 ////   // arithmetic operations (component wise)
-////   wxPoint operator+(const wxPoint& point) const { return wxPoint(x + point.x(),y + point.y()); }
+////   wxPoint operator +(const wxPoint& point) const { return wxPoint(x + point.x(),y + point.y()); }
 ////   wxPoint operator-(const wxPoint& point) const { return wxPoint(x - point.x(),y - point.y()); }
 ////   
-////   wxPoint& operator+=(const wxPoint& point) { x += point.x(); y += point.y(); return *this; }
+////   wxPoint& operator +=(const wxPoint& point) { x += point.x(); y += point.y(); return *this; }
 ////   wxPoint& operator-=(const wxPoint& point) { x -= point.x(); y -= point.y(); return *this; }
 ////   
-////   wxPoint& operator+=(const wxSize& s) { x += s.GetWidth(); y += s.GetHeight(); return *this; }
+////   wxPoint& operator +=(const wxSize& s) { x += s.GetWidth(); y += s.GetHeight(); return *this; }
 ////   wxPoint& operator-=(const wxSize& s) { x -= s.GetWidth(); y -= s.GetHeight(); return *this; }
 ////   
-////   wxPoint operator+(const wxSize& s) const { return wxPoint(x + s.GetWidth(),y + s.GetHeight()); }
+////   wxPoint operator +(const wxSize& s) const { return wxPoint(x + s.GetWidth(),y + s.GetHeight()); }
 ////   wxPoint operator-(const wxSize& s) const { return wxPoint(x - s.GetWidth(),y - s.GetHeight()); }
 ////   
 ////   wxPoint operator-() const { return wxPoint(-x,-y); }

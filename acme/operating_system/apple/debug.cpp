@@ -7,7 +7,7 @@
 #include "debug.h"
 #include "ns_exception.h"
 
-void throw_ns_exception(enum_status estatus, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrDescription, const property_set & setUserInfo)
+void throw_ns_exception(enum_status estatus, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrDescription, const ::property_set & setUserInfo)
 {
 
    throw ns_exception(estatus, scopedstrName, scopedstrDescription, setUserInfo);

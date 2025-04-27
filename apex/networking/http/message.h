@@ -22,8 +22,8 @@ namespace http
 
 
       //::url::url                       m_url;
-      // property_set                     m_setPost;
-      // property_set                     m_setHeaders;
+      // ::property_set                     m_setPost;
+      // ::property_set                     m_setHeaders;
 
       ::pointer<::http::cookies>       m_pcookies;
 

@@ -6061,7 +6061,7 @@ if(!m_pimaging)
 
    //   string filename = file()->time_square();
 
-   //   property_set set;
+   //   ::property_set set;
 
    //   //set["user"] = puser;
 
@@ -6082,7 +6082,7 @@ if(!m_pimaging)
    //   if (strLocation.has_character())
    //   {
 
-   //      property_set set;
+   //      ::property_set set;
 
    //      //set["user"] = puser;
 

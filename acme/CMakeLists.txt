@@ -594,7 +594,7 @@ list(APPEND library_source
    platform/hyperlink.cpp
    platform/implementable.cpp
    platform/implementable.h
-   platform/ini.cpp
+   #platform/ini.cpp
    platform/integration_context.cpp
    platform/integration_context.h
    platform/library.cpp

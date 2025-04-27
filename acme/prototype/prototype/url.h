@@ -4,19 +4,175 @@
 
 //#include "acme/platform/department.h"
 //#include "acme/prototype/collection/string_array.h"
+#include "acme/prototype/string/scoped_string_base.h"
+
+//template < primitive_character CHARACTER >
+//const CHARACTER * const_string_range_begin(const ::range < const CHARACTER* >& range)
+//{
+//
+//   return range.begin();
+//
+//}
+//
+//template < primitive_character CHARACTER >
+//const CHARACTER* const_string_range_begin(const CHARACTER* p)
+//{
+//
+//   return p;
+//
+//}
+//
+//template < primitive_character CHARACTER >
+//character_count const_string_range_size(const ::range < const CHARACTER* >& range)
+//{
+//
+//   return range.size();
+//
+//}
+//
+//template < primitive_character CHARACTER >
+//character_count const_string_range_size(const CHARACTER* p)
+//{
+//
+//   return string_safe_length(p);
+//
+//}
 
 
 namespace url
 {
 
 
-   class connect;
-   class request;
+   CLASS_DECL_ACME ::string connect_string(const ::scoped_string& scopedstrProtocol, const ::scoped_string& scopedstrHost, int iPort);
+   CLASS_DECL_ACME::string request_string(const ::scoped_string& scopedstrPath, const ::scoped_string& scopedstrQuery = {}, const ::scoped_string& scopedstrFragment = {});
+   CLASS_DECL_ACME::string request_string(const ::scoped_string& scopedstrPath, const ::property_set& setArguments, const ::scoped_string& scopedstrFragment = {});
+
+
    class parts;
 
-   CLASS_DECL_ACME::string decode(const ::block& block);
-   CLASS_DECL_ACME::string encode(const ::block& block);
-   CLASS_DECL_ACME::string encode_path(const ::block & block);
+
+   //CLASS_DECL_ACME::string decode_block(const ::block& block);
+   //CLASS_DECL_ACME::string encode_block(const ::block& block);
+   //CLASS_DECL_ACME::string encode_path_block(const ::block& block);
+
+   CLASS_DECL_ACME::string decode(const ::scoped_string & scopedstr);
+   CLASS_DECL_ACME::string encode(const ::scoped_string & scopedstr);
+   CLASS_DECL_ACME::string encode_path(const ::scoped_string & scopedstr);
+
+
+   class CLASS_DECL_ACME connect_range
+   {
+   protected:
+
+
+      friend class url;
+      friend class connect;
+      friend class request_range;
+      
+      
+      //::url::url* m_purl;
+      bool                    m_bIsUrl;
+      ::ansi_range            m_range{ nullptr };
+      //::string                m_str;
+      ::logic::boolean        m_bSecure;
+      //bool                    m_bScoped = false;
+      ::ansi_range            m_rangeProtocol{ nullptr };
+      ::ansi_range            m_rangeHost{ nullptr };
+      ::ansi_range            m_rangePort{ nullptr };
+      ::ansi_range            m_rangeRequest{ nullptr };
+      int                     m_iPort = -1;
+
+
+      connect_range();
+      connect_range(const connect_range& connectrange);
+      ~connect_range();
+
+
+      connect_range& operator = (const connect_range& connectrange);
+
+      void parse(const ::const_ansi_range& ansirange);
+
+      ::const_ansi_range request_range() const { return m_rangeRequest; }
+
+
+   public:
+
+
+
+      /// parse connect range and returns range for the request
+      
+      
+
+
+      ::string as_string() const;
+      auto protocol() const { return m_rangeProtocol; }
+      auto host() const { return m_rangeHost; }
+      auto port_range() const { return m_rangePort; }
+      int port() const;
+      ::string port_part() const;
+      bool is_url() const { return m_bIsUrl; }
+      bool is_secure() const;
+      //bool is_scoped() const { return m_bScoped; }
+
+
+   };
+
+
+   class CLASS_DECL_ACME request_range
+   {
+   protected:
+
+
+      friend class url;
+      friend class request;
+
+
+      ::ansi_range                  m_range{ nullptr };
+      //::string                      m_str;
+      //bool                          m_bScoped = false;
+      ::ansi_range                  m_rangePath{ nullptr };
+      ::ansi_range                  m_rangeName{ nullptr };
+      ::ansi_range                  m_rangeQuery{ nullptr };
+      ::pointer < ::property_set >  m_psetArguments;
+      ::ansi_range                  m_rangeFragment{ nullptr };
+
+      request_range();
+      request_range(const request_range& requestrange);
+      ~request_range();
+
+
+      request_range& operator = (const request_range& request);
+
+
+      void parse(const ::const_ansi_range& ansirange);
+
+
+   public:
+
+
+
+      //   // Example: /script%20folder/strict%20object?param1=1&param2=2
+      auto as_string() const { return m_range; } // /script%20folder/strict%20object?param1=1&param2=2
+      auto raw_path() const { return m_rangePath; } // /script%20folder/strict%20object
+      auto path() const { return decode(this->raw_path()); } // /script folder/strict object
+      auto raw_name() const { return m_rangeName; } // strict%20object
+      auto name() const { return decode(this->raw_name()); } // strict object
+      auto query() const { return m_rangeQuery; }// param1=1&param2=2
+      auto raw_fragment() const { return m_rangeFragment; }// param1=1&param2=2
+      auto fragment() const { return decode(m_rangeFragment); }// param1=1&param2=2
+      //bool is_scoped() const { return m_bScoped; }
+
+      const ::property_set& arguments() const;
+      ::property_set& arguments();
+
+      ::payload get(const ::atom& atom) const;
+
+   };
+
+
+
+   //class connect;
+   //class request;
 
    //struct CLASS_DECL_ACME part
    //{
@@ -41,22 +197,37 @@ namespace url
 
 
 
-   class CLASS_DECL_ACME connect_part
+   class CLASS_DECL_ACME connect :
+      public connect_range
    {
+   protected:
+
+
+      ::string                      m_str;
+
+
    public:
 
 
-      ::string                   m_strProtocol;
-      ::string                   m_strHost;
-      int                      m_iPort;
-      ::logic::boolean           m_bSecure;
+      //::string                   m_strProtocol;
+      //::string                   m_strHost;
+      //int                        m_iPort;
+      //::logic::boolean           m_bSecure;
 
-      connect_part();
-      connect_part(const ::url::connect & connect);
 
-      connect_part& operator = (const::url::connect& connect);
+      connect();
+      connect(const ::scoped_string& scopedstr);
+      //connect(const ::url::url & url);
+
+
+      void parse(const ::scoped_string& scopedstr);
+
+
+      //connect& operator = (const ::url::url & url);
+
 
       void set(const ::scoped_string& scopedstrProtocol, const ::scoped_string& scopedstrHost, int iPort = -1, ::logic::boolean booleanSecure = {});
+
 
       ::string as_string() const;
 
@@ -64,10 +235,12 @@ namespace url
    };
 
 
-   class CLASS_DECL_ACME request_part
+   class CLASS_DECL_ACME request :
+      public request_range
    {
    protected:
 
+      ::string          m_str;
       
       void __set_href(const ::scoped_string& scopedstrHref);
 
@@ -76,27 +249,34 @@ namespace url
    public:
 
 
-      ::string                      m_strPath;
-      ::pointer < property_set >    m_psetArguments;
-      ::string                      m_strFragment;
+      //::string                      m_strPath;
+      //::pointer < ::property_set >    m_psetArguments;
+      //::string                      m_strFragment;
 
-      request_part();
-      request_part(const::url::request& request);
+      request();
+      request(const ::scoped_string& scopedstr);
+      //request(const::url::url& url);
 
-      request_part& operator = (const::url::request& request);
+
+      void parse(const ::scoped_string& scopedstr);
+      
+      //request& operator = (const::url::url& url);
+
 
       void set(const ::scoped_string& scopedstrPath);
       void set(const ::scoped_string& scopedstrPath, const ::scoped_string & scopedstrQuery);
       void set(const ::scoped_string& scopedstrPath, const ::scoped_string & scopedstrQuery, const ::scoped_string & scopedstrFragment);
 
-      
+      void set_query(const ::scoped_string& scopedstrKey);
+      void set_query(const ::property_set & set);
 
-      auto& arguments() { return *m_psetArguments; };
+
+
 
       ::string as_string() const;
 
-   };
 
+   };
 
 
    class CLASS_DECL_ACME parts
@@ -104,8 +284,9 @@ namespace url
    public:
 
 
-      connect_part      m_connectpart;
-      request_part      m_requestpart;
+      ::url::connect       m_connect;
+      ::url::request       m_request;
+
 
       parts();
       parts(const ::url::url& url);
@@ -115,13 +296,16 @@ namespace url
 
       
       void from(const ::url::url& url);
-
+      void set(const ::url::connect_range & connectrange);
+      void set(const ::url::request_range & requestrange);
       
       void set_href(const ::scoped_string& scopedstrHref);
 
 
-      auto& connect() { return m_connectpart; }
-      auto& request() { return m_requestpart; }
+      auto& connect() { return m_connect; }
+      auto& request() { return m_request; }
+      auto& connect() const { return m_connect; }
+      auto& request() const { return m_request; }
       auto& arguments() { return request().arguments(); }
 
       ::url::url as_url() const;
@@ -130,149 +314,174 @@ namespace url
    };
 
 
-   class CLASS_DECL_ACME connect
-   {
-   protected:
+   //class CLASS_DECL_ACME connect
+   //{
+   //protected:
 
 
-      bool                    m_bIsUrl;
-      ::string                m_str;
-      ::logic::boolean        m_bSecure;
-      bool                    m_bScoped = false;
-      ::const_ansi_range      m_rangeProtocol{ nullptr };
-      ::const_ansi_range      m_rangeHost{ nullptr };
-      ::const_ansi_range      m_rangePort{ nullptr };
-      int                   m_iPort = -1;
-      const char *            m_pszRequestStart{ nullptr };
+   //   bool                    m_bIsUrl;
+   //   ::string                m_str;
+   //   ::logic::boolean        m_bSecure;
+   //   //bool                    m_bScoped = false;
+   //   ::const_ansi_range      m_rangeProtocol{ nullptr };
+   //   ::const_ansi_range      m_rangeHost{ nullptr };
+   //   ::const_ansi_range      m_rangePort{ nullptr };
+   //   int                     m_iPort = -1;
+   //   
 
-      friend ::url::url;
+   //   friend ::url::url;
+   //   friend ::url::request;
 
-      // returns range of the request
+   //   // returns range of the request
 
-      const_ansi_range __from(const ::scoped_string & scopedstr);
-      void __from(const ::url::connect_part& connect);
+   //   const_ansi_range __from(const ::scoped_string & scopedstr);
+   //   void __from(const ::url::connect_part& connect);
 
-   public:
-
-
-
-      connect();
-      template < const_string_castable STRING >
-      connect(const STRING& string)
-      {
-
-         __from(string);
-
-      }
-      connect(const ::url::connect& connect);
-      ~connect();
+   //public:
 
 
-      connect& operator = (const ::url::connect& connect);
 
-      ::string as_string() const;
-      auto protocol() const { return m_rangeProtocol; }
-      auto host() const { return m_rangeHost; }
-      auto port() const { return m_rangePort; }
-      ::string port_part() const;
-      bool is_url() const { return m_bIsUrl; }
-      bool is_secure() const { return m_bSecure; }
-      bool is_scoped() const { return m_bScoped; }
+   //   connect();
+   //   template < const_string_castable STRING >
+   //   connect(const STRING& string)
+   //   {
 
+   //      __from(string);
 
-   };
+   //   }
+   //   connect(const ::url::connect& connect);
+   //   ~connect();
 
 
-   class CLASS_DECL_ACME request
-   {
-   protected:
+   //   connect& operator = (const ::url::connect& connect);
+
+   //   ::string as_string() const;
+   //   auto protocol() const { return m_rangeProtocol; }
+   //   auto host() const { return m_rangeHost; }
+   //   auto port() const { return m_rangePort; }
+   //   ::string port_part() const;
+   //   bool is_url() const { return m_bIsUrl; }
+   //   bool is_secure() const { return m_bSecure; }
+   //   //bool is_scoped() const { return m_bScoped; }
 
 
-      ::string                      m_str;
-      bool                          m_bScoped = false;
-      ::const_ansi_range            m_rangePath{ nullptr };
-      ::const_ansi_range            m_rangeName{ nullptr };
-      ::const_ansi_range            m_rangeQuery{ nullptr };
-      ::pointer < ::property_set >  m_psetArguments;
-      ::const_ansi_range            m_rangeFragment{ nullptr };
-
-      // returns the request
-      void __from(const ::scoped_string & scopedstr);
-      void __from(const ::url::request_part& request);
+   //};
 
 
-      friend ::url::url;
+   //class CLASS_DECL_ACME request
+   //{
+   //protected:
 
 
-   public:
+   //   ::string                      m_str;
+   //   //bool                          m_bScoped = false;
+   //   ::const_ansi_range            m_rangePath{ nullptr };
+   //   ::const_ansi_range            m_rangeName{ nullptr };
+   //   ::const_ansi_range            m_rangeQuery{ nullptr };
+   //   ::pointer < ::property_set >  m_psetArguments;
+   //   ::const_ansi_range            m_rangeFragment{ nullptr };
+
+   //   // returns the request
+   //   void __from(const ::scoped_string & scopedstr);
+   //   void __from(const ::url::request_part& request);
 
 
-      request();
-      template < const_string_castable STRING >
-      request(const STRING& string)
-      {
-         
-         __from(string);
-
-      }
-      request(const ::url::request& request);
-      ~request();
-      
-
-      request& operator = (const ::url::request& request);
+   //   friend ::url::url;
 
 
-      // Example: /script%20folder/strict%20object?param1=1&param2=2
-      auto as_string() const { return m_str; } // /script%20folder/strict%20object?param1=1&param2=2
-      auto raw_path() const { return m_rangePath; } // /script%20folder/strict%20object
-      auto path() const { return decode(this->raw_path()); } // /script folder/strict object
-      auto raw_name() const { return m_rangeName; } // strict%20object
-      auto name() const { return decode(this->raw_name()); } // strict object
-      auto query() const { return m_rangeQuery; }// param1=1&param2=2
-      auto raw_fragment() const { return m_rangeFragment; }// param1=1&param2=2
-      auto fragment() const { return decode(m_rangeFragment); }// param1=1&param2=2
-      bool is_scoped() const { return m_bScoped; }
-
-      auto& arguments() { return *m_psetArguments; }
+   //public:
 
 
-      ::string query(const ::scoped_string& scopedstrKey) const;
+   //   request();
+   //   template < const_string_castable STRING >
+   //   request(const STRING& string) requires
+   //      !::std::is_same_v < STRING, ::url::connect >
+   //   {
+   //      
+   //      __from(string);
+
+   //   }
+   //   request(const ::url::request& request);
+   //   ~request();
+   //   
+
+   //   request& operator = (const ::url::request& request);
 
 
-      
-   };
+   //   // Example: /script%20folder/strict%20object?param1=1&param2=2
+   //   auto as_string() const { return m_str; } // /script%20folder/strict%20object?param1=1&param2=2
+   //   auto raw_path() const { return m_rangePath; } // /script%20folder/strict%20object
+   //   auto path() const { return decode(this->raw_path()); } // /script folder/strict object
+   //   auto raw_name() const { return m_rangeName; } // strict%20object
+   //   auto name() const { return decode(this->raw_name()); } // strict object
+   //   auto query() const { return m_rangeQuery; }// param1=1&param2=2
+   //   auto raw_fragment() const { return m_rangeFragment; }// param1=1&param2=2
+   //   auto fragment() const { return decode(m_rangeFragment); }// param1=1&param2=2
+   //   //bool is_scoped() const { return m_bScoped; }
+
+   //   auto& arguments() { return *m_psetArguments; }
+
+
+   //   ::string query(const ::scoped_string& scopedstrKey) const;
+
+
+   //   
+   //};
 
 
 
 
    class CLASS_DECL_ACME url
    {
-   protected:
+   public:
+
+      ::string                m_str;
+
+
+      //const char*             m_pszRequest;
 
       
-      bool                    m_bScoped = false;
-      ::url::connect          m_connect;
-      ::url::request          m_request;
+      //bool                    m_bScoped = false;
+      ::url::connect_range    m_connectrange;
+      ::url::request_range    m_requestrange;
 
 
-      void __from(const ::scoped_string & scopedstr);
-      void __from(const ::url::parts & parts);
 
-   public:
+   //public:
 
 
       url();
-      template < const_string_castable STRING >
-      url(const STRING& string)
-      {
 
-         __from(string);
+
+      template < const_string_castable STRING >
+      url(const STRING & str)
+      { 
+
+         ::string strSink(str);
+      
+         parse(strSink);
 
       }
-      url(const ::url::connect_part & connectpart);
-      url(const ::url::connect_part & connectpart, const ::url::request_part & requestpart);
+
+
+      url(const ::url::connect & connect);
+      url(const ::url::connect & connect, const ::url::request & request);
       url(const ::url::url& url);
       ~url();
+      
+      
+      //void __from(const ::scoped_string& scopedstr);
+      //void __from(const ::url::parts& parts);
+
+      
+      void parse(const ::scoped_string & scopedstr);
+
+
+      //void parse(const ::url::parts & parts);
+
+
+      //void construct_connect();
+      //void construct_request();
 
       
       url& operator = (const ::url::url& url);
@@ -280,8 +489,8 @@ namespace url
 
       // Example: http://website.com:80/script%20folder/strict%20object?param1=1&param2=2
       ::string as_string() const;
-      auto & connect() const { return m_connect; }
-      auto & request() const { return m_request; }
+      auto & connect() const { return m_connectrange; }
+      auto & request() const { return m_requestrange; }
       //auto request_uri() const { return m_rangeRequestUri; } // /script%20folder/strict%20object?param1=1&param2=2
       //auto raw_script() const { return m_rangeScript; } // /script%20folder/strict%20object
       //auto script() const { return decode(this->raw_script()); } // /script folder/strict object
@@ -290,7 +499,7 @@ namespace url
       //auto query() const { return m_rangeQuery; }// param1=1&param2=2
 
 
-      bool is() const { return connect().is_url(); }
+      bool is() const { return m_connectrange.is_url(); }
 
 
 
@@ -305,7 +514,7 @@ namespace url
       //string string_set(string & strUrl, const ::string & strKey, ::payload payload);
       //string string_set_if_not_empty(string& strUrl, const ::string & strKey, ::payload payload);
       //::payload & var_set(::payload & varUrl, const ::string & strKey, ::payload payload);
-      //property & property_set(property & propUrl, const ::string & strKey, ::payload payload);
+      //property & ::property_set(property & propUrl, const ::string & strKey, ::payload payload);
 
       //string set_script(const ::string & strUrl, const ::string & strScript);
       

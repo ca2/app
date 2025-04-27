@@ -307,7 +307,7 @@ namespace api_ca2
 
       string strRedirectUri = m_strRedirectUri;
 
-      property_set set;
+      ::property_set set;
 
       set["headers"]["User-Agent"] = get_app()->m_strAppId;
       set["post"]["applogin"] = strAppLogin;
@@ -349,7 +349,7 @@ namespace api_ca2
    }
 
 
-   ::memory api::api_memory(const ::scoped_string & scopedstrUrl, property_set & set)
+   ::memory api::api_memory(const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
 
       set["raw_http"] = true;

@@ -38,13 +38,13 @@ public:
    //virtual ::pointer < ::api > create_api(const ::scoped_string & strImplementation);
 
 
-   //virtual void api_get(::string & str, const string & strUrl, property_set & set);
+   //virtual void api_get(::string & str, const string & strUrl, ::property_set & set);
 
 
-   //virtual void api_get(::payload & payload, const string & strUrl, property_set & set);
+   //virtual void api_get(::payload & payload, const string & strUrl, ::property_set & set);
 
 
-   //virtual void api_download(string strGet, const ::file::path & path, property_set & set);
+   //virtual void api_download(string strGet, const ::file::path & path, ::property_set & set);
 
 
 };

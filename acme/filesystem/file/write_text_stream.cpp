@@ -253,13 +253,13 @@ write_text_stream & write_text_stream::operator <<(bool b)
    if (b)
    {
 
-      print("1");
+      print("1"_ansi);
 
    }
    else
    {
 
-      print("0");
+      print("0"_ansi);
 
    }
 
@@ -331,7 +331,7 @@ write_text_stream & write_text_stream::operator <<(unichar wch)
 
    wd16_to_ansi(sz, &wch, 1);
 
-   print(sz);
+   print(as_range(sz));
 
    if (this->fmtflags() & ::file::separated)
    {
@@ -437,7 +437,7 @@ write_text_stream & write_text_stream::operator <<(const ::ansi_character * psz)
    if (this->fmtflags() & ::file::network_payload)
    {
 
-      print("\"");
+      print("\""_ansi);
 
    }
 
@@ -446,7 +446,7 @@ write_text_stream & write_text_stream::operator <<(const ::ansi_character * psz)
    if (this->fmtflags() & ::file::network_payload)
    {
 
-      print("\"");
+      print("\""_ansi);
 
    }
 
@@ -463,10 +463,12 @@ write_text_stream & write_text_stream::operator <<(const ::ansi_character * psz)
 
 
 // // template < typename FILE >
-write_text_stream & write_text_stream::operator <<(const ::string & str)
+write_text_stream & write_text_stream::operator <<(const ::range < const char * > & range)
 {
 
-   return this->operator <<((const ::scoped_string &)str);
+   this->write(range.data(), range.size());
+
+   return *this;
 
 }
 
@@ -478,7 +480,7 @@ write_text_stream & write_text_stream::operator <<(const ::scoped_string & scope
    if (this->fmtflags() & ::file::network_payload)
    {
 
-      print("\"");
+      print("\""_ansi);
 
    }
 
@@ -487,7 +489,7 @@ write_text_stream & write_text_stream::operator <<(const ::scoped_string & scope
    if (this->fmtflags() & ::file::network_payload)
    {
 
-      print("\"");
+      print("\""_ansi);
 
    }
 
@@ -505,7 +507,7 @@ write_text_stream & write_text_stream::operator <<(const ::scoped_string & scope
 
 
 
-//text_stream & operator <<(const property_set& set) ;
+//text_stream & operator <<(const ::property_set & set) ;
 
 
 
@@ -540,10 +542,10 @@ void write_text_stream::write(const void * psz, character_count s)
 }
 
 
-void write_text_stream::print(const ::scoped_string & scopedstr)
+void write_text_stream::print(const ::range < const char * > & range)
 {
 
-   m_pfile->write(scopedstr);
+   m_pfile->write(range.data(), range.size());
 
 }
 
@@ -565,7 +567,7 @@ void write_text_stream::print(const ::scoped_string & scopedstr)
 //   text_stream& operator >>(float& f);
 //   text_stream& operator >>(double& d);
 //   text_stream& operator >>(string& str);
-//   //text_stream & operator >>(property_set& set) ;
+//   //text_stream & operator >>(::property_set & set) ;
 //   //text_stream & operator >>(::atom & atom) ;
 //
 //   template < typename TYPE >
@@ -688,7 +690,7 @@ void write_text_stream::print(const ::scoped_string & scopedstr)
 //   return *this;
 //
 //}
-////text_stream & operator <<(const property_set& set) ;
+////text_stream & operator <<(const ::property_set & set) ;
 //// // template < typename FILE >
 //write_text_stream & write_text_stream::write(const TYPE& t)
 //{

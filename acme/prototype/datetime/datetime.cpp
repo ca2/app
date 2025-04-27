@@ -309,7 +309,7 @@ namespace datetime
    //}
 
 
-   void datetime::parse_text(const string & strSrc, property_set & set)
+   void datetime::parse_text(const string & strSrc, ::property_set & set)
    {
       
       string src(strSrc);
@@ -1474,7 +1474,7 @@ namespace datetime
       string str(strSpanExpression);
       str.trim();
       str += " ";
-      property_set set;
+      ::property_set set;
       bool bAdd = false;
       bool bMinus = false;
       const char * psz = str.c_str();
@@ -1603,7 +1603,7 @@ namespace datetime
       }
       return time;
    }
-   void parse_br_str(const ::scoped_string & scopedstr, property_set& set)
+   void parse_br_str(const ::scoped_string & scopedstr, ::property_set & set)
    {
       string src(scopedstr);
       src.trim();
@@ -1677,7 +1677,7 @@ namespace datetime
       string str(strParam);
       str.trim();
       str += " ";
-      property_set set;
+      ::property_set set;
       bool bBaseTime = false;
       int iStart = 0;
 
@@ -1885,7 +1885,7 @@ namespace datetime
       if (bBaseTime)
       {
 
-         if (str.substr(iStart).trimmed().length() == 0)
+         if (str.substr(iStart).trimmed().size() == 0)
          {
 
             return result(time);

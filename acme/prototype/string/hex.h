@@ -172,13 +172,13 @@ namespace hex
       while (numberstring.size() < s_iWidth)
       {
 
-         *numberstring.m_end++ = '0';
+         *((char * &)numberstring.m_end)++ = '0';
 
       }
 
-      reverse(numberstring.m_begin, numberstring.m_end - 1);
+      reverse(((char *)numberstring.m_begin), ((char *)(numberstring.m_end - 1)));
 
-      *numberstring.m_end++ = '0';
+      *((char *&)numberstring.m_end)++ = '0';
 
       return numberstring;
 

@@ -1,7 +1,5 @@
+// to string_heap_data on 2025-04-21 15:38 <3ThomasBorregaardSørensen!!
 #pragma once
-
-
-
 
 
 
@@ -14,16 +12,16 @@ inline STRING & string_concatenate(STRING & strResult, const typename STRING::CH
 
 
 template < primitive_character CHARACTER >
-class string_meta_data :
-   public meta_data < CHARACTER >
+class string_heap_data :
+   public heap_data < CHARACTER >
 {
 public:
 
    
-   typedef string_meta_data < CHARACTER > STRING_META_DATA;
+   typedef string_heap_data < CHARACTER > STRING_HEAP_DATA;
 
 
-   using meta_data < CHARACTER >::meta_data;
+   using heap_data < CHARACTER >::heap_data;
 
 
    /// in bytes, without meta, with null(s)
@@ -33,19 +31,19 @@ public:
 
 
    /// always char count (before first [and possibly final, but not necessarily final] null terminator)
-   inline ::character_count character_count() const { return (::character_count) this->m_countData; }
-   inline ::memsize character_count_in_bytes() const;
-   inline ::memsize null_terminated_character_count_in_bytes() const;
+   //inline ::character_count character_count() const { return (::character_count) this->m_countData; }
+   //inline ::memsize character_count_in_bytes() const;
+   //inline ::memsize null_terminated_character_count_in_bytes() const;
    
 
-   inline void raw_set_character_count(::character_count character_count);
-   inline void set_character_count(::character_count character_count);
+   //inline void raw_set_character_count(::character_count character_count);
+   //inline void set_character_count(::character_count character_count);
 
 
    operator const CHARACTER * () const noexcept { return this->begin(); }
 
 
-   operator CHARACTER * () noexcept { return this->begin(); }
+   operator CHARACTER * () noexcept { return this->data(); }
 
 
    const CHARACTER * c_str() const noexcept { return this->begin(); }
@@ -55,13 +53,13 @@ public:
 
 
 template < >
-CLASS_DECL_ACME natural_meta_data < string_meta_data < ::ansi_character > > * __nil < natural_meta_data < string_meta_data < ::ansi_character > > >();
+CLASS_DECL_ACME base_data < string_heap_data < ::ansi_character > > * __nil < base_data < string_heap_data < ::ansi_character > > >();
 
 template < >
-CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd16_character > > * __nil < natural_meta_data < string_meta_data < ::wd16_character > > >();
+CLASS_DECL_ACME base_data < string_heap_data < ::wd16_character > > * __nil < base_data < string_heap_data < ::wd16_character > > >();
 
 template < >
-CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __nil < natural_meta_data < string_meta_data < ::wd32_character > > >();
+CLASS_DECL_ACME base_data < string_heap_data < ::wd32_character > > * __nil < base_data < string_heap_data < ::wd32_character > > >();
 
 
 

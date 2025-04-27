@@ -1,6 +1,35 @@
 // From string_range.h by camilo on 2023-02-20 20:24 <3ThomasBorregaardSorensen!!
 #pragma once
 
+#include <algorithm>
+
+
+#define IMPLEMENT_TYPED_STRING_LITERAL(NAME, LITERAL) \
+template < typename T > consteval auto typed_##NAME() { throw "interface only for typed_" #NAME; return nullptr; } \
+template < > consteval auto typed_##NAME<char>() { return LITERAL; } \
+template < > consteval auto typed_##NAME<wchar_t>() { return L##LITERAL; } \
+template < > consteval auto typed_##NAME<char16_t>() { return u##LITERAL; } \
+template < > consteval auto typed_##NAME<char32_t>() { return U##LITERAL; }
+
+
+template<primitive_character CHARACTER>
+constexpr ::range<const CHARACTER *>
+inline _start_count_string_range(const CHARACTER *psz, memsize start, memsize count);
+
+//
+//template < typename T >
+//consteval auto typed_whitespace() { throw "interface onlye"; return nullptr; }
+//
+//template < >
+//consteval auto typed_whitespace<char>() { return "/t/r/n "; }
+//template < >
+//consteval auto typed_whitespace<wchar_t>() { return L"/t/r/n "; }
+//template < >
+//consteval auto typed_whitespace<char16_t>() { return u"/t/r/n "; }
+//template < >
+//consteval auto typed_whitespace<char32_t>() { return U"/t/r/n "; }
+IMPLEMENT_TYPED_STRING_LITERAL(whitespace, "/t/r/n ")
+
 
 #include "acme/prototype/collection/array_range.h"
 #include "acme/prototype/collection/comparable_eq_range.h"
@@ -30,15 +59,19 @@ struct end_of_line_and_next_line
 
 
 
-template<primitive_character CHARACTER>
-constexpr ::string_range<const CHARACTER*> _string_range(const CHARACTER* psz);
-
-template<primitive_character CHARACTER>
-constexpr ::string_range<const CHARACTER*>
-_start_count_string_range(const CHARACTER* psz, memsize start, memsize count);
 
 
-
+/// <summary>
+/// class of operations on a range of characters
+/// that are not changed. m_begin, m_end or m_erange should
+/// only be changed in the returning object.
+/// After construction, m_begin, m_end and m_erange members
+/// should never be changed.
+/// Contents should never be changed and null
+/// termination is not set.
+/// So ITERATOR_TYPE can be actually be const or not.
+/// </summary>
+/// <typeparam name="ITERATOR_TYPE"></typeparam>
 template<typename ITERATOR_TYPE>
 class const_string_range :
    //public ::comparable_range < ::comparable_eq_range < ::array_range < ::range < ITERATOR_TYPE > > > >
@@ -84,12 +117,39 @@ public:
    using STRING_ARRAY = ::string_array_base < STRING, STRING, e_type_string_array >;
 
 
-   template<::std::size_t count>
-   constexpr const_string_range(const ITEM(&array)[count]) : BASE_RANGE(array, array[count - 1] == 0 ? count - 1 : count) {}
+   //template<character_count n>
+   //constexpr const_string_range(const CHARACTER(&s)[n]) :
+   //   BASE_RANGE(no_initialize_t{})
+   //{
+
+   //   if constexpr (n >= 1)
+   //   {
+
+   //      if (s[n - 1] == CHARACTER{})
+   //      {
+
+   //         this->m_begin = s;
+   //         this->m_end = s + n - 1;
+   //         this->m_erange = e_range_null_terminated
+   //            | e_range_string_literal;
+
+   //         return;
+
+   //      }
+
+   //   }
+
+   //   this->m_begin = s;
+   //   this->m_end = s + n;
+   //   this->m_erange = e_range_none | e_range_string_literal;
+
+   //}
+
 
    template<primitive_integral INTEGRAL>
    constexpr const_string_range(const_iterator begin, INTEGRAL count) : BASE_RANGE((this_iterator)begin,
-      (this_iterator)(begin + count)) {}
+      (this_iterator)(begin + count)) {
+   }
 
    const_string_range(no_initialize_t) : BASE_RANGE(no_initialize_t{}) {}
 
@@ -98,36 +158,106 @@ public:
    const_string_range() {}
 
    template<typed_range<iterator> RANGE>
-   explicit const_string_range(const RANGE& range) : BASE_RANGE(range) {}
+   const_string_range(const RANGE& range) : BASE_RANGE(range) {}
 
    template<typed_range<const_iterator> RANGE>
-   explicit const_string_range(const RANGE& range) : BASE_RANGE(range) {}
+   const_string_range(const RANGE& range) : BASE_RANGE(range) {}
 
    const_string_range(const THIS_RANGE& range) : BASE_RANGE(range) {}
 
    const_string_range(THIS_RANGE&& range) : BASE_RANGE(::transfer(range)) {}
 
-   const_string_range(this_iterator begin, this_iterator end) : BASE_RANGE(begin, end) {}
+   constexpr const_string_range(this_iterator begin, this_iterator end, enum_range erange = e_range_none) : BASE_RANGE(begin, end, erange) {}
 
    //explicit const_string_range(const ::atom& atom);
 
-   explicit const_string_range(const ::block& block);
+   const_string_range(const ::block& block);
 
-   explicit const_string_range(ITERATOR_TYPE psz) : const_string_range(psz, 0, string_safe_length(psz)) {}
-
-   const_string_range(ITERATOR_TYPE psz, character_count len) : const_string_range(psz, 0, len) {}
-
-   //string_range(ITERATOR_TYPE start, const CHARACTER * end) : BASE_RANGE(start, end) {}
-
-   const_string_range(ITERATOR_TYPE psz, character_count start, character_count count) : const_string_range(
-      ::_start_count_string_range(psz, start, count)) {}
+   const_string_range(ITERATOR_TYPE psz) : 
+      const_string_range(psz, string_safe_length(psz)) {}
 
 
+   const_string_range start_count(character_count start, character_count count = -1)
+   {
+
+      if (start > this->size())
+      {
+
+         return {};
+
+      }
+
+      character_count end;
+
+      if (count < 0)
+      {
+
+         end = this->size() + count + 1;
+
+      }
+      else
+      {
+
+         end = start + count;
+
+      }
+
+      if (end >= this->size())
+      {
+
+         return {};
+
+      }
+
+      auto erange = this->m_erange;
+
+      if (start != 0)
+      {
+
+         if (end != 0)
+         {
+
+            erange = e_range_none;
+
+         }
+         else
+         {
+
+            erange = erange & ~e_range_string;
+
+         }
+
+      }
+      else if (end != 0)
+      {
+
+         erange = e_range_none;
+
+      }
+
+      return {
+         this->m_begin + start,
+         this->m_begin + end,
+      erange};
+
+   }
+
+
+   const_string_range & assign_bounded(ITERATOR_TYPE psz, character_count start, character_count count)
+   {
+
+      *this = ::_start_count_string_range(psz, start, count);
+
+      return *this;
+
+   }
 
    const_string_range subrange(character_count iFirst) const;
 
    const_string_range subrange(const_iterator p) const { return ::transfer(subrange(p, -1)); }
    const_string_range subrange(const_iterator p, character_count count) const { return ::transfer(subrange(p - this->begin(), count)); }
+
+
 
    template < primitive_integral START, primitive_integral COUNT >
    const_string_range subrange(START start, COUNT count) const;
@@ -138,12 +268,26 @@ public:
 
    //auto subrange(character_count start, character_count count) const { auto range = *this; ::_start_count_range(range, start, count); return range; }
 
-   
+   template<int cCount, int wCount, int u16Count, int u32Count>
+   static consteval auto typed_str_literal(const char(&c)[cCount], const wchar_t(&w)[wCount], const char16_t(&u16)[u16Count], const char32_t(&u32)[u32Count])
+   {
+      if constexpr (std::is_same_v<CHARACTER, char>)
+         return c;
+      else if constexpr (std::is_same_v<CHARACTER, wchar_t>)
+         return w;
+      else if constexpr (std::is_same_v<CHARACTER, char16_t>)
+         return u16;
+      else if constexpr (std::is_same_v<CHARACTER, char32_t>)
+         return u32;
+      else
+         static_assert(sizeof(CHARACTER) == 0, "Unsupported character type");
+   }
+
 
    //auto & last() { return ::get(this->end() - 1); }
-   auto & last() const { return (const CHARACTER&) ::get(this->end() - 1); }
+   auto& last() const { return (const CHARACTER&) ::get(this->end() - 1); }
 
-   auto & last(::collection::index i) const { return (const CHARACTER &) ::get(this->end() - 1 - i); }
+   auto& last(::collection::index i) const { return (const CHARACTER&) ::get(this->end() - 1 - i); }
 
    auto last_index() const { return this->size() - 1; }
 
@@ -151,12 +295,85 @@ public:
 
    bool is_trimmed_empty() const;
 
-void clear()
-{
-this->m_begin=nullptr;
-this->m_end = nullptr;
-this->m_erange = e_range_none;
-}
+   //void clear()
+   //{
+   //this->m_begin=nullptr;
+   //this->m_end = nullptr;
+   //this->m_erange = e_range_none;
+   //}
+
+
+   constexpr THIS_RANGE _begin_set(ITERATOR_TYPE pbegin) const
+   {
+
+      return pbegin == this->m_begin ?
+         *this :
+         THIS_RANGE{
+            pbegin,
+            this->m_end,
+            (enum_range)this->m_erange & ~e_range_string
+      }
+      ;
+
+   }
+
+
+   constexpr THIS_RANGE begin_set(ITERATOR_TYPE pbegin) const
+   {
+
+      if (pbegin < this->m_begin)
+      {
+
+         throw "pbegin < this->m_begin";
+
+      }
+      else if (pbegin > this->m_end)
+      {
+
+         throw "pbegin > this->m_end";
+
+      }
+
+      return _begin_set(pbegin);
+
+   }
+
+
+   constexpr THIS_RANGE _end_set(ITERATOR_TYPE pend) const
+   {
+
+      return pend == this->m_end ?
+         *this :
+         THIS_RANGE{
+            this->m_begin,
+               pend,
+               e_range_none
+      }
+      ;
+
+   }
+
+
+   constexpr THIS_RANGE end_set(ITERATOR_TYPE pend) const
+   {
+
+      if (pend < this->m_begin)
+      {
+
+         throw "pend < this->m_begin";
+
+      }
+      else if (pend > this->m_end)
+      {
+
+         throw "pend > this->m_end";
+
+      }
+
+      return _end_set(pend);
+
+   }
+
 
    STRING_RANGE operator()(character_count start, character_count count) const;
 
@@ -220,7 +437,7 @@ this->m_erange = e_range_none;
 
    bool has_character() const { return !this->is_empty(); }
 
-   inline bool is_empty() const noexcept { return this->m_end <= this->m_begin || *this->m_begin == '\0'; }
+   inline bool is_empty() const noexcept { return ::is_null(this->m_begin) || ::is_null(this->m_end) || this->m_end <= this->m_begin || *this->m_begin == '\0'; }
    inline memsize length_in_bytes() const { return this->size() * sizeof(CHARACTER); }
 
    //inline bool has_character() const noexcept { return !this->is_empty(); }
@@ -253,6 +470,32 @@ this->m_erange = e_range_none;
    inline const CHARACTER& operator[](::collection::index i) const { return this->data()[i]; }
 
    character_count index_of(const CHARACTER* p) const { return ::index_of(p, data()); }
+
+
+   const_string_range trimmed_left() const
+   {
+
+      return _begin_set(skip_any_character_in(typed_whitespace<CHARACTER>()));
+
+   }
+
+
+   const_string_range trimmed_right() const
+   {
+
+      return _end_set(rear_skip_any_character_in(typed_whitespace<CHARACTER>()));
+
+   }
+
+
+   const_string_range trimmed() const
+   {
+
+      return trimmed_right().trimmed_left();
+
+   }
+
+
 
    //    string_range &operator=(const THIS_RANGE &range)
    //    {
@@ -338,7 +581,8 @@ this->m_erange = e_range_none;
 
    using BASE_RANGE::_order;
 
-   constexpr ::std::strong_ordering _order(const SCOPED_STRING& range) const {
+   constexpr ::std::strong_ordering _order(const SCOPED_STRING& range) const
+   {
 
       return _order(range, ::comparison::comparison<ITEM>());
 
@@ -478,12 +722,14 @@ this->m_erange = e_range_none;
       return this->find(range, ::comparison::comparison<ITEM>());
 
    }
-   constexpr character_count find_index(const SCOPED_STRING& range, character_count start = 0) const {
+   constexpr character_count find_index(const SCOPED_STRING& range, character_count start = 0) const
+   {
 
       return this->index_of(start <= 0 ? this->find(range) : (*this)(start).find(range));
 
    }
-   constexpr character_count find_index(CHARACTER ch, character_count start = 0) const {
+   constexpr character_count find_index(CHARACTER ch, character_count start = 0) const
+   {
 
       return this->index_of(start <= 0 ? this->find(ch) : (*this)(start).find(ch));
 
@@ -716,6 +962,7 @@ this->m_erange = e_range_none;
    // Convert the string_base < ITERATOR_TYPE > to lowercase
    //template < typename ITERATOR_TYPE >
    string_base < ITERATOR_TYPE > lowered() const;
+   string_base < ITERATOR_TYPE > uppered() const;
 
 
    //   using BASE_RANGE::_find_first_character_in_start;
@@ -758,28 +1005,144 @@ this->m_erange = e_range_none;
    //   }
 
 
+   //constexpr ITERATOR_TYPE skip_any_character_in(const SCOPED_STRING& range) const 
+   //{
 
-   using BASE_RANGE::_skip_any_character_in;
+   //   return this->_skip_any_character_in(range, ::comparison::comparison<ITEM>());
 
-   constexpr THIS_RAW_RANGE skip_any_character_in(const SCOPED_STRING& range) const {
+   //}
+
+
+   //constexpr character_count skip_any_character_in_index(const SCOPED_STRING& range, ::character_count start = 0) const 
+   //{
+
+   //   return this->index_of((*this)(start).skip_any_character_in(range).begin());
+
+   //}
+
+
+   //using BASE_RANGE::skip_any_character_in;
+
+   //static constexpr bool
+   //   _static_initialize_skip_any_character_in(THIS_RANGE & rangeRetur, const THIS_RANGE& range, const THIS_RANGE& rangeBlock) noexcept
+   //{
+
+
+
+   //   return false;
+
+   //}
+
+
+   template<::comparison::equality<ITEM> EQUALITY>
+   static constexpr ITERATOR_TYPE
+      _static_skip_any_character_in(THIS_RANGE range, const THIS_RANGE& rangeBlock, EQUALITY equality) noexcept
+   {
+
+      ITERATOR_TYPE pbegin = range.m_begin;
+
+      do
+      {
+
+         auto pBlockScan = rangeBlock.begin();
+
+         while (true)
+         {
+
+            if (equality.equals(*pbegin, *pBlockScan))
+            {
+
+               // found a matching item...
+               // continue skip_any_character_inning...
+
+               break;
+
+            }
+
+            pBlockScan++;
+
+            if (rangeBlock.is_end(pBlockScan))
+            {
+
+               // Iterated through all pBlock items
+               // and didn't find any that match *p
+
+               // so p is the end of the skip_any_character_in for matching items...
+
+               return pbegin;
+
+            }
+
+         };
+
+         pbegin++;
+
+      } while (!range.is_end(pbegin));
+
+      // reached end of the skip_any_character_inning range...
+      // each skip_any_character_inned item matched some item in range...
+      // return address immediately after end of skip_any_character_inning...
+
+      return pbegin;
+
+   }
+
+
+   template<::comparison::equality<ITEM> EQUALITY>
+   static constexpr ITERATOR_TYPE
+      static_skip_any_character_in(const THIS_RANGE& range, const THIS_RANGE& rangeBlock, EQUALITY equality) noexcept
+   {
+
+      if (range.is_empty())
+      {
+
+         return range.m_begin;
+
+      }
+
+      if (rangeBlock.is_empty())
+      {
+
+         return range.m_end;
+
+      }
+
+      return _static_skip_any_character_in(range, rangeBlock, equality);
+
+   }
+
+
+   //template<::comparison::equality<ITEM> EQUALITY>
+   //constexpr THIS_RAW_RANGE _skip_any_character_in(const THIS_RAW_RANGE& rangeBlock, EQUALITY equality) const
+   //{
+
+   //   return _static_skip_any_character_in(*this, rangeBlock, equality);
+
+   //}
+
+
+   //template<::comparison::equality<ITEM> EQUALITY>
+   //constexpr const_iterator skip_any_character_in(const THIS_RAW_RANGE& rangeBlock, EQUALITY equality) const
+   //{
+
+   //   return static_skip_any_character_in(*this, rangeBlock, equality);
+
+   //}
+
+   template<::comparison::equality<ITEM> EQUALITY>
+   constexpr ITERATOR_TYPE _skip_any_character_in(const THIS_RANGE& rangeBlock, EQUALITY equality) const
+   {
+
+      return static_skip_any_character_in(*this, rangeBlock, equality);
+
+   }
+
+
+   constexpr ITERATOR_TYPE skip_any_character_in(const SCOPED_STRING& range) const {
 
       return this->_skip_any_character_in(range, ::comparison::comparison<ITEM>());
 
    }
-
-
-   constexpr character_count skip_any_character_in_index(const SCOPED_STRING& range, ::character_count start = 0) const {
-      return this->index_of((*this)(start).skip_any_character_in(range).begin());
-   }
-
-
-   using BASE_RANGE::skip_any_character_in;
-
-   //    constexpr const_iterator skip_any_character_in(const SCOPED_STRING &range) const {
-   //
-   //       return this->skip_any_character_in(range, ::comparison::comparison<ITEM>());
-   //
-   //    }
 
 
    //   using BASE_RANGE::_skip_any_character_in_start;
@@ -822,22 +1185,161 @@ this->m_erange = e_range_none;
    //   }
 
 
-   using BASE_RANGE::_rear_skip_any_character_in;
+   //using BASE_RANGE::_rear_skip_any_character_in;
 
-   constexpr const_iterator _rear_skip_any_character_in(const SCOPED_STRING& range) const noexcept {
+   constexpr ITERATOR_TYPE rear_skip_any_character_in(const THIS_RANGE& range) const noexcept
+   {
 
-      return this->_rear_skip_any_character_in(range, ::comparison::comparison<ITEM>());
+      return static_rear_skip_any_character_in(*this, range, ::comparison::comparison<ITEM>());
+
+   }
+
+
+   //constexpr THIS_RANGE rear_skip_any_character_in(const SCOPED_STRING& range) const noexcept {
+
+   //   return this->rear_skip_any_character_in(range, ::comparison::comparison<ITEM>());
+
+   //}
+
+
+   //static constexpr bool
+   //   _initialize_rear_skip_any_character_in(const_iterator& p, const THIS_RAW_RANGE& range, const THIS_RAW_RANGE& rangeBlock) noexcept
+   //{
+
+   //   if (range.is_empty())
+   //   {
+
+   //      p = range.end() - 1;
+
+   //      return true;
+
+   //   }
+
+   //   if (range.is_empty())
+   //   {
+
+   //      p = range.end() - 1;
+
+   //      return true;
+
+   //   }
+
+   //   return false;
+
+   //}
+
+
+   template<::comparison::equality<ITEM> EQUALITY>
+   static constexpr ITERATOR_TYPE
+      _static_rear_skip_any_character_in(THIS_RANGE range, const THIS_RANGE& rangeBlock, EQUALITY equality) noexcept
+   {
+
+      ITERATOR_TYPE pend = range.m_end;
+
+      pend--;
+
+      do
+      {
+
+         auto pBlockScan = rangeBlock.begin();
+
+         while (true)
+         {
+
+            if (equality.equals(*pend, *pBlockScan))
+            {
+
+               // found a matching item...
+               // continue skip_any_character_inning...
+
+               break;
+
+            }
+
+            pBlockScan++;
+
+            if (rangeBlock.is_end(pBlockScan))
+            {
+
+               // Iterated through all pBlock items
+               // and didn't find any that match *p
+
+               // so p is the end of the skip_any_character_in for matching items...
+
+               return pend + 1;
+
+            }
+
+         };
+
+         pend--;
+
+      } while (!range.is_before_begin(pend));
+
+      // reached end of the skip_any_character_inning range...
+      // each skip_any_character_inned item matched some item in range...
+      // return address immediately after end of skip_any_character_inning...
+
+      return pend + 1;
 
    }
 
 
-   using BASE_RANGE::rear_skip_any_character_in;
+   template<::comparison::equality<ITEM> EQUALITY>
+   static constexpr ITERATOR_TYPE
+      static_rear_skip_any_character_in(THIS_RANGE range, const THIS_RANGE& rangeBlock, EQUALITY equality) noexcept
+   {
 
-   constexpr const_iterator rear_skip_any_character_in(const SCOPED_STRING& range) const noexcept {
+      //const_iterator p;
 
-      return this->rear_skip_any_character_in(range, ::comparison::comparison<ITEM>());
+      //if (_initialize_rear_skip_any_character_in(p, range, rangeBlock))
+      //{
+
+      //   return p;
+
+      //}
+
+      if (range.is_empty())
+      {
+
+         //p = range.end() - 1;
+
+         //return true;
+
+         return range.m_end;
+
+      }
+
+      if (rangeBlock.is_empty())
+      {
+
+         //p = range.end() - 1;
+
+         return range.m_begin;
+
+      }
+
+      return _static_rear_skip_any_character_in(range, rangeBlock, equality);
 
    }
+
+
+   //template<::comparison::equality<ITEM> EQUALITY>
+   //constexpr ITERATOR_TYPE _rear_skip_any_character_in(const THIS_RAW_RANGE& rangeBlock, EQUALITY equality) const
+   //{
+
+   //   return _static_rear_skip_any_character_in(*this, rangeBlock, equality);
+
+   //}
+
+
+   //template<::comparison::equality<ITEM> EQUALITY>
+   //constexpr ITERATOR_TYPE rear_skip_any_character_in(const THIS_RANGE& rangeBlock, EQUALITY equality) const
+   //{
+
+   //   return static_rear_skip_any_character_in(*this, rangeBlock, equality);
+
+   //}
 
 
    //   using BASE_RANGE::rear_skip_any_character_in_start;
@@ -1382,26 +1884,30 @@ this->m_erange = e_range_none;
 
    }
 
+   /// <summary>
+   /// for the rear_* functions the most relevant returned
+   /// value is actually in m_end.
+   /// </summary>
+   ITERATOR_TYPE find_first_whitespace() const RELEASENOTHROW { return this->find_first_character_in(typed_whitespace<CHARACTER>()); }
 
-   const_iterator find_first_whitespace() const RELEASENOTHROW { return this->find_first_character_in("\t\r\n "); }
+   ITERATOR_TYPE skip_whitespace() const RELEASENOTHROW { return this->skip_any_character_in(typed_whitespace<CHARACTER>()); }
 
-   THIS_RAW_RANGE skip_whitespace() const RELEASENOTHROW { return this->skip_any_character_in("\t\r\n "); }
+   ::character_count count_left(const SCOPED_STRING& range = typed_whitespace<CHARACTER>()) const RELEASENOTHROW { return this->skip_any_character_in(range) - this->begin(); }
 
-   ::character_count count_left(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { return this->skip_any_character_in(range).begin() - this->begin(); }
+   //    string_range& trim_left(const SCOPED_STRING& range = typed_whitespace<CHARACTER>()) RELEASENOTHROW { this->m_begin += count_left(range); return *this; }
 
-   //    string_range& trim_left(const SCOPED_STRING& range = "\t\r\n ") RELEASENOTHROW { this->m_begin += count_left(range); return *this; }
 
-   const_iterator rear_find_first_whitespace() const RELEASENOTHROW { return this->rear_find_first_character_in("\t\r\n "); }
+   ITERATOR_TYPE rear_find_first_whitespace() const RELEASENOTHROW { return this->rear_find_first_character_in(typed_whitespace<CHARACTER>()); }
 
-   const_iterator rear_skip_whitespace() const RELEASENOTHROW { return this->rear_skip_any_character_in("\t\r\n "); }
+   ITERATOR_TYPE rear_skip_whitespace() const RELEASENOTHROW { return this->rear_skip_any_character_in(typed_whitespace<CHARACTER>()); }
 
-   ::character_count count_right(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { return this->m_end - this->rear_skip_any_character_in(range); }
+   ::character_count count_right(const SCOPED_STRING& range = typed_whitespace<CHARACTER>()) const RELEASENOTHROW { return this->m_end - this->rear_skip_any_character_in(range); }
 
-   //    string_range& trim_right(const SCOPED_STRING& range = "\t\r\n ") RELEASENOTHROW { this->m_end -= count_right(range); return *this; }
+   //    string_range& trim_right(const SCOPED_STRING& range = typed_whitespace<CHARACTER>()) RELEASENOTHROW { this->m_end -= count_right(range); return *this; }
 
-   ::character_count count_left_and_right(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { ::character_count c; return ((c = count_left(range)) == this->size()) ? c : c + count_right(range); }
+   ::character_count count_left_and_right(const SCOPED_STRING& range = typed_whitespace<CHARACTER>()) const RELEASENOTHROW { ::character_count c; return ((c = count_left(range)) == this->size()) ? c : c + count_right(range); }
 
-   //    string_range& trim(const SCOPED_STRING& range = "\t\r\n ") RELEASENOTHROW { trim_left(range); trim_right(range); return *this; }
+   //    string_range& trim(const SCOPED_STRING& range = typed_whitespace<CHARACTER>()) RELEASENOTHROW { trim_left(range); trim_right(range); return *this; }
 
    //    bool paired_trim(CHARACTER character1, CHARACTER character2)
    //    {
@@ -1693,13 +2199,28 @@ this->m_erange = e_range_none;
 
    //bool equals(const string_base &str) const;
    //bool case_insensitive_equals(const string_base &str) const;
-   inline bool operator==(const ::ansi_string& str) const;
+   //inline bool operator==(const ::ansi_string& str) const;
 
-   inline bool operator==(const ::wd16_string& str) const;
+   //inline bool operator==(const ::wd16_string& str) const;
 
-   inline bool operator==(const ::wd32_string& str) const;
+   //inline bool operator==(const ::wd32_string& str) const;
+
+//   template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
+   inline bool operator==(const ::range < const CHARACTER* >& range) const;
+
+   template < character_count n >
+   inline bool operator==(const CHARACTER(&s)[n]) const
+   {
+
+      return this->equals(s);
+
+   }
+
+   template < other_primitive_character < typename const_string_range < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
+   inline bool operator==(const ::range < const OTHER_CHARACTER* >& range) const;
 
    //inline bool operator ==(const SCOPED_STRING & scopedstr) const { return this->equals(scopedstr); }
+
    inline bool operator==(const ::ansi_character* psz) const { return this->equals(psz); }
 
    inline bool operator==(const ::wd16_character* psz) const { return this->equals(psz); }
@@ -1758,59 +2279,187 @@ this->m_erange = e_range_none;
    STRING surrounded(const SCOPED_STRING& scopedstr) const;
 
    STRING surrounded(const SCOPED_STRING& scopedstrLeft, const SCOPED_STRING& scopedstrRight) const;
-   
+
    STRING double_quoted(bool bEscape = false) const;
 
    STRING single_quoted(bool bEscape) const;
 
 
-   STRING_ARRAY explode(const SCOPED_STRING & scopedstrSeparator, bool bAddEmpty = true) const;
-      
-      
-      ::collection::count _count_parts_from_beginning(::collection::count  cPathPartCountToConsume, CHARACTER chSeparator);
-
-      
-      ::collection::count count_parts_from_beginning(::collection::count  cPathPartCountToConsume, CHARACTER chSeparator);
+   STRING_ARRAY explode(const SCOPED_STRING& scopedstrSeparator, bool bAddEmpty = true) const;
 
 
-      STRING_RANGE _get_count_parts_from_beginning(::collection::count cPathPartCountToConsume, CHARACTER chSeparator) const
+   //ITERATOR_TYPE __count_parts_from_beginning(::collection::count & cPathPartCountToConsume, CHARACTER chSeparator) const;
+
+
+   //::collection::count count_parts_from_beginning(::collection::count  cPathPartCountToConsume, CHARACTER chSeparator) const;
+
+
+   STRING_RANGE _get_count_parts_from_beginning(::collection::count cPathPartCountToConsume, CHARACTER chSeparator) const
+   {
+
+      auto range = this->operator()();
+
+      auto cConsumed = cPathPartCountToConsume;
+
+      range.m_begin = range.__count_parts_from_beginning(cConsumed, chSeparator);
+
+      if (cPathPartCountToConsume == cConsumed)
       {
-         
-         auto range = this->operator()();
-         
-         if(cPathPartCountToConsume == range._count_parts_from_beginning(cPathPartCountToConsume, chSeparator))
-         {
-          
-            return range;
-            
-         }
-         
-         return {};
+
+         return range;
 
       }
 
+      return {};
       
-      STRING_RANGE get_count_parts_from_beginning(::collection::count cPathPartCountToConsume, CHARACTER chSeparator) const
+   }
+
+
+   //STRING_RANGE get_count_parts_from_beginning(::collection::count cPathPartCountToConsume, CHARACTER chSeparator) const
+   //{
+
+   //   if (cPathPartCountToConsume <= 0)
+   //   {
+
+   //      return this->operator()();
+
+   //   }
+
+   //   return this->_get_count_parts_from_beginning(cPathPartCountToConsume, chSeparator);
+
+   //}
+
+
+   THIS_RANGE right(character_count nCount) const;
+
+   THIS_RANGE left(character_count count) const;
+
+   THIS_RANGE left(const_iterator p) const { return ::transfer(this->left(p - this->begin())); }
+
+   THIS_RANGE left_including_any_character_in(const SCOPED_STRING& scopedstrCharSet) const;
+
+   THIS_RANGE left_skipping_any_character_in(const SCOPED_STRING& scopedstrCharSet) const;
+
+   //THIS_RANGE consume_token_until_any_character_in(const SCOPED_STRING& scopedstrCharacters = 0, bool bReturnSeparator = false, bool bSkipAnyCharactersIn = true) const;
+
+
+   inline ITERATOR_TYPE __count_parts_from_beginning(::collection::count & cPathMaxPartCount, CHARACTER chPartSeparator) const
+   {
+
+      ::collection::index i = 0;
+
+      auto p = this->m_begin;
+
+      for (; i < cPathMaxPartCount; i++)
       {
-         
-         if(cPathPartCountToConsume <= 0)
+
+         p = string_find_character(p, chPartSeparator);
+
+         if (::is_null(p))
          {
-          
-            return this->operator()();
-            
+
+            break;
+
          }
-         
-         return this->_get_count_parts_from_beginning(cPathPartCountToConsume, chSeparator);
+
+         p = p + 1;
 
       }
+
+      cPathMaxPartCount = i;
+
+      return p;
+
+   }
+
 
 };
 
 
-using const_ansi_range = ::const_string_range < const ::ansi_character* >;
-using const_wd16_range = ::const_string_range < const ::wd16_character* >;
-using const_wd32_range = ::const_string_range < const ::wd32_character* >;
-using const_wide_range = ::const_string_range < const ::wide_character* >;
+
+
+#include "const_string_range_static_array.h"
 
 
 
+template<primitive_character CHARACTER>
+constexpr ::range<const CHARACTER*> _string_range(const CHARACTER* psz);
+
+template<primitive_character CHARACTER>
+constexpr ::range<const CHARACTER*>
+_start_count_string_range(const CHARACTER* psz, memsize start, memsize count);
+
+
+
+//template < std::size_t n >
+//class ansi_string_literal :
+//   public const_ansi_range
+//{
+//public:
+//
+//   char m_s[n]{};
+//
+//   constexpr ansi_string_literal(char const(&s)[n])
+//   {
+//      std::ranges::copy(s, m_s);
+//      this->m_begin = s;
+//      this->m_end = s + (s[n-1]=='\0'? n-1:n);
+//      this->m_erange = (enum_range) (e_range_string_literal
+//      | (s[n - 1] == '\0' ? e_range_null_terminated : 0));
+//
+//   }
+//
+//
+//};
+//
+//
+//template < ansi_string_literal literal >
+//constexpr auto operator ""_ansi()
+//{
+//
+//   return literal;
+//
+//}
+//
+
+CLASS_DECL_ACME void log_const_ansi_range_literal(int n);
+
+
+constexpr const_ansi_range operator ""_ansi(const char * s, std::size_t n)
+{
+
+   //log_const_ansi_range_literal(n);
+
+   //auto bNullTerminated = s[n - 1] == '\0';
+
+   //auto e = s + (bNullTerminated ? n - 1 : n);
+
+   //enum_range erangeNullTerminated = bNullTerminated ?
+   //   e_range_null_terminated : e_range_none;
+
+   //enum_range erange = (enum_range)(((int) e_range_string_literal) | 
+   //               ((int) erangeNullTerminated));
+
+   return
+   {
+      s,
+      s+n,
+      e_range_string_literal | e_range_null_terminated
+   };
+
+}
+
+
+template < primitive_character CHARACTER, character_count n >
+::const_string_range < const CHARACTER * > as_range(const CHARACTER(&s)[n])
+{
+   return
+   {
+      s,
+      s + (s[n - 1] == CHARACTER{} ? n - 1 : n),
+      (enum_range)
+         (s[n - 1] == CHARACTER{} ?
+               e_range_null_terminated : e_range_none)
+   };
+
+}

@@ -32,7 +32,7 @@ namespace html
 
 
       // always present property?! "text"
-      property_set               m_propertyset;
+      ::property_set             m_propertyset;
       ::pointer<impl::element>   m_pimpl;
       element *                  m_pparent;
       ::html::base *             m_phtmlbase;

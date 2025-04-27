@@ -33,7 +33,7 @@ file_time_span& file_time_span::operator=(const file_time_span& span) noexcept
 }
 
 
-file_time_span& file_time_span::operator+=(file_time_span span) noexcept
+file_time_span& file_time_span::operator +=(file_time_span span) noexcept
 {
 
    m_iFileTimeSpan += span.m_iFileTimeSpan;
@@ -53,7 +53,7 @@ file_time_span& file_time_span::operator-=(file_time_span span) noexcept
 }
 
 
-file_time_span file_time_span::operator+(file_time_span span) const noexcept
+file_time_span file_time_span::operator +(file_time_span span) const noexcept
 {
 
    return { file_time_span_t{}, m_iFileTimeSpan + span.m_iFileTimeSpan };

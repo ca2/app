@@ -312,7 +312,7 @@ namespace networking
          return false;
       }
       
-      ::parse pa(str, ":.");
+      ::parse pa(str, ":."_ansi);
 
       string tmp = pa.getword();
       while (tmp.length())

@@ -1085,7 +1085,7 @@ namespace nanoui
 
          }
 
-         ::string strCopy = m_strValueEdit.substr(begin, end - begin).c_str();
+         ::string strCopy = m_strValueEdit.substr(begin, end - begin);
 
          screen()->m_puserinteraction->window()->copydesk()->set_plain_text(strCopy);
 

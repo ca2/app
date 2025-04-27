@@ -50,7 +50,7 @@
 ::binary_stream & operator <<(::binary_stream & stream, const ::user::rich_text::span & span)
 {
 
-   property_set set;
+   ::property_set set;
 
    set["align"] = (int)span.m_ealignNewLine;
 
@@ -71,7 +71,7 @@
 ::binary_stream & operator >>(::binary_stream & stream, ::user::rich_text::span & span)
 {
 
-   property_set set;
+   ::property_set set;
 
    stream >> set;
 

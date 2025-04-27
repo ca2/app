@@ -34,8 +34,8 @@ namespace nano
 
          //::property_set                m_setOut;
 
-         //property_set                     m_setPost;
-         //property_set                     m_setHeaders;
+         //::property_set                     m_setPost;
+         //::property_set                     m_setHeaders;
 
 
          //memory                        m_memory;

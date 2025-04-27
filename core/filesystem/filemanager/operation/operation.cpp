@@ -231,7 +231,7 @@ namespace filemanager
 
          //if(file()->exists(pszDst))
          //{
-         //   property_set propertyset;
+         //   ::property_set propertyset;
          //   propertyset["srcfile"].get_value().set_string(pszSrc);
          //   propertyset["dstfile"].get_value().set_string(pszDst);
          //   output_error_message("filemanager\\do_you_want_to_replace_the_file.xml", propertyset);
@@ -294,7 +294,7 @@ namespace filemanager
 
          information() << "\n Could not open dest file("<<m_iFile<<")=" << strDst;
 
-         property_set propertyset;
+         ::property_set propertyset;
 
          propertyset["filepath"] = strDst;
 

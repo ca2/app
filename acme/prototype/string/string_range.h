@@ -5,23 +5,24 @@
 #include "const_string_range.h"
 
 
-template<typename ITERATOR_TYPE>
+template < typename ITERATOR_TYPE >
 class string_range :
    //public ::comparable_range < ::comparable_eq_range < ::array_range < ::range < ITERATOR_TYPE > > > >
    //public ::array_range < ::range < ITERATOR_TYPE > > >
-   public ::const_string_range<ITERATOR_TYPE> {
+   public ::const_string_range < ITERATOR_TYPE >
+{
 public:
 
 
    //using BASE_RANGE = ::comparable_range < ::comparable_eq_range < ::array_range < ::range < ITERATOR_TYPE > > > >;
 
-   using BASE_RANGE = ::range<ITERATOR_TYPE>;
+   using BASE_RANGE = ::const_string_range < ITERATOR_TYPE >;
 
-   using THIS_RANGE = ::string_range<ITERATOR_TYPE>;
+   using THIS_RANGE = ::string_range < ITERATOR_TYPE >;
 
-   using STRING_RANGE = ::string_range<ITERATOR_TYPE>;
+   using STRING_RANGE = ::string_range < ITERATOR_TYPE >;
 
-   using STRING_BASE = ::string_base<ITERATOR_TYPE>;
+   using STRING_BASE = ::string_base < ITERATOR_TYPE >;
 
    using ITEM_POINTER = get_type_item_pointer<ITERATOR_TYPE>;
    using ITEM = non_const<dereference<ITEM_POINTER> >;
@@ -54,29 +55,43 @@ public:
    constexpr string_range(const_iterator begin, INTEGRAL count) : BASE_RANGE((this_iterator)begin,
                                                                              (this_iterator)(begin + count)) {}
 
-   string_range(no_initialize_t) : ::const_string_range<ITERATOR_TYPE>(no_initialize_t{}) {}
+   string_range(no_initialize_t) : BASE_RANGE(no_initialize_t{}) {}
 
-   string_range(nullptr_t) : ::const_string_range<ITERATOR_TYPE>(nullptr) {}
+   string_range(nullptr_t) : BASE_RANGE(nullptr) {}
 
    string_range() {}
 
    template<typed_range<iterator> RANGE>
-   explicit string_range(const RANGE & range) : ::const_string_range<ITERATOR_TYPE>(range) {}
+   explicit string_range(const RANGE & range) : BASE_RANGE(range) {}
 
    template<typed_range<const_iterator> RANGE>
-   explicit string_range(const RANGE & range) : ::const_string_range<ITERATOR_TYPE>(range) {}
+   explicit string_range(const RANGE & range) : BASE_RANGE(range) {}
 
-   string_range(const THIS_RANGE & range) : ::const_string_range<ITERATOR_TYPE>(range) {}
+   string_range(const THIS_RANGE & range) : BASE_RANGE(range) {}
 
-   string_range(THIS_RANGE && range) : ::const_string_range<ITERATOR_TYPE>(::transfer(range)) {}
+   string_range(THIS_RANGE && range) : BASE_RANGE(::transfer(range)) {}
 
-   string_range(this_iterator begin, this_iterator end) : ::const_string_range<ITERATOR_TYPE>(begin, end) {}
+   string_range(this_iterator begin, this_iterator end) : BASE_RANGE(begin, end) {}
 
    //explicit string_range(const ::atom & atom);
 
-   explicit string_range(const ::block & block);
+   template < character_count n >
+   string_range(const CHARACTER(&s)[n]) : BASE_RANGE(s) {}
 
-   explicit string_range(ITERATOR_TYPE psz) : string_range(psz, 0, string_safe_length(psz)) {}
+
+   template < typed_character_pointer < typename ::string_range<ITERATOR_TYPE>::CHARACTER > CHARACTER_POINTER >
+   string_range(CHARACTER_POINTER start, CHARACTER_POINTER end, e_range erange) :
+      BASE_RANGE(start, end, erange) { }
+
+
+   template < primitive_block BLOCK >
+   string_range(const BLOCK & block);
+
+
+   template < character_pointer CHARACTER_POINTER >
+   string_range(CHARACTER_POINTER start) : BASE_RANGE(start, start + string_safe_length(start), e_range_null_terminated) {}
+
+   //explicit string_range(ITERATOR_TYPE psz) : string_range(psz, 0, string_safe_length(psz)) {}
 
    string_range(ITERATOR_TYPE psz, character_count len) : string_range(psz, 0, len) {}
 
@@ -90,7 +105,7 @@ public:
 
    //auto subrange(character_count start, character_count count) const { auto range = *this; ::_start_count_range(range, start, count); return range; }
 
-   using ::const_string_range<ITERATOR_TYPE>::last;
+   using BASE_RANGE::last;
    auto & last() { return ::get(this->end() - 1); }
    //    auto & last() const { return (const CHARACTER &) ::get(this->end() - 1); }
 
@@ -142,10 +157,59 @@ public:
    //
    //    inline CHARACTER character_at(character_count i) const { return this->data()[i]; }
 
-   using ::const_string_range<ITERATOR_TYPE>::data;
+   using BASE_RANGE::data;
 
    inline CHARACTER * data() { return (CHARACTER *)this->begin(); }
 
+
+   void clear()
+   {
+      this->m_begin = nullptr;
+      this->m_end = nullptr;
+      this->m_erange = e_range_none;
+   }
+   string_range& assign(const_iterator s, const_iterator e, enum_range erange)
+   {
+      this->m_begin = s;
+      this->m_end = e;
+      this->m_erange = erange;
+      return *this;
+   }
+
+   string_range& assign(const_iterator s, const_iterator e)
+   {
+      if (s != this->m_begin)
+      {
+
+         if (e != this->m_end)
+         {
+
+            this->m_erange = e_range_none;
+
+         }
+         else
+         {
+
+            this->m_erange =(enum_range) ( this->m_erange & ~e_range_string);
+         }
+
+      }
+      else if(e != this->m_end)
+      {
+         this->m_erange = (enum_range)(this->m_erange & ~e_range_null_terminated);
+
+      }
+      this->m_begin = s;
+      this->m_end = e;
+      return *this;
+   }
+   template < primitive_integral INTEGRAL >
+   string_range& assign(const_iterator s, INTEGRAL n)
+   {
+
+      return assign(s, s + n);
+
+   }
    //    inline const CHARACTER *data() const { return this->begin(); }
    //
    //    inline const CHARACTER *c_str() const { return this->data(); }
@@ -153,15 +217,15 @@ public:
    //    inline const CHARACTER *c_str_for_printf() const { return this->data(); }
    //
    //    inline operator const CHARACTER *() const { return this->data(); }
-   //           using ::const_string_range<ITERATOR_TYPE>::operator CHARACTER *;
+   //           using BASE_RANGE::operator CHARACTER *;
    inline operator CHARACTER * () { return this->data(); }
 
-   //using ::const_string_range<ITERATOR_TYPE>::ptr_at;
+   //using BASE_RANGE::ptr_at;
    //inline const CHARACTER * ptr_at(::collection::index i) { return this->data() + i; }
 
    //    inline const CHARACTER *ptr_at(::collection::index i) const { return this->data() + i; }
 
-   //using ::const_string_range<ITERATOR_TYPE>::rear_ptr;
+   //using BASE_RANGE::rear_ptr;
    //inline const CHARACTER * rear_ptr(::collection::index i) { return this->data() + this->size() + i; }
 
    //    inline const CHARACTER *reverse_ptr(::collection::index i) const { return this->data() + this->size() + i; }
@@ -1491,7 +1555,7 @@ public:
 
          this->m_begin += size;
 
-         this->m_erange -= e_range_string;
+         this->m_erange = (enum_range)(this->m_erange & ~e_range_string);
 
       }
 
@@ -1506,7 +1570,7 @@ public:
 
          this->m_end += size;
 
-         this->m_erange -= e_range_string | e_range_null_terminated;
+         this->m_erange = (enum_range)(this->m_erange & ~(e_range_string | e_range_null_terminated));
 
       }
 
@@ -1521,7 +1585,7 @@ public:
 
          this->m_begin = p;
 
-         this->m_erange -= e_range_string;
+         this->m_erange = (enum_range) (this->m_erange  & ~e_range_string);
 
       }
 
@@ -1536,14 +1600,14 @@ public:
 
          this->m_end = p;
 
-         this->m_erange -= e_range_string | e_range_null_terminated;
+         this->m_erange = (enum_range)(this->m_erange & ~(e_range_string | e_range_null_terminated));
 
       }
 
    }
 
 
-   string_range & trim_left(const SCOPED_STRING & range = "\t\r\n ") RELEASENOTHROW { add_to_begin(this->count_left(range));
+   string_range & trim_left(const SCOPED_STRING & range) RELEASENOTHROW { add_to_begin(this->count_left(range));
          return *this; }
 
    //    const_iterator rear_find_first_whitespace() const RELEASENOTHROW { return this->rear_find_first_character_in("\t\r\n "); }
@@ -1552,11 +1616,11 @@ public:
    //
    //    ::character_count count_right(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { return this->m_end - this->rear_skip_any_character_in(range); }
 
-   string_range & trim_right(const SCOPED_STRING & range = "\t\r\n ") RELEASENOTHROW { add_to_end(-this->count_right(range)); return *this; }
+   string_range & trim_right(const SCOPED_STRING & range) RELEASENOTHROW { add_to_end(-this->count_right(range)); return *this; }
 
    //    ::character_count count_left_and_right(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { ::character_count c; return ((c = count_left(range)) == this->size()) ? c : c + count_right(range); }
 
-   string_range & trim(const SCOPED_STRING & range = "\t\r\n ") RELEASENOTHROW { trim_left(range); trim_right(range); return *this; }
+   string_range & trim(const SCOPED_STRING & range) RELEASENOTHROW { trim_left(range); trim_right(range); return *this; }
 
    bool paired_trim(CHARACTER character1, CHARACTER character2)
    {
@@ -1760,38 +1824,32 @@ public:
    }
 
 
-   ::string_base < ITERATOR_TYPE > consume_quoted_value();
+   string_base<ITERATOR_TYPE > consume_quoted_value();
 
-   bool defer_consume_quoted_value(string_base < ITERATOR_TYPE > & str);
+   bool defer_consume_quoted_value(string_base<ITERATOR_TYPE > & str);
 
-   ::string_base < ITERATOR_TYPE > consume_token_until_any_character_in(const SCOPED_STRING & scopedstrCharacters = 0, bool bReturnSeparator = false, bool bSkipAnyCharactersIn = true);
-
-   bool defer_consume(const SCOPED_STRING & range)
+   bool defer_consume(const SCOPED_STRING & scopedstr)
    {
 
-      if (!this->begins(range))
+      if (!this->begins(scopedstr))
       {
 
          return false;
 
       }
 
-      this->begin() += range.size();
+      this->begin() += scopedstr.size();
 
       return true;
 
    }
 
-   ::string_base < ITERATOR_TYPE > consume_word(const SCOPED_STRING & scopedstrCharacters = " ")
+   string_range consume_word(const SCOPED_STRING & scopedstrCharacters = " ")
    {
 
-      return consume_token_until_any_character_in(scopedstrCharacters);
+      return this->consume_token_until_any_character_in(scopedstrCharacters);
 
    }
-
-
-
-
 
 
    bool begins_consume(const ::scoped_string & scopedstr);
@@ -1807,39 +1865,39 @@ public:
    //void consume_spaces(::collection::count iMinimumCount = 1);
    unsigned long long consume_natural(unsigned long long uiMax = ((unsigned long long)-1), unsigned long long uiMin = 0);
    //unsigned long long consume_natural(string & str, unsigned long long uiMax = ((unsigned long long)-1), unsigned long long uiMin = 0);
-   ::string_base < ITERATOR_TYPE > consume_hex();
+   string_range consume_hex();
    //void consume_spaces(::const_ansi_range & range, ::collection::count iMinimumCount);
-   ::string_base < ITERATOR_TYPE > consume_non_spaces();
+   string_range consume_non_spaces();
    //::string_base < ITERATOR_TYPE > consume_non_spaces(::const_ansi_range & range);
-   ::string_base < ITERATOR_TYPE > consume_nc_name();
+   string_range consume_nc_name();
    //  ::string_base < ITERATOR_TYPE > consume_quoted_value(const ::ansi_character * & pszParse);
    //static void no_escape_consume_quoted_value(::const_ansi_range & range, ::ansi_character ** ppsz, character_count & iBufferSize);
-   ::string_base < ITERATOR_TYPE > no_escape_consume_quoted_value();
+   string_base<ITERATOR_TYPE> no_escape_consume_quoted_value();
    void no_escape_skip_quoted_value();
 
    //template < typename ITERATOR_TYPE >
-   //static string_base < ITERATOR_TYPE > consume_quoted_value(::string_range < ITERATOR_TYPE > & range);
+   //static string_base < ITERATOR_TYPE > consume_quoted_value(::::string_range<BASE_TYPE> & range);
 
 
-   ::string_base < ITERATOR_TYPE > consume_quoted_value_ex();
+   string_base<ITERATOR_TYPE> consume_quoted_value_ex();
    void skip_quoted_value_ex();
    //static ::string_base < ITERATOR_TYPE > consume_spaced_value(string & str);
    //::string_base < ITERATOR_TYPE > consume_spaced_value(const ::ansi_character *& pszParse);
-   ::string_base < ITERATOR_TYPE > consume_spaced_value();
+   string_range consume_spaced_value();
    //static ::string_base < ITERATOR_TYPE > consume_command_line_argument(string & str);
    //::string_base < ITERATOR_TYPE > consume_command_line_argument(const ::ansi_character *& pszParse);
-   ::string_base < ITERATOR_TYPE > consume_command_line_argument();
+   string_base<ITERATOR_TYPE> consume_command_line_argument();
    void consume_until_any_character_in(const ::scoped_string & scopedstr);
    //static bool begins_consume(::const_ansi_range & range, const ::string & psz);
 
-   ::string_base < ITERATOR_TYPE > xml_consume_comment();
+   string_range xml_consume_comment();
 
-   ::string_base < ITERATOR_TYPE > consume_c_quoted_value();
+   string_base < ITERATOR_TYPE > consume_c_quoted_value();
 
    template < bool bWriteOutput >
-   void _consume_quoted_value_ex(string * pstrOut);
+   void _consume_quoted_value_ex(string_base<ITERATOR_TYPE>* pstrOut);
 
-   THIS_RANGE consume_utf8_char();
+   string_range consume_utf8_char();
 
 
 
@@ -1879,6 +1937,58 @@ public:
    /// bro      2002-10-29
    ///========================================================
    void escape_case_insensitive_skip_to(const ::scoped_string & scopedstr, int escape);
+   
+   THIS_RANGE& trim_left()
+   {
+
+      return *this = this->trimmed_left();
+
+   }
+
+
+   THIS_RANGE& trim_right()
+   {
+
+      return *this = this->trimmed_right();
+
+   }
+
+
+   THIS_RANGE& trim()
+   {
+
+      return *this = this->trimmed_right().trimmed_left();
+
+   }
+
+
+   inline ::collection::count _count_parts_from_beginning(::collection::count cPathMaxPartCount, CHARACTER chPartSeparator)
+   {
+
+      this->m_begin = this->__count_parts_from_beginning(cPathMaxPartCount, chPartSeparator);
+
+      return cPathMaxPartCount;
+
+   }
+
+
+   inline ::collection::count count_parts_from_beginning(::collection::count  cPathPartCountToConsume, CHARACTER chSeparator)
+   {
+
+      if (cPathPartCountToConsume <= 0)
+      {
+
+         return cPathPartCountToConsume;
+
+      }
+
+      return this->_count_parts_from_beginning(cPathPartCountToConsume, chSeparator);
+
+   }
+
+
+   
+   string_range consume_token_until_any_character_in(const SCOPED_STRING& scopedstrCharacters, bool bReturnSeparator = false, bool bSkipAnyCharactersIn = true);
 
 
 };
@@ -1897,9 +2007,14 @@ public:
 
 
 
-using ansi_range = ::string_range<const ::ansi_character *>;
-using wd16_range = ::string_range<const ::wd16_character *>;
-using wd32_range = ::string_range<const ::wd32_character *>;
-using wide_range = ::string_range<const ::wide_character *>;
+using ansi_range = ::string_range< const ::ansi_character *>;
+using wd16_range = ::string_range< const ::wd16_character *>;
+using wd32_range = ::string_range< const ::wd32_character *>;
+using wide_range = ::string_range< const ::wide_character *>;
 
+
+//using ansi_string_range = ::string_range<::ansi_string>;
+//using wd16_string_range = ::string_range<::wd16_string>;
+//using wd32_string_range = ::string_range<::wd32_string>;
+//using wide_string_range = ::string_range<::wide_string>;
 

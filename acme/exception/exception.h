@@ -5,6 +5,8 @@
 
 //#include "acme/prototype/collection/array.h"
 
+#include "acme/prototype/string/scoped_string_base.h"
+
 
 enum enum_consequence
 {
@@ -53,9 +55,9 @@ public:
 //#ifdef ANDROID
 //   exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrDetails = nullptr, int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER);
 //#else
-   exception(const ::e_status & estatus, const char * pszMessage = nullptr, const char * pszDetails = nullptr, int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
+   exception(const ::e_status& estatus, const ::scoped_string& scopedstrMessage = {}, const ::scoped_string& scopedstrDetails = {}, int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr);
 //#endif
-   exception(const ::e_status & estatus, const ::array_non_particle < error_code > & errorcodea, const char * pszMessage = nullptr, const char * pszDetails = nullptr, int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
+   exception(const ::e_status& estatus, const ::array_non_particle < error_code >& errorcodea, const ::scoped_string& scopedstrMessage = {}, const ::scoped_string& scopedstrDetails = {}, int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr);
    exception(const ::exception& exception);
    ~exception() override;
 

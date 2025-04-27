@@ -111,7 +111,7 @@ file_time file_time::now() noexcept
 }
 
 
-file_time& file_time::operator+=(file_time_span span) noexcept
+file_time& file_time::operator +=(file_time_span span) noexcept
 {
 
    set_file_time(get_file_time() + span.get_file_time_span());
@@ -131,7 +131,7 @@ file_time& file_time::operator-=(file_time_span span) noexcept
 }
 
 
-file_time file_time::operator+(file_time_span span) const noexcept
+file_time file_time::operator +(file_time_span span) const noexcept
 {
    return{ file_time_t{}, get_file_time() + span.get_file_time_span() };
 }

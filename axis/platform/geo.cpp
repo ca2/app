@@ -734,7 +734,7 @@ namespace geo
 
       int iTimeZone = (int)(dZone * 3600.0);
 
-      property_set set;
+      ::property_set set;
 
       string strUrl = "http://api.openweathermap.org/data/2.5/weather?atom=" + ::as_string(pcity->m_iId) + "&APPID=" + string(pszId);
 
@@ -766,9 +766,9 @@ namespace geo
 
       string strSunset(timeSunset.FormatZone(INTERNATIONAL_DATE_TIME_FORMAT));
 
-      informationf("sunrise:" + strSunrise + "\n");
+      information("sunrise:" + strSunrise + "\n");
 
-      informationf("sunset:" + strSunset + "\n");
+      information("sunset:" + strSunset + "\n");
 
       return true;
 
@@ -856,7 +856,7 @@ namespace geo
       //
       //
       //
-      //         property_set set;
+      //         ::property_set set;
       //
       //         string strLat = as_string(pcity->m_dLat);
       //
@@ -1670,7 +1670,7 @@ namespace geo
 
       ::datetime::time_zone timezone;
 
-      property_set set;
+      ::property_set set;
 
       string strLat;
 
@@ -1685,7 +1685,7 @@ namespace geo
       try
       {
 
-         property_set set;
+         ::property_set set;
 
          set["post"]["lat"] = strLat;
 
@@ -1807,7 +1807,7 @@ namespace geo
    ::payload geo::_get_weather(openweather_city * pcity)
    {
 
-      property_set set;
+      ::property_set set;
 
       string strId = ::as_string(pcity->m_iId);
 
@@ -1818,7 +1818,7 @@ namespace geo
 
          //string strNetworkPayload;
 
-         property_set set;
+         ::property_set set;
 
          set["city_id"] = strId;
 

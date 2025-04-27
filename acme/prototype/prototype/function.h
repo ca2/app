@@ -121,7 +121,7 @@ enum enum_timeout
 
 
 
-#define _as(p) { e_use, p }
+///#define _as(p) { e_use, p }
 
 template < typename BASE_TYPE >
 class function_composite_base :
@@ -429,7 +429,7 @@ public:
       }
 
 
-      void operator()() override
+      void run() override
       {
 
          m_element();
@@ -687,7 +687,7 @@ public:
       else
       {
 
-         this->m_pbase = __allocate implementation(predicate, timeTimeout);
+         this->m_pbase = __allocate implementation<PREDICATE >(predicate, timeTimeout);
 
       }
 
@@ -915,7 +915,7 @@ public:
       else
       {
 
-         this->m_pbase = __allocate implementation (predicate, timeTimeout);
+         this->m_pbase = __allocate implementation <PREDICATE > (predicate, timeTimeout);
 
       }
 

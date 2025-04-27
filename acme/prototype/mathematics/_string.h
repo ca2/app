@@ -62,7 +62,7 @@ inline character_count utoa_base(char* psz, character_count size, unsigned long 
    if (base < 2 || base > 36)
    {
 
-      throw exception(error_bad_argument);
+      throw error_bad_argument;
 
       return -1;
 
@@ -222,21 +222,31 @@ INTEGRAL consume_integral(::ansi_range& range, int iBase = 10)
 }
 
 
-inline long long consume_long_long(::ansi_range& range , int iBase = 10) { return consume_integral < long long >(range, iBase); }
-inline int consume_int(::ansi_range& range , int iBase = 10) { return consume_integral < int >(range, iBase); }
-inline short consume_short(::ansi_range& range , int iBase = 10) { return consume_integral < short >(range, iBase); }
-inline char consume_char(::ansi_range& range, int iBase = 10) { return consume_integral < char >(range, iBase); }
+template < typename BASE_RANGE >
+inline long long consume_long_long(::string_range < BASE_RANGE > & range , int iBase = 10) { return consume_integral < long long >(range, iBase); }
+template < typename BASE_RANGE >
+inline int consume_int(::string_range < BASE_RANGE > & range , int iBase = 10) { return consume_integral < int >(range, iBase); }
+template < typename BASE_RANGE >
+inline short consume_short(::string_range < BASE_RANGE > & range , int iBase = 10) { return consume_integral < short >(range, iBase); }
+template < typename BASE_RANGE >
+inline char consume_char(::string_range < BASE_RANGE > & range, int iBase = 10) { return consume_integral < char >(range, iBase); }
 
 
-inline unsigned long long consume_unsigned_long_long(::ansi_range& range, int iBase = 10) { return consume_integral < unsigned long long >(range, iBase); }
-inline unsigned int consume_unsigned_int(::ansi_range& range, int iBase = 10) { return consume_integral < unsigned int >(range, iBase); }
-inline unsigned short consume_unsigned_short(::ansi_range& range, int iBase = 10) { return consume_integral < unsigned short >(range, iBase); }
-inline unsigned char consume_unsigned_char(::ansi_range& range, int iBase = 10) { return consume_integral < unsigned char >(range, iBase); }
+template < typename BASE_RANGE >
+inline unsigned long long consume_unsigned_long_long(::string_range < BASE_RANGE >& range, int iBase = 10) { return consume_integral < unsigned long long >(range, iBase); }
+template < typename BASE_RANGE >
+inline unsigned int consume_unsigned_int(::string_range < BASE_RANGE >& range, int iBase = 10) { return consume_integral < unsigned int >(range, iBase); }
+template < typename BASE_RANGE >
+inline unsigned short consume_unsigned_short(::string_range < BASE_RANGE >& range, int iBase = 10) { return consume_integral < unsigned short >(range, iBase); }
+template < typename BASE_RANGE >
+inline unsigned char consume_unsigned_char(::string_range < BASE_RANGE >& range, int iBase = 10) { return consume_integral < unsigned char >(range, iBase); }
 
-
-inline long consume_long(::ansi_range& range, int iBase = 10) { return consume_integral < long >(range, iBase); }
-inline unsigned long consume_unsigned_long(::ansi_range& range, int iBase = 10) { return consume_integral < unsigned long >(range, iBase); }
-inline size_t consume_size_t(::ansi_range& range, int iBase = 10) { return consume_integral < size_t >(range, iBase); }
+template < typename BASE_RANGE >
+inline long consume_long(::string_range < BASE_RANGE >& range, int iBase = 10) { return consume_integral < long >(range, iBase); }
+template < typename BASE_RANGE >
+inline unsigned long consume_unsigned_long(::string_range < BASE_RANGE >& range, int iBase = 10) { return consume_integral < unsigned long >(range, iBase); }
+template < typename BASE_RANGE >
+inline size_t consume_size_t(::string_range < BASE_RANGE >& range, int iBase = 10) { return consume_integral < size_t >(range, iBase); }
 
 
 inline long long as_long_long(const ::scoped_string& scopedstr, int iBase = 10) { auto r = scopedstr(); return consume_long_long(r, iBase); }

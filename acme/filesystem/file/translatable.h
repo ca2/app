@@ -19,7 +19,7 @@ namespace file
       virtual ::filesize get_position() const;
 
 
-      void operator++()
+      void operator ++()
       {
 
          return translate(1, ::e_seek_current);
@@ -35,7 +35,7 @@ namespace file
       }
 
 
-      void operator+=(filesize offset)
+      void operator +=(filesize offset)
       {
 
          return translate(offset, ::e_seek_current);

@@ -665,7 +665,7 @@ namespace apex
 
          //printf("%s", ("Process PID: " + ::as_string(iPid) + "\n").c_str());
 
-         informationf("Process PID: " + ::as_string(iPid));
+         information("Process PID: " + ::as_string(iPid));
 
       }
 
@@ -4488,7 +4488,7 @@ namespace apex
 
       string filename = file()->time_square();
 
-      property_set set;
+      ::property_set set;
 
       //set["user"] = puser;
 
@@ -4512,7 +4512,7 @@ namespace apex
       if (strLocation.has_character())
       {
 
-         property_set set;
+         ::property_set set;
 
          //set["user"] = puser;
 

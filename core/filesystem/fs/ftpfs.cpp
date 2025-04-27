@@ -252,7 +252,7 @@ retry:
 
    auto purl = psystem->url();
 
-   strPath = purl->get_object(listing.m_pathUser);
+   strPath = purl->get_string(listing.m_pathUser);
 
    if (!pclient->List(strPath, ptra, true))
    {
@@ -278,7 +278,7 @@ retry:
       if (!pchild->m_strAttributes.case_insensitive_contains("d"))
          continue;
 
-      auto & path = listing.add_get(::file::path(listing.m_pathUser / pchild->m_strName, ::e_path_url));
+      auto & path = listing.add_get(::file::path(::string(listing.m_pathUser / pchild->m_strName), ::e_path_url));
 
       path.set_existent_folder();
 
@@ -290,7 +290,7 @@ retry:
       if(!pchild->m_strAttributes.case_insensitive_contains("d"))
          continue;
 
-      auto & path = listing.add_get(::file::path(listing.m_pathUser / pchild->m_strName, ::e_path_url));
+      auto & path = listing.add_get(::file::path(::string(listing.m_pathUser / pchild->m_strName), ::e_path_url));
 
       path.m_iSize = pchild->m_filesize;
 
@@ -451,7 +451,7 @@ retry:
 
       auto purl = psystem->url();
 
-      string strRemoteFile = purl->get_object(payloadFile);
+      string strRemoteFile = purl->get_string(payloadFile);
 
       if (!pclient->DownloadFile(strRemoteFile, pathTemp))
       {

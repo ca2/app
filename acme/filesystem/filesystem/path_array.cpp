@@ -105,7 +105,7 @@ CLASS_DECL_ACME ::file::path_array & ascendants_path(const ::file::path & path, 
 
          pathaFolder.add(path(0, p));
 
-         p = path(p).skip_any_character_in("\\/").begin();
+         p = path(p).skip_any_character_in("\\/");
 
       }
       

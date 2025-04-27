@@ -966,7 +966,7 @@ namespace apex
    //
    //    string strUrl = scopedstrUrl;
    //
-   //    property_set set;
+   //    ::property_set set;
    //
    //    set["raw_http"] = true;
    //
@@ -980,7 +980,7 @@ namespace apex
    // string context::http_get(const ::scoped_string & scopedstrUrl)
    // {
    //
-   //    property_set set;
+   //    ::property_set set;
    //
    //    set["get_response"] = "";
    //
@@ -1131,7 +1131,7 @@ namespace apex
 
       }
 
-      get_property_set().merge(prequest->get_property_set());
+      ::property_set().merge(prequest->property_set());
 
       on_request(prequest);
 

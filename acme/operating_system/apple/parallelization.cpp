@@ -81,10 +81,10 @@ bool ns_set_thread_name(const char * psz);
 char * ns_get_thread_name();
 
 
-void task_set_name(const char * psz)
+void task_set_name(const scoped_string & scopedstr)
 {
    
-   return ns_set_thread_name(psz);
+   return ns_set_thread_name(::string(scopedstr).c_str());
 
 }
 

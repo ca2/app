@@ -58,7 +58,7 @@ namespace datetime
 
       //   ::posix_time parse(const string & str);
 
-      //   void parse_str(const string & str, property_set & set);
+      //   void parse_str(const string & str, ::property_set & set);
       //   ::earth::time parse_str(const string & str);
 
 
@@ -183,11 +183,11 @@ namespace datetime
 
       virtual string _001FriendTime(const ::text::context* pcontext, const ::earth::time& timeNow, const ::earth::time& time, const class ::time& timeshift = {});
 
-      virtual ::string friendly_elapsed(const ::time& time);
+      virtual ::string friendly_elapsed(const class ::time& time);
 
       ::posix_time parse(const string& str);
 
-      void parse_text(const string& str, property_set& set);
+      void parse_text(const string& str, ::property_set & set);
       ::earth::time parse_text(const string& str);
 
 

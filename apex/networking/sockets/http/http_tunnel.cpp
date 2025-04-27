@@ -200,12 +200,14 @@ namespace sockets
       //   outheader("Host") = GetUrlHost() + ":" + Utility::l2string(GetUrlPort());
       //else
       //   outheader("Host") = GetUrlHost();
-      outheader("host") = m_urlparts.connect().m_strHost;
+      outheader("host") = m_urlparts.connect().host();
+
       SendRequest();
 
       return true;
 
    }
+
 
    void http_tunnel::OnFirst()
    {
@@ -329,10 +331,10 @@ namespace sockets
    }
 
 
-   const string & http_tunnel::GetUrlHost()
+   ::string http_tunnel::GetUrlHost()
    {
       
-      return m_urlparts.connect().m_strHost;
+      return m_urlparts.connect().host();
 
    }
 
@@ -340,7 +342,7 @@ namespace sockets
    ::networking::port_t http_tunnel::GetUrlPort()
    {
 
-      return m_urlparts.connect().m_iPort;
+      return m_urlparts.connect().port();
 
    }
 

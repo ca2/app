@@ -110,7 +110,7 @@ namespace filemanager
          void impact::start_music()
          {
 
-            property_set set;
+            ::property_set set;
 
 //            http()->get("http://file.ca2.software/", set);
 
@@ -122,7 +122,7 @@ namespace filemanager
          void impact::start_root()
          {
 
-            property_set set;
+            ::property_set set;
 
             //          http()->get("http://file.ca2.software/", set);
 

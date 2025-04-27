@@ -105,7 +105,7 @@ public:
 //   text_stream& operator <<(const ::ansi_character * psz);
 //   //text_stream & operator <<(const ::atom & atom) ;
 //   text_stream& operator <<(const ::string& str);
-//   //text_stream & operator <<(const property_set& set) ;
+//   //text_stream & operator <<(const ::property_set & set) ;
 //   template < typename TYPE >
 //   void network_payload_write(const TYPE& t);
 //
@@ -343,7 +343,7 @@ public:
 //    }
 
 
-    ////text_stream & operator >>(property_set& set) ;
+    ////text_stream & operator >>(::property_set & set) ;
     ////text_stream & operator >>(::atom & atom) ;
 
 

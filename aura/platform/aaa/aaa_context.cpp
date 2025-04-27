@@ -614,7 +614,7 @@ pdirectorysystem->system() / path;
       {
 
 
-         property_set set;
+         ::property_set set;
 
          set["raw_http"] = true;
 
@@ -918,7 +918,7 @@ bool context::http_download(const ::string & pszUrl, const ::string & pszFile)
 
    string strUrl = pszUrl;
 
-   property_set set;
+   ::property_set set;
 
    set["raw_http"] = true;
 
@@ -932,7 +932,7 @@ bool context::http_download(const ::string & pszUrl, const ::string & pszFile)
 string context::http_get(const ::string & pszUrl)
 {
 
-   property_set set;
+   ::property_set set;
 
    set["get_response"] = "";
 

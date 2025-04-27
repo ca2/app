@@ -239,7 +239,7 @@ payload::payload(const payload_array & payload)
 }
 
 
-payload::payload(const property_set & set)
+payload::payload(const ::property_set & set)
 {
 
    m_etype  = e_type_new;
@@ -1376,7 +1376,7 @@ class ::payload & payload::operator = (const payload_array & payloadaParam)
 }
 
 
-class ::payload & payload::operator = (const property_set & propsetParam)
+class ::payload & payload::operator = (const ::property_set & propsetParam)
 {
 
    propset_reference() = propsetParam;
@@ -4149,7 +4149,7 @@ payload_array & payload::payloada_reference()
 }
 
 
-property_set payload::propset() const
+::property_set payload::propset() const
 {
 
    if (m_etype == e_type_payload_pointer)
@@ -4167,7 +4167,7 @@ property_set payload::propset() const
    else if (m_etype != e_type_property_set)
    {
 
-      property_set set;
+      ::property_set set;
 
       if (is_empty() || !get_bool())
       {
@@ -4195,9 +4195,9 @@ property_set payload::propset() const
    else if (::is_null(m_ppropertyset))
    {
 
-      //m_ppropertyset = ___new property_set();
+      //m_ppropertyset = ___new ::property_set();
 
-      return property_set();
+      return ::property_set();
 
    }
 
@@ -4206,7 +4206,7 @@ property_set payload::propset() const
 }
 
 
-property_set & payload::propset_reference()
+::property_set & payload::propset_reference()
 {
 
    if (m_etype == e_type_payload_pointer)
@@ -4224,7 +4224,7 @@ property_set & payload::propset_reference()
    else if (m_etype != e_type_property_set)
    {
 
-      auto pset = ___new property_set();
+      auto pset = ___new ::property_set();
 
       if (is_empty() || !get_bool())
       {
@@ -4250,7 +4250,7 @@ property_set & payload::propset_reference()
    else if (::is_null(m_ppropertyset))
    {
 
-      m_ppropertyset = ___new property_set();
+      m_ppropertyset = ___new ::property_set();
 
    }
 
@@ -4275,7 +4275,7 @@ property_set & payload::propset_reference()
 //}
 
 
-//const property_set & payload::as_propset() const
+//const ::property_set & payload::as_propset() const
 //{
 //
 //   return ((::payload *)this)->propset();
@@ -5762,7 +5762,7 @@ block payload::block () const
 //{
 //   if(get_type() == e_type_property_set)
 //   {
-//      return dynamic_cast < const property_set * > (m_pointer.m_p)->defer_get(atom);
+//      return dynamic_cast < const ::property_set * > (m_pointer.m_p)->defer_get(atom);
 //   }
 //   else if(get_type() == e_type_payload_pointer)
 //   {
@@ -5770,9 +5770,9 @@ block payload::block () const
 //   }
 //   else if(get_type() == e_type_element)
 //   {
-//      if(cast < property_set >() != nullptr)
+//      if(cast < ::property_set >() != nullptr)
 //      {
-//         return cast < property_set >()->defer_get(atom);
+//         return cast < ::property_set >()->defer_get(atom);
 //      }
 //      //else if(cast < property >() != nullptr)
 //      //{

@@ -7,10 +7,11 @@
 
 #include "acme/prototype/prototype/property.h"
 #include "acme/prototype/collection/atom_array.h"
+#include "acme/prototype/string/character_range.h"
 //#include "payload_reference.h"
 
 
-// property set key is case insensitive
+// ::property set key is case insensitive
 // PROPERTY_ARRAY Property set ordered
 class CLASS_DECL_ACME property_set :
    virtual public ::property_holder_array
@@ -24,17 +25,17 @@ public:
 
    property_set() {}
    property_set(::std::initializer_list < ::payload > list);
-   property_set(const property_set & set);
-   property_set(property_set && set);
+   property_set(const ::property_set & set);
+   property_set(::property_set && set);
    ~property_set() override;
 
 
-   ::collection::count erase_by_name(const atom & idName);
+   ::collection::count erase_by_name(const ::atom & atom);
    ::collection::count erase_by_name(string_array & straName);
 
    virtual ::particle * source_channel();
 
-   ::payload operator()(const atom & atom, const ::payload & payloadDefault = ::error_not_found) const;
+   //::payload operator()(const ::atom & atom, const ::payload & payloadDefault = ::error_not_found) const;
 
    string _001Replace(const ::string & str) const;
 
@@ -43,141 +44,163 @@ public:
 
    string as_string(const ::scoped_string& scopedstrSeparator1, const ::scoped_string& scopedstrSeparator2);
 
-   ::collection::index index_of(const ::atom & atom, ::collection::index iStart = 0) const;
+   //::collection::index index_of(const ::atom & atom, ::collection::index iStart = 0) const;
 
-   property* find_by_text(const ::scoped_string & scopedstr, ::collection::index iStart = 0) const;
+   //::property* find_by_text(const ::scoped_string & scopedstr, ::collection::index iStart = 0) const;
 
-   property * find(const ::atom & atom, ::collection::index iStart = 0) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i); }
-   property & get(const ::atom & atom, ::collection::index iStart = 0); // { return atom.is_text() ? get_text_key((const ::scoped_string &)atom.m_str, iStart) : get_index(atom.m_i); }
+   ::collection::index index_of(const ::atom& atom, ::collection::index iStart = 0) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i)
+   ::property * lookup(const ::atom & atom, ::collection::index iStart = 0) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i)
+   ::property & property(const ::atom & atom); // { return atom.is_text() ? get_text_key((const ::scoped_string &)atom.m_str, iStart) : get_index(atom.m_i); }
+   const ::property& property(const ::atom& atom) const
+   {
 
-   property * find(const ::atom_array & atoma) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i); }
-   property & get(const ::atom_array & atoma); // { return atom.is_text() ? get_text_key((const ::scoped_string &)atom.m_str, iStart) : get_index(atom.m_i); }
+      return ((::property_set*)this)->property(atom);
 
-   //property * find_index(::iptr i) const;
-   //property & get_index(::iptr i);
-
-
-   //property * find_text_key(const scoped_string & scopedstr, ::collection::index iStart = 0) const;
-   //property & get_text_key(const scoped_string & scopedstr, ::collection::index iStart = 0);
+   }
 
 
-   //inline property * find_property_index(::collection::index iIndex, ::collection::index iStart = 0) const { return find_index(iIndex); }
-   //inline property & get_property_index(::collection::index iIndex, ::collection::index iStart = 0) { return get_index(iIndex); }
+   //::collection::index find(const ::atom_array& atoma) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i); }
+   ::property * lookup(const ::atom_array & atoma) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i); }
+   ::property & property(const ::atom_array & atoma); // { return atom.is_text() ? get_text_key((const ::scoped_string &)atom.m_str, iStart) : get_index(atom.m_i); }
+   const ::property& property(const ::atom_array& atoma) const
+   {
+
+      return ((::property_set*)this)->property(atoma);
+
+   }
 
 
-   //inline property * find_property_text_key(const scoped_string & scopedstr, ::collection::index iStart = 0) const { return find_text_key(scopedstr, iStart); }
-   //inline property & get_property_text_key(const scoped_string & scopedstr, ::collection::index iStart = 0) { return get_text_key(scopedstr, iStart); }
+   //::property * find_index(::iptr i) const;
+   //::property & get_index(::iptr i);
 
 
-   //inline property * payload_index(::iptr iIndex, ::collection::index iStart = 0) const { return find_property_index(iIndex); }
-   //inline property & payload_index(::iptr iIndex, ::collection::index iStart = 0) { return get_property_index(iIndex); }
+   //::property * find_text_key(const scoped_string & scopedstr, ::collection::index iStart = 0) const;
+   //::property & get_text_key(const scoped_string & scopedstr, ::collection::index iStart = 0);
 
 
-   //inline property * payload_text_key(const scoped_string & scopedstr, ::collection::index iStart = 0) const { return find_property_text_key(scopedstr, iStart); }
-   //inline property & payload_text_key(const scoped_string & scopedstr, ::collection::index iStart = 0) { return get_property_text_key(scopedstr, iStart); }
+   //inline ::property * find_property_index(::collection::index iIndex, ::collection::index iStart = 0) const { return find_index(iIndex); }
+   //inline ::property & get_property_index(::collection::index iIndex, ::collection::index iStart = 0) { return get_index(iIndex); }
 
-   ::payload operator[](const ::atom_array& atoma) const;
-   ::payload operator[](const ::atom& atom) const;
 
-   inline ::property & operator[](const ::atom_array & atoma) { return get(atoma); }
-   inline ::property & operator[](const ::atom & atom) { return get(atom); }
+   //inline ::property * find_property_text_key(const scoped_string & scopedstr, ::collection::index iStart = 0) const { return find_text_key(scopedstr, iStart); }
+   //inline ::property & get_property_text_key(const scoped_string & scopedstr, ::collection::index iStart = 0) { return get_text_key(scopedstr, iStart); }
+
+
+   //inline ::property * payload_index(::iptr iIndex, ::collection::index iStart = 0) const { return find_property_index(iIndex); }
+   //inline ::property & payload_index(::iptr iIndex, ::collection::index iStart = 0) { return get_property_index(iIndex); }
+
+
+   //inline ::property * payload_text_key(const scoped_string & scopedstr, ::collection::index iStart = 0) const { return find_property_text_key(scopedstr, iStart); }
+   //inline ::property & payload_text_key(const scoped_string & scopedstr, ::collection::index iStart = 0) { return get_property_text_key(scopedstr, iStart); }
+
+   inline const ::property& operator[](const ::atom_array& atoma) const { return property(atoma); }
+   inline const ::property& operator[](const ::atom& atom) const { return property(atom); }
+
+   inline ::property & operator[](const ::atom_array & atoma) { return property(atoma); }
+   inline ::property & operator[](const ::atom & atom) { return property(atom); }
+
    template < primitive_integral INTEGRAL >
-   inline ::payload operator[](INTEGRAL i) const { return *this->element_at(i); }
+   inline const ::property & property_at(INTEGRAL i) const { return *this->element_at(i); }
    template < primitive_integral INTEGRAL >
-   inline ::property & operator[](INTEGRAL i) { return *this->element_at(i); }
+   inline ::property & property_at(INTEGRAL i) { return *this->element_at(i); }
 
 
 
    //template < character_range RANGE >
-   //inline property & operator[](const RANGE & range) { return payload(r(const ::scoped_string_base &)range); }
+   //inline ::property & operator[](const RANGE & range) { return property(range); }
    //template < character_range RANGE >
-   //inline const property & operator[](const RANGE & range) const { return payload((const ::scoped_string_base &)range); }
+   //inline const ::property & operator[](const RANGE & range) const { return property(range); }
 
    //template < has_get_string HAS_GET_STRING >
-   //inline property & operator[](const HAS_GET_STRING & has_get_string) { return payload((const ::scoped_string_base &)has_get_string.get_string()); }
+   //inline ::property & operator[](const HAS_GET_STRING & has_get_string) { return payload((const ::scoped_string_base &)has_get_string.get_string()); }
    //template < has_get_string HAS_GET_STRING >
-   //inline const property & operator[](const HAS_GET_STRING & has_get_string) const { return payload((const ::scoped_string_base &)has_get_string.get_string()); }
+   //inline const ::property & operator[](const HAS_GET_STRING & has_get_string) const { return payload((const ::scoped_string_base &)has_get_string.get_string()); }
 
    //template < has_as_string HAS_AS_STRING >
-   //inline property & operator[](const HAS_AS_STRING & has_as_string) { return payload((const ::scoped_string_base &)has_as_string.as_string()); }
+   //inline ::property & operator[](const HAS_AS_STRING & has_as_string) { return payload((const ::scoped_string_base &)has_as_string.as_string()); }
    //template < has_as_string HAS_AS_STRING >
-   //inline const property & operator[](const HAS_AS_STRING & has_as_string) const { return payload((const ::scoped_string_base &)has_as_string.as_string()); }
+   //inline const ::property & operator[](const HAS_AS_STRING & has_as_string) const { return payload((const ::scoped_string_base &)has_as_string.as_string()); }
 
-   //inline property & operator[](const atom & atom) { return payload(atom); }
-   //inline const property & operator[](const atom & atom) const { return payload(atom); }
+   //inline ::property & operator[](const ::atom & atom) { return payload(atom); }
+   //inline const ::property & operator[](const ::atom & atom) const { return payload(atom); }
 
-   //inline property & operator[](const ::scoped_string & scopedstrName) { return payload(pszName); }
-   //inline const property & operator[](const ::scoped_string & scopedstrName) const { return payload(pszName); }
+   //inline ::property & operator[](const ::scoped_string & scopedstrName) { return payload(pszName); }
+   //inline const ::property & operator[](const ::scoped_string & scopedstrName) const { return payload(pszName); }
 
-   //inline property & operator[](const ::string & strName) { return payload(strName); }
-   //inline const property & operator[](const ::string & strName) const { return payload(strName); }
+   //inline ::property & operator[](const ::string & strName) { return payload(strName); }
+   //inline const ::property & operator[](const ::string & strName) const { return payload(strName); }
 
-   //inline property & operator[](::collection::index iIndex) { return payload(iIndex); }
-   //inline const property & operator[](::collection::index iIndex) const { return payload(iIndex); }
+   //inline ::property & operator[](::collection::index iIndex) { return payload(iIndex); }
+   //inline const ::property & operator[](::collection::index iIndex) const { return payload(iIndex); }
 
-   //inline property & operator[](const ::payload & payloadKey) { return payload(payloadKey); }
-   //inline const property & operator[](const ::payload & payloadKey) const { return payload(payloadKey); }
+   //inline ::property & operator[](const ::payload & payloadKey) { return payload(payloadKey); }
+   //inline const ::property & operator[](const ::payload & payloadKey) const { return payload(payloadKey); }
 
 //#ifdef OS64BIT
 //
-//   inline property & operator[](int iIndex) { return payload(iIndex); }
-//   inline const property & operator[](int iIndex) const { return payload(iIndex); }
+//   inline ::property & operator[](int iIndex) { return payload(iIndex); }
+//   inline const ::property & operator[](int iIndex) const { return payload(iIndex); }
 //
 //#endif
 
-   ::payload & topic(const atom & atom);
+   //::payload & topic(const ::atom & atom);
 
-   ::payload_reference reference(const atom & atom) { return topic(atom); }
+   //::payload_reference reference(const atom& atom); { return topic(atom); }
 
-   ::payload & set(const atom & atom);
+   ::payload_reference reference(const atom& atom);
+   ::payload_reference reference(const atom_array & atom);
 
-   property & at(::collection::index iId);
-   ::payload at(::collection::index iId) const;
+   //::payload & set(const ::atom & atom);
 
-   property * case_insensitive_find_value(const ::payload & payload) const;
-   property * case_insensitive_find_value(const ::scoped_string & scopedstr) const;
+   //::property & at(::collection::index iId);
+   //const ::property & at(::collection::index iId) const;
 
-   property * find_payload(const ::payload & payload) const;
-   property * find_payload(const ::scoped_string & scopedstr) const;
+   ::collection::index index_of_case_insensitive_payload(const ::payload & payload, ::collection::index iStart = 0) const;
+   ::collection::index index_of_case_insensitive_string(const ::scoped_string & scopedstr, ::collection::index iStart = 0) const;
 
-   property * str_find(const property & property) const;
+   ::collection::index index_of_payload(const ::payload & payload, ::collection::index iStart = 0) const;
+   ::collection::index index_of_string(const ::scoped_string & scopedstr, ::collection::index iStart = 0) const;
 
-   bool case_insensitive_contains_value(const ::payload & payload) const;
-   bool case_insensitive_contains_value(const ::scoped_string & scopedstr) const;
+   //::property * str_find(const ::property & property) const;
 
-   bool contains_payload(const ::payload & payload) const;
-   bool contains_payload(const ::scoped_string & scopedstr) const;
+   bool case_insensitive_contains_payload(const ::payload& payload, ::collection::index iStart = 0) const { return index_of_case_insensitive_payload(payload, iStart)>= 0; }
+   bool case_insensitive_contains_string(const ::scoped_string & scopedstr, ::collection::index iStart = 0) const { return index_of_case_insensitive_string(scopedstr, iStart) >= 0; }
 
-   bool case_insensitive_contains_value(const ::payload & payload, ::collection::count countMin = 1, ::collection::count countMax = -1) const;
-   bool case_insensitive_contains_value(const ::scoped_string & scopedstr, ::collection::count countMin = 1, ::collection::count countMax = -1) const;
+   bool contains_payload(const ::payload & payload, ::collection::index iStart = 0) const { return index_of_payload(payload, iStart) >= 0; }
+   bool contains_string(const ::scoped_string & scopedstr, ::collection::index iStart = 0) const { return index_of_string(scopedstr, iStart) >= 0; }
 
-   bool contains_payload(const ::payload & payload, ::collection::count countMin = 1, ::collection::count countMax = -1) const;
-   bool contains_payload(const ::scoped_string & scopedstr, ::collection::count countMin = 1, ::collection::count countMax = -1) const;
+   bool case_insensitive_contains_payload_count(const ::payload & payload, ::collection::count countMin = 1, ::collection::count countMax = -1) const;
+   bool case_insensitive_contains_string_count(const ::scoped_string & scopedstr, ::collection::count countMin = 1, ::collection::count countMax = -1) const;
 
-   bool str_contains(const property_set & set) const;
-   bool contains(const property_set & set) const;
+   bool contains_payload_count(const ::payload & payload, ::collection::count countMin = 1, ::collection::count countMax = -1) const;
+   bool contains_string_count(const ::scoped_string & scopedstr, ::collection::count countMin = 1, ::collection::count countMax = -1) const;
 
-   bool case_insensitive_erase_first_value(const ::payload & payload);
-   bool case_insensitive_erase_first_value(const ::scoped_string & scopedstr);
+   bool payload_contains(const ::property_set & set) const;
+   bool string_contains(const ::property_set & set) const;
+   bool contains_keys(const ::property_set & set) const;
+   bool contains(const ::property_set & set) const;
 
-   bool erase_first_value(const ::payload & payload);
-   bool erase_first_value(const ::scoped_string & scopedstr);
+   bool case_insensitive_erase_first_payload(const ::payload & payload, ::collection::index iStart = 0);
+   bool case_insensitive_erase_first_string(const ::scoped_string & scopedstr, ::collection::index iStart = 0);
 
-   ::collection::count case_insensitive_erase_value(const  ::payload & payload, ::collection::count countMin = 0, ::collection::count countMax = -1);
-   ::collection::count case_insensitive_erase_value(const ::scoped_string & scopedstr, ::collection::count countMin = 0, ::collection::count countMax = -1);
+   bool erase_first_payload(const ::payload & payload, ::collection::index iStart = 0);
+   bool erase_first_string(const ::scoped_string & scopedstr, ::collection::index iStart = 0);
 
-   ::collection::count erase_value(const ::payload & payload, ::collection::count countMin = 0, ::collection::count countMax = -1);
-   ::collection::count erase_value(const ::scoped_string & scopedstr, ::collection::count countMin = 0, ::collection::count countMax = -1);
+   ::collection::count case_insensitive_erase_payload_count(const  ::payload & payload, ::collection::count countMin = 0, ::collection::count countMax = -1);
+   ::collection::count case_insensitive_erase_string_count(const ::scoped_string & scopedstr, ::collection::count countMin = 0, ::collection::count countMax = -1);
 
-   bool has_property(const atom & atom) const;
+   ::collection::count erase_payload_count(const ::payload & payload, ::collection::count countMin = 0, ::collection::count countMax = -1);
+   ::collection::count erase_string_count(const ::scoped_string & scopedstr, ::collection::count countMin = 0, ::collection::count countMax = -1);
 
-   bool is_true(const atom & atom) const;
+   bool has_property(const ::atom & atom) const;
 
-   bool is_true_or_empty(const atom & atom) const;
+   bool is_true(const ::atom & atom) const;
 
-   bool is_false(const atom & atom) const { auto p = find(atom); return !p || p->is_false(); }
+   bool is_true_or_empty(const ::atom & atom) const;
 
-   bool is_set_false(const atom & atom) const { auto p = find(atom); return !p || p->is_set_false(); }
+   bool is_false(const ::atom & atom) const { auto p = lookup(atom); return !p || p->is_false(); }
+
+   bool is_set_false(const ::atom & atom) const { auto p = lookup(atom); return p && p->is_set_false(); }
 
    bool is_set_empty(::collection::count countMinimum = 1) const;
 
@@ -187,10 +210,10 @@ public:
    //inline auto names(::collection::index iStart = 0, ::collection::index iEnd = -1) const { return name_iterator(iStart, iEnd, this); }
 
 
-   inline property & set_at(const ::atom & atom, const ::payload & payload)
+   inline ::property & set_at(const ::atom & atom, const ::payload & payload)
    {
 
-      auto & property = get(atom);
+      auto & property = this->property(atom);
 
       property = payload;
 
@@ -198,17 +221,19 @@ public:
 
    }
 
-   bool get_string(string& strResult, const atom & idKey) const;
+   bool _get_string(string& strResult, const ::atom & atom) const;
 
-   ::payload get_value(const atom & idName);
+   ::payload get_payload(const ::atom & atom);
 
-   ::payload value(const atom & idName) const;
+   const ::payload & payload(const ::atom & atom) const;
 
-   ::payload value(const atom & idName, ::payload payloadDefault) const;
+   ::payload & payload(const ::atom & atom, const ::payload & payloadDefault) const;
 
-   bool payload_bool(const atom & atom, bool bDefault = false) const;
-   ::string payload_string(const atom & atom, const ::string & strDefault = nullptr) const;
-   ::file::path payload_file_path(const atom & atom, const ::file::path & pathDefault ={}) const;
+   bool get_bool(const ::atom & atom, bool bDefault = false) const;
+   int get_int(const ::atom & atom, int iDefault = 0) const;
+   unsigned int get_unsigned_int(const ::atom & atom, unsigned int uDefault = 0) const;
+   ::string get_string(const ::atom & atom, const ::string & strDefault = nullptr) const;
+   ::file::path get_file_path(const ::atom & atom, const ::file::path & pathDefault ={}) const;
 
    //template < typename TYPE >
    //inline void exchange(const ::atom & atom, TYPE & t)
@@ -277,28 +302,30 @@ public:
 
    //}
 
-   ::collection::count unset(const atom & idName);
+   ::collection::count unset(const ::atom & atom);
 
-   bool is_new(const atom & idName) const;
+   bool is_new(const ::atom & atom) const;
 
-   bool is_null(const atom & idName) const;
+   bool is_null(const ::atom & atom) const;
 
-   bool is_new_or_null(const atom & idName) const;
+   bool is_new_or_null(const ::atom & atom) const;
 
    
    //using property_ptra::is_empty;
 
-   bool is_empty(const atom & idName) const;
+   bool is_empty(const ::atom & atom) const;
    bool is_empty() const { return ::property_holder_array::is_empty(); }
    bool has_property() const { return this->has_element(); }
    ::collection::count property_count() const { return this->get_count(); }
    
    
-   ::collection::index add_property(const property & property) { return this->add_item(new ::property(property)); }
+   ::collection::index add_property(const ::atom & atom) { return this->add_item(new ::property(atom)); }
+   ::property * add_property(const ::atom_array & atoma);
+   ::collection::index add_property(const ::property & property) { return this->add_item(new ::property(property)); }
 
 
-   inline const property & property_at(::collection::index nIndex) const { return *this->element_at(nIndex); }
-   inline property & property_at(::collection::index nIndex) { return *this->element_at(nIndex); }
+   inline const ::property & property_at(::collection::index nIndex) const { return *this->element_at(nIndex); }
+   inline ::property & property_at(::collection::index nIndex) { return *this->element_at(nIndex); }
 
    inline ::collection::index erase_property_at(::collection::index iIndex) { return this->erase_at(iIndex); }
 
@@ -311,24 +338,24 @@ public:
 
    //auto is_end(property_arraytra::const_iterator iterator) const { return propertyptra().is_end(iterator); }
 
-   //template < typename TYPE >
-   //bool find(const ::atom & atom, TYPE & t)
-   //{
+   template < typename TYPE >
+   bool _get(const ::atom & atom, TYPE & t)
+   {
 
-   //   auto pproperty = find(atom);
+      auto pproperty = lookup(atom);
 
-   //   if (!pproperty)
-   //   {
+      if (!pproperty)
+      {
 
-   //      return false;
+         return false;
 
-   //   }
+      }
 
-   //   t = (TYPE &) *pproperty;
+      pproperty->_as(t);
 
-   //   return true;
-
-   //}
+      return true;
+  
+   }
 
 
    void _008ParseCommandLine(const ::scoped_string & scopedstrCmdLine, ::payload & payloadFile);
@@ -388,40 +415,44 @@ public:
    //::collection::count get_count() const;
 
 
-   property_set & operator = (const ::payload & payload);
-   property_set & operator = (const property_set & set);
-//   property_set & operator = (const pair_set_interface & set);
-//   property_set & operator = (const str_str_interface & set);
+   ::property_set & operator = (const ::payload & payload);
+   ::property_set & operator = (const ::property_set & set);
+//   ::property_set & operator = (const pair_set_interface & set);
+//   ::property_set & operator = (const str_str_interface & set);
 
-   property_set & operator += (const property_set & set);
-   property_set & operator |= (const property_set & set);
-
-
-   property_set & append(const property_set & set);
-   property_set & merge(const property_set & set);
-
-   property_set & merge(const property & property);
+   ::property_set & operator += (const ::property_set & set);
+   ::property_set & operator |= (const ::property_set & set);
 
 
+   ::property_set & append(const ::property_set & set);
+   ::property_set & merge(const ::property_set & set);
+
+   ::property_set & merge(const ::property & property);
 
 
-   template < class T >
-   pointer < T > cast(atom idName, T * pDefault = nullptr)
+
+
+   template < primitive_subparticle T >
+   T * cast(const ::atom & atom, T * pDefault = nullptr)
    {
 
-      if (!has_property(idName))
+      if (!has_property(atom))
+      {
+
          return pDefault;
 
-      return operator[](idName).cast < T > (pDefault);
+      }
+
+      return operator[](atom).cast < T > (pDefault);
 
    }
 
 
    template < class T >
-   pointer < T > cast(atom idName, T * pDefault = nullptr) const
+   T * cast(const ::atom & atom, T * pDefault = nullptr) const
    {
 
-      return ((property_set *) this)->cast < T >(idName, pDefault);
+      return ((::property_set *) this)->cast < T >(atom, pDefault);
 
    }
 
@@ -445,28 +476,23 @@ CLASS_DECL_ACME void property_set_skip_network_payload(::ansi_range & range);
 //inline ::pointer<::property_set>localconfigini();
 
 
-
-
-
-
-inline bool property_set::get_string(string & strResult, const atom & idKey) const
+inline bool ::property_set::_get_string(string & strResult, const ::atom & atom) const
 {
 
-   auto property = operator[](idKey);
+   auto pproperty = lookup(atom);
 
-   if (property.is_empty())
+   if (::is_null(pproperty))
    {
 
       return false;
 
    }
 
-   strResult = property.as_string();
+   strResult = pproperty->as_string();
 
    return true;
 
 }
-
 
 
 CLASS_DECL_ACME ::pointer < ::property_set > create_network_arguments_property_set(const ::scoped_string& scopedstrNetworkArguments);

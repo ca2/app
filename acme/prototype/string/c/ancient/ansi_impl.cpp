@@ -14,22 +14,22 @@ CLASS_DECL_ACME int __ansicharisxdigit(int i) { return ansi_char_isdigit(i) || (
 CLASS_DECL_ACME int __ansicharishexadecimal(int i) { return __ansicharisxdigit(i); }
 
 
-CLASS_DECL_ACME ::ansi_character * overlap_safe_ansincpy(::ansi_character * pszDst, const ::ansi_character * pszSrc, character_count srclen)
+CLASS_DECL_ACME ::ansi_character * overlap_safe_ansincpy(::ansi_character * pszDst, const ::ansi_character * pszSrc, character_count len)
 {
 
    if (pszDst != pszSrc)
    {
 
-      if (address_overlaps(pszDst, pszSrc, srclen * sizeof(::ansi_character)))
+      if (address_overlaps(pszDst, pszSrc, len))
       {
 
-         memory_transfer(pszDst, pszSrc, srclen * sizeof(::ansi_character));
+         memory_transfer(pszDst, pszSrc, len);
 
       }
       else
       {
 
-         ansi_ncpy(pszDst, pszSrc, srclen);
+         ansi_ncpy(pszDst, pszSrc, len);
 
       }
 

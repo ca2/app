@@ -88,7 +88,7 @@ namespace userpresence
       ::url::set_parameter(strUrl, "short_status", ::as_string(m_iShortStatusWayTag));
       ::url::set_parameter(strUrl, "long_status", m_strLongStatus);
 
-      property_set set;
+      ::property_set set;
 
       http()->get(strUrl, set);
 

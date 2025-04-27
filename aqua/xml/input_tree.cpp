@@ -86,7 +86,7 @@ namespace xml
    }
 
 
-   node * input_tree::import_node(const ::string & strName, property_set & set, importable & importable)
+   node * input_tree::import_node(const ::string & strName, ::property_set & set, importable & importable)
    {
 
       ::xml::node * pnodePrev = m_pnode;

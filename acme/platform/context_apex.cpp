@@ -71,7 +71,7 @@ namespace platform
 
 
    //bool apex_context_layer::http_download(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrFile){}
-   //::string apex_context_layer::http_get(const string& strUrl, ::property_set& set){}
+   //::string apex_context_layer::http_get(const string& strUrl, ::property_set & set){}
    //::string apex_context_layer::http_get(const ::scoped_string & scopedstrUrl){}
 
    ::string apex_context_layer::get_latest_build_number(const ::scoped_string& scopedstrConfiguration,
@@ -245,7 +245,7 @@ namespace platform
    //      void http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set) override{}
 
    //      using acme::handler_context::http_get{}
-   //::pointer < ::nano::http::response > http_get(const ::scoped_string& scopedstrUrl, const ::property_set& set) override{}
+   //::pointer < ::nano::http::response > http_get(const ::scoped_string& scopedstrUrl, const ::property_set & set) override{}
 
    //void apex_context_layer::perform(::nano::http::get * pget){}
 

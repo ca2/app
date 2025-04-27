@@ -17,11 +17,11 @@
 //inline bool property_object::has_property(const atom & atom) const { return m_ppropertyset && m_ppropertyset->has_property(atom); }
 //inline property * property_object::lookup_property(const atom& atom) const { return m_ppropertyset ? m_ppropertyset->find(atom) : nullptr; }
 //inline bool property_object::erase_key(const atom & atom) { return m_ppropertyset && m_ppropertyset->erase_by_name(atom); }
-//inline property_set & property_object::get_property_set() { defer_propset(); return *m_ppropertyset; }
-//inline const property_set & property_object::get_property_set() const { ((property_object *)this)->defer_propset(); return *m_ppropertyset; }
+//inline ::property_set & property_object::get_property_set() { defer_propset(); return *m_ppropertyset; }
+//inline const ::property_set & property_object::get_property_set() const { ((property_object *)this)->defer_propset(); return *m_ppropertyset; }
 //
 //
-//inline bool property_object::contains(const property_set & set) const
+//inline bool property_object::contains(const ::property_set & set) const
 //{
 //
 //  if (set.is_empty())

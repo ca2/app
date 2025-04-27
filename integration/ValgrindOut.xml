@@ -2553,9 +2553,9 @@
     <frame>
       <ip>0x5C85E3D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>property_set::~property_set()</fn>
+      <fn>::property_set::~::property_set()</fn>
       <dir>/xcore/app/aura/primitive</dir>
-      <file>property_set.cpp</file>
+      <file>::property_set.cpp</file>
       <line>50</line>
     </frame>
     <frame>
@@ -3946,7 +3946,7 @@
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
       <fn>var::operator[](long)</fn>
       <dir>/xcore/app/axis/../aura/primitive</dir>
-      <file>property_set.h</file>
+      <file>::property_set.h</file>
       <line>597</line>
     </frame>
     <frame>
@@ -10153,9 +10153,9 @@
     <frame>
       <ip>0x5C85F48</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>property_set::~property_set()</fn>
+      <fn>::property_set::~::property_set()</fn>
       <dir>/xcore/app/aura/primitive</dir>
-      <file>property_set.cpp</file>
+      <file>::property_set.cpp</file>
       <line>53</line>
     </frame>
     <frame>
@@ -10185,7 +10185,7 @@
     <frame>
       <ip>0x583071E</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>long release&lt;property_set&gt;(property_set*&amp;)</fn>
+      <fn>long release&lt;::property_set&gt;(::property_set*&amp;)</fn>
       <dir>/xcore/app/aura/../aura/primitive</dir>
       <file>object.h</file>
       <line>572</line>
@@ -10193,7 +10193,7 @@
     <frame>
       <ip>0x5830691</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pointer&lt;property_set&gt;::release()</fn>
+      <fn>pointer&lt;::property_set&gt;::release()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>317</line>
@@ -10201,7 +10201,7 @@
     <frame>
       <ip>0x5815705</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>pointer&lt;property_set&gt;::~pointer()</fn>
+      <fn>pointer&lt;::property_set&gt;::~pointer()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_smart_pointer2.h</file>
       <line>124</line>
@@ -101311,7 +101311,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>var::operator[](char const*)</fn>
       <dir>/xcore/app/aura/../aura/primitive</dir>
-      <file>property_set.h</file>
+      <file>::property_set.h</file>
       <line>562</line>
     </frame>
     <frame>
@@ -101417,7 +101417,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>var::operator[](char const*)</fn>
       <dir>/xcore/app/aura/../aura/primitive</dir>
-      <file>property_set.h</file>
+      <file>::property_set.h</file>
       <line>562</line>
     </frame>
     <frame>
@@ -101523,7 +101523,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>var::operator[](char const*)</fn>
       <dir>/xcore/app/aura/../aura/primitive</dir>
-      <file>property_set.h</file>
+      <file>::property_set.h</file>
       <line>562</line>
     </frame>
     <frame>
@@ -101629,7 +101629,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>var::operator[](char const*)</fn>
       <dir>/xcore/app/aura/../aura/primitive</dir>
-      <file>property_set.h</file>
+      <file>::property_set.h</file>
       <line>562</line>
     </frame>
     <frame>

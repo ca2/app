@@ -8796,7 +8796,7 @@ namespace user
 
          get_text(strText);
 
-         informationf("\nplain_edit::on_text_composition (m_pitemComposing != nullptr) Current Text: " + strText + "\n");
+         information("\nplain_edit::on_text_composition (m_pitemComposing != nullptr) Current Text: " + strText + "\n");
 
       }
       else
@@ -8869,7 +8869,7 @@ namespace user
 
          get_text(strText);
 
-         informationf("Current Text: " + strText + "\n");
+         information("Current Text: " + strText + "\n");
 
          m_pitemComposing.release();
 
@@ -11074,7 +11074,7 @@ namespace user
 
       strInsertLog.find_replace("\n", "\\n");
 
-      informationf("insert_text: \"" + strInsertLog + "\"");
+      information("insert_text: \"" + strInsertLog + "\"");
 
       on_before_change_text();
 

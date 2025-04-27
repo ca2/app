@@ -1795,7 +1795,7 @@ void object::branch_each(const ::procedure_array& routinea)
 ::task_pointer object::defer_branch(const ::atom& atom, const ::procedure & procedure, enum_priority epriority)
 {
 
-   auto ptask = get_property_set()["thread"][atom].cast < ::task>();
+   auto ptask = ::property_set()["thread"][atom].cast < ::task>();
 
    if(ptask && ptask->is_task_set())
    {
@@ -1808,9 +1808,9 @@ void object::branch_each(const ::procedure_array& routinea)
 
    ptask->m_procedure = procedure;
 
-   get_property_set()["thread"][atom] = ptask;
+   ::property_set()["thread"][atom] = ptask;
 
-   auto ptask2 = get_property_set()["thread"][atom].cast < ::task>();
+   auto ptask2 = ::property_set()["thread"][atom].cast < ::task>();
 
    ptask->branch();
 

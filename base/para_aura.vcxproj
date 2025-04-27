@@ -416,7 +416,7 @@
     <ClCompile Include="primitive\memory_container.cpp" />
     <ClCompile Include="primitive\object.cpp" />
     <ClCompile Include="primitive\property.cpp" />
-    <ClCompile Include="primitive\property_set.cpp" />
+    <ClCompile Include="primitive\::property_set.cpp" />
     <ClCompile Include="primitive\relation_set.cpp" />
     <ClCompile Include="primitive\request_interface.cpp" />
     <ClCompile Include="primitive\request_signal.cpp" />

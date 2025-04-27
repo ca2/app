@@ -408,12 +408,12 @@ namespace dynamic_source
    }
 
 
-   property_set& script_interface::inattra()
+   ::property_set& script_interface::inattra()
    {
 
       throw ::interface_only();
 
-      return *(property_set*)nullptr;
+      return *(::property_set*)nullptr;
 
    }
 
@@ -434,23 +434,23 @@ namespace dynamic_source
    }
 
 
-   property_set& script_interface::geta()
+   ::property_set& script_interface::geta()
    {
 
       throw ::interface_only();
 
-      return *(property_set*)nullptr;
+      return *(::property_set*)nullptr;
 
    }
 
 
 
-   property_set& script_interface::posta()
+   ::property_set& script_interface::posta()
    {
 
       throw ::interface_only();
 
-      return *(property_set*)nullptr;
+      return *(::property_set*)nullptr;
 
    }
 
@@ -466,12 +466,12 @@ namespace dynamic_source
    }
 
 
-   property_set& script_interface::requesta()
+   ::property_set& script_interface::requesta()
    {
 
       throw ::interface_only();
 
-      return *(property_set*)nullptr;
+      return *(::property_set*)nullptr;
 
    }
 
@@ -661,7 +661,7 @@ namespace dynamic_source
    }
 
 
-   property_set& script_interface::geta()
+   ::property_set& script_interface::geta()
    {
 
       return netnodesocket()->request().form().get();
@@ -669,7 +669,7 @@ namespace dynamic_source
    }
 
 
-   property_set& script_interface::posta()
+   ::property_set& script_interface::posta()
    {
 
       return netnodesocket()->request().form().post();
@@ -685,7 +685,7 @@ namespace dynamic_source
    }
 
 
-   property_set& script_interface::requesta()
+   ::property_set& script_interface::requesta()
    {
 
       return netnodesocket()->request().form().request();
@@ -693,7 +693,7 @@ namespace dynamic_source
    }
 
 
-   property_set& script_interface::inattra()
+   ::property_set& script_interface::inattra()
    {
 
       return netnodesocket()->inattrs();
@@ -808,9 +808,9 @@ namespace dynamic_source
    property& script_interface::gprop(const ::atom& atom)
    {
 
-      auto& set = m_pmain->get_property_set();
+      auto& set = m_pmain->property_set();
 
-      return set.get(atom);
+      return set.property(atom);
 
    }
 

@@ -428,9 +428,9 @@ payload::payload(const payload_array & payloada) :
 }
 
 
-payload::payload(const property_set & set) :
+payload::payload(const ::property_set & set) :
    m_etype(e_type_property_set),
-   m_ppropertyset(__new__prefix(&m_preferer) new property_set(set))
+   m_ppropertyset(__new__prefix(&m_preferer) new ::property_set(set))
 {
 
 }
@@ -1974,7 +1974,7 @@ class ::payload & payload::operator = (const payload_array & payloada)
 }
 
 
-class ::payload & payload::operator = (const property_set & propertyset)
+class ::payload & payload::operator = (const ::property_set & propertyset)
 {
 
    //if (m_etype == e_type_payload_pointer)
@@ -5213,7 +5213,7 @@ payload_array & payload::payload_array_reference ()
 }
 
 
-property_set payload::as_property_set() const
+::property_set payload::as_property_set() const
 {
 
 /*   if (m_etype == e_type_payload_pointer)
@@ -5231,7 +5231,7 @@ property_set payload::as_property_set() const
    else*/ if (m_etype != e_type_property_set)
    {
 
-      property_set set;
+      ::property_set set;
 
       if (is_empty() || !get_bool())
       {
@@ -5258,7 +5258,7 @@ property_set payload::as_property_set() const
    }
    else if (::is_null(m_ppropertyset))
    {
-      //m_ppropertyset = ___new property_set();
+      //m_ppropertyset = ___new ::property_set();
 
       return {};
 
@@ -5269,7 +5269,7 @@ property_set payload::as_property_set() const
 }
 
 
-property_set & payload::property_set_reference()
+::property_set & payload::property_set_reference()
 {
 
 /*   if (m_etype == e_type_payload_pointer)
@@ -5295,7 +5295,7 @@ property_set & payload::property_set_reference()
 //
 //#endif
 
-      //auto psetNew = __raw_new property_set();
+      //auto psetNew = __raw_new ::property_set();
 
 #if REFERENCING_DEBUGGING
 
@@ -5303,7 +5303,7 @@ property_set & payload::property_set_reference()
 
 #endif
 
-      auto psetNew = __new__prefix(&prefererNew) new property_set();
+      auto psetNew = __new__prefix(&prefererNew) new ::property_set();
 
       __check_refdbg
 
@@ -5349,7 +5349,7 @@ property_set & payload::property_set_reference()
 //
 //#endif
 
-      m_ppropertyset = __new__prefix(&m_preferer) new property_set();
+      m_ppropertyset = __new__prefix(&m_preferer) new ::property_set();
 
    }
 
@@ -5374,7 +5374,7 @@ property_set & payload::property_set_reference()
 //}
 
 
-//const property_set & payload::as_propset() const
+//const ::property_set & payload::as_propset() const
 //{
 //
 //   return ((::payload *)this)->propset();
@@ -5588,12 +5588,12 @@ string payload::implode(const ::scoped_string & scopedstrGlue) const
    if (m_etype == e_type_property_set)
    {
 
-      auto pproperty = m_ppropertyset->find_by_text(scopedstr);
+      auto iIndex = m_ppropertyset->index_of_string(scopedstr);
 
-      if (pproperty)
+      if (iIndex >= 0)
       {
 
-         return *pproperty;
+         return m_ppropertyset->property_at(iIndex);
 
       }
 
@@ -5627,7 +5627,7 @@ string payload::implode(const ::scoped_string & scopedstrGlue) const
       if (m_etype == e_type_property_set)
       {
 
-         auto pproperty = m_ppropertyset->find_by_text(atom.m_str);
+         auto pproperty = m_ppropertyset->lookup(atom);
 
          if (pproperty)
          {
@@ -5647,7 +5647,7 @@ string payload::implode(const ::scoped_string & scopedstrGlue) const
       if (casts_to(e_type_property_set))
       {
 
-         auto pproperty = property_set_reference().find(atom);
+         auto pproperty = property_set_reference().lookup(atom);
 
          if (pproperty)
          {
@@ -5693,7 +5693,7 @@ property & payload::get_property(const ::atom & atom)
       else*/ if (m_etype == e_type_property_set)
       {
 
-         return m_ppropertyset->get(atom);
+         return m_ppropertyset->property(atom);
 
       }
 
@@ -5704,7 +5704,7 @@ property & payload::get_property(const ::atom & atom)
       if (casts_to(e_type_property_set))
       {
 
-         return property_set_reference().get(atom);
+         return property_set_reference().property(atom);
 
       }
 
@@ -5896,7 +5896,7 @@ bool payload::array_contains(const ::scoped_string & scopedstr, ::collection::in
    case e_type_payload_array:
       return as_payload_array().contains(scopedstr, find, count);
    case e_type_property_set:
-      return as_property_set().contains_payload(scopedstr, find, count);
+      return as_property_set().contains_payload_count(scopedstr, find, count);
    default:
    {
       ::collection::index upperbound = minimum(array_get_upper_bound(), find + count - 1);
@@ -5912,6 +5912,7 @@ bool payload::array_contains(const ::scoped_string & scopedstr, ::collection::in
    return false;
 }
 
+
 bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr, ::collection::index find, ::collection::index last) const
 {
    switch(m_etype)
@@ -5925,7 +5926,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
    case e_type_payload_array:
       return as_payload_array().case_insensitive_contains(scopedstr, find, last);
    case e_type_property_set:
-      return as_property_set().case_insensitive_contains_value(scopedstr, find, last);
+      return as_property_set().case_insensitive_contains_string_count(scopedstr, find, last);
    default:
    {
       ::collection::index upperbound = minimum(array_get_upper_bound(), last);
@@ -7261,7 +7262,7 @@ block payload::as_block () const
 //{
 //   if(get_type() == e_type_property_set)
 //   {
-//      return dynamic_cast < const property_set * > (m_pointer.m_p)->defer_get(atom);
+//      return dynamic_cast < const ::property_set * > (m_pointer.m_p)->defer_get(atom);
 //   }
 //   else if(get_type() == e_type_payload_pointer)
 //   {
@@ -7269,9 +7270,9 @@ block payload::as_block () const
 //   }
 //   else if(get_type() == e_type_element)
 //   {
-//      if(cast < property_set >() != nullptr)
+//      if(cast < ::property_set >() != nullptr)
 //      {
-//         return cast < property_set >()->defer_get(atom);
+//         return cast < ::property_set >()->defer_get(atom);
 //      }
 //      //else if(cast < property >() != nullptr)
 //      //{

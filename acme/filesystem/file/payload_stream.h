@@ -25,7 +25,7 @@
 //inline void __exchange(::payload_stream & s, ::atom & atom);
 //inline void __exchange(::payload_stream & s, ::payload & payload);
 //inline void __exchange(::payload_stream & s, ::property & property);
-//inline void __exchange(::payload_stream & s, ::property_set& set);
+//inline void __exchange(::payload_stream & s, ::property_set & set);
 //inline void __exchange(::payload_stream & s, ::block & block);
 //inline void __exchange(::payload_stream & s, ::int_array & ia);
 //inline void __exchange(::payload_stream & s, ::string_array & stra);

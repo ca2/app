@@ -394,7 +394,7 @@ namespace folder_zip
    void didnt_locate_file(const char * pszFile)
    {
 
-      informationf("The file \"" + ::string(pszFile) + "\" wasn't find in the zip folder.");
+      information("The file \"" + ::string(pszFile) + "\" wasn't find in the zip folder.");
 
       //::fflush(stdout);
 

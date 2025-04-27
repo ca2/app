@@ -305,8 +305,6 @@ namespace user
 
       ::task_set_name("graphics_thread," + strType);
 
-
-
       //m_puserinteraction->windowing_window()->m_puserinteraction->task_add(this);
 
       //m_happeningReady.wait();

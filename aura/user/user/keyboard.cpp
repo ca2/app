@@ -414,7 +414,7 @@ namespace user
    //}
 
 
-   //void keyboard::process_escape(::pointer<::xml::node>pnode, property_set & set)
+   //void keyboard::process_escape(::pointer<::xml::node>pnode, ::property_set & set)
    //{
    //   m_playout->process_escape(pnode, set);
    //}

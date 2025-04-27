@@ -17,7 +17,7 @@ namespace xml
    public:
 
 
-      property_set * m_ppropertyset;
+      ::property_set * m_ppropertyset;
 
 
       property_set_exchange(::particle * pparticle);

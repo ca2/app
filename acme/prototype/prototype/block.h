@@ -52,7 +52,6 @@ struct CLASS_DECL_ACME block :
    
    //using BLOCK::BLOCK;
 
-
    block() : BLOCK() {}
    block(const block & block)
    {

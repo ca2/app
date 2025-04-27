@@ -132,3 +132,60 @@ CLASS_DECL_ACME void erase_sharp_comment(::string_array& stra)
    }
 
 }
+
+void assert_atom_with_e_range_string_literal(const ::atom& atom)
+{
+   
+   if (!(atom.m_str.m_erange & e_range_string_literal))
+   {
+
+      throw "assert_scoped_string_with_e_range_string failed";
+
+   }
+
+
+}
+
+void assert_scoped_string_with_e_range_string2(const ::scoped_string& scopedstr)
+{
+
+
+}
+
+
+void assert_scoped_string_with_e_range_string(const ::scoped_string& scopedstr)
+{
+
+   if (scopedstr.m_erange != e_range_string)
+   {
+
+      //throw "assert_scoped_string_with_e_range_string failed";
+
+   }
+   assert_scoped_string_with_e_range_string2(scopedstr);
+
+}
+
+CLASS_DECL_ACME void log_const_ansi_range_literal(int n)
+{
+
+   printf_line("ansi=%d", n);
+
+}
+
+CLASS_DECL_ACME void string_short_test()
+{
+
+   const char* pszStdSchema = strdup("_std");
+
+   ::atom idSchema;
+
+   idSchema = pszStdSchema;
+
+   assert_atom_with_e_range_string_literal("a"_ansi);
+
+   assert_scoped_string_with_e_range_string(idSchema);
+
+   free((void*)pszStdSchema);
+
+}

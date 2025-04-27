@@ -3907,29 +3907,31 @@ namespace user
 
       }
 
-      auto puserinteractiona = get_app()->m_puserinteractionaFrame;
+      get_app()->erase_user_interaction(this);
 
-      if (puserinteractiona)
-      {
+      //auto puserinteractiona = get_app()->m_puserinteractionaFrame;
 
-         auto iErase = puserinteractiona->erase_interaction(this);
+      //if (puserinteractiona)
+      //{
 
-         if (iErase >= 0)
-         {
+      //   auto iErase = puserinteractiona->erase_interaction(this);
 
-            information() << "erased interaction frame from aura application";
+      //   if (iErase >= 0)
+      //   {
 
-         }
-         else
-         {
+      //      information() << "erased interaction frame from aura application";
 
-            information() << "interaction frame to be erased not found in aura application";
+      //   }
+      //   else
+      //   {
 
-         }
+      //      information() << "interaction frame to be erased not found in aura application";
 
-      }
+      //   }
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      //}
+
+      //__UNREFERENCED_PARAMETER(pmessage);
 
       user_interaction_on_destroy();
 
@@ -5340,9 +5342,9 @@ namespace user
                if (timeElapsed > 100_ms)
                {
 
-                  informationf("\ndrawing took " + ::as_string(timeElapsed.integral_millisecond()) + "!!");
-                  informationf("\ndrawing took more than 100ms to complete!!");
-                  informationf("\n");
+                  information("\ndrawing took " + ::as_string(timeElapsed.integral_millisecond()) + "!!");
+                  information("\ndrawing took more than 100ms to complete!!");
+                  information("\n");
 
                   // let's trye to see what happened?
                   //_001OnNcDraw(pgraphics);
@@ -27207,7 +27209,7 @@ __check_refdbg;
 
       auto pszType = typeid(*this).name();
 
-      informationf("interaction::on_message_left_button_double_click" + ::string(pszType));
+      information("interaction::on_message_left_button_double_click" + ::string(pszType));
 
       if (!is_window_enabled())
       {

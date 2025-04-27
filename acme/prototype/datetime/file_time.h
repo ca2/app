@@ -39,10 +39,10 @@ public:
    //explicit operator file_time_t () const { return m_filetime; }
 
 
-   file_time& operator+=(file_time_span span) noexcept;
+   file_time& operator +=(file_time_span span) noexcept;
    file_time& operator-=(file_time_span span) noexcept;
 
-   file_time operator+(file_time_span span) const noexcept;
+   file_time operator +(file_time_span span) const noexcept;
    file_time operator-(file_time_span span) const noexcept;
    file_time_span operator-(file_time ft) const noexcept;
 

@@ -362,6 +362,9 @@ public:
    inline atom(const domain_id & domainid);
    atom(const ::ansi_character * psz);
    atom(const inline_number_string & inlinenumberstring);
+   template <typename ITERATOR_TYPE2, int t_size >
+   atom(const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a) : atom((const ::string&)a) {}
+
 
    template < primitive_signed SIGNED >
    atom(SIGNED i);
@@ -505,11 +508,15 @@ public:
    inline bool operator == (const atom& atom) const;
    inline ::std::strong_ordering operator <=> (const atom & atom) const;
 
-   inline bool operator == (const ::scoped_string & str) const;
-   inline ::std::strong_ordering operator <=> (const ::scoped_string & str) const;
+   template < character_range RANGE >
+   inline bool operator == (const RANGE & str) const;
+   template < character_range RANGE >
+   inline ::std::strong_ordering operator <=> (const RANGE & str) const;
 
-   inline bool operator == (const ::string & str) const;
-   inline ::std::strong_ordering operator <=> (const ::string & str) const;
+   template < character_pointer CHARACTER_POINTER >
+   inline bool operator == (CHARACTER_POINTER p) const;
+   template < character_pointer CHARACTER_POINTER >
+   inline ::std::strong_ordering operator <=> (CHARACTER_POINTER p) const;
 
    template < character_count n >
    inline bool operator == (const ::ansi_character (&cha)[n]) const;
@@ -765,3 +772,14 @@ public:
 };
 
 
+
+
+template < primitive_character CHARACTER, int t_size >
+inline const_string_range_static_array < const CHARACTER*, t_size + 1 > operator + (const const_string_range_static_array < const CHARACTER*, t_size >& a, const ::atom & atom)
+{
+
+
+   return { a, atom.as_string()};
+
+
+}

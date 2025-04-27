@@ -841,7 +841,7 @@
     <ClCompile Include="prototype\prototype\type.cpp">
       <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="prototype\prototype\property_set.cpp">
+    <ClCompile Include="prototype\prototype\::property_set.cpp">
       <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
     <ClCompile Include="prototype\prototype\property_object.cpp">
@@ -2541,7 +2541,7 @@
     <ClInclude Include="prototype\prototype\property.h">
       <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="prototype\prototype\property_set.h">
+    <ClInclude Include="prototype\prototype\::property_set.h">
       <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
     <ClInclude Include="prototype\prototype\request_interface.h">

@@ -201,7 +201,7 @@ string task_get_name(htask htask)
 
 
 
-void task_set_name(htask htask, const char * psz)
+void task_set_name(htask htask, const ::scoped_string & scopedstr)
 {
 
    //auto pthread = pthread_self();
@@ -223,7 +223,7 @@ void task_set_name(htask htask, const char * psz)
 
    auto pthread = htask.m_h;
 
-   string strName(psz);
+   string strName(scopedstr);
 
 #if defined(FREEBSD) || defined(OPENBSD)
 

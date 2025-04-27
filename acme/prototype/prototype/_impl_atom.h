@@ -694,10 +694,11 @@ inline atom & atom::operator = (const atom & atom)
 }
 
 
-inline bool atom::operator == (const ::string & str) const
+template < character_range RANGE >
+inline bool atom::operator == (const RANGE & range) const
 {
 
-   return is_text() ? m_str == str : false;
+   return is_text() ? m_str == range : false;
 
 }
 
@@ -794,20 +795,20 @@ inline bool atom::is_empty() const
 //
 //}
 
-
-inline bool atom::operator == (const scoped_string & scopedstr) const
+template < character_pointer CHARACTER_POINTER >
+inline bool atom::operator == (CHARACTER_POINTER p) const
 {
 
-   return is_text() ? m_str == scopedstr : false;
+   return is_text() ? m_str == p : false;
 
 }
 
 
-
-inline ::std::strong_ordering atom::operator<=>(const scoped_string & scopedstr) const
+template < character_range RANGE >
+inline ::std::strong_ordering atom::operator<=>(const RANGE & range) const
 {
 
-   return is_text() ? m_range <=> scopedstr : m_etype <=> e_type_text;
+   return is_text() ? m_str <=> range : m_etype <=> e_type_text;
 
 }
 

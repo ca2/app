@@ -115,62 +115,6 @@ inline string_base<ITERATOR_TYPE> const_string_range<ITERATOR_TYPE>::surrounded(
 }
 
 
-template < character_range RANGE1, character_range RANGE2 >
-::file::path operator / (const RANGE1& range1, const RANGE2& range2)
-{
-
-   return ::transfer(::file::path(range1).slashed_path(range2));
-
-}
-
-
-
-template < character_pointer CHARACTER_POINTER, character_range RANGE >
-::file::path operator / (CHARACTER_POINTER p, const RANGE& range)
-{
-
-   return ::transfer(::file::path(p) / ::string(range));
-
-}
-
-
-
-
-template < character_range RANGE, character_count n >
-::file::path operator / (const typename RANGE::CHARACTER(&sz)[n], const RANGE& range)
-{
-
-   return ::transfer(::file::path(sz) / ::string(range));
-
-}
-
-
-
-//template < primitive_character ITERATOR_TYPE2, int t_size, character_range RANGE >
-//::file::path operator / (const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a, const RANGE& range)
-//{
-//
-//   return ::transfer(::file::path(a) / ::string(range));
-//
-//}
-
-
-template < character_range RANGE, character_pointer CHARACTER_POINTER >
-::file::path operator / (const RANGE& range, CHARACTER_POINTER p)
-{
-
-   return ::transfer(::file::path(range) / ::file::path(p));
-
-}
-
-
-//template < character_range RANGE, typename ITERATOR_TYPE2, int t_size >
-//::file::path operator / (const RANGE& range, const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a)
-//{
-//
-//   return ::transfer(::file::path(range) / ::file::path(a));
-//
-//}
 
 
 

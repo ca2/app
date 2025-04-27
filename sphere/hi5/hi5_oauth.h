@@ -18,7 +18,7 @@ namespace hi5
    } eOAuthHttpRequestType;
 
    typedef string_array oAuthKeyValueList;
-   typedef property_set oAuthKeyValuePairs;
+   typedef ::property_set oAuthKeyValuePairs;
 
    class CLASS_DECL_SPHERE oauth :
       virtual public ::simple_log

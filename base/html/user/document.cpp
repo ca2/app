@@ -124,7 +124,7 @@ void html_document::form_document_set_property_set(const ::property_set & set)
 }
 
 
-property_set * html_document::form_document_get_property_set()
+::property_set * html_document::form_document_get_property_set()
 {
 
    return &get_html_data()->property_set();

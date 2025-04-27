@@ -31,7 +31,7 @@ payload_array::payload_array(const ::int_array & ia)
    operator = (ia);
 }
 
-payload_array::payload_array(const property_set & propset)
+payload_array::payload_array(const ::property_set & propset)
 {
    operator = (propset);
 }
@@ -526,7 +526,7 @@ payload_array & payload_array::operator = (const ::int_array & inta)
 }
 
 
-payload_array & payload_array::operator = (const property_set & propertyset)
+payload_array & payload_array::operator = (const ::property_set & propertyset)
 {
 
    erase_all();

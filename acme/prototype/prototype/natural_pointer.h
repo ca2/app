@@ -143,7 +143,7 @@ public:
 
    using BASE_DATA = base_data < BASE_DATA_BASE >;
    //using META_DATA = BASE_DATA_BASE;
-   using BASE = typename BASE_DATA_BASE;
+   using BASE = BASE_DATA_BASE;
    using DATA = typename BASE_DATA::DATA;
    //using iterator = typename RANGE_TYPE::iterator;
 

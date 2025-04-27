@@ -30,7 +30,7 @@ namespace html
       string               m_strName;
       string               m_strSubClass;
 
-      property_set         m_propertyset;
+      ::property_set         m_propertyset;
 
       edisplay             m_edisplay;
 

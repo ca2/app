@@ -76,8 +76,8 @@ namespace file
       template < character_range RANGE >
       inline path(const RANGE& range, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalizePath = true, long long iSize = -1)
          requires
-         !(::std::is_base_of_v < path, RANGE >
-            || ::std::is_same_v < path, RANGE >) :
+         (!(::std::is_base_of_v < path, RANGE >
+            || ::std::is_same_v < path, RANGE >)) :
          string(range)
       {
 
@@ -240,6 +240,39 @@ namespace file
 
 
       ::url::url as_url() const;
+
+      ::string consume_item()
+      {
+
+         auto path = *this;
+
+         auto iFind = path.find_index('/');
+
+         if (iFind < 0)
+         {
+
+            empty();
+
+            return path;
+
+         }
+         
+         auto str = path.left(iFind);
+
+         while (path[iFind] == '/')
+         {
+
+            iFind++;
+
+         }
+
+         path = path.substr(iFind);
+
+         *this = path;
+
+         return str;
+
+      }
       //template < has_as_string HAS_AS_STRING >
       //path(const HAS_AS_STRING & has_as_string) : path(has_as_string.as_string()) {}
       //inline ~path() {}
@@ -687,7 +720,7 @@ template < primitive_character CHARACTER >
    const ::range < const CHARACTER* >& range2)
 {
 
-   return ::file::path(range1).slashed_path(::string(range2));
+   return ::file::path(range1).slashed_path(range2);
 
 }
 
@@ -747,6 +780,16 @@ template < character_pointer CHARACTER_POINTER >
 //
 //}
 
+
+template < primitive_character CHARACTER >
+::file::path operator / (
+   const ::range < const CHARACTER* >& range,
+   const ::atom & atom)
+{
+
+   return ::file::path(range) / ::file::path(atom.as_string());
+
+}
 
 
 

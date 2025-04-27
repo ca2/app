@@ -278,7 +278,7 @@ retry:
       if (!pchild->m_strAttributes.case_insensitive_contains("d"))
          continue;
 
-      auto & path = listing.add_get(::file::path(listing.m_pathUser / pchild->m_strName, ::e_path_url));
+      auto & path = listing.add_get(::file::path(::string(listing.m_pathUser / pchild->m_strName), ::e_path_url));
 
       path.set_existent_folder();
 
@@ -290,7 +290,7 @@ retry:
       if(!pchild->m_strAttributes.case_insensitive_contains("d"))
          continue;
 
-      auto & path = listing.add_get(::file::path(listing.m_pathUser / pchild->m_strName, ::e_path_url));
+      auto & path = listing.add_get(::file::path(::string(listing.m_pathUser / pchild->m_strName), ::e_path_url));
 
       path.m_iSize = pchild->m_filesize;
 

@@ -894,19 +894,7 @@ public:
 
    void payload_increment_reference_count();
 
-
-   template < typename TYPE >
-   TYPE & _as(TYPE & t) const
-   {
-
-      static_assert(false, "template specialization required");
-
-      return t;
-
-   }
-
-   template <>
-   int & _as<int>(int & i) const
+   int & _as(int & i) const
    {
 
       i = as_int();
@@ -915,8 +903,7 @@ public:
 
    }
 
-   template <>
-   ::string & _as<::string>(::string & str) const
+   ::string & _as(::string & str) const
    {
 
       str = as_string();
@@ -1140,6 +1127,14 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
 
    payload & operator = (const ::property & prop);
    //payload & operator = (const ::property * pproperty);
+
+   template < primitive_character CHARACTER, int t_size >
+   payload & operator = (const const_string_range_static_array< const CHARACTER *, t_size > & a)
+   {
+
+      return this->operator=(::string(a));
+
+   }
    payload & operator = (const ::payload & payload);
    payload & operator = (const ::int_array & ia);
    payload & operator = (const ::string_array & stra);
@@ -1880,7 +1875,7 @@ template < primitive_payload PAYLOAD, primitive_character CHARACTER >
 inline PAYLOAD & operator +=(PAYLOAD & payload, const CHARACTER * psz)
 {
 
-   payload = payload.as_string() + ::string(psz);
+   payload = ::string(payload.as_string() + psz);
 
    return payload;
 

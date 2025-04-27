@@ -251,7 +251,7 @@ public:
 //public:
 //
 //
-//   property_set * m_ppropertyset;
+//   ::property_set * m_ppropertyset;
 //
 //
 //   property_set_stream() : m_ppropertyset(nullptr) { }

@@ -6,7 +6,7 @@
 ////#include "acme/prototype/collection/numeric_array.h"
 //#include "acme/prototype/collection/payload_array.h"
 ////#include "acme/prototype/collection/string_array.h"
-//#include "acme/prototype/prototype/property_set.h"
+//#include "acme/prototype/prototype/::property_set.h"
 
 
 class CLASS_DECL_ACME payload_cast
@@ -66,7 +66,7 @@ public:
 //}
 //
 //
-//inline payload_cast::operator property_set () const
+//inline payload_cast::operator ::property_set () const
 //{
 //
 //   return m_payload.propset();

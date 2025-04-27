@@ -2,7 +2,6 @@
 #pragma once
 
 
-
 template < typename ITERATOR_TYPE >
 class scoped_string_base :
    public const_string_range < ITERATOR_TYPE >
@@ -604,6 +603,19 @@ struct std::formatter<::scoped_string > :
 
 #endif
 
+
+inline ::block as_block(const ::scoped_string & scopedstr)
+{
+
+   ::block block;
+
+   block.m_begin = (decltype(block.m_begin))scopedstr.m_begin;
+   block.m_end = (decltype(block.m_end))scopedstr.m_end;
+   block.m_erange = scopedstr.m_erange;
+
+   return block;
+
+}
 
 
 

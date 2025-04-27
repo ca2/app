@@ -1642,7 +1642,7 @@
     <ClCompile Include="primitive\primitive\object_meta.cpp" />
     <ClCompile Include="primitive\primitive\primitive.cpp" />
     <ClCompile Include="primitive\primitive\property.cpp" />
-    <ClCompile Include="primitive\primitive\property_set.cpp" />
+    <ClCompile Include="primitive\primitive\::property_set.cpp" />
     <ClCompile Include="primitive\primitive\property_set_composite.cpp" />
     <ClCompile Include="primitive\primitive\property_set_papaya.cpp" />
     <ClCompile Include="primitive\primitive\request_interface.cpp" />
@@ -2656,7 +2656,7 @@
     <ClInclude Include="primitive\primitive\primitive_update.h" />
     <ClInclude Include="primitive\primitive\promise.h" />
     <ClInclude Include="primitive\primitive\property.h" />
-    <ClInclude Include="primitive\primitive\property_set.h" />
+    <ClInclude Include="primitive\primitive\::property_set.h" />
     <ClInclude Include="primitive\primitive\property_set_papaya.h" />
     <ClInclude Include="primitive\primitive\context_object.h" />
     <ClInclude Include="primitive\primitive\aaa_want_to_remove_relation_set.h" />

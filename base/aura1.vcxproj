@@ -2832,7 +2832,7 @@ copy $(__operating_system)storage-windows\third\binary\$(PlatformName)\$(Configu
     <ClCompile Include="primitive\primitive\object.cpp" />
     <ClCompile Include="primitive\primitive\object_meta.cpp" />
     <ClCompile Include="primitive\primitive\property.cpp" />
-    <ClCompile Include="primitive\primitive\property_set.cpp" />
+    <ClCompile Include="primitive\primitive\::property_set.cpp" />
     <ClCompile Include="primitive\primitive\property_set_composite.cpp" />
     <ClCompile Include="primitive\primitive\property_set_papaya.cpp" />
     <ClCompile Include="primitive\primitive\context_object.cpp" />
@@ -3482,7 +3482,7 @@ copy $(__operating_system)storage-windows\third\binary\$(PlatformName)\$(Configu
     <ClInclude Include="primitive\primitive\primitive_update.h" />
     <ClInclude Include="primitive\primitive\promise.h" />
     <ClInclude Include="primitive\primitive\property.h" />
-    <ClInclude Include="primitive\primitive\property_set.h" />
+    <ClInclude Include="primitive\primitive\::property_set.h" />
     <ClInclude Include="primitive\primitive\request_interface.h" />
     <ClInclude Include="primitive\primitive\request_signal.h" />
     <ClInclude Include="primitive\primitive\runnable.h" />

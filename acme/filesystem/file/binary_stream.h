@@ -633,7 +633,7 @@ public:
    //
    //   throw ::exception(todo);
    //
-   //   //__exchange_save_array(*this, (property_set &) set);
+   //   //__exchange_save_array(*this, (::property_set &) set);
    //
    //   return *this;
    //
@@ -673,7 +673,7 @@ public:
    binary_stream & operator <<(const ::ansi_character * psz);
 
 
-   virtual binary_stream & operator <<(const ::string & str);
+   virtual binary_stream & operator <<(const ::range < const char * > & str);
 
 
    //binary_stream & operator <<(const ::particle * pparticle)

@@ -78,7 +78,7 @@ void property_object::notify_on_destroy(::property_object * pcontextobjectFinish
 
 
 class debug_test_reference :
-   public property_set
+   public ::property_set
 {
 public:
 
@@ -424,7 +424,7 @@ void property_object::read_configuration_from_ini(const ::payload & payloadFile)
 
    auto strIni = file()->safe_get_string(payloadFile);
 
-   property_set().parse_ini(strIni);
+   ::property_set().parse_ini(strIni);
 
 }
 
@@ -432,7 +432,7 @@ void property_object::read_configuration_from_ini(const ::payload & payloadFile)
 void property_object::write_configuration_to_ini(const ::payload & payloadFile)
 {
 
-   auto strIni = property_set().get_ini();
+   auto strIni = ::property_set().get_ini();
 
    file()->put_text(payloadFile, strIni);
 
@@ -522,7 +522,7 @@ void property_object::write_configuration_to_ini(const ::payload & payloadFile)
 //
 //    //auto ppropertyArray = find_property("property_set_array");
 //
-//    //pointer< pointer_array < property_set > > parray;
+//    //pointer< pointer_array < ::property_set > > parray;
 //
 //    //if (ppropertyArray)
 //    //{
@@ -571,17 +571,17 @@ void property_object::write_configuration_to_ini(const ::payload & payloadFile)
 //
 //}
 
-//void property_object::add_property_set(property_set * pset)
+//void property_object::add_property_set(::property_set * pset)
 //{
 //
 //   auto * pproperty = find_property("property_set_array");
 //
-//   auto parray = pproperty->cast < pointer_array < property_set > >();
+//   auto parray = pproperty->cast < pointer_array < ::property_set > >();
 //
 //   if (!parray)
 //   {
 //
-//      parray = __allocate pointer_array < property_set > ();
+//      parray = __allocate pointer_array < ::property_set > ();
 //
 //      *pproperty = parray;
 //
@@ -835,7 +835,7 @@ void property_object::defer_run_property(const ::atom& atom)
 bool property_object::has_property(const atom & atom) const { return m_ppropertyset && m_ppropertyset->has_property(atom); }
 property * property_object::lookup_property(const atom& atom) const { return m_ppropertyset ? m_ppropertyset->lookup(atom) : nullptr; }
 bool property_object::erase_key(const atom & atom) { return m_ppropertyset && m_ppropertyset->erase_by_name(atom); }
-property_set & property_object::property_set() { defer_propset(); return *m_ppropertyset; }
+::property_set & property_object::property_set() { defer_propset(); return *m_ppropertyset; }
 bool property_object::has_property_set() const { return ::is_set(m_ppropertyset); }
 
 
@@ -972,7 +972,7 @@ unsigned int property_object::get_unsigned_int(const ::atom & atom, unsigned int
 ::property & property_object::property(const atom & atom)
 {
 
-   return property_set()[atom];
+   return ::property_set()[atom];
 
 }
 

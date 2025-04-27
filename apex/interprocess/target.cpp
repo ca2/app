@@ -157,7 +157,7 @@ namespace interprocess
    //   //
    //   //   string_array stra;
    //   //
-   //   //   property_set propertyset;
+   //   //   ::property_set propertyset;
    //   //
    //   //   if(::is_set(pFind) && iFind <= 3)
    //   //   {

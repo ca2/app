@@ -48,7 +48,7 @@ namespace simpledb
    bool session::query(const ::string & pszQuery, ::payload & payload)
    {
       string_array stra;
-      property_set dataset;
+      ::property_set dataset;
       dataset.parse_network_arguments(pszQuery);
       if(dataset["command"] == "open")
       {

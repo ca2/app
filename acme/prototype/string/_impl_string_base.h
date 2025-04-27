@@ -1513,6 +1513,51 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(CHA
 //}
 //
 
+template < typename ITERATOR_TYPE >
+template < int t_size >
+string_base< ITERATOR_TYPE>& string_base< ITERATOR_TYPE>::assign(const const_string_range_static_array < const CHARACTER *, t_size >& a)
+{
+
+   auto new_len = a.size();
+
+   auto p = get_buffer<true>(new_len);
+
+   a.block_concatenate_to(p);
+
+   ASSERT(p <= this->m_end);
+
+   *(CHARACTER*)this->m_end = {};
+
+   return *this;
+
+}
+
+
+template < typename ITERATOR_TYPE >
+template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, int t_size >
+string_base< ITERATOR_TYPE>& string_base< ITERATOR_TYPE>::assign(const const_string_range_static_array < const OTHER_CHARACTER *, t_size >& a)
+{
+
+   character_count iaLen[t_size];
+
+   character_count* plen = iaLen;
+
+   auto new_len = a.__utf_length(this->begin(), plen);
+
+   auto p = get_buffer<true>(new_len);
+
+   plen = iaLen;
+
+   a.__utf_concatenate_to(p, plen);
+
+   ASSERT(p <= this->m_end);
+
+   *(CHARACTER*)this->m_end = {};
+
+   return *this;
+
+}
+
 
 //template < typename ITERATOR_TYPE >
 //inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const ::const_ansi_range & ansiscopedstr)

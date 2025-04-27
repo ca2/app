@@ -51,9 +51,13 @@ namespace url
    class parts;
 
 
-   CLASS_DECL_ACME::string decode(const ::block& block);
-   CLASS_DECL_ACME::string encode(const ::block& block);
-   CLASS_DECL_ACME::string encode_path(const ::block& block);
+   //CLASS_DECL_ACME::string decode_block(const ::block& block);
+   //CLASS_DECL_ACME::string encode_block(const ::block& block);
+   //CLASS_DECL_ACME::string encode_path_block(const ::block& block);
+
+   CLASS_DECL_ACME::string decode(const ::scoped_string & scopedstr);
+   CLASS_DECL_ACME::string encode(const ::scoped_string & scopedstr);
+   CLASS_DECL_ACME::string encode_path(const ::scoped_string & scopedstr);
 
 
    class CLASS_DECL_ACME connect_range
@@ -158,8 +162,8 @@ namespace url
       auto fragment() const { return decode(m_rangeFragment); }// param1=1&param2=2
       //bool is_scoped() const { return m_bScoped; }
 
-      const property_set& arguments() const;
-      property_set& arguments();
+      const ::property_set& arguments() const;
+      ::property_set& arguments();
 
       ::payload get(const ::atom& atom) const;
 
@@ -246,7 +250,7 @@ namespace url
 
 
       //::string                      m_strPath;
-      //::pointer < property_set >    m_psetArguments;
+      //::pointer < ::property_set >    m_psetArguments;
       //::string                      m_strFragment;
 
       request();
@@ -264,7 +268,7 @@ namespace url
       void set(const ::scoped_string& scopedstrPath, const ::scoped_string & scopedstrQuery, const ::scoped_string & scopedstrFragment);
 
       void set_query(const ::scoped_string& scopedstrKey);
-      void set_query(const property_set & set);
+      void set_query(const ::property_set & set);
 
 
 
@@ -280,8 +284,8 @@ namespace url
    public:
 
 
-      connect      m_connect;
-      request      m_request;
+      ::url::connect       m_connect;
+      ::url::request       m_request;
 
 
       parts();
@@ -510,7 +514,7 @@ namespace url
       //string string_set(string & strUrl, const ::string & strKey, ::payload payload);
       //string string_set_if_not_empty(string& strUrl, const ::string & strKey, ::payload payload);
       //::payload & var_set(::payload & varUrl, const ::string & strKey, ::payload payload);
-      //property & property_set(property & propUrl, const ::string & strKey, ::payload payload);
+      //property & ::property_set(property & propUrl, const ::string & strKey, ::payload payload);
 
       //string set_script(const ::string & strUrl, const ::string & strScript);
       

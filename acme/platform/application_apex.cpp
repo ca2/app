@@ -394,7 +394,7 @@ namespace platform
 
 
    ::string apex_application_layer::apex_application_layer::dialog_box(const ::string& pszMatter,
-                                                                       property_set& propertyset)
+                                                                       ::property_set& propertyset)
    {
       return {};
    }
@@ -1174,7 +1174,7 @@ namespace platform
 
    // bool apex_application_layer::base_support(){}
 
-   //::string apex_application_layer::apex_application_layer::sync_message_box(const string & pszMatter,property_set & propertyset) override{}
+   //::string apex_application_layer::apex_application_layer::sync_message_box(const string & pszMatter,::property_set & propertyset) override{}
 
 
    //virtual ::pointer<::user::interaction>uie_from_point(const ::int_point& point){}

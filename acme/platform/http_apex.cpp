@@ -215,7 +215,7 @@ namespace platform
    }
 
 
-   property_set& apex_http_layer::process_set(::property_set & set, const ::url::url& url)
+   ::property_set& apex_http_layer::process_set(::property_set & set, const ::url::url& url)
    {
 
       return set;

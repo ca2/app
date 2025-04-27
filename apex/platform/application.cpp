@@ -631,7 +631,7 @@ namespace apex
    //}
 
 
-   //string application::dialog_box(const ::string & pszMatter, property_set & propertyset)
+   //string application::dialog_box(const ::string & pszMatter, ::property_set & propertyset)
    //{
 
    //   throw_todo();
@@ -9157,13 +9157,13 @@ namespace apex
 
 
 
-   /*   property_set & application::propset(object * pparticle)
+   /*   ::property_set & application::propset(object * pparticle)
    {
    single_lock synchronouslock(&m_mapObjectSet, true);
    return m_mapObjectSet[pparticle];
    }
 
-   property_set * application::existing_propset(object * pparticle)
+   ::property_set * application::existing_propset(object * pparticle)
    {
    single_lock synchronouslock(&m_mapObjectSet, true);
    auto point = m_mapObjectSet.plookup(pparticle);
@@ -9425,7 +9425,7 @@ namespace apex
    //if (m_strBaseSupportId.is_empty())
    //{
    //
-   //property_set propertyset;
+   //::property_set propertyset;
    //
    //dialog_box("err\\developer\\base_support\\support_id_not_specified.xml", propertyset);
    //
@@ -9437,7 +9437,7 @@ namespace apex
    //}
 
 
-   //string application::sync_message_box(const string & pszMatter, property_set & propertyset)
+   //string application::sync_message_box(const string & pszMatter, ::property_set & propertyset)
    //{
    //
    //   __UNREFERENCED_PARAMETER(propertyset);

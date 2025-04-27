@@ -20,7 +20,51 @@ namespace write_text
    //protected:
       font_family(enum_font efont);
 
-      font_family(const ::scoped_string & scopedstrFamilyName, const ::scoped_string & scopedstrBranch = {});
+      template < character_range RANGE >
+      font_family(const RANGE & rangeFamilyName)
+      {
+
+         m_efont = e_font_with_family_name;
+
+         m_strFamilyName = rangeFamilyName;
+
+      }
+
+      template < character_range RANGE, character_range RANGE2 >
+      font_family(const RANGE & rangeFamilyName, const RANGE2 & rangeBranch)
+      {
+
+         m_efont = e_font_with_family_name;
+
+         m_strFamilyName = rangeFamilyName;
+
+         m_strBranch = rangeBranch;
+
+      }
+
+
+      template < primitive_character CHARACTER >
+      font_family(const CHARACTER * pszFamilyName)
+      {
+
+         m_efont = e_font_with_family_name;
+
+         m_strFamilyName = pszFamilyName;
+
+      }
+
+
+      template < primitive_character CHARACTER, primitive_character CHARACTER2 >
+      font_family(const CHARACTER * pszFamilyName, const CHARACTER2 * pszBranch)
+      {
+
+         m_efont = e_font_with_family_name;
+
+         m_strFamilyName = pszFamilyName;
+
+         m_strBranch = pszBranch;
+
+      }
 
       font_family(const font_family & fontfamily);
 
@@ -51,14 +95,37 @@ namespace write_text
    {
    public:
 
+
       font_family_pointer(enum_font efont = e_font_default);
 
-      font_family_pointer(const ::scoped_string & scopedstrFamilyName, const ::scoped_string & scopedstrBranch = {});
 
-      font_family_pointer(const ::string & strFamilyName) : font_family_pointer((const scoped_string &)strFamilyName) {}
+      template < character_range RANGE >
+      font_family_pointer(const RANGE & rangeFamilyName):
+         ::pointer < font_family >(__allocate font_family(rangeFamilyName))
+      {
+      }
+
+      template < character_range RANGE, character_range RANGE2 >
+      font_family_pointer(const RANGE & rangeFamilyName, const RANGE2 & rangeBranch) :
+         ::pointer < font_family >(__allocate font_family(rangeFamilyName, rangeBranch))
+      {
+      }
+
 
       template < primitive_character CHARACTER >
-      font_family_pointer(const CHARACTER * psz) : font_family_pointer((const scoped_string &)psz) {}
+      font_family_pointer(const CHARACTER * pszFamilyName):
+         ::pointer < font_family >(__allocate font_family(pszFamilyName))
+      {
+
+      }
+
+      template < primitive_character CHARACTER, primitive_character CHARACTER2 >
+      font_family_pointer(const CHARACTER * pszFamilyName, const CHARACTER2 * pszBranch) :
+         ::pointer < font_family >(__allocate font_family(pszFamilyName, pszBranch))
+      {
+
+      }
+
 
       font_family_pointer(const font_family & fontfamily);
 

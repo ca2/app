@@ -703,7 +703,7 @@ void property_set::_008Add(const ::scoped_string & scopedstrKey, const ::scoped_
 
    }
 
-   property_set * pset = this;
+   ::property_set * pset = this;
 
    int i = 0;
 
@@ -893,7 +893,7 @@ void property_set::parse_ini(const ::string & strIni)
 
    stra.add_lines(strIni);
 
-   property_set * pset = this;
+   ::property_set * pset = this;
 
    for (auto & strLine : stra)
    {
@@ -1511,7 +1511,7 @@ property_set::property_set(const ::property_set & set)
 }
 
 
-property_set::property_set(property_set && set) :
+property_set::property_set(::property_set && set) :
    property_holder_array(::transfer(set))
 {
 
@@ -1598,7 +1598,7 @@ property_set::property_set(property_set && set) :
 
 
 
-property_set & property_set::operator = (const ::payload & payload)
+::property_set & property_set::operator = (const ::payload & payload)
 {
 
    if (payload.m_etype == e_type_property_set)
@@ -1650,7 +1650,7 @@ property_set & property_set::operator = (const ::payload & payload)
 }
 
 
-property_set & property_set::operator = (const ::property_set & set)
+::property_set & property_set::operator = (const ::property_set & set)
 {
 
    if (&set != this)
@@ -1665,7 +1665,7 @@ property_set & property_set::operator = (const ::property_set & set)
 }
 
 
-property_set & property_set::append(const ::property_set & set)
+::property_set & property_set::append(const ::property_set & set)
 {
 
    if (&set != this)
@@ -1685,7 +1685,7 @@ property_set & property_set::append(const ::property_set & set)
 }
 
 
-property_set & property_set::merge(const ::property_set & set)
+::property_set & property_set::merge(const ::property_set & set)
 {
 
    if (::is_reference_set(set) && &set != this)
@@ -1797,7 +1797,7 @@ property_set & property_set::merge(const ::property_set & set)
 }
 
 
-property_set & property_set::merge(const ::property & property)
+::property_set & property_set::merge(const ::property & property)
 {
 
    if (property.get_type() == e_type_property_set)
@@ -1818,7 +1818,7 @@ property_set & property_set::merge(const ::property & property)
 }
 
 
-property_set & property_set::operator += (const ::property_set & set)
+::property_set & property_set::operator += (const ::property_set & set)
 {
 
    return append(set);
@@ -1826,7 +1826,7 @@ property_set & property_set::operator += (const ::property_set & set)
 }
 
 
-property_set & property_set::operator |= (const ::property_set & set)
+::property_set & property_set::operator |= (const ::property_set & set)
 {
 
    return merge(set);
@@ -1843,7 +1843,7 @@ property_set & property_set::operator |= (const ::property_set & set)
 
 
 
-//property_set & property_set::operator = (const pair_set_interface & set)
+//::property_set & property_set::operator = (const pair_set_interface & set)
 //{
 //
 //   erase_all();
@@ -1871,7 +1871,7 @@ property_set & property_set::operator |= (const ::property_set & set)
 //
 //
 //
-//property_set & property_set::operator = (const str_str_interface & set)
+//::property_set & property_set::operator = (const str_str_interface & set)
 //{
 //
 //   erase_all();
@@ -2706,7 +2706,7 @@ property & property_set::property(const ::atom_array & atoma)
 //
 //   }
 //
-//   return *(const_cast <property_set *> (this))->m_begin[i];
+//   return *(const_cast <::property_set *> (this))->m_begin[i];
 //
 //}
 

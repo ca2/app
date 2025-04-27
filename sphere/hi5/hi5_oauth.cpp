@@ -514,7 +514,7 @@ namespace hi5
       string oauthSignature( "" );
       string paramsSeperator( "" );
       string pureUrl;
-      property_set post;
+      ::property_set post;
 
       m_nonce.empty();
       m_timeStamp.empty();

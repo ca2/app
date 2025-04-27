@@ -518,6 +518,20 @@ string_base < ITERATOR_TYPE > const_string_range < ITERATOR_TYPE > ::lowered() c
 }
 
 
+// Convert the string_base < ITERATOR_TYPE > to uppercase
+template < typename ITERATOR_TYPE >
+string_base < ITERATOR_TYPE > const_string_range < ITERATOR_TYPE > ::uppered() const
+{
+
+   string_base < ITERATOR_TYPE > str(*this);
+
+   str.make_upper();
+
+   return str;
+
+}
+
+
 template < typename ITERATOR_TYPE >
 string_base < ITERATOR_TYPE > string_range < ITERATOR_TYPE > ::consume_quoted_value()
 {

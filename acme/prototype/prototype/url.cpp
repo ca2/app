@@ -73,7 +73,7 @@ namespace url
    }
    
    
-   const property_set& request_range::arguments() const
+   const ::property_set& request_range::arguments() const
    {
 
       return ((request*)this)->arguments();
@@ -81,7 +81,7 @@ namespace url
    }
 
 
-   property_set& request_range::arguments()
+   ::property_set& request_range::arguments()
    {
 
       __defer_raw_construct_new(m_psetArguments);
@@ -1380,7 +1380,7 @@ namespace url
    }
 
 
-   string decode(const ::block& block)
+   string decode_block(const ::block& block)
    {
 
       auto sizeLen = block.size();
@@ -1490,8 +1490,7 @@ namespace url
    }
 
 
-
-   string _encode(const ::block& block, bool bPath)
+   string _encode_block(const ::block& block, bool bPath)
    {
 
       string strEncoded;
@@ -1560,21 +1559,44 @@ namespace url
    }
 
 
-   string encode(const ::block& block)
+   string encode_block(const ::block& block)
    {
 
-      return _encode(block, false);
+      return _encode_block(block, false);
 
    }
 
 
-   string encode_path(const ::block& block)
+   string encode_path_block(const ::block& block)
    {
 
-      return _encode(block, true);
+      return _encode_block(block, true);
 
    }
 
+
+   string decode(const ::scoped_string & scopedstr)
+   {
+
+      return decode_block(::as_block(scopedstr));
+
+   }
+
+
+   string encode(const ::scoped_string & scopedstr)
+   {
+
+      return encode_block(::as_block(scopedstr));
+
+   }
+
+
+   string encode_path(const ::scoped_string & scopedstr)
+   {
+
+      return encode_path_block(::as_block(scopedstr));
+
+   }
 
    parts::parts()
    {

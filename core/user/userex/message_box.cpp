@@ -64,7 +64,7 @@ namespace userex
 //{
 //
 //   
-//   string application::dialog_box(const ::string & pszMatter, property_set & propertyset)
+//   string application::dialog_box(const ::string & pszMatter, ::property_set & propertyset)
 //   {
 //      
 //      auto pbox = __create_new <::userex::message_box >();

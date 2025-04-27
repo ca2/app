@@ -169,7 +169,7 @@ namespace sockets
    }
 
 
-   inline property_set & http_socket::inattrs()
+   inline ::property_set & http_socket::inattrs()
    {
 
       return m_request.attrs();
@@ -185,7 +185,7 @@ namespace sockets
    }
 
 
-   inline property_set & http_socket::outattrs()
+   inline ::property_set & http_socket::outattrs()
    {
 
       return m_response.attrs();
@@ -201,7 +201,7 @@ namespace sockets
    }
 
 
-   inline property_set & http_socket::inheaders()
+   inline ::property_set & http_socket::inheaders()
    {
 
       return m_request.headers();
@@ -217,7 +217,7 @@ namespace sockets
    }
 
 
-   inline property_set & http_socket::outheaders()
+   inline ::property_set & http_socket::outheaders()
    {
 
       return m_response.headers();

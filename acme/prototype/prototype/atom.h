@@ -508,11 +508,15 @@ public:
    inline bool operator == (const atom& atom) const;
    inline ::std::strong_ordering operator <=> (const atom & atom) const;
 
-   inline bool operator == (const ::scoped_string & str) const;
-   inline ::std::strong_ordering operator <=> (const ::scoped_string & str) const;
+   template < character_range RANGE >
+   inline bool operator == (const RANGE & str) const;
+   template < character_range RANGE >
+   inline ::std::strong_ordering operator <=> (const RANGE & str) const;
 
-   inline bool operator == (const ::string & str) const;
-   inline ::std::strong_ordering operator <=> (const ::string & str) const;
+   template < character_pointer CHARACTER_POINTER >
+   inline bool operator == (CHARACTER_POINTER p) const;
+   template < character_pointer CHARACTER_POINTER >
+   inline ::std::strong_ordering operator <=> (CHARACTER_POINTER p) const;
 
    template < character_count n >
    inline bool operator == (const ::ansi_character (&cha)[n]) const;

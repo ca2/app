@@ -562,7 +562,7 @@ void request::_001ParseCommandLine(const ::string& strCommandLine)
 
    m_strCommandLine = strCommandLine;
 
-   property_set()._008Parse(true, strCommandLine, m_payloadFile, m_strExe);
+   ::property_set()._008Parse(true, strCommandLine, m_payloadFile, m_strExe);
 
    if (!m_payloadFile.is_empty())
    {
@@ -658,7 +658,7 @@ void request::_001ParseCommandFork(const ::string& strCommandFork)
 
    m_strCommandLine = strCommandFork;
 
-   property_set()._008ParseCommandFork(strCommandFork, m_payloadFile, m_strExe);
+   ::property_set()._008ParseCommandFork(strCommandFork, m_payloadFile, m_strExe);
 
    if (!m_payloadFile.is_empty())
    {
@@ -730,7 +730,7 @@ void request::_001ParseCommandFork(const ::string& strCommandFork)
 void request::_001ParseCommandArguments(::string_array& straArguments)
 {
 
-   property_set()._008ParseCommandArguments(straArguments, m_payloadFile, m_strExe);
+   ::property_set()._008ParseCommandArguments(straArguments, m_payloadFile, m_strExe);
 
    if (!m_payloadFile.is_empty())
    {
@@ -846,7 +846,7 @@ void request::_001ParseCommandForkUri(const ::string& strCommandFork)
 
    }
 
-   property_set().parse_network_arguments(strQuery);
+   ::property_set().parse_network_arguments(strQuery);
 
    m_strApp = strScript;
 

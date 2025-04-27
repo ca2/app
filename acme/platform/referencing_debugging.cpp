@@ -66,7 +66,7 @@ void referencing_debugging::dump_pending_releases()
 
    ::string strDump;
 
-   strDump.m_erange |= e_range_buffer;
+   strDump.m_erange = strDump.m_erange | e_range_buffer;
 
    auto cFiltered = 0;
 

@@ -37,7 +37,7 @@ public:
    bool                             m_bWaitingResponseFromUser;
    ::pointer<::api_client>          m_papiclient;
    ::manual_reset_happening             m_happeningResponse;
-   //;; property_set                m_setConfig;
+   //;; ::property_set                m_setConfig;
    ::property_set                   m_setProfile;
    ::property_set                   m_setConfiguration;
 

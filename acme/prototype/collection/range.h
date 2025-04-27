@@ -594,24 +594,7 @@ public:
    static constexpr bool _initialize_equals(bool & b, const THIS_RAW_RANGE & range, const THIS_RAW_RANGE & rangeBlock)
    {
 
-      auto sizeRange = range.size();
 
-      if (sizeRange != rangeBlock.size())
-      {
-
-         b = false;
-
-         return true;
-
-      }
-      else if (sizeRange <= 0)
-      {
-
-         b = true;
-
-         return true;
-
-      }
 
       return false;
 
@@ -647,16 +630,13 @@ public:
    static constexpr bool static_equals(const THIS_RAW_RANGE & range, const THIS_RAW_RANGE & rangeBlock, EQUALITY equality)
    {
 
-      bool b;
+      auto sizeRange = range.size();
 
-      if (_initialize_equals(b, range, rangeBlock))
-      {
-
-         return b;
-
-      }
-
-      return _static_equals(range, rangeBlock, equality);
+      return sizeRange != rangeBlock.size() ? false :
+         (sizeRange <= 0 ? 
+            true:
+            _static_equals(range, rangeBlock, equality)
+            );
 
    }
 
@@ -677,6 +657,9 @@ public:
       return static_equals(*this, rangeBlock, equality);
 
    }
+
+
+
 
 
    //   template<::comparison::equality<ITEM> EQUALITY>

@@ -1098,6 +1098,7 @@ namespace dynamic_source
 
    }
 
+
    void script_compiler::cppize(ds_script * pscript)
    {
 
@@ -1190,7 +1191,7 @@ namespace dynamic_source
       character_count iStart = 0;
       character_count iPos = 0;
       character_count iLastEnd = 0;
-      if(strSource.substr(0, 4) == "<?ss")
+      if(strSource.substr(0, 4) == "<?ss"_ansi)
       {
          iLastEnd = strSource.find_index("?>", iPos);
          if(iLastEnd > 0)

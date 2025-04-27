@@ -154,27 +154,27 @@ inline string_base < ITERATOR_TYPE >::string_base(OTHER_CHARACTER chSrc, charact
 
 
 
-template < typename ITERATOR_TYPE >
-template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, int t_size >
-inline string_base < ITERATOR_TYPE >::string_base(const const_string_range_static_array < const OTHER_CHARACTER*, t_size >& a) :
-   ::const_string_range < ITERATOR_TYPE >(no_initialize_t{})
-{
-
-   character_count iaLen[t_size];
-
-   character_count* plen = iaLen;
-
-   auto len = a.__utf_length(this->begin(), plen);
-
-   auto p = construct_string(len);
-
-   plen = iaLen;
-
-   a.__utf_concatenate_to(p, plen);
-
-   *p = {};
-
-}
+//template < typename ITERATOR_TYPE >
+//template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, int t_size >
+//inline string_base < ITERATOR_TYPE >::string_base(const const_string_range_static_array < const OTHER_CHARACTER*, t_size >& a) :
+//   ::const_string_range < ITERATOR_TYPE >(no_initialize_t{})
+//{
+//
+//   character_count iaLen[t_size];
+//
+//   character_count* plen = iaLen;
+//
+//   auto len = a.__utf_length(this->begin(), plen);
+//
+//   auto p = construct_string(len);
+//
+//   plen = iaLen;
+//
+//   a.__utf_concatenate_to(p, plen);
+//
+//   *p = {};
+//
+//}
 
 
 template < typename ITERATOR_TYPE >
@@ -220,6 +220,8 @@ inline void string_base< ITERATOR_TYPE >::construct5(CHARACTER_POINTER pSrc, cha
 }
 
 
+
+
 template < typename ITERATOR_TYPE >
 template < other_character_pointer < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER_POINTER >
 inline void string_base< ITERATOR_TYPE >::construct5(OTHER_CHARACTER_POINTER pSrc, character_count src_len)
@@ -251,6 +253,56 @@ string_base< ITERATOR_TYPE >::string_base(CHARACTER_POINTER s1, CHARACTER_POINTE
    string_base(::range < ITERATOR_TYPE >(s1, e1) + ::range < ITERATOR_TYPE >(s2, e2)) 
 {
 
+
+}
+
+
+template < typename ITERATOR_TYPE >
+template < typename RANGE1, typename RANGE2 >
+void string_base< ITERATOR_TYPE >::construct40(const RANGE1& range1, const RANGE2& range2)
+{
+
+   if (range1.is_empty())
+   {
+
+      if (range2.is_empty())
+      {
+
+         default_construct();
+
+      }
+      else
+      {
+      
+         construct10(range2);
+      
+      }
+
+      return;
+
+   }
+   else if (range2.is_empty())
+   {
+
+      construct10(range1);
+
+      return;
+
+   }
+
+   auto len1 = range1.size();
+
+   auto len2 = range2.size();
+
+   auto len = len1 + len2;
+
+   auto p = construct_string(len);
+
+   string_count_copy(p, range1.m_begin, len1);
+
+   string_count_copy(p + len1, range2.m_begin, len2);
+
+   p[len] = CHARACTER{};
 
 }
 

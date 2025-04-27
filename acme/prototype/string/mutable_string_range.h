@@ -308,14 +308,33 @@ _start_count_string_range(const CHARACTER *psz, memsize start, memsize count) {
 
 
 template < typename ITERATOR_TYPE >
-inline typename const_string_range < ITERATOR_TYPE > ::STRING_RANGE const_string_range < ITERATOR_TYPE > ::operator()(character_count start, character_count count) const {
+template < primitive_integral START, primitive_integral COUNT>
+inline typename const_string_range < ITERATOR_TYPE > ::STRING_RANGE const_string_range < ITERATOR_TYPE > ::operator()(START start, COUNT count) const {
 
-   return ::_start_count_range(STRING_RANGE(*this), start, count);
+   //return ::_start_count_range(STRING_RANGE(*this), start, count);
+
+   auto sizeThis = this->size();
+
+   auto end = minimum(count < 0 ? sizeThis + count + 1 : start + count, sizeThis);
+
+   return start == 0 && end == sizeThis
+   ?
+   *(string_range < ITERATOR_TYPE >*)this :
+   string_range < ITERATOR_TYPE >
+   {
+      this->m_begin + minimum(start, sizeThis),
+      this->m_begin + end,
+      !(*this->m_end) ? e_range_null_terminated : e_range_none
+   };
+
 
 }
 
+
 template < typename ITERATOR_TYPE >
-inline typename const_string_range < ITERATOR_TYPE > ::STRING_RANGE const_string_range < ITERATOR_TYPE > ::operator()(character_count start, const_iterator end) const {
+template < primitive_integral START, typed_character_pointer < typename const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
+inline typename const_string_range < ITERATOR_TYPE > ::STRING_RANGE const_string_range < ITERATOR_TYPE > ::operator()(START start, CHARACTER_POINTER end) const 
+{
 
    return ::_start_end_range(STRING_RANGE(*this), start, end);
 
@@ -323,7 +342,9 @@ inline typename const_string_range < ITERATOR_TYPE > ::STRING_RANGE const_string
 
 
 template < typename ITERATOR_TYPE >
-inline typename const_string_range < ITERATOR_TYPE > ::STRING_RANGE const_string_range < ITERATOR_TYPE > ::operator()(const_iterator start) const {
+template < typed_character_pointer < typename const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
+inline typename const_string_range < ITERATOR_TYPE > ::STRING_RANGE const_string_range < ITERATOR_TYPE > ::operator()(CHARACTER_POINTER start) const 
+{
 
    return STRING_RANGE(start, this->end());
 

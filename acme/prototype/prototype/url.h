@@ -129,8 +129,8 @@ namespace url
       ::ansi_range                  m_rangePath{ nullptr };
       ::ansi_range                  m_rangeName{ nullptr };
       ::ansi_range                  m_rangeQuery{ nullptr };
-      ::pointer < ::property_set >  m_psetArguments;
       ::ansi_range                  m_rangeFragment{ nullptr };
+      ::pointer < ::property_set >  m_psetArguments;
 
       request_range();
       request_range(const request_range& requestrange);
@@ -460,8 +460,8 @@ namespace url
       }
 
 
-      url(const ::url::connect & connect);
-      url(const ::url::connect & connect, const ::url::request & request);
+      url(const ::url::connect_range & connectrange);
+      url(const ::url::connect_range & connectrange, const ::url::request_range & requestrange);
       url(const ::url::url& url);
       ~url();
       

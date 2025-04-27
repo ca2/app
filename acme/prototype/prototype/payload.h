@@ -167,10 +167,10 @@ public:
    payload(enum_type etype);
    payload(nullptr_t);
    payload(const ::payload & payload);
-   template < typename ITERATOR_TYPE, int t_size >
-   payload(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a) :
-      payload(::string(a))
-   {  }
+   //template < typename ITERATOR_TYPE, int t_size >
+   //payload(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a) :
+   //   payload(::string(a))
+   //{  }
    payload(::payload && payload) :
       m_etype(payload.m_etype)
    {
@@ -1519,8 +1519,8 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    //template < character_count n >
    //::payload & operator += (const ::ansi_character (&cha)[n]) { return *this += ::scoped_string(cha);}
 
-   template < typename ITERATOR_TYPE, int t_size >
-   ::payload & operator += (const const_string_range_static_array < ITERATOR_TYPE, t_size > & a) { return *this += ::string(a);}
+   //template < typename ITERATOR_TYPE, int t_size >
+   //::payload & operator += (const const_string_range_static_array < ITERATOR_TYPE, t_size > & a) { return *this += ::string(a);}
 
    template < primitive_integral INTEGRAL >
    ::payload & operator /= (INTEGRAL i);

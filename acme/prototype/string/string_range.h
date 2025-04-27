@@ -72,6 +72,7 @@ public:
    string_range(THIS_RANGE && range) : BASE_RANGE(::transfer(range)) {}
 
    string_range(this_iterator begin, this_iterator end) : BASE_RANGE(begin, end) {}
+   string_range(this_iterator begin, this_iterator end, enum_range erange) : BASE_RANGE(begin, end, erange) {}
 
    //explicit string_range(const ::atom & atom);
 
@@ -2017,4 +2018,18 @@ using wide_range = ::string_range< const ::wide_character *>;
 //using wd16_string_range = ::string_range<::wd16_string>;
 //using wd32_string_range = ::string_range<::wd32_string>;
 //using wide_string_range = ::string_range<::wide_string>;
+
+
+template < primitive_character CHARACTER, primitive_integral INTEGRAL >
+::string_range < const CHARACTER* > as_string_range(const CHARACTER* p, INTEGRAL n)
+{
+
+   return {
+      p,
+      p + n,
+      p[n] == CHARACTER{} ?
+      e_range_null_terminated : e_range_none
+   };
+
+}
 

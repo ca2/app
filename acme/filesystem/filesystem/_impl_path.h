@@ -111,13 +111,13 @@ namespace file
    }
 
 
-   template < typename ITERATOR_TYPE, int t_size >
-   inline path::path(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a, enum_path epath, e_type etype, bool bNormalize, long long iSize) :
-      path((const ::ansi_string&)a, epath, etype, bNormalize, iSize)
-   {
+   //template < typename ITERATOR_TYPE, int t_size >
+   //inline path::path(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a, enum_path epath, e_type etype, bool bNormalize, long long iSize) :
+   //   path((const ::ansi_string&)a, epath, etype, bNormalize, iSize)
+   //{
 
 
-   }
+   //}
 
 
 
@@ -1152,12 +1152,12 @@ namespace file
    }
 
 
-   inline path path::relative() const
-   {
+   //inline path path::relative() const
+   //{
 
-      return substr(maximum(0, m_iBasePathLength));
+   //   return this->substr(maximum(0, m_iBasePathLength));
 
-   }
+   //}
 
 
    inline path path::parent() const

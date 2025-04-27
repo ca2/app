@@ -527,14 +527,15 @@ namespace url
 
       //m_purl->m_str = connect.m_purl->m_str;
       //m_url = connect.m_url;
-      m_bIsUrl = connectrange.m_bIsUrl;
       //url.m_str = connect.url.m_str;
+      m_bIsUrl = connectrange.m_bIsUrl;
+      m_range = connectrange.m_range;
+      m_bSecure = connectrange.m_bSecure;
       m_rangeProtocol = connectrange.m_rangeProtocol;
       m_rangeHost = connectrange.m_rangeHost;
       m_rangePort = connectrange.m_rangePort;
-      //m_rangeRequest = connect.m_rangeRequest;
+      m_rangeRequest = connectrange.m_rangeRequest;
       m_iPort = connectrange.m_iPort;
-      m_bSecure = connectrange.m_bSecure;
       //m_bScoped = connect.m_bScoped;
 
       return *this;
@@ -827,8 +828,8 @@ namespace url
 
       //m_purl->m_str = requestrange.m_purl->m_str;
       m_range = requestrange.m_range;
-      m_rangeName = requestrange.m_rangeName;
       m_rangePath = requestrange.m_rangePath;
+      m_rangeName = requestrange.m_rangeName;
       m_rangeQuery = requestrange.m_rangeQuery;
       m_rangeFragment = requestrange.m_rangeFragment;
       m_psetArguments = requestrange.m_psetArguments;
@@ -976,18 +977,18 @@ namespace url
    //}
 
 
-   url::url(const ::url::connect& connect)
+   url::url(const ::url::connect_range& connectrange)
    {
 
-      parse(connect.as_string());
+      parse(connectrange.as_string());
 
    }
 
 
-   url::url(const ::url::connect& connect, const ::url::request& request)
+   url::url(const ::url::connect_range& connectrange, const ::url::request_range& requestrange)
    {
 
-      auto strUrl = connect.as_string() + request.as_string();
+      auto strUrl = connectrange.as_string() + requestrange.as_string();
 
       parse(strUrl);
 
@@ -1056,6 +1057,8 @@ namespace url
 
          m_range.clear();
 
+         m_rangeRequest = range;
+
          //return {};
          return
             ;
@@ -1070,6 +1073,8 @@ namespace url
       {
 
          m_range.clear();
+
+         m_rangeRequest = range;
 
          //return {};
          //return {};
@@ -1104,6 +1109,8 @@ namespace url
             m_rangeProtocol.clear();
 
             m_rangeHost.clear();
+
+            m_rangeRequest = range;
 
             //return {};
             return;

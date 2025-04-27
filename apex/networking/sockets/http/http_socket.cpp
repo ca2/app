@@ -267,7 +267,7 @@ namespace sockets
             //m_response.attr("remote_addr") = GetRemoteAddress().get_display_number();
             m_response.attr("http_version") = str;
             string strHttpStatusCode = pa.getword();
-            m_response.attr("http_status_code") = strHttpStatusCode;
+            m_response.attr("http_status_code") = atoi(strHttpStatusCode);
             m_response.attr("http_status") = pa.getrest();
             m_bResponse = true;
             m_bRequest = false;
@@ -498,8 +498,20 @@ namespace sockets
 
       string strLine;
 
-      strLine = m_response.attr("http_version") + " " + m_response.attr("http_status_code") + " " +
-                m_response.attr("http_status");
+      ::string strHttpStatusCode = m_response.attr("http_status_code");
+
+      if (strHttpStatusCode.case_insensitive_equals("ok"_ansi))
+      {
+
+         ::string strHttpStatus = m_response.attr("http_status");
+
+         debug("what?!?!?!");
+
+      }
+
+      strLine =   m_response.attr("http_version") + " " + 
+                  strHttpStatusCode + " " +
+                  m_response.attr("http_status");
 
       msg = strLine + "\r\n";
 
@@ -921,6 +933,13 @@ namespace sockets
    {
 
       string strUrl = m_request.attr("http_protocol") + "://" + m_request.header("host") + m_request.attr("request_uri");
+
+      if (strUrl == "https://camilothomas.com/dk/calendar"_ansi)
+      {
+
+         print_line("hand_root https://camilothomas.com/dk/calendar"_ansi);
+
+      }
 
       m_request.m_url = strUrl;
 

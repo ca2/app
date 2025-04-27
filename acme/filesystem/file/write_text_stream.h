@@ -509,13 +509,13 @@ public:
 
        //text_stream & operator <<(const ::atom & atom) ;
    write_text_stream & operator <<(const ::scoped_string & scopedstr);
-   template < typename ITERATOR_TYPE2, int t_size>
-   write_text_stream& operator <<(const ::const_string_range_static_array < ITERATOR_TYPE2, t_size >& a)
-   {
+   //template < typename ITERATOR_TYPE2, int t_size>
+   //write_text_stream& operator <<(const ::const_string_range_static_array < ITERATOR_TYPE2, t_size >& a)
+   //{
 
-      return this->operator <<((const ::string&)a);
+   //   return this->operator <<((const ::string&)a);
 
-   }
+   //}
    //    {
    //
    //       if (m_fmtflags & ::file::network_payload)

@@ -36,6 +36,10 @@ CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_collate(const ::w
 CLASS_DECL_ACME ::std::strong_ordering string_count_collate(const ::wd16_character * pszA, const ::wd16_character * pszB, character_count len) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_count_collate(const ::wd16_character * pszA, const ::wd16_character * pszB, character_count len) noexcept;
 
+inline ::std::strong_ordering _string_count_compare(const ::wd16_character* pszA, const ::wd16_character* pszB, character_count len) noexcept { return wcsncmp(pszA, pszB, len)<=>0; }
+inline ::std::strong_ordering _case_insensitive_string_count_compare(const ::wd16_character* pszA, const ::wd16_character* pszB, character_count len) noexcept { return wcsnicmp(pszA, pszB, len)<=>0; }
+
+
 CLASS_DECL_ACME character_count string_get_length(const ::wd16_character * psz) noexcept;
 CLASS_DECL_ACME character_count string_get_length(const ::wd16_character* psz, character_count sizeMaximumInterest) noexcept;
 CLASS_DECL_ACME character_count string_safe_length(const ::wd16_character * psz) noexcept;

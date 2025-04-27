@@ -66,7 +66,7 @@ string str_helper::before(string s, bool &is_found)
 
 }
 
-string str_helper::after(string s) {return work_str.substr(work_str.find(s)+s.length(),work_str.length());}
+string str_helper::after(string s) {return work_str.substr(work_str.find_index(s)+s.length(),work_str.length());}
 
 string str_helper::replace(string pattern, string by_what) {
     bool is_found;

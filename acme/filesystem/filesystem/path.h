@@ -65,8 +65,8 @@ namespace file
       //path(enum_for_moving) { }
       //path(enum_get_buffer, character_count len) { get_buffer(len); }
       path(const path & path) : string(path), path_meta(path) {}
-      template < typename ITERATOR_TYPE, int t_size >
-      path(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
+      //template < typename ITERATOR_TYPE, int t_size >
+      //path(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
       //template < character_range RANGE >
       //path(const RANGE & range, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, long long iSize = -1);
       // 
@@ -568,7 +568,12 @@ namespace file
       //string_array & ascendants_name(string_array & namea) const;
       //string_array ascendants_name() const;
 
-      path relative() const;
+      auto relative() const
+      {
+
+         return this->substr(maximum(0, m_iBasePathLength));
+
+      }
 
 
       path folder() const;
@@ -650,14 +655,14 @@ inline ::hash32 as_hash32 < const ::file::path & >(const ::file::path & key);
 
 
 
-template < typename ITERATOR_TYPE2, character_count n, int t_size >
-::file::path operator / (const ::erase_pointer < non_const <ITERATOR_TYPE2>>(&sz)[n], const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a)
-{
-
-   return ::transfer(::file::path(sz) / ::string(a));
-
-}
-
+//template < typename ITERATOR_TYPE2, character_count n, int t_size >
+//::file::path operator / (const ::erase_pointer < non_const <ITERATOR_TYPE2>>(&sz)[n], const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a)
+//{
+//
+//   return ::transfer(::file::path(sz) / ::string(a));
+//
+//}
+//
 
 CLASS_DECL_ACME ::file::enum_type safe_get_file_system_item_type(const ::file::path & path);
 CLASS_DECL_ACME ::file::enum_type get_file_system_item_type(const ::file::path & path);
@@ -732,15 +737,15 @@ template < character_pointer CHARACTER_POINTER >
 }
 
 
-template < primitive_character CHARACTER, int t_size >
-::file::path operator / (
-   const ::range < const CHARACTER* >& range,
-   const const_string_range_static_array< const CHARACTER *, t_size > & a)
-{
-
-   return ::file::path(range) / ::file::path(::string(a));
-
-}
+//template < primitive_character CHARACTER, int t_size >
+//::file::path operator / (
+//   const ::range < const CHARACTER* >& range,
+//   const const_string_range_static_array< const CHARACTER *, t_size > & a)
+//{
+//
+//   return ::file::path(range) / ::file::path(::string(a));
+//
+//}
 
 
 

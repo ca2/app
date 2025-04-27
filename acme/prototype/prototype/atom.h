@@ -362,8 +362,8 @@ public:
    inline atom(const domain_id & domainid);
    atom(const ::ansi_character * psz);
    atom(const inline_number_string & inlinenumberstring);
-   template <typename ITERATOR_TYPE2, int t_size >
-   atom(const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a) : atom((const ::string&)a) {}
+   //template <typename ITERATOR_TYPE2, int t_size >
+   //atom(const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a) : atom((const ::string&)a) {}
 
 
    template < primitive_signed SIGNED >
@@ -768,14 +768,15 @@ public:
 };
 
 
+//template < primitive_character CHARACTER, int t_size >
+//inline const_string_range_static_array < const CHARACTER*, t_size + 1 > operator + (const const_string_range_static_array < const CHARACTER*, t_size >& a, const ::atom & atom)
+//{
+//
+//
+//   return { a, atom.as_string()};
+//
+//
+//}
 
 
-template < primitive_character CHARACTER, int t_size >
-inline const_string_range_static_array < const CHARACTER*, t_size + 1 > operator + (const const_string_range_static_array < const CHARACTER*, t_size >& a, const ::atom & atom)
-{
 
-
-   return { a, atom.as_string()};
-
-
-}

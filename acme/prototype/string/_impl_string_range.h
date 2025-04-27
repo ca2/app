@@ -3,23 +3,23 @@
 
 
 
-template < typename ITERATOR_TYPE >
-constexpr ::std::strong_ordering const_string_range < ITERATOR_TYPE > ::order(const SCOPED_STRING & range) const noexcept
-{
+//template < typename ITERATOR_TYPE >
+//constexpr ::std::strong_ordering const_string_range < ITERATOR_TYPE > ::order(const SCOPED_STRING & range) const noexcept
+//{
+//
+//   return this->order(range, ::comparison::comparison < CHARACTER >());
+//
+//}
+//
 
-   return this->order(range, ::comparison::comparison < CHARACTER >());
-
-}
-
-
-template < typename ITERATOR_TYPE >
-inline ::std::strong_ordering const_string_range < ITERATOR_TYPE > ::case_insensitive_order(const SCOPED_STRING & range) const noexcept
-{
-
-   return this->order(range, ::comparison::case_insensitive < CHARACTER >());
-
-}
-
+//template < typename ITERATOR_TYPE >
+//inline ::std::strong_ordering const_string_range < ITERATOR_TYPE > ::case_insensitive_order(const SCOPED_STRING & range) const noexcept
+//{
+//
+//   return this->order(range, ::comparison::case_insensitive < CHARACTER >());
+//
+//}
+//
 
 template < typename ITERATOR_TYPE >
 inline ::std::strong_ordering const_string_range < ITERATOR_TYPE > ::collate(const SCOPED_STRING & range) const noexcept

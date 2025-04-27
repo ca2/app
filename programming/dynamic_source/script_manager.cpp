@@ -335,20 +335,20 @@ namespace dynamic_source
    }
 
 
-   ::pointer<script_instance>script_manager::get(const ::string& strName)
+   ::pointer<script_instance>script_manager::get(const ::scoped_string& scopedstrName)
    {
 
       ::pointer<script>pscript;
 
-      return get(strName, pscript);
+      return get(scopedstrName, pscript);
 
    }
 
 
-   ::pointer<script_instance>script_manager::get(const ::string& strName, ::pointer<script>& pscript)
+   ::pointer<script_instance>script_manager::get(const ::scoped_string& scopedstrName, ::pointer<script>& pscript)
    {
 
-      return m_pcache->create_instance(strName, pscript);
+      return m_pcache->create_instance(scopedstrName, pscript);
 
    }
 
@@ -919,12 +919,12 @@ namespace dynamic_source
    }
 
 
-   void script_manager::run(const ::string& lpcszName)
+   void script_manager::run(const ::scoped_string& scopedstrName)
    {
 
       auto pmemfile = create_memory_file();
 
-      script_instance* pinstance = get(lpcszName);
+      script_instance* pinstance = get(scopedstrName);
 
       if (pinstance != nullptr)
       {
@@ -1064,14 +1064,14 @@ namespace dynamic_source
    }
 
    
-   bool script_manager::include_matches_file_exists(const ::string& strPath)
+   bool script_manager::include_matches_file_exists(const ::scoped_string& scopedstrPath)
    {
 
       // auto pcontext = get_context();
 
       _synchronous_lock synchronouslock(m_pmutexIncludeMatches);
 
-      auto p = m_mapIncludeMatchesFileExists.plookup(strPath);
+      auto p = m_mapIncludeMatchesFileExists.plookup(scopedstrPath);
 
       if (p)
       {
@@ -1080,31 +1080,31 @@ namespace dynamic_source
 
       }
 
-      bool bFileExists = file()->exists(strPath);
+      bool bFileExists = file()->exists(scopedstrPath);
 
-      m_mapIncludeMatchesFileExists.set_at(strPath, bFileExists);
+      m_mapIncludeMatchesFileExists.set_at(scopedstrPath, bFileExists);
 
       return bFileExists;
 
    }
 
 
-   void script_manager::set_include_matches_file_exists(const ::string& strPath, bool bFileExists)
+   void script_manager::set_include_matches_file_exists(const ::scoped_string& scopedstrPath, bool bFileExists)
    {
 
       _synchronous_lock synchronouslock(m_pmutexIncludeMatches);
 
-      m_mapIncludeMatchesFileExists.set_at(strPath, bFileExists);
+      m_mapIncludeMatchesFileExists.set_at(scopedstrPath, bFileExists);
 
    }
 
 
-   bool script_manager::include_matches_is_dir(const ::string& strPath)
+   bool script_manager::include_matches_is_dir(const ::scoped_string& scopedstrPath)
    {
 
       _synchronous_lock synchronouslock(m_pmutexIncludeMatches);
 
-      auto p = m_mapIncludeMatchesIsDir.plookup(strPath);
+      auto p = m_mapIncludeMatchesIsDir.plookup(scopedstrPath);
 
       //// auto pcontext = get_context();
 
@@ -1113,16 +1113,16 @@ namespace dynamic_source
          return p->element2();
       }
 
-      bool bIsDir = directory()->is(strPath);
-      m_mapIncludeMatchesIsDir.set_at(strPath, bIsDir);
+      bool bIsDir = directory()->is(scopedstrPath);
+      m_mapIncludeMatchesIsDir.set_at(scopedstrPath, bIsDir);
       return bIsDir;
    }
 
 
-   bool script_manager::include_has_script(const ::string& strPath)
+   bool script_manager::include_has_script(const ::scoped_string& scopedstrPath)
    {
 
-      if (strPath.is_empty())
+      if (scopedstrPath.is_empty())
       {
 
          return false;
@@ -1131,7 +1131,7 @@ namespace dynamic_source
 
       _synchronous_lock synchronouslock(m_pmutexIncludeHasScript);
 
-      auto p = m_mapIncludeHasScript.plookup(strPath);
+      auto p = m_mapIncludeHasScript.plookup(scopedstrPath);
 
       if (p)
       {
@@ -1144,9 +1144,9 @@ namespace dynamic_source
 
       // roughly detect this way: by finding the <?
 
-      bool bHasScript = file()->safe_get_string(strPath).contains("<?");
+      bool bHasScript = file()->safe_get_string(scopedstrPath).contains("<?");
 
-      m_mapIncludeHasScript.set_at(strPath, bHasScript);
+      m_mapIncludeHasScript.set_at(scopedstrPath, bHasScript);
 
       return bHasScript;
 
@@ -1154,22 +1154,22 @@ namespace dynamic_source
    }
 
 
-   string script_manager::include_expand_md5(const ::string& strPath)
+   string script_manager::include_expand_md5(const ::scoped_string& scopedstrPath)
    {
       
       _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5);
 
-      return m_mapIncludeExpandMd5[strPath];
+      return m_mapIncludeExpandMd5[scopedstrPath];
 
    }
 
 
-   void script_manager::set_include_expand_md5(const ::string& strPath, const ::string& strMd5)
+   void script_manager::set_include_expand_md5(const ::scoped_string& scopedstrPath, const ::scoped_string& scopedstrMd5)
    {
    
       _synchronous_lock synchronouslock(m_pmutexIncludeExpandMd5);
 
-      m_mapIncludeExpandMd5[strPath] = strMd5;
+      m_mapIncludeExpandMd5[scopedstrPath] = scopedstrMd5;
 
    }
 
@@ -1292,12 +1292,12 @@ namespace dynamic_source
    }
 
 
-   ::pointer<::dynamic_source::session>script_manager::get_session(const ::string& pszId)
+   ::pointer<::dynamic_source::session>script_manager::get_session(const ::scoped_string& scopedstrId)
    {
 
       _synchronous_lock synchronouslock(m_pmutexSession);
 
-      auto p = m_mapSession.plookup(pszId);
+      auto p = m_mapSession.plookup(scopedstrId);
 
       if (p)
       {
@@ -1317,11 +1317,9 @@ namespace dynamic_source
 
          p->element2().m_p->~session();
 
-
          ::new(p->element2().m_p) ::dynamic_source::session();
          
-
-         p->element2()->initialize_dynamic_source_session(pszId, this);
+         p->element2()->initialize_dynamic_source_session(scopedstrId, this);
 
          return p->element2();
 
@@ -1329,11 +1327,11 @@ namespace dynamic_source
 
       auto psession = __allocate ::dynamic_source::session();
 
-      psession->initialize_dynamic_source_session(pszId, this);
+      psession->initialize_dynamic_source_session(scopedstrId, this);
 
       psession->m_timeExpiry = ::earth::time::now() + m_timeSessionExpiration;
 
-      m_mapSession.set_at(pszId, psession);
+      m_mapSession.set_at(scopedstrId, psession);
 
       return psession;
 

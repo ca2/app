@@ -463,6 +463,9 @@
     <Filter Include="Header Files\windowing\sandbox">
       <UniqueIdentifier>{8be78ae6-74c7-43db-8253-1ce3ebbfaf5d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\operating_system-windows">
+      <UniqueIdentifier>{e79eec09-d61c-4f2d-8bf1-4d512e72d311}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -4175,6 +4178,12 @@
     </ClInclude>
     <ClInclude Include="prototype\string\const_string_range_static_array.h">
       <Filter>Header Files\prototype\string</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\system.h">
+      <Filter>Header Files\operating_system-windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\types.h">
+      <Filter>Header Files\operating_system-windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -161,6 +161,19 @@ public:
 
    }
 
+
+   template < typename RANGE, typename RANGE2 >
+   string_base(const RANGE& range1, const RANGE2 & range2) requires
+      ::std::is_base_of_v < ::range < const typename string_base < ITERATOR_TYPE >::CHARACTER* >, RANGE >
+      &&
+      ::std::is_base_of_v < ::range < const typename string_base < ITERATOR_TYPE >::CHARACTER* >, RANGE2 >:
+      ::const_string_range < ITERATOR_TYPE >(no_initialize_t{})
+   {
+
+      construct40(range1, range2);
+
+   }
+
    
    template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
    string_base(const ::range < const OTHER_CHARACTER* >& range) :
@@ -226,11 +239,11 @@ public:
    //template<typed_range<const ::wd32_character *> RANGE>
    //explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
 
-   template < int t_size >
-   inline string_base(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a);
+   //template < int t_size >
+   //inline string_base(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a);
 
-   template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, int t_size >
-   inline string_base(const const_string_range_static_array < const OTHER_CHARACTER *, t_size > & a);
+   //template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, int t_size >
+   //inline string_base(const const_string_range_static_array < const OTHER_CHARACTER *, t_size > & a);
 
 //   template<typed_range<::ansi_character *> RANGE>
 //   string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct2(str); }
@@ -464,6 +477,11 @@ public:
    //template < primitive_character CHARACTER2 >
    //inline void construct40(const CHARACTER2* s1, character_count n1, const CHARACTER2* s2, character_count n2);
 
+
+
+   template < typename RANGE1, typename RANGE2 >
+   void construct40(const RANGE1& range1, const RANGE2& range2);
+
    //   template < primitive_character CHARACTER2 >
 //   inline void construct2(const ::range < const CHARACTER2 * > & str);
 //   template < primitive_character CHARACTER2 >
@@ -689,8 +707,8 @@ public:
    string_base & operator += (const ::atom & atom);
    string_base & operator += (const ::payload & payload);
    string_base & operator += (const ::property & property);
-   template < typename ITERATOR_TYPE2, int t_size >
-   string_base& operator += (const const_string_range_static_array < ITERATOR_TYPE2, t_size >& a) { return append(a); }
+   //template < typename ITERATOR_TYPE2, int t_size >
+   //string_base& operator += (const const_string_range_static_array < ITERATOR_TYPE2, t_size >& a) { return append(a); }
 #ifdef __STD_FORMAT__
    string_base& operator += (const ::std::string& str) { operator +=(str.c_str()); return *this; }
 #endif
@@ -994,11 +1012,11 @@ public:
    //inline string_base & append(const ::wd32_character * pszSrc, character_count nLength);
    //inline string_base & append(const wd32_string & ansistrSrc);
 
-   template < int t_size >
-   inline string_base & append(const const_string_range_static_array< const CHARACTER *, t_size > & a);
+   //template < int t_size >
+   //inline string_base & append(const const_string_range_static_array< const CHARACTER *, t_size > & a);
 
-   template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, int t_size >
-   inline string_base & append(const const_string_range_static_array< const OTHER_CHARACTER *, t_size > & a);
+   //template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, int t_size >
+   //inline string_base & append(const const_string_range_static_array< const OTHER_CHARACTER *, t_size > & a);
    inline string_base & append(const ::atom & atom);
    inline string_base & append(const ::payload & payload);
    inline string_base & append(const ::property & property);
@@ -1872,7 +1890,7 @@ public:
          if (this->first() == character1 && this->last() == character2)
          {
 
-            *this = substr(1, length() - 2);
+            *this = this->substr(1, length() - 2);
 
             return true;
 
@@ -1907,17 +1925,17 @@ public:
    }
 
 
-   BASE_RANGE substr(const_iterator p) const { return ::transfer(substr(p, -1)); }
+   //BASE_RANGE substr(const_iterator p) const { return ::transfer(substr(p, -1)); }
 
-   template < primitive_integral COUNT >
-   BASE_RANGE substr(const_iterator p, COUNT count) const { return ::transfer(substr(p - this->begin(), count)); }
+   //template < primitive_integral COUNT >
+   //BASE_RANGE substr(const_iterator p, COUNT count) const { return ::transfer(substr(p - this->begin(), count)); }
 
-   template < primitive_integral START >
-   BASE_RANGE substr(START start) const;
-   template < primitive_integral START, primitive_integral COUNT >
-   BASE_RANGE substr(START start, COUNT count) const;
-   template < primitive_integral START >
-   BASE_RANGE substr(START start, const_iterator p) const { return substr(start, (p - this->m_begin) - start); }
+   //template < primitive_integral START >
+   //BASE_RANGE substr(START start) const;
+   //template < primitive_integral START, primitive_integral COUNT >
+   //BASE_RANGE substr(START start, COUNT count) const;
+   //template < primitive_integral START >
+   //BASE_RANGE substr(START start, const_iterator p) const { return substr(start, (p - this->m_begin) - start); }
 
 
    inline memsize storage_size() const
@@ -2358,13 +2376,13 @@ template < primitive_character CHARACTER2, has_as_string HAS_AS_STRING >
 //}
 
 
-template < primitive_character CHARACTER, int t_size, typed_character_pointer < CHARACTER > TYPED_CHARACTER_POINTER >
-const_string_range_static_array < const CHARACTER *, t_size + 1 > operator + (const const_string_range_static_array < const CHARACTER *, t_size > & a, TYPED_CHARACTER_POINTER psz)
-{
-
-   return { a, {psz, psz + string_safe_length(psz), e_range_null_terminated } };
-
-}
+//template < primitive_character CHARACTER, int t_size, typed_character_pointer < CHARACTER > TYPED_CHARACTER_POINTER >
+//const_string_range_static_array < const CHARACTER *, t_size + 1 > operator + (const const_string_range_static_array < const CHARACTER *, t_size > & a, TYPED_CHARACTER_POINTER psz)
+//{
+//
+//   return { a, {psz, psz + string_safe_length(psz), e_range_null_terminated } };
+//
+//}
 
 
 
@@ -2663,7 +2681,7 @@ CLASS_DECL_ACME ::string _(const ::string & cstr);
 
 
 template < primitive_character CHARACTER, other_primitive_character < CHARACTER > CHARACTER2 >
-::const_string_range_static_array < const CHARACTER*, 2 > operator + (
+::string_base < const CHARACTER* > operator + (
    const ::range < const CHARACTER* >& range1,
    const ::range < const CHARACTER2* >& range2)
 {
@@ -2673,10 +2691,8 @@ template < primitive_character CHARACTER, other_primitive_character < CHARACTER 
 }
 
 
-
-
 template < character_pointer CHARACTER_POINTER >
-::const_string_range_static_array < const  non_const < erase_pointer<CHARACTER_POINTER>> *, 2 > operator + (
+::string_base < const  non_const < erase_pointer<CHARACTER_POINTER>> * > operator + (
    CHARACTER_POINTER p,
    const ::range < const non_const< erase_pointer < CHARACTER_POINTER > > * > & range
    )
@@ -2686,7 +2702,6 @@ template < character_pointer CHARACTER_POINTER >
       range };
 
 }
-
 
 
 template < character_pointer CHARACTER_POINTER, other_character_range < ::decay < CHARACTER_POINTER > > OTHER_CHARACTER_RANGE >
@@ -2726,6 +2741,20 @@ void range<ITERATOR_TYPE>::__utf_concatenate_to(CHARACTER *& p, character_count 
    p += *plen++;
 
 }
+
+
+
+
+
+
+template < character_range RANGE, character_pointer CHARACTER_POINTER >
+::string_base < typename RANGE::const_iterator > operator + (const RANGE& range, CHARACTER_POINTER psz)
+{
+
+   return { range, ::const_string_range <typename RANGE::const_iterator >(psz, psz + string_safe_length(psz), e_range_null_terminated) };
+
+}
+
 
 
 

@@ -5,7 +5,7 @@
 
 
 template < primitive_character CHARACTER >
-const_string_range_static_array < const CHARACTER*, 2 > operator + (
+::string_base < const CHARACTER* > operator + (
    const ::range < const CHARACTER* >& range1,
    const ::range < const CHARACTER* >& range2)
 {
@@ -17,7 +17,7 @@ const_string_range_static_array < const CHARACTER*, 2 > operator + (
 
 
 template < primitive_character CHARACTER, character_count n >
-const_string_range_static_array < const CHARACTER*, 2 > operator + (
+::string_base < const CHARACTER* > operator + (
    const ::range < const CHARACTER* >& range1,
    const CHARACTER(&s)[n])
 {

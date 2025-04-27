@@ -30,13 +30,12 @@
 
 
 template < character_range RANGE, typed_character_range < typename RANGE::CHARACTER > TYPED_RANGE >
-const_string_range_static_array < typename RANGE::const_iterator, 2 > operator + (const RANGE& range, const TYPED_RANGE& typedrange)
+::string_base < typename RANGE::const_iterator > operator + (const RANGE& range, const TYPED_RANGE& typedrange)
 {
 
    return { range, typedrange };
 
 }
-
 
 
 template < character_range RANGE, has_as_string HAS_AS_STRING >
@@ -47,15 +46,6 @@ template < character_range RANGE, has_as_string HAS_AS_STRING >
 
 }
 
-
-
-template < character_range RANGE, character_pointer CHARACTER_POINTER >
-const_string_range_static_array < typename RANGE::const_iterator, 2 > operator + (const RANGE& range, CHARACTER_POINTER psz)
-{
-
-   return { { range }, { psz, psz + string_safe_length(psz), e_range_null_terminated } };
-
-}
 
 
 //template < character_count n >
@@ -72,16 +62,16 @@ const_string_range_static_array < typename RANGE::const_iterator, 2 > operator +
 
 
 
-template < character_range RANGE, int t_size >
-const_string_range_static_array < typename RANGE::const_iterator, t_size + 1 > operator + (const const_string_range_static_array < typename RANGE::const_iterator, t_size >& a, const RANGE& range)
-{
-
-   return { a, range };
-
-}
+//template < character_range RANGE, int t_size >
+//const_string_range_static_array < typename RANGE::const_iterator, t_size + 1 > operator + (const const_string_range_static_array < typename RANGE::const_iterator, t_size >& a, const RANGE& range)
+//{
+//
+//   return { a, range };
+//
+//}
 
 template < character_range RANGE, primitive_character CHARACTER >
-const_string_range_static_array < typename RANGE::const_iterator, 2 > operator + (const RANGE& range, const typename RANGE::CHARACTER ch)
+::string_base < typename RANGE::const_iterator > operator + (const RANGE& range, const typename RANGE::CHARACTER ch)
 {
 
    return { range, {&ch, &ch + 1, e_range_none} };
@@ -90,7 +80,7 @@ const_string_range_static_array < typename RANGE::const_iterator, 2 > operator +
 
 
 template < character_range RANGE >
-inline const_string_range_static_array < const typename RANGE::CHARACTER *, 2 > operator +(const typename RANGE::CHARACTER & ch, const RANGE & range)
+inline ::string_base < const typename RANGE::CHARACTER * > operator +(const typename RANGE::CHARACTER & ch, const RANGE & range)
 {
 
    return   { 
@@ -156,13 +146,13 @@ template < character_range RANGE, character_count n >
 
 
 
-template < primitive_character ITERATOR_TYPE2, int t_size, character_range RANGE >
-::file::path operator / (const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a, const RANGE& range)
-{
-
-   return ::transfer(::file::path(a) / ::string(range));
-
-}
+//template < primitive_character ITERATOR_TYPE2, int t_size, character_range RANGE >
+//::file::path operator / (const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a, const RANGE& range)
+//{
+//
+//   return ::transfer(::file::path(a) / ::string(range));
+//
+//}
 
 
 template < character_range RANGE, character_pointer CHARACTER_POINTER >
@@ -174,13 +164,13 @@ template < character_range RANGE, character_pointer CHARACTER_POINTER >
 }
 
 
-template < character_range RANGE, typename ITERATOR_TYPE2, int t_size >
-::file::path operator / (const RANGE& range, const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a)
-{
-
-   return ::transfer(::file::path(range) / ::file::path(a));
-
-}
+//template < character_range RANGE, typename ITERATOR_TYPE2, int t_size >
+//::file::path operator / (const RANGE& range, const const_string_range_static_array <ITERATOR_TYPE2, t_size >& a)
+//{
+//
+//   return ::transfer(::file::path(range) / ::file::path(a));
+//
+//}
 
 
 

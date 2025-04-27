@@ -190,7 +190,7 @@ namespace sockets
          if (str.length() > 4 &&  case_insensitive_string_begins(str, "http/")) // response
          {
             m_request.attr("http_version") = str;
-            m_request.attr("http_status_code") = pa.getword();
+            m_request.attr("http_status_code") = atoi(pa.getword());
             m_request.attr("http_status") = pa.getrest();
             m_bResponse = true;
          }

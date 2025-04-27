@@ -27,6 +27,7 @@ namespace http
       string                           m_null;
       http::form                       m_form;
       ::url::url                       m_url;
+      ::url::url                       m_urlHandRoot;
 
 
       request();

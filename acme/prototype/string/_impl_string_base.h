@@ -356,81 +356,81 @@ CLASS_DECL_ACME void foo123();
 //}
 
 
-template < typename ITERATOR_TYPE >
-template < int t_size >
-inline string_base < ITERATOR_TYPE >::string_base(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a) :
-   ::const_string_range < ITERATOR_TYPE >(no_initialize_t{})
-{
-
-   auto new_len = a.size();
-
-   auto p = construct_string(new_len);
-
-   a.block_concatenate_to(p);
-
-   ASSERT(p <= this->m_end);
-
-   *p = CHARACTER{};
-
-}
-
-
-template < typename ITERATOR_TYPE >
-template < int t_size >
-string_base< ITERATOR_TYPE>& string_base< ITERATOR_TYPE>::append(const const_string_range_static_array < const CHARACTER *, t_size >& a)
-{
-
-   auto old_len = this->size();
-
-   auto add_len = a.size();
-
-   auto new_len = old_len + add_len;
-
-   auto p = get_buffer<true>(new_len);
-
-   p += old_len;
-
-   a.block_concatenate_to(p);
-
-   ASSERT(p <= this->m_end);
-
-   *(CHARACTER*)this->m_end = {};
-
-   return *this;
-
-}
+//template < typename ITERATOR_TYPE >
+//template < int t_size >
+//inline string_base < ITERATOR_TYPE >::string_base(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a) :
+//   ::const_string_range < ITERATOR_TYPE >(no_initialize_t{})
+//{
+//
+//   auto new_len = a.size();
+//
+//   auto p = construct_string(new_len);
+//
+//   a.block_concatenate_to(p);
+//
+//   ASSERT(p <= this->m_end);
+//
+//   *p = CHARACTER{};
+//
+//}
 
 
-template < typename ITERATOR_TYPE >
-template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, int t_size >
-string_base< ITERATOR_TYPE>& string_base< ITERATOR_TYPE>::append(const const_string_range_static_array < const OTHER_CHARACTER *, t_size >& a)
-{
+//template < typename ITERATOR_TYPE >
+//template < int t_size >
+//string_base< ITERATOR_TYPE>& string_base< ITERATOR_TYPE>::append(const const_string_range_static_array < const CHARACTER *, t_size >& a)
+//{
+//
+//   auto old_len = this->size();
+//
+//   auto add_len = a.size();
+//
+//   auto new_len = old_len + add_len;
+//
+//   auto p = get_buffer<true>(new_len);
+//
+//   p += old_len;
+//
+//   a.block_concatenate_to(p);
+//
+//   ASSERT(p <= this->m_end);
+//
+//   *(CHARACTER*)this->m_end = {};
+//
+//   return *this;
+//
+//}
 
-   auto old_len = this->size();
 
-   character_count iaLen[t_size];
-
-   character_count* plen = iaLen;
-
-   auto add_len = a.__utf_length(this->begin(), plen);
-
-   auto new_len = old_len + add_len;
-
-   auto p = get_buffer<true>(new_len);
-
-   p += old_len;
-
-   plen = iaLen;
-
-   a.__utf_concatenate_to(p, plen);
-
-   ASSERT(p <= this->m_end);
-
-   p[new_len] = {};
-
-   return *this;
-
-}
+//template < typename ITERATOR_TYPE >
+//template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER, int t_size >
+//string_base< ITERATOR_TYPE>& string_base< ITERATOR_TYPE>::append(const const_string_range_static_array < const OTHER_CHARACTER *, t_size >& a)
+//{
+//
+//   auto old_len = this->size();
+//
+//   character_count iaLen[t_size];
+//
+//   character_count* plen = iaLen;
+//
+//   auto add_len = a.__utf_length(this->begin(), plen);
+//
+//   auto new_len = old_len + add_len;
+//
+//   auto p = get_buffer<true>(new_len);
+//
+//   p += old_len;
+//
+//   plen = iaLen;
+//
+//   a.__utf_concatenate_to(p, plen);
+//
+//   ASSERT(p <= this->m_end);
+//
+//   p[new_len] = {};
+//
+//   return *this;
+//
+//}
 
 
 template < typename ITERATOR_TYPE >
@@ -2523,9 +2523,12 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::Tokenize(const SCOP
             character_count nUntil = nExcluding;
             start = iFrom + nUntil + 1;
 
-            return substr(iFrom, nUntil);
+            return this->substr(iFrom, nUntil);
+
          }
+
       }
+
    }
 
    // return is_empty string_base < ITERATOR_TYPE >, done tokenizing
@@ -5331,69 +5334,76 @@ const_string_range < ITERATOR_TYPE > const_string_range < ITERATOR_TYPE >::subra
 }
 
 
-template < typename ITERATOR_TYPE >
-template < primitive_integral START >
-typename string_base < ITERATOR_TYPE >::BASE_RANGE string_base < ITERATOR_TYPE >::substr(START start) const
-{
-   
-   return substr(start, -1);
+//template < typename ITERATOR_TYPE >
+//template < primitive_integral START >
+//typename string_base < ITERATOR_TYPE >::BASE_RANGE string_base < ITERATOR_TYPE >::substr(START start) const
+//{
+//   
+//   return substr(start, -1);
+//
+//}
 
-}
 
-
-template < typename ITERATOR_TYPE >
-template < primitive_integral START, primitive_integral COUNT >
-typename string_base < ITERATOR_TYPE >::BASE_RANGE string_base < ITERATOR_TYPE >::substr(START start, COUNT count) const
-{
-
-   character_count length = this->size();
-
-   if (start < 0)
-   {
-
-      start = 0;
-
-   }
-   else if ((::character_count)start >= length)
-   {
-
-      return {};
-
-   }
-
-   character_count end;
-
-   if (count < 0)
-   {
-
-      end = length + count + 1;
-
-   }
-   else
-   {
-
-      end = start + count;
-
-   }
-
-   if (end > length)
-   {
-
-      end = length;
-
-   }
-
-   if (end <= (::character_count) start)
-   {
-
-      return {};
-
-   }
-
-   return { this->begin() + start, (::character_count) (end - start) };
-
-}
-
+//template < typename ITERATOR_TYPE >
+//template < primitive_integral START, primitive_integral COUNT >
+//typename string_base < ITERATOR_TYPE >::BASE_RANGE string_base < ITERATOR_TYPE >::substr(START start, COUNT count) const
+//{
+//
+// /*  character_count length = this->size();
+//
+//   if (start < 0)
+//   {
+//
+//      start = 0;
+//
+//   }
+//   else if ((::character_count)start >= length)
+//   {
+//
+//      return {};
+//
+//   }
+//
+//   character_count end;
+//
+//   if (count < 0)
+//   {
+//
+//      
+//
+//   }
+//
+//   if (end > length)
+//   {
+//
+//      end = length;
+//
+//   }
+//
+//   if (end <= (::character_count) start)
+//   {
+//
+//      return {};
+//
+//   }*/
+//
+//   auto sizeThis = this->size();
+//
+//   auto start = this->begin() + minimum(start, sizeThis);
+//
+//   auto end = minimum(count < 0 ? length + count + 1 : start + count, sizeThis);
+//
+//   return start == 0 && end == sizeThis
+//   ?
+//   *this :
+//   {
+//      this->m_begin + start,
+//      this->m_begin + end,
+//      !(*this->end) ? e_range_null_terminated : e_range_none
+//   };
+//
+//}
+//
 
 template < typename ITERATOR_TYPE >
 void string_base < ITERATOR_TYPE >::clear()
@@ -6821,8 +6831,9 @@ inline string_base < ITERATOR_TYPE > operator +(const scoped_string_base < ITERA
 
 }
 
+
 template < character_count n >
-inline const_string_range_static_array < const char * , 2 > operator +(const char (&s)[n], const inline_number_string& inlinenumberstring)
+inline ::string_base < const char * > operator +(const char (&s)[n], const inline_number_string& inlinenumberstring)
 {
 
    return { ::as_string_literal<char, n>(s), inlinenumberstring };

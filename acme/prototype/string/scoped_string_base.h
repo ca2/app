@@ -57,14 +57,14 @@ public:
 
    }
 
-   template < typename ITERATOR_TYPE2, int t_size >
-   scoped_string_base(const const_string_range_static_array<ITERATOR_TYPE2, t_size >& a) : 
-      BASE_RANGE(no_initialize_t{}) 
-   { 
-   
-      this->str(a);
-   
-   }
+   //template < typename ITERATOR_TYPE2, int t_size >
+   //scoped_string_base(const const_string_range_static_array<ITERATOR_TYPE2, t_size >& a) : 
+   //   BASE_RANGE(no_initialize_t{}) 
+   //{ 
+   //
+   //   this->str(a);
+   //
+   //}
 
    template < has_as_string HAS_AS_STRING >
    scoped_string_base(const HAS_AS_STRING & has_as_string) : BASE_RANGE(nullptr) { this->str(has_as_string.as_string()); }
@@ -278,13 +278,17 @@ public:
 
          _destroy();
 
+         this->m_erange = e_range_none;
+
       }
 
-      this->m_begin = nullptr;
+      // don't need to cleanup if above flags are not set
 
-      this->m_end = nullptr;
+      //this->m_begin = nullptr;
 
-      this->m_erange = e_range_none;
+      //this->m_end = nullptr;
+
+      //this->m_erange = e_range_none;
 
    }
 

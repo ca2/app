@@ -370,19 +370,25 @@ public:
    }
 
 
-   STRING_RANGE operator()(character_count start, character_count count) const;
-
-   STRING_RANGE operator()(character_count start, const_iterator end) const;
-
-
-   STRING_RANGE operator()(const_iterator start) const;
-
-
+   template < primitive_integral START, primitive_integral COUNT>
+   STRING_RANGE operator()(START start, COUNT count) const;
+   template < primitive_integral START, typed_character_pointer < typename const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
+   STRING_RANGE operator()(START start, CHARACTER_POINTER end) const;
+   template < typed_character_pointer < typename const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
+   STRING_RANGE operator()(CHARACTER_POINTER start) const;
    template < primitive_integral START >
    STRING_RANGE operator()(START start) const;
-
    STRING_RANGE operator()() const;
 
+   template < primitive_integral START, primitive_integral COUNT>
+   auto substr(START start, COUNT count) const { return this->operator()(start, count); }
+   template < primitive_integral START, typed_character_pointer < typename const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
+   auto substr(START start, CHARACTER_POINTER end) const { return this->operator()(start, end); }
+   template < typed_character_pointer < typename const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
+   auto substr(CHARACTER_POINTER start) const { return this->operator()(start); }
+   template < primitive_integral START >
+   auto substr(START start) const { return this->operator()(start); }
+   //STRING_RANGE operator()() const;
 
    ::end_of_line_and_next_line < const CHARACTER* > end_of_line_and_next_line() const
    {
@@ -515,7 +521,7 @@ public:
    //using NATURAL_POINTER::order;
 
    //::std::strong_ordering order(const SCOPED_STRING &range) const noexcept;
-   ::std::strong_ordering case_insensitive_order(const SCOPED_STRING& range) const noexcept;
+   //::std::strong_ordering case_insensitive_order(const SCOPED_STRING& range) const noexcept;
 
    ::std::strong_ordering collate(const SCOPED_STRING& range) const noexcept;
 
@@ -586,7 +592,7 @@ public:
 
    using BASE_RANGE::order;
 
-   constexpr ::std::strong_ordering order(const SCOPED_STRING& range) const noexcept;
+   //constexpr ::std::strong_ordering order(const SCOPED_STRING& range) const noexcept;
 
 
    constexpr ::std::strong_ordering operator<=>(const SCOPED_STRING& range) const {
@@ -596,28 +602,228 @@ public:
    }
 
 
-   using BASE_RANGE::_equals;
+   template < typed_character_range < CHARACTER > CHARACTER_RANGE >
+   constexpr bool equals(const CHARACTER_RANGE& range) const
+   {
 
-   constexpr bool _equals(const SCOPED_STRING& range) const {
+      auto sizeRange = this->size();
 
-      return this->_equals(range, ::comparison::comparison<ITEM>());
+      return sizeRange != range.size() ? false :
+         (sizeRange <= 0 ?
+            true :
+            _string_count_compare(this->m_begin, range.m_begin, sizeRange) == 0
+            );
+
+   }
+
+
+   template < typed_character_pointer < CHARACTER > CHARACTER_POINTER >
+   constexpr bool equals(CHARACTER_POINTER psz) const
+   {
+
+      auto sizeThis = this->size();
+
+      return _string_count_compare(this->m_begin, psz, sizeThis) == 0
+         && psz[sizeThis] == CHARACTER{};
 
    }
 
 
-   using BASE_RANGE::equals;
+   constexpr bool equals(const SCOPED_STRING& scopedstr) const
+   {
 
-   constexpr bool equals(const SCOPED_STRING& range) const {
+      auto sizeRange = this->size();
 
-      return this->equals(range, ::comparison::comparison<ITEM>());
+      return sizeRange != scopedstr.size() ? false :
+         (sizeRange <= 0 ?
+            true :
+            _string_count_compare(this->m_begin, scopedstr.m_begin, sizeRange) == 0
+            );
 
    }
 
-   constexpr bool case_insensitive_equals(const SCOPED_STRING& range) const noexcept {
 
-      return this->equals(range, ::comparison::case_insensitive<ITEM>());
+   template < typed_character_range < CHARACTER > CHARACTER_RANGE >
+   constexpr bool case_insensitive_equals(const CHARACTER_RANGE& range) const
+   {
+
+      auto sizeRange = this->size();
+
+      return sizeRange != range.size() ? false :
+         (sizeRange <= 0 ?
+            true :
+            _case_insensitive_string_count_compare(this->m_begin, range.m_begin, sizeRange) == 0
+            );
 
    }
+
+
+   template < typed_character_pointer < CHARACTER > CHARACTER_POINTER >
+   constexpr bool case_insensitive_equals(CHARACTER_POINTER psz) const
+   {
+
+      auto sizeThis = this->size();
+
+      return this->is_empty()?
+         (::is_empty(psz) ? true :
+         false) :
+         (::is_empty(psz) ? false : 
+            (_case_insensitive_string_count_compare(this->m_begin, psz, sizeThis) == 0
+            && psz[sizeThis] == CHARACTER{})
+               );
+
+   }
+
+
+   constexpr bool case_insensitive_equals(const SCOPED_STRING& scopedstr) const
+   {
+
+      auto sizeRange = this->size();
+
+      return sizeRange != scopedstr.size() ? false :
+         (sizeRange <= 0 ?
+            true :
+            _case_insensitive_string_count_compare(this->m_begin, scopedstr.m_begin, sizeRange) == 0
+            );
+
+   }
+
+
+
+   template < typed_character_range < CHARACTER > CHARACTER_RANGE >
+   constexpr ::std::strong_ordering order(const CHARACTER_RANGE& range) const
+   {
+
+      auto sizeThis = this->size();
+
+      ::std::strong_ordering ordering;
+
+      return this->is_empty() ?
+         (range.is_empty() ? ::std::strong_ordering::equal :
+            ::std::strong_ordering::less) :
+         (range.is_empty() ? ::std::strong_ordering::greater : 
+            ((ordering = _string_count_compare(this->m_begin, range.begin(), sizeThis)) == 0 ?
+               sizeThis <=> range.size() : ordering));
+
+   }
+
+
+   template < typed_character_pointer < CHARACTER > CHARACTER_POINTER >
+   constexpr ::std::strong_ordering order(CHARACTER_POINTER psz) const
+   {
+
+      auto sizeThis = this->size();
+
+      ::std::strong_ordering ordering;
+
+      return this->is_empty() ?
+         (::is_empty(psz) ? ::std::strong_ordering::equal :
+            ::std::strong_ordering::less) :
+         (::is_empty(psz) ? ::std::strong_ordering::greater :
+            ((ordering = _string_count_compare(this->m_begin, psz, sizeThis)) == 0 ?
+               (psz[sizeThis] == CHARACTER{} ?
+                  ::std::strong_ordering::equal :
+                  ::std::strong_ordering::less)
+               : ordering));
+   }
+
+
+   constexpr ::std::strong_ordering order(const SCOPED_STRING& scopedstr) const
+   {
+
+      auto sizeThis = this->size();
+
+      ::std::strong_ordering ordering;
+
+      return this->is_empty() ?
+         (scopedstr.is_empty() ? ::std::strong_ordering::equal :
+            ::std::strong_ordering::less) :
+         (scopedstr.is_empty() ? ::std::strong_ordering::greater : 
+            ((ordering = _string_count_compare(this->m_begin, scopedstr.m_begin, sizeThis)) == 0 ?
+               sizeThis <=> scopedstr.size() : ordering));
+
+   }
+
+
+   template < typed_character_range < CHARACTER > CHARACTER_RANGE >
+   constexpr ::std::strong_ordering case_insensitive_order(const CHARACTER_RANGE& range) const
+   {
+
+      auto sizeThis = this->size();
+
+      ::std::strong_ordering ordering;
+
+      return this->is_empty() ?
+         (range.is_empty() ? ::std::strong_ordering::equal :
+            ::std::strong_ordering::less) :
+         (range.is_empty() ? ::std::strong_ordering::greater :
+            ((ordering = _case_insensitive_string_count_compare(this->m_begin, range.begin(), sizeThis)) == 0 ?
+               sizeThis <=> range.size() : ordering));
+
+   }
+
+
+   template < typed_character_pointer < CHARACTER > CHARACTER_POINTER >
+   constexpr ::std::strong_ordering case_insensitive_order(CHARACTER_POINTER psz) const
+   {
+
+      auto sizeThis = this->size();
+
+      ::std::strong_ordering ordering;
+
+      return this->is_empty() ?
+         (::is_empty(psz) ? ::std::strong_ordering::equal :
+            ::std::strong_ordering::less) :
+         (::is_empty(psz) ? ::std::strong_ordering::greater : 
+            ((ordering = _case_insensitive_string_count_compare(this->m_begin, psz, sizeThis)) == 0 ?
+               (psz[sizeThis] == CHARACTER{}?
+                  ::std::strong_ordering::equal :
+                  ::std::strong_ordering::less)
+               : ordering));
+
+   }
+
+
+   constexpr ::std::strong_ordering case_insensitive_order(const SCOPED_STRING& scopedstr) const
+   {
+
+      auto sizeThis = this->size();
+
+      ::std::strong_ordering ordering;
+
+      return this->is_empty() ?
+         (scopedstr.is_empty() ? ::std::strong_ordering::equal :
+            ::std::strong_ordering::less) :
+         (scopedstr.is_empty() ? ::std::strong_ordering::greater :
+            ((ordering = _case_insensitive_string_count_compare(this->m_begin, scopedstr.m_begin, sizeThis)) == 0 ?
+               sizeThis <=> scopedstr.size() : ordering));
+
+   }
+
+
+
+   //using BASE_RANGE::_equals;
+
+   //constexpr bool _equals(const SCOPED_STRING& range) const {
+
+   //   return this->binary_equals(range);
+
+   //}
+
+
+   //using BASE_RANGE::equals;
+
+   //constexpr bool equals(const SCOPED_STRING& range) const {
+
+   //   return this->binary_equals(range);
+
+   //}
+
+   //constexpr bool case_insensitive_equals(const SCOPED_STRING& range) const noexcept {
+
+   //   return this->equals(range, ::comparison::case_insensitive<ITEM>());
+
+   //}
 
    //bool equals(const SCOPED_STRING &range, character_count n) const noexcept {
 
@@ -2423,27 +2629,46 @@ _start_count_string_range(const CHARACTER* psz, memsize start, memsize count);
 CLASS_DECL_ACME void log_const_ansi_range_literal(int n);
 
 
-constexpr const_ansi_range operator ""_ansi(const char * s, std::size_t n)
+template < typename ITERATOR_TYPE >
+class string_literal :
+   public const_string_range < ITERATOR_TYPE >
+{
+public:
+
+
+   constexpr string_literal(ITERATOR_TYPE s, std::size_t n)
+   {
+
+      this->m_begin = s;
+      this->m_end = s + n;
+      this->m_erange = e_range_string_literal | e_range_null_terminated;
+
+   }
+
+
+};
+
+
+constexpr string_literal < const ::ansi_character * > operator ""_ansi(const ::ansi_character * s, std::size_t n)
 {
 
-   //log_const_ansi_range_literal(n);
+   return { s, n };
 
-   //auto bNullTerminated = s[n - 1] == '\0';
+}
 
-   //auto e = s + (bNullTerminated ? n - 1 : n);
 
-   //enum_range erangeNullTerminated = bNullTerminated ?
-   //   e_range_null_terminated : e_range_none;
+constexpr string_literal < const ::wd16_character * > operator ""_wd16(const ::wd16_character * s, std::size_t n)
+{
 
-   //enum_range erange = (enum_range)(((int) e_range_string_literal) | 
-   //               ((int) erangeNullTerminated));
+   return { s, n };
 
-   return
-   {
-      s,
-      s+n,
-      e_range_string_literal | e_range_null_terminated
-   };
+}
+
+
+constexpr string_literal < const ::wd32_character* > operator ""_wd32(const ::wd32_character * s, std::size_t n)
+{
+
+   return { s, n };
 
 }
 
@@ -2461,3 +2686,19 @@ template < primitive_character CHARACTER, character_count n >
    };
 
 }
+
+
+template < typename TYPED_STRING_LITERAL, typename CHARACTER >
+concept typed_string_literal =
+::std::is_same_v < TYPED_STRING_LITERAL, CHARACTER >&&
+primitive_character < TYPED_STRING_LITERAL >;
+
+
+
+
+
+
+
+
+
+

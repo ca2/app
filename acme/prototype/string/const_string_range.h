@@ -701,7 +701,7 @@ public:
 
       auto sizeThis = this->size();
 
-      ::std::strong_ordering ordering;
+      ::std::strong_ordering ordering(1<=>1);
 
       return this->is_empty() ?
          (range.is_empty() ? ::std::strong_ordering::equal :
@@ -719,7 +719,7 @@ public:
 
       auto sizeThis = this->size();
 
-      ::std::strong_ordering ordering;
+      ::std::strong_ordering ordering(1<=>1);
 
       return this->is_empty() ?
          (::is_empty(psz) ? ::std::strong_ordering::equal :
@@ -738,7 +738,7 @@ public:
 
       auto sizeThis = this->size();
 
-      ::std::strong_ordering ordering;
+      ::std::strong_ordering ordering(1<=>1);
 
       return this->is_empty() ?
          (scopedstr.is_empty() ? ::std::strong_ordering::equal :
@@ -756,7 +756,7 @@ public:
 
       auto sizeThis = this->size();
 
-      ::std::strong_ordering ordering;
+      ::std::strong_ordering ordering(1<=>1);
 
       return this->is_empty() ?
          (range.is_empty() ? ::std::strong_ordering::equal :
@@ -774,7 +774,7 @@ public:
 
       auto sizeThis = this->size();
 
-      ::std::strong_ordering ordering;
+      ::std::strong_ordering ordering(1<=>1);
 
       return this->is_empty() ?
          (::is_empty(psz) ? ::std::strong_ordering::equal :
@@ -794,7 +794,7 @@ public:
 
       auto sizeThis = this->size();
 
-      ::std::strong_ordering ordering;
+      ::std::strong_ordering ordering(1<=>1);
 
       return this->is_empty() ?
          (scopedstr.is_empty() ? ::std::strong_ordering::equal :

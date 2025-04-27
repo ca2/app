@@ -175,6 +175,39 @@ namespace file
 
 
       ::url::url as_url() const;
+
+      ::string consume_item()
+      {
+
+         auto path = *this;
+
+         auto iFind = path.find_index('/');
+
+         if (iFind < 0)
+         {
+
+            empty();
+
+            return path;
+
+         }
+         
+         auto str = path.left(iFind);
+
+         while (path[iFind] == '/')
+         {
+
+            iFind++;
+
+         }
+
+         path = path.substr(iFind);
+
+         *this = path;
+
+         return str;
+
+      }
       //template < has_as_string HAS_AS_STRING >
       //path(const HAS_AS_STRING & has_as_string) : path(has_as_string.as_string()) {}
       //inline ~path() {}

@@ -810,14 +810,36 @@ public:
       if((::range<const CHARACTER *>*)(this) != (::range<const CHARACTER *>*)(&range))
       {
 
+         BASE_DATA* pdata;
+
          if (this->m_erange & e_range_string)
          {
 
-            this->__destroy();
+            pdata = BASE_DATA::base_data_from_data(this->m_begin);
+
+            //this->__destroy();
+
+         }
+         else
+         {
+
+            pdata = nullptr;
 
          }
 
          construct10(range);
+
+         if (pdata)
+         {
+
+            if (pdata->data() != this->begin())
+            {
+
+               this->base_data_release(pdata);
+
+            }
+
+         }
 
       }
 
@@ -1279,6 +1301,18 @@ public:
       return this->left(count);
 
    }
+
+   //string_base right(character_count nCount) const { return *this = BASE_RANGE::right(nCount); }
+
+   //string_base left(character_count count) const { return *this = BASE_RANGE::left(nCount); }
+
+   //string_base left(const_iterator p) const { return *this = BASE_RANGE::left(p); }
+
+   //string_base left_including_any_character_in(const SCOPED_STRING& scopedstrCharSet) const { return *this = BASE_RANGE::left_including_any_character_in(scopedstrCharSet); }
+
+   //string_base left_skipping_any_character_in(const SCOPED_STRING& scopedstrCharSet) const { return *this = BASE_RANGE::left_skipping_any_character_in(scopedstrCharSet); }
+
+
 
    inline this_iterator & erase_beginning(this_iterator p);
 

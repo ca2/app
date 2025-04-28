@@ -2129,6 +2129,13 @@ namespace http
 
       class ::time tickTotalTimeout = set["timeout"].as_time();
 
+      if (tickTotalTimeout < 5_s)
+      {
+
+         tickTotalTimeout = 2_min;
+
+      }
+
       set["http_body_size_downloaded"] = &psocket->m_body_size_downloaded;
 
       {

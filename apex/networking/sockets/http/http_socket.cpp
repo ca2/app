@@ -42,6 +42,7 @@ namespace sockets
            m_b_keepalive(false),
            m_chunk_size(0),
            m_chunk_state(0),
+      m_bChunked(false),
       m_iRequestIndex(-1)
    {
 
@@ -267,8 +268,13 @@ namespace sockets
             //m_response.attr("remote_addr") = GetRemoteAddress().get_display_number();
             m_response.attr("http_version") = str;
             string strHttpStatusCode = pa.getword();
-            m_response.attr("http_status_code") = atoi(strHttpStatusCode);
-            m_response.attr("http_status") = pa.getrest();
+
+            int iStatusCode = atoi(strHttpStatusCode);
+            m_response.attr("http_status_code") = iStatusCode;
+
+            ::string strStatus = pa.getrest();
+            m_response.attr("http_status") = strStatus;
+
             m_bResponse = true;
             m_bRequest = false;
 
@@ -385,6 +391,8 @@ namespace sockets
 
       OnHeader(key, value);
 
+      printf_line("Header Key: %s Value: %s", key.as_string().c_str(), value.c_str());
+
       if(key.case_insensitive_order("x-forwarded-proto") == 0)
       {
 
@@ -466,6 +474,7 @@ namespace sockets
          }
 
       }
+
       if (key.case_insensitive_order("transfer-encoding") == 0 && case_insensitive_string_ends(value, "chunked"))
       {
          m_bChunked = true;

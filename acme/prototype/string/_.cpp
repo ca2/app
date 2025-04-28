@@ -188,4 +188,15 @@ CLASS_DECL_ACME void string_short_test()
 
    free((void*)pszStdSchema);
 
+
+   ::string strTest;
+
+
+   strTest = "abcdefghijklmnopqrstuvwxyz\r\n";
+
+   strTest = strTest.left(strTest.length() - 2);
+
+   print_line(strTest);
+
+
 }

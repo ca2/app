@@ -181,6 +181,11 @@ public:
    virtual void destroy_impl_data();
    virtual void destroy_os_data();
 
+   template < typename TYPE >
+   ::pointer < TYPE > cast() { return this; }
+
+   template < typename TYPE >
+   ::pointer < TYPE > cast() const { return ((::subparticle *)this)->cast < TYPE >() ; }
 
    virtual ::subparticle_pointer clone();
 

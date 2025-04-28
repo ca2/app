@@ -240,9 +240,6 @@ public:
    //virtual void initialize_matter(::matter * pmatter);
 
 
-   template < typename TYPE >
-   TYPE * cast() { return dynamic_cast <TYPE *>(this); }
-
    virtual ::payload get_result_payload();
 
 

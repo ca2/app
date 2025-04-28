@@ -1244,7 +1244,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    //T * cast();
 
    template < primitive_subparticle T >
-   T * cast(T* pDefault = nullptr);
+   ::pointer < T > cast(T* pDefault = nullptr);
 
    template < class T >
    T & defer_create_type(T * pdefault = nullptr)

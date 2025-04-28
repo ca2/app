@@ -1549,14 +1549,14 @@ void file_context::calculate_main_resource_memory()
 
       informationf("contains 256");
 
-      fflush(stdout);
+      //fflush(stdout);
 
       if (pfileOutput.nok())
       {
 
          informationf("output file nok");
 
-         fflush(stdout);
+         //fflush(stdout);
 
       }
 
@@ -1797,7 +1797,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
    try
    {
 
-      information() << "preader : " << (iptr)preader;
+      information() << "preader : " << (iptr)preader.m_p;
 
       if (::is_nok(preader))
       {

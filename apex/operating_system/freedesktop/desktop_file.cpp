@@ -332,7 +332,7 @@ namespace freedesktop
          auto pfileMainIcon256 = papp->get_file("matter://main/icon-256.png",
                                                                             ::file::e_open_read);
 
-         bool bNok = pfileMainIcon256.nok();
+         bool bNok = ::is_nok(pfileMainIcon256);
 
          if (bNok)
          {

@@ -172,7 +172,7 @@ inline INTEGRAL& _consume(INTEGRAL& i, ::ansi_range& range, int iBase = 10)
       if (digit < 0)
       {
 
-         throw ::exception(::error_parsing);
+         throw "_string parsing error _consume";
 
       }
 

@@ -81,7 +81,7 @@ constexpr void __rear_tosz(SIGNED i, CHARACTER *& p, int base, enum_digit_case e
 /// @tparam INTEGRAL /p u type (unsigned constraint)
 /// @tparam CHARACTER /p buf character type (character constraint)
 /// @param i number to convert
-/// @param p [in,out] address where to write string representation of /p u. At the output, returns the address of terminated null character at the end of the string.
+/// @param pcharacter [in,out] address where to write string representation of /p u. At the output, returns the address of terminated null character at the end of the string.
 /// @param base base to convert
 /// @param edigitcase base greater than decimal base, the case of output characters 
 template < primitive_integral INTEGRAL, primitive_character CHARACTER >

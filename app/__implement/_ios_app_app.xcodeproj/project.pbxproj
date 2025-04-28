@@ -17,7 +17,7 @@
 		9A40BDB32B6B65510077053E /* libios_aura_darwin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A40BDB22B6B65510077053E /* libios_aura_darwin.a */; };
 		9A40BDBE2B6B67770077053E /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A40BDBD2B6B67770077053E /* UniformTypeIdentifiers.framework */; };
 		9A40BDF62B6B9C850077053E /* libios_darwin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A40BDF52B6B9C850077053E /* libios_darwin.a */; };
-		9A490C332B69D3EC00990DB8 /* application_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A490C322B69D3EC00990DB8 /* application_main.cpp */; };
+		9A490C332B69D3EC00990DB8 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A490C322B69D3EC00990DB8 /* main.cpp */; };
 		9A750E28282B5BC500C4861B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A750E23282B5BC500C4861B /* UIKit.framework */; };
 		9A750E34282B5BE900C4861B /* libios_acme.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A750E29282B5BE900C4861B /* libios_acme.a */; };
 		9A750E36282B5BE900C4861B /* libios_acme_apple.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A750E2A282B5BE900C4861B /* libios_acme_apple.a */; };
@@ -195,7 +195,7 @@
 		9A40BDB22B6B65510077053E /* libios_aura_darwin.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_aura_darwin.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A40BDBD2B6B67770077053E /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
 		9A40BDF52B6B9C850077053E /* libios_darwin.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_darwin.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A490C322B69D3EC00990DB8 /* application_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application_main.cpp; sourceTree = "<group>"; };
+		9A490C322B69D3EC00990DB8 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9A60D0DD2B76B5AA0082B17B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		9A750E23282B5BC500C4861B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9A750E29282B5BE900C4861B /* libios_acme.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_acme.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -357,7 +357,7 @@
 				9AC88AE62B6B3C75008F1C20 /* _____release.xcconfig */,
 				9A8E9D84282A2C09005FF778 /* _matter.zip */,
 				9A3108E12CE78C5E0067398D /* _static_factory_.inl */,
-				9A490C322B69D3EC00990DB8 /* application_main.cpp */,
+				9A490C322B69D3EC00990DB8 /* main.cpp */,
 				9A8E9AA0282A2B89005FF778 /* ios */,
 			);
 			name = __implement;
@@ -700,7 +700,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A490C332B69D3EC00990DB8 /* application_main.cpp in Sources */,
+				9A490C332B69D3EC00990DB8 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

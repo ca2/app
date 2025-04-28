@@ -124,7 +124,7 @@ inline string_base < ITERATOR_TYPE >::string_base(OTHER_CHARACTER chSrc, charact
 
    utf_to_utf(sz, &chSrc, 1);
 
-   auto pTarget = (CHARACTER*)this->m_begin;
+   //auto pTarget = (CHARACTER*)this->m_begin;
 
    while (repeat > 0)
    {
@@ -136,7 +136,7 @@ inline string_base < ITERATOR_TYPE >::string_base(OTHER_CHARACTER chSrc, charact
       while(j > 0)
       {
 
-         *pTarget++ = *pSource++;
+         *p++ = *pSource++;
 
          j--;
 

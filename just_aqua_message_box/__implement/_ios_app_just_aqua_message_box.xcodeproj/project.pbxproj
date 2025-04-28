@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A4753802CF5174B00ED30AE /* application_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A47537F2CF5174A00ED30AE /* application_main.cpp */; };
+		9A4753802CF5174B00ED30AE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A47537F2CF5174A00ED30AE /* main.cpp */; };
 		9A4753842CF517F300ED30AE /* _matter.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9A4753832CF517F300ED30AE /* _matter.zip */; };
 		9A4753922CF51A0400ED30AE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A47538D2CF51A0400ED30AE /* InfoPlist.strings */; };
 		9A4753932CF51A0400ED30AE /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A4753912CF51A0400ED30AE /* Launch Screen.storyboard */; };
@@ -121,7 +121,7 @@
 
 /* Begin PBXFileReference section */
 		9A4752BE2CF5124100ED30AE /* _ios_app_just_aqua_message_box.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = _ios_app_just_aqua_message_box.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A47537F2CF5174A00ED30AE /* application_main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = application_main.cpp; sourceTree = "<group>"; };
+		9A47537F2CF5174A00ED30AE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9A4753832CF517F300ED30AE /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = _matter.zip; path = ../_matter.zip; sourceTree = SOURCE_ROOT; };
 		9A4753852CF5184A00ED30AE /* _____debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "_____debug.xcconfig"; path = "../_____debug.xcconfig"; sourceTree = SOURCE_ROOT; };
 		9A4753862CF5184A00ED30AE /* _____release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "_____release.xcconfig"; path = "../_____release.xcconfig"; sourceTree = SOURCE_ROOT; };
@@ -223,7 +223,7 @@
 				9A4753862CF5184A00ED30AE /* _____release.xcconfig */,
 				9A4753832CF517F300ED30AE /* _matter.zip */,
 				9AB67E072D1E3DCB001AB250 /* _static_factory_.inl */,
-				9A47537F2CF5174A00ED30AE /* application_main.cpp */,
+				9A47537F2CF5174A00ED30AE /* main.cpp */,
 				9A47538B2CF5199800ED30AE /* ios */,
 			);
 			name = __implement;
@@ -463,7 +463,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A4753802CF5174B00ED30AE /* application_main.cpp in Sources */,
+				9A4753802CF5174B00ED30AE /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

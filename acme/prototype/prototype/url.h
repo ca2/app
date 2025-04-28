@@ -229,7 +229,7 @@ namespace url
       void set(const ::scoped_string& scopedstrProtocol, const ::scoped_string& scopedstrHost, int iPort = -1, ::logic::boolean booleanSecure = {});
 
 
-      ::string as_string() const;
+      //::string as_string() const;
 
 
    };
@@ -273,7 +273,7 @@ namespace url
 
 
 
-      ::string as_string() const;
+      ::string calculate_string() const;
 
 
    };

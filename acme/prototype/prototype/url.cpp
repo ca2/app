@@ -275,38 +275,38 @@ namespace url
    }
 
 
-   ::string connect::as_string() const
-   {
+   //::string connect::as_string() const
+   //{
 
-      if (m_rangeProtocol.is_empty() || m_rangeHost.is_empty())
-      {
+   //   if (m_rangeProtocol.is_empty() || m_rangeHost.is_empty())
+   //   {
 
-         return {};
+   //      return {};
 
-      }
+   //   }
 
-      return connect_string(m_rangeProtocol, m_rangeHost, m_iPort);
+   //   return connect_string(m_rangeProtocol, m_rangeHost, m_iPort);
 
-      //::string strConnectUrl;
+   //   //::string strConnectUrl;
 
-      //if (m_iPort < 0
-      //   || (m_iPort == 443 && m_strProtocol.case_insensitive_equals("https"))
-      //   || (m_iPort == 80 && m_strProtocol.case_insensitive_equals("http")))
-      //{
+   //   //if (m_iPort < 0
+   //   //   || (m_iPort == 443 && m_strProtocol.case_insensitive_equals("https"))
+   //   //   || (m_iPort == 80 && m_strProtocol.case_insensitive_equals("http")))
+   //   //{
 
-      //   strConnectUrl.formatf("%s://%s", m_strProtocol.c_str(), m_strHost.c_str());
+   //   //   strConnectUrl.formatf("%s://%s", m_strProtocol.c_str(), m_strHost.c_str());
 
-      //}
-      //else
-      //{
+   //   //}
+   //   //else
+   //   //{
 
-      //   strConnectUrl.formatf("%s://%s:%d", m_strProtocol.c_str(), m_strHost.c_str(), m_iPort);
+   //   //   strConnectUrl.formatf("%s://%s:%d", m_strProtocol.c_str(), m_strHost.c_str(), m_iPort);
 
-      //}
+   //   //}
 
-      //return strConnectUrl;
+   //   //return strConnectUrl;
 
-   }
+   //}
 
 
    request::request()
@@ -495,7 +495,7 @@ namespace url
    }
 
 
-   ::string request::as_string() const
+   ::string request::calculate_string() const
    {
 
       auto strRequest = request_string(m_rangePath, arguments(), m_rangeFragment);

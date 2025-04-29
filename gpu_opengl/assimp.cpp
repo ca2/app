@@ -1,4 +1,6 @@
 #include "framework.h"
+
+#if !defined(__APPLE__)
 #include "assimp.h"
 
 #define ASSIMP_USE_HUNTER
@@ -70,6 +72,10 @@ namespace assimp
 
 
 } // namespace assimp
+
+
+
+#endif
 
 
 

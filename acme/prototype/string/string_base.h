@@ -395,14 +395,14 @@ public:
 
       auto pbasedata = this->base_data_default_data();
 
-      if (this->m_begin != pbasedata->c_data())
-      {
+      //if (this->m_begin != pbasedata->c_data())
+      //{
 
          this->m_begin = pbasedata->c_data();
          this->m_end = pbasedata->c_data();
          this->m_erange = e_range_string_literal;
 
-      }
+      //}
 
 
    }

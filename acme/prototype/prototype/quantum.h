@@ -115,6 +115,7 @@ public:
 ///   inline void set_realized() { set_flag(e_flag_realized); }
 
 
+   virtual void call_request(::request* prequest);
    virtual void request(::request * prequest);
    virtual void on_request(::request * prequest);
 

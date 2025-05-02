@@ -4381,8 +4381,24 @@ return nullptr;
    }
 
 
-   void acme_system_layer::defer_post_initial_request()
+   void acme_system_layer::post_application_start()
    {
+
+
+   }
+
+
+   void acme_system_layer::defer_post_file_open()
+   {
+
+
+   }
+
+
+   void acme_system_layer::post_application_started()
+   {
+
+
    }
 
 

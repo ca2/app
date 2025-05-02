@@ -421,6 +421,8 @@ namespace platform
 
       }
 
+      add_application(papplication);
+
       //papplication->start_application(prequest);
       
       papplication->start_application();
@@ -628,7 +630,7 @@ namespace platform
 
       }
 
-      add_application(papplication);
+      //add_application(papplication);
 
       return papplication;
 

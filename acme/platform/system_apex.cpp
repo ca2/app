@@ -108,9 +108,9 @@ namespace platform
    //
    // void apex_system_layer::init2(){}
 
-   void defer_post_initial_request()
-   {
-   }
+   //void defer_post_initial_request()
+   //{
+   //}
 
 
    //void post_request(::request* prequest){}

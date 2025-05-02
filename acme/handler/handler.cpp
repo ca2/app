@@ -365,6 +365,26 @@ namespace handler
 
    }
 
+   
+   void handler::call_request(::request* prequest)
+   {
+
+      if (prequest->m_bPreferSync)
+      {
+
+         request(prequest);
+
+      }
+      else
+      {
+
+         post_request(prequest);
+
+      }
+
+
+   }
+
 
    void handler::request(::request * prequest)
    {

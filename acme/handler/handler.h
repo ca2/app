@@ -15,6 +15,7 @@
 namespace handler
 {
 
+
    // ThomasBorregaardSorensen!! Like handlers
    class CLASS_DECL_ACME handler :
       virtual public ::matter
@@ -100,6 +101,8 @@ namespace handler
       virtual void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       virtual void handle(::message::message * pmessage);
       virtual void handle(::request * prequest);
+
+      void call_request(::request* prequest) override;
 
       void request(::request * prequest) override;
 

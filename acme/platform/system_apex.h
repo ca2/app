@@ -144,7 +144,7 @@ namespace platform
       //
       // virtual void init2();
 
-      void defer_post_initial_request();
+      //void defer_post_initial_request();
 
       //void post_request(::request* prequest);
 

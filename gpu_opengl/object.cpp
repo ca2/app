@@ -81,9 +81,13 @@ namespace opengl
 
       auto memory = file()->as_memory(path);
 
-#if !defined(__APPLE__)
+#if !defined(__APPLE__) && !defined(WINDOWS)
        
       ::assimp::load_obj(memory.data(), memory.size(), m_indices, m_vertices, m_uvs, m_normals);
+
+#else
+
+      throw ::exception(todo);
        
 #endif
 

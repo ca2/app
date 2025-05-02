@@ -1,7 +1,7 @@
 #pragma once
 
 
-#if !defined(__APPLE__)
+#if !defined(__APPLE__) && !defined(WINDOWS)
 
 
 #include "glm/vec2.hpp"

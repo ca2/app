@@ -30,7 +30,7 @@ namespace compare_swap
       ::collection::index iLPos, iUPos, iMPos;
 
       int iCmp;
-      ::std::strong_ordering iCompare;
+      ::std::strong_ordering iCompare(::std::strong_ordering::equal);
 
       if (iSize >= 2)
       {

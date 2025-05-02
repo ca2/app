@@ -1255,6 +1255,13 @@ bool object::is_ascendant_task(::object * ptaskCandidateAscendant) const
             return true;
 
          }
+         
+         if(p == p->m_pobjectParentTask)
+         {
+            
+            return false;
+            
+         }
 
          p = p->m_pobjectParentTask;
 

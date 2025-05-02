@@ -989,6 +989,10 @@ namespace user
 //
 //                     }
 //                     else
+                     
+                     
+                     
+                     
 
                      while(true)
                      {
@@ -1023,7 +1027,9 @@ namespace user
 
                         }
 
-                        timeToWaitForNextFrame = timeFrame;
+                        timeToWaitForNextFrame = 1_s;
+                        
+                        update_new_main_loop_happening();
 
                      }
 

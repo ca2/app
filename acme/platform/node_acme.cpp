@@ -109,8 +109,16 @@ namespace platform
 
    void acme_node_layer::_will_finish_launching()
    {
+      
+      
    }
 
+
+   void acme_node_layer::_did_finish_launching()
+   {
+      
+      
+   }
 
    //void acme_node_layer::element_quit_post_quit(){}
 

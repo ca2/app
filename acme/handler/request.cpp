@@ -367,7 +367,7 @@ void request::common_construct()
    m_bShowSplash = true;
    m_bRunEmbedded = false;
    m_bRunAutomated = false;
-   m_ecommand = e_command_application_start;
+   m_ecommand = e_command_default;
    m_iEdge = 0;
 
 }

@@ -570,7 +570,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = ". ${WorkspaceDir}/../operating_system/tool/bin/_on_after_build_executable\n";
+			shellScript = ". $HOME/code/operating_system/tool/bin/_on_after_build_executable\n";
 		};
 		9A932AEA2D6DB6B3006557FC /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -589,7 +589,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = ". ${WorkspaceDir}/../operating_system/tool/bin/_on_before_build_executable\n";
+			shellScript = ". $HOME/code/operating_system/tool/bin/_on_before_build_executable\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

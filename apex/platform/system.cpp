@@ -1581,40 +1581,40 @@ pdirectorysystem->create("/ca2core");
    //}
 
 
-   void system::defer_post_initial_request()
-   {
+   //void system::defer_post_initial_request()
+   //{
 
-      ::platform::system::defer_post_initial_request();
+   //   ::platform::system::defer_post_initial_request();
 
-      //if (!m_bPostedInitialRequest)
-      //{
+   //   //if (!m_bPostedInitialRequest)
+   //   //{
 
-      //   m_bPostedInitialRequest = true;
+   //   //   m_bPostedInitialRequest = true;
 
-      //   auto prequest = __create_new< ::request>();
+   //   //   auto prequest = __create_new< ::request>();
 
-      //   string strAppId = application()->m_strAppId;
+   //   //   string strAppId = application()->m_strAppId;
 
-      //   if (strAppId.is_empty())
-      //   {
+   //   //   if (strAppId.is_empty())
+   //   //   {
 
-      //      if (application())
-      //      {
+   //   //      if (application())
+   //   //      {
 
-      //         strAppId = application()->m_strAppId;
+   //   //         strAppId = application()->m_strAppId;
 
-      //      }
+   //   //      }
 
-      //   }
+   //   //   }
 
-      //   prequest->m_strAppId = strAppId;
+   //   //   prequest->m_strAppId = strAppId;
 
-      //   //pcreate->m_pcommandline = __create_new < command_line >();
-      //   post_request(prequest);
+   //   //   //pcreate->m_pcommandline = __create_new < command_line >();
+   //   //   post_request(prequest);
 
-      //}
+   //   //}
 
-   }
+   //}
 
 
    //void system::post_request(::request* prequest)
@@ -3105,22 +3105,32 @@ pdirectorysystem->create("/ca2core");
 
       //file_put_contents("/Users/camilo/debug/on_open_file.txt", pszFile);
 
-      m_bPostedInitialRequest = true;
+      //m_bPostedInitialRequest = true;
 
       ::pointer<::request>prequest(e_create_new, this);
 
       prequest->m_payloadFile = pszFile;
+      
+      prequest->m_ecommand = e_command_file_open;
+      
+      prequest->m_strAppId = m_papplication->m_strAppId;
+      
+      prequest->m_bPreferSync = true;
+      
+      auto psession = session();
+      
+      psession->request(prequest);
 
-      auto papplication = application();
-
-      if (!papplication)
-      {
-
-         papplication = application();
-
-      }
-
-      papplication->post_request(prequest);
+//      auto papplication = application();
+//
+//      if (!papplication)
+//      {
+//
+//         papplication = application();
+//
+//      }
+//
+//      papplication->post_request(prequest);
 
       //      defer_accumulate_on_open_file({pszFile}, "");
 

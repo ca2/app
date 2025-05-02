@@ -228,7 +228,7 @@ namespace nanoui
 
       virtual void end_all_in_place_edits();
 
-      virtual bool on_mouse_button_in_place_edit(in_place_edit* pinplacedit, bool bDown);
+      virtual bool on_mouse_button_in_place_edit(in_place_edit* pinplacedit, bool bDown, bool bDoubleClick);
       virtual void on_before_in_place_edit(in_place_edit* pinplaceedit);
 
       /// Whether or not this CheckBox is currently pushed.  See \::pointer nanoui::CheckBox::m_pushed.

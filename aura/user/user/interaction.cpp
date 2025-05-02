@@ -25985,7 +25985,7 @@ void interaction::on_control_box_zoom(){
 
          auto pitemFront = update_hover(pmouse, e_zorder_front);
 
-         if (pitemFront.is_set())
+         if (::is_item_set(pitemFront))
          {
 
             // MAYBE TODO HERE!!

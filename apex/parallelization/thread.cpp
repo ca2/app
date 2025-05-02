@@ -4860,7 +4860,8 @@ void thread::verb()
 void thread::post_request(::request* prequest)
 {
 
-   post_element(e_message_system, e_system_message_create, prequest);
+   ::task::post_request(prequest);
+   //post_element(e_message_system, e_system_message_create, prequest);
 
 }
 

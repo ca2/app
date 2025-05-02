@@ -599,7 +599,9 @@ namespace platform
 
       //____creatable(task);
 
-      m_bPostedInitialRequest = false;
+      //m_bPostedInitialRequest = false;
+
+      m_bPostedCommandLineFileOpen = false;
 
       //m_bOnInitializeWindowObject = false;
 
@@ -2932,7 +2934,7 @@ namespace platform
       information() << "::apex::system::on_request session = " << ::type(psession).name() << "(" << ((iptr)psession) <<
          ")";
 
-      psession->post_request(prequest);
+      psession->call_request(prequest);
 
    }
 
@@ -2967,13 +2969,148 @@ namespace platform
    //}
 
 
-   void system::defer_post_initial_request()
+   void system::post_application_start()
    {
 
-      if (!m_bPostedInitialRequest)
+      auto prequest = __create_new<::request>();
+      prequest->m_ecommand = e_command_application_start;
+      ::string strAppId = m_papplication->m_strAppId;
+      prequest->m_strAppId = strAppId;
+      prequest->m_bPreferSync = true;
+      call_request(prequest);
+
+   }
+
+
+   //void system::defer_post_initial_request()
+   //{
+
+   //   if (!m_bPostedInitialRequest)
+   //   {
+
+   //      m_bPostedInitialRequest = true;
+
+   //      auto prequest = __create_new<::request>();
+
+   //      post_request(prequest);
+
+
+   //      auto prequest = __create_new<::request>();
+
+   //      auto strCommandLine = this->m_strCommandLine;
+
+   //      strCommandLine.trim();
+
+   //      prequest->m_strAppId = application()->m_strAppId;
+
+   //      ::string strApp;
+
+   //      if (strCommandLine.has_character())
+   //      {
+
+   //         information() << "system::defer_post_initial_request ***strCommandLine*** : ***" << strCommandLine << "***";
+
+   //         prequest->m_strCommandLine = strCommandLine;
+
+   //         prequest->property_set()._008ParseCommandFork(
+   //            strCommandLine,
+   //            prequest->m_payloadFile,
+   //            strApp);
+
+   //      }
+   //      else
+   //      {
+
+   //         strApp = this->m_args[0];
+
+   //         ::string_array straFiles;
+
+   //         for (int iArgument = 1; iArgument < this->m_argc;)
+   //         {
+
+   //            auto iArgumentBefore = iArgument;
+
+   //            if (node()->defer_consume_main_arguments(
+   //               this->m_argc,
+   //               this->m_args,
+   //               iArgument)
+   //               && iArgument > iArgumentBefore)
+   //            {
+
+   //               continue;
+
+   //            }
+
+   //            if (application()->defer_consume_main_arguments(
+   //               this->m_argc,
+   //               this->m_args,
+   //               iArgument)
+   //               && iArgument > iArgumentBefore)
+   //            {
+
+   //               continue;
+
+   //            }
+
+   //            ::string strArgument = this->m_args[iArgument];
+
+   //            if (strArgument.begins("-"))
+   //            {
+
+   //               prequest->property_set()._008AddArgument(strArgument);
+
+   //            }
+   //            else
+   //            {
+
+   //               straFiles.add(strArgument);
+
+   //            }
+
+   //            iArgument++;
+
+   //         }
+
+   //         if (straFiles.has_elements())
+   //         {
+
+   //            prequest->m_ecommand = e_command_file_open;
+
+   //            if (straFiles.size() == 1)
+   //            {
+
+   //               prequest->m_payloadFile = straFiles[0];
+
+   //            }
+   //            else
+   //            {
+
+   //               prequest->m_payloadFile.string_array_reference() = straFiles;
+
+   //            }
+
+   //         }
+
+   //      }
+
+   //      payload("command_line_arg0") = strApp;
+
+   //      application()->property_set().merge(prequest->property_set());
+
+   //      post_request(prequest);
+
+   //   }
+
+   //}
+
+
+   void system::defer_post_file_open()
+   {
+
+      if (!m_bPostedCommandLineFileOpen)
       {
 
-         m_bPostedInitialRequest = true;
+         m_bPostedCommandLineFileOpen = true;
 
          auto prequest = __create_new<::request>();
 
@@ -3071,15 +3208,37 @@ namespace platform
 
          }
 
-         payload("command_line_arg0") = strApp;
+         if (!prequest->m_payloadFile.is_empty())
+         {
 
-         application()->property_set().merge(prequest->property_set());
+            prequest->m_ecommand = e_command_file_open;
 
-         post_request(prequest);
+            payload("command_line_arg0") = strApp;
+
+            application()->property_set().merge(prequest->property_set());
+
+            prequest->m_bPreferSync = true;
+
+            call_request(prequest);
+
+         }
 
       }
 
    }
+
+
+   void system::post_application_started()
+   {
+
+      auto prequest = __create_new<::request>();
+      prequest->m_ecommand = e_command_application_started;
+      prequest->m_strAppId = m_papplication->m_strAppId;
+      prequest->m_bPreferSync = true;
+      call_request(prequest);
+
+   }
+
 
 
    void system::canonical_system_main()
@@ -3414,12 +3573,12 @@ namespace platform
          phostinteraction->create_context_button();
 
       }
-      else if (ptopic->id() == id_defer_post_initial_request)
-      {
+      //else if (ptopic->id() == id_defer_post_initial_request)
+      //{
 
-         defer_post_initial_request();
+      //   defer_post_initial_request();
 
-      }
+      //}
       else if (ptopic->id() == id_get_operating_system_dark_mode_reply)
       {
 
@@ -3577,15 +3736,39 @@ namespace platform
    }
 
 
+   void system::node_did_finish_launching()
+   {
+
+      //   auto pnode = node();
+      //
+      //   pnode->_will_finish_launching();
+
+      //   auto pnode = session();
+      //
+      //   auto puser = user();
+      //
+      //   auto pwindowing = system()->windowing();
+      //
+      //   pwindowing->_will_finish_launching();
+
+      auto pnode = node();
+
+      pnode->_did_finish_launching();
+
+      //return ::success;
+
+   }
+
+
    void system::on_open_untitled_file()
    {
 
-      if (!m_bPostedInitialRequest)
-      {
+      //if (!m_bPostedInitialRequest)
+      //{
 
-         defer_post_initial_request();
+      //   defer_post_initial_request();
 
-      }
+      //}
 
       //      throw ::interface_only();
 
@@ -4900,6 +5083,8 @@ void system_id_update(::platform::system* psystem, int iUpdate, long long iParam
 
 void node_will_finish_launching(::platform::system* psystem);
 
+void node_did_finish_launching(::platform::system* psystem);
+
 
 void system_on_open_untitled_file(::platform::system* psystem);
 
@@ -4911,6 +5096,14 @@ void node_will_finish_launching(::platform::system* psystem)
 {
 
    psystem->node_will_finish_launching();
+
+}
+
+
+void node_did_finish_launching(::platform::system* psystem)
+{
+
+   psystem->node_did_finish_launching();
 
 }
 

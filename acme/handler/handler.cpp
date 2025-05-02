@@ -149,6 +149,13 @@ namespace handler
 
    bool handler::pick_next_posted_request()
    {
+      
+      if(m_prequestBeingAttended)
+      {
+         
+         return false;
+         
+      }
 
       _synchronous_lock synchronouslock(this->synchronization());
 
@@ -353,9 +360,57 @@ namespace handler
    {
 
       m_prequest = prequest;
-
+      
       request(prequest);
 
+   }
+
+   
+   void handler::call_request(::request* prequest)
+   {
+
+      if (prequest->m_bPreferSync)
+      {
+
+         request(prequest);
+
+      }
+      else
+      {
+
+         post_request(prequest);
+
+      }
+
+
+   }
+
+
+   void handler::request(::request * prequest)
+   {
+      
+      ASSERT(m_prequestBeingAttended.is_null());
+      
+      m_prequestBeingAttended = prequest;
+
+      try
+      {
+         
+         on_request(prequest);
+         
+      }
+      catch(...)
+      {
+         
+      }
+      
+      // Maybe it means that other request should'nt
+      // be made to this handler while one request
+      // is being attended.
+      ASSERT(m_prequestBeingAttended == prequest);
+      
+      m_prequestBeingAttended.release();
+      
    }
 
 

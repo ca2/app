@@ -174,6 +174,8 @@ namespace platform
 
       //void acme_application_main(::platform::system * psystem) override;
       void _will_finish_launching() override;
+      
+      void _did_finish_launching() override;
 
       //virtual void element_quit_post_quit();
 

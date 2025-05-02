@@ -110,7 +110,8 @@ namespace platform
 #endif
       ::pointer<::factory::factory>                                           m_pfactoryFolder;
 
-      bool                                                                    m_bPostedInitialRequest;
+      //      bool                                                                    m_bPostedInitialRequest;
+      bool                                                                    m_bPostedCommandLineFileOpen;
 
 
       ::pointer<::apex::system>                                               m_psystemParent;
@@ -437,7 +438,9 @@ namespace platform
       virtual void on_start_system();
 
 
-      virtual void defer_post_initial_request();
+      virtual void post_application_start();
+      virtual void defer_post_file_open();
+      virtual void post_application_started();
 
 
       virtual void canonical_system_main();
@@ -626,6 +629,8 @@ namespace platform
       //virtual void erase_signal_handlers(::particle * ppparticle);
 
       virtual void node_will_finish_launching();
+      
+      virtual void node_did_finish_launching();
 
       virtual void on_open_untitled_file();
 

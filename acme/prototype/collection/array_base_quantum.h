@@ -191,17 +191,17 @@ public:
 
    using CONTAINER_ITEM_TYPE = TYPE;
    using TYPE_IS_PTR = TYPE;
-
+   
    using this_iterator = typename ARRAY_RANGE::this_iterator;
    using iterator = typename ARRAY_RANGE::iterator;
    using const_iterator = typename ARRAY_RANGE::const_iterator;
 
 
-   ::collection::count   m_countAllocation;
-   ::collection::count   m_countAddUp;
-   ::collection::count   m_countAllocationOffset;
+   ::collection::count     m_countAllocation;
+   ::collection::count     m_countAddUp;
+   ::collection::count     m_countAllocationOffset;
 
-
+   
    array_base_quantum();
    array_base_quantum(std::initializer_list < TYPE > initializer_list);
    array_base_quantum(const array_base_quantum & a);
@@ -893,6 +893,8 @@ public:
    ::collection::count append_initializer_list(const ::std::initializer_list < TYPE > & list);
    virtual ::collection::count append(const TYPE * p, ::collection::count c);
    virtual ::collection::count append(const array_base_quantum & src); // return old int_size
+   virtual ::collection::count rear_append(const TYPE * p, ::collection::count c);
+   virtual ::collection::count rear_append(const array_base_quantum & src); // return old int_size
    template < typename CONTAINER >
    void copy_container(const CONTAINER & container);
    void copy_initializer_list(const ::std::initializer_list < TYPE > & list);
@@ -1550,89 +1552,94 @@ void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::fre
 
    auto sizeNew = size;
 
-   if(sizeNew != m_countAllocation)
+   if(!(this->m_eflagElement & e_flag_preallocated))
    {
-
-      // shrink to desired size
-
-#ifdef SIZE_T_MAX
       
-      ASSERT(sizeNew <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
-
-#endif
-      
-      TYPE* pNewData = nullptr;
-
-      if(sizeNew != 0)
+      if(sizeNew != m_countAllocation)
       {
-
-         TYPE * pNewData;
-
-#if defined(__MCRTDBG) || MEMDLEAK
-
-         #ifdef __MCRTDBG
-
-         if (::get_task() != nullptr)
+         
+         // shrink to desired size
+         
+#ifdef SIZE_T_MAX
+         
+         ASSERT(sizeNew <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
+         
+#endif
+         
+         TYPE* pNewData = nullptr;
+         
+         if(sizeNew != 0)
          {
-
-            if (::get_task()->m_strFile.has_character())
+            
+            TYPE * pNewData;
+            
+#if defined(__MCRTDBG) || MEMDLEAK
+            
+#ifdef __MCRTDBG
+            
+            if (::get_task() != nullptr)
             {
-
-               pNewData = MEMORY::allocate(size, ::get_task()->m_strFile, ::get_task()->m_iLine);
-
+               
+               if (::get_task()->m_strFile.has_character())
+               {
+                  
+                  pNewData = MEMORY::allocate(size, ::get_task()->m_strFile, ::get_task()->m_iLine);
+                  
+               }
+               else
+               {
+                  
+                  pNewData = MEMORY::allocate(size, __FILE__, __LINE__);
+                  
+               }
+               
             }
             else
             {
-
+               
                pNewData = MEMORY::allocate(size, __FILE__, __LINE__);
-
+               
             }
-
-         }
-         else
-         {
-
-            pNewData = MEMORY::allocate(size, __FILE__, __LINE__);
-
-         }
-
+            
 #else
-
-         if (::get_task_object_debug().has_character())
-         {
-
-            pNewData = MEMORY::allocate(size, ::get_task_object_debug(), 0);
-
-         }
-         else
-         {
-
-            pNewData = MEMORY::allocate(size, __FILE__, __LINE__);
-
-         }
-
+            
+            if (::get_task_object_debug().has_character())
+            {
+               
+               pNewData = MEMORY::allocate(size, ::get_task_object_debug(), 0);
+               
+            }
+            else
+            {
+               
+               pNewData = MEMORY::allocate(size, __FILE__, __LINE__);
+               
+            }
+            
 #endif
-
+            
 #else
-
-         pNewData = MEMORY::allocate(sizeNew, &sizeNew);
-
+            
+            pNewData = MEMORY::allocate(sizeNew, &sizeNew);
+            
 #endif
-
-         // copy ___new data from old
-         ::safe_memory_copy2(pNewData, (size_t)size,this->m_begin, (size_t)size);
-
+            
+            // copy ___new data from old
+            ::safe_memory_copy2(pNewData, (size_t)size,this->m_begin, (size_t)size);
+            
+         }
+         
+         // get rid of old stuff (note: no destructors called)
+         MEMORY::free(this->m_begin);
+         
+         this->m_begin = pNewData;
+         
+         m_countAllocation = sizeNew;
+         
+         this->m_end = this->m_begin + size;
+         
       }
-
-      // get rid of old stuff (note: no destructors called)
-      MEMORY::free(this->m_begin);
-
-      this->m_begin = pNewData;
-
-      m_countAllocation = sizeNew;
-
-      this->m_end = this->m_begin + size;
-
+      
    }
 
 }
@@ -1649,13 +1656,23 @@ void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::des
       auto size = this->size();
 
       TYPED::destruct_count(this->m_begin, size);
+      
+      if(!(this->m_eflagElement & e_flag_preallocated))
+      {
+         
+         MEMORY::free(this->m_begin + this->m_countAllocationOffset);
+         this->m_begin                    = nullptr;
+         this->m_end                      = nullptr;
+         this->m_countAllocation          = 0;
+         this->m_countAllocationOffset    = 0;
 
-      MEMORY::free(this->m_begin + this->m_countAllocationOffset);
+      }
+      else
+      {
+         this->m_end                      = this->m_begin;
+         this->m_countAllocationOffset    = 0;
+      }
 
-      this->m_begin                    = nullptr;
-      this->m_end                      = nullptr;
-      this->m_countAllocation          = 0;
-      this->m_countAllocationOffset    = 0;
 
    }
 
@@ -1817,6 +1834,31 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 
 }
 
+
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+::collection::count array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::rear_append(const TYPE * p, ::collection::count c)
+{
+
+   ::collection::count nOldSize = this->size();
+
+   ::collection::count nSrcSize = c;
+
+   allocate(nOldSize + nSrcSize, false, true);
+
+   TYPED::rear_copy_construct_count((this->m_begin + nOldSize), nSrcSize, p);
+
+   return nOldSize;
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
+::collection::count array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::rear_append(const array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & src)
+{
+
+   return rear_append(src.data(), src.size());
+
+}
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
@@ -2420,7 +2462,14 @@ void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::res
       ::safe_memory_copy2(pNewData, (size_t)newAllocationSize, this->m_begin, (size_t) this->size());
 
       // get rid of old stuff (note: no destructors called)
-      MEMORY::free(this->m_begin);
+      if(!(this->m_eflagElement & e_flag_preallocated))
+      {
+         MEMORY::free(this->m_begin);
+      }
+      else
+      {
+         this->m_eflagElement -= e_flag_preallocated;
+      }
 
       this->m_begin = pNewData;
 
@@ -2466,13 +2515,24 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
          if(bShrink)
          {
             
-            MEMORY::free(this->m_begin + this->m_countAllocationOffset);
+            if(!(this->m_eflagElement & e_flag_preallocated))
+            {
+               
+               MEMORY::free(this->m_begin + this->m_countAllocationOffset);
+               m_countAllocation = 0;
+               this->m_begin = nullptr;
+               
+
+            }
+            else
+            {
+             
+               this->m_end = this->m_begin;
+               
+            }
 
             this->m_countAllocationOffset = 0;
             
-            this->m_begin = nullptr;
-            
-            m_countAllocation = 0;
 
          }
 
@@ -2722,9 +2782,20 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
          }
          
       }
-
-      // get rid of old stuff (note: no destructors called)
-      MEMORY::free(this->m_begin + this->m_countAllocationOffset);
+      
+      if(!(m_eflagElement & e_flag_preallocated))
+      {
+         
+         // get rid of old stuff (note: no destructors called)
+         MEMORY::free(this->m_begin + this->m_countAllocationOffset);
+         
+      }
+      else
+      {
+         
+         m_eflagElement -= e_flag_preallocated;
+         
+      }
 
       this->m_begin = pNewData;
 
@@ -3717,3 +3788,27 @@ inline ::collection::count array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t
 
 
 
+template < typename ARRAY_BASE, int t_preallocated_array_size = 5 >
+class preallocated_array :
+   public ARRAY_BASE
+{
+public:
+   
+   
+   using CONTAINER_ITEM_TYPE = typename ARRAY_BASE::CONTAINER_ITEM_TYPE;
+   
+   
+   char  m_chaPreallocated[t_preallocated_array_size * sizeof(CONTAINER_ITEM_TYPE)];
+   
+   preallocated_array()
+   {
+      
+      this->m_eflagElement |= e_flag_preallocated;
+      this->m_begin = (CONTAINER_ITEM_TYPE *)m_chaPreallocated;
+      this->m_end = (CONTAINER_ITEM_TYPE *)m_chaPreallocated;
+      this->m_countAllocation = t_preallocated_array_size;
+      
+   }
+   
+   
+};

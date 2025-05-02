@@ -63,6 +63,7 @@ enum enum_flag : unsigned long long
    e_flag_automatic_result_just_after_running = 1ll << 48,
    e_flag_should_create_sequence_on_synchronicity = 1ll << 49,
    e_flag_destroyed = 1ll << 50,
+   e_flag_preallocated = 1ll << 51,
 
 };
 

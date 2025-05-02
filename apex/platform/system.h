@@ -171,7 +171,7 @@ namespace apex
 
       virtual void init2() override;
 
-      void defer_post_initial_request() override;
+      //void defer_post_initial_request() override;
 
       //void post_request(::request* prequest);
 

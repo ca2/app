@@ -64,8 +64,6 @@ public:
    inline void set_at(::collection::index nIndex, ARG_TYPE newElement);
 
 
-
-
    //inline const TYPE * data() const { return this->m_begin; }
    //inline TYPE * data() { return this->m_begin; }
 

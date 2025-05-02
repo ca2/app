@@ -1661,7 +1661,7 @@ void task::__task_term()
 
    ::pointer<::object>pparentTask = m_pobjectParentTask;
 
-   if (::is_set(pparentTask))
+   if (::is_set(pparentTask) && pparentTask != this)
    {
 
       try

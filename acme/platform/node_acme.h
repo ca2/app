@@ -179,6 +179,8 @@ namespace platform
 
 
       virtual void _will_finish_launching();
+      
+      virtual void _did_finish_launching();
 
 
       //virtual void element_quit_post_quit();

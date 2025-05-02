@@ -127,7 +127,9 @@ namespace platform
       //void initialize(::particle * pparticle) override;
 
 
-      virtual void start_application(::request* prequest);
+      //virtual void start_application(::request* prequest);
+      
+      virtual void start_application();
 
       //virtual void on_initialize_application();
 

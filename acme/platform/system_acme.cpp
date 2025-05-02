@@ -4692,7 +4692,12 @@ return nullptr;
    }
 
 
-   void acme_system_layer::on_open_untitled_file()
+void acme_system_layer::node_did_finish_launching()
+{
+}
+
+
+void acme_system_layer::on_open_untitled_file()
    {
    }
 

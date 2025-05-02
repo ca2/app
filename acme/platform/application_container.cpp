@@ -58,6 +58,8 @@ namespace platform
       __refdbg_add_referer_for(papplication);
 
       m_applicationa.add(papplication);
+      
+      
 
 //      if (papplication->m_bTransferToContainer)
 //      {
@@ -407,7 +409,7 @@ namespace platform
    }
 
 
-   ::pointer<::platform::application>application_container::create_application(const ::string& strAppId, ::request* prequest)
+   ::pointer<::platform::application>application_container::create_application(const ::string& strAppId)
    {
 
       auto papplication = instantiate_application(strAppId);
@@ -419,7 +421,9 @@ namespace platform
 
       }
 
-      papplication->start_application(prequest);
+      //papplication->start_application(prequest);
+      
+      papplication->start_application();
 
       return papplication;
 
@@ -457,9 +461,7 @@ namespace platform
       if (papplication.is_null())
       {
 
-         ::pointer<::request> prequest(e_create_new, this);
-
-         papplication = create_application(strAppId, prequest);
+         papplication = create_application(strAppId);
 
       }
 
@@ -597,7 +599,7 @@ namespace platform
       try
       {
 
-         papplication = create_application(strAppId, prequest);
+         papplication = create_application(strAppId);
 
       }
       catch (const ::exception& e)

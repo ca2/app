@@ -58,6 +58,24 @@ inline void copy_construct_count(TYPE * p, ::collection::count c, const TYPE * p
 }
 
 
+template < typename TYPE >
+inline void rear_copy_construct_count(TYPE * p, ::collection::count c, const TYPE * psource)
+{
+
+   while (c > 0)
+   {
+      
+      c--;
+
+      new(p)TYPE(psource[c]);
+
+      p++;
+
+   }
+
+}
+
+
 namespace constructor
 {
 
@@ -329,6 +347,19 @@ namespace typed
       }
 
 
+      inline void rear_copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+      {
+
+         while (c > 0)
+         {
+            c--;
+            copy(pdst, psrc + c);
+            pdst++;
+         }
+
+      }
+
+
       //inline TYPE * alloc(::collection::count c)
       //{
 
@@ -440,6 +471,23 @@ namespace typed
       }
 
 
+      inline void rear_copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+      {
+
+         while (c > 0)
+         {
+            
+            c--;
+
+            ::new (pdst) TYPE(psrc[c]);
+
+            pdst++;
+
+         }
+
+      }
+
+
       //inline  TYPE * alloc(::collection::count c, const char * pszFile, int iLine)
       //{
 
@@ -544,6 +592,17 @@ namespace typed
       {
 
          memory_copy(pdst, psrc, sizeof(TYPE) * c);
+
+      }
+
+      
+      inline  void rear_copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+      {
+
+         for(::collection::index i = 0; i < c; i++)
+         {
+            memory_copy(pdst + i, psrc + c - i - 1, sizeof(TYPE));
+         }
 
       }
 
@@ -667,6 +726,23 @@ namespace typed
 
       }
 
+      
+      inline  void rear_copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+      {
+
+         while (c > 0)
+         {
+
+            c--;
+
+            copy(pdst, psrc + c);
+
+            pdst++;
+
+         }
+
+      }
+
       /*    inline  TYPE * alloc(::collection::count c, const char * pszFile, int iLine)
           {
 
@@ -768,7 +844,17 @@ namespace typed
 
       }
 
+      inline  void raw_copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+      {
 
+         while (c > 0)
+         {
+            c--;
+            copy(pdst, psrc + c);
+            pdst++;
+         }
+
+      }
       //inline  TYPE * alloc(::collection::count c, const char * pszFile, int iLine)
       //{
 
@@ -882,6 +968,21 @@ namespace typed
 
       }
 
+      inline  void rear_copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+      {
+
+         while (c > 0)
+         {
+            
+            c--;
+
+            copy(pdst, psrc + c);
+
+            pdst++;
+
+         }
+
+      }
 
       //inline  TYPE * alloc(::collection::count c, const char * pszFile, int iLine)
       //{

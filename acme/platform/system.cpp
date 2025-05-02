@@ -2931,8 +2931,19 @@ namespace platform
 
       information() << "::apex::system::on_request session = " << ::type(psession).name() << "(" << ((iptr)psession) <<
          ")";
-
-      psession->post_request(prequest);
+      
+      if(prequest->m_bPreferSync)
+      {
+         
+         psession->request(prequest);
+         
+      }
+      else
+      {
+         
+         psession->post_request(prequest);
+         
+      }
 
    }
 
@@ -3575,6 +3586,30 @@ namespace platform
       //return ::success;
 
    }
+
+
+void system::node_did_finish_launching()
+{
+
+   //   auto pnode = node();
+   //
+   //   pnode->_will_finish_launching();
+
+   //   auto pnode = session();
+   //
+   //   auto puser = user();
+   //
+   //   auto pwindowing = system()->windowing();
+   //
+   //   pwindowing->_will_finish_launching();
+
+   auto pnode = node();
+
+   pnode->_did_finish_launching();
+
+   //return ::success;
+
+}
 
 
    void system::on_open_untitled_file()
@@ -4900,6 +4935,8 @@ void system_id_update(::platform::system* psystem, int iUpdate, long long iParam
 
 void node_will_finish_launching(::platform::system* psystem);
 
+void node_did_finish_launching(::platform::system* psystem);
+
 
 void system_on_open_untitled_file(::platform::system* psystem);
 
@@ -4911,6 +4948,14 @@ void node_will_finish_launching(::platform::system* psystem)
 {
 
    psystem->node_will_finish_launching();
+
+}
+
+
+void node_did_finish_launching(::platform::system* psystem)
+{
+
+   psystem->node_did_finish_launching();
 
 }
 

@@ -102,11 +102,22 @@ namespace platform
    if (!papplication)
    {
 
-      destroy();
+      throw ::exception(error_wrong_state, "request without application m_strAppId");
 
    }
 
    m_varCurrentImpactFile = prequest->m_payloadFile;
+      
+      if(prequest->m_bPreferSync)
+      {
+         papplication->request(prequest);
+      }
+      else
+      {
+         
+         papplication->post_request(prequest);
+         
+      }
 
 }
 

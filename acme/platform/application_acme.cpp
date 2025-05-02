@@ -64,7 +64,8 @@ namespace platform
    //void initialize(::particle * pparticle) override{}
 
 
-   void acme_application_layer::start_application(::request* prequest)
+   //void acme_application_layer::start_application(::request* prequest)
+void acme_application_layer::start_application()
    {
    }
 

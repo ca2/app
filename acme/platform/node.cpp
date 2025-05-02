@@ -519,6 +519,13 @@ namespace platform
    }
 
 
+   void node::_did_finish_launching()
+   {
+      
+      
+   }
+
+
    string node::audio_get_default_implementation_name()
    {
 

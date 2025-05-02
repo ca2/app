@@ -49,10 +49,12 @@ class CLASS_DECL_ACME notify_lock :
 public:
 
 
-   manual_reset_happening  *               m_pmanualresethappening;
+   manual_reset_happening * m_pmanualresethappening;
 
 
-   ::pointer < ::pointer_array< ::subparticle > > m_psynca;
+   //::pointer < ::pointer_array< ::subparticle > > m_psynca;
+   
+   ::preallocated_pointer_array < ::subparticle, 10 > m_synca;
    
    
    notify_lock(manual_reset_happening * pmanualresethappening):
@@ -64,14 +66,14 @@ public:
    void add(::subparticle *p)
    {
       
-      if(!m_psynca)
-      {
-         
-         __raw_construct_new(m_psynca);
-         
-      }
+//      if(!m_psynca)
+//      {
+//         
+//         __raw_construct_new(m_psynca);
+//         
+//      }
       
-      m_psynca->add_unique(p);
+      m_synca.add_unique(p);
       
 //      for (int i = 0; i < m_iSyncCount; i++)
 //      {
@@ -109,11 +111,11 @@ public:
 
    void erase(::subparticle *p)
    {
-      if(!m_psynca)
-      {
-         
-         return;
-      }
+//      if(!m_psynca)
+//      {
+//         
+//         return;
+//      }
    
 //      for (int i = 0; i < m_iSyncCount; i++)
 //      {
@@ -132,10 +134,11 @@ public:
    ~notify_lock() override
    {
       
-      if(m_psynca)
+//      if(m_psynca)
       {
 
-      for (auto & psync: *m_psynca)
+      //for (auto & psync: *m_psynca)
+         for (auto & psync: m_synca)
       {
          
          //auto & psync = m_synca[i];

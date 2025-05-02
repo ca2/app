@@ -3110,17 +3110,27 @@ pdirectorysystem->create("/ca2core");
       ::pointer<::request>prequest(e_create_new, this);
 
       prequest->m_payloadFile = pszFile;
+      
+      prequest->m_ecommand = e_command_file_open;
+      
+      prequest->m_strAppId = m_papplication->m_strAppId;
+      
+      prequest->m_bPreferSync = true;
+      
+      auto psession = session();
+      
+      psession->request(prequest);
 
-      auto papplication = application();
-
-      if (!papplication)
-      {
-
-         papplication = application();
-
-      }
-
-      papplication->post_request(prequest);
+//      auto papplication = application();
+//
+//      if (!papplication)
+//      {
+//
+//         papplication = application();
+//
+//      }
+//
+//      papplication->post_request(prequest);
 
       //      defer_accumulate_on_open_file({pszFile}, "");
 

@@ -417,7 +417,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = ". ${WorkspaceDir}/../operating_system/tool/bin/_on_after_build_dylib\n";
+			shellScript = ". $HOME/code/operating_system/tool/bin/_on_after_build_dylib\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

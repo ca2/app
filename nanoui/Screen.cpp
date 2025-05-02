@@ -1214,7 +1214,7 @@ namespace nanoui
                   && m_pwidgetLeftButtonDown == nullptr)
                {
 
-                  auto pointClient = m_mouse_pos - m_pwidgetDrag->parent()->absolute_position();
+                  auto pointClient = m_mouse_pos - m_pwidgetDrag->absolute_position();
 
                   bHandled |= m_pwidgetDrag->mouse_button_event(pointClient, emouse, false, bDoubleClick, ekeyModifiers);
 

@@ -178,6 +178,12 @@ t_phappeningNotifyLock;
          __raw_construct_new(t_phappeningNotifyLock);
          
       }
+      else
+      {
+         
+         t_phappeningNotifyLock->reset_happening();
+         
+      }
       //auto pnotifylock = __allocate notify_lock(t_phappeningNotifyLock);
       notify_lock notifylock(t_phappeningNotifyLock);
 

@@ -626,6 +626,8 @@ namespace platform
       //virtual void erase_signal_handlers(::particle * ppparticle);
 
       virtual void node_will_finish_launching();
+      
+      virtual void node_did_finish_launching();
 
       virtual void on_open_untitled_file();
 

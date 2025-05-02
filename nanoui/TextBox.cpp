@@ -77,12 +77,12 @@ namespace nanoui
 
       m_strValue = value;
 
-      if (focused())
-      {
-
-         focus_event(true);
-
-      }
+//      if (focused())
+//      {
+//
+//         focus_event(true);
+//
+//      }
 
       set_need_redraw();
 

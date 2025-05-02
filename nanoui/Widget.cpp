@@ -1508,7 +1508,7 @@ namespace nanoui
    }
 
 
-   bool Widget::on_mouse_button_in_place_edit(in_place_edit* pinplaceedit, bool bDown)
+   bool Widget::on_mouse_button_in_place_edit(in_place_edit* pinplaceedit, bool bDown, bool bDoubleClick)
    {
 
       if (::is_null(pinplaceedit))
@@ -1522,34 +1522,34 @@ namespace nanoui
 
       if (bDown)
       {
+         
+         pinplaceedit->m_iClickCount++;
 
          //information() << "LeftButtonDown on P connector : " << pconnector->m_iConnector;
-
-         if (!pinplaceedit->is_clicked() || pinplaceedit != m_pinplaceedit)
+         
+         if(m_pinplaceedit
+            && m_pinplaceedit == pinplaceedit
+            && m_pinplaceedit->m_pwidget)
          {
-
-            m_pinplaceedit = pinplaceedit;
-
-            pinplaceedit->m_iClickCount = 1;
-
-            pinplaceedit->set_need_update();
-
+            
+            return false;
+            
+            //      {
+            //
+            //         if (m_pinplaceedit->m_pwidget)
+            //         {
+            //
+            //            m_pinplaceedit->m_pwidget->end_in_place_edit();
+            //
+            //         }
+            //
+            //      }
+            
          }
-         else
+         else if (bDoubleClick || pinplaceedit->m_iClickCount == 2)
          {
-
-            pinplaceedit->m_iClickCount++;
-
-         }
-
-         return true;
-
-      }
-      else
-      {
-
-         if (pinplaceedit->m_iClickCount == 2)
-         {
+            
+            pinplaceedit->m_iClickCount = 0;
 
             auto rectangleEdit = pinplaceedit->get_edit_rectangle(this);
 
@@ -1601,15 +1601,33 @@ namespace nanoui
 
             }
 
-            return false;
-
          }
-         else if (pinplaceedit->m_iClickCount > 2)
+         else if (pinplaceedit->m_iClickCount == 1 || pinplaceedit != m_pinplaceedit)
          {
-
+            
             end_all_in_place_edits();
 
+            m_pinplaceedit = pinplaceedit;
+            
+            pinplaceedit->m_iClickCount = 1;
+
+            pinplaceedit->set_need_update();
+            
          }
+//         else if (pinplaceedit->m_iClickCount > 2)
+//         {
+//
+//            end_all_in_place_edits();
+//            
+//            pinplaceedit->m_iClickCount = 0;
+//
+//         }
+
+         return true;
+
+      }
+      else
+      {
 
          return false;
 

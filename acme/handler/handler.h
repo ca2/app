@@ -55,6 +55,8 @@ namespace handler
 
 
       ::pointer < ::request >             m_prequest;
+      
+      ::pointer < ::request >             m_prequestBeingAttended;
 
       ::payload                           m_payloadFile;
 
@@ -99,6 +101,7 @@ namespace handler
       virtual void handle(::message::message * pmessage);
       virtual void handle(::request * prequest);
 
+      void request(::request * prequest) override;
 
       virtual bool _handle_uri(const ::block & blockUri);
       virtual bool _handle_call(::payload & payload, const ::block & blockObject, const ::block & blockMember, ::property_set & propertyset);

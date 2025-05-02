@@ -78,6 +78,8 @@ namespace acme
          
          virtual void _will_finish_launching();
          
+         virtual void _did_finish_launching();
+         
          virtual void set_clipboard_text(const char * psz);
          
          virtual ::acme::windowing::window* get_application_host_window();

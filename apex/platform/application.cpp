@@ -10480,15 +10480,15 @@ namespace apex
          pdialog->center();
          
          auto pdialogRaw = pdialog.m_p;
+
          pbutton->set_callback_on_click([pdialogRaw]()
                                         {
             
             pdialogRaw->hide();
+
             pdialogRaw->destroy_window();
             
          });
-         
-         
          
          pdialog->show_front(puseractivationtoken);
          

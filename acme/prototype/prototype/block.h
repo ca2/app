@@ -395,10 +395,19 @@ public:
 
 
 template < typename TYPE >
-inline ::block as_block(const TYPE & type) 
-{ 
-   
+inline ::block as_memory_block(const TYPE & type)
+{
+
    return { (void *)&type, (memsize) sizeof(TYPE) };
+
+}
+
+
+template < primitive_character CHARACTER >
+inline ::block as_block(const ::range<const CHARACTER *> & range)
+{
+
+   return { (void *)range.m_begin, (memsize) (range.m_end - range.m_begin) * sizeof(CHARACTER) };
 
 }
 

@@ -3807,9 +3807,6 @@
     <ClInclude Include="prototype\prototype\_impl_payload.h">
       <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="prototype\collection\::property_set.h">
-      <Filter>Header Files\prototype\collection</Filter>
-    </ClInclude>
     <ClInclude Include="platform\url_context.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -4185,6 +4182,9 @@
     <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\types.h">
       <Filter>Header Files\operating_system-windows</Filter>
     </ClInclude>
+    <ClInclude Include="prototype\collection\property_set.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -4206,9 +4206,6 @@
       <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
     <ClCompile Include="prototype\prototype\property.cpp">
-      <Filter>Source Files\prototype\prototype</Filter>
-    </ClCompile>
-    <ClCompile Include="prototype\prototype\::property_set.cpp">
       <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
     <ClCompile Include="prototype\prototype\type.cpp">
@@ -5981,6 +5978,9 @@
     <ClCompile Include="handler\handler_context.cpp">
       <Filter>Source Files\handler</Filter>
     </ClCompile>
+    <ClCompile Include="prototype\prototype\property_set.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="prototype\string\_defer.h">
@@ -6018,6 +6018,9 @@
     </None>
     <None Include="constant\character_set.enum">
       <Filter>Header Files\constant</Filter>
+    </None>
+    <None Include="inline\application\main.inl">
+      <Filter>Header Files\inline\application</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

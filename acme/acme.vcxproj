@@ -2291,6 +2291,7 @@
     <ClInclude Include="_stdio.h" />
     <ClInclude Include="_win32_gdi.h" />
     <None Include="constant\character_set.enum" />
+    <None Include="inline\application\main.inl" />
     <None Include="inline\__apps.inl" />
     <None Include="memory\heap_namespace.inl">
       <FileType>Document</FileType>

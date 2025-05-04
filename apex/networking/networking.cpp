@@ -7,6 +7,7 @@
 #include "apex/networking/sockets/basic/listen_socket.h"
 #include "apex/networking/sockets/base/socket_thread.h"
 #include "apex/platform/node.h"
+#include "acme/exception/interface_only.h"
 
 
 //#define log_error(...) TRACE_LOG_ERROR(__VA_ARGS__)
@@ -163,6 +164,42 @@ namespace networking
    //   return true;
 
    //}
+
+
+   string networking::last_error_message(long long llError)
+   {
+
+      if (llError == 0x8000000000000000ll)
+      {
+
+         llError = last_error();
+
+      }
+
+      return _last_error_message(llError);
+
+   }
+
+
+   string networking::_last_error_message(long long llError)
+   {
+
+      throw interface_only();
+
+      return {};
+
+   }
+
+
+   long long networking::last_error()
+   {
+
+      throw interface_only();
+
+      return 0x8000000000000000;
+
+   }
+
 
 
    void networking::on_socket_thread_start()

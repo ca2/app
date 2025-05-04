@@ -1154,16 +1154,27 @@ end_processing_adding:
 
             int iError = m_iSelectErrno;
 
-#if defined(LINUX) || defined(MACOS)
+//#if defined(LINUX) || defined(MACOS)
 
-            information() << "m_maxsock: " << m_maxsock;
-            information() << "networking_bsd::socket_handler select error : "<< strerror(networking_last_error()) <<" ("<< networking_last_error() <<")";
+  //          information() << "m_maxsock: " << m_maxsock;
+            information() << "networking_bsd::socket_handler select error : "<< networking()->last_error_message(networking()->last_error()) <<" ("<< networking()->last_error() <<")";
 
-#elif defined(WINDOWS)
-
-            information() << "networking_bsd::socket_handler select error : "<< ::windows::last_error_message(iError) <<" ("<< iError <<")";
-
-#endif
+// #elif defined(WINDOWS)
+//
+//             information() << "networking_bsd::socket_handler select error : "<< ::windows::last_error_message(iError) <<" ("<< iError <<")";
+//
+// #endif
+//
+// #if defined(LINUX) || defined(MACOS)
+//
+//             information() << "m_maxsock: " << m_maxsock;
+//             information() << "networking_bsd::socket_handler select error : "<< strerror(networking_last_error()) <<" ("<< networking_last_error() <<")";
+//
+// #elif defined(WINDOWS)
+//
+//             information() << "networking_bsd::socket_handler select error : "<< ::windows::last_error_message(iError) <<" ("<< iError <<")";
+//
+// #endif
 
             if (iError == 10022)
             {

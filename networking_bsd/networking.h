@@ -150,6 +150,10 @@ namespace networking_bsd
       void initialize(::particle * pparticle) override;
       void destroy() override;
 
+
+      ::string _last_error_message(long long llError) override;
+      long long last_error() override;
+
       void on_socket_thread_start() override;
 
       bool gudo_set() override;

@@ -215,6 +215,7 @@ public:
    virtual ::file::watcher * file_watcher() const;
 
 
+   ::networking::networking * networking() const;
    //::http_system * http_system() const;
    //::platform::context * http() const;
    ::platform::http * http() const;

@@ -559,6 +559,14 @@ class ::user::user * particle::user() const
 }
 
 
+networking::networking* particle::networking() const
+{
+
+   return system()->networking();
+
+}
+
+
 
 ::factory::factory_pointer & particle::factory() const
 {

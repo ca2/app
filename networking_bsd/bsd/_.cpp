@@ -38,6 +38,22 @@ bool networking::defer_finalize_operating_system_networking()
 }
 
 
+string networking::_last_error_message(long long llError)
+{
+
+   return strerror((int) llError);
+
+}
+
+   long long networking::last_error()
+   {
+
+   return networking_last_error();
+
+   }
+
+
+
 } // namespace networking_bsd
 
 

@@ -72,6 +72,32 @@ namespace networking_bsd
 
    }
 
+//#if defined(LINUX) || defined(MACOS)
+
+   //information() << "m_maxsock: " << m_maxsock;
+  // information() << "networking_bsd::socket_handler select error : "<< strerror(networking_last_error()) <<" ("<< networking_last_error() <<")";
+
+//#elif defined(WINDOWS)
+
+//   information() << "networking_bsd::socket_handler select error : "<< ::windows::last_error_message(iError) <<" ("<< iError <<")";
+
+//#endif
+
+
+   string networking::_last_error_message(long long llError)
+   {
+
+      return bsd_socket_error((int) llError);
+
+   }
+
+   long long networking::last_error()
+   {
+
+      return networking_last_error();
+
+   }
+
 
 
 

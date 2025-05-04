@@ -57,12 +57,12 @@ namespace sockets_bsd
          */
          /* Block SIGQUIT and SIGUSR1; other threads created by main()
             will inherit a copy of the signal mask. */
-#ifdef LINUX
-         sigset_t set;
-         sigemptyset(&set);
-         sigaddset(&set, SIGPIPE);
-         pthread_sigmask(SIG_BLOCK, &set, nullptr);
-#endif
+//#ifdef LINUX
+  //       sigset_t set;
+    //     sigemptyset(&set);
+      //   sigaddset(&set, SIGPIPE);
+        // pthread_sigmask(SIG_BLOCK, &set, nullptr);
+//#endif
          if (SSL_get_shutdown(m_ssl) == 0)
             SSL_shutdown(m_ssl);
       }

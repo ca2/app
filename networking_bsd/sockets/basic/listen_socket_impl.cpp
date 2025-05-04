@@ -10,8 +10,75 @@
 #undef ERROR
 #define log_error(...) TRACE_LOG_ERROR(__VA_ARGS__)
 
+
+#if defined(OPENBSD)
+
+#include <signal.h>
+
+#include <libunwind.h>
+
+#include <cxxabi.h>
+#include <cstring>
+
+// Demangle C++ symbols using __cxa_demangle
+void demangle_and_print(const char *mangled_name) {
+    int status = 0;
+    char *demangled_name = abi::__cxa_demangle(mangled_name, nullptr, nullptr, &status);
+    
+    if (status == 0) {
+        // Successful demangling
+        fprintf(stderr, "%s\n", demangled_name);
+    } else {
+        // If demangling fails, print the mangled name
+        fprintf(stderr, "Failed to demangle: %s\n", mangled_name);
+    }
+    
+    // Free the allocated memory for the demangled name
+    free(demangled_name);
+}
+
+// Print a backtrace using libunwind
+void print_backtrace() {
+    unw_cursor_t cursor;
+    unw_context_t context;
+
+    unw_getcontext(&context);
+    unw_init_local(&cursor, &context);
+
+    fprintf(stderr, "Backtrace:\n");
+
+    while (unw_step(&cursor) > 0) {
+        char func_name[256];
+        unw_word_t offset, pc;
+
+        unw_get_reg(&cursor, UNW_REG_IP, &pc);
+        if (unw_get_proc_name(&cursor, func_name, sizeof(func_name), &offset) == 0) {
+            fprintf(stderr, "  0x%lx: ", (long)pc);
+            demangle_and_print(func_name);  // Demangle the function name
+        } else {
+            fprintf(stderr, "  0x%lx: [unknown]\n", (long)pc);
+        }
+    }
+}
+
+#endif
+
 namespace sockets_bsd
 {
+
+#if defined(OPENBSD)
+
+   // Signal handler function
+   void handle_sigpipe(int signum) 
+   {
+      
+      fprintf(stderr, "Caught SIGPIPE (signal %d)\n", signum);
+      
+      ::print_backtrace();
+
+   }
+   
+#endif
 
 
    //listen_socket_impl::listen_socket_impl() :
@@ -258,15 +325,32 @@ namespace sockets_bsd
    \lparam depth Listen queue depth */
    int listen_socket_impl::Bind(::networking::address * paddress,const string & protocol,int depth)
    {
+      
+#if defined(OPENBSD)
+      
+  //    if (signal(SIGPIPE, handle_sigpipe) == SIG_ERR) 
+//      {
+      
+    //    return 1;
+        
+      //}
+      
+#endif
 
       ::pointer < ::networking_bsd::address > paddress2 = paddress;
 
-      SOCKET s;
+      SOCKET s{};
+      
       m_iBindPort = paddress->get_service_number();
+      
       if ( (s = CreateSocket(paddress2->get_family(), SOCK_STREAM, protocol)) == INVALID_SOCKET)
       {
+         
          return -1;
+         
       }
+      
+      
       //::networking::address a = ad;
       //if (ad.get_family() == AF_INET6)
       //{
@@ -312,6 +396,19 @@ namespace sockets_bsd
          return -1;
 
       }
+      
+      ::string strAddress;
+      
+      ::cast < ::networking_bsd::networking > pbsdnetworking = networking();
+     
+      pbsdnetworking->convert(strAddress, ((sockaddr_in*)psockaddr)->sin_addr);
+      
+      information() << "bind() succeeded for address "
+                    << strAddress
+                    << " and port "
+                    << ::as_string(paddress2->get_service_number())
+                    << " with socket "
+                    << s;
 
       if (::listen(s, depth) != 0)
       {
@@ -325,6 +422,14 @@ namespace sockets_bsd
          return -1;
 
       }
+
+      information() << "listen() succeeded with depth "
+                    << depth
+                    << " for socket "
+                    << s 
+                    << " at thread "
+                    << ::task_get_name()
+                    << "(" << ::current_task_index() << ")";
 
       m_depth = depth;
 
@@ -390,6 +495,8 @@ namespace sockets_bsd
          return;
 
       }
+      
+      printf_line("listen_socket_impl::OnRead accept succeeded");
 
       ::pointer < ::sockets_bsd::socket_handler> phandler = m_psockethandler;
 
@@ -451,18 +558,28 @@ namespace sockets_bsd
       psocketImpl->m_strCipherList = m_strCipherList;
       psocketImpl-> EnableSSL(IsSSL()); // SSL Enabled socket
       psocketImpl-> SetIpv6( IsIpv6() );
+      printf_line("listen_socket_impl::OnRead 1");
       psocketImpl-> set_parent_socket(this);
+      printf_line("listen_socket_impl::OnRead 2");
       psocketImpl-> attach(socketAccept);
+      printf_line("listen_socket_impl::OnRead 3");
       psocketImpl->OnOptions(m_iFamily, m_iSocketType, m_iProtocolType, socketAccept);
+      printf_line("listen_socket_impl::OnRead 4");
       //psocketImpl-> SetNonblocking(true);
       auto paddressRemote = __allocate ::networking_bsd::address();
       paddressRemote->set_address(sockaddr.c, sockaddr_len);
+      printf_line("listen_socket_impl::OnRead 5");
       //tmp->SetRemoteHostname(::networking::address(*psa));
       psocketImpl->SetRemoteHostname(paddressRemote);
+      printf_line("listen_socket_impl::OnRead 6");
       psocketImpl->m_iBindPort = m_iBindPort;
+      printf_line("listen_socket_impl::OnRead 7");
       psocketImpl-> SetConnected(true);
+      printf_line("listen_socket_impl::OnRead 8");
       psocketImpl-> Init();
+      printf_line("listen_socket_impl::OnRead 9");
       psocketImpl-> SetDeleteByHandler(true);
+      printf_line("listen_socket_impl::OnRead A");
       if (psocketImpl-> IsSSL()) // SSL Enabled socket
       {
          // %! OnSSLAccept calls SSLNegotiate that can finish in this one call.
@@ -474,20 +591,25 @@ namespace sockets_bsd
          // %! the add problem altogether, so ignore the above.
          // %! (OnSSLAccept does no longer call SSLNegotiate().)
          psocketImpl-> OnSSLAccept();
+         printf_line("listen_socket_impl::OnRead B");
       }
       else
       {
          psocketImpl-> OnAccept();
+         printf_line("listen_socket_impl::OnRead C");
       }
       
       if (m_plistensocketInterface->m_bListeningDetach)
       {
          
          psocketImpl->prepare_for_detach();
-
+         printf_line("listen_socket_impl::OnRead D");
+         
       }
       else
       {
+         
+         printf_line("listen_socket_impl::OnRead Exception... is it not detached?!?!");
 
          throw "Debug... is it not detached?!?!";
 

@@ -125,7 +125,7 @@ bool prep_resolve_addr_file_func_line(const char * f)
    if (!abfd)
    {
 
-      perror("bfd_openr failed: ");
+      fprintf(stderr, "bfd_openr failed: ");
 
       return false;
 
@@ -170,7 +170,7 @@ void init_resolve_addr_file_func_line()
    if (l == -1)
    {
 
-      perror("failed to find executable\n");
+      fprintf(stderr, "failed to find executable\n");
 
       return false;
 

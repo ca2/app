@@ -1938,12 +1938,16 @@ bool base_socket::SetSoKeepalive(bool x)
 
 
 #if defined(SO_NOSIGPIPE) && defined(BSD_STYLE_SOCKETS)
-bool base_socket::SetSoNosigpipe(bool x)
-{
    
-   return _SetSoNosigpipe(GetSocketId(), x);
    
-}
+   bool base_socket::SetSoNosigpipe(bool x)
+   {
+   
+      return _SetSoNosigpipe(GetSocketId(), x);
+   
+   }
+   
+   
    bool base_socket::_SetSoNosigpipe(SOCKET s, bool x)
    {
 

@@ -44,7 +44,7 @@ pop3sock_t ssl_prepare(const int port)
 	sock->m_psock = ___new TcpSocket();
 	if(nullptr==sock->m_psock)
    {
-	   perror("ssl_prepare.socket");
+	   fprintf(stderr,"ssl_prepare.socket");
       free(sock);
 		return nullptr;
 	}
@@ -80,7 +80,7 @@ int i;
 
 	hostent_buf=gethostbyname(servername);
 	if(!hostent_buf){
-		perror("pop3_prepare.gethostbyname");
+		fprintf(stderr,"pop3_prepare.gethostbyname");
 		return BAD_SOCK;
 	}
     /* begin hostent deep copy */
@@ -120,7 +120,7 @@ int i;
 #else
 	sock=socket(AF_INET,SOCK_STREAM,0);
 	if(BAD_SOCK==sock){
-		perror("pop3_prepare.socket");
+		fprintf(stderr,"pop3_prepare.socket");
 	}
 #endif
 	return(sock);
@@ -160,14 +160,14 @@ char* buf;
 #endif
 
 	if(r==-1){
-		perror("pop3_connect.connect");
+		fprintf(stderr,"pop3_connect.connect");
 		return(nullptr);
 	}
 
 
 	buf=(char*)malloc(POPBUF);
 	if(!buf){
-		perror("pop3_connect.malloc");
+		fprintf(stderr,"pop3_connect.malloc");
 		return(nullptr);
 	}
 	r=pop3_recv(sock,buf,POPBUF); /* 512 is enough, as say RFC 1939 */

@@ -22,6 +22,8 @@
 #if defined(LINUX) || defined(__BSD__)
 #undef USE_MISC
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
 #endif
 
 
@@ -1146,13 +1148,17 @@ m_ibuf(isize)
       else
 #endif // HAVE_OPENSSL
       {
-#if defined(__APPLE__) || defined(SOLARIS)
-         //         n = (int) recv(GetSocketId(), buf, nBufSize, SO_NOSIGPIPE);
-         n = (int) ::recv(GetSocketId(), buf, nBufSize, 0);
+
+#if defined(MSG_NOSIGNAL) || defined(SOLARIS)
+         
+         n = ::recv(GetSocketId(), (char*)buf, (int)nBufSize, MSG_NOSIGNAL);
 
 #else
-         n = ::recv(GetSocketId(), (char*)buf, (int)nBufSize, MSG_NOSIGNAL);
+
+         n = (int) ::recv(GetSocketId(), buf, nBufSize, 0);
+         
 #endif
+
          if (n == -1)
          {
 
@@ -1564,7 +1570,17 @@ m_ibuf(isize)
 //#elif defined(SOLARIS)
 //         n = ::send(GetSocketId(), (const char*)buf, (int)len, 0);
 //#else
+
+#if defined(MSG_NOSIGNAL)
+
          n = ::send(GetSocketId(), (const char*)buf, (int)len, MSG_NOSIGNAL);
+         
+#else
+
+         n = ::send(GetSocketId(), (const char*)buf, (int)len, 0);
+         
+#endif
+
          ///#endif
          if (n == -1)
          {
@@ -2875,6 +2891,12 @@ m_ibuf(isize)
          return;
 
       }
+      
+#ifdef HAVE_OPENSSL
+
+      m_psslcontext.release();
+
+#endif
 
       int n;
 
@@ -2911,12 +2933,6 @@ m_ibuf(isize)
          }
 
       }
-
-#ifdef HAVE_OPENSSL
-
-      m_psslcontext.release();
-
-#endif
 
       socket::close();
 
@@ -3049,10 +3065,14 @@ m_ibuf(isize)
       __UNREFERENCED_PARAMETER(protocol);
 
       //informationf("socket::OnOptions()");
-
+      
 #ifdef SO_NOSIGPIPE
 
       _SetSoNosigpipe(s, true);
+      
+      printf_line("_SetSoNosigpipe for socket %d", s);
+      
+      preempt(5_s);
 
 #endif
 

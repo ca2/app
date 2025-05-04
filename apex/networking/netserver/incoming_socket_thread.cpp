@@ -3,6 +3,9 @@
 #include "incoming_socket_thread.h"
 
 
+#define THIS_FILE_DEBUG_LEVEL 9
+
+
 namespace netserver
 {
 
@@ -92,6 +95,12 @@ namespace netserver
          throw ::exception(error_bad_argument);
 
       }
+      
+      ::string strTaskName;
+      
+      strTaskName.formatf("netserver::incoming_socket_thread : typeid = %s", typeid(*this).name());
+      
+      ::task_set_name(strTaskName);
 
       while (task_get_run())
       {
@@ -120,17 +129,20 @@ namespace netserver
 
                for (m_iCurrentPort = m_iPortMinimum; ::task_get_run() && m_iCurrentPort <= m_iPortMaximum; )
                {
+                  
+                  auto iPort = m_iCurrentPort;
 
-                  int iError = m_pincomingsocket->Bind(m_strIp, (::networking::port_t)m_iCurrentPort);
+                  int iError = m_pincomingsocket->Bind(m_strIp, (::networking::port_t)iPort);
 
                   if (iError == 0)
                   {
 
                      string strMessage;
 
-                     strMessage.formatf("\n\nBound to address %s!!\n\n", m_strIp.c_str());
+                     strMessage.formatf("\n\nBound to address %s:%d!!\n\n", m_strIp.c_str(), iPort);
 
                      information(strMessage);
+                     
                   }
                   else
                   {
@@ -162,8 +174,26 @@ namespace netserver
 
                   while (m_psockethandlerIncoming->get_count() > 0 && task_get_run())
                   {
+                     
+#if defined(_DEBUG)
 
-                     m_psockethandlerIncoming->select(0, 200'000);
+#if THIS_FILE_DEBUG_LEVEL > 6
+                     
+                     printf_line("incoming_socket_thread select 30s incoming socket id %d", m_pincomingsocket->GetSocketId());
+                     
+                     m_psockethandlerIncoming->select(30, 0);
+                     
+#else
+                     
+                     m_psockethandlerIncoming->select(5, 0);
+                     
+#endif
+
+#else
+
+                     m_psockethandlerIncoming->select(1, 0);
+                     
+#endif
 
                   }
 

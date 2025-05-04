@@ -129,6 +129,26 @@ namespace networking
    }
 
 
+   //bool networking::convert(string& str, const struct ::in_addr& inaddr)
+   //{
+      
+      //throw ::interface_only();
+      
+      //return false;
+      
+   //}
+   
+   
+   //bool networking::convert(string& str, const struct ::in6_addr& inaddr6)
+   //{
+      
+      //throw ::interface_only();
+      
+      //return false;
+      
+   //}
+
+
    //bool networking::has_ip4_internet()
    //{
 

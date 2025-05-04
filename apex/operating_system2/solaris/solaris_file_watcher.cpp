@@ -182,7 +182,7 @@ namespace file_watcher
 
       if(ret < 0)
       {
-         perror("select");
+         fprintf(stderr, "select");
       }
       else if(FD_ISSET(mFD, &mDescriptorSet))
       {

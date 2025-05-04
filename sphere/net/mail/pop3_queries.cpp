@@ -31,7 +31,7 @@ timeout.tv_sec = time;
 timeout.tv_usec = 0;
 
    if(select(maximum, rfds, nullptr, nullptr, &timeout) <= 0){
-      perror("timeout reached\n");
+      fprintf(stderr,"timeout reached\n");
       return(1);
    }
    return(0);
@@ -74,12 +74,12 @@ char* buf;
 #endif
 	r=pop3_send(sock,(char *)query,strlen(query));
 	if(r==-1){
-		perror("pop3_query.send");
+		fprintf(stderr,"pop3_query.send");
 		return(nullptr);
 	}
 	buf=(char*)malloc(POPBUF +1); /* 512 chars + '\0' */ /* FIXME: free when ? */
 	if(!buf){
-		perror("pop3_query.malloc");
+		fprintf(stderr,"pop3_query.malloc");
 		return(nullptr);
 	}
 	/* memory_set(buf,0,POPBUF); SUGGEST: should not be an obligation */
@@ -87,7 +87,7 @@ char* buf;
 	while((buf[bytes-2]!='\r') && (buf[bytes-1]!='\n')){
 		r=pop3_recv(sock,buf+bytes,POPBUF-bytes);
 		if(r<=0){
-			perror("pop3_query.recv");
+			fprintf(stderr,"pop3_query.recv");
 			free(buf);
 			return(nullptr);
 		}
@@ -156,7 +156,7 @@ int tr;    /* total received */
 	if(cs == bs){
 		ret=(char*)realloc(buf,bs+1);
 		if(!ret){
-			perror("recv_rest.realloc");
+			fprintf(stderr,"recv_rest.realloc");
 			return buf;
 		}
         	cur = buf = ret;
@@ -173,7 +173,7 @@ int tr;    /* total received */
 			ret = (char*)realloc(buf, (bs *=2) +1);
 		}
 		if(!ret){
-			perror("recv_rest.realloc");
+			fprintf(stderr,"recv_rest.realloc");
 			return(buf);
 		}
 		buf = ret;
@@ -181,11 +181,11 @@ int tr;    /* total received */
 		if(timedrread(sock, SOCKET_TIMEOUT)){
 			cs=pop3_recv(sock, cur, TCPBUFLEN);
 			if (cs < 0){ /* socket error */
-				perror("Socket Error");
+				fprintf(stderr,"Socket Error");
 				free(buf);
 				return(nullptr);
 			} else if (cs == 0){ /* connection closed */
-				perror("Connection closed by peer");
+				fprintf(stderr,"Connection closed by peer");
 				free(buf);
 				return(nullptr);
 			}
@@ -227,19 +227,19 @@ char* buf;
 #endif
 	r=pop3_send(sock,query,strlen(query));
 	if(r==-1){
-		perror("pop3_list.send");
+		fprintf(stderr,"pop3_list.send");
 		return(nullptr);
 	}
 	/* now prepare a first short 512 bytes recv() */
 	/* it might be now enough for recv() from "LIST X" */
 	buf=(char*)malloc(POPBUF +1); /* 512 chars + '\0' */
 	if(!buf){
-		perror("pop3_list.malloc");
+		fprintf(stderr,"pop3_list.malloc");
 		return(nullptr);
 	}
 	r=pop3_recv(sock,buf,POPBUF);
    if(r < 0){ /* socket error */
-      perror("Socket Error");
+      fprintf(stderr,"Socket Error");
       free(buf);
       return(nullptr);
    }
@@ -272,23 +272,23 @@ char *buf;
    snprintf(query, POPBUF, "RETR %d\r\n", atom);
    r=pop3_send(sock, query, strlen(query));
    if(r == -1){
-      perror("pop3_retr.send");
+      fprintf(stderr,"pop3_retr.send");
       return(nullptr);
    }
    buf=(char*)malloc(POPBUF +1);/* 512 chars + '\0' */
    if(!buf) {
-      perror("pop3_retr.malloc");
+      fprintf(stderr,"pop3_retr.malloc");
       return(nullptr);
    }
    if(timedrread(sock, SOCKET_TIMEOUT)){
       r=pop3_recv(sock, buf, POPBUF); 
       if(r < 0){ /* socket error */
-         perror("Socket Error");
+         fprintf(stderr,"Socket Error");
          free(buf);
          return(nullptr);
       }
    }else{
-      perror("timeout reached\n");
+      fprintf(stderr,"timeout reached\n");
       free(buf);
       return(nullptr);
    }
@@ -302,7 +302,7 @@ char *buf;
    if (r > 0) {
       return(recv_rest(sock, buf, r, POPBUF));
    }else{
-      perror("nothing returned\n");
+      fprintf(stderr,"nothing returned\n");
       free(buf);
       return(nullptr);
    }
@@ -351,19 +351,19 @@ char* buf;
 #endif
 	r=pop3_send(sock,query,strlen(query));
 	if(r==-1){
-		perror("pop3_top.send");
+		fprintf(stderr,"pop3_top.send");
 		return(nullptr);
 	}
 	/* prepare first recv() of 512 bytes */
 	buf=(char*)malloc(POPBUF +1); /* 512 chars + '\0' */
 	if(!buf){
-		perror("pop3_top.malloc");
+		fprintf(stderr,"pop3_top.malloc");
 		return(nullptr);
 	}
 /*	memory_set(buf,0,POPBUG); SUGGEST: no obligation */
 	r=pop3_recv(sock,buf,POPBUF);
    if(r < 0){ /* socket error */
-      perror("Socket Error");
+      fprintf(stderr,"Socket Error");
       free(buf);
       return(nullptr);
    }
@@ -400,20 +400,20 @@ char* buf;
 #endif
 	r=pop3_send(sock,query,strlen(query));
 	if(r==-1){
-		perror("pop3_uidl.send");
+		fprintf(stderr,"pop3_uidl.send");
 		return(nullptr);
 	}
 	/* prepare first 512 bytes for recv() */
 	/* i hope this is also enough for the 'one line' short response */
 	buf=(char*)malloc(POPBUF +1); /* 512 chars + '\0' */
 	if(!buf){
-		perror("pop3_uidl.malloc");
+		fprintf(stderr,"pop3_uidl.malloc");
 		return(nullptr);
 	}
 	memory_set(buf,0,POPBUF);
 	r=pop3_recv(sock,buf,POPBUF);
    if (r < 0){ /* socket errorr */
-      perror("Socket Error");
+      fprintf(stderr,"Socket Error");
       free(buf);
       return(nullptr);
    }

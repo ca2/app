@@ -99,6 +99,9 @@ namespace networking
       virtual void destroy() override;
 
 
+      //virtual bool convert(string& str, const struct ::in_addr& inaddr);
+      //virtual bool convert(string& str, const struct ::in6_addr& inaddr6);
+
 
       virtual bool has_ip4_internet();
       virtual bool has_ip6_internet();

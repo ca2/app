@@ -224,10 +224,10 @@ namespace networking_bsd
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(__BSD__)
 
-      sigset_t blockedSignal;
-      sigemptyset(&blockedSignal);
-      sigaddset(&blockedSignal, SIGPIPE);
-      pthread_sigmask(SIG_BLOCK, &blockedSignal, NULL);
+      //sigset_t blockedSignal;
+      //sigemptyset(&blockedSignal);
+      //sigaddset(&blockedSignal, SIGPIPE);
+      //pthread_sigmask(SIG_BLOCK, &blockedSignal, NULL);
 #endif
 
    }

@@ -53,7 +53,7 @@ namespace sockets_bsd
       /** Bind and listen to any interface.
       \lparam port Port (0 is random)
       \lparam depth Listen queue depth */
-      virtual int Bind(::networking::port_t port,int depth = 20) override;
+      virtual int Bind(::networking::port_t port,int depth = 4096) override;
 
       int Bind(::networking::address * paddress,int depth) override;
 
@@ -61,26 +61,26 @@ namespace sockets_bsd
       \lparam port Port (0 is random)
       \lparam protocol Network protocol
       \lparam depth Listen queue depth */
-      int Bind(::networking::port_t port,const string & protocol,int depth = 20)  override;
+      int Bind(::networking::port_t port,const string & protocol,int depth = 4096)  override;
 
       /** Bind and listen to specific interface.
       \lparam intf Interface hostname
       \lparam port Port (0 is random)
       \lparam depth Listen queue depth */
-      int Bind(const string & intf,::networking::port_t port,int depth = 20) override;
+      int Bind(const string & intf,::networking::port_t port,int depth = 4096) override;
 
       /** Bind and listen to specific interface.
       \lparam intf Interface hostname
       \lparam port Port (0 is random)
       \lparam protocol Network protocol
       \lparam depth Listen queue depth */
-      int Bind(const string & intf,::networking::port_t port,const string & protocol,int depth = 20) override;
+      int Bind(const string & intf,::networking::port_t port,const string & protocol,int depth = 4096) override;
 
       /** Bind and listen to ipv4 interface.
       \lparam a Ipv4 interface address
       \lparam port Port (0 is random)
       \lparam depth Listen queue depth */
-      virtual int Bind(in_addr a,::networking::port_t port,int depth = 20);
+      virtual int Bind(in_addr a,::networking::port_t port,int depth = 4096);
 
       /** Bind and listen to ipv4 interface.
       \lparam a Ipv4 interface address
@@ -93,7 +93,7 @@ namespace sockets_bsd
       \lparam a Ipv6 interface address
       \lparam port Port (0 is random)
       \lparam depth Listen queue depth */
-      virtual int Bind(in6_addr a,::networking::port_t port,int depth = 20);
+      virtual int Bind(in6_addr a,::networking::port_t port,int depth = 4096);
 
 
       /** Bind and listen to ipv6 interface.

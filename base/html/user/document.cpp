@@ -116,18 +116,18 @@ void html_document::data_on_after_change(::message::message * pmessage)
 }
 
 
-void html_document::form_document_set_property_set(const property_set & set)
+void html_document::form_document_set_property_set(const ::property_set & set)
 {
 
-   get_html_data()->get_property_set() = set;
+   get_html_data()->property_set() = set;
 
 }
 
 
-property_set * html_document::form_document_get_property_set()
+::property_set * html_document::form_document_get_property_set()
 {
 
-   return &get_html_data()->get_property_set();
+   return &get_html_data()->property_set();
 
 }
 
@@ -383,7 +383,7 @@ void html_document::on_command(::message::command * pcommand)
    if(pcommand->command_id() == "viewindefaultbrowser")
    {
 
-      property_set propertyset;
+      ::property_set propertyset;
 
       papp->dialog_box("html_reader\\going_to_open_in_default_browser.xml", propertyset);
 

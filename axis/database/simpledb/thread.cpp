@@ -118,11 +118,11 @@ namespace simpledb
 
                string strBase64(pitem->m_memory.to_base64());
 
-               property_set set;
+               ::property_set set;
 
                string strUrl;
 
-               // property_set set;
+               // ::property_set set;
 
                ::url::parts parts("https://ca2.software/api/account/str_set_save");
 

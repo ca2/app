@@ -188,6 +188,9 @@
 #include "acme/prototype/string/scoped_string_base.h"
 
 
+//#include "acme/prototype/string/character_range.h"
+
+
 #include "acme/prototype/string/_format.h"
 
 
@@ -202,6 +205,9 @@
 
 #include  "acme/filesystem/file/binary_stream.h"
 
+
+#include  "acme/handler/topic.h"
+#include  "acme/handler/handler_context.h"
 
 
 #include "acme/filesystem/_impl.h"

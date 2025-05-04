@@ -16,7 +16,7 @@
 //}
 //
 //
-//string::operator+=(const ::payload & payload)
+//string::operator +=(const ::payload & payload)
 //{
 //
 //   return append(payload);
@@ -24,7 +24,7 @@
 //}
 //
 //
-//string::operator+=(const ::property & property)
+//string::operator +=(const ::property & property)
 //{
 //
 //   return append(property);
@@ -32,7 +32,7 @@
 //}
 //
 //
-//string::operator+=(const ::atom & atom)
+//string::operator +=(const ::atom & atom)
 //{
 //
 //   return append(atom);

@@ -121,7 +121,7 @@
             };
 
 
-            frame::enum_element operator++(frame::enum_element & eelement, int i);
+            frame::enum_element operator ++(frame::enum_element & eelement, int i);
 
 
          } // namespace lite

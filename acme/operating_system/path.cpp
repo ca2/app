@@ -174,7 +174,7 @@
 }
 
 
-bool path_get_next_path(::scoped_string & scopedstr, ::string::RANGE & rangePath)
+bool path_get_next_path(::scoped_string & scopedstr, ::string_range < const char * > & rangePath)
 {
 
    if(rangePath.is_empty())

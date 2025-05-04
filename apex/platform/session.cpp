@@ -592,54 +592,7 @@ class ::fs::data * session::fs()
 
       ::platform::session::on_request(prequest);
 
-      // auto psystem = system();
-      //
-      // if (prequest->m_ecommand == e_command_protocol)
-      // {
-      //
-      //    m_pappCurrent->request(prequest);
-      //
-      //    return;
-      //
-      // }
-      //
-      // information() << "::apex::session::on_request(::pointer<::create> " << ::type(this).name();
-      //
-      // //string strAppId = prequest->m_strAppId;
-      //
-      // //if (strAppId.is_empty())
-      // //{
-      //
-      // //   information() << "m_strAppId Is Empty!!";
-      //
-      // //   return;
-      //
-      // //}
-      //
-      // information() << "m_strAppId = " << prequest->m_strAppId;
-      //
-      // auto papplication = get_application(prequest->m_strAppId, true, prequest);
-      //
-      // if (!papplication)
-      // {
-      //
-      //    destroy();
-      //
-      // }
-      //
-      // m_varCurrentImpactFile = prequest->m_payloadFile;
-
    }
-
-
-   //::pointer<::user::menu_interaction>session::create_menu_button(::user::style_pointer & pstyle,::menu::item * pitem)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return nullptr;
-
-   //}
 
 
    bool session::open_by_file_extension(const ::string & pszPathName, ::request * prequest)

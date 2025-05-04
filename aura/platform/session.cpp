@@ -333,14 +333,6 @@ class ::fs::data * session::fs() { return m_pfsdata; }
    }
 
 
-   //void session::on_request(::request * prequest)
-   //{
-
-   //   ::apex::session::on_request(pcreate);
-
-   //}
-
-
    //bool session::open_by_file_extension(const ::string & pszPathName, ::request * prequest)
    //{
 

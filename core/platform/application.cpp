@@ -275,7 +275,7 @@ namespace core
 
 
 
-   bool application::handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, property_set & propertyset)
+   bool application::handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset)
    {
 
       if (strObject == "pane_tab_impact")

@@ -27,7 +27,7 @@ namespace mail
       string                           id();
       string                           m_strHeaders;
       string                           m_strBody;
-      property_set                     m_setHeaders;
+      ::property_set                     m_setHeaders;
 
       int                              m_iHeaderLine;
 

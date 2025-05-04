@@ -255,7 +255,7 @@ string_reference_buffer::string_reference_buffer(::string & str) :
    m_str(str) 
 {
    
-   m_str.m_erange |= e_range_buffer;
+   m_str.m_erange = (enum_range) (m_str.m_erange | e_range_buffer);
 
 }
 

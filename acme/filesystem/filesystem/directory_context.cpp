@@ -558,7 +558,7 @@ bool directory_context::_enumerate(::file::listing& listing)
    if (listing.m_pathFinal.case_insensitive_begins("http://") || listing.m_pathFinal.case_insensitive_begins("https://"))
    {
 
-      property_set set;
+      ::property_set set;
 
       string str = http()->get(listing.m_pathFinal.as_url(), set);
 
@@ -636,7 +636,7 @@ bool directory_context::_enumerate(::file::listing& listing)
 //   if (case_insensitive_string_begins(listing.m_pathUser, "http://") || case_insensitive_string_begins(listing.m_pathUser, "https://"))
 //   {
 //
-//      property_set set;
+//      ::property_set set;
 //
 //      string str = application()->http()->get(listing.m_pathUser, set);
 //
@@ -926,7 +926,7 @@ bool directory_context::fast_has_subdir(const ::file::path& path)
 
    //{
 
-   //   property_set set;
+   //   ::property_set set;
 
    //   bIs = Sess(papp).http()->exists(pcszPath, set);
 
@@ -1079,7 +1079,7 @@ bool directory_context::fast_has_subdir(const ::file::path& path)
 //   //if (case_insensitive_string_begins(path, "http://") || case_insensitive_string_begins(path, "https://"))
 //   //{
 //
-//   //   property_set set;
+//   //   ::property_set set;
 //
 //   //   if (path.flags() & ::file::e_flag_bypass_cache)
 //   //   {
@@ -1265,7 +1265,7 @@ bool directory_context::fast_has_subdir(const ::file::path& path)
 
       auto url = path.as_url();
 
-      property_set set;
+      ::property_set set;
 
       if (path.flags() & ::file::e_flag_bypass_cache)
       {
@@ -2109,7 +2109,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
       _synchronous_lock synchronouslock(psystem->matter_mutex());
 
-      property_set set;
+      ::property_set set;
 
       set["raw_http"] = true;
 
@@ -2240,7 +2240,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 //   if (psystem->directory_system()->m_bMatterFromHttpCache)
 //   {
 //
-//      property_set set;
+//      ::property_set set;
 //
 //      set["raw_http"] = true;
 //
@@ -2344,7 +2344,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
          pathLs0 /= application()->get_locale_schema_dir();
 
-         pathCache = psystem->directory_system()->m_pathLocalAppMatterCacheFolder / pathLs0 / patha[0] + ".map_question";
+         pathCache = psystem->directory_system()->m_pathLocalAppMatterCacheFolder / pathLs0 / (patha[0] + ".map_question");
 
          information() << "cache map path: " << pathCache;
 
@@ -2451,7 +2451,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
       }
 
-      property_set set;
+      ::property_set set;
 
       set["raw_http"] = true;
 
@@ -2919,6 +2919,7 @@ ret:
 
 }
 
+
 ::file::path directory_context::element_commonappdata(const ::string& strElement)
 {
 
@@ -2937,7 +2938,7 @@ ret:
 
       auto pStart = maximum(pFind1 + 1, pFind2 + 1);
 
-      strRelative = strRelative.left(pFind - 1) + "_" + strRelative.substr(pStart, pFind - pStart) + strRelative(pFind + 1);
+      strRelative = strRelative.left(pFind - 1) + "_" + ::as_string_range(pStart, pFind - pStart) + strRelative(pFind + 1);
 
    }
 

@@ -467,8 +467,8 @@ inline payload & copy(payload & payload, const class time & time)
 //}
 
 
-template < class T >
-inline pointer < T > payload::cast(T * pDefault)
+template < primitive_subparticle T >
+inline ::pointer < T > payload::cast(T * pDefault)
 {
 
    //if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
@@ -484,9 +484,18 @@ inline pointer < T > payload::cast(T * pDefault)
 
    //}
 
-   auto p = cast < T >();
+   auto psubparticle = get_subparticle();
 
-   if (!p)
+   if (!psubparticle)
+   {
+
+      return pDefault;
+
+   }
+
+   auto p = dynamic_cast<T*>(psubparticle);
+
+   if (!psubparticle)
    {
 
       return pDefault;
@@ -501,67 +510,67 @@ inline pointer < T > payload::cast(T * pDefault)
 
 
 
-template < class T >
-inline T & payload::get_cast(T * pDefault)
-{
-
-   //if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
-   //{
-
-   //   return m_ppayload->get_cast <T>(pDefault);
-
-   //}
-
-   //if (m_etype == e_type_property && m_pproperty != nullptr)
-   //{
-
-   //   return m_pproperty->payload().get_cast <T>(pDefault);
-
-   //}
-
-   if (m_etype != e_type_element)
-   {
-
-      return defer_create_type < T >(pDefault);
-
-   }
-
-   auto p = cast < T >();
-
-   if (!p)
-   {
-
-      return defer_create_type < T >(pDefault);
-
-   }
-
-   return *p;
-
-}
-
-
-template < class T >
-inline pointer < T > payload::cast()
-{
-
-   //if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
-   //{
-
-   //   return m_ppayload->cast < T >();
-
-   //}
-
-   //if (m_etype == e_type_property && m_pproperty != nullptr)
-   //{
-
-   //   return m_pproperty->cast < T >();
-
-   //}
+//template < class T >
+//inline T & payload::get_cast(T * pDefault)
+//{
+//
+//   //if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
+//   //{
+//
+//   //   return m_ppayload->get_cast <T>(pDefault);
+//
+//   //}
+//
+//   //if (m_etype == e_type_property && m_pproperty != nullptr)
+//   //{
+//
+//   //   return m_pproperty->payload().get_cast <T>(pDefault);
+//
+//   //}
+//
+//   if (m_etype != e_type_element)
+//   {
+//
+//      return defer_create_type < T >(pDefault);
+//
+//   }
+//
+//   auto p = cast < T >();
+//
+//   if (!p)
+//   {
+//
+//      return defer_create_type < T >(pDefault);
+//
+//   }
+//
+//   return *p;
+//
+//}
 
 
-   return get_subparticle();
-
-}
+//template < class T >
+//inline pointer < T > payload::cast()
+//{
+//
+//   //if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
+//   //{
+//
+//   //   return m_ppayload->cast < T >();
+//
+//   //}
+//
+//   //if (m_etype == e_type_property && m_pproperty != nullptr)
+//   //{
+//
+//   //   return m_pproperty->cast < T >();
+//
+//   //}
+//
+//
+//   return get_subparticle();
+//
+//}
 
 
 
@@ -719,7 +728,7 @@ namespace file
 
 
 //template < typename TYPE_CHAR >
-//string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const ::payload & payload)
+//string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator +=(const ::payload & payload)
 //{
 //
 //   return append(payload);
@@ -893,7 +902,7 @@ inline ::payload & copy(::payload & payload1, const ::payload & payload2)
 //}
 
 
-//inline ::string operator+(const ::scoped_string & scopedstr, const ::payload & payload)
+//inline ::string operator +(const ::scoped_string & scopedstr, const ::payload & payload)
 //{
 //
 //   return ::string(psz) + ::string(payload);
@@ -902,7 +911,7 @@ inline ::payload & copy(::payload & payload1, const ::payload & payload2)
 
 
 //template < primitive_character CHARACTER >
-//inline ::string_base < CHARACTER > & operator+=(::string_base < CHARACTER > & str, const ::payload & payload)
+//inline ::string_base < CHARACTER > & operator +=(::string_base < CHARACTER > & str, const ::payload & payload)
 //{
 //
 //   return str.operator += ((::string) payload);

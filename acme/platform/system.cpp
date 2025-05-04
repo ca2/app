@@ -66,11 +66,11 @@
 //#endif
 
 
-CLASS_DECL_ACME ::string get_operating_system_name();
+CLASS_DECL_ACME::string get_operating_system_name();
 
 
 CLASS_DECL_ACME void exception_message_box(::particle* pparticle, ::exception& exception,
-                                           const ::string& strMoreDetails);
+   const ::string& strMoreDetails);
 
 
 CLASS_DECL_ACME void trace_category_static_init(::platform::system* psystem);
@@ -128,7 +128,7 @@ CLASS_DECL_ACME void trace_category_static_term();
 
 
 enum_dialog_result message_box_for_console(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrTitle,
-                                           const ::enum_message_box& emessagebox);
+   const ::enum_message_box& emessagebox);
 
 
 #include "acme/_operating_system.h"
@@ -146,7 +146,7 @@ namespace platform
 
    system::system()
    {
-      
+
       if (!s_p)
       {
 
@@ -190,7 +190,7 @@ namespace platform
 #if REFERENCING_DEBUGGING
       iAddUp += sizeof(payload.m_preferer);
 #endif
-      int iComputed = (int)(((unsigned char *)pAll - (unsigned char *)pType) + iAll + iAddUp);
+      int iComputed = (int)(((unsigned char*)pAll - (unsigned char*)pType) + iAll + iAddUp);
       int iColor = sizeof(payload.m_color);
       int iStr = sizeof(payload.m_str);
       int iHls = sizeof(payload.m_hls);
@@ -209,7 +209,7 @@ namespace platform
 
       }
 #endif
-      
+
       m_pintstringLanguageResourceMap = nullptr;
 
       m_bFinalizeIfNoSession = false;
@@ -230,7 +230,7 @@ namespace platform
 
    system::~system()
    {
-      
+
       if (m_pmanualresethappeningSystemTaskFinished)
       {
 
@@ -271,29 +271,29 @@ namespace platform
    }
 
 
-void system::application_main()
-{
-   
-   if(!m_papplicationMain)
+   void system::application_main()
    {
-      
-      __raw_construct(m_papplicationMain);
-      
+
+      if (!m_papplicationMain)
+      {
+
+         __raw_construct(m_papplicationMain);
+
+      }
+
+      application_main(m_papplicationMain);
+
    }
-   
-   application_main(m_papplicationMain);
-
-}
 
 
-void system::transfer_application(::pointer < ::platform::application > && papplication)
-{
-   
-   m_papplicationMain = ::transfer(papplication);
-   
-   m_papplication = m_papplicationMain;
-   
-}
+   void system::transfer_application(::pointer < ::platform::application >&& papplication)
+   {
+
+      m_papplicationMain = ::transfer(papplication);
+
+      m_papplication = m_papplicationMain;
+
+   }
 
 
    // void system::on_set_platform()
@@ -480,7 +480,7 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
 
 
 
-   ::task_message_queue * system::task_message_queue()
+   ::task_message_queue* system::task_message_queue()
    {
 
       return m_ptaskmessagequeue;
@@ -488,7 +488,7 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
    }
 
 
-   ::thread_storage * system::thread_storage(const ::task_index & taskindex)
+   ::thread_storage* system::thread_storage(const ::task_index& taskindex)
    {
 
       critical_section_lock lock(&m_criticalsectionThreadStorage);
@@ -500,7 +500,7 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
    }
 
 
-   ::thread_storage * system::_thread_storage_unlocked(const ::task_index & taskindex)
+   ::thread_storage* system::_thread_storage_unlocked(const ::task_index& taskindex)
    {
 
       auto ppairThreadStorage = m_mapThreadStorage.plookup(taskindex);
@@ -599,7 +599,9 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
 
       //____creatable(task);
 
-      m_bPostedInitialRequest = false;
+      //m_bPostedInitialRequest = false;
+
+      m_bPostedCommandLineFileOpen = false;
 
       //m_bOnInitializeWindowObject = false;
 
@@ -621,14 +623,14 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
    }
 
 
-   void system::application_main(::platform::application * papplication)
+   void system::application_main(::platform::application* papplication)
    {
-      
+
       papplication->initialize_application();
-      
-      
+
+
       m_pdynamiclibrary->initialize(papplication);
-      
+
 
       create_os_node(papplication);
 
@@ -638,7 +640,7 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
 
       initialize_layer();
 
-      
+
       papplication->initialize(papplication);
 
       // system.branch_synchronously();
@@ -706,7 +708,7 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
          //call_init_system();
 
       /*auto estatus =*/
-      init_system();
+         init_system();
 
       //if (!estatus)
       //{
@@ -720,9 +722,9 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
    }
 
 
-   void system::on_branch_system_from_main_thread_startup(::task_handler * ptaskhandler)
+   void system::on_branch_system_from_main_thread_startup(::task_handler* ptaskhandler)
    {
-      
+
       information() << "platform::system::on_branch_system_from_main_thread_startup START";
 
       m_itask = nullptr;
@@ -736,7 +738,7 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
       // because just above system() has begin_synch()
       // so the running thread is holding references to the system() thread.
       //release();
-      
+
       information() << "platform::system::on_branch_system_from_main_thread_startup END";
 
    }
@@ -850,12 +852,12 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
 
    ::crypto::crypto* system::crypto()
    {
-      
-      if(!m_pcrypto)
+
+      if (!m_pcrypto)
       {
-         
+
          initialize_crypto();
-         
+
       }
 
       return m_pcrypto;
@@ -886,7 +888,7 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
    }
 
 
-   void system::create_os_node(::platform::application * papplication)
+   void system::create_os_node(::platform::application* papplication)
    {
 
       if (m_pnode)
@@ -898,9 +900,9 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
 
       //information() <<"::platform::system create_os_node";
 
-      if(m_bConsole)
+      if (m_bConsole)
       {
-         
+
          auto pfactory = node_factory();
 
          if (!pfactory)
@@ -943,7 +945,7 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
       // }
 
       //__øconstruct(m_pmutexTask);
-         
+
       __øconstruct(m_pmutexHttpDownload);
 
       //if(!estatus)
@@ -980,7 +982,7 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
    }
 
 
-   ::factory::factory * system::node_factory()
+   ::factory::factory* system::node_factory()
    {
 
       auto& pfactory = factory("acme", OPERATING_SYSTEM_NAME);
@@ -1062,11 +1064,11 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
 
        }*/
 
-      //      m_pdirectorysystem = pdirectorysystem;
+       //      m_pdirectorysystem = pdirectorysystem;
 
-      //    m_pdirectorysystem->increment_reference_count();
+       //    m_pdirectorysystem->increment_reference_count();
 
-      //estatus = __raw_construct(m_pfilesystem);
+       //estatus = __raw_construct(m_pfilesystem);
 
       __raw_construct(m_pfilesystem);
 
@@ -1364,7 +1366,7 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
    //   }
 
 
-   ::task* system::get_task(const ::task_index & taskindex)
+   ::task* system::get_task(const ::task_index& taskindex)
    {
 
       //critical_section_lock criticalsectionlock(&m_criticalsectionTask);
@@ -1402,7 +1404,7 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
 
       __refdbg_add_referer_for(ptask);
 
-      auto & threadstorage = m_mapThreadStorage[ptask->m_taskindex];
+      auto& threadstorage = m_mapThreadStorage[ptask->m_taskindex];
 
       threadstorage.m_ptask = ptask;
 
@@ -1455,7 +1457,7 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
    }
 
 
-   bool system::is_task_set(const ::task_index & taskindex)
+   bool system::is_task_set(const ::task_index& taskindex)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsectionThreadStorage);
@@ -1623,24 +1625,27 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
    {
 
       return m_pdatetime;
+
    }
 
 
    path_system* system::path_system() const
    {
 
-
       return m_ppathsystem;
+
    }
 
 
    geometry::geometry* system::geometry()
    {
+
       return m_pgeometry;
+
    }
 
-   
-   ::file::watcher * system::file_watcher() const
+
+   ::file::watcher* system::file_watcher() const
    {
 
       return m_pfilewatcher;
@@ -1652,6 +1657,7 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
    {
 
       return m_pfilesystem;
+
    }
 
 
@@ -1659,6 +1665,7 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
    {
 
       return m_pdirectorysystem;
+
    }
 
 
@@ -1673,6 +1680,7 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
       }
 
       return m_pxml;
+
    }
 
 
@@ -1680,12 +1688,15 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
    {
 
       return m_pbase64;
+
    }
 
 
    prototype::prototype* system::prototype()
    {
+
       return m_pprototype;
+
    }
 
 
@@ -1693,25 +1704,27 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
    {
 
       return m_pnetworking;
+
    }
 
 
-   ::platform::node * system::node()
+   ::platform::node* system::node()
    {
 
       return m_pnode;
-      
+
    }
 
 
-   class ::time * system::file_listing_cache_time()
+   class ::time* system::file_listing_cache_time()
    {
 
       return &m_timeFileListingCache;
+
    }
 
 
-   ::string system::http_text(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrKey, const scoped_string & strLocale, const ::scoped_string & strSchema)
+   ::string system::http_text(const ::scoped_string& scopedstrPath, const ::scoped_string& scopedstrKey, const scoped_string& strLocale, const ::scoped_string& strSchema)
    {
 
       if (!m_papplication->m_bFetchFromNetnode)
@@ -1722,7 +1735,7 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
       }
 
       ::string str;
-      
+
       if (m_mapText[scopedstrPath].lookup(scopedstrKey, str))
       {
 
@@ -1749,29 +1762,35 @@ void system::transfer_application(::pointer < ::platform::application > && pappl
    }
 
 
-   string_array * system::http_download_array()
+   string_array* system::http_download_array()
    {
 
       return &m_straHttpDownloading;
+
    }
 
 
-   string_array * system::http_exists_array()
+   string_array* system::http_exists_array()
    {
 
       return &m_straHttpExists;
+
    }
 
-particle* system::matter_mutex()
-{
+
+   particle* system::matter_mutex()
+   {
 
       return m_pmutexMatter;
-}
+
+   }
+
 
    particle* system::http_download_mutex()
    {
 
       return m_pmutexHttpDownload;
+
    }
 
 
@@ -1825,7 +1844,7 @@ particle* system::matter_mutex()
    }
 
 
-   bool system::_handle_uri(const ::block & block)
+   bool system::_handle_uri(const ::block& block)
    {
 
       if (::handler::handler::_handle_uri(block))
@@ -2053,7 +2072,7 @@ particle* system::matter_mutex()
 
       m_papplication->initialize(this);
 
-      m_papplication->get_property_set().merge(get_property_set());
+      m_papplication->property_set().merge(property_set());
 
       //*((::APPLICATION_FLAGS *)this) = *application();
 
@@ -2125,12 +2144,12 @@ particle* system::matter_mutex()
    }
 
 
-   ::component * system::component(const ::scoped_string & scopedstrComponent)
+   ::component* system::component(const ::scoped_string& scopedstrComponent)
    {
 
       _synchronous_lock synchronouslock(this->ui_destroyed_synchronization());
 
-      auto & pcomponent = m_mapComponent[scopedstrComponent];
+      auto& pcomponent = m_mapComponent[scopedstrComponent];
 
       if (pcomponent.is_null())
       {
@@ -2157,7 +2176,7 @@ particle* system::matter_mutex()
    }
 
 
-   ::string system::component_path(const ::scoped_string & scopedstrComponent)
+   ::string system::component_path(const ::scoped_string& scopedstrComponent)
    {
 
       return {};
@@ -2704,7 +2723,7 @@ particle* system::matter_mutex()
 
          }
 
-         stra.add({pStart, pEnd - pStart - 1});
+         stra.add({ pStart, pEnd - pStart - 1 });
 
       }
 
@@ -2714,7 +2733,7 @@ particle* system::matter_mutex()
 
       information() << "platform::system::get_public_internet_domain_extension_list";
 
-      for (auto& str: stra)
+      for (auto& str : stra)
       {
 
          informationf("%s", str.c_str());
@@ -2915,7 +2934,7 @@ particle* system::matter_mutex()
       information() << "::apex::system::on_request session = " << ::type(psession).name() << "(" << ((iptr)psession) <<
          ")";
 
-      psession->post_request(prequest);
+      psession->call_request(prequest);
 
    }
 
@@ -2950,13 +2969,148 @@ particle* system::matter_mutex()
    //}
 
 
-   void system::defer_post_initial_request()
+   void system::post_application_start()
    {
 
-      if (!m_bPostedInitialRequest)
+      auto prequest = __create_new<::request>();
+      prequest->m_ecommand = e_command_application_start;
+      ::string strAppId = m_papplication->m_strAppId;
+      prequest->m_strAppId = strAppId;
+      prequest->m_bPreferSync = true;
+      call_request(prequest);
+
+   }
+
+
+   //void system::defer_post_initial_request()
+   //{
+
+   //   if (!m_bPostedInitialRequest)
+   //   {
+
+   //      m_bPostedInitialRequest = true;
+
+   //      auto prequest = __create_new<::request>();
+
+   //      post_request(prequest);
+
+
+   //      auto prequest = __create_new<::request>();
+
+   //      auto strCommandLine = this->m_strCommandLine;
+
+   //      strCommandLine.trim();
+
+   //      prequest->m_strAppId = application()->m_strAppId;
+
+   //      ::string strApp;
+
+   //      if (strCommandLine.has_character())
+   //      {
+
+   //         information() << "system::defer_post_initial_request ***strCommandLine*** : ***" << strCommandLine << "***";
+
+   //         prequest->m_strCommandLine = strCommandLine;
+
+   //         prequest->property_set()._008ParseCommandFork(
+   //            strCommandLine,
+   //            prequest->m_payloadFile,
+   //            strApp);
+
+   //      }
+   //      else
+   //      {
+
+   //         strApp = this->m_args[0];
+
+   //         ::string_array straFiles;
+
+   //         for (int iArgument = 1; iArgument < this->m_argc;)
+   //         {
+
+   //            auto iArgumentBefore = iArgument;
+
+   //            if (node()->defer_consume_main_arguments(
+   //               this->m_argc,
+   //               this->m_args,
+   //               iArgument)
+   //               && iArgument > iArgumentBefore)
+   //            {
+
+   //               continue;
+
+   //            }
+
+   //            if (application()->defer_consume_main_arguments(
+   //               this->m_argc,
+   //               this->m_args,
+   //               iArgument)
+   //               && iArgument > iArgumentBefore)
+   //            {
+
+   //               continue;
+
+   //            }
+
+   //            ::string strArgument = this->m_args[iArgument];
+
+   //            if (strArgument.begins("-"))
+   //            {
+
+   //               prequest->property_set()._008AddArgument(strArgument);
+
+   //            }
+   //            else
+   //            {
+
+   //               straFiles.add(strArgument);
+
+   //            }
+
+   //            iArgument++;
+
+   //         }
+
+   //         if (straFiles.has_elements())
+   //         {
+
+   //            prequest->m_ecommand = e_command_file_open;
+
+   //            if (straFiles.size() == 1)
+   //            {
+
+   //               prequest->m_payloadFile = straFiles[0];
+
+   //            }
+   //            else
+   //            {
+
+   //               prequest->m_payloadFile.string_array_reference() = straFiles;
+
+   //            }
+
+   //         }
+
+   //      }
+
+   //      payload("command_line_arg0") = strApp;
+
+   //      application()->property_set().merge(prequest->property_set());
+
+   //      post_request(prequest);
+
+   //   }
+
+   //}
+
+
+   void system::defer_post_file_open()
+   {
+
+      if (!m_bPostedCommandLineFileOpen)
       {
 
-         m_bPostedInitialRequest = true;
+         m_bPostedCommandLineFileOpen = true;
 
          auto prequest = __create_new<::request>();
 
@@ -2975,7 +3129,7 @@ particle* system::matter_mutex()
 
             prequest->m_strCommandLine = strCommandLine;
 
-            prequest->get_property_set()._008ParseCommandFork(
+            prequest->property_set()._008ParseCommandFork(
                strCommandLine,
                prequest->m_payloadFile,
                strApp);
@@ -2994,10 +3148,10 @@ particle* system::matter_mutex()
                auto iArgumentBefore = iArgument;
 
                if (node()->defer_consume_main_arguments(
-                      this->m_argc,
-                      this->m_args,
-                      iArgument)
-                   && iArgument > iArgumentBefore)
+                  this->m_argc,
+                  this->m_args,
+                  iArgument)
+                  && iArgument > iArgumentBefore)
                {
 
                   continue;
@@ -3005,10 +3159,10 @@ particle* system::matter_mutex()
                }
 
                if (application()->defer_consume_main_arguments(
-                      this->m_argc,
-                      this->m_args,
-                      iArgument)
-                   && iArgument > iArgumentBefore)
+                  this->m_argc,
+                  this->m_args,
+                  iArgument)
+                  && iArgument > iArgumentBefore)
                {
 
                   continue;
@@ -3020,7 +3174,7 @@ particle* system::matter_mutex()
                if (strArgument.begins("-"))
                {
 
-                  prequest->get_property_set()._008AddArgument(strArgument);
+                  prequest->property_set()._008AddArgument(strArgument);
 
                }
                else
@@ -3054,15 +3208,37 @@ particle* system::matter_mutex()
 
          }
 
-         payload("command_line_arg0") = strApp;
+         if (!prequest->m_payloadFile.is_empty())
+         {
 
-         application()->get_property_set().merge(prequest->get_property_set());
+            prequest->m_ecommand = e_command_file_open;
 
-         post_request(prequest);
+            payload("command_line_arg0") = strApp;
+
+            application()->property_set().merge(prequest->property_set());
+
+            prequest->m_bPreferSync = true;
+
+            call_request(prequest);
+
+         }
 
       }
 
    }
+
+
+   void system::post_application_started()
+   {
+
+      auto prequest = __create_new<::request>();
+      prequest->m_ecommand = e_command_application_started;
+      prequest->m_strAppId = m_papplication->m_strAppId;
+      prequest->m_bPreferSync = true;
+      call_request(prequest);
+
+   }
+
 
 
    void system::canonical_system_main()
@@ -3285,7 +3461,7 @@ particle* system::matter_mutex()
    }
 
 
-   ::factory::factory * system::folder_factory()
+   ::factory::factory* system::folder_factory()
    {
 
       if (m_pfactoryFolder)
@@ -3378,31 +3554,31 @@ particle* system::matter_mutex()
    }
 
 
-   void system::handle(::topic * ptopic, ::handler_context * phandlercontext)
+   void system::handle(::topic* ptopic, ::handler_context* phandlercontext)
    {
-      
-      if(ptopic->id() == id_initialize_host_window)
+
+      if (ptopic->id() == id_initialize_host_window)
       {
-       
+
          acme_windowing()->defer_initialize_host_window(nullptr);
-         
+
       }
-      else if(ptopic->id() == id_defer_create_context_button)
+      else if (ptopic->id() == id_defer_create_context_button)
       {
-         
+
          auto pwindow = acme_windowing()->get_application_host_window();
-         
+
          ::cast < ::acme::sandbox_windowing::host_interaction> phostinteraction = pwindow->m_pacmeuserinteraction;
-         
+
          phostinteraction->create_context_button();
-         
+
       }
-      else if(ptopic->id() == id_defer_post_initial_request)
-      {
-         
-         defer_post_initial_request();
-         
-      }
+      //else if (ptopic->id() == id_defer_post_initial_request)
+      //{
+
+      //   defer_post_initial_request();
+
+      //}
       else if (ptopic->id() == id_get_operating_system_dark_mode_reply)
       {
 
@@ -3492,7 +3668,7 @@ particle* system::matter_mutex()
          if (::is_set(application()))
          {
 
-            auto pszUrl = (const char *)ptopic->payload("wparam").as_iptr();
+            auto pszUrl = (const char*)ptopic->payload("wparam").as_iptr();
 
             application()->did_pick_document_at_url(pszUrl);
 
@@ -3503,9 +3679,9 @@ particle* system::matter_mutex()
    }
 
 
-   void system::call_message(const ::enum_message & emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle)
+   void system::call_message(const ::enum_message& emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle)
    {
-      
+
    }
 
 
@@ -3560,15 +3736,39 @@ particle* system::matter_mutex()
    }
 
 
+   void system::node_did_finish_launching()
+   {
+
+      //   auto pnode = node();
+      //
+      //   pnode->_will_finish_launching();
+
+      //   auto pnode = session();
+      //
+      //   auto puser = user();
+      //
+      //   auto pwindowing = system()->windowing();
+      //
+      //   pwindowing->_will_finish_launching();
+
+      auto pnode = node();
+
+      pnode->_did_finish_launching();
+
+      //return ::success;
+
+   }
+
+
    void system::on_open_untitled_file()
    {
 
-      if (!m_bPostedInitialRequest)
-      {
+      //if (!m_bPostedInitialRequest)
+      //{
 
-         defer_post_initial_request();
+      //   defer_post_initial_request();
 
-      }
+      //}
 
       //      throw ::interface_only();
 
@@ -3637,7 +3837,7 @@ particle* system::matter_mutex()
 
       __refdbg_add_referer
 
-      auto pcompress = m_pfactoryitemCompressZlib->__call__create_particle();
+         auto pcompress = m_pfactoryitemCompressZlib->__call__create_particle();
 
       pcompress->initialize(this);
 
@@ -3660,7 +3860,7 @@ particle* system::matter_mutex()
 
       __refdbg_add_referer
 
-      auto puncompress = m_pfactoryitemUncompressZlib->__call__create_particle();
+         auto puncompress = m_pfactoryitemUncompressZlib->__call__create_particle();
 
       puncompress->initialize(this);
 
@@ -3670,7 +3870,7 @@ particle* system::matter_mutex()
 
 
    void system::_compress(const ::payload& payloadTarget, const ::payload& payloadSource,
-                          const ::scoped_string& scopedstrImplementation)
+      const ::scoped_string& scopedstrImplementation)
    {
 
       ::pointer<::compress> pcompress = _new_compress(scopedstrImplementation);
@@ -3685,8 +3885,8 @@ particle* system::matter_mutex()
        }*/
 
       auto pfileTarget = file_system()->get_file(payloadTarget,
-                                                 ::file::e_open_write | ::file::e_open_defer_create_directory |
-                                                 ::file::e_open_binary);
+         ::file::e_open_write | ::file::e_open_defer_create_directory |
+         ::file::e_open_binary);
 
       auto pfileSource = file_system()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
 
@@ -3706,8 +3906,8 @@ particle* system::matter_mutex()
 
 
    void system::_uncompress(const ::payload& payloadTarget, const ::payload& payloadSource,
-                            const ::scoped_string& scopedstrImplementation,
-                            transfer_progress_function transferprogressfunction)
+      const ::scoped_string& scopedstrImplementation,
+      transfer_progress_function transferprogressfunction)
    {
 
       ::pointer<::uncompress> puncompress = _new_uncompress(scopedstrImplementation);
@@ -3722,8 +3922,8 @@ particle* system::matter_mutex()
       //}
 
       auto pfileTarget = file_system()->get_file(payloadTarget,
-                                                 ::file::e_open_write | ::file::e_open_defer_create_directory |
-                                                 ::file::e_open_binary);
+         ::file::e_open_write | ::file::e_open_defer_create_directory |
+         ::file::e_open_binary);
 
       auto pfileSource = file_system()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
 
@@ -3757,8 +3957,8 @@ particle* system::matter_mutex()
        }*/
 
       auto pfileTarget = file_system()->get_file(payloadTarget,
-                                                 ::file::e_open_write | ::file::e_open_defer_create_directory |
-                                                 ::file::e_open_binary);
+         ::file::e_open_write | ::file::e_open_defer_create_directory |
+         ::file::e_open_binary);
 
       auto pfileSource = file_system()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
 
@@ -3778,7 +3978,7 @@ particle* system::matter_mutex()
 
 
    void system::zlib_uncompress(const ::payload& payloadTarget, const ::payload& payloadSource,
-                                transfer_progress_function transferprogressfunction)
+      transfer_progress_function transferprogressfunction)
    {
 
       ::pointer<::uncompress> puncompress = new_zlib_uncompress();
@@ -3793,8 +3993,8 @@ particle* system::matter_mutex()
       //}
 
       auto pfileTarget = file_system()->get_file(payloadTarget,
-                                                 ::file::e_open_write | ::file::e_open_defer_create_directory |
-                                                 ::file::e_open_binary);
+         ::file::e_open_write | ::file::e_open_defer_create_directory |
+         ::file::e_open_binary);
 
       auto pfileSource = file_system()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
 
@@ -3893,7 +4093,7 @@ particle* system::matter_mutex()
             if (application()->m_bVerbose)
             {
 
-               informationf("\n\n::apex::session::get_new_application assembled library path " + strLibrary + "\n\n");
+               information("\n\n::apex::session::get_new_application assembled library path " + strLibrary + "\n\n");
 
             }
 
@@ -3910,7 +4110,7 @@ particle* system::matter_mutex()
 
                //output_error_message("papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. ", "ca2", e_message_box_icon_error);
 
-               informationf(
+               information(
                   "papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary +
                   "\" could not be loaded. " + "ca2");
 
@@ -3923,7 +4123,7 @@ particle* system::matter_mutex()
             if (application()->m_bVerbose)
             {
 
-               informationf("\n\n::apex::session::get_new_application Found library : " + strLibrary + "\n\n");
+               information("\n\n::apex::session::get_new_application Found library : " + strLibrary + "\n\n");
 
             }
 
@@ -3943,7 +4143,7 @@ particle* system::matter_mutex()
             if (application()->m_bVerbose)
             {
 
-               informationf("\n\n::apex::session::get_new_application Opened library : " + strLibrary + "\n\n");
+               information("\n\n::apex::session::get_new_application Opened library : " + strLibrary + "\n\n");
 
             }
 
@@ -3959,7 +4159,7 @@ particle* system::matter_mutex()
                if (!papp)
                {
 
-                  informationf(
+                  information(
                      "\n\n::apex::session::get_new_application\n...but this ___new found library:\n\n   -->  " +
                      strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  " + strAppId
                      + "  <--\n\nIs it missing application factory_item?\n\n\n");
@@ -3975,11 +4175,11 @@ particle* system::matter_mutex()
                //
                //         }
 
-               informationf("\n\n\n|(4)----");
-               informationf("| app : " + strAppId + "(papp=0x" + ::hex::upper_case_from((uptr)papp.m_p) + ")\n");
-               informationf("|\n");
-               informationf("|\n");
-               informationf("|----");
+               information("\n\n\n|(4)----");
+               information("| app : " + strAppId + "(papp=0x" + ::hex::upper_case_from((uptr)papp.m_p) + ")\n");
+               information("|\n");
+               information("|\n");
+               information("|----");
 
             }
 
@@ -4056,7 +4256,7 @@ particle* system::matter_mutex()
    }
 
 
-   void system::_post(const ::procedure & procedure)
+   void system::_post(const ::procedure& procedure)
    {
 
       ::task::_post(procedure);
@@ -4065,7 +4265,7 @@ particle* system::matter_mutex()
 
 
    bool system::_handle_call(::payload& payload, const ::string& strObject, const ::string& strMember,
-                             ::property_set& propertyset)
+      ::property_set& propertyset)
    {
 
       try
@@ -4170,7 +4370,7 @@ particle* system::matter_mutex()
 
 
    ::string system::implementation_name(const ::scoped_string& scopedstrComponent,
-                                        const ::scoped_string& scopedstrImplementation)
+      const ::scoped_string& scopedstrImplementation)
    {
 
       return scopedstrImplementation;
@@ -4179,7 +4379,7 @@ particle* system::matter_mutex()
 
 
    ::string system::library_name(const ::scoped_string& scopedstrComponent,
-                                 const ::scoped_string& scopedstrImplementation)
+      const ::scoped_string& scopedstrImplementation)
    {
 
       return scopedstrComponent + "_" + scopedstrImplementation;
@@ -4444,14 +4644,14 @@ particle* system::matter_mutex()
    bool system::dark_mode() const
    {
 
-      if (((system *)this)->acme_windowing()->dark_mode_time() != m_timeDarkMode)
+      if (((system*)this)->acme_windowing()->dark_mode_time() != m_timeDarkMode)
       {
 
          //((system *)this)->acme_windowing()->fetch_dark_mode();
 
-         ((system *)this)->m_bAcmeSystemDarkMode = ((system *)this)->acme_windowing()->dark_mode();
+         ((system*)this)->m_bAcmeSystemDarkMode = ((system*)this)->acme_windowing()->dark_mode();
 
-         ((system *)this)->set_dark_mode_time(((system *)this)->acme_windowing()->dark_mode_time());
+         ((system*)this)->set_dark_mode_time(((system*)this)->acme_windowing()->dark_mode_time());
 
       }
 
@@ -4463,7 +4663,7 @@ particle* system::matter_mutex()
    class ::time system::dark_mode_time() const
    {
 
-      if (m_timeDarkMode != ((system *)this)->acme_windowing()->dark_mode_time())
+      if (m_timeDarkMode != ((system*)this)->acme_windowing()->dark_mode_time())
       {
 
          dark_mode();
@@ -4475,7 +4675,7 @@ particle* system::matter_mutex()
    }
 
 
-   void system::set_dark_mode_time(const class ::time & time)
+   void system::set_dark_mode_time(const class ::time& time)
    {
 
       m_timeDarkMode = time;
@@ -4487,7 +4687,7 @@ particle* system::matter_mutex()
    void system::on_application_dark_mode_change()
    {
 
-      auto ptopic = __allocate ::topic(id_application_dark_mode_change);
+      auto ptopic = __allocate::topic(id_application_dark_mode_change);
 
       application()->handle(ptopic, nullptr);
 
@@ -4520,7 +4720,7 @@ particle* system::matter_mutex()
             {
 
                printf_line("Merging factory of component \"%s\" with implementation \"%s\"",
-           ::string(scopedstrComponent).c_str(), strComponentDefaultImplementation.c_str());
+                  ::string(scopedstrComponent).c_str(), strComponentDefaultImplementation.c_str());
 
 
                pfactory->merge_to_global_factory();
@@ -4690,7 +4890,7 @@ particle* system::matter_mutex()
 
       auto strOperatingSystem = ::get_operating_system_name();
 
-      auto & pfactory = factory("acme", strOperatingSystem);
+      auto& pfactory = factory("acme", strOperatingSystem);
 
       pfactory->merge_to_global_factory();
 
@@ -4704,18 +4904,18 @@ particle* system::matter_mutex()
       {
 
          m_bGraphicsAndWindowingFactory = true;
-         
+
          //if(!is_sandboxed())
          {
-            
+
             nano()->graphics();
-            
+
             ::string strToolkit = ::windowing::get_user_toolkit_id();
-            
+
             m_pfactoryAcmeWindowing = this->factory("acme_windowing", strToolkit);
-            
+
             m_pfactoryAcmeWindowing->merge_to_global_factory();
-            
+
          }
 
       }
@@ -4873,7 +5073,7 @@ particle* system::matter_mutex()
 //}
 
 
-void system_id_update(::platform::system * psystem, int iUpdate, long long iParam)
+void system_id_update(::platform::system* psystem, int iUpdate, long long iParam)
 {
 
    psystem->system_id_update(iUpdate, iParam);
@@ -4881,16 +5081,18 @@ void system_id_update(::platform::system * psystem, int iUpdate, long long iPara
 }
 
 
-void node_will_finish_launching(::platform::system * psystem);
+void node_will_finish_launching(::platform::system* psystem);
+
+void node_did_finish_launching(::platform::system* psystem);
 
 
-void system_on_open_untitled_file(::platform::system * psystem);
+void system_on_open_untitled_file(::platform::system* psystem);
 
 
-void system_on_open_file(::platform::system * psystem, const char* pszFile);
+void system_on_open_file(::platform::system* psystem, const char* pszFile);
 
 
-void node_will_finish_launching(::platform::system * psystem)
+void node_will_finish_launching(::platform::system* psystem)
 {
 
    psystem->node_will_finish_launching();
@@ -4898,7 +5100,15 @@ void node_will_finish_launching(::platform::system * psystem)
 }
 
 
-void system_on_open_untitled_file(::platform::system * psystem)
+void node_did_finish_launching(::platform::system* psystem)
+{
+
+   psystem->node_did_finish_launching();
+
+}
+
+
+void system_on_open_untitled_file(::platform::system* psystem)
 {
 
    psystem->on_open_untitled_file();
@@ -4906,7 +5116,7 @@ void system_on_open_untitled_file(::platform::system * psystem)
 }
 
 
-void system_on_open_file(::platform::system * psystem, const char* pszFile)
+void system_on_open_file(::platform::system* psystem, const char* pszFile)
 {
 
    psystem->on_open_file(pszFile);

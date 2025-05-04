@@ -155,7 +155,14 @@ namespace acme
       void windowing::_will_finish_launching()
       {
 
-         system()->defer_post_initial_request();
+         //system()->defer_post_initial_request();
+
+      }
+
+      void windowing::_did_finish_launching()
+      {
+
+         //system()->defer_post_initial_request();
 
       }
 

@@ -8362,7 +8362,7 @@
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/property_set.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/::property_set.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>

@@ -5,10 +5,10 @@
 
 
 template < >
-CLASS_DECL_ACME natural_meta_data < string_meta_data < ::ansi_character > > * __nil < natural_meta_data < string_meta_data < ::ansi_character > > >()
+CLASS_DECL_ACME base_data < string_heap_data < ::ansi_character > > * __nil < base_data < string_heap_data < ::ansi_character > > >()
 {
 
-   static natural_meta_data < string_meta_data < ::ansi_character > > s_ansistringNil;
+   static base_data < string_heap_data < ::ansi_character > > s_ansistringNil;
 
    return &s_ansistringNil;
 
@@ -1004,42 +1004,42 @@ informationf("fixed_string_log::OnReallocateSpill");
 //   return(operator=(ach));
 //}
 //
-//string& string::operator+=(const string& str)
+//string& string::operator +=(const string& str)
 //{
 //   append(str,str.length());
 //
 //   return *this;
 //}
 //
-//string& string::operator+=(const ::scoped_string & scopedstrSrc)
+//string& string::operator +=(const ::scoped_string & scopedstrSrc)
 //{
-//   string::operator+=(pszSrc);
+//   string::operator +=(pszSrc);
 //
 //   return *this;
 //}
 //
 //#ifdef WINDOWS
 //
-//string& string::operator+=(const USHORT * pshSrc)
+//string& string::operator +=(const USHORT * pshSrc)
 //{
 //
 //   string str(pshSrc, GetManager());
 //
-//   return(operator+=(str));
+//   return(operator +=(str));
 //
 //}
 //
 //#endif
 //
-//string& string::operator+=(const unichar * pszSrc)
+//string& string::operator +=(const unichar * pszSrc)
 //{
 //   string str(pszSrc,GetManager());
 //
-//   return(operator+=(str));
+//   return(operator +=(str));
 //}
 //
 //
-//string & string::operator+=(char ch)
+//string & string::operator +=(char ch)
 //{
 //
 //   append_char((char)ch);
@@ -1049,7 +1049,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //}
 //
 //
-//string & string::operator+=(uchar ch)
+//string & string::operator +=(uchar ch)
 //{
 //
 //   append_char((char)ch);
@@ -1059,7 +1059,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //}
 //
 //
-//string & string::operator+=(unichar ch)
+//string & string::operator +=(unichar ch)
 //{
 //
 //   append_char((char)ch);

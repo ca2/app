@@ -2545,6 +2545,35 @@ Type string_array_base < Type, RawType, t_etypeContainer > ::implode(const SCOPE
 }
 
 
+template < typename Type, typename RawType, ::enum_type t_etypeContainer >
+Type string_array_base < Type, RawType, t_etypeContainer > ::postfix_implode(const SCOPED_STRING& strSuffix, ::collection::index i, ::collection::count inCountLastOut) const
+{
+
+   Type str;
+
+   if (!this->prepare_first_in_count_last_out(i, inCountLastOut))
+   {
+
+      return ::transfer(str);
+
+   }
+
+   while (i < inCountLastOut)
+   {
+
+      str += this->element_at(i);
+
+      str += strSuffix;
+
+      i++;
+
+   }
+
+   return ::transfer(str);
+
+}
+
+
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 Type string_array_base < Type, RawType, t_etypeContainer > ::reverse_implode(const SCOPED_STRING& strSeparator, ::collection::index i, ::collection::count inCountLastOut) const

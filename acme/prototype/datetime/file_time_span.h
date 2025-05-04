@@ -20,10 +20,10 @@ public:
 
    file_time_span& operator=(const file_time_span& span) noexcept;
 
-   file_time_span& operator+=(file_time_span span) noexcept;
+   file_time_span& operator +=(file_time_span span) noexcept;
    file_time_span& operator-=(file_time_span span) noexcept;
 
-   file_time_span operator+(file_time_span span) const noexcept;
+   file_time_span operator +(file_time_span span) const noexcept;
    file_time_span operator-(file_time_span span) const noexcept;
 
    bool operator==(file_time_span span) const noexcept;

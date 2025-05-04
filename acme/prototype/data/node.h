@@ -39,7 +39,7 @@ namespace data
       enum_node                  m_enode;
       string                     m_strName;
       string                     m_strValue;
-      property_set               m_set;
+      ::property_set             m_set;
       node::array                m_nodea;
 
       node();

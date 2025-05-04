@@ -24,7 +24,7 @@ namespace platform
 
 
    bool apex_http_layer::http_get(::pointer<::sockets::http_client_socket>& m_psocket, const ::url::url& url,
-                                  property_set& set)
+                                  ::property_set & set)
    {
 
       return false;
@@ -32,7 +32,7 @@ namespace platform
    }
 
 
-   bool apex_http_layer::get(::http::session& session, const ::url::url& url, string& str, property_set& set)
+   bool apex_http_layer::get(::http::session& session, const ::url::url& url, string& str, ::property_set & set)
    {
 
       return false;
@@ -40,7 +40,7 @@ namespace platform
    }
 
 
-   string apex_http_layer::get(::http::session& session, const ::url::url& url, property_set& set)
+   string apex_http_layer::get(::http::session& session, const ::url::url& url, ::property_set & set)
    {
 
       return {};
@@ -52,8 +52,8 @@ namespace platform
    //virtual void clean_proxy_auth(::account::user * puser){}
 
 
-   bool apex_http_layer::open(::pointer<::sockets::http_session>& psession, const ::url::connect& connect,
-                              property_set& set, const ::string& strVersion)
+   bool apex_http_layer::open(::pointer<::sockets::http_session>& psession, const ::url::connect_range & connectrange,
+                              ::property_set & set, const ::string& strVersion)
    {
 
       return false;
@@ -61,8 +61,8 @@ namespace platform
    }
 
 
-   bool apex_http_layer::request(::pointer<::sockets::http_session>& spsession, const ::url::request& request,
-                                         property_set& set)
+   bool apex_http_layer::request(::pointer<::sockets::http_session>& spsession, const ::url::request_range & requestrange,
+                                         ::property_set & set)
    {
 
       return false;
@@ -70,7 +70,7 @@ namespace platform
    }
 
 
-   // ::payload apex_http_layer::get(const ::url::url& url, property_set& set)
+   // ::payload apex_http_layer::get(const ::url::url& url, ::property_set & set)
    // {
    //
    //    return {};
@@ -78,7 +78,7 @@ namespace platform
    // }
 
 
-   bool apex_http_layer::request(const ::scoped_string& scopedstrMethod, const ::url::url& url, property_set& set)
+   bool apex_http_layer::request(const ::scoped_string& scopedstrMethod, const ::url::url& url, ::property_set & set)
    {
 
       return false;
@@ -87,7 +87,7 @@ namespace platform
 
 
    bool apex_http_layer::download(::pointer<::sockets::http_session>& psession, const ::scoped_string& scopedstrRequest,
-                         ::payload payloadFile, property_set& set)
+                         ::payload payloadFile, ::property_set & set)
    {
 
       return false;
@@ -95,7 +95,7 @@ namespace platform
    }
 
 
-   bool apex_http_layer::download(const ::url::url& url, ::payload payloadFile, property_set& set)
+   bool apex_http_layer::download(const ::url::url& url, ::payload payloadFile, ::property_set & set)
    {
 
       return false;
@@ -103,7 +103,7 @@ namespace platform
    }
 
 
-   bool apex_http_layer::put(const ::url::url& url, memory_base& memory, property_set& set)
+   bool apex_http_layer::put(const ::url::url& url, memory_base& memory, ::property_set & set)
    {
 
       return false;
@@ -111,7 +111,7 @@ namespace platform
    }
 
 
-   bool apex_http_layer::put(const ::url::url& url, file_pointer pfile, property_set& set)
+   bool apex_http_layer::put(const ::url::url& url, file_pointer pfile, ::property_set & set)
    {
 
       return false;
@@ -119,7 +119,7 @@ namespace platform
    }
 
 
-   bool apex_http_layer::put(const ::url::url& url, memory_base* pmemory, property_set& set)
+   bool apex_http_layer::put(const ::url::url& url, memory_base* pmemory, ::property_set & set)
    {
 
       return false;
@@ -127,7 +127,7 @@ namespace platform
    }
 
 
-   //virtual bool put(const ::url::url & url, file_pointer  pfile, property_set & set){}
+   //virtual bool put(const ::url::url & url, file_pointer  pfile, ::property_set & set){}
 
 
    ::url::url apex_http_layer::get_effective_url(const ::url::url& url)
@@ -206,7 +206,7 @@ namespace platform
    }
 
 
-   //virtual void on_auth(property_set & set, ::apex::application * papp, string & strUrl, string & strSessId, ::pointer<::account::user>& puser){}
+   //virtual void on_auth(::property_set & set, ::apex::application * papp, string & strUrl, string & strSessId, ::pointer<::account::user>& puser){}
 
    void apex_http_layer::http_application_destruct()
    {
@@ -215,7 +215,7 @@ namespace platform
    }
 
 
-   property_set& apex_http_layer::process_set(property_set& set, const ::url::url& url)
+   ::property_set& apex_http_layer::process_set(::property_set & set, const ::url::url& url)
    {
 
       return set;
@@ -225,7 +225,7 @@ namespace platform
 
    //DECLARE_MESSAGE_HANDLER(get){}
 
-   bool apex_http_layer::get(::pointer<::sockets::http_client_socket>& psocket, const ::url::url& url, property_set& set)
+   bool apex_http_layer::get(::pointer<::sockets::http_client_socket>& psocket, const ::url::url& url, ::property_set & set)
    {
 
       return false;
@@ -233,11 +233,11 @@ namespace platform
    }
 
 
-   //virtual string api_get(const ::url::url & url, property_set & set){}
+   //virtual string api_get(const ::url::url & url, ::property_set & set){}
    //virtual string api_get(const ::url::url & url){}
 
-   //virtual bool exists(const ::url::url & url, property_set & set){}
-   bool apex_http_layer::exists(const ::url::url& url, property_set& set)
+   //virtual bool exists(const ::url::url & url, ::property_set & set){}
+   bool apex_http_layer::exists(const ::url::url& url, ::property_set & set)
    {
 
       return false;
@@ -245,7 +245,7 @@ namespace platform
    }
 
 
-   ::file::enum_type apex_http_layer::get_type(const ::url::url& url, property_set& set)
+   ::file::enum_type apex_http_layer::get_type(const ::url::url& url, ::property_set & set)
    {
 
       return ::file::e_type_unknown;
@@ -253,7 +253,7 @@ namespace platform
    }
 
 
-   ::file::enum_type apex_http_layer::get_type(const ::url::url& url, ::payload* pvarQuery, property_set& set)
+   ::file::enum_type apex_http_layer::get_type(const ::url::url& url, ::payload* pvarQuery, ::property_set & set)
    {
 
       return ::file::e_type_unknown;
@@ -261,7 +261,7 @@ namespace platform
    }
 
 
-   ::payload apex_http_layer::length(const ::url::url& url, property_set& set)
+   ::payload apex_http_layer::length(const ::url::url& url, ::property_set & set)
    {
 
       return {};
@@ -269,8 +269,8 @@ namespace platform
    }
 
 
-   //virtual ::payload length(const ::url::url & url, property_set & set){}
-   ::payload apex_http_layer::length(const ::url::url& url, ::payload* pvarQuery, property_set& set)
+   //virtual ::payload length(const ::url::url & url, ::property_set & set){}
+   ::payload apex_http_layer::length(const ::url::url& url, ::payload* pvarQuery, ::property_set & set)
    {
 
       return {};
@@ -278,22 +278,22 @@ namespace platform
    }
 
 
-   //virtual string get(const ::url::url & url, property_set & set){}
-   void apex_http_layer::_get(const ::url::url& url, property_set& set)
+   //virtual string get(const ::url::url & url, ::property_set & set){}
+   void apex_http_layer::_get(const ::url::url& url, ::property_set & set)
    {
 
 
    }
 
 
-   void apex_http_layer::get(string& str, const ::url::url& url, property_set& set)
+   void apex_http_layer::get(string& str, const ::url::url& url, ::property_set & set)
    {
 
 
    }
 
 
-   void apex_http_layer::get(memory_base* pmemory, const ::url::url& url, property_set& set)
+   void apex_http_layer::get(memory_base* pmemory, const ::url::url& url, ::property_set & set)
    {
 
 
@@ -307,10 +307,10 @@ namespace platform
    }
 
 
-   //virtual bool request(const ::scoped_string & scopedstrRequest, const ::url::url & url, property_set & set){}
+   //virtual bool request(const ::scoped_string & scopedstrRequest, const ::url::url & url, ::property_set & set){}
 
-   //virtual bool download(::pointer<::sockets::http_session>& psession, const ::url::url & url, ::payload payloadFile, property_set & set){}
-   //virtual bool download(const ::url::url & url, ::payload payloadFile, property_set & set){}
+   //virtual bool download(::pointer<::sockets::http_session>& psession, const ::url::url & url, ::payload payloadFile, ::property_set & set){}
+   //virtual bool download(const ::url::url & url, ::payload payloadFile, ::property_set & set){}
 
    string apex_http_layer::locale_schema_url(const ::url::url& url, const ::scoped_string& scopedstrLocale,
                                     const ::scoped_string& scopedstrSchema)

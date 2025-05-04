@@ -565,7 +565,7 @@ namespace platform
       //void install_message_routing(::channel* pchannel) override;
 
 
-      virtual string dialog_box(const ::string& pszMatter, property_set& propertyset);
+      virtual string dialog_box(const ::string& pszMatter, ::property_set& propertyset);
 
 
       virtual void application_menu_update();
@@ -1151,7 +1151,7 @@ namespace platform
 
       // virtual bool base_support();
 
-      //virtual string sync_message_box(const string & pszMatter,property_set & propertyset) override;
+      //virtual string sync_message_box(const string & pszMatter,::property_set & propertyset) override;
 
 
       //virtual ::pointer<::user::interaction>uie_from_point(const ::int_point& point);

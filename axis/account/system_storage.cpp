@@ -82,7 +82,7 @@ namespace account
 
       auto psystem = system();
       
-      path /= psystem->crypto()->md5(strToken + strKey);
+      path /= psystem->crypto()->md5(::string(strToken + strKey));
 
       try
       {
@@ -115,7 +115,7 @@ namespace account
 
       pdirectorysystem->create(path);
 
-      path /= psystem->crypto()->md5(strToken + strKey);
+      path /= psystem->crypto()->md5(::string(strToken + strKey));
       
       psystem->crypto()->file_set(path, strValue, strToken, get_app());
       

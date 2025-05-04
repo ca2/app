@@ -29,6 +29,7 @@ public:
    bool                             m_bNew;
    string                           m_strDescription;
    enum_command                     m_ecommand;
+   bool                             m_bPreferSync = false;
    string                           m_strAppId;
    ::payload                        m_payloadFile;
    ::payload                        m_payloadArguments;

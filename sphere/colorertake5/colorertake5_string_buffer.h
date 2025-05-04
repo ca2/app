@@ -33,18 +33,18 @@ public:
   str_buffer &append(unichar ca);
 
   /** Appends to this string buffer @ca string.
-      C++ operator+ form.
+      C++ operator + form.
       You can write: yourcall(str_buffer("first")+"second"+third);
   */
-  str_buffer &operator+(const string &string);
-  /** Appends to this string buffer @ca string. C++ operator+ form. */
-  str_buffer &operator+(string string);
-  /** Appends to this string buffer @ca string. C++ operator+ form. */
-  str_buffer &operator+(const ::string &string);
-  /** Appends to this string buffer @ca string. C++ operator+= form. */
-  str_buffer &operator+=(const string &string);
-  /** Appends to this string buffer @ca string. C++ operator+= form. */
-  str_buffer &operator+=(const ::string &string);
+  str_buffer &operator +(const string &string);
+  /** Appends to this string buffer @ca string. C++ operator + form. */
+  str_buffer &operator +(string string);
+  /** Appends to this string buffer @ca string. C++ operator + form. */
+  str_buffer &operator +(const ::string &string);
+  /** Appends to this string buffer @ca string. C++ operator += form. */
+  str_buffer &operator +=(const string &string);
+  /** Appends to this string buffer @ca string. C++ operator += form. */
+  str_buffer &operator +=(const ::string &string);
 private:
   int alloc;
 };

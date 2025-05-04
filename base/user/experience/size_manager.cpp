@@ -546,9 +546,9 @@ namespace experience
          }
          rectangleWindow.top() = minimum(rectangleWindow.top(), rectangleMonitor.bottom() - m_sizeMinimumBorder.cy());
          auto pframewindow = m_pframewindow;
-         if (pframewindow->find_int("ysnap") > 1)
+         if (pframewindow->get_int("ysnap") > 1)
          {
-            rectangleWindow.top() -= rectangleWindow.top() % pframewindow->find_int("ysnap");
+            rectangleWindow.top() -= rectangleWindow.top() % pframewindow->get_int("ysnap");
          }
       } else if (eframe == ::experience::e_frame_sizing_top_right)
       {
@@ -636,10 +636,10 @@ namespace experience
          rectangleWindow.bottom() = maximum(rectangleWindow.bottom(), rectangleMonitor.top() + m_sizeMinimumBorder.cy());
          auto pframewindow = m_pframewindow;
 
-         if (pframewindow->find_int("ysnap") > 1)
+         if (pframewindow->get_int("ysnap") > 1)
          {
             int h = rectangleWindow.height();
-            h -= rectangleWindow.height() % pframewindow->find_int("ysnap");
+            h -= rectangleWindow.height() % pframewindow->get_int("ysnap");
             rectangleWindow.bottom() = rectangleWindow.top() + h;
          }
       } else if (eframe == ::experience::e_frame_sizing_bottom_left)

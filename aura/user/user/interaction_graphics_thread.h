@@ -19,7 +19,7 @@ namespace user
 
 
       synchronization_array                     m_synchronizationa;
-
+      manual_reset_happening m_happeningFrame;
       ::pointer < manual_reset_happening >        m_phappeningUpdateScreen;
 
       ::pointer<::user::interaction>                  m_puserinteraction;

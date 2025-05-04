@@ -22,27 +22,31 @@ namespace url
    }
 
 
-   void path_set_href(::string& strPath, const ::scoped_string& scopedstrHref)
+   ::string request_set_href(const ::scoped_string& scopedstrRequest, const ::scoped_string& scopedstrHref)
    {
+
+      ::string strRequest;
 
       if (scopedstrHref.begins("/"))
       {
 
-         strPath = scopedstrHref;
+         strRequest = scopedstrHref;
 
       }
-      else if (strPath.ends("/"))
+      else if (scopedstrRequest.ends("/"))
       {
 
-         strPath += scopedstrHref;
+         strRequest = scopedstrRequest + scopedstrHref;
 
       }
       else
       {
 
-         strPath = file_path_folder(strPath) + "/" + scopedstrHref;
+         strRequest = file_path_folder(scopedstrRequest) + "/" + scopedstrHref;
 
       }
+
+      return strRequest;
 
    }
 
@@ -50,24 +54,67 @@ namespace url
    ::string parameter_set(const ::scoped_string& scopedstrUrl, const ::scoped_string& scopedstrKey, const ::scoped_string& scopedstr)
    {
 
-      ::url::parts url(scopedstrUrl);
+      ::url::parts urlparts(scopedstrUrl);
 
-      if (!url.m_requestpart.m_psetArguments)
-      {
+      //if (!urlparts.request().arguments())
+      //{
 
-         url.m_requestpart.m_psetArguments = __allocate ::property_set ();
+      //   urlparts.m_request.m_psetArguments = __allocate ::property_set ();
 
-      }
+      //}
 
-      url.arguments()[scopedstrKey] = scopedstr;
+      urlparts.arguments()[scopedstrKey] = scopedstr;
 
-      ::string strUrl = url.as_string();
+      ::string strUrl = urlparts.as_string();
 
       return strUrl;
 
    }
 
    
+   ::string query_parameter_set(const ::scoped_string& scopedstrQuery, const ::scoped_string& scopedstrKey, const ::scoped_string& scopedstr)
+   {
+
+      ::string strQuery = _001GetQuery(scopedstrQuery);
+
+      if (scopedstrKey.is_empty() && scopedstr.is_empty())
+      {
+
+         return strQuery;
+
+      }
+
+      if (strQuery.has_character())
+      {
+
+         strQuery += "&";
+
+      }
+
+      if (scopedstrKey.is_empty())
+      {
+
+         strQuery += ::url::encode(scopedstr);
+
+      }
+      else if (scopedstr.is_empty())
+      {
+
+         strQuery += ::url::encode(scopedstrKey) + "=1";
+
+      }
+      else
+      {
+
+         strQuery += ::url::encode(scopedstrKey) + "=" + ::url::encode(scopedstr);
+
+      }
+
+      return strQuery;
+
+   }
+
+
    void erase_parameter(::string& str, const ::scoped_string& scopedstrKey)
    {
 
@@ -80,6 +127,14 @@ namespace url
    {
 
       str = parameter_set(str, scopedstrKey, scopedstr);
+
+   }
+
+
+   void query_set_parameter(::string& strQuery, const ::scoped_string& scopedstrKey, const ::scoped_string& scopedstr)
+   {
+
+      strQuery = query_parameter_set(strQuery, scopedstrKey, scopedstr);
 
    }
 
@@ -572,6 +627,54 @@ namespace url
       }
 
       return str(query + 1);
+
+   }
+
+
+   ::string _001GetQuery(const ::scoped_string& scopedstr)
+   {
+
+      string str(scopedstr);
+
+      auto query = str.find('?');
+
+      if (not_found(query))
+      {
+
+         return {};
+
+      }
+
+      ::string strQuery(str(query + 1));
+
+      strQuery.find_replace(":", "");
+
+      strQuery.find_replace("/", "");
+
+      return strQuery;
+
+   }
+
+
+   ::string object_set_query(const ::scoped_string& scopedstrObject, const ::scoped_string& scopedstrQuery)
+   {
+
+      ::string strObject(scopedstrObject);
+
+      ::string strQuery(scopedstrQuery);
+
+      strObject.ends_eat("?");
+
+      strQuery.begins_eat("?");
+
+      if (strQuery.is_empty())
+      {
+
+         return strObject;
+
+      }
+
+      return strObject + "?" + strQuery;
 
    }
 

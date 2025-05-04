@@ -58,7 +58,7 @@ public:
    operator long_long_array & () { return m_payload.long_long_array_reference(); }
    operator string_array & () { return m_payload.string_array_reference(); }
    operator payload_array & () { return m_payload.payload_array_reference(); }
-   operator property_set & () { return m_payload.property_set_reference(); }
+   operator ::property_set & () { return m_payload.property_set_reference(); }
    operator ::file::path & () { return m_payload.file_path_reference(); }
 
 

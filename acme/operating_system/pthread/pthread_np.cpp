@@ -201,12 +201,14 @@ string task_get_name(htask htask)
 
 
 
-void task_set_name(htask htask, const char * psz)
+void task_set_name(htask htask, const ::scoped_string & scopedstr)
 {
 
    //auto pthread = pthread_self();
 
    //auto estatus = task_set_name(pthread, pszThreadName);
+    
+    string strName(scopedstr);
 
 #if defined(__APPLE__)
    
@@ -217,13 +219,11 @@ void task_set_name(htask htask, const char * psz)
       
    }
 
-   int error = pthread_setname_np(psz);
+   int error = pthread_setname_np(strName);
 
 #else
 
    auto pthread = htask.m_h;
-
-   string strName(psz);
 
 #if defined(FREEBSD) || defined(OPENBSD)
 

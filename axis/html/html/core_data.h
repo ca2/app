@@ -199,8 +199,8 @@ namespace html
       //string                        m_strPassword;
       //string                        m_strLicense;
 
-      //property_set                  m_propertyset;
-      //property_set                  m_propset;
+      //::property_set                  m_propertyset;
+      //::property_set                  m_propset;
       string                        m_strSource;
 
       ::html_form *                 m_pform;

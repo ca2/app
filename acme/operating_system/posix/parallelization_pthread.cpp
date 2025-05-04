@@ -178,6 +178,12 @@ t_phappeningNotifyLock;
          __raw_construct_new(t_phappeningNotifyLock);
          
       }
+      else
+      {
+         
+         t_phappeningNotifyLock->reset_happening();
+         
+      }
       //auto pnotifylock = __allocate notify_lock(t_phappeningNotifyLock);
       notify_lock notifylock(t_phappeningNotifyLock);
 
@@ -664,10 +670,10 @@ string task_get_name()
 
 
 
-void task_set_name(const char * psz)
+void task_set_name(const scoped_string & scopedstr)
 {
 
-   return task_set_name(::block_cast < htask > (pthread_self()), psz);
+   return task_set_name(::block_cast < htask > (pthread_self()), scopedstr);
 
 }
 

@@ -103,7 +103,7 @@ inline void __dynamic_cast(TYPE1*& ptype1, const ::pointer<TYPE2> ptype2)
 //{
 //
 //
-//   namespace property_set
+//   namespace ::property_set
 //   {
 //
 //
@@ -113,7 +113,7 @@ inline void __dynamic_cast(TYPE1*& ptype1, const ::pointer<TYPE2> ptype2)
 //
 //
 //
-//   } // namespace property_set
+//   } // namespace ::property_set
 //
 //
 //} // namespace acme

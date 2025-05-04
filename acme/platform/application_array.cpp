@@ -124,6 +124,8 @@ namespace platform
          return nullptr;
 
       }
+      
+      return papplication;
 
       //if (papp->safe_is_running())
       //{

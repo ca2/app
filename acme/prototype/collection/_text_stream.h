@@ -3,7 +3,7 @@
 
 
 // template < typename FILE >
-text_stream < FILE >& operator <<(text_stream < FILE >& stream, const property_set& set)
+text_stream < FILE >& operator <<(text_stream < FILE >& stream, const ::property_set & set)
 {
 
    stream << set.get_network_payload();

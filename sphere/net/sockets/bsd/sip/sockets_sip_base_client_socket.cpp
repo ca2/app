@@ -190,7 +190,7 @@ namespace sockets
          if (str.length() > 4 &&  case_insensitive_string_begins(str, "http/")) // response
          {
             m_request.attr("http_version") = str;
-            m_request.attr("http_status_code") = pa.getword();
+            m_request.attr("http_status_code") = atoi(pa.getword());
             m_request.attr("http_status") = pa.getrest();
             m_bResponse = true;
          }
@@ -416,7 +416,7 @@ namespace sockets
       return m_request.attr(pszName);
    }
 
-   property_set & sip_base_client_socket::inattrs()
+   ::property_set & sip_base_client_socket::inattrs()
    {
       return m_request.attrs();
    }
@@ -426,7 +426,7 @@ namespace sockets
       return m_response.attr(pszName);
    }
 
-   property_set & sip_base_client_socket::outattrs()
+   ::property_set & sip_base_client_socket::outattrs()
    {
       return m_response.attrs();
    }
@@ -436,7 +436,7 @@ namespace sockets
       return m_request.header(pszName);
    }
 
-   property_set & sip_base_client_socket::inheaders()
+   ::property_set & sip_base_client_socket::inheaders()
    {
       return m_request.headers();
    }
@@ -446,7 +446,7 @@ namespace sockets
       return m_response.header(pszName);
    }
 
-   property_set & sip_base_client_socket::outheaders()
+   ::property_set & sip_base_client_socket::outheaders()
    {
       return m_response.headers();
    }

@@ -268,13 +268,13 @@ namespace text
    }
 
 
-   string table::get(const ::text::context * pcontext,const ::atom & atom, bool bIdAsDefaultValue) const
+   bool table::_get(::string & str, const ::text::context * pcontext,const ::atom & atom) const
    {
 
       if (pcontext == nullptr)
       {
 
-         return "";
+         return false;
 
       }
 
@@ -295,7 +295,9 @@ namespace text
             if (table.has_character())
             {
 
-               return table;
+               str = table;
+
+               return true;
 
             }
 
@@ -309,7 +311,9 @@ namespace text
             if (table.has_character())
             {
 
-               return table;
+               str = table;
+
+               return true;
 
             }
 
@@ -328,7 +332,9 @@ namespace text
                if (table.has_character())
                {
 
-                  return table;
+                  str = table;
+
+                  return true;
 
                }
 
@@ -341,16 +347,34 @@ namespace text
       {
          table = (*pcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
          if(table.has_character())
-            return table;
+         {
+
+            str = table;
+
+            return true;
+
+         }
       }
       table = (*m_pschemaEn)[atom]; // lang=en style=en
       if(table.has_character())
-         return table;
+      {
+
+         str = table;
+
+         return true;
+
+      }
       if(pcontext != nullptr && pcontext->m_pschemaSchemaStd != nullptr)
       {
          table = (*pcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
          if(table.has_character())
-            return table;
+         {
+
+            str = table;
+
+            return true;
+
+         }
       }
 
       table = (*m_pschemaStd)[atom]; // lang=_std style=_std
@@ -358,11 +382,30 @@ namespace text
       if(table.has_character())
       {
 
-         return table;
+         str = table;
+
+         return true;
 
       }
 
-      if(bIdAsDefaultValue)
+      return false;
+
+   }
+
+
+   ::string table::get(const ::text::context* pcontext, const ::atom& atom, bool bIdAsDefaultValue) const
+   {
+
+      ::string str;
+
+      if (_get(str, pcontext, atom))
+      {
+
+         return str;
+
+      }
+
+      if (bIdAsDefaultValue)
       {
 
          return atom.as_string();
@@ -376,6 +419,7 @@ namespace text
       }
 
    }
+
 
 
    string table::get(const ::text::context * pcontext,const ::atom & atom,const ::scoped_string & scopedstrLocale,const ::scoped_string & scopedstrSchema,bool bIdAsDefaultValue) const

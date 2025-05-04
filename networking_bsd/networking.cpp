@@ -468,7 +468,7 @@ namespace networking_bsd
          return false;
       }
 
-      ::parse pa(str, ":.");
+      ::parse pa(str, ":."_ansi);
 
       string tmp = pa.getword();
 

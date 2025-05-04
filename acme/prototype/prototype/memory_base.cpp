@@ -1237,14 +1237,14 @@ string memory_base::to_hex(memsize pos, memsize size)
 }
 
 
-character_count memory_base::from_hex(const ::scoped_string & scopedstr)
+character_count memory_base::from_hex(const ::block & block)
 {
 
    char ch;
 
    bool bOdd = false;
 
-   character_count iLen = scopedstr.size();
+   character_count iLen = block.size();
 
    bOdd = (iLen % 2) != 0;
 
@@ -1255,7 +1255,7 @@ character_count memory_base::from_hex(const ::scoped_string & scopedstr)
 
    }
 
-   auto psz = scopedstr.begin();
+   auto psz = block.begin();
 
    set_size(iLen / 2);
 

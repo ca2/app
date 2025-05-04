@@ -92,7 +92,7 @@ namespace experience_nanoui
    };
 
 
-   //frame::enum_frame operator++(frame::enum_element & eelement, int i);
+   //frame::enum_frame operator ++(frame::enum_element & eelement, int i);
 
 
 

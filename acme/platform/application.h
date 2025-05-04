@@ -576,7 +576,9 @@ namespace platform
       //void initialize(::particle * pparticle) override;
 
 
-      virtual void start_application(::request* prequest) override;
+      //virtual void start_application(::request* prequest) override;
+         
+         virtual void start_application() override;
 
       //virtual void on_initialize_application();
 
@@ -676,7 +678,7 @@ namespace platform
 
 
       virtual ::file::path get_app_localconfig_folder() override;
-      virtual ::pointer<::handle::ini>get_ini() override;
+      virtual ::property_set get_ini(const ::scoped_string& scopedstrIniName = {}) override;
 
 
       virtual ::string get_visual_studio_build() override;

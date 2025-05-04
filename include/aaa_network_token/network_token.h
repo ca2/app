@@ -1907,7 +1907,7 @@ namespace network_token {
 
 			template<class T, class A0>
 			static auto test_operator_plus(int)
-				-> sfinae_true<decltype(std::declval<T>().operator+(std::declval<A0>()))>;
+				-> sfinae_true<decltype(std::declval<T>().operator +(std::declval<A0>()))>;
 			template<class, class A0>
 			static auto test_operator_plus(long) -> std::false_type;
 
@@ -1916,7 +1916,7 @@ namespace network_token {
 
 		template<typename string_type>
 		using is_std_operate_plus_signature =
-			typename std::is_same<decltype(std::operator+(std::declval<string_type>(), std::declval<string_type>())),
+			typename std::is_same<decltype(std::operator +(std::declval<string_type>(), std::declval<string_type>())),
 								  string_type>;
 
 		template<typename string_type, typename integer_type>

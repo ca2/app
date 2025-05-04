@@ -100,28 +100,28 @@ public:
 
 
 
-      template < primitive_container CONTAINER >
-      inline comparable_array & operator += (const CONTAINER & container)
-      {
-
-         if (&container == this)
-         {
-
-            auto aCopy(container);
-
-            this->append_container(aCopy);
-
-         }
-         else
-         {
-
-            this->append_container(container);
-
-         }
-
-         return *this;
-
-      }
+      // template < primitive_container CONTAINER >
+      // inline comparable_array & operator += (const CONTAINER & container)
+      // {
+      //
+      //    if (&container == this)
+      //    {
+      //
+      //       auto aCopy(container);
+      //
+      //       this->append_container(aCopy);
+      //
+      //    }
+      //    else
+      //    {
+      //
+      //       this->append_container(container);
+      //
+      //    }
+      //
+      //    return *this;
+      //
+      // }
 
 
       inline comparable_array & operator += (const TYPE & t)

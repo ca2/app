@@ -447,6 +447,8 @@ public:
 
    Type implode(const SCOPED_STRING & strSeparator = nullptr, ::collection::index iStart = 0, ::collection::count iCount = -1) const;
 
+   Type postfix_implode(const SCOPED_STRING& strSuffix = nullptr, ::collection::index iStart = 0, ::collection::count iCount = -1) const;
+
    ///void reverse_implode(Type & rwstr,const SCOPED_STRING &strSeparator = nullptr,::collection::index iStart = 0,::collection::count iCount = -1) const;
 
    Type reverse_implode(const SCOPED_STRING & strSeparator = nullptr, ::collection::index iStart = 0, ::collection::count iCount = -1) const;

@@ -113,7 +113,7 @@ namespace nanoui
        */
       void set_callback(const ::function<void(const ::color::hls&)>& callback) {
          m_callback = callback;
-         m_callback(colorBackground());
+         //m_callback(colorBackground());
       }
 
       /**

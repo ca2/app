@@ -422,7 +422,7 @@ void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopeds
    }
 
 
-   bool api::is_http_status_ok(const ::scoped_string& scopedstrUrl, const ::scoped_string& scopedstr, const ::payload& payload, ::property_set& set, int iHttpStatusCode)
+   bool api::is_http_status_ok(const ::scoped_string& scopedstrUrl, const ::scoped_string& scopedstr, const ::payload& payload, ::property_set & set, int iHttpStatusCode)
    {
 
       if (iHttpStatusCode != 200)

@@ -56,7 +56,7 @@ namespace filemanager
       ::user::place_holder *                 m_pholderFileList;
       ::user::tree *                         m_ptreeFileTreeMerge;
       bool                                   m_bSetBergedgeTopicFile;
-      property_set                           m_setToolbar;
+      ::property_set                         m_setToolbar;
       bool                                   m_bEnableRecursiveFolderSelectionList;
       atom                                   m_atomFileManagerData;
       string                                 m_strCopy;

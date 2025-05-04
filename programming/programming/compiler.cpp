@@ -372,7 +372,7 @@ namespace programming
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//      property_set setEnvironment;
+//      ::property_set setEnvironment;
 //
 //      setEnvironment.parse_environment_variable(stra);
 //

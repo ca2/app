@@ -99,7 +99,7 @@ namespace sockets
       /** http put client implemented in OnConnect */
       bool http_request_step() override;
 
-      property_set m_fields;
+      ::property_set m_fields;
       void DoMultipartPost();
 
 

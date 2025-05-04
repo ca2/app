@@ -109,11 +109,11 @@ public:
    size_type& Null() { this->cx() = (UNIT_TYPE)0; this->cy() = (UNIT_TYPE)0; return *this; }
 
    template < primitive_point POINT >
-   POINT operator+(const POINT& point1) const noexcept { POINT point(point1); ::offset(point, this->cx(), this->cy()); return point; }
+   POINT operator +(const POINT& point1) const noexcept { POINT point(point1); ::offset(point, this->cx(), this->cy()); return point; }
    template < primitive_point POINT >
    POINT operator-(const POINT & point1) const noexcept { POINT point(this->cx(), this->cy()); ::offset(point, -point1.x(), -point1.y()); return point;   }
 
-//   RECTANGLE_TYPE operator+(const RECTANGLE_TYPE& rect1) const noexcept { RECTANGLE_TYPE rectangle(rect1); ::offset(rectangle, this->cx(), this->cy()); return rectangle; }
+//   RECTANGLE_TYPE operator +(const RECTANGLE_TYPE& rect1) const noexcept { RECTANGLE_TYPE rectangle(rect1); ::offset(rectangle, this->cx(), this->cy()); return rectangle; }
 //   RECTANGLE_TYPE operator-(const RECTANGLE_TYPE& rect1) const noexcept { RECTANGLE_TYPE rectangle(rect1); ::offset(rectangle, -this->cx(), -this->cy()); return rectangle; }
 
    UNIT_TYPE area() const noexcept { return ::area(this->cx(), this->cy()); }
@@ -173,13 +173,13 @@ public:
    inline size_type & operator =(const size_type & size) noexcept { this->cx() = size.cx(); this->cy() = size.cy(); return *this; }
 
    template < primitive_size SIZE > 
-   inline size_type & operator+=(const SIZE & size) noexcept { this->cx() += size.cx(); this->cy() += size.cy(); return *this; }
+   inline size_type & operator +=(const SIZE & size) noexcept { this->cx() += size.cx(); this->cy() += size.cy(); return *this; }
 
    template < primitive_size SIZE >
    inline size_type & operator-=(const SIZE & size) noexcept { this->cx() -= size.cx(); this->cy() -= size.cy(); return *this; }
 
 //   template < primitive_point POINT >
-//   inline size_type & operator+=(const POINT & point) noexcept { this->cx() += point.x(); this->cy() += point.y(); return *this; }
+//   inline size_type & operator +=(const POINT & point) noexcept { this->cx() += point.x(); this->cy() += point.y(); return *this; }
 
    template < primitive_number NUMBER1 >
    inline size_type & operator +=(const sequence_type < NUMBER1, 2 > & sequence) noexcept { this->cx() = (UNIT_TYPE) (this->cx() + sequence.a()); this->cy() = (UNIT_TYPE) (this->cy() + sequence.b()); return *this; }

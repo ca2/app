@@ -10,9 +10,13 @@
 
 
 
-CLASS_DECL_ACME void string_count_copy(::ansi_character * pchDest, const ::ansi_character * pchSrc, character_count nChars) noexcept { memory_copy(pchDest, pchSrc, character_count_to_byte_length_constrain_source_length(pchSrc, nChars)); }
-CLASS_DECL_ACME void string_count_copy(::ansi_character * pchDest, size_t nDestLen, const ::ansi_character * pchSrc, character_count nChars) noexcept { ::memory_copy(pchDest, pchSrc, character_count_to_byte_length_constrain_source_length(pchSrc, nChars)); }
-CLASS_DECL_ACME void overlapped_string_count_copy(::ansi_character * pchDest, const ::ansi_character * pchSrc, character_count nChars) noexcept { memory_transfer(pchDest, pchSrc, character_count_to_byte_length_constrain_source_length(pchSrc, nChars)); }
+CLASS_DECL_ACME void string_count_copy(::ansi_character * pchDest, const ::ansi_character * pchSrc, character_count nChars) noexcept { strncpy(pchDest, pchSrc, nChars); }
+CLASS_DECL_ACME void string_count_copy(::ansi_character * pchDest, size_t nDestLen, const ::ansi_character * pchSrc, character_count nChars) noexcept { strncpy(pchDest, pchSrc, nChars); }
+CLASS_DECL_ACME void overlapped_string_count_copy(::ansi_character* pchDest, const ::ansi_character* pchSrc, character_count nChars) noexcept { strncpy(pchDest, pchSrc, nChars); }
+   // CLASS_DECL_ACME void   transfer(pchDest, pchSrc, character_count_to_byte_length_constrain_source_length(pchSrc, nChars));
+//}
+
+
 
 
 CLASS_DECL_ACME ::std::strong_ordering as_strong_ordering(int i)
@@ -25,7 +29,7 @@ CLASS_DECL_ACME ::std::strong_ordering as_strong_ordering(int i)
 
 CLASS_DECL_ACME ::std::strong_ordering _string_compare(const ::ansi_character * pszA, const ::ansi_character * pszB) noexcept { return ansi_cmp(pszA, pszB)<=>0; }
 CLASS_DECL_ACME ::std::strong_ordering case_insensitive__string_compare(const ::ansi_character * pszA, const ::ansi_character * pszB) noexcept { return ansi_icmp(pszA, pszB) <=> 0; }
-CLASS_DECL_ACME ::std::strong_ordering _string_count_compare(const ::ansi_character * pszA, const ::ansi_character * pszB, character_count len) noexcept { return ansi_ncmp(pszA, pszB, len) <=> 0; }
+//CLASS_DECL_ACME ::std::strong_ordering _string_count_compare(const ::ansi_character * pszA, const ::ansi_character * pszB, character_count len) noexcept { return ansi_ncmp(pszA, pszB, len) <=> 0; }
 CLASS_DECL_ACME ::std::strong_ordering case_insensitive__string_count_compare(const ::ansi_character * pszA, const ::ansi_character * pszB, character_count len) noexcept { return ansi_nicmp(pszA, pszB, len) <=> 0; }
 CLASS_DECL_ACME ::std::strong_ordering _string_collate(const ::ansi_character * pszA, const ::ansi_character * pszB) noexcept { return ansi_coll(pszA, pszB) <=> 0; }
 CLASS_DECL_ACME ::std::strong_ordering _case_insensitive_string_collate(const ::ansi_character * pszA, const ::ansi_character * pszB) noexcept { return ansi_icoll(pszA, pszB) <=> 0; }

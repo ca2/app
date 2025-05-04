@@ -343,7 +343,7 @@ namespace user
       bool                                m_bLastCaret;
 
 
-      ::function <void(::user::plain_edit *) >     m_callbackOnAfterChangeText;
+      ::function <void(::user::plain_edit *, const ::action_context &) >     m_callbackOnAfterChangeText;
 
 
 
@@ -404,9 +404,9 @@ namespace user
       //virtual void on_context_offset(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual void _001EditCut();
+      virtual void _001EditCut(const ::action_context & actioncontext);
 
-      virtual void _001DeleteSel(bool bBackIfSelectionEmpty = false);
+      virtual void _001DeleteSel(bool bBackIfSelectionEmpty, const ::action_context & actioncontext);
       ///virtual bool plain_edit_delete_sel(::draw2d::graphics_pointer& pgraphics, bool & bFullUpdate, ::collection::index & iLineUpdate);
 
       virtual void _001ReplaceSel(const ::string & pszText);

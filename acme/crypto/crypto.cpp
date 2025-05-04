@@ -647,7 +647,7 @@ namespace crypto
 
             string strStepSalt = strSalt.substr(i) + strSalt.left(i);
 
-            strHash = nessie(strStepSalt + strHash).lowered();
+            strHash = nessie(::string(strStepSalt + strHash)).lowered();
 
          }
 
@@ -670,7 +670,7 @@ namespace crypto
 
             string strStepSalt = strSalt.substr(i) + strSalt.left(i);
 
-            strHash = nessie(strStepSalt + strHash).lowered();
+            strHash = nessie(::string(strStepSalt + strHash)).lowered();
 
          }
 

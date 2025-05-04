@@ -30,11 +30,13 @@ namespace url
    }
 
 
-   CLASS_DECL_ACME void path_set_href(::string& strPath, const ::scoped_string& scopedstrHref);
+   CLASS_DECL_ACME ::string request_set_href(const ::scoped_string& scopedstrRequest, const ::scoped_string& scopedstrHref);
    CLASS_DECL_ACME ::string parameter_erased(const ::scoped_string& scopedstrUrl, const ::scoped_string& scopedstrKey);
    CLASS_DECL_ACME ::string parameter_set(const ::scoped_string& scopedstrUrl, const ::scoped_string& scopedstrKey, const ::scoped_string& scopedstr);
+   CLASS_DECL_ACME ::string query_parameter_set(const ::scoped_string& scopedstrQuery, const ::scoped_string& scopedstrKey, const ::scoped_string& scopedstr);
    CLASS_DECL_ACME void erase_parameter(::string & str, const ::scoped_string& scopedstrKey);
    CLASS_DECL_ACME void set_parameter(::string & str, const ::scoped_string& scopedstrKey, const ::scoped_string& scopedstr);
+   CLASS_DECL_ACME void query_set_parameter(::string& strQuery, const ::scoped_string& scopedstrKey, const ::scoped_string& scopedstr);
    CLASS_DECL_ACME ::string path_join_query(const ::scoped_string& scopedstrPath, const ::scoped_string& scopedstrQuery);
    CLASS_DECL_ACME string __parameter_erased(const ::scoped_string& scopedstr, character_count iStartParam, const ::scoped_string& scopedstrKey);
    CLASS_DECL_ACME bool __has_parameter_replace(::string& str, const ::scoped_string& scopedstr, character_count iStart, const ::scoped_string& scopedstrKey, const ::scoped_string& scopedstrParameter);
@@ -56,6 +58,14 @@ namespace url
    CLASS_DECL_ACME ::string get_query(const ::scoped_string& scopedstr);
    CLASS_DECL_ACME ::string get_object(const ::scoped_string & scopedstr);
 
+   /// <summary>
+   /// version of ::url::get_query with purifiers/stabilizers
+   /// it currently remove unencoded : and / from the query part
+   /// </summary>
+   /// <param name="scopedstr"></param>
+   /// <returns></returns>
+   CLASS_DECL_ACME ::string _001GetQuery(const ::scoped_string& scopedstr);
+   CLASS_DECL_ACME ::string object_set_query(const ::scoped_string& scopedstrObject, const ::scoped_string& scopedstrQuery);
 
 } // namespace url
 

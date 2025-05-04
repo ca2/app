@@ -41,7 +41,7 @@ namespace sockets
             {
                if (m_header_line.length())
                {
-                  ::parse pa(m_header_line, ":");
+                  ::parse pa(m_header_line, ":"_ansi);
                   string key = pa.getword();
                   key.make_lower();
                   string value = pa.getrest();
@@ -59,7 +59,7 @@ namespace sockets
             {
                if (m_header_line.length())
                {
-                  ::parse pa(m_header_line, ":");
+                  ::parse pa(m_header_line, ":"_ansi);
                   string key = pa.getword();
                   key.make_lower();
                   string value = pa.getrest();
@@ -125,7 +125,7 @@ namespace sockets
       else
       if (cmd == "MAIL") // mail from:
       {
-         ::parse pa(line, ":");
+         ::parse pa(line, ":"_ansi);
          pa.getword(); // 'mail'
          pa.getword(); // 'from'
 
@@ -160,7 +160,7 @@ namespace sockets
       }
       else if (cmd == "RCPT") // rcpt to:
       {
-         ::parse pa(line, ":");
+         ::parse pa(line, ":"_ansi);
          pa.getword(); // 'rcpt'
          pa.getword(); // 'to'
 

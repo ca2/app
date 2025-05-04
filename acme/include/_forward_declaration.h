@@ -1721,14 +1721,14 @@ namespace draw2d
 } // namespace draw2d
 
 
-namespace handle
-{
-
-
-   class ini;
-
-
-} // namespace handle
+//namespace handle
+//{
+//
+//
+//   class ini;
+//
+//
+//} // namespace handle
 
 
 struct system_time_t;

@@ -31,11 +31,11 @@ namespace platform
       m_bKeepRunningPostedProcedures = true;
 
    }
-      
-   
+
+
    session::~session()
    {
-      
+
       printf_line("platform::session destroyed");
 
    }
@@ -60,7 +60,7 @@ namespace platform
    }
 
 
-   ::user::user * session::user()
+   ::user::user* session::user()
    {
 
       throw ::interface_only("user requires aura layer or upper layer");
@@ -73,42 +73,45 @@ namespace platform
    void session::on_request(::request* prequest)
    {
 
-   if (prequest->m_ecommand == e_command_protocol)
-   {
+      if (prequest->m_ecommand == e_command_protocol)
+      {
 
-      m_pappCurrent->request(prequest);
+         m_pappCurrent->request(prequest);
 
-      return;
+         return;
+
+      }
+
+      information() << "::apex::session::on_request(::pointer<::create> " << ::type(this).name();
+
+      //string strAppId = prequest->m_strAppId;
+
+      //if (strAppId.is_empty())
+      //{
+
+      //   information() << "m_strAppId Is Empty!!";
+
+      //   return;
+
+      //}
+
+      information() << "m_strAppId = " << prequest->m_strAppId;
+
+      auto papplication = get_application(prequest->m_strAppId, true, prequest);
+
+      if (!papplication)
+      {
+
+         throw ::exception(error_wrong_state, "request without application m_strAppId");
+
+      }
+
+      m_varCurrentImpactFile = prequest->m_payloadFile;
+
+      papplication->call_request(prequest);
 
    }
 
-   information() << "::apex::session::on_request(::pointer<::create> " << ::type(this).name();
-
-   //string strAppId = prequest->m_strAppId;
-
-   //if (strAppId.is_empty())
-   //{
-
-   //   information() << "m_strAppId Is Empty!!";
-
-   //   return;
-
-   //}
-
-   information() << "m_strAppId = " << prequest->m_strAppId;
-
-   auto papplication = get_application(prequest->m_strAppId, true, prequest);
-
-   if (!papplication)
-   {
-
-      destroy();
-
-   }
-
-   m_varCurrentImpactFile = prequest->m_payloadFile;
-
-}
 
    void session::process_init()
    {
@@ -123,7 +126,7 @@ namespace platform
    void session::main()
    {
 
-   //::platform::context::main();
+      //::platform::context::main();
       ::task::main();
 
    }
@@ -228,7 +231,7 @@ namespace platform
          process_term();
 
       }
-      catch(...)
+      catch (...)
       {
 
       }

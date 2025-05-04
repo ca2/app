@@ -20,16 +20,16 @@
 // int_bool thread_data_free(thread_data_index dataindex);
 
 
-//extern thread_local ::pointer<property_set>t_ppropertyset;
+//extern thread_local ::pointer<::property_set>t_ppropertyset;
 
 
 //CLASS_DECL_APEX void main_branch(::element * pelementTask, enum_priority epriority);
 
 
-//property_set& _thread_property_set();
+//::property_set& _thread_property_set();
 //
 //
-//property_set & thread_property_set();
+//::property_set & thread_property_set();
 //
 //
 //#if defined(ANDROID)

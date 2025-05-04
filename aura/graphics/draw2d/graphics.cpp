@@ -4906,7 +4906,7 @@ namespace draw2d
 
                character_count iCount = str.length() - iUnderline - 1;
 
-               text_out(rectangle.left() + sz.cx(), (double)rectangle.top(), { str.right(iCount).c_str(), (int)iCount });
+               text_out(rectangle.left() + sz.cx(), (double)rectangle.top(), { ::string(str.right(iCount)).c_str(), (int)iCount });
 
                /*::TextOutU(
                (HDC)pgraphics->get_os_data(),

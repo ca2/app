@@ -29,7 +29,7 @@ namespace interprocess
       ~task() override;
 
 
-      virtual void do_task(const string & strObject, const string & strMember, const property_set & propertyset);
+      virtual void do_task(const string & strObject, const string & strMember, const ::property_set & propertyset);
 
 
    };

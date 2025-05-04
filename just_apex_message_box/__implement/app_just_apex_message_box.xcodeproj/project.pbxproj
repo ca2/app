@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A22742127CF35F40042BAC2 /* application_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A22742027CF35F40042BAC2 /* application_main.cpp */; };
+		9A22742127CF35F40042BAC2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A22742027CF35F40042BAC2 /* main.cpp */; };
 		9A441D832D72C101004246CC /* libacme.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A441D6D2D72C099004246CC /* libacme.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A441D842D72C101004246CC /* libacme_apple.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A441D6E2D72C099004246CC /* libacme_apple.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A441D852D72C101004246CC /* libacme_darwin.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A441D6F2D72C099004246CC /* libacme_darwin.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -74,7 +74,7 @@
 
 /* Begin PBXFileReference section */
 		070B8EEA1B6E53F900D26137 /* _app_just_apex_message_box.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = _app_just_apex_message_box.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A22742027CF35F40042BAC2 /* application_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application_main.cpp; sourceTree = SOURCE_ROOT; };
+		9A22742027CF35F40042BAC2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = SOURCE_ROOT; };
 		9A441D6D2D72C099004246CC /* libacme.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = "<group>"; };
 		9A441D6E2D72C099004246CC /* libacme_apple.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libacme_apple.dylib; sourceTree = "<group>"; };
 		9A441D6F2D72C099004246CC /* libacme_darwin.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libacme_darwin.dylib; sourceTree = "<group>"; };
@@ -189,7 +189,7 @@
 				9A5D09A92B7F9ACC003239D4 /* _____debug.xcconfig */,
 				9A5D09A82B7F9ACC003239D4 /* _____release.xcconfig */,
 				9A5D09982B7F9A90003239D4 /* macos */,
-				9A22742027CF35F40042BAC2 /* application_main.cpp */,
+				9A22742027CF35F40042BAC2 /* main.cpp */,
 			);
 			name = __implement;
 			sourceTree = "<group>";
@@ -267,7 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A22742127CF35F40042BAC2 /* application_main.cpp in Sources */,
+				9A22742127CF35F40042BAC2 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

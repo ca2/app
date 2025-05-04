@@ -38,7 +38,7 @@ namespace platform
       
       
       virtual ::pointer<::platform::application > instantiate_application(const::string& strAppIdd);
-      virtual ::pointer<::platform::application > create_application(const ::string & strAppId, ::request * prequest);
+      virtual ::pointer<::platform::application > create_application(const ::string & strAppId);
 
 
       virtual void exit_application() override;

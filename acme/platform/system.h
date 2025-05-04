@@ -4,7 +4,7 @@
 
 
 #include "acme/handler/handler.h"
-#include "acme/platform/ini.h"
+//#include "acme/platform/ini.h"
 #include "acme/platform/system_acme.h"
 #include "acme/platform/system_apex.h"
 #include "acme/platform/system_aqua.h"
@@ -347,7 +347,12 @@ namespace platform
        //virtual void on_start_system() override;
 
 
-      virtual void defer_post_initial_request() override;
+      //virtual void defer_post_initial_request() override;
+
+      void post_application_start() override;
+      void defer_post_file_open() override;
+      void post_application_started() override;
+
 
 
       virtual void canonical_system_main() override;
@@ -505,7 +510,7 @@ namespace platform
       static inline ::atom atom(long long i);
       //static inline ::atom_space & atom();
       inline ::atom atom(const ::payload & payload);
-      inline ::atom atom(const property & prop);
+      inline ::atom atom(const ::property & property);
 
       virtual void check_exit() override;
 
@@ -536,6 +541,8 @@ namespace platform
       //virtual void erase_signal_handlers(::particle * ppparticle);
 
       virtual void node_will_finish_launching() override;
+      
+      virtual void node_did_finish_launching() override;
 
       virtual void on_open_untitled_file() override;
 

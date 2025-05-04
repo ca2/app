@@ -4381,8 +4381,24 @@ return nullptr;
    }
 
 
-   void acme_system_layer::defer_post_initial_request()
+   void acme_system_layer::post_application_start()
    {
+
+
+   }
+
+
+   void acme_system_layer::defer_post_file_open()
+   {
+
+
+   }
+
+
+   void acme_system_layer::post_application_started()
+   {
+
+
    }
 
 
@@ -4692,7 +4708,12 @@ return nullptr;
    }
 
 
-   void acme_system_layer::on_open_untitled_file()
+void acme_system_layer::node_did_finish_launching()
+{
+}
+
+
+void acme_system_layer::on_open_untitled_file()
    {
    }
 

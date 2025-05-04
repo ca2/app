@@ -213,11 +213,11 @@ namespace sockets
 
       set_url(url);
 
-      set_host(m_urlparts.connect().m_strHost);
+      set_host(m_urlparts.connect().host());
 
       m_request.header("host") = get_host();
 
-      m_request.attr("http_protocol") = m_urlparts.connect().m_strProtocol;
+      m_request.attr("http_protocol") = m_urlparts.connect().protocol();
 
       ::string strRequest = m_urlparts.request().as_string();
 
@@ -250,7 +250,7 @@ namespace sockets
 
       set_connect_host(get_host());
 
-      set_connect_port(m_urlparts.connect().m_iPort);
+      set_connect_port(m_urlparts.connect().port());
 
       m_pfile = nullptr;
 
@@ -503,7 +503,7 @@ namespace sockets
    }
 
 
-   const string & http_client_socket::GetContent()
+   ::string http_client_socket::GetContent()
    {
 
       return m_content;
@@ -585,23 +585,23 @@ namespace sockets
    }
 
 
-   const string & http_client_socket::GetUrlProtocol()
+   ::string http_client_socket::GetUrlProtocol()
    {
 
-      return m_urlparts.connect().m_strProtocol;
+      return m_urlparts.connect().protocol();
 
    }
 
 
-   const string & http_client_socket::GetUrlFilename()
+   ::string http_client_socket::GetUrlFilename()
    {
       
-      return m_urlparts.request().m_strPath;
+      return m_urlparts.request().path();
 
    }
 
 
-   const string & http_client_socket::GetContentType()
+   ::string http_client_socket::GetContentType()
    {
 
       return m_content_type;
@@ -632,8 +632,8 @@ namespace sockets
 
       set_url(url);
 
-      m_request.attr("http_protocol")     = m_urlparts.connect().m_strProtocol;
-      m_request.header("host")            = m_urlparts.connect().m_strHost;
+      m_request.attr("http_protocol")     = m_urlparts.connect().protocol();
+      m_request.header("host")            = m_urlparts.connect().host();
       
       ::string strRequest = m_urlparts.request().as_string();
 

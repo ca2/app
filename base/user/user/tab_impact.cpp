@@ -818,7 +818,7 @@ namespace user
 
             __check_refdbg
 
-            informationf("the type is " + strType);
+            information("the type is " + strType);
             
          }
 

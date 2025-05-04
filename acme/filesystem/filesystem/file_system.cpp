@@ -10,7 +10,7 @@
 #include "acme/exception/io.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/file/memory_map.h"
-#include "acme/platform/ini.h"
+//#include "acme/platform/ini.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/datetime/datetime.h"
@@ -566,7 +566,7 @@ void file_system::clear_application_data()
 }
 
 
-void file_system::find_replace(const ::file::path& path, const ::property_set& set)
+void file_system::find_replace(const ::file::path& path, const ::property_set & set)
 {
 
    auto str = as_string(path);
@@ -1112,15 +1112,15 @@ void file_system::load_stra(const ::file::path& pathName, string_array& stra, bo
 }
 
 
-void file_system::put_contents(const ::file::path& path, const memory_base& memory)
-{
+//void file_system::put_contents(const ::file::path& path, const memory_base& memory)
+//{
+//
+//   put_block(path, memory);
+//
+//}
 
-   put_block(path, memory);
 
-}
-
-
-void file_system::put_contents(const ::file::path& path, const ::scoped_string& scopedstrContents)
+void file_system::put_contents(const ::file::path& path, const ::block& block)
 {
 
 
@@ -1689,51 +1689,6 @@ void file_system::_erase(const ::file::path& path)
 }
 
 
-::pointer<::handle::ini> file_system::get_ini(const ::payload& payloadFile)
-{
-
-   auto preader = this->get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read);
-
-   if (preader.nok())
-   {
-
-      throw ::io_exception(error_io);
-
-   }
-
-   string str;
-
-   preader->right_string(str);
-
-   auto pini = __create_new<handle::ini>();
-
-   if (!pini)
-   {
-
-      return pini;
-
-   }
-
-   pini->parse_ini(str);
-
-   return ::transfer(pini);
-
-}
-
-
-::property_set file_system::parse_standard_configuration(const ::payload& payloadFile)
-{
-
-
-   auto str = as_string(payloadFile);
-
-   ::property_set set;
-
-   set.parse_standard_configuration(str);
-
-   return ::transfer(set);
-
-}
 
 
 // file_system::file_system()

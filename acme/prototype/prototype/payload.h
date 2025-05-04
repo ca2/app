@@ -16,7 +16,7 @@
 //#include "acme/prototype/datetime/file_time.h"
 #include "acme/prototype/string/sz.h"
 #include "acme/prototype/prototype/make_particle.h"
-
+#include "acme/prototype/string/character_range.h"
 
 inline payload & copy(payload & payload, const class time & time);
 
@@ -167,6 +167,10 @@ public:
    payload(enum_type etype);
    payload(nullptr_t);
    payload(const ::payload & payload);
+   //template < typename ITERATOR_TYPE, int t_size >
+   //payload(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a) :
+   //   payload(::string(a))
+   //{  }
    payload(::payload && payload) :
       m_etype(payload.m_etype)
    {
@@ -261,12 +265,27 @@ public:
 
    //}
 
+
    template < typename BLOCK_TYPE >
-   payload(const ::raw_block < BLOCK_TYPE > & rawblock)
+   payload(const ::raw_block < BLOCK_TYPE > & rawblock) :
+      payload(e_type_new)
    {
-      m_etype = e_type_new;
+
+      //m_etype = e_type_new;
       operator = (rawblock.block());
+
    }
+
+
+   payload(const ::inline_number_string & a) :
+      payload(e_type_new)
+   {
+      
+      //m_etype = e_type_new;
+      operator = (a);
+
+   }
+
 
    //   template < primitive_character CHARACTER2, character_count sizeMaximumLength >
    //   payload(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring) :
@@ -875,8 +894,23 @@ public:
 
    void payload_increment_reference_count();
 
+   int & _as(int & i) const
+   {
 
+      i = as_int();
 
+      return i;
+
+   }
+
+   ::string & _as(::string & str) const
+   {
+
+      str = as_string();
+
+      return str;
+
+   }
 
    payload & operator = (const ::subparticle & o);
 
@@ -1093,6 +1127,14 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
 
    payload & operator = (const ::property & prop);
    //payload & operator = (const ::property * pproperty);
+
+   //template < primitive_character CHARACTER, int t_size >
+   //payload & operator = (const const_string_range_static_array< const CHARACTER *, t_size > & a)
+   //{
+
+   //   return this->operator=(::string(a));
+
+   //}
    payload & operator = (const ::payload & payload);
    payload & operator = (const ::int_array & ia);
    payload & operator = (const ::string_array & stra);
@@ -1198,8 +1240,11 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    }
 
 
-   template < class T >
-   ::pointer< T > cast(T * pDefault);
+   //template < primitive_subparticle T >
+   //T * cast();
+
+   template < primitive_subparticle T >
+   ::pointer < T > cast(T* pDefault = nullptr);
 
    template < class T >
    T & defer_create_type(T * pdefault = nullptr)
@@ -1221,8 +1266,8 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    }
 
 
-   template < class T >
-   T & get_cast(T * pDefault);
+   template < typename T >
+   T & as_type();
 
 
    //template < class T >
@@ -1232,8 +1277,8 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    //}
 
 
-   template < class T >
-   ::pointer< T > cast();
+   //template < class T >
+   //::pointer< T > cast();
 
    ::subparticle * as_subparticle()
    {
@@ -1243,7 +1288,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
 
    ::subparticle * as_subparticle() const { return ((payload *)this)->as_subparticle(); }
 
-   template < class T >
+   template < primitive_particle T >
    T * cast() const
    {
       return ((payload *)this)->cast < T >();
@@ -1468,6 +1513,9 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    //::payload & operator += (const ::inline_number_string & inline_number_string);
    //template < character_count n >
    //::payload & operator += (const ::ansi_character (&cha)[n]) { return *this += ::scoped_string(cha);}
+
+   //template < typename ITERATOR_TYPE, int t_size >
+   //::payload & operator += (const const_string_range_static_array < ITERATOR_TYPE, t_size > & a) { return *this += ::string(a);}
 
    template < primitive_integral INTEGRAL >
    ::payload & operator /= (INTEGRAL i);
@@ -1810,8 +1858,8 @@ inline PAYLOAD1 & operator +=(PAYLOAD1 & payload1, const PAYLOAD2 & payload2)
 }
 
 
-template < primitive_payload PAYLOAD, primitive_character CHARACTER >
-inline ::string operator +(const PAYLOAD & payload, const CHARACTER * psz)
+template < primitive_payload PAYLOAD, character_pointer CHARACTER_POINTER >
+inline ::string operator +(const PAYLOAD & payload, CHARACTER_POINTER psz)
 {
 
    ::string str(payload);
@@ -1827,7 +1875,7 @@ template < primitive_payload PAYLOAD, primitive_character CHARACTER >
 inline PAYLOAD & operator +=(PAYLOAD & payload, const CHARACTER * psz)
 {
 
-   payload = payload.as_string() + ::string(psz);
+   payload = ::string(payload.as_string() + psz);
 
    return payload;
 
@@ -1847,28 +1895,6 @@ inline PAYLOAD & operator +=(PAYLOAD & payload, const CHARACTER * psz)
 //}
 
 
-template < primitive_payload PAYLOAD, character_range RANGE >
-::string operator + (const PAYLOAD & payload, const RANGE & range)
-{
-
-   return ::transfer(::string(payload) + ::string(range));
-
-}
-
-
-template < primitive_payload PAYLOAD, character_range RANGE >
-PAYLOAD & operator += (PAYLOAD& payload, const RANGE& range)
-{
-
-   string str = payload.as_string() + ::string(range);
-
-   payload = str;
-
-   return payload;
-
-}
-
-
 CLASS_DECL_ACME void copy(::string & str, const ::payload & payload);
 CLASS_DECL_ACME void copy(::payload & payload, const int & i);
 CLASS_DECL_ACME  void copy(::payload & payload, const ::string & str);
@@ -1882,5 +1908,30 @@ inline bool operator == (const PAYLOAD1 & payload1, const PAYLOAD2 & payload2)
 
 }
 
+
+
+
+
+template < character_range CHARACTER_RANGE >
+payload::payload(const CHARACTER_RANGE& range) :
+   payload(no_initialize_t{})
+{
+
+   m_etype = e_type_string;
+   zero(m_str);
+   m_str = range;
+
+}
+
+
+template < primitive_character CHARACTER, primitive_payload PAYLOAD >
+inline ::file::path operator / (
+   const ::range < const CHARACTER * > & range,
+   const PAYLOAD & payload)
+{
+
+   return ::file::path(range) / payload.as_file_path();
+
+}
 
 

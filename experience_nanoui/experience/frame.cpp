@@ -289,7 +289,7 @@ namespace experience_nanoui
    //}
 
 
-   //frame::enum_element operator++(frame::enum_element & eelement, int i)
+   //frame::enum_element operator ++(frame::enum_element & eelement, int i)
    //{
    //   __UNREFERENCED_PARAMETER(i);
    //   return (frame::enum_element) (*((int*)&eelement))++;

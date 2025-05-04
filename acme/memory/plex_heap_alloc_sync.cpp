@@ -3,7 +3,7 @@
 #include "plex_heap.h"
 #include "plex_heap_alloc_sync.h"
 
-
+#define MEMDFREE 0
 void * g_pDebugPointer = nullptr;
 
 
@@ -94,12 +94,22 @@ void * plex_heap_alloc_sync::Alloc()
       //}
 
       NewBlock();
+      if (((iptr)m_pnodeFree->m_pnext) & 1)
+      {
+
+         debug_break();
+
+      }
 
    }
-   if (((iptr)m_pnodeFree->m_pnext) & 1)
+   else
    {
+      if (((iptr)m_pnodeFree->m_pnext) & 1)
+      {
 
-      debug_break();
+         debug_break();
+
+      }
 
    }
 
@@ -196,7 +206,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
 
    critical_section_lock synchronouslock(&m_criticalsection);
 
-#ifdef MEMDFREE // Free Debug - duplicate freeing ?
+#if MEMDFREE // Free Debug - duplicate freeing ?
 
    node * pnodeFree = m_pnodeFree;
 

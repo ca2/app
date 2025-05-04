@@ -4958,18 +4958,20 @@ retry_license:
 
       ::file::path strFile = directory()->install() / strRelative;
 
-      ::file::path strUrl(::e_path_url);
+      ::string strUrl1;
 
       if (node()->is_debug_build())
       {
-         strUrl = "http://basis-ca2.network/api/spaignition/download?authnone&configuration=basis&stage=";
+         strUrl1 = "http://basis-ca2.network/api/spaignition/download?authnone&configuration=basis&stage=";
       }
       else
       {
-         strUrl = "http://stage-ca2.network/api/spaignition/download?authnone&configuration=stage&stage=";
+         strUrl1 = "http://stage-ca2.network/api/spaignition/download?authnone&configuration=stage&stage=";
       }
 
-      strUrl += ::url::encode(strRelative);
+      strUrl1 += ::url::encode(strRelative);
+
+      ::url::url url(strUrl1);
 
       ::cast <::http::context > phttpcontext = http();
 
@@ -4979,9 +4981,9 @@ retry_license:
          while (true)
          {
 
-            property_set setEmpty;
+            ::property_set setEmpty;
 
-            if (phttpcontext->open(psession, strUrl, setEmpty, nullptr))
+            if (phttpcontext->open(psession, url.connect(), setEmpty, nullptr))
             {
 
                break;
@@ -4994,13 +4996,13 @@ retry_license:
 
       }
 
-      property_set set;
+      ::property_set set;
 
       set["get_memory"] = "";
 
       //::cast < ::http::context > phttpcontext = http();
 
-      phttpcontext->request(psession, strUrl, set);
+      phttpcontext->request(psession, url.request(), set);
 
       //if (!http()->request(psession, strUrl, set))
       //{
@@ -5278,7 +5280,7 @@ retry_license:
    //}
 
 
-   string application::dialog_box(const ::string & pszMatter, property_set& propertyset)
+   string application::dialog_box(const ::string & pszMatter, ::property_set& propertyset)
    {
 
       throw ::exception(todo, "core and os");
@@ -7389,13 +7391,13 @@ namespace aura
 
 
 
-   /*   property_set & application::propset(object * pparticle)
+   /*   ::property_set & application::propset(object * pparticle)
    {
    single_lock synchronouslock(&m_mapObjectSet, true);
    return m_mapObjectSet[pparticle];
    }
 
-   property_set * application::existing_propset(object * pparticle)
+   ::property_set * application::existing_propset(object * pparticle)
    {
    single_lock synchronouslock(&m_mapObjectSet, true);
    auto point = m_mapObjectSet.plookup(pparticle);
@@ -7647,7 +7649,7 @@ namespace aura
    //   if (m_strBaseSupportId.is_empty())
    //   {
 
-   //      property_set propertyset;
+   //      ::property_set propertyset;
 
    //      dialog_box("err\\developer\\base_support\\support_id_not_specified.xml", propertyset);
 
@@ -7659,7 +7661,7 @@ namespace aura
    //}
 
 
-   //string application::sync_message_box(const string & pszMatter, property_set & propertyset)
+   //string application::sync_message_box(const string & pszMatter, ::property_set & propertyset)
    //{
    //
    //   __UNREFERENCED_PARAMETER(propertyset);

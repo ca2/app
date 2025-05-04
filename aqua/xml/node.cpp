@@ -136,7 +136,7 @@ namespace xml
    //}
 
 
-   //bool node::contains(const property_set & set) const
+   //bool node::contains(const ::property_set & set) const
    //{
 
    //   return propset().contains(set);
@@ -147,7 +147,7 @@ namespace xml
    property & node::set_attribute(const ::atom & atom, const ::payload & payload)
    {
 
-      auto & property = m_set.get(atom);
+      auto & property = m_set.property(atom);
 
       property = payload;
 
@@ -168,7 +168,7 @@ namespace xml
    }
 
 
-   ::collection::index node::find(const ::scoped_string & scopedstrName, const property_set & set, ::collection::index iStart)
+   ::collection::index node::find(const ::scoped_string & scopedstrName, const ::property_set & set, ::collection::index iStart)
    {
 
       for(::collection::index i = iStart; i < m_nodea.get_count(); i++)
@@ -444,7 +444,7 @@ namespace xml
 
          _SetString({pszStart, rangeXml.m_begin}, &strName);
 
-         auto & property = m_set.get(strName);
+         auto & property = m_set.property(strName);
 
          rangeXml.consume_spaces(0);
 
@@ -2134,7 +2134,7 @@ namespace xml
 
       node * node = get_child(lpszName);
 
-      return node ? node->find_attribute(attrname) : nullptr;
+      return node ? node->lookup_attribute(attrname) : nullptr;
 
    }
 
@@ -2188,7 +2188,7 @@ namespace xml
    }
 
 
-   node * node::rear_find(const ::scoped_string & scopedstrName, const property_set & set, ::collection::index iDepth)
+   node * node::rear_find(const ::scoped_string & scopedstrName, const ::property_set & set, ::collection::index iDepth)
    {
 
       for (auto & pnode : m_nodea)
@@ -2331,7 +2331,7 @@ namespace xml
    }
 
 
-   node * node::add_child(const ::string & strName, const property_set & set, const ::scoped_string & scopedstrValue)
+   node * node::add_child(const ::string & strName, const ::property_set & set, const ::scoped_string & scopedstrValue)
    {
 
       auto pnode = __allocate node((node *) this);

@@ -631,7 +631,7 @@ namespace apex
    //}
 
 
-   //string application::dialog_box(const ::string & pszMatter, property_set & propertyset)
+   //string application::dialog_box(const ::string & pszMatter, ::property_set & propertyset)
    //{
 
    //   throw_todo();
@@ -1040,7 +1040,7 @@ namespace apex
          try
          {
 
-            prequest->get_property_set().unset("document");
+            prequest->property_set().unset("document");
 
          }
          catch (...)
@@ -4156,7 +4156,7 @@ namespace apex
 
             string str1 = "please_help_me";
 
-            property_set set;
+            ::property_set set;
 
             set["oh_my_god"].as_string_array().add(str1);
             set["oh_my_god2"].int_array_reference() = ::int_array({ 1, 2, 3 });
@@ -4176,7 +4176,7 @@ namespace apex
 
             datastream()->set("test", set);
 
-            property_set set2;
+            ::property_set set2;
 
             datastream()->get("test", set2);
 
@@ -6750,7 +6750,6 @@ namespace apex
 
       strUrl += ::url::encode(strRelative);
 
-
       ::cast < ::http::context > phttpcontext = http();
 
       if (psession == nullptr)
@@ -6759,9 +6758,11 @@ namespace apex
          while (true)
          {
 
-            property_set setEmpty;
+            ::property_set setEmpty;
+            
+            ::url::connect connect(strUrl);
 
-            if (phttpcontext->open(psession, strUrl, setEmpty, nullptr))
+            if (phttpcontext->open(psession, connect, setEmpty, nullptr))
             {
 
                break;
@@ -6774,11 +6775,13 @@ namespace apex
 
       }
 
-      property_set set;
+      ::property_set set;
 
       set["get_memory"] = "";
 
-      phttpcontext->request(psession, strUrl, set);
+      ::url::request request(strUrl);
+
+      phttpcontext->request(psession, request, set);
       //{
       //
       //m_pdraw2d->init()
@@ -7060,7 +7063,7 @@ namespace apex
    }
 
 
-   string application::dialog_box(const ::string & pszMatter, property_set & propertyset)
+   string application::dialog_box(const ::string & pszMatter, ::property_set & propertyset)
    {
 
       throw ::exception(todo, "core and os");
@@ -9154,13 +9157,13 @@ namespace apex
 
 
 
-   /*   property_set & application::propset(object * pparticle)
+   /*   ::property_set & application::propset(object * pparticle)
    {
    single_lock synchronouslock(&m_mapObjectSet, true);
    return m_mapObjectSet[pparticle];
    }
 
-   property_set * application::existing_propset(object * pparticle)
+   ::property_set * application::existing_propset(object * pparticle)
    {
    single_lock synchronouslock(&m_mapObjectSet, true);
    auto point = m_mapObjectSet.plookup(pparticle);
@@ -9422,7 +9425,7 @@ namespace apex
    //if (m_strBaseSupportId.is_empty())
    //{
    //
-   //property_set propertyset;
+   //::property_set propertyset;
    //
    //dialog_box("err\\developer\\base_support\\support_id_not_specified.xml", propertyset);
    //
@@ -9434,7 +9437,7 @@ namespace apex
    //}
 
 
-   //string application::sync_message_box(const string & pszMatter, property_set & propertyset)
+   //string application::sync_message_box(const string & pszMatter, ::property_set & propertyset)
    //{
    //
    //   __UNREFERENCED_PARAMETER(propertyset);
@@ -10311,7 +10314,7 @@ namespace apex
       
       string strHtml;
       
-      property_set setPost;
+      ::property_set setPost;
 
       auto estatus = on_html_response(nullptr, strHtml, strUri, setPost);
 

@@ -71,20 +71,20 @@ namespace datetime
 
          int32_t iWeekDay;
 
-         ::earth::time time(iYear, iMonth, 1, 0, 0, 0);
-         ::earth::time_span timespan(1, 0, 0, 0);
-         ::earth::time timeLastDayOfMonth((iMonth == 12) ? (iYear + 1) : iYear, (iMonth == 12) ? 1 : (iMonth + 1), 1, 0, 0, 0);
-         timeLastDayOfMonth -= ::earth::time_span(1, 0, 0, 0);
-         int32_t iFirstDayOfWeek = time.day_of_week();
+         ::earth::time timeFirstDayOfMonth(iYear, iMonth, 1, 0, 0, 0);
+         ::earth::time_span timespanOneDay(1, 0, 0, 0);
+         int32_t iFirstDayOfWeek = timeFirstDayOfMonth.day_of_week();
 
          if (pfile->m_strOptions.contains("<monday-first>")&& iFirstDayOfWeek == 1)
          {
             iFirstDayOfWeek = 8;
          }
 
+         ::earth::time timeLastDayOfMonth((iMonth == 12) ? (iYear + 1) : iYear, (iMonth == 12) ? 1 : (iMonth + 1), 1, 0, 0, 0);
+         timeLastDayOfMonth -= timespanOneDay;
          //      int32_t iFirstWeek;
          int32_t iLastDayOfWeek = timeLastDayOfMonth.day_of_week();
-         int32_t iLastDayPreviousMonth = (time - ::earth::time_span(1, 0, 0, 0)).day();
+         int32_t iLastDayPreviousMonth = (timeFirstDayOfMonth - timespanOneDay).day();
          int_rectangle rectangleDay;
          int32_t iDay;
          pfile->raw_print("<table cellpadding=\"0\" cellspacing=\"0\">");

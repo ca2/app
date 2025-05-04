@@ -62,10 +62,10 @@ extern thread_data_index g_tlsindexLastError;
 // } // namespace parallelization
 
 
-//thread_local ::pointer<property_set>t_ppropertyset;
+//thread_local ::pointer<::property_set>t_ppropertyset;
 //
 //
-//property_set& _thread_property_set()
+//::property_set& _thread_property_set()
 //{
 //
 //   auto& ppropertyset = t_ppropertyset;
@@ -76,7 +76,7 @@ extern thread_data_index g_tlsindexLastError;
 //
 //}
 //
-//property_set& thread_property_set()
+//::property_set& thread_property_set()
 //{
 //
 //   auto & ppropertyset = t_ppropertyset;

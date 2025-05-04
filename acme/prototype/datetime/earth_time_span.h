@@ -40,9 +40,9 @@ namespace earth
 
       constexpr posix_time GetTimeSpan() const noexcept;
 
-      constexpr time_span operator+(time_span span) const noexcept;
+      constexpr time_span operator +(time_span span) const noexcept;
       constexpr time_span operator-(time_span span) const noexcept;
-      constexpr time_span& operator+=(time_span span) noexcept;
+      constexpr time_span& operator +=(time_span span) noexcept;
       constexpr time_span& operator-=(time_span span) noexcept;
 
       constexpr operator time() const
@@ -183,10 +183,10 @@ namespace earth
    }
 
 
-   constexpr time_span time_span::operator+(time_span span) const noexcept
+   constexpr time_span time_span::operator +(time_span span) const noexcept
    {
 
-      return posix_time::operator+(span);
+      return posix_time::operator +(span);
 
    }
 
@@ -199,7 +199,7 @@ namespace earth
    }
 
 
-   constexpr time_span& time_span::operator+=(time_span span) noexcept
+   constexpr time_span& time_span::operator +=(time_span span) noexcept
    {
 
       posix_time::operator +=(span);

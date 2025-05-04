@@ -610,7 +610,7 @@
 ////}
 ////
 ////template < typename TYPE >
-////inline void __io(property_set & set, const ::pointer<TYPE>& p)
+////inline void __io(::property_set & set, const ::pointer<TYPE>& p)
 ////{
 ////
 ////   ((TYPE *) p.m_p)->exchange(set[atom].propset());
@@ -619,7 +619,7 @@
 ////
 ////
 ////template < typename TYPE >
-////inline void __io(property_set & set, ::pointer<TYPE>& p)
+////inline void __io(::property_set & set, ::pointer<TYPE>& p)
 ////{
 ////
 ////   p->exchange(set[atom].propset());

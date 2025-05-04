@@ -113,20 +113,20 @@
       /// set["default_file_extension"] : default file extension (with dot)
       /// set["folder"] : folder path
       /// set["file_name"] : in/out file name
-      virtual bool browse_file_open(::user::interaction* pinteraction, property_set & set);
+      virtual bool browse_file_open(::user::interaction* pinteraction, ::property_set & set);
 
       /// set["file_filter_specs"] : string array of extensions (with dot)
       /// set["file_filter_names"] : string array of the file extensions titles
       /// set["default_file_extension"] : default file extension (with dot)
       /// set["folder"] : folder path
       /// set["file_name"] : in/out file name
-      virtual bool browse_file_save(::user::interaction* pinteraction, property_set & set);
+      virtual bool browse_file_save(::user::interaction* pinteraction, ::property_set & set);
 
       /// set["folder"] : in/out folder path
-      virtual bool browse_folder(::user::interaction* pinteraction, property_set & set);
+      virtual bool browse_folder(::user::interaction* pinteraction, ::property_set & set);
 
       /// set["folder"] : in/out folder path
-      virtual bool browse_file_or_folder(::user::interaction* pinteraction, property_set & set);
+      virtual bool browse_file_or_folder(::user::interaction* pinteraction, ::property_set & set);
 
 
       virtual void list_process(::file::path_array & patha, unsigned_int_array & uaPid);

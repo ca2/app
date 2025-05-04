@@ -1,6 +1,9 @@
 // Refactored around 2022-09-12 by camilo <3ThomasBorregaardSorensen!!
 #pragma once
 
+//template < typename SAME_AS, typename COMPARE >
+//concept same_as = ::std::is_same_v< SAME_AS, COMPARE >;
+
 
 enum enum_range : int
 {
@@ -8,12 +11,49 @@ enum enum_range : int
    e_range_none = 0,
    e_range_null_terminated = 1,
    e_range_string = 2,
+   /// last time crazy attempt on 2025-04-25
+   /// it is very difficult and possibly not
+   /// much portable to determine a string
+   /// literal.
+   /// A simple char sz[20]= "stackstring"
+   /// matches template<> const char (&s)[n];
+   e_range_string_literal = 4, 
+   /// scoped ownership seems also not usable
+   /// once a ownership is done, reference
+   /// count is incremented and then it should
+   /// be decremented. scoped ownership tends 
+   /// to just follow e_range_string flag,
+   /// so using e_range_string is enough. 
+   e_range_scoped_ownership = 32768,
    e_range_buffer = 65536,
    //e_range_read_only = 4,
    //e_range_read_only_and_null_terminated = 5,
    //e_range_scoped_string_allocation = 2,
 
 };
+
+//
+//template < primitive_character CHARACTER, character_count n >
+//constexpr ::range < const CHARACTER* > as_string_literal(const CHARACTER* s)
+//{
+//
+//   if constexpr (n >= 1)
+//   {
+//
+//      if (s[n - 1] == CHARACTER{})
+//      {
+//
+//         return { s, s + n - 1, e_range_null_terminated };
+//
+//      }
+//
+//   }
+//
+//   return { s, s + n, e_range_none };
+//
+//}
+
+
 
 template < typename TYPE >
 auto & get(TYPE * p)
@@ -182,7 +222,7 @@ public:
    using ITEM_POINTER = get_type_item_pointer<iterator>;
 
 
-   using THIS_ITEM = get_iterator_item<ITERATOR_TYPE>;
+   using THIS_ITEM = get_iterator_item<this_iterator>;
    using ITEM = non_const<THIS_ITEM>;
    using CONST_ITEM = add_const<THIS_ITEM>;
    using ARG_ITEM = argument_of < ITEM >;
@@ -190,7 +230,7 @@ public:
 
    this_iterator     m_begin;
    this_iterator     m_end;
-   e_range           m_erange;
+   enum_range        m_erange;
 
 
    constexpr range(no_initialize_t)
@@ -206,8 +246,46 @@ public:
    {
    }
 
-   constexpr range(const range & range) : m_begin(range.m_begin), m_end(range.m_end), m_erange(range.m_erange) {}
-   constexpr range(range && range) : m_begin(range.m_begin), m_end(range.m_end), m_erange(range.m_erange) { range.m_begin = nullptr; range.m_end = nullptr; }
+   constexpr range(range & range)
+      : m_begin(range.m_begin), m_end(range.m_end), m_erange(range.m_erange) {}
+   constexpr range(range&& range) : m_begin(range.m_begin), m_end(range.m_end), m_erange(range.m_erange) { range.m_begin = nullptr; range.m_end = nullptr; range.m_erange = e_range_none; }
+
+   template<::collection::count count>
+   constexpr range(const ITEM(&array)[count], enum_range erange = e_range_none) 
+      requires
+      (!primitive_character < ITEM >)
+      : range(array, count, erange)
+   {
+   }
+
+   //template < typename CHARACTER, character_count n >
+   //constexpr range(const CHARACTER(& s)[n]) requires
+   //   primitive_character < CHARACTER > &&
+   //   ::std::is_same_v<non_const<erase_pointer<CHARACTER>>, non_const<erase_pointer<ITEM>>>
+   //{
+
+   //   if constexpr (n >= 1)
+   //   {
+
+   //      if (s[n - 1] == CHARACTER{})
+   //      {
+
+   //         this->m_begin = s;
+   //         this->m_end = s + n - 1;
+   //         this->m_erange = e_range_null_terminated;
+
+   //         return;
+
+   //      }
+
+   //   }
+
+   //   this->m_begin = s;
+   //   this->m_end = s + n;
+   //   this->m_erange = e_range_none;
+
+   //}
+
 
    template<typed_range<iterator> RANGE>
    constexpr range(const RANGE & range) : m_begin((this_iterator)range.begin()), m_end((this_iterator)range.end()), m_erange(range.m_erange)
@@ -215,27 +293,23 @@ public:
    }
 
    template<typed_range<const_iterator> RANGE>
-   constexpr range(const RANGE & range) : m_begin((this_iterator)range.m_begin), m_end((this_iterator)range.m_end), m_erange(range.m_erange)
+   constexpr range(const RANGE & range) : m_begin((this_iterator)range.m_begin), m_end((this_iterator)range.m_end), m_erange(e_range_none)
    {
    }
 
    template<typename TYPE>
-   constexpr range(TYPE *& p) : m_begin((this_iterator)p), m_end((this_iterator)find_first_null_character(p))
+   constexpr range(TYPE *& p) : m_begin((this_iterator)p), m_end((this_iterator)find_first_null_character(p)),m_erange(e_range_null_terminated)
    {
    }
 
-   template<::collection::count count>
-   constexpr range(const ITEM(&array)[count], e_range erange = e_range_none) : range(array, count, erange)
-   {
-   }
 
    template<primitive_integral INTEGRAL>
-   constexpr range(this_iterator begin, INTEGRAL count, e_range erange = e_range_none) :
+   constexpr range(this_iterator begin, INTEGRAL count, enum_range erange = e_range_none) :
       m_begin(begin), m_end(begin + count), m_erange(erange)
    {
    }
 
-   constexpr range(this_iterator begin, this_iterator end, e_range erange = e_range_none) :
+   constexpr range(this_iterator begin, this_iterator end, enum_range erange = e_range_none) :
       m_begin(begin), m_end(end), m_erange(erange)
    {
    }
@@ -285,8 +359,8 @@ public:
 
 
    constexpr bool is_string() const { return m_erange & e_range_string; }
-   void set_string_flag() { m_erange |= e_range_string; }
-   void clear_string_flag() { m_erange -= e_range_string; }
+   constexpr void set_string_flag() { m_erange = (enum_range)(m_erange | e_range_string); }
+   constexpr void clear_string_flag() { m_erange = (enum_range) (m_erange & ~e_range_string); }
 
 
    template < primitive_integral START >
@@ -303,6 +377,47 @@ public:
    {
 
       return { m_begin + start, (count < 0) ? m_end + count + 1 : m_begin + start + count };
+
+   }
+
+
+   template < primitive_character CHARACTER >
+   character_count __utf_length(CHARACTER * ptrigger, character_count *& plen) const;
+
+
+   template < primitive_character CHARACTER >
+   void __utf_concatenate_to(CHARACTER *& p, character_count *& plen) const;
+
+
+   template < same_as < ITEM > A_ITEM > 
+   void block_concatenate_to(A_ITEM * & p)
+   {
+
+      auto s = size();
+
+      if (s < 32)
+      {
+
+         auto psrc = this->m_begin;
+
+         while (s > 0)
+         {
+
+            *p++ = *psrc++;
+
+            s--;
+
+         }
+
+      }
+      else
+      {
+
+         ::memory_copy(p, this->m_begin, s*sizeof(ITEM));
+         
+         p += s;
+
+      }
 
    }
 
@@ -479,22 +594,7 @@ public:
    static constexpr bool _initialize_equals(bool & b, const THIS_RAW_RANGE & range, const THIS_RAW_RANGE & rangeBlock)
    {
 
-      if (range.size() != rangeBlock.size())
-      {
 
-         b = false;
-
-         return true;
-
-      }
-      else if (range.is_empty())
-      {
-
-         b = true;
-
-         return true;
-
-      }
 
       return false;
 
@@ -530,16 +630,13 @@ public:
    static constexpr bool static_equals(const THIS_RAW_RANGE & range, const THIS_RAW_RANGE & rangeBlock, EQUALITY equality)
    {
 
-      bool b;
+      auto sizeRange = range.size();
 
-      if (_initialize_equals(b, range, rangeBlock))
-      {
-
-         return b;
-
-      }
-
-      return _static_equals(range, rangeBlock, equality);
+      return sizeRange != rangeBlock.size() ? false :
+         (sizeRange <= 0 ? 
+            true:
+            _static_equals(range, rangeBlock, equality)
+            );
 
    }
 
@@ -560,6 +657,9 @@ public:
       return static_equals(*this, rangeBlock, equality);
 
    }
+
+
+
 
 
    //   template<::comparison::equality<ITEM> EQUALITY>
@@ -1021,121 +1121,6 @@ public:
    //
    //   }
 
-
-   static constexpr bool
-      _initialize_skip_any_character_in(const_iterator & p, const THIS_RAW_RANGE & range, const THIS_RAW_RANGE & rangeBlock) noexcept
-   {
-
-      if (range.is_empty())
-      {
-
-         p = (const_iterator)range.begin();
-
-         return true;
-
-      }
-
-      if (rangeBlock.is_empty())
-      {
-
-         p = (const_iterator)range.end();
-
-         return true;
-
-      }
-
-      return false;
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   static constexpr THIS_RAW_RANGE
-      _static_skip_any_character_in(THIS_RAW_RANGE range, const THIS_RAW_RANGE & rangeBlock, EQUALITY equality) noexcept
-   {
-
-      do
-      {
-
-         auto pBlockScan = rangeBlock.begin();
-
-         while (true)
-         {
-
-            if (equality.equals(*range.begin(), *pBlockScan))
-            {
-
-               // found a matching item...
-               // continue skip_any_character_inning...
-
-               break;
-
-            }
-
-            pBlockScan++;
-
-            if (rangeBlock.is_end(pBlockScan))
-            {
-
-               // Iterated through all pBlock items
-               // and didn't find any that match *p
-
-               // so p is the end of the skip_any_character_in for matching items...
-
-               return range;
-
-            }
-
-         };
-
-         range.begin()++;
-
-      } while (!range.is_end(range.begin()));
-
-      // reached end of the skip_any_character_inning range...
-      // each skip_any_character_inned item matched some item in range...
-      // return address immediately after end of skip_any_character_inning...
-
-      return range;
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   static constexpr const_iterator
-      static_skip_any_character_in(const THIS_RAW_RANGE & range, const THIS_RAW_RANGE & rangeBlock, EQUALITY equality) noexcept
-   {
-
-      const_iterator p;
-
-      if (_initialize_skip_any_character_in(p, range, rangeBlock))
-      {
-
-         return p;
-
-      }
-
-      return _static_skip_any_character_in(range, rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr THIS_RAW_RANGE _skip_any_character_in(const THIS_RAW_RANGE & rangeBlock, EQUALITY equality) const
-   {
-
-      return _static_skip_any_character_in(*this, rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator skip_any_character_in(const THIS_RAW_RANGE & rangeBlock, EQUALITY equality) const
-   {
-
-      return static_skip_any_character_in(*this, rangeBlock, equality);
-
-   }
 
 
    //   template<::comparison::equality<ITEM> EQUALITY>
@@ -1872,123 +1857,6 @@ public:
 //   }
 
 
-   static constexpr bool
-      _initialize_rear_skip_any_character_in(const_iterator & p, const THIS_RAW_RANGE & range, const THIS_RAW_RANGE & rangeBlock) noexcept
-   {
-
-      if (range.is_empty())
-      {
-
-         p = range.end() - 1;
-
-         return true;
-
-      }
-
-      if (range.is_empty())
-      {
-
-         p = range.end() - 1;
-
-         return true;
-
-      }
-
-      return false;
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   static constexpr const_iterator
-      _static_rear_skip_any_character_in(THIS_RAW_RANGE range, const THIS_RAW_RANGE & rangeBlock, EQUALITY equality) noexcept
-   {
-
-      do
-      {
-
-         auto pBlockScan = rangeBlock.begin();
-
-         while (true)
-         {
-
-            if (equality.equals(*range.end(), *pBlockScan))
-            {
-
-               // found a matching item...
-               // continue skip_any_character_inning...
-
-               break;
-
-            }
-
-            pBlockScan++;
-
-            if (rangeBlock.is_end(pBlockScan))
-            {
-
-               // Iterated through all pBlock items
-               // and didn't find any that match *p
-
-               // so p is the end of the skip_any_character_in for matching items...
-
-               return range.end() + 1;
-
-            }
-
-         };
-
-         range.end()--;
-
-      } while (!range.is_before_begin(range.end()));
-
-      // reached end of the skip_any_character_inning range...
-      // each skip_any_character_inned item matched some item in range...
-      // return address immediately after end of skip_any_character_inning...
-
-      return range.begin();
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   static constexpr const_iterator
-      static_rear_skip_any_character_in(THIS_RAW_RANGE range, const THIS_RAW_RANGE & rangeBlock, EQUALITY equality) noexcept
-   {
-
-      const_iterator p;
-
-      if (_initialize_rear_skip_any_character_in(p, range, rangeBlock))
-      {
-
-         return p;
-
-      }
-
-      range.end()--;
-
-      return _static_rear_skip_any_character_in(range, rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator _rear_skip_any_character_in(const THIS_RAW_RANGE & rangeBlock, EQUALITY equality) const
-   {
-
-      return _static_rear_skip_any_character_in(*this, rangeBlock, equality);
-
-   }
-
-
-   template<::comparison::equality<ITEM> EQUALITY>
-   constexpr const_iterator rear_skip_any_character_in(const THIS_RAW_RANGE & rangeBlock, EQUALITY equality) const
-   {
-
-      return static_rear_skip_any_character_in(*this, rangeBlock, equality);
-
-   }
-
 
    //   template<::comparison::equality<ITEM> EQUALITY>
    //   constexpr const_iterator _rear_skip_any_character_in_start(const THIS_RAW_RANGE &rangeBlock, const_iterator end, EQUALITY equality) const
@@ -2654,4 +2522,32 @@ constexpr bool null_terminated_ends(const ITEM * pz, const ITEM * pzSuffix, EQUA
 }
 
 
+//template < primitive_character CHARACTER, character_count n >
+//constexpr class ::range < const CHARACTER* > as_string_range(const CHARACTER(&s)[n])
+//{
+//
+//   return s;
+//
+//}
+
+
+template < primitive_character CHARACTER, character_count n >
+constexpr class ::range < const CHARACTER* > as_string_literal(const CHARACTER* s)
+{
+
+   if constexpr (n >= 1)
+   {
+
+      if (s[n - 1] == CHARACTER{})
+      {
+
+         return { s, s + n - 1, e_range_null_terminated };
+
+      }
+
+   }
+
+   return { s, s + n, e_range_none };
+
+}
 

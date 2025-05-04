@@ -463,6 +463,9 @@
     <Filter Include="Header Files\windowing\sandbox">
       <UniqueIdentifier>{8be78ae6-74c7-43db-8253-1ce3ebbfaf5d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\operating_system-windows">
+      <UniqueIdentifier>{e79eec09-d61c-4f2d-8bf1-4d512e72d311}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -1850,9 +1853,6 @@
     </ClInclude>
     <ClInclude Include="parallelization\_.h">
       <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\ini.h">
-      <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="prototype\string\string.h">
       <Filter>Header Files\prototype\string</Filter>
@@ -3807,7 +3807,7 @@
     <ClInclude Include="prototype\prototype\_impl_payload.h">
       <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
-    <ClInclude Include="prototype\collection\property_set.h">
+    <ClInclude Include="prototype\collection\::property_set.h">
       <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
     <ClInclude Include="platform\url_context.h">
@@ -4170,6 +4170,21 @@
     <ClInclude Include="handler\handler_context.h">
       <Filter>Header Files\handler</Filter>
     </ClInclude>
+    <ClInclude Include="prototype\string\_impl_string_base_allocation.h">
+      <Filter>Header Files\prototype\string</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\string\_impl_const_string_range.h">
+      <Filter>Header Files\prototype\string</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\string\const_string_range_static_array.h">
+      <Filter>Header Files\prototype\string</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\system.h">
+      <Filter>Header Files\operating_system-windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\types.h">
+      <Filter>Header Files\operating_system-windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -4193,7 +4208,7 @@
     <ClCompile Include="prototype\prototype\property.cpp">
       <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
-    <ClCompile Include="prototype\prototype\property_set.cpp">
+    <ClCompile Include="prototype\prototype\::property_set.cpp">
       <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
     <ClCompile Include="prototype\prototype\type.cpp">
@@ -5008,9 +5023,6 @@
     </ClCompile>
     <ClCompile Include="prototype\string\string.cpp">
       <Filter>Source Files\prototype\string</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\ini.cpp">
-      <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="prototype\prototype\integral_byte.cpp">
       <Filter>Source Files\prototype\mathematics</Filter>

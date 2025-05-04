@@ -491,8 +491,8 @@ CLASS_DECL_ACME string get_task_name(htask htask);
 
 CLASS_DECL_ACME void set_get_task_name(LPFN_GET_TASK_NAME);
 
-CLASS_DECL_ACME void task_set_name(const char * pszName);
-CLASS_DECL_ACME void task_set_name(htask htask, const char * pszName);
+CLASS_DECL_ACME void task_set_name(const ::scoped_string & scopedstrName);
+CLASS_DECL_ACME void task_set_name(htask htask, const ::scoped_string & scopedstrName);
 
 
 CLASS_DECL_ACME string task_get_name();

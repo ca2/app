@@ -2013,7 +2013,7 @@ namespace user
 
             ptoolitem->m_item.m_iItem = main_content().item_count();
 
-            auto pattributeId = pchild->find_attribute("id");
+            auto pattributeId = pchild->lookup_attribute("id");
 
             ptoolitem->id() = pattributeId->as_string();
 

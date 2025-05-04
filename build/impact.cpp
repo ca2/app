@@ -152,7 +152,7 @@ namespace app_build
 
    ////sleep(10000_ms);
 
-   //property_set setEnvironment;
+   //::property_set setEnvironment;
 
    //setEnvironment.parse_environment_variable(stra);
 

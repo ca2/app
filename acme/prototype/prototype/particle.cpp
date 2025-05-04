@@ -1079,23 +1079,44 @@ void particle::trace(enum_trace_level etracelevel, const ::scoped_string & scope
 }
 
 
-void particle::information(const scoped_string & scopedstr) const
+void particle::debug(const scoped_string& scopedstr) const
 {
-   trace(e_trace_level_information, scopedstr);
-}
-void particle::warning(const scoped_string & scopedstr) const
-{
-   trace(e_trace_level_warning, scopedstr);
-}
-void particle::error(const scoped_string & scopedstr) const
-{
-   trace(e_trace_level_error, scopedstr);
-}
-void particle::fatal(const scoped_string & scopedstr) const
-{
-   trace(e_trace_level_fatal, scopedstr);
+   
+   trace(e_trace_level_debug, scopedstr);
+
 }
 
+
+void particle::information(const scoped_string & scopedstr) const
+{
+
+   trace(e_trace_level_information, scopedstr);
+
+}
+
+
+void particle::warning(const scoped_string & scopedstr) const
+{
+   
+   trace(e_trace_level_warning, scopedstr);
+
+}
+
+
+void particle::error(const scoped_string & scopedstr) const
+{
+
+   trace(e_trace_level_error, scopedstr);
+
+}
+
+
+void particle::fatal(const scoped_string & scopedstr) const
+{
+   
+   trace(e_trace_level_fatal, scopedstr);
+
+}
 
 
 class tracer * particle::tracer() const
@@ -2530,6 +2551,44 @@ CLASS_DECL_ACME::trace_statement fatal()
 }
 
 
+CLASS_DECL_ACME void debug(const ::scoped_string& scopedstr)
+{
+
+   system()->debug(scopedstr);
+
+}
+
+
+CLASS_DECL_ACME void information(const ::scoped_string& scopedstr)
+{
+
+   system()->information(scopedstr);
+
+}
+
+
+CLASS_DECL_ACME void warning(const ::scoped_string& scopedstr)
+{
+
+   system()->warning(scopedstr);
+
+}
+
+
+CLASS_DECL_ACME void error(const ::scoped_string& scopedstr)
+{
+
+   system()->error(scopedstr);
+
+}
+
+
+CLASS_DECL_ACME void fatal(const ::scoped_string& scopedstr)
+{
+
+   system()->fatal(scopedstr);
+
+}
 
 
 

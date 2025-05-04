@@ -42,6 +42,7 @@ namespace sockets
            m_b_keepalive(false),
            m_chunk_size(0),
            m_chunk_state(0),
+      m_bChunked(false),
       m_iRequestIndex(-1)
    {
 
@@ -134,7 +135,7 @@ namespace sockets
 
                         m_chunk_line = m_chunk_line.left(m_chunk_line.length() - 2);
 
-                        ::parse pa(m_chunk_line, ";");
+                        ::parse pa(m_chunk_line, ";"_ansi);
 
                         string size_str = pa.getword();
 
@@ -267,8 +268,13 @@ namespace sockets
             //m_response.attr("remote_addr") = GetRemoteAddress().get_display_number();
             m_response.attr("http_version") = str;
             string strHttpStatusCode = pa.getword();
-            m_response.attr("http_status_code") = strHttpStatusCode;
-            m_response.attr("http_status") = pa.getrest();
+
+            int iStatusCode = atoi(strHttpStatusCode);
+            m_response.attr("http_status_code") = iStatusCode;
+
+            ::string strStatus = pa.getrest();
+            m_response.attr("http_status") = strStatus;
+
             m_bResponse = true;
             m_bRequest = false;
 
@@ -385,6 +391,8 @@ namespace sockets
 
       OnHeader(key, value);
 
+      printf_line("Header Key: %s Value: %s", key.as_string().c_str(), value.c_str());
+
       if(key.case_insensitive_order("x-forwarded-proto") == 0)
       {
 
@@ -466,6 +474,7 @@ namespace sockets
          }
 
       }
+
       if (key.case_insensitive_order("transfer-encoding") == 0 && case_insensitive_string_ends(value, "chunked"))
       {
          m_bChunked = true;
@@ -498,8 +507,20 @@ namespace sockets
 
       string strLine;
 
-      strLine = m_response.attr("http_version") + " " + m_response.attr("http_status_code") + " " +
-                m_response.attr("http_status");
+      ::string strHttpStatusCode = m_response.attr("http_status_code");
+
+      if (strHttpStatusCode.case_insensitive_equals("ok"_ansi))
+      {
+
+         ::string strHttpStatus = m_response.attr("http_status");
+
+         debug("what?!?!?!");
+
+      }
+
+      strLine =   m_response.attr("http_version") + " " + 
+                  strHttpStatusCode + " " +
+                  m_response.attr("http_status");
 
       msg = strLine + "\r\n";
 
@@ -804,7 +825,7 @@ namespace sockets
 
       m_urlparts.from(url);
 
-      if (m_urlparts.connect().m_bSecure)
+      if (m_urlparts.connect().is_secure())
       {
 
          ////#ifdef HAVE_OPENSSL
@@ -921,6 +942,13 @@ namespace sockets
    {
 
       string strUrl = m_request.attr("http_protocol") + "://" + m_request.header("host") + m_request.attr("request_uri");
+
+      if (strUrl == "https://camilothomas.com/dk/calendar"_ansi)
+      {
+
+         print_line("hand_root https://camilothomas.com/dk/calendar"_ansi);
+
+      }
 
       m_request.m_url = strUrl;
 

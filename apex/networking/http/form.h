@@ -40,9 +40,9 @@ namespace http
       void strcpyval(string &,const char *) const;
 
       /* get value */
-      property_set & get();
-      property_set & post();
-      property_set & request();
+      ::property_set & get();
+      ::property_set & post();
+      ::property_set & request();
 
       string & boundary();
 
@@ -54,9 +54,9 @@ namespace http
    protected:
 
       
-      property_set   m_setGet;
-      property_set   m_setPost;
-      property_set   m_setRequest;
+      ::property_set   m_setGet;
+      ::property_set   m_setPost;
+      ::property_set   m_setRequest;
 
       string         m_strBoundary;
       bool           m_bRaw;
@@ -65,7 +65,7 @@ namespace http
    };
 
 
-   inline property_set & form::get()
+   inline ::property_set & form::get()
    {
       
       return m_setGet;
@@ -73,7 +73,7 @@ namespace http
    }
 
    
-   inline property_set & form::post()
+   inline ::property_set & form::post()
    {
       
       return m_setPost;
@@ -81,7 +81,7 @@ namespace http
    }
 
 
-   inline property_set & form::request()
+   inline ::property_set & form::request()
    {
       
       return m_setRequest;

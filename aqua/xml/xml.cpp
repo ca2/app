@@ -128,7 +128,7 @@ namespace xml
 
 
    // get XML from the property considering it a node
-   string xml::from(const property* pprop, ::xml::disp_option* opt /*= &optDefault*/)
+   string xml::from(const ::property* pprop, ::xml::disp_option* opt /*= &optDefault*/)
    {
 
       return from(*pprop, opt);
@@ -137,7 +137,7 @@ namespace xml
 
 
    // get XML from the property considering it XML attributes part of a node
-   string xml::from(const property& prop, ::xml::disp_option* opt /*= &optDefault*/)
+   string xml::from(const ::property& prop, ::xml::disp_option* opt /*= &optDefault*/)
    {
       //   ::text_stream ostring;
       //   //ostring << (const char *)m_strName << "='" << (const char *)m_strValue << "' ";

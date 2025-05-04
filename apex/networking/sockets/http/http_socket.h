@@ -116,17 +116,17 @@ namespace sockets
 
       }
 
-      property & inattr(const ::atom & atom);
-      property_set & inattrs();
+      ::property & inattr(const ::atom & atom);
+      ::property_set & inattrs();
 
-      property & inheader(const ::atom& atom);
-      property_set & inheaders();
+      ::property & inheader(const ::atom& atom);
+      ::property_set & inheaders();
 
-      property & outattr(const ::atom& atom);
-      property_set & outattrs();
+      ::property & outattr(const ::atom& atom);
+      ::property_set & outattrs();
 
-      property & outheader(const ::atom& atom);
-      property_set & outheaders();
+      ::property & outheader(const ::atom& atom);
+      ::property_set & outheaders();
 
       ::http::request & request();
       ::http::response & response();
@@ -169,7 +169,7 @@ namespace sockets
    }
 
 
-   inline property_set & http_socket::inattrs()
+   inline ::property_set & http_socket::inattrs()
    {
 
       return m_request.attrs();
@@ -185,7 +185,7 @@ namespace sockets
    }
 
 
-   inline property_set & http_socket::outattrs()
+   inline ::property_set & http_socket::outattrs()
    {
 
       return m_response.attrs();
@@ -201,7 +201,7 @@ namespace sockets
    }
 
 
-   inline property_set & http_socket::inheaders()
+   inline ::property_set & http_socket::inheaders()
    {
 
       return m_request.headers();
@@ -217,7 +217,7 @@ namespace sockets
    }
 
 
-   inline property_set & http_socket::outheaders()
+   inline ::property_set & http_socket::outheaders()
    {
 
       return m_response.headers();

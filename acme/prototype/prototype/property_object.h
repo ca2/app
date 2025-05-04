@@ -9,6 +9,7 @@
 
 #include "matter.h"
 //#include "linked_property.h"
+#include "acme/prototype/string/scoped_string_base.h"
 #include "payload.h"
 
 
@@ -21,7 +22,7 @@ class CLASS_DECL_ACME property_object :
 public:
 
 
-   ::pointer<property_set>                        m_ppropertyset;
+   ::pointer<::property_set>                        m_ppropertyset;
 
 
    property_object() { }
@@ -83,14 +84,24 @@ public:
 
 //#endif
 
+   virtual ::string get_object_file_name();
 
+   virtual ::file::path get_ini_configuration_path();
+
+   virtual bool include_hostname_in_configuration_path();
+
+   virtual void read_ini_configuration();
+   virtual void write_ini_configuration();
+
+   virtual void read_configuration_from_ini(const ::payload & payloadFile);
+   virtual void write_configuration_to_ini(const ::payload & payloadFile);
 
    bool has_property(const atom & atom) const;
-   property * lookup_property(const atom & atom) const;
+   ::property * lookup_property(const atom & atom) const;
    bool erase_key(const atom & atom);
 
-   property_set & get_property_set();
-   const property_set & get_property_set() const;
+   ::property_set & property_set();
+   bool has_property_set() const;
    bool contains(const ::property_set & set) const;
 
    using matter::set_flag;
@@ -101,55 +112,74 @@ public:
 //   template < typename TYPE >
 //   inline void get(const ::atom & atom, TYPE & t);
 
-   ::payload & topic(const ::atom & atom);
+   //::payload & topic(const ::atom & atom);
 
-   property * find_property(const ::atom & atom) const;
+   ::collection::index index_of_property(const ::atom & atom) const;
 
    //::extended::status run_property(const ::atom& atom);
 
    void defer_run_property(const ::atom& atom);
 
-   ::payload attribute(const ::atom & atom);
-   ::property * find_attribute(const ::atom & atom);
+   ::collection::index index_of_attribute(const ::atom & atom);
+   ::property & lookup_attribute(const ::atom& atom);
+   ::property& attribute(const ::atom& atom);
 
    template < typename TYPE >
-   inline bool find_attribute(const ::atom & atom, TYPE & t);
+   inline bool lookup_attribute(const ::atom & atom, TYPE & t);
 
-   ::payload & get_object(const ::atom & atom);
+   template < typename TYPE >
+   inline TYPE & get_attribute(const ::atom& atom, TYPE& t);
+
+   //::payload & get_object(const ::atom & atom);
 
    //::payload operator()(const ::atom & atom) const;
-   //::payload operator()(const ::atom & atom, const ::payload & varDefault) const;
+   //::payload operator()(const ::atom & atom, const ::payload & payloadDefault) const;
 
    //::payload & operator[](const ::atom & atom);
 
    //::payload operator[](const ::atom & atom) const;
 
-   ::payload & payload(const ::atom & atom);
+   ::property & property(const ::atom & atom);
 
-   ::payload payload(const ::atom & atom) const;
-   ::payload payload(const ::atom & atom, const ::payload & varDefault) const;
+   ::property & property(const ::atom & atom) const
+   {
 
-   ::payload find_payload(const ::atom & atom) const;
-   ::payload find_payload(const ::atom & atom, const ::payload & varDefault) const;
+      return ((::property_object *)this)->property(atom);
 
-   string find_string(const ::atom & atom, const ::ansi_character * pszDefault = nullptr) const;
+   }
 
-   int find_int(const ::atom & atom, int iDefault = 0) const;
 
-   unsigned int find_unsigned_int(const ::atom & atom, unsigned int iDefault = 0) const;
+   ::payload get_payload(const ::atom & atom, const ::payload & payloadDefault) const;
 
-   template < typename TYPE > inline TYPE & get_cast(const ::atom & atom, TYPE * pDefault = nullptr);
+
+   ::payload& payload(const ::atom& atom) { return this->property(atom); }
+
+   ::payload payload(const ::atom & atom) const { return this->property(atom); }
+   //::payload payload(const ::atom & atom, const ::payload & payloadDefault) const;
+
+   ::collection::index index_of_payload(const ::atom & atom) const;
+   //::payload find_payload(const ::atom & atom, const ::payload & payloadDefault) const;
+
+
+   string get_string(const ::atom& atom, const ::scoped_string& scopedstrDefault = {}) const;
+
+   int get_int(const ::atom & atom, int iDefault = 0) const;
+
+   unsigned int get_unsigned_int(const ::atom & atom, unsigned int uDefault = 0) const;
+
+   //template < typename TYPE > inline TYPE & get_cast(const ::atom & atom, TYPE * pDefault = nullptr);
 
    using matter::cast;
 
-   template < typename TYPE > inline ::pointer<TYPE>cast(const ::atom & atom) const;
+   template < ::primitive_subparticle TYPE > 
+   inline TYPE * cast(const ::atom & atom) const;
 
    void defer_propset();
 
    bool is_true(const ::atom & atom) const;
    bool is_false(const ::atom & atom) const;
    bool is_true_or_empty(const ::atom & atom) const;
-   //inline bool is_true(const ::atom & atom, const ::payload & varDefault, bool bDefault) const;
+   //inline bool is_true(const ::atom & atom, const ::payload & payloadDefault, bool bDefault) const;
 
    //virtual string get_text(const ::payload & payload, const ::atom & atom);
 
@@ -164,9 +194,9 @@ public:
 
    //virtual atom translate_property_id(const ::atom & atom);
 
-   virtual void notify_property_changed(property* pproperty, const ::action_context& actioncontext);
+   virtual void notify_property_changed(::property* pproperty, const ::action_context& actioncontext);
 
-   virtual void on_property_changed(property * pproperty, const ::action_context& actioncontext);
+   virtual void on_property_changed(::property * pproperty, const ::action_context& actioncontext);
 
    //virtual ::linked_property fetch_property(const ::atom & atom, bool bCreate = true);
 
@@ -195,10 +225,11 @@ using reference_pointer = ::pointer<::property_object>;
 
 
 
-template < typename TYPE > inline ::pointer<TYPE>property_object::cast(const ::atom & atom) const
+template < primitive_subparticle TYPE >
+inline TYPE * property_object::cast(const ::atom & atom) const
 {
 
-   auto pproperty = find_property(atom);
+   auto pproperty = this->lookup_property(atom);
 
    if (!pproperty)
    {

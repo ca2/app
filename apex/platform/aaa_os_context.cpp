@@ -837,7 +837,7 @@
 //   }
 //
 //
-//   //void os_context::browse_file_open(property_set & set)
+//   //void os_context::browse_file_open(::property_set & set)
 //   //{
 //
 //   //   throw ::interface_only();
@@ -847,7 +847,7 @@
 //   //}
 //
 //
-//   //void os_context::browse_file_save(property_set & set)
+//   //void os_context::browse_file_save(::property_set & set)
 //   //{
 //
 //   //   throw ::interface_only();
@@ -857,7 +857,7 @@
 //   //}
 //
 //
-//   //void os_context::browse_folder(property_set & set)
+//   //void os_context::browse_folder(::property_set & set)
 //   //{
 //
 //   //   throw ::interface_only();
@@ -867,7 +867,7 @@
 //   //}
 //
 //   //
-//   //void os_context::browse_file_or_folder(property_set & set)
+//   //void os_context::browse_file_or_folder(::property_set & set)
 //   //{
 //
 //   //   throw ::interface_only();

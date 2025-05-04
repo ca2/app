@@ -64,7 +64,8 @@ namespace platform
    //void initialize(::particle * pparticle) override{}
 
 
-   void acme_application_layer::start_application(::request* prequest)
+   //void acme_application_layer::start_application(::request* prequest)
+void acme_application_layer::start_application()
    {
    }
 
@@ -252,7 +253,7 @@ namespace platform
    }
 
 
-   ::pointer<::handle::ini> acme_application_layer::get_ini()
+   ::property_set acme_application_layer::get_ini(const ::scoped_string& scopedstrIniName)
    {
       return {};
    }

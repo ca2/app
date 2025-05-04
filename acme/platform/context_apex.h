@@ -75,14 +75,14 @@ namespace platform
       //::file_system * file_system() override;
 
 
-      virtual ::handle::ini ini_from_path(::file::path& path);
+      //virtual ::handle::ini ini_from_path(::file::path& path);
 
-      virtual ::handle::ini local_ini();
+      //virtual ::handle::ini local_ini();
 
 
 
       //virtual bool http_download(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrFile);
-      //virtual string http_get(const string& strUrl, ::property_set& set);
+      //virtual string http_get(const string& strUrl, ::property_set & set);
       //virtual string http_get(const ::scoped_string & scopedstrUrl);
 
       virtual string get_latest_build_number(const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrAppId);
@@ -200,7 +200,7 @@ namespace platform
 //      void http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set) override;
 
 //      using acme::handler_context::http_get;
-      //::pointer < ::nano::http::response > http_get(const ::scoped_string& scopedstrUrl, const ::property_set& set) override;
+      //::pointer < ::nano::http::response > http_get(const ::scoped_string& scopedstrUrl, const ::property_set & set) override;
 
       //virtual void perform(::nano::http::get * pget);
 

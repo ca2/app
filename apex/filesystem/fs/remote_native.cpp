@@ -52,7 +52,7 @@ namespace fs
 
       //string strSource;
 
-      //property_set set;
+      //::property_set set;
 
       //strSource = http()->get(strUrl, set);
 
@@ -129,7 +129,7 @@ namespace fs
 
       //string strSource;
 
-      //property_set set;
+      //::property_set set;
 
       //strSource = http()->get(strUrl, set);
 

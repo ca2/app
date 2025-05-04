@@ -13,7 +13,7 @@ namespace browser
       if (papp->m_varTopicQuery["hello_bk"].get_string().has_character())
       {
 
-         property_set payloadFile;
+         ::property_set payloadFile;
 
          payloadFile["url"] = papp->m_varTopicQuery["hello_bk"];
          payloadFile["http_set"]["raw_http"] = true;

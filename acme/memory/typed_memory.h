@@ -233,6 +233,23 @@ namespace allocator
 
       }
 
+      
+      inline void rear_copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+      {
+
+         while (c > 0)
+         {
+            
+            c--;
+
+            copy(pdst, psrc + c);
+
+            pdst++;
+
+         }
+
+      }
+
 
       //inline TYPE * alloc(::collection::count c)
       //{
@@ -344,6 +361,23 @@ namespace allocator
       }
 
 
+      inline void rear_copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+      {
+
+         while (c > 0)
+         {
+
+            c--;
+
+            ::new (pdst) TYPE(psrc[c]);
+
+            pdst++;
+
+         }
+
+      }
+
+
       //inline  TYPE * alloc(::collection::count c, const char * pszFile, int iLine)
       //{
 
@@ -437,6 +471,21 @@ namespace allocator
 
 
       inline void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+      {
+
+         /*   while (c > 0)
+            {
+               copy(pdst, &src);
+               c--;
+          psrc++;
+            }*/
+
+         throw_exception(error_not_supported);
+
+      }
+
+
+      inline void rear_copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
       {
 
          /*   while (c > 0)
@@ -565,6 +614,25 @@ namespace allocator
 
       }
 
+      
+      inline void rear_copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+      {
+
+         while (c > 0)
+         {
+
+            c--;
+
+            copy(pdst, psrc + c);
+
+            pdst++;
+
+         }
+
+      }
+
+      
+      
   /*    inline  TYPE * alloc(::collection::count c, const char * pszFile, int iLine)
       {
 
@@ -674,6 +742,23 @@ namespace allocator
             pdst++;
 
             psrc++;
+
+         }
+
+      }
+
+      
+      inline void rear_copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+      {
+
+         while (c > 0)
+         {
+
+            c--;
+
+            copy(pdst, psrc + c);
+
+            pdst++;
 
          }
 
@@ -792,6 +877,23 @@ namespace allocator
             c--;
 
             psrc++;
+
+         }
+
+      }
+
+      
+      inline void rear_copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+      {
+
+         while (c > 0)
+         {
+
+            c--;
+            
+            copy(pdst, psrc + c);
+
+            pdst++;
 
          }
 

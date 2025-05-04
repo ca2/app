@@ -159,20 +159,20 @@ namespace dynamic_source
       virtual void init1();
 
 
-      virtual bool include_matches_file_exists(const ::string & strPath);
-      void set_include_matches_file_exists(const ::string & strPath, bool bFileExists);
-      bool include_matches_is_dir(const ::string & strPath);
-      bool include_has_script(const ::string & strPath);
-      string include_expand_md5(const ::string & strPath);
-      void set_include_expand_md5(const ::string & strPath, const ::string & strMd5);
+      virtual bool include_matches_file_exists(const ::scoped_string & scopedstrPath);
+      void set_include_matches_file_exists(const ::scoped_string & scopedstrPath, bool bFileExists);
+      bool include_matches_is_dir(const ::scoped_string & scopedstrPath);
+      bool include_has_script(const ::scoped_string & scopedstrPath);
+      string include_expand_md5(const ::scoped_string & scopedstrPath);
+      void set_include_expand_md5(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrMd5);
 
-      ::pointer<::dynamic_source::session>get_session(const ::string & pszId);
+      ::pointer<::dynamic_source::session>get_session(const ::scoped_string & scopedstrId);
 
-      ::pointer<script_instance>get(const ::string & strNafme);
-      ::pointer<script_instance>get(const ::string & strName, ::pointer<script> & pscript);
+      ::pointer<script_instance>get(const ::scoped_string & scopedstrName);
+      ::pointer<script_instance>get(const ::scoped_string & scopedstrName, ::pointer<script> & pscript);
       virtual void handle(::dynamic_source::httpd_socket * psocket);
       ::payload get_output_internal(::dynamic_source::script_interface * pinstanceParent, const ::string & strName);
-      void run(const ::string & lpcszName);
+      void run(const ::scoped_string & scopedstrName);
 
       void LoadEnv();
 

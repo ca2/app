@@ -3,7 +3,7 @@
 
 
 #include <stdarg.h>
-
+#include <string.h>
 
 #define const_ansichar_trigger const ::ansi_character *
 
@@ -78,6 +78,9 @@ CLASS_DECL_ACME ::std::strong_ordering string_collate(const ::ansi_character * p
 CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_collate(const ::ansi_character * pszA, const ::ansi_character * pszB) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering string_count_collate(const ::ansi_character * pszA, const ::ansi_character * pszB, character_count len) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_count_collate(const ::ansi_character * pszA, const ::ansi_character * pszB, character_count len) noexcept;
+
+inline ::std::strong_ordering _string_count_compare(const ::ansi_character* pszA, const ::ansi_character* pszB, character_count len) noexcept { return strncmp(pszA, pszB, len)<=>0; }
+inline ::std::strong_ordering _case_insensitive_string_count_compare(const ::ansi_character* pszA, const ::ansi_character* pszB, character_count len) noexcept { return strnicmp(pszA, pszB, len)<=>0; }
 
 inline bool string_equals(const ::ansi_character * pszA, const ::ansi_character * pszB) noexcept{return string_compare(pszA, pszB) == 0; }
 

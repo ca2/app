@@ -332,7 +332,7 @@ public:
 
 #define __PROPERTIES(xxx) \
 class __ ## xxx ## _properties : \
-   public property_set \
+   public ::property_set \
 { \
 public: \
 

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A22742127CF35F40042BAC2 /* application_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A22742027CF35F40042BAC2 /* application_main.cpp */; };
+		9A22742127CF35F40042BAC2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A22742027CF35F40042BAC2 /* main.cpp */; };
 		9A22742227CF37560042BAC2 /* libacme.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC396FF25195DEB0036B92A /* libacme.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A22742A27CF38210042BAC2 /* libidn.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A22742827CF38210042BAC2 /* libidn.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A46D35E267859BC000B22D0 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC396FF25195DEB0036B92A /* libacme.dylib */; };
@@ -174,7 +174,7 @@
 /* Begin PBXFileReference section */
 		070B8EEA1B6E53F900D26137 /* _app_just_acme_message_box.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = _app_just_acme_message_box.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		070B8EFD1B6E53FA00D26137 /* Hello Multiverse!!Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hello Multiverse!!Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A22742027CF35F40042BAC2 /* application_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application_main.cpp; sourceTree = SOURCE_ROOT; };
+		9A22742027CF35F40042BAC2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = SOURCE_ROOT; };
 		9A22742527CF37E40042BAC2 /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A22742827CF38210042BAC2 /* libidn.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libidn.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A3275ED2C6DAE6E00EB43C5 /* libnano_dynamic_library_dyld.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libnano_dynamic_library_dyld.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -346,7 +346,7 @@
 				9A5D09A92B7F9ACC003239D4 /* _____debug.xcconfig */,
 				9A5D09A82B7F9ACC003239D4 /* _____release.xcconfig */,
 				9A5D09982B7F9A90003239D4 /* macos */,
-				9A22742027CF35F40042BAC2 /* application_main.cpp */,
+				9A22742027CF35F40042BAC2 /* main.cpp */,
 			);
 			name = __implement;
 			sourceTree = "<group>";
@@ -613,7 +613,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = ". ${WorkspaceDir}/../operating_system/tool/bin/_on_after_build_executable\n";
+			shellScript = ". $HOME/code/operating_system/tool/bin/_on_after_build_executable\n";
 		};
 		9A932AE82D6DB671006557FC /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -632,7 +632,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = ". ${WorkspaceDir}/../operating_system/tool/bin/_on_before_build_executable\n";
+			shellScript = ". $HOME/code/operating_system/tool/bin/_on_before_build_executable\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -641,7 +641,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A22742127CF35F40042BAC2 /* application_main.cpp in Sources */,
+				9A22742127CF35F40042BAC2 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

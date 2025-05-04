@@ -51,17 +51,13 @@ class holdee
 
 
 
-template<class T>
-class pointer_array;
-
-
 
 template<class T>
 class pointer;
 
 
-template<class T>
-class pointer_array;
+//template<class T>
+//class pointer_array;
 
 
 namespace image
@@ -284,6 +280,17 @@ class array;
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::def < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
 class array_non_particle;
+
+
+template < typename ARRAY_BASE, int t_preallocated_array_size >
+class preallocated_array;
+
+
+template < class T, typename ARG_T = const T *, typename ARRAY_BASE = array < ::pointer < T >, ARG_T > >
+class pointer_array;
+
+template < class T, int t_preallocated_array_size, typename ARG_T = const T *, typename ARRAY_BASE = array < ::pointer < T >, ARG_T > >
+using preallocated_pointer_array = pointer_array < T, ARG_T, preallocated_array < ARRAY_BASE, t_preallocated_array_size > >;
 
 
 template < typename FUNCTION >
@@ -883,13 +890,6 @@ using enum_application_capability_array = ::comparable_array < enum_application_
 
 // From subject_listener from apex_database by camilo on day after ThomasBirthday2021 07:26 BRT
 #pragma once
-
-class topic;
-
-class handler_context;
-
-
-using signal_handler = ::function < void(::topic *, ::handler_context *) >;
 
 
 //{

@@ -57,8 +57,6 @@ class trace_statement;
 //};
 
 
-#include "subparticle.h"
-
 #include "acme/handler/sequence_continuation.h"
 #include "acme/platform/trace_statement.h"
 #include "acme/prototype/string/string.h"
@@ -242,9 +240,6 @@ public:
    //virtual void initialize_matter(::matter * pmatter);
 
 
-   template < typename TYPE >
-   TYPE * cast() { return dynamic_cast <TYPE *>(this); }
-
    virtual ::payload get_result_payload();
 
 
@@ -416,6 +411,7 @@ public:
    
 
    void trace(enum_trace_level etracelevel, const ::scoped_string & scopedstr) const;
+   void debug(const scoped_string & scopedstr) const;
    void information(const scoped_string & scopedstr) const;
    void warning(const scoped_string & scopedstr) const;
    void error(const scoped_string & scopedstr) const;
@@ -1276,6 +1272,13 @@ CLASS_DECL_ACME ::trace_statement information();
 CLASS_DECL_ACME ::trace_statement warning();
 CLASS_DECL_ACME ::trace_statement error();
 CLASS_DECL_ACME ::trace_statement fatal();
+
+
+CLASS_DECL_ACME void debug(const ::scoped_string& scopedstr);
+CLASS_DECL_ACME void information(const ::scoped_string& scopedstr);
+CLASS_DECL_ACME void warning(const ::scoped_string& scopedstr);
+CLASS_DECL_ACME void error(const ::scoped_string& scopedstr);
+CLASS_DECL_ACME void fatal(const ::scoped_string& scopedstr);
 
 
 CLASS_DECL_ACME void debugf(const ::ansi_character* pszFormat, ...);

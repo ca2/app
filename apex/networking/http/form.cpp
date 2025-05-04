@@ -70,7 +70,7 @@ namespace http
       if (strContentType.length() >= 19 && strContentType.substr(0, 19) == "multipart/form-data")
       {
          
-         ::parse pa(strContentType,";=");
+         ::parse pa(strContentType,";="_ansi);
 
          memory tempcmp;
          ::collection::index tc = 0;
@@ -113,7 +113,7 @@ namespace http
                      if(slask.is_empty())
                         break;
                      
-                     ::parse pa(slask,";");
+                     ::parse pa(slask,";"_ansi);
 
                      string h = pa.getword();
                      if(!case_insensitive_ansi_compare(h,"Content-type:"))
@@ -135,7 +135,7 @@ namespace http
                            while(h.has_character())
                            {
 
-                              ::parse pa2(h,"=");
+                              ::parse pa2(h,"="_ansi);
 
                               string name = pa2.getword();
 

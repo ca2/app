@@ -26,16 +26,7 @@
     <ClInclude Include="_.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="_2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="_library.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="database.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="dataset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="factory_exchange.h">

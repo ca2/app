@@ -531,7 +531,7 @@ namespace aura
 //         {
 //
 //
-//            property_set set;
+//            ::property_set set;
 //
 //            set["raw_http"] = true;
 //
@@ -691,7 +691,7 @@ namespace aura
 //   }
 //
 //
-//   string context::http_get(const string& strUrl, ::property_set& set)
+//   string context::http_get(const string& strUrl, ::property_set & set)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(strUrl);
@@ -846,7 +846,7 @@ namespace aura
 //
 //      string strUrl = pszUrl;
 //
-//      property_set set;
+//      ::property_set set;
 //
 //      set["raw_http"] = true;
 //
@@ -860,7 +860,7 @@ namespace aura
 //   string context::http_get(const ::string & pszUrl)
 //   {
 //
-//      property_set set;
+//      ::property_set set;
 //
 //      set["get_response"] = "";
 //

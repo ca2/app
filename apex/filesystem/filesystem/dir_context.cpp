@@ -507,7 +507,7 @@ bool directory_context::_enumerate(::file::listing& listing)
    if (listing.m_pathFinal.case_insensitive_begins("http://") || listing.m_pathFinal.case_insensitive_begins("https://"))
    {
 
-      property_set set;
+      ::property_set set;
 
       string str = http()->get(listing.m_pathFinal, set);
 
@@ -585,7 +585,7 @@ bool directory_context::_enumerate(::file::listing& listing)
 //   if (case_insensitive_string_begins(listing.m_pathUser, "http://") || case_insensitive_string_begins(listing.m_pathUser, "https://"))
 //   {
 //
-//      property_set set;
+//      ::property_set set;
 //
 //      string str = http()->get(listing.m_pathUser, set);
 //
@@ -861,7 +861,7 @@ bool directory_context::is_cached(bool& bIs, const ::file::path& path)
 
    //{
 
-   //   property_set set;
+   //   ::property_set set;
 
    //   bIs = Sess(papp).http()->exists(pcszPath, set);
 
@@ -1069,7 +1069,7 @@ bool directory_context::__is(const ::file::path& path, bool& bDir)
    if (case_insensitive_string_begins(path, "http://") || case_insensitive_string_begins(path, "https://"))
    {
 
-      property_set set;
+      ::property_set set;
 
       if (path.flags() & ::file::e_flag_bypass_cache)
       {
@@ -1879,7 +1879,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
       }
 
-      property_set set;
+      ::property_set set;
 
       set["raw_http"] = true;
 
@@ -1999,7 +1999,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 //   if (psystem->m_pdirectorysystem->m_bMatterFromHttpCache)
 //   {
 //
-//      property_set set;
+//      ::property_set set;
 //
 //      set["raw_http"] = true;
 //
@@ -2210,7 +2210,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
 
       }
 
-      property_set set;
+      ::property_set set;
 
       set["raw_http"] = true;
 

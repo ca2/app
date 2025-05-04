@@ -48,7 +48,7 @@ namespace api_ca2
       void _api_get(string & strNetworkPayload, const ::scoped_string & scopedstrUrl, ::property_set & set) override;
 
 
-      ::memory api_memory(const ::scoped_string & scopedstrUrl, ::property_set& set) override;
+      ::memory api_memory(const ::scoped_string & scopedstrUrl, ::property_set & set) override;
 
 
       ::e_status on_html_response(::networking::application_socket * psocket, ::string & strHtml, const ::string& strUrl, const ::property_set& setPost) override;

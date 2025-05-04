@@ -52,7 +52,7 @@ namespace dynamic_source
       virtual void dprint_recursive(const ::payload & payload);
 
 
-      property_set& inattra();
+      ::property_set& inattra();
 
 
       //virtual property & get(const ::string & pszKey);
@@ -92,23 +92,23 @@ namespace dynamic_source
 
 
       virtual void print_r(::payload payload);
-      property& request(const ::atom & atom);
-      property_set& geta();
-      property_set& posta();
+      ::property& request(const ::atom & atom);
+      ::property_set& geta();
+      ::property_set& posta();
       http::cookies& cookies();
-      property_set& requesta();
+      ::property_set& requesta();
 
-      property& inheader(const ::atom & atom);
-      property& outheader(const ::atom & atom);
+      ::property& inheader(const ::atom & atom);
+      ::property& outheader(const ::atom & atom);
 
-      property& inattr(const ::atom & atom);
-      property& outattr(const ::atom & atom);
+      ::property& inattr(const ::atom & atom);
+      ::property& outattr(const ::atom & atom);
 
       virtual string& gstr(const ::atom & atom);
-      virtual property& gprop(const ::atom & atom);
+      virtual ::property& gprop(const ::atom & atom);
 
-      inline property& get(const ::atom & atom);
-      inline property& post(const ::atom & atom);
+      inline ::property& get(const ::atom & atom);
+      inline ::property& post(const ::atom & atom);
       inline http::cookie& get_cookie(const ::scoped_string & scopedstr);
       inline http::cookie& set_cookie(const ::scoped_string & scopedstr);
 

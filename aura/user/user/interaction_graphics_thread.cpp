@@ -305,8 +305,6 @@ namespace user
 
       ::task_set_name("graphics_thread," + strType);
 
-
-
       //m_puserinteraction->windowing_window()->m_puserinteraction->task_add(this);
 
       //m_happeningReady.wait();
@@ -991,6 +989,10 @@ namespace user
 //
 //                     }
 //                     else
+                     
+                     
+                     
+                     
 
                      while(true)
                      {
@@ -1025,7 +1027,9 @@ namespace user
 
                         }
 
-                        timeToWaitForNextFrame = timeFrame;
+                        timeToWaitForNextFrame = 1_s;
+                        
+                        update_new_main_loop_happening();
 
                      }
 

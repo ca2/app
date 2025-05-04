@@ -254,7 +254,7 @@ namespace sockets
             //m_response.attr("remote_addr") = GetRemoteAddress().get_display_number();
             m_response.attr("http_version") = str;
             string strHttpStatusCode = pa.getword();
-            m_response.attr("http_status_code") = strHttpStatusCode;
+            m_response.attr("http_status_code") = atoi(strHttpStatusCode);
             m_response.attr("http_status") = pa.getrest();
             m_bResponse    = true;
             m_bRequest     = false;

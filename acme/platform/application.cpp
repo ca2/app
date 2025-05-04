@@ -209,26 +209,41 @@ namespace platform
    //}
 
 
-   void application::start_application(::request* prequest)
+   //void application::start_application(::request* prequest)
+void application::start_application()
    {
 
 
       //bool application::start_application(::request * prequest)
       //{
-
-      branch();
-
-      if (::is_set(prequest))
-      {
-
-         post_request(prequest);
-
-      }
-
-      //return true;
-
-      //   ;;;
-      //}
+   branch_synchronously();
+      
+//      if(prequest && prequest->m_bPreferSync)
+//      {
+//         
+//         branch_synchronously();
+//         
+//         request(prequest);
+//         
+//      }
+//      else
+//      {
+//         
+//         branch();
+//         
+//         if (::is_set(prequest))
+//         {
+//            
+//            post_request(prequest);
+//            
+//         }
+//         
+//      }
+//
+//      //return true;
+//
+//      //   ;;;
+//      //}
 
    }
 
@@ -1145,16 +1160,29 @@ namespace platform
    }
 
 
-   ::pointer<::handle::ini>application::get_ini()
+   ::property_set application::get_ini(const ::scoped_string& scopedstrIniName)
    {
+
+      ::string strIniName(scopedstrIniName);
+
+      if (strIniName.is_empty())
+      {
+
+         strIniName = "this";
+
+      }
+
+      ::string strIniFileName;
+
+      strIniFileName = strIniName + ".ini";
 
       auto pathFolder = get_app_localconfig_folder();
 
-      auto pathIni = pathFolder / "this.ini";
+      auto pathIni = pathFolder / strIniFileName;
 
-      auto pini = file_system()->get_ini(pathIni);
+      auto set = file()->get_ini(pathIni);
 
-      return pini;
+      return ::transfer(set);
 
    }
 
@@ -1316,12 +1344,12 @@ namespace platform
 
          auto ptextcontext = psession->text_context();
 
-         for (int i = 0; i < ptextcontext->localeschema().m_straLocale.get_count(); i++)
+         for (int i = 0; i < ptextcontext->localeschema()->m_straLocale.get_count(); i++)
          {
 
-            auto strLocale = ptextcontext->localeschema().m_straLocale[i];
+            auto strLocale = ptextcontext->localeschema()->m_straLocale[i];
 
-            auto strSchema = ptextcontext->localeschema().m_straSchema[i];
+            auto strSchema = ptextcontext->localeschema()->m_straSchema[i];
 
             matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 

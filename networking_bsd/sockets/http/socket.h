@@ -97,16 +97,16 @@ namespace sockets
       bool IsChunked() { return m_b_chunked; }
 
       property & inattr(const char * lpszName);
-      property_set & inattrs();
+      ::property_set & inattrs();
 
       property & inheader(const char * lpszName);
-      property_set & inheaders();
+      ::property_set & inheaders();
 
       property & outattr(const char * lpszName);
-      property_set & outattrs();
+      ::property_set & outattrs();
 
       property & outheader(const char * lpszName);
-      property_set & outheaders();
+      ::property_set & outheaders();
 
       ::http::request & request();
       ::http::response & response();
@@ -147,7 +147,7 @@ namespace sockets
    }
 
 
-   inline property_set & http_socket::inattrs()
+   inline ::property_set & http_socket::inattrs()
    {
 
       return m_request.attrs();
@@ -163,7 +163,7 @@ namespace sockets
    }
 
 
-   inline property_set & http_socket::outattrs()
+   inline ::property_set & http_socket::outattrs()
    {
 
       return m_response.attrs();
@@ -179,7 +179,7 @@ namespace sockets
    }
 
 
-   inline property_set & http_socket::inheaders()
+   inline ::property_set & http_socket::inheaders()
    {
 
       return m_request.headers();
@@ -195,7 +195,7 @@ namespace sockets
    }
 
 
-   inline property_set & http_socket::outheaders()
+   inline ::property_set & http_socket::outheaders()
    {
 
       return m_response.headers();

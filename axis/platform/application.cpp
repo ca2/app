@@ -133,7 +133,7 @@ namespace axis
    //}
 
 
-   //string application::dialog_box(const ::string & pszMatter, property_set & propertyset)
+   //string application::dialog_box(const ::string & pszMatter, ::property_set & propertyset)
    //{
 
    //   throw_todo();

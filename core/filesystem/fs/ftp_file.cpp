@@ -72,7 +72,7 @@ retry:
 
    auto purl = psystem->url();
 
-   string strRemoteFile = purl->get_object(m_filepath);
+   string strRemoteFile = purl->get_string(m_filepath);
 
    if (!pclient->UploadFile(m_payloadFile, strRemoteFile))
    {

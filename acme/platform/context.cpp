@@ -1080,7 +1080,7 @@ namespace platform
          {
 
 
-            property_set set;
+            ::property_set set;
 
             set["raw_http"] = true;
 
@@ -1281,7 +1281,7 @@ namespace platform
    //   ::pointer < ::nano::http::response > context::http_get(const ::scoped_string & scopedstrUrl)
    //   {
    //
-   //      property_set set;
+   //      ::property_set set;
    //
    //      set["raw_http"] = true;
    //

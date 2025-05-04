@@ -8,13 +8,13 @@
 //#include "comparable_array.h"
 
 
-template < class T >
+template < class T, typename ARG_T, typename ARRAY_BASE >
 class pointer_array :
-   public pointer_array_process < comparable_array < ::pointer < T >, const T * >, T >
+   public pointer_array_process < comparable_array < ::pointer < T >, ARG_T, comparable_eq_array <  ::pointer < T >, ARG_T, ARRAY_BASE > > , T >
 {
 public:
 
-   using BASE_ARRAY = pointer_array_process < comparable_array < ::pointer < T >, const T * > , T >;
+   using BASE_ARRAY = pointer_array_process < comparable_array < ::pointer < T >, ARG_T, comparable_eq_array <  ::pointer < T >, ARG_T, ARRAY_BASE > > , T >;
 
    //using ref_iterator = typename ARRAY_BASE::ref_iterator;
    ///using ref_iterator_range = typename ARRAY_BASE::ref_iterator_range;
@@ -88,7 +88,7 @@ public:
    pointer < T >& add_new()
    {
 
-      return comparable_array < ::pointer<T >, const T * >::add_new();
+      return BASE_ARRAY::add_new();
 
    }
 
@@ -97,7 +97,7 @@ public:
    pointer < T > & add_construct(OBJECT * pparticle)
    {
 
-      pointer < T > & p = comparable_array < ::pointer<T >, const T * >::add_new();
+      pointer < T > & p = BASE_ARRAY::add_new();
 
       pparticle->__øconstruct(p);
 
@@ -109,7 +109,7 @@ public:
    ::collection::count set_size(::collection::count nNewSize, ::collection::count nGrowBy = -1)
    {
 
-      return comparable_array < ::pointer<T >, const T * > :: set_size(nNewSize);
+      return BASE_ARRAY :: set_size(nNewSize);
 
    }
 
@@ -243,7 +243,7 @@ public:
 
       //::collection::index nIndex = this->size();
 
-      comparable_array < ::pointer<T >, const T * >::insert_at(i, p);
+      BASE_ARRAY::insert_at(i, p);
 
       //this->element_at(i)->add_reference_item();
 
@@ -592,7 +592,7 @@ public:
 
       }
 
-      return this->comparable_array < ::pointer<T >, const T * > ::element_at(nIndex);
+      return this->BASE_ARRAY ::element_at(nIndex);
 
    }
 
@@ -607,7 +607,7 @@ public:
 //
 //      }
 
-      return this->comparable_array < ::pointer<T >, const T * > ::element_at(nIndex);
+      return this->BASE_ARRAY ::element_at(nIndex);
 
    }
 
@@ -622,7 +622,7 @@ public:
 
       }
 
-      return this->comparable_array < ::pointer<T >, const T * > ::element_at(nIndex).m_p;
+      return this->BASE_ARRAY ::element_at(nIndex).m_p;
 
    }
 
@@ -661,9 +661,9 @@ public:
    pointer < T > pop_first(::collection::index n = 0)
    {
 
-      auto p = ::transfer(this->comparable_array < ::pointer<T >, const T * > ::first(n));
+      auto p = ::transfer(this->BASE_ARRAY ::first(n));
       
-      this->comparable_array < ::pointer<T >, const T * > ::erase_at(n);
+      this->BASE_ARRAY ::erase_at(n);
       
       return p;
 
@@ -673,7 +673,7 @@ public:
    pointer < T > & first_pointer(::collection::index n = 0)
    {
 
-      return this->comparable_array < ::pointer<T >, const T * > ::first(n);
+      return this->BASE_ARRAY ::first(n);
 
    }
 
@@ -704,7 +704,7 @@ public:
    T * get_last_pointer(::collection::index n = -1) const
    {
 
-      return this->is_empty() ? nullptr : this->comparable_array < ::pointer<T >, const T * > ::last(n);
+      return this->is_empty() ? nullptr : this->BASE_ARRAY ::last(n);
 
    }
 
@@ -712,7 +712,7 @@ public:
    pointer < T > & last_pointer(::collection::index n = -1)
    {
 
-      return this->comparable_array < ::pointer<T >, const T * > ::last(n);
+      return this->BASE_ARRAY ::last(n);
 
    }
 
@@ -902,7 +902,7 @@ public:
 
       }
 
-      return comparable_array < ::pointer<T >, const T * > ::erase_all();
+      return BASE_ARRAY ::erase_all();
 
    }
 
@@ -962,7 +962,7 @@ public:
    inline pointer_array & operator = (pointer_array && a)
    {
 
-      comparable_array < ::pointer<T >, const T * > ::operator = (::transfer(a));
+      BASE_ARRAY ::operator = (::transfer(a));
 
       return *this;
 
@@ -1020,7 +1020,7 @@ public:
 //};
 //
 //
-//template < class T >
+//template < class T, typename ARG_T, typename ARRAY_BASE >
 //class smart_pointer_array2:
 //   public comparable_array < ::pointer<T >>
 //{
@@ -1787,8 +1787,8 @@ typedef pointer_array < matter > object_pointera;
 typedef pointer_array < matter > simple_object_pointera;
 
 
-template < typename T >
-bool pointer_array < T > ::insert_unique_at(::collection::index i, T * p)
+template < class T, typename ARG_T, typename ARRAY_BASE >
+bool pointer_array < T, ARG_T, ARRAY_BASE > ::insert_unique_at(::collection::index i, T * p)
 {
 
    if (i < 0 || i > this->get_size())
@@ -1833,9 +1833,9 @@ bool pointer_array < T > ::insert_unique_at(::collection::index i, T * p)
 
 
 
-template < class T >
+template < class T, typename ARG_T, typename ARRAY_BASE >
 template < typename OBJECT >
-::collection::count pointer_array < T > ::set_size_create(OBJECT * pparticle, ::collection::count nNewSize, ::collection::count nGrowBy)
+::collection::count pointer_array < T, ARG_T, ARRAY_BASE > ::set_size_create(OBJECT * pparticle, ::collection::count nNewSize, ::collection::count nGrowBy)
 {
 
    ::collection::index i = this->get_size();

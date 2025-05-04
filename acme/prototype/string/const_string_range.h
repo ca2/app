@@ -28,7 +28,7 @@ inline _start_count_string_range(const CHARACTER *psz, memsize start, memsize co
 //consteval auto typed_whitespace<char16_t>() { return u"/t/r/n "; }
 //template < >
 //consteval auto typed_whitespace<char32_t>() { return U"/t/r/n "; }
-IMPLEMENT_TYPED_STRING_LITERAL(whitespace, "/t/r/n ")
+IMPLEMENT_TYPED_STRING_LITERAL(whitespace, "\t\r\n ")
 
 
 #include "acme/prototype/collection/array_range.h"

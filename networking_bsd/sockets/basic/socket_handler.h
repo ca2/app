@@ -35,13 +35,13 @@ namespace sockets_bsd
       socket_map                 m_socketmapAdd; ///< Sockets to be added to sockets map
       socket_pointer_list        m_delete; ///< Sockets to be deleted (failed when add)
       bool                       m_b_use_mutex; ///< ::pointer < ::mutex > correctly initialized
-      SOCKET                     m_maxsock; ///< Highest file descriptor + 1 in active sockets list
+      //SOCKET                     m_maxsock; ///< Highest file descriptor + 1 in active sockets list
       //::collection::count                    m_countR;
       //::collection::count                    m_countW;
       //::collection::count                    m_countE;
-      fd_set                     m_rfds; ///< file descriptor set monitored for read happenings
-      fd_set                     m_wfds; ///< file descriptor set monitored for write happenings
-      fd_set                     m_efds; ///< file descriptor set monitored for exceptions
+      //fd_set                     m_rfds; ///< file descriptor set monitored for read happenings
+      //fd_set                     m_wfds; ///< file descriptor set monitored for write happenings
+      //fd_set                     m_efds; ///< file descriptor set monitored for exceptions
       //fd_set                     m_rfdsSelect; ///< file descriptor set monitored for read happenings
       //fd_set                     m_wfdsSelect; ///< file descriptor set monitored for write happenings
       //fd_set                     m_efdsSelect; ///< file descriptor set monitored for exceptions

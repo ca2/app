@@ -132,7 +132,7 @@ int gdb_check()
 
   if (pid == -1)
     {
-      perror("fork");
+      fprintf(stderr, "fork");
       return -1;
     }
 

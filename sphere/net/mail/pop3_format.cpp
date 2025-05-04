@@ -56,7 +56,7 @@ char* cur;
 	msg=data?(char*)malloc(strlen(data)):nullptr;
 	if(!msg){
 #ifdef EBUG
-		perror("retr2msg.malloc");
+		fprintf(stderr,"retr2msg.malloc");
 #endif
 		return(nullptr);
 	}

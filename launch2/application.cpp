@@ -19,7 +19,7 @@ bool touch(const char *filename) {
    int fd = open(filename, O_CREAT, S_IRWXU | S_IRWXG | S_IRWXO);
 
    if (fd == -1) {
-      perror("Unable to touch file");
+      fprintf(stderr, "Unable to touch file");
       return false;
    }
 

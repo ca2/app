@@ -242,8 +242,26 @@ CLASS_DECL_ACME ::platform::system * system();
 
 bool __os_init_thread()
 {
+   
+     //// Create a signal set
+    //sigset_t set;
 
-    return true;
+    //// Initialize the signal set to include all signals
+    //if (sigfillset(&set) == -1) {
+        //errf_line("sigfillset");
+        ////exit(1);
+    //}
+
+    //// Unblock all signals for this thread
+    //if (pthread_sigmask(SIG_UNBLOCK, &set, NULL) != 0) {
+        //errf_line("pthread_sigmask");
+        ////exit(1);
+    //}
+
+   printf_line("All signals unblocked for this thread.\n");
+   //preempt(1_s);
+
+   return true;
 
 }
 

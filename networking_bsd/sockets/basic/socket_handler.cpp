@@ -8,7 +8,21 @@
 #include "_____debug_counters_001.h"
 
 #include "acme/_operating_system.h"
+#if defined(OPENBSD)
+#include <signal.h>
+#endif
 
+int __is_ok_socket(int fd) {
+    struct sockaddr sa{};
+    socklen_t len = sizeof(sa);
+    if (getsockname(fd, &sa, &len) == 0) {
+        return 1; // Valid socket
+    } else if (errno == ENOTSOCK) {
+        return 0; // Valid FD, but not a socket
+    } else {
+        return -1; // Invalid FD or other error
+    }
+}
 
 #include <time.h>
 
@@ -18,6 +32,7 @@
 #endif
 
 
+#define THIS_FILE_DEBUG_LEVEL 9
 
 
 #if defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
@@ -44,7 +59,7 @@ namespace sockets_bsd
       //::object(pparticle),
       //base_socket_handler(plogger),
       m_b_use_mutex(false)
-      , m_maxsock(0)
+//      , m_maxsock(0)
       , m_iPreviousError(-1)
       //,m_errcnt(0)
       , m_tlast{}
@@ -743,6 +758,12 @@ namespace sockets_bsd
    int socket_handler::_select(struct timeval *tsel)
    {
 
+      fd_set rfds{};
+      fd_set wfds{};
+      fd_set efds{};
+      
+      SOCKET maxsock{};
+
       try
       {
 
@@ -828,7 +849,7 @@ start_processing_adding:
 
          }
 
-         m_maxsock = (socket + 1 > m_maxsock) ? socket + 1 : m_maxsock;
+         //m_maxsock = (socket + 1 > m_maxsock) ? socket + 1 : m_maxsock;
 
          // only add to m_socketlist (process fd_set happenings) if
          //  slave handler and detached/detaching socket
@@ -875,10 +896,11 @@ end_processing_adding:
       //FD_COPY(&m_rfdsSelect, &m_rfdsSelected);
       //FD_COPY(&m_wfdsSelect, &m_wfdsSelected);
       //FD_COPY(&m_efdsSelect, &m_efdsSelected);
-
-      FD_ZERO(&m_rfds);
-      FD_ZERO(&m_wfds);
-      FD_ZERO(&m_efds);
+      
+      FD_ZERO(&rfds);
+      FD_ZERO(&wfds);
+      FD_ZERO(&efds);
+      maxsock = 0;
 
       for (auto& pair : m_socketmap)
       {
@@ -889,11 +911,40 @@ end_processing_adding:
 
          if (psocketImpl)
          {
+            
+            if(__is_ok_socket(socketid))
+            {
+               
+#if THIS_FILE_DEBUG_LEVEL >= 9
+            
+               printf_line("socket_handler socket %d is OK!!", socketid);
+            
+#endif
+               
+            }
+            else
+            {
+               
+#if THIS_FILE_DEBUG_LEVEL >= 9
+            
+               printf_line("socket_handler socket %d is BAD!!", socketid);
+            
+#endif
+
+               continue;
+               
+            }
 
             if (psocketImpl->m_iSelectRead)
             {
 
-               FD_SET(socketid, &m_rfds);
+               FD_SET(socketid, &rfds);
+               
+#if THIS_FILE_DEBUG_LEVEL >= 9
+            
+               printf_line("socket_handler FD_SET READ %d", socketid);
+            
+#endif
 
                countR++;
 
@@ -902,7 +953,13 @@ end_processing_adding:
             if (psocketImpl->m_iSelectWrite)
             {
 
-               FD_SET(socketid, &m_wfds);
+               FD_SET(socketid, &wfds);
+
+#if THIS_FILE_DEBUG_LEVEL >= 9
+            
+               printf_line("socket_handler FD_SET WRITE %d", socketid);
+            
+#endif
 
                countW++;
 
@@ -911,10 +968,25 @@ end_processing_adding:
             if(psocketImpl->m_iSelectError)
             {
              
-               FD_SET(socketid, &m_efds);
+#if THIS_FILE_DEBUG_LEVEL >= 9
+            
+               printf_line("socket_handler FD_SET ERROR %d", socketid);
+            
+#endif
+
+               FD_SET(socketid, &efds);
 
                countE++;
 
+            }
+            
+            if (psocketImpl->m_iSelectRead
+            || psocketImpl->m_iSelectWrite
+            || psocketImpl->m_iSelectError)
+            {
+              
+              maxsock = maximum(maxsock, socketid); 
+               
             }
 
          }
@@ -922,9 +994,9 @@ end_processing_adding:
       }
 
 
-      fd_set * psetR = countR > 0 ? &m_rfds : nullptr;
-      fd_set * psetW = countW > 0 ? &m_wfds : nullptr;
-      fd_set * psetE = countE > 0 ? &m_efds : nullptr;
+      fd_set * prfds = countR > 0 ? &rfds : nullptr;
+      fd_set * pwfds = countW > 0 ? &wfds : nullptr;
+      fd_set * pefds = countE > 0 ? &efds : nullptr;
 
       int n = 0;
 
@@ -932,12 +1004,17 @@ end_processing_adding:
 
       class ::time tickRWENull;
 
-      if (psetR == nullptr && psetW == nullptr && psetE == nullptr)
+      //if (psetR == nullptr && psetW == nullptr && psetE == nullptr)
+      if (countR <= 0 && countW <= 0 && countE <= 0)
       {
 
          tickRWENull.Now();
+         
+#if THIS_FILE_DEBUG_LEVEL >= 9
 
-         //information() << "rfds, wfds and efds are null!!");
+         printf_line("Each rfds, wfds and efds are empty!!");
+         
+#endif
 
       }
       else
@@ -946,13 +1023,36 @@ end_processing_adding:
          //debug_print(" m_socketmap : %d\n", m_socketmap.size());
          //debug_print(" m_socketmapAdd     : %d\n", m_socketmapAdd.size());
          //debug_print(" m_delete  : %d\n", m_delete.size());
+         
+         timeval timevalSelect{};
+         
+         timevalSelect.tv_sec = tsel->tv_sec;
+         timevalSelect.tv_usec = tsel->tv_usec;
 
          if (m_b_use_mutex)
          {
 
             synchronization()->unlock();
+            
+#if THIS_FILE_DEBUG_LEVEL > 6
+            
+            printf_line("socket_handler(mutex) select max_sock : %d", maxsock);
+            
+#endif
 
-            n = ::select((int)m_maxsock, psetR, psetW, psetE, tsel);
+            //n = ::select((int)m_maxsock, psetR, psetW, psetE, tsel);
+            
+#if defined(OPENBSD)
+
+            auto nfds = maximum(countR, maximum(countW, countE));
+
+            n = ::select(nfds, prfds, pwfds, pefds, &timevalSelect);
+            
+#else
+            
+            n = ::select((int)maxsock + 1, prfds, pwfds, pefds, &timevalSelect);
+            
+#endif
 
             m_iSelectErrno = networking_last_error();
 
@@ -961,8 +1061,54 @@ end_processing_adding:
          }
          else
          {
+            
+#if THIS_FILE_DEBUG_LEVEL > 6
+            
+            printf_line("socket_handler select time : %ds %dus", timevalSelect.tv_sec, timevalSelect.tv_usec);
+            printf_line("socket_handler select psetR : 0x%016llX %% 8 = %d", prfds, ((::uptr) prfds) % 8);
+            printf_line("socket_handler select psetW : 0x%016llX %% 8 = %d", pwfds, ((::uptr) pwfds) % 8);
+            printf_line("socket_handler select psetE : 0x%016llX %% 8 = %d", pefds, ((::uptr) pefds) % 8);
+            printf_line("socket_handler select thread %s(%d)", ::task_get_name().c_str(), ::current_task_index());
+            
+#endif
 
-            n = ::select((int)m_maxsock, psetR, psetW, psetE, tsel);
+            //n = ::select((int)m_maxsock, psetR, psetW, psetE, tsel);
+            
+#if defined(OPENBSD)
+
+            //auto nfds = maximum(countR, maximum(countW, countE));
+            
+            auto nfds = maxsock + 1;
+
+            printf_line("socket_handler select nfds : %d", nfds);
+            
+            //n = ::select(nfds, prfds, pwfds, pefds, &timevalSelect);
+            
+            timespec timespec{};
+            
+            timespec.tv_sec = timevalSelect.tv_sec;
+            
+            timespec.tv_nsec = timevalSelect.tv_usec * 1'000;
+            
+            sigset_t sigset;
+            
+            sigemptyset(&sigset);
+            
+            n = ::pselect(nfds, prfds, pwfds, pefds, &timespec, &sigset);
+            
+#else
+
+            printf_line("socket_handler select maxsock + 1 : %d", (int)maxsock + 1);
+            
+            n = ::select((int)maxsock + 1, prfds, pwfds, pefds, &timevalSelect);
+            
+#endif
+
+#if THIS_FILE_DEBUG_LEVEL > 6
+            
+            printf_line("socket_handler select result n : %d", n);
+            
+#endif
 
             //if (m_iMaxKeepAliveCount > 0)
             //{
@@ -981,6 +1127,8 @@ end_processing_adding:
 
       if (n < 0)
       {
+         
+         printf_line("::networking_bsd::socket_handler::_select n < 0");
 
          auto tickNow = ::time::now();
 
@@ -998,7 +1146,8 @@ end_processing_adding:
 
          //}
 
-         if (m_maxsock > 0 && (m_iSelectErrno != m_iPreviousError || tickNow - m_timeLastError > 5_s))
+//         if (m_maxsock > 0 && (m_iSelectErrno != m_iPreviousError || tickNow - m_timeLastError > 5_s))
+         if (maxsock > 0 && (m_iSelectErrno != m_iPreviousError || tickNow - m_timeLastError > 5_s))
          {
 
             information() << "select" << m_iSelectErrno << ", " << bsd_socket_error(m_iSelectErrno);
@@ -1045,7 +1194,7 @@ end_processing_adding:
 
             //   if (FD_ISSET(socket, &m_efdsSelected))
             //   {
-
+ 
             //      bAnySet = true;
 
             //   }
@@ -1219,6 +1368,12 @@ end_processing_adding:
       }
       else // n > 0
       {
+         
+#if THIS_FILE_DEBUG_LEVEL > 6
+         
+         printf("socket_handler select n (%d) > 0", n);
+         
+#endif
 
          auto p = m_socketlist.begin();
 
@@ -1227,7 +1382,7 @@ end_processing_adding:
             
             SOCKET socket = *p;
 
-            if (FD_ISSET(socket, &m_rfds))
+            if (FD_ISSET(socket, &rfds))
             {
                
                auto ppairSocket = m_socketmap.plookup(socket);
@@ -1304,7 +1459,7 @@ end_processing_adding:
 
             }
 
-            if (FD_ISSET(socket, &m_wfds))
+            if (FD_ISSET(socket, &wfds))
             {
                
                auto ppairSocket = m_socketmap.plookup(socket);
@@ -1342,7 +1497,7 @@ end_processing_adding:
 
             }
 
-            if (FD_ISSET(socket, &m_efds))
+            if (FD_ISSET(socket, &efds))
             {
 
                auto ppairSocket = m_socketmap.plookup(socket);
@@ -1830,13 +1985,13 @@ end_processing_adding:
 
       }
 
-      // calculate maximum file descriptor for select() call
-      if (check_max_fd)
-      {
-
-         m_maxsock = m_socketlist.maximum(0) + 1;
-
-      }
+//      // calculate maximum file descriptor for select() call
+//      if (check_max_fd)
+//      {
+//
+//         m_maxsock = m_socketlist.maximum(0) + 1;
+//
+//      }
 
       // erase add's that fizzed
       while (m_delete.has_element())

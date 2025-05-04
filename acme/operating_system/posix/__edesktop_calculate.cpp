@@ -73,6 +73,14 @@ namespace windowing
          return ::windowing::e_operating_ambient_lxqt;
 
       }
+      else if (strDesktop.case_insensitive_order("xfce") == 0)
+      {
+
+         printf_line("calculate_edesktop e_operating_ambient_xfce");
+
+         return ::windowing::e_operating_ambient_xfce;
+
+      }
       else if (strDesktop.case_insensitive_order("unity") == 0)
       {
 
@@ -108,10 +116,10 @@ namespace windowing
          return ::windowing::e_operating_ambient_lxde;
          
       }
-      else if (file_exists("/usr/bin/xfconf-query") || file_exists("/usr/pkg/bin/xfconf-query"))
+      else if (file_exists("/usr/bin/xfconf-query") || file_exists("/usr/pkg/bin/xfconf-query") || file_exists("/usr/local/bin/xfconf-query"))
       {
 
-         printf_line("calculate_edesktop e_operating_ambient_xfce");
+         printf_line("calculate_edesktop e_operating_ambient_xfce (2)");
 
          return ::windowing::e_operating_ambient_xfce;
          

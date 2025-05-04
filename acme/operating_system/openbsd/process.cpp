@@ -3,6 +3,14 @@
 ////#include "acme/platform/app_core.h"
 //#include <sys/types.h>
 #include <unistd.h>
+
+#include <stdio.h>
+#include <stdlib.h>
+//#include <unistd.h>
+#include <signal.h>
+#include <sys/wait.h>
+#include <errno.h>
+#include <string.h>
 //#include <signal.h>
 //#undef USE_MISC
 //
@@ -807,3 +815,130 @@ unsigned int get_current_process_id()
 //
 //
 //
+
+
+
+void sigchld_handler(int signum) {
+    int saved_errno = errno;
+    int status;
+    pid_t pid;
+    
+    printf_line("Child exited!!");
+    
+    preempt(5_s);
+
+    // Reap all dead children
+    while ((pid = waitpid(-1, &status, WNOHANG)) > 0) {
+        if (WIFEXITED(status)) {
+            printf("Child %d exited with status %d\n", pid, WEXITSTATUS(status));
+        } else if (WIFSIGNALED(status)) {
+            printf("Child %d terminated by signal %d (%s)\n", pid, WTERMSIG(status), strsignal(WTERMSIG(status)));
+        }
+    }
+
+    errno = saved_errno;
+}
+
+
+void sigpipe_handler(int signum) 
+{
+	
+}
+
+
+void install_operating_system_default_signal_handlers()
+{      
+      
+   //// Create an empty signal set
+   //sigset_t set;
+
+   //// Initialize the signal set to include all signals
+   //if (sigfillset(&set) == -1) 
+   //{
+   //errf_line("sigfillset");
+   ////exit(1);
+   //}
+
+   //// Unblock all signals by setting the signal mask
+   //if (sigprocmask(SIG_UNBLOCK, &set, NULL) == -1)
+   //{
+   //errf_line("sigprocmask");
+   ////exit(1);
+   //}
+
+   //// Now, all signals are unblocked and can be delivered
+   //printf_line("All signals unblocked.\n");
+
+
+   //struct sigaction sa;
+   //sa.sa_handler = ::sigchld_handler;
+   //sigemptyset(&sa.sa_mask);
+   //sa.sa_flags = SA_RESTART | SA_NOCLDSTOP;
+
+   //if (sigaction(SIGCHLD, &sa, NULL) == -1) 
+   //{
+
+   //errf_line("sigaction for SIGCHLD failed");
+
+   //}
+   //else
+   //{
+
+   //printf_line("Installed sigaction for SIGCHLD");
+
+   //}
+   
+   {
+
+      struct sigaction sa{};
+      sa.sa_handler = SIG_IGN;  // Ignore the signal
+      sigemptyset(&sa.sa_mask);
+      sa.sa_flags = 0;
+
+      if (sigaction(SIGCHLD, &sa, NULL) == -1) 
+      {
+
+         errf_line("sigaction failed to ignore sigchld");
+         
+         //return 1;
+         
+      }
+      else
+      {
+
+         printf_line("Ignoring SIGCHLD");
+
+      }
+
+   }
+	
+   {
+
+      struct sigaction sa{};
+      sa.sa_handler = SIG_IGN;  // Ignore the signal
+      sigemptyset(&sa.sa_mask);
+      //sa.sa_flags = SA_RESTART | SA_NOCLDSTOP;
+      sa.sa_flags = 0;
+
+      if (sigaction(SIGPIPE, &sa, NULL) == -1) 
+      {
+
+         errf_line("sigaction failed to ignore sigpipe");
+         
+         //return 1;
+         
+      }
+      else
+      {
+
+         printf_line("Ignoring SIGPIPE");
+
+      }
+
+   }
+
+   preempt(5_s);
+
+}
+
+

@@ -937,7 +937,7 @@ void install_operating_system_default_signal_handlers()
 
    }
 
-   preempt(5_s);
+   //preempt(5_s);
 
 }
 

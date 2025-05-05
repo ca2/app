@@ -810,3 +810,13 @@ unsigned int get_current_process_id()
 //
 //
 //
+
+
+void install_operating_system_default_signal_handlers()
+{
+
+
+}
+
+
+

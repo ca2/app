@@ -25983,6 +25983,8 @@ void interaction::on_control_box_zoom(){
 
          }
 
+         //printf_line("on_message_parent_mouse_move %d,%d", pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y());
+
          auto pitemFront = update_hover(pmouse, e_zorder_front);
 
          if (::is_item_set(pitemFront))
@@ -27072,6 +27074,8 @@ __check_refdbg;
             if (!m_bDefaultParentMouseMessageHandling)
             {
 
+               //printf_line("on_message_mouse_move %d,%d", pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y());
+
                pitemFront = update_hover(pmouse, e_zorder_front);
 
             }
@@ -27732,6 +27736,9 @@ __check_refdbg;
 
          m_pitemHover = pitemHitTest;
 
+         //printf_line("----------------------------------------------------");
+         //printf_line("-------------------------------------------------------------m_pitemHover->m_item.m_iItem = %lld", m_pitemHover->m_item.m_iItem);
+         //printf_line("----------------------------------------------------");
          on_update_hover(m_pitemHover);
 
          //m_pitemHOver->m_bAnyHoverChange = true;

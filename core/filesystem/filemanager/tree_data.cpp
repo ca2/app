@@ -835,6 +835,13 @@ _001SelectItem(pchild);
    void tree_data::add_path(bool bExpandAscendants, const ::file::path & pathAdd, const ::scoped_string & scopedstrName)
    {
 
+      if (pathAdd.is_empty())
+      {
+
+return;
+
+      }
+
       _synchronous_lock synchronouslock(this->synchronization());
 
       ::file::path_array patha;
@@ -913,7 +920,11 @@ _001SelectItem(pchild);
 
             pchild = insert_item(pitemNew, ::data::e_relative_last_child, pparent);
 
-            if (filemanager_data()->fs_data()->fast_has_subdir(pitemNew->final_path()))
+            pparent->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
+
+            auto pfsdata = filemanager_data()->fs_data();
+
+            if (pfsdata->fast_has_subdir(pitemNew->final_path()))
             {
 
                pchild->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
@@ -1308,10 +1319,10 @@ _001SelectItem(pchild);
 //#endif
 
 
-   void tree_data::_001OnItemExpand(::data::tree_item<::userfs::item> * pitem, const ::action_context & context)
+   void tree_data::_001OnItemExpand(::data::tree_item_base * ptreeitembase, const ::action_context & context)
    {
 
-      auto puserfsitem = pitem->m_pitem.cast <::userfs::item>();
+      auto puserfsitem = dynamic_cast < ::userfs::item*>(ptreeitembase->_item());
 
       if(puserfsitem)
       {
@@ -1323,10 +1334,11 @@ _001SelectItem(pchild);
    }
 
 
-   void tree_data::_001OnItemCollapse(::data::tree_item<::userfs::item> * pitem, const ::action_context & context)
+   void tree_data::_001OnItemCollapse(::data::tree_item_base *ptreeitembase, const ::action_context & context)
    {
 
-      __UNREFERENCED_PARAMETER(pitem);
+      __UNREFERENCED_PARAMETER(ptreeitembase);
+      __UNREFERENCED_PARAMETER(context);
 
    }
 
@@ -1339,12 +1351,12 @@ _001SelectItem(pchild);
    }
 
 
-   void tree_data::_001OnOpenItem(::data::tree_item<::userfs::item> * pitem, const ::action_context & context)
+   void tree_data::_001OnOpenItem(::data::tree_item_base * ptreeitembase, const ::action_context & context)
    {
 
       information() << "tree_data::_001OnOpenItem";
 
-      auto puserfsitem = pitem->m_pitem.cast < ::userfs::item > ();
+      auto puserfsitem = dynamic_cast < ::userfs::item *> (ptreeitembase->_item());
 
       auto pfileitem = __allocate ::file::item(*puserfsitem);
 

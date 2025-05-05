@@ -435,13 +435,16 @@ namespace userfs
    }
    */
 
-   void tree_data::_001OnItemExpand(::data::tree_item<::userfs::item> * pitem, const ::action_context & context)
+   void tree_data::_001OnItemExpand(::data::tree_item_base * ptreeitembase, const ::action_context & context)
    {
+      __UNREFERENCED_PARAMETER(ptreeitembase);
+      __UNREFERENCED_PARAMETER(context);
    }
 
-   void tree_data::_001OnItemCollapse(::data::tree_item<::userfs::item> * pitem, const ::action_context & context)
+   void tree_data::_001OnItemCollapse(::data::tree_item_base * ptreeitembase, const ::action_context & context)
    {
-      __UNREFERENCED_PARAMETER(pitem);
+      __UNREFERENCED_PARAMETER(ptreeitembase);
+      __UNREFERENCED_PARAMETER(context);
    }
 
    bool tree_data::_001IsTranslucent()
@@ -449,10 +452,10 @@ namespace userfs
       return true;
    }
 
-   void tree_data::_001OnOpenItem(::data::tree_item<::userfs::item> * ptreeitem, const ::action_context & context)
+   void tree_data::_001OnOpenItem(::data::tree_item_base * ptreeitembase, const ::action_context & context)
    {
 
-      auto pitem = __allocate ::file::item(*ptreeitem->m_pitem.cast < ::userfs::item >());
+      auto pitem = __allocate ::file::item(*dynamic_cast < ::userfs::item*>(ptreeitembase->_item()));
 
       m_puserfsdocument->browse(pitem, context);
 

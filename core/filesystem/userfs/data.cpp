@@ -374,7 +374,9 @@ namespace userfs
       else
       {
 
-         listingUser.set_listing(pitem->user_path());
+         auto pathParent = pitem->user_path();
+
+         listingUser.set_listing(pathParent);
 
          directory()->enumerate(listingUser);
 

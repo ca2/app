@@ -81,7 +81,18 @@ namespace file
 
       //str.trim_left("\\/");
 
-      return ::file::path(strPath + "/" + scopedstr.skip_any_character_in("\\/"), e_path_file);
+      if (strPath == "/"_ansi)
+      {
+
+         return ::file::path("/"_ansi + scopedstr.skip_any_character_in("\\/"_ansi), e_path_file);
+
+      }
+      else
+      {
+
+         return ::file::path(strPath + "/"_ansi + scopedstr.skip_any_character_in("\\/"_ansi), e_path_file);
+
+      }
 
    }
 

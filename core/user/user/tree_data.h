@@ -75,10 +75,10 @@ namespace user
       ::image::image_list * get_tree_image_list() override;
 
 
-      void _001OnItemExpand(::data::tree_item < ITEM > * pitem, const ::action_context & action_context) override;
-      void _001OnItemCollapse(::data::tree_item < ITEM > * pitem, const ::action_context & action_context) override;
-      void _001OnOpenItem(::data::tree_item < ITEM > * pitem, const ::action_context & action_context) override;
-      virtual void _001OnItemContextMenu(::data::tree_item < ITEM > * pitem, const ::action_context & action_context,::user::tree * ptree,const ::int_point & point);
+      void _001OnItemExpand(::data::tree_item_base * ptreeitembase, const ::action_context & action_context) override;
+      void _001OnItemCollapse(::data::tree_item_base * ptreeitembase, const ::action_context & action_context) override;
+      void _001OnOpenItem(::data::tree_item_base * ptreeitembase, const ::action_context & action_context) override;
+      virtual void _001OnItemContextMenu(::data::tree_item_base * ptreeitembase, const ::action_context & action_context,::user::tree * ptree,const ::int_point & point);
 
 
       void _001ExpandItem(::data::tree_item < ITEM > * pitem, const ::action_context & action_context,bool bExpand = true,bool bRedraw = true,bool bLayout = true) override;
@@ -137,24 +137,24 @@ namespace user
 
 
    template < prototype_item ITEM >
-   void tree_data < ITEM >::_001OnItemExpand(::data::tree_item<ITEM> * ptreeitem, const ::action_context & context)
+   void tree_data < ITEM >::_001OnItemExpand(::data::tree_item_base * ptreeitembase, const ::action_context & context)
    {
 
-      if (ptreeitem->is_expanded())
+      if (ptreeitembase->is_expanded())
       {
 
          return;
 
       }
 
-      ptreeitem->on_fill_children();
+      ptreeitembase->on_fill_children();
 
-      if (ptreeitem->get_children_count() > 0)
+      if (ptreeitembase->get_children_count() > 0)
       {
 
-         ptreeitem->m_etreeitemstate |= ::data::e_tree_item_state_expanded;
+         ptreeitembase->m_etreeitemstate |= ::data::e_tree_item_state_expanded;
 
-         ptreeitem->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
+         ptreeitembase->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
 
       }
 
@@ -171,16 +171,16 @@ namespace user
    }
 
    template < prototype_item ITEM >
-   void tree_data < ITEM >::_001OnItemCollapse(::data::tree_item<ITEM> * ptreeitem, const ::action_context & context)
+   void tree_data < ITEM >::_001OnItemCollapse(::data::tree_item_base * ptreeitembase, const ::action_context & context)
    {
 
-      if (!ptreeitem->is_expanded())
+      if (!ptreeitembase->is_expanded())
          return;
-      if (ptreeitem->get_children_count() > 0)
+      if (ptreeitembase->get_children_count() > 0)
       {
-         ptreeitem->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
+         ptreeitembase->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
       }
-      ptreeitem->m_etreeitemstate -= ::data::e_tree_item_state_expanded;
+      ptreeitembase->m_etreeitemstate -= ::data::e_tree_item_state_expanded;
       /*for (::collection::index i = 0; i < m_usertreea.get_count(); i++)
       {
 

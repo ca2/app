@@ -62,11 +62,11 @@ namespace data
 
       void _001OnTreeDataChange() override;
 
-      virtual void _001OnItemExpand(tree_item <  ITEM > * pitem, const ::action_context & action_context);
-      virtual void _001OnItemCollapse(tree_item <  ITEM > * pitem, const ::action_context & action_context);
-      virtual void _001OnOpenItem(tree_item <  ITEM > * pitem, const ::action_context & action_context);
-      virtual void _001OnItemContextMenu(tree_item <  ITEM > * pitem, const ::action_context & action_context, ::user::element * ptree, const ::int_point & point);
-      virtual void _001OnOpenItem(::data::tree_item_base * pitem, const ::action_context & context) override;
+      virtual void _001OnItemExpand(::data::tree_item_base * ptreeitembase, const ::action_context & action_context);
+      virtual void _001OnItemCollapse(::data::tree_item_base * ptreeitembase, const ::action_context & action_context);
+      virtual void _001OnOpenItem(::data::tree_item_base * ptreeitembase, const ::action_context & action_context);
+      virtual void _001OnItemContextMenu(::data::tree_item_base * ptreeitembase, const ::action_context & action_context, ::user::element * ptree, const ::int_point & point);
+      //virtual void _001OnOpenItem(::data::tree_item_base * ptreeitembase, const ::action_context & context) override;
 
       void erase(tree_item_ptr_array < ITEM > & itemptra);
       void erase(tree_item <  ITEM > * pitem);
@@ -866,18 +866,18 @@ return;
    }
 
    template < prototype_item ITEM >
-   void tree <  ITEM >::_001OnItemExpand(::data::tree_item <  ITEM > * pitem, const ::action_context & context)
+   void tree <  ITEM >::_001OnItemExpand(::data::tree_item_base * ptreeitembase, const ::action_context & context)
    {
 
-      if (pitem->is_expanded())
+      if (ptreeitembase->is_expanded())
          return;
 
-      pitem->on_fill_children();
+      ptreeitembase->on_fill_children();
 
-      if (pitem->get_children_count() > 0)
+      if (ptreeitembase->get_children_count() > 0)
       {
-         pitem->m_etreeitemstate |= ::data::e_tree_item_state_expanded;
-         pitem->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
+         ptreeitembase->m_etreeitemstate |= ::data::e_tree_item_state_expanded;
+         ptreeitembase->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
       }
 
       /*      for (::collection::index i = 0; i < m_treeptra.get_count(); i++)
@@ -893,16 +893,16 @@ return;
    }
 
    template < prototype_item ITEM >
-   void tree <  ITEM >::_001OnItemCollapse(::data::tree_item <  ITEM > * pitem, const ::action_context & context)
+   void tree <  ITEM >::_001OnItemCollapse(::data::tree_item_base * ptreeitembase, const ::action_context & context)
    {
 
-      if (!pitem->is_expanded())
+      if (!ptreeitembase->is_expanded())
          return;
-      if (pitem->get_children_count() > 0)
+      if (ptreeitembase->get_children_count() > 0)
       {
-         pitem->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
+         ptreeitembase->m_etreeitemstate |= ::data::e_tree_item_state_expandable;
       }
-      pitem->m_etreeitemstate -= ::data::e_tree_item_state_expanded;
+      ptreeitembase->m_etreeitemstate -= ::data::e_tree_item_state_expanded;
       /*for (::collection::index i = 0; i < m_treeptra.get_count(); i++)
       {
 
@@ -913,26 +913,26 @@ return;
    }
 
    template < prototype_item ITEM >
-   void tree <  ITEM >::_001OnOpenItem(::data::tree_item <  ITEM > * pitem, const ::action_context & context)
+   void tree <  ITEM >::_001OnOpenItem(::data::tree_item_base * ptreeitembase, const ::action_context & context)
    {
 
 
    }
 
 
+   // template < prototype_item ITEM >
+   // void tree <  ITEM >::_001OnOpenItem(::data::tree_item_base * ptreeitembase, const ::action_context & context)
+   // {
+   //
+   //    ::cast < ::data::tree_item <  ITEM > > ptreeitem = pitem;
+   //
+   //    _001OnOpenItem(ptreeitem, context);
+   //
+   // }
+
+
    template < prototype_item ITEM >
-   void tree <  ITEM >::_001OnOpenItem(::data::tree_item_base * pitem, const ::action_context & context)
-   {
-
-      ::cast < ::data::tree_item <  ITEM > > ptreeitem = pitem;
-
-      _001OnOpenItem(ptreeitem, context);
-
-   }
-
-
-   template < prototype_item ITEM >
-   void tree <  ITEM >::_001OnItemContextMenu(::data::tree_item <  ITEM > * pitem, const ::action_context & context, ::user::element * ptree, const ::int_point & point)
+   void tree <  ITEM >::_001OnItemContextMenu(::data::tree_item_base * ptreeitembase, const ::action_context & context, ::user::element * ptree, const ::int_point & point)
    {
 
 

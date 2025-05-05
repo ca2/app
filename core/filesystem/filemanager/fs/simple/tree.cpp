@@ -289,10 +289,10 @@ namespace filemanager
          }
 
 
-         void tree::_001OnItemExpand(::data::tree_item<::item> * pitem, const ::action_context & context)
+         void tree::_001OnItemExpand(::data::tree_item_base * ptreeitembase, const ::action_context & context)
          {
 
-            m_pserver->open_folder(m_foldera[pitem->m_dwUser]->m_iFolder);
+            m_pserver->open_folder(m_foldera[ptreeitembase->m_dwUser]->m_iFolder);
 
          }
 

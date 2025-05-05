@@ -74,7 +74,7 @@ namespace filemanager
 
             virtual void initialize(::particle * pparticle) override;
 
-            void _001OnItemExpand(::data::tree_item<::item> * pitem, const ::action_context & action_context) override;
+            void _001OnItemExpand(::data::tree_item_base * ptreeitembase, const ::action_context & action_context) override;
 
 
             void parse(const ::string & pszSource);

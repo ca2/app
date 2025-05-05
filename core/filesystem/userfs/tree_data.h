@@ -55,7 +55,7 @@ namespace userfs
       void update_list();
 
 
-      void _001OnItemExpand(::data::tree_item <item> * pitem, const ::action_context & action_context) override;
+      void _001OnItemExpand(::data::tree_item_base * pitem, const ::action_context & action_context) override;
 
 
       //::userfs::document * get_document();
@@ -68,8 +68,8 @@ namespace userfs
       void install_message_routing(::channel * pchannel) override;
 
 
-      virtual void _001OnOpenItem(::data::tree_item<item> * pitem, const ::action_context & action_context) override;
-      virtual void _001OnItemCollapse(::data::tree_item<item> * pitem, const ::action_context & action_context) override;
+      virtual void _001OnOpenItem(::data::tree_item_base * pitem, const ::action_context & action_context) override;
+      virtual void _001OnItemCollapse(::data::tree_item_base * pitem, const ::action_context & action_context) override;
 
 
       //virtual void _017OpenFolder(::pointer<::file::item>pitem, const ::action_context & action_context);

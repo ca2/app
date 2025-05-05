@@ -274,6 +274,44 @@ namespace user
 
       {
 
+         double dTime = 0.3;
+
+         if (m_bHover)
+         {
+
+            auto iAlpha = (int)(m_iHoverAlphaInit + m_timeHoverStart.elapsed().floating_second() * 255.f/ dTime);
+
+            m_iHoverAlpha = constrained(iAlpha, 0, 255);
+
+            if (m_iHoverAlpha >= 255)
+            {
+
+               erase_graphical_output_purpose(this);
+
+            }
+
+
+         }
+         else
+         {
+
+            auto iAlpha = (int)(m_iLeaveAlphaInit - m_timeLeaveStart.elapsed().floating_second() * 255.f/dTime);
+
+            m_iHoverAlpha = constrained(iAlpha, 0, 255);
+
+            if (m_iHoverAlpha <= 0)
+            {
+
+               erase_graphical_output_purpose(this);
+
+            }
+
+         }
+
+      }
+
+      {
+
          auto timeStart = ::time::now();
 
          auto rectangleX = this->rectangle();
@@ -468,39 +506,6 @@ namespace user
 
       data.m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      double dTime = 0.3;
-
-      if (m_bHover)
-      {
-
-         auto iAlpha = (int)(m_iHoverAlphaInit + m_timeHoverStart.elapsed().floating_second() * 255.f/ dTime);
-
-         m_iHoverAlpha = constrained(iAlpha, 0, 255);
-
-         if (m_iHoverAlpha >= 255)
-         {
-
-            erase_graphical_output_purpose(this);
-
-         }
-
-
-      }
-      else
-      {
-
-         auto iAlpha = (int)(m_iLeaveAlphaInit - m_timeLeaveStart.elapsed().floating_second() * 255.f/dTime);
-
-         m_iHoverAlpha = constrained(iAlpha, 0, 255);
-
-         if (m_iHoverAlpha <= 0)
-         {
-
-            erase_graphical_output_purpose(this);
-
-         }
-
-      }
 
       if (m_iHoverAlpha > 0)
       {

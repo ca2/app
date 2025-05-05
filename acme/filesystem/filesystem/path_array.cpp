@@ -62,7 +62,27 @@ CLASS_DECL_ACME ::file::path_array & ascendants_path(const ::file::path & path, 
 //path_array & path::ascendants_path(path_array & straParam, path_array * ppathaRelative) const
 {
 
+   if (path.is_empty())
+   {
+
+      return pathaFolder;
+
+   }
+
    auto p = path.begin();
+
+#if !defined(WINDOWS)
+
+   pathaFolder.add("/");
+
+#endif
+
+   if (path == "/")
+   {
+
+      return pathaFolder;
+
+   }
 
    while(p && p < path.end())
    {
@@ -103,7 +123,14 @@ CLASS_DECL_ACME ::file::path_array & ascendants_path(const ::file::path & path, 
       else if (p == pSlash || p == pBackSlash)
       {
 
-         pathaFolder.add(path(0, p));
+         auto range = path(0, p);
+
+         if (range.has_character())
+         {
+
+            pathaFolder.add(range);
+
+         }
 
          p = path(p).skip_any_character_in("\\/");
 

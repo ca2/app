@@ -227,26 +227,26 @@ namespace user
 
 
    template < prototype_item ITEM >
-   void tree_data < ITEM >::_001OnOpenItem(::data::tree_item<ITEM> * ptreeitem, const ::action_context & context)
+   void tree_data < ITEM >::_001OnOpenItem(::data::tree_item_base * ptreeitembase, const ::action_context & context)
    {
 
       for (::collection::index i = 0; i < m_usertreea.get_count(); i++)
       {
 
-         m_usertreea[i]->_001OnOpenItem(ptreeitem, context);
+         m_usertreea[i]->_001OnOpenItem(ptreeitembase, context);
 
       }
 
    }
 
    template < prototype_item ITEM >
-   void tree_data < ITEM >::_001OnItemContextMenu(::data::tree_item<ITEM> * ptreeitem, const ::action_context & context, ::user::tree * ptree, const ::int_point & point)
+   void tree_data < ITEM >::_001OnItemContextMenu(::data::tree_item_base * ptreeitembase, const ::action_context & context, ::user::tree * ptree, const ::int_point & point)
    {
 
       for (::collection::index i = 0; i < m_usertreea.get_count(); i++)
       {
 
-         m_usertreea[i]->_001OnItemContextMenu(ptreeitem, context, ptree, point);
+         m_usertreea[i]->_001OnItemContextMenu(ptreeitembase, context, ptree, point);
 
       }
 

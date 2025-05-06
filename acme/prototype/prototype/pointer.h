@@ -698,9 +698,9 @@ template < typename TYPE >
 inline void swap(::pointer<TYPE>& a, ::pointer<TYPE> & b)
 {
 
-   auto t = a.m_p;
-   a.m_p = b.m_p;
-   b.m_p = t;
+   auto t = a;
+   a = b;
+   b = t;
 
 }
 

@@ -42,10 +42,23 @@ namespace innate_ui
 
    }
 
+
    void window::show_front(::user::activation_token * puseractivationtoken)
    {
 
+      if (::is_null(puseractivationtoken))
+      {
+
+         show();
+
+         return;
+
+      }
+
+      show();
+
    }
+
 
    void window::center()
    {

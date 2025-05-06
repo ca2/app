@@ -516,6 +516,15 @@ namespace graphics
          }                                      
 
          m_hls.m_dH = dAngle / (2.0 * ::nano2d::f_pi);
+         
+         if((m_hls.m_dS == 0.0 || m_hls.m_dS == 1.0)
+            &&  (m_hls.m_dL == 0.0 || m_hls.m_dL == 1.0))
+         {
+            
+            m_hls.m_dS = 0.5;
+            m_hls.m_dL = 0.5;
+            
+         }
 
          on_color_change();
 

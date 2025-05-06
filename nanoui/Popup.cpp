@@ -77,8 +77,30 @@ namespace nanoui
       m_parent_window->refresh_relative_placement();
 
       m_bVisible &= m_parent_window->visible_recursive();
+      
+      int iMaxH=-1;
+      if(m_parent_window->m_pwidgetParent)
+      {
+         
+         iMaxH = m_parent_window->m_pwidgetParent->height();
+         
+      }
+      
+      auto posParent = m_parent_window->position();
+      
+      m_pos = posParent + m_anchor_pos - sequence2_int(0, m_anchor_offset);
+      
+      if(iMaxH > 0 && (m_pos.y() + m_size.height() > iMaxH))
+      {
+         int iNewY =iMaxH - m_size.height();
+         int iOffsetY = iNewY - m_pos.y();
+         m_pos.y() += iOffsetY;
+         m_anchor_offset -= iOffsetY;
+      }
 
-      m_pos = m_parent_window->position() + m_anchor_pos - sequence2_int(0, m_anchor_offset);
+      
+      
+      
 
       m_pointLastDragPosition = m_pos;
 

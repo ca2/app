@@ -523,7 +523,7 @@ AdvancedGridLayout::Anchor::operator ::string() const
                grid_size += m_sizeSpacing[i];
          }
 
-         if (grid_size < container_size[i]) {
+         if (grid_size < container_size[i] && dim[i] != 0) {
             /* Re-distribute remaining space evenly */
             int gap = container_size[i] - grid_size;
             int g = gap / dim[i];

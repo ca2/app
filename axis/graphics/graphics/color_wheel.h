@@ -70,16 +70,16 @@ namespace graphics
       enum_hit_test m_ehittestDrag;
 
       /// The current callback to execute when the color::color value has changed.
-      ::function<void(const color::color &)> m_callback;
+      ::function<void(const color::hls &)> m_callback;
 
       color_wheel();
       ~color_wheel() override;
 
       /// The callback to execute when a user changes the ColorWheel value.
-      ::function<void(const color::color &)> callback() const { return m_callback; }
+      ::function<void(const color::hls &)> callback() const { return m_callback; }
 
       /// Sets the callback to execute when a user changes the ColorWheel value.
-      void set_callback(const ::function<void(const color::color &)> & callback) { m_callback = callback; }
+      void set_callback(const ::function<void(const color::hls &)> & callback) { m_callback = callback; }
 
       /// The current color::color this ColorWheel has selected.
       //color::color color() const;

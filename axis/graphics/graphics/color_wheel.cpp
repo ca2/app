@@ -565,7 +565,11 @@ namespace graphics
 
       }
 
-      double a = -m_hls.m_dH * 2.0 * ::nano2d::f_pi;
+      // #if defined(__APPLE__)
+      double a = m_hls.m_dH * 2.0 * ::nano2d::f_pi;
+//#else
+//      double a = -m_hls.m_dH * 2.0 * ::nano2d::f_pi;
+//#endif
       double sin_a = ::sin(a);
       double cos_a = ::cos(a);
 

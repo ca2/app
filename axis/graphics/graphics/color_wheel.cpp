@@ -143,7 +143,11 @@ namespace graphics
 
                   int dy = y - centerY;
 
+#if defined(__APPLE__)
                   double dHue = atan2(dy, dx);
+#else
+                  double dHue = atan2(-dy, dx);
+#endif
                   double dRadius = sqrt((dx * dx) + (dy * dy));
 
                   unsigned char opacity = 0;
@@ -269,15 +273,15 @@ namespace graphics
             //pcontext->save();
             pcontext->translate((float) cx, (float) cy);
             
-#if defined(__APPLE__)
+//#if defined(__APPLE__)
             
             pcontext->rotate((float) (-hue * ::nano2d::f_pi * 2));
 
-#else
-
-            pcontext->rotate((float) (hue * ::nano2d::f_pi * 2));
-            
-#endif
+//#else
+//
+//            pcontext->rotate((float) (hue * ::nano2d::f_pi * 2));
+//            
+//#endif
             
 
             pcontext->stroke_width((float)u);
@@ -516,15 +520,15 @@ namespace graphics
       if ((m_ehittestDrag & e_hit_test_outer_circle) || (!m_ehittestDrag && (mr >= r0 && mr <= r1)))
       {
          
-#if defined(__APPLE__)
+//#if defined(__APPLE__)
 
          double dAngle = ::atan2(-cy, cx);
          
-#else
-         
-         double dAngle = ::atan2(cy, cx);
-         
-#endif
+//#else
+//         
+//         double dAngle = ::atan2(cy, cx);
+//         
+//#endif
 
          if (dAngle < 0.0)
          {

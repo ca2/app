@@ -32,7 +32,7 @@ int __is_ok_socket(int fd) {
 #endif
 
 
-#define THIS_FILE_DEBUG_LEVEL 9
+#define THIS_FILE_DEBUG_LEVEL 1
 
 
 #if defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)

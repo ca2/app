@@ -62,10 +62,10 @@ namespace data
 
       void _001OnTreeDataChange() override;
 
-      virtual void _001OnItemExpand(::data::tree_item_base * ptreeitembase, const ::action_context & action_context);
-      virtual void _001OnItemCollapse(::data::tree_item_base * ptreeitembase, const ::action_context & action_context);
-      virtual void _001OnOpenItem(::data::tree_item_base * ptreeitembase, const ::action_context & action_context);
-      virtual void _001OnItemContextMenu(::data::tree_item_base * ptreeitembase, const ::action_context & action_context, ::user::element * ptree, const ::int_point & point);
+      void _001OnItemExpand(::data::tree_item_base * ptreeitembase, const ::action_context & action_context) override;
+      void _001OnItemCollapse(::data::tree_item_base * ptreeitembase, const ::action_context & action_context) override;
+      void _001OnOpenItem(::data::tree_item_base * ptreeitembase, const ::action_context & action_context) override;
+      void _001OnItemContextMenu(::data::tree_item_base * ptreeitembase, const ::action_context & action_context, ::user::element * ptree, const ::int_point & point) override;
       //virtual void _001OnOpenItem(::data::tree_item_base * ptreeitembase, const ::action_context & context) override;
 
       void erase(tree_item_ptr_array < ITEM > & itemptra);

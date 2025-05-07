@@ -197,7 +197,7 @@ namespace windowing
       //bool                                    m_bDestroying;
       int                                       m_iPendingRectMatch;
       //::pointer<::user::interaction>            m_puserinteraction;
-      ::pointer<::user::box>                    m_puserbox;
+      //::pointer<::user::box>                    m_puserbox;
       bool                                      m_bIgnoreSizeEvent;
       bool                                      m_bIgnoreMoveEvent;
       ::auto_pointer < critical_section >       m_pcsDisplay;

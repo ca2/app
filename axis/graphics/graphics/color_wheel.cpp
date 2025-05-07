@@ -268,7 +268,17 @@ namespace graphics
             ::nano2d::guard guard(pcontext);
             //pcontext->save();
             pcontext->translate((float) cx, (float) cy);
+            
+#if defined(__APPLE__)
+            
+            pcontext->rotate((float) (-hue * ::nano2d::f_pi * 2));
+
+#else
+
             pcontext->rotate((float) (hue * ::nano2d::f_pi * 2));
+            
+#endif
+            
 
             pcontext->stroke_width((float)u);
 
@@ -505,8 +515,16 @@ namespace graphics
 
       if ((m_ehittestDrag & e_hit_test_outer_circle) || (!m_ehittestDrag && (mr >= r0 && mr <= r1)))
       {
+         
+#if defined(__APPLE__)
 
+         double dAngle = ::atan2(-cy, cx);
+         
+#else
+         
          double dAngle = ::atan2(cy, cx);
+         
+#endif
 
          if (dAngle < 0.0)
          {

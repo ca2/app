@@ -458,7 +458,7 @@ namespace folder_zip
    }
 
 
-   void folder::e_extract_all(const ::file::path& pathTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat, ::function<void(const::scoped_string& scopedstr) > functionCallback)
+   void folder::e_extract_all(const ::file::path& pathTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat, ::function<bool(const::scoped_string& scopedstr) > functionCallback)
    {
 
       ::file::listing listing;
@@ -485,25 +485,32 @@ namespace folder_zip
       
          ::memory memory;
 
+         bool bExtract = true;
+
          if (functionCallback)
          {
 
-            functionCallback(pathItem);
+            bExtract = functionCallback(pathItem);
 
          }
 
-         extract(memory, pathItem);
-
-         if (memory.is_set())
+         if (bExtract)
          {
 
-            auto pathTarget = pathTargetFolder / range;
+            extract(memory, pathItem);
 
-            file_system()->put_block(pathTarget, memory);
+            if (memory.is_set())
+            {
 
-            auto time = get_modification_time();
+               auto pathTarget = pathTargetFolder / range;
 
-            file_system()->set_modification_time(pathTarget, time);
+               file_system()->put_block(pathTarget, memory);
+
+               auto time = get_modification_time();
+
+               file_system()->set_modification_time(pathTarget, time);
+
+            }
 
          }
 
@@ -511,7 +518,7 @@ namespace folder_zip
 
    }
 
-   
+
    ::file::path folder::e_extract_first_ends(const ::file::path& pathTargetDir, const ::scoped_string & scopedstrSuffix)
    {
 

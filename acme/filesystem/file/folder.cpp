@@ -124,7 +124,7 @@ bool folder::is_compressed(const ::file::path & path)
 }
 
 
-void folder::e_extract_all(const ::file::path & pathTargetDir, ::file::path_array * ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat, ::function<void(const::scoped_string& scopedstr) > functionCallback)
+void folder::e_extract_all(const ::file::path & pathTargetDir, ::file::path_array * ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat, ::function<bool(const::scoped_string& scopedstr) > functionCallback)
 {
 
    throw ::interface_only();
@@ -144,6 +144,18 @@ void folder::e_extract_all(const ::file::path & pathTargetDir, ::file::path_arra
    return "";
 
 }
+
+
+//void folder::e_extract_sub_directory(const ::file::path& pathTargetDir, const ::scoped_string& scopedstrPrefix, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat, ::function<bool(const::scoped_string& scopedstr) > functionCallback)
+//{
+//
+//   throw ::interface_only();
+//
+//   //throw ::interface_only();
+//
+//   //return "";
+//
+//}
 
 //
 //bool folder::enumerates(::file::listing & listing)

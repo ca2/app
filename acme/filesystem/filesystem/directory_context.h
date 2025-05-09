@@ -105,6 +105,9 @@
 
       virtual bool fast_has_subdir(const ::file::path & path);
 
+
+      virtual ::file::path defer_get_file_system_file(const ::file::path & path, bool bExpandAll);
+
       
       virtual ::file::path time();
       virtual ::file::path stage();

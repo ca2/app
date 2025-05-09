@@ -1853,6 +1853,41 @@ bool directory_context::name_is(const ::file::path& strPath)
 //
 
 
+::file::path directory_context::defer_get_file_system_file(const ::file::path& path, bool bExpandAll)
+{
+
+   if (path.begins("matter://"))
+   {
+
+      auto pathBase = directory_system()->appdata() / "_matter";
+
+      if (!is(pathBase))
+      {
+
+         auto pfolder = file()->resource_folder();
+
+         pfolder->e_extract_all(pathBase);
+
+      }
+
+      ::string str(path);
+
+      if (str.begins_eat("matter://"))
+      {
+
+         auto path = pathBase / m_papplication->m_strRoot / "_matter" /m_papplication->m_strDomain / "_std/_std"/ str;
+
+         return path;
+
+      }
+
+   }
+
+   return path;
+
+
+}
+
 ::file::path directory_context::time()
 {
 

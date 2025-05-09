@@ -81,6 +81,48 @@ namespace database
 
       }
 
+      inline bool get_block(const ::scoped_string& scopedstr, const block & block)
+      {
+
+         auto pmemoryfile = create_memory_file();
+
+         if (!m_pclient->data_get_memory(scopedstr, pmemoryfile->memory()))
+         {
+
+            return false;
+
+         }
+
+         pmemoryfile->seek_to_begin();
+
+         binary_stream stream(pmemoryfile);
+
+         stream.set_loading_flag();
+
+         try
+         {
+
+            stream >> (::block &) block;
+
+         }
+         catch (...)
+         {
+
+            return false;
+
+         }
+
+         if (stream.nok())
+         {
+
+            return false;
+
+         }
+
+         return true;
+
+      }
+
 
 
 

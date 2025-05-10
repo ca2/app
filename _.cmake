@@ -1,6 +1,9 @@
 # Created by camilo on 2023-02 <3ThomasBorregaardSorensen!!
 
 
+set(CMAKE_CXX_STANDARD 20)
+
+
 if("${CMAKE_BUILD_TYPE}" STREQUAL "")
 
    set(__CMAKE_BUILD_TYPE "Debug")

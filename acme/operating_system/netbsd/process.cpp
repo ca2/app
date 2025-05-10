@@ -900,3 +900,13 @@ extern "C" void netbsd_cleanup(int signo)
 }
 
 
+
+
+
+void install_operating_system_default_signal_handlers()
+{
+   
+   
+}
+
+

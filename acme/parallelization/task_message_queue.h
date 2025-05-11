@@ -10,7 +10,7 @@
 
 
 class CLASS_DECL_ACME task_message_queue :
-   virtual public ::subparticle
+   virtual public ::particle
 {
 public:
 

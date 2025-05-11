@@ -79,7 +79,7 @@ message_queue * task_message_queue::get_message_queue(const ::task_index & taski
       if (bCreate)
       {
 
-         pmessagequeue = __allocate message_queue();
+         pmessagequeue = __create_new < message_queue>();
 
          pmessagequeue->m_itask = pthreadstorage->m_itask;
 

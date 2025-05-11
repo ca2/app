@@ -220,8 +220,6 @@ namespace platform
 
       m_bKeepRunningPostedProcedures = true;
 
-      create_task_message_queue();
-
       factory()->add_factory_item < ::nano::http::get>();
       factory()->add_factory_item < ::component >();
 
@@ -482,6 +480,13 @@ namespace platform
 
    ::task_message_queue* system::task_message_queue()
    {
+
+      if (!m_ptaskmessagequeue)
+      {
+
+         create_task_message_queue();
+
+      }
 
       return m_ptaskmessagequeue;
 

@@ -3653,7 +3653,7 @@ message_queue* thread::_get_message_queue()
 
    }
 
-   auto pmessagequeue = ::system()->m_ptaskmessagequeue->get_message_queue(m_taskindex, true);
+   auto pmessagequeue = ::system()->task_message_queue()->get_message_queue(m_taskindex, true);
 
    if (pmessagequeue->m_bQuit)
    {

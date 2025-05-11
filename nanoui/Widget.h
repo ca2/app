@@ -363,7 +363,7 @@ namespace nanoui
       /// Set whether or not this pwidget is currently focused
       //void set_focused(bool focused) { m_focused = focused; }
       /// Request the focus to be moved to this pwidget
-      void request_focus();
+      virtual void request_focus();
 
       ::string tooltip() const { return m_tooltip; }
       void set_tooltip(const ::scoped_string& tooltip) { m_tooltip = tooltip; }

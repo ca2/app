@@ -1151,7 +1151,9 @@ m_ibuf(isize)
 
 #if defined(MSG_NOSIGNAL) || defined(SOLARIS)
          
-         n = ::recv(GetSocketId(), (char*)buf, (int)nBufSize, MSG_NOSIGNAL);
+         auto nRecv = ::recv(GetSocketId(), (char*)buf, (int)nBufSize, MSG_NOSIGNAL);
+         
+         n = (int) nRecv;
 
 #else
 

@@ -145,18 +145,18 @@ namespace platform
       //
       //}
 
-      try
-      {
-
-         ::release(papplication);
-
-      }
-      catch (...)
-      {
-
-      }
-
-      return nullptr;
+//      try
+//      {
+//
+//         ::release(papplication);
+//
+//      }
+//      catch (...)
+//      {
+//
+//      }
+//
+//      return nullptr;
 
    }
 

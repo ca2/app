@@ -516,6 +516,13 @@ namespace graphics
       double smallest_dimension = diamRound /2;
 
       double mr = ::sqrt(cx * cx + cy * cy);
+      
+      if(!m_ehittestDrag && mr >r1)
+      {
+         
+         return e_hit_test_none;
+         
+      }
 
       if ((m_ehittestDrag & e_hit_test_outer_circle) || (!m_ehittestDrag && (mr >= r0 && mr <= r1)))
       {

@@ -347,7 +347,7 @@ namespace nanoui
       //   void resize_callback_event(int width, int height);
       //
       //   /* Internal helper functions */
-      void update_focus(Widget* pwidget);
+      virtual void update_focus(Widget* pwidget);
       void dispose_window(Window* window);
       void center_window(Window* window, ::nano2d::context * pcontext);
       void move_window_to_front(Window* window);

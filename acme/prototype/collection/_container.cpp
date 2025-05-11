@@ -46,7 +46,7 @@ namespace test_compilation_some_container_functions
 
 
 
-#endif DEBUG
+#endif // DEBUG
 
 
 

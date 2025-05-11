@@ -311,7 +311,7 @@ namespace test_compilation_some_strong_ordering_swap_functions
 } // namespace test_compilation_some_strong_ordering_swap_functions
 
 
-#endif DEBUG
+#endif // DEBUG
 
 
 

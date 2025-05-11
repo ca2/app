@@ -56,7 +56,7 @@ thread_local ::message_queue * t_pmessagequeue = nullptr;
 
       auto taskindex = ::current_task_index();
 
-      t_pmessagequeue=  system()->m_ptaskmessagequeue->get_message_queue(taskindex, false);
+      t_pmessagequeue=  system()->task_message_queue()->get_message_queue(taskindex, false);
 
    }
 

@@ -2046,14 +2046,14 @@ if (ANDROID)
       operating_system/android/_android.h
       operating_system/android/_c.h
       operating_system/android/_os_impl.h
-      operating_system/android/_os_local.h
-      operating_system/android/_os_object.h
-      operating_system/android/_os_remote.h
+      #operating_system/android/_os_local.h
+      #operating_system/android/_os_object.h
+      #operating_system/android/_os_remote.h
       operating_system/android/cross_win_file.h
       operating_system/android/cross_win_gdi.h
       operating_system/android/cross_win_gdi_internal.h
       operating_system/android/exception_engine.h
-      operating_system/android/file.h
+      operating_system/android/file2.h
       operating_system/android/graphics.h
       operating_system/android/internal.h
       operating_system/android/process.h
@@ -2649,31 +2649,31 @@ if (ANDROID)
 
 
    list(APPEND library_source
-      operating_system/cross/universal_windows/cross_metrowin_user.cpp
-      operating_system/cross/universal_windows/metrowin_user.cpp
+      #operating_system/cross/universal_windows/cross_metrowin_user.cpp
+      #operating_system/cross/universal_windows/metrowin_user.cpp
       operating_system/android/android.cpp
       operating_system/android/android1.cpp
       operating_system/android/error.cpp
       operating_system/android/exception.cpp
       operating_system/android/_factory.cpp
-      operating_system/android/file.cpp
+      operating_system/android/file2.cpp
       operating_system/android/main.cpp
       operating_system/android/process.cpp
       operating_system/android/thread.cpp
-      operating_system/android/trace.cpp
+      #operating_system/android/trace.cpp
       operating_system/android/util.cpp
-      operating_system/android/_bind_app.cpp
-      operating_system/android/_bind_impact.cpp
-      operating_system/android/_os_android.cpp
-      operating_system/android/_os_impl.cpp
-      operating_system/android/_os_object.cpp
+      #operating_system/android/_bind_app.cpp
+      #operating_system/android/_bind_impact.cpp
+      #operating_system/android/_os_android.cpp
+      #operating_system/android/_os_impl.cpp
+      #operating_system/android/_os_object.cpp
       operating_system/android/application_system_run.cpp
-      operating_system/android/aura.cpp
-      operating_system/android/c.cpp
+      #operating_system/android/aura.cpp
+      #operating_system/android/c.cpp
       operating_system/android/debug.cpp
       operating_system/android/dir.cpp
-      operating_system/android/exception_engine.cpp
-      operating_system/android/file.cpp
+      #operating_system/android/exception_engine.cpp
+      operating_system/android/file2.cpp
       operating_system/android/graphics.cpp
       operating_system/android/jni_launcher.cpp
       operating_system/android/language.cpp
@@ -2681,7 +2681,7 @@ if (ANDROID)
       operating_system/android/library.cpp
       operating_system/android/locale.cpp
       operating_system/android/lock.cpp
-      operating_system/android/main_android.cpp
+      operating_system/android/main.cpp
       operating_system/android/process.cpp
       operating_system/android/process_pid.cpp
       operating_system/android/win_base.cpp

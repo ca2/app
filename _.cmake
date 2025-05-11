@@ -61,7 +61,7 @@ set(HAS_NO_APPINDICATOR FALSE)
 
 
 
-
+message(STATUS "going to include \"source/_.cmake\"")
 include(source/_.cmake)
 
 
@@ -72,6 +72,7 @@ if(NOT DEFINED DESKTOP_AMBIENT)
 endif()
 
 
+message(STATUS "going to include \"operating_system/_.cmake\"")
 include(operating_system/_.cmake)
 
 

@@ -333,7 +333,7 @@ namespace apex
       //void request(::request * prequest) override;
 
 
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 ////#pragma message("at macos??")
 //      virtual bool android_set_user_wallpaper(string strUrl);
 //      virtual bool android_get_user_wallpaper(string & strUrl);

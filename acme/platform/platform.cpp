@@ -181,7 +181,7 @@ namespace platform
 
 #if defined(APPLE_IOS)
       return true;
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
       return true;
 #elif defined(UNIVERSAL_WINDOWS)
       return true;

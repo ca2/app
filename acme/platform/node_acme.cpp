@@ -892,7 +892,7 @@ namespace platform
    }
 
 
-   //#if defined(ANDROID)
+   //#if defined(__ANDROID__)
    //      ::string acme_node_layer::unwind_call_stack(const ::scoped_string & scopedstrFormat , int iSkip, int iCount){}
    //#else
    int acme_node_layer::get_call_stack_default_frame_count()
@@ -1002,7 +1002,7 @@ namespace platform
    //#endif
 
 
-   //#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
+   //#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__)
    //
    //
    //      //virtual int get_current_processor_index(){}

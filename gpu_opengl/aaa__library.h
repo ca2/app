@@ -5,7 +5,7 @@
 #include "acme/operating_system.h"
 #include "aura/graphics/gpu/_gpu.h"
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
 
 // OpenGL ES includes

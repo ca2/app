@@ -1662,8 +1662,9 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::_append(co
 
 
 template < typename ITERATOR_TYPE >
-template < other_primitive_character < typename ::string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
+template < typename OTHER_CHARACTER >
 inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::_append(const OTHER_CHARACTER * pszSrc, character_count count)
+requires other_primitive_character < OTHER_CHARACTER, CHARACTER >
 {
 
    auto old_len = this->length();

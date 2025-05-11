@@ -573,7 +573,7 @@ char * malloc_get_current_dir_name()
 ////::file::path file::app_module()
 ////{
 ////
-////#if defined(ANDROID) || defined(LINUX)
+////#if defined(__ANDROID__) || defined(LINUX)
 ////
 ////   ::file::path path;
 ////
@@ -1469,7 +1469,7 @@ void copy(::file::file_status * pstatus, const struct stat * pst)
     pstatus->m_attribute = 0;
 
 
-#if defined(ANDROID) || defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
+#if defined(__ANDROID__) || defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
 
     ::copy(&pstatus->m_timeModification, &pst->st_mtim);
     ::copy(&pstatus->m_timeAccess, &pst->st_atim);

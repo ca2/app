@@ -583,7 +583,7 @@ namespace acme
 //
 //      string strLibraryName(get_library_name());
 //
-//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+//#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 //
 //      if(strLibraryName == "libca2")
 //      {
@@ -638,7 +638,7 @@ namespace acme
 //
 //      string strLibraryName(get_library_name());
 //
-//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+//#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 //
 //      if(strLibraryName == "libca2")
 //      {

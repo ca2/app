@@ -3784,7 +3784,7 @@ bool thread::peek_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFil
 ////
 ////      string strTypeName = ::type(this).name();
 ////
-////#ifdef ANDROID
+////#ifdef __ANDROID__
 ////
 ////      strTypeName;
 ////

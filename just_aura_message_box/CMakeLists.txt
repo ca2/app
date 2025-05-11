@@ -51,7 +51,7 @@ if (MSVC)
     add_dependencies(${PROJECT_NAME} draw2d_gdiplus)
 
 
-elseif (${LINUX} OR ${__BSD__})
+elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)

@@ -129,7 +129,7 @@ namespace windowing
 
       m_bDoingGraphics = false;
 
-#if defined(APPLE_IOS) || defined(ANDROID)
+#if defined(APPLE_IOS) || defined(__ANDROID__)
 
       set_per_second(12.0);
 
@@ -3873,7 +3873,7 @@ void window::set_oswindow(::oswindow oswindow)
 //
 //#endif
 
-//#if !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(__BSD__)
+//#if !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__) && !defined(__BSD__)
 //
 //
 //    ::windowing::window * window::GetAncestor(unsigned int gaFlags) const
@@ -11746,7 +11746,7 @@ void window::set_oswindow(::oswindow oswindow)
    {
 
 
-      //#ifdef ANDROID
+      //#ifdef __ANDROID__
       //
       //      operating_system_driver::get()->m_bRedraw = true;
       //
@@ -12174,7 +12174,7 @@ void window::set_oswindow(::oswindow oswindow)
    //
    //         //informationf("SetWindowPos bottom_right " + as_string(pointBottomRight.x()) + ", " + as_string(pointBottomRight.y()) + "\n");
    //
-   //   //#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
+   //   //#if !defined(UNIVERSAL_WINDOWS) && !defined(__ANDROID__)
    //
    //            //if (sizeOutput.cx() > m_sizeDrawn.cx() || sizeOutput.cy() > m_sizeDrawn.cy())
    //            // if (sizeOutput != m_sizeDrawn)
@@ -14609,7 +14609,7 @@ void window::set_oswindow(::oswindow oswindow)
 //         pmessage->m_oswindowNew = (::oswindow)wparam.m_number;
 //      }
 //      break;
-//#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(__BSD__)
+//#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__) && !defined(__BSD__)
 //      case ::message::e_prototype_window_pos:
 //
 //      {

@@ -1424,7 +1424,7 @@ namespace core
 //   }
 
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
 //   bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
 //   {

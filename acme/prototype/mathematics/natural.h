@@ -35,7 +35,7 @@ inline unsigned long long natural(unsigned long long hn)
    return hn;
 }
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
 inline unsigned long natural(long l)
 {

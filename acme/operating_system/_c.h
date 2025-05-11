@@ -49,7 +49,7 @@
 #include "acme/operating_system/windows_common/_c.h"
 #include "acme/operating_system/windows/_c.h"
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
 #include "acme/operating_system/ansi/_c.h"
 #include "acme/operating_system/android/_c.h"

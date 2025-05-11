@@ -462,7 +462,7 @@ namespace aura
 
       string strLibraryName(get_library_name());
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
       if(strLibraryName == "libca2")
       {
@@ -515,7 +515,7 @@ namespace aura
 
       string strLibraryName(get_library_name());
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
       if(strLibraryName == "libca2")
       {
@@ -1004,7 +1004,7 @@ namespace aura
    return "lib" + str + ".so";
 }
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
 ::file::path library_file_name(const ::string & str)
 {

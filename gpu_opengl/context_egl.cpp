@@ -27,7 +27,7 @@ namespace opengl
 
 //      gladLoadGL();
 
-//#if !defined(ANDROID)
+//#if !defined(__ANDROID__)
 //
 //      if (glewInit() != GLEW_NO_ERROR)
 //      {
@@ -572,7 +572,7 @@ namespace opengl
    string context_egl::get_shader_version_text()
    {
 
-#if defined(ANDROID)
+#if defined(__ANDROID__)
 
       return "#version 300 es";
 

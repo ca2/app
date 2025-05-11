@@ -377,10 +377,16 @@ public:
 
    template < primitive_integral START, primitive_integral COUNT>
    STRING_RANGE operator()(START start, COUNT count) const;
-   template < primitive_integral START, typed_character_pointer < typename const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
-   STRING_RANGE operator()(START start, CHARACTER_POINTER end) const;
+   template < primitive_integral START, typed_character_pointer < const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
+   STRING_RANGE operator()(START start, CHARACTER_POINTER end) const
+   {
+      return ::_start_end_range(STRING_RANGE(*this), start, end);
+   }
    template < typed_character_pointer < typename const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
-   STRING_RANGE operator()(CHARACTER_POINTER start) const;
+   STRING_RANGE operator()(CHARACTER_POINTER start) const
+   {
+       return STRING_RANGE(start, this->end());
+   }
    template < primitive_integral START >
    STRING_RANGE operator()(START start) const;
    STRING_RANGE operator()() const;
@@ -2422,8 +2428,9 @@ public:
 
    }
 
-   template < other_primitive_character < typename const_string_range < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
-   inline bool operator==(const ::range < const OTHER_CHARACTER* >& range) const;
+   template < typename OTHER_CHARACTER >
+   inline bool operator==(const ::range < const OTHER_CHARACTER* >& range) const
+    requires other_primitive_character < OTHER_CHARACTER, CHARACTER >;
 
    //inline bool operator ==(const SCOPED_STRING & scopedstr) const { return this->equals(scopedstr); }
 

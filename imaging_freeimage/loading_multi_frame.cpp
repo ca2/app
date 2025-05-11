@@ -340,7 +340,7 @@ namespace imaging_freeimage
 //         else
 //         {
 //
-//#if defined(ANDROID) && defined(__arm__)
+//#if defined(__ANDROID__) && defined(__arm__)
 //
 //            color32_t crQuad = argb(255, quad.rgbRed, quad.rgbGreen, quad.rgbBlue);
 //

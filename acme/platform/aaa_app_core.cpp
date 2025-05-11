@@ -285,7 +285,7 @@ void app_core::system_init()
 //
 //   }
 //
-//#elif defined(ANDROID)
+//#elif defined(__ANDROID__)
 //
 //   {
 //
@@ -989,7 +989,7 @@ typedef FN_GET_STRING * PFN_GET_STRING;
 //}
 //
 
-#elif !defined(ANDROID)
+#elif !defined(__ANDROID__)
 
 
 void app_core::system_proc()
@@ -1079,7 +1079,7 @@ bool app_core::has_apex_application_factory() const
 //// defined at linux_main.cpp
 
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
 
 // LOOK AT ANDROID_MAIN.Cpp

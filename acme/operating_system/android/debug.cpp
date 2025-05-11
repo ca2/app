@@ -1,3 +1,4 @@
+#include "framework.h"
 #include "acme/parallelization/synchronous_lock.h"
 
 #include <android/log.h>

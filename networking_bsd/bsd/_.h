@@ -13,14 +13,14 @@
 #include <netinet/in.h>
 
 
-#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD) || defined(ANDROID)
+#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD) || defined(__ANDROID__)
 
 
 #include <netdb.h>
 
 
 //#define in_addr6 in6_addr
-//#elif defined(ANDROID)
+//#elif defined(__ANDROID__)
 ///#include <netdb.h>
 //#include <netinet/in.h>
 //#define in_addr6 in6_addr

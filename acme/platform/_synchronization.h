@@ -39,7 +39,7 @@
 //CLASS_DECL_ACME ::particle * ui_destroyed_synchronization();
 //
 //
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 //
 //
 //CLASS_DECL_ACME ::critical_section * output_debug_string_a_critical_section();

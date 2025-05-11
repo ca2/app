@@ -187,7 +187,7 @@ namespace user
 //
 //      strFile = directory()->matter("keyboard/macos/default.xml");
 //
-//#elif defined(ANDROID)
+//#elif defined(__ANDROID__)
 //
 //      //strPath = directory()->matter("keyboard/android/default.xml");
 //

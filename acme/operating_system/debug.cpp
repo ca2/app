@@ -37,7 +37,7 @@ CLASS_DECL_ACME char trace_level_char(enum_trace_level elevel)
 }
 
 
-#ifndef ANDROID
+#ifndef __ANDROID__
 
 
 
@@ -71,7 +71,7 @@ void simple_debug_print(const ::scoped_string & scopedstr)
 
 
 
-#ifndef ANDROID
+#ifndef __ANDROID__
 //
 //void os_trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstr)
 //{

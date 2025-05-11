@@ -743,7 +743,7 @@ string memory_base::as_utf8() const
             && data()[1] == 254)
    {
 
-#ifdef ANDROID
+#ifdef __ANDROID__
       //for (::collection::index i = 2; i < storage.size(); i += 2)
       //{
       //   unsigned char b = storage.data()[i];

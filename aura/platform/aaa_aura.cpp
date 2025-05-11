@@ -205,7 +205,7 @@ namespace aura
    // aura commented
    ::pointer< ::mutex > g_pmutexUiDestroyed;
 
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 //
 //   ::pointer< ::mutex > g_pmutexOutputDebugStringA;
 //
@@ -213,13 +213,13 @@ namespace aura
 
    //CLASS_DECL_AURA aura_str_pool* g_paurastrpool;
 
-   // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+   // #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
    // ::pointer< ::mutex > g_pmutexMq;
 
    // #endif
 
-//#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
+//#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(__ANDROID__)
 //
 ////::pointer< ::mutex > g_pmutexThreadIdHandleLock;
 //
@@ -369,7 +369,7 @@ namespace aura
 //
 //      g_pmutexUiDestroyed = 0;
 //
-////#ifdef ANDROID
+////#ifdef __ANDROID__
 ////
 ////      g_pmutexOutputDebugStringA = 0;
 ////
@@ -377,13 +377,13 @@ namespace aura
 //
 //      //g_paurastrpool = nullptr;
 //
-//      // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+//      // #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 //
 //      // ::pointer< ::mutex > g_pmutexMq;
 //
 //      // #endif
 //
-//#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
+//#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(__ANDROID__)
 //
 ////::pointer< ::mutex > g_pmutexThreadIdHandleLock;
 //
@@ -505,7 +505,7 @@ namespace aura
 //
 //      //init_id_pool();
 //
-////#ifdef ANDROID
+////#ifdef __ANDROID__
 ////
 ////      g_pmutexOutputDebugStringA = aaa_primitive_new ::pointer < ::mutex >();
 ////
@@ -854,7 +854,7 @@ namespace aura
 //
 //      aaa_trace_category_static_term();
 //
-////#ifdef ANDROID
+////#ifdef __ANDROID__
 ////
 ////      del(g_pmutexOutputDebugStringA);
 ////
@@ -906,7 +906,7 @@ namespace aura
 //
 //#ifdef WINDOWS
 //      _free_locale(g_localeC);
-//#elif defined(ANDROID)
+//#elif defined(__ANDROID__)
 //      //_freelocale(g_localeC);
 //#else
 //      freelocale(g_localeC);
@@ -1221,7 +1221,7 @@ namespace aura
 // aura_level auralevelCore(::aura_level::level_core, &defer_aura_init);
 
 
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 //
 //
 //struct lconv* g_plconv = nullptr;
@@ -1244,7 +1244,7 @@ namespace aura
 ////
 ////         xxdebug_box("aura.dll base_static_start (0)", "box", e_message_box_ok);
 ////
-////         //#ifdef ANDROID
+////         //#ifdef __ANDROID__
 ////         //
 ////         //
 ////         //         g_plconv = aaa_primitive_new lconv;

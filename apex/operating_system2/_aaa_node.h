@@ -22,7 +22,7 @@
 //#include "posix/_posix.h"
 #include "linux/_linux.h"
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
 #include "android/_android.h"
 

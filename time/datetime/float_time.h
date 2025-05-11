@@ -148,7 +148,7 @@ namespace datetime
       float_time() RELEASENOTHROW;
 
       float_time(FLOAT_DATE dtSrc) RELEASENOTHROW;
-#if defined(ANDROID)
+#if defined(__ANDROID__)
       float_time(posix_time timeSrc) RELEASENOTHROW;
 #else
 #if !defined(APPLEOS)
@@ -201,7 +201,7 @@ namespace datetime
 
       
       float_time& operator=(FLOAT_DATE dtSrc) RELEASENOTHROW;
-#if defined(ANDROID)
+#if defined(__ANDROID__)
       float_time& operator=(const posix_time & timeSrc) RELEASENOTHROW;
 #else
 #ifndef APPLEOS
@@ -531,7 +531,7 @@ inline float_time::float_time(FLOAT_DATE dtSrc) RELEASENOTHROW :
 
    }
 
-#if defined(ANDROID)
+#if defined(__ANDROID__)
 
 inline float_time::float_time(posix_time timeSrc) RELEASENOTHROW :
    m_dt( 0 ), m_estatus(e_status_valid)
@@ -666,7 +666,7 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
    }
 
 
-#if defined(ANDROID)
+#if defined(__ANDROID__)
 
 #ifndef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
    bool GetAsSystemTimeHelper(const posix_time & timeSrc, SYSTEMTIME& timeDest);

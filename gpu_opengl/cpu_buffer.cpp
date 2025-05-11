@@ -45,7 +45,7 @@ namespace opengl
       
       auto data = m_memory.data();
       
-#if defined(__APPLE__) || defined(ANDROID)
+#if defined(__APPLE__) || defined(__ANDROID__)
 
       if(data != nullptr)
       {

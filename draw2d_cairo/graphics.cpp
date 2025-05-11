@@ -5430,7 +5430,7 @@ namespace draw2d_cairo
 
       float fDenominatorDpi;
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
       fDenominatorDpi = 160.0;
 
@@ -6841,7 +6841,7 @@ namespace draw2d_cairo
 ////
 ////   ::draw2d::wingdi_enum_fonts(itema, false, true, false);
 ////
-////#elif defined(ANDROID)
+////#elif defined(__ANDROID__)
 ////
 ////   
 ////

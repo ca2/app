@@ -3,7 +3,7 @@
 
 
 
-#if defined(LINUX) || defined(ANDROID) || defined(APPLEOS) || defined(SOLARIS)
+#if defined(LINUX) || defined(__ANDROID__) || defined(APPLEOS) || defined(SOLARIS)
 iptr get_map_failed();
 void my_munmap(void * pimage32,HANDLE hfile);
 void * my_open_map(const ::string & psz,HANDLE * pfile,bool bRead,bool bWrite,long long int_size);

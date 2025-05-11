@@ -14,7 +14,7 @@
 //#endif
 //
 //
-//#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
+//#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__)
 //
 //CLASS_DECL_APEX int get_current_processor_index();
 //

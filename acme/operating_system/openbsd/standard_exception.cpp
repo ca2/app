@@ -17,7 +17,7 @@ m_ucontext(*((::ucontext_t *)pc))
 }
 
 
-#if defined(ANDROID) || defined(RASPBERRYPIOS)
+#if defined(__ANDROID__) || defined(RASPBERRYPIOS)
 
 
 standard_access_violation::standard_access_violation (int signal, void * psiginfo, void * pc) :

@@ -2713,7 +2713,7 @@ namespace platform
 
          ::file::path pathFolder;
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
          pathFolder = system()->m_pathCacheDirectory;
 

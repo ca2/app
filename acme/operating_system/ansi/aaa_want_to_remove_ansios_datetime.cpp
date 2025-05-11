@@ -27,7 +27,7 @@ struct tm *gmtime_r(const posix_time *timep,struct tm *result)
 
 }
 
-#if !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
+#if !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__)
 
 #include <time.h>
 #include <sys/timeb.h>

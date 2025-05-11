@@ -84,7 +84,7 @@ namespace opengl
       // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
       glBindVertexArray(m_VAO);
 
-      //#elif defined(ANDROID)
+      //#elif defined(__ANDROID__)
       //
       //      glGenVertexArrays(1, &m_VAO);
       //      glGenBuffers(1, &m_VBO);
@@ -287,7 +287,7 @@ namespace opengl
 
          glPixelStorei(GL_UNPACK_ALIGNMENT, 1); // set alignment of data in memory (a good thing to do before glTexImage)
 
-#if defined(__APPLE__) || defined(ANDROID)
+#if defined(__APPLE__) || defined(__ANDROID__)
          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE); // set clamp (GL_CLAMP_TO_EDGE would be better)
 #else

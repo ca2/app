@@ -21,7 +21,7 @@
 
 
 
-#if defined(ANDROID)
+#if defined(__ANDROID__)
 #include "acme/operating_system/ansi/_c.h"
 #include "acme/operating_system/android/_c.h"
 #elif defined(MACOS)

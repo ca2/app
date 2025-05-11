@@ -148,7 +148,7 @@ namespace sockets_bsd
 
       int protno;
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
       protno = 6;
 

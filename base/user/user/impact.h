@@ -198,7 +198,7 @@ namespace user
       //    virtual bool OnScrollBy(const ::int_size & sizeScroll, bool bDoScroll = true);
 
       // OLE drag/drop support
-#ifndef ANDROID
+#ifndef __ANDROID__
       //virtual DROPEFFECT OnDragEnter(COleDataObject* pDataObject,
       //   unsigned int dwKeyState, const ::int_point & point);
       //virtual DROPEFFECT OnDragOver(COleDataObject* pDataObject,

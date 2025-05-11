@@ -55,7 +55,7 @@ CLASS_DECL_ACME string executable_get_app_id(hinstance hinstance);
 #include "apex/operating_system/windows_common/_.h"
 #include "apex/operating_system/windows/_.h"
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
 #include "apex/operating_system/ansi/_.h"
 #include "apex/operating_system/android/_.h"

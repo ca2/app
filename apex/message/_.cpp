@@ -85,7 +85,7 @@ namespace message
 ////
 ////      }
 ////
-////#elif defined(LINUX) ||  defined(__APPLE__) || defined(ANDROID)
+////#elif defined(LINUX) ||  defined(__APPLE__) || defined(__ANDROID__)
 ////      switch (emessage)
 ////      {
 ////      case e_message_create:

@@ -32,7 +32,7 @@
 //::property_set & thread_property_set();
 //
 //
-//#if defined(ANDROID)
+//#if defined(__ANDROID__)
 //
 //
 ////#define MUTEX_COND_TIMED

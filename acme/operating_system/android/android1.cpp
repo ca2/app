@@ -8,7 +8,7 @@
 ::file::path dir_ca2_module()
 {
 
-   auto psystem = this->::system()->system();
+   auto psystem = ::system();
 
    return psystem->m_pdirectorysystem->module();
 

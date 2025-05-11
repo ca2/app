@@ -4,7 +4,7 @@
 #include "file_c.h"
 
 
-#if defined(ANDROID) || defined(LINUX)
+#if defined(__ANDROID__) || defined(LINUX)
 
 
 #include "binreloc.h"

@@ -13,7 +13,7 @@
 
 #include "apex/primitive/math/mkint_c.h"
 
-//#if defined(ANDROID)
+//#if defined(__ANDROID__)
 //#include "axis/axis/os/android/android.h"
 //#elif defined(MACOS)
 //#include "axis/axis/os/macos/macos.h"

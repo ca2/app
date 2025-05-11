@@ -9,7 +9,7 @@
 
 #endif
 
-#if defined(__APPLE__) || defined(ANDROID) || defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
+#if defined(__APPLE__) || defined(__ANDROID__) || defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
 
 #include <netdb.h>
 
@@ -21,7 +21,7 @@ static geoipv6_t IPV6_NULL;
 
 #define GEOIPDATADIR "/aura/geoip"
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
+#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(FREEBSD) || defined(OPENBSD)
 
 #include<sys/stat.h>
 #include<sys/mman.h>
@@ -32,7 +32,7 @@ static geoipv6_t IPV6_NULL;
 
 #endif
 
-#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
+#if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__) || defined(FREEBSD) || defined(OPENBSD)
 
 #include<arpa/inet.h>
 #include<sys/time.h>

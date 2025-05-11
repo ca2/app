@@ -4,7 +4,7 @@
 #include "nano_idn_libidn.h"
 
 
-#if defined(ANDROID)
+#if defined(__ANDROID__)
 #include "idn/idna.h"
 #elif defined(__APPLE__)
 #include "idn/idna.h"

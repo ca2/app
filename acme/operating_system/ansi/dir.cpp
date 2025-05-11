@@ -11,7 +11,7 @@ string get_current_directory_name()
 
     string strCurrentDirName;
 
-#if defined(__APPLE__) || defined(__BSD__) || defined(ANDROID)
+#if defined(__APPLE__) || defined(__BSD__) || defined(__ANDROID__)
 
    strCurrentDirName = ::string_from_strdup(getcwd(nullptr, 0));
 

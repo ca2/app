@@ -33,7 +33,7 @@
 //#undef USE_MISC
 //
 //
-//#elif defined(ANDROID)
+//#elif defined(__ANDROID__)
 //#include <sys/types.h>
 //#include <sys/stat.h>
 //#include <fcntl.h>
@@ -187,7 +187,7 @@
 //      if(case_insensitive_string_begins(pstrName, "Global"))
 //      {
 //
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 //
 //         strName = ::file::path(system()->m_pandroidinitdata->m_pszCacheDir) / "var/tmp" / strName;
 //
@@ -270,7 +270,7 @@
 //      if(case_insensitive_string_begins(pstrName, "Global"))
 //      {
 //
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 //
 //         path = system()->m_pdirectorysystem->system() / "tmp/ca2/lock/mutex" / string(pstrName);
 //
@@ -284,7 +284,7 @@
 //      else
 //      {
 //
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 //
 //         path =  system()->m_pdirectorysystem->system() / "home/user/ca2/lock/mutex" / string(pstrName);
 //
@@ -507,7 +507,7 @@
 //   m_bOwner       = bOwner;
 //   m_pszName      = strdup(pstrName);
 //
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 //
 //   m_psem         = psem;
 //
@@ -522,7 +522,7 @@
 //
 //   m_bOwner       = false;
 //
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 //
 //   m_psem         = m.m_psem;
 //
@@ -676,7 +676,7 @@ mutex::~mutex()
 //
 //}
 
-//      ANDROID
+//      __ANDROID__
 //      int irc = pthread_mutex_lock_timeout_np(m_pmutex, time.get_total_milliseconds());
 //
 //      if (!irc)
@@ -931,7 +931,7 @@ mutex::~mutex()
 //         if (bFirst)
 //         {
 //
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 //
 //            clock_gettime(CLOCK_MONOTONIC, &abs_time);
 //
@@ -990,7 +990,7 @@ mutex::~mutex()
 //
 //         }
 //
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 //
 //         int iErrorCondTimedWait = pthread_cond_timedwait_monotonic_np(&m_cond, m_pmutex, &abs_time);
 //

@@ -18,7 +18,7 @@
 #include <sys/sem.h>
 #include "acme/operating_system/ansi/_ansi.h"
 #include <errno.h>
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -52,7 +52,7 @@ semaphore::semaphore(int lInitialCount, int lMaxCount, const char * pstrName, se
 
    }
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
 
    m_lMaxCount    = lMaxCount;
@@ -168,7 +168,7 @@ bool semaphore::_wait(const class time& timeWait)
 
 }
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
 bool semaphore::_wait(const class time & timeWait)
 {
@@ -383,7 +383,7 @@ void semaphore::unlock(int lCount, int * pPrevCount)
 
    /*return */ ::ReleaseSemaphore(m_handleSemaphore, lCount, (LPLONG)pPrevCount) /*  != false */;
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
    int val;
 

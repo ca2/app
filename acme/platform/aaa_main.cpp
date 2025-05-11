@@ -145,20 +145,20 @@ extern int g_iMemoryCountersStartable;
 
 //extern ::pointer< ::mutex > g_pmutexUiDestroyed;
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
 //extern ::pointer< ::mutex > g_pmutexOutputDebugStringA;
 
 #endif
 
 
-// #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+// #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
 // extern ::pointer< ::mutex > g_pmutexMq;
 
 // #endif
 
-#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
+#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(__ANDROID__)
 
    //extern ::pointer< ::mutex > g_pmutexThreadIdHandleLock;
 
@@ -517,13 +517,13 @@ extern thread_local ::task_pointer t_pthread;
 
    //CLASS_DECL_ACME acme_str_pool* g_pacmestrpool;
 
-   // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+   // #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
    // ::critical_section g_criticalsectionMq;
 
    // #endif
 
-#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
+#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(__ANDROID__)
 
 //::critical_section g_criticalsectionThreadIdHandleLock;
 
@@ -652,7 +652,7 @@ extern thread_local ::task_pointer t_pthread;
 //
 //      //g_criticalsectionUiDestroyed = 0;
 //
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 //
 //      //g_criticalsectionOutputDebugStringA = 0;
 //
@@ -660,13 +660,13 @@ extern thread_local ::task_pointer t_pthread;
 //
 //      //g_pacmestrpool = nullptr;
 //
-//      // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+//      // #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 //
 //      // ::critical_section g_criticalsectionMq;
 //
 //      // #endif
 //
-//#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
+//#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(__ANDROID__)
 //
 ////::critical_section g_criticalsectionThreadIdHandleLock;
 //
@@ -834,7 +834,7 @@ extern thread_local ::task_pointer t_pthread;
 
       //g_criticalsectionUiDestroyed = 0;
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
       //g_criticalsectionOutputDebugStringA = 0;
 
@@ -842,13 +842,13 @@ extern thread_local ::task_pointer t_pthread;
 
       //g_pacmestrpool = nullptr;
 
-      // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+      // #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
       // ::critical_section g_criticalsectionMq;
 
       // #endif
 
-#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
+#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(__ANDROID__)
 
 //::critical_section g_criticalsectionThreadIdHandleLock;
 
@@ -977,7 +977,7 @@ extern thread_local ::task_pointer t_pthread;
       initialize_global_message_queue();
 
       //
-      //#ifdef ANDROID
+      //#ifdef __ANDROID__
       //
       //      g_criticalsectionOutputDebugStringA = aaa_primitive_new ::critical_section();
       //
@@ -1420,7 +1420,7 @@ extern thread_local ::task_pointer t_pthread;
 
       //trace_category_static_term();
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
       //del(g_criticalsectionOutputDebugStringA);
 
@@ -1499,7 +1499,7 @@ extern thread_local ::task_pointer t_pthread;
 
 #ifdef WINDOWS
       _free_locale(g_localeC);
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
       //_freelocale(g_localeC);
 #else
       freelocale(g_localeC);

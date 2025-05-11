@@ -43,7 +43,7 @@ release_time_for_project  application::release_time() { return __RELEASE_TIME(li
 
 
 
-#if defined(APPLE_IOS) || defined(ANDROID) || defined(UNIVERSAL_WINDOWS)
+#if defined(APPLE_IOS) || defined(__ANDROID__) || defined(UNIVERSAL_WINDOWS)
 
 #define MOBILE_PLATFORM 1
 
@@ -58,11 +58,11 @@ release_time_for_project  application::release_time() { return __RELEASE_TIME(li
 #endif
 
 
-#if defined(ANDROID) || defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS)
+#if defined(__ANDROID__) || defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS)
 #define SANDBOXED_PLATFORM
 #endif
 
-#if defined(ANDROID) || defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS)
+#if defined(__ANDROID__) || defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS)
 #define SANDBOXED_WINDOWING
 #endif
 

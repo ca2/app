@@ -139,7 +139,7 @@ string demangle(const char* name)
 //#ifdef WINDOWS
 //   m_atomFriendly      = info.name();
 //   id()              = info.raw_name();
-//#elif defined(ANDROID)
+//#elif defined(__ANDROID__)
 //   m_atomFriendly	   = info.name();
 //   id()			      = info.name();
 //#elif defined(__APPLE__)
@@ -181,7 +181,7 @@ string demangle(const char* name)
 //#ifdef WINDOWS
 //   m_atomFriendly      = info.name();
 //   id()              = info.raw_name();
-//#elif defined(ANDROID)
+//#elif defined(__ANDROID__)
 //   m_atomFriendly      = info.name();
 //   id()              = info.name();
 //#elif defined(__APPLE__)

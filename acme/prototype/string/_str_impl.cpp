@@ -181,7 +181,7 @@ CLASS_DECL_ACME void from_string(unsigned long long & u, int iBase, const ::ansi
 }
 
 
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS)
+#if defined(__APPLE__) || defined(__ANDROID__) || defined(RASPBERRYPIOS)
 CLASS_DECL_ACME void from_string(long & l, const ::ansi_character * psz)
 {
 
@@ -198,7 +198,7 @@ CLASS_DECL_ACME void from_string(long & l, const ::ansi_character * psz)
 #endif
 
 
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS)
+#if defined(__APPLE__) || defined(__ANDROID__) || defined(RASPBERRYPIOS)
 
 CLASS_DECL_ACME void from_string(long & l, int iBase, const ::ansi_character * psz)
 {

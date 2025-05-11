@@ -33,7 +33,7 @@
 
 // };
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
 // class os_system_window
 // {

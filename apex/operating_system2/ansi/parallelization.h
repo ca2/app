@@ -50,7 +50,7 @@
 //
 //
 //
-//#if !defined(__APPLE__) && !defined(ANDROID)
+//#if !defined(__APPLE__) && !defined(__ANDROID__)
 //
 //union semun
 //{

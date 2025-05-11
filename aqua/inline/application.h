@@ -17,7 +17,7 @@
 
 #include "apex/inline/application/macos.h"
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
 #include "apex/inline/application/android.h"
 

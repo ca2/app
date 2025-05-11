@@ -17,7 +17,7 @@
 //#endif
 //
 //
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 //#include <sys/prctl.h>
 //#endif
 ////
@@ -293,7 +293,7 @@
 //// }
 //
 //
-//#if defined(LINUX) // || defined(ANDROID)
+//#if defined(LINUX) // || defined(__ANDROID__)
 //
 //bool (*g_pfn_defer_process_x_message)(htask htask, MESSAGE * pMsg, oswindow oswindow, bool bPeek) = nullptr;
 //
@@ -595,7 +595,7 @@
 //}
 //
 //
-//#if !defined(__APPLE__) && !defined(ANDROID)
+//#if !defined(__APPLE__) && !defined(__ANDROID__)
 //
 //string task_get_name()
 //{
@@ -617,7 +617,7 @@
 //
 //}
 //
-//#elif defined(ANDROID)
+//#elif defined(__ANDROID__)
 //
 //
 //

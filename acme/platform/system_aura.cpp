@@ -560,7 +560,7 @@ namespace platform
    //virtual ::collection::index openweather_find_city2(string strQuery, string & strCit, long long & iId, double & dLat, double & dLon){}
    //virtual ::collection::index openweather_find_city2(string strQ1, string strQ2, string & strCit, long long & iId, double & dLat, double & dLon, bool bPrefix){}
 
-   //#ifdef ANDROID
+   //#ifdef __ANDROID__
    ////#pragma message("at macos??")
    //      virtual bool android_set_user_wallpaper(string strUrl) override{}
    //      virtual bool android_get_user_wallpaper(string & strUrl) override{}

@@ -146,7 +146,7 @@ void on_term_thread();
 ////
 ////   ::pointer< ::mutex > g_pmutexUiDestroyed;
 //
-////#ifdef ANDROID
+////#ifdef __ANDROID__
 ////
 ////   ::pointer< ::mutex > g_pmutexOutputDebugStringA;
 ////
@@ -154,13 +154,13 @@ void on_term_thread();
 //
 //   //CLASS_DECL_APEX apex_str_pool* g_papexstrpool;
 //
-//   // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+//   // #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 //
 //   // ::pointer< ::mutex > g_pmutexMq;
 //
 //   // #endif
 ////
-////#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
+////#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(__ANDROID__)
 ////
 //////::pointer< ::mutex > g_pmutexThreadIdHandleLock;
 ////
@@ -271,7 +271,7 @@ void on_term_thread();
 ////
 ////      g_pmutexUiDestroyed = 0;
 ////
-////#ifdef ANDROID
+////#ifdef __ANDROID__
 ////
 ////      g_pmutexOutputDebugStringA = 0;
 ////
@@ -279,13 +279,13 @@ void on_term_thread();
 ////
 ////      //g_papexstrpool = nullptr;
 ////
-////      // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+////      // #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 ////
 ////      // ::pointer< ::mutex > g_pmutexMq;
 ////
 ////      // #endif
 ////
-////#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
+////#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(__ANDROID__)
 ////
 //////::pointer< ::mutex > g_pmutexThreadIdHandleLock;
 ////
@@ -659,7 +659,7 @@ void on_term_thread();
 ////
 ////      //::acme::del(g_pcsTrace);
 ////
-//////#ifdef ANDROID
+//////#ifdef __ANDROID__
 //////
 //////      del(g_pmutexOutputDebugStringA);
 //////
@@ -709,7 +709,7 @@ void on_term_thread();
 ////
 //////#ifdef WINDOWS
 //////      _free_locale(g_localeC);
-//////#elif defined(ANDROID)
+//////#elif defined(__ANDROID__)
 //////      //_freelocale(g_localeC);
 //////#else
 //////      freelocale(g_localeC);
@@ -987,7 +987,7 @@ void on_term_thread();
 // apex_level apexlevelCore(::apex_level::level_core, &defer_apex_init);
 
 
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 //
 //
 //struct lconv* g_plconv = nullptr;
@@ -1010,7 +1010,7 @@ void on_term_thread();
 ////
 ////         xxdebug_box("apex.dll base_static_start (0)", "box", e_message_box_ok);
 ////
-////         //#ifdef ANDROID
+////         //#ifdef __ANDROID__
 ////         //
 ////         //
 ////         //         g_plconv = ___new lconv();

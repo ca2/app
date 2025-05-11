@@ -44,7 +44,7 @@ CLASS_DECL_ACME const char* executable_get_app_id();
 #include "apex/operating_system/windows_common/_c.h"
 #include "apex/operating_system/windows/_c.h"
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
 #include "apex/operating_system/ansi/_c.h"
 #include "apex/operating_system/android/_c.h"

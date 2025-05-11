@@ -138,7 +138,7 @@ namespace opengl
       
 #endif
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
       pgpucontext = allocate_egl_context(pparticle);
 
@@ -196,7 +196,7 @@ namespace opengl
 //      if (!m_bGlewInit)
 //      {
 //         
-//#if !defined(__APPLE__) && !defined(ANDROID)
+//#if !defined(__APPLE__) && !defined(__ANDROID__)
 //
 //         glewExperimental = GL_TRUE;
 //

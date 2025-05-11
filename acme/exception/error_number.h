@@ -14,7 +14,7 @@ public:
    int m_iErrNo;
 
 
-#ifdef ANDROID
+#ifdef __ANDROID__
    error_number(::e_status estatus, int iError, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrDetails = nullptr, int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER) :
       ::exception(estatus, pszMessage, pszDetails, iSkip),
 #else

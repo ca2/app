@@ -30,7 +30,7 @@
 //
 //}
 
-#if !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
+#if !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__)
 
 
 #endif

@@ -304,7 +304,7 @@ namespace simpledb
 
       auto pszDataKey = strDataKey.c_str();
 
-      printf_line("data_server_save key : %s", pszDataKey);
+      printf_line("data_server_load key : %s", pszDataKey);
 
       string strType = ::type(pclient).name();
 

@@ -6,7 +6,7 @@
 #include "_____debug_counters_001.h"
 //#include <time.h>
 //
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 //#undef USE_MISC
 //
 //#endif

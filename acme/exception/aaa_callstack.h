@@ -67,7 +67,7 @@
 
 
 
-//#if defined(ANDROID)
+//#if defined(__ANDROID__)
 //CLASS_DECL_ACME string unwind_callstack(const ::scoped_string & scopedstrFormat = callstack_default_format(), int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
 //#else
 //CLASS_DECL_ACME string get_callstack(const ::scoped_string & scopedstrFormat = callstack_default_format(), int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1);

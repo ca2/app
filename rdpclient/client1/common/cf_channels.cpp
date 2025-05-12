@@ -27,7 +27,7 @@
 
 #include <freerdp/gdi/gfx.h>
 
-#if !defined(ANDROID)
+#if !defined(__ANDROID__)
 
 void af_OnChannelConnectedEventHandler(rdpContext* context, ChannelConnectedEventArgs* e)
 {

@@ -97,7 +97,7 @@ namespace platform
 
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(__BSD__)
+#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__)
 
       ::critical_section m_criticalsectionTz;
 
@@ -140,7 +140,7 @@ namespace platform
       //
 
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
 
       ::critical_section m_criticalsectionOutputDebugStringA;
@@ -367,7 +367,7 @@ namespace platform
 
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(__BSD__)
+#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__)
 
       ::critical_section * tz_critical_section() { return &m_criticalsectionTz; }
 
@@ -404,7 +404,7 @@ namespace platform
 #endif
 
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
 
       ::critical_section * output_debum_strinm_a_critical_section() { return &m_criticalsectionOutputDebugStringA; }

@@ -92,7 +92,7 @@ void ns_launch_app(const ::scoped_string & scopedstr, const char ** argv, int iF
 //#include <link.h>
 #elif defined(__APPLE__)
 //#include <dlfcn.h>
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
 //#include "aura/node/ansios/ansios.h"
 //#include "aura/operating_system/android/_.h"
@@ -3492,7 +3492,7 @@ retry_license:
    bool application::get_frame(::pointer<::user::interaction>& pinteraction)
    {
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
       
 

@@ -29,7 +29,7 @@
 
 // // #elif defined(__APPLE__)
 // // #include <execinfo.h>
-// // #elif defined(ANDROID)
+// // #elif defined(__ANDROID__)
 // // #undef USE_MISC
 
 // // #include <unwind.h>
@@ -41,7 +41,7 @@
 // // void init_resolve_addr_file_func_line();
 // // static int bfdinit = 0;
 // // #endif
-// // #ifdef ANDROID
+// // #ifdef __ANDROID__
 
 // // struct BacktraceState
 // // {
@@ -345,7 +345,7 @@
 // // {
 
 // //    SIZE_T size = 0;
-// // #if defined(UNIVERSAL_WINDOWS) || defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(SOLARIS)
+// // #if defined(UNIVERSAL_WINDOWS) || defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(SOLARIS)
 // //    return false;
 // // #else
 // //    if(!ReadProcessMemory(hProcess, (const void *) qwBaseAddress, (LPVOID) pBuffer, nSize, &size))
@@ -367,7 +367,7 @@
 // // {
 
 // //    SIZE_T size = 0;
-// // #if defined(UNIVERSAL_WINDOWS) || defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(SOLARIS)
+// // #if defined(UNIVERSAL_WINDOWS) || defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(SOLARIS)
 // //    throw ::exception(todo);
 // // #else
 // //    if (!ReadProcessMemory(hProcess, (const void *)qwBaseAddress, (LPVOID)pBuffer, nSize, &size))
@@ -1366,7 +1366,7 @@
 
 // //       return _strS;
 
-// // #elif defined(ANDROID)
+// // #elif defined(__ANDROID__)
 
 // //       const size_t maximum = 30;
 

@@ -327,10 +327,10 @@ namespace image
 
             unsigned char bA = color.byte_opacity();
 
-            //#if defined(__APPLE__) || (defined(ANDROID) && defined(__arm__))
-            //#if defined(__APPLE__) || defined(ANDROID)
-            // ANDROID -> // LITTLE_LIT_LIGHT_LITE_LITLE_ENDIANS!!!!!!!!!!
-            //#if defined(__APPLE__) || defined(ANDROID)
+            //#if defined(__APPLE__) || (defined(__ANDROID__) && defined(__arm__))
+            //#if defined(__APPLE__) || defined(__ANDROID__)
+            // __ANDROID__ -> // LITTLE_LIT_LIGHT_LITE_LITLE_ENDIANS!!!!!!!!!!
+            //#if defined(__APPLE__) || defined(__ANDROID__)
             //
             //         //unsigned char bR = color32_byte_red(color32);
             //         //unsigned char bG = color32_byte_green(color32);

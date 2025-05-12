@@ -7,7 +7,7 @@
 #include "framework.h"
 //#include "memory_allocate.h"
 //
-//#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
+//#if !defined(UNIVERSAL_WINDOWS) && !defined(__ANDROID__)
 //
 //
 //#if !defined(NO_ACME_MEMORY_MANAGEMENT)
@@ -89,7 +89,7 @@
 ////#if !defined(_UNIVERSAL_WINDOWS)
 ////
 ////
-//#if defined(UNIVERSAL_WINDOWS) //|| defined(ANDROID)
+//#if defined(UNIVERSAL_WINDOWS) //|| defined(__ANDROID__)
 //
 //
 //void* MEMORY_DECL operator new(size_t nSize, void* p) inplace_new_throw_spec

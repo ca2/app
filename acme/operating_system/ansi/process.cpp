@@ -33,7 +33,7 @@ CLASS_DECL_ACME int_bool is_process_running(unsigned int pid)
 
 
 
-#if defined(LINUX) || defined(ANDROID) || defined(__APPLE__) || defined(__BSD__)
+#if defined(LINUX) || defined(__ANDROID__) || defined(__APPLE__) || defined(__BSD__)
 
 
 
@@ -45,7 +45,7 @@ CLASS_DECL_ACME int_bool is_process_running(unsigned int pid)
 
 #else
 
-#ifndef ANDROID
+#ifndef __ANDROID__
 # define SCHED_BATCH    SCHED_OTHER
 # define SCHED_IDLE     SCHED_OTHER
 

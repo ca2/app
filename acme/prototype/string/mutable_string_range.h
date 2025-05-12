@@ -331,24 +331,24 @@ inline typename const_string_range < ITERATOR_TYPE > ::STRING_RANGE const_string
 }
 
 
-template < typename ITERATOR_TYPE >
-template < primitive_integral START, typed_character_pointer < typename const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
-inline typename const_string_range < ITERATOR_TYPE > ::STRING_RANGE const_string_range < ITERATOR_TYPE > ::operator()(START start, CHARACTER_POINTER end) const 
-{
+//template < typename ITERATOR_TYPE >
+//template < primitive_integral START, typed_character_pointer < typename const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
+//inline typename const_string_range < ITERATOR_TYPE > ::STRING_RANGE const_string_range < ITERATOR_TYPE > ::operator()(START start, CHARACTER_POINTER end) const
+//{
+//
+//   return ::_start_end_range(STRING_RANGE(*this), start, end);
+//
+//}
 
-   return ::_start_end_range(STRING_RANGE(*this), start, end);
 
-}
-
-
-template < typename ITERATOR_TYPE >
-template < typed_character_pointer < typename const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
-inline typename const_string_range < ITERATOR_TYPE > ::STRING_RANGE const_string_range < ITERATOR_TYPE > ::operator()(CHARACTER_POINTER start) const 
-{
-
-   return STRING_RANGE(start, this->end());
-
-}
+//template < typename ITERATOR_TYPE >
+//template < typed_character_pointer < typename const_string_range < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
+//inline typename const_string_range < ITERATOR_TYPE > ::STRING_RANGE const_string_range < ITERATOR_TYPE > ::operator()(CHARACTER_POINTER start) const
+//{
+//
+//   return STRING_RANGE(start, this->end());
+//
+//}
 
 
 template < typename ITERATOR_TYPE >

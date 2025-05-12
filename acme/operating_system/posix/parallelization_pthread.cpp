@@ -26,7 +26,7 @@
 //#endif
 
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
 #include <sys/prctl.h>
 
@@ -376,7 +376,7 @@ void __node_term_multitasking()
 }
 
 
-#if defined(LINUX) // || defined(ANDROID)
+#if defined(LINUX) // || defined(__ANDROID__)
 
 bool (*g_pfn_defer_process_x_message)(htask htask, MESSAGE * pMsg, oswindow oswindow, bool bPeek) = nullptr;
 
@@ -619,7 +619,7 @@ void thread_get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priorit
 }
 
 
-#if !defined(ANDROID)
+#if !defined(__ANDROID__)
 
 
 //namespace parallelization
@@ -685,7 +685,7 @@ void task_set_name(const scoped_string & scopedstr)
 //} // namespace parallelization
 
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
 
 

@@ -39,7 +39,7 @@ void details_window::calculate_size()
 {
 
 
-#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
+#if !defined(UNIVERSAL_WINDOWS) && !defined(__ANDROID__)
 
    //int wScreen = 1280;
    //int hScreen = 768;

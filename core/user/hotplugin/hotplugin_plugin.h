@@ -135,7 +135,7 @@ namespace hotplugin
       virtual void plugin_system_redraw();
 
 
-#if !defined(WINDOWS) && !defined(APPLEOS) && !defined(ANDROID)
+#if !defined(WINDOWS) && !defined(APPLEOS) && !defined(__ANDROID__)
       using ::user::interaction::message_handler;
       virtual int x11_message_handler(void * pevent);
 #endif

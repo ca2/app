@@ -23,7 +23,7 @@
 
 #endif
 
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 //
 //#define _stricmp strcasecmp
 //

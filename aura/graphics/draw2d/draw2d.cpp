@@ -1511,7 +1511,7 @@ void draw2d::emboss_predicate(
 
       return "pango";
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
       return "android";
 

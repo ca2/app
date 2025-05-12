@@ -93,7 +93,7 @@ int safe_get_any_char(const class time & time)
 
       timeStart.Now();
 
-#if defined(UNIVERSAL_WINDOWS) || defined(ANDROID) || defined(APPLE_IOS)
+#if defined(UNIVERSAL_WINDOWS) || defined(__ANDROID__) || defined(APPLE_IOS)
 
       iSafeChar = getchar();
 

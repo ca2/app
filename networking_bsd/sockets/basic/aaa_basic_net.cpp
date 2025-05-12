@@ -9,7 +9,7 @@
 //#endif
 //
 //
-//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
+//#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(FREEBSD)
 //#undef USE_MISC
 //
 //#if defined(__APPLE__) || defined(FREEBSD)

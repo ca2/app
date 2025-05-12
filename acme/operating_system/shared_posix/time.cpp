@@ -63,7 +63,7 @@ CLASS_DECL_ACME void preempt_microsecond(long long i)
 #endif
 
 
-#if defined(ANDROID) || defined(__APPLE__) || defined(LINUX) || defined(__BSD__)
+#if defined(__ANDROID__) || defined(__APPLE__) || defined(LINUX) || defined(__BSD__)
 
 
 CLASS_DECL_ACME void preempt_nanosecond(long long i)

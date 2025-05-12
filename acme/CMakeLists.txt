@@ -2678,7 +2678,7 @@ if (ANDROID)
       operating_system/android/jni_launcher.cpp
       operating_system/android/language.cpp
       operating_system/android/launcher.cpp
-      operating_system/android/library.cpp
+      #operating_system/android/library.cpp
       operating_system/android/locale.cpp
       operating_system/android/lock.cpp
       operating_system/android/main.cpp
@@ -3063,7 +3063,7 @@ if (MSVC)
    target_link_libraries(${PROJECT_NAME} PRIVATE archive zlib dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32.lib)
 
 
-elseif (${LINUX} OR ${__BSD__})
+elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
    if (NOT ${SUSE})
 
@@ -3084,19 +3084,27 @@ elseif (${LINUX} OR ${__BSD__})
    target_link_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_LDFLAGS})
 
    if (${OPENBSD})
+       message(SEND_ERROR "test is really openbsd?!")
       #list(APPEND this_system_libraries z pthread iconv execinfo kvm c)
       list(APPEND this_system_libraries z pthread iconv kvm c)
       list(APPEND static_this_system_libraries z pthread iconv kvm c)
       message(STATUS "OPENBSD acme this_system_libraries ${this_system_libraries}")
    elseif (${FREEBSD})
+       message(SEND_ERROR "test is really freebsd?!")
       list(APPEND this_system_libraries z dl pthread iconv execinfo elf)
       list(APPEND static_this_system_libraries z pthread iconv execinfo elf)
       message(STATUS "FREEBSD acme this_system_libraries ${this_system_libraries}")
    elseif (${NETBSD})
+       message(SEND_ERROR "test is really netbsd?!")
       list(APPEND this_system_libraries util z pthread iconv execinfo c)
       #list(APPEND static_this_system_libraries util z pthread iconv execinfo elf)
       list(APPEND static_this_system_libraries util z pthread iconv execinfo elf)
       message(STATUS "NETBSD acme this_system_libraries ${this_system_libraries}")
+   elseif (${ANDROID})
+       list(APPEND this_system_libraries z idn)
+       #list(APPEND static_this_system_libraries pthread)
+       #message(SEND_ERROR "test is really android?! ${this_system_libraries}")
+       message(STATUS "ELSE acme this_system_libraries ${this_system_libraries}")
    else ()
       list(APPEND this_system_libraries z pthread idn)
       list(APPEND static_this_system_libraries pthread)
@@ -3119,12 +3127,16 @@ elseif (${LINUX} OR ${__BSD__})
 
    target_link_options(${PROJECT_NAME} PRIVATE ${GLOBAL_EXTRA_LINKER_FLAGS} -Wl${GLOBAL_EXTRA_LINK_FLAGS},-z,defs)
 
+   #message(SEND_ERROR "GLOBAL_EXTRA_LINKER_FLAGS is ${GLOBAL_EXTRA_LINKER_FLAGS}")
+#   message(SEND_ERROR "GLOBAL_EXTRA_LINK_FLAGS is ${GLOBAL_EXTRA_LINK_FLAGS}")
+
 
    message(STATUS "(3) pkg_config_modules_here is " ${pkg_config_modules_here})
 
    message(STATUS "(3) global_library_references is " ${global_library_references})
 
    message(STATUS "(3) ${PROJECT_NAME}_PKGCONFIG_LIBRARIES is " ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES})
+   #message(SEND_ERROR "(3) ${PROJECT_NAME}_PKGCONFIG_LIBRARIES is " ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES})
 
 elseif (MACOS)
 

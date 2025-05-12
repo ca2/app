@@ -367,7 +367,7 @@ namespace platform
    //void request(::request * prequest) override{}
 
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 //#pragma message("at macos??")
       bool apex_system_layer::android_set_user_wallpaper(string strUrl){return false;}
       bool apex_system_layer::android_get_user_wallpaper(string & strUrl){return false;}

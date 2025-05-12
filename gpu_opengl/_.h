@@ -17,7 +17,7 @@
 #endif
 
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
 
 // OpenGL ES includes

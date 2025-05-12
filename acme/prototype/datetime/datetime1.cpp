@@ -30,7 +30,7 @@ extern "C" CLASS_DECL_ACME posix_time timegm(struct tm *tmp)
 
 
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
 posix_time timegm(tm * ptm)
 {

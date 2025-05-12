@@ -43,6 +43,9 @@ void backtrace_symbol_parse(string &strSymbolName, string &strAddress, char *pme
 
 #endif
 
+
+#if !defined(__ANDROID__)
+
 string _ansi_stack_trace(::particle * pparticle, void *const *ppui, int frames, const char *pszFormat, int iSkip)
 {
 
@@ -150,6 +153,9 @@ string _ansi_stack_trace(::particle * pparticle, void *const *ppui, int frames, 
 }
 
 
+#endif
+
+
 namespace platform
 {
 
@@ -160,6 +166,7 @@ namespace platform
 
    }
 
+#if !defined(__ANDROID__)
 
    void node::get_call_stack_frames(void ** stack, int & frame_count)
    {
@@ -183,6 +190,7 @@ namespace platform
 
    }
 
+#endif
 
    int node::get_call_stack_default_frame_count()
    {

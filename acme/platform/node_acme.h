@@ -655,7 +655,7 @@ namespace platform
       virtual void defer_update_call_stack();
 
 
-      //#if defined(ANDROID)
+      //#if defined(__ANDROID__)
       //      virtual string unwind_call_stack(const ::scoped_string & scopedstrFormat = call_stack_default_format(), int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
       //#else
       virtual int get_call_stack_default_frame_count();
@@ -730,7 +730,7 @@ namespace platform
       //#endif
 
 
-      //#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
+      //#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__)
       //
       //
       //      //virtual int get_current_processor_index();

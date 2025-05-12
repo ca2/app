@@ -1,7 +1,7 @@
 #pragma once
 
 
-#if !defined(__APPLE__) && !defined(ANDROID) && !defined(NETBSD)
+#if !defined(__APPLE__) && !defined(__ANDROID__) && !defined(NETBSD)
 
 
 #if BYTE_ORDER == BIG_ENDIAN

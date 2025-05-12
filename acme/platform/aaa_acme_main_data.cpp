@@ -3,14 +3,14 @@
 #include "acme/operating_system.h"
 
 
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 //
 //#include "acme/operating_system/android/_os_local.h"
 //
 //#endif
 
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
 
 #endif

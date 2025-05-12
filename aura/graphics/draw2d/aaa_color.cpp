@@ -1091,7 +1091,7 @@ CLASS_DECL_AURA void cra_from_quada(colorref_array & colorrefa, RGBQUAD * prgbqu
    for (::collection::index i = 0; i < iCount; i++)
    {
 
-#if defined(ANDROID) && defined(__arm__)
+#if defined(__ANDROID__) && defined(__arm__)
       colorrefa[i] = argb(255, prgbquad[i].rgbRed, prgbquad[i].rgbGreen, prgbquad[i].rgbBlue);
 #else
       colorrefa[i] = argb(255, prgbquad[i].rgbBlue, prgbquad[i].rgbGreen, prgbquad[i].rgbRed);

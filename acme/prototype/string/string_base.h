@@ -175,8 +175,9 @@ public:
    }
 
    
-   template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
-   string_base(const ::range < const OTHER_CHARACTER* >& range) :
+   template < typename OTHER_CHARACTER >
+   string_base(const ::range < const OTHER_CHARACTER* >& range)
+   requires other_primitive_character < OTHER_CHARACTER, CHARACTER >:
       ::const_string_range < ITERATOR_TYPE >(no_initialize_t{})
    {
 
@@ -321,8 +322,10 @@ public:
    //string_base(const simple_ansistring& simpleansistr);
    //string_base(const simple_wd16string& simplewd16str);
    //string_base(const simple_wd32string& simplewd32str);
-   template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
-   string_base(OTHER_CHARACTER chSrc, character_count repeat = 1);
+   //template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
+   template < typename OTHER_CHARACTER >
+   string_base(OTHER_CHARACTER chSrc, character_count repeat = 1)
+    requires other_primitive_character < OTHER_CHARACTER, CHARACTER > ;
    string_base(CHARACTER chSrc, character_count repeat = 1);
    //string_base(::ansi_character ansich) : string_base(&ansich, 1) {}
    //string_base(::wd16_character wd16ch) : string_base(&wd16ch, 1) {}
@@ -453,8 +456,11 @@ public:
    }
 
 
-   template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
-   void construct20(const ::range < const OTHER_CHARACTER* >& range);
+   //template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
+
+   template < typename OTHER_CHARACTER >
+   void construct20(const ::range < const OTHER_CHARACTER* >& range)
+    requires other_primitive_character < OTHER_CHARACTER, CHARACTER > ;
 
 
    inline void construct1(const ITERATOR_TYPE psz, character_count length);
@@ -462,17 +468,19 @@ public:
    inline void construct2(const ::range < const CHARACTER * > & range);
 
 
-   template < typed_character_pointer < typename string_base < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
-   inline void construct5(CHARACTER_POINTER pSrc, character_count length);
+   inline void construct5(ITERATOR_TYPE pSrc, character_count length);
 
-   template < other_character_pointer < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER_POINTER >
-   inline void construct5(OTHER_CHARACTER_POINTER pSrc, character_count length);
+   template < typename OTHER_CHARACTER_POINTER >
+   inline void construct5(OTHER_CHARACTER_POINTER pSrc, character_count length)
+    requires other_character_pointer < OTHER_CHARACTER_POINTER, ITERATOR_TYPE > ;
 
    //template < primitive_character CHARACTER2 >
-   //inline void construct10(const ::range < const CHARACTER2 * > & range);
+    //   //inline void construct10(const ::range < const CHARACTER2 * > & range);
 
-   template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
-   inline void construct20(const OTHER_CHARACTER * psz, character_count length, enum_range erange);
+    //template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
+   template < typename OTHER_CHARACTER >
+   inline void construct20(const OTHER_CHARACTER * psz, character_count length, enum_range erange)
+    requires other_primitive_character < OTHER_CHARACTER, CHARACTER >;
 
    //template < primitive_character CHARACTER2 >
    //inline void construct40(const CHARACTER2* s1, character_count n1, const CHARACTER2* s2, character_count n2);
@@ -1004,8 +1012,10 @@ public:
    inline string_base& append(const ::range < ITERATOR_TYPE >& range){ _append(range.m_begin, range.size());  return *this; }
 
 
-   template < other_primitive_character < CHARACTER > OTHER_CHARACTER >
-   inline string_base& append(const ::range < const OTHER_CHARACTER* >& range) {_append(range.m_begin, range.size()); return *this; }
+   template < typename OTHER_CHARACTER >
+   inline string_base& append(const ::range < const OTHER_CHARACTER* >& range)
+    requires other_primitive_character < OTHER_CHARACTER, CHARACTER >
+   {_append(range.m_begin, range.size()); return *this; }
    
    
    //inline string_base & append(const ::ansi_character * psz) { return _append(psz, string_safe_length(psz)); }
@@ -1014,8 +1024,10 @@ public:
 
    inline string_base& append(ITERATOR_TYPE psz) { return _append(psz, string_safe_length(psz)); }
 
-   template < other_primitive_character < CHARACTER > OTHER_CHARACTER >
-   inline string_base& append(const OTHER_CHARACTER * psz) { return _append(psz, string_safe_length(psz)); }
+   template < typename OTHER_CHARACTER >
+   inline string_base& append(const OTHER_CHARACTER * psz)
+    requires other_primitive_character < OTHER_CHARACTER, CHARACTER >
+   { return _append(psz, string_safe_length(psz)); }
 
 
    //inline string_base & append(const ::ansi_character * psz, character_count size) { return _append(psz, size); }
@@ -1025,14 +1037,16 @@ public:
 
    inline string_base& append(const CHARACTER * psz, character_count size) { return _append(psz, size); }
 
-   template < other_primitive_character < CHARACTER > OTHER_CHARACTER >
-   inline string_base& append(const OTHER_CHARACTER* psz, character_count size) { return _append(psz, size); }
+   template < typename OTHER_CHARACTER >
+   inline string_base& append(const OTHER_CHARACTER* psz, character_count size)
+    requires other_primitive_character < OTHER_CHARACTER, CHARACTER >{ return _append(psz, size); }
 
 
    inline string_base < ITERATOR_TYPE > & _append(const CHARACTER * pszSrc, character_count count);
 
-   template < other_primitive_character < typename ::string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
-   inline string_base < ITERATOR_TYPE >& _append(const OTHER_CHARACTER * pszSrc, character_count count);
+   template < typename OTHER_CHARACTER >
+   inline string_base < ITERATOR_TYPE >& _append(const OTHER_CHARACTER * pszSrc, character_count count)
+    requires other_primitive_character < OTHER_CHARACTER, CHARACTER >;
 
    //template <int t_size >
    //inline string_base < ITERATOR_TYPE > & append(const const_string_range_static_array < ITERATOR_TYPE, t_size > & a);

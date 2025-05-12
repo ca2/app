@@ -28,7 +28,7 @@ CLASS_DECL_ACME ::uptr duplicate_handle(const ::uptr & u)
 ::file::path dir_ca2_module()
 {
 
-#if defined(ANDROID)
+#if defined(__ANDROID__)
 
    return path_system()->app_module().folder();
 

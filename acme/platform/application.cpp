@@ -672,7 +672,7 @@ void application::start_application()
 
          m_pathModule = ::get_module_path((HMODULE)system()->m_hinstanceThis);
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
          m_pathModule.empty();
 

@@ -21,7 +21,7 @@
 
 #include "linux/_.h"
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
 #include "android/_.h"
 

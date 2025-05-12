@@ -18552,7 +18552,7 @@ if(get_parent())
          pmessage->m_oswindowNew = (::oswindow)wparam.m_number;
       }
       break;
-#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(__BSD__)
+#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__) && !defined(__BSD__)
       case ::message::e_prototype_window_pos:
 
       {

@@ -414,7 +414,7 @@ namespace aura
 //            if (!plibrary->open(strLibrary))
 //            {
 //
-////#if !defined(ANDROID)
+////#if !defined(__ANDROID__)
 ////               if (!plibrary->open(directory()->ca2module() / pszLibrary))
 ////#endif
 ////               {
@@ -1696,7 +1696,7 @@ namespace aura
 
       //}
 
-//#if !defined(CUBE) && !defined(ANDROID)
+//#if !defined(CUBE) && !defined(__ANDROID__)
 //
 //#if !defined(_DEBUG) || defined(WINDOWS)
 //
@@ -2939,7 +2939,7 @@ namespace aura
 //
 //      return true;
 //
-//#if defined(CUBE) || defined(ANDROID)
+//#if defined(CUBE) || defined(__ANDROID__)
 //      return true;
 //#endif
 //
@@ -3079,7 +3079,7 @@ namespace aura
 //
 //      string strLibrary = ::file::path(pszLibrary).title();
 //
-//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+//#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 //
 //      if(strLibrary == "libbase")
 //      {
@@ -3398,7 +3398,7 @@ namespace aura
 //    }
 // #endif
 
-//#ifndef ANDROID
+//#ifndef __ANDROID__
 //
 //   void system::on_os_text(e_os_text etext, string strText)
 //   {
@@ -5239,7 +5239,7 @@ namespace aura
   //
   //      add_factory_item < ::image::icon >();
   //
-  //      //#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
+  //      //#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(__ANDROID__)
   //      //
   //      //      m_possystemwindow = ___new os_system_window();
   //      //
@@ -5696,7 +5696,7 @@ if(!m_pimaging)
 //      //if(psession->account()->create_system_user("system") == nullptr)
 //      // return false;
 //
-//#if !defined(CUBE) && !defined(ANDROID)
+//#if !defined(CUBE) && !defined(__ANDROID__)
 //
 //#if !defined(_DEBUG) || defined(WINDOWS)
 //      try
@@ -6380,7 +6380,7 @@ if(!m_pimaging)
 //
 //      g_pszCooperativeLevel = "aura";
 //
-//#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
+//#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(__ANDROID__)
 //
 //      m_possystemwindow = ___new os_system_window();
 //

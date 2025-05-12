@@ -2003,7 +2003,7 @@ namespace draw2d
    }
 
 
-   //#if !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(SOLARIS)
+   //#if !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__) && !defined(SOLARIS)
    //
    //
    //   void graphics::ResetDC(const DEVMODE* pDevMode)

@@ -13,7 +13,7 @@
 #include <link.h>
 #include <sys/stat.h>
 #include <dirent.h>
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 #include <sys/stat.h>
 #include <dirent.h>
 #elif defined(UNIVERSAL_WINDOWS)
@@ -103,7 +103,7 @@ namespace dir
 //   ::file::path ca2_module()
 //   {
 //
-//   #if defined(ANDROID)
+//   #if defined(__ANDROID__)
 //
 //      return path_system()->app_module().folder();
 //
@@ -945,7 +945,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
    void ls(::file::path_array & stra,const ::file::path & psz)
    {
 
-   #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+   #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
       DIR * dirp = opendir(psz);
 
@@ -1254,7 +1254,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
    void ls_dir(::file::path_array & stra,const ::file::path & psz)
    {
 
-   #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+   #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
       DIR * dirp = opendir(psz);
 
@@ -1336,7 +1336,7 @@ pdirectorysystem->create CreateDirectoryW last error(%d)=%s", dwError, pszError)
    void ls_file(::file::path_array & stra,const ::file::path & psz)
    {
 
-   #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+   #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
       DIR * dirp = opendir(psz);
 

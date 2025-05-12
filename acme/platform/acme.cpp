@@ -465,13 +465,13 @@ namespace acme
 
    //CLASS_DECL_ACME acme_str_pool* g_pacmestrpool;
 
-   // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+   // #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
    // ::critical_section g_criticalsectionMq;
 
    // #endif
 
-#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
+#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(__ANDROID__)
 
 //::critical_section g_criticalsectionThreadIdHandleLock;
 
@@ -600,7 +600,7 @@ namespace acme
 //
 //      //g_criticalsectionUiDestroyed = 0;
 //
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 //
 //      //g_criticalsectionOutputDebugStringA = 0;
 //
@@ -608,13 +608,13 @@ namespace acme
 //
 //      //g_pacmestrpool = nullptr;
 //
-//      // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+//      // #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 //
 //      // ::critical_section g_criticalsectionMq;
 //
 //      // #endif
 //
-//#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
+//#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(__ANDROID__)
 //
 ////::critical_section g_criticalsectionThreadIdHandleLock;
 //
@@ -783,7 +783,7 @@ namespace acme
 
       //g_criticalsectionUiDestroyed = 0;
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
       //g_criticalsectionOutputDebugStringA = 0;
 
@@ -791,13 +791,13 @@ namespace acme
 
       //g_pacmestrpool = nullptr;
 
-      // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+      // #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
       // ::critical_section g_criticalsectionMq;
 
       // #endif
 
-#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
+#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(__ANDROID__)
 
 //::critical_section g_criticalsectionThreadIdHandleLock;
 
@@ -922,7 +922,7 @@ namespace acme
 //      ::acme::idpool::init();
 
       //
-      //#ifdef ANDROID
+      //#ifdef __ANDROID__
       //
       //      g_criticalsectionOutputDebugStringA = ___new ::critical_section ();
       //
@@ -1436,7 +1436,7 @@ namespace acme
 
       //trace_category_static_term();
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
       //del(g_criticalsectionOutputDebugStringA);
 
@@ -1509,7 +1509,7 @@ namespace acme
 
 #ifdef WINDOWS
       _free_locale(g_localeC);
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
       //_freelocale(g_localeC);
 #else
       freelocale(g_localeC);

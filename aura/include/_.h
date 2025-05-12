@@ -174,7 +174,7 @@ namespace aura
 ////#endif
 ////
 ////
-////#if defined(APPLE_IOS) || defined(ANDROID) || defined(UNIVERSAL_WINDOWS)
+////#if defined(APPLE_IOS) || defined(__ANDROID__) || defined(UNIVERSAL_WINDOWS)
 ////
 ////#define MOBILE_PLATFORM 1
 ////
@@ -265,7 +265,7 @@ namespace aura
 ////
 ////#define ASSERT(f)
 ////#define _ASSUME(cond)
-////#if defined(ANDROID)
+////#if defined(__ANDROID__)
 ////#define ASSERT_VALID(cond)
 ////#elif defined(__APPLE__)
 ////#define ASSERT_VALID(cond)
@@ -532,7 +532,7 @@ namespace aura
 ////
 ////
 ////
-////#if !defined(__APPLE__) && !defined(LINUX) && !defined(ANDROID)
+////#if !defined(__APPLE__) && !defined(LINUX) && !defined(__ANDROID__)
 ////
 ////int ftruncate(int file, filesize len);
 ////
@@ -1130,7 +1130,7 @@ namespace aura
 //////
 //////
 //////
-//////#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
+//////#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(__ANDROID__)
 //////
 //////   class native_window_initialize;
 //////
@@ -1175,7 +1175,7 @@ namespace aura
 //   using e_flag = enumeration < enum_flag >;
 //
 //
-//#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
+//#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(__ANDROID__)
 //
 //   class native_window_initialize;
 //

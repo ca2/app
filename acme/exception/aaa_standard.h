@@ -22,7 +22,7 @@
 //#include "exception.h"
 
 
-#if defined(ANDROID)
+#if defined(__ANDROID__)
 
 #include <signal.h>
 #include <ucontext.h>
@@ -86,7 +86,7 @@ public:
 #else
    int               m_iSignal;
    void *            m_psiginfo;
-#ifndef ANDROID
+#ifndef __ANDROID__
    ucontext_t        m_ucontext;
 #endif
 #endif
@@ -100,7 +100,7 @@ public:
    const void *    info() const;    // siginfo_t *
    const char *         name() const;
    const char *         description() const;
-#ifndef ANDROID
+#ifndef __ANDROID__
    const ::ucontext_t *   ucontext() const;
 #endif
 #endif
@@ -112,7 +112,7 @@ public:
    static void * siginfodup(void * psiginfo);
    static void siginfofree(void * psiginfo);
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
    standard_exception(int iSignal, void * psiginfo, void * pc, int iSkip = DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP) :
       ::exception(error_exception, nullptr, nullptr, iSkip),
@@ -167,7 +167,7 @@ typedef struct _sig_ucontext
    class standard_access_violation : public standard_exception
    {
    public:
-#if defined(ANDROID) || defined(RASPBERRYPIOS)
+#if defined(__ANDROID__) || defined(RASPBERRYPIOS)
 
 
       standard_access_violation (int signal, void * psiginfo, void * pc) :
@@ -195,7 +195,7 @@ typedef struct _sig_ucontext
    public:
 #endif
    };
-#if defined(ANDROID) || defined(RASPBERRYPIOS)
+#if defined(__ANDROID__) || defined(RASPBERRYPIOS)
 
    class standard_sigfpe : public standard_exception
    {

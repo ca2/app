@@ -48,7 +48,7 @@
 #include "openbsd/_.h"
 
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
 
 #include "posix/_.h"

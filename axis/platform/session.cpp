@@ -22,7 +22,7 @@ CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::object* ppa
 //#endif
 
 
-#if defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
+#if defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS) || defined(__ANDROID__)
 
 
 namespace OPERATING_SYSTEM_NAMESPACE
@@ -510,7 +510,7 @@ namespace axis
 //
 //      }
 //
-//#if !defined(ANDROID)
+//#if !defined(__ANDROID__)
 //
 //      if (!papp->is_serviceable() || papp->is_user_service())
 //      {
@@ -1178,7 +1178,7 @@ namespace axis
 
       }
 
-#if !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
+#if !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__)
       //attach_thread_input_to_main_thread(false);
 #endif
 

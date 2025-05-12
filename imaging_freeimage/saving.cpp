@@ -74,7 +74,7 @@ namespace imaging_freeimage
 
       auto psrc = pimage->image32();
 
-#if  defined(ANDROID)
+#if  defined(__ANDROID__)
 
       int iStrideSrc = pimage->scan_size();
 

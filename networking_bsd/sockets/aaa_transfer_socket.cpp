@@ -10,7 +10,7 @@
 #include "framework.h"
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
+#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(FREEBSD)
 
 #define TIMEVAL timeval
 

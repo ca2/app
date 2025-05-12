@@ -47,7 +47,7 @@ public:
 #endif
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(__BSD__)
+#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__)
 
    /// Private Mutexes
    bool              m_bManualEvent;
@@ -64,7 +64,7 @@ public:
 #endif
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(__BSD__)
+#if defined(LINUX) || defined(__APPLE__) || defined(__BSD__) || defined(__ANDROID__)
 
    /// Named Mutexes
    int               m_sem;

@@ -310,7 +310,7 @@ long long oswindow_id(oswindow w)
 //::file::path dir_ca2_module()
 //{
 //
-//#if defined(ANDROID)
+//#if defined(__ANDROID__)
 //
 //   return path_system()->app_module().folder();
 //

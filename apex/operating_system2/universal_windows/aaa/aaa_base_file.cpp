@@ -255,7 +255,7 @@ string file_module_path_dup()
 // };
 
 
-// #if !defined(LINUX) && !defined(MACOS) && !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
+// #if !defined(LINUX) && !defined(MACOS) && !defined(UNIVERSAL_WINDOWS) && !defined(__ANDROID__)
 
 // //#include <Tlhelp32.h>
 // //#include <Psapi.h>

@@ -358,15 +358,15 @@ concept has_get_string = requires(HAS_GET_STRING has_get_string)
 //};
 
 
-#ifdef ANDROID
-
-namespace std
-{
-   template<class FROM, class TO>
-   concept convertible_to = ::std::is_convertible_v<FROM, TO>;
-
-}
-#endif
+//#ifdef __ANDROID__
+//
+//namespace std
+//{
+//   template<class FROM, class TO>
+//   concept convertible_to = ::std::is_convertible_v<FROM, TO>;
+//
+//}
+//#endif
 
 
 

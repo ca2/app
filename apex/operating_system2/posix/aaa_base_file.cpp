@@ -352,7 +352,7 @@ filesize file_length_dup(const ::file::path & path)
 ::file::path file::app_module()
 {
 
-#if defined(ANDROID) || defined(LINUX)
+#if defined(__ANDROID__) || defined(LINUX)
 
    ::file::path path;
 

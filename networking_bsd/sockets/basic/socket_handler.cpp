@@ -26,7 +26,7 @@ int __is_ok_socket(int fd) {
 
 #include <time.h>
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 #undef USE_MISC
 
 #endif

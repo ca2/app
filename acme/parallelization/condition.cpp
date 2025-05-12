@@ -4,7 +4,7 @@
 #include "acme/_operating_system.h"
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(__BSD__)
+#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__)
 
 #include <sys/ipc.h>
 #include <sys/sem.h>
@@ -19,7 +19,7 @@ condition::condition()
 
 #ifdef WINDOWS
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
    pthread_mutex_init(&m_mutex, nullptr);
 
@@ -79,7 +79,7 @@ bool condition::set_happening()
 
    return true;
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
    pthread_mutex_lock(&m_mutex);
 
@@ -120,7 +120,7 @@ bool condition::pulse_happening()
 
    return true;
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
    pthread_mutex_lock(&m_mutex);
 
@@ -177,7 +177,7 @@ bool condition::pulse_happening()
       &m_criticalsection, 
       INFINITE);
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
    pthread_mutex_lock(&m_mutex);
 
@@ -251,7 +251,7 @@ bool condition::pulse_happening()
 
    return ::success;
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
    //unsigned int timeout = wait;
 
@@ -355,7 +355,7 @@ bool condition::pulse_happening()
 //*****************************************************************************
 bool condition::is_signaled() const
 {
-#ifdef ANDROID
+#ifdef __ANDROID__
 
    return m_bSignaled;
 
@@ -398,7 +398,7 @@ bool condition::is_signaled() const
 //
 //   }
 //
-//#elif defined(ANDROID)
+//#elif defined(__ANDROID__)
 //
 //   return wait(timeTimeout).succeeded();
 //
@@ -447,7 +447,7 @@ bool condition::is_signaled() const
 
 bool condition::reset_happening()
 {
-#ifdef ANDROID
+#ifdef __ANDROID__
 
    pthread_mutex_lock(&m_mutex);
 

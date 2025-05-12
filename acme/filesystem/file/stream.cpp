@@ -768,7 +768,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//#if defined(__APPLE__) || defined(ANDROID) || defined(WINDOWS) || defined(RASPBERRYPIOS)
+//#if defined(__APPLE__) || defined(__ANDROID__) || defined(WINDOWS) || defined(RASPBERRYPIOS)
 //
 //
 //void stream::read(long& l)

@@ -10,13 +10,13 @@ CLASS_DECL_AURA string task_get_name();
 #include <stdio.h>
 // #include <stdarg.h>
 
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(__ANDROID__)
 //#include <sys/types.h>
 //
 
 #ifdef COMPILE_WITH_VALGRIND
 
-#if !defined(RASPBERRYPIOS) && !defined(ANDROID)
+#if !defined(RASPBERRYPIOS) && !defined(__ANDROID__)
 #include <valgrind/valgrind.h>
 #endif
 
@@ -64,7 +64,7 @@ pdirectorysystem->system() / "trace.txt";
 
 #ifdef COMPILE_WITH_VALGRIND
 
-#if !defined(RASPBERRYPIOS) && !defined(ANDROID) && !defined(WINDOWS)
+#if !defined(RASPBERRYPIOS) && !defined(__ANDROID__) && !defined(WINDOWS)
       if (!RUNNING_ON_VALGRIND)
 #endif
       {
@@ -592,7 +592,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
 
          try
          {
-#ifdef ANDROID
+#ifdef __ANDROID__
             ::information(stra[i]);
 #else
             ::information(strLine);

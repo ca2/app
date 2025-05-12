@@ -5,7 +5,7 @@
 #include "acme/prototype/time/_time.h"
 
 
-#if defined(ANDROID) || defined(__APPLE__)
+#if defined(__ANDROID__) || defined(__APPLE__)
 
 struct tm;
 

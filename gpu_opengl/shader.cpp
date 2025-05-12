@@ -15,7 +15,7 @@ namespace opengl
          return "VERTEX";
       case GL_FRAGMENT_SHADER:
          return "FRAGMENT";
-#if !defined(__APPLE__) && !defined(ANDROID)
+#if !defined(__APPLE__) && !defined(__ANDROID__)
       case GL_GEOMETRY_SHADER:
          return "GEOMETRY";
 #endif
@@ -96,7 +96,7 @@ namespace opengl
 
       unsigned int uFragment = create_shader(pszFragment, GL_FRAGMENT_SHADER);
       
-#if !defined(__APPLE__) && !defined(ANDROID)
+#if !defined(__APPLE__) && !defined(__ANDROID__)
 
       unsigned int uGeometry = 0;
 
@@ -117,7 +117,7 @@ namespace opengl
 
       glAttachShader(m_uId, uFragment);
       
-#if !defined(__APPLE__) && !defined(ANDROID)
+#if !defined(__APPLE__) && !defined(__ANDROID__)
 
       if (bGeometry)
       {
@@ -153,7 +153,7 @@ namespace opengl
 
       glDeleteShader(uFragment);
 
-#if !defined(__APPLE__) && !defined(ANDROID)
+#if !defined(__APPLE__) && !defined(__ANDROID__)
 
       if (bGeometry)
       {

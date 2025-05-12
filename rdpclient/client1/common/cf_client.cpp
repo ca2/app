@@ -874,7 +874,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //}
 
 
-#if !defined(ANDROID)
+#if !defined(__ANDROID__)
 
 
 rdpSettings* freerdp_client_get_settings(rdp_context* wfc)

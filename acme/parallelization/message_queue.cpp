@@ -17,7 +17,7 @@
 
 
 //#define e_message_kick_idle         0x036A  // (params unused) causes idles to kick in
-#if defined(LINUX) // || defined(ANDROID)
+#if defined(LINUX) // || defined(__ANDROID__)
 
 
 bool apex_defer_process_x_message(htask htask,MESSAGE * pMsg,::windowing::window * pwindow,bool bPeek);
@@ -334,7 +334,7 @@ bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,unsigned int 
 
    synchronouslock.unlock();
 
-//#if defined(LINUX) // || defined(ANDROID)
+//#if defined(LINUX) // || defined(__ANDROID__)
 //
 //   if(apex_defer_process_x_message(htask,pMsg,oswindow,!(wRemoveMsg & PM_REMOVE)))
 //   {

@@ -50,8 +50,10 @@ inline void string_base < ITERATOR_TYPE >::construct1(const ITERATOR_TYPE p, cha
 
 
 template < typename ITERATOR_TYPE >
-template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
+//template < other_primitive_character < typename ::string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
+template < typename OTHER_CHARACTER >
 inline void string_base < ITERATOR_TYPE >::construct20(const ::range < const OTHER_CHARACTER* >& range)
+requires other_primitive_character < OTHER_CHARACTER, CHARACTER >
 {
 
    auto len = utf_to_utf_length(this->m_begin, range.m_begin, range.size());
@@ -100,9 +102,10 @@ inline string_base < ITERATOR_TYPE >::string_base(CHARACTER chSrc, character_cou
 
 
 template < typename ITERATOR_TYPE >
-template < other_primitive_character < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
-inline string_base < ITERATOR_TYPE >::string_base(OTHER_CHARACTER chSrc, character_count repeat) :
-   ::const_string_range < ITERATOR_TYPE >(no_initialize_t{})
+template < typename OTHER_CHARACTER >
+inline string_base < ITERATOR_TYPE >::string_base(OTHER_CHARACTER chSrc, character_count repeat)
+requires other_primitive_character < OTHER_CHARACTER, CHARACTER > :
+::const_string_range < ITERATOR_TYPE >(no_initialize_t{})
 {
 
    if (repeat <= 0)
@@ -198,8 +201,7 @@ void string_base< ITERATOR_TYPE >::construct1(const string_base& str)
 
 
 template < typename ITERATOR_TYPE >
-template < typed_character_pointer < typename string_base < ITERATOR_TYPE >::CHARACTER > CHARACTER_POINTER >
-inline void string_base< ITERATOR_TYPE >::construct5(CHARACTER_POINTER pSrc, character_count len)
+inline void string_base< ITERATOR_TYPE >::construct5(ITERATOR_TYPE pSrc, character_count len)
 {
 
    if (::is_null(pSrc) || len <= 0)
@@ -223,8 +225,9 @@ inline void string_base< ITERATOR_TYPE >::construct5(CHARACTER_POINTER pSrc, cha
 
 
 template < typename ITERATOR_TYPE >
-template < other_character_pointer < typename string_base < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER_POINTER >
+template < typename OTHER_CHARACTER_POINTER >
 inline void string_base< ITERATOR_TYPE >::construct5(OTHER_CHARACTER_POINTER pSrc, character_count src_len)
+requires other_character_pointer < OTHER_CHARACTER_POINTER, ITERATOR_TYPE >
 {
 
    if (::is_null(pSrc) || src_len <= 0)

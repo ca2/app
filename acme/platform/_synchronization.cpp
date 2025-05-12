@@ -3,7 +3,7 @@
 #include "acme/parallelization/mutex.h"
 
 //
-//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+//#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 //
 //static ::critical_section g_criticalsectionTz;
 //
@@ -69,7 +69,7 @@
 //
 //
 //
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 //
 //::critical_section g_criticalsectionOutputDebugStringA;
 //

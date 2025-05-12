@@ -441,7 +441,7 @@ namespace apex
 
             //set_callstack_mask({ get_callstack_mask(), callstack_fork_global});
 
-#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
+#if !defined(UNIVERSAL_WINDOWS) && !defined(__ANDROID__)
 
       m_pmutexMatter = node()->create_local_named_mutex(this, false, "ca2-appmatter");
 
@@ -601,7 +601,7 @@ namespace apex
       //}
 
 
-#if !defined(ANDROID) && !defined(APPLE_IOS)
+#if !defined(__ANDROID__) && !defined(APPLE_IOS)
 
       if (!application()->is_service() || application()->is_user_service())
       {
@@ -1156,7 +1156,7 @@ pdirectorysystem->create("/ca2core");
 
       //}
 
-//#if !defined(CUBE) && !defined(ANDROID)
+//#if !defined(CUBE) && !defined(__ANDROID__)
 //
 //#if !defined(_DEBUG) || defined(WINDOWS)
 //
@@ -2634,7 +2634,7 @@ pdirectorysystem->create("/ca2core");
    //
    //      return true;
    //
-   //#if defined(CUBE) || defined(ANDROID)
+   //#if defined(CUBE) || defined(__ANDROID__)
    //      return true;
    //#endif
    //
@@ -2774,7 +2774,7 @@ pdirectorysystem->create("/ca2core");
    //
    //      string strLibrary = ::file::path(pszLibrary).title();
    //
-   //#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+   //#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
    //
    //      if(strLibrary == "libbase")
    //      {
@@ -2843,7 +2843,7 @@ pdirectorysystem->create("/ca2core");
 
    //}
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
    bool system::android_set_user_wallpaper(string strUrl)
    {
@@ -3171,7 +3171,7 @@ pdirectorysystem->create("/ca2core");
 //    }
 // #endif
 
-//#ifndef ANDROID
+//#ifndef __ANDROID__
 
    void system::on_os_text(enum_os_text etext, string strText)
    {
@@ -3618,7 +3618,7 @@ pmessagebox->sync();
          //#elif defined(__APPLE__)
          //    openURL(strLink);
          //  return true;
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
          string strOpenUrl;
 

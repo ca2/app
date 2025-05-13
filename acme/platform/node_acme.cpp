@@ -1334,10 +1334,14 @@ namespace platform
    }
 
 
-   void acme_node_layer::open_internet_link_in_system_browser(const string& strUrl, const string& strProfile)
+   void acme_node_layer::open_internet_link_in_browser(const ::scoped_string& scopedstrUrl, const ::scoped_string& scopedstrBrowser, const ::scoped_string& scopedstrProfile, const ::scoped_string& scopedstrTarget)
    {
    }
 
+
+void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, const ::scoped_string& scopedstrProfile, const ::scoped_string& scopedstrTarget)
+{
+}
 
    void acme_node_layer::local_machine_set_run(const ::string& strKey, const ::file::path& pathExecutable,
                                                const ::string& strArguments, bool bSet)

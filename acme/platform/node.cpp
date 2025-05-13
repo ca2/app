@@ -2308,15 +2308,22 @@ return false;
    }
 
 
-   void node::open_internet_link_in_system_browser(const string & strUrl, const string & strProfile)
+   void node::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile
+                                            , const ::scoped_string & scopedstrTarget)
    {
 
-      //throw ::interface_only();
-
-      //::operating_system_open_url(strUrl);
+      open_internet_link(scopedstrUrl, scopedstrProfile, scopedstrTarget);
 
    }
 
+
+void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile
+                                         , const ::scoped_string & scopedstrTarget)
+{
+
+   open_internet_link_in_browser(scopedstrUrl, {}, scopedstrProfile, scopedstrTarget);
+
+}
 
    void node::shell_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const ::file::path& pathWorkingDirectory)
    {

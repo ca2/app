@@ -939,8 +939,11 @@ namespace platform
 
       virtual ::payload connection_settings_get_auto_config_url();
 
+      virtual void open_internet_link_in_browser(const ::scoped_string& scopedstrUrl,
+                                                 const ::scoped_string& scopedstrBrowser,
+                                                 const ::scoped_string& scopedstrProfile = {}, const ::scoped_string & scopedstrTarget = {});
 
-      virtual void open_internet_link_in_system_browser(const string& strUrl, const string& strProfile = {});
+      virtual void open_internet_link(const ::scoped_string& scopedstrUrl, const ::scoped_string& scopedstrProfile = {}, const ::scoped_string & scopedstrTarget = {});
 
 
       virtual void local_machine_set_run(const ::string& strKey, const ::file::path& pathExecutable,

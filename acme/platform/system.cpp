@@ -1825,7 +1825,7 @@ namespace platform
    }
 
 
-   void system::open_internet_link_in_browser(string strUrl, string strBrowser, string strProfile, string strTarget)
+void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    {
 
       throw ::interface_only();
@@ -1833,7 +1833,7 @@ namespace platform
    }
 
 
-   void system::open_internet_link(string strUrl, string strProfile, string strTarget)
+void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    {
 
       throw ::interface_only();

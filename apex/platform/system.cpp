@@ -3444,11 +3444,27 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   void system::open_internet_link_in_browser(string strUrl, string strBrowser, string strProfile, string strTarget)
+void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    {
 
-      node()->open_internet_link_in_system_browser(strUrl, strProfile);
+   
+   
+   ::string strUrl(scopedstrUrl);
+   
+   ::string strBrowser(scopedstrBrowser);
+   
+   ::string strProfile(scopedstrProfile);
+   
+   ::string strTarget(scopedstrProfile);
 
+   fork([this, strUrl, strBrowser, strProfile, strTarget]()
+         {
+      
+      node()->open_internet_link_in_browser(strUrl, strBrowser, strProfile, strTarget);
+
+         });
+
+      //retu
       //return ::success;
 
 #if 0
@@ -4172,13 +4188,19 @@ pdirectorysystem->create("/ca2core");
    //}
 
 
-   void system::open_internet_link(string strUrl, string strProfile, string strTarget)
+void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    {
+   
+   ::string strUrl(scopedstrUrl);
+   
+   ::string strProfile(scopedstrProfile);
+   
+   ::string strTarget(scopedstrProfile);
 
-      fork([this, strUrl, strProfile, strTarget]()
+   fork([this, strUrl, strProfile, strTarget]()
          {
 
-            open_internet_link_in_browser(strUrl, "", strProfile, strTarget);
+         node()->open_internet_link(strUrl, strProfile, strTarget);
 
          });
 

@@ -896,10 +896,14 @@ namespace user
       virtual ::user::element * previous_user_element();
 
 
-      virtual void pick_single_file(
+      virtual void pick_single_file_to_save(
          const ::array < ::file::file_dialog_filter > & filedialogfiltera,
-         const ::function < void(const ::file::path &) > & function,
-         bool save);
+         const ::function < void(const ::file::path &, const ::scoped_string &) > & function);
+
+      
+      virtual void pick_single_file_to_open(
+         const ::array < ::file::file_dialog_filter > & filedialogfiltera,
+         const ::function < void(const ::file::path &) > & function);
 
 
       virtual void pick_multiple_file(

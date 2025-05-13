@@ -33,6 +33,7 @@ namespace file
       bool                                               m_bSave;
       bool                                               m_bMultiple;
       ::file::path_array                                 m_patha;
+      ::string                                           m_strExtension;
 
       
       file_dialog();

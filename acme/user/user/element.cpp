@@ -4935,13 +4935,12 @@ namespace user
    }
 
 
-
-   void element::pick_single_file(const ::array < ::file::file_dialog_filter > & filedialogfiltera, const ::function < void(const ::file::path &) > & function, bool bSave)
+   void element::pick_single_file_to_save(const ::array < ::file::file_dialog_filter > & filedialogfiltera, const ::function < void(const ::file::path &, const ::scoped_string &) > & function)
    {
 
       auto pfiledialog = node()->node_file_dialog();
 
-      pfiledialog->m_bSave = bSave;
+      pfiledialog->m_bSave = true;
 
       pfiledialog->m_filedialogfiltera = filedialogfiltera;
 
@@ -4952,16 +4951,15 @@ namespace user
          if (pdialog && pdialog->m_patha.has_element())
          {
 
-            function(pdialog->m_patha.first());
+            function(pdialog->m_patha.first(), pdialog->m_strExtension);
 
          }
          else
          {
 
-            function({});
+            function({}, {});
 
          }
-
 
       };
 
@@ -4970,7 +4968,40 @@ namespace user
    }
 
 
-   void element::pick_multiple_file(const ::array < ::file::file_dialog_filter > & filedialogfiltera, const ::function < void(const ::file::path_array &) > & function)
+void element::pick_single_file_to_open(const ::array < ::file::file_dialog_filter > & filedialogfiltera, const ::function < void(const ::file::path &) > & function)
+{
+
+   auto pfiledialog = node()->node_file_dialog();
+
+   pfiledialog->m_bSave = false;
+
+   pfiledialog->m_filedialogfiltera = filedialogfiltera;
+
+   pfiledialog->m_function = [function](auto pdialog)
+   {
+
+
+      if (pdialog && pdialog->m_patha.has_element())
+      {
+
+         function(pdialog->m_patha.first());
+
+      }
+      else
+      {
+
+         function({});
+
+      }
+
+   };
+
+   pfiledialog->call();
+
+}
+
+
+void element::pick_multiple_file(const ::array < ::file::file_dialog_filter > & filedialogfiltera, const ::function < void(const ::file::path_array &) > & function)
    {
 
       auto pfiledialog = node()->node_file_dialog();

@@ -84,20 +84,6 @@ namespace windows
 
          auto strLastErrorMessage = ::windows::last_error_message(dwLastError);
 
-         warningf("safe_create_file : CreateFileW failed "
-            "%S %u dwDesiredAccess=%u dwShareMode=%u lpSecurityAttributes=0x%llx "
-            "dwCreationDisposition=%u dwFlagsAndAttributes=%u "
-            "hTemplateFile=0x%llx",
-            wstrPath.c_str(), 
-            dwLastError, 
-            dwDesiredAccess, 
-            dwShareMode,
-            (::uptr)lpSecurityAttributes,
-            dwCreationDisposition,
-            dwFlagsAndAttributes,
-            (::uptr) hTemplateFile
-         );
-
          if (dwLastError == ERROR_FILE_NOT_FOUND)
          {
             
@@ -113,7 +99,20 @@ namespace windows
          else
          {
 
-            warningf("safe_create_file : CreateFileW failed \"%s\".", strLastErrorMessage.c_str());
+            warningf("safe_create_file : CreateFileW failed "
+               "%S %u dwDesiredAccess=%u dwShareMode=%u lpSecurityAttributes=0x%llx "
+               "dwCreationDisposition=%u dwFlagsAndAttributes=%u "
+               "hTemplateFile=0x%llx \"%s\"",
+               wstrPath.c_str(),
+               dwLastError,
+               dwDesiredAccess,
+               dwShareMode,
+               (::uptr)lpSecurityAttributes,
+               dwCreationDisposition,
+               dwFlagsAndAttributes,
+               (::uptr)hTemplateFile,
+               strLastErrorMessage.c_str()
+            );
 
          }
 

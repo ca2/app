@@ -754,7 +754,7 @@ namespace platform
    ::payload connection_settings_get_auto_detect() override;
    ::payload connection_settings_get_auto_config_url() override;
 
-   void open_url_link_at_system_browser(const string & strUrl, const string & strProfile = {}) override;
+   void open_internet_link_in_system_browser(const string & strUrl, const string & strProfile = {}) override;
 
    void local_machine_set_run(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet) override;
    void local_machine_set_run_once(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet) override;

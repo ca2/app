@@ -3444,10 +3444,10 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   void system::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
+   void system::open_internet_link_in_browser(string strUrl, string strBrowser, string strProfile, string strTarget)
    {
 
-      node()->open_url_link_at_system_browser(strUrl, strProfile);
+      node()->open_internet_link_in_system_browser(strUrl, strProfile);
 
       //return ::success;
 
@@ -3458,7 +3458,7 @@ pdirectorysystem->create("/ca2core");
 
          //::auto pmessagebox = __initialize_new ::message_box(NULL, strUrl, strUrl, e_message_box_ok);
 
-pmessagebox->sync();
+         pmessagebox->sync();
 
          m_papplication->os().link_open(strUrl);
 
@@ -4172,13 +4172,13 @@ pmessagebox->sync();
    //}
 
 
-   void system::open_profile_link(string strUrl, string strProfile, string strTarget)
+   void system::open_internet_link(string strUrl, string strProfile, string strTarget)
    {
 
       fork([this, strUrl, strProfile, strTarget]()
          {
 
-            browser(strUrl, "", strProfile, strTarget);
+            open_internet_link_in_browser(strUrl, "", strProfile, strTarget);
 
          });
 

@@ -1825,7 +1825,7 @@ namespace platform
    }
 
 
-   void system::open_profile_link(string strUrl, string strProfile, string strTarget)
+   void system::open_internet_link_in_browser(string strUrl, string strBrowser, string strProfile, string strTarget)
    {
 
       throw ::interface_only();
@@ -1833,20 +1833,21 @@ namespace platform
    }
 
 
-   void system::open_link(string strUrl, string strProfile, string strTarget)
+   void system::open_internet_link(string strUrl, string strProfile, string strTarget)
    {
 
-      open_profile_link(strUrl, strProfile, strTarget);
+      throw ::interface_only();
+      //open_profile_link(strUrl, strProfile, strTarget);
 
    }
 
 
-   void system::open_url(string strUrl, string strProfile, string strTarget)
-   {
-
-      throw ::exception(::error_interface_only);
-
-   }
+   // void system::open_url(string strUrl, string strProfile, string strTarget)
+   // {
+   //
+   //    throw ::exception(::error_interface_only);
+   //
+   // }
 
 
    bool system::_handle_uri(const ::block& block)
@@ -3634,7 +3635,7 @@ namespace platform
             //if (plink->m_bProfile)
             {
 
-               open_profile_link(plink->m_strLink, plink->m_strBrowserAccount, plink->m_strTarget);
+               open_internet_link(plink->m_strLink, plink->m_strBrowserAccount, plink->m_strTarget);
 
             }
             //else

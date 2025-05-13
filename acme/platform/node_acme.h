@@ -940,7 +940,7 @@ namespace platform
       virtual ::payload connection_settings_get_auto_config_url();
 
 
-      virtual void open_url_link_at_system_browser(const string& strUrl, const string& strProfile = {});
+      virtual void open_internet_link_in_system_browser(const string& strUrl, const string& strProfile = {});
 
 
       virtual void local_machine_set_run(const ::string& strKey, const ::file::path& pathExecutable,

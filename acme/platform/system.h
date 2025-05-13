@@ -394,9 +394,9 @@ namespace platform
       //virtual ::pointer<::acme::library> & library(const ::string &strComponent, const ::string &strImplementation);
 
 
-      virtual void open_profile_link(string strUrl, string strProfile, string strTarget) override;
-      virtual void open_link(string strUrl, string strProfile, string strTarget) override;
-      virtual void open_url(string strUrl, string strProfile, string strTarget) override;
+      virtual void open_internet_link(string strUrl, string strProfile, string strTarget) override;
+      virtual void open_internet_link_in_browser(string strUrl, string strBrowser, string strProfile, string strTarget) override;
+//      virtual void open_url(string strUrl, string strProfile, string strTarget) override;
 
 
       bool _handle_uri(const ::block & block) override;

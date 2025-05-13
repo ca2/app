@@ -197,8 +197,8 @@ namespace platform
 
 
 
-      virtual void browser(string strUrl, string strBrowser, string strProfile, string strTarget);
-      virtual void open_profile_link(string strUrl, string strProfile, string strTarget);
+      //virtual void browser(string strUrl, string strBrowser, string strProfile, string strTarget);
+      //void open_internet_link(string strUrl, string strProfile, string strTarget) override;
 
 
       //virtual void __set_thread_on();

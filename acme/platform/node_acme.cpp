@@ -1334,7 +1334,7 @@ namespace platform
    }
 
 
-   void acme_node_layer::open_url_link_at_system_browser(const string& strUrl, const string& strProfile)
+   void acme_node_layer::open_internet_link_in_system_browser(const string& strUrl, const string& strProfile)
    {
    }
 

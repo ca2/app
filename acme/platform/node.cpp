@@ -2308,7 +2308,7 @@ return false;
    }
 
 
-   void node::open_url_link_at_system_browser(const string & strUrl, const string & strProfile)
+   void node::open_internet_link_in_system_browser(const string & strUrl, const string & strProfile)
    {
 
       //throw ::interface_only();

@@ -201,14 +201,14 @@ namespace platform
    }
 
 
-   void apex_system_layer::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
-   {
-   }
-
-
-   void apex_system_layer::open_profile_link(string strUrl, string strProfile, string strTarget)
-   {
-   }
+   // void apex_system_layer::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
+   // {
+   // }
+   //
+   //
+   // void apex_system_layer::open_profile_link(string strUrl, string strProfile, string strTarget)
+   // {
+   // }
 
 
    // void apex_system_layer::__set_thread_on()

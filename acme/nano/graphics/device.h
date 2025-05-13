@@ -30,8 +30,9 @@ namespace nano
 
          ~device() override;
 
-
+#ifdef HAS_X11
          virtual void create_for_x11(const ::x11::handle_t & handle, int w, int h);
+#endif
 
          virtual void create(int cx, int cy);
 

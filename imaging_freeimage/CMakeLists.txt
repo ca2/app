@@ -86,7 +86,7 @@ elseif (${FREEBSD})
     message(STATUS "(E) PKGCONFIG_LIBRARIES is ${PKGCONFIG_LIBRARIES}")
 
 
-elseif (${LINUX} OR ${OPENBSD} OR ${NETBSD})
+elseif (${LINUX} OR ${OPENBSD} OR ${NETBSD} OR ${ANDROID})
 
 
     #if(USE_PKGCONFIG)

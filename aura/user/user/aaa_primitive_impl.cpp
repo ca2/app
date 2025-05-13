@@ -2,7 +2,7 @@
 #include "interaction_thread.h"
 #include "primitive_impl.h"
 #include "interaction.h"
-#include "interaction_impl.h"
+#include "aaa_interaction_impl.h"
 #include "call_message_handler_task.h"
 #include "acme/constant/message.h"
 #include "acme/exception/interface_only.h"

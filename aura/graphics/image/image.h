@@ -353,6 +353,10 @@ namespace image
       //virtual void _defer_load_multi_frame_image_(memory_pointer pmemory);
 
       virtual void op(string str);
+      
+      
+      virtual ::memory copy_with_no_stride();
+      virtual ::memory vertical_swap_copy_with_no_stride();
 
       //virtual void from( ::image::image *piml);
 

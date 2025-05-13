@@ -4046,6 +4046,30 @@ void image::op(string str)
 }
 
 
+::memory image::copy_with_no_stride()
+{
+   
+   memory m;
+   m.set_size(area() * 4);
+   auto pimage32Target = (image32_t *) m.data();
+   pimage32Target->copy(this->width(), this->height(), this->width() * 4, this->data(), this->m_iScan);
+   return ::transfer(m);
+   
+}
+
+
+::memory image::vertical_swap_copy_with_no_stride()
+{
+   
+   memory m;
+   m.set_size(area() * 4);
+   auto pimage32Target = (image32_t *) m.data();
+   pimage32Target->vertical_swap_copy(this->width(), this->height(), this->width() * 4, this->data(), this->m_iScan);
+   return ::transfer(m);
+   
+}
+
+
 void image::Blend(::image::image* pimage, int A)
 {
 

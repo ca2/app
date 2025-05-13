@@ -3,6 +3,7 @@
 #include "icon.h"
 #include "frame_array.h"
 #include "image.h"
+#include "acme/exception/not_implemented.h"
 #include "acme/filesystem/file/binary_stream.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -13,6 +14,18 @@
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/lock.h"
 #include "aura/windowing/icon.h"
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include "stb/stb_image_write.h"
+
+
+void stb_memory_write(void *context, void *data, int size)
+{
+ 
+    auto pmemory = (::memory *) context;
+   
+   pmemory->append(data, size);
+   
+}
 
 
 namespace image
@@ -810,21 +823,55 @@ namespace image
 
    void image_context::save_image(::memory & memory, ::image::image * pimage, const ::image::encoding_options & encodingoptions)
    {
+      
+      
+      switch (encodingoptions.m_eformat)
+      {
+         case ::image::e_format_bmp:
+         {
+            
+            auto m = pimage->vertical_swap_copy_with_no_stride();
+            
+            stbi_write_bmp_to_func(&::stb_memory_write, &memory, pimage->width(), pimage->height(), 4, (const uint8_t *) m.data() );
 
-      auto pfile = create_memory_file(memory);
+        
+            }
+            break;
+         case ::image::e_format_tga:
+         {
+            
+            auto m = pimage->vertical_swap_copy_with_no_stride();
+            
+            stbi_write_tga_to_func(&::stb_memory_write, &memory, pimage->width(), pimage->height(), 4, (const uint8_t *) m.data() );
 
-      //auto estatus = 
+        
+            }
+            break;
 
-      save_image(pfile, pimage, encodingoptions);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-      //
-      //return estatus;
+         default:
+         {
+          
+            throw not_implemented();
+            
+         }
+            break;
+            
+      };
+//
+//      auto pfile = create_memory_file(memory);
+//
+//      //auto estatus = 
+//
+//      save_image(pfile, pimage, encodingoptions);
+//
+//      //if (!estatus)
+//      //{
+//
+//      //   return estatus;
+//
+//      //}
+//      //
+//      //return estatus;
 
    }
 

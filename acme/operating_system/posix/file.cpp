@@ -1526,6 +1526,16 @@ void std_out_buffer::write(const void * pdata, memsize nCount)
 }
 
 
+#ifdef __ANDROID__
+
+::file::path home_folder_path()
+{
+
+    return ::system()->m_pathCacheDirectory/"home";
+
+}
+
+#else
 ::file::path home_folder_path()
 {
    
@@ -1533,6 +1543,8 @@ void std_out_buffer::write(const void * pdata, memsize nCount)
    
 }
 
+
+#endif
 
 
    bool is_directory_accessible(const ::file::path & path)

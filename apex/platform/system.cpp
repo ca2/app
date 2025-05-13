@@ -2843,43 +2843,43 @@ pdirectorysystem->create("/ca2core");
 
    //}
 
-#ifdef __ANDROID__
-
-   bool system::android_set_user_wallpaper(string strUrl)
-   {
-
-      //operating_system_driver::get().m_strSetUserWallpaper = strUrl;
-
-      return true;
-
-   }
-
-   bool system::android_get_user_wallpaper(string & strUrl)
-   {
-
-      //operating_system_driver::get().m_bGetUserWallpaper = true;
-
-      //for(int i = 0; i < 10; i++)
-      //{
-
-      //   if (!operating_system_driver::get().m_bGetUserWallpaper)
-      //   {
-
-
-      //   }
-
-      //   sleep(50_ms);
-
-      //}
-
-      //strUrl = operating_system_driver::get().m_strGetUserWallpaper;
-
-      return true;
-
-   }
-
-
-#endif
+//#ifdef __ANDROID__
+//
+//   bool system::android_set_user_wallpaper(string strUrl)
+//   {
+//
+//      //operating_system_driver::get().m_strSetUserWallpaper = strUrl;
+//
+//      return true;
+//
+//   }
+//
+//   bool system::android_get_user_wallpaper(string & strUrl)
+//   {
+//
+//      //operating_system_driver::get().m_bGetUserWallpaper = true;
+//
+//      //for(int i = 0; i < 10; i++)
+//      //{
+//
+//      //   if (!operating_system_driver::get().m_bGetUserWallpaper)
+//      //   {
+//
+//
+//      //   }
+//
+//      //   sleep(50_ms);
+//
+//      //}
+//
+//      //strUrl = operating_system_driver::get().m_strGetUserWallpaper;
+//
+//      return true;
+//
+//   }
+//
+//
+//#endif
 
    //::crypto::crypto* system::crypto()
    //{

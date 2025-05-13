@@ -81,7 +81,7 @@ if (MSVC)
     target_link_libraries(bred PRIVATE ${library_references} ${global_library_references})
 
 
-elseif(${LINUX} OR ${__BSD__})
+elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
 
     target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)

@@ -10,7 +10,7 @@
 #include "acme/prototype/string/str.h"
 #include <sys/wait.h>
 #include <unistd.h>
-#if !defined(OPENBSD)
+#if !defined(OPENBSD) && !defined(__ANDROID__)
 #include <wordexp.h>
 #endif
 #include <fcntl.h>

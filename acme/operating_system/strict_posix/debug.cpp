@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 
-
+#if !defined(__ANDROID__)
 void output_debug_string(const ::scoped_string & scopedstr)
 {
 
@@ -39,6 +39,7 @@ void output_debug_string(const ::scoped_string & scopedstr)
 }
 
 
+
 void output_debug_string_flush()
 {
 
@@ -50,6 +51,10 @@ void output_debug_string_flush()
    }
 
 }
+
+#endif
+
+
 
 
 CLASS_DECL_ACME void ansi_output_debug_line(const ::scoped_string& str)

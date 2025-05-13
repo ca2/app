@@ -54,7 +54,7 @@ if (MSVC)
    target_link_libraries(database_sqlite3 PRIVATE ${library_references} ${global_library_references} sqlite)
 
 
-elseif(${LINUX} OR ${__BSD__})
+elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
 
    if(USE_PKGCONFIG)

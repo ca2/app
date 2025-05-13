@@ -3494,7 +3494,7 @@ retry_license:
 
 #ifdef __ANDROID__
 
-      
+      auto psession = session();
 
       if (psession->get_user_interaction_host() != nullptr)
       {
@@ -3507,14 +3507,21 @@ retry_license:
             if (puserinteraction)
             {
 
-               auto puserinteractionpointeraChild = puserinteraction->m_puserinteractionpointeraChild;
+//                _synchronous_lock synchronouslock(puserinteraction->window()->m_pparticleChildrenSynchronization);
+//
+//                auto pacmeuserinteractionaChildren = puserinteraction->m_pacmeuserinteractionaChildren;
+//
+//
+//                //auto puserinteractionpointeraChild = puserinteraction->m_puserinteractionpointeraChild;
+//
+//               if (pacmeuserinteractionaChildren)
+//               {
 
-               if (puserinteractionpointeraChild)
-               {
+                  pinteraction = puserinteraction->get_first_child_window();
 
-                  return puserinteractionpointeraChild->get_child(pinteraction);
-
-               }
+                  return ::is_set(pinteraction);
+//
+//               }
 
             }
 

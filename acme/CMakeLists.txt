@@ -2053,7 +2053,7 @@ if (ANDROID)
       operating_system/android/cross_win_gdi.h
       operating_system/android/cross_win_gdi_internal.h
       operating_system/android/exception_engine.h
-      operating_system/android/file2.h
+           operating_system/android/file.h
       operating_system/android/graphics.h
       operating_system/android/internal.h
       operating_system/android/process.h
@@ -2656,7 +2656,7 @@ if (ANDROID)
       operating_system/android/error.cpp
       operating_system/android/exception.cpp
       operating_system/android/_factory.cpp
-      operating_system/android/file2.cpp
+           operating_system/android/file.cpp
       operating_system/android/main.cpp
       operating_system/android/process.cpp
       operating_system/android/thread.cpp
@@ -2673,7 +2673,7 @@ if (ANDROID)
       operating_system/android/debug.cpp
       operating_system/android/dir.cpp
       #operating_system/android/exception_engine.cpp
-      operating_system/android/file2.cpp
+           operating_system/android/file.cpp
       operating_system/android/graphics.cpp
       operating_system/android/jni_launcher.cpp
       operating_system/android/language.cpp
@@ -2974,7 +2974,7 @@ list(APPEND library_source
 endif ()
 
 
-if (${LINUX} OR ${__BSD__} OR ${APPLE} OR ${SOLARIS})
+if (${LINUX} OR ${__BSD__} OR ${APPLE} OR ${SOLARIS} OR ${ANDROID})
 
 
    list(APPEND library_source
@@ -3101,7 +3101,8 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
       list(APPEND static_this_system_libraries util z pthread iconv execinfo elf)
       message(STATUS "NETBSD acme this_system_libraries ${this_system_libraries}")
    elseif (${ANDROID})
-       list(APPEND this_system_libraries z idn)
+       #list(APPEND this_system_libraries z idn)
+       list(APPEND this_system_libraries z iconv idn)
        #list(APPEND static_this_system_libraries pthread)
        #message(SEND_ERROR "test is really android?! ${this_system_libraries}")
        message(STATUS "ELSE acme this_system_libraries ${this_system_libraries}")

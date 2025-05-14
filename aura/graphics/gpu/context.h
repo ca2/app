@@ -10,7 +10,7 @@
 namespace gpu
 {
 
-
+   class render;
 
    class image_data
    {
@@ -81,6 +81,7 @@ namespace gpu
       bool                             m_bCreated;
       ::draw3d::matrix                 m_matrixProjection;
       ::draw3d::matrix                 m_matrixImpact;
+      ::pointer < ::gpu::render >             m_prender;
 
 
       context();
@@ -89,6 +90,7 @@ namespace gpu
 
       virtual void create_context();
 
+      bool task_iteration() override;
 
       virtual void lock_context();
       virtual void unlock_context();

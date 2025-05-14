@@ -15,7 +15,6 @@ namespace gpu
    public:
 
 
-      
       //bool                                m_bPendingShaderUpdate;
       //string                              m_strProjection;
       //string                              m_strFragment;
@@ -45,6 +44,7 @@ namespace gpu
       long long decrement_reference_count() override;
 #endif
 
+      virtual bool render_step();
 
       void initialize(::particle * pparticle) override;
 

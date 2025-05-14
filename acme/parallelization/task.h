@@ -162,6 +162,9 @@ public:
 
 #endif
 
+
+   ::time m_timeSample;
+
    //::pointer<::manual_reset_happening>                 m_pmanualresethappeningNewProcedurePosted;
 
    ::synchronization_array                         m_synchronizationaMainLoop;
@@ -394,6 +397,9 @@ public:
    virtual void main();
 
    void run() override;
+
+
+   virtual void run_loop();
 
    virtual bool task_run(const class ::time & time = 0_s);
 

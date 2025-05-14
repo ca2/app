@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "context.h"
 #include "cpu_buffer.h"
+#include "render.h"
 //#include "_.h"
 //#include "_gpu.h"
 #include "acme/exception/interface_only.h"
@@ -301,6 +302,34 @@ namespace gpu
    {
 
       branch_synchronously();
+
+   }
+
+
+   
+   bool context::task_iteration()
+   {
+
+      if (!::thread::task_iteration())
+      {
+
+         return false;
+
+      }
+
+      if (m_prender)
+      {
+
+         if (!m_prender->render_step())
+         {
+
+            return false;
+
+         }
+
+      }
+
+      return true;
 
    }
 

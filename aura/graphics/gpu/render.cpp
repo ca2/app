@@ -51,7 +51,12 @@ namespace gpu
 
 #endif
 
+   bool render::render_step()
+   {
 
+      return true;
+
+   }
 
    void render::initialize(::particle * pparticle)
    {

@@ -2380,6 +2380,7 @@
     <ClInclude Include="windowing\window.h" />
     <ClInclude Include="windowing\windowing.h" />
     <ClInclude Include="windowing\_.h" />
+    <ClInclude Include="_greek.h" />
     <ClInclude Include="_iostream.h" />
     <ClInclude Include="graphics\draw2d\color32.h" />
     <ClInclude Include="graphics\draw2d\color_array.h" />
@@ -2467,6 +2468,7 @@
     <ClInclude Include="user\user\tool_item.h" />
     <ClInclude Include="_stdio.h" />
     <ClInclude Include="_win32_gdi.h" />
+    <ClInclude Include="λ.h" />
     <None Include="constant\character_set.enum" />
     <None Include="inline\application\main.inl" />
     <None Include="inline\__apps.inl" />

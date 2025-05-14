@@ -2651,13 +2651,15 @@ if (ANDROID)
    list(APPEND library_source
       #operating_system/cross/universal_windows/cross_metrowin_user.cpp
       #operating_system/cross/universal_windows/metrowin_user.cpp
+      operating_system/android/_android
       operating_system/android/android.cpp
       operating_system/android/android1.cpp
       operating_system/android/error.cpp
       operating_system/android/exception.cpp
       operating_system/android/_factory.cpp
-           operating_system/android/file.cpp
+      operating_system/android/file.cpp
       operating_system/android/main.cpp
+      operating_system/android/parallelization.cpp
       operating_system/android/process.cpp
       operating_system/android/thread.cpp
       #operating_system/android/trace.cpp

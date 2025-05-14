@@ -88,7 +88,8 @@ namespace opengl
 
       glReadBuffer(GL_FRONT);
       
-      if (m_pgpucontext->is_mesa())
+      //if (m_pgpucontext->is_mesa())
+      if(!glReadnPixels)
       {
 
          glReadPixels(

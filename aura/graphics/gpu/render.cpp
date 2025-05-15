@@ -67,12 +67,6 @@ namespace gpu
 
       //m_pgpucontext->initialize(this);
 
-      auto psystem = system();
-
-      auto pgpu = psystem->get_gpu();
-
-      m_pgpucontext = pgpu->create_context(this);
-
 
    }
 

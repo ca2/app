@@ -22,6 +22,7 @@ namespace gpu
       ::image::image_pointer                       m_pimageFromGpu;
       ::pointer<::gpu::program>             m_pgpuprogram;
       int_rectangle                         m_rectangle;
+      int_size                              m_sizeHost;
       //string                              m_strFont1;
       //string_map < ::image::image_pointer >      m_pimagemap;
       //::image::image_pointer                     m_pimage1;

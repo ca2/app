@@ -4,6 +4,7 @@
 #include "cpu_buffer.h"
 #include "aura/graphics/gpu/approach.h"
 #include "aura/graphics/image/image.h"
+#include "acme/platform/application.h"
 #include "aura/platform/system.h"
 #include "windowing_win32/window.h"
 #include "glad_wgl.h"
@@ -372,7 +373,9 @@ namespace opengl
 
             //}
 
-            pwindow->m_hglrcProto = wglCreateContext(hdc);
+            auto hglrc = wglCreateContext(hdc);
+
+            pwindow->m_hglrcProto = hglrc;
 
    //         int context_attribs[] = {
    //WGL_CONTEXT_MAJOR_VERSION_ARB, 2,
@@ -487,7 +490,6 @@ namespace opengl
          //pwindow->m_hdcProto = m_hdc;
       }
 
-
       m_itaskGpu = ::current_itask();
 
       m_estatus = ::success;
@@ -532,6 +534,13 @@ namespace opengl
 
    void context_win32::resize_offscreen_buffer(const ::int_size& sizeParam)
    {
+
+       if (m_papplication->m_bUseDraw2dProtoWindow)
+       {
+
+           return;
+
+       }
 
       auto size(sizeParam);
 

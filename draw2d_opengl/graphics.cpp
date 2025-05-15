@@ -198,6 +198,8 @@ namespace draw2d_opengl
 
       opengl_defer_create_window_context(pwindow);
 
+      set_ok_flag();
+
    }
 
 
@@ -218,6 +220,20 @@ namespace draw2d_opengl
       //   informationf("last-error code: %d\n", GetLastError());
       //   return false;
       //}
+
+
+       if (!m_pgpucontext)
+       {
+
+           auto psystem = system();
+
+           auto pgpu = psystem->get_gpu();
+
+           m_pgpucontext = pgpu->create_context(this);
+
+       }
+
+
 
       if (!m_pgpucontext)
       {
@@ -409,12 +425,27 @@ namespace draw2d_opengl
    bool graphics::opengl_defer_create_window_context(::windowing::window * pwindow)
    {
 
-      if (!m_pgpucontext)
-      {
+      //if (!m_pgpucontext)
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
+
+
+       if (!m_pgpucontext)
+       {
+
+           auto psystem = system();
+
+           auto pgpu = psystem->get_gpu();
+
+           m_pgpucontext = pgpu->create_context(this);
+
+       }
+
+
+
 
       m_pgpucontext->defer_create_window_context(pwindow);
 
@@ -5888,7 +5919,7 @@ namespace draw2d_opengl
       m_z = 0.f;
 
       glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-      glClear(GL_COLOR_BUFFER_BIT);
+      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
       //glLoadIdentity();
       //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
       //glClear(GL_COLOR_BUFFER_BIT);
@@ -5908,7 +5939,7 @@ namespace draw2d_opengl
    void graphics::defer_add_gpu_render(::gpu::render * pgpurender)
    {
 
-      m_pgpucontext->m_rendera.add(pgpurender);
+      m_pgpucontext->m_rendera.add_unique(pgpurender);
 
    }
 
@@ -5949,7 +5980,7 @@ namespace draw2d_opengl
 
 
       glFlush();
-      glFinish();
+      //glFinish();
       //glDisable(GL_BLEND);
 
 
@@ -6125,8 +6156,8 @@ namespace opengl
       //};
       //glMultMatrixd(a);
 
-      glMatrixMode(GL_MODELVIEW);
-      glLoadIdentity();
+      //glMatrixMode(GL_MODELVIEW);
+      //glLoadIdentity();
 
 
       //gluOrtho2D(0.f, size.cx(), 0.f, size.cy());

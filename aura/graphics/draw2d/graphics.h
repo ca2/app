@@ -17,8 +17,12 @@
 #include "aura/user/user/redraw.h"
 #include "aura/graphics/draw2d/region.h"
 #include "aura/graphics/draw2d/bitmap.h"
+namespace gpu
+{
 
+    class render;
 
+} // namespace gpu
 //#include "acme/prototype/geometry2d/_geometry2d.h"
 
 
@@ -211,6 +215,9 @@ namespace draw2d
       //
       //
       //#endif
+
+
+      virtual void defer_add_gpu_render(::gpu::render* pgpurender);
 
 
       virtual void on_begin_draw();

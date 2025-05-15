@@ -200,6 +200,14 @@ namespace draw2d
    }
 
 
+   void graphics::defer_add_gpu_render(::gpu::render* pgpurender)
+   {
+
+       
+
+   }
+
+
    void graphics::on_begin_draw()
    {
 

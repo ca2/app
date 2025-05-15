@@ -375,10 +375,10 @@ namespace gpu
 
       }
 
-      if (m_prender)
+      for(auto prender : m_rendera)
       {
 
-         if (!m_prender->render_step())
+         if (!prender->render_step())
          {
 
             return false;

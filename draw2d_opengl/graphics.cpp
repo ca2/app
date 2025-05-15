@@ -5863,7 +5863,7 @@ namespace draw2d_opengl
 
       ::int_size size;
 
-      if (!m_puserinteraction)
+      if (!m_puserinteraction && m_papplication->m_bUseDraw2dProtoWindow)
       {
 
          m_puserinteraction = dynamic_cast <::user::interaction*>(m_pwindow->m_pacmeuserinteraction.m_p);
@@ -5901,6 +5901,14 @@ namespace draw2d_opengl
       //m_pgpucontext->start_drawing();
 
       ///glEnable(GL_DEPTH_TEST);
+
+   }
+
+
+   void graphics::defer_add_gpu_render(::gpu::render * pgpurender)
+   {
+
+      m_pgpucontext->m_rendera.add(pgpurender);
 
    }
 

@@ -69,6 +69,9 @@ namespace draw2d_opengl
       //void attach(void * pgraphics) override;   // attach/detach affects only the Output DC
       void * detach() override;
 
+
+      void defer_add_gpu_render(::gpu::render * pgpurender) override;
+
       //virtual bool Attach(HDC hdc);   // attach/detach affects only the Output DC
       //virtual HDC Detach();
       //virtual bool AttachPrinter(HDC hdc);

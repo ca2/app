@@ -81,7 +81,7 @@ namespace gpu
       bool                             m_bCreated;
       ::draw3d::matrix                 m_matrixProjection;
       ::draw3d::matrix                 m_matrixImpact;
-      ::pointer < ::gpu::render >             m_prender;
+      ::pointer_array < ::gpu::render >             m_rendera;
 
 
       context();

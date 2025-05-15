@@ -163,7 +163,7 @@ public:
 #endif
 
 
-   ::time m_timeSample;
+   class ::time                                    m_timeSample;
 
    //::pointer<::manual_reset_happening>                 m_pmanualresethappeningNewProcedurePosted;
 

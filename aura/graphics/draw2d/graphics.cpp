@@ -215,6 +215,13 @@ namespace draw2d
 
    }
 
+
+   void graphics::on_end_draw()
+   {
+
+
+   }
+
    //void *  graphics::get_os_data(int i) const
    //{
 
@@ -371,6 +378,24 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(pInitData);
 
       //return false;
+
+   }
+
+   
+   void graphics::create_window_graphics(::windowing::window * pwindow)
+   {
+
+      //__UNREFERENCED_PARAMETER(size);
+
+      //CreateCompatibleDC(nullptr);
+      //if (!CreateCompatibleDC(nullptr))
+      //{
+
+      //   return false;
+
+      //}
+
+      //return true;
 
    }
 
@@ -6115,6 +6140,13 @@ namespace draw2d
 
 
    void graphics::on_end_draw(oswindow wnd)
+   {
+
+
+   }
+
+
+   void graphics::on_present()
    {
 
 

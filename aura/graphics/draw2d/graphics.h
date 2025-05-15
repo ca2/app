@@ -214,6 +214,7 @@ namespace draw2d
 
 
       virtual void on_begin_draw();
+      virtual void on_end_draw();
 
       virtual bool fill_contains(const double_point & point);
 
@@ -291,12 +292,14 @@ namespace draw2d
 
       virtual void create_information_context(const ::string & pszDriverName, const ::string & pszDeviceName, const ::string & pszOutput, const void * lpInitData);
 
+      virtual void create_window_graphics(::windowing::window * pwindow);
       virtual void create_memory_graphics(const ::int_size & size = {});
       virtual void CreateCompatibleDC(::draw2d::graphics * pgraphics);
       virtual void CreateWindowDC(oswindow wnd);
 
       virtual void on_begin_draw(oswindow wnd, const ::double_size & sz);
       virtual void on_end_draw(oswindow wnd);
+      virtual void on_present();
 
       virtual void DeleteDC();
 

@@ -5,7 +5,9 @@
 #include "aura/_.h"
 #include "aura/graphics/gpu/_.h"
 
-
+#if defined(WINDOWS_DESKTOP)
+#include "windowing_win32/_.h"
+#endif
 #undef USUAL_OPERATING_SYSTEM_SUPPRESSIONS
 #include "acme/_operating_system.h"
 

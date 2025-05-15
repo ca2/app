@@ -10297,6 +10297,8 @@ void window::set_oswindow(::oswindow oswindow)
 
          //}
 
+         pgraphics->on_end_draw();
+
          if (m_pgraphicsgraphics)
          {
 

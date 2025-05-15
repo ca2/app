@@ -8,11 +8,13 @@
 #include "color.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task.h"
+#include "acme/platform/application.h"
 #include "acme/prototype/mathematics/mathematics.h"
 #include "aura/graphics/gpu/approach.h"
 #include "aura/graphics/gpu/cpu_buffer.h"
 #include "aura/graphics/write_text/font_enumeration_item.h"
 #include "aura/user/user/interaction.h"
+#include "windowing_win32/window.h"
 
 
 #include <math.h>
@@ -185,6 +187,16 @@ namespace draw2d_opengl
       }
 
       opengl_create_offscreen_buffer(size);
+
+   }
+
+
+   void graphics::create_window_graphics(::windowing::window * pwindow)
+   {
+      
+      m_pwindow = pwindow;
+
+      opengl_defer_create_window_context(pwindow);
 
    }
 
@@ -392,6 +404,26 @@ namespace draw2d_opengl
       return true;
 
    }
+
+
+   bool graphics::opengl_defer_create_window_context(::windowing::window * pwindow)
+   {
+
+      if (!m_pgpucontext)
+      {
+
+         return false;
+
+      }
+
+      m_pgpucontext->defer_create_window_context(pwindow);
+
+//      ::opengl::resize(size);
+
+      return true;
+
+   }
+
 
 
    int graphics::ExcludeUpdateRgn(::user::interaction_base * pwindow)
@@ -5831,6 +5863,13 @@ namespace draw2d_opengl
 
       ::int_size size;
 
+      if (!m_puserinteraction)
+      {
+
+         m_puserinteraction = dynamic_cast <::user::interaction*>(m_pwindow->m_pacmeuserinteraction.m_p);
+
+      }
+
       if (m_puserinteraction && !m_puserinteraction->size().is_empty())
       {
 
@@ -5850,6 +5889,7 @@ namespace draw2d_opengl
 
       glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
       glClear(GL_COLOR_BUFFER_BIT);
+      //glLoadIdentity();
       //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
       //glClear(GL_COLOR_BUFFER_BIT);
       //glEnable(GL_BLEND);
@@ -5874,12 +5914,38 @@ namespace draw2d_opengl
 
    }
 
-   void graphics::on_end_draw(oswindow wnd)
+   void graphics::on_end_draw()
    {
 
+
+      ////glPushMatrix();
+
+      ////glColor3f(0, 1, 1);
+      //glBegin(GL_TRIANGLES);                              // Drawing Using Triangles
+      //
+
+      //glColor4f(1.0f, 0.0f, 0.0f, 0.5f);                      // Set The Color To Red
+      //glVertex3f(100.0f, -2000.0f, 0.0f);                  // Top
+      //
+
+      //glColor3f(0.0f, 1.0f, 0.0f);                      // Set The Color To Green
+      //glVertex3f(0.0f, 200.0f, 0.0f);                  // Bottom Left
+
+
+      //glColor3f(0.0f, 0.0f, 1.0f);                      // Set The Color To Blue
+      //glVertex3f(2000.0f, 2000.0f, 0.0f);                  // Bottom Right
+
+      //glEnd();
+
+      //glPopMatrix();
+
+
       glFlush();
-      //glFinish();
+      glFinish();
       //glDisable(GL_BLEND);
+
+
+      
 
       //SwapBuffers(m_hdc);
 
@@ -5887,11 +5953,43 @@ namespace draw2d_opengl
 
       //dr();
 
-      read_to_cpu_buffer();
+      if (m_papplication->m_bUseDraw2dProtoWindow)
+      {
+         
+         //m_pgpucontext->swap_buffers();
 
-      m_pimage->map();
+         //m_pwindow->m_timeLastDrawGuard1.Now();
 
-      m_pimage->copy(& m_pgpucontext->m_pcpubuffer->m_pixmap);
+      }
+      else
+      {
+
+         //m_pgpucontext->swap_buffers();
+
+      //}
+      //else
+      //{
+
+         read_to_cpu_buffer();
+
+         m_pimage->map();
+
+         m_pimage->copy(&m_pgpucontext->m_pcpubuffer->m_pixmap);
+
+      }
+
+   }
+
+
+   void graphics::on_present()
+   {
+
+      if (m_papplication->m_bUseDraw2dProtoWindow)
+      {
+
+         m_pgpucontext->swap_buffers();
+
+      }
 
    }
 
@@ -5986,17 +6084,43 @@ namespace opengl
 
       //double d = 1.0;
 
-      //glViewport(0, 0, size.cx() * d, size.cy() * d);
-
+      ////glViewport(0, 0, size.cx() * d, size.cy() * d);
       glViewport(0, 0, size.cx(), size.cy());
+
+      //glMatrixMode(GL_PROJECTION);
+      //glLoadIdentity();
+      ////glOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
+      ////glOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
+      //////glOrtho(0, size.cx() * d, 0.0f, size.cy() * d, 000.0f, 1000.0f);
+      ////glOrtho(0, size.cx(), size.cy(), 0.0f, -1000.0f, 1000.0f);
+      //glOrtho(0.f, size.cx(), 0.f, -size.cy(), -1.0f, 1.0f);
+
 
       glMatrixMode(GL_PROJECTION);
       glLoadIdentity();
-      //glOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
-      //glOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
-      ////glOrtho(0, size.cx() * d, 0.0f, size.cy() * d, 000.0f, 1000.0f);
-      //glOrtho(0, size.cx(), size.cy(), 0.0f, -1000.0f, 1000.0f);
-      glOrtho(0.f, size.cx(), 0.f, size.cy(), -1.0f, 1.0f);
+      glOrtho(0.0f, size.cx(), size.cy(), 0, -1.0f, 1.0f);  // Flip Y
+      //auto left = 0.;
+      //auto right = (double) size.cx();
+      //auto bottom = 0.;
+      //auto top = (double)size.cy();
+      //double dFar = 1.0;
+      //double dNear = -1.0;
+      //double tx = -(right + left) / (right - left);
+      //double ty = -(top + bottom) / (top - bottom);
+      //double tz = -(dFar + dNear) / (dFar - dNear);
+      //double a[] =
+      //{
+      //   2.0/(right - left),0.0,0.0,tx,
+      //   0.0,2.0/(top - bottom),0.0,ty,
+      //   0.0,0.0,-2.0/(dFar-dNear),tz,
+      //   0.0,0.0,0.0,1.0
+      //};
+      //glMultMatrixd(a);
+
+      glMatrixMode(GL_MODELVIEW);
+      glLoadIdentity();
+
+
       //gluOrtho2D(0.f, size.cx(), 0.f, size.cy());
       //glMatrixMode(GL_MODELVIEW);
       //glLoadIdentity();

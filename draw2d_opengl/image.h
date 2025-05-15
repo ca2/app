@@ -50,7 +50,7 @@ namespace draw2d_opengl
 
       void destroy() override;
 
-      bool host(::pixmap * ppixmap) override;
+      bool host(::pixmap * ppixmap, ::windowing::window * pwindow) override;
 
       bool from(::draw2d::graphics * pgraphics);
       //bool from(int_point ptDest, ::draw2d::graphics * pgraphics, const ::int_point & point, ::int_size sz);

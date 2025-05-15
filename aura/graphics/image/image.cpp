@@ -286,7 +286,7 @@ void image::initialize(const ::int_size & size, ::image32_t * pimage32, int iSca
 //}
 
 
-bool image::host(::pixmap* ppixmap)
+bool image::host(::pixmap* ppixmap, ::windowing::window * pwindow)
 {
    //// callers should be able to deal with graphics backend that doesn't support "hosting" portions of RAM
    //return false;

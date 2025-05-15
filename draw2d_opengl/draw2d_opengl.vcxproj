@@ -738,6 +738,7 @@
     <ClInclude Include="_opengl.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="draw2d_win32.cpp" />
     <ClCompile Include="initialize_opengl_version.cpp" />
     <ClCompile Include="bitmap.cpp" />
     <ClCompile Include="brush.cpp" />

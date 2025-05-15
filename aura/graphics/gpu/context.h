@@ -123,6 +123,9 @@ namespace gpu
       virtual void create_offscreen_buffer(const ::int_size& size);
       virtual void _create_offscreen_buffer(const ::int_size& size);
 
+      virtual void defer_create_window_context(::windowing::window * pwindow);
+      virtual void _defer_create_window_context(::windowing::window * pwindow);
+
       virtual void resize_offscreen_buffer(const ::int_size& size);
       virtual void destroy_offscreen_buffer();
       

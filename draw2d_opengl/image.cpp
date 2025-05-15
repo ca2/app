@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "_opengl.h"
 #include "image.h"
+#include "acme/platform/application.h"
 
 
 namespace draw2d_opengl
@@ -122,7 +123,8 @@ namespace draw2d_opengl
 
    }
 
-   bool image::host(::pixmap * ppixmap)
+
+   bool image::host(::pixmap * ppixmap, ::windowing::window * pwindow)
    {
 
       if (::is_null(ppixmap) || ppixmap->nok())
@@ -132,8 +134,6 @@ namespace draw2d_opengl
 
       }
          
-      
-
       if (ppixmap->m_pimage32Raw == m_pimage32Raw
          && m_size == ppixmap->m_size)
       {
@@ -148,7 +148,18 @@ namespace draw2d_opengl
       __defer_construct(m_pgraphics);
       //m_pgraphics->set(m_pbitmap);
 
-      m_pgraphics->create_memory_graphics(ppixmap->m_size);
+      if (m_papplication->m_bUseDraw2dProtoWindow)
+      {
+
+         m_pgraphics->create_window_graphics(pwindow);
+
+      }
+      else
+      {
+
+         m_pgraphics->create_memory_graphics(ppixmap->m_size);
+
+      }
 
 
       m_eflagElement = DEFAULT_CREATE_IMAGE_FLAG;

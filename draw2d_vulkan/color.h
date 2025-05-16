@@ -24,7 +24,7 @@ namespace vulkan
       auto f32Blue = (float)(u8Blue) / (255.f);
       auto f32Opacity = (float)u8Opacity / 255.f;
 
-      ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
+      ::vkColor4f(f32Red, f32Green, f32Blue, f32Opacity);
 
    }
 

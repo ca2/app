@@ -27,7 +27,7 @@ SetPixelFormat(ourWindowHandleToDeviceContext, letWindowsChooseThisPixelFormat, 
 HGLRC ourVulkanRenderingContext = wglCreateContext(ourWindowHandleToDeviceContext);
 wglMakeCurrent(ourWindowHandleToDeviceContext, ourVulkanRenderingContext);
 
-MessageBoxA(0, (char*)glGetString(GL_VERSION), "VULKAN VERSION", 0);
+MessageBoxA(0, (char*)vkGetString(VK_VERSION), "VULKAN VERSION", 0);
 
 wglDeleteContext(ourVulkanRenderingContext);
 PostQuitMessage(0);

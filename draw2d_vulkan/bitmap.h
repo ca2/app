@@ -5,17 +5,17 @@
 #include "aura/graphics/draw2d/bitmap.h"
 
 
-//#include <GL/gl.h>
-//#include <GL/glu.h>
-//#include <GL/glext.h>
+//#include <VK/vk.h>
+//#include <VK/vku.h>
+//#include <VK/vkext.h>
 #ifdef LINUX
-#include <GL/glx.h>
+#include <VK/vkx.h>
 #endif
 
 #pragma warning (disable : 4244)
 
-#include <GL/gl.h>
-#include <GL/glu.h>
+#include <VK/vk.h>
+#include <VK/vku.h>
 
 
 #define WGL_DRAW_TO_PBUFFER_ARB                   0x202D
@@ -103,7 +103,7 @@ namespace draw2d_vulkan
 
 
       bool                 m_bTexture;
-      GLuint               m_texture;
+      VKuint               m_texture;
       memory               m_memIn;
       memory               m_memOut;
 
@@ -121,10 +121,10 @@ namespace draw2d_vulkan
 #else
       Display *dpy;
       Window win;
-      GLXContext PBufferCtx;
-      GLXContext WinCtx;
-      GLXPbuffer PBuffer;
-      GLXFBConfig* fbc;
+      VKXContext PBufferCtx;
+      VKXContext WinCtx;
+      VKXPbuffer PBuffer;
+      VKXFBConfig* fbc;
       XVisualInfo* vi = nullptr;
       Colormap cmap;
       XSetWindowAttributes swa;

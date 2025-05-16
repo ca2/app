@@ -5,37 +5,15 @@
 #undef USUAL_OPERATING_SYSTEM_SUPPRESSIONS
 #include "acme/_operating_system.h"
 
-#ifdef WINDOWS_DESKTOP
-#define GLAD_GLAPI_EXPORT
-#include "glad.h"
-#else
-//#include <GL/gl.h>
-//#include <GL/glu.h>
-//#include <GL/glext.h>
-#ifdef LINUX
-#include <GL/glx.h>
-#endif
+#include <vulkan/vulkan.h>
 
-#endif
-
-//#include "factory_exchange.h"
-//
-//
-//#include "object.h"
-//#include "pen.h"
-//#include "bitmap.h"
-//#include "brush.h"
-//#include "font.h"
-//#include "region.h"
-//#include "image.h"
-//#include "path.h"
 
 
 #include "graphics.h"
 
 
-#define GL2D_GRAPHICS(pgraphics) (dynamic_cast < ::draw2d_vulkan::graphics * > (pgraphics))
-#define GL2D_HDC(pgraphics) (GL2D_GRAPHICS(pgraphics)->m_hdc)
+#define VK2D_GRAPHICS(pgraphics) (dynamic_cast < ::draw2d_vulkan::graphics * > (pgraphics))
+#define VK2D_HDC(pgraphics) (VK2D_GRAPHICS(pgraphics)->m_hdc)
 
 
 namespace vulkan
@@ -45,10 +23,10 @@ namespace vulkan
    inline void vertex2f(const ::double_rectangle & rectangle)
    {
 
-      glVertex2f((GLfloat)rectangle.left(), (GLfloat)rectangle.top());
-      glVertex2f((GLfloat)rectangle.right(), (GLfloat)rectangle.top());
-      glVertex2f((GLfloat)rectangle.right(), (GLfloat)rectangle.bottom());
-      glVertex2f((GLfloat)rectangle.left(), (GLfloat)rectangle.bottom());
+      vkVertex2f((VKfloat)rectangle.left(), (VKfloat)rectangle.top());
+      vkVertex2f((VKfloat)rectangle.right(), (VKfloat)rectangle.top());
+      vkVertex2f((VKfloat)rectangle.right(), (VKfloat)rectangle.bottom());
+      vkVertex2f((VKfloat)rectangle.left(), (VKfloat)rectangle.bottom());
 
    }
 

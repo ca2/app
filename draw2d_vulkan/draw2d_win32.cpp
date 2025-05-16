@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "draw2d.h"
 #include "windowing_win32/window.h"
-#include "glad_wgl.h"
+#include "vkad_wgl.h"
 #include <dwmapi.h>
 
 namespace draw2d_vulkan
@@ -67,7 +67,7 @@ namespace draw2d_vulkan
 
       //   HGLRC dummyRC = CreateDummyContext(hdc);
       //   wglMakeCurrent(hdc, dummyRC);
-      //   if (!gladLoadWGL(hdc))
+      //   if (!vkadLoadWGL(hdc))
       //   {
 
       //      throw ::exception(error_failed);

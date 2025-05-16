@@ -4,7 +4,7 @@
  * You can use this code however you want.
  * I just hope you to cite my name and the page of this technique:
  * http://artgrammer.blogspot.com/2011/05/drawing-nearly-perfect-2d-line-segments.html
- * http://www.codeproject.com/KB/openGL/gllinedraw.aspx
+ * http://www.codeproject.com/KB/openGL/vklinedraw.aspx
  * 
  * Enjoy. Chris Tsang.*/
 #ifndef VASE_REN_DRAFT_H
@@ -25,50 +25,50 @@ static inline double GET_ABS(double x) {return x>0?x:-x;}
  * 
  * sample usage using alpha blending:
  * 
-  glEnable(GL_BLEND);
-  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-  glMatrixMode(GL_PROJECTION);
-  glPushMatrix();
-	glLoadIdentity();
-	glOrtho( 0,context_width,context_height,0,0.0f,100.0f);
+  vkEnable(VK_BLEND);
+  vkBlendFunc(VK_SRC_ALPHA, VK_ONE_MINUS_SRC_ALPHA);
+  vkMatrixMode(VK_PROJECTION);
+  vkPushMatrix();
+	vkLoadIdentity();
+	vkOrtho( 0,context_width,context_height,0,0.0f,100.0f);
 
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
+	vkEnableClientState(VK_VERTEX_ARRAY);
+	vkEnableClientState(VK_COLOR_ARRAY);
 		line ( 10,100,100,300,		//coordinates
 			1.2,			//thickness in px
 			0.5, 0.0, 1.0, 1.0,	//line color RGBA
 			0,0,			//not used
 			true);			//enable alphablend
 
-		//more line() or glDrawArrays() calls
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
+		//more line() or vkDrawArrays() calls
+	vkDisableClientState(VK_VERTEX_ARRAY);
+	vkDisableClientState(VK_COLOR_ARRAY);
 
 	//other drawing code...
-  glPopMatrix();
-  glDisable(GL_BLEND); //restore blending options
+  vkPopMatrix();
+  vkDisable(VK_BLEND); //restore blending options
  *
  * and not using alpha blending (blend to background color):
  *
-  glMatrixMode(GL_PROJECTION);
-  glPushMatrix();
-	glLoadIdentity();
-	glOrtho( 0,context_width,context_height,0,0.0f,100.0f);
+  vkMatrixMode(VK_PROJECTION);
+  vkPushMatrix();
+	vkLoadIdentity();
+	vkOrtho( 0,context_width,context_height,0,0.0f,100.0f);
 
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
+	vkEnableClientState(VK_VERTEX_ARRAY);
+	vkEnableClientState(VK_COLOR_ARRAY);
 		line ( 20,100,110,300,		//coordinates
 			1.2,			//thickness in px
 			0.5, 0.0, 1.0,		//line color *rgb*
 			1.0, 1.0, 1.0,		//background color
 			false);			//not using alphablend
 
-		//more line() or glDrawArrays() calls
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
+		//more line() or vkDrawArrays() calls
+	vkDisableClientState(VK_VERTEX_ARRAY);
+	vkDisableClientState(VK_COLOR_ARRAY);
 
 	//other drawing code...
-  glPopMatrix();
+  vkPopMatrix();
 */
 void line( double x1, double y1, double x2, double y2, //coordinates of the line
 	float w,			//width/thickness of the line in pixel
@@ -187,7 +187,7 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 		x2+tx+Rx+cx, y2+ty+Ry+cy
 	};
 	
-	glVertexPointer(2, GL_FLOAT, 0, line_vertex);
+	vkVertexPointer(2, VK_FLOAT, 0, line_vertex);
 	
 	if ( !alphablend) {
 		float line_color[]=
@@ -201,7 +201,7 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 			Br,Bg,Bb,			
 			Br,Bg,Bb
 		};
-		glColorPointer(3, GL_FLOAT, 0, line_color);
+		vkColorPointer(3, VK_FLOAT, 0, line_color);
 	} else {
 		float line_color[]=
 		{
@@ -214,10 +214,10 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 			Cr,Cg,Cb,0,
 			Cr,Cg,Cb,0
 		};
-		glColorPointer(4, GL_FLOAT, 0, line_color);
+		vkColorPointer(4, VK_FLOAT, 0, line_color);
 	}
 	
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 8);
+	vkDrawArrays(VK_TRIANGLE_STRIP, 0, 8);
 	
 	//cap
 	if ( w < 3) {
@@ -240,7 +240,7 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 			x2+tx+Rx+cx, y2+ty+Ry+cy
 		};
 		
-		glVertexPointer(2, GL_FLOAT, 0, line_vertex);
+		vkVertexPointer(2, VK_FLOAT, 0, line_vertex);
 				
 		if ( !alphablend) {
 			float line_color[]=
@@ -258,7 +258,7 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 				Cr,Cg,Cb,
 				Br,Bg,Bb
 			};
-			glColorPointer(3, GL_FLOAT, 0, line_color);
+			vkColorPointer(3, VK_FLOAT, 0, line_color);
 		} else {
 			float line_color[]=
 			{
@@ -275,11 +275,11 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 				Cr,Cg,Cb, A,
 				Cr,Cg,Cb, 0
 			};
-			glColorPointer(4, GL_FLOAT, 0, line_color);
+			vkColorPointer(4, VK_FLOAT, 0, line_color);
 		}
 		
-		glDrawArrays(GL_TRIANGLE_STRIP, 0, 6);
-		glDrawArrays(GL_TRIANGLE_STRIP, 6, 6);
+		vkDrawArrays(VK_TRIANGLE_STRIP, 0, 6);
+		vkDrawArrays(VK_TRIANGLE_STRIP, 6, 6);
 	}
 }
 
@@ -339,7 +339,7 @@ void hair_line( double x1, double y1, double x2, double y2, bool alphablend=0)
 		x1+tx+Rx, y1+ty+Ry,	//fading edge2
 		x2+tx+Rx, y2+ty+Ry
 	};
-	glVertexPointer(2, GL_FLOAT, 0, line_vertex);
+	vkVertexPointer(2, VK_FLOAT, 0, line_vertex);
 	
 	if ( !alphablend) {
 		float line_color[]=
@@ -352,7 +352,7 @@ void hair_line( double x1, double y1, double x2, double y2, bool alphablend=0)
 			1,1,1,
 			1,1,1
 		};
-		glColorPointer(3, GL_FLOAT, 0, line_color);
+		vkColorPointer(3, VK_FLOAT, 0, line_color);
 	} else {
 		float line_color[]=
 		{	0,0,0,0,
@@ -364,10 +364,10 @@ void hair_line( double x1, double y1, double x2, double y2, bool alphablend=0)
 			0,0,0,0,
 			0,0,0,0
 		};
-		glColorPointer(4, GL_FLOAT, 0, line_color);
+		vkColorPointer(4, VK_FLOAT, 0, line_color);
 	}
 	
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 8);
+	vkDrawArrays(VK_TRIANGLE_STRIP, 0, 8);
 }
 
 /*as a fall back to line()*/
@@ -376,7 +376,7 @@ void line_raw( double x1, double y1, double x2, double y2,
 	double Cr, double Cg, double Cb,
 	double,double,double, bool)
 {
-	glLineWidth(w);
+	vkLineWidth(w);
 	float line_vertex[]=
 	{
 		x1,y1,
@@ -387,9 +387,9 @@ void line_raw( double x1, double y1, double x2, double y2,
 		Cr,Cg,Cb,
 		Cr,Cg,Cb
 	};
-	glVertexPointer(2, GL_FLOAT, 0, line_vertex);
-	glColorPointer(3, GL_FLOAT, 0, line_color);
-	glDrawArrays(GL_LINES, 0, 2);
+	vkVertexPointer(2, VK_FLOAT, 0, line_vertex);
+	vkColorPointer(3, VK_FLOAT, 0, line_color);
+	vkDrawArrays(VK_LINES, 0, 2);
 }
 
 #endif

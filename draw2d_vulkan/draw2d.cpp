@@ -111,10 +111,10 @@ namespace draw2d_vulkan
 
 
 
-   //   if(!gladLoadGL())
+   //   if(!vkadLoadGL())
    //   {
-   //      // Problem: glewInit failed, something is seriously wrong.
-   //      informationf("gladLoadGL failed");
+   //      // Problem: vkewInit failed, something is seriously wrong.
+   //      informationf("vkadLoadGL failed");
    //      //return false;
    //      throw resource_exception();
    //   }

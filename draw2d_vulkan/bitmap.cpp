@@ -12,15 +12,15 @@ Display * x11_get_display();
 #define WIDTH 3200
 #define HEIGHT 1800
 
-const int sbAttrib[] = { GLX_DOUBLEBUFFER, 0, GLX_RED_SIZE, 1,GLX_GREEN_SIZE, 1, GLX_BLUE_SIZE, 1,GLX_ALPHA_SIZE, 1, GLX_DEPTH_SIZE, 16,None };
-int pbAttrib[] = { GLX_PBUFFER_WIDTH, WIDTH,GLX_PBUFFER_HEIGHT, HEIGHT,GLX_PRESERVED_CONTENTS, True,None };
+const int sbAttrib[] = { VKX_DOUBLEBUFFER, 0, VKX_RED_SIZE, 1,VKX_GREEN_SIZE, 1, VKX_BLUE_SIZE, 1,VKX_ALPHA_SIZE, 1, VKX_DEPTH_SIZE, 16,None };
+int pbAttrib[] = { VKX_PBUFFER_WIDTH, WIDTH,VKX_PBUFFER_HEIGHT, HEIGHT,VKX_PRESERVED_CONTENTS, True,None };
 #endif
 
 //extern CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
-GLfloat LightAmbient[] = { 0.5f, 0.5f, 0.5f, 1.00f };
-GLfloat LightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.00f };
-GLfloat LightPosition[] = { 0.0f, 0.0f, 2.0f, 1.00f };
-//GLfloat LightPosition2[] = { -5.0f, -5.0f, 32.0f, 1.00f };
+VKfloat LightAmbient[] = { 0.5f, 0.5f, 0.5f, 1.00f };
+VKfloat LightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.00f };
+VKfloat LightPosition[] = { 0.0f, 0.0f, 2.0f, 1.00f };
+//VKfloat LightPosition2[] = { -5.0f, -5.0f, 32.0f, 1.00f };
 
 //#ifdef WINDOWS
 //typedef BOOL(WINAPI * PFNWGLDESTROYPBUFFERARBPROC) (HPBUFFERARB hPbuffer);
@@ -377,39 +377,39 @@ namespace draw2d_vulkan
 
       resizeBilinear(m_memIn, m_sizeIn.cx(), m_sizeIn.cy(), (int*)m_memOut.data(), m_sizeOut.cx(), m_sizeOut.cy());
 
-      glGenTextures(1, &m_texture);
+      vkGenTextures(1, &m_texture);
 
-      GLenum e = glGetError();
+      VKenum e = vkGetError();
 
       // Create Nearest Filtered Texture
-      glBindTexture(GL_TEXTURE_2D, m_texture);
-      e = glGetError();
+      vkBindTexture(VK_TEXTURE_2D, m_texture);
+      e = vkGetError();
       if (iResampleQuality == 2)
       {
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-         e = glGetError();
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
-         e = glGetError();
+         vkTexParameteri(VK_TEXTURE_2D, VK_TEXTURE_MAG_FILTER, VK_LINEAR);
+         e = vkGetError();
+         vkTexParameteri(VK_TEXTURE_2D, VK_TEXTURE_MIN_FILTER, VK_LINEAR_MIPMAP_NEAREST);
+         e = vkGetError();
       }
       else if (iResampleQuality == 1)
       {
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-         e = glGetError();
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-         e = glGetError();
+         vkTexParameteri(VK_TEXTURE_2D, VK_TEXTURE_MAG_FILTER, VK_LINEAR);
+         e = vkGetError();
+         vkTexParameteri(VK_TEXTURE_2D, VK_TEXTURE_MIN_FILTER, VK_LINEAR);
+         e = vkGetError();
       }
       else
       {
 
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-         e = glGetError();
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-         e = glGetError();
+         vkTexParameteri(VK_TEXTURE_2D, VK_TEXTURE_MAG_FILTER, VK_NEAREST);
+         e = vkGetError();
+         vkTexParameteri(VK_TEXTURE_2D, VK_TEXTURE_MIN_FILTER, VK_NEAREST);
+         e = vkGetError();
 
       }
 
-      glTexImage2D(GL_TEXTURE_2D, 0, 4, m_sizeIn.cx(), m_sizeIn.cy(), 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, m_memIn.data());
-      e = glGetError();
+      vkTexImage2D(VK_TEXTURE_2D, 0, 4, m_sizeIn.cx(), m_sizeIn.cy(), 0, VK_BGRA_EXT, VK_UNSIGNED_BYTE, m_memIn.data());
+      e = vkGetError();
 
 
 
@@ -469,7 +469,7 @@ namespace draw2d_vulkan
 //
 //
 //         g_hWnd = CreateWindowEx(WS_EX_LAYERED | WS_EX_TOPMOST, g_wcl.lpszClassName,
-//                                 _T("GL Layered Window Demo"), 0, 0, 0, 0,
+//                                 _T("VK Layered Window Demo"), 0, 0, 0, 0,
 //                                 0, 0, 0, g_wcl.hInstance, 0);
 //
 //         if (g_hWnd == nullptr)
@@ -514,18 +514,18 @@ namespace draw2d_vulkan
 //                        //   height = 1;										// Making Height Equal One
 //                        //}
 //
-//                        glContext(0, 0, m_sizeOut.cx(), m_sizeOut.cy());						// Reset The Current Context
+//                        vkContext(0, 0, m_sizeOut.cx(), m_sizeOut.cy());						// Reset The Current Context
 //
-//                        glMatrixMode(GL_PROJECTION);						// Select The Projection Matrix
-//                        glLoadIdentity();									// Reset The Projection Matrix
+//                        vkMatrixMode(VK_PROJECTION);						// Select The Projection Matrix
+//                        vkLoadIdentity();									// Reset The Projection Matrix
 //
 //                        // Calculate The Aspect Ratio Of The Window
-//                        gluPerspective(45.0f, (GLfloat)m_sizeOut.cx() / (GLfloat)m_sizeOut.cy(), 0.1f, 100.0f);
+//                        vkuPerspective(45.0f, (VKfloat)m_sizeOut.cx() / (VKfloat)m_sizeOut.cy(), 0.1f, 100.0f);
 //
-//                        glMatrixMode(GL_MODELVIEW);							// Select The Modelview Matrix
-//                        glLoadIdentity();									// Reset The Modelview Matrix
-//                        glTranslatef(-1.0, -1.0, 0);
-//                        glScalef(2.0/(float)m_sizeOut.cx(), 2.0/(float)m_sizeOut.cy(), 0);
+//                        vkMatrixMode(VK_MODELVIEW);							// Select The Modelview Matrix
+//                        vkLoadIdentity();									// Reset The Modelview Matrix
+//                        vkTranslatef(-1.0, -1.0, 0);
+//                        vkScalef(2.0/(float)m_sizeOut.cx(), 2.0/(float)m_sizeOut.cy(), 0);
 //
 //                     }
 //
@@ -562,19 +562,19 @@ namespace draw2d_vulkan
          //wglMakeCurrent(g_hDC, g_hRC);
 
          wglMakeCurrent(g_hPBufferDC, g_hPBufferRC);
-         GLenum e = glGetError();
+         VKenum e = vkGetError();
 
-//         glFlush();
+//         vkFlush();
 
          //m_mem.set_size(cxDIB * cyDIB * 4);
          //m_mem.zero();
-         glPixelStorei(GL_PACK_ALIGNMENT, 1);
-         e = glGetError();
+         vkPixelStorei(VK_PACK_ALIGNMENT, 1);
+         e = vkGetError();
 
          color32_t * pdata = (color32_t *) m_memOut.data();
 
-         glReadPixels(0, 0, m_sizeOut.cx(), m_sizeOut.cy(), GL_BGRA_EXT, GL_UNSIGNED_BYTE, pdata);
-         e = glGetError();
+         vkReadPixels(0, 0, m_sizeOut.cx(), m_sizeOut.cy(), VK_BGRA_EXT, VK_UNSIGNED_BYTE, pdata);
+         e = vkGetError();
 
          information("error " + ::as_string((int)e));
 
@@ -587,48 +587,16 @@ namespace draw2d_vulkan
    {
 
 #ifdef WINDOWS
-      // Even though we aren't going to be rendering the scene to the window
-      // we still need to create a dummy rendering context in order to load the
-      // pbuffer extensions and to create our pbuffer.
+      
+      
+      // Creating Vulkan Surface / SwapChain
+      VkWin32SurfaceCreateInfoKHR createInfo = {};
+      createInfo.sType = VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR;
+      createInfo.hwnd = hwnd;
+      createInfo.hinstance = hInstance;
 
-      PIXELFORMATDESCRIPTOR pfd = { 0 };
-
-      // Don't bother with anything fancy here. This is just a dummy rendering
-      // context so just ask for the bare minimum.
-      pfd.nSize = sizeof(pfd);
-      pfd.nVersion = 1;
-      pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_VULKAN;
-      pfd.iPixelType = PFD_TYPE_RGBA;
-      pfd.cColorBits = 32;
-      pfd.cDepthBits = 32;
-      pfd.iLayerType = PFD_MAIN_PLANE;
-
-      if (!(g_hDC = GetDC(g_hWnd)))
-         return false;
-
-      int pf = ChoosePixelFormat(g_hDC, &pfd);
-
-      if (!SetPixelFormat(g_hDC, pf, &pfd))
-         return false;
-
-      if (!(g_hRC = wglCreateContext(g_hDC)))
-         return false;
-
-      if (!wglMakeCurrent(g_hDC, g_hRC))
-         return false;
-
-      if (!InitGLExtensions())
-         return false;
-
-      if (!InitPBuffer())
-         return false;
-
-      // Deactivate the dummy rendering context now that the pbuffer is created.
-      wglMakeCurrent(g_hDC, 0);
-      ::DeleteDC(g_hDC);
-      g_hDC = 0;
-
-
+      VkSurfaceKHR surface;
+      VkResult result = vkCreateWin32SurfaceKHR(instance, &createInfo, nullptr, &surface);
 
       return true;
 #else
@@ -641,15 +609,15 @@ namespace draw2d_vulkan
          return false;
       }
 
-      fprintf(stdout, "Info:GLX Extensions:%s\n", glXQueryExtensionsString(dpy, DefaultScreen(dpy)));
+      fprintf(stdout, "Info:VKX Extensions:%s\n", vkXQueryExtensionsString(dpy, DefaultScreen(dpy)));
 
-      if (!glXQueryExtension(dpy, &dummy, &dummy))
+      if (!vkXQueryExtension(dpy, &dummy, &dummy))
       {
-         fprintf(stderr, "Error:GLX extensions not supported");
+         fprintf(stderr, "Error:VKX extensions not supported");
          return false;
       }
 
-      fbc = glXChooseFBConfig(dpy, DefaultScreen(dpy), sbAttrib, &nElements);
+      fbc = vkXChooseFBConfig(dpy, DefaultScreen(dpy), sbAttrib, &nElements);
       fprintf(stdout, "Info:Number of FBConfigs: %d\n", nElements);
       if (nElements == 0)
       {
@@ -660,9 +628,9 @@ namespace draw2d_vulkan
       * For simplicities sake, select the first. This however may not be the right one
       * for the purpose of an example this will suffice.
       */
-      vi = glXGetVisualFromFBConfig(dpy, fbc[0]);
+      vi = vkXGetVisualFromFBConfig(dpy, fbc[0]);
 
-      if (!(WinCtx = glXCreateContext(dpy, vi,
+      if (!(WinCtx = vkXCreateContext(dpy, vi,
                                       None, /* no sharing of display lists */
                                       True /* direct rendering if possible */
                                      )))
@@ -671,8 +639,8 @@ namespace draw2d_vulkan
          return false;
       }
 
-      PBuffer = glXCreatePbuffer(dpy, fbc[0], pbAttrib);
-      PBufferCtx = glXCreateNewContext(dpy, fbc[0], GLX_RGBA_TYPE, 0, GL_TRUE);
+      PBuffer = vkXCreatePbuffer(dpy, fbc[0], pbAttrib);
+      PBufferCtx = vkXCreateNewContext(dpy, fbc[0], VKX_RGBA_TYPE, 0, VK_TRUE);
 
       cmap = XCreateColormap(dpy, RootWindow(dpy, vi->screen), vi->draw2d, AllocNone);
       swa.colormap = cmap;
@@ -683,7 +651,7 @@ namespace draw2d_vulkan
                           CWBorderPixel | CWColormap | CWEventMask,
                           &swa);
 
-      glXMakeContextCurrent(dpy, PBuffer, PBuffer, PBufferCtx);
+      vkXMakeContextCurrent(dpy, PBuffer, PBuffer, PBufferCtx);
 
 #endif
    }
@@ -806,7 +774,7 @@ namespace draw2d_vulkan
    {
       if (m_texture)
       {
-         glDeleteTextures(1, &m_texture);
+         vkDeleteTextures(1, &m_texture);
          m_texture = 0;
       }
 
@@ -835,9 +803,9 @@ namespace draw2d_vulkan
 #else
       //      if (g_hPBuffer)
       //      {
-      //         glDeleteContext(g_hPBufferRC);
+      //         vkDeleteContext(g_hPBufferRC);
       //         wglReleasePbufferDCARB(g_hPBuffer, g_hPBufferDC);
-      //         glDestroyPbufferARB(g_hPBuffer);
+      //         vkDestroyPbufferARB(g_hPBuffer);
       //         g_hPBufferRC = 0;
       //         g_hPBufferDC = 0;
       //         g_hPBuffer = 0;

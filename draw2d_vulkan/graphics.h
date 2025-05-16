@@ -96,9 +96,9 @@ namespace draw2d_vulkan
 
       void _draw_raw(const ::double_rectangle & rectangleTarget, ::image::image *pimage, const ::image::image_drawing_options & imagedrawingoptionsParam, const ::double_point & pointSrc) override;
 
-      //plusplus::Pen *       gl2d_pen();
-      //plusplus::Brush *     gl2d_brush();
-      //plusplus::Font *      gl2d_font();
+      //plusplus::Pen *       vk2d_pen();
+      //plusplus::Brush *     vk2d_brush();
+      //plusplus::Font *      vk2d_font();
 
       // for bidi and mirrored localization
       unsigned int GetLayout() const;
@@ -569,7 +569,7 @@ namespace draw2d_vulkan
 //      virtual bool attach(void * pdata);
 
 
-      //virtual plusplus::FillMode gl2d_get_fill_mode();
+      //virtual plusplus::FillMode vk2d_get_fill_mode();
 
       bool blur(bool bExpand, double dRadius, const ::int_rectangle & rectangle);
 

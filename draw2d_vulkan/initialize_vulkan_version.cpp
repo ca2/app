@@ -5,13 +5,13 @@
 //
 //#undef USUAL_OPERATING_SYSTEM_SUPPRESSIONS
 //#include "acme/_operating_system.h"
-////#include "glad.h"
-//#define GLAD_GLAPI_EXPORT
-//#include "glad_wgl.h"
-////#include <GL/gl.h>
-////#include <GL/glu.h>
-////#include <GL/glext.h>
-////#include <GL/wglext.h>
+////#include "vkad.h"
+//#define VKAD_GLAPI_EXPORT
+//#include "vkad_wgl.h"
+////#include <VK/vk.h>
+////#include <VK/vku.h>
+////#include <VK/vkext.h>
+////#include <VK/wglext.h>
 //
 ////#define WGL_CONTEXT_MAJOR_VERSION_ARB 0x2091
 ////#define WGL_CONTEXT_MINOR_VERSION_ARB 0X2092
@@ -28,20 +28,20 @@
 //HGLRC initialize_vulkan_version(HDC hdc, int iMajor, int iMinor)
 //{
 //
-//   // Init GLFW
-//   //glfwInit();
+//   // Init VKFW
+//   //vkfwInit();
 //   // ... <snip> ... setup a window and a context
 //
-//   // Load all Vulkan functions using the glfw loader function
+//   // Load all Vulkan functions using the vkfw loader function
 //   // If you use SDL you can use: https://wiki.libsdl.org/SDL_GL_GetProcAddress
-//   //if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+//   //if (!vkadLoadGLLoader((VKADloadproc)vkfwGetProcAddress)) {
 //   //   std::cout << "Failed to initialize Vulkan context" << std::endl;
 //   //   return -1;
 //   //}
-//   if (!gladLoadWGL(hdc))
+//   if (!vkadLoadWGL(hdc))
 //   {
-//      // Problem: glewInit failed, something is seriously wrong.
-//      informationf("gladLoadWGL failed");
+//      // Problem: vkewInit failed, something is seriously wrong.
+//      informationf("vkadLoadWGL failed");
 //      //return false;
 //      throw resource_exception();
 //

@@ -40,7 +40,7 @@ namespace draw2d_vulkan
 
          ::DeleteDC(m_hdcFont);
          ::DeleteObject(m_hfont);
-         glDeleteLists(m_baseFont, 256);
+         vkDeleteLists(m_baseFont, 256);
 
       }
 
@@ -77,7 +77,7 @@ namespace draw2d_vulkan
       {
          ::DeleteDC(m_hdcFont);
          ::DeleteObject(m_hfont);
-         glDeleteLists(m_baseFont, 256);
+         vkDeleteLists(m_baseFont, 256);
       }
 
    }
@@ -94,7 +94,7 @@ namespace draw2d_vulkan
 
          ((font *)this)->m_hdcFont = ::CreateCompatibleDC(nullptr);
 
-         ((font *)this)->m_baseFont = glGenLists(256);								// Storage For 256 Characters
+         ((font *)this)->m_baseFont = vkGenLists(256);								// Storage For 256 Characters
 
          ((font *)this)->m_hfont = CreateFont(-m_fontsize.as_int(),							// Height Of Font
             0,								// Width Of Font

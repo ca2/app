@@ -210,7 +210,7 @@ namespace draw2d_vulkan
 
       bitmap->CreateCompatibleBitmap(pgraphics, 1, 1);
 
-      ::draw2d::bitmap * pbitmap = GL2D_GRAPHICS(pgraphics)->SelectObject(bitmap);
+      ::draw2d::bitmap * pbitmap = VK2D_GRAPHICS(pgraphics)->SelectObject(bitmap);
 
       if (pbitmap == nullptr)
       {
@@ -224,15 +224,15 @@ namespace draw2d_vulkan
       if(!create(size))
       {
 
-         GL2D_GRAPHICS(pgraphics)->SelectObject(pbitmap);
+         VK2D_GRAPHICS(pgraphics)->SelectObject(pbitmap);
 
          return false;
 
       }
 
-      bool bOk = GetDIBits(GL2D_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, m_size.cy(), m_pcolorref, &(m_info), DIB_RGB_COLORS) != false;
+      bool bOk = GetDIBits(VK2D_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, m_size.cy(), m_pcolorref, &(m_info), DIB_RGB_COLORS) != false;
 
-      GL2D_GRAPHICS(pgraphics)->SelectObject(pbitmap);
+      VK2D_GRAPHICS(pgraphics)->SelectObject(pbitmap);
 
       return bOk;
 
@@ -2550,7 +2550,7 @@ namespace draw2d_vulkan
 //
 //      //synchronous_lock synchronouslock(&m);
 //
-//      glFlush();
+//      vkFlush();
 //
 //      ::pointer<bitmap>b = m_pbitmap;
 //

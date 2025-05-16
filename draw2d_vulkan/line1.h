@@ -2,7 +2,7 @@
  * You can use this code however you want.
  * I just hope you to cite my name and the page of this technique:
  * http://artgrammer.blogspot.com/2011/05/drawing-nearly-perfect-2d-line-segments.html
- * http://www.codeproject.com/KB/openGL/gllinedraw.aspx
+ * http://www.codeproject.com/KB/openGL/vklinedraw.aspx
  * 
  * Enjoy. Chris Tsang.*/
 #ifndef VASE_REN_DRAFT_H
@@ -10,8 +10,8 @@
 #include <math.h>
 static inline double GET_ABS(double x) {return x>0?x:-x;}
 /*
- * this implementation uses only basic gl (vulkan 1.0)
- *   renders in immediate mode by glBegin/ glEnd
+ * this implementation uses only basic vk (vulkan 1.0)
+ *   renders in immediate mode by vkBegin/ vkEnd
  *   choose only 1 from vase_rend_draft_1.h and vase_rend_draft_2.h
  *   to your need. if you have no preference, just use vase_rend_draft_2.h
  */
@@ -24,12 +24,12 @@ static inline double GET_ABS(double x) {return x>0?x:-x;}
  * 
  * sample usage using alpha blending:
  * 
-  glEnable(GL_BLEND);
-  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-  glMatrixMode(GL_PROJECTION);
-  glPushMatrix();
-	glLoadIdentity();
-	glOrtho( 0,context_width,context_height,0,0.0f,100.0f);
+  vkEnable(VK_BLEND);
+  vkBlendFunc(VK_SRC_ALPHA, VK_ONE_MINUS_SRC_ALPHA);
+  vkMatrixMode(VK_PROJECTION);
+  vkPushMatrix();
+	vkLoadIdentity();
+	vkOrtho( 0,context_width,context_height,0,0.0f,100.0f);
 
 		line ( 10,100,100,300,		//coordinates
 			1.2,			//thickness in px
@@ -38,15 +38,15 @@ static inline double GET_ABS(double x) {return x>0?x:-x;}
 			true);			//enable alphablend
 
 		//more line() calls and other drawing code...
-  glPopMatrix();
-  glDisable(GL_BLEND); //restore blending options
+  vkPopMatrix();
+  vkDisable(VK_BLEND); //restore blending options
  *
  * and not using alpha blending (blend to background color):
  *
-  glMatrixMode(GL_PROJECTION);
-  glPushMatrix();
-	glLoadIdentity();
-	glOrtho( 0,context_width,context_height,0,0.0f,100.0f);
+  vkMatrixMode(VK_PROJECTION);
+  vkPushMatrix();
+	vkLoadIdentity();
+	vkOrtho( 0,context_width,context_height,0,0.0f,100.0f);
 
 		line ( 20,100,110,300,		//coordinates
 			1.2,			//thickness in px
@@ -55,7 +55,7 @@ static inline double GET_ABS(double x) {return x>0?x:-x;}
 			false);			//not using alphablend
 
 		//more line() calls and other drawing code...
-  glPopMatrix();
+  vkPopMatrix();
 */
 void line( double x1, double y1, double x2, double y2, //coordinates of the line
 	float w, //width/thickness of the line in pixel
@@ -162,53 +162,53 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 	x2-=cx*0.5; y2-=cy*0.5;
 	
 	//draw the line by triangle strip m:1
-glBegin(GL_TRIANGLE_STRIP);
-	if ( !alphablend) {glColor3f( Br,Bg,Bb);} else {glColor4f( Cr,Cg,Cb, 0);}
-	glVertex2f((float)(x1-tx-Rx-cx),(float)(y1-ty-Ry-cy)); //fading edge
-	glVertex2f((float)(x2-tx-Rx+cx),(float)(y2-ty-Ry+cy));
+vkBegin(VK_TRIANGLE_STRIP);
+	if ( !alphablend) {vkColor3f( Br,Bg,Bb);} else {vkColor4f( Cr,Cg,Cb, 0);}
+	vkVertex2f((float)(x1-tx-Rx-cx),(float)(y1-ty-Ry-cy)); //fading edge
+	vkVertex2f((float)(x2-tx-Rx+cx),(float)(y2-ty-Ry+cy));
 	
-	if ( !alphablend) {glColor3f( Cr,Cg,Cb);} else {glColor4f( Cr,Cg,Cb, A);}
-	glVertex2f((float)(x1-tx-cx), (float)(y1-ty-cy)); //aura
-	glVertex2f((float)(x2-tx+cx), (float)(y2-ty+cy));
-	glVertex2f((float)(x1+tx-cx), (float)(y1+ty-cy));
-	glVertex2f((float)(x2+tx+cx), (float)(y2+ty+cy));
+	if ( !alphablend) {vkColor3f( Cr,Cg,Cb);} else {vkColor4f( Cr,Cg,Cb, A);}
+	vkVertex2f((float)(x1-tx-cx), (float)(y1-ty-cy)); //aura
+	vkVertex2f((float)(x2-tx+cx), (float)(y2-ty+cy));
+	vkVertex2f((float)(x1+tx-cx), (float)(y1+ty-cy));
+	vkVertex2f((float)(x2+tx+cx), (float)(y2+ty+cy));
 	
-	if ( !alphablend) {glColor3f( Br,Bg,Bb);} else {glColor4f( Cr,Cg,Cb, 0);}
-	glVertex2f((float)(x1+tx+Rx-cx), (float)(y1+ty+Ry-cy)); //fading edge
-	glVertex2f((float)(x2+tx+Rx+cx), (float)(y2+ty+Ry+cy));
-   glEnd();
+	if ( !alphablend) {vkColor3f( Br,Bg,Bb);} else {vkColor4f( Cr,Cg,Cb, 0);}
+	vkVertex2f((float)(x1+tx+Rx-cx), (float)(y1+ty+Ry-cy)); //fading edge
+	vkVertex2f((float)(x2+tx+Rx+cx), (float)(y2+ty+Ry+cy));
+   vkEnd();
 
 	//cap
 	if ( w < 3) {
 		//do not draw cap
 	} else {
 		//draw cap
-	glBegin(GL_TRIANGLE_STRIP);
-		if ( !alphablend) {glColor3f( Br,Bg,Bb);} else {glColor4f( Cr,Cg,Cb, 0);}
-		glVertex2f((float)(x1-tx-Rx-cx), (float)(y1-ty-Ry-cy));
-		glVertex2f((float)(x1-tx-Rx), (float)(y1-ty-Ry));
-		if ( !alphablend) {glColor3f( Cr,Cg,Cb);} else {glColor4f( Cr,Cg,Cb, A);}
-		glVertex2f((float)(x1-tx-cx), (float)(y1-ty-cy));
-		if ( !alphablend) {glColor3f( Br,Bg,Bb);} else {glColor4f( Cr,Cg,Cb, 0);}
-		glVertex2f((float)(x1+tx+Rx), (float)(y1+ty+Ry));
-		if ( !alphablend) {glColor3f( Cr,Cg,Cb);} else {glColor4f( Cr,Cg,Cb, A);}
-		glVertex2f((float)(x1+tx-cx), (float)(y1+ty-cy));
-		if ( !alphablend) {glColor3f( Br,Bg,Bb);} else {glColor4f( Cr,Cg,Cb, 0);}
-		glVertex2f((float)(x1+tx+Rx-cx), (float)(y1+ty+Ry-cy));
-	glEnd();
-	glBegin(GL_TRIANGLE_STRIP);
-		if ( !alphablend) {glColor3f( Br,Bg,Bb);} else {glColor4f( Cr,Cg,Cb, 0);}
-		glVertex2f((float)(x2-tx-Rx+cx), (float)(y2-ty-Ry+cy));
-		glVertex2f((float)(x2-tx-Rx), (float)(y2-ty-Ry));
-		if ( !alphablend) {glColor3f( Cr,Cg,Cb);} else {glColor4f( Cr,Cg,Cb, A);}
-		glVertex2f((float)(x2-tx+cx), (float)(y2-ty+cy));
-		if ( !alphablend) {glColor3f( Br,Bg,Bb);} else {glColor4f( Cr,Cg,Cb, 0);}
-		glVertex2f((float)(x2+tx+Rx), (float)(y2+ty+Ry));
-		if ( !alphablend) {glColor3f( Cr,Cg,Cb);} else {glColor4f( Cr,Cg,Cb, A);}
-		glVertex2f((float)(x2+tx+cx), (float)(y2+ty+cy));
-		if ( !alphablend) {glColor3f( Br,Bg,Bb);} else {glColor4f( Cr,Cg,Cb, 0);}
-		glVertex2f((float)(x2+tx+Rx+cx), (float)(y2 + ty + Ry + cy));
-	glEnd();
+	vkBegin(VK_TRIANGLE_STRIP);
+		if ( !alphablend) {vkColor3f( Br,Bg,Bb);} else {vkColor4f( Cr,Cg,Cb, 0);}
+		vkVertex2f((float)(x1-tx-Rx-cx), (float)(y1-ty-Ry-cy));
+		vkVertex2f((float)(x1-tx-Rx), (float)(y1-ty-Ry));
+		if ( !alphablend) {vkColor3f( Cr,Cg,Cb);} else {vkColor4f( Cr,Cg,Cb, A);}
+		vkVertex2f((float)(x1-tx-cx), (float)(y1-ty-cy));
+		if ( !alphablend) {vkColor3f( Br,Bg,Bb);} else {vkColor4f( Cr,Cg,Cb, 0);}
+		vkVertex2f((float)(x1+tx+Rx), (float)(y1+ty+Ry));
+		if ( !alphablend) {vkColor3f( Cr,Cg,Cb);} else {vkColor4f( Cr,Cg,Cb, A);}
+		vkVertex2f((float)(x1+tx-cx), (float)(y1+ty-cy));
+		if ( !alphablend) {vkColor3f( Br,Bg,Bb);} else {vkColor4f( Cr,Cg,Cb, 0);}
+		vkVertex2f((float)(x1+tx+Rx-cx), (float)(y1+ty+Ry-cy));
+	vkEnd();
+	vkBegin(VK_TRIANGLE_STRIP);
+		if ( !alphablend) {vkColor3f( Br,Bg,Bb);} else {vkColor4f( Cr,Cg,Cb, 0);}
+		vkVertex2f((float)(x2-tx-Rx+cx), (float)(y2-ty-Ry+cy));
+		vkVertex2f((float)(x2-tx-Rx), (float)(y2-ty-Ry));
+		if ( !alphablend) {vkColor3f( Cr,Cg,Cb);} else {vkColor4f( Cr,Cg,Cb, A);}
+		vkVertex2f((float)(x2-tx+cx), (float)(y2-ty+cy));
+		if ( !alphablend) {vkColor3f( Br,Bg,Bb);} else {vkColor4f( Cr,Cg,Cb, 0);}
+		vkVertex2f((float)(x2+tx+Rx), (float)(y2+ty+Ry));
+		if ( !alphablend) {vkColor3f( Cr,Cg,Cb);} else {vkColor4f( Cr,Cg,Cb, A);}
+		vkVertex2f((float)(x2+tx+cx), (float)(y2+ty+cy));
+		if ( !alphablend) {vkColor3f( Br,Bg,Bb);} else {vkColor4f( Cr,Cg,Cb, 0);}
+		vkVertex2f((float)(x2+tx+Rx+cx), (float)(y2 + ty + Ry + cy));
+	vkEnd();
 	}
 }
 
@@ -257,21 +257,21 @@ void hair_line( double x1, double y1, double x2, double y2, bool alphablend=0)
 	}
 	
 	//draw the line by triangle strip
-glBegin(GL_TRIANGLE_STRIP);
-	if ( !alphablend) {glColor3f( 1.0f,1.0f,1.0f);} else {glColor4f((float) C, (float)C, (float)C, 0.0f);}
-	glVertex2f((float)(x1-tx-Rx), (float)(y1-ty-Ry)); //fading edge
-	glVertex2f((float)(x2-tx-Rx), (float)(y2-ty-Ry));
+vkBegin(VK_TRIANGLE_STRIP);
+	if ( !alphablend) {vkColor3f( 1.0f,1.0f,1.0f);} else {vkColor4f((float) C, (float)C, (float)C, 0.0f);}
+	vkVertex2f((float)(x1-tx-Rx), (float)(y1-ty-Ry)); //fading edge
+	vkVertex2f((float)(x2-tx-Rx), (float)(y2-ty-Ry));
 	
-	glColor3f((float)(C), (float)(C), (float)(C));
-	glVertex2f((float)(x1-tx), (float)(y1-ty)); //aura
-	glVertex2f((float)(x2-tx), (float)(y2-ty));
-	glVertex2f((float)(x1+tx), (float)(y1+ty));
-	glVertex2f((float)(x2+tx), (float)(y2+ty));
+	vkColor3f((float)(C), (float)(C), (float)(C));
+	vkVertex2f((float)(x1-tx), (float)(y1-ty)); //aura
+	vkVertex2f((float)(x2-tx), (float)(y2-ty));
+	vkVertex2f((float)(x1+tx), (float)(y1+ty));
+	vkVertex2f((float)(x2+tx), (float)(y2+ty));
 	
-	if ( !alphablend) {glColor3f( 1.f,1.f,1.f);} else {glColor4f((float) C, (float)C, (float)C, 0.f);}
-	glVertex2f((float)(x1+tx+Rx), (float)(y1+ty+Ry)); //fading edge
-	glVertex2f((float)(x2+tx+Rx), (float)(y2+ty+Ry));
-glEnd();
+	if ( !alphablend) {vkColor3f( 1.f,1.f,1.f);} else {vkColor4f((float) C, (float)C, (float)C, 0.f);}
+	vkVertex2f((float)(x1+tx+Rx), (float)(y1+ty+Ry)); //fading edge
+	vkVertex2f((float)(x2+tx+Rx), (float)(y2+ty+Ry));
+vkEnd();
 }
 
 /*as a fall back of line()*/
@@ -280,12 +280,12 @@ void line_raw( double x1, double y1, double x2, double y2,
 	double Cr, double Cg, double Cb,
 	double,double,double, bool)
 {
-	glLineWidth((float)(w));
-glBegin(GL_LINES);
-	glColor3f((float)(Cr), (float)(Cg), (float)(Cb));
-	glVertex2f((float)(x1), (float)(y1));
-	glVertex2f((float)(x2), (float)(y2));
-glEnd();
+	vkLineWidth((float)(w));
+vkBegin(VK_LINES);
+	vkColor3f((float)(Cr), (float)(Cg), (float)(Cb));
+	vkVertex2f((float)(x1), (float)(y1));
+	vkVertex2f((float)(x2), (float)(y2));
+vkEnd();
 }
 
 #endif

@@ -19,10 +19,10 @@
 
 #include <math.h>
 #include <dwmapi.h>
-//#include <gl/freeglut.h>
-#define GLAD_GLAPI_EXPORT
+//#include <vk/freeglut.h>
+#define VKAD_GLAPI_EXPORT
 
-#include "glad_wgl.h"
+#include "vkad_wgl.h"
 //#define WGL_CONTEXT_FLAGS_ARB 0X2094
 #define WGL_CONTEXT_COREPROFILE_BIT_ARB 0x00000001
 #define WGL_CONTEXT_PROFILE_MASK_ARB 0x9126
@@ -345,21 +345,21 @@ namespace draw2d_vulkan
       //   informationf("last-error code: %d\n", GetLastError());
       //   return false;
       //}
-      ////glfwInit();
+      ////vkfwInit();
       //// ... <snip> ... setup a window and a context
       //
       //auto wglCurrentContext = wglGetCurrentContext();
 
-      //// Load all Vulkan functions using the glfw loader function
+      //// Load all Vulkan functions using the vkfw loader function
       //// If you use SDL you can use: https://wiki.libsdl.org/SDL_GL_GetProcAddress
-      ////if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+      ////if (!vkadLoadGLLoader((VKADloadproc)vkfwGetProcAddress)) {
       ////   std::cout << "Failed to initialize Vulkan context" << std::endl;
       ////   return -1;
       ////}
-      //if (!gladLoadWGL(hdc))
+      //if (!vkadLoadWGL(hdc))
       //{
-      //   // Problem: glewInit failed, something is seriously wrong.
-      //   informationf("gladLoadWGL failed");
+      //   // Problem: vkewInit failed, something is seriously wrong.
+      //   informationf("vkadLoadWGL failed");
       //   //return false;
       //   //throw resource_exception();
 
@@ -528,7 +528,7 @@ namespace draw2d_vulkan
 
       ::vulkan::resize(pbitmap->get_size(), bYSwap);
 
-      //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+      //vkClear(VK_COLOR_BUFFER_BIT | VK_DEPTH_BUFFER_BIT);
 
       m_pbitmap = pbitmap;
 
@@ -850,7 +850,7 @@ namespace draw2d_vulkan
       //      ppoints[i].Y = lpPoints[i].y();
       //   }
 
-      //   bOk1 = m_pgraphics->DrawLines(gl2d_pen(),ppoints,(::double) nCount) == plusplus::Status::Ok;
+      //   bOk1 = m_pgraphics->DrawLines(vk2d_pen(),ppoints,(::double) nCount) == plusplus::Status::Ok;
 
       //}
       //catch(...)
@@ -919,7 +919,7 @@ namespace draw2d_vulkan
 
       //::plusplus::double_rectangle ::double_rectangle(x1,y1,w,h);
 
-      //return m_pgraphics->DrawArc(gl2d_pen(),rectangle,(plusplus::REAL) start,(plusplus::REAL) extends) == plusplus::Status::Ok;
+      //return m_pgraphics->DrawArc(vk2d_pen(),rectangle,(plusplus::REAL) start,(plusplus::REAL) extends) == plusplus::Status::Ok;
 
       //return true;
 
@@ -931,7 +931,7 @@ namespace draw2d_vulkan
 
    //   //::plusplus::rectF float_rectangle((plusplus::REAL) x1,(plusplus::REAL) y1,(plusplus::REAL) w,(plusplus::REAL) h);
 
-   //   //return m_pgraphics->DrawArc(gl2d_pen(),float_rectangle,(plusplus::REAL) start,(plusplus::REAL) extends) == plusplus::Status::Ok;
+   //   //return m_pgraphics->DrawArc(vk2d_pen(),float_rectangle,(plusplus::REAL) start,(plusplus::REAL) extends) == plusplus::Status::Ok;
 
    //   return true;
 
@@ -941,13 +941,13 @@ namespace draw2d_vulkan
    void graphics::fill_rectangle(const ::double_rectangle & rectangle, ::draw2d::brush* pbrush)
    {
 
-      glBegin(GL_QUADS);
+      vkBegin(VK_QUADS);
 
       set(pbrush);
 
       ::vulkan::vertex2f(rectangle);
 
-      glEnd();
+      vkEnd();
 
       //return false;
 
@@ -1271,7 +1271,7 @@ namespace draw2d_vulkan
 
    //   //set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-   //   //return (m_pgraphics->DrawEllipse(gl2d_pen(), x1, y1, x2 - x1, y2 - y1)) == plusplus::Status::Ok;
+   //   //return (m_pgraphics->DrawEllipse(vk2d_pen(), x1, y1, x2 - x1, y2 - y1)) == plusplus::Status::Ok;
 
    //   return true;
    //}
@@ -1282,7 +1282,7 @@ namespace draw2d_vulkan
 
       //set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-      //return (m_pgraphics->DrawEllipse(gl2d_pen(),rectangleParam.left(),rectangleParam.top(),rectangleParam.right() - rectangleParam.left(),rectangleParam.bottom() - rectangleParam.top())) == plusplus::Status::Ok;
+      //return (m_pgraphics->DrawEllipse(vk2d_pen(),rectangleParam.left(),rectangleParam.top(),rectangleParam.right() - rectangleParam.left(),rectangleParam.bottom() - rectangleParam.top())) == plusplus::Status::Ok;
 
       //return true;
 
@@ -1294,7 +1294,7 @@ namespace draw2d_vulkan
 
    //   //set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-   //   //return (m_pgraphics->FillEllipse(gl2d_brush(), x1, y1, x2 - x1, y2 - y1)) == plusplus::Status::Ok;
+   //   //return (m_pgraphics->FillEllipse(vk2d_brush(), x1, y1, x2 - x1, y2 - y1)) == plusplus::Status::Ok;
 
    //   return true;
 
@@ -1306,7 +1306,7 @@ namespace draw2d_vulkan
 
       //set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-//      return (m_pgraphics->FillEllipse(gl2d_brush(), rectangleParam.left(), rectangleParam.top(), rectangleParam.right() - rectangleParam.left(), rectangleParam.bottom() - rectangleParam.top())) == plusplus::Status::Ok;
+//      return (m_pgraphics->FillEllipse(vk2d_brush(), rectangleParam.left(), rectangleParam.top(), rectangleParam.right() - rectangleParam.left(), rectangleParam.bottom() - rectangleParam.top())) == plusplus::Status::Ok;
 
       //return true;
 
@@ -1318,7 +1318,7 @@ namespace draw2d_vulkan
 
    //   //set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-   //   //return (m_pgraphics->DrawEllipse(gl2d_pen(),(plusplus::REAL)x1,(plusplus::REAL)y1,(plusplus::REAL)(x2 - x1),(plusplus::REAL)(y2 - y1))) == plusplus::Status::Ok;
+   //   //return (m_pgraphics->DrawEllipse(vk2d_pen(),(plusplus::REAL)x1,(plusplus::REAL)y1,(plusplus::REAL)(x2 - x1),(plusplus::REAL)(y2 - y1))) == plusplus::Status::Ok;
 
    //   return true;
 
@@ -1330,7 +1330,7 @@ namespace draw2d_vulkan
 
    //   //set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-   //   //return (m_pgraphics->DrawEllipse(gl2d_pen(),(plusplus::REAL)rectangleParam.left(),(plusplus::REAL)rectangleParam.top(),
+   //   //return (m_pgraphics->DrawEllipse(vk2d_pen(),(plusplus::REAL)rectangleParam.left(),(plusplus::REAL)rectangleParam.top(),
    //   //                                 (plusplus::REAL)(rectangleParam.right() - rectangleParam.left()),
    //   //                                 (plusplus::REAL)(rectangleParam.bottom() - rectangleParam.top()))) == plusplus::Status::Ok;
 
@@ -1344,7 +1344,7 @@ namespace draw2d_vulkan
 
    //   //set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-   //   //return (m_pgraphics->FillEllipse(gl2d_brush(),(plusplus::REAL)x1,(plusplus::REAL)y1,(plusplus::REAL)(x2 - x1),(plusplus::REAL)(y2 - y1))) == plusplus::Status::Ok;
+   //   //return (m_pgraphics->FillEllipse(vk2d_brush(),(plusplus::REAL)x1,(plusplus::REAL)y1,(plusplus::REAL)(x2 - x1),(plusplus::REAL)(y2 - y1))) == plusplus::Status::Ok;
 
    //   return true;
 
@@ -1356,7 +1356,7 @@ namespace draw2d_vulkan
 
    //   //set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-   //   //return (m_pgraphics->FillEllipse(gl2d_brush(),(plusplus::REAL)rectangleParam.left(),(plusplus::REAL)rectangleParam.top(),
+   //   //return (m_pgraphics->FillEllipse(vk2d_brush(),(plusplus::REAL)rectangleParam.left(),(plusplus::REAL)rectangleParam.top(),
    //   //                                 (plusplus::REAL)(rectangleParam.right() - rectangleParam.left()),
    //   //                                 (plusplus::REAL)(rectangleParam.bottom() - rectangleParam.top()))) == plusplus::Status::Ok;
 
@@ -1412,7 +1412,7 @@ namespace draw2d_vulkan
       //      set_smooth_mode(::draw2d::e_smooth_mode_high);
 
 
-      //      bOk1 = m_pgraphics->FillPolygon(gl2d_brush(), ppoints, (::double) nCount, gl2d_get_fill_mode()) == plusplus::Status::Ok;
+      //      bOk1 = m_pgraphics->FillPolygon(vk2d_brush(), ppoints, (::double) nCount, vk2d_get_fill_mode()) == plusplus::Status::Ok;
 
       //   }
       //   catch(...)
@@ -1456,7 +1456,7 @@ namespace draw2d_vulkan
 
    //   //      m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeHighQualityBicubic);
 
-   //   //      bOk1 = m_pgraphics->FillPolygon(gl2d_brush(), ppoints, (::double)  nCount, gl2d_get_fill_mode()) == plusplus::Status::Ok;
+   //   //      bOk1 = m_pgraphics->FillPolygon(vk2d_brush(), ppoints, (::double)  nCount, vk2d_get_fill_mode()) == plusplus::Status::Ok;
 
    //   //   }
    //   //   catch(...)
@@ -1502,7 +1502,7 @@ namespace draw2d_vulkan
 
       //   set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-      //   bOk1 = m_pgraphics->DrawPolygon(gl2d_pen(), ppoints, (::double) nCount) == plusplus::Status::Ok;
+      //   bOk1 = m_pgraphics->DrawPolygon(vk2d_pen(), ppoints, (::double) nCount) == plusplus::Status::Ok;
 
       //}
       //catch (...)
@@ -1545,7 +1545,7 @@ namespace draw2d_vulkan
 
    //   //   m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeHighQualityBicubic);
 
-   //   //   bOk1 = m_pgraphics->DrawPolygon(gl2d_pen(),ppoints,(::double) nCount) == plusplus::Status::Ok;
+   //   //   bOk1 = m_pgraphics->DrawPolygon(vk2d_pen(),ppoints,(::double) nCount) == plusplus::Status::Ok;
 
    //   //}
    //   //catch(...)
@@ -1595,9 +1595,9 @@ namespace draw2d_vulkan
       //   m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeHighQualityBicubic);
 
 
-      //   bOk1 = m_pgraphics->FillPolygon(gl2d_brush(), ppoints, (::double) nCount, gl2d_get_fill_mode()) == plusplus::Status::Ok;
+      //   bOk1 = m_pgraphics->FillPolygon(vk2d_brush(), ppoints, (::double) nCount, vk2d_get_fill_mode()) == plusplus::Status::Ok;
 
-      //   bOk2 = m_pgraphics->DrawPolygon(gl2d_pen(), ppoints, (::double) nCount) == plusplus::Status::Ok;
+      //   bOk2 = m_pgraphics->DrawPolygon(vk2d_pen(), ppoints, (::double) nCount) == plusplus::Status::Ok;
 
       //}
       //catch(...)
@@ -1637,9 +1637,9 @@ namespace draw2d_vulkan
 
    //   //plusplus::rectF float_rectangle((plusplus::REAL) x1, (plusplus::REAL) y1, (plusplus::REAL) (x2 - x1), (plusplus::REAL) (y2 - y1));
 
-   //   //bool bOk1 = m_pgraphics->FillRectangle(gl2d_brush(), float_rectangle) == plusplus::Status::Ok;
+   //   //bool bOk1 = m_pgraphics->FillRectangle(vk2d_brush(), float_rectangle) == plusplus::Status::Ok;
 
-   //   //bool bOk2 = m_pgraphics->DrawRectangle(gl2d_pen(), float_rectangle) == plusplus::Status::Ok;
+   //   //bool bOk2 = m_pgraphics->DrawRectangle(vk2d_pen(), float_rectangle) == plusplus::Status::Ok;
 
    //   //return bOk1 && bOk2;
 
@@ -1685,9 +1685,9 @@ namespace draw2d_vulkan
    //   //   }
 
 
-   //   //   bOk1 = m_pgraphics->FillPolygon(gl2d_brush(),ppoints,(::double) nCount,gl2d_get_fill_mode()) == plusplus::Status::Ok;
+   //   //   bOk1 = m_pgraphics->FillPolygon(vk2d_brush(),ppoints,(::double) nCount,vk2d_get_fill_mode()) == plusplus::Status::Ok;
 
-   //   //   bOk2 = m_pgraphics->DrawPolygon(gl2d_pen(),ppoints,(::double) nCount) == plusplus::Status::Ok;
+   //   //   bOk2 = m_pgraphics->DrawPolygon(vk2d_pen(),ppoints,(::double) nCount) == plusplus::Status::Ok;
 
    //   //}
    //   //catch(...)
@@ -1730,11 +1730,11 @@ namespace draw2d_vulkan
       if (::is_set(ppen))
       {
 
-         glLineWidth((float)(ppen->m_dWidth));
+         vkLineWidth((float)(ppen->m_dWidth));
 
       }
 
-      glBegin(GL_LINE_LOOP);
+      vkBegin(VK_LINE_LOOP);
 
       if (::is_set(ppen))
       {
@@ -1745,7 +1745,7 @@ namespace draw2d_vulkan
       
       ::vulkan::vertex2f(rectangle);
       
-      glEnd();
+      vkEnd();
 
       //return true;
 
@@ -1826,12 +1826,12 @@ namespace draw2d_vulkan
 //
 //         //pbitmap->create_texture(0);
 //
-//         //glBegin(GL_QUADS);
+//         //vkBegin(VK_QUADS);
 //         //// Front Face
-//         //glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f, -1.0f, 1.0f);
-//         //glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f, -1.0f, 1.0f);
-//         //glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f, 1.0f, 1.0f);
-//         //glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f, 1.0f, 1.0f);
+//         //vkTexCoord2f(0.0f, 0.0f); vkVertex3f(-1.0f, -1.0f, 1.0f);
+//         //vkTexCoord2f(1.0f, 0.0f); vkVertex3f(1.0f, -1.0f, 1.0f);
+//         //vkTexCoord2f(1.0f, 1.0f); vkVertex3f(1.0f, 1.0f, 1.0f);
+//         //vkTexCoord2f(0.0f, 1.0f); vkVertex3f(-1.0f, 1.0f, 1.0f);
 //
 //
 ////
@@ -1846,7 +1846,7 @@ namespace draw2d_vulkan
 //         return false;
 //      }
 ////
-////      //return ::BitBlt(m_hdc, x, y, nWidth, nHeight, GL2D_HDC(pgraphicsSrc), xSrc, ySrc);
+////      //return ::BitBlt(m_hdc, x, y, nWidth, nHeight, VK2D_HDC(pgraphicsSrc), xSrc, ySrc);
 ////
 ////gdi_fallback:
 ////
@@ -1855,7 +1855,7 @@ namespace draw2d_vulkan
 ////      if(hdcDst == nullptr)
 ////         return false;
 ////
-////      HDC hdcSrc = GL2D_GRAPHICS(pgraphicsSrc)->get_hdc();
+////      HDC hdcSrc = VK2D_GRAPHICS(pgraphicsSrc)->get_hdc();
 ////
 ////      if(hdcSrc == nullptr)
 ////      {
@@ -1868,7 +1868,7 @@ namespace draw2d_vulkan
 ////
 ////      bool bOk = ::BitBlt(hdcDst, x, y, nWidth, nHeight, hdcSrc, x, y, dwRop) != false;
 ////
-////      GL2D_GRAPHICS(pgraphicsSrc)->release_hdc(hdcSrc);
+////      VK2D_GRAPHICS(pgraphicsSrc)->release_hdc(hdcSrc);
 ////
 ////      release_hdc(hdcDst);
 ////
@@ -1903,7 +1903,7 @@ namespace draw2d_vulkan
 //
 //      //return false;
 //
-//      ////return ::StretchBlt(m_hdc, x, y, nWidth, nHeight, GL2D_HDC(pgraphicsSrc), xSrc, ySrc, nSrcWidth, nSrcHeight);
+//      ////return ::StretchBlt(m_hdc, x, y, nWidth, nHeight, VK2D_HDC(pgraphicsSrc), xSrc, ySrc, nSrcWidth, nSrcHeight);
 //
 //      return true;
 //
@@ -2083,10 +2083,10 @@ namespace draw2d_vulkan
 
       //graphics * pgraphics = ((graphics *)this);
 
-      //if(pgraphics->gl2d_font() == nullptr)
+      //if(pgraphics->vk2d_font() == nullptr)
       //   return false;
 
-      //plusplus::Font * pfont = pgraphics->gl2d_font();
+      //plusplus::Font * pfont = pgraphics->vk2d_font();
 
       //plusplus::FontFamily family;
 
@@ -2111,14 +2111,14 @@ namespace draw2d_vulkan
 
       //const plusplus::FontFamily * pfamilyMono = family.GenericMonospace();
 
-      //::plusplus::Font font2(pfamilyMono, pfamilyMono->GetEmHeight(((graphics * )this)->gl2d_font()->GetStyle()));
+      //::plusplus::Font font2(pfamilyMono, pfamilyMono->GetEmHeight(((graphics * )this)->vk2d_font()->GetStyle()));
 
       //wstring wstr(L"123AWZwmc123AWZwmcpQg");
       //plusplus::rectF ::double_rectangle(0.f, 0.f, 1024.f * 1024.f, 1024.f * 1024.f);
       //plusplus::rectF rect2;
       //plusplus::PointF origin(0, 0);
 
-      //m_pgraphics->MeasureString(wstr, (::double) wstr.get_length(), ((graphics * )this)->gl2d_font(), origin, &rectangle);
+      //m_pgraphics->MeasureString(wstr, (::double) wstr.get_length(), ((graphics * )this)->vk2d_font(), origin, &rectangle);
 
 
       ///*wstr = L"";
@@ -2405,7 +2405,7 @@ namespace draw2d_vulkan
 //                          double xSrc, double ySrc, ::draw2d::bitmap& maskBitmap, double xMask, double yMask)
 //   {
 //      // ASSERT(m_hdc != nullptr);
-//      //return ::MaskBlt(m_hdc, x, y, nWidth, nHeight, GL2D_HDC(pgraphicsSrc),
+//      //return ::MaskBlt(m_hdc, x, y, nWidth, nHeight, VK2D_HDC(pgraphicsSrc),
 //        //               xSrc, ySrc,  (HBITMAP)maskBitmap.get_os_data(), xMask, yMask, dwRop) != false;
 //      return 0;
 //
@@ -2658,7 +2658,7 @@ namespace draw2d_vulkan
    void graphics::fill_path()
    {
 
-      //return m_pgraphics->FillPath(gl2d_brush(), m_ppath) == plusplus::Status::Ok;
+      //return m_pgraphics->FillPath(vk2d_brush(), m_ppath) == plusplus::Status::Ok;
       //return true;
 
    }
@@ -2728,9 +2728,9 @@ namespace draw2d_vulkan
    //void graphics::StrokeAndFillPath()
    //{
 
-   //   //bool bOk1 = m_pgraphics->FillPath(gl2d_brush(), m_ppathPaint) == plusplus::Status::Ok;
+   //   //bool bOk1 = m_pgraphics->FillPath(vk2d_brush(), m_ppathPaint) == plusplus::Status::Ok;
 
-   //   //bool bOk2 = m_pgraphics->DrawPath(gl2d_pen(), m_ppathPaint) == plusplus::Status::Ok;
+   //   //bool bOk2 = m_pgraphics->DrawPath(vk2d_pen(), m_ppathPaint) == plusplus::Status::Ok;
 
    //   //return bOk1 && bOk2;
 
@@ -2742,7 +2742,7 @@ namespace draw2d_vulkan
 //   void graphics::StrokePath()
 //   {
 //
-////      return m_pgraphics->DrawPath(gl2d_pen(), m_ppathPaint) == plusplus::Status::Ok;
+////      return m_pgraphics->DrawPath(vk2d_pen(), m_ppathPaint) == plusplus::Status::Ok;
 //
 //      //return true;
 //
@@ -2752,7 +2752,7 @@ namespace draw2d_vulkan
    //void graphics::WidenPath()
    //{
 
-   //   //return m_ppath->Widen(gl2d_pen()) == plusplus::Status::Ok;
+   //   //return m_ppath->Widen(vk2d_pen()) == plusplus::Status::Ok;
 
    //   //return true;
 
@@ -2766,7 +2766,7 @@ namespace draw2d_vulkan
       //m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeHighQualityBicubic);
 
 
-      //return m_pgraphics->DrawPath(gl2d_pen(),(dynamic_cast < ::draw2d_vulkan::path * > (ppath))->get_os_path(m_pgraphics)) == plusplus::Status::Ok;
+      //return m_pgraphics->DrawPath(vk2d_pen(),(dynamic_cast < ::draw2d_vulkan::path * > (ppath))->get_os_path(m_pgraphics)) == plusplus::Status::Ok;
       //return true;
 
    }
@@ -2785,7 +2785,7 @@ namespace draw2d_vulkan
    void graphics::fill(::draw2d::path * ppath)
    {
 
-      //return m_pgraphics->FillPath(gl2d_brush(),(dynamic_cast < ::draw2d_vulkan::path * > (ppath))->get_os_path(m_pgraphics)) == plusplus::Status::Ok;
+      //return m_pgraphics->FillPath(vk2d_brush(),(dynamic_cast < ::draw2d_vulkan::path * > (ppath))->get_os_path(m_pgraphics)) == plusplus::Status::Ok;
 
       //return true;
 
@@ -3089,7 +3089,7 @@ namespace draw2d_vulkan
       }
 
       return ::AlphaBlend(m_hdc, xDest, yDest,
-         nDestWidth, nDestHeight, GL2D_HDC(pgraphicsSrc), xSrc, ySrc, nSrcWidth,
+         nDestWidth, nDestHeight, VK2D_HDC(pgraphicsSrc), xSrc, ySrc, nSrcWidth,
          nSrcHeight, blend) != false;
    }*/
 
@@ -3099,7 +3099,7 @@ namespace draw2d_vulkan
 
    //   // ASSERT(m_hdc != nullptr);
 
-   //   //return ::TransparentBlt(m_hdc, xDest, yDest,  nDestWidth, nDestHeight, GL2D_HDC(pgraphicsSrc), xSrc, ySrc, nSrcWidth,  nSrcHeight, crTransparent) != false;
+   //   //return ::TransparentBlt(m_hdc, xDest, yDest,  nDestWidth, nDestHeight, VK2D_HDC(pgraphicsSrc), xSrc, ySrc, nSrcWidth,  nSrcHeight, crTransparent) != false;
 
    //   return true;
 
@@ -4022,19 +4022,19 @@ namespace draw2d_vulkan
 
       thread_select();
 
-      glMatrixMode(GL_MODELVIEW);
-      glLoadIdentity();
+      vkMatrixMode(VK_MODELVIEW);
+      vkLoadIdentity();
 
-///      GLdouble m[16];
+///      VKdouble m[16];
       
-      //glGetDoublev(GL_MODELVIEW_MATRIX, m);
+      //vkGetDoublev(VK_MODELVIEW_MATRIX, m);
 
-      //glTranslatef(matrix.c1, matrix.c2, 0.f);
+      //vkTranslatef(matrix.c1, matrix.c2, 0.f);
 
-      //glGetDoublev(GL_MODELVIEW_MATRIX, m);
+      //vkGetDoublev(VK_MODELVIEW_MATRIX, m);
 
 
-      GLdouble m[16];
+      VKdouble m[16];
 
       m[0] = matrix.a1;
       m[1] = matrix.b1;
@@ -4058,7 +4058,7 @@ namespace draw2d_vulkan
       m[14] = 0.0;
       m[15] = 1.0;
 
-      glLoadMatrixd((const GLdouble *) m);
+      vkLoadMatrixd((const VKdouble *) m);
 
       //return false;
 
@@ -4872,7 +4872,7 @@ namespace draw2d_vulkan
 
       //   m_pgraphics->SetTransform(pmNew);
 
-      //   m_pgraphics->DrawString(utf8_to_unicode(str),-1,gl2d_font(),float_rectangle,&format,gl2d_brush());
+      //   m_pgraphics->DrawString(utf8_to_unicode(str),-1,vk2d_font(),float_rectangle,&format,vk2d_brush());
       //}
       //catch(...)
       //{
@@ -5032,51 +5032,51 @@ namespace draw2d_vulkan
 //      //if (FT_New_Face(ft, "fonts/arial.ttf", 0, &face))
 //      //   std::cout << "ERROR::FREETYPE: Failed to load font" << std::endl;
 //
-//      //// Set int_size to load glyphs as
+//      //// Set int_size to load vkyphs as
 //      //FT_Set_Pixel_Sizes(face, 0, 48);
 //
 //      //// Disable unsigned char-alignment restriction
-//      //glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+//      //vkPixelStorei(VK_UNPACK_ALIGNMENT, 1);
 //
 //      //// Load first 128 characters of ASCII set
-//      //for (GLubyte c = 0; c < 128; c++)
+//      //for (VKubyte c = 0; c < 128; c++)
 //      //{
-//      //   // Load character glyph 
+//      //   // Load character vkyph 
 //      //   if (FT_Load_Char(face, c, FT_LOAD_RENDER))
 //      //   {
 //      //      std::cout << "ERROR::FREETYTPE: Failed to load Glyph" << std::endl;
 //      //      continue;
 //      //   }
 //      //   // Generate texture
-//      //   GLuint texture;
-//      //   glGenTextures(1, &texture);
-//      //   glBindTexture(GL_TEXTURE_2D, texture);
-//      //   glTexImage2D(
-//      //      GL_TEXTURE_2D,
+//      //   VKuint texture;
+//      //   vkGenTextures(1, &texture);
+//      //   vkBindTexture(VK_TEXTURE_2D, texture);
+//      //   vkTexImage2D(
+//      //      VK_TEXTURE_2D,
 //      //      0,
-//      //      GL_RED,
-//      //      face->glyph->bitmap.width,
-//      //      face->glyph->bitmap.rows,
+//      //      VK_RED,
+//      //      face->vkyph->bitmap.width,
+//      //      face->vkyph->bitmap.rows,
 //      //      0,
-//      //      GL_RED,
-//      //      GL_UNSIGNED_BYTE,
-//      //      face->glyph->bitmap.buffer
+//      //      VK_RED,
+//      //      VK_UNSIGNED_BYTE,
+//      //      face->vkyph->bitmap.buffer
 //      //   );
 //      //   // Set texture options
-//      //   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-//      //   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-//      //   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-//      //   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+//      //   vkTexParameteri(VK_TEXTURE_2D, VK_TEXTURE_WRAP_S, VK_CLAMP_TO_EDGE);
+//      //   vkTexParameteri(VK_TEXTURE_2D, VK_TEXTURE_WRAP_T, VK_CLAMP_TO_EDGE);
+//      //   vkTexParameteri(VK_TEXTURE_2D, VK_TEXTURE_MIN_FILTER, VK_LINEAR);
+//      //   vkTexParameteri(VK_TEXTURE_2D, VK_TEXTURE_MAG_FILTER, VK_LINEAR);
 //      //   // Now store character for later use
 //      //   Character character = {
 //      //       texture,
-//      //       glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
-//      //       glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top),
-//      //       face->glyph->advance.x()
+//      //       vkm::ivec2(face->vkyph->bitmap.width, face->vkyph->bitmap.rows),
+//      //       vkm::ivec2(face->vkyph->bitmap_left, face->vkyph->bitmap_top),
+//      //       face->vkyph->advance.x()
 //      //   };
-//      //   Characters.insert(std::pair<GLchar, Character>(c, character));
+//      //   Characters.insert(std::pair<VKchar, Character>(c, character));
 //      //}
-//      //glBindTexture(GL_TEXTURE_2D, 0);
+//      //vkBindTexture(VK_TEXTURE_2D, 0);
 //      //// Destroy FreeType once we're finished
 //      //FT_Done_Face(face);
 //      //FT_Done_FreeType(ft);
@@ -5161,13 +5161,13 @@ namespace draw2d_vulkan
 
    //      }
 
-   //      glBegin(GL_QUADS);
+   //      vkBegin(VK_QUADS);
 
    //      ::vulkan::color(color32);
 
    //      ::vulkan::vertex2f(rectangle);
 
-   //      glEnd();
+   //      vkEnd();
 
    //   }
    //   catch(...)
@@ -5186,16 +5186,16 @@ namespace draw2d_vulkan
          ppen->m_color.f32_blue(),
          ppen->m_color.f32_opacity(), 0.f, 0.f, true);
 
-      /*glLineWidth(ppen->m_dWidth);
+      /*vkLineWidth(ppen->m_dWidth);
 
-      glBegin(GL_LINES);
+      vkBegin(VK_LINES);
 
       ::vulkan::color(ppen->m_color);
 
-      glVertex2f(point1.x(), point1.y());
-      glVertex2f(point2.x(), point2.y());
+      vkVertex2f(point1.x(), point1.y());
+      vkVertex2f(point2.x(), point2.y());
 
-      glEnd();*/
+      vkEnd();*/
 
       m_point.x() = point2.x();
       m_point.y() = point2.y();
@@ -5211,11 +5211,11 @@ namespace draw2d_vulkan
       if (::is_set(m_ppen))
       {
 
-         glLineWidth((float)(m_ppen->m_dWidth));
+         vkLineWidth((float)(m_ppen->m_dWidth));
 
       }
 
-      glBegin(GL_LINES);
+      vkBegin(VK_LINES);
 
       if (::is_set(m_ppen))
       {
@@ -5224,10 +5224,10 @@ namespace draw2d_vulkan
 
       }
 
-      glVertex2f((float)(m_point.x()), (float)(m_point.y()));
-      glVertex2f((float)(x), (float)(y));
+      vkVertex2f((float)(m_point.x()), (float)(m_point.y()));
+      vkVertex2f((float)(x), (float)(y));
 
-      glEnd();
+      vkEnd();
 
       m_point.x() = x;
       m_point.y() = y;
@@ -5270,14 +5270,14 @@ namespace draw2d_vulkan
 
       }
 
-      glTranslatef((float)(x), (float)(y), 0.0f);					// Center Our Text On The Screen
+      vkTranslatef((float)(x), (float)(y), 0.0f);					// Center Our Text On The Screen
 
-      glPushAttrib(GL_LIST_BIT);							// Pushes The Display List Bits
-      glListBase(pfont->m_baseFont);									// Sets The Base Character to 0
-      glCallLists((GLsizei)scopedstr.size(), GL_UNSIGNED_BYTE, scopedstr.begin());	// Draws The Display List Text
-      glPopAttrib();										// Pops The Display List Bits      }
+      vkPushAttrib(VK_LIST_BIT);							// Pushes The Display List Bits
+      vkListBase(pfont->m_baseFont);									// Sets The Base Character to 0
+      vkCallLists((VKsizei)scopedstr.size(), VK_UNSIGNED_BYTE, scopedstr.begin());	// Draws The Display List Text
+      vkPopAttrib();										// Pops The Display List Bits      }
 
-      glTranslatef((float)(-x), (float)(-y), 0.0f);					// Center Our Text On The Screen
+      vkTranslatef((float)(-x), (float)(-y), 0.0f);					// Center Our Text On The Screen
 
       //return true;
 
@@ -5295,7 +5295,7 @@ namespace draw2d_vulkan
    void graphics::set(::draw2d::pen * ppen)
    {
 
-      //glLineWidth(ppen->m_dWidth);
+      //vkLineWidth(ppen->m_dWidth);
 
       ::vulkan::color(ppen->m_color);
 
@@ -5404,22 +5404,22 @@ namespace draw2d_vulkan
          ::draw2d::graphics::set_alpha_mode(ealphamode);
          if(m_ealphamode == ::draw2d::e_alpha_mode_blend)
          {
-            //glColorMask(false, false, false, true);
-            //glColorMask(true, true, true, false);
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-            //glBlendFunc(GL_SRC_ALPHA, GL_SRC_ALPHA);
-            //glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-            //glBlendFunc(GL_ZERO, GL_SRC_ALPHA);
-            //glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
-            // glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
-            glEnable(GL_BLEND);
-            //glDisable(GL_DEPTH_TEST);
-            //glDepthFunc(GL_NEVER);
+            //vkColorMask(false, false, false, true);
+            //vkColorMask(true, true, true, false);
+            vkBlendFunc(VK_SRC_ALPHA, VK_ONE_MINUS_SRC_ALPHA);
+            //vkBlendFunc(VK_SRC_ALPHA, VK_SRC_ALPHA);
+            //vkBlendFunc(VK_ONE, VK_ONE_MINUS_SRC_ALPHA);
+            //vkBlendFunc(VK_ZERO, VK_SRC_ALPHA);
+            //vkBlendEquationSeparate(VK_FUNC_ADD, VK_FUNC_ADD);
+            // vkBlendFuncSeparate(VK_SRC_ALPHA, VK_ONE_MINUS_SRC_ALPHA, VK_ONE, VK_ZERO);
+            vkEnable(VK_BLEND);
+            //vkDisable(VK_DEPTH_TEST);
+            //vkDepthFunc(VK_NEVER);
          }
          else if(m_ealphamode == ::draw2d::e_alpha_mode_set)
          {
-            glEnable(GL_BLEND);
-            glBlendFunc(GL_ONE, GL_ZERO);
+            vkEnable(VK_BLEND);
+            vkBlendFunc(VK_ONE, VK_ZERO);
          }
 
       }
@@ -5573,7 +5573,7 @@ namespace draw2d_vulkan
 
    }
 
-   //plusplus::Font * graphics::gl2d_font()
+   //plusplus::Font * graphics::vk2d_font()
    //{
    //   if(m_pfont.is_null())
    //   {
@@ -5590,7 +5590,7 @@ namespace draw2d_vulkan
    //   return (plusplus::Font *) m_pfont->get_os_data();
    //}
 
-   //plusplus::Brush * graphics::gl2d_brush()
+   //plusplus::Brush * graphics::vk2d_brush()
    //{
    //   if(m_pbrush.is_null())
    //   {
@@ -5607,7 +5607,7 @@ namespace draw2d_vulkan
    //   return (plusplus::Brush *) m_pbrush->get_os_data();
    //}
 
-   //plusplus::Pen * graphics::gl2d_pen()
+   //plusplus::Pen * graphics::vk2d_pen()
    //{
 
    //   synchronous_lock synchronouslock(this->synchronization());
@@ -5627,7 +5627,7 @@ namespace draw2d_vulkan
    //   return (plusplus::Pen *) m_ppen->get_os_data();
    //}
 
-   //plusplus::FillMode graphics::gl2d_get_fill_mode()
+   //plusplus::FillMode graphics::vk2d_get_fill_mode()
    //{
    //   return plusplus::FillModeWinding;
    //}
@@ -5926,20 +5926,20 @@ namespace draw2d_vulkan
 
       m_z = 0.f;
 
-      glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-      //glLoadIdentity();
-      //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-      //glClear(GL_COLOR_BUFFER_BIT);
-      //glEnable(GL_BLEND);
-      //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+      vkClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+      vkClear(VK_COLOR_BUFFER_BIT | VK_DEPTH_BUFFER_BIT);
+      //vkLoadIdentity();
+      //vkClear(VK_COLOR_BUFFER_BIT | VK_DEPTH_BUFFER_BIT);
+      //vkClear(VK_COLOR_BUFFER_BIT);
+      //vkEnable(VK_BLEND);
+      //vkBlendFunc(VK_SRC_ALPHA, VK_ONE_MINUS_SRC_ALPHA);
       //::memory_copy(&m_pgpucontext->m_pbuffer->m_pixmap, (::pixmap *)m_pimage, sizeof(::pixmap));
 
-      //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+      //vkClear(VK_COLOR_BUFFER_BIT | VK_DEPTH_BUFFER_BIT);
 
       //m_pgpucontext->start_drawing();
 
-      ///glEnable(GL_DEPTH_TEST);
+      ///vkEnable(VK_DEPTH_TEST);
 
    }
 
@@ -5965,31 +5965,31 @@ namespace draw2d_vulkan
    {
 
 
-      ////glPushMatrix();
+      ////vkPushMatrix();
 
-      ////glColor3f(0, 1, 1);
-      //glBegin(GL_TRIANGLES);                              // Drawing Using Triangles
+      ////vkColor3f(0, 1, 1);
+      //vkBegin(VK_TRIANGLES);                              // Drawing Using Triangles
       //
 
-      //glColor4f(1.0f, 0.0f, 0.0f, 0.5f);                      // Set The Color To Red
-      //glVertex3f(100.0f, -2000.0f, 0.0f);                  // Top
+      //vkColor4f(1.0f, 0.0f, 0.0f, 0.5f);                      // Set The Color To Red
+      //vkVertex3f(100.0f, -2000.0f, 0.0f);                  // Top
       //
 
-      //glColor3f(0.0f, 1.0f, 0.0f);                      // Set The Color To Green
-      //glVertex3f(0.0f, 200.0f, 0.0f);                  // Bottom Left
+      //vkColor3f(0.0f, 1.0f, 0.0f);                      // Set The Color To Green
+      //vkVertex3f(0.0f, 200.0f, 0.0f);                  // Bottom Left
 
 
-      //glColor3f(0.0f, 0.0f, 1.0f);                      // Set The Color To Blue
-      //glVertex3f(2000.0f, 2000.0f, 0.0f);                  // Bottom Right
+      //vkColor3f(0.0f, 0.0f, 1.0f);                      // Set The Color To Blue
+      //vkVertex3f(2000.0f, 2000.0f, 0.0f);                  // Bottom Right
 
-      //glEnd();
+      //vkEnd();
 
-      //glPopMatrix();
+      //vkPopMatrix();
 
 
-      glFlush();
-      //glFinish();
-      //glDisable(GL_BLEND);
+      vkFlush();
+      //vkFinish();
+      //vkDisable(VK_BLEND);
 
 
       
@@ -6131,27 +6131,27 @@ namespace vulkan
 
       //double d = 1.0;
 
-      ////glViewport(0, 0, size.cx() * d, size.cy() * d);
-      glViewport(0, 0, size.cx(), size.cy());
+      ////vkViewport(0, 0, size.cx() * d, size.cy() * d);
+      vkViewport(0, 0, size.cx(), size.cy());
 
-      //glMatrixMode(GL_PROJECTION);
-      //glLoadIdentity();
-      ////glOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
-      ////glOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
-      //////glOrtho(0, size.cx() * d, 0.0f, size.cy() * d, 000.0f, 1000.0f);
-      ////glOrtho(0, size.cx(), size.cy(), 0.0f, -1000.0f, 1000.0f);
-      //glOrtho(0.f, size.cx(), 0.f, -size.cy(), -1.0f, 1.0f);
+      //vkMatrixMode(VK_PROJECTION);
+      //vkLoadIdentity();
+      ////vkOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
+      ////vkOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
+      //////vkOrtho(0, size.cx() * d, 0.0f, size.cy() * d, 000.0f, 1000.0f);
+      ////vkOrtho(0, size.cx(), size.cy(), 0.0f, -1000.0f, 1000.0f);
+      //vkOrtho(0.f, size.cx(), 0.f, -size.cy(), -1.0f, 1.0f);
 
 
-      glMatrixMode(GL_PROJECTION);
-      glLoadIdentity();
+      vkMatrixMode(VK_PROJECTION);
+      vkLoadIdentity();
       if (bYSwap)
       {
-         glOrtho(0.0f, size.cx(), size.cy(), 0, -1.0f, 1.0f);  // Flip Y
+         vkOrtho(0.0f, size.cx(), size.cy(), 0, -1.0f, 1.0f);  // Flip Y
       }
       else
       {
-         glOrtho(0.0f, size.cx(), 0, size.cy(), -1.0f, 1.0f);  // Flip Y
+         vkOrtho(0.0f, size.cx(), 0, size.cy(), -1.0f, 1.0f);  // Flip Y
       }
       //auto left = 0.;
       //auto right = (double) size.cx();
@@ -6169,23 +6169,23 @@ namespace vulkan
       //   0.0,0.0,-2.0/(dFar-dNear),tz,
       //   0.0,0.0,0.0,1.0
       //};
-      //glMultMatrixd(a);
+      //vkMultMatrixd(a);
 
-      //glMatrixMode(GL_MODELVIEW);
-      //glLoadIdentity();
+      //vkMatrixMode(VK_MODELVIEW);
+      //vkLoadIdentity();
 
 
-      //gluOrtho2D(0.f, size.cx(), 0.f, size.cy());
-      //glMatrixMode(GL_MODELVIEW);
-      //glLoadIdentity();
+      //vkuOrtho2D(0.f, size.cx(), 0.f, size.cy());
+      //vkMatrixMode(VK_MODELVIEW);
+      //vkLoadIdentity();
 
       // Clear
-      //glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-      //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+      //vkClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+      //vkClear(VK_COLOR_BUFFER_BIT | VK_DEPTH_BUFFER_BIT);
 
-      // Translate to inside of pixel (otherwise inaccuracies can occur on certain gl implementations)
+      // Translate to inside of pixel (otherwise inaccuracies can occur on certain vk implementations)
       //if (Vulkan::accuracyTweak())
-      glTranslatef(0.5f, 0.5f, 0);
+      vkTranslatef(0.5f, 0.5f, 0);
 
    }
 
@@ -6202,10 +6202,10 @@ namespace vulkan
       float x = r * cosf(start_angle);//we now start at the start angle
       float y = r * sinf(start_angle);
 
-      glBegin(GL_LINE_STRIP);//since the arc is not a closed curve, this is a strip now
+      vkBegin(VK_LINE_STRIP);//since the arc is not a closed curve, this is a strip now
       for (int ii = 0; ii < num_segments; ii++)
       {
-         glVertex2f(x + cx, y + cy);
+         vkVertex2f(x + cx, y + cy);
 
          float tx = -y;
          float ty = x;
@@ -6216,7 +6216,7 @@ namespace vulkan
          x *= radial_factor;
          y *= radial_factor;
       }
-      glEnd();
+      vkEnd();
    }
 
    

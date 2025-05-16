@@ -247,7 +247,7 @@ namespace draw2d_vulkan
       bitmap->CreateCompatibleBitmap(pgraphics, 1, 1);
 
       //auto estatus =
-      GL2D_GRAPHICS(pgraphics)->set(bitmap);
+      VK2D_GRAPHICS(pgraphics)->set(bitmap);
 
       //if (!estatus)
       //{
@@ -268,9 +268,9 @@ namespace draw2d_vulkan
 
       throw ::exception(todo, "::vulkan::image::image");
 
-      //bool bOk = GetDIBits(GL2D_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, m_size.cy(), get_data(), &(m_bitmapinfo), DIB_RGB_COLORS) != false;
+      //bool bOk = GetDIBits(VK2D_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, m_size.cy(), get_data(), &(m_bitmapinfo), DIB_RGB_COLORS) != false;
 
-      //GL2D_GRAPHICS(pgraphics)->set(pbitmap);
+      //VK2D_GRAPHICS(pgraphics)->set(pbitmap);
 
       //return bOk;
 
@@ -2638,7 +2638,7 @@ namespace draw2d_vulkan
 //
 //      //synchronous_lock synchronouslock(&m);
 //
-//      glFlush();
+//      vkFlush();
 //
 //      ::pointer<bitmap>b = m_pbitmap;
 //
@@ -2795,12 +2795,12 @@ namespace draw2d_vulkan
 
       int hasAlphaBits = 0;
 
-      glGetIntegerv(GL_ALPHA_BITS, &hasAlphaBits);
+      vkGetIntegerv(VK_ALPHA_BITS, &hasAlphaBits);
 
-      glFlush();
+      vkFlush();
 
-      //glReadBuffer(GL_BACK);
-      //glReadBuffer(GL_FRONT);
+      //vkReadBuffer(VK_BACK);
+      //vkReadBuffer(VK_FRONT);
 
 
 
@@ -2814,21 +2814,21 @@ namespace draw2d_vulkan
 
       ::vulkan::resize(pgraphics->m_sizeWindow, bYSwap);
 
-      glReadBuffer(GL_BACK);
+      vkReadBuffer(VK_BACK);
 
-      glPixelStorei(GL_PACK_SWAP_BYTES, 0);
+      vkPixelStorei(VK_PACK_SWAP_BYTES, 0);
 
-      glPixelStorei(GL_PACK_ROW_LENGTH, m_iScan/4);
+      vkPixelStorei(VK_PACK_ROW_LENGTH, m_iScan/4);
 
-      glReadPixels(0, 0, cx, cy, GL_BGRA, GL_UNSIGNED_BYTE, m_pimage32Raw);
+      vkReadPixels(0, 0, cx, cy, VK_BGRA, VK_UNSIGNED_BYTE, m_pimage32Raw);
 
-      //glReadPixels(0, 0, m_size.cx(), m_size.cy(), GL_ARGB, GL_UNSIGNED_BYTE, m_pimage32Raw);
+      //vkReadPixels(0, 0, m_size.cx(), m_size.cy(), VK_ARGB, VK_UNSIGNED_BYTE, m_pimage32Raw);
 
-      int i1280 = GL_INVALID_ENUM;
+      int i1280 = VK_INVALID_ENUM;
 
-      int i1281 = GL_INVALID_VALUE;
+      int i1281 = VK_INVALID_VALUE;
 
-      int iError = glGetError();
+      int iError = vkGetError();
 
       m_bMapped = true;
 
@@ -2878,7 +2878,7 @@ namespace draw2d_vulkan
 
       m_pgraphics->thread_select();
 
-      glDrawPixels(m_size.cx(), m_size.cy(), GL_BGRA, GL_UNSIGNED_BYTE, m_pimage32Raw);
+      vkDrawPixels(m_size.cx(), m_size.cy(), VK_BGRA, VK_UNSIGNED_BYTE, m_pimage32Raw);
 
       m_bMapped = false;
 
@@ -2928,9 +2928,9 @@ namespace draw2d_vulkan
 
       m_pgraphics->thread_select();
 
-      glReadBuffer(GL_BACK);
+      vkReadBuffer(VK_BACK);
 
-      glReadPixels(0, 0, ppixmap->m_size.cx(), ppixmap.m_size.cy(), GL_BGRA, GL_UNSIGNED_BYTE, ppixmap.m_pimage32);
+      vkReadPixels(0, 0, ppixmap->m_size.cx(), ppixmap.m_size.cy(), VK_BGRA, VK_UNSIGNED_BYTE, ppixmap.m_pimage32);
 
       *///return true;
 

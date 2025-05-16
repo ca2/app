@@ -392,7 +392,9 @@ namespace draw2d_opengl
       //m_hglrc = hglrc;
       //m_size = size;
 
-      ::opengl::resize(size);
+      bool bYSwap = m_papplication->m_bUseDraw2dProtoWindow;
+
+      ::opengl::resize(size, bYSwap);
 
       return true;
 
@@ -522,7 +524,9 @@ namespace draw2d_opengl
 
       }
 
-      ::opengl::resize(pbitmap->get_size());
+      bool bYSwap = m_papplication->m_bUseDraw2dProtoWindow;
+
+      ::opengl::resize(pbitmap->get_size(), bYSwap);
 
       //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -2258,7 +2262,9 @@ namespace draw2d_opengl
 
       m_sizeWindow = sizeWindow;
 
-      ::opengl::resize(sizeWindow);
+      bool bYSwap = m_papplication->m_bUseDraw2dProtoWindow;
+
+      ::opengl::resize(sizeWindow, bYSwap);
 
    }
 
@@ -5914,7 +5920,9 @@ namespace draw2d_opengl
 
       }
 
-      ::opengl::resize(size);
+      bool bYSwap = m_papplication->m_bUseDraw2dProtoWindow;
+
+      ::opengl::resize(size, bYSwap);
 
       m_z = 0.f;
 
@@ -6116,7 +6124,7 @@ namespace opengl
 {
 
 
-   void resize(const ::int_size& size)
+   void resize(const ::int_size& size, bool bYSwap)
    {
 
       //double d = 200.0 / 72.0;
@@ -6137,7 +6145,14 @@ namespace opengl
 
       glMatrixMode(GL_PROJECTION);
       glLoadIdentity();
-      glOrtho(0.0f, size.cx(), size.cy(), 0, -1.0f, 1.0f);  // Flip Y
+      if (bYSwap)
+      {
+         glOrtho(0.0f, size.cx(), size.cy(), 0, -1.0f, 1.0f);  // Flip Y
+      }
+      else
+      {
+         glOrtho(0.0f, size.cx(), 0, size.cy(), -1.0f, 1.0f);  // Flip Y
+      }
       //auto left = 0.;
       //auto right = (double) size.cx();
       //auto bottom = 0.;

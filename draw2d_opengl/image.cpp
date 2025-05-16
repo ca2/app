@@ -2810,7 +2810,9 @@ namespace draw2d_opengl
 
       int cy = pgraphics->m_sizeWindow.cy();
 
-      ::opengl::resize(pgraphics->m_sizeWindow);
+      bool bYSwap = m_papplication->m_bUseDraw2dProtoWindow;
+
+      ::opengl::resize(pgraphics->m_sizeWindow, bYSwap);
 
       glReadBuffer(GL_BACK);
 

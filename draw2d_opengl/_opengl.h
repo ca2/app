@@ -53,7 +53,7 @@ namespace opengl
    }
 
 
-   void resize(const ::int_size & size);
+   void resize(const ::int_size & size, bool bYSwap);
 
 
    //https://community.khronos.org/t/draw-an-arc-in-opengl/57994/2

@@ -14,12 +14,12 @@
 //   int height;
 //   //fbo_t* fbo;
 //};
-namespace draw2d_opengl
+namespace draw2d_vulkan
 {
 
    class draw2d;
 
-   class CLASS_DECL_DRAW2D_OPENGL graphics :
+   class CLASS_DECL_DRAW2D_VULKAN graphics :
       virtual public ::draw2d::graphics,
       virtual public ::gpu::render
    {
@@ -40,7 +40,7 @@ namespace draw2d_opengl
       ::int_size                    m_sizeWindow;
       //HGLRC m_hrc;
       ::pointer < ::windowing::window >   m_pwindow;
-      //::pointer<::gpu::context>          m_pgpucontextOpenGL;
+      //::pointer<::gpu::context>          m_pgpucontextVulkan;
 
 
       graphics();
@@ -121,10 +121,10 @@ namespace draw2d_opengl
       void create_window_graphics(::windowing::window * pwindow) override;
       void CreateCompatibleDC(::draw2d::graphics * pgraphics) override;
 
-      virtual bool opengl_create_offscreen_buffer(const ::int_size & size);
-      virtual bool opengl_delete_offscreen_buffer();
+      virtual bool vulkan_create_offscreen_buffer(const ::int_size & size);
+      virtual bool vulkan_delete_offscreen_buffer();
 
-      virtual bool opengl_defer_create_window_context(::windowing::window * pwindow);
+      virtual bool vulkan_defer_create_window_context(::windowing::window * pwindow);
 
       void DeleteDC() override;
 
@@ -150,7 +150,7 @@ namespace draw2d_opengl
       // Type-safe selection helpers
    public:
 
-      ::draw2d_opengl::draw2d * draw2d_opengl();
+      ::draw2d_vulkan::draw2d * draw2d_vulkan();
 
 
       virtual ::draw2d::object* SelectStockObject(int nIndex);
@@ -615,12 +615,12 @@ namespace draw2d_opengl
    };
 
 
-   CLASS_DECL_DRAW2D_OPENGL graphics * thread_graphics();
+   CLASS_DECL_DRAW2D_VULKAN graphics * thread_graphics();
 
-   CLASS_DECL_DRAW2D_OPENGL void thread_graphics(graphics * graphics);
+   CLASS_DECL_DRAW2D_VULKAN void thread_graphics(graphics * graphics);
 
 
-} // namespace draw2d_opengl
+} // namespace draw2d_vulkan
 
 
 

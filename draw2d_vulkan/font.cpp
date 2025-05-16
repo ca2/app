@@ -1,9 +1,9 @@
 #include "framework.h"
-#include "_opengl.h"
+#include "_vulkan.h"
 #include "font.h"
 
 
-namespace draw2d_opengl
+namespace draw2d_vulkan
 {
 
 
@@ -49,7 +49,7 @@ namespace draw2d_opengl
 
    void font::construct(const ::write_text::font & pfontParam)
    {
-      //class font & font = const_cast < ::draw2d_opengl::font & > (dynamic_cast < const ::draw2d_opengl::font & > (pfontParam));
+      //class font & font = const_cast < ::draw2d_vulkan::font & > (dynamic_cast < const ::draw2d_vulkan::font & > (pfontParam));
       //if(font.m_pfont == nullptr)
       //{
       //   if(m_pfont != nullptr)
@@ -142,4 +142,4 @@ namespace draw2d_opengl
 
    //}
 
-} // namespace draw2d_opengl
+} // namespace draw2d_vulkan

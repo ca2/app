@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace draw2d_opengl
+namespace draw2d_vulkan
 {
 
 
-   class CLASS_DECL_DRAW2D_OPENGL palette :
-      virtual public ::draw2d_opengl::object,
+   class CLASS_DECL_DRAW2D_VULKAN palette :
+      virtual public ::draw2d_vulkan::object,
       virtual public ::draw2d::palette
    {
    public:
@@ -39,7 +39,7 @@ namespace draw2d_opengl
    };
 
 
-} // namespace draw2d_opengl
+} // namespace draw2d_vulkan
 
 
 

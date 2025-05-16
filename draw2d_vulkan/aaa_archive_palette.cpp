@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace draw2d_opengl
+namespace draw2d_vulkan
 {
 
 
@@ -24,7 +24,7 @@ namespace draw2d_opengl
    }
    palette* palette::from_handle(::particle * pparticle, HPALETTE hPalette)
    {
-      //return dynamic_cast < palette * > (::draw2d_opengl::object::from_handle(papp, hPalette));
+      //return dynamic_cast < palette * > (::draw2d_vulkan::object::from_handle(papp, hPalette));
       return nullptr;
    }
    bool palette::CreatePalette(LPLOGPALETTE lpLogPalette)
@@ -34,8 +34,8 @@ namespace draw2d_opengl
    }
    bool palette::CreateHalftonePalette(::image::image *pimage)
    {
-      //ASSERT(pgraphics != nullptr && (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->get_handle1() != nullptr);
-      //return attach(::CreateHalftonePalette((dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->get_handle1()));
+      //ASSERT(pgraphics != nullptr && (dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->get_handle1() != nullptr);
+      //return attach(::CreateHalftonePalette((dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->get_handle1()));
       return false;
 
    }
@@ -72,4 +72,4 @@ namespace draw2d_opengl
       ::GetObject((HANDLE) get_os_data(), sizeof(unsigned short), &nEntries); return (int)nEntries;
    }
 
-} // namespace draw2d_opengl
+} // namespace draw2d_vulkan

@@ -1,15 +1,15 @@
 #include "framework.h"
-#include "_opengl.h"
+#include "_vulkan.h"
 #include "draw2d.h"
 #include "acme/exception/resource.h"
 #include "acme/prototype/prototype/memory.h"
 
 
-//CLASS_DECL_DRAW2D_OPENGL void initialize_opengl();
-//CLASS_DECL_DRAW2D_OPENGL void terminate_opengl();
+//CLASS_DECL_DRAW2D_VULKAN void initialize_vulkan();
+//CLASS_DECL_DRAW2D_VULKAN void terminate_vulkan();
 
 
-namespace draw2d_opengl
+namespace draw2d_vulkan
 {
 
 
@@ -42,7 +42,7 @@ namespace draw2d_opengl
 
       //m_mapPrivateFont.clear();
 
-      //terminate_opengl();
+      //terminate_vulkan();
 
    }
 
@@ -66,10 +66,10 @@ namespace draw2d_opengl
       //estatus = 
 
 
-      opengl_init();
+      vulkan_init();
 
 
-      //initialize_opengl();
+      //initialize_vulkan();
 
       //if (!estatus)
       //{
@@ -185,16 +185,16 @@ namespace draw2d_opengl
    //}
 
 
-   LRESULT CALLBACK opengl_window_proc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)
+   LRESULT CALLBACK vulkan_window_proc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)
    {
       return DefWindowProc(hwnd, message, wparam, lparam);
    }
 
 
-   int  draw2d::opengl_init()
+   int  draw2d::vulkan_init()
    {
 
-      //__øconstruct(m_popenglcontext);
+      //__øconstruct(m_pvulkancontext);
 
       //if (m_atomClass)
       //{
@@ -206,9 +206,9 @@ namespace draw2d_opengl
       //WNDCLASSW wc;
       //ZeroMemory(&wc, sizeof(wc));
       //wc.style = CS_OWNDC;
-      //wc.lpfnWndProc = opengl_window_proc;
+      //wc.lpfnWndProc = vulkan_window_proc;
       //wc.hInstance = (HINSTANCE) system()->m_hinstanceThis;
-      //wc.lpszClassName = L"draw2d_opengl_offscreen_buffer_window";
+      //wc.lpszClassName = L"draw2d_vulkan_offscreen_buffer_window";
       //m_atomClass = RegisterClassW(&wc);
 
       //if (!m_atomClass)
@@ -225,7 +225,7 @@ namespace draw2d_opengl
    }
 
 
-} // namespace draw2d_opengl
+} // namespace draw2d_vulkan
 
 
 

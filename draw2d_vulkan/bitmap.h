@@ -69,7 +69,7 @@ DECLARE_HANDLE(HPBUFFERARB);
 #define WGL_STENCIL_BITS_ARB                      0x2023
 #define WGL_STEREO_ARB                            0x2012
 #define WGL_SUPPORT_GDI_ARB                       0x200F
-#define WGL_SUPPORT_OPENGL_ARB                    0x2010
+#define WGL_SUPPORT_VULKAN_ARB                    0x2010
 #define WGL_SWAP_COPY_ARB                         0x2029
 #define WGL_SWAP_EXCHANGE_ARB                     0x2028
 #define WGL_SWAP_LAYER_BUFFERS_ARB                0x2006
@@ -92,11 +92,11 @@ DECLARE_HANDLE(HPBUFFERARB);
 #define TEXTURE_WIDTH   64
 #define TEXTURE_HEIGHT  64
 
-namespace draw2d_opengl
+namespace draw2d_vulkan
 {
 
 
-   class CLASS_DECL_DRAW2D_OPENGL bitmap : 
+   class CLASS_DECL_DRAW2D_VULKAN bitmap : 
       virtual public ::draw2d::bitmap
    {
    public:
@@ -198,7 +198,7 @@ namespace draw2d_opengl
    };
 
 
-} // namespace draw2d_opengl
+} // namespace draw2d_vulkan
 
 
 

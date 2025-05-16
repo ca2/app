@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "_opengl.h"
+#include "_vulkan.h"
 #include "draw2d.h"
 #include "pen.h"
 #include "font.h"
@@ -27,14 +27,14 @@
 #define WGL_CONTEXT_COREPROFILE_BIT_ARB 0x00000001
 #define WGL_CONTEXT_PROFILE_MASK_ARB 0x9126
 
-//int  opengl_init();
+//int  vulkan_init();
 
 
-HGLRC initialize_opengl_version(HDC hdc, int iMajor, int iMinor);
+HGLRC initialize_vulkan_version(HDC hdc, int iMajor, int iMinor);
 
 
 
-namespace opengl
+namespace vulkan
 {
 
 #include "line1.h"
@@ -42,10 +42,10 @@ namespace opengl
 }
 
 
-BOOL CALLBACK draw2d_opengl_EnumFamCallBack(LPLOGFONT lplf,LPNEWTEXTMETRIC lpntm,unsigned int FontType,LPVOID p);
+BOOL CALLBACK draw2d_vulkan_EnumFamCallBack(LPLOGFONT lplf,LPNEWTEXTMETRIC lpntm,unsigned int FontType,LPVOID p);
 
 
-class draw2d_opengl_enum_fonts
+class draw2d_vulkan_enum_fonts
 {
 public:
 
@@ -53,7 +53,7 @@ public:
    ::write_text::font_enumeration_item_array& m_itema;
 
 
-   draw2d_opengl_enum_fonts(::write_text::font_enumeration_item_array& itema):
+   draw2d_vulkan_enum_fonts(::write_text::font_enumeration_item_array& itema):
       m_itema(itema)
    {
 
@@ -63,7 +63,7 @@ public:
 };
 
 
-namespace draw2d_opengl
+namespace draw2d_vulkan
 {
 
    //ATOM class_atom = NULL;
@@ -71,14 +71,14 @@ namespace draw2d_opengl
    graphics * thread_graphics()
    {
 
-      return ::get_task()->payload("draw2d_opengl::graphics").cast < graphics >();
+      return ::get_task()->payload("draw2d_vulkan::graphics").cast < graphics >();
 
    }
 
    void thread_graphics(graphics * pgraphics)
    {
 
-      ::get_task()->payload("draw2d_opengl::graphics") = pgraphics;
+      ::get_task()->payload("draw2d_vulkan::graphics") = pgraphics;
 
    }
 
@@ -126,7 +126,7 @@ namespace draw2d_opengl
    graphics::~graphics()
    {
 
-      //opengl_delete_offscreen_buffer();
+      //vulkan_delete_offscreen_buffer();
 
       DeleteDC();
 
@@ -186,7 +186,7 @@ namespace draw2d_opengl
 
       }
 
-      opengl_create_offscreen_buffer(size);
+      vulkan_create_offscreen_buffer(size);
 
    }
 
@@ -196,7 +196,7 @@ namespace draw2d_opengl
       
       m_pwindow = pwindow;
 
-      opengl_defer_create_window_context(pwindow);
+      vulkan_defer_create_window_context(pwindow);
 
       set_ok_flag();
 
@@ -206,16 +206,16 @@ namespace draw2d_opengl
    void graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
    {
 
-      opengl_create_offscreen_buffer({ 1920, 1080 });
-      //opengl_create_offscreen_buffer(pgraphics->m_pimage->size());
+      vulkan_create_offscreen_buffer({ 1920, 1080 });
+      //vulkan_create_offscreen_buffer(pgraphics->m_pimage->size());
 
    }
 
 
-   bool graphics::opengl_create_offscreen_buffer(const ::int_size & size)
+   bool graphics::vulkan_create_offscreen_buffer(const ::int_size & size)
    {
 
-      //if (!draw2d_opengl()->m_popenglcontext) {
+      //if (!draw2d_vulkan()->m_pvulkancontext) {
       //   informationf("MS GDI - RegisterClass failed");
       //   informationf("last-error code: %d\n", GetLastError());
       //   return false;
@@ -242,26 +242,26 @@ namespace draw2d_opengl
 
          //auto pgpu = psystem->get_gpu();
 
-         //m_pgpucontextOpenGL = pgpu->create_context(this);
+         //m_pgpucontextVulkan = pgpu->create_context(this);
 
-         //if (m_pgpucontextOpenGL)
+         //if (m_pgpucontextVulkan)
          //{
 
-         //   m_pgpucontextOpenGL->initialize(this);
+         //   m_pgpucontextVulkan->initialize(this);
 
          //}
 
       }
 
-      //if (__defer_construct(m_pgpucontextOpenGL))
+      //if (__defer_construct(m_pgpucontextVulkan))
       //{
 
          m_pgpucontext->create_offscreen_buffer(size);
 
       //}
 
-      //LPCTSTR lpClassName = L"draw2d_opengl_offscreen_buffer_window";
-      //LPCTSTR lpWindowName = L"draw2d_opengl_offscreen_buffer_window";
+      //LPCTSTR lpClassName = L"draw2d_vulkan_offscreen_buffer_window";
+      //LPCTSTR lpWindowName = L"draw2d_vulkan_offscreen_buffer_window";
       ////unsigned int dwStyle = WS_CAPTION | WS_POPUPWINDOW; // | WS_VISIBLE
       //unsigned int dwExStyle = 0;
       //unsigned int dwStyle = WS_OVERLAPPEDWINDOW;
@@ -306,7 +306,7 @@ namespace draw2d_opengl
       //ZeroMemory(&pixformat, sizeof(pixformat));
       //pixformat.nSize = sizeof(pixformat);
       //pixformat.nVersion = 1;
-      //pixformat.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
+      //pixformat.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_VULKAN | PFD_DOUBLEBUFFER;
       //pixformat.iPixelType = PFD_TYPE_RGBA;
       //pixformat.cColorBits = 24;
       //pixformat.cAlphaBits = 8;
@@ -350,10 +350,10 @@ namespace draw2d_opengl
       //
       //auto wglCurrentContext = wglGetCurrentContext();
 
-      //// Load all OpenGL functions using the glfw loader function
+      //// Load all Vulkan functions using the glfw loader function
       //// If you use SDL you can use: https://wiki.libsdl.org/SDL_GL_GetProcAddress
       ////if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-      ////   std::cout << "Failed to initialize OpenGL context" << std::endl;
+      ////   std::cout << "Failed to initialize Vulkan context" << std::endl;
       ////   return -1;
       ////}
       //if (!gladLoadWGL(hdc))
@@ -382,9 +382,9 @@ namespace draw2d_opengl
       //wglMakeCurrent(nullptr, nullptr);
       //wglDeleteContext(hglrcTime);
       //   wglMakeCurrent(hdc, m_hglrc);
-      ////draw2d_opengl()->defer_initialize_glew();
+      ////draw2d_vulkan()->defer_initialize_glew();
       //
-      ////draw2d_opengl()->defer_initialize_glew();
+      ////draw2d_vulkan()->defer_initialize_glew();
 
 
       //m_hwnd = window;
@@ -394,14 +394,14 @@ namespace draw2d_opengl
 
       bool bYSwap = m_papplication->m_bUseDraw2dProtoWindow;
 
-      ::opengl::resize(size, bYSwap);
+      ::vulkan::resize(size, bYSwap);
 
       return true;
 
    }
 
 
-   bool graphics::opengl_delete_offscreen_buffer()
+   bool graphics::vulkan_delete_offscreen_buffer()
    {
 
       //if (m_hglrc == NULL && m_hdc == NULL && m_hwnd == NULL)
@@ -424,7 +424,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::opengl_defer_create_window_context(::windowing::window * pwindow)
+   bool graphics::vulkan_defer_create_window_context(::windowing::window * pwindow)
    {
 
       //if (!m_pgpucontext)
@@ -451,7 +451,7 @@ namespace draw2d_opengl
 
       m_pgpucontext->defer_create_window_context(pwindow);
 
-//      ::opengl::resize(size);
+//      ::vulkan::resize(size);
 
       return true;
 
@@ -515,9 +515,9 @@ namespace draw2d_opengl
 
       }
 
-      opengl_delete_offscreen_buffer();
+      vulkan_delete_offscreen_buffer();
 
-      if (!opengl_create_offscreen_buffer(pbitmap->get_size()))
+      if (!vulkan_create_offscreen_buffer(pbitmap->get_size()))
       {
 
          return NULL;
@@ -526,7 +526,7 @@ namespace draw2d_opengl
 
       bool bYSwap = m_papplication->m_bUseDraw2dProtoWindow;
 
-      ::opengl::resize(pbitmap->get_size(), bYSwap);
+      ::vulkan::resize(pbitmap->get_size(), bYSwap);
 
       //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -562,7 +562,7 @@ namespace draw2d_opengl
    //      if(m_pbitmap.is_null())
    //         return nullptr;
 
-   //      //(dynamic_cast < ::draw2d_opengl::bitmap * > (m_pbitmap.m_p))->m_pbitmap = ___new plusplus::Bitmap (hbitmap, nullptr);
+   //      //(dynamic_cast < ::draw2d_vulkan::bitmap * > (m_pbitmap.m_p))->m_pbitmap = ___new plusplus::Bitmap (hbitmap, nullptr);
 
    //      //if(m_pgraphics != nullptr)
    //      //{
@@ -945,7 +945,7 @@ namespace draw2d_opengl
 
       set(pbrush);
 
-      ::opengl::vertex2f(rectangle);
+      ::vulkan::vertex2f(rectangle);
 
       glEnd();
 
@@ -1739,11 +1739,11 @@ namespace draw2d_opengl
       if (::is_set(ppen))
       {
 
-         ::opengl::color(ppen->m_color);
+         ::vulkan::color(ppen->m_color);
 
       }
       
-      ::opengl::vertex2f(rectangle);
+      ::vulkan::vertex2f(rectangle);
       
       glEnd();
 
@@ -2264,7 +2264,7 @@ namespace draw2d_opengl
 
       bool bYSwap = m_papplication->m_bUseDraw2dProtoWindow;
 
-      ::opengl::resize(sizeWindow, bYSwap);
+      ::vulkan::resize(sizeWindow, bYSwap);
 
    }
 
@@ -2766,7 +2766,7 @@ namespace draw2d_opengl
       //m_pgraphics->SetInterpolationMode(plusplus::InterpolationModeHighQualityBicubic);
 
 
-      //return m_pgraphics->DrawPath(gl2d_pen(),(dynamic_cast < ::draw2d_opengl::path * > (ppath))->get_os_path(m_pgraphics)) == plusplus::Status::Ok;
+      //return m_pgraphics->DrawPath(gl2d_pen(),(dynamic_cast < ::draw2d_vulkan::path * > (ppath))->get_os_path(m_pgraphics)) == plusplus::Status::Ok;
       //return true;
 
    }
@@ -2775,7 +2775,7 @@ namespace draw2d_opengl
    void graphics::draw(::draw2d::path * ppath, ::draw2d::pen * ppen)
    {
 
-      //return m_pgraphics->DrawPath((::plusplus::Pen *) ppen->get_os_data(),(dynamic_cast < ::draw2d_opengl::path * > (ppath))->get_os_path(m_pgraphics)) == plusplus::Status::Ok;
+      //return m_pgraphics->DrawPath((::plusplus::Pen *) ppen->get_os_data(),(dynamic_cast < ::draw2d_vulkan::path * > (ppath))->get_os_path(m_pgraphics)) == plusplus::Status::Ok;
 
       //return true;
 
@@ -2785,7 +2785,7 @@ namespace draw2d_opengl
    void graphics::fill(::draw2d::path * ppath)
    {
 
-      //return m_pgraphics->FillPath(gl2d_brush(),(dynamic_cast < ::draw2d_opengl::path * > (ppath))->get_os_path(m_pgraphics)) == plusplus::Status::Ok;
+      //return m_pgraphics->FillPath(gl2d_brush(),(dynamic_cast < ::draw2d_vulkan::path * > (ppath))->get_os_path(m_pgraphics)) == plusplus::Status::Ok;
 
       //return true;
 
@@ -2795,7 +2795,7 @@ namespace draw2d_opengl
    void graphics::fill(::draw2d::path * ppath, ::draw2d::brush * pbrush)
    {
 
-      //return m_pgraphics->FillPath((::plusplus::Brush *) pbrush->get_os_data(),(dynamic_cast < ::draw2d_opengl::path * > (ppath))->get_os_path(m_pgraphics)) == plusplus::Status::Ok;
+      //return m_pgraphics->FillPath((::plusplus::Brush *) pbrush->get_os_data(),(dynamic_cast < ::draw2d_vulkan::path * > (ppath))->get_os_path(m_pgraphics)) == plusplus::Status::Ok;
 
       //return true;
 
@@ -3315,7 +3315,7 @@ namespace draw2d_opengl
                gen_WingdixTerm = (char)!atexit(&__win_gdi_x_term);
             ::aura::UnlockGlobals(CRIT_HALFTONEBRUSH);
 
-      //      return ::draw2d_opengl::brush::from_handle(papp, gen_HalftoneBrush);*/
+      //      return ::draw2d_vulkan::brush::from_handle(papp, gen_HalftoneBrush);*/
       return nullptr;
    }
 
@@ -3456,12 +3456,12 @@ namespace draw2d_opengl
 
 
 
-   //::draw2d::graphics * ::draw2d_opengl::graphics::from_handle(HDC hDC)
+   //::draw2d::graphics * ::draw2d_vulkan::graphics::from_handle(HDC hDC)
    //{
    //hdc_map* pMap = ::windows_definition::MapHDC(true); //create map if not exist
    //ASSERT(pMap != nullptr);
 //      ::draw2d::graphics * pgraphics = (::draw2d::graphics *)pMap->from_handle(hDC);
-   //    ASSERT(pgraphics == nullptr || (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->m_hdc == hDC);
+   //    ASSERT(pgraphics == nullptr || (dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->m_hdc == hDC);
    //  return pgraphics;
    // return nullptr;
    //}
@@ -3753,12 +3753,12 @@ namespace draw2d_opengl
 
 //   ::draw2d::object* graphics::SelectGdiObject(::particle * pparticle, HDC hDC, HGDIOBJ h)
    // {
-//      return ::draw2d_opengl::object::from_handle(papp, ::SelectObject(hDC, h));
+//      return ::draw2d_vulkan::object::from_handle(papp, ::SelectObject(hDC, h));
    //}
-   ::draw2d_opengl::draw2d * graphics::draw2d_opengl()
+   ::draw2d_vulkan::draw2d * graphics::draw2d_vulkan()
    {
 
-      return dynamic_cast < ::draw2d_opengl::draw2d * >(system()->draw2d());
+      return dynamic_cast < ::draw2d_vulkan::draw2d * >(system()->draw2d());
 
    }
 
@@ -3771,7 +3771,7 @@ namespace draw2d_opengl
                hOldObj = ::SelectObject(m_hdc, hObject);
             if(m_hdc != nullptr)
                hOldObj = ::SelectObject(m_hdc, hObject);
-            return ::draw2d_opengl::object::from_handle(get_app(), hOldObj);*/
+            return ::draw2d_vulkan::object::from_handle(get_app(), hOldObj);*/
 
       return nullptr;
 
@@ -3787,7 +3787,7 @@ namespace draw2d_opengl
          hOldObj = ::SelectObject(m_hdc, pPen->get_os_data());
       if(m_hdc != nullptr)
          hOldObj = ::SelectObject(m_hdc, pPen->get_os_data());
-      return dynamic_cast < pen * > (::draw2d_opengl::object::from_handle(get_app(), hOldObj));*/
+      return dynamic_cast < pen * > (::draw2d_vulkan::object::from_handle(get_app(), hOldObj));*/
       m_ppen = pPen;
       return m_ppen;
 
@@ -3803,7 +3803,7 @@ namespace draw2d_opengl
                hOldObj = ::SelectObject(m_hdc, pBrush->get_os_data());
             if(m_hdc != nullptr)
                hOldObj = ::SelectObject(m_hdc, pBrush->get_os_data());
-            return dynamic_cast < ::draw2d::brush * > (::draw2d_opengl::object::from_handle(get_app(), hOldObj));*/
+            return dynamic_cast < ::draw2d::brush * > (::draw2d_vulkan::object::from_handle(get_app(), hOldObj));*/
       m_pbrush = pBrush;
 
       return m_pbrush;
@@ -3820,7 +3820,7 @@ namespace draw2d_opengl
                hOldObj = ::SelectObject(m_hdc, pFont->get_os_data());
             if(m_hdc != nullptr)
                hOldObj = ::SelectObject(m_hdc, pFont->get_os_data());
-            return dynamic_cast < ::write_text::font * > (::draw2d_opengl::object::from_handle(get_app(), hOldObj));*/
+            return dynamic_cast < ::write_text::font * > (::draw2d_vulkan::object::from_handle(get_app(), hOldObj));*/
 
       /*ASSERT(pFont != nullptr);
 
@@ -3855,7 +3855,7 @@ namespace draw2d_opengl
    ::draw2d::palette* graphics::SelectPalette(::draw2d::palette* pPalette, bool bForceBackground)
    {
       return nullptr;
-//      return dynamic_cast < ::draw2d::palette * > (::draw2d_opengl::object::from_handle(get_app(), ::SelectPalette(m_hdc, (HPALETTE)pPalette->get_os_data(), bForceBackground)));
+//      return dynamic_cast < ::draw2d::palette * > (::draw2d_vulkan::object::from_handle(get_app(), ::SelectPalette(m_hdc, (HPALETTE)pPalette->get_os_data(), bForceBackground)));
    }
 
 
@@ -4612,56 +4612,56 @@ namespace draw2d_opengl
 //      {
 //      // these records have effects different for each graphics derived class
 //      case META_SETMAPMODE:
-//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SetMapMode((double)(short)pMetaRec->rdParm[0]);
+//         (dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->SetMapMode((double)(short)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SETWINDOWEXT:
-//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->set_window_ext(
+//         (dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->set_window_ext(
 //         (double)(short)pMetaRec->rdParm[1], (double)(short)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SETWINDOWORG:
-//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SetWindowOrg(
+//         (dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->SetWindowOrg(
 //         (double)(short)pMetaRec->rdParm[1], (double)(short)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SETVIEWPORTEXT:
-//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->set_context_extents(
+//         (dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->set_context_extents(
 //         (double)(short)pMetaRec->rdParm[1], (double)(short)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SETVIEWPORTORG:
-//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->set_origin(
+//         (dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->set_origin(
 //         (double)(short)pMetaRec->rdParm[1], (double)(short)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SCALEWINDOWEXT:
-//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->scale_window_ext(
+//         (dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->scale_window_ext(
 //         (double)(short)pMetaRec->rdParm[3], (double)(short)pMetaRec->rdParm[2],
 //         (double)(short)pMetaRec->rdParm[1], (double)(short)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SCALEVIEWPORTEXT:
-//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->scale_context_extents(
+//         (dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->scale_context_extents(
 //         (double)(short)pMetaRec->rdParm[3], (double)(short)pMetaRec->rdParm[2],
 //         (double)(short)pMetaRec->rdParm[1], (double)(short)pMetaRec->rdParm[0]);
 //         break;
 //      case META_OFFSETVIEWPORTORG:
-//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->offset_origin(
+//         (dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->offset_origin(
 //         (double)(short)pMetaRec->rdParm[1], (double)(short)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SAVEDC:
-//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SaveDC();
+//         (dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->SaveDC();
 //         break;
 //      case META_RESTOREDC:
-//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->RestoreDC((double)(short)pMetaRec->rdParm[0]);
+//         (dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->RestoreDC((double)(short)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SETBKCOLOR:
 //      {
 //         auto pbrush = __øcreate < ::draw2d::brush >();
 //         
 //         pbrush->create_solid(*(UNALIGNED color32_t*)& pMetaRec->rdParm[0]);
-//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SelectObject(brush);
+//         (dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->SelectObject(brush);
 //      }
 //      break;
 //      case META_SETTEXTCOLOR:
 //      {
-//         ::draw2d::brush_pointer brush((dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->create_new, this, *(UNALIGNED color32_t*)&pMetaRec->rdParm[0]);
-//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SelectObject(brush);
+//         ::draw2d::brush_pointer brush((dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->create_new, this, *(UNALIGNED color32_t*)&pMetaRec->rdParm[0]);
+//         (dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->SelectObject(brush);
 //      }
 //      break;
 //
@@ -4674,27 +4674,27 @@ namespace draw2d_opengl
 //         {
 //            // object type is unknown, determine if it is a font
 //            HFONT hStockFont = (HFONT)::GetStockObject(SYSTEM_FONT);
-//            HFONT hFontOld = (HFONT)::SelectObject((dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->m_hdc, hStockFont);
-//            HGDIOBJ hObjOld = ::SelectObject((dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->m_hdc, hObject);
+//            HFONT hFontOld = (HFONT)::SelectObject((dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->m_hdc, hStockFont);
+//            HGDIOBJ hObjOld = ::SelectObject((dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->m_hdc, hObject);
 //            if (hObjOld == hStockFont)
 //            {
 //               // got the stock object back, so must be selecting a font
 //               throw ::not_implemented();
-////                  (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SelectObject(::draw2d_opengl::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
+////                  (dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->SelectObject(::draw2d_vulkan::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
 //               break;  // don't play the default record
 //            }
 //            else
 //            {
 //               // didn't get the stock object back, so restore everything
-//               ::SelectObject((dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->m_hdc, hFontOld);
-//               ::SelectObject((dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->m_hdc, hObjOld);
+//               ::SelectObject((dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->m_hdc, hFontOld);
+//               ::SelectObject((dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->m_hdc, hObjOld);
 //            }
 //            // and fall through to PlayMetaFileRecord...
 //         }
 //         else if (nObjType == OBJ_FONT)
 //         {
 //            // play back as graphics::SelectObject(::write_text::font*)
-////               (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SelectObject(::draw2d_opengl::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
+////               (dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->SelectObject(::draw2d_vulkan::font::from_handle(pgraphics->get_app(), (HFONT)hObject));
 //            throw ::not_implemented();
 //            break;  // don't play the default record
 //         }
@@ -5163,9 +5163,9 @@ namespace draw2d_opengl
 
    //      glBegin(GL_QUADS);
 
-   //      ::opengl::color(color32);
+   //      ::vulkan::color(color32);
 
-   //      ::opengl::vertex2f(rectangle);
+   //      ::vulkan::vertex2f(rectangle);
 
    //      glEnd();
 
@@ -5181,7 +5181,7 @@ namespace draw2d_opengl
    void graphics::draw_line(const int_point& point1, const int_point& point2, ::draw2d::pen * ppen)
    {
 
-      ::opengl::line(point1.x(), point1.y(), point2.x(), point2.y(), (float)(ppen->m_dWidth),
+      ::vulkan::line(point1.x(), point1.y(), point2.x(), point2.y(), (float)(ppen->m_dWidth),
          ppen->m_color.f32_red(), ppen->m_color.f32_green(),
          ppen->m_color.f32_blue(),
          ppen->m_color.f32_opacity(), 0.f, 0.f, true);
@@ -5190,7 +5190,7 @@ namespace draw2d_opengl
 
       glBegin(GL_LINES);
 
-      ::opengl::color(ppen->m_color);
+      ::vulkan::color(ppen->m_color);
 
       glVertex2f(point1.x(), point1.y());
       glVertex2f(point2.x(), point2.y());
@@ -5220,7 +5220,7 @@ namespace draw2d_opengl
       if (::is_set(m_ppen))
       {
 
-         ::opengl::color(m_ppen->m_color);
+         ::vulkan::color(m_ppen->m_color);
 
       }
 
@@ -5297,7 +5297,7 @@ namespace draw2d_opengl
 
       //glLineWidth(ppen->m_dWidth);
 
-      ::opengl::color(ppen->m_color);
+      ::vulkan::color(ppen->m_color);
 
       //return ::success;
 
@@ -5308,7 +5308,7 @@ namespace draw2d_opengl
    void graphics::set(::draw2d::brush * pbrush)
    {
 
-      ::opengl::color(pbrush->m_color);
+      ::vulkan::color(pbrush->m_color);
       
       //return ::success;
 
@@ -5765,11 +5765,11 @@ namespace draw2d_opengl
 
    //   synchronous_lock synchronouslock(this->synchronization());
 
-   //   draw2d_opengl_enum_fonts fonts(itema);
+   //   draw2d_vulkan_enum_fonts fonts(itema);
 
    //   //HDC hdc = ::CreateCompatibleDC(nullptr);
 
-   //   //::EnumFontFamilies(hdc,(LPCTSTR)nullptr,(FONTENUMPROC)draw2d_opengl_EnumFamCallBack,(LPARAM)&fonts);
+   //   //::EnumFontFamilies(hdc,(LPCTSTR)nullptr,(FONTENUMPROC)draw2d_vulkan_EnumFamCallBack,(LPARAM)&fonts);
 
    //   //::DeleteDC(hdc);
 
@@ -5790,7 +5790,7 @@ namespace draw2d_opengl
    void graphics::CreateWindowDC(oswindow wnd)
    {
 
-      // http://stackoverflow.com/questions/4052940/how-to-make-an-opengl-rendering-context-with-transparent-background
+      // http://stackoverflow.com/questions/4052940/how-to-make-an-vulkan-rendering-context-with-transparent-background
       //
 
       //PIXELFORMATDESCRIPTOR pfd =
@@ -5798,7 +5798,7 @@ namespace draw2d_opengl
       //   sizeof(PIXELFORMATDESCRIPTOR),
       //   1,                                // Version Number
       //   PFD_DRAW_TO_WINDOW |         // Format Must Support Window
-      //   PFD_SUPPORT_OPENGL |         // Format Must Support OpenGL
+      //   PFD_SUPPORT_VULKAN |         // Format Must Support Vulkan
       //   PFD_SUPPORT_COMPOSITION |         // Format Must Support Composition
       //   PFD_DOUBLEBUFFER,                 // Must Support Double Buffering
       //   PFD_TYPE_RGBA,                    // Request An RGBA Format
@@ -5922,7 +5922,7 @@ namespace draw2d_opengl
 
       bool bYSwap = m_papplication->m_bUseDraw2dProtoWindow;
 
-      ::opengl::resize(size, bYSwap);
+      ::vulkan::resize(size, bYSwap);
 
       m_z = 0.f;
 
@@ -5996,7 +5996,7 @@ namespace draw2d_opengl
 
       //SwapBuffers(m_hdc);
 
-      //m_pgpucontextOpenGL->render
+      //m_pgpucontextVulkan->render
 
       //dr();
 
@@ -6086,16 +6086,16 @@ namespace draw2d_opengl
    }
 
 
-} // namespace draw2d_opengl
+} // namespace draw2d_vulkan
 
 
 
 
 
-BOOL CALLBACK draw2d_opengl_EnumFamCallBack(LPLOGFONT lplf,LPNEWTEXTMETRIC lpntm,unsigned int FontType,LPVOID p)
+BOOL CALLBACK draw2d_vulkan_EnumFamCallBack(LPLOGFONT lplf,LPNEWTEXTMETRIC lpntm,unsigned int FontType,LPVOID p)
 {
 
-   draw2d_opengl_enum_fonts * pfonts = (draw2d_opengl_enum_fonts *) p;
+   draw2d_vulkan_enum_fonts * pfonts = (draw2d_vulkan_enum_fonts *) p;
 
    if(FontType & RASTER_FONTTYPE)
    {
@@ -6120,7 +6120,7 @@ BOOL CALLBACK draw2d_opengl_EnumFamCallBack(LPLOGFONT lplf,LPNEWTEXTMETRIC lpntm
 
 
 
-namespace opengl
+namespace vulkan
 {
 
 
@@ -6184,12 +6184,12 @@ namespace opengl
       //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
       // Translate to inside of pixel (otherwise inaccuracies can occur on certain gl implementations)
-      //if (OpenGL::accuracyTweak())
+      //if (Vulkan::accuracyTweak())
       glTranslatef(0.5f, 0.5f, 0);
 
    }
 
-   //https://community.khronos.org/t/draw-an-arc-in-opengl/57994/2
+   //https://community.khronos.org/t/draw-an-arc-in-vulkan/57994/2
    inline void draw_arc(float cx, float cy, float r, float start_angle, float arc_angle, int num_segments)
    {
       float theta = arc_angle / float(num_segments - 1);//theta is now calculated from the arc angle instead, the - 1 bit comes from the fact that the arc is open
@@ -6221,7 +6221,7 @@ namespace opengl
 
    
 
-} // namespace opengl
+} // namespace vulkan
 
 
 

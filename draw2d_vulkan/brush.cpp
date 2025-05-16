@@ -1,9 +1,9 @@
 #include "framework.h"
-#include "_opengl.h"
+#include "_vulkan.h"
 #include "brush.h"
 
 
-namespace draw2d_opengl
+namespace draw2d_vulkan
 {
 
 
@@ -195,6 +195,6 @@ namespace draw2d_opengl
 
    //}
 
-} // namespace draw2d_opengl
+} // namespace draw2d_vulkan
 
 

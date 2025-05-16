@@ -7,11 +7,11 @@
 #include "aura/graphics/write_text/font.h"
 
 
-namespace draw2d_opengl
+namespace draw2d_vulkan
 {
 
 
-   class CLASS_DECL_DRAW2D_OPENGL font : 
+   class CLASS_DECL_DRAW2D_VULKAN font : 
       virtual public ::write_text::font
    {
    public:
@@ -44,7 +44,7 @@ namespace draw2d_opengl
    };
 
 
-} // namespace draw2d_opengl
+} // namespace draw2d_vulkan
 
 
 

@@ -1,6 +1,6 @@
 // Original Name : vase_rend_draft_1.h
 
-/* Drawing nearly perfect 2D line segments in OpenGL
+/* Drawing nearly perfect 2D line segments in Vulkan
  * You can use this code however you want.
  * I just hope you to cite my name and the page of this technique:
  * http://artgrammer.blogspot.com/2011/05/drawing-nearly-perfect-2d-line-segments.html
@@ -12,7 +12,7 @@
 #include <math.h>
 static inline double GET_ABS(double x) {return x>0?x:-x;}
 /*
- * this implementation uses only basic gl (opengl 1.0)
+ * this implementation uses only basic gl (vulkan 1.0)
  *   renders in immediate mode by glBegin/ glEnd
  *   choose only 1 from vase_rend_draft_1.h and vase_rend_draft_2.h
  *   to your need. if you have no preference, just use vase_rend_draft_2.h

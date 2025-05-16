@@ -4,11 +4,11 @@
 #include "aura/graphics/draw2d/object.h"
 
 
-namespace draw2d_opengl
+namespace draw2d_vulkan
 {
 
 
-   class CLASS_DECL_DRAW2D_OPENGL object :
+   class CLASS_DECL_DRAW2D_VULKAN object :
       virtual public ::draw2d::object
    {
    public:

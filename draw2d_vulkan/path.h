@@ -4,11 +4,11 @@
 #include "aura/graphics/draw2d/path.h"
 
 
-namespace draw2d_opengl
+namespace draw2d_vulkan
 {
 
 
-   class CLASS_DECL_DRAW2D_OPENGL path :
+   class CLASS_DECL_DRAW2D_VULKAN path :
       virtual public ::draw2d::path
    {
    public:
@@ -68,7 +68,7 @@ namespace draw2d_opengl
    };
 
 
-} // namespace draw2d_opengl
+} // namespace draw2d_vulkan
 
 
 

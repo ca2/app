@@ -10,11 +10,11 @@
 struct OffscreenContext;
 
 
-namespace draw2d_opengl
+namespace draw2d_vulkan
 {
 
 
-   class CLASS_DECL_DRAW2D_OPENGL image :
+   class CLASS_DECL_DRAW2D_VULKAN image :
       virtual public ::image::image
    {
    public:
@@ -157,7 +157,7 @@ namespace draw2d_opengl
    };
 
 
-} // namespace draw2d_opengl
+} // namespace draw2d_vulkan
 
 
 

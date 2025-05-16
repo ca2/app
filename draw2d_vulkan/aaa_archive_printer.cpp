@@ -2,7 +2,7 @@
 #include <WinSpool.h>
 
 
-namespace draw2d_opengl
+namespace draw2d_vulkan
 {
 
 
@@ -70,7 +70,7 @@ namespace draw2d_opengl
       close();
    }
 
-   bool printer::document_properties::initialize(::draw2d_opengl::printer * pprinter, DEVMODE * pdevmode)
+   bool printer::document_properties::initialize(::draw2d_vulkan::printer * pprinter, DEVMODE * pdevmode)
    {
       __UNREFERENCED_PARAMETER(pdevmode);
       if (m_pdevmode != nullptr)
@@ -118,5 +118,5 @@ namespace draw2d_opengl
    }
 
 
-} // namespace draw2d_opengl
+} // namespace draw2d_vulkan
 

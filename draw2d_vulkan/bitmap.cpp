@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "_opengl.h"
+#include "_vulkan.h"
 #include "bitmap.h"
 #include "acme/exception/interface_only.h"
 
@@ -57,7 +57,7 @@ GLfloat LightPosition[] = { 0.0f, 0.0f, 2.0f, 1.00f };
 #else verify(expr) expr
 #endif
 
-namespace draw2d_opengl
+namespace draw2d_vulkan
 {
 
 
@@ -597,7 +597,7 @@ namespace draw2d_opengl
       // context so just ask for the bare minimum.
       pfd.nSize = sizeof(pfd);
       pfd.nVersion = 1;
-      pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL;
+      pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_VULKAN;
       pfd.iPixelType = PFD_TYPE_RGBA;
       pfd.cColorBits = 32;
       pfd.cDepthBits = 32;
@@ -754,7 +754,7 @@ namespace draw2d_opengl
 //      int attribList[] =
 //      {
 //         WGL_DRAW_TO_PBUFFER_ARB, true,      // allow rendering to the pbuffer
-//         WGL_SUPPORT_OPENGL_ARB,  true,      // associate with OpenGL
+//         WGL_SUPPORT_VULKAN_ARB,  true,      // associate with Vulkan
 //         WGL_DOUBLE_BUFFER_ARB,   false,     // single buffered
 //         WGL_RED_BITS_ARB,   8,              // minimum 8-bits for red channel
 //         WGL_GREEN_BITS_ARB, 8,              // minimum 8-bits for green channel
@@ -851,7 +851,7 @@ namespace draw2d_opengl
 
 
 
-} // namespace draw2d_opengl
+} // namespace draw2d_vulkan
 
 
 void resizeBilinear(memory & m, int w2, int h2, int * pixels, int w, int h)

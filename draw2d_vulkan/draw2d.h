@@ -4,13 +4,13 @@
 
 #include "acme/platform/auto_pointer.h"
 #include "aura/graphics/draw2d/draw2d.h"
-#include "gpu_opengl/context.h"
+#include "gpu_vulkan/context.h"
 
-namespace draw2d_opengl
+namespace draw2d_vulkan
 {
 
 
-   class CLASS_DECL_DRAW2D_OPENGL draw2d :
+   class CLASS_DECL_DRAW2D_VULKAN draw2d :
       virtual public ::draw2d::draw2d
    {
    public:
@@ -40,7 +40,7 @@ namespace draw2d_opengl
 
       //bool        m_bGladInitialized;
 
-      //::pointer<::opengl::context>          m_popenglcontext;
+      //::pointer<::vulkan::context>          m_pvulkancontext;
 
 
       draw2d();
@@ -61,12 +61,12 @@ namespace draw2d_opengl
 
 
       //virtual private_font * get_file_private_font(::platform::context * pcontext, const ::file::path & path);
-      virtual int  opengl_init();
+      virtual int  vulkan_init();
 
    };
 
 
-} // namespace draw2d_opengl
+} // namespace draw2d_vulkan
 
 
 

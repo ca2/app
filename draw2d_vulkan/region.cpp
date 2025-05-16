@@ -1,9 +1,9 @@
 #include "framework.h"
-#include "_opengl.h"
+#include "_vulkan.h"
 #include "region.h"
 
 
-namespace draw2d_opengl
+namespace draw2d_vulkan
 {
 
    //region::region(const region & rectangle) :
@@ -310,4 +310,4 @@ namespace draw2d_opengl
 
    //}
 
-} // namespace draw2d_opengl
+} // namespace draw2d_vulkan

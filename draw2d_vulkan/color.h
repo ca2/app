@@ -1,11 +1,11 @@
-// Refactored form _opengl.h by camilo on 2023-06-09 20:16 <3ThomasBorregaardSorensen!!
+// Refactored form _vulkan.h by camilo on 2023-06-09 20:16 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
 #include "acme/graphics/image/image32.h"
 
 
-namespace opengl
+namespace vulkan
 {
 
 
@@ -33,7 +33,7 @@ namespace opengl
    inline void color(const ::color::color & color)
    {
 
-      ::opengl::color(
+      ::vulkan::color(
          color.m_uchRed,
          color.m_uchGreen,
          color.m_uchBlue,
@@ -42,13 +42,13 @@ namespace opengl
    }
 
 
-} // namespace opengl
+} // namespace vulkan
 
 
-inline void opengl_color(::color::color color)
+inline void vulkan_color(::color::color color)
 {
 
-   ::opengl::color(
+   ::vulkan::color(
       color.byte_red(),
       color.byte_green(),
       color.byte_blue(),

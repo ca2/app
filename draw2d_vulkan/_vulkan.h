@@ -34,11 +34,11 @@
 #include "graphics.h"
 
 
-#define GL2D_GRAPHICS(pgraphics) (dynamic_cast < ::draw2d_opengl::graphics * > (pgraphics))
+#define GL2D_GRAPHICS(pgraphics) (dynamic_cast < ::draw2d_vulkan::graphics * > (pgraphics))
 #define GL2D_HDC(pgraphics) (GL2D_GRAPHICS(pgraphics)->m_hdc)
 
 
-namespace opengl
+namespace vulkan
 {
 
 
@@ -56,21 +56,21 @@ namespace opengl
    void resize(const ::int_size & size, bool bYSwap);
 
 
-   //https://community.khronos.org/t/draw-an-arc-in-opengl/57994/2
+   //https://community.khronos.org/t/draw-an-arc-in-vulkan/57994/2
    void draw_arc(float cx, float cy, float r, float start_angle, float arc_angle, int num_segments);
 
-} // namespace opengl
+} // namespace vulkan
 
 
 
-namespace draw2d_opengl
+namespace draw2d_vulkan
 {
 
 
    class draw2d;
 
 
-} // namespace draw2d_opengl
+} // namespace draw2d_vulkan
 
 
 

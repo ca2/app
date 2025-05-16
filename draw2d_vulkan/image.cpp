@@ -1,10 +1,10 @@
 #include "framework.h"
-#include "_opengl.h"
+#include "_vulkan.h"
 #include "image.h"
 #include "acme/platform/application.h"
 
 
-namespace draw2d_opengl
+namespace draw2d_vulkan
 {
 
 
@@ -193,7 +193,7 @@ namespace draw2d_opengl
    void image::create(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::bitmap * pbitmap = (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->get_current_bitmap();
+      ::draw2d::bitmap * pbitmap = (dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->get_current_bitmap();
 
       if (pbitmap == nullptr)
       {
@@ -266,7 +266,7 @@ namespace draw2d_opengl
 
       //}
 
-      throw ::exception(todo, "::opengl::image::image");
+      throw ::exception(todo, "::vulkan::image::image");
 
       //bool bOk = GetDIBits(GL2D_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, m_size.cy(), get_data(), &(m_bitmapinfo), DIB_RGB_COLORS) != false;
 
@@ -2632,7 +2632,7 @@ namespace draw2d_opengl
 //
 //      // Copy the contents of the framebuffer - which in our case is our pbuffer -
 //      // to our bitmap image in local system memory. Notice that we also need
-//      // to invert the pbuffer's pixel data since OpenGL by default orients the
+//      // to invert the pbuffer's pixel data since Vulkan by default orients the
 //      // bitmap image bottom up. Our Windows DIB wrapper expects images to be
 //      // top down in orientation.
 //
@@ -2812,7 +2812,7 @@ namespace draw2d_opengl
 
       bool bYSwap = m_papplication->m_bUseDraw2dProtoWindow;
 
-      ::opengl::resize(pgraphics->m_sizeWindow, bYSwap);
+      ::vulkan::resize(pgraphics->m_sizeWindow, bYSwap);
 
       glReadBuffer(GL_BACK);
 
@@ -2937,7 +2937,7 @@ namespace draw2d_opengl
    }
 
 
-} // namespace draw2d_opengl
+} // namespace draw2d_vulkan
 
 
 

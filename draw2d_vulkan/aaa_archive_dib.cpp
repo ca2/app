@@ -2,7 +2,7 @@
 #include "omp.h"
 
 
-namespace draw2d_opengl
+namespace draw2d_vulkan
 {
 
 
@@ -154,7 +154,7 @@ namespace draw2d_opengl
    bool image::create(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::bitmap * pbitmap = (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->get_current_bitmap();
+      ::draw2d::bitmap * pbitmap = (dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->get_current_bitmap();
 
       if(pbitmap == nullptr)
          return false;
@@ -193,7 +193,7 @@ namespace draw2d_opengl
       return pgraphics->BitBlt(point, size, get_graphics(), ptSrc);
 
       /*  return SetDIBitsToDevice(
-           (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->get_handle1(),
+           (dynamic_cast<::draw2d_vulkan::graphics * >(pgraphics))->get_handle1(),
            point.x(), point.y(),
            size.cx(), size.cy(),
            ptSrc.x(), ptSrc.y(), ptSrc.y(), cy - ptSrc.y(),
@@ -2544,7 +2544,7 @@ namespace draw2d_opengl
 //
 //      // Copy the contents of the framebuffer - which in our case is our pbuffer -
 //      // to our bitmap image in local system memory. Notice that we also need
-//      // to invert the pbuffer's pixel data since OpenGL by default orients the
+//      // to invert the pbuffer's pixel data since Vulkan by default orients the
 //      // bitmap image bottom up. Our Windows DIB wrapper expects images to be
 //      // top down in orientation.
 //
@@ -2715,7 +2715,7 @@ namespace draw2d_opengl
 
 
 
-} // namespace draw2d_opengl
+} // namespace draw2d_vulkan
 
 
 

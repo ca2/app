@@ -4,13 +4,13 @@
 #include "glad_wgl.h"
 #include <dwmapi.h>
 
-namespace draw2d_opengl
+namespace draw2d_vulkan
 {
-   // Helper to create dummy OpenGL context
+   // Helper to create dummy Vulkan context
    HGLRC CreateDummyContext(HDC hdc) {
       PIXELFORMATDESCRIPTOR pfd = {
           sizeof(PIXELFORMATDESCRIPTOR), 1,
-          PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER,
+          PFD_DRAW_TO_WINDOW | PFD_SUPPORT_VULKAN | PFD_DOUBLEBUFFER,
           PFD_TYPE_RGBA, 32,
           0, 0, 0, 0, 0, 0,
           0, 0, 0, 0, 0, 0, 0,
@@ -35,7 +35,7 @@ namespace draw2d_opengl
 
       auto hwnd = pwindow->m_hwnd;
 
-      // OpenGL context setup
+      // Vulkan context setup
       HDC hdc = GetDC(hwnd);
 
       bool bTransparencyEnabled = true;
@@ -47,7 +47,7 @@ namespace draw2d_opengl
     sizeof(PIXELFORMATDESCRIPTOR),
     1,                                // Version Number
     PFD_DRAW_TO_WINDOW |         // Format Must Support Window
-    PFD_SUPPORT_OPENGL |         // Format Must Support OpenGL
+    PFD_SUPPORT_VULKAN |         // Format Must Support Vulkan
     PFD_SUPPORT_COMPOSITION |         // Format Must Support Composition
     PFD_DOUBLEBUFFER,                 // Must Support Double Buffering
     PFD_TYPE_RGBA,                    // Request An RGBA Format
@@ -90,7 +90,7 @@ namespace draw2d_opengl
       //   int attribs[] = {
       // WGL_DRAW_TO_WINDOW_ARB, TRUE,
       // WGL_DOUBLE_BUFFER_ARB, TRUE,
-      // WGL_SUPPORT_OPENGL_ARB, TRUE,
+      // WGL_SUPPORT_VULKAN_ARB, TRUE,
       // WGL_PIXEL_TYPE_ARB, WGL_TYPE_RGBA_ARB,
       // WGL_TRANSPARENT_ARB, TRUE,
       // WGL_COLOR_BITS_ARB, 32,
@@ -142,7 +142,7 @@ namespace draw2d_opengl
       //   PIXELFORMATDESCRIPTOR pfd = {};
       //   pfd.nSize = sizeof(PIXELFORMATDESCRIPTOR);
       //   pfd.nVersion = 1;
-      //   pfd.dwFlags = PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER | PFD_DRAW_TO_WINDOW;
+      //   pfd.dwFlags = PFD_SUPPORT_VULKAN | PFD_DOUBLEBUFFER | PFD_DRAW_TO_WINDOW;
       //   pfd.iPixelType = PFD_TYPE_RGBA;
       //   pfd.cColorBits = 32;
       //   pfd.cAlphaBits = 8;
@@ -178,4 +178,4 @@ namespace draw2d_opengl
 
 
 
-} // namespace draw2d_opengl
+} // namespace draw2d_vulkan

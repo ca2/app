@@ -1,9 +1,9 @@
 #include "framework.h"
-#include "_opengl.h"
+#include "_vulkan.h"
 #include "path.h"
 
 
-namespace draw2d_opengl
+namespace draw2d_vulkan
 {
 
 
@@ -206,7 +206,7 @@ namespace draw2d_opengl
    bool path::_set(::draw2d::graphics* pgraphics, const ::double_arc& parc)
    {
 
-      throw ::exception(todo, "::opengl::path");
+      throw ::exception(todo, "::vulkan::path");
 
       return false;
 
@@ -216,7 +216,7 @@ namespace draw2d_opengl
    bool path::_set(::draw2d::graphics* pgraphics, const ::double_line& pline)
    {
 
-      throw ::exception(todo, "::opengl::path");
+      throw ::exception(todo, "::vulkan::path");
 
       return false;
 
@@ -226,7 +226,7 @@ namespace draw2d_opengl
    //bool path::_set(::draw2d::graphics* pgraphics, const ::lined& pline)
    //{
 
-   //   throw ::exception(todo("::opengl::path"));
+   //   throw ::exception(todo("::vulkan::path"));
 
    //   return false;
 
@@ -236,7 +236,7 @@ namespace draw2d_opengl
    bool path::_set(::draw2d::graphics* pgraphics, const ::double_lines& pline)
    {
 
-      throw ::exception(todo, "::opengl::path");
+      throw ::exception(todo, "::vulkan::path");
 
       return false;
 
@@ -246,7 +246,7 @@ namespace draw2d_opengl
    //bool path::_set(::draw2d::graphics* pgraphics, const ::linesd& pline)
    //{
 
-   //   throw ::exception(todo("::opengl::path"));
+   //   throw ::exception(todo("::vulkan::path"));
 
    //   return false;
 
@@ -256,7 +256,7 @@ namespace draw2d_opengl
    bool path::_set(::draw2d::graphics* pgraphics, const ::double_rectangle & prectangle)
    {
 
-      throw ::exception(todo, "::opengl::path");
+      throw ::exception(todo, "::vulkan::path");
 
       return false;
 
@@ -266,7 +266,7 @@ namespace draw2d_opengl
    //bool path::_set(::draw2d::graphics* pgraphics, const ::double_rectangle& prectangle)
    //{
 
-   //   throw ::exception(todo("::opengl::path"));
+   //   throw ::exception(todo("::vulkan::path"));
 
    //   return false;
 
@@ -276,7 +276,7 @@ namespace draw2d_opengl
    bool path::_set(::draw2d::graphics* pgraphics, const ::double_polygon& ppolygon)
    {
 
-      throw ::exception(todo, "::opengl::path");
+      throw ::exception(todo, "::vulkan::path");
 
       return false;
 
@@ -286,7 +286,7 @@ namespace draw2d_opengl
    //bool path::_set(::draw2d::graphics* pgraphics, const ::double_polygon& ppolygond)
    //{
 
-   //   throw ::exception(todo("::opengl::path"));
+   //   throw ::exception(todo("::vulkan::path"));
 
    //   return false;
 
@@ -296,7 +296,7 @@ namespace draw2d_opengl
    bool path::_set(::draw2d::graphics* pgraphics, const ::write_text::text_out& ptextout)
    {
 
-      throw ::exception(todo, "::opengl::path");
+      throw ::exception(todo, "::vulkan::path");
 
       return false;
 
@@ -306,14 +306,14 @@ namespace draw2d_opengl
    bool path::_set(::draw2d::graphics* pgraphics, const ::write_text::draw_text& pdrawtext)
    {
 
-      throw ::exception(todo, "::opengl::path");
+      throw ::exception(todo, "::vulkan::path");
 
       return false;
 
    }
 
 
-} // namespace draw2d_opengl
+} // namespace draw2d_vulkan
 
 
 

@@ -10,12 +10,12 @@
 #include <GdiPlus.h>
 
 
-namespace draw2d_opengl
+namespace draw2d_vulkan
 {
 
 
-   class CLASS_DECL_DRAW2D_OPENGL pen : 
-      virtual public ::draw2d_opengl::object,
+   class CLASS_DECL_DRAW2D_VULKAN pen : 
+      virtual public ::draw2d_vulkan::object,
       virtual public ::draw2d::pen
    {
    public:
@@ -41,6 +41,6 @@ namespace draw2d_opengl
    };
 
 
-} // namespace draw2d_opengl
+} // namespace draw2d_vulkan
 
 

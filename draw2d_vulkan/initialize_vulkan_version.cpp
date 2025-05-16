@@ -25,17 +25,17 @@
 ////typedef int (WINAPI * PFNWGLGETSWAPINTERVALEXTPROC) (void);
 //
 //
-//HGLRC initialize_opengl_version(HDC hdc, int iMajor, int iMinor)
+//HGLRC initialize_vulkan_version(HDC hdc, int iMajor, int iMinor)
 //{
 //
 //   // Init GLFW
 //   //glfwInit();
 //   // ... <snip> ... setup a window and a context
 //
-//   // Load all OpenGL functions using the glfw loader function
+//   // Load all Vulkan functions using the glfw loader function
 //   // If you use SDL you can use: https://wiki.libsdl.org/SDL_GL_GetProcAddress
 //   //if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-//   //   std::cout << "Failed to initialize OpenGL context" << std::endl;
+//   //   std::cout << "Failed to initialize Vulkan context" << std::endl;
 //   //   return -1;
 //   //}
 //   if (!gladLoadWGL(hdc))

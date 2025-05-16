@@ -2795,9 +2795,9 @@ namespace draw2d_vulkan
 
       int hasAlphaBits = 0;
 
-      vkGetIntegerv(VK_ALPHA_BITS, &hasAlphaBits);
+      ////xxxopengl>>>>vulkan vkGetIntegerv(VK_ALPHA_BITS, &hasAlphaBits);
 
-      vkFlush();
+      //vkFlush();
 
       //vkReadBuffer(VK_BACK);
       //vkReadBuffer(VK_FRONT);
@@ -2814,21 +2814,22 @@ namespace draw2d_vulkan
 
       ::vulkan::resize(pgraphics->m_sizeWindow, bYSwap);
 
-      vkReadBuffer(VK_BACK);
+      // //xxxopengl>>>>vulkan 
+      //vkReadBuffer(VK_BACK);
 
-      vkPixelStorei(VK_PACK_SWAP_BYTES, 0);
+      //vkPixelStorei(VK_PACK_SWAP_BYTES, 0);
 
-      vkPixelStorei(VK_PACK_ROW_LENGTH, m_iScan/4);
+      //vkPixelStorei(VK_PACK_ROW_LENGTH, m_iScan/4);
 
-      vkReadPixels(0, 0, cx, cy, VK_BGRA, VK_UNSIGNED_BYTE, m_pimage32Raw);
+      //vkReadPixels(0, 0, cx, cy, VK_BGRA, VK_UNSIGNED_BYTE, m_pimage32Raw);
 
-      //vkReadPixels(0, 0, m_size.cx(), m_size.cy(), VK_ARGB, VK_UNSIGNED_BYTE, m_pimage32Raw);
+      ////vkReadPixels(0, 0, m_size.cx(), m_size.cy(), VK_ARGB, VK_UNSIGNED_BYTE, m_pimage32Raw);
 
-      int i1280 = VK_INVALID_ENUM;
+      //int i1280 = VK_INVALID_ENUM;
 
-      int i1281 = VK_INVALID_VALUE;
+      //int i1281 = VK_INVALID_VALUE;
 
-      int iError = vkGetError();
+      //int iError = vkGetError();
 
       m_bMapped = true;
 
@@ -2878,7 +2879,8 @@ namespace draw2d_vulkan
 
       m_pgraphics->thread_select();
 
-      vkDrawPixels(m_size.cx(), m_size.cy(), VK_BGRA, VK_UNSIGNED_BYTE, m_pimage32Raw);
+      //xxxopengl>>>>vulkan 
+      //vkDrawPixels(m_size.cx(), m_size.cy(), VK_BGRA, VK_UNSIGNED_BYTE, m_pimage32Raw);
 
       m_bMapped = false;
 

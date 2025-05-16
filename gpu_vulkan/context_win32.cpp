@@ -7,7 +7,7 @@
 #include "acme/platform/application.h"
 #include "aura/platform/system.h"
 #include "windowing_win32/window.h"
-#include "glad_wgl.h"
+//xxxopengl>>>>vulkan #include "glad_wgl.h"
 
 
 namespace vulkan
@@ -139,7 +139,7 @@ namespace vulkan
 
          // create WGL context, make current
 
-         PIXELFORMATDESCRIPTOR pixformat;
+         //xxxopengl>>>>vulkan PIXELFORMATDESCRIPTOR pixformat;
 
          int chosenformat;
 
@@ -156,107 +156,107 @@ namespace vulkan
 
          }
 
-         zero(pixformat);
-         pixformat.nSize = sizeof(pixformat);
-         pixformat.nVersion = 1;
-         pixformat.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_VULKAN | PFD_DOUBLEBUFFER;
-         pixformat.iPixelType = PFD_TYPE_RGBA;
-         pixformat.cColorBits = 32;
-         pixformat.cRedShift = 16;
-         pixformat.cGreenShift = 8;
-         pixformat.cBlueShift = 0;
-         pixformat.cAlphaShift = 24;
-         pixformat.cAlphaBits = 8;
-         pixformat.cDepthBits = 24;
-         pixformat.cStencilBits = 8;
+         ////xxxopengl>>>>vulkan  zero(pixformat);
+         //pixformat.nSize = sizeof(pixformat);
+         //pixformat.nVersion = 1;
+         //pixformat.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_VULKAN | PFD_DOUBLEBUFFER;
+         //pixformat.iPixelType = PFD_TYPE_RGBA;
+         //pixformat.cColorBits = 32;
+         //pixformat.cRedShift = 16;
+         //pixformat.cGreenShift = 8;
+         //pixformat.cBlueShift = 0;
+         //pixformat.cAlphaShift = 24;
+         //pixformat.cAlphaBits = 8;
+         //pixformat.cDepthBits = 24;
+         //pixformat.cStencilBits = 8;
 
-         chosenformat = ChoosePixelFormat(hdc, &pixformat);
+         //xxxopengl>>>>vulkan chosenformat = ChoosePixelFormat(hdc, &pixformat);
 
-         if (chosenformat == 0)
-         {
+         //if (chosenformat == 0)
+         //{
 
-            informationf("MS GDI - ChoosePixelFormat failed");
+         //   informationf("MS GDI - ChoosePixelFormat failed");
 
-            informationf("last-error code: %d\n", GetLastError());
+         //   informationf("last-error code: %d\n", GetLastError());
 
-            ReleaseDC(m_hwnd, hdc);
+         //   ReleaseDC(m_hwnd, hdc);
 
-            throw ::exception(error_failed);
+         //   throw ::exception(error_failed);
 
-         }
+         //}
 
-         bool spfok = SetPixelFormat(hdc, chosenformat, &pixformat);
+         //bool spfok = SetPixelFormat(hdc, chosenformat, &pixformat);
 
-         if (!spfok)
-         {
+         //if (!spfok)
+         //{
 
-            informationf("MS GDI - SetPixelFormat failed");
+         //   informationf("MS GDI - SetPixelFormat failed");
 
-            informationf("last-error code: %d\n", GetLastError());
+         //   informationf("last-error code: %d\n", GetLastError());
 
-            ReleaseDC(m_hwnd, hdc);
+         //   ReleaseDC(m_hwnd, hdc);
 
-            throw ::exception(error_failed);
+         //   throw ::exception(error_failed);
 
-         }
+         //}
 
-         HGLRC hglrc = wglCreateContext(hdc);
+         //HGLRC hglrc = wglCreateContext(hdc);
 
-         if (!hglrc)
-         {
+         //if (!hglrc)
+         //{
 
-            informationf("MS WGL - wglCreateContext failed");
+         //   informationf("MS WGL - wglCreateContext failed");
 
-            informationf("last-error code: %d\n", GetLastError());
+         //   informationf("last-error code: %d\n", GetLastError());
 
-            ReleaseDC(m_hwnd, hdc);
+         //   ReleaseDC(m_hwnd, hdc);
 
-            throw ::exception(error_failed);
+         //   throw ::exception(error_failed);
 
-         }
+         //}
 
-         bool bMakeCurrentOk = wglMakeCurrent(hdc, hglrc);
+         //bool bMakeCurrentOk = wglMakeCurrent(hdc, hglrc);
 
-         if (!bMakeCurrentOk)
-         {
+         //if (!bMakeCurrentOk)
+         //{
 
-            informationf("MS WGL - wglMakeCurrent failed");
+         //   informationf("MS WGL - wglMakeCurrent failed");
 
-            informationf("last-error code: %d\n", GetLastError());
+         //   informationf("last-error code: %d\n", GetLastError());
 
-            ReleaseDC(m_hwnd, hdc);
+         //   ReleaseDC(m_hwnd, hdc);
 
-            throw ::exception(error_failed);
+         //   throw ::exception(error_failed);
 
-         }
+         //}
 
 
          pvulkan->defer_init_gpu_library();
 
-         auto pszVersion = (const char *)glGetString(GL_VERSION);
-         //::e_status estatus = 
+         //auto pszVersion = (const char *)glGetString(GL_VERSION);
+         ////::e_status estatus = 
 
-         ::string strVersion(pszVersion);
+         //::string strVersion(pszVersion);
 
-         if (strVersion.case_insensitive_contains("mesa"))
-         {
-
-            m_bMesa = true;
-
-         }
-
-         //if (!estatus)
+         //if (strVersion.case_insensitive_contains("mesa"))
          //{
 
-         //   ReleaseDC(window, hdc);
-
-         //   return estatus;
+         //   m_bMesa = true;
 
          //}
 
+         ////if (!estatus)
+         ////{
+
+         ////   ReleaseDC(window, hdc);
+
+         ////   return estatus;
+
+         ////}
+
          m_hwnd = m_hwnd;
          m_hdc = hdc;
-         m_hrc = hglrc;
+         //xxxopengl>>>>vulkan m_hrc = hglrc;
 
       }
 
@@ -373,75 +373,75 @@ namespace vulkan
 
             //}
 
-            auto hglrc = wglCreateContext(hdc);
+   //         auto hglrc = wglCreateContext(hdc);
 
-            pwindow->m_hglrcProto = hglrc;
+   //         pwindow->m_hglrcProto = hglrc;
 
-   //         int context_attribs[] = {
-   //WGL_CONTEXT_MAJOR_VERSION_ARB, 2,
-   //WGL_CONTEXT_MINOR_VERSION_ARB, 1,
-   //0, 0
-   //         };
-   //         auto hglrc = wglCreateContextAttribsARB(hdc, NULL, context_attribs);
-   //         if (!hglrc) {
-   //            //ReleaseDC(hWnd, hDC);
-   //            //DestroyWindow(hWnd);
+   ////         int context_attribs[] = {
+   ////WGL_CONTEXT_MAJOR_VERSION_ARB, 2,
+   ////WGL_CONTEXT_MINOR_VERSION_ARB, 1,
+   ////0, 0
+   ////         };
+   ////         auto hglrc = wglCreateContextAttribsARB(hdc, NULL, context_attribs);
+   ////         if (!hglrc) {
+   ////            //ReleaseDC(hWnd, hDC);
+   ////            //DestroyWindow(hWnd);
+
+   ////            throw ::exception(error_failed);
+   ////         }
+   ////         //ReleaseDC(hWnd, hDC);
+
+   //         if (!pwindow->m_hglrcProto)
+   //         {
+
+   //            informationf("MS WGL - wglCreateContext failed");
+
+   //            informationf("last-error code: %d\n", GetLastError());
+
+   //            ReleaseDC(m_hwnd, hdc);
 
    //            throw ::exception(error_failed);
+
    //         }
-   //         //ReleaseDC(hWnd, hDC);
 
-            if (!pwindow->m_hglrcProto)
-            {
+   //         bool bMakeCurrentOk = wglMakeCurrent(hdc, pwindow->m_hglrcProto);
 
-               informationf("MS WGL - wglCreateContext failed");
+   //         if (!bMakeCurrentOk)
+   //         {
 
-               informationf("last-error code: %d\n", GetLastError());
+   //            informationf("MS WGL - wglMakeCurrent failed");
 
-               ReleaseDC(m_hwnd, hdc);
+   //            informationf("last-error code: %d\n", GetLastError());
 
-               throw ::exception(error_failed);
+   //            ReleaseDC(m_hwnd, hdc);
 
-            }
+   //            throw ::exception(error_failed);
 
-            bool bMakeCurrentOk = wglMakeCurrent(hdc, pwindow->m_hglrcProto);
-
-            if (!bMakeCurrentOk)
-            {
-
-               informationf("MS WGL - wglMakeCurrent failed");
-
-               informationf("last-error code: %d\n", GetLastError());
-
-               ReleaseDC(m_hwnd, hdc);
-
-               throw ::exception(error_failed);
-
-            }
+   //         }
 
 
-            pvulkan->defer_init_gpu_library();
+   //         pvulkan->defer_init_gpu_library();
 
-            auto pszVersion = (const char *)glGetString(GL_VERSION);
-            //::e_status estatus = 
+            //auto pszVersion = (const char *)glGetString(GL_VERSION);
+            ////::e_status estatus = 
 
-            ::string strVersion(pszVersion);
+            //::string strVersion(pszVersion);
 
-            if (strVersion.case_insensitive_contains("mesa"))
-            {
-
-               m_bMesa = true;
-
-            }
-
-            //if (!estatus)
+            //if (strVersion.case_insensitive_contains("mesa"))
             //{
 
-            //   ReleaseDC(window, hdc);
-
-            //   return estatus;
+            //   m_bMesa = true;
 
             //}
+
+            ////if (!estatus)
+            ////{
+
+            ////   ReleaseDC(window, hdc);
+
+            ////   return estatus;
+
+            ////}
 
             m_hwnd = m_hwnd;
             m_hdc = hdc;
@@ -572,7 +572,7 @@ namespace vulkan
 
       make_current();
 
-      glViewport(0, 0, size.cx(), size.cy());
+      //glViewport(0, 0, size.cx(), size.cy());
       //glMatrixMode(GL_PROJECTION);
       //glLoadIdentity();
       //glOrtho(0, size.cx(), 0, size.cy(), -10, 10);
@@ -593,18 +593,18 @@ namespace vulkan
 
       ::e_status estatus = ::success;
 
-      bool bMakeCurrentOk = wglMakeCurrent(m_hdc, m_hrc);
+      //bool bMakeCurrentOk = wglMakeCurrent(m_hdc, m_hrc);
 
-      if (!bMakeCurrentOk)
-      {
+      //if (!bMakeCurrentOk)
+      //{
 
-         informationf("MS WGL - wglMakeCurrent failed");
+      //   informationf("MS WGL - wglMakeCurrent failed");
 
-         informationf("last-error code: %d\n", GetLastError());
+      //   informationf("last-error code: %d\n", GetLastError());
 
-         throw ::exception(error_failed);
+      //   throw ::exception(error_failed);
 
-      }
+      //}
 
       //return estatus;
 
@@ -625,8 +625,8 @@ namespace vulkan
 
       }
 
-      wglMakeCurrent(nullptr, nullptr);
-      wglDeleteContext(m_hrc);
+      //wglMakeCurrent(nullptr, nullptr);
+      //wglDeleteContext(m_hrc);
       ::ReleaseDC(m_hwnd, m_hdc);
       ::DestroyWindow(m_hwnd);
       m_size.set(0, 0);

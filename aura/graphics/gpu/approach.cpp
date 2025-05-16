@@ -45,12 +45,12 @@ namespace gpu
    }
 
 
-   ::gpu::uniform approach::load_dds(const ::string & strImagePath)
+   ::gpu::payload approach::load_dds(const ::scoped_string & scopedstrImagePath)
    {
 
       throw interface_only();
 
-      return -1;
+      return {};
 
    }
 

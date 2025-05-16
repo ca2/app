@@ -14,7 +14,7 @@ namespace draw2d_vulkan
       //m_bUpdated = false;
       m_hdcFont = nullptr;
       m_hfont = nullptr;
-      m_baseFont = 0;
+      //m_baseFont = 0;
 
 
    }
@@ -40,7 +40,7 @@ namespace draw2d_vulkan
 
          ::DeleteDC(m_hdcFont);
          ::DeleteObject(m_hfont);
-         vkDeleteLists(m_baseFont, 256);
+         //vkDeleteLists(m_baseFont, 256);
 
       }
 
@@ -77,7 +77,7 @@ namespace draw2d_vulkan
       {
          ::DeleteDC(m_hdcFont);
          ::DeleteObject(m_hfont);
-         vkDeleteLists(m_baseFont, 256);
+         //vkDeleteLists(m_baseFont, 256);
       }
 
    }
@@ -94,7 +94,7 @@ namespace draw2d_vulkan
 
          ((font *)this)->m_hdcFont = ::CreateCompatibleDC(nullptr);
 
-         ((font *)this)->m_baseFont = vkGenLists(256);								// Storage For 256 Characters
+         //xxxopengl>>>>vulkan((font *)this)->m_baseFont = vkGenLists(256);								// Storage For 256 Characters
 
          ((font *)this)->m_hfont = CreateFont(-m_fontsize.as_int(),							// Height Of Font
             0,								// Width Of Font
@@ -113,14 +113,14 @@ namespace draw2d_vulkan
 
          ::SelectObject(m_hdcFont, m_hfont);							// Selects The Font We Created
 
-         wglUseFontOutlines(m_hdcFont,							// Select The Current DC
-            0,								// Starting Character
-            255,							// Number Of Display Lists To Build
-            m_baseFont,							// Starting Display Lists
-            0.0f,							// Deviation From The True Outlines
-            0.2f,							// Font Thickness In The Z Direction
-            WGL_FONT_POLYGONS,				// Use Polygons, Not Lines
-            ((font *)this)->m_gmf);							// Address Of Buffer To Recieve Data
+         //xxxopengl>>>>vulkan wglUseFontOutlines(m_hdcFont,							// Select The Current DC
+         //   0,								// Starting Character
+         //   255,							// Number Of Display Lists To Build
+         //   m_baseFont,							// Starting Display Lists
+         //   0.0f,							// Deviation From The True Outlines
+         //   0.2f,							// Font Thickness In The Z Direction
+         //   WGL_FONT_POLYGONS,				// Use Polygons, Not Lines
+         //   ((font *)this)->m_gmf);							// Address Of Buffer To Recieve Data
 
                                        //::DeleteDC(hDC);
 

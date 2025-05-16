@@ -3,11 +3,11 @@
 
 #include "acme/_operating_system.h"
 #include "gpu_vulkan/context.h"
-//#include "aura/os/_os.h"
-///#include "glad_egl.h"
-
-#include <EGL/egl.h>
-#include <EGL/eglext.h>
+////#include "aura/os/_os.h"
+/////#include "glad_egl.h"
+//
+//#include <EGL/egl.h>
+//#include <EGL/eglext.h>
 
 
 namespace vulkan

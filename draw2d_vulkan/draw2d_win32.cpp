@@ -1,28 +1,28 @@
 #include "framework.h"
 #include "draw2d.h"
 #include "windowing_win32/window.h"
-#include "vkad_wgl.h"
+//xxxopengl>>>>vulkan #include "vkad_wgl.h"
 #include <dwmapi.h>
 
 namespace draw2d_vulkan
 {
-   // Helper to create dummy Vulkan context
-   HGLRC CreateDummyContext(HDC hdc) {
-      PIXELFORMATDESCRIPTOR pfd = {
-          sizeof(PIXELFORMATDESCRIPTOR), 1,
-          PFD_DRAW_TO_WINDOW | PFD_SUPPORT_VULKAN | PFD_DOUBLEBUFFER,
-          PFD_TYPE_RGBA, 32,
-          0, 0, 0, 0, 0, 0,
-          0, 0, 0, 0, 0, 0, 0,
-          24, 8, 0,
-          PFD_MAIN_PLANE,
-          0, 0, 0, 0
-      };
+   //// Helper to create dummy Vulkan context
+   //HGLRC CreateDummyContext(HDC hdc) {
+   //   PIXELFORMATDESCRIPTOR pfd = {
+   //       sizeof(PIXELFORMATDESCRIPTOR), 1,
+   //       PFD_DRAW_TO_WINDOW | PFD_SUPPORT_VULKAN | PFD_DOUBLEBUFFER,
+   //       PFD_TYPE_RGBA, 32,
+   //       0, 0, 0, 0, 0, 0,
+   //       0, 0, 0, 0, 0, 0, 0,
+   //       24, 8, 0,
+   //       PFD_MAIN_PLANE,
+   //       0, 0, 0, 0
+   //   };
 
-      int pixelFormat = ChoosePixelFormat(hdc, &pfd);
-      SetPixelFormat(hdc, pixelFormat, &pfd);
-      return wglCreateContext(hdc);
-   }
+   //   int pixelFormat = ChoosePixelFormat(hdc, &pfd);
+   //   SetPixelFormat(hdc, pixelFormat, &pfd);
+   //   return wglCreateContext(hdc);
+   //}
 
 
 
@@ -43,50 +43,50 @@ namespace draw2d_vulkan
       if (bTransparencyEnabled)
       {
 
-         PIXELFORMATDESCRIPTOR pfd = {
-    sizeof(PIXELFORMATDESCRIPTOR),
-    1,                                // Version Number
-    PFD_DRAW_TO_WINDOW |         // Format Must Support Window
-    PFD_SUPPORT_VULKAN |         // Format Must Support Vulkan
-    PFD_SUPPORT_COMPOSITION |         // Format Must Support Composition
-    PFD_DOUBLEBUFFER,                 // Must Support Double Buffering
-    PFD_TYPE_RGBA,                    // Request An RGBA Format
-    32,                               // Select Our Color Depth
-    0, 0, 0, 0, 0, 0,                 // Color Bits Ignored
-    8,                                // An Alpha Buffer
-    0,                                // Shift Bit Ignored
-    0,                                // No Accumulation Buffer
-    0, 0, 0, 0,                       // Accumulation Bits Ignored
-    24,                               // 16Bit Z-Buffer (Depth Buffer)
-    8,                                // Some Stencil Buffer
-    0,                                // No Auxiliary Buffer
-    PFD_MAIN_PLANE,                   // Main Drawing Layer
-    0,                                // Reserved
-    0, 0, 0                           // Layer Masks Ignored
-         };
+    //     PIXELFORMATDESCRIPTOR pfd = {
+    //sizeof(PIXELFORMATDESCRIPTOR),
+    //1,                                // Version Number
+    //PFD_DRAW_TO_WINDOW |         // Format Must Support Window
+    //PFD_SUPPORT_VULKAN |         // Format Must Support Vulkan
+    //PFD_SUPPORT_COMPOSITION |         // Format Must Support Composition
+    //PFD_DOUBLEBUFFER,                 // Must Support Double Buffering
+    //PFD_TYPE_RGBA,                    // Request An RGBA Format
+    //32,                               // Select Our Color Depth
+    //0, 0, 0, 0, 0, 0,                 // Color Bits Ignored
+    //8,                                // An Alpha Buffer
+    //0,                                // Shift Bit Ignored
+    //0,                                // No Accumulation Buffer
+    //0, 0, 0, 0,                       // Accumulation Bits Ignored
+    //24,                               // 16Bit Z-Buffer (Depth Buffer)
+    //8,                                // Some Stencil Buffer
+    //0,                                // No Auxiliary Buffer
+    //PFD_MAIN_PLANE,                   // Main Drawing Layer
+    //0,                                // Reserved
+    //0, 0, 0                           // Layer Masks Ignored
+    //     };
 
-      //   HGLRC dummyRC = CreateDummyContext(hdc);
-      //   wglMakeCurrent(hdc, dummyRC);
-      //   if (!vkadLoadWGL(hdc))
-      //   {
+    //  //   HGLRC dummyRC = CreateDummyContext(hdc);
+    //  //   wglMakeCurrent(hdc, dummyRC);
+    //  //   if (!vkadLoadWGL(hdc))
+    //  //   {
 
-      //      throw ::exception(error_failed);
+    //  //      throw ::exception(error_failed);
 
-      //   }
-    
+    //  //   }
+    //
 
-         HDC hdc = GetDC(hwnd);
-         int PixelFormat = ChoosePixelFormat(hdc, &pfd);
-         if (PixelFormat == 0) {
-            throw ::exception(error_failed);
-         }
+    //     HDC hdc = GetDC(hwnd);
+    //     int PixelFormat = ChoosePixelFormat(hdc, &pfd);
+    //     if (PixelFormat == 0) {
+    //        throw ::exception(error_failed);
+    //     }
 
-         BOOL bResult = SetPixelFormat(hdc, PixelFormat, &pfd);
-         if (bResult == FALSE) {
-            throw ::exception(error_failed);
-         }
+    //     BOOL bResult = SetPixelFormat(hdc, PixelFormat, &pfd);
+    //     if (bResult == FALSE) {
+    //        throw ::exception(error_failed);
+    //     }
 
-         ::ReleaseDC(hwnd, hdc);
+    //     ::ReleaseDC(hwnd, hdc);
       //   int attribs[] = {
       // WGL_DRAW_TO_WINDOW_ARB, TRUE,
       // WGL_DOUBLE_BUFFER_ARB, TRUE,

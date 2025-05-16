@@ -540,7 +540,7 @@ namespace gpu
    }
 
 
-   void context::set_matrix_uniform(uniform uniformMatrix)
+   void context::set_matrix_uniform(const ::gpu::payload & payloadMatrix)
    {
 
       throw interface_only();

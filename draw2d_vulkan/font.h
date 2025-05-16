@@ -19,11 +19,11 @@ namespace draw2d_vulkan
       
       HDC                           m_hdcFont;
       HFONT                         m_hfont;
-      VKuint	                     m_baseFont;				// Base Display List For The Font Set
-
-#ifdef WINDOWS
-      VKYPHMETRICSFLOAT             m_gmf[256];	// Storage For Information About Our Outline Font Characters
-#endif
+//      VKuint	                     m_baseFont;				// Base Display List For The Font Set
+//
+//#ifdef WINDOWS
+//      VKYPHMETRICSFLOAT             m_gmf[256];	// Storage For Information About Our Outline Font Characters
+//#endif
 
 
 

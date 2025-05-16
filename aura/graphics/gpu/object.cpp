@@ -58,7 +58,7 @@ namespace gpu
    }
 
 
-   void object::set_texture_uniform(::gpu::uniform uniformTexture)
+   void object::set_texture_uniform(const ::gpu::payload & uniformTexture)
    {
 
    }

@@ -141,7 +141,7 @@ namespace gpu
 
       virtual string get_shader_version_text();
 
-      virtual void set_matrix_uniform(uniform uniformMatrix);
+      virtual void set_matrix_uniform(const ::gpu::payload & payloadMatrix);
 
 
       virtual class image_data image24(const ::payload & payloadFile);

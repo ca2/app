@@ -62,7 +62,7 @@ namespace opengl
 
       //virtual string get_shader_version_text();
       
-      void set_matrix_uniform(::gpu::uniform uniformMatrix) override;
+      void set_matrix_uniform(const ::gpu::payload & uniformMatrix) override;
 
 
    };

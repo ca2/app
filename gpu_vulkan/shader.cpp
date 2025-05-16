@@ -6,17 +6,17 @@ namespace vulkan
 {
 
 
-   const char* shader_type_c_str(GLenum etype)
+   const char* shader_type_c_str(VkShaderStageFlagBits etype)
    {
 
       switch (etype)
       {
-      case GL_VERTEX_SHADER:
+      case VK_SHADER_STAGE_VERTEX_BIT:
          return "VERTEX";
-      case GL_FRAGMENT_SHADER:
+      case VK_SHADER_STAGE_FRAGMENT_BIT:
          return "FRAGMENT";
 #if !defined(__APPLE__) && !defined(__ANDROID__)
-      case GL_GEOMETRY_SHADER:
+      case VK_SHADER_STAGE_GEOMETRY_BIT:
          return "GEOMETRY";
 #endif
       default:
@@ -40,51 +40,54 @@ namespace vulkan
    }
 
 
-   unsigned int shader::create_shader(const ::string & strSource, GLenum type)
+   unsigned int shader::create_shader(const ::string & strSource, VkShaderStageFlagBits type)
    {
 
-      unsigned int uShader;
+      //unsigned int uShader;
 
-      uShader = glCreateShader(type);
+      //uShader = glCreateShader(type);
 
-      if(!uShader)
-      {
-
-         GLenum eerror = glGetError();
-         
-         auto errString = vulkan_error_string(eerror);
-
-         informationf("error %d \"%s\"", eerror, errString);
-
-         return ::error_failed;
-
-      }
-
-      const char * sza[1];
-
-      sza[0] = strSource;
-
-      glShaderSource(uShader, 1, sza, NULL);
-
-      glCompileShader(uShader);
-
-      information() << "compiling shader : " << sza[0];
-
-      //string strSummary;
-
-      //::e_status estatus =
-      
-      shader_compile_errors(uShader, type, m_strError);
-
-      //if (!estatus)
+      //if(!uShader)
       //{
 
-      //   return 0;
+      //   GLenum eerror = glGetError();
+      //   
+      //   auto errString = vulkan_error_string(eerror);
+
+      //   informationf("error %d \"%s\"", eerror, errString);
+
+      //   return ::error_failed;
 
       //}
-      m_strError.empty();
 
-      return uShader;
+      //const char * sza[1];
+
+      //sza[0] = strSource;
+
+      //glShaderSource(uShader, 1, sza, NULL);
+
+      //glCompileShader(uShader);
+
+      //information() << "compiling shader : " << sza[0];
+
+      ////string strSummary;
+
+      ////::e_status estatus =
+      //
+      //shader_compile_errors(uShader, type, m_strError);
+
+      ////if (!estatus)
+      ////{
+
+      ////   return 0;
+
+      ////}
+      //m_strError.empty();
+
+      //return uShader;
+
+      return 0;
+
 
    }
 
@@ -92,9 +95,9 @@ namespace vulkan
    void shader::create_shader(const ::string & pszVertex, const ::string & pszFragment, const ::string & pszGeometry)
    {
 
-      unsigned int uVertex = create_shader(pszVertex, GL_VERTEX_SHADER);
+      unsigned int uVertex = create_shader(pszVertex, VK_SHADER_STAGE_VERTEX_BIT);
 
-      unsigned int uFragment = create_shader(pszFragment, GL_FRAGMENT_SHADER);
+      unsigned int uFragment = create_shader(pszFragment, VK_SHADER_STAGE_FRAGMENT_BIT);
       
 #if !defined(__APPLE__) && !defined(__ANDROID__)
 
@@ -105,65 +108,65 @@ namespace vulkan
       if (bGeometry)
       {
 
-         uGeometry = create_shader(pszGeometry, GL_GEOMETRY_SHADER);
+         uGeometry = create_shader(pszGeometry, VK_SHADER_STAGE_GEOMETRY_BIT);
 
       }
       
 #endif
 
-      m_uId = glCreateProgram();
-
-      glAttachShader(m_uId, uVertex);
-
-      glAttachShader(m_uId, uFragment);
-      
-#if !defined(__APPLE__) && !defined(__ANDROID__)
-
-      if (bGeometry)
-      {
-
-         glAttachShader(m_uId, uGeometry);
-
-      }
-      
-#endif
-
-      glLinkProgram(m_uId);
-      
-      // Validate program
-//      glValidateProgram(m_uId);
-
-      string strSummary;
-
-      ///::e_status estatus =
-      
-      program_compile_errors(m_uId, strSummary);
-
-      //if(estatus.succeeded())
-      //{
-
-      //   return estatus;
-
-      //}
-
-      // delete the shaders
-      // they're linked into our program
-
-      glDeleteShader(uVertex);
-
-      glDeleteShader(uFragment);
-
-#if !defined(__APPLE__) && !defined(__ANDROID__)
-
-      if (bGeometry)
-      {
-
-         glDeleteShader(uGeometry);
-
-      }
-      
-#endif
-
+//      m_uId = glCreateProgram();
+//
+//      glAttachShader(m_uId, uVertex);
+//
+//      glAttachShader(m_uId, uFragment);
+//      
+//#if !defined(__APPLE__) && !defined(__ANDROID__)
+//
+//      if (bGeometry)
+//      {
+//
+//         glAttachShader(m_uId, uGeometry);
+//
+//      }
+//      
+//#endif
+//
+//      glLinkProgram(m_uId);
+//      
+//      // Validate program
+////      glValidateProgram(m_uId);
+//
+//      string strSummary;
+//
+//      ///::e_status estatus =
+//      
+//      program_compile_errors(m_uId, strSummary);
+//
+//      //if(estatus.succeeded())
+//      //{
+//
+//      //   return estatus;
+//
+//      //}
+//
+//      // delete the shaders
+//      // they're linked into our program
+//
+//      glDeleteShader(uVertex);
+//
+//      glDeleteShader(uFragment);
+//
+//#if !defined(__APPLE__) && !defined(__ANDROID__)
+//
+//      if (bGeometry)
+//      {
+//
+//         glDeleteShader(uGeometry);
+//
+//      }
+//      
+//#endif
+//
       //return ::success;
 
    }
@@ -174,42 +177,70 @@ namespace vulkan
    void shader::use()
    {
       
-      glUseProgram(m_uId);
+      //glUseProgram(m_uId);
       
    }
 
 
-   void shader::setBool(const ::string & pszName, bool value)
+   void shader::setBool(const ::scoped_string & scopedstrName, bool b)
    {
 
-      GLint i = glGetUniformLocation(m_uId, pszName);
+      setInt(scopedstrName, b != false);
 
-      glUniform1i(i, (int)value);
+      //GLint i = glGetUniformLocation(m_uId, pszName);
+
+      //glUniform1i(i, (int)value);
 
    }
 
 
-   void shader::setInt(const ::string & pszName, int value)
+   void shader::setInt(const ::scoped_string & scopedstrName, int i)
    {
 
-      GLint i = glGetUniformLocation(m_uId, pszName);
+      auto p = get_payload(scopedstrName);
 
-      glUniform1i(i, value);
+      if(!p)
+      {
+
+         throw ::exception(error_not_found, "not known property");
+
+      }
+
+      m_memoryPushConstants.set_at(p->m_iOffset, &i, sizeof(int));
+
+      //GLint i = glGetUniformLocation(m_uId, pszName);
+
+      //glUniform1i(i, value);
+
+      //int i = value != 0;
+      //m_memoryPushConstants.append(&i, sizeof(int));
+
 
    }
 
 
-   void shader::setFloat(const ::string & pszName, float value)
+   void shader::setFloat(const ::scoped_string & scopedstrName, float f)
    {
 
-      GLint i = glGetUniformLocation(m_uId, pszName);
+      //GLint i = glGetUniformLocation(m_uId, pszName);
 
-      glUniform1f(i, value);
+      //glUniform1f(i, value);
+      //int i = value != 0;
+      auto p = get_payload(scopedstrName);
+
+      if (!p)
+      {
+
+         throw ::exception(error_not_found, "not known property");
+
+      }
+
+      m_memoryPushConstants.set_at(p->m_iOffset, &f, sizeof(float));
 
    }
 
 
-//   void shader::setVec2(const ::string & pszName, const glm::vec2& value)
+//   void shader::setVec2(const ::scoped_string & scopedstrName, const glm::vec2& value)
 //   {
 //
 //      GLint i = glGetUniformLocation(m_uId, pszName);
@@ -219,17 +250,25 @@ namespace vulkan
 //   }
 
 
-   void shader::setVec2(const ::string & pszName, float x, float y)
+   void shader::setVec2(const ::scoped_string & scopedstrName, float x, float y)
    {
 
-      GLint i = glGetUniformLocation(m_uId, pszName);
+      auto p = get_payload(scopedstrName);
 
-      glUniform2f(i, x, y);
+      if (!p)
+      {
+
+         throw ::exception(error_not_found, "not known property");
+
+      }
+
+      m_memoryPushConstants.set_at(p->m_iOffset, &x, sizeof(float));
+      m_memoryPushConstants.set_at(p->m_iOffset + sizeof(float), &y, sizeof(float));
 
    }
 
 
-//   void shader::setVec3(const ::string & pszName, const glm::vec3& value)
+//   void shader::setVec3(const ::scoped_string & scopedstrName, const glm::vec3& value)
 //   {
 //
 //      GLint i = glGetUniformLocation(m_uId, pszName);
@@ -239,17 +278,26 @@ namespace vulkan
 //   }
 
 
-   void shader::setVec3(const ::string & pszName, float x, float y, float z)
+   void shader::setVec3(const ::scoped_string & scopedstrName, float x, float y, float z)
    {
+      
+      auto p = get_payload(scopedstrName);
 
-      GLint i = glGetUniformLocation(m_uId, pszName);
+      if (!p)
+      {
 
-      glUniform3f(i, x, y, z);
+         throw ::exception(error_not_found, "not known property");
 
+      }
+
+      m_memoryPushConstants.set_at(p->m_iOffset, &x, sizeof(float));
+      m_memoryPushConstants.set_at(p->m_iOffset + sizeof(float), &y, sizeof(float));
+      m_memoryPushConstants.set_at(p->m_iOffset + 2*sizeof(float), &z, sizeof(float));
+      
    }
 
 
-//   void shader::setVec4(const ::string & pszName, const glm::vec4& value)
+//   void shader::setVec4(const ::scoped_string & scopedstrName, const glm::vec4& value)
 //   {
 //
 //      GLint i = glGetUniformLocation(m_uId, pszName);
@@ -259,130 +307,161 @@ namespace vulkan
 //   }
 
 
-   void shader::setVec4(const ::string & pszName, float x, float y, float z, float w)
+   void shader::setVec4(const ::scoped_string & scopedstrName, float x, float y, float z, float w)
    {
 
-      GLint i = glGetUniformLocation(m_uId, pszName);
+      auto p = get_payload(scopedstrName);
 
-      glUniform4f(i, x, y, z, w);
+      if (!p)
+      {
+
+         throw ::exception(error_not_found, "not known property");
+
+      }
+
+      m_memoryPushConstants.set_at(p->m_iOffset, &x, sizeof(float));
+      m_memoryPushConstants.set_at(p->m_iOffset + sizeof(float), &y, sizeof(float));
+      m_memoryPushConstants.set_at(p->m_iOffset + 2 * sizeof(float), &z, sizeof(float));
+      m_memoryPushConstants.set_at(p->m_iOffset + 3 * sizeof(float), &w, sizeof(float));
 
    }
 
 
-   void shader::setMat2(const ::string & pszName, const float p[2*2])
+   void shader::setMat2(const ::scoped_string & scopedstrName, const float a[2*2])
    {
 
-      GLint i = glGetUniformLocation(m_uId, pszName);
+      auto p = get_payload(scopedstrName);
 
-      glUniformMatrix2fv(i, 1, GL_FALSE, p);
+      if (!p)
+      {
+
+         throw ::exception(error_not_found, "not known property");
+
+      }
+
+      m_memoryPushConstants.set_at(p->m_iOffset, (void *) a, 2*2*sizeof(float));
 
    }
 
 
-   void shader::setMat3(const ::string & pszName, const float p[3*3])
+   void shader::setMat3(const ::scoped_string & scopedstrName, const float a[3*3])
    {
 
-      GLint i = glGetUniformLocation(m_uId, pszName);
+      auto p = get_payload(scopedstrName);
 
-      glUniformMatrix3fv(i, 1, GL_FALSE, p);
+      if (!p)
+      {
+
+         throw ::exception(error_not_found, "not known property");
+
+      }
+
+      m_memoryPushConstants.set_at(p->m_iOffset, a, 3 * 3 * sizeof(float));
 
    }
 
 
-   void shader::setMat4(const ::string & pszName, const float p[4*4])
+   void shader::setMat4(const ::scoped_string & scopedstrName, const float a[4*4])
    {
 
-      GLint i = glGetUniformLocation(m_uId, pszName);
+      auto p = get_payload(scopedstrName);
 
-      glUniformMatrix4fv(i, 1, GL_FALSE, p);
+      if (!p)
+      {
+
+         throw ::exception(error_not_found, "not known property");
+
+      }
+
+      m_memoryPushConstants.set_at(p->m_iOffset, a, 4 * 4 * sizeof(float));
 
    }
 
 
-   void shader::shader_compile_errors(GLuint shader, GLenum type, string & strSummary)
+   void shader::shader_compile_errors(int shader, VkShaderStageFlagBits type, string & strSummary)
    {
 
       //::e_status estatus = ::success;
 
-      GLint success = 0;
+      //GLint success = 0;
 
-      GLchar infoLog[1024];
+      //GLchar infoLog[1024];
 
-      glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
+      //glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
 
-      if (success)
-      {
+      //if (success)
+      //{
 
-         strSummary.formatf("SUCCESS::SHADER_COMPILATION (%s) \n -- --------------------------------------------------- -- \n", shader_type_c_str(type));
+      //   strSummary.formatf("SUCCESS::SHADER_COMPILATION (%s) \n -- --------------------------------------------------- -- \n", shader_type_c_str(type));
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         glGetShaderInfoLog(shader, sizeof(infoLog), NULL, infoLog);
+      //   glGetShaderInfoLog(shader, sizeof(infoLog), NULL, infoLog);
 
-         const char * psz = shader_type_c_str(type);
+      //   const char * psz = shader_type_c_str(type);
 
-         const char * pszLog = infoLog;
+      //   const char * pszLog = infoLog;
 
-         strSummary.formatf("error::SHADER_COMPILATION_ERROR of type: %s \n %s \n -- --------------------------------------------------- -- \n", psz, pszLog);
+      //   strSummary.formatf("error::SHADER_COMPILATION_ERROR of type: %s \n %s \n -- --------------------------------------------------- -- \n", psz, pszLog);
 
-         warning() << strSummary;
+      //   warning() << strSummary;
 
-         throw ::exception(error_failed, "Shader Compilation Error", strSummary);
+      //   throw ::exception(error_failed, "Shader Compilation Error", strSummary);
 
-      }
+      //}
 
-      information() << strSummary;
+      //information() << strSummary;
 
-      //return estatus;
+      ////return estatus;
 
    }
 
 
-   void shader::program_compile_errors(GLuint program, string & strSummary)
+   void shader::program_compile_errors(int program, string & strSummary)
    {
 
-      //::e_status estatus = ::success;
+      ////::e_status estatus = ::success;
 
-      GLint success;
+      //GLint success;
 
-      GLchar infoLog[1024];
-      
-      glGetProgramiv(program, GL_LINK_STATUS, &success);
+      //GLchar infoLog[1024];
+      //
+      //glGetProgramiv(program, GL_LINK_STATUS, &success);
 
-      if (success)
-      {
+      //if (success)
+      //{
 
-         strSummary.formatf("SUCCESS::PROGRAM_LINKING \n -- --------------------------------------------------- -- \n");
+      //   strSummary.formatf("SUCCESS::PROGRAM_LINKING \n -- --------------------------------------------------- -- \n");
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         glGetProgramInfoLog(program, sizeof(infoLog), NULL, infoLog);
+      //   glGetProgramInfoLog(program, sizeof(infoLog), NULL, infoLog);
 
-         strSummary.formatf("error::PROGRAM_LINKING_ERROR : \n %s \n -- --------------------------------------------------- -- \n", infoLog);
+      //   strSummary.formatf("error::PROGRAM_LINKING_ERROR : \n %s \n -- --------------------------------------------------- -- \n", infoLog);
 
-         throw ::exception(error_failed);
+      //   throw ::exception(error_failed);
 
-      }
+      //}
 
-      information() << strSummary;
+      //information() << strSummary;
 
-      //return estatus;
-
-   }
-
-
-   ::gpu::uniform shader::get_uniform(const ::string & strUniform)
-   {
-      
-      auto uniform = glGetUniformLocation(m_uId, strUniform);
-
-      return uniform;
+      ////return estatus;
 
    }
+
+
+   //::gpu::payload * shader::get_payload(const ::scoped_string & scopedstrPayload)
+   //{
+   //   
+   //   auto uniform = glGetUniformLocation(m_uId, strUniform);
+
+   //   return uniform;
+
+   //}
 
 
 } // namespace vulkan

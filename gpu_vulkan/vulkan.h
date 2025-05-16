@@ -63,7 +63,7 @@ namespace vulkan
       //virtual void make_current();
 
 
-      ::gpu::uniform load_dds(const ::string & strImagePath) override;
+      ::gpu::payload load_dds(const ::scoped_string & scopedstrImagePath) override;
 
 
    };

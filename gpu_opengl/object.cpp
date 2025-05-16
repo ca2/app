@@ -275,7 +275,7 @@ namespace opengl
       //auto pszError15 = (const char *)gluErrorString(iError15);
 
       // Load the texture
-      m_uniformTexture = papproach->load_dds(m_path+ ".uvmap.DDS");
+      m_payloadTexture = papproach->load_dds(m_path+ ".uvmap.DDS");
       //m_uniformTexture = papproach->load_dds(m_path + ".uvmap.DDS");
       //m_uniformTexture = papproach->load_normal_map(m_path.folder() / (m_path.title() + ".png"));
 
@@ -285,14 +285,14 @@ namespace opengl
    void object::draw()
    {
 
-      if (m_iTextureUniform > 0)
+      if (m_payloadTexture.m_iUniform > 0)
       {
 
          // Bind our texture in Texture Unit 0
          glActiveTexture(GL_TEXTURE0);
          glBindTexture(GL_TEXTURE_2D, m_uniformTexture);
          // Set our "myTextureSampler" sampler to use Texture Unit 0
-         glUniform1i(m_iTextureUniform, 0);
+         glUniform1i(m_payloadTexture.m_iUniform, 0);
 
       }
 
@@ -331,10 +331,10 @@ namespace opengl
    }
 
 
-   void object::set_texture_uniform(::gpu::uniform uniformTexture)
+   void object::set_texture_uniform(const ::gpu::payload & uniformTexture)
    {
 
-      m_uniformTexture = uniformTexture;
+      m_uniformTexture = uniformTexture.m_iUniform;
 
    }
 

@@ -86,41 +86,41 @@ namespace vulkan
 #else
 
 
-      glReadBuffer(GL_FRONT);
-      
-      //if (m_pgpucontext->is_mesa())
-      if(!glReadnPixels)
-      {
+      //glReadBuffer(GL_FRONT);
+      //
+      ////if (m_pgpucontext->is_mesa())
+      //if(!glReadnPixels)
+      //{
 
-         glReadPixels(
-            0, 0,
-            cx, cy,
-            GL_BGRA,
-            GL_UNSIGNED_BYTE,
-            m_pixmap.m_pimage32Raw);
+      //   glReadPixels(
+      //      0, 0,
+      //      cx, cy,
+      //      GL_BGRA,
+      //      GL_UNSIGNED_BYTE,
+      //      m_pixmap.m_pimage32Raw);
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         glReadnPixels(
-            0, 0,
-            cx, cy,
-            GL_BGRA,
-            GL_UNSIGNED_BYTE,
-            cx * cy * 4,
-            data);
+      //   glReadnPixels(
+      //      0, 0,
+      //      cx, cy,
+      //      GL_BGRA,
+      //      GL_UNSIGNED_BYTE,
+      //      cx * cy * 4,
+      //      data);
 
-      }
+      //}
 
-      int iError = glGetError();
+      //int iError = glGetError();
 
-      if(iError != 0)
-      {
+      //if(iError != 0)
+      //{
 
-         printf("glReadnPixels error");
+      //   printf("glReadnPixels error");
 
-      }
+      //}
 
       //::memory_set(m_pixmap.m_pimage32Raw, 127, cx * cy * 4);
 
@@ -162,18 +162,18 @@ namespace vulkan
 
       }
 
- //     m_pixmap.map();
-      //
-//      glDrawPixels(
-//         m_pixmap.m_size.cx(), m_pixmap.m_size.cy(),
-//         GL_BGRA,
-//         GL_UNSIGNED_BYTE,
-//         m_pixmap.m_pimage32Raw);
-      
-      glTexImage2D(GL_TEXTURE_2D, 0, 0, 0,
-                   m_pixmap.m_size.cx(), m_pixmap.m_size.cy(),
-                   GL_RGBA, GL_UNSIGNED_BYTE,
-                   m_pixmap.m_pimage32Raw);
+// //     m_pixmap.map();
+//      //
+////      glDrawPixels(
+////         m_pixmap.m_size.cx(), m_pixmap.m_size.cy(),
+////         GL_BGRA,
+////         GL_UNSIGNED_BYTE,
+////         m_pixmap.m_pimage32Raw);
+//      
+//      glTexImage2D(GL_TEXTURE_2D, 0, 0, 0,
+//                   m_pixmap.m_size.cx(), m_pixmap.m_size.cy(),
+//                   GL_RGBA, GL_UNSIGNED_BYTE,
+//                   m_pixmap.m_pimage32Raw);
 
    }
 

@@ -574,10 +574,10 @@ namespace opengl
       //}
 
 
-   void context::set_matrix_uniform(::gpu::uniform uniformMatrix)
+   void context::set_matrix_uniform(const ::gpu::payload & uniformMatrix)
    {
 
-      m_iMatrixUniform = uniformMatrix;
+      m_iMatrixUniform = uniformMatrix.m_iUniform;
 
    }
 

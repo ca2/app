@@ -2,8 +2,17 @@
 #pragma once
 
 
+
+
 #undef USUAL_OPERATING_SYSTEM_SUPPRESSIONS
 #include "acme/_operating_system.h"
+
+#if defined(WINDOWS_DESKTOP)
+#define VK_USE_PLATFORM_WIN32_KHR
+#else
+#error "wwwwwhat?!?!"
+#endif
+
 
 #include <vulkan/vulkan.h>
 
@@ -18,17 +27,6 @@
 
 namespace vulkan
 {
-
-
-   inline void vertex2f(const ::double_rectangle & rectangle)
-   {
-
-      vkVertex2f((VKfloat)rectangle.left(), (VKfloat)rectangle.top());
-      vkVertex2f((VKfloat)rectangle.right(), (VKfloat)rectangle.top());
-      vkVertex2f((VKfloat)rectangle.right(), (VKfloat)rectangle.bottom());
-      vkVertex2f((VKfloat)rectangle.left(), (VKfloat)rectangle.bottom());
-
-   }
 
 
    void resize(const ::int_size & size, bool bYSwap);

@@ -610,7 +610,7 @@ namespace draw2d_vulkan
       
       bool _is_ok() const override;
 
-      
+      void _vk_rectangle(const ::double_rectangle & rectangle);
 
    };
 

@@ -32,7 +32,7 @@ namespace vulkan
       ::array<::glm::vec2>       m_uvs;
       ::array<::glm::vec3>       m_normals;
 
-      ::gpu::uniform             m_iTextureUniform;
+      ::gpu::payload             m_payloadTexture;
       ::gpu::element             m_uniformTexture;
 
 
@@ -55,7 +55,7 @@ namespace vulkan
       void draw() override;
 
       
-      void set_texture_uniform(::gpu::uniform uniformTexture) override;
+      void set_texture_uniform(const ::gpu::payload & uniformTexture) override;
 
 
    };

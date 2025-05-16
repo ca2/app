@@ -22,9 +22,9 @@ namespace vulkan
       unsigned int                     m_VAO;
       unsigned int                     m_VBO;
 
-      GLint                            m_iMatrixUniform;
+      int                            m_iMatrixUniform;
 
-      GLuint                           m_gluTextureBitmap1;
+      int                           m_gluTextureBitmap1;
       int                              m_iLastBitmap1Scan;
       ::int_size                       m_sizeBitmap1;
 
@@ -62,7 +62,7 @@ namespace vulkan
 
       //virtual string get_shader_version_text();
       
-      void set_matrix_uniform(::gpu::uniform uniformMatrix) override;
+      void set_matrix_uniform(const ::gpu::payload & uniformMatrix) override;
 
 
    };

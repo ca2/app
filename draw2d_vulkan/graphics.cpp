@@ -6,6 +6,7 @@
 #include "brush.h"
 #include "image.h"
 #include "color.h"
+#include <glm/glm.hpp>
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task.h"
 #include "acme/platform/application.h"
@@ -19,18 +20,18 @@
 
 #include <math.h>
 #include <dwmapi.h>
-//#include <vk/freeglut.h>
-#define VKAD_GLAPI_EXPORT
+////#include <vk/freeglut.h>
+//#define VKAD_GLAPI_EXPORT
 
-#include "vkad_wgl.h"
-//#define WGL_CONTEXT_FLAGS_ARB 0X2094
-#define WGL_CONTEXT_COREPROFILE_BIT_ARB 0x00000001
-#define WGL_CONTEXT_PROFILE_MASK_ARB 0x9126
+//#include "vkad_wgl.h"
+////#define WGL_CONTEXT_FLAGS_ARB 0X2094
+//#define WGL_CONTEXT_COREPROFILE_BIT_ARB 0x00000001
+//#define WGL_CONTEXT_PROFILE_MASK_ARB 0x9126
 
 //int  vulkan_init();
 
 
-HGLRC initialize_vulkan_version(HDC hdc, int iMajor, int iMinor);
+//HGLRC initialize_vulkan_version(HDC hdc, int iMajor, int iMinor);
 
 
 
@@ -941,15 +942,15 @@ namespace draw2d_vulkan
    void graphics::fill_rectangle(const ::double_rectangle & rectangle, ::draw2d::brush* pbrush)
    {
 
-      vkBegin(VK_QUADS);
+      //vkBegin(VK_QUADS);
 
-      set(pbrush);
+      //set(pbrush);
 
-      ::vulkan::vertex2f(rectangle);
+      //::vulkan::vertex2f(rectangle);
 
-      vkEnd();
+      //vkEnd();
 
-      //return false;
+      ////return false;
 
    }
 
@@ -1727,25 +1728,25 @@ namespace draw2d_vulkan
    void graphics::draw_rectangle(const ::double_rectangle& rectangle, ::draw2d::pen* ppen)
    {
 
-      if (::is_set(ppen))
-      {
+      //if (::is_set(ppen))
+      //{
 
-         vkLineWidth((float)(ppen->m_dWidth));
+      //   vkLineWidth((float)(ppen->m_dWidth));
 
-      }
+      //}
 
-      vkBegin(VK_LINE_LOOP);
+      //vkBegin(VK_LINE_LOOP);
 
-      if (::is_set(ppen))
-      {
+      //if (::is_set(ppen))
+      //{
 
-         ::vulkan::color(ppen->m_color);
+      //   ::vulkan::color(ppen->m_color);
 
-      }
-      
-      ::vulkan::vertex2f(rectangle);
-      
-      vkEnd();
+      //}
+      //
+      //::vulkan::vertex2f(rectangle);
+      //
+      //vkEnd();
 
       //return true;
 
@@ -4022,8 +4023,8 @@ namespace draw2d_vulkan
 
       thread_select();
 
-      vkMatrixMode(VK_MODELVIEW);
-      vkLoadIdentity();
+      //vkMatrixMode(VK_MODELVIEW);
+      //vkLoadIdentity();
 
 ///      VKdouble m[16];
       
@@ -4034,7 +4035,7 @@ namespace draw2d_vulkan
       //vkGetDoublev(VK_MODELVIEW_MATRIX, m);
 
 
-      VKdouble m[16];
+      double m[16];
 
       m[0] = matrix.a1;
       m[1] = matrix.b1;
@@ -4058,7 +4059,7 @@ namespace draw2d_vulkan
       m[14] = 0.0;
       m[15] = 1.0;
 
-      vkLoadMatrixd((const VKdouble *) m);
+      //vkLoadMatrixd((const VKdouble *) m);
 
       //return false;
 
@@ -5208,26 +5209,26 @@ namespace draw2d_vulkan
    void graphics::line_to(double x, double y)
    {
 
-      if (::is_set(m_ppen))
-      {
+      //if (::is_set(m_ppen))
+      //{
 
-         vkLineWidth((float)(m_ppen->m_dWidth));
+      //   vkLineWidth((float)(m_ppen->m_dWidth));
 
-      }
+      //}
 
-      vkBegin(VK_LINES);
+      //vkBegin(VK_LINES);
 
-      if (::is_set(m_ppen))
-      {
+      //if (::is_set(m_ppen))
+      //{
 
-         ::vulkan::color(m_ppen->m_color);
+      //   ::vulkan::color(m_ppen->m_color);
 
-      }
+      //}
 
-      vkVertex2f((float)(m_point.x()), (float)(m_point.y()));
-      vkVertex2f((float)(x), (float)(y));
+      //vkVertex2f((float)(m_point.x()), (float)(m_point.y()));
+      //vkVertex2f((float)(x), (float)(y));
 
-      vkEnd();
+      //vkEnd();
 
       m_point.x() = x;
       m_point.y() = y;
@@ -5259,27 +5260,27 @@ namespace draw2d_vulkan
 
       set(m_pfont);
 
-      ::pointer<font>pfont = m_pfont;
+      //::pointer<font>pfont = m_pfont;
 
-      float length = 0.f;
+      //float length = 0.f;
 
-      for (unsigned int loop = 0; loop < scopedstr.size(); loop++)	// Loop To Find Text Length
-      {
+      //for (unsigned int loop = 0; loop < scopedstr.size(); loop++)	// Loop To Find Text Length
+      //{
 
-         length += pfont->m_gmf[scopedstr[loop]].gmfCellIncX;			// Increase Length By Each Characters Width
+      //   length += pfont->m_gmf[scopedstr[loop]].gmfCellIncX;			// Increase Length By Each Characters Width
 
-      }
+      //}
 
-      vkTranslatef((float)(x), (float)(y), 0.0f);					// Center Our Text On The Screen
+      //vkTranslatef((float)(x), (float)(y), 0.0f);					// Center Our Text On The Screen
 
-      vkPushAttrib(VK_LIST_BIT);							// Pushes The Display List Bits
-      vkListBase(pfont->m_baseFont);									// Sets The Base Character to 0
-      vkCallLists((VKsizei)scopedstr.size(), VK_UNSIGNED_BYTE, scopedstr.begin());	// Draws The Display List Text
-      vkPopAttrib();										// Pops The Display List Bits      }
+      //vkPushAttrib(VK_LIST_BIT);							// Pushes The Display List Bits
+      //vkListBase(pfont->m_baseFont);									// Sets The Base Character to 0
+      //vkCallLists((VKsizei)scopedstr.size(), VK_UNSIGNED_BYTE, scopedstr.begin());	// Draws The Display List Text
+      //vkPopAttrib();										// Pops The Display List Bits      }
 
-      vkTranslatef((float)(-x), (float)(-y), 0.0f);					// Center Our Text On The Screen
+      //vkTranslatef((float)(-x), (float)(-y), 0.0f);					// Center Our Text On The Screen
 
-      //return true;
+      ////return true;
 
    }
 
@@ -5406,20 +5407,20 @@ namespace draw2d_vulkan
          {
             //vkColorMask(false, false, false, true);
             //vkColorMask(true, true, true, false);
-            vkBlendFunc(VK_SRC_ALPHA, VK_ONE_MINUS_SRC_ALPHA);
+            //vkBlendFunc(VK_SRC_ALPHA, VK_ONE_MINUS_SRC_ALPHA);
             //vkBlendFunc(VK_SRC_ALPHA, VK_SRC_ALPHA);
             //vkBlendFunc(VK_ONE, VK_ONE_MINUS_SRC_ALPHA);
             //vkBlendFunc(VK_ZERO, VK_SRC_ALPHA);
             //vkBlendEquationSeparate(VK_FUNC_ADD, VK_FUNC_ADD);
             // vkBlendFuncSeparate(VK_SRC_ALPHA, VK_ONE_MINUS_SRC_ALPHA, VK_ONE, VK_ZERO);
-            vkEnable(VK_BLEND);
+            //vkEnable(VK_BLEND);
             //vkDisable(VK_DEPTH_TEST);
             //vkDepthFunc(VK_NEVER);
          }
          else if(m_ealphamode == ::draw2d::e_alpha_mode_set)
          {
-            vkEnable(VK_BLEND);
-            vkBlendFunc(VK_ONE, VK_ZERO);
+            //vkEnable(VK_BLEND);
+            //vkBlendFunc(VK_ONE, VK_ZERO);
          }
 
       }
@@ -5926,20 +5927,20 @@ namespace draw2d_vulkan
 
       m_z = 0.f;
 
-      vkClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-      vkClear(VK_COLOR_BUFFER_BIT | VK_DEPTH_BUFFER_BIT);
-      //vkLoadIdentity();
+      //vkClearColor(0.0f, 0.0f, 0.0f, 0.0f);
       //vkClear(VK_COLOR_BUFFER_BIT | VK_DEPTH_BUFFER_BIT);
-      //vkClear(VK_COLOR_BUFFER_BIT);
-      //vkEnable(VK_BLEND);
-      //vkBlendFunc(VK_SRC_ALPHA, VK_ONE_MINUS_SRC_ALPHA);
-      //::memory_copy(&m_pgpucontext->m_pbuffer->m_pixmap, (::pixmap *)m_pimage, sizeof(::pixmap));
+      ////vkLoadIdentity();
+      ////vkClear(VK_COLOR_BUFFER_BIT | VK_DEPTH_BUFFER_BIT);
+      ////vkClear(VK_COLOR_BUFFER_BIT);
+      ////vkEnable(VK_BLEND);
+      ////vkBlendFunc(VK_SRC_ALPHA, VK_ONE_MINUS_SRC_ALPHA);
+      ////::memory_copy(&m_pgpucontext->m_pbuffer->m_pixmap, (::pixmap *)m_pimage, sizeof(::pixmap));
 
-      //vkClear(VK_COLOR_BUFFER_BIT | VK_DEPTH_BUFFER_BIT);
+      ////vkClear(VK_COLOR_BUFFER_BIT | VK_DEPTH_BUFFER_BIT);
 
-      //m_pgpucontext->start_drawing();
+      ////m_pgpucontext->start_drawing();
 
-      ///vkEnable(VK_DEPTH_TEST);
+      /////vkEnable(VK_DEPTH_TEST);
 
    }
 
@@ -5987,7 +5988,7 @@ namespace draw2d_vulkan
       //vkPopMatrix();
 
 
-      vkFlush();
+      //vkFlush();
       //vkFinish();
       //vkDisable(VK_BLEND);
 
@@ -6086,6 +6087,36 @@ namespace draw2d_vulkan
    }
 
 
+
+   void graphics::_vk_rectangle(const ::double_rectangle & rectangle)
+   {
+
+      //vkVertex2f((VKfloat)rectangle.left(), (VKfloat)rectangle.top());
+      //vkVertex2f((VKfloat)rectangle.right(), (VKfloat)rectangle.top());
+      //vkVertex2f((VKfloat)rectangle.right(), (VKfloat)rectangle.bottom());
+      //vkVertex2f((VKfloat)rectangle.left(), (VKfloat)rectangle.bottom());
+
+      struct Vertex {
+         glm::vec2 pos;
+         glm::vec3 color;
+      };
+
+      std::vector<Vertex> vertices = {
+          {{-0.5f, -0.5f}, {1.0f, 0.0f, 0.0f}}, // Bottom-left
+          {{ 0.5f, -0.5f}, {0.0f, 1.0f, 0.0f}}, // Bottom-right
+          {{ 0.5f,  0.5f}, {0.0f, 0.0f, 1.0f}}, // Top-right
+          {{-0.5f,  0.5f}, {1.0f, 1.0f, 1.0f}}, // Top-left
+      };
+
+      std::vector<uint16_t> indices = {
+          0, 1, 2, 2, 3, 0 // Two triangles
+      };
+
+   }
+
+
+
+
 } // namespace draw2d_vulkan
 
 
@@ -6132,7 +6163,7 @@ namespace vulkan
       //double d = 1.0;
 
       ////vkViewport(0, 0, size.cx() * d, size.cy() * d);
-      vkViewport(0, 0, size.cx(), size.cy());
+      //vkViewport(0, 0, size.cx(), size.cy());
 
       //vkMatrixMode(VK_PROJECTION);
       //vkLoadIdentity();
@@ -6143,49 +6174,49 @@ namespace vulkan
       //vkOrtho(0.f, size.cx(), 0.f, -size.cy(), -1.0f, 1.0f);
 
 
-      vkMatrixMode(VK_PROJECTION);
-      vkLoadIdentity();
-      if (bYSwap)
-      {
-         vkOrtho(0.0f, size.cx(), size.cy(), 0, -1.0f, 1.0f);  // Flip Y
-      }
-      else
-      {
-         vkOrtho(0.0f, size.cx(), 0, size.cy(), -1.0f, 1.0f);  // Flip Y
-      }
-      //auto left = 0.;
-      //auto right = (double) size.cx();
-      //auto bottom = 0.;
-      //auto top = (double)size.cy();
-      //double dFar = 1.0;
-      //double dNear = -1.0;
-      //double tx = -(right + left) / (right - left);
-      //double ty = -(top + bottom) / (top - bottom);
-      //double tz = -(dFar + dNear) / (dFar - dNear);
-      //double a[] =
+      //vkMatrixMode(VK_PROJECTION);
+      //vkLoadIdentity();
+      //if (bYSwap)
       //{
-      //   2.0/(right - left),0.0,0.0,tx,
-      //   0.0,2.0/(top - bottom),0.0,ty,
-      //   0.0,0.0,-2.0/(dFar-dNear),tz,
-      //   0.0,0.0,0.0,1.0
-      //};
-      //vkMultMatrixd(a);
+      //   vkOrtho(0.0f, size.cx(), size.cy(), 0, -1.0f, 1.0f);  // Flip Y
+      //}
+      //else
+      //{
+      //   vkOrtho(0.0f, size.cx(), 0, size.cy(), -1.0f, 1.0f);  // Flip Y
+      //}
+      ////auto left = 0.;
+      ////auto right = (double) size.cx();
+      ////auto bottom = 0.;
+      ////auto top = (double)size.cy();
+      ////double dFar = 1.0;
+      ////double dNear = -1.0;
+      ////double tx = -(right + left) / (right - left);
+      ////double ty = -(top + bottom) / (top - bottom);
+      ////double tz = -(dFar + dNear) / (dFar - dNear);
+      ////double a[] =
+      ////{
+      ////   2.0/(right - left),0.0,0.0,tx,
+      ////   0.0,2.0/(top - bottom),0.0,ty,
+      ////   0.0,0.0,-2.0/(dFar-dNear),tz,
+      ////   0.0,0.0,0.0,1.0
+      ////};
+      ////vkMultMatrixd(a);
 
-      //vkMatrixMode(VK_MODELVIEW);
-      //vkLoadIdentity();
+      ////vkMatrixMode(VK_MODELVIEW);
+      ////vkLoadIdentity();
 
 
-      //vkuOrtho2D(0.f, size.cx(), 0.f, size.cy());
-      //vkMatrixMode(VK_MODELVIEW);
-      //vkLoadIdentity();
+      ////vkuOrtho2D(0.f, size.cx(), 0.f, size.cy());
+      ////vkMatrixMode(VK_MODELVIEW);
+      ////vkLoadIdentity();
 
-      // Clear
-      //vkClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-      //vkClear(VK_COLOR_BUFFER_BIT | VK_DEPTH_BUFFER_BIT);
+      //// Clear
+      ////vkClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+      ////vkClear(VK_COLOR_BUFFER_BIT | VK_DEPTH_BUFFER_BIT);
 
-      // Translate to inside of pixel (otherwise inaccuracies can occur on certain vk implementations)
-      //if (Vulkan::accuracyTweak())
-      vkTranslatef(0.5f, 0.5f, 0);
+      //// Translate to inside of pixel (otherwise inaccuracies can occur on certain vk implementations)
+      ////if (Vulkan::accuracyTweak())
+      //vkTranslatef(0.5f, 0.5f, 0);
 
    }
 
@@ -6202,21 +6233,21 @@ namespace vulkan
       float x = r * cosf(start_angle);//we now start at the start angle
       float y = r * sinf(start_angle);
 
-      vkBegin(VK_LINE_STRIP);//since the arc is not a closed curve, this is a strip now
-      for (int ii = 0; ii < num_segments; ii++)
-      {
-         vkVertex2f(x + cx, y + cy);
+      //vkBegin(VK_LINE_STRIP);//since the arc is not a closed curve, this is a strip now
+      //for (int ii = 0; ii < num_segments; ii++)
+      //{
+      //   vkVertex2f(x + cx, y + cy);
 
-         float tx = -y;
-         float ty = x;
+      //   float tx = -y;
+      //   float ty = x;
 
-         x += tx * tangetial_factor;
-         y += ty * tangetial_factor;
+      //   x += tx * tangetial_factor;
+      //   y += ty * tangetial_factor;
 
-         x *= radial_factor;
-         y *= radial_factor;
-      }
-      vkEnd();
+      //   x *= radial_factor;
+      //   y *= radial_factor;
+      //}
+      //vkEnd();
    }
 
    

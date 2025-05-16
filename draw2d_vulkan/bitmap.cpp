@@ -17,9 +17,9 @@ int pbAttrib[] = { VKX_PBUFFER_WIDTH, WIDTH,VKX_PBUFFER_HEIGHT, HEIGHT,VKX_PRESE
 #endif
 
 //extern CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
-VKfloat LightAmbient[] = { 0.5f, 0.5f, 0.5f, 1.00f };
-VKfloat LightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.00f };
-VKfloat LightPosition[] = { 0.0f, 0.0f, 2.0f, 1.00f };
+float LightAmbient[] = { 0.5f, 0.5f, 0.5f, 1.00f };
+float LightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.00f };
+float LightPosition[] = { 0.0f, 0.0f, 2.0f, 1.00f };
 //VKfloat LightPosition2[] = { -5.0f, -5.0f, 32.0f, 1.00f };
 
 //#ifdef WINDOWS
@@ -64,6 +64,8 @@ namespace draw2d_vulkan
    bitmap::bitmap()
    {
 
+      m_hwnd = nullptr;
+      m_hinstance = nullptr;
       m_bTexture = false;
       m_bPBuffer = false;
       m_bFlashed = false;
@@ -332,84 +334,86 @@ namespace draw2d_vulkan
 
    }
 
+
    void bitmap::destroy_bitmap()
    {
 
       m_bTexture = false;
       m_bPBuffer = false;
 
-      if (g_hDC)
-      {
-         if (g_hRC)
-         {
-            wglMakeCurrent(g_hDC, 0);
-            wglDeleteContext(g_hRC);
-            g_hRC = 0;
-         }
+      //if (g_hDC)
+      //{
+      //   if (g_hRC)
+      //   {
+      //      wglMakeCurrent(g_hDC, 0);
+      //      wglDeleteContext(g_hRC);
+      //      g_hRC = 0;
+      //   }
 
-         DeleteDC(g_hDC);
-         g_hDC = 0;
-      }
+      //   DeleteDC(g_hDC);
+      //   g_hDC = 0;
+      //}
 
 
    }
 
+
    void bitmap::create_texture(int iResampleQuality)
    {
 
-      m_sizeIn.cx() = 1;
-      m_sizeIn.cy() = 1;
+      //m_sizeIn.cx() = 1;
+      //m_sizeIn.cy() = 1;
 
-      while (m_sizeIn.cx() < m_sizeOut.cx())
-      {
+      //while (m_sizeIn.cx() < m_sizeOut.cx())
+      //{
 
-         m_sizeIn.cx() *= 2;
+      //   m_sizeIn.cx() *= 2;
 
-      }
+      //}
 
-      while(m_sizeIn.cy() < m_sizeOut.cy())
-      {
+      //while(m_sizeIn.cy() < m_sizeOut.cy())
+      //{
 
-         m_sizeIn.cy() *= 2;
+      //   m_sizeIn.cy() *= 2;
 
-      }
+      //}
 
 
-      resizeBilinear(m_memIn, m_sizeIn.cx(), m_sizeIn.cy(), (int*)m_memOut.data(), m_sizeOut.cx(), m_sizeOut.cy());
+      //resizeBilinear(m_memIn, m_sizeIn.cx(), m_sizeIn.cy(), (int*)m_memOut.data(), m_sizeOut.cx(), m_sizeOut.cy());
 
-      vkGenTextures(1, &m_texture);
+      //vkGenTextures(1, &m_texture);
 
-      VKenum e = vkGetError();
+      //VKenum e = vkGetError();
 
-      // Create Nearest Filtered Texture
-      vkBindTexture(VK_TEXTURE_2D, m_texture);
-      e = vkGetError();
-      if (iResampleQuality == 2)
-      {
-         vkTexParameteri(VK_TEXTURE_2D, VK_TEXTURE_MAG_FILTER, VK_LINEAR);
-         e = vkGetError();
-         vkTexParameteri(VK_TEXTURE_2D, VK_TEXTURE_MIN_FILTER, VK_LINEAR_MIPMAP_NEAREST);
-         e = vkGetError();
-      }
-      else if (iResampleQuality == 1)
-      {
-         vkTexParameteri(VK_TEXTURE_2D, VK_TEXTURE_MAG_FILTER, VK_LINEAR);
-         e = vkGetError();
-         vkTexParameteri(VK_TEXTURE_2D, VK_TEXTURE_MIN_FILTER, VK_LINEAR);
-         e = vkGetError();
-      }
-      else
-      {
+      //// Create Nearest Filtered Texture
+      //vkBindTexture(VK_TEXTURE_2D, m_texture);
+      //e = vkGetError();
+      //if (iResampleQuality == 2)
+      //{
+      //   vkTexParameteri(VK_TEXTURE_2D, VK_TEXTURE_MAG_FILTER, VK_LINEAR);
+      //   e = vkGetError();
+      //   vkTexParameteri(VK_TEXTURE_2D, VK_TEXTURE_MIN_FILTER, VK_LINEAR_MIPMAP_NEAREST);
+      //   e = vkGetError();
+      //}
+      //else if (iResampleQuality == 1)
+      //{
+      //   vkTexParameteri(VK_TEXTURE_2D, VK_TEXTURE_MAG_FILTER, VK_LINEAR);
+      //   e = vkGetError();
+      //   vkTexParameteri(VK_TEXTURE_2D, VK_TEXTURE_MIN_FILTER, VK_LINEAR);
+      //   e = vkGetError();
+      //}
+      //else
+      //{
 
-         vkTexParameteri(VK_TEXTURE_2D, VK_TEXTURE_MAG_FILTER, VK_NEAREST);
-         e = vkGetError();
-         vkTexParameteri(VK_TEXTURE_2D, VK_TEXTURE_MIN_FILTER, VK_NEAREST);
-         e = vkGetError();
+      //   vkTexParameteri(VK_TEXTURE_2D, VK_TEXTURE_MAG_FILTER, VK_NEAREST);
+      //   e = vkGetError();
+      //   vkTexParameteri(VK_TEXTURE_2D, VK_TEXTURE_MIN_FILTER, VK_NEAREST);
+      //   e = vkGetError();
 
-      }
+      //}
 
-      vkTexImage2D(VK_TEXTURE_2D, 0, 4, m_sizeIn.cx(), m_sizeIn.cy(), 0, VK_BGRA_EXT, VK_UNSIGNED_BYTE, m_memIn.data());
-      e = vkGetError();
+      //vkTexImage2D(VK_TEXTURE_2D, 0, 4, m_sizeIn.cx(), m_sizeIn.cy(), 0, VK_BGRA_EXT, VK_UNSIGNED_BYTE, m_memIn.data());
+      //e = vkGetError();
 
 
 
@@ -554,31 +558,31 @@ namespace draw2d_vulkan
    void bitmap::defer_reveal()
    {
 
-      if (m_bFlashed)
-      {
-
-         m_bFlashed = false;
-
-         //wglMakeCurrent(g_hDC, g_hRC);
-
-         wglMakeCurrent(g_hPBufferDC, g_hPBufferRC);
-         VKenum e = vkGetError();
-
-//         vkFlush();
-
-         //m_mem.set_size(cxDIB * cyDIB * 4);
-         //m_mem.zero();
-         vkPixelStorei(VK_PACK_ALIGNMENT, 1);
-         e = vkGetError();
-
-         color32_t * pdata = (color32_t *) m_memOut.data();
-
-         vkReadPixels(0, 0, m_sizeOut.cx(), m_sizeOut.cy(), VK_BGRA_EXT, VK_UNSIGNED_BYTE, pdata);
-         e = vkGetError();
-
-         information("error " + ::as_string((int)e));
-
-      }
+//      if (m_bFlashed)
+//      {
+//
+//         m_bFlashed = false;
+//
+//         //wglMakeCurrent(g_hDC, g_hRC);
+//
+//         wglMakeCurrent(g_hPBufferDC, g_hPBufferRC);
+//         VKenum e = vkGetError();
+//
+////         vkFlush();
+//
+//         //m_mem.set_size(cxDIB * cyDIB * 4);
+//         //m_mem.zero();
+//         vkPixelStorei(VK_PACK_ALIGNMENT, 1);
+//         e = vkGetError();
+//
+//         color32_t * pdata = (color32_t *) m_memOut.data();
+//
+//         vkReadPixels(0, 0, m_sizeOut.cx(), m_sizeOut.cy(), VK_BGRA_EXT, VK_UNSIGNED_BYTE, pdata);
+//         e = vkGetError();
+//
+//         information("error " + ::as_string((int)e));
+//
+//      }
 
    }
 
@@ -592,11 +596,11 @@ namespace draw2d_vulkan
       // Creating Vulkan Surface / SwapChain
       VkWin32SurfaceCreateInfoKHR createInfo = {};
       createInfo.sType = VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR;
-      createInfo.hwnd = hwnd;
-      createInfo.hinstance = hInstance;
+      createInfo.hwnd = m_hwnd;
+      createInfo.hinstance = m_hinstance;
 
       VkSurfaceKHR surface;
-      VkResult result = vkCreateWin32SurfaceKHR(instance, &createInfo, nullptr, &surface);
+      VkResult result = vkCreateWin32SurfaceKHR(m_vkinstance, &createInfo, nullptr, &surface);
 
       return true;
 #else
@@ -671,7 +675,7 @@ namespace draw2d_vulkan
       //   Cleanup();
       //   return false;
       //}
-      ::DestroyWindow(g_hWnd);
+      ::DestroyWindow(m_hwnd);
       return true;
    }
 
@@ -772,48 +776,48 @@ namespace draw2d_vulkan
 
    void bitmap::Cleanup()
    {
-      if (m_texture)
-      {
-         vkDeleteTextures(1, &m_texture);
-         m_texture = 0;
-      }
-
-#ifdef WINDOWS
-      if (g_hPBuffer)
-      {
-         wglDeleteContext(g_hPBufferRC);
-         //wglReleasePbufferDCARB(g_hPBuffer, g_hPBufferDC);
-         //wglDestroyPbufferARB(g_hPBuffer);
-         g_hPBufferRC = 0;
-         g_hPBufferDC = 0;
-         g_hPBuffer = 0;
-      }
-      if (g_hDC)
-      {
-         if (g_hRC)
-         {
-            wglMakeCurrent(g_hDC, 0);
-            wglDeleteContext(g_hRC);
-            g_hRC = 0;
-         }
-
-         DeleteDC(g_hDC);
-         g_hDC = 0;
-      }
-#else
-      //      if (g_hPBuffer)
-      //      {
-      //         vkDeleteContext(g_hPBufferRC);
-      //         wglReleasePbufferDCARB(g_hPBuffer, g_hPBufferDC);
-      //         vkDestroyPbufferARB(g_hPBuffer);
-      //         g_hPBufferRC = 0;
-      //         g_hPBufferDC = 0;
-      //         g_hPBuffer = 0;
-      //      }
-#endif
-
-
-      //      ImageDestroy(&g_image);
+//      if (m_texture)
+//      {
+//         vkDeleteTextures(1, &m_texture);
+//         m_texture = 0;
+//      }
+//
+//#ifdef WINDOWS
+//      if (g_hPBuffer)
+//      {
+//         wglDeleteContext(g_hPBufferRC);
+//         //wglReleasePbufferDCARB(g_hPBuffer, g_hPBufferDC);
+//         //wglDestroyPbufferARB(g_hPBuffer);
+//         g_hPBufferRC = 0;
+//         g_hPBufferDC = 0;
+//         g_hPBuffer = 0;
+//      }
+//      if (g_hDC)
+//      {
+//         if (g_hRC)
+//         {
+//            wglMakeCurrent(g_hDC, 0);
+//            wglDeleteContext(g_hRC);
+//            g_hRC = 0;
+//         }
+//
+//         DeleteDC(g_hDC);
+//         g_hDC = 0;
+//      }
+//#else
+//      //      if (g_hPBuffer)
+//      //      {
+//      //         vkDeleteContext(g_hPBufferRC);
+//      //         wglReleasePbufferDCARB(g_hPBuffer, g_hPBufferDC);
+//      //         vkDestroyPbufferARB(g_hPBuffer);
+//      //         g_hPBufferRC = 0;
+//      //         g_hPBufferDC = 0;
+//      //         g_hPBuffer = 0;
+//      //      }
+//#endif
+//
+//
+//      //      ImageDestroy(&g_image);
    }
 
 

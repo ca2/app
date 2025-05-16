@@ -47,13 +47,13 @@
     <ClInclude Include="cpu_buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="_library.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="object.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="assimp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_vulkan.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -161,55 +161,55 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 	x1+=cx*0.5; y1+=cy*0.5; //m:4
 	x2-=cx*0.5; y2-=cy*0.5;
 	
-	//draw the line by triangle strip m:1
-vkBegin(VK_TRIANGLE_STRIP);
-	if ( !alphablend) {vkColor3f( Br,Bg,Bb);} else {vkColor4f( Cr,Cg,Cb, 0);}
-	vkVertex2f((float)(x1-tx-Rx-cx),(float)(y1-ty-Ry-cy)); //fading edge
-	vkVertex2f((float)(x2-tx-Rx+cx),(float)(y2-ty-Ry+cy));
-	
-	if ( !alphablend) {vkColor3f( Cr,Cg,Cb);} else {vkColor4f( Cr,Cg,Cb, A);}
-	vkVertex2f((float)(x1-tx-cx), (float)(y1-ty-cy)); //aura
-	vkVertex2f((float)(x2-tx+cx), (float)(y2-ty+cy));
-	vkVertex2f((float)(x1+tx-cx), (float)(y1+ty-cy));
-	vkVertex2f((float)(x2+tx+cx), (float)(y2+ty+cy));
-	
-	if ( !alphablend) {vkColor3f( Br,Bg,Bb);} else {vkColor4f( Cr,Cg,Cb, 0);}
-	vkVertex2f((float)(x1+tx+Rx-cx), (float)(y1+ty+Ry-cy)); //fading edge
-	vkVertex2f((float)(x2+tx+Rx+cx), (float)(y2+ty+Ry+cy));
-   vkEnd();
-
-	//cap
-	if ( w < 3) {
-		//do not draw cap
-	} else {
-		//draw cap
-	vkBegin(VK_TRIANGLE_STRIP);
-		if ( !alphablend) {vkColor3f( Br,Bg,Bb);} else {vkColor4f( Cr,Cg,Cb, 0);}
-		vkVertex2f((float)(x1-tx-Rx-cx), (float)(y1-ty-Ry-cy));
-		vkVertex2f((float)(x1-tx-Rx), (float)(y1-ty-Ry));
-		if ( !alphablend) {vkColor3f( Cr,Cg,Cb);} else {vkColor4f( Cr,Cg,Cb, A);}
-		vkVertex2f((float)(x1-tx-cx), (float)(y1-ty-cy));
-		if ( !alphablend) {vkColor3f( Br,Bg,Bb);} else {vkColor4f( Cr,Cg,Cb, 0);}
-		vkVertex2f((float)(x1+tx+Rx), (float)(y1+ty+Ry));
-		if ( !alphablend) {vkColor3f( Cr,Cg,Cb);} else {vkColor4f( Cr,Cg,Cb, A);}
-		vkVertex2f((float)(x1+tx-cx), (float)(y1+ty-cy));
-		if ( !alphablend) {vkColor3f( Br,Bg,Bb);} else {vkColor4f( Cr,Cg,Cb, 0);}
-		vkVertex2f((float)(x1+tx+Rx-cx), (float)(y1+ty+Ry-cy));
-	vkEnd();
-	vkBegin(VK_TRIANGLE_STRIP);
-		if ( !alphablend) {vkColor3f( Br,Bg,Bb);} else {vkColor4f( Cr,Cg,Cb, 0);}
-		vkVertex2f((float)(x2-tx-Rx+cx), (float)(y2-ty-Ry+cy));
-		vkVertex2f((float)(x2-tx-Rx), (float)(y2-ty-Ry));
-		if ( !alphablend) {vkColor3f( Cr,Cg,Cb);} else {vkColor4f( Cr,Cg,Cb, A);}
-		vkVertex2f((float)(x2-tx+cx), (float)(y2-ty+cy));
-		if ( !alphablend) {vkColor3f( Br,Bg,Bb);} else {vkColor4f( Cr,Cg,Cb, 0);}
-		vkVertex2f((float)(x2+tx+Rx), (float)(y2+ty+Ry));
-		if ( !alphablend) {vkColor3f( Cr,Cg,Cb);} else {vkColor4f( Cr,Cg,Cb, A);}
-		vkVertex2f((float)(x2+tx+cx), (float)(y2+ty+cy));
-		if ( !alphablend) {vkColor3f( Br,Bg,Bb);} else {vkColor4f( Cr,Cg,Cb, 0);}
-		vkVertex2f((float)(x2+tx+Rx+cx), (float)(y2 + ty + Ry + cy));
-	vkEnd();
-	}
+//	//draw the line by triangle strip m:1
+//vkBegin(VK_TRIANGLE_STRIP);
+//	if ( !alphablend) {vkColor3f( Br,Bg,Bb);} else {vkColor4f( Cr,Cg,Cb, 0);}
+//	vkVertex2f((float)(x1-tx-Rx-cx),(float)(y1-ty-Ry-cy)); //fading edge
+//	vkVertex2f((float)(x2-tx-Rx+cx),(float)(y2-ty-Ry+cy));
+//	
+//	if ( !alphablend) {vkColor3f( Cr,Cg,Cb);} else {vkColor4f( Cr,Cg,Cb, A);}
+//	vkVertex2f((float)(x1-tx-cx), (float)(y1-ty-cy)); //aura
+//	vkVertex2f((float)(x2-tx+cx), (float)(y2-ty+cy));
+//	vkVertex2f((float)(x1+tx-cx), (float)(y1+ty-cy));
+//	vkVertex2f((float)(x2+tx+cx), (float)(y2+ty+cy));
+//	
+//	if ( !alphablend) {vkColor3f( Br,Bg,Bb);} else {vkColor4f( Cr,Cg,Cb, 0);}
+//	vkVertex2f((float)(x1+tx+Rx-cx), (float)(y1+ty+Ry-cy)); //fading edge
+//	vkVertex2f((float)(x2+tx+Rx+cx), (float)(y2+ty+Ry+cy));
+//   vkEnd();
+//
+//	//cap
+//	if ( w < 3) {
+//		//do not draw cap
+//	} else {
+//		//draw cap
+//	vkBegin(VK_TRIANGLE_STRIP);
+//		if ( !alphablend) {vkColor3f( Br,Bg,Bb);} else {vkColor4f( Cr,Cg,Cb, 0);}
+//		vkVertex2f((float)(x1-tx-Rx-cx), (float)(y1-ty-Ry-cy));
+//		vkVertex2f((float)(x1-tx-Rx), (float)(y1-ty-Ry));
+//		if ( !alphablend) {vkColor3f( Cr,Cg,Cb);} else {vkColor4f( Cr,Cg,Cb, A);}
+//		vkVertex2f((float)(x1-tx-cx), (float)(y1-ty-cy));
+//		if ( !alphablend) {vkColor3f( Br,Bg,Bb);} else {vkColor4f( Cr,Cg,Cb, 0);}
+//		vkVertex2f((float)(x1+tx+Rx), (float)(y1+ty+Ry));
+//		if ( !alphablend) {vkColor3f( Cr,Cg,Cb);} else {vkColor4f( Cr,Cg,Cb, A);}
+//		vkVertex2f((float)(x1+tx-cx), (float)(y1+ty-cy));
+//		if ( !alphablend) {vkColor3f( Br,Bg,Bb);} else {vkColor4f( Cr,Cg,Cb, 0);}
+//		vkVertex2f((float)(x1+tx+Rx-cx), (float)(y1+ty+Ry-cy));
+//	vkEnd();
+//	vkBegin(VK_TRIANGLE_STRIP);
+//		if ( !alphablend) {vkColor3f( Br,Bg,Bb);} else {vkColor4f( Cr,Cg,Cb, 0);}
+//		vkVertex2f((float)(x2-tx-Rx+cx), (float)(y2-ty-Ry+cy));
+//		vkVertex2f((float)(x2-tx-Rx), (float)(y2-ty-Ry));
+//		if ( !alphablend) {vkColor3f( Cr,Cg,Cb);} else {vkColor4f( Cr,Cg,Cb, A);}
+//		vkVertex2f((float)(x2-tx+cx), (float)(y2-ty+cy));
+//		if ( !alphablend) {vkColor3f( Br,Bg,Bb);} else {vkColor4f( Cr,Cg,Cb, 0);}
+//		vkVertex2f((float)(x2+tx+Rx), (float)(y2+ty+Ry));
+//		if ( !alphablend) {vkColor3f( Cr,Cg,Cb);} else {vkColor4f( Cr,Cg,Cb, A);}
+//		vkVertex2f((float)(x2+tx+cx), (float)(y2+ty+cy));
+//		if ( !alphablend) {vkColor3f( Br,Bg,Bb);} else {vkColor4f( Cr,Cg,Cb, 0);}
+//		vkVertex2f((float)(x2+tx+Rx+cx), (float)(y2 + ty + Ry + cy));
+//	vkEnd();
+//	}
 }
 
 
@@ -256,22 +256,22 @@ void hair_line( double x1, double y1, double x2, double y2, bool alphablend=0)
 		}
 	}
 	
-	//draw the line by triangle strip
-vkBegin(VK_TRIANGLE_STRIP);
-	if ( !alphablend) {vkColor3f( 1.0f,1.0f,1.0f);} else {vkColor4f((float) C, (float)C, (float)C, 0.0f);}
-	vkVertex2f((float)(x1-tx-Rx), (float)(y1-ty-Ry)); //fading edge
-	vkVertex2f((float)(x2-tx-Rx), (float)(y2-ty-Ry));
-	
-	vkColor3f((float)(C), (float)(C), (float)(C));
-	vkVertex2f((float)(x1-tx), (float)(y1-ty)); //aura
-	vkVertex2f((float)(x2-tx), (float)(y2-ty));
-	vkVertex2f((float)(x1+tx), (float)(y1+ty));
-	vkVertex2f((float)(x2+tx), (float)(y2+ty));
-	
-	if ( !alphablend) {vkColor3f( 1.f,1.f,1.f);} else {vkColor4f((float) C, (float)C, (float)C, 0.f);}
-	vkVertex2f((float)(x1+tx+Rx), (float)(y1+ty+Ry)); //fading edge
-	vkVertex2f((float)(x2+tx+Rx), (float)(y2+ty+Ry));
-vkEnd();
+//	//draw the line by triangle strip
+//vkBegin(VK_TRIANGLE_STRIP);
+//	if ( !alphablend) {vkColor3f( 1.0f,1.0f,1.0f);} else {vkColor4f((float) C, (float)C, (float)C, 0.0f);}
+//	vkVertex2f((float)(x1-tx-Rx), (float)(y1-ty-Ry)); //fading edge
+//	vkVertex2f((float)(x2-tx-Rx), (float)(y2-ty-Ry));
+//	
+//	vkColor3f((float)(C), (float)(C), (float)(C));
+//	vkVertex2f((float)(x1-tx), (float)(y1-ty)); //aura
+//	vkVertex2f((float)(x2-tx), (float)(y2-ty));
+//	vkVertex2f((float)(x1+tx), (float)(y1+ty));
+//	vkVertex2f((float)(x2+tx), (float)(y2+ty));
+//	
+//	if ( !alphablend) {vkColor3f( 1.f,1.f,1.f);} else {vkColor4f((float) C, (float)C, (float)C, 0.f);}
+//	vkVertex2f((float)(x1+tx+Rx), (float)(y1+ty+Ry)); //fading edge
+//	vkVertex2f((float)(x2+tx+Rx), (float)(y2+ty+Ry));
+//vkEnd();
 }
 
 /*as a fall back of line()*/
@@ -280,12 +280,12 @@ void line_raw( double x1, double y1, double x2, double y2,
 	double Cr, double Cg, double Cb,
 	double,double,double, bool)
 {
-	vkLineWidth((float)(w));
-vkBegin(VK_LINES);
-	vkColor3f((float)(Cr), (float)(Cg), (float)(Cb));
-	vkVertex2f((float)(x1), (float)(y1));
-	vkVertex2f((float)(x2), (float)(y2));
-vkEnd();
+//	vkLineWidth((float)(w));
+//vkBegin(VK_LINES);
+//	vkColor3f((float)(Cr), (float)(Cg), (float)(Cb));
+//	vkVertex2f((float)(x1), (float)(y1));
+//	vkVertex2f((float)(x2), (float)(y2));
+//vkEnd();
 }
 
 #endif

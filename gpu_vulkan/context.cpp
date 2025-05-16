@@ -93,24 +93,24 @@ namespace vulkan
 
 #else
 
-      glGenVertexArrays(1, &m_VAO);
-      glGenBuffers(1, &m_VBO);
-      // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
-      glBindVertexArray(m_VAO);
-
+//      glGenVertexArrays(1, &m_VAO);
+//      glGenBuffers(1, &m_VBO);
+//      // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
+//      glBindVertexArray(m_VAO);
+//
 #endif
-
-      glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-      glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-      // position attribute
-      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
-      glEnableVertexAttribArray(0);
-      // color attribute
-      //glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-      //glEnableVertexAttribArray(1);
-
-      //return ::success;
+//
+//      glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+//      glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+//
+//      // position attribute
+//      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
+//      glEnableVertexAttribArray(0);
+//      // color attribute
+//      //glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+//      //glEnableVertexAttribArray(1);
+//
+//      //return ::success;
    }
 
 
@@ -131,34 +131,34 @@ namespace vulkan
 
 
 
-      ASSERT(m_itaskGpu == ::current_itask());
+      //ASSERT(m_itaskGpu == ::current_itask());
 
-      //      glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+      ////      glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 
-            // Clear the screen
-      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+      //      // Clear the screen
+      //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-      //glClear(GL_COLOR_BUFFER_BIT);
+      ////glClear(GL_COLOR_BUFFER_BIT);
 
-      if (m_pprogram && m_pprogram->m_pshader)
-      {
+      //if (m_pprogram && m_pprogram->m_pshader)
+      //{
 
-         m_pprogram->m_pshader->use();
+      //   m_pprogram->m_pshader->use();
 
-      }
-      // Use our shader
-      //glUseProgram(programID);
+      //}
+      //// Use our shader
+      ////glUseProgram(programID);
 
-      // be sure to activate the shader
-      //glUseProgram(shaderProgram);
+      //// be sure to activate the shader
+      ////glUseProgram(shaderProgram);
 
-      // update the uniform color
-      //float timeValue = glfwGetTime();
-      //float greenValue = sin(timeValue) / 2.0f + 0.5f;
-      //int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
-      //glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
+      //// update the uniform color
+      ////float timeValue = glfwGetTime();
+      ////float greenValue = sin(timeValue) / 2.0f + 0.5f;
+      ////int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
+      ////glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 
-      //return ::success;
+      ////return ::success;
 
    }
 
@@ -183,7 +183,7 @@ namespace vulkan
 
          // Send our transformation to the currently bound shader, 
          // in the "MVP" uniform
-         glUniformMatrix4fv(m_iMatrixUniform, 1, GL_FALSE, &matrixMVP[0][0]);
+         //glUniformMatrix4fv(m_iMatrixUniform, 1, GL_FALSE, &matrixMVP[0][0]);
 
       }
 
@@ -244,7 +244,7 @@ namespace vulkan
          //glBindTexture(GL_TEXTURE_2D, 0);
          //glFlush();
 
-         GLuint readFboId = 0;
+         /*GLuint readFboId = 0;
          glGenFramebuffers(1, &readFboId);
          glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboId);
          glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
@@ -253,18 +253,18 @@ namespace vulkan
             0, 0, m_size.cx(), m_size.cy(),
             GL_COLOR_BUFFER_BIT, GL_LINEAR);
          glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
-         glDeleteFramebuffers(1, &readFboId);
+         glDeleteFramebuffers(1, &readFboId);*/
       }
       else
       {
 
-#ifdef __APPLE__
-         glBindVertexArrayAPPLE(m_VAO);
-#else
-         glBindVertexArray(m_VAO);
-#endif
-
-         glDrawArrays(GL_TRIANGLES, 0, 6);
+//#ifdef __APPLE__
+//         glBindVertexArrayAPPLE(m_VAO);
+//#else
+//         glBindVertexArray(m_VAO);
+//#endif
+//
+//         glDrawArrays(GL_TRIANGLES, 0, 6);
 
    }
 
@@ -281,21 +281,21 @@ namespace vulkan
       if (!m_gluTextureBitmap1)
       {
 
-         glGenTextures(1, &m_gluTextureBitmap1); // generate texture id for your texture (can skip this line)
-         glEnable(GL_TEXTURE_2D);
-         glBindTexture(GL_TEXTURE_2D, m_gluTextureBitmap1);
-
-         glPixelStorei(GL_UNPACK_ALIGNMENT, 1); // set alignment of data in memory (a good thing to do before glTexImage)
-
-#if defined(__APPLE__) || defined(__ANDROID__)
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE); // set clamp (GL_CLAMP_TO_EDGE would be better)
-#else
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP); // set clamp (GL_CLAMP_TO_EDGE would be better)
-#endif
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // set linear filtering (so you can scale your image)
+//         glGenTextures(1, &m_gluTextureBitmap1); // generate texture id for your texture (can skip this line)
+//         glEnable(GL_TEXTURE_2D);
+//         glBindTexture(GL_TEXTURE_2D, m_gluTextureBitmap1);
+//
+//         glPixelStorei(GL_UNPACK_ALIGNMENT, 1); // set alignment of data in memory (a good thing to do before glTexImage)
+//
+//#if defined(__APPLE__) || defined(__ANDROID__)
+//         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+//         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE); // set clamp (GL_CLAMP_TO_EDGE would be better)
+//#else
+//         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+//         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP); // set clamp (GL_CLAMP_TO_EDGE would be better)
+//#endif
+//         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+//         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // set linear filtering (so you can scale your image)
 
       }
 
@@ -304,16 +304,16 @@ namespace vulkan
 
          pimage->map();
 
-         glBindTexture(GL_TEXTURE_2D, m_gluTextureBitmap1);
+         //glBindTexture(GL_TEXTURE_2D, m_gluTextureBitmap1);
 
-         if (m_iLastBitmap1Scan != pimage->m_iScan)
-         {
+         //if (m_iLastBitmap1Scan != pimage->m_iScan)
+         //{
 
-            m_iLastBitmap1Scan = pimage->m_iScan;
+         //   m_iLastBitmap1Scan = pimage->m_iScan;
 
-            glPixelStorei(GL_UNPACK_ROW_LENGTH, pimage->m_iScan / 4);
+         //   glPixelStorei(GL_UNPACK_ROW_LENGTH, pimage->m_iScan / 4);
 
-         }
+         //}
 
          m_sizeBitmap1 = pimage->size();
 
@@ -328,11 +328,11 @@ namespace vulkan
             pimage->get_data(),
             pimage->m_iScan);
 
-         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
-            m_sizeBitmap1.cx(),
-            m_sizeBitmap1.cy(),
-            0, GL_RGBA, GL_UNSIGNED_BYTE,
-            m_memorySwap.data()); // upload image data to the textur
+         //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
+         //   m_sizeBitmap1.cx(),
+         //   m_sizeBitmap1.cy(),
+         //   0, GL_RGBA, GL_UNSIGNED_BYTE,
+         //   m_memorySwap.data()); // upload image data to the textur
 
 
 
@@ -574,10 +574,10 @@ namespace vulkan
       //}
 
 
-   void context::set_matrix_uniform(::gpu::uniform uniformMatrix)
+   void context::set_matrix_uniform(const ::gpu::payload & uniformMatrix)
    {
 
-      m_iMatrixUniform = uniformMatrix;
+      m_iMatrixUniform = uniformMatrix.m_iUniform;
 
    }
 

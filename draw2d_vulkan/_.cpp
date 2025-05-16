@@ -2,10 +2,10 @@
 #include "acme/_library.h"
 
 
-#ifdef WINDOWS_DESKTOP
-
-
-#pragma comment (lib, "vkad.lib")
-
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//#pragma comment (lib, "vkad.lib")
+//
+//
+//#endif

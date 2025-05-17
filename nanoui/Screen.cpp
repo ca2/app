@@ -1192,7 +1192,7 @@ namespace nanoui
                if (!m_bDragActive)
                {
 
-                  update_focus(nullptr);
+                  on_child_set_focus(nullptr);
 
                }
 
@@ -1331,7 +1331,7 @@ namespace nanoui
    //   redraw();
    //}
 
-   void Screen::update_focus(Widget* pwidget)
+   void Screen::on_child_set_focus(Widget* pwidget)
    {
 
       for (auto pwidget : m_focus_path)
@@ -1377,6 +1377,40 @@ namespace nanoui
       {
 
          move_window_to_front(window);
+
+      }
+
+   }
+
+
+   void Screen::on_child_kill_focus(Widget* pwidget)
+   {
+      
+      if(!m_focus_path.contains(pwidget))
+      {
+         
+         return;
+         
+      }
+
+      while (m_focus_path.has_element())
+      {
+         
+         auto pwidgetItem = m_focus_path.pick_first();
+         
+         if(pwidgetItem)
+         {
+            
+            pwidgetItem->focus_event(false);
+            
+            if(pwidgetItem == pwidget)
+            {
+
+               break;
+               
+            }
+            
+         }
 
       }
 

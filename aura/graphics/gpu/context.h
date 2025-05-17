@@ -10,7 +10,7 @@
 namespace gpu
 {
 
-
+   class render;
 
    class image_data
    {
@@ -81,6 +81,7 @@ namespace gpu
       bool                             m_bCreated;
       ::draw3d::matrix                 m_matrixProjection;
       ::draw3d::matrix                 m_matrixImpact;
+      ::pointer_array < ::gpu::render >             m_rendera;
 
 
       context();
@@ -89,6 +90,7 @@ namespace gpu
 
       virtual void create_context();
 
+      bool task_iteration() override;
 
       virtual void lock_context();
       virtual void unlock_context();
@@ -121,6 +123,9 @@ namespace gpu
       virtual void create_offscreen_buffer(const ::int_size& size);
       virtual void _create_offscreen_buffer(const ::int_size& size);
 
+      virtual void defer_create_window_context(::windowing::window * pwindow);
+      virtual void _defer_create_window_context(::windowing::window * pwindow);
+
       virtual void resize_offscreen_buffer(const ::int_size& size);
       virtual void destroy_offscreen_buffer();
       
@@ -136,7 +141,7 @@ namespace gpu
 
       virtual string get_shader_version_text();
 
-      virtual void set_matrix_uniform(uniform uniformMatrix);
+      virtual void set_matrix_uniform(const ::gpu::payload & payloadMatrix);
 
 
       virtual class image_data image24(const ::payload & payloadFile);

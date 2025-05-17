@@ -34,7 +34,7 @@ namespace gpu
       virtual void draw();
 
       
-      virtual void set_texture_uniform(::gpu::uniform uniformTexture);
+      virtual void set_texture_uniform(const ::gpu::payload & payload);
 
 
    };

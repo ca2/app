@@ -1,0 +1,5 @@
+LIBRARY "draw2d_vulkan"
+
+EXPORTS
+draw2d_vulkan_factory
+

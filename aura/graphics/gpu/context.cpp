@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "context.h"
 #include "cpu_buffer.h"
+#include "render.h"
 //#include "_.h"
 //#include "_gpu.h"
 #include "acme/exception/interface_only.h"
@@ -267,7 +268,65 @@ namespace gpu
    }
 
 
+   void context::defer_create_window_context(::windowing::window * pwindow)
+   {
+
+      send([this, pwindow]()
+      {
+
+         //::pointer<::aura::system>psystem = system();
+
+         //auto pgpu = psystem->get_gpu();
+
+         //if (::is_null(pgpu))
+         //{
+
+         //   throw ::exception(error_null_pointer);
+
+         //}
+
+         //__defer_construct(m_pcpubuffer);
+
+         //m_pcpubuffer->m_pgpucontext = this;
+
+         ////m_pbuffer->m_pimage = image()->create_image(size);
+
+         //m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
+
+         //if (m_pcpubuffer->m_pixmap.nok())
+         //{
+
+         //   throw ::exception(error_resource);
+
+         //}
+
+         _defer_create_window_context(pwindow);
+
+         //if(!estatus)
+         //{
+
+         //   return estatus;
+
+         //}
+
+         //return ::success_none;
+
+         m_bCreated = true;
+
+      });
+
+   }
+
+
    void context::_create_offscreen_buffer(const ::int_size& size)
+   {
+
+      //return ::success_none;
+
+   }
+
+
+   void context::_defer_create_window_context(::windowing::window * pwindow)
    {
 
       //return ::success_none;
@@ -301,6 +360,34 @@ namespace gpu
    {
 
       branch_synchronously();
+
+   }
+
+
+   
+   bool context::task_iteration()
+   {
+
+      if (!::thread::task_iteration())
+      {
+
+         return false;
+
+      }
+
+      for(auto prender : m_rendera)
+      {
+
+         if (!prender->render_step())
+         {
+
+            return false;
+
+         }
+
+      }
+
+      return true;
 
    }
 
@@ -453,7 +540,7 @@ namespace gpu
    }
 
 
-   void context::set_matrix_uniform(uniform uniformMatrix)
+   void context::set_matrix_uniform(const ::gpu::payload & payloadMatrix)
    {
 
       throw interface_only();

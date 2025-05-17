@@ -27,6 +27,9 @@ namespace opengl
 
       virtual void _create_offscreen_window(const ::int_size & size);
 
+      void defer_create_window_context(::windowing::window * pwindow) override;
+      void _defer_create_window_context(::windowing::window * pwindow) override;
+      virtual void _create_window_context(::windowing::window * pwindow);
 
       virtual void _create_window_buffer();
       void _create_offscreen_buffer(const ::int_size& size) override;

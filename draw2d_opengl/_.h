@@ -2,6 +2,10 @@
 
 
 #include "aura/_.h"
+#if defined(WINDOWS_DESKTOP)
+#include "windowing_win32/_.h"
+#include "acme/_operating_system.h"
+#endif
 #include "gpu_opengl/_.h"
 
 

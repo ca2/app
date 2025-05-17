@@ -200,6 +200,14 @@ namespace draw2d
    }
 
 
+   void graphics::defer_add_gpu_render(::gpu::render* pgpurender)
+   {
+
+       
+
+   }
+
+
    void graphics::on_begin_draw()
    {
 
@@ -212,6 +220,13 @@ namespace draw2d
       //fill_rectangle(get_size(), color);
 
       //return true;
+
+   }
+
+
+   void graphics::on_end_draw()
+   {
+
 
    }
 
@@ -371,6 +386,24 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(pInitData);
 
       //return false;
+
+   }
+
+   
+   void graphics::create_window_graphics(::windowing::window * pwindow)
+   {
+
+      //__UNREFERENCED_PARAMETER(size);
+
+      //CreateCompatibleDC(nullptr);
+      //if (!CreateCompatibleDC(nullptr))
+      //{
+
+      //   return false;
+
+      //}
+
+      //return true;
 
    }
 
@@ -6115,6 +6148,13 @@ namespace draw2d
 
 
    void graphics::on_end_draw(oswindow wnd)
+   {
+
+
+   }
+
+
+   void graphics::on_present()
    {
 
 

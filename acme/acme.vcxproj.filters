@@ -4185,6 +4185,12 @@
     <ClInclude Include="prototype\collection\property_set.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="λ.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_greek.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">

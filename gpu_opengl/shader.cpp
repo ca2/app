@@ -179,37 +179,58 @@ namespace opengl
    }
 
 
-   void shader::setBool(const ::string & pszName, bool value)
+   void shader::setBool(const ::scoped_string & scopedstrName, bool value)
    {
 
-      GLint i = glGetUniformLocation(m_uId, pszName);
+      auto p = get_payload(scopedstrName);
 
-      glUniform1i(i, (int)value);
+      if (!p)
+      {
+
+         throw ::exception(error_not_found, "property not found");
+
+      }
+
+      glUniform1i(p->m_iUniform, (int)value);
 
    }
 
 
-   void shader::setInt(const ::string & pszName, int value)
+   void shader::setInt(const ::scoped_string & scopedstrName, int value)
    {
 
-      GLint i = glGetUniformLocation(m_uId, pszName);
+      auto p = get_payload(scopedstrName);
 
-      glUniform1i(i, value);
+      if (!p)
+      {
+
+         throw ::exception(error_not_found, "property not found");
+
+      }
+
+      glUniform1i(p->m_iUniform, value);
 
    }
 
 
-   void shader::setFloat(const ::string & pszName, float value)
+   void shader::setFloat(const ::scoped_string & scopedstrName, float value)
    {
 
-      GLint i = glGetUniformLocation(m_uId, pszName);
+      auto p = get_payload(scopedstrName);
 
-      glUniform1f(i, value);
+      if (!p)
+      {
+
+         throw ::exception(error_not_found, "property not found");
+
+      }
+
+      glUniform1f(p->m_iUniform, value);
 
    }
 
 
-//   void shader::setVec2(const ::string & pszName, const glm::vec2& value)
+//   void shader::setVec2(const ::scoped_string & scopedstrName, const glm::vec2& value)
 //   {
 //
 //      GLint i = glGetUniformLocation(m_uId, pszName);
@@ -219,17 +240,24 @@ namespace opengl
 //   }
 
 
-   void shader::setVec2(const ::string & pszName, float x, float y)
+   void shader::setVec2(const ::scoped_string & scopedstrName, float x, float y)
    {
 
-      GLint i = glGetUniformLocation(m_uId, pszName);
+      auto p = get_payload(scopedstrName);
 
-      glUniform2f(i, x, y);
+      if (!p)
+      {
+
+         throw ::exception(error_not_found, "property not found");
+
+      }
+
+      glUniform2f(p->m_iUniform, x, y);
 
    }
 
 
-//   void shader::setVec3(const ::string & pszName, const glm::vec3& value)
+//   void shader::setVec3(const ::scoped_string & scopedstrName, const glm::vec3& value)
 //   {
 //
 //      GLint i = glGetUniformLocation(m_uId, pszName);
@@ -239,17 +267,24 @@ namespace opengl
 //   }
 
 
-   void shader::setVec3(const ::string & pszName, float x, float y, float z)
+   void shader::setVec3(const ::scoped_string & scopedstrName, float x, float y, float z)
    {
 
-      GLint i = glGetUniformLocation(m_uId, pszName);
+      auto p = get_payload(scopedstrName);
 
-      glUniform3f(i, x, y, z);
+      if (!p)
+      {
+
+         throw ::exception(error_not_found, "property not found");
+
+      }
+
+      glUniform3f(p->m_iUniform, x, y, z);
 
    }
 
 
-//   void shader::setVec4(const ::string & pszName, const glm::vec4& value)
+//   void shader::setVec4(const ::scoped_string & scopedstrName, const glm::vec4& value)
 //   {
 //
 //      GLint i = glGetUniformLocation(m_uId, pszName);
@@ -259,42 +294,70 @@ namespace opengl
 //   }
 
 
-   void shader::setVec4(const ::string & pszName, float x, float y, float z, float w)
+   void shader::setVec4(const ::scoped_string & scopedstrName, float x, float y, float z, float w)
    {
 
-      GLint i = glGetUniformLocation(m_uId, pszName);
+      auto p = get_payload(scopedstrName);
 
-      glUniform4f(i, x, y, z, w);
+      if (!p)
+      {
+
+         throw ::exception(error_not_found, "property not found");
+
+      }
+
+      glUniform4f(p->m_iUniform, x, y, z, w);
 
    }
 
 
-   void shader::setMat2(const ::string & pszName, const float p[2*2])
+   void shader::setMat2(const ::scoped_string & scopedstrName, const float a[2*2])
    {
 
-      GLint i = glGetUniformLocation(m_uId, pszName);
+      auto p = get_payload(scopedstrName);
 
-      glUniformMatrix2fv(i, 1, GL_FALSE, p);
+      if (!p)
+      {
+
+         throw ::exception(error_not_found, "property not found");
+
+      }
+
+      glUniformMatrix2fv(p->m_iUniform, 1, GL_FALSE, a);
 
    }
 
 
-   void shader::setMat3(const ::string & pszName, const float p[3*3])
+   void shader::setMat3(const ::scoped_string & scopedstrName, const float a[3*3])
    {
 
-      GLint i = glGetUniformLocation(m_uId, pszName);
+      auto p = get_payload(scopedstrName);
 
-      glUniformMatrix3fv(i, 1, GL_FALSE, p);
+      if (!p)
+      {
+
+         throw ::exception(error_not_found, "property not found");
+
+      }
+
+      glUniformMatrix3fv(p->m_iUniform, 1, GL_FALSE, a);
 
    }
 
 
-   void shader::setMat4(const ::string & pszName, const float p[4*4])
+   void shader::setMat4(const ::scoped_string & scopedstrName, const float a[4*4])
    {
 
-      GLint i = glGetUniformLocation(m_uId, pszName);
+      auto p = get_payload(scopedstrName);
 
-      glUniformMatrix4fv(i, 1, GL_FALSE, p);
+      if (!p)
+      {
+
+         throw ::exception(error_not_found, "property not found");
+
+      }
+
+      glUniformMatrix4fv(p->m_iUniform, 1, GL_FALSE, a);
 
    }
 
@@ -375,12 +438,25 @@ namespace opengl
    }
 
 
-   ::gpu::uniform shader::get_uniform(const ::string & strUniform)
+   ::gpu::payload * shader::get_payload(const ::scoped_string & scopedstrUniform)
    {
       
-      auto uniform = glGetUniformLocation(m_uId, strUniform);
+      auto p = m_mapLayout.plookup(scopedstrUniform);
 
-      return uniform;
+      if (!p)
+      {
+
+         ::gpu::payload payload;
+
+         payload.m_iUniform = glGetUniformLocation(m_uId, scopedstrUniform);
+
+         m_mapLayout.set_at(scopedstrUniform, payload);
+         
+         auto p = m_mapLayout.plookup(scopedstrUniform);
+
+      }
+
+      return &p->element2();
 
    }
 

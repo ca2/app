@@ -56,77 +56,77 @@ namespace gpu
    }
 
 
-   void shader::setBool(const ::string & pszName, bool value)
+   void shader::setBool(const ::scoped_string & scopedstrName, bool value)
    {
 
 
    }
 
 
-   void shader::setInt(const ::string & pszName, int value)
+   void shader::setInt(const ::scoped_string & scopedstrName, int value)
    {
 
 
    }
 
 
-   void shader::setFloat(const ::string & pszName, float value)
+   void shader::setFloat(const ::scoped_string & scopedstrName, float value)
    {
 
 
    }
 
 
-//   void shader::setVec2(const ::string & pszName, const glm::vec2& value)
+//   void shader::setVec2(const ::scoped_string & scopedstrName, const glm::vec2& value)
 //   {
 //
 //   }
 
 
-   void shader::setVec2(const ::string & pszName, float x, float y)
+   void shader::setVec2(const ::scoped_string & scopedstrName, float x, float y)
    {
 
    }
 
 
-//   void shader::setVec3(const ::string & pszName, const glm::vec3& value)
+//   void shader::setVec3(const ::scoped_string & scopedstrName, const glm::vec3& value)
 //   {
 //
 //
 //   }
 
 
-   void shader::setVec3(const ::string & pszName, float x, float y, float z)
+   void shader::setVec3(const ::scoped_string & scopedstrName, float x, float y, float z)
    {
 
    }
 
 
-//   void shader::setVec4(const ::string & pszName, const glm::vec4& value)
+//   void shader::setVec4(const ::scoped_string & scopedstrName, const glm::vec4& value)
 //   {
 //
 //   }
 
 
-   void shader::setVec4(const ::string & pszName, float x, float y, float z, float w)
+   void shader::setVec4(const ::scoped_string & scopedstrName, float x, float y, float z, float w)
    {
 
    }
 
 
-   void shader::setMat2(const ::string & pszName, const float p[2*2])
+   void shader::setMat2(const ::scoped_string & scopedstrName, const float p[2*2])
    {
 
    }
 
 
-   void shader::setMat3(const ::string & pszName, const float p[3*3])
+   void shader::setMat3(const ::scoped_string & scopedstrName, const float p[3*3])
    {
 
    }
 
 
-   void shader::setMat4(const ::string & pszName, const float p[4*4])
+   void shader::setMat4(const ::scoped_string & scopedstrName, const float p[4*4])
    {
 
    }
@@ -152,14 +152,24 @@ namespace gpu
 
    //}
 
-   uniform shader::get_uniform(const ::string & strUniform)
+   ::gpu::payload * shader::get_payload(const ::scoped_string & scopedstrPayload)
    {
 
+      auto p = m_mapLayout.plookup(scopedstrPayload);
+
+      if (!p)
+      {
+
+         return nullptr;
+
+      }
+
+      return &p->element2();
 
       //m_iMatrixUniform = glGetUniformLocation(
       //   m_pprogram->m_pshader->m_uId,
       //   m_strMatrixUniform
-      return -1;
+      //return -1;
    }
 
 

@@ -270,7 +270,7 @@ namespace image
       //virtual void     create(int iWidth, int iHeight, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, void bPreserve = false);
 
 
-      virtual bool host(::pixmap * ppixmap);
+      virtual bool host(::pixmap * ppixmap, ::windowing::window * pwindow);
       virtual bool on_host_read_pixels(::pixmap * ppixmapHost) const;
       void destroy() override;
       void destroy_os_data() override;

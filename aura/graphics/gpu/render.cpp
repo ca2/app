@@ -51,7 +51,12 @@ namespace gpu
 
 #endif
 
+   bool render::render_step()
+   {
 
+      return true;
+
+   }
 
    void render::initialize(::particle * pparticle)
    {
@@ -61,12 +66,6 @@ namespace gpu
       //m_pgpucontext = system()->get_gpu()->create_context(this);
 
       //m_pgpucontext->initialize(this);
-
-      auto psystem = system();
-
-      auto pgpu = psystem->get_gpu();
-
-      m_pgpucontext = pgpu->create_context(this);
 
 
    }

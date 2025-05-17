@@ -237,10 +237,11 @@ namespace opengl
 
    }
 
-   ::gpu::uniform opengl::load_dds(const ::string & strImagePath) 
+   
+   ::gpu::payload opengl::load_dds(const ::scoped_string & scopedstrImagePath) 
    {
 
-      auto fp = file()->get_reader(strImagePath);
+      auto fp = file()->get_reader(scopedstrImagePath);
 
       unsigned char header[124];
 
@@ -258,7 +259,7 @@ namespace opengl
       fread(filecode, 1, 4, fp);
       if (::string(filecode, 4).case_insensitive_order("DDS ") != 0) {
          //fclose(fp);
-         return 0;
+         return {};
       }
 
       /* get the surface desc */
@@ -295,7 +296,7 @@ namespace opengl
          break;
       default:
          free(buffer);
-         return 0;
+         return {};
       }
 
       // Create one OpenGL texture
@@ -328,7 +329,11 @@ namespace opengl
 
       free(buffer);
 
-      return textureID;
+      gpu::payload payload;
+
+      payload.m_iUniform = textureID;
+
+      return payload;
 
 
    }

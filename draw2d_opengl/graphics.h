@@ -39,7 +39,7 @@ namespace draw2d_opengl
       // bool                                      m_bFont;
       ::int_size                    m_sizeWindow;
       //HGLRC m_hrc;
-
+      ::pointer < ::windowing::window >   m_pwindow;
       //::pointer<::gpu::context>          m_pgpucontextOpenGL;
 
 
@@ -68,6 +68,9 @@ namespace draw2d_opengl
 
       //void attach(void * pgraphics) override;   // attach/detach affects only the Output DC
       void * detach() override;
+
+
+      void defer_add_gpu_render(::gpu::render * pgpurender) override;
 
       //virtual bool Attach(HDC hdc);   // attach/detach affects only the Output DC
       //virtual HDC Detach();
@@ -115,10 +118,13 @@ namespace draw2d_opengl
       bool CreateIC(const ::scoped_string & lpszDriverName, const ::scoped_string & lpszDeviceName,
                     const char * lpszOutput, const void * lpInitData);
       void create_memory_graphics(const ::int_size & size = {}) override;
+      void create_window_graphics(::windowing::window * pwindow) override;
       void CreateCompatibleDC(::draw2d::graphics * pgraphics) override;
 
       virtual bool opengl_create_offscreen_buffer(const ::int_size & size);
       virtual bool opengl_delete_offscreen_buffer();
+
+      virtual bool opengl_defer_create_window_context(::windowing::window * pwindow);
 
       void DeleteDC() override;
 
@@ -597,8 +603,9 @@ namespace draw2d_opengl
 
 
       void on_begin_draw() override;
-      void on_end_draw(oswindow wnd) override;
+      void on_end_draw() override;
       //void on_end_draw() override;
+      void on_present() override;
 
       
       bool _is_ok() const override;

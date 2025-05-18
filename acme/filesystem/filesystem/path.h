@@ -342,18 +342,26 @@ namespace file
       void set_extension_if_no_extension(const ::scoped_string & scopestrExtension);
 
       /// <summary>
-      /// Set Extension if No Extension
-      /// or add extension if file name has dot and text
-      /// after dot is not the extension.
+      /// If there is no extension in @this file path,
+      /// the first extension in @straPreserveExtensions
+      /// is appended to this @file path.
+      /// If there are one or more extensions in @this file path,
+      /// the last extension in @this file path that can be found
+      /// in @straPreserveExtensions, is preserved with supplied
+      /// original case.
+      /// All other suffixed extensions in @straPreserveExtensions and
+      /// @straRelatedExtensions are erased.
       /// </summary>
       /// <param name="scopestrExtension"></param>
-      void defer_set_extension(const ::scoped_string& scopestrExtension);
+      void defer_set_extension(const ::string_array& straPreserveExtensions, const ::string_array& straRelatedExtensions);
+      void defer_set_extension(const ::string_array& straPreserveExtensions);
 
       ::file::path with_all_extensions(const ::scoped_string& scopestrExtension) const;
       ::file::path with_final_extension(const ::scoped_string& scopestrExtension) const;
       ::file::path with_extension_if_no_extension(const ::scoped_string& scopestrExtension) const;
 
-      ::file::path with_deferred_extension(const ::scoped_string& scopestrExtension) const;
+      ::file::path with_deferred_extension(const ::string_array & straPreserveExtensions, const ::string_array& straRelatedExtensions) const;
+      ::file::path with_deferred_extension(const ::string_array& straPreserveExtensions) const;
 
       //inline char separator() const
       //{

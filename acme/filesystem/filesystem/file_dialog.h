@@ -6,11 +6,14 @@ namespace file
 {
 
 
-   struct file_dialog_filter
+   struct CLASS_DECL_ACME file_dialog_filter
    {
 
       ::string       m_strName;
       ::string       m_strPatternList;
+
+
+      ::string get_extension();
 
    };
 

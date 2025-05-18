@@ -6477,7 +6477,7 @@ inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::case_insens
 
 
 template < typename ITERATOR_TYPE >
-inline bool string_base < ITERATOR_TYPE > ::case_insensitive_begins_eaten(string_base & strEaten, const SCOPED_STRING & scopedstrPrefix) const
+inline bool string_base < ITERATOR_TYPE > ::begins_eaten(string_base & strEaten, const SCOPED_STRING & scopedstrPrefix)
 {
 
    if (!this->case_insensitive_begins(scopedstrPrefix))
@@ -6489,13 +6489,15 @@ inline bool string_base < ITERATOR_TYPE > ::case_insensitive_begins_eaten(string
 
    strEaten.assign(this->begin(), scopedstrPrefix.size());
 
+   assign(this->begin() + scopedstrPrefix.size(), this->size() - scopedstrPrefix.size());
+
    return true;
 
 }
 
 
 template < typename ITERATOR_TYPE >
-inline bool string_base < ITERATOR_TYPE > ::case_insensitive_ends_eaten(string_base & strEaten, const SCOPED_STRING & scopedstrSuffix) const
+inline bool string_base < ITERATOR_TYPE > ::ends_eaten(string_base & strEaten, const SCOPED_STRING & scopedstrSuffix)
 {
 
    if (!this->case_insensitive_ends(scopedstrSuffix))
@@ -6506,6 +6508,8 @@ inline bool string_base < ITERATOR_TYPE > ::case_insensitive_ends_eaten(string_b
    }
 
    strEaten.assign(this->begin() + length() - scopedstrSuffix.size(), scopedstrSuffix.size());
+
+   assign(this->begin(), this->size() - scopedstrSuffix.size());
 
    return true;
 

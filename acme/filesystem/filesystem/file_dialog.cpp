@@ -40,6 +40,34 @@ namespace file
    }
 
 
+   ::string file_dialog_filter::get_extension()
+   {
+
+      ::string str = m_strPatternList;
+
+      auto strItem = str.get_word(";");
+
+      if (strItem.is_empty())
+      {
+
+         return {};
+
+      }
+
+      auto pDot = strItem.rear_find('.');
+
+      if (pDot)
+      {
+
+         strItem = strItem(pDot + 1);
+
+      }
+
+      return strItem;
+
+   }
+
+
 file_dialog::file_dialog()
 {
    

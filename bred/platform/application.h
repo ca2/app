@@ -4,6 +4,7 @@
 #include "base/platform/application.h"
 
 
+
 namespace bred
 {
 
@@ -22,6 +23,9 @@ namespace bred
       
 
       void common_construct();
+
+
+      //virtual ::pointer < ::graphics3d::application > start_graphics3d_aplication();
 
 
       void initialize(::particle * pparticle) override;

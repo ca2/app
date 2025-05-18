@@ -40,12 +40,12 @@ namespace userex
 
       string_array stra;
 
-      for (auto & filedialogfilter : m_filedialogfiltera)
+      for (auto & filedialogfilteritem : m_filedialogfilter)
       {
 
          string_array straPattern;
 
-         straPattern.explode(";", filedialogfilter.m_strPatternList);
+         straPattern.explode(";", filedialogfilteritem.m_strPatternList);
 
          straPattern.trim();
 

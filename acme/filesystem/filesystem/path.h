@@ -355,13 +355,15 @@ namespace file
       /// <param name="scopestrExtension"></param>
       void defer_set_extension(const ::string_array& straPreserveExtensions, const ::string_array& straRelatedExtensions);
       void defer_set_extension(const ::string_array& straPreserveExtensions);
+      void defer_set_extension(const ::file::file_dialog * pdialog);
 
       ::file::path with_all_extensions(const ::scoped_string& scopestrExtension) const;
       ::file::path with_final_extension(const ::scoped_string& scopestrExtension) const;
       ::file::path with_extension_if_no_extension(const ::scoped_string& scopestrExtension) const;
 
       ::file::path with_deferred_extension(const ::string_array & straPreserveExtensions, const ::string_array& straRelatedExtensions) const;
-      ::file::path with_deferred_extension(const ::string_array& straPreserveExtensions) const;
+      ::file::path with_deferred_extension(const ::string_array & straPreserveExtensions) const;
+      ::file::path with_deferred_extension(const ::file::file_dialog* pdialog) const;
 
       //inline char separator() const
       //{

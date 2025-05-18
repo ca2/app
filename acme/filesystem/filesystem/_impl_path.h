@@ -799,7 +799,8 @@ namespace file
 
    }
 
-   
+
+
    inline void path::defer_set_extension(const ::string_array& straPreserveExtensions, const ::string_array & straRelatedExtensions)
    {
 
@@ -927,6 +928,14 @@ namespace file
    {
 
       return with_deferred_extension(straPreserveExtensions);
+
+   }
+
+
+   inline ::file::path path::with_deferred_extension(const ::file::file_dialog* pfiledialog) const
+   {
+
+      return with_deferred_extension(pfiledialog);
 
    }
 

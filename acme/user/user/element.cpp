@@ -4935,126 +4935,132 @@ namespace user
    }
 
 
-   void element::pick_single_file_to_save(const ::array < ::file::file_dialog_filter > & filedialogfiltera, const ::function < void(const ::file::path &, const ::scoped_string &) > & function)
+   void element::pick_single_file_to_save(const ::file::file_dialog_filter & filedialogfilter, const ::function < void(::file::file_dialog * pdialog) > & function)
    {
 
       auto pfiledialog = node()->node_file_dialog();
 
       pfiledialog->m_bSave = true;
 
-      pfiledialog->m_filedialogfiltera = filedialogfiltera;
+      pfiledialog->m_filedialogfilter.copy(filedialogfilter);
 
-      pfiledialog->m_function = [function](auto pdialog)
-      {
+      pfiledialog->m_function = function;
+      //{
 
+      //      function(pdialog);
+      //   //if (pdialog && pdialog->m_patha.has_element())
+      //   //{
 
-         if (pdialog && pdialog->m_patha.has_element())
-         {
+      //     // function(pdialog->m_patha.first(), pdialog->m_strExtension);
 
-            function(pdialog->m_patha.first(), pdialog->m_strExtension);
+      //   //}
+      //   //else
+      //   //{
 
-         }
-         else
-         {
+      //     // function({}, {});
 
-            function({}, {});
+      //   //}
 
-         }
-
-      };
+      //};
 
       pfiledialog->call();
 
    }
 
 
-void element::pick_single_file_to_open(const ::array < ::file::file_dialog_filter > & filedialogfiltera, const ::function < void(const ::file::path &) > & function)
+void element::pick_single_file_to_open(const ::file::file_dialog_filter & filedialogfilter, const ::function < void(::file::file_dialog* pdialog) > & function)
 {
 
    auto pfiledialog = node()->node_file_dialog();
 
    pfiledialog->m_bSave = false;
 
-   pfiledialog->m_filedialogfiltera = filedialogfiltera;
+   pfiledialog->m_filedialogfilter.copy(filedialogfilter);
 
-   pfiledialog->m_function = [function](auto pdialog)
-   {
+   pfiledialog->m_function = function;
+
+   //pfiledialog->m_function = [function](auto pdialog)
+   //{
 
 
-      if (pdialog && pdialog->m_patha.has_element())
-      {
+   //   if (pdialog && pdialog->m_patha.has_element())
+   //   {
 
-         function(pdialog->m_patha.first());
+   //      function(pdialog->m_patha.first());
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         function({});
+   //      function({});
 
-      }
+   //   }
 
-   };
+   //};
 
    pfiledialog->call();
 
 }
 
 
-void element::pick_multiple_file(const ::array < ::file::file_dialog_filter > & filedialogfiltera, const ::function < void(const ::file::path_array &) > & function)
+void element::pick_multiple_file(const ::file::file_dialog_filter & filedialogfiltera, const ::function < void(::file::file_dialog * pdialog) > & function)
    {
 
       auto pfiledialog = node()->node_file_dialog();
 
-      pfiledialog->m_function = [function](auto pdialog)
-      {
+      pfiledialog->m_function = function;
+
+      //pfiledialog->m_function = [function](auto pdialog)
+      //{
 
 
-         if (pdialog && pdialog->m_patha.has_element())
-         {
+      //   if (pdialog && pdialog->m_patha.has_element())
+      //   {
 
-            function(pdialog->m_patha);
+      //      function(pdialog->m_patha);
 
-         }
-         else
-         {
+      //   }
+      //   else
+      //   {
 
-            function({});
+      //      function({});
 
-         }
+      //   }
 
 
-      };
+      //};
 
       pfiledialog->call();
 
    }
 
 
-   void element::pick_single_folder(const ::function < void(const ::file::path &) > & function)
+   void element::pick_single_folder(const ::function < void(::file::file_dialog * pdialog) > & function)
    {
 
       auto pfiledialog = node()->node_file_dialog();
 
-      pfiledialog->m_function = [function](auto pdialog)
-      {
+      pfiledialog->m_function = function;
+
+      //pfiledialog->m_function = [function](auto pdialog)
+      //{
 
 
-         if (pdialog && pdialog->m_patha.has_element())
-         {
+      //   if (pdialog && pdialog->m_patha.has_element())
+      //   {
 
-            function(pdialog->m_patha.first());
+      //      function(pdialog->m_patha.first());
 
-         }
-         else
-         {
+      //   }
+      //   else
+      //   {
 
-            function({});
+      //      function({});
 
-         }
+      //   }
 
 
-      };
+      //};
 
       pfiledialog->call();
 

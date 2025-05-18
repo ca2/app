@@ -296,6 +296,13 @@ namespace platform
    }
 
 
+   void node::defer_add_to_system_recent_file_list(const ::file::path& pathNew)
+   {
+
+
+   }
+
+
    ::particle_pointer node::create_mutex()
    {
 

@@ -17,9 +17,18 @@ namespace gpu
       e_type_none = 0,
       e_type_int = 1,
       e_type_float = 2,
+      e_type_seq2 = 3,
+      e_type_seq3 = 4,
+      e_type_seq4 = 5,
+      e_type_mat2 = 6,
+      e_type_mat3 = 7,
+      e_type_mat4 = 8,
 
    };
 
+
+   CLASS_DECL_AURA int get_type_size(enum_type e);
+   
    //using uniform = int;
    struct payload
    {

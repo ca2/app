@@ -21,6 +21,9 @@ namespace opengl
       ~cpu_buffer() override;
 
 
+      //void set_size(const ::int_size & size) override;
+
+
       void gpu_read() override;
       void gpu_write() override;
       

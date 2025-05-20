@@ -237,18 +237,9 @@ namespace gpu
 
          __defer_construct(m_pcpubuffer);
 
-         m_pcpubuffer->m_pgpucontext = this;
+         m_pcpubuffer->initialize_cpu_buffer(this);
 
-         //m_pbuffer->m_pimage = image()->create_image(size);
-
-         m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
-
-         if (m_pcpubuffer->m_pixmap.nok())
-         {
-
-            throw ::exception(error_resource);
-
-         }
+         m_pcpubuffer->set_size(size);
 
          _create_offscreen_buffer(size);
 

@@ -141,7 +141,7 @@ namespace platform
 
       virtual ::process_identifier_array module_list_file_processes_identifiers(const ::scoped_string & scopedstr) override;
 
-
+      virtual void defer_add_to_system_recent_file_list(const ::file::path& pathRecentFile);
       virtual ::enum_id key_command(::user::enum_key ekey, ::user::key_state* pkeystate) override;
       //idaPid = pnode->(path, false);
 

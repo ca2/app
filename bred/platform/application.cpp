@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "application.h"
 #include "system.h"
+#include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 
 
@@ -86,7 +87,15 @@ namespace bred
 
    }
 
+   
+   //::pointer < ::graphics3d::application > application::start_graphics3d_aplication()
+   //{
 
+   //   auto p3dapplication = __øcreate < graphics3d::application>();
+
+   //   return p3dapplication;
+
+   //}
 
 } // namespace bred
 

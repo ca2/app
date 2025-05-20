@@ -5,7 +5,7 @@
 //#include "acme/prototype/geometry2d/_geometry2d.h"
 
 
-struct POLED
+struct DOUBLE_POLE
 {
 
    union
@@ -212,10 +212,10 @@ inline ::int_point as_int_point(const POLE & pole)
 }
 
 
-using pole_int = ::pole_type < int >;
-using pole_long_long = ::pole_type < long long>;
-using pole_float = ::pole_type < float >;
-using pole_double = ::pole_type < double >;
+using int_pole = ::pole_type < int >;
+using long_long_pole = ::pole_type < long long>;
+using float_pole = ::pole_type < float >;
+using double_pole = ::pole_type < double >;
 
 
 

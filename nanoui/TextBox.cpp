@@ -392,8 +392,14 @@ namespace nanoui
 
       if (emouse == ::user::e_mouse_left_button && down && !focused())
       {
+         
          if (!m_bSpinnable || spin_area(p) == SpinArea::None) /* not on scrolling arrows */
+         {
+            
             request_focus();
+            
+         }
+         
       }
 
       if (!down)
@@ -958,7 +964,9 @@ namespace nanoui
                if (!m_bCommitted)
                {
 
-                  focus_event(false);
+                  //focus_event(false);
+                  
+                  kill_focus();
 
                }
 

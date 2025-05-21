@@ -6,7 +6,7 @@
 #include "glm/mat4x4.hpp"
 
 
-namespace opengl
+namespace gpu_opengl
 {
 
 
@@ -583,7 +583,7 @@ namespace opengl
 
 
 
-} // namespace opengl
+} // namespace gpu_opengl
 
 
 

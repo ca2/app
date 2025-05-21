@@ -5,7 +5,7 @@
 #include "acme/prototype/prototype/memory.h"
 
 
-namespace opengl
+namespace gpu_opengl
 {
 
 

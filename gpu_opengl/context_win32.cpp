@@ -10,7 +10,7 @@
 #include "glad_wgl.h"
 
 
-namespace opengl
+namespace gpu_opengl
 {
 
 
@@ -124,7 +124,7 @@ namespace opengl
 
          auto pgpu = psystem->get_gpu();
 
-         ::pointer < ::opengl::opengl > popengl = pgpu;
+         ::pointer < ::gpu_opengl::opengl > popengl = pgpu;
 
          if (!popengl->m_atomClass)
          {
@@ -288,7 +288,7 @@ namespace opengl
 
          auto pgpu = psystem->get_gpu();
 
-         ::pointer < ::opengl::opengl > popengl = pgpu;
+         ::pointer < ::gpu_opengl::opengl > popengl = pgpu;
 
          //if (!popengl->m_atomClass)
          //{
@@ -519,7 +519,7 @@ namespace opengl
 
       }
 
-      ::opengl::context::defer_create_window_context(pwindow);
+      ::gpu_opengl::context::defer_create_window_context(pwindow);
 
    }
 
@@ -638,12 +638,11 @@ namespace opengl
 
    }
 
+
    void context_win32::render()
    {
 
-      ::opengl::context::render();
-
-      
+      ::gpu_opengl::context::render();
 
    }
 
@@ -689,7 +688,7 @@ namespace opengl
    }
 
 
-} // namespace opengl
+} // namespace gpu_opengl
 
 
 

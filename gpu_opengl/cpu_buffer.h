@@ -4,7 +4,7 @@
 #include "aura/graphics/gpu/cpu_buffer.h"
 
 
-namespace opengl
+namespace gpu_opengl
 {
 
 
@@ -32,7 +32,7 @@ namespace opengl
    };
 
 
-} // namespace opengl
+} // namespace gpu_opengl
 
 
 

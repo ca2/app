@@ -5,7 +5,7 @@
 #include "aura/graphics/gpu/context.h"
 
 
-namespace opengl
+namespace gpu_opengl
 {
 
 
@@ -86,21 +86,10 @@ namespace opengl
 #else
 
 
-      glReadBuffer(GL_FRONT);
+      //glReadBuffer(GL_FRONT);
       
       //if (m_pgpucontext->is_mesa())
-      if(!glReadnPixels)
-      {
-
-         glReadPixels(
-            0, 0,
-            cx, cy,
-            GL_BGRA,
-            GL_UNSIGNED_BYTE,
-            m_pixmap.m_pimage32Raw);
-
-      }
-      else
+      if(glReadnPixels)
       {
 
          glReadnPixels(
@@ -109,6 +98,16 @@ namespace opengl
             GL_BGRA,
             GL_UNSIGNED_BYTE,
             cx * cy * 4,
+            data);
+
+      }
+      else
+      {
+         glReadPixels(
+            0, 0,
+            cx, cy,
+            GL_BGRA,
+            GL_UNSIGNED_BYTE,
             data);
 
       }
@@ -126,21 +125,21 @@ namespace opengl
 
 #endif
 
-      {
+      //{
 
-         auto dst = (unsigned char *)data;
-         auto size = cx * cy;
+      //   auto dst = (unsigned char *)data;
+      //   auto size = cx * cy;
 
-         while (size > 0)
-         {
-            dst[0] = byte_clip(((int)dst[0] * (int)dst[3]) / 255);
-            dst[1] = byte_clip(((int)dst[1] * (int)dst[3]) / 255);
-            dst[2] = byte_clip(((int)dst[2] * (int)dst[3]) / 255);
-            dst += 4;
-            size--;
-         }
+      //   while (size > 0)
+      //   {
+      //      dst[0] = byte_clip(((int)dst[0] * (int)dst[3]) / 255);
+      //      dst[1] = byte_clip(((int)dst[1] * (int)dst[3]) / 255);
+      //      dst[2] = byte_clip(((int)dst[2] * (int)dst[3]) / 255);
+      //      dst += 4;
+      //      size--;
+      //   }
 
-      }
+      //}
 
       //::copy_image32(m_pixmap.m_pimage32,
       //   cx, cy,
@@ -178,7 +177,7 @@ namespace opengl
    }
 
 
-} // namespace opengl
+} // namespace gpu_opengl
 
 
 

@@ -14,7 +14,7 @@
 ::particle * user_synchronization();
 
 
-namespace opengl
+namespace gpu_opengl
 {
 
 

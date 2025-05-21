@@ -10,7 +10,7 @@
 //} // extern "C"
 //
 
-namespace opengl
+namespace gpu_opengl
 {
 
 

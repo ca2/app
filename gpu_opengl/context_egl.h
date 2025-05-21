@@ -10,7 +10,7 @@
 #include <EGL/eglext.h>
 
 
-namespace opengl
+namespace gpu_opengl
 {
 
 
@@ -47,7 +47,7 @@ namespace opengl
    };
 
 
-} // namespace opengl
+} // namespace gpu_opengl
 
 
 

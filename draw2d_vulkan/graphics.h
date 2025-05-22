@@ -2,7 +2,7 @@
 
 
 #include "aura/graphics/draw2d/graphics.h"
-#include "aura/graphics/gpu/render.h"
+#include "aura/graphics/gpu/renderer.h"
 
 
 //struct OffscreenContext
@@ -21,7 +21,7 @@ namespace draw2d_vulkan
 
    class CLASS_DECL_DRAW2D_VULKAN graphics :
       virtual public ::draw2d::graphics,
-      virtual public ::gpu::render
+      virtual public ::gpu::renderer
    {
    public:
 

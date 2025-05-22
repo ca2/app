@@ -1467,6 +1467,7 @@
     <ClCompile Include="graphics\gpu\object.cpp" />
     <ClCompile Include="graphics\gpu\program.cpp" />
     <ClCompile Include="graphics\gpu\render.cpp" />
+    <ClCompile Include="graphics\gpu\renderer.cpp" />
     <ClCompile Include="graphics\gpu\shader.cpp" />
     <ClCompile Include="graphics\gpu\_.cpp" />
     <ClCompile Include="graphics\graphics\bitmap_source_buffer.cpp" />
@@ -1743,6 +1744,7 @@
     <ClInclude Include="graphics\gpu\object.h" />
     <ClInclude Include="graphics\gpu\program.h" />
     <ClInclude Include="graphics\gpu\render.h" />
+    <ClInclude Include="graphics\gpu\renderer.h" />
     <ClInclude Include="graphics\gpu\shader.h" />
     <ClInclude Include="graphics\gpu\_.h" />
     <ClInclude Include="graphics\gpu\_constant.h" />

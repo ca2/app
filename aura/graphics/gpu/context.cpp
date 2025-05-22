@@ -352,8 +352,21 @@ namespace gpu
 
       branch_synchronously();
 
+      _send([this]()
+         {
+
+            on_create_context();
+
+});
+
    }
 
+
+   void context::on_create_context()
+   {
+
+
+   }
 
    
    bool context::task_iteration()

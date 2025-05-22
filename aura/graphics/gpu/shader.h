@@ -21,18 +21,28 @@ namespace gpu
    public:
       
       
-      unsigned int m_uId;
+      unsigned int               m_uId;
 
-      string      m_strError;
+      string                     m_strError;
 
-      string_map < payload >  m_mapLayout;
+      string_map < payload >     m_mapLayout;
+
+      ::file::path               m_pathVertex;
+      ::file::path               m_pathFragment;
+      ::file::path               m_pathGeometry;
+
+      memory                     m_memoryVertex;
+      memory                     m_memoryFragment;
+      memory                     m_memoryGeometry;
 
 
       shader();
       ~shader() override;
 
       
-      virtual void create_shader(const ::string & pszVertex, const ::string & pszFragment, const ::string & pszGeometry = nullptr);
+      virtual void create_shader(const ::file::path & pathVertex, const ::file::path & pathFragment, const ::file::path & pathGeometry = {});
+      virtual void create_shader_with_block(const ::block & blockVertex, const ::block & blockFragment, const ::block & blockGeometry = {});
+
 
       virtual void use();
 
@@ -65,6 +75,16 @@ namespace gpu
       //virtual payload * get_uniform(const ::string & strName);
 
       virtual ::gpu::payload * get_payload(const ::scoped_string & scopedstrName);
+      virtual void draw();
+
+      virtual void on_initialize_shader();
+
+
+      virtual void bind();
+
+
+      virtual void push_properties();
+
 
 
    };

@@ -12,6 +12,7 @@
 #include "acme/prototype/mathematics/mathematics.h"
 #include "aura/graphics/gpu/approach.h"
 #include "aura/graphics/gpu/cpu_buffer.h"
+#include "aura/graphics/gpu/render.h"
 #include "aura/graphics/write_text/font_enumeration_item.h"
 #include "aura/user/user/interaction.h"
 #include "windowing_win32/window.h"
@@ -5957,7 +5958,7 @@ namespace draw2d_opengl
 
       ::draw2d::graphics::initialize(pparticle);
 
-      ::gpu::render::initialize(pparticle);
+      ::gpu::renderer::initialize(pparticle);
 
    }
 

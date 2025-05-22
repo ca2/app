@@ -692,44 +692,61 @@
     <ClInclude Include="assimp.h" />
     <ClInclude Include="cpu_buffer.h" />
     <ClInclude Include="context.h" />
-    <ClInclude Include="context_egl.h" />
-    <ClInclude Include="context_glx.h" />
-    <ClInclude Include="context_win32.h" />
+    <ClInclude Include="aaa_context_win32.h" />
+    <ClInclude Include="debug.h" />
+    <ClInclude Include="descriptors.h" />
+    <ClInclude Include="initializers.h" />
     <ClInclude Include="object.h" />
-    <ClInclude Include="vulkan.h" />
+    <ClInclude Include="approach.h" />
+    <ClInclude Include="offscreen_render_pass.h" />
+    <ClInclude Include="physical_device.h" />
+    <ClInclude Include="pipeline.h" />
     <ClInclude Include="program.h" />
+    <ClInclude Include="renderer.h" />
+    <ClInclude Include="render_pass.h" />
+    <ClInclude Include="shader.frag.h" />
     <ClInclude Include="shader.h" />
+    <ClInclude Include="shader.vert.h" />
+    <ClInclude Include="swap_chain.h" />
+    <ClInclude Include="swap_chain_render_pass.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="factory_exchange.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="_vulkan.h" />
+    <ClInclude Include="_gpu_vulkan.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="assimp.cpp" />
     <ClCompile Include="cpu_buffer.cpp" />
     <ClCompile Include="context.cpp" />
-    <ClCompile Include="context_egl.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+    <ClCompile Include="aaa_context_win32.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="context_glx.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="context_win32.cpp" />
+    <ClCompile Include="debug.cpp" />
+    <ClCompile Include="descriptors.cpp" />
     <ClCompile Include="object.cpp" />
+    <ClCompile Include="offscreen_render_pass.cpp" />
+    <ClCompile Include="physical_device.cpp" />
+    <ClCompile Include="pipeline.cpp" />
+    <ClCompile Include="renderer.cpp" />
+    <ClCompile Include="render_pass.cpp" />
+    <ClCompile Include="swap_chain_render_pass.cpp" />
+    <ClCompile Include="VulkanExample.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="_factory.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -742,10 +759,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="image_vulkan.cpp" />
-    <ClCompile Include="vulkan.cpp" />
+    <ClCompile Include="approach.cpp" />
     <ClCompile Include="program.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="_.cpp" />
+    <ClCompile Include="_gpu_vulkan.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc" />
@@ -763,6 +781,46 @@
     <ProjectReference Include="..\aura\aura.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="shader.frag">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">glslangValidator -V %(FullPath) -o $(ProjectDir)%(Filename)%(Extension).h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)%(Filename)%(Extension).h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">glslangValidator -V %(FullPath) -o $(ProjectDir)%(Filename)%(Extension).h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">$(ProjectDir)%(Filename)%(Extension).h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">glslangValidator -V %(FullPath) -o $(ProjectDir)%(Filename)%(Extension).h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)%(Filename)%(Extension).h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">glslangValidator -V %(FullPath) -o $(ProjectDir)%(Filename)%(Extension).h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">$(ProjectDir)%(Filename)%(Extension).h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">glslangValidator -V %(FullPath) -o $(ProjectDir)%(Filename)%(Extension).h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)%(Filename)%(Extension).h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">glslangValidator -V %(FullPath) -o $(ProjectDir)%(Filename)%(Extension).h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">$(ProjectDir)%(Filename)%(Extension).h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">glslangValidator -V %(FullPath) -o $(ProjectDir)%(Filename)%(Extension).h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)%(Filename)%(Extension).h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">glslangValidator -V %(FullPath) -o $(ProjectDir)%(Filename)%(Extension).h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">$(ProjectDir)%(Filename)%(Extension).h</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="shader.vert">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">glslangValidator -V %(FullPath) -o $(ProjectDir)%(Filename)%(Extension).h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)%(Filename)%(Extension).h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">glslangValidator -V %(FullPath) -o $(ProjectDir)%(Filename)%(Extension).h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">$(ProjectDir)%(Filename)%(Extension).h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">glslangValidator -V %(FullPath) -o $(ProjectDir)%(Filename)%(Extension).h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)%(Filename)%(Extension).h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">glslangValidator -V %(FullPath) -o $(ProjectDir)%(Filename)%(Extension).h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">$(ProjectDir)%(Filename)%(Extension).h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">glslangValidator -V %(FullPath) -o $(ProjectDir)%(Filename)%(Extension).h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)%(Filename)%(Extension).h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">glslangValidator -V %(FullPath) -o $(ProjectDir)%(Filename)%(Extension).h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">$(ProjectDir)%(Filename)%(Extension).h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">glslangValidator -V %(FullPath) -o $(ProjectDir)%(Filename)%(Extension).h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)%(Filename)%(Extension).h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">glslangValidator -V %(FullPath) -o $(ProjectDir)%(Filename)%(Extension).h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">$(ProjectDir)%(Filename)%(Extension).h</Outputs>
+    </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

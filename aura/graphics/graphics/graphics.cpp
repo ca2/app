@@ -32,6 +32,19 @@ namespace graphics
 
       pgraphics->m_egraphics = m_egraphics;
 
+      if (!pgraphics->m_callbackOffscreen)
+      {
+
+         pgraphics->m_callbackOffscreen = [this](void * p, int cx, int cy, int scan)
+            {
+
+               //_synchronous_lock synchronouslock(this->m_pmutex);
+
+               m_pimage2->image32()->copy(cx, cy, m_pimage2->m_iScan, (const image32_t *)p, scan);
+            };
+
+      }
+
       return pgraphics;
 
    }

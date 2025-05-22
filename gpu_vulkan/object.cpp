@@ -6,7 +6,7 @@
 #include "acme/filesystem/file/text_reader.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "assimp.h"
-#include "vulkan.h"
+#include "approach.h"
 
 //#include <GLUT/GLUT.h>
 
@@ -56,7 +56,7 @@ const char * vulkan_error_string(int iError)
    
 }
 
-namespace vulkan
+namespace gpu_vulkan
 {
 
 
@@ -340,7 +340,7 @@ namespace vulkan
    }
 
 
-} // namespace vulkan
+} // namespace gpu_vulkan
 
 
 

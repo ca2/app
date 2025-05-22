@@ -42,6 +42,9 @@ namespace gpu
       virtual void initialize(::particle * pparticle) override;
 
 
+      virtual void initialize_gpu_approach();
+
+
       virtual ::pointer < ::gpu::context > create_context(::particle * pparticle);
 
 

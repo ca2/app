@@ -10,7 +10,7 @@
 namespace gpu
 {
 
-   class render;
+   class renderer;
 
    class image_data
    {
@@ -70,18 +70,26 @@ namespace gpu
       };
 
 
-      enum_mode                        m_emode;
+      enum_mode                              m_emode;
 
-      ::int_size                           m_sizeNew;
-      ::int_size                           m_size;
-      float                            m_z;
-      int_point                            m_pointTranslate;
-      ::pointer<::gpu::cpu_buffer>        m_pcpubuffer;
-      ::pointer<::gpu::program>       m_pprogram;
-      bool                             m_bCreated;
-      ::draw3d::matrix                 m_matrixProjection;
-      ::draw3d::matrix                 m_matrixImpact;
-      ::pointer_array < ::gpu::render >             m_rendera;
+      ::int_size                             m_sizeNew;
+      ::int_size                             m_size;
+      float                                  m_z;
+      int_point                              m_pointTranslate;
+      ::pointer<::gpu::cpu_buffer>           m_pcpubuffer;
+      ::pointer<::gpu::program>              m_pprogram;
+      bool                                   m_bCreated;
+      ::draw3d::matrix                       m_matrixProjection;
+      ::draw3d::matrix                       m_matrixImpact;
+      ::pointer < ::gpu::renderer >          m_prenderer;
+      ::pointer_array < ::gpu::render >      m_rendera;
+
+      ::function< void(void *, int, int, int) > m_callbackOffscreen;
+
+      //::pointer < ::mutex >                  m_pmutexOffscreen;
+      //::int_size                             m_sizeOffscreen;
+      //int                                    m_iScanOffscreen;
+      //::memory                               m_memoryOffscreen;
 
 
       context();
@@ -89,6 +97,8 @@ namespace gpu
 
 
       virtual void create_context();
+
+      virtual void on_create_context();
 
       bool task_iteration() override;
 

@@ -13,6 +13,7 @@
 #include "acme/prototype/mathematics/mathematics.h"
 #include "aura/graphics/gpu/approach.h"
 #include "aura/graphics/gpu/cpu_buffer.h"
+#include "aura/graphics/gpu/render.h"
 #include "aura/graphics/write_text/font_enumeration_item.h"
 #include "aura/user/user/interaction.h"
 #include "windowing_win32/window.h"
@@ -5927,6 +5928,29 @@ namespace draw2d_vulkan
 
       m_z = 0.f;
 
+      if (!m_pgpucontext->m_prenderer)
+      {
+
+         __øconstruct(m_pgpucontext->m_prenderer);
+
+         m_pgpucontext->m_prenderer->initialize_renderer(m_pgpucontext);
+
+      }
+
+      if (m_callbackOffscreen)
+      {
+
+         m_pgpucontext->m_callbackOffscreen = m_callbackOffscreen;
+
+      }
+
+      if (m_egraphics & e_graphics_draw)
+      {
+
+         m_pgpucontext->m_prenderer->on_begin_draw(size);
+
+      }
+
       //vkClearColor(0.0f, 0.0f, 0.0f, 0.0f);
       //vkClear(VK_COLOR_BUFFER_BIT | VK_DEPTH_BUFFER_BIT);
       ////vkLoadIdentity();
@@ -5958,13 +5982,19 @@ namespace draw2d_vulkan
 
       ::draw2d::graphics::initialize(pparticle);
 
-      ::gpu::render::initialize(pparticle);
+      ::gpu::renderer::initialize(pparticle);
 
    }
 
    void graphics::on_end_draw()
    {
 
+      if (m_egraphics & e_graphics_draw)
+      {
+
+         m_pgpucontext->m_prenderer->on_end_draw();
+
+      }
 
       ////vkPushMatrix();
 

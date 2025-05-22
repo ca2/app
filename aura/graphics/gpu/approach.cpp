@@ -29,6 +29,13 @@ namespace gpu
    }
 
 
+   void approach::initialize_gpu_approach()
+   {
+
+
+   }
+
+
    ::pointer < ::gpu::context > approach::create_context(::particle * pparticle)
    {
 

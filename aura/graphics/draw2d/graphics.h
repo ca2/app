@@ -20,7 +20,7 @@
 namespace gpu
 {
 
-    class render;
+    class renderer;
 
 } // namespace gpu
 //#include "acme/prototype/geometry2d/_geometry2d.h"
@@ -72,15 +72,17 @@ namespace draw2d
    public:
 
 
-      e_graphics                             m_egraphics;
-      bool                                   m_bBeginDraw;
-      bool                                   m_bInheritDraw;
-      bool                                   m_bOutline;
-      void *                                 m_pthis;
-      ::user::interaction *                  m_puserinteraction;
-      ::pointer<::draw2d::host>              m_pdraw2dhost;
+      e_graphics                                   m_egraphics;
+      bool                                         m_bBeginDraw;
+      bool                                         m_bInheritDraw;
+      bool                                         m_bOutline;
+      void *                                       m_pthis;
+      ::user::interaction *                        m_puserinteraction;
+      ::pointer<::draw2d::host>                    m_pdraw2dhost;
 
-      bool                                   m_bPat;
+      bool                                         m_bPat;
+      ::function< void(void *, int, int, int) >    m_callbackOffscreen;
+
 
       //bool                                   m_bAlphaBlend;
 

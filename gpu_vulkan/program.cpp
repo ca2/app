@@ -3,7 +3,7 @@
 #include "aura/graphics/gpu/shader.h"
 
 
-namespace vulkan
+namespace gpu_vulkan
 {
 
 
@@ -53,7 +53,7 @@ namespace vulkan
    }
 
 
-} // namespace vulkan
+} // namespace gpu_vulkan
 
 
 

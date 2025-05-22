@@ -5,7 +5,7 @@
 #include "aura/graphics/gpu/context.h"
 
 
-namespace vulkan
+namespace gpu_vulkan
 {
 
 
@@ -178,7 +178,7 @@ namespace vulkan
    }
 
 
-} // namespace vulkan
+} // namespace gpu_vulkan
 
 
 

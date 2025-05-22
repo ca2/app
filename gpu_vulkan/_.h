@@ -19,7 +19,35 @@
 #endif
 
 
-#include "_vulkan.h"
+#include "_gpu_vulkan.h"
+
+
+namespace gpu_vulkan
+{
+
+   
+   class program;
+   class approach;
+
+
+   class swap_chain;
+
+   class benchmark;
+
+   class physical_device;
+
+   class context;
+
+   class device;
+
+   class pipeline;
+
+   //class camera;
+
+
+} // namespace gpu_vulkan
 
 
 
+
+ 

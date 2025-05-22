@@ -49,6 +49,13 @@ namespace gpu
 
    }
 
+
+   void shader::create_shader_with_block(const ::block & blockVertex, const ::block & blockFragment, const ::block & blockGeometry)
+   {
+
+
+   }
+
    // activate the shader
    // ------------------------------------------------------------------------
    void shader::use()
@@ -151,6 +158,36 @@ namespace gpu
    //   return estatus;
 
    //}
+
+   
+   void shader::draw()
+   {
+
+
+   }
+
+   
+   void shader::on_initialize_shader()
+   {
+
+
+   }
+
+
+   void shader::bind()
+   {
+
+
+   }
+
+
+   void shader::push_properties()
+   {
+
+
+   }
+
+
 
    ::gpu::payload * shader::get_payload(const ::scoped_string & scopedstrPayload)
    {

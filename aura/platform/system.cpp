@@ -4595,7 +4595,9 @@ namespace aura
 
       //load_library("gpu_opengl");
 
-      auto & pfactoryGpu = factory("gpu", "opengl");
+      ::string strImplementation = m_papplication->draw2d_get_default_implementation_name();
+
+      auto & pfactoryGpu = factory("gpu", strImplementation);
 
       //get_library("gpu_opengl");
 

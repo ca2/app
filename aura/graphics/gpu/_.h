@@ -43,6 +43,9 @@ namespace gpu
    };
    using element = int;
 
+   class renderer;
+   class render;
+
 
 } // gpu
 

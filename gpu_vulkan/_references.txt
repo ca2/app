@@ -1,3 +1,0 @@
-app/aura
-default_vulkan1
-port/graphics3d/assimp

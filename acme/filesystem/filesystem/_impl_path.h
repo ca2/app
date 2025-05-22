@@ -927,7 +927,7 @@ namespace file
    inline ::file::path path::with_deferred_extension(const ::string_array& straPreserveExtensions) const
    {
 
-      return with_deferred_extension(straPreserveExtensions);
+      return with_deferred_extension(straPreserveExtensions, {});
 
    }
 

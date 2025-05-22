@@ -3978,24 +3978,24 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
    }
 
 
-   void node::file_association_set_default_icon(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::string & pszIconPath)
+   void node::file_association_set_default_icon(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::file::path & pathIcon)
    {
 
       __UNREFERENCED_PARAMETER(pszExtension);
       __UNREFERENCED_PARAMETER(pszExtensionNamingClass);
-      __UNREFERENCED_PARAMETER(pszIconPath);
+      __UNREFERENCED_PARAMETER(pathIcon);
 
       //return false;
 
    }
 
 
-   void node::file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass,  const ::string & pszCommand, const ::string & pszParam)
+   void node::file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::file::path & pathExecutable, const ::string & pszParam)
    {
 
       __UNREFERENCED_PARAMETER(pszExtension);
       __UNREFERENCED_PARAMETER(pszExtensionNamingClass);
-      __UNREFERENCED_PARAMETER(pszCommand);
+      __UNREFERENCED_PARAMETER(pathExecutable);
       __UNREFERENCED_PARAMETER(pszParam);
 
       //return false;

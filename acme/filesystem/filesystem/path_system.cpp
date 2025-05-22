@@ -29,6 +29,14 @@ path_system::~path_system()
 }
 
 
+::string path_system::discrete_shell_path(const ::file::path& path)
+{
+
+   return path;
+
+}
+
+
 ::string path_system::shell_path(const ::file::path & path)
 {
 

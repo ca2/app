@@ -55,7 +55,7 @@ const char * opengl_error_string(int iError)
    
 }
 
-namespace opengl
+namespace gpu_opengl
 {
 
 
@@ -339,7 +339,7 @@ namespace opengl
    }
 
 
-} // namespace opengl
+} // namespace gpu_opengl
 
 
 

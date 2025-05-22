@@ -4,16 +4,16 @@
 template < primitive_number NUMBER >
 using dimension_type = pole_type < NUMBER >;
 
-using DIMENSION_I32 = pole_int;
-using DIMENSION_I64 = pole_long_long;
-using DIMENSION_F32 = pole_float;
-using DIMENSION_F64 = pole_double;
+using INT_DIMENSION = int_pole;
+using LONG_LONG_DIMENSION = long_long_pole;
+using FLOAT_DIMENSION = float_pole;
+using DOUBLE_DIMENSION = double_pole;
 
 
-using dimension_int = DIMENSION_I32;
-using dimension_long_long = DIMENSION_I64;
-using dimension_float = DIMENSION_F32;
-using dimension_double = DIMENSION_F64;
+using int_dimension = INT_DIMENSION;
+using long_long_dimension = LONG_LONG_DIMENSION;
+using float_dimension = FLOAT_DIMENSION;
+using double_dimension = DOUBLE_DIMENSION;
 
 
 //{

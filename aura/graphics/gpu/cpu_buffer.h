@@ -22,6 +22,13 @@ namespace gpu
       cpu_buffer();
       ~cpu_buffer() override;
 
+
+      virtual void initialize_cpu_buffer(::gpu::context * pgpucontext);
+
+
+      virtual void set_size(const ::int_size & size);
+
+
       virtual void gpu_read();
       virtual void gpu_write();
       

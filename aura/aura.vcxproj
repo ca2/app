@@ -1468,6 +1468,7 @@
     <ClCompile Include="graphics\gpu\program.cpp" />
     <ClCompile Include="graphics\gpu\render.cpp" />
     <ClCompile Include="graphics\gpu\shader.cpp" />
+    <ClCompile Include="graphics\gpu\_.cpp" />
     <ClCompile Include="graphics\graphics\bitmap_source_buffer.cpp" />
     <ClCompile Include="graphics\graphics\buffer.cpp" />
     <ClCompile Include="graphics\graphics\console.cpp" />

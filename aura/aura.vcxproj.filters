@@ -714,6 +714,9 @@
     <ClCompile Include="platform\component.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\gpu\_.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windowing\_.h">

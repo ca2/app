@@ -4,7 +4,7 @@
 #include "aura/graphics/gpu/shader.h"
 
 
-namespace opengl
+namespace gpu_opengl
 {
 
 
@@ -59,7 +59,7 @@ namespace opengl
    };
 
 
-} // namespace opengl
+} // namespace gpu_opengl
 
 
 

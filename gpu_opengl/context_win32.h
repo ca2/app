@@ -4,12 +4,12 @@
 #include "gpu_opengl/context.h"
 
 
-namespace opengl
+namespace gpu_opengl
 {
 
 
    class CLASS_DECL_GPU_OPENGL context_win32 :
-      virtual public ::opengl::context
+      virtual public ::gpu_opengl::context
    {
    public:
 
@@ -52,7 +52,7 @@ namespace opengl
    };
 
 
-} // namespace opengl
+} // namespace gpu_opengl
 
 
 

@@ -4,7 +4,7 @@
 #include "aura/graphics/gpu/program.h"
 
 
-namespace opengl
+namespace gpu_opengl
 {
 
 
@@ -27,6 +27,6 @@ namespace opengl
    };
 
 
-} // namespace opengl
+} // namespace gpu_opengl
 
 

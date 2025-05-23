@@ -2,7 +2,7 @@
 
 
 #include "acme/constant/element.h"
-
+#include "acme/graphics/image/image32.h"
 
 #include "aura/platform/draw_context2.h"
 
@@ -81,7 +81,7 @@ namespace draw2d
       ::pointer<::draw2d::host>                    m_pdraw2dhost;
 
       bool                                         m_bPat;
-      ::function< void(void *, int, int, int) >    m_callbackOffscreen;
+      ::image32_callback                           m_callbackImage32CpuBuffer;
 
 
       //bool                                   m_bAlphaBlend;

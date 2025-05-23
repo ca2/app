@@ -299,4 +299,8 @@ inline void image32_set_raw_pixel(const ::image32_t * pdata, color_indexes index
 //inline void copy_image32(::image32_t * pimage32Dst, const ::int_size & size, int iStrideDst, const ::pixmap * ppixmapSrc);
 
 
+using image32_callback = ::function< void(const ::image32_t*, int, int, int) >;
+
+
+
 

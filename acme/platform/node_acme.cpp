@@ -809,7 +809,7 @@ namespace platform
    //virtual ::pointer < ::subparticle > create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon){}
 
 
-   //void acme_node_layer::::micro::message_box(::sequence < ::conversation > * psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox){}
+   //void acme_node_layer::micro::message_box(::sequence < ::conversation > * psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox){}
 
    //virtual ::pointer < ::subparticle > create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon){}
 

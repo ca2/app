@@ -219,7 +219,7 @@ namespace draw2d
       //#endif
 
 
-      virtual void defer_add_gpu_render(::gpu::render* pgpurender);
+      virtual void defer_add_graphics_render(::graphics::render* pgraphicsrender);
 
 
       virtual void on_begin_draw();
@@ -763,7 +763,7 @@ namespace draw2d
 
       // bit block transfer (pixel-to-pixel)
       //virtual void draw_at(const ::double_point & pointDst, ::image::image *pimage);
-      //virtual void draw_at(const ::double_point & pointDst, ::::image::image_frame * pframe);
+      //virtual void draw_at(const ::double_point & pointDst, ::image::image_frame * pframe);
       //virtual void draw_at(const ::double_point & pointDst, ::draw2d::graphics * pgraphicsSrc);
 
 
@@ -785,7 +785,7 @@ namespace draw2d
 
       // potentially stretching
       //virtual void stretch(const ::double_rectangle & rectangleTarget, ::image::image *pimage, const ::double_rectangle & rectangleSource = ::double_rectangle());
-      //virtual void stretch(const ::double_rectangle & rectangleTarget, ::::image::image_frame * pframe, const ::double_rectangle & rectangleSource = ::double_rectangle());
+      //virtual void stretch(const ::double_rectangle & rectangleTarget, ::image::image_frame * pframe, const ::double_rectangle & rectangleSource = ::double_rectangle());
       //virtual void stretch(const ::double_rectangle & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::double_rectangle & rectangleSource = ::double_rectangle());
       //virtual void stretch_raw(const ::double_rectangle & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::double_rectangle & rectangleSource = ::double_rectangle());
       //virtual void stretch_blend(const ::double_rectangle & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::double_rectangle & rectangleSource = ::double_rectangle());

@@ -42,8 +42,6 @@ namespace platform
       ::pointer < ::mutex >                             m_pmutexUserChildren;
       ::pointer<class ::image::imaging>                 m_pimaging;
 
-      ::pointer<::gpu::approach>                        m_pgpu;
-
       bool                                              m_bProdevianMouse;
 
 
@@ -109,9 +107,6 @@ namespace platform
       //::aura::session * get_session();
       //::aura::node * node();
 
-      virtual ::gpu::approach * get_gpu();
-      virtual  ::gpu::approach * gpu();
-      virtual void create_gpu();
 
 
       //virtual string install_get_platform() override;

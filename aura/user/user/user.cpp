@@ -280,7 +280,7 @@ namespace user
 
       //}
       
-      ::cast< ::user::interaction > puserinteraction = pwindow->m_pacmeuserinteractionCapture;
+      ::cast< ::user::interaction > puserinteraction = pwindow->m_pacmeuserinteractionMouseCapture;
 
       return puserinteraction;
 

@@ -176,7 +176,7 @@ namespace acme
       void interaction::set_mouse_capture()
       {
 
-         acme_windowing_window()->m_pacmeuserinteractionCapture = this;
+         acme_windowing_window()->m_pacmeuserinteractionMouseCapture = this;
 
          acme_windowing_window()->set_mouse_capture();
 
@@ -193,18 +193,18 @@ namespace acme
 
          }
 
-         return acme_windowing_window()->m_pacmeuserinteractionCapture == this;
+         return acme_windowing_window()
+      }->m_pacmeuserinteractionMouseCapture == this;
 
-      }
 
 
       void interaction::release_mouse_capture()
       {
 
-         if (acme_windowing_window()->m_pacmeuserinteractionCapture == this)
+         if (acme_windowing_window()->m_pacmeuserinteractionMouseCapture == this)
          {
 
-            acme_windowing_window()->m_pacmeuserinteractionCapture.release();
+            acme_windowing_window()->m_pacmeuserinteractionMouseCapture.release();
 
             acme_windowing_window()->release_mouse_capture();
 

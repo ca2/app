@@ -79,7 +79,7 @@ namespace acme
          ::pointer<::acme::user::interaction>               m_pacmeuserinteraction;
          ::pointer<::acme::user::interaction>               m_pacmeuserinteractionKeyboardFocus;
          ::pointer<::acme::user::interaction>               m_pacmeuserinteractionHover;
-         ::pointer<::acme::user::interaction>               m_pacmeuserinteractionCapture;
+         ::pointer<::acme::user::interaction>               m_pacmeuserinteractionMouseCapture;
          //::pointer<::acme::user::interaction>               m_pacmeuserinteractionOwner;
 
 

@@ -220,7 +220,7 @@ namespace acme
          __check_refdbg
          m_pacmeuserinteractionHover.release();
          __check_refdbg
-         m_pacmeuserinteractionCapture.release();
+         m_pacmeuserinteractionMouseCapture.release();
          //__check_refdbg
          //m_pacmeuserinteractionOwner.release();
          __check_refdbg
@@ -850,7 +850,7 @@ namespace acme
       void window::release_mouse_capture()
       {
 
-         m_pacmeuserinteractionCapture = nullptr;
+         m_pacmeuserinteractionMouseCapture = nullptr;
 
          ::cast < ::acme::user::frame_interaction > pframeinteraction = m_pacmeuserinteraction;
 

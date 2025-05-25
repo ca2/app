@@ -3558,7 +3558,7 @@ void window::set_mouse_capture()
          if (pwindowing->m_pwindowMouseCapture)
          {
             
-            pwindowing->m_pwindowMouseCapture->m_pacmeuserinteractionCapture.release();
+            pwindowing->m_pwindowMouseCapture->m_pacmeuserinteractionMouseCapture.release();
             
          }
          

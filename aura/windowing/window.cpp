@@ -227,7 +227,7 @@ namespace windowing
 
       //m_pacmeuserinteractionKeyboardGainingFocusIfAny.release();
 
-      m_puserinteractionMouseCapture.release();
+      m_pacmeuserinteractionMouseCapture.release();
 
       //m_pacmeuserinteractionToKillKeyboardFocus.release();
 
@@ -5406,7 +5406,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      m_puserinteractionMouseCapture.release();
+      m_pacmeuserinteractionMouseCapture.release();
 
    }
 
@@ -6420,7 +6420,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       }
 
-      if (m_puserinteractionMouseCapture)
+      if (m_pacmeuserinteractionMouseCapture)
       {
 
          //::string strType = ::type(m_puserinteractionMouseCapture).name();
@@ -6429,14 +6429,21 @@ void window::set_oswindow(::oswindow oswindow)
 
          //information() << "omousemsg pwnd (B) : " << (::iptr) pmouse->m_pwindow.m_p;
 
-         m_puserinteractionMouseCapture->route_as_parent_mouse_message(pmouse);
+         ::cast < ::user::interaction > puserinteractionMouseCapture = m_pacmeuserinteractionMouseCapture;
 
-         //information() << "on_mouse_message (capture): " << pmouse->m_pointAbsolute;
-
-         if (!pmouse->m_bRet && m_puserinteractionMouseCapture)
+         if (puserinteractionMouseCapture)
          {
 
-            m_puserinteractionMouseCapture->on_child_from_point_mouse_message_routing(pmouse);
+            puserinteractionMouseCapture->route_as_parent_mouse_message(pmouse);
+
+            //information() << "on_mouse_message (capture): " << pmouse->m_pointAbsolute;
+
+            if (!pmouse->m_bRet && puserinteractionMouseCapture)
+            {
+
+               puserinteractionMouseCapture->on_child_from_point_mouse_message_routing(pmouse);
+
+            }
 
          }
 
@@ -10982,7 +10989,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       this->set_mouse_capture();
 
-      m_puserinteractionMouseCapture = puserinteraction;
+      m_pacmeuserinteractionMouseCapture = puserinteraction;
 
    }
 
@@ -11006,7 +11013,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       //}
 
-      m_puserinteractionMouseCapture.release();
+      m_pacmeuserinteractionMouseCapture.release();
 
       return true;
 

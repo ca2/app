@@ -158,7 +158,7 @@ namespace windowing
 
       bool                                      m_bUpdateBufferPending;
 
-      ::pointer<::user::interaction>            m_puserinteractionMouseCapture;
+      //::pointer<::user::interaction>            m_puserinteractionMouseCapture;
       //::pointer<::user::interaction>            aaa_m_pacmeuserinteractionKeyboardFocus;
       //::pointer<::acme::user::interaction>      m_pacmeuserinteractionKeyboardFocusRequest;
       /// message handling helper besides (possibly duplicate of) m_pacmeuserinteractionKeyboardFocusRequest

@@ -16772,7 +16772,7 @@ if(get_parent())
 
       }*/
 
-      if (pwindow->m_pacmeuserinteractionCapture != this)
+      if (pwindow->m_pacmeuserinteractionMouseCapture != this)
       {
 
          return false;

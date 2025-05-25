@@ -39,6 +39,7 @@ public:
    //array_non_particle(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
    array_non_particle(const array_non_particle & a);
    array_non_particle(enum_create_new, ::collection::count n);
+   array_non_particle(::collection::count n);
    array_non_particle(::collection::count n, ARG_TYPE t);
    array_non_particle(::range < const_iterator > constrange) : BASE_ARRAY(constrange) {}
    template < primitive_integral INTEGRAL >
@@ -353,6 +354,7 @@ public:
    array(const BASE_ARRAY & a) : BASE_ARRAY(a) {}
    array(BASE_ARRAY && a) noexcept : BASE_ARRAY(::transfer(a)) { }
    array(enum_create_new, ::collection::count n) : BASE_ARRAY(e_create_new, n) {}
+   array(::collection::count n) : BASE_ARRAY(n) {}
    array(::collection::count n, ARG_TYPE t) : BASE_ARRAY(n, t) {}
    array(::range < typename BASE_ARRAY::const_iterator > constrange) : BASE_ARRAY(constrange) {}
    template < primitive_integral INTEGRAL >
@@ -515,7 +517,18 @@ array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::array_n
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
-array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::array_non_particle(::collection::count n, ARG_TYPE t)
+array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::array_non_particle(::collection::count n) :
+   array_non_particle()
+{
+
+   this->set_size(n);
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::array_non_particle(::collection::count n, ARG_TYPE t) :
+   array_non_particle()
 {
 
    while (n > 0)

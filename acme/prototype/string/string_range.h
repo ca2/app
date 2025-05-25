@@ -1877,7 +1877,7 @@ public:
    void no_escape_skip_quoted_value();
 
    //template < typename ITERATOR_TYPE >
-   //static string_base < ITERATOR_TYPE > consume_quoted_value(::::string_range<BASE_TYPE> & range);
+   //static string_base < ITERATOR_TYPE > consume_quoted_value(::string_range<BASE_TYPE> & range);
 
 
    string_base<ITERATOR_TYPE> consume_quoted_value_ex();

@@ -19,7 +19,6 @@
 #include "aura/constant/idpool.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/task_tool.h"
-#include "aura/graphics/gpu/approach.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/graphics/image/imaging.h"
 #include "aura/hardware/devices.h"
@@ -4577,55 +4576,57 @@ namespace aura
 //      m_threadidmap.erase_key(pthread);
 //
 //   }
-::gpu::approach* system::get_gpu()
-{ if (!m_pgpu) create_gpu(); return m_pgpu.get(); };
-::gpu::approach* system::gpu()  { return m_pgpu.get(); };
-
-
-//#ifdef _OPENGL
-   void system::create_gpu()
-   {
-
-      if (m_pgpu)
-      {
-
-         return;
-
-      }
-
-      //load_library("gpu_opengl");
-
-      auto & pfactoryGpu = factory("gpu", "opengl");
-
-      //get_library("gpu_opengl");
-
-
-
-      //if (!pfactoryGpu)
-      //{
-
-      //   error() <<"gpu_opengl ([a-z0-9_]+)_factory has failed";
-
-      //   return pfactoryGpu;
-
-      //}
-
-      pfactoryGpu->merge_to_global_factory();
-
-      //auto estatus =
-      
-      pfactoryGpu->__øconstruct(this, m_pgpu);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return ::success;
-
-   }
+//::gpu::approach* system::get_gpu()
+//{ if (!m_pgpu) create_gpu(); return m_pgpu.get(); };
+//::gpu::approach* system::gpu()  { return m_pgpu.get(); };
+//
+//
+////#ifdef _OPENGL
+//   void system::create_gpu()
+//   {
+//
+//      if (m_pgpu)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      //load_library("gpu_opengl");
+//
+//      ::string strImplementation = m_papplication->draw2d_get_default_implementation_name();
+//
+//      auto & pfactoryGpu = factory("gpu", strImplementation);
+//
+//      //get_library("gpu_opengl");
+//
+//
+//
+//      //if (!pfactoryGpu)
+//      //{
+//
+//      //   error() <<"gpu_opengl ([a-z0-9_]+)_factory has failed";
+//
+//      //   return pfactoryGpu;
+//
+//      //}
+//
+//      pfactoryGpu->merge_to_global_factory();
+//
+//      //auto estatus =
+//      
+//      pfactoryGpu->__øconstruct(this, m_pgpu);
+//
+//      //if (!estatus)
+//      //{
+//
+//      //   return estatus;
+//
+//      //}
+//
+//      //return ::success;
+//
+//   }
 //#endif
 
 

@@ -791,15 +791,97 @@ namespace file
 
    }
 
-
-   inline void path::defer_set_extension(const ::scoped_string& scopedstrExtension)
+   
+   inline void path::defer_set_extension(const ::string_array& straPreserveExtensions)
    {
+
+      defer_set_extension(straPreserveExtensions, {});
+
+   }
+
+
+
+   inline void path::defer_set_extension(const ::string_array& straPreserveExtensions, const ::string_array & straRelatedExtensions)
+   {
+
+      if (straPreserveExtensions.is_empty())
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
 
       ::string str(*this);
 
-      str.case_insensitive_ends_eat("." + scopedstrExtension);
+      bool bErased;
 
-      str += "." + scopedstrExtension;
+      ::string strRearEaten;
+
+      do
+      {
+
+         bErased = false;
+
+         for (auto& strExtension : straPreserveExtensions)
+         {
+
+            if (strRearEaten.has_character())
+            {
+
+               bErased = str.case_insensitive_ends_eat("." + strExtension);
+
+            }
+            else
+            {
+
+               bErased = str.ends_eaten(strRearEaten, "." + strExtension);
+
+               strRearEaten.begins_eat(".");
+
+            }
+
+            if (bErased)
+            {
+
+               break;
+
+            }
+
+         }
+
+         if (!bErased)
+         {
+
+            for (auto& strRelatedExtension : straRelatedExtensions)
+            {
+
+               bErased = str.case_insensitive_ends_eat("." + strRelatedExtension);
+
+               if (bErased)
+               {
+
+                  break;
+
+               }
+
+            }
+
+         }
+
+      }while(bErased);
+
+      if (strRearEaten.has_character())
+      {
+
+         str += "." + strRearEaten;
+
+      }
+      else
+      {
+
+         str += "." + straPreserveExtensions.first();
+
+      }
 
       this->operator =(str);
 
@@ -842,12 +924,28 @@ namespace file
    }
 
 
-   inline ::file::path path::with_deferred_extension(const ::scoped_string& scopedstrExtension) const
+   inline ::file::path path::with_deferred_extension(const ::string_array& straPreserveExtensions) const
+   {
+
+      return with_deferred_extension(straPreserveExtensions, {});
+
+   }
+
+
+   inline ::file::path path::with_deferred_extension(const ::file::file_dialog* pfiledialog) const
+   {
+
+      return with_deferred_extension(pfiledialog);
+
+   }
+
+
+   inline ::file::path path::with_deferred_extension(const ::string_array & straPreserveExtensions, const ::string_array& straRelatedExtensions) const
    {
 
       ::file::path path(*this);
 
-      path.defer_set_extension(scopedstrExtension);
+      path.defer_set_extension(straPreserveExtensions, straRelatedExtensions);
 
       return ::transfer(path);
 

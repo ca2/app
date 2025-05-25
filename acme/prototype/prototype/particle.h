@@ -224,6 +224,7 @@ public:
    virtual ::factory::factory_pointer & factory() const;
    virtual ::factory::factory_pointer & factory(const ::string& strLibrary) const;
    virtual ::factory::factory_pointer & factory(const ::string& strComponent, const ::string& strImplementation) const;
+   virtual ::factory::factory * component_factory(const ::string& strComponent) const;
    //::factory::factory* factory(const ::atom& atom);
 
    //virtual void handle(::topic * ptopic, ::handler_context * phandlercontext);

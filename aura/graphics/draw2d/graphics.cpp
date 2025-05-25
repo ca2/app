@@ -200,7 +200,7 @@ namespace draw2d
    }
 
 
-   void graphics::defer_add_gpu_render(::gpu::render* pgpurender)
+   void graphics::defer_add_graphics_render(::graphics::render* pgpurender)
    {
 
        
@@ -1342,7 +1342,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw_at(const ::double_point & pointDst, ::::image::image_frame * pframe)
+   //void graphics::draw_at(const ::double_point & pointDst, ::image::image_frame * pframe)
    //{
 
    //   return draw_at(pointDst, pframe->m_pimage);
@@ -1366,7 +1366,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw(::::image::image_frame * pframe, const ::double_point & pointSrc)
+   //void graphics::draw(::image::image_frame * pframe, const ::double_point & pointSrc)
    //{
 
    //   return draw(pframe->m_pimage, pointSrc);
@@ -1390,7 +1390,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw(const ::double_rectangle & rectangleTarget, ::::image::image_frame * pframe, const ::double_point & pointSrc)
+   //void graphics::draw(const ::double_rectangle & rectangleTarget, ::image::image_frame * pframe, const ::double_point & pointSrc)
    //{
 
    //   return draw(rectangleTarget, pframe->m_pimage, pointSrc);
@@ -1531,7 +1531,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::stretch(const ::double_rectangle & rectangleTarget, ::::image::image_frame * pframe, const ::double_rectangle & rectangleSource)
+   //void graphics::stretch(const ::double_rectangle & rectangleTarget, ::image::image_frame * pframe, const ::double_rectangle & rectangleSource)
    //{
 
    //   return stretch(rectangleTarget, pframe->m_pimage, rectangleSource);

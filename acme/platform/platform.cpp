@@ -940,6 +940,104 @@ g_bWindowingOutputDebugString = true;
    }
 
 
+   ::factory::factory * platform::component_factory(const ::string& strComponent)
+   {
+
+      critical_section_lock criticalsectionlock(&m_criticalsection);
+
+      auto & factorymapComponent = m_componentfactorymap[strComponent];
+
+      if (factorymapComponent.size() <= 0)
+      {
+
+         debugf("No existing factory for component \"%s\".\n", strComponent.c_str());
+
+         return nullptr;
+
+      }
+
+      return factorymapComponent.first().element2();
+
+      // if(strImplementation == "(built-in)")
+      // {
+      //
+      //    if(strComponent == "nano_http")
+      //    {
+      //
+      //       pfactory = system()->__create_new < ::factory::factory >();
+      //
+      //       initialize_nano_http(pfactory);
+      //
+      //       return pfactory;
+      //
+      //    }
+      //    else if(strComponent == "nano_user")
+      //    {
+      //
+      //       pfactory = system()->__create_new < ::factory::factory >();
+      //
+      //       initialize_nano_user(pfactory);
+      //
+      //       return pfactory;
+      //
+      //    }
+      //    else
+      //    {
+      //
+      //       informationf("Not known built-in component: \"%s\".\n", strComponent.c_str());
+      //
+      //       //pfactory = (const ::extended::status&)plibrary;
+      //       throw ::exception(error_resource, strComponent + " factory not found!!");
+      //
+      //    }
+      //
+      // }
+
+      //string strLibrary;
+
+      ////strLibrary = library_name(strComponent, strImplementation);
+      //strLibrary = strComponent + "_" + strImplementation;
+
+      ////informationf("Getting library \"%s\".", strLibrary.c_str());
+
+      //auto& plibrary = library(strLibrary);
+
+      //if (!plibrary)
+      //{
+
+      //   //#ifdef CUBE
+
+      //   auto pfnFactory = ::factory_function::get(strLibrary);
+
+      //   if (pfnFactory)
+      //   {
+
+      //      pfactory = system()->__create_new < ::factory::factory >();
+
+      //      pfnFactory(pfactory);
+
+      //      return pfactory;
+
+      //   }
+
+      //   //#endif
+
+      //   informationf("Library not found : \"%s\".\n", strLibrary.c_str());
+
+      //   //pfactory = (const ::extended::status&)plibrary;
+      //   throw ::exception(error_resource, strComponent + "_" + strImplementation + "_factory not found!!");
+
+      //}
+
+      //plibrary->create_factory();
+
+      //pfactory = plibrary->m_pfactory;
+
+      //return pfactory;
+
+   }
+
+
    ::factory::factory_pointer & platform::factory(const ::string & strComponent, const ::string & strImplementation)
    {
 

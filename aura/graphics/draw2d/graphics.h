@@ -2,7 +2,7 @@
 
 
 #include "acme/constant/element.h"
-
+#include "acme/graphics/image/image32.h"
 
 #include "aura/platform/draw_context2.h"
 
@@ -20,7 +20,7 @@
 namespace gpu
 {
 
-    class render;
+    class renderer;
 
 } // namespace gpu
 //#include "acme/prototype/geometry2d/_geometry2d.h"
@@ -72,15 +72,17 @@ namespace draw2d
    public:
 
 
-      e_graphics                             m_egraphics;
-      bool                                   m_bBeginDraw;
-      bool                                   m_bInheritDraw;
-      bool                                   m_bOutline;
-      void *                                 m_pthis;
-      ::user::interaction *                  m_puserinteraction;
-      ::pointer<::draw2d::host>              m_pdraw2dhost;
+      e_graphics                                   m_egraphics;
+      bool                                         m_bBeginDraw;
+      bool                                         m_bInheritDraw;
+      bool                                         m_bOutline;
+      void *                                       m_pthis;
+      ::user::interaction *                        m_puserinteraction;
+      ::pointer<::draw2d::host>                    m_pdraw2dhost;
 
-      bool                                   m_bPat;
+      bool                                         m_bPat;
+      ::image32_callback                           m_callbackImage32CpuBuffer;
+
 
       //bool                                   m_bAlphaBlend;
 
@@ -217,7 +219,7 @@ namespace draw2d
       //#endif
 
 
-      virtual void defer_add_gpu_render(::gpu::render* pgpurender);
+      virtual void defer_add_graphics_render(::graphics::render* pgraphicsrender);
 
 
       virtual void on_begin_draw();
@@ -761,7 +763,7 @@ namespace draw2d
 
       // bit block transfer (pixel-to-pixel)
       //virtual void draw_at(const ::double_point & pointDst, ::image::image *pimage);
-      //virtual void draw_at(const ::double_point & pointDst, ::::image::image_frame * pframe);
+      //virtual void draw_at(const ::double_point & pointDst, ::image::image_frame * pframe);
       //virtual void draw_at(const ::double_point & pointDst, ::draw2d::graphics * pgraphicsSrc);
 
 
@@ -783,7 +785,7 @@ namespace draw2d
 
       // potentially stretching
       //virtual void stretch(const ::double_rectangle & rectangleTarget, ::image::image *pimage, const ::double_rectangle & rectangleSource = ::double_rectangle());
-      //virtual void stretch(const ::double_rectangle & rectangleTarget, ::::image::image_frame * pframe, const ::double_rectangle & rectangleSource = ::double_rectangle());
+      //virtual void stretch(const ::double_rectangle & rectangleTarget, ::image::image_frame * pframe, const ::double_rectangle & rectangleSource = ::double_rectangle());
       //virtual void stretch(const ::double_rectangle & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::double_rectangle & rectangleSource = ::double_rectangle());
       //virtual void stretch_raw(const ::double_rectangle & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::double_rectangle & rectangleSource = ::double_rectangle());
       //virtual void stretch_blend(const ::double_rectangle & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::double_rectangle & rectangleSource = ::double_rectangle());

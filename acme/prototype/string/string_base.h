@@ -1796,6 +1796,8 @@ public:
    inline bool case_insensitive_begins_eat(const SCOPED_STRING & scopedstrPrefix);
    inline bool case_insensitive_ends_eat(const SCOPED_STRING & scopedstrSuffix);
 
+   inline bool begins_eaten(string_base& strEaten, const SCOPED_STRING& scopedstr);
+   inline bool ends_eaten(string_base& strEaten, const SCOPED_STRING& scopedstr);
 
    inline bool begins_replace(const SCOPED_STRING & scopedstrNewPrefix, const SCOPED_STRING & scopedstrPrefix);
 
@@ -1812,9 +1814,6 @@ public:
 
    inline string_base case_insensitive_begins_bitten(const SCOPED_STRING & scopedstr) const;
    inline string_base case_insensitive_ends_bitten(const SCOPED_STRING & scopedstr) const;
-
-   inline bool case_insensitive_begins_eaten(string_base & strEaten, const SCOPED_STRING & scopedstr) const;
-   inline bool case_insensitive_ends_eaten(string_base & strEaten, const SCOPED_STRING & scopedstr) const;
 
    inline string_base case_insensitive_begins_eaten(const SCOPED_STRING & scopedstr) const;
    inline string_base case_insensitive_ends_eaten(const SCOPED_STRING & scopedstr) const;

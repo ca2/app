@@ -15,6 +15,7 @@
 #include "node_aqua.h"
 #include "node_aura.h"
 
+
 namespace platform
 {
 
@@ -141,7 +142,7 @@ namespace platform
 
       virtual ::process_identifier_array module_list_file_processes_identifiers(const ::scoped_string & scopedstr) override;
 
-
+      virtual void defer_add_to_system_recent_file_list(const ::file::path& pathRecentFile);
       virtual ::enum_id key_command(::user::enum_key ekey, ::user::key_state* pkeystate) override;
       //idaPid = pnode->(path, false);
 
@@ -771,8 +772,8 @@ namespace platform
    void file_extension_get_open_with_list_keys(string_array & straKey, const ::string & strExtension) override;
    void file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & strExtension) override;
 
-   void file_association_set_default_icon(const ::string & strExtension, const ::string & strExtensionNamingClass, const ::string & strIconPath) override;
-   void file_association_set_shell_open_command(const ::string & strExtension, const ::string & strExtensionNamingClass, const ::string & strCommand, const ::string & strParam) override;
+   void file_association_set_default_icon(const ::string & strExtension, const ::string & strExtensionNamingClass, const ::file::path & pathIcon) override;
+   void file_association_set_shell_open_command(const ::string & strExtension, const ::string & strExtensionNamingClass, const ::file::path & pathExecutable, const ::string & strParam) override;
    void file_association_get_shell_open_command(const ::string & strExtension, string & strExtensionNamingClass, string & strCommand, string & strParam) override;
 
    void native_full_web_browser(const ::string & str) override;

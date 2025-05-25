@@ -528,6 +528,8 @@ namespace platform
             ::pointer < ::filemanager::filemanager> m_pfilemanager;
 
 
+            ::pointer < ::gpu::approach >             m_pgpu;
+
          //}; // end core_application_layer_t
          
       application();
@@ -572,6 +574,11 @@ namespace platform
       void on_initialize_particle() override;
 
          ::user::user * user() override;
+
+         virtual ::gpu::approach* get_gpu();
+         virtual ::gpu::approach* gpu();
+         virtual void create_gpu();
+
 
       //void initialize(::particle * pparticle) override;
 

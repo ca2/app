@@ -584,6 +584,14 @@ networking::networking* particle::networking() const
 }
 
 
+::factory::factory * particle::component_factory(const ::string& strComponent) const
+{
+
+   return platform()->component_factory(strComponent);
+
+}
+
+
 ::factory::factory_pointer& particle::factory(const ::string& strComponent, const ::string& strImplementation) const
 {
 

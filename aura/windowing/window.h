@@ -220,6 +220,8 @@ namespace windowing
 
       void on_initialize_particle() override;
 
+      void initialize_window(::acme::user::interaction* puserinteraction) override;
+
       virtual void window_set_keyboard_focus();
       virtual void window_kill_keyboard_focus();
 

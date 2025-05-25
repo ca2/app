@@ -127,7 +127,7 @@ namespace user
    }
 
 
-   void user::on_initialize_window_object()
+   void user::on_initialize_window_object(::acme::windowing::window* pacmewindowingwindow)
    {
 
       if (m_bOnInitializeWindowObject)
@@ -143,7 +143,7 @@ namespace user
 
       //auto estatus = 
       
-      _on_initialize_window_object();
+      _on_initialize_window_object(pacmewindowingwindow);
 
       //if (!estatus)
       //{
@@ -157,24 +157,29 @@ namespace user
    }
 
 
-   void user::_on_initialize_window_object()
+   void user::_on_initialize_window_object(::acme::windowing::window* pacmewindowingwindow)
    {
 
-      //auto estatus = 
-      
-      if (__defer_construct_new(m_puserstyle))
+      if (!pacmewindowingwindow->m_pacmeuserinteraction->m_bMessageOnlyWindow)
       {
 
-         //if (!estatus)
-         //{
+         //auto estatus = 
 
-         //   return estatus;
+         if (__defer_construct_new(m_puserstyle))
+         {
 
-         //}
+            //if (!estatus)
+            //{
 
-         //system()->m_pnode->fetch_user_color();
+            //   return estatus;
 
-         m_puserstyle->default_style_construct();
+            //}
+
+            //system()->m_pnode->fetch_user_color();
+
+            m_puserstyle->default_style_construct();
+
+         }
 
       }
 

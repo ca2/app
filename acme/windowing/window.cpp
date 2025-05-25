@@ -98,6 +98,21 @@ namespace acme
       //}
 
 
+      void window::initialize_window(::acme::user::interaction* pacmeuserinteraction)
+      {
+
+         if (::is_null(pacmeuserinteraction))
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
+
+         m_pacmeuserinteraction = pacmeuserinteraction;
+
+      }
+
+
       ::oswindow window::oswindow()
       {
 

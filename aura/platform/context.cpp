@@ -47,8 +47,6 @@ namespace aura
 
       ::platform::context::initialize_context_1();
 
-      defer_initialize_context_image();
-
    }
 
 

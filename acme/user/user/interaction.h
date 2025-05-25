@@ -52,6 +52,7 @@ namespace acme
             struct
             {
                bool     m_bChild : 1;
+               bool     m_bMessageOnlyWindow : 1;
             };
             unsigned int m_uFlagsAcmeUserInteraction;
          };

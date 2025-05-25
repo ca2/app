@@ -154,9 +154,17 @@ namespace windowing
 
       ::channel::on_initialize_particle();
 
+   }
+
+
+   void window::initialize_window(::acme::user::interaction* pacmeuserinteraction)
+   {
+
+      ::acme::windowing::window::initialize_window(pacmeuserinteraction);
+
       auto puser = user();
 
-      puser->on_initialize_window_object();
+      puser->on_initialize_window_object(this);
 
       defer_create_synchronization();
 
@@ -3820,7 +3828,7 @@ void window::set_oswindow(::oswindow oswindow)
       else
       {
 
-         pinteraction->m_bMessageWindow = true;
+         pinteraction->m_bMessageOnlyWindow = true;
 
          m_pacmeuserinteraction = pinteraction;
 
@@ -4343,7 +4351,7 @@ void window::set_oswindow(::oswindow oswindow)
       //      else
       {
 
-         user_interaction()->m_bMessageWindow = false;
+         user_interaction()->m_bMessageOnlyWindow = false;
 
          //auto pwindowing = windowing();
          user_send([&]()
@@ -4819,7 +4827,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       //::windowing::window_base::last_install_message_routing(pchannel);
 
-      if (!user_interaction()->m_bMessageWindow)
+      if (!user_interaction()->m_bMessageOnlyWindow)
       {
 
          //MESSAGE_LINK(e_message_redraw, pchannel, this, &window::_001OnRedraw);
@@ -5424,7 +5432,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       //#ifdef WINDOWS
 
-      if (!user_interaction()->m_bMessageWindow)
+      if (!user_interaction()->m_bMessageOnlyWindow)
       {
 
          MESSAGE_LINK(e_message_capture_changed, pchannel, this, &window::_001OnCaptureChanged);
@@ -8961,7 +8969,7 @@ void window::set_oswindow(::oswindow oswindow)
          if (user_interaction())
          {
 
-            if (!user_interaction()->m_bMessageWindow)
+            if (!user_interaction()->m_bMessageOnlyWindow)
             {
 
                m_pcsDisplay = __raw_new critical_section();
@@ -10243,7 +10251,7 @@ void window::set_oswindow(::oswindow oswindow)
 #endif
                user_interaction()->_000TopCallOnDraw(pgraphics);
 
-               //user_interaction()->_000CallOnDraw(pgraphics);
+               ////user_interaction()->_000CallOnDraw(pgraphics);
 
                //                  if (!bDraw && m_redrawa.has_element())
                //                  {

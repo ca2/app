@@ -47,8 +47,8 @@ namespace user
    {
    public:
 
-      virtual void on_initialize_window_object();
-      virtual void _on_initialize_window_object();
+      virtual void on_initialize_window_object(::acme::windowing::window* pacmewindowingwindow);
+      virtual void _on_initialize_window_object(::acme::windowing::window* pacmewindowingwindow);
 
 
       //::windowing::windowing* windowing();

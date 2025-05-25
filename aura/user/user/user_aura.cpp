@@ -13,12 +13,12 @@ namespace user
    //   {
    //   public:
 
-   void aura_user_layer::on_initialize_window_object()
+   void aura_user_layer::on_initialize_window_object(::acme::windowing::window* pacmewindowingwindow)
    {
    }
 
 
-   void aura_user_layer::_on_initialize_window_object()
+   void aura_user_layer::_on_initialize_window_object(::acme::windowing::window* pacmewindowingwindow)
    {
    }
 

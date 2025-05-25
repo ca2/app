@@ -101,6 +101,8 @@ namespace acme
 
          void on_initialize_particle() override;
 
+         virtual void initialize_window(::acme::user::interaction* pacmeuserinteraction);
+
          virtual ::oswindow oswindow();
 
          virtual void set_user_interaction(::acme::user::interaction * pacmeuserinteraction);

@@ -257,7 +257,7 @@ namespace file
 
          }
          
-         auto str = path.left(iFind);
+         ::string str = path.left(iFind);
 
          while (path[iFind] == '/')
          {

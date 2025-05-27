@@ -140,7 +140,7 @@ namespace draw2d
 
       void on_initialize_particle() override;
 
-
+      virtual bool is_gpu_oriented();
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
       

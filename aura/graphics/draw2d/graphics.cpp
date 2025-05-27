@@ -121,6 +121,12 @@ namespace draw2d
    }
 
 
+   bool graphics::is_gpu_oriented()
+   {
+
+      return false;
+
+   }
 
 
    void graphics::prefer_mapped_image_on_mix()

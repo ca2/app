@@ -193,8 +193,9 @@ namespace acme
 
          }
 
-         return acme_windowing_window()
-      }->m_pacmeuserinteractionMouseCapture == this;
+         return acme_windowing_window()->m_pacmeuserinteractionMouseCapture == this;
+
+      }
 
 
 

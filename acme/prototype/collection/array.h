@@ -73,6 +73,20 @@ public:
 
 
    inline ::collection::index add(ARG_TYPE newElement);
+   inline ::collection::index add_copies(ARG_TYPE newElement, ::collection::count cCopies)
+   {
+      ::collection::index iLastInsertIndex = -1;
+      while (cCopies > 0)
+      {
+
+         iLastInsertIndex =add_item(newElement);
+
+         cCopies--;
+
+      }
+
+      return iLastInsertIndex;
+   }
    ///inline ::collection::count append(const array_non_particle & src);
 
 

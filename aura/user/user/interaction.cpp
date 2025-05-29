@@ -22108,6 +22108,13 @@ if(get_parent())
 
       ::pointer < ::user::thread > puserthread;
 
+      if (is_graphical())
+      {
+
+          draw2d();
+
+      }
+
       if (m_ewindowflag & e_window_flag_satellite_window)
       {
 

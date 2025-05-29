@@ -6147,6 +6147,13 @@ namespace draw2d
    }
 
 
+   void graphics::defer_resize_memory_graphics(const ::int_size& size)
+   {
+
+
+   }
+
+
    void graphics::on_begin_draw(oswindow wnd, const double_size & sz)
    {
 

@@ -16,6 +16,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/acme.h"
+#include "acme/platform/keep.h"
 #include "acme/platform/system_setup.h"
 #include "acme/prototype/collection/_container.h"
 #include "apex/message/simple_command.h"
@@ -139,7 +140,9 @@ namespace user
 
       }
 
-      m_bOnInitializeWindowObject = true;
+      __keep_true(m_bOnInitializeWindowObject);
+
+      //m_bOnInitializeWindowObject = true;
 
       //auto estatus = 
       
@@ -615,7 +618,6 @@ namespace user
    {
 
       m_puserstyle.defer_destroy();
-
 
       for (auto & pstyle : m_mapUserStyle.payloads())
       {

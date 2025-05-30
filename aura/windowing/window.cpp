@@ -10258,6 +10258,8 @@ void window::set_oswindow(::oswindow oswindow)
 #endif
                ///xxxopengl  user_interaction()->_000TopCallOnDraw(pgraphics);
 
+               user_interaction()->_000TopCallOnDraw(pgraphics);
+
                ////user_interaction()->_000CallOnDraw(pgraphics);
 
                //                  if (!bDraw && m_redrawa.has_element())

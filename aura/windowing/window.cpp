@@ -10090,7 +10090,7 @@ void window::set_oswindow(::oswindow oswindow)
 
          }
 
-         pgraphics->do_on_context([this, &pgraphics, &pbufferitem]()
+         pgraphics->do_on_context([this, pgraphics, &pbufferitem]()
    {
 
             _synchronous_lock synchronous_lock(m_pmutexGraphics);

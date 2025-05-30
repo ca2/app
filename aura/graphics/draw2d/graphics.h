@@ -306,6 +306,8 @@ namespace draw2d
       virtual void CreateCompatibleDC(::draw2d::graphics * pgraphics);
       virtual void CreateWindowDC(oswindow wnd);
 
+      virtual void set_hint_window_output();
+
       virtual void defer_resize_memory_graphics(const ::int_size& size);
 
       virtual void on_begin_draw(oswindow wnd, const ::double_size & sz);

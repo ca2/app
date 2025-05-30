@@ -231,7 +231,7 @@ public:
 
    template < class T2 >
    inline pointer(::pointer<T2>&& t)
-      requires !::std::is_same<T2, T>::value
+      requires (!::std::is_same<T2, T>::value)
    {
 
       if (::is_set(t.m_p))

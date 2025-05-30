@@ -28,7 +28,7 @@ namespace file
 
       using ::array < file_dialog_filter_item >::array;
 
-
+      ::collection::index find_first_with_extension(const ::scoped_string & scopedstrExtension);
       ::string_array get_all_related_extensions() const;
 
    };

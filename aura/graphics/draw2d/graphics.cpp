@@ -456,6 +456,13 @@ namespace draw2d
    }
 
 
+   void graphics::set_hint_window_output()
+   {
+
+
+   }
+
+
    /*   int graphics::ExcludeUpdateRgn(::windowing::window * pwindow)
       {
          __UNREFERENCED_PARAMETER(pwindow);
@@ -5313,6 +5320,7 @@ namespace draw2d
 
          rectangle.deflate(0, rectangle.height() / 7.0);
 
+         
          set_current_point(rectangle.bottom_left());
          line_to(rectangle.bottom_right());
          //set_current_point(rectangle.bottom_left() - ::int_size(0,(int)(m_ppen->m_dWidth*2.0)));

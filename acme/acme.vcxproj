@@ -1765,7 +1765,7 @@
     <ClInclude Include="constant\filesystem.h" />
     <ClInclude Include="constant\flag.h" />
     <ClInclude Include="constant\future.h" />
-    <ClInclude Include="constant\gpu_output.h" />
+    <ClInclude Include="constant\gpu.h" />
     <ClInclude Include="constant\happening.h" />
     <ClInclude Include="constant\heap.h" />
     <ClInclude Include="constant\id.h" />

@@ -4191,7 +4191,7 @@
     <ClInclude Include="_greek.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="constant\gpu_output.h">
+    <ClInclude Include="constant\gpu.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
   </ItemGroup>

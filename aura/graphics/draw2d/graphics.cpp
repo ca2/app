@@ -74,8 +74,6 @@ namespace draw2d
    graphics::graphics()
    {
 
-      m_eoutputOnEndDraw == ::gpu::e_output_none;
-
       m_bDraw = true;
       m_puserinteraction = nullptr;
       m_bUseImageMipMapsOrResizedImages = false;

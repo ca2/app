@@ -2,7 +2,7 @@
 
 
 #include "acme/constant/element.h"
-#include "acme/constant/gpu_output.h"
+//#include "acme/constant/gpu_output.h"
 #include "acme/graphics/image/image32.h"
 
 #include "aura/platform/draw_context2.h"
@@ -73,7 +73,6 @@ namespace draw2d
    public:
 
 
-      ::gpu::enum_output                           m_eoutputOnEndDraw;
       e_graphics                                   m_egraphics;
       bool                                         m_bBeginDraw;
       bool                                         m_bInheritDraw;

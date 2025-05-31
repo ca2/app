@@ -4191,6 +4191,9 @@
     <ClInclude Include="_greek.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="constant\gpu_output.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">

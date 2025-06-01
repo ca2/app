@@ -687,6 +687,9 @@
     <ClCompile Include="platform\component.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\image\target.cpp">
+      <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windowing\_.h">
@@ -1669,6 +1672,9 @@
     </ClInclude>
     <ClInclude Include="graphics\graphics\render.h">
       <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\image\target.h">
+      <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

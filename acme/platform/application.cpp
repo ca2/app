@@ -54,7 +54,7 @@ namespace platform
    application::application()
    {
 
-      m_bUseDraw2dProtoWindow = false;
+      m_bUseSwapChainWindow = false;
       //m_bTransferToContainer = true;
       //m_bTransferredToContainer = false;
 

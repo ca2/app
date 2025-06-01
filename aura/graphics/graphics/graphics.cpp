@@ -32,19 +32,19 @@ namespace graphics
 
       pgraphics->m_egraphics = m_egraphics;
 
-      if (!pgraphics->m_callbackImage32CpuBuffer)
-      {
+      //if (!pgraphics->m_callbackImage32CpuBuffer)
+      //{
 
-         pgraphics->m_callbackImage32CpuBuffer = [this](const ::image32_t * pimage32, int cx, int cy, int scan)
-            {
+      //   pgraphics->m_callbackImage32CpuBuffer = [this](const ::image32_t * pimage32, int cx, int cy, int scan)
+      //      {
 
-               //_synchronous_lock synchronouslock(this->m_pmutex);
+      //         //_synchronous_lock synchronouslock(this->m_pmutex);
 
-               m_pimage2->image32()->copy(cx, cy, m_pimage2->m_iScan, pimage32, scan);
+      //         m_pimage2->image32()->copy(cx, cy, m_pimage2->m_iScan, pimage32, scan);
 
-            };
+      //      };
 
-      }
+      //}
 
       return pgraphics;
 

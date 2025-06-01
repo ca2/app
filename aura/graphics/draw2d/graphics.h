@@ -82,7 +82,7 @@ namespace draw2d
       ::pointer<::draw2d::host>                    m_pdraw2dhost;
 
       bool                                         m_bPat;
-      ::image32_callback                           m_callbackImage32CpuBuffer;
+      ///::image32_callback                           m_callbackImage32CpuBuffer;
 
 
       //bool                                   m_bAlphaBlend;

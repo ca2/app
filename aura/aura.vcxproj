@@ -1491,6 +1491,7 @@
     <ClCompile Include="graphics\image\nanosvg.cpp" />
     <ClCompile Include="graphics\image\frame_array.cpp" />
     <ClCompile Include="graphics\image\source.cpp" />
+    <ClCompile Include="graphics\image\target.cpp" />
     <ClCompile Include="graphics\image\_.cpp" />
     <ClCompile Include="graphics\user\control_box_button.cpp" />
     <ClCompile Include="graphics\user\control_box_icon.cpp" />
@@ -1768,6 +1769,7 @@
     <ClInclude Include="graphics\image\meta.h" />
     <ClInclude Include="graphics\image\palette.h" />
     <ClInclude Include="graphics\image\source.h" />
+    <ClInclude Include="graphics\image\target.h" />
     <ClInclude Include="graphics\image\transformation.h" />
     <ClInclude Include="graphics\image\wallpaper_transform.h" />
     <ClInclude Include="graphics\image\_.h" />

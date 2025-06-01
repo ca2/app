@@ -105,7 +105,7 @@ namespace platform
          bool                                            m_bModuleFolder = false;
          ::file::path                                    m_pathModuleFolder;
 
-         bool m_bUseDraw2dProtoWindow;
+         bool m_bUseSwapChainWindow;
          string                              m_strProgName;
          string                           m_strStandalone;
          //int                              m_iExitCode = 0;

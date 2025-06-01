@@ -93,7 +93,7 @@ namespace networking_bsd
          ::pointer<::networking_bsd::address>   m_paddress;
          string                                 m_strIpAddress;
          string                                 m_strReverse;
-         class ::time                             m_timeLastChecked;
+         class ::time                           m_timeLastChecked;
          bool                                   m_bOk;
          bool                                   m_bTimeout;
          bool                                   m_bProcessing;
@@ -115,20 +115,20 @@ namespace networking_bsd
       string_map < ::pointer<reverse_cache_item >>       m_mapReverseCache;
       ::pointer_array <reverse_cache_item >              m_reversecacheaRequest;
       ::task_pointer                                     m_pthreadReverse;
-      long long                                              m_iListenSocket;
+      long long                                          m_iListenSocket;
       /*::pointer < ::mutex > m_pmutexPool;*/
 
       interlocked_int                                    m_lListenSocket;
 
       ::pointer<::sockets_bsd::SSLInitializer>           m_psslinit;
 
-      unsigned char                                               m_baTicketKey[SSL_SESSION_TICKET_KEY_SIZE];
+      unsigned char                                      m_baTicketKey[SSL_SESSION_TICKET_KEY_SIZE];
 
 #if defined(BSD_STYLE_SOCKETS)
       ::sockets_bsd::ssl_client_context_map              m_clientcontextmap;
 #endif
 
-      ::collection::count                                            m_countHttpPostBoundary;
+      ::collection::count                                m_countHttpPostBoundary;
       ::pointer < ::mutex >                              m_pmutexHttpPostBoundary;
 
       ::sockets_bsd::resolv_cache_t                      m_resolvcache;

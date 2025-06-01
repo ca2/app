@@ -6340,7 +6340,7 @@ inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::case_insens
 
 
 template < typename ITERATOR_TYPE >
-inline bool string_base < ITERATOR_TYPE > ::begins_bitten(string_base & strBitten, const SCOPED_STRING & scopedstrPrefix) const
+inline bool string_base < ITERATOR_TYPE > ::begins_get_remainder(string_base & strRemainder, const SCOPED_STRING & scopedstrPrefix) const
 {
 
    if (!this->begins(scopedstrPrefix))
@@ -6350,7 +6350,7 @@ inline bool string_base < ITERATOR_TYPE > ::begins_bitten(string_base & strBitte
 
    }
 
-   strBitten.assign(this->begin() + scopedstrPrefix.size(), size() - scopedstrPrefix.size());
+   strRemainder.assign(this->begin() + scopedstrPrefix.size(), size() - scopedstrPrefix.size());
 
    return true;
 
@@ -6358,7 +6358,7 @@ inline bool string_base < ITERATOR_TYPE > ::begins_bitten(string_base & strBitte
 
 
 template < typename ITERATOR_TYPE >
-inline bool string_base < ITERATOR_TYPE > ::ends_bitten(string_base & strBitten, const SCOPED_STRING & scopedstrSuffix) const
+inline bool string_base < ITERATOR_TYPE > ::ends_get_remainder(string_base & strRemainder, const SCOPED_STRING & scopedstrSuffix) const
 {
 
    if (!this->ends(scopedstrSuffix))
@@ -6368,7 +6368,7 @@ inline bool string_base < ITERATOR_TYPE > ::ends_bitten(string_base & strBitten,
 
    }
 
-   strBitten.assign(this->begin(), size() - scopedstrSuffix.size());
+   strRemainder.assign(this->begin(), size() - scopedstrSuffix.size());
 
    return true;
 
@@ -6376,7 +6376,7 @@ inline bool string_base < ITERATOR_TYPE > ::ends_bitten(string_base & strBitten,
 
 
 template < typename ITERATOR_TYPE >
-inline bool string_base < ITERATOR_TYPE > ::case_insensitive_begins_bitten(string_base & strBitten, const SCOPED_STRING & scopedstrPrefix) const
+inline bool string_base < ITERATOR_TYPE > ::case_insensitive_begins_get_remainder(string_base & strRemainder, const SCOPED_STRING & scopedstrPrefix) const
 {
 
    if (!this->case_insensitive_begins(scopedstrPrefix))
@@ -6386,7 +6386,7 @@ inline bool string_base < ITERATOR_TYPE > ::case_insensitive_begins_bitten(strin
 
    }
 
-   strBitten.assign(this->begin() + scopedstrPrefix.size(), size() - scopedstrPrefix.size());
+   strRemainder.assign(this->begin() + scopedstrPrefix.size(), size() - scopedstrPrefix.size());
 
    return true;
 
@@ -6394,7 +6394,7 @@ inline bool string_base < ITERATOR_TYPE > ::case_insensitive_begins_bitten(strin
 
 
 template < typename ITERATOR_TYPE >
-inline bool string_base < ITERATOR_TYPE > ::case_insensitive_ends_bitten(string_base & strBitten, const SCOPED_STRING & scopedstrSuffix) const
+inline bool string_base < ITERATOR_TYPE > ::case_insensitive_ends_get_remainder(string_base & strRemainder, const SCOPED_STRING & scopedstrSuffix) const
 {
 
    if (!this->case_insensitive_ends(scopedstrSuffix))
@@ -6404,7 +6404,7 @@ inline bool string_base < ITERATOR_TYPE > ::case_insensitive_ends_bitten(string_
 
    }
 
-   strBitten.assign(this->begin(), size() - scopedstrSuffix.size());
+   strRemainder.assign(this->begin(), size() - scopedstrSuffix.size());
 
    return true;
 
@@ -6477,7 +6477,7 @@ inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::case_insens
 
 
 template < typename ITERATOR_TYPE >
-inline bool string_base < ITERATOR_TYPE > ::begins_eaten(string_base & strEaten, const SCOPED_STRING & scopedstrPrefix)
+inline bool string_base < ITERATOR_TYPE > ::begins_erase_get_erased(string_base & strErased, const SCOPED_STRING & scopedstrPrefix)
 {
 
    if (!this->case_insensitive_begins(scopedstrPrefix))
@@ -6487,7 +6487,7 @@ inline bool string_base < ITERATOR_TYPE > ::begins_eaten(string_base & strEaten,
 
    }
 
-   strEaten.assign(this->begin(), scopedstrPrefix.size());
+   strErased.assign(this->begin(), scopedstrPrefix.size());
 
    assign(this->begin() + scopedstrPrefix.size(), this->size() - scopedstrPrefix.size());
 
@@ -6497,7 +6497,7 @@ inline bool string_base < ITERATOR_TYPE > ::begins_eaten(string_base & strEaten,
 
 
 template < typename ITERATOR_TYPE >
-inline bool string_base < ITERATOR_TYPE > ::ends_eaten(string_base & strEaten, const SCOPED_STRING & scopedstrSuffix)
+inline bool string_base < ITERATOR_TYPE > ::ends_erase_get_erased(string_base & strErased, const SCOPED_STRING & scopedstrSuffix)
 {
 
    if (!this->case_insensitive_ends(scopedstrSuffix))
@@ -6507,7 +6507,7 @@ inline bool string_base < ITERATOR_TYPE > ::ends_eaten(string_base & strEaten, c
 
    }
 
-   strEaten.assign(this->begin() + length() - scopedstrSuffix.size(), scopedstrSuffix.size());
+   strErased.assign(this->begin() + length() - scopedstrSuffix.size(), scopedstrSuffix.size());
 
    assign(this->begin(), this->size() - scopedstrSuffix.size());
 

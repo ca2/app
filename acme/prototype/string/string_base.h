@@ -1803,11 +1803,11 @@ public:
 
    inline bool case_insensitive_begins_replace(const SCOPED_STRING & scopedstrNewPrefix, const SCOPED_STRING & scopedstrPrefix);
 
-   inline bool begins_erase_get_remainder(string_base & strRemainder, const SCOPED_STRING & scopedstr) const;
-   inline bool ends_erase_get_remainder(string_base & strRemainder, const SCOPED_STRING & scopedstr) const;
+   inline bool begins_get_remainder(string_base & strRemainder, const SCOPED_STRING & scopedstr) const;
+   inline bool ends_get_remainder(string_base & strRemainder, const SCOPED_STRING & scopedstr) const;
 
-   inline bool case_insensitive_begins_erase_get_remainder(string_base & strRemainder, const SCOPED_STRING & scopedstr) const;
-   inline bool case_insensitive_ends_erase_get_remainder(string_base & strRemainder, const SCOPED_STRING & scopedstr) const;
+   inline bool case_insensitive_begins_get_remainder(string_base & strRemainder, const SCOPED_STRING & scopedstr) const;
+   inline bool case_insensitive_ends_get_remainder(string_base & strRemainder, const SCOPED_STRING & scopedstr) const;
 
    inline string_base begins_bitten(const SCOPED_STRING & scopedstr) const;
    inline string_base ends_bitten(const SCOPED_STRING & scopedstr) const;

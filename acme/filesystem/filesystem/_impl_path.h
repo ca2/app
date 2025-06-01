@@ -815,7 +815,7 @@ namespace file
 
       bool bErased;
 
-      ::string strRearEaten;
+      ::string strRearSuffix;
 
       do
       {
@@ -825,7 +825,7 @@ namespace file
          for (auto& strExtension : straPreserveExtensions)
          {
 
-            if (strRearEaten.has_character())
+            if (strRearSuffix.has_character())
             {
 
                bErased = str.case_insensitive_ends_eat("." + strExtension);
@@ -834,9 +834,9 @@ namespace file
             else
             {
 
-               bErased = str.ends_eaten(strRearEaten, "." + strExtension);
+               bErased = str.ends_erase_get_erased(strRearSuffix, "." + strExtension);
 
-               strRearEaten.begins_eat(".");
+               strRearSuffix.begins_eat(".");
 
             }
 
@@ -870,10 +870,10 @@ namespace file
 
       }while(bErased);
 
-      if (strRearEaten.has_character())
+      if (strRearSuffix.has_character())
       {
 
-         str += "." + strRearEaten;
+         str += "." + strRearSuffix;
 
       }
       else

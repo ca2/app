@@ -10256,6 +10256,8 @@ void window::set_oswindow(::oswindow oswindow)
 #ifdef MORE_LOG
                debug() << "defer_do_graphics _000TopCallOnDraw";
 #endif
+               ///xxxopengl  user_interaction()->_000TopCallOnDraw(pgraphics);
+
                user_interaction()->_000TopCallOnDraw(pgraphics);
 
                ////user_interaction()->_000CallOnDraw(pgraphics);

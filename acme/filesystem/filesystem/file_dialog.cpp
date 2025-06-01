@@ -99,6 +99,34 @@ namespace file
    }
 
 
+   ::collection::index file_dialog_filter::find_first_with_extension(const ::scoped_string & scopedstrExtension)
+   {
+
+      ::string_array stra;
+      
+      ::collection::index i = 0;
+
+      for (auto& item : *this)
+      {
+
+         auto straItem = item.get_preserve_extensions();
+
+         if(straItem.case_insensitive_contains(scopedstrExtension))
+         {
+            
+            return i;
+            
+         }
+         
+         i++;
+
+      }
+
+      return -1;
+
+   }
+
+
    ::string_array file_dialog_filter::get_all_related_extensions() const
    {
 
@@ -123,7 +151,6 @@ namespace file
       return ::transfer(stra);
 
    }
-
 
 
    file_dialog::file_dialog()

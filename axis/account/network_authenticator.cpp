@@ -211,7 +211,7 @@ namespace account
 
       auto tickAuthBeg = ::time::now();
 
-      string strAuthUrl("https://ca2.software/api/account/auth3");
+      string strAuthUrl("https://ca2.network/api/account/auth3");
 
       string strDeferRegistration;
 
@@ -297,7 +297,7 @@ namespace account
 
       puser->m_strHost = url.connect().host();
 
-      ::url::parts partsGetFontopus("https://ca2.software/get_account_login");
+      ::url::parts partsGetFontopus("https://ca2.network/get_account_login");
       
       partsGetFontopus.arguments()["lang"] = m_papplication->get_locale();
 
@@ -453,7 +453,7 @@ namespace account
 //
 //   string strGetFontopus;
 //
-//   strGetFontopus = "http://ca2.software/get_account_login";
+//   strGetFontopus = "http://ca2.network/get_account_login";
 //
 //   purl->set_param(strGetFontopus,strGetFontopus,"lang",psession->get_locale());
 //
@@ -562,7 +562,7 @@ namespace account
 //
 //         m_mapFontopusServer.set_at(straSomeBrothersAndSisters[i], strFontopusServer);
 //
-//         strX.replace("-api.ca2.software", "-account.ca2.software");
+//         strX.replace("-api.ca2.network", "-account.ca2.network");
 //
 //         m_mapSomeBrothersAndSisters[strFontopusServer].add_unique(strX);
 //

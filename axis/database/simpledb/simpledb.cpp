@@ -237,7 +237,7 @@ namespace simpledb
 
             ::string strApi = "/api/account/str_set_load";
 
-            ::url::parts parts("https://ca2.software" + strApi);
+            ::url::parts parts("https://ca2.network" + strApi);
 
             parts.arguments()["key"] = strKey;
 

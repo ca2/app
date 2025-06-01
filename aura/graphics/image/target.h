@@ -37,7 +37,8 @@ namespace image
 
       virtual void on_image_pixels();
 
-      virtual ::image::lock no_padded_lock();
+      virtual ::image::lock no_padded_lock(::image::enum_copy_disposition ecopydisposition);
+      virtual ::image::lock source_scan_lock(::image::enum_copy_disposition ecopydisposition);
 
 
    };

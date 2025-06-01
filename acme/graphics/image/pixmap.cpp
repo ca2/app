@@ -147,12 +147,48 @@ void pixmap::copy(const ::pixmap * ppixmapSrc)
 }
 
 
+void pixmap::y_swap_copy(const ::pixmap* ppixmapSrc)
+{
+
+   y_swap_copy(size().minimum(ppixmapSrc->size()), ppixmapSrc);
+
+}
+
+
 void pixmap::copy(const ::int_size & size, const ::pixmap * ppixmapSrc)
 {
 
    m_pimage32->copy(size, scan_size(), ppixmapSrc);
 
 }
+
+
+void pixmap::y_swap_copy(const ::int_size& size, const ::pixmap* ppixmapSrc)
+{
+
+   m_pimage32->vertical_swap_copy(size, scan_size(), ppixmapSrc->data(), ppixmapSrc->m_iScan);
+
+}
+
+
+void pixmap::copy(const ::pixmap* ppixmapSrc, const ::image::enum_copy_disposition& ecopydisposition)
+{
+   
+   if (ecopydisposition == ::image::e_copy_disposition_y_swap)
+   {
+
+      y_swap_copy(ppixmapSrc);
+
+   }
+   else
+   {
+
+      copy(ppixmapSrc);
+
+   }
+
+}
+
 
 
 pixmap & pixmap::operator =(const pixmap & pixmap)

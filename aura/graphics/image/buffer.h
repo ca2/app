@@ -17,6 +17,7 @@ namespace image
 
 
       ::pixmap *                             m_ppixmapLock;
+      ::image::enum_copy_disposition         m_ecopydisposition;
       ::memory							            m_memory;
 
 
@@ -24,8 +25,9 @@ namespace image
       ~buffer() override;
 
 
-      virtual buffer * lock(int stride, ::pixmap * ppixmapLock);
-      virtual buffer * no_padding_lock(::pixmap* ppixmapLock);
+      virtual buffer * lock(int stride, enum_copy_disposition ecopydisposition, ::pixmap * ppixmapLock);
+      virtual buffer * no_padding_lock(enum_copy_disposition ecopydisposition, ::pixmap* ppixmapLock);
+      virtual buffer * source_lock(enum_copy_disposition ecopydisposition, ::pixmap* ppixmapLock);
       
       void unlock();
 

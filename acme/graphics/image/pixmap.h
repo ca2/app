@@ -9,8 +9,6 @@
 #include "acme/prototype/prototype/concrete.h"
 
 
-
-
 #define __sizeof(TYPE) ((memsize)sizeof(TYPE))
 
 
@@ -198,8 +196,13 @@ struct pixmap
 
    void copy(const ::int_size & size, const ::pixmap * ppixmapSrc);
 
+   void y_swap_copy(const ::int_size& size, const ::pixmap* ppixmapSrc);
+
    void copy(const ::pixmap * ppixmapSrc);
 
+   void copy(const ::pixmap* ppixmapSrc, const ::image::enum_copy_disposition & ecopydisposition);
+
+   void y_swap_copy(const ::pixmap* ppixmapSrc);
 
    ::color::color average_color();
 

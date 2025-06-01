@@ -151,13 +151,20 @@ namespace image
    }
 
 
-   ::image::lock target::no_padded_lock()
+   ::image::lock target::no_padded_lock(::image::enum_copy_disposition ecopydisposition)
    {
 
-      return m_imagebuffer.no_padding_lock(m_pimage);
+      return m_imagebuffer.no_padding_lock(ecopydisposition, m_pimage);
 
    }
 
+
+   ::image::lock target::source_scan_lock(::image::enum_copy_disposition ecopydisposition)
+   {
+
+      return m_imagebuffer.source_lock(ecopydisposition, m_pimage);
+
+   }
 
    //void target::unlock(const ::pixmap* ppixmap)
    //{

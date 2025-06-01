@@ -554,7 +554,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				MARKETING_VERSION = 0.1;
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_BUNDLE_IDENTIFIER = "ca2.software.app.just-aura-message-box";
+				PRODUCT_BUNDLE_IDENTIFIER = "ca2.network.app.just-aura-message-box";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -571,7 +571,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				MARKETING_VERSION = 0.1;
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_BUNDLE_IDENTIFIER = "ca2.software.app.just-aura-message-box";
+				PRODUCT_BUNDLE_IDENTIFIER = "ca2.network.app.just-aura-message-box";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

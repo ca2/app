@@ -87,8 +87,8 @@ namespace user
       virtual void initialize(::particle * pparticle) override;
 
 
-      virtual void on_initialize_window_object() override;
-      virtual void _on_initialize_window_object() override;
+      virtual void on_initialize_window_object(::acme::windowing::window* pacmewindowingwindow) override;
+      virtual void _on_initialize_window_object(::acme::windowing::window* pacmewindowingwindow) override;
 
 
       //::windowing::windowing* windowing();

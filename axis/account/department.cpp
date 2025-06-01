@@ -138,14 +138,14 @@ namespace account
 
       }
 
-      if(::str::case_insensitive_find("/matter.ca2.software/", pathUrl) >= 0)
+      if(::str::case_insensitive_find("/matter.ca2.network/", pathUrl) >= 0)
       {
 
          return false;
 
       }
 
-      if(::str::case_insensitive_find("-matter.ca2.software/", pathUrl) >= 0)
+      if(::str::case_insensitive_find("-matter.ca2.network/", pathUrl) >= 0)
       {
 
          return false;
@@ -217,13 +217,13 @@ namespace account
 //
 //      string strGetFontopus;
 //
-//      if(string_ends(strRequestingServer,".ca2.software"))
+//      if(string_ends(strRequestingServer,".ca2.network"))
 //      {
-//         strGetFontopus = "https://ca2.software/get_account_login";
+//         strGetFontopus = "https://ca2.network/get_account_login";
 //      }
 //      else
 //      {
-//         strGetFontopus = "https://ca2.software/get_account_login";
+//         strGetFontopus = "https://ca2.network/get_account_login";
 //      }
 //
 //      //      ::aura::application * papp = get_app();
@@ -237,8 +237,8 @@ namespace account
 //      if(domainFontopus.m_strRadix != "ca2" && domainFontopus.m_strRadix != "account")
 //         return "";
 //
-//      if(strRequestingServer == "ca2.software")
-//         return "ca2.software";
+//      if(strRequestingServer == "ca2.network")
+//         return "ca2.network";
 //
 //      unsigned int dwGetFontopusEnd= ::time::now();
 //
@@ -354,7 +354,7 @@ namespace account
    ::file::path department::get_default_url()
    {
 
-      return "https://ca2.software/";
+      return "https://ca2.network/";
 
    }
 

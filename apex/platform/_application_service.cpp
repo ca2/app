@@ -118,14 +118,19 @@ namespace apex
 
       }
       //else if (has_property("run"))
-      else 
+      else if(prequest->m_ecommand == e_command_application_started)
       {
 
-         __øconstruct(m_pservicehandler);
+         if (!m_pservicehandler)
+         {
 
-         service_handler()->defer_service();
+            __øconstruct(m_pservicehandler);
 
-         service_handler()->get_service()->run();
+            service_handler()->defer_service();
+
+            service_handler()->get_service()->run();
+
+         }
 
       }
 

@@ -112,7 +112,7 @@ namespace filemanager
 
             ::property_set set;
 
-//            http()->get("http://file.ca2.software/", set);
+//            http()->get("http://file.ca2.network/", set);
 
             open_folder(1000); // user ::music folder
 
@@ -124,7 +124,7 @@ namespace filemanager
 
             ::property_set set;
 
-            //          http()->get("http://file.ca2.software/", set);
+            //          http()->get("http://file.ca2.network/", set);
 
             open_folder(1); // user root folder
 
@@ -165,7 +165,7 @@ namespace filemanager
 
                ::string strUrl;
 
-               strUrl.formatf("http://file.ca2.software/ifs/ls?atom=%I64d", iFolder);
+               strUrl.formatf("http://file.ca2.network/ifs/ls?atom=%I64d", iFolder);
 
                phttpmessage->m_url = strUrl;
 
@@ -191,7 +191,7 @@ namespace filemanager
             
             string strFileNameEncoded =  ::url::encode(pszFileName);
 
-            strUrl.formatf("http://file.ca2.software/ifs/get?name=%s&folder=%I64d&extension=.%s",strFileNameEncoded.c_str(), iFolder, pszExtension.c_str());
+            strUrl.formatf("http://file.ca2.network/ifs/get?name=%s&folder=%I64d&extension=.%s",strFileNameEncoded.c_str(), iFolder, pszExtension.c_str());
 
             //if(m_prequestinterface != nullptr)
             //{

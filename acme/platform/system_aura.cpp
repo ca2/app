@@ -75,22 +75,22 @@ namespace platform
 
    //::aura::node * node(){}
 
-    ::gpu::approach* aura_system_layer:: get_gpu()
-   {
+   // ::gpu::approach* aura_system_layer:: get_gpu()
+   //{
 
-      return nullptr;
-   }
-
-
-   ::gpu::approach*  aura_system_layer::gpu()
-   {
-      return nullptr;
-   }
+   //   return nullptr;
+   //}
 
 
-   void aura_system_layer::create_gpu()
-   {
-   }
+   //::gpu::approach*  aura_system_layer::gpu()
+   //{
+   //   return nullptr;
+   //}
+
+
+   //void aura_system_layer::create_gpu()
+   //{
+   //}
 
 
    //::string aura_system_layer::install_get_platform() override{}
@@ -204,7 +204,7 @@ namespace platform
    //virtual unsigned int crc32(unsigned int dwPrevious, const ::string & psz){}
 
 
-   //::string aura_system_layer::::url::encode(const ::string & str) override{}
+   //::string aura_system_layer::url::encode(const ::string & str) override{}
 
 
    //void aura_system_layer::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override{}
@@ -295,7 +295,7 @@ namespace platform
    //::datetime::datetime                 & datetime(){}
 
 
-   //::string aura_system_layer::::url::encode(const ::string & str){}
+   //::string aura_system_layer::url::encode(const ::string & str){}
 
    void aura_system_layer::on_allocation_error(const ::string& strName, ::object* pobjectSometimes)
    {

@@ -103,9 +103,6 @@ namespace aura
       //::aura::session* get_session();
       //::aura::node* node();
 
-       ::gpu::approach* get_gpu() override;
-       ::gpu::approach* gpu() override; 
-      void create_gpu() override;
 
 
       ::string component_path(const ::scoped_string & scopedstrComponent) override;

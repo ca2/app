@@ -231,6 +231,7 @@ public:
 
    template < class T2 >
    inline pointer(::pointer<T2>&& t)
+      requires (!::std::is_same<T2, T>::value)
    {
 
       if (::is_set(t.m_p))
@@ -291,6 +292,68 @@ public:
 
    }
 
+   template < class T2 >
+   inline pointer(::pointer<T2>&& t)
+      requires ::std::is_same<T2, T>::value
+   {
+
+      if (::is_set(t.m_p))
+      {
+
+         auto p = t.m_p;
+
+         if (::is_set(p))
+         {
+
+            m_p = p;
+
+            m_psubparticle = t.m_psubparticle;
+
+            m_estatus = t.m_estatus;
+
+#if REFERENCING_DEBUGGING
+
+            m_preferer = t.m_preferer;
+
+#endif
+
+            t.m_p = nullptr;
+
+            t.m_psubparticle = nullptr;
+
+#if REFERENCING_DEBUGGING
+
+            t.m_preferer = nullptr;
+
+#endif
+
+         }
+         else
+         {
+
+            m_p = nullptr;
+
+            m_psubparticle = nullptr;
+#if REFERENCING_DEBUGGING
+
+            m_preferer = nullptr;
+#endif
+         }
+
+      }
+      else
+      {
+
+         m_p = nullptr;
+
+         m_psubparticle = nullptr;
+#if REFERENCING_DEBUGGING
+
+         m_preferer = nullptr;
+#endif
+      }
+
+   }
 
    inline ~pointer();
 

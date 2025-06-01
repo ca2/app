@@ -121,6 +121,12 @@ namespace draw2d
    }
 
 
+   bool graphics::is_gpu_oriented()
+   {
+
+      return false;
+
+   }
 
 
    void graphics::prefer_mapped_image_on_mix()
@@ -200,6 +206,14 @@ namespace draw2d
    }
 
 
+   void graphics::defer_add_graphics_render(::graphics::render* pgpurender)
+   {
+
+       
+
+   }
+
+
    void graphics::on_begin_draw()
    {
 
@@ -212,6 +226,13 @@ namespace draw2d
       //fill_rectangle(get_size(), color);
 
       //return true;
+
+   }
+
+
+   void graphics::on_end_draw()
+   {
+
 
    }
 
@@ -374,6 +395,24 @@ namespace draw2d
 
    }
 
+   
+   void graphics::create_window_graphics(::windowing::window * pwindow)
+   {
+
+      //__UNREFERENCED_PARAMETER(size);
+
+      //CreateCompatibleDC(nullptr);
+      //if (!CreateCompatibleDC(nullptr))
+      //{
+
+      //   return false;
+
+      //}
+
+      //return true;
+
+   }
+
 
    void graphics::create_memory_graphics(const ::int_size & size)
    {
@@ -413,6 +452,13 @@ namespace draw2d
 
 
       //return false;
+
+   }
+
+
+   void graphics::set_hint_window_output()
+   {
+
 
    }
 
@@ -1309,7 +1355,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw_at(const ::double_point & pointDst, ::::image::image_frame * pframe)
+   //void graphics::draw_at(const ::double_point & pointDst, ::image::image_frame * pframe)
    //{
 
    //   return draw_at(pointDst, pframe->m_pimage);
@@ -1333,7 +1379,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw(::::image::image_frame * pframe, const ::double_point & pointSrc)
+   //void graphics::draw(::image::image_frame * pframe, const ::double_point & pointSrc)
    //{
 
    //   return draw(pframe->m_pimage, pointSrc);
@@ -1357,7 +1403,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw(const ::double_rectangle & rectangleTarget, ::::image::image_frame * pframe, const ::double_point & pointSrc)
+   //void graphics::draw(const ::double_rectangle & rectangleTarget, ::image::image_frame * pframe, const ::double_point & pointSrc)
    //{
 
    //   return draw(rectangleTarget, pframe->m_pimage, pointSrc);
@@ -1498,7 +1544,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::stretch(const ::double_rectangle & rectangleTarget, ::::image::image_frame * pframe, const ::double_rectangle & rectangleSource)
+   //void graphics::stretch(const ::double_rectangle & rectangleTarget, ::image::image_frame * pframe, const ::double_rectangle & rectangleSource)
    //{
 
    //   return stretch(rectangleTarget, pframe->m_pimage, rectangleSource);
@@ -5274,6 +5320,7 @@ namespace draw2d
 
          rectangle.deflate(0, rectangle.height() / 7.0);
 
+         
          set_current_point(rectangle.bottom_left());
          line_to(rectangle.bottom_right());
          //set_current_point(rectangle.bottom_left() - ::int_size(0,(int)(m_ppen->m_dWidth*2.0)));
@@ -6108,6 +6155,13 @@ namespace draw2d
    }
 
 
+   void graphics::defer_resize_memory_graphics(const ::int_size& size)
+   {
+
+
+   }
+
+
    void graphics::on_begin_draw(oswindow wnd, const double_size & sz)
    {
 
@@ -6115,6 +6169,13 @@ namespace draw2d
 
 
    void graphics::on_end_draw(oswindow wnd)
+   {
+
+
+   }
+
+
+   void graphics::on_present()
    {
 
 

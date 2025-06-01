@@ -809,7 +809,7 @@ namespace platform
    //virtual ::pointer < ::subparticle > create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon){}
 
 
-   //void acme_node_layer::::micro::message_box(::sequence < ::conversation > * psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox){}
+   //void acme_node_layer::micro::message_box(::sequence < ::conversation > * psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox){}
 
    //virtual ::pointer < ::subparticle > create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon){}
 
@@ -1385,14 +1385,15 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
 
    void acme_node_layer::file_association_set_default_icon(const ::string& strExtension,
                                                            const ::string& strExtensionNamingClass,
-                                                           const ::string& strIconPath)
+                                                           const ::file::path & pathIcon)
    {
    }
 
 
    void acme_node_layer::file_association_set_shell_open_command(const ::string& strExtension,
                                                                  const ::string& strExtensionNamingClass,
-                                                                 const ::string& strCommand, const ::string& strParam)
+                                                                 const ::file::path & pathExecutable,
+                                                                 const ::string& strParam)
    {
    }
 

@@ -54,6 +54,7 @@ namespace platform
    application::application()
    {
 
+      m_bUseSwapChainWindow = false;
       //m_bTransferToContainer = true;
       //m_bTransferredToContainer = false;
 
@@ -190,6 +191,37 @@ namespace platform
       return nullptr;
 
    }
+
+
+   ::gpu::approach* application::get_gpu()
+   {
+
+      if (!m_pgpu)
+      {
+
+         create_gpu();
+
+      }
+
+      return m_pgpu;
+
+   }
+   
+   
+   ::gpu::approach* application::gpu()
+   {
+
+      return m_pgpu;
+
+   }
+
+
+   void application::create_gpu()
+   {
+
+
+   }
+
 
    //int application::application_main()
    //{

@@ -288,11 +288,11 @@ namespace graphics
 
                   pbufferitem->m_pimage2->m_pgraphics->on_end_draw(m_pwindow->oswindow());
 
-                  pbufferitem->m_pointBufferItemWindow = pbufferitem->m_pointBufferItemDraw;
-
-                  pbufferitem->m_sizeBufferItemWindow = pbufferitem->m_sizeBufferItemDraw;
-
                }
+
+               pbufferitem->m_pointBufferItemWindow = pbufferitem->m_pointBufferItemDraw;
+
+               pbufferitem->m_sizeBufferItemWindow = pbufferitem->m_sizeBufferItemDraw;
 
             }
 

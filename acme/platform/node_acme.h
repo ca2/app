@@ -973,12 +973,13 @@ namespace platform
 
       virtual void file_association_set_default_icon(const ::string& strExtension,
                                                      const ::string& strExtensionNamingClass,
-                                                     const ::string& strIconPath);
+                                                     const ::file::path & pathIconPath);
 
 
       virtual void file_association_set_shell_open_command(const ::string& strExtension,
                                                            const ::string& strExtensionNamingClass,
-                                                           const ::string& strCommand, const ::string& strParam);
+                                                           const ::file::path & pathExecutable,
+                                                           const ::string& strParam);
 
 
       virtual void file_association_get_shell_open_command(const ::string& strExtension,

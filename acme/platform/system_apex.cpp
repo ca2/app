@@ -158,7 +158,7 @@ namespace platform
    }
 
 
-   //::string apex_system_layer::::url::encode(const ::string & str){}
+   //::string apex_system_layer::url::encode(const ::string & str){}
 
 
    //void apex_system_layer::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema){}

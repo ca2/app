@@ -154,9 +154,17 @@ namespace windowing
 
       ::channel::on_initialize_particle();
 
+   }
+
+
+   void window::initialize_window(::acme::user::interaction* pacmeuserinteraction)
+   {
+
+      ::acme::windowing::window::initialize_window(pacmeuserinteraction);
+
       auto puser = user();
 
-      puser->on_initialize_window_object();
+      puser->on_initialize_window_object(this);
 
       defer_create_synchronization();
 
@@ -219,7 +227,7 @@ namespace windowing
 
       //m_pacmeuserinteractionKeyboardGainingFocusIfAny.release();
 
-      m_puserinteractionMouseCapture.release();
+      m_pacmeuserinteractionMouseCapture.release();
 
       //m_pacmeuserinteractionToKillKeyboardFocus.release();
 
@@ -3820,7 +3828,7 @@ void window::set_oswindow(::oswindow oswindow)
       else
       {
 
-         pinteraction->m_bMessageWindow = true;
+         pinteraction->m_bMessageOnlyWindow = true;
 
          m_pacmeuserinteraction = pinteraction;
 
@@ -4343,7 +4351,7 @@ void window::set_oswindow(::oswindow oswindow)
       //      else
       {
 
-         user_interaction()->m_bMessageWindow = false;
+         user_interaction()->m_bMessageOnlyWindow = false;
 
          //auto pwindowing = windowing();
          user_send([&]()
@@ -4819,7 +4827,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       //::windowing::window_base::last_install_message_routing(pchannel);
 
-      if (!user_interaction()->m_bMessageWindow)
+      if (!user_interaction()->m_bMessageOnlyWindow)
       {
 
          //MESSAGE_LINK(e_message_redraw, pchannel, this, &window::_001OnRedraw);
@@ -5398,7 +5406,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      m_puserinteractionMouseCapture.release();
+      m_pacmeuserinteractionMouseCapture.release();
 
    }
 
@@ -5424,7 +5432,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       //#ifdef WINDOWS
 
-      if (!user_interaction()->m_bMessageWindow)
+      if (!user_interaction()->m_bMessageOnlyWindow)
       {
 
          MESSAGE_LINK(e_message_capture_changed, pchannel, this, &window::_001OnCaptureChanged);
@@ -6412,7 +6420,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       }
 
-      if (m_puserinteractionMouseCapture)
+      if (m_pacmeuserinteractionMouseCapture)
       {
 
          //::string strType = ::type(m_puserinteractionMouseCapture).name();
@@ -6421,14 +6429,21 @@ void window::set_oswindow(::oswindow oswindow)
 
          //information() << "omousemsg pwnd (B) : " << (::iptr) pmouse->m_pwindow.m_p;
 
-         m_puserinteractionMouseCapture->route_as_parent_mouse_message(pmouse);
+         ::cast < ::user::interaction > puserinteractionMouseCapture = m_pacmeuserinteractionMouseCapture;
 
-         //information() << "on_mouse_message (capture): " << pmouse->m_pointAbsolute;
-
-         if (!pmouse->m_bRet && m_puserinteractionMouseCapture)
+         if (puserinteractionMouseCapture)
          {
 
-            m_puserinteractionMouseCapture->on_child_from_point_mouse_message_routing(pmouse);
+            puserinteractionMouseCapture->route_as_parent_mouse_message(pmouse);
+
+            //information() << "on_mouse_message (capture): " << pmouse->m_pointAbsolute;
+
+            if (!pmouse->m_bRet && puserinteractionMouseCapture)
+            {
+
+               puserinteractionMouseCapture->on_child_from_point_mouse_message_routing(pmouse);
+
+            }
 
          }
 
@@ -8961,7 +8976,7 @@ void window::set_oswindow(::oswindow oswindow)
          if (user_interaction())
          {
 
-            if (!user_interaction()->m_bMessageWindow)
+            if (!user_interaction()->m_bMessageOnlyWindow)
             {
 
                m_pcsDisplay = __raw_new critical_section();
@@ -10241,9 +10256,11 @@ void window::set_oswindow(::oswindow oswindow)
 #ifdef MORE_LOG
                debug() << "defer_do_graphics _000TopCallOnDraw";
 #endif
+               ///xxxopengl  user_interaction()->_000TopCallOnDraw(pgraphics);
+
                user_interaction()->_000TopCallOnDraw(pgraphics);
 
-               //user_interaction()->_000CallOnDraw(pgraphics);
+               ////user_interaction()->_000CallOnDraw(pgraphics);
 
                //                  if (!bDraw && m_redrawa.has_element())
                //                  {
@@ -10296,6 +10313,8 @@ void window::set_oswindow(::oswindow oswindow)
          m_sizeLastBuffer = pbufferitem->m_sizeBufferItemDraw;
 
          //}
+
+         pgraphics->on_end_draw();
 
          if (m_pgraphicsgraphics)
          {
@@ -10972,7 +10991,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       this->set_mouse_capture();
 
-      m_puserinteractionMouseCapture = puserinteraction;
+      m_pacmeuserinteractionMouseCapture = puserinteraction;
 
    }
 
@@ -10996,7 +11015,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       //}
 
-      m_puserinteractionMouseCapture.release();
+      m_pacmeuserinteractionMouseCapture.release();
 
       return true;
 

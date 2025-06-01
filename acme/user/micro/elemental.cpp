@@ -126,7 +126,7 @@ namespace micro
    void elemental::set_mouse_capture()
    {
 
-      acme_windowing_window()->m_pacmeuserinteractionCapture = this;
+      acme_windowing_window()->m_pacmeuserinteractionMouseCapture = this;
 
       acme_windowing_window()->set_mouse_capture();
 
@@ -159,7 +159,7 @@ namespace micro
 
       }
 
-      return acme_windowing_window()->m_pacmeuserinteractionCapture == this;
+      return acme_windowing_window()->m_pacmeuserinteractionMouseCapture == this;
 
    }
 
@@ -167,10 +167,10 @@ namespace micro
    void elemental::release_mouse_capture()
    {
 
-      if (acme_windowing_window()->m_pacmeuserinteractionCapture == this)
+      if (acme_windowing_window()->m_pacmeuserinteractionMouseCapture == this)
       {
 
-         acme_windowing_window()->m_pacmeuserinteractionCapture.release();
+         acme_windowing_window()->m_pacmeuserinteractionMouseCapture.release();
 
          acme_windowing_window()->release_mouse_capture();
 
@@ -881,13 +881,13 @@ void elemental::draw_children(::nano::graphics::device* pmicrodevice)
 
       }
 
-      if (acme_windowing_window()->m_pacmeuserinteractionCapture
-         && acme_windowing_window()->m_pacmeuserinteractionCapture != this)
+      if (acme_windowing_window()->m_pacmeuserinteractionMouseCapture
+         && acme_windowing_window()->m_pacmeuserinteractionMouseCapture != this)
       {
 
          ::pointer<::micro::elemental> pelemental;
 
-         pelemental = acme_windowing_window()->m_pacmeuserinteractionCapture;
+         pelemental = acme_windowing_window()->m_pacmeuserinteractionMouseCapture;
 
          if (pelemental)
          {
@@ -959,13 +959,13 @@ void elemental::back_on_mouse_move(::user::mouse* pmouse)
 
    }
 
-   if (acme_windowing_window()->m_pacmeuserinteractionCapture
-      && acme_windowing_window()->m_pacmeuserinteractionCapture != this)
+   if (acme_windowing_window()->m_pacmeuserinteractionMouseCapture
+      && acme_windowing_window()->m_pacmeuserinteractionMouseCapture != this)
    {
 
       ::pointer<::micro::elemental> pelemental;
 
-      pelemental = acme_windowing_window()->m_pacmeuserinteractionCapture;
+      pelemental = acme_windowing_window()->m_pacmeuserinteractionMouseCapture;
 
       if (pelemental)
       {

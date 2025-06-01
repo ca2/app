@@ -1076,12 +1076,29 @@ void memory_base::copy_to(void * pdata, memsize s) const
 }
 
 
-void memory_base::set_data(void *pdata, memsize uiSize)
+void memory_base::set_data(const void *pdata, memsize uiSize)
 {
 
    set_size(uiSize);
 
    ::memory_copy(data(), pdata, (size_t)uiSize);
+
+}
+
+
+void memory_base::set_at(::collection::index i, const void * pdata, memsize uiSize)
+{
+
+   auto minExpectedSize = i + uiSize;
+
+   if (this->size() < minExpectedSize)
+   {
+
+      this->set_size(minExpectedSize);
+
+   }
+
+   ::memory_copy(data() + i, pdata, (size_t)uiSize);
 
 }
 
@@ -1105,7 +1122,7 @@ void memory_base::zero(memsize iStart, memsize uiSize)
 }
 
 
-void memory_base::eat_begin(void * pdata, memsize iSize)
+void memory_base::eat_begin(const void * pdata, memsize iSize)
 {
 
    ASSERT(iSize <= this->size());

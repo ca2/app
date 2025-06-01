@@ -19,7 +19,7 @@ namespace userex
       ::pointer<::file::listing>      m_plisting;
       //string_array                     m_straPattern;
       //string_array                     m_straPatternNames;
-      ::array < ::file::file_dialog_filter >          m_filedialogfiltera;
+      ::file::file_dialog_filter       m_filedialogfilter;
       string                           m_strLinkPrefix;
       int                              m_iForkAddDib;
 

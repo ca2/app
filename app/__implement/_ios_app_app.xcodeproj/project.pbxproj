@@ -979,7 +979,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				MARKETING_VERSION = 0.1;
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_BUNDLE_IDENTIFIER = ca2.software.app.app;
+				PRODUCT_BUNDLE_IDENTIFIER = ca2.network.app.app;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -997,7 +997,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				MARKETING_VERSION = 0.1;
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_BUNDLE_IDENTIFIER = ca2.software.app.app;
+				PRODUCT_BUNDLE_IDENTIFIER = ca2.network.app.app;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

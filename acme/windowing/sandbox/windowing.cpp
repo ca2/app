@@ -589,7 +589,7 @@ bool windowing::defer_release_mouse_capture(::thread * pthread, ::acme::windowin
       
    }
    
-   pwindow->m_pacmeuserinteractionCapture.release();
+   pwindow->m_pacmeuserinteractionMouseCapture.release();
    
    m_pwindowMouseCapture.release();
    

@@ -7,8 +7,10 @@
 
 #include <unwind.h>
 #include <dlfcn.h>
+#include <cxxabi.h>
 
-namespace {
+namespace
+{
 
    struct BacktraceState
    {
@@ -33,12 +35,13 @@ namespace {
 
 }
 
-size_t captureBacktrace(void ** buffer, size_t max)
+void captureBacktrace(void ** buffer, int & framecount)
 {
-   BacktraceState state = { buffer, buffer + max };
+   BacktraceState state = { buffer, buffer + framecount };
    _Unwind_Backtrace(unwindCallback, &state);
 
-   return state.current - buffer;
+   framecount = state.current - buffer;
+
 }
 
 void dumpBacktrace(string & str, void ** buffer, size_t count)
@@ -52,20 +55,52 @@ void dumpBacktrace(string & str, void ** buffer, size_t count)
          symbol = info.dli_sname;
       }
 
-      string strLine;
-      strLine.formatf("#02%d: 0x%" PRIXPTR " %s\n", idx, addr, symbol);
-      str += strLine;
+      int status = 0;
+      char *demangled = nullptr;
+      if(symbol) {
+         char *demangled = __cxxabiv1::__cxa_demangle(symbol, 0, 0, &status);
 
+      }
+
+
+      string strLine;
+      strLine.formatf("#02%d: 0x%" PRIXPTR " %s\n", idx, addr, (demangled && status == 0) ? demangled : symbol);
+      str += strLine;
+      if (NULL != demangled)
+         free(demangled);
       // os << "  #" << std::setw(2) << idx << ": " << addr << "  " << symbol << "\n";
    }
 }
 
 
-namespace acme
+namespace platform
 {
 
-   
-   void node::defer_update_callstack()
+
+    void node::get_call_stack_frames(void ** stack, int & frame_count)
+    {
+
+#if DISABLE_BACKTRACE
+       frame_count = 0;
+#else
+
+#if defined(FREEBSD) || defined(OPENBSD)
+       const int iMaximumFramesToCapture = 32;
+#else
+       const int iMaximumFramesToCapture = 96;
+#endif
+
+       int iFrameCount = minimum(frame_count, iMaximumFramesToCapture);
+
+       auto frames = ::backtrace(stack, iFrameCount);
+
+       frame_count = frames;
+#endif
+
+    }
+
+
+    void node::defer_update_callstack()
    {
 
    }

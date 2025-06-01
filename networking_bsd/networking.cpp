@@ -1106,6 +1106,13 @@ namespace networking_bsd
    bool networking::reverse_schedule(reverse_cache_item* pitem)
    {
 
+      if (::is_null(pitem->m_paddress))
+      {
+
+         throw ::exception(::error_wrong_state, "reverse_schedule: pitem->m_paddress is null.");
+
+      }
+
       {
 
          _synchronous_lock synchronouslock(this->synchronization());
@@ -1171,7 +1178,7 @@ namespace networking_bsd
    bool networking::reverse(string& hostname, ::networking::address* paddress)
    {
 
-      single_lock synchronouslock(m_pmutexReverseCache, true);
+      _synchronous_lock synchronouslock(m_pmutexReverseCache);
 
       auto& pitem = m_mapReverseCache[paddress->get_display_number()];
 
@@ -1184,7 +1191,7 @@ namespace networking_bsd
 
       }
 
-      pitem = __allocate reverse_cache_item();
+      __construct_new(pitem);
 
       pitem->m_paddress = paddress;
 

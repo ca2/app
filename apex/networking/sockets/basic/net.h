@@ -117,9 +117,6 @@ namespace sockets
 
    /*   bool reverse(string & hostname, ::networking::address * address);
 
-      bool reverse_schedule(reverse_cache_item * pitem);
-
-      bool reverse_sync(reverse_cache_item * pitem);
 
       bool reverse(string & hostname, const string & number);*/
 

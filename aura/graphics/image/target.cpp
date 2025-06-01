@@ -57,6 +57,16 @@ namespace image
    }
 
 
+   void target::set_size(const ::int_size& size)
+   {
+
+      _synchronous_lock synchronouslock(m_pparticleSynchronization);
+
+      m_pimage->create(size);
+
+   }
+
+
    void target::set_image_pixels(const ::image32_t* pimage32, int w, int h, int stride)
    {
 
@@ -139,6 +149,22 @@ namespace image
       }
 
    }
+
+
+   ::image::lock target::no_padded_lock()
+   {
+
+      return m_imagebuffer.no_padding_lock(m_pimage);
+
+   }
+
+
+   //void target::unlock(const ::pixmap* ppixmap)
+   //{
+
+   //   m_imagebuffer.unlock(ppixmap);
+
+   //}
 
 
 } // namespace image

@@ -228,3 +228,43 @@ pixmap & pixmap::operator =(const pixmap & pixmap)
 
 
 
+bool pixmap::create(::memory& memory, const ::int_size& size, int stride)
+{
+
+   if (stride < 0)
+   {
+
+      stride = size.cx() * 4;
+
+   }
+   else if (stride < size.cx() * 4)
+   {
+
+      throw ::exception(::error_bad_argument);
+
+   }
+
+   m_iScan = stride;
+
+   memory.set_size(m_iScan * size.cy());
+
+   m_sizeRaw = size;
+
+   m_size = size;
+
+   m_pimage32Raw = (::image32_t*)memory.data();
+
+   m_pimage32 = (::image32_t*)memory.data();
+
+   return true;
+
+}
+
+
+void pixmap::reference(const pixmap& pixmap)
+{
+
+   memcpy(this, pixmap, sizeof(*this));
+
+}
+

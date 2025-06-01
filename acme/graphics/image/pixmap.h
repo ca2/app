@@ -108,16 +108,7 @@ struct pixmap
 
    inline bool nok() const { return !is_ok(); }
 
-   inline bool create(::memory & memory, const ::int_size & size)
-   {
-      m_iScan = size.cx() * 4;
-      memory.set_size(m_iScan * size.cy());
-      m_sizeRaw = size;
-      m_size = size;
-      m_pimage32Raw = (::image32_t*) memory.data();
-      m_pimage32 = (::image32_t *)memory.data();
-      return true;
-   }
+   bool create(::memory& memory, const ::int_size& size, int stride = -1);
 
    inline ::int_rectangle rectangle() const { return ::int_rectangle(m_point, m_size); }
 
@@ -166,7 +157,7 @@ struct pixmap
    inline pixmap & operator =(const pixmap & pixmap);
    inline pixmap & operator =(const ::int_rectangle & rectangle) { map(rectangle);  return *this; }
 
-
+   void reference(const pixmap& pixmap);
 
    void map(const ::int_rectangle & rectangle)
    {

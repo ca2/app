@@ -2,6 +2,10 @@
 #pragma once
 
 
+#include "aura/graphics/image/buffer.h"
+#include "aura/graphics/image/lock.h"
+
+
 namespace image
 {
 
@@ -15,6 +19,7 @@ namespace image
       ::image::image_pointer							m_pimage;
       ::particle_pointer                        m_pparticleSynchronization;
       ::procedure                               m_callback;
+      ::image::buffer                           m_imagebuffer;
 
 
       target();
@@ -26,10 +31,13 @@ namespace image
 
       virtual void _001OnDraw(::draw2d::graphics_pointer& pgraphics);
 
+      virtual void set_size(const ::int_size & size);
       
       virtual void set_image_pixels(const ::image32_t* pimage32, int w, int h, int stride);
 
       virtual void on_image_pixels();
+
+      virtual ::image::lock no_padded_lock();
 
 
    };

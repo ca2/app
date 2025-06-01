@@ -53,11 +53,11 @@ if(INCLUDE_IMAGING_FREEIMAGE)
 endif()
 
 
-if(INCLUDE_GPU_OPENGL)
-
-    add_subdirectory(gpu_opengl)
-
-endif()
+#if(INCLUDE_GPU_OPENGL)
+#
+#    add_subdirectory(gpu_opengl)
+#
+#endif()
 
 
 

@@ -17,7 +17,13 @@ namespace image
 #include "draw3d/_.h"
 
 
+#include "gpu/_.h"
+
+
 #include "graphics/_.h"
+
+
+#include "graphics3d/_.h"
 
 
 #include "image/_.h"

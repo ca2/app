@@ -133,6 +133,18 @@
     <Filter Include="Header Files\message">
       <UniqueIdentifier>{d91dfb11-60f9-44b0-bd0a-1d2c446ec320}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\graphics\gpu">
+      <UniqueIdentifier>{695d42e7-4697-4baf-92b7-e6651cfcbbef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\graphics3d">
+      <UniqueIdentifier>{685a3900-723d-42b5-a36a-52c0970e540d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\gpu">
+      <UniqueIdentifier>{f598c361-4ba0-498a-afe2-b3da69505de4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\graphics3d">
+      <UniqueIdentifier>{fceacccc-1b0c-4646-83fc-a26fe3f364df}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -692,6 +704,87 @@
     </ClCompile>
     <ClCompile Include="graphics\image\buffer.cpp">
       <Filter>Source Files\graphics\image</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\_.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\approach.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\context.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\cpu_buffer.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\device.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\frame.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\object.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\program.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\render.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\renderer.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\shader.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics3d\camera.cpp">
+      <Filter>Source Files\graphics\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics3d\context.cpp">
+      <Filter>Source Files\graphics\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics3d\engine.cpp">
+      <Filter>Source Files\graphics\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics3d\frame.cpp">
+      <Filter>Source Files\graphics\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics3d\input.cpp">
+      <Filter>Source Files\graphics\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics3d\key_map.cpp">
+      <Filter>Source Files\graphics\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics3d\model.cpp">
+      <Filter>Source Files\graphics\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics3d\renderer.cpp">
+      <Filter>Source Files\graphics\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics3d\scene.cpp">
+      <Filter>Source Files\graphics\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics3d\scene_object.cpp">
+      <Filter>Source Files\graphics\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics3d\scene_system.cpp">
+      <Filter>Source Files\graphics\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\graphics3d\shader.cpp">
+      <Filter>Source Files\graphics\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\graphics3d.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\draw2d.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\face.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\graphics.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1684,6 +1777,111 @@
     </ClInclude>
     <ClInclude Include="graphics\image\lock.h">
       <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\_.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\_constant.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\aaaa_gpu.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\approach.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\context.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\cpu_buffer.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\device.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\frame.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\object.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\program.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\properties.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\render.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\renderer.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\shader.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\types.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics3d\_.h">
+      <Filter>Header Files\graphics\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics3d\aaa_context.h">
+      <Filter>Header Files\graphics\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics3d\camera.h">
+      <Filter>Header Files\graphics\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics3d\engine.h">
+      <Filter>Header Files\graphics\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics3d\frame.h">
+      <Filter>Header Files\graphics\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics3d\input.h">
+      <Filter>Header Files\graphics\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics3d\key_map.h">
+      <Filter>Header Files\graphics\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics3d\model.h">
+      <Filter>Header Files\graphics\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics3d\renderer.h">
+      <Filter>Header Files\graphics\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics3d\scene.h">
+      <Filter>Header Files\graphics\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics3d\scene_object.h">
+      <Filter>Header Files\graphics\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics3d\scene_system.h">
+      <Filter>Header Files\graphics\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics3d\shader.h">
+      <Filter>Header Files\graphics\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics3d\types.h">
+      <Filter>Header Files\graphics\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics3d\utilities.h">
+      <Filter>Header Files\graphics\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\graphics3d.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\character.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\draw2d.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\face.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\graphics.h">
+      <Filter>Header Files\graphics\gpu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

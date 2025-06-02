@@ -152,6 +152,10 @@ namespace aura
 //       //int                                             m_iGcomBackgroundUpdateMillis;
 //
 //
+
+::pointer<::gpu::approach>                        m_pgpu;
+
+
       application();
       ~application() override;
       
@@ -1075,8 +1079,26 @@ void initialize_context() override;
       void on_prompt_write_file(::user::controller * pusercontroller) override;
       
       //::pointer < ::innate_ui::icon > innate_ui_icon(const ::int_size & size) override;
+      virtual ::gpu::approach* get_gpu();
+      virtual ::gpu::approach* gpu();
+      virtual void create_gpu();
 
-      
+      //virtual ::graphics3d::camera get_default_camera();
+
+
+      virtual ::file::path assets_folder();
+
+      virtual ::file::path shaders_folder();
+
+
+      //virtual void initialize_cube(::user::graphics3d* pimpact);
+
+      //virtual void run_application();
+
+      //virtual void on_layout_cube(int cx, int cy);
+
+      virtual ::string graphics3d_get_implementation_name();
+
    };
 
 

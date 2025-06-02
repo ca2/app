@@ -191,6 +191,7 @@ namespace user
 
    //CLASS_DECL_AURA ::user::interaction * message_user_interaction(::user::message * pusermessage);
 
+   class graphics3d;
 
 } // namespace user
 

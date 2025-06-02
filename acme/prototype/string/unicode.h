@@ -17,6 +17,18 @@ CLASS_DECL_ACME string wd32_to_ansi_str(const ::wd32_character * pwsz, character
 
 
 CLASS_DECL_ACME string         get_utf8_char(const ::ansi_character * psz);
+inline bool next_unicode_character(::string & strChar, const ::ansi_character*& psz)
+{
+   strChar = get_utf8_char(psz);
+   if (strChar.is_empty())
+   {
+
+      return false;
+   }
+   psz += strChar.length();
+   return true;
+
+}
 int            get_utf8_char_length(const ::ansi_character * psz);
 string         get_utf8_char(const ::ansi_character * psz, const ::ansi_character * pszEnd);
 ::const_ansi_range get_utf8_char(::const_ansi_range & range);

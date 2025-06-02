@@ -88,6 +88,8 @@ character_count wd32_to_wd16(::wd16_character* psz16, const ::wd32_character* co
 
          *psz16++ = static_cast<::wd16_character>(cp);
 
+         len++;
+
       }
       else if (cp <= 0x10FFFF)
       {
@@ -98,11 +100,15 @@ character_count wd32_to_wd16(::wd16_character* psz16, const ::wd32_character* co
 
          *psz16++ = static_cast<::wd16_character>((cp & 0x3FF) + 0xDC00);
 
+         len += 2;
+
       }
       else
       {
 
          *psz16++ = static_cast<::wd16_character>(0xFFFD);
+
+         len++;
 
       }
 

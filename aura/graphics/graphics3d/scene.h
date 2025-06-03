@@ -21,6 +21,7 @@ namespace graphics3d
       ::pointer < ::graphics3d::engine >     m_pengine;
       ::string                               m_strName;
       scene_object::map				            m_mapObjects;
+      bool                                   m_bInitialized;
       bool                                   m_bLoaded;
       ::gpu::properties                      m_propertiesGlobalUbo;
 

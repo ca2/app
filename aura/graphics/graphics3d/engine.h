@@ -72,6 +72,8 @@ namespace graphics3d
 		float dt() { return m_fFrameTime; }
 
 		//void on_begin_frame() override;
+		virtual void run_offscreen();
+
 		virtual void run();
 
 		

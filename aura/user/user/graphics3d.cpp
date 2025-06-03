@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "graphics3d.h"
+#include "acme/exception/interface_only.h"
 #include "aura/graphics/gpu/context.h"
 #include "aura/graphics/graphics3d/engine.h"
 #include "aura/graphics/graphics3d/input.h"
@@ -250,11 +251,27 @@ namespace user
    }
 
 
+   ::pointer < ::graphics3d::scene > graphics3d::create_main_scene()
+   {
+
+      throw ::interface_only();
+
+      return {};
+
+   }
+
+
    void graphics3d::on_load_engine()
    {
 
       m_pengine->m_pinput->m_fMoveSpeed = 3.f;
       m_pengine->m_pinput->m_fLookSpeed =  1.5f;
+
+      auto psceneMain = create_main_scene();
+
+      m_pengine->set_current_scene(psceneMain);
+
+
 
    }
 

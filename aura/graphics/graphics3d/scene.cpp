@@ -4,6 +4,7 @@
 //#include "context.h"
 #include "engine.h"
 #include "scene.h"
+#include "aura/graphics/gpu/context.h"
 #include "aura/platform/application.h"
 #include "aura/user/user/graphics3d.h"
 
@@ -15,9 +16,11 @@ namespace graphics3d
    scene::scene()
    {
 
+      m_bInitialized = false;
       m_bLoaded = false;
 
    }
+
 
    scene::~scene()
    {
@@ -61,6 +64,15 @@ namespace graphics3d
    
    void scene::defer_load_scene(::gpu::context* pgpucontext)
    {
+
+      if (!m_bInitialized)
+      {
+
+         m_bInitialized = true;
+
+         initialize_scene(pgpucontext->m_pengine);
+
+      }
 
       if (!m_bLoaded)
       {

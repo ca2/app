@@ -114,18 +114,21 @@ namespace user
 
       virtual void defer_initialize_engine(const ::int_rectangle & rectangle);
 
+
+      virtual ::pointer < ::graphics3d::scene > create_main_scene();
+
       virtual void on_load_engine();
 
 
       template < typename SCENE >
-      ::pointer < SCENE> add_scene(const ::scoped_string& scopedstrName)
+      ::pointer < SCENE> create_scene(const ::scoped_string& scopedstrName)
       {
 
          auto pscene = __create_new < SCENE>();
 
          pscene->m_strName = scopedstrName;
 
-         pscene->initialize_scene(m_pengine);
+         //pscene->initialize_scene(m_pengine);
 
          m_pengine->add_scene(pscene);
 

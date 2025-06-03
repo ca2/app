@@ -194,12 +194,8 @@ namespace graphics3d
    }
 
 
-   void engine::run()
+   void engine::run_offscreen()
    {
-
-
-
-
 
       //auto papp = get_app();
 
@@ -423,7 +419,7 @@ namespace graphics3d
             if (m_pgpucontext->m_eoutput == ::gpu::e_output_cpu_buffer)
             {
 
-               run();
+               run_offscreen();
 
             }
 
@@ -497,6 +493,14 @@ namespace graphics3d
       prenderer->blend(prendererSource);
 
       prenderer->soft_restore_context();
+
+   }
+
+
+   void engine::run()
+   {
+
+      throw::exception(error_wrong_state);
 
    }
 

@@ -7,6 +7,7 @@
 #include "shader.h"
 #include "types.h"
 #include "acme/exception/interface_only.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "apex/database/client.h"
@@ -42,19 +43,19 @@ namespace graphics3d
    }
 
 
-   void engine::initialize_engine(::user::graphics3d* pimpact)
+   void engine::initialize_engine(::user::graphics3d* pusergraphics3d)
    {
 
-      m_pimpact = pimpact;
+      m_pusergraphics3d = pusergraphics3d;
 
-      m_pimpact->m_pengine = this;
+      m_pusergraphics3d->m_pengine = this;
 
       m_papproach = m_papplication->get_gpu();
 
       m_pinput = __allocate::graphics3d::input();
-      m_pinput->m_pimpact = m_pimpact;
+      m_pinput->m_pusergraphics3d = m_pusergraphics3d;
       m_pinput->m_pengine = this;
-      m_pinput->m_pkeymap = m_pimpact->m_pkeymap;
+      m_pinput->m_pkeymap = m_pusergraphics3d->m_pkeymap;
 
    }
 
@@ -82,14 +83,20 @@ namespace graphics3d
          // render
          prenderer->on_begin_render(pframe);
 
-         if (m_pscene->global_ubo().size() > 0)
          {
 
-            update_global_ubo(m_pgpucontext);
+            _synchronous_lock synchronouslock(m_pscene->synchronization());
+
+            if (m_pscene->global_ubo().size() > 0)
+            {
+
+               update_global_ubo(m_pgpucontext);
+
+            }
+
+            m_pscene->on_render(m_pgpucontext);
 
          }
-
-         m_pscene->on_render(m_pgpucontext);
 
          prenderer->on_end_render(pframe);
 
@@ -179,7 +186,7 @@ namespace graphics3d
       //m_pcamera->setViewYXZ(m_transform.translation, m_transform.rotation);
 
 
-      float aspect = m_pimpact->getAspectRatio();
+      float aspect = m_pusergraphics3d->getAspectRatio();
 
       m_pcamera->setPerspectiveProjection(glm::radians(50.f), aspect, 0.1f, 100.f);
 
@@ -292,7 +299,7 @@ namespace graphics3d
           glfwSetWindowUserPointer(_window.getGLFWwindow(), &cameraController);*/
           //m_pinput->m_bMouseAbsolute;
 
-      auto pimpact = m_pimpact;
+      ///auto pimpact = m_pusergraphics3d;
 
       m_stdtimepoint = std::chrono::high_resolution_clock::now();
       //while (!_window.shouldClose())
@@ -324,6 +331,23 @@ namespace graphics3d
 
                prenderer->defer_update_renderer();
 
+               if (!m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_callbackOnImagePixels)
+               {
+
+                  m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_callbackOnImagePixels =
+                  [this]()
+                  {
+
+                     m_pusergraphics3d->set_need_redraw();
+
+                     m_pusergraphics3d->post_redraw();
+
+                  };
+
+               }
+
+
+
                try
                {
 
@@ -339,9 +363,9 @@ namespace graphics3d
 
                pdevice->on_top_end_frame();
 
-         }
+            }
 
-      });
+         });
 
       ::pointer <::database::client> pdatabaseclient = m_papplication;
 
@@ -364,14 +388,16 @@ namespace graphics3d
    }
 
 
-   void engine::defer_start(::user::interaction* puserinteraction, const ::int_rectangle& rectanglePlacement)
+   void engine::defer_start(::user::graphics3d* pusergraphics3d, const ::int_rectangle& rectanglePlacement)
    {
+
+      m_pusergraphics3d = pusergraphics3d;
 
       auto papp = get_app();
 
       auto pgpu = papp->get_gpu();
 
-      auto pwindow = puserinteraction->window();
+      auto pwindow = m_pusergraphics3d->window();
 
       ::cast < ::gpu::device > pgpudevice = pgpu->get_device(pwindow, rectanglePlacement);
 
@@ -410,7 +436,7 @@ namespace graphics3d
       pgpucontext->post([this, pgpucontext, rectanglePlacement]()
          {
 
-            m_pimpact->on_load_engine();
+            m_pusergraphics3d->on_load_engine();
 
             m_pgpucontext = pgpucontext;
 
@@ -813,16 +839,12 @@ namespace graphics3d
    }
 
 
-
-
-
    void engine::set_current_scene(::graphics3d::scene* pscene)
    {
 
       m_pscene = pscene;
 
    }
-
 
 
 } // namespace graphics3d

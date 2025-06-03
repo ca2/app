@@ -4,6 +4,7 @@
 //#include "context.h"
 #include "engine.h"
 #include "scene.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/gpu/context.h"
 #include "aura/platform/application.h"
 #include "aura/user/user/graphics3d.h"
@@ -32,6 +33,7 @@ namespace graphics3d
    void scene::on_initialize_scene()
    {
 
+      defer_create_synchronization();
 
    }
 
@@ -64,6 +66,8 @@ namespace graphics3d
    
    void scene::defer_load_scene(::gpu::context* pgpucontext)
    {
+
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (!m_bInitialized)
       {

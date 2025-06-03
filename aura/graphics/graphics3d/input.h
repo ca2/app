@@ -88,7 +88,7 @@ namespace graphics3d
       glm::vec3 getCameraPosition() const;
 
 
-      ::pointer<::user::graphics3d > m_pimpact;
+      ::pointer<::user::graphics3d > m_pusergraphics3d;
       ::pointer<::graphics3d::engine > m_pengine;
       ::pointer<::graphics3d::key_map > m_pkeymap;
 

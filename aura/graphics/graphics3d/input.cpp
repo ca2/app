@@ -194,7 +194,7 @@ namespace graphics3d
    void input::prepare_mouse_input()
    {
 
-      m_pimpact->prepare_mouse_input();
+      m_pusergraphics3d->prepare_mouse_input();
 
    }
 
@@ -202,7 +202,7 @@ namespace graphics3d
    void input::process_mouse_input()
    {
 
-      m_pimpact->process_mouse_input();
+      m_pusergraphics3d->process_mouse_input();
 
    }
 
@@ -210,7 +210,7 @@ namespace graphics3d
    void input::process_keyboard_input()
    {
 
-      m_pimpact->process_keyboard_input();
+      m_pusergraphics3d->process_keyboard_input();
 
    }
 
@@ -401,8 +401,9 @@ namespace graphics3d
 //m_mousestate.m_buttons.left = true;
 //         pmouse->m_p
 
-      double w = m_pimpact->m_iWidth;
-      double h = m_pimpact->m_iHeight;
+      double w = m_pusergraphics3d->m_iWidth;
+
+      double h = m_pusergraphics3d->m_iHeight;
 
       if (m_bLastMouse)
       {
@@ -434,11 +435,12 @@ namespace graphics3d
       }
 
       m_dCursorX = xCursor;
+
       m_dCursorY = yCursor;
 
-      m_pimpact->track_mouse_leave();
+      m_pusergraphics3d->track_mouse_leave();
 
-      m_pimpact->m_pengine->on_mouse_move((float)xCursor, (float)yCursor);
+      m_pusergraphics3d->m_pengine->on_mouse_move((float)xCursor, (float)yCursor);
 
    }
 

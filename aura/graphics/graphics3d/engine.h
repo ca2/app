@@ -32,7 +32,7 @@ namespace graphics3d
 
 		::pointer < ::gpu::approach >					m_papproach;
 		::pointer < ::gpu::context >					m_pgpucontext;
-		::pointer < ::user::graphics3d >				m_pimpact;
+		::pointer < ::user::graphics3d >				m_pusergraphics3d;
 		::string_map < ::pointer < scene > >		m_mapScene;
 		::pointer < scene >								m_pscene;
 		::pointer < ::graphics3d::input >			m_pinput;
@@ -63,7 +63,7 @@ namespace graphics3d
 
 		virtual void create_global_ubo(::gpu::context * pgpucontext);
 
-		virtual void defer_start(::user::interaction * puserinteraction, const ::int_rectangle& rectangle);
+		virtual void defer_start(::user::graphics3d * pusergraphics3d, const ::int_rectangle& rectangle);
 
 		virtual void on_begin_frame();
 

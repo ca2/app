@@ -141,10 +141,10 @@ namespace image
    void target::on_image_pixels()
    {
 
-      if (m_callback)
+      if (m_callbackOnImagePixels)
       {
 
-         m_callback();
+         m_callbackOnImagePixels();
 
       }
 

@@ -18,7 +18,7 @@ namespace image
 
       ::image::image_pointer							m_pimage;
       ::particle_pointer                        m_pparticleSynchronization;
-      ::procedure                               m_callback;
+      ::procedure                               m_callbackOnImagePixels;
       ::image::buffer                           m_imagebuffer;
 
 

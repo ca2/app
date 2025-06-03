@@ -82,7 +82,7 @@ namespace graphics3d
          // render
          prenderer->on_begin_render(pframe);
 
-         if (m_pimpact->global_ubo_block().size() > 0)
+         if (m_pscene->global_ubo().size() > 0)
          {
 
             update_global_ubo(m_pgpucontext);
@@ -104,7 +104,7 @@ namespace graphics3d
    void engine::create_global_ubo(::gpu::context* pgpucontext)
    {
 
-      auto iGlobalUboSize = m_pimpact->global_ubo_block().size();
+      auto iGlobalUboSize = m_pscene->global_ubo().size();
 
       if (iGlobalUboSize > 0)
       {
@@ -406,12 +406,12 @@ namespace graphics3d
    void engine::update_global_ubo(::gpu::context* pgpucontext)
    {
 
-      if (m_pimpact->global_ubo_block().size() > 0)
+      if (m_pscene->global_ubo().size() > 0)
       {
 
          m_pscene->on_update_global_ubo(pgpucontext);
 
-         m_pgpucontext->update_global_ubo(m_pimpact->global_ubo_block());
+         m_pgpucontext->update_global_ubo(m_pscene->global_ubo().m_block);
 
       }
 
@@ -602,7 +602,7 @@ namespace graphics3d
 
          m_bCreatedGlobalUbo = true;
 
-         auto iGlobalUboSize = m_pimpact->global_ubo_block().size();
+         auto iGlobalUboSize = m_pscene->global_ubo().size();
 
          if (iGlobalUboSize > 0)
          {

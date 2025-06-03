@@ -4,6 +4,7 @@
 
 
 #include "apex/platform/app_consumer.h"
+#include "aura/graphics/gpu/properties.h"
 #include "aura/graphics/graphics3d/scene_object.h"
 
 
@@ -21,6 +22,7 @@ namespace graphics3d
       ::string                               m_strName;
       scene_object::map				            m_mapObjects;
       bool                                   m_bLoaded;
+      ::gpu::properties                      m_propertiesGlobalUbo;
 
 
       scene();
@@ -29,6 +31,9 @@ namespace graphics3d
 
       virtual void on_initialize_scene();
       virtual void initialize_scene(::graphics3d::engine * pengine);
+
+
+      virtual ::gpu::properties & global_ubo();
 
 
       virtual ::pointer < ::graphics3d::camera > get_default_camera();

@@ -47,7 +47,7 @@ namespace user
 //      // void dump(dump_context & dumpgpucontext) const override;
       //::int_size size() override;
 
-      virtual ::block global_ubo_block();
+      //virtual ::block global_ubo_block();
 
       void install_message_routing(::channel * pchannel) override;
 

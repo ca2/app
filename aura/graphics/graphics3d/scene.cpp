@@ -43,6 +43,14 @@ namespace graphics3d
    }
 
 
+   ::gpu::properties & scene::global_ubo()
+   {
+
+      return m_propertiesGlobalUbo;
+
+   }
+
+
    ::pointer < ::graphics3d::camera > scene::get_default_camera()
    {
 

@@ -124,12 +124,12 @@ namespace user
    {
 
    }
-   ::block graphics3d::global_ubo_block()
-   {
+   //::block graphics3d::global_ubo()
+   //{
 
-      return {};
+   //   return {};
 
-   }
+   //}
 
    void graphics3d::install_message_routing(::channel* pchannel)
    {
@@ -278,9 +278,6 @@ namespace user
       }
 
    }
-
-
-
 
 
    void graphics3d::on_message_left_button_down(::message::message* pmessage)

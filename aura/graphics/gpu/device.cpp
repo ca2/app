@@ -26,13 +26,6 @@ namespace gpu
    device::device()
    {
 
-      if (t_pgpudevice)
-      {
-
-         throw ::exception(error_wrong_state, "currently only one device per process is supported");
-
-      }
-
       t_pgpudevice = this;
 
       m_bCreated = false;

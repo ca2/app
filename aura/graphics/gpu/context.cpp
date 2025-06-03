@@ -21,6 +21,9 @@
 namespace gpu
 {
 
+
+   extern thread_local device * t_pgpudevice;
+
    context_guard::context_guard(context* pcontext) :
       m_pcontext(pcontext)
    {
@@ -447,6 +450,7 @@ namespace gpu
       _send([this, &startcontext]()
          {
 
+            t_pgpudevice = m_pgpudevice;
 
             initialize_gpu_context(startcontext);
 

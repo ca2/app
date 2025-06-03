@@ -117,7 +117,7 @@ namespace draw2d_gpu
 
          m_pgpucontext->set_placement(rectangle);
 
-         pgpurenderer->defer_update_render_pass();
+         pgpurenderer->defer_update_renderer();
 
          pgpurenderer->on_new_frame();
 

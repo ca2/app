@@ -29,7 +29,16 @@ namespace gpu
 
 		}
 
-		property(const char* pszName, ::gpu::enum_type etype, const property * pproperty, int iSize = 1);
+		property(const char* pszName, const property * pproperty, int iSize = 1);
+		property(const property& property):
+			m_pszName(property.m_pszName),
+			m_etype(property.m_etype),
+			m_pproperties(property.m_pproperties),
+			m_iArraySize(property.m_iArraySize),
+			m_iCachedSize(property.m_iCachedSize),
+			m_iCachedOffset(property.m_iCachedOffset)
+		{
+		}
 
 
 		inline const property* find(const char* pszName) const;
@@ -43,7 +52,7 @@ namespace gpu
 			if (m_etype == e_type_properties_array)
 			{
 
-				return m_pproperties->get_size();
+				return m_pproperties->get_size() * m_iArraySize;
 			}
 			else
 			{
@@ -151,7 +160,7 @@ namespace gpu
 
 			}
 
-			auto iLenItem = ::gpu::get_type_size(p->m_etype);
+			auto iLenItem = p->get_item_size();
 
 			iLen += iLenItem;
 
@@ -251,16 +260,14 @@ namespace gpu
 	public:
 		
 		
-		array < property > m_propertya;
-
-
 		properties_reference(const property* pproperty, const ::block& block)
 		{
 			m_block = block;
+			m_pproperties = pproperty;
 
-			m_propertya.add(*pproperty);
-			m_propertya.add({ nullptr, ::gpu::e_type_none });
-			m_pproperties = m_propertya.data();
+			//m_propertya.add(*pproperty);
+			//m_propertya.add({ nullptr, ::gpu::e_type_none });
+			//m_pproperties = m_propertya.data();
 
 		}
 
@@ -353,9 +360,9 @@ namespace gpu
 	};
 
 
-	inline property::property(const char* pszName, ::gpu::enum_type etype, const property * pproperty, int iSize):
+	inline property::property(const char* pszName,  const property * pproperty, int iSize):
 		m_pszName(pszName), 
-		m_etype(etype),
+		m_etype(::gpu::e_type_properties_array),
 		m_pproperties(pproperty),
 		m_iArraySize(iSize)
 	{
@@ -391,10 +398,10 @@ namespace gpu
 
 		auto pproperty = m_pproperties;
 
-		int iSize = pproperty->get_item_size();
-		int iOffset = iSize * i;
+		int iSize = pproperty->m_pproperties->get_size();
+		int iOffset = iSize * (int) i;
 
-		return { pproperty, m_block(iOffset, iSize) };
+		return { pproperty->m_pproperties, m_block(iOffset, iSize) };
 
 
 	}

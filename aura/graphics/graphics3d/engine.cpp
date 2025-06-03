@@ -597,6 +597,11 @@ namespace graphics3d
 
       //pgpucontext = __allocate context(m_pvulkandevice);
 
+      //          m_prenderer->getRenderPass(),
+        //        globalSetLayout->getDescriptorSetLayout()
+          //  };
+
+      m_pscene->defer_load_scene(m_pgpucontext);
       if (!m_bCreatedGlobalUbo)
       {
 
@@ -614,11 +619,6 @@ namespace graphics3d
 
       }
 
-      //          m_prenderer->getRenderPass(),
-        //        globalSetLayout->getDescriptorSetLayout()
-          //  };
-
-      m_pscene->defer_load_scene(m_pgpucontext);
 
    }
 

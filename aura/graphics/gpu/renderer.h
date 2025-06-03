@@ -156,7 +156,7 @@ namespace gpu
       virtual void endDraw(::user::interaction * puserinteraction, ::gpu::renderer * prendererSrc);
 
 
-      virtual void defer_update_render_pass();
+      virtual void defer_update_renderer();
 
       //virtual void on_graphics_end_draw(::user::interaction * puserinteraction);
 

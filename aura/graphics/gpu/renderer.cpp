@@ -599,7 +599,7 @@ namespace gpu
    }
 
 
-   void renderer::defer_update_render_pass()
+   void renderer::defer_update_renderer()
    {
 
 

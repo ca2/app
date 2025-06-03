@@ -29,7 +29,7 @@ namespace gpu
    void cpu_buffer::initialize_cpu_buffer(::gpu::context * pgpucontext)
    {
 
-      m_pgpucontext = this;
+      m_pgpucontext = pgpucontext;
 
    }
 

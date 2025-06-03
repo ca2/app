@@ -614,6 +614,20 @@ namespace gpu
    //}
 
 
+   void renderer::blend(::gpu::renderer* prenderer)
+   {
+
+
+   }
+
+
+   void renderer::soft_restore_context()
+   {
+
+
+   }
+
+
 } // namespace gpu
 
 

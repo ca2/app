@@ -62,7 +62,7 @@ namespace gpu
 
       }
 
-      auto pcontextUpper = pcontext->m_pgpudevice->m_pgpucontextCurrent2.m_p;
+      auto pcontextUpper = pcontext->m_pgpudevice->current_context();
 
       auto itaskUpperCurrent = pcontext->m_pgpudevice->m_itaskCurrentGpuContext;
 

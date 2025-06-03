@@ -160,6 +160,10 @@ namespace gpu
 
       //virtual void on_graphics_end_draw(::user::interaction * puserinteraction);
 
+      virtual void blend(::gpu::renderer* prenderer);
+
+
+      virtual void soft_restore_context();
 
    };
 

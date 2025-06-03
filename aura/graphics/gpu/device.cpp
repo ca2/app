@@ -148,14 +148,14 @@ namespace gpu
    {
 
       if (m_itaskCurrentGpuContext == ::current_itask()
-         && m_pgpucontextCurrent2 == pgpucontext)
+         && pgpucontext == current_context())
       {
 
          return false;
 
       }
 
-      if (::is_set(m_pgpucontextCurrent2))
+      if (::is_set(current_context()))
       {
 
          throw ::exception(error_wrong_state, "device is in use by other context");
@@ -175,7 +175,7 @@ namespace gpu
 
       on_make_current();
 
-      m_pgpucontextCurrent2 = pgpucontext;
+      m_pgpucontextCurrent4 = pgpucontext;
 
       m_itaskCurrentGpuContext = ::current_itask();
 
@@ -187,7 +187,7 @@ namespace gpu
    void device::release_current(::gpu::context* pgpucontext)
    {
 
-      if (!m_pgpucontextCurrent2)
+      if (::is_null(current_context()))
       {
 
          // There is no active context in the device, no nothing to release;
@@ -207,12 +207,18 @@ namespace gpu
          throw ::exception(error_wrong_state, "HGLRC is taken by other thread");
 
       }
+      else if (pgpucontext != current_context())
+      {
+
+         throw ::exception(error_wrong_state, "should release current context");
+
+      }
       
       on_release_current();
 
       m_itaskCurrentGpuContext = {};
 
-      m_pgpucontextCurrent2.release();
+      m_pgpucontextCurrent4.release();
 
    }
 
@@ -602,6 +608,14 @@ namespace gpu
    //   return true;
 
    //}
+
+
+   ::gpu::context* device::current_context()
+   {
+
+      return m_pgpucontextCurrent4;
+
+   }
 
 
    void device::lock_context()

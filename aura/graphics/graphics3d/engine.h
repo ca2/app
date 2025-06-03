@@ -30,18 +30,16 @@ namespace graphics3d
 	public:
 
 
-		::pointer < ::gpu::approach >				m_papproach;
-		::pointer < ::gpu::context >				m_pgpucontext;
+		::pointer < ::gpu::approach >					m_papproach;
+		::pointer < ::gpu::context >					m_pgpucontext;
 		::pointer < ::user::graphics3d >				m_pimpact;
-		::string_map < ::pointer < scene > >	m_mapScene;
-		//::pointer < ::cube::application >			m_p3dapplication;
-		//::pointer < ::gpu::renderer >				m_prenderer;
-		::pointer < scene >							m_pscene;
-		::pointer < ::graphics3d::input >		m_pinput;
-		::pointer < ::graphics3d::camera >		m_pcamera;
+		::string_map < ::pointer < scene > >		m_mapScene;
+		::pointer < scene >								m_pscene;
+		::pointer < ::graphics3d::input >			m_pinput;
+		::pointer < ::graphics3d::camera >			m_pcamera;
 
-		TransformComponent							m_transform;
-		float												m_fFrameTime;
+		TransformComponent								m_transform;
+		float													m_fFrameTime;
 
 		bool													m_bWireframeMode = false;
 
@@ -80,7 +78,7 @@ namespace graphics3d
       virtual void _001OnDraw(::draw2d::graphics_pointer& pgraphics);
 
 
-		virtual void do_frame_step();
+		virtual void do_frame_step(::gpu::context * pgpucontextUpper);
 
 		virtual void _prepare_frame();
 

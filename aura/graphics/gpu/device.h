@@ -28,7 +28,7 @@ namespace gpu
 
       ::pointer < ::gpu::approach >          m_pgpuapproach;
       ::pointer < ::windowing::window >      m_pwindow;
-      ::pointer < ::gpu::context >           m_pgpucontextCurrent2;
+      ::pointer < ::gpu::context >           m_pgpucontextCurrent4;
       //::int_size                             m_sizeNew;
       //::int_size                             m_size;
       //float                                  m_z;
@@ -54,6 +54,8 @@ namespace gpu
       ~device() override;
 
 
+
+      virtual ::gpu::context* current_context();
       //virtual void start_gpu_context(const start_context_t& startcontext);
 
       //virtual void initialize_gpu_context(const start_context_t& startcontext);

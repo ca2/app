@@ -32,7 +32,7 @@ namespace user
       //::task_pointer                            m_ptaskEngine;
       //::pointer < ::image::target >             m_pimagetarget;
 
-      bool		m_bShouldClose;
+      //bool		m_bShouldClose;
       int		m_iWidth;
       int		m_iHeight;
       bool		m_bFrameBufferResized;
@@ -102,7 +102,7 @@ namespace user
 
       //virtual bool is_absolute_mouse_position();
 
-      virtual bool shouldClose();
+      //virtual bool shouldClose();
       //virtual ::int_size size();
       virtual bool wasWindowResized();
       virtual void resetWindowResizedFlag();

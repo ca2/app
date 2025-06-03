@@ -316,6 +316,13 @@ namespace gpu
    void context::create_cpu_buffer(const ::int_size& size)
    {
 
+      if (size.is_empty())
+      {
+
+         return;
+
+      }
+
       send([this, size]()
          {
 

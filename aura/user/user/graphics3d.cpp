@@ -113,8 +113,8 @@ namespace user
 
       m_emouse = ::graphics3d::e_mouse_updateLook;
       m_ekeyboard = ::graphics3d::e_keyboard_updateMovement;
-      //m_bAbsoluteMousePosition = false;
-      m_bShouldClose = false;
+      ////m_bAbsoluteMousePosition = false;
+      //m_bShouldClose = false;
       m_bFrameBufferResized = false;
 
    }
@@ -578,12 +578,12 @@ namespace user
    //}
 
 
-   bool graphics3d::shouldClose()
-   {
+   //bool graphics3d::shouldClose()
+   //{
 
-      return m_bShouldClose;
+   //   return m_bShouldClose;
 
-   }
+   //}
 
 
    //::int_size container::size()

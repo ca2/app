@@ -3,6 +3,7 @@
 #include "framework.h"
 #include "input.h"
 #include "scene_object.h"
+#include "aura/graphics/gpu/context.h"
 #include "aura/graphics/graphics3d/camera.h"
 #include "aura/graphics/graphics3d/types.h"
 #include "aura/platform/application.h"
@@ -246,7 +247,7 @@ namespace graphics3d
          if (pinput->key(e_key_Exit) == ::user::e_key_state_pressed)
          {
 
-            m_pimpact->m_bShouldClose = true;
+            m_pengine->m_pgpucontext->set_finish();
 
          }
 
@@ -349,7 +350,7 @@ namespace graphics3d
       if (IsKeyPressed(::user::e_key_escape))
       {
 
-         m_pimpact->m_bShouldClose = true;
+         m_pengine->m_pgpucontext->set_finish();
 
       }
 

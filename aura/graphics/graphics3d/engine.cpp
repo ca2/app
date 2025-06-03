@@ -97,7 +97,6 @@ namespace graphics3d
 
       }
 
-
    }
 
 
@@ -304,16 +303,49 @@ namespace graphics3d
 
       set_ok_flag();
 
-      while (!pimpact->m_bShouldClose && task_get_run())
-      {
+      m_pgpucontext->send([this]()
+         {
 
-         task_iteration();
+            while (task_get_run())
+            {
 
-         do_frame_step(nullptr);
+               task_iteration();
 
-         m_pgpucontext->m_pgpudevice->on_top_end_frame();
+               if (m_rectanglePlacementNew.is_empty())
+               {
 
-      }
+                  continue;
+
+               }
+
+               ::gpu::context_guard guard(m_pgpucontext);
+
+               m_pgpucontext->make_current();
+
+               m_pgpucontext->set_placement(m_rectanglePlacementNew);
+
+               auto prenderer = m_pgpucontext->get_renderer(::gpu::e_scene_3d);
+
+               prenderer->defer_update_renderer();
+
+               try
+               {
+
+                  m_pgpucontext->m_pengine->_do_frame_step();
+
+               }
+               catch (...)
+               {
+
+               }
+
+               auto pdevice = m_pgpucontext->m_pgpudevice;
+
+               pdevice->on_top_end_frame();
+
+         }
+
+      });
 
       ::pointer <::database::client> pdatabaseclient = m_papplication;
 
@@ -428,8 +460,6 @@ namespace graphics3d
 
       }
 
-      m_pgpucontext->set_placement(m_rectanglePlacementNew);
-
       ::gpu::rear_guard rear_guard(pcontext);
 
       m_pgpucontext->send([this]()
@@ -438,6 +468,8 @@ namespace graphics3d
             ::gpu::context_guard guard(m_pgpucontext);
 
             m_pgpucontext->make_current();
+
+            m_pgpucontext->set_placement(m_rectanglePlacementNew);
 
             auto prenderer = m_pgpucontext->get_renderer(::gpu::e_scene_3d);
 

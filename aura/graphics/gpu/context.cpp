@@ -323,7 +323,7 @@ namespace gpu
 
       }
 
-      send([this, size]()
+      _send([this, size]()
          {
 
             ::cast < device > pgpudevice = m_pgpudevice;

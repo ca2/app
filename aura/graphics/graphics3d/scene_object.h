@@ -89,3 +89,27 @@ namespace graphics3d
 
 
 
+
+
+//
+//struct alignas(16) PointLight {
+//	DirectX::XMFLOAT4 position;
+//	DirectX::XMFLOAT4 color;
+//};
+//
+//struct alignas(16) GlobalUbo {
+//	DirectX::XMMATRIX projection;
+//	DirectX::XMMATRIX view;
+//	DirectX::XMMATRIX invView;
+//	DirectX::XMFLOAT4 ambientLightColor;
+//	PointLight pointLights[10];
+//	int numLights;
+//	int padding1;
+//	int padding2;
+//	int padding3;
+//};
+//
+//struct alignas(16) ObjectMatrices {
+//	DirectX::XMMATRIX modelMatrix;
+//	DirectX::XMMATRIX normalMatrix;
+//};

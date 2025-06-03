@@ -21,9 +21,19 @@
 namespace gpu
 {
 
+   thread_local device* t_pgpudevice = nullptr;
 
    device::device()
    {
+
+      if (t_pgpudevice)
+      {
+
+         throw ::exception(error_wrong_state, "currently only one device per process is supported");
+
+      }
+
+      t_pgpudevice = this;
 
       m_bCreated = false;
 
@@ -801,6 +811,28 @@ namespace gpu
 
    }
 
+   int device::get_type_size(::gpu::enum_type etype)
+   {
+
+      switch (etype)
+      {
+      case e_type_int: return sizeof(int);
+      case e_type_float: return sizeof(float);
+      case e_type_seq4: return sizeof(glm::vec4);
+      case e_type_mat4: return sizeof(glm::mat4);
+      default:
+         throw ::exception(error_wrong_state);
+
+      }
+      
+   }
+
+   void device::set_mat4(void* p, const ::glm::mat4& mat4)
+   {
+
+      *((::glm::mat4*)p) = mat4;
+
+   }
 
    //void device::set_matrix_uniform(const ::gpu::payload& payloadMatrix)
    //{

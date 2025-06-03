@@ -1471,6 +1471,7 @@
     <ClCompile Include="graphics\gpu\graphics.cpp" />
     <ClCompile Include="graphics\gpu\object.cpp" />
     <ClCompile Include="graphics\gpu\program.cpp" />
+    <ClCompile Include="graphics\gpu\properties.cpp" />
     <ClCompile Include="graphics\gpu\render.cpp" />
     <ClCompile Include="graphics\gpu\renderer.cpp" />
     <ClCompile Include="graphics\gpu\shader.cpp" />

@@ -1,25 +1,20 @@
 // Created by camilo on 2025-05-19 05:39 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "_.h"
+#include "device.h"
 
 
 namespace gpu
 {
 
 
+   extern thread_local device* t_pgpudevice;
+
+
    CLASS_DECL_AURA int get_type_size(enum_type e)
    {
 
-      switch (e)
-      {
-      case e_type_int: return sizeof(int);
-      case e_type_float: return sizeof(float);
-      case e_type_seq4: return sizeof(float) * 4;
-      case e_type_mat4: return sizeof(float) * 16;
-      default:
-         throw ::exception(error_wrong_state);
-
-      }
+      return t_pgpudevice->get_type_size(e);
 
    }
 

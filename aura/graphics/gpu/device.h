@@ -148,6 +148,10 @@ namespace gpu
     
       virtual void on_top_end_frame();
 
+      virtual int get_type_size(::gpu::enum_type etype);
+
+      virtual void set_mat4(void* p, const ::glm::mat4& mat4);
+
 
    };
 

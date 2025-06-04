@@ -80,10 +80,10 @@ namespace gpu
    }
 
 
-   void cpu_buffer::set_pixels(const void* p, int w, int h, int s)
+   void cpu_buffer::set_pixels(const void* p, int w, int h, int s, bool bYSwap)
    {
 
-      m_pimagetarget->set_image_pixels((const ::image32_t*)p, w, h, s);
+      m_pimagetarget->set_image_pixels((const ::image32_t*)p, w, h, s, bYSwap);
 
    }
 

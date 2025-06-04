@@ -130,6 +130,8 @@ namespace user
 
          //pscene->initialize_scene(m_pengine);
 
+         pscene->m_pengine = m_pengine;
+
          m_pengine->add_scene(pscene);
 
          return pscene;

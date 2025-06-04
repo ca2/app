@@ -30,6 +30,8 @@ namespace graphics3d
 	{
 	public:
 
+		::string m_strPath;
+
 		::collection::index m_iId;
 
 		TransformComponent m_transform;

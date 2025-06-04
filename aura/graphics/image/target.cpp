@@ -67,7 +67,7 @@ namespace image
    }
 
 
-   void target::set_image_pixels(const ::image32_t* pimage32, int w, int h, int stride)
+   void target::set_image_pixels(const ::image32_t* pimage32, int w, int h, int stride, bool bYSwap)
    {
 
       ::int_size s(w, h);
@@ -76,7 +76,19 @@ namespace image
 
       m_pimage->create(s);
 
-      m_pimage->image32()->vertical_swap_copy(s, m_pimage->m_iScan, pimage32, stride);
+      if (bYSwap)
+      {
+
+         m_pimage->image32()->vertical_swap_copy(s, m_pimage->m_iScan, pimage32, stride);
+
+      }
+      else
+      {
+
+         m_pimage->image32()->copy(s, m_pimage->m_iScan, pimage32, stride);
+
+      }
+
 
       //}
 

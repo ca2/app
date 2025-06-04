@@ -2,7 +2,8 @@
 // by camilo on 2025-05-17 20:12 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "camera.h"
-
+#include "engine.h"
+#include "aura/platform/application.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -117,7 +118,18 @@ namespace graphics3d
    void camera::setPerspectiveProjection(float fovy, float aspect, float fNear, float fFar) 
    {
 
-      m_matrixProjection = glm::perspective(fovy, aspect, fNear, fFar);
+      if (m_pengine->m_fYScale < 0.f)
+      {
+
+         m_matrixProjection = glm::perspectiveRH_ZO(fovy, aspect, fNear, fFar);
+
+      }
+      else
+      {
+
+         m_matrixProjection = glm::perspective(fovy, aspect, fNear, fFar);
+
+      }
 
       /*assert(glm::abs(aspect - std::numeric_limits<float>::epsilon()) > 0.0f);
       const float tanHalfFovy = tan(fovy / 2.f);
@@ -233,7 +245,15 @@ namespace graphics3d
    glm::mat4 camera::GetViewMatrix() const
    {
 
-      return glm::lookAt(m_locationPosition, m_locationPosition + m_poleFront, m_poleUp);
+      //if (m_pengine->m_fYScale < 0.f)
+      //{
+      //   return glm::lookAtRH(m_locationPosition, m_locationPosition + m_poleFront, m_poleUp);
+      //}
+      //else
+      {
+         return glm::lookAt(m_locationPosition, m_locationPosition + m_poleFront, m_poleUp);
+
+      }
 
    }
 

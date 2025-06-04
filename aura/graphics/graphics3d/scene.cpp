@@ -141,6 +141,8 @@ namespace graphics3d
 
       pobject->m_pmodel = pmodel;
 
+      pobject->m_strPath = path;
+
       return *pobject;
 
    }

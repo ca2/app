@@ -33,7 +33,7 @@ namespace image
 
       virtual void set_size(const ::int_size & size);
       
-      virtual void set_image_pixels(const ::image32_t* pimage32, int w, int h, int stride);
+      virtual void set_image_pixels(const ::image32_t* pimage32, int w, int h, int stride, bool bYSwap);
 
       virtual void on_image_pixels();
 

@@ -67,7 +67,7 @@ namespace graphics3d
 	public:
 
 
-
+		::pointer < ::graphics3d::engine > m_pengine;
 		camera() {};
 		//camera(glm::vec3 position, float yaw, float pitch);
 		//camera(glm::vec3 position, glm::vec3 to, glm::vec3 from);
@@ -99,7 +99,7 @@ namespace graphics3d
 		void ProcessMouseMovement(float xoffset, float yoffset, bool constrainPitch = true);
 		void ProcessKeyboardInput(int direction, float deltaTime);
 
-	
+		//glm::vec3 pole_up();
 		// Update camera vectors
 		void UpdateCameraVectors();
 

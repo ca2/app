@@ -23,6 +23,18 @@
 #include "aura/platform/application.h"
 #include <chrono>
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/quaternion.hpp>
+#include <glm/gtx/quaternion.hpp>
+// Function to flip a mat4 along the Z-axis
+glm::mat4 flipZMat4(const glm::mat4& mat) {
+   // Create a rotation matrix that flips along the Y-axis (180 degrees)
+   glm::mat4 flip = glm::rotate(glm::mat4(1.0f), glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+
+   // Multiply the rotation matrix with the original matrix
+   return flip * mat;
+}
 
 namespace graphics3d
 {
@@ -30,7 +42,7 @@ namespace graphics3d
 
    engine::engine()
    {
-
+      m_fYScale = 1.0f;
       m_bCreatedGlobalUbo = false;
 
    }
@@ -136,6 +148,14 @@ namespace graphics3d
 
    }
 
+   
+   //glm::vec3 engine::camera_pole_up()
+   //{
+   //   
+   //   return { 0.0f, 1.0f, 0.0f };
+
+   //}
+
 
    void engine::on_update_frame()
    {
@@ -192,11 +212,120 @@ namespace graphics3d
 
       m_pcamera->UpdateCameraVectors();
 
-      m_pcamera->m_matrixImpact = glm::lookAt(m_pcamera->m_locationPosition,
-         m_pcamera->m_locationPosition + m_pcamera->m_poleFront,
-         m_pcamera->m_poleWorldUp);
+      //if (m_fYScale < 0)
+      //{
+
+      //   m_pcamera->m_matrixImpact = glm::lookAtRH(m_pcamera->m_locationPosition,
+      //      m_pcamera->m_locationPosition + m_pcamera->m_poleFront,
+      //      m_pcamera->m_poleWorldUp);
+
+      //}
+      //else
+      //{
+
+      glm::mat4 matrixImpact;
+          if (m_fYScale < 0)
+          {
+             matrixImpact=glm::lookAtRH(m_pcamera->m_locationPosition,
+                m_pcamera->m_locationPosition + m_pcamera->m_poleFront,
+                m_pcamera->m_poleWorldUp);
+             //matrixImpact[2][0] = -matrixImpact[2][0];
+             //matrixImpact[2][1] = -matrixImpact[2][1];
+             //matrixImpact[2][2] = -matrixImpact[2][2];
+             //matrixImpact[2][3] = -matrixImpact[2][3];
+          }
+          else
+          {
+             matrixImpact=glm::lookAtRH(m_pcamera->m_locationPosition,
+                m_pcamera->m_locationPosition + m_pcamera->m_poleFront,
+                m_pcamera->m_poleWorldUp);
+
+
+          }
+             m_pcamera->m_matrixImpact = matrixImpact;
+      //}
 
       m_pcamera->m_matrixAntImpact = glm::inverse(m_pcamera->m_matrixImpact);
+
+   }
+
+
+   glm::mat4 engine::model_matrix(TransformComponent& transformcomponent)
+   {
+
+      auto translation = transformcomponent.translation;
+      auto rotation = transformcomponent.rotation;
+      auto scale = transformcomponent.scale;
+
+      scale.z = scale.z * m_fYScale;
+      //glm::mat4 makeViewMatrix(glm::vec3 translation, glm::vec3 rotationEulerDegrees, )
+      //{
+         // Convert degrees to radians
+         //glm::vec3 rotation = glm::radians(rotationEulerDegrees);
+
+         // Scale
+         glm::mat4 S = glm::scale(glm::mat4(1.0f), scale);
+
+         // Rotation (Euler to Quaternion to Matrix)
+         glm::quat q = glm::quat(rotation);
+         glm::mat4 R = glm::toMat4(q);
+
+         // Translation
+         glm::mat4 T = glm::translate(glm::mat4(1.0f), translation);
+
+         // Model matrix (camera transform)
+         glm::mat4 model = T * R * S;
+
+         return model;
+
+         // View matrix is inverse of camera transform
+        // glm::mat4 view = glm::inverse(model);
+
+         //return view;
+      //}
+      //const float c3 = glm::cos(transformcomponent.rotation.z);
+      //const float s3 = glm::sin(transformcomponent.rotation.z);
+      //const float c2 = glm::cos(transformcomponent.rotation.x);
+      //const float s2 = glm::sin(transformcomponent.rotation.x);
+      //const float c1 = glm::cos(transformcomponent.rotation.y);
+      //const float s1 = glm::sin(transformcomponent.rotation.y);
+      //float scalex = transformcomponent.scale.x;
+      //float scaley = transformcomponent.scale.y;
+      //float scalez = m_fYScale * transformcomponent.scale.z;
+      //float translationx = transformcomponent.translation.x;
+      //float translationy = transformcomponent.translation.y;
+      //float translationz = transformcomponent.translation.z;
+      //return glm::mat4{
+      //   {
+      //      scalex * (c1 * c3 + s1 * s2 * s3),
+      //      scalex * (c2 * s3),
+      //      scalex * (c1 * s2 * s3 - c3 * s1),
+      //      0.0f,
+      //   },
+      //   {
+      //      scaley * (c3 * s1 * s2 - c1 * s3),
+      //      scaley * (c2 * c3),
+      //      scaley * (c1 * c3 * s2 + s1 * s3),
+      //      0.0f,
+      //   },
+      //   {
+      //      scalez * (c2 * s1),
+      //      scalez * (-s2),
+      //      scalez * (c1 * c2),
+      //      0.0f,
+      //   },
+      //   {translationx, translationy, translationz, 1.0f}
+      //};
+
+   }
+
+   
+   glm::mat4 engine::normal_matrix(TransformComponent& transformcomponent)
+   {
+
+      auto m = model_matrix(transformcomponent);
+
+      return glm::inverse(m);
 
    }
 
@@ -323,7 +452,7 @@ namespace graphics3d
 
                ::gpu::context_guard guard(m_pgpucontext);
 
-               m_pgpucontext->make_current();
+               //m_pgpucontext->make_current();
 
                m_pgpucontext->set_placement(m_rectanglePlacementNew);
 
@@ -335,14 +464,14 @@ namespace graphics3d
                {
 
                   m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_callbackOnImagePixels =
-                  [this]()
-                  {
+                     [this]()
+                     {
 
-                     m_pusergraphics3d->set_need_redraw();
+                        m_pusergraphics3d->set_need_redraw();
 
-                     m_pusergraphics3d->post_redraw();
+                        m_pusergraphics3d->post_redraw();
 
-                  };
+                     };
 
                }
 

@@ -4,6 +4,7 @@
 
 
 #include "apex/platform/app_consumer.h"
+#include "aura/graphics/graphics3d/camera.h"
 #include "aura/graphics/graphics3d/scene_object.h"
 #include "aura/graphics/gpu/properties.h"
 #include "aura/graphics/gpu/shader.h"
@@ -29,7 +30,7 @@ namespace graphics3d
 	{
 	public:
 
-
+		float m_fYScale;
 		::pointer < ::gpu::approach >					m_papproach;
 		::pointer < ::gpu::context >					m_pgpucontext;
 		::pointer < ::user::graphics3d >				m_pusergraphics3d;
@@ -71,6 +72,9 @@ namespace graphics3d
 
 		float dt() { return m_fFrameTime; }
 
+		virtual glm::mat4 model_matrix(TransformComponent& transformcomponent);
+		virtual glm::mat4 normal_matrix(TransformComponent& transformcomponent);
+
 		//void on_begin_frame() override;
 		virtual void run_offscreen();
 
@@ -96,6 +100,8 @@ namespace graphics3d
 
 		virtual void on_render_frame();
 
+		//virtual glm::vec3 camera_pole_up();
+
 		virtual void on_update_frame();
 
 		virtual ::pointer<model> create_tinyobjloader_model(const ::file::path& path);
@@ -109,7 +115,7 @@ namespace graphics3d
 
 	};
 
-
+	//glm::vec3 camera::pole_up() { return m_pengine->camera_pole_up(); }
 } // namespace cube
 
 

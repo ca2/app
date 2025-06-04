@@ -936,7 +936,7 @@ namespace apex
 
          m_bApplicationFirstRequest = false;
 
-         init_instance();
+         //init_instance();
 
          //if (!init_instance())
          //{

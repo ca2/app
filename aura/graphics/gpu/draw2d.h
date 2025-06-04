@@ -29,6 +29,8 @@ namespace draw2d_gpu
       face* get_face(::write_text::font* pfont);
 
 
+    
+
    };
 
 

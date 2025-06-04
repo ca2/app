@@ -802,9 +802,9 @@ namespace acme
       float windowing::default_screen_points_to_pixels(float fPoints)
       {
 
-         return (int)(fPoints * (get_default_screen_dpi() / 72.0));
-      }
+         return (float)(fPoints * (get_default_screen_dpi() / 72.0));
 
+      }
 
 
    } // namespace windowing

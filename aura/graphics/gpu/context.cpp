@@ -452,12 +452,12 @@ namespace gpu
 
       branch_synchronously();
 
+      m_pgpudevice = startcontext.m_pgpudevice;
+
       rear_guard guard(this);
 
       _send([this, &startcontext]()
          {
-
-            t_pgpudevice = m_pgpudevice;
 
             initialize_gpu_context(startcontext);
 
@@ -481,6 +481,8 @@ namespace gpu
       ASSERT(is_current_task());
 
       m_pgpudevice = startcontext.m_pgpudevice;
+
+      t_pgpudevice = m_pgpudevice;
 
       m_eoutput = startcontext.m_eoutput;
 

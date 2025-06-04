@@ -123,12 +123,7 @@ namespace user
    void main_window::on_message_create(::message::message * pmessage)
    {
 
-      if (is_graphical())
-      {
-
-         defer_set_icon();
-
-      }
+      pmessage->previous();
 
 #if REFERENCING_DEBUGGING
 

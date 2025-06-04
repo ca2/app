@@ -1296,6 +1296,12 @@ namespace aura
 #endif
 
       }
+      else if (strImplementationName == "directx")
+      {
+
+         strImplementationName = "direct2d";
+
+      }
 
       auto & pfactoryDraw2d = factory("draw2d", strImplementationName);
 

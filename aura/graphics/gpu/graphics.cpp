@@ -304,6 +304,20 @@ namespace draw2d_gpu
    }
 
 
+   void graphics::do_on_context(const ::procedure& procedure)
+   {
+     
+      m_pgpucontext->_send([procedure]()
+         {
+
+            procedure();
+
+         });
+
+   }
+
+
+
 } // namespace draw2d_gpu
 
 

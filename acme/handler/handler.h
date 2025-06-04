@@ -33,7 +33,7 @@ namespace handler
 
 
       //Creatable(task);
-
+      bool        m_bReadyToAttendRequests;
       //bool                                            m_bAutoRelease : 1;
       union
       {

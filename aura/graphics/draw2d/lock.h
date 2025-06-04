@@ -40,7 +40,7 @@ namespace draw2d
    {
    public:
 
-
+      bool m_bLocked = false;
       ::draw2d::draw2d * m_pdraw2d;
 
       lock(::particle * pparticle)
@@ -51,7 +51,7 @@ namespace draw2d
          if (m_pdraw2d)
          {
 
-            m_pdraw2d->lock_device();
+            m_bLocked=m_pdraw2d->lock_device();
 
          }
 
@@ -60,13 +60,17 @@ namespace draw2d
       ~lock()
       {
 
-         if(m_pdraw2d)
+         if (m_bLocked)
          {
+            if (m_pdraw2d)
+            {
 
-            m_pdraw2d->unlock_device();
+               m_pdraw2d->unlock_device();
+
+            }
+
 
          }
-
       }
 
    };

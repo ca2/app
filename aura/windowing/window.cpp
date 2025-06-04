@@ -332,7 +332,7 @@ namespace windowing
       //}
 
 
-   void window::message_handler(::message::message * pmessage)
+   void window::message_handler(::message::message* pmessage)
    {
 
       if (pmessage->m_emessage == e_message_post_user)
@@ -395,7 +395,7 @@ namespace windowing
 
       bool bKeyMessage = false;
 
-      ::message::key * pkey = nullptr;
+      ::message::key* pkey = nullptr;
 
       if (::is_null(user_interaction()))
       {
@@ -569,14 +569,14 @@ namespace windowing
       }
 
       if (pmessage->m_emessage == e_message_left_button_down ||
-          pmessage->m_emessage == e_message_left_button_up ||
-          pmessage->m_emessage == e_message_middle_button_down ||
-          pmessage->m_emessage == e_message_middle_button_up ||
-          pmessage->m_emessage == e_message_right_button_down ||
-          pmessage->m_emessage == e_message_right_button_up ||
-          pmessage->m_emessage == e_message_left_button_double_click ||
-          pmessage->m_emessage == e_message_mouse_move ||
-          pmessage->m_emessage == e_message_mouse_wheel)
+         pmessage->m_emessage == e_message_left_button_up ||
+         pmessage->m_emessage == e_message_middle_button_down ||
+         pmessage->m_emessage == e_message_middle_button_up ||
+         pmessage->m_emessage == e_message_right_button_down ||
+         pmessage->m_emessage == e_message_right_button_up ||
+         pmessage->m_emessage == e_message_left_button_double_click ||
+         pmessage->m_emessage == e_message_mouse_move ||
+         pmessage->m_emessage == e_message_mouse_wheel)
       {
 
          auto pmouse = pmessage->m_union.m_pmouse;
@@ -637,7 +637,7 @@ namespace windowing
          if (user_interaction() != nullptr)
          {
 
-            user_interaction()->handle((::topic *)pmessage->m_lparam.m_lparam, nullptr);
+            user_interaction()->handle((::topic*)pmessage->m_lparam.m_lparam, nullptr);
 
          }
          //         else
@@ -709,30 +709,30 @@ namespace windowing
    void window::create_window()
    {
 
-//      if(!user_interaction())
-//      {
-//
-////user_interaction() = m_pacmeuserinteraction;
-//
-//      }
-//
-      //if (::is_window(get_handle()))
-      //{
+      //      if(!user_interaction())
+      //      {
+      //
+      ////user_interaction() = m_pacmeuserinteraction;
+      //
+      //      }
+      //
+            //if (::is_window(get_handle()))
+            //{
 
-      //   DestroyWindow();
+            //   DestroyWindow();
 
-      //}
+            //}
 
-      //      ASSERT(lpszClassName == nullptr || __is_valid_string(lpszClassName) ||
-      //       __is_valid_atom(lpszClassName));
-      //      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszName));
+            //      ASSERT(lpszClassName == nullptr || __is_valid_string(lpszClassName) ||
+            //       __is_valid_atom(lpszClassName));
+            //      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszName));
 
-      // allow modification of several common create parameters
-      //::user::system createstruct;
-      //      pusersystem->m_createstruct.hwndParent = hWndParent;
-      //   pusersystem->m_createstruct.hMenu = hWndParent == nullptr ? nullptr : nIDorHMenu;
+            // allow modification of several common create parameters
+            //::user::system createstruct;
+            //      pusersystem->m_createstruct.hwndParent = hWndParent;
+            //   pusersystem->m_createstruct.hMenu = hWndParent == nullptr ? nullptr : nIDorHMenu;
 
-      //auto puserinteraction = user_interaction();
+            //auto puserinteraction = user_interaction();
 
       auto pusersystem = user_interaction()->m_pusersystem;
 
@@ -815,7 +815,7 @@ namespace windowing
 
       install_message_routing(user_interaction());
 
-      auto pwindowing = (::windowing::windowing *)system()->windowing();
+      auto pwindowing = (::windowing::windowing*)system()->windowing();
       //      
       //      m_pmacoswindowing = dynamic_cast < class windowing * >(pwindowing);
 
@@ -824,12 +824,12 @@ namespace windowing
       //pwindow->this->windowing() = pwindowing;
       //try
       //{
-         main_send([this]()
-            {
+      main_send([this]()
+         {
 
-               _create_window();
+            _create_window();
 
-            });
+         });
 
       //}
       //catch (::exception& e)
@@ -844,7 +844,6 @@ namespace windowing
       //   pexception = __allocate::exception(error_catch_all_exception);
 
       //}
-
 
       user_interaction()->m_ewindowflag |= e_window_flag_window_created;
 
@@ -896,7 +895,7 @@ namespace windowing
    }
 
 
-   void window::set_context_org(draw2d::graphics_pointer & pgraphics)
+   void window::set_context_org(draw2d::graphics_pointer& pgraphics)
    {
 
 
@@ -928,7 +927,7 @@ namespace windowing
       //}
 
 
-   class placement_log * window::placement_log()
+   class placement_log* window::placement_log()
    {
 
       __defer_construct_new(m_pplacementlog);
@@ -978,7 +977,7 @@ namespace windowing
    }
 
 
-   ::windowing::display * window::display()
+   ::windowing::display* window::display()
    {
 
       return m_pdisplay.cast < ::windowing::display>();
@@ -986,7 +985,7 @@ namespace windowing
    }
 
 
-   ::user::copydesk * window::copydesk()
+   ::user::copydesk* window::copydesk()
    {
 
       if (!m_pcopydesk)
@@ -1239,7 +1238,7 @@ namespace windowing
    //}
 
 
-   void window::on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem, ::user::activation_token * puseractivationtoken)
+   void window::on_a_system_menu_item(::operating_system::a_system_menu_item* psystemmenuitem, ::user::activation_token* puseractivationtoken)
    {
 
       ::string strActionName(psystemmenuitem->m_strAtom);
@@ -1329,7 +1328,7 @@ namespace windowing
    }
 
 
-   void window::_on_configure_notify_unlocked(const ::int_rectangle & rectangle)
+   void window::_on_configure_notify_unlocked(const ::int_rectangle& rectangle)
    {
 
       m_pointWindow = rectangle.top_left();
@@ -1341,7 +1340,7 @@ namespace windowing
    }
 
 
-   void window::_on_reposition_notify_unlocked(const ::int_point & point)
+   void window::_on_reposition_notify_unlocked(const ::int_point& point)
    {
 
       m_pointWindow = point;
@@ -1375,38 +1374,38 @@ namespace windowing
 
       message_handler(preposition);
 
-//         on_window_configuration_change();
+      //         on_window_configuration_change();
 
-         //on_window_configure_unlocked();
+               //on_window_configure_unlocked();
 
-         // {
-         //
-         //    auto r = ::int_rectangle(m_pointWindow, m_sizeWindow);
-         //
-         //    _on_configure_notify_unlocked(r);
-         //
-         // }
+               // {
+               //
+               //    auto r = ::int_rectangle(m_pointWindow, m_sizeWindow);
+               //
+               //    _on_configure_notify_unlocked(r);
+               //
+               // }
 
-         // auto puserinteraction = user_interaction();
-         //
-         // puserinteraction->layout().m_statea[::user::e_layout_sketch].m_point2 = p;
-         // puserinteraction->layout().m_statea[::user::e_layout_lading].m_point2 = p;
-         // puserinteraction->layout().m_statea[::user::e_layout_layout].m_point2 = p;
-         // puserinteraction->layout().m_statea[::user::e_layout_design].m_point2 = p;
-         // puserinteraction->layout().m_statea[::user::e_layout_window].m_point2 = p;
-         //
-         // puserinteraction->on_reposition();
+               // auto puserinteraction = user_interaction();
+               //
+               // puserinteraction->layout().m_statea[::user::e_layout_sketch].m_point2 = p;
+               // puserinteraction->layout().m_statea[::user::e_layout_lading].m_point2 = p;
+               // puserinteraction->layout().m_statea[::user::e_layout_layout].m_point2 = p;
+               // puserinteraction->layout().m_statea[::user::e_layout_design].m_point2 = p;
+               // puserinteraction->layout().m_statea[::user::e_layout_window].m_point2 = p;
+               //
+               // puserinteraction->on_reposition();
 
-         // puserinteraction->post([puserinteraction]()
-         //                    {
-         //
-         //                       puserinteraction->defer_save_window_placement();
-         //
-         //                    });
+               // puserinteraction->post([puserinteraction]()
+               //                    {
+               //
+               //                       puserinteraction->defer_save_window_placement();
+               //
+               //                    });
 
-         //on_window_configure_unlocked();
+               //on_window_configure_unlocked();
 
-      //}
+            //}
 
    }
 
@@ -1498,7 +1497,7 @@ namespace windowing
    //}
 
 
-   void window::set_window_text(const ::scoped_string & scopedstr)
+   void window::set_window_text(const ::scoped_string& scopedstr)
    {
 
       throw ::interface_only();
@@ -1542,7 +1541,7 @@ namespace windowing
    //   }
 
 
-   void window::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void window::on_layout(::draw2d::graphics_pointer& pgraphics)
    {
 
       throw ::interface_only();
@@ -1577,7 +1576,7 @@ namespace windowing
    }
 
 
-   bool window::window_rect_from_os(::int_rectangle * prectangle)
+   bool window::window_rect_from_os(::int_rectangle* prectangle)
    {
 
       return false;
@@ -1585,7 +1584,7 @@ namespace windowing
    }
 
 
-   bool window::client_rect_from_os(::int_rectangle * prectangle)
+   bool window::client_rect_from_os(::int_rectangle* prectangle)
    {
 
       return false;
@@ -1593,7 +1592,7 @@ namespace windowing
    }
 
 
-   void window::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
+   void window::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
    {
 
       throw ::interface_only();
@@ -1617,7 +1616,7 @@ namespace windowing
    //   }
 
 
-::oswindow window::oswindow() const
+   ::oswindow window::oswindow() const
    {
 
       throw interface_only();
@@ -1627,7 +1626,7 @@ namespace windowing
    }
 
 
-void window::set_oswindow(::oswindow oswindow)
+   void window::set_oswindow(::oswindow oswindow)
    {
 
       _set_oswindow(oswindow);
@@ -1673,7 +1672,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   bool window::GetUpdateRect(::int_rectangle * prectangle, bool bErase)
+   bool window::GetUpdateRect(::int_rectangle* prectangle, bool bErase)
    {
 
       throw ::interface_only();
@@ -1683,7 +1682,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   int window::GetUpdateRgn(::draw2d::region * pRgn, bool bErase)
+   int window::GetUpdateRgn(::draw2d::region* pRgn, bool bErase)
    {
 
       return 0;
@@ -1698,28 +1697,28 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::InvalidateRect(const ::int_rectangle * rectangle, bool bErase)
+   void window::InvalidateRect(const ::int_rectangle* rectangle, bool bErase)
    {
 
 
    }
 
 
-   void window::InvalidateRgn(::draw2d::region * pRgn, bool bErase)
+   void window::InvalidateRgn(::draw2d::region* pRgn, bool bErase)
    {
 
 
    }
 
 
-   void window::ValidateRect(const ::int_rectangle * prectangle)
+   void window::ValidateRect(const ::int_rectangle* prectangle)
    {
 
 
    }
 
 
-   void window::ValidateRgn(::draw2d::region * pRgn)
+   void window::ValidateRgn(::draw2d::region* pRgn)
    {
 
 
@@ -1780,7 +1779,7 @@ void window::set_oswindow(::oswindow oswindow)
 
 
    // the active interaction_impl applies only to top-level (frame windows)
-   ::user::interaction * window::get_active_window()
+   ::user::interaction* window::get_active_window()
    {
 
       throw ::interface_only();
@@ -1811,7 +1810,7 @@ void window::set_oswindow(::oswindow oswindow)
 
 
    // the foreground interaction_impl applies only to top-level windows (frame windows)
-   void window::set_foreground_window(::user::activation_token * puseractivationtoken)
+   void window::set_foreground_window(::user::activation_token* puseractivationtoken)
    {
 
       throw ::interface_only();
@@ -1819,7 +1818,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::_set_foreground_window_unlocked(::user::activation_token * puseractivationtoken)
+   void window::_set_foreground_window_unlocked(::user::activation_token* puseractivationtoken)
    {
 
       throw ::interface_only();
@@ -1827,7 +1826,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::user::interaction * window::get_foreground_window()
+   ::user::interaction* window::get_foreground_window()
    {
 
       throw ::interface_only();
@@ -1854,7 +1853,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::user::interaction * window::get_desktop_window()
+   ::user::interaction* window::get_desktop_window()
    {
 
       throw ::interface_only();
@@ -1864,7 +1863,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::windowing::window * window::get_next_window(unsigned int nFlag)
+   ::windowing::window* window::get_next_window(unsigned int nFlag)
    {
 
       throw ::interface_only();
@@ -1874,7 +1873,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::windowing::window * window::get_top_window()
+   ::windowing::window* window::get_top_window()
    {
 
       throw ::interface_only();
@@ -1884,7 +1883,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::windowing::window * window::get_window(unsigned int nCmd)
+   ::windowing::window* window::get_window(unsigned int nCmd)
    {
 
       throw ::interface_only();
@@ -1894,7 +1893,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::windowing::window * window::get_last_active_popup()
+   ::windowing::window* window::get_last_active_popup()
    {
 
       throw ::interface_only();
@@ -1924,7 +1923,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   void window::set_parent(::windowing::window * pwindowNewParent)
+   void window::set_parent(::windowing::window* pwindowNewParent)
    {
 
       throw ::interface_only();
@@ -1932,7 +1931,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::windowing::window * window::window_get_owner()
+   ::windowing::window* window::window_get_owner()
    {
 
       throw ::interface_only();
@@ -1952,7 +1951,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::set_owner(::windowing::window * pwindowNewOwner)
+   void window::set_owner(::windowing::window* pwindowNewOwner)
    {
 
       throw ::interface_only();
@@ -1970,7 +1969,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::SetCaretPos(const ::int_point & point)
+   void window::SetCaretPos(const ::int_point& point)
    {
 
       throw ::interface_only();
@@ -2002,7 +2001,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::pointer<::windowing::icon> window::load_icon(const ::payload & payloadFile)
+   ::pointer<::windowing::icon> window::load_icon(const ::payload& payloadFile)
    {
 
       auto picon = __øcreate<icon>();
@@ -2021,7 +2020,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::set_icon(::windowing::icon * picon)
+   void window::set_icon(::windowing::icon* picon)
    {
 
       m_picon = picon;
@@ -2045,7 +2044,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   ::windowing::cursor * window::get_mouse_cursor()
+   ::windowing::cursor* window::get_mouse_cursor()
    {
 
       return m_pcursor;
@@ -2077,7 +2076,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::on_set_parent(::user::interaction * pinteraction)
+   void window::on_set_parent(::user::interaction* pinteraction)
    {
 
       throw ::interface_only();
@@ -2085,7 +2084,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   bool window::get_rect_normal(::int_rectangle * prectangle)
+   bool window::get_rect_normal(::int_rectangle* prectangle)
    {
 
       throw ::interface_only();
@@ -2111,7 +2110,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::_window_show_change_visibility(::e_display edisplay, const ::user::activation & useractivation)
+   void window::_window_show_change_visibility(::e_display edisplay, const ::user::activation& useractivation)
    {
 
       throw ::interface_only();
@@ -2236,7 +2235,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   bool window::is_child_of(const ::windowing::window * pwindowAscendantCandidate) const
+   bool window::is_child_of(const ::windowing::window* pwindowAscendantCandidate) const
    {
 
       return false;
@@ -2260,13 +2259,13 @@ void window::set_oswindow(::oswindow oswindow)
    //   }
 
 
-   void window::full_screen(const ::int_rectangle & rectangle)
+   void window::full_screen(const ::int_rectangle& rectangle)
    {
 
    }
 
 
-   ::windowing::windowing * window::windowing()
+   ::windowing::windowing* window::windowing()
    {
 
       return system()->windowing();
@@ -2346,7 +2345,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   bool window::client_to_screen(::int_point * ppoint)
+   bool window::client_to_screen(::int_point* ppoint)
    {
 
       return true;
@@ -2354,7 +2353,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   bool window::screen_to_client(::int_point * ppoint)
+   bool window::screen_to_client(::int_point* ppoint)
    {
 
       return true;
@@ -2439,9 +2438,9 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   bool window::on_set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy,
-                                       const ::user::activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize,
-                                       ::e_display edisplay)
+   bool window::on_set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy,
+      const ::user::activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize,
+      ::e_display edisplay)
    {
 
       return set_window_position(zorder, x, y, cx, cy, useractivation, bNoZorder, bNoMove, bNoSize, edisplay);
@@ -2449,9 +2448,9 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   bool window::set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy,
-                                    const ::user::activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize,
-                                    ::e_display edisplay)
+   bool window::set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy,
+      const ::user::activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize,
+      ::e_display edisplay)
    {
 
       bool bOk = false;
@@ -2461,9 +2460,9 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   bool window::_set_window_position(const class ::zorder & zorder, int x, int y, int cx, int cy,
-                                     const ::user::activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize,
-                                     ::e_display edisplay, unsigned int nOverrideFlags)
+   bool window::_set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy,
+      const ::user::activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize,
+      ::e_display edisplay, unsigned int nOverrideFlags)
    {
 
       return true;
@@ -2475,10 +2474,10 @@ void window::set_oswindow(::oswindow oswindow)
    {
 
       // Request / Incoming changes / Prepare Internal Buffer
-      auto & stateOutput = user_interaction()->layout().m_statea[::user::e_layout_design];
+      auto& stateOutput = user_interaction()->layout().m_statea[::user::e_layout_design];
 
       // Current/Previous Window State
-      auto & stateWindow = user_interaction()->layout().m_statea[::user::e_layout_window];
+      auto& stateWindow = user_interaction()->layout().m_statea[::user::e_layout_window];
 
       //bool bSetWindowPosition = true;
 
@@ -2509,9 +2508,9 @@ void window::set_oswindow(::oswindow oswindow)
       {
 
          informationf("::windowing::window::configure_window_unlocked bVisibilityChange(%d) bZ(%d) bActivation(%d)",
-                     (int)bVisibilityChange,
-                     (int)bZ,
-                     (int)(activationOutput.is_change_request()));
+            (int)bVisibilityChange,
+            (int)bZ,
+            (int)(activationOutput.is_change_request()));
 
          information() << "::windowing::window::configure_window_unlocked displayRequest : " << edisplayOutput;
 
@@ -2537,7 +2536,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   bool window::strict_set_window_position_unlocked(bool & bChangedPosition, bool & bChangedSize)
+   bool window::strict_set_window_position_unlocked(bool& bChangedPosition, bool& bChangedSize)
    {
 
       if (!user_interaction())
@@ -2554,7 +2553,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   bool window::strict_set_window_position_unlocked(bool & bChangedPosition, bool & bChangedSize, const ::int_rectangle & rectangle)
+   bool window::strict_set_window_position_unlocked(bool& bChangedPosition, bool& bChangedSize, const ::int_rectangle& rectangle)
    {
 
       auto pointOutput = rectangle.origin();
@@ -2630,9 +2629,9 @@ void window::set_oswindow(::oswindow oswindow)
    bool window::set_window_position_unlocked()
    {
 
-      auto & stateSketch = user_interaction()->layout().m_statea[::user::e_layout_sketch];
+      auto& stateSketch = user_interaction()->layout().m_statea[::user::e_layout_sketch];
 
-      auto & stateDesign = user_interaction()->layout().m_statea[::user::e_layout_design];
+      auto& stateDesign = user_interaction()->layout().m_statea[::user::e_layout_design];
 
       if (stateSketch.m_size != stateDesign.m_size || stateSketch.origin() != stateDesign.origin())
       {
@@ -2650,13 +2649,13 @@ void window::set_oswindow(::oswindow oswindow)
       if (bMove)
       {
 
-         if(system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
+         if (system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
          {
 
             bMove = false;
 
          }
-         
+
          //information() << "Design.point != Window.point " << pointDesign << ", " << pointWindow;
 
       }
@@ -2670,7 +2669,7 @@ void window::set_oswindow(::oswindow oswindow)
       if (bSize)
       {
 
-         if(system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
+         if (system()->acme_windowing()->get_ewindowing() == ::windowing::e_windowing_wayland)
          {
 
             bSize = false;
@@ -2683,10 +2682,10 @@ void window::set_oswindow(::oswindow oswindow)
       }
 
       // Request / Incoming changes / Prepare Internal Buffer
-      auto & stateOutput = user_interaction()->layout().m_statea[::user::e_layout_design];
+      auto& stateOutput = user_interaction()->layout().m_statea[::user::e_layout_design];
 
       // Current/Previous Window State
-      auto & stateWindow = user_interaction()->layout().m_statea[::user::e_layout_window];
+      auto& stateWindow = user_interaction()->layout().m_statea[::user::e_layout_window];
 
       //bool bSetWindowPosition = true;
 
@@ -2732,11 +2731,11 @@ void window::set_oswindow(::oswindow oswindow)
 
          ::int_rectangle r(pointDesign, sizeOutput);
 
-         debug()  << "bMove : " << bMove
-                        << ", bSize : " << bSize
-                        << ", bVisibilityChange : " << bVisibilityChange
-                        << ", bZ : " << bZ
-                        << ", bActivate : " << bActivate;
+         debug() << "bMove : " << bMove
+            << ", bSize : " << bSize
+            << ", bVisibilityChange : " << bVisibilityChange
+            << ", bZ : " << bZ
+            << ", bActivate : " << bActivate;
 
 
          //information() << "::windowing::window::_set_window_position_unlocked l:" << r.left() << ", t:" << r.top()
@@ -2803,9 +2802,9 @@ void window::set_oswindow(::oswindow oswindow)
 
 
 
-   bool window::_set_window_position_unlocked(const class ::zorder & zorder, int x, int y, int cx, int cy,
-                                              const ::user::activation & useractivation, bool bNoZorder, bool bNoMove,
-                                              bool bNoSize, ::e_display edisplay)
+   bool window::_set_window_position_unlocked(const class ::zorder& zorder, int x, int y, int cx, int cy,
+      const ::user::activation& useractivation, bool bNoZorder, bool bNoMove,
+      bool bNoSize, ::e_display edisplay)
    {
 
       bool bOk1 = _configure_window_unlocked(zorder, useractivation, bNoZorder, edisplay);
@@ -2825,8 +2824,8 @@ void window::set_oswindow(::oswindow oswindow)
 
 
    bool
-      window::_configure_window_unlocked(const class ::zorder & zorder, const ::user::activation & useractivation, bool bNoZorder,
-                                         ::e_display edisplay)
+      window::_configure_window_unlocked(const class ::zorder& zorder, const ::user::activation& useractivation, bool bNoZorder,
+         ::e_display edisplay)
    {
 
       bool bOk = false;
@@ -2935,7 +2934,7 @@ void window::set_oswindow(::oswindow oswindow)
    //   }
 
 
-   void window::frame_toggle_restore(::user::activation_token * puseractivationtoken)
+   void window::frame_toggle_restore(::user::activation_token* puseractivationtoken)
    {
 
       user_interaction()->frame_toggle_restore(puseractivationtoken);
@@ -3146,7 +3145,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::on_text(const ::ansi_character * pansisz, character_count length)
+   void window::on_text(const ::ansi_character* pansisz, character_count length)
 
    {
 
@@ -3162,14 +3161,14 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::on_text(const ::wd16_character * pwd16sz, character_count length)
+   void window::on_text(const ::wd16_character* pwd16sz, character_count length)
    {
 
 
    }
 
 
-   void window::on_text(const ::wd32_character * pwd32sz, character_count length)
+   void window::on_text(const ::wd32_character* pwd32sz, character_count length)
    {
 
 
@@ -3249,9 +3248,9 @@ void window::set_oswindow(::oswindow oswindow)
 
       bool bWindowsApplyVisual = true;
 
-      auto & edisplayOutput = puserinteraction->const_layout().output().m_edisplay;
+      auto& edisplayOutput = puserinteraction->const_layout().output().m_edisplay;
 
-      auto & edisplayDesign = puserinteraction->const_layout().design().m_edisplay;
+      auto& edisplayDesign = puserinteraction->const_layout().design().m_edisplay;
 
       if (edisplayOutput != edisplayDesign)
       {
@@ -3323,7 +3322,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   bool window::defer_perform_entire_reposition_process(::user::mouse * pmouse)
+   bool window::defer_perform_entire_reposition_process(::user::mouse* pmouse)
    {
 
       return false;
@@ -3331,7 +3330,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   bool window::defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse)
+   bool window::defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse* pmouse)
    {
 
       return false;
@@ -3339,7 +3338,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::final_mouse_message_handling(::message::mouse * pmouse)
+   void window::final_mouse_message_handling(::message::mouse* pmouse)
    {
 
       //information() << "pmouse set";
@@ -3347,7 +3346,7 @@ void window::set_oswindow(::oswindow oswindow)
       try
       {
 
-         ::windowing::cursor * pcursor = nullptr;
+         ::windowing::cursor* pcursor = nullptr;
 
          //if(::is_set(pimpl))
          {
@@ -3436,14 +3435,14 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::user::interaction * window::user_interaction()
+   ::user::interaction* window::user_interaction()
    {
 
       ::cast < ::user::interaction > puserinteraction = m_pacmeuserinteraction;
 
       if (!puserinteraction)
       {
-         
+
          return nullptr;
 
       }
@@ -3454,15 +3453,15 @@ void window::set_oswindow(::oswindow oswindow)
 
 
 
-   ::user::interaction * window::user_interaction() const
+   ::user::interaction* window::user_interaction() const
    {
 
-      return const_cast < window * >(this)->user_interaction();
+      return const_cast <window*>(this)->user_interaction();
 
    }
 
 
-   ::user::interaction * window::owner_interaction()
+   ::user::interaction* window::owner_interaction()
    {
 
       ::cast < ::user::interaction > pinteraction = user_interaction();
@@ -3479,14 +3478,14 @@ void window::set_oswindow(::oswindow oswindow)
       if (!pwindowingwindow)
       {
          return nullptr;
-      }  
+      }
 
       return pwindowingwindow->user_interaction();
 
    }
 
 
-   ::trace_statement & window::trace_statement_prefix(::trace_statement & statement) const
+   ::trace_statement& window::trace_statement_prefix(::trace_statement& statement) const
    {
 
       statement << "window  ";
@@ -3564,14 +3563,14 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::windowing::window * window::owner_window()
+   ::windowing::window* window::owner_window()
    {
 
       ::cast < ::windowing::window  > pwindowingwindow = user_interaction()->owner_window();
 
       if (!pwindowingwindow)
       {
-         
+
          return nullptr;
 
       }
@@ -3589,7 +3588,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::defer_show_system_menu(::user::mouse * pmouse)
+   void window::defer_show_system_menu(::user::mouse* pmouse)
    {
 
    }
@@ -3601,13 +3600,13 @@ void window::set_oswindow(::oswindow oswindow)
    //      return m_pmessagequeue;
    //
    //   }
-   void window::pick_browse(const ::function < void(const ::file::path & path) > & callback)
+   void window::pick_browse(const ::function < void(const ::file::path& path) >& callback)
    {
    }
-   void window::pick_media(const char * pszMediaType)
+   void window::pick_media(const char* pszMediaType)
    {
    }
-   void window::on_prompt_write_file(::user::controller * pusercontroller)
+   void window::on_prompt_write_file(::user::controller* pusercontroller)
    {
 
    }
@@ -3809,7 +3808,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::create_message_queue(::user::interaction * pinteraction, const ::string & lpszName)
+   void window::create_message_queue(::user::interaction* pinteraction, const ::string& lpszName)
    {
 
       if (_is_window())
@@ -3977,7 +3976,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::windowing::window * window::from_os_data(void * pdata)
+   ::windowing::window* window::from_os_data(void* pdata)
    {
 
       __UNREFERENCED_PARAMETER(pdata);
@@ -3989,7 +3988,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void * window::get_os_data() const
+   void* window::get_os_data() const
    {
 
       throw ::interface_only();
@@ -4031,7 +4030,7 @@ void window::set_oswindow(::oswindow oswindow)
 
 
    // for child windows
-   bool window::pre_create_window(::user::system * pusersystem)
+   bool window::pre_create_window(::user::system* pusersystem)
    {
 
       __UNREFERENCED_PARAMETER(pusersystem);
@@ -4355,26 +4354,26 @@ void window::set_oswindow(::oswindow oswindow)
 
          //auto pwindowing = windowing();
          user_send([&]()
-                   {
+            {
 
-                      auto pwindowing = windowing();
+               auto pwindowing = windowing();
 
-                      //pwindowing->new_window(this);
+               //pwindowing->new_window(this);
 
-                      //if (m_pwindow)
-                      //{
+               //if (m_pwindow)
+               //{
 
-                      //   informationf("window created");
+               //   informationf("window created");
 
-                      //}
-                      //else
-                      //{
+               //}
+               //else
+               //{
 
-                      //   informationf("window not created");
+               //   informationf("window not created");
 
-                      //}
+               //}
 
-                   });
+            });
 
       }
 
@@ -4820,7 +4819,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   void window::last_install_message_routing(::channel * pchannel)
+   void window::last_install_message_routing(::channel* pchannel)
    {
 
       ///MESSAGE_LINK(e_message_create, pchannel, this, &window::on_message_create);
@@ -4852,7 +4851,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::_000OnMouseLeave(::message::message * pmessage)
+   void window::_000OnMouseLeave(::message::message* pmessage)
    {
 
       if (m_bDestroyImplOnly)
@@ -5092,7 +5091,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   void window::add(::graphics::output_purpose * pgraphicaloutputpurpose)
+   void window::add(::graphics::output_purpose* pgraphicaloutputpurpose)
    {
 
       if (::is_null(pgraphicaloutputpurpose))
@@ -5127,7 +5126,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::erase(::graphics::output_purpose * pgraphicaloutputpurpose)
+   void window::erase(::graphics::output_purpose* pgraphicaloutputpurpose)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -5137,8 +5136,8 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::add_graphical_output_purpose(::particle * pparticleGraphicalOutputPurposeOriginator,
-                                                       ::graphics::enum_output_purpose epurpose)
+   void window::add_graphical_output_purpose(::particle* pparticleGraphicalOutputPurposeOriginator,
+      ::graphics::enum_output_purpose epurpose)
    {
 
       if (::is_null(pparticleGraphicalOutputPurposeOriginator))
@@ -5175,41 +5174,41 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::erase_graphical_output_purpose(::particle * pparticleGraphicalOutputPurposeOriginator)
+   void window::erase_graphical_output_purpose(::particle* pparticleGraphicalOutputPurposeOriginator)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
       m_graphicaloutputpurposea.predicate_erase([pparticleGraphicalOutputPurposeOriginator](auto ppurpose)
-                                                {
+         {
 
-                                                   return ppurpose->get_graphical_output_purpose_originator() ==
-                                                      pparticleGraphicalOutputPurposeOriginator;
+            return ppurpose->get_graphical_output_purpose_originator() ==
+               pparticleGraphicalOutputPurposeOriginator;
 
-                                                });
+         });
 
    }
 
 
-   bool window::has_particle_fps_purpose(::particle * pparticleGraphicalOutputPurposeOriginator)
+   bool window::has_particle_fps_purpose(::particle* pparticleGraphicalOutputPurposeOriginator)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
       return m_graphicaloutputpurposea.predicate_contains([pparticleGraphicalOutputPurposeOriginator](auto ppurpose)
-                                                          {
+         {
 
-                                                             return ppurpose->get_graphical_output_purpose_originator() ==
-                                                                pparticleGraphicalOutputPurposeOriginator
-                                                                && ppurpose->m_egraphicsoutputpurpose &
-                                                                ::graphics::e_output_purpose_fps;
+            return ppurpose->get_graphical_output_purpose_originator() ==
+               pparticleGraphicalOutputPurposeOriginator
+               && ppurpose->m_egraphicsoutputpurpose &
+               ::graphics::e_output_purpose_fps;
 
-                                                          });
+         });
 
    }
 
 
-   void window::mouse_hover_add(::user::interaction * pinterface)
+   void window::mouse_hover_add(::user::interaction* pinterface)
    {
 
       if (pinterface == nullptr)
@@ -5257,7 +5256,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::_on_mouse_move_step(const ::int_point & pointCursor, bool bMouseLeave)
+   void window::_on_mouse_move_step(const ::int_point& pointCursor, bool bMouseLeave)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -5368,7 +5367,7 @@ void window::set_oswindow(::oswindow oswindow)
    //   }
 
 
-   bool window::mouse_hover_erase(::user::interaction * pinterface)
+   bool window::mouse_hover_erase(::user::interaction* pinterface)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -5401,7 +5400,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::_001OnCaptureChanged(::message::message * pmessage)
+   void window::_001OnCaptureChanged(::message::message* pmessage)
    {
 
       __UNREFERENCED_PARAMETER(pmessage);
@@ -5412,8 +5411,8 @@ void window::set_oswindow(::oswindow oswindow)
 
 
    bool
-      window::__windows_message_bypass(::windowing::window * pwindow, unsigned int message, wparam wparam, lparam lparam,
-                                                 lresult & lresult)
+      window::__windows_message_bypass(::windowing::window* pwindow, unsigned int message, wparam wparam, lparam lparam,
+         lresult& lresult)
    {
 
       return false;
@@ -5421,7 +5420,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::install_message_routing(::channel * pchannel)
+   void window::install_message_routing(::channel* pchannel)
    {
 
       last_install_message_routing(pchannel);
@@ -5448,7 +5447,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::default_message_handler(::message::message * pmessage)
+   void window::default_message_handler(::message::message* pmessage)
    {
 
       //default_message_handler(pmessage);
@@ -5456,7 +5455,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::on_message_destroy(::message::message * pmessage)
+   void window::on_message_destroy(::message::message* pmessage)
    {
 
       if (user_interaction() && ::type(user_interaction()).name().contains("notify_icon"))
@@ -5756,7 +5755,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   void window::pre_translate_message(::message::message * pmessage)
+   void window::pre_translate_message(::message::message* pmessage)
    {
 
       __UNREFERENCED_PARAMETER(pmessage);
@@ -5840,7 +5839,7 @@ void window::set_oswindow(::oswindow oswindow)
    }*/
 
 
-   void window::_002OnDraw(::message::message * pmessage)
+   void window::_002OnDraw(::message::message* pmessage)
    {
 
       __UNREFERENCED_PARAMETER(pmessage);
@@ -5850,12 +5849,12 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::do_message_handler(::message::message * pmessage)
+   void window::do_message_handler(::message::message* pmessage)
    {
 
       bool bKeyMessage = false;
 
-      ::message::key * pkey = nullptr;
+      ::message::key* pkey = nullptr;
 
       if (::is_null(user_interaction()))
       {
@@ -6031,14 +6030,14 @@ void window::set_oswindow(::oswindow oswindow)
       }
 
       if (pmessage->m_emessage == e_message_left_button_down ||
-          pmessage->m_emessage == e_message_left_button_up ||
-          pmessage->m_emessage == e_message_middle_button_down ||
-          pmessage->m_emessage == e_message_middle_button_up ||
-          pmessage->m_emessage == e_message_right_button_down ||
-          pmessage->m_emessage == e_message_right_button_up ||
-          pmessage->m_emessage == e_message_left_button_double_click ||
-          pmessage->m_emessage == e_message_mouse_move ||
-          pmessage->m_emessage == e_message_mouse_wheel)
+         pmessage->m_emessage == e_message_left_button_up ||
+         pmessage->m_emessage == e_message_middle_button_down ||
+         pmessage->m_emessage == e_message_middle_button_up ||
+         pmessage->m_emessage == e_message_right_button_down ||
+         pmessage->m_emessage == e_message_right_button_up ||
+         pmessage->m_emessage == e_message_left_button_double_click ||
+         pmessage->m_emessage == e_message_mouse_move ||
+         pmessage->m_emessage == e_message_mouse_wheel)
       {
 
          ::pointer<::message::mouse> pmouse = pmessage;
@@ -6099,7 +6098,7 @@ void window::set_oswindow(::oswindow oswindow)
          if (user_interaction() != nullptr)
          {
 
-            user_interaction()->handle((::topic *)pmessage->m_lparam.m_lparam, nullptr);
+            user_interaction()->handle((::topic*)pmessage->m_lparam.m_lparam, nullptr);
 
          }
          //         else
@@ -6166,7 +6165,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::_message_handler(::message::message * pmessage)
+   void window::_message_handler(::message::message* pmessage)
    {
 
       auto puserinteraction = user_interaction();
@@ -6181,13 +6180,13 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::default_window_procedure(::message::message * pmessage)
+   void window::default_window_procedure(::message::message* pmessage)
    {
 
    }
 
 
-   bool window::on_mouse_message(::message::mouse * pmouse)
+   bool window::on_mouse_message(::message::mouse* pmouse)
    {
 
       m_pointCursor2 = pmouse->m_pointHost;
@@ -6348,7 +6347,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       //_008OnMouse(pmouse);
 
-      ::user::interaction * puserinteractionMouse = nullptr;
+      ::user::interaction* puserinteractionMouse = nullptr;
 
       //if (m_puserinteractionMouseCapture)
       //{
@@ -6524,31 +6523,31 @@ void window::set_oswindow(::oswindow oswindow)
 
       //}
 
-         auto pwindow = pmouse->m_pwindow;
+      auto pwindow = pmouse->m_pwindow;
 
-         //auto pwindowimpl = pwindow->m_pwindow;
+      //auto pwindowimpl = pwindow->m_pwindow;
 
-         if (::is_set(pwindow))
+      if (::is_set(pwindow))
+      {
+
+         if (pmouse->m_emessage == e_message_left_button_up)
          {
-
-            if (pmouse->m_emessage == e_message_left_button_up)
+            if (::is_set(pwindow->m_puiLastLButtonDown))
             {
-               if (::is_set(pwindow->m_puiLastLButtonDown))
-               {
 
-                  pwindow->m_puiLastLButtonDown = nullptr;
+               pwindow->m_puiLastLButtonDown = nullptr;
 
-               }
-
-               if (::is_set(pwindow->m_pitemLButtonDown))
-               {
-
-                  pwindow->m_pitemLButtonDown = nullptr;
-
-               }
             }
 
-            pwindow->final_mouse_message_handling(pmouse);
+            if (::is_set(pwindow->m_pitemLButtonDown))
+            {
+
+               pwindow->m_pitemLButtonDown = nullptr;
+
+            }
+         }
+
+         pwindow->final_mouse_message_handling(pmouse);
 
 
 
@@ -7004,7 +7003,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   bool window::OnChildNotify(::message::message * pmessage)
+   bool window::OnChildNotify(::message::message* pmessage)
    {
 
       __UNREFERENCED_PARAMETER(pmessage);
@@ -7016,7 +7015,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   bool window::ReflectChildNotify(::message::message * pmessage)
+   bool window::ReflectChildNotify(::message::message* pmessage)
    {
 
       __UNREFERENCED_PARAMETER(pmessage);
@@ -7104,25 +7103,25 @@ void window::set_oswindow(::oswindow oswindow)
    }
    */
 
-   void window::_001OnDeferPaintLayeredWindowBackground(::image::image * pimage)
+   void window::_001OnDeferPaintLayeredWindowBackground(::image::image* pimage)
    {
       __UNREFERENCED_PARAMETER(pimage);
       throw ::interface_only();
    }
 
-   void window::_001DeferPaintLayeredWindowBackground(::image::image * pimage)
+   void window::_001DeferPaintLayeredWindowBackground(::image::image* pimage)
    {
       __UNREFERENCED_PARAMETER(pimage);
       throw ::interface_only();
    }
 
-   void window::_001OnPaint(::message::message * pmessage)
+   void window::_001OnPaint(::message::message* pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
       throw ::interface_only();
    }
 
-   void window::_001OnPrint(::message::message * pmessage)
+   void window::_001OnPrint(::message::message* pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
       throw ::interface_only();
@@ -7157,7 +7156,7 @@ void window::set_oswindow(::oswindow oswindow)
    /////////////////////////////////////////////////////////////////////////////
    // Centering dialog support (works for any non-child interaction_impl)
 
-   void window::CenterWindow(::user::interaction * pAlternateOwner)
+   void window::CenterWindow(::user::interaction* pAlternateOwner)
    {
 
       __UNREFERENCED_PARAMETER(pAlternateOwner);
@@ -7200,7 +7199,7 @@ void window::set_oswindow(::oswindow oswindow)
 //
 //   }
 
-   void window::UpdateDialogControls(channel * pTarget, bool bDisableIfNoHndler)
+   void window::UpdateDialogControls(channel* pTarget, bool bDisableIfNoHndler)
    {
       __UNREFERENCED_PARAMETER(pTarget);
       __UNREFERENCED_PARAMETER(bDisableIfNoHndler);
@@ -7520,7 +7519,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   ::user::interaction_base * window::set_owner(::user::interaction_base * pprimitiveOwner)
+   ::user::interaction_base* window::set_owner(::user::interaction_base* pprimitiveOwner)
    {
 
       __UNREFERENCED_PARAMETER(pprimitiveOwner);
@@ -7532,7 +7531,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   lresult window::send_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
+   lresult window::send_message(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
    {
 
       auto pmessage = user_interaction()->get_message(emessage, wparam, lparam);
@@ -7544,7 +7543,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   lresult window::send_message(::message::message * pmessage)
+   lresult window::send_message(::message::message* pmessage)
    {
 
       user_interaction()->on_message(pmessage);
@@ -7781,7 +7780,7 @@ void window::set_oswindow(::oswindow oswindow)
 
 
    void
-      window::MapWindowPoints(::windowing::window * puserinteractionTo, ::int_point * pPoint, unsigned int nCount)
+      window::MapWindowPoints(::windowing::window* puserinteractionTo, ::int_point* pPoint, unsigned int nCount)
    {
 
       __UNREFERENCED_PARAMETER(puserinteractionTo);
@@ -7793,7 +7792,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::MapWindowPoints(::windowing::window * puserinteractionTo, ::int_rectangle * prectangle)
+   void window::MapWindowPoints(::windowing::window* puserinteractionTo, ::int_rectangle* prectangle)
    {
       __UNREFERENCED_PARAMETER(puserinteractionTo);
       __UNREFERENCED_PARAMETER(prectangle);
@@ -7928,8 +7927,8 @@ void window::set_oswindow(::oswindow oswindow)
 
 
    void
-      window::set_need_redraw(const ::int_rectangle_array & rectangleaHostNeedRedraw, function<void()> function,
-                                        bool bAscendants)
+      window::set_need_redraw(const ::int_rectangle_array& rectangleaHostNeedRedraw, function<void()> function,
+         bool bAscendants)
    {
 
       _synchronous_lock synchronouslock(synchronization());
@@ -7943,7 +7942,7 @@ void window::set_oswindow(::oswindow oswindow)
 
 #ifdef EXTRA_LOGGING
 
-      for (auto & rectangle : rectangleaHostNeedRedraw)
+      for (auto& rectangle : rectangleaHostNeedRedraw)
       {
 
          if (rectangle.is_empty())
@@ -7965,7 +7964,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       bool bFullRedraw = false;
 
-      for (auto & predraw : m_redrawitema)
+      for (auto& predraw : m_redrawitema)
       {
 
          if (predraw->m_rectanglea.is_empty())
@@ -7979,7 +7978,7 @@ void window::set_oswindow(::oswindow oswindow)
 
          //int_rectangle_array rectangleaUnion;
 
-         for (auto & rectangle : rectangleaHostNeedRedraw)
+         for (auto& rectangle : rectangleaHostNeedRedraw)
          {
 
             if (rectangle.is_null())
@@ -7993,7 +7992,7 @@ void window::set_oswindow(::oswindow oswindow)
 
             bool bContainsAny = false;
 
-            for (auto & rectangleRedraw : predraw->m_rectanglea)
+            for (auto& rectangleRedraw : predraw->m_rectanglea)
             {
 
                if (rectangleRedraw.contains(rectangle))
@@ -8211,7 +8210,7 @@ void window::set_oswindow(::oswindow oswindow)
 
 
    bool
-      window::RedrawWindow(const ::int_rectangle & rectangleUpdate, ::draw2d::region * prgnUpdate, unsigned int flags)
+      window::RedrawWindow(const ::int_rectangle& rectangleUpdate, ::draw2d::region* prgnUpdate, unsigned int flags)
    {
 
       user_interaction()->set_need_redraw();
@@ -8252,7 +8251,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   void window::set_mouse_cursor(::windowing::cursor * pcursor)
+   void window::set_mouse_cursor(::windowing::cursor* pcursor)
    {
 
       //if (::is_null(m_pwindow))
@@ -8557,7 +8556,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   ::user::interaction * window::ChildWindowFromPoint(const ::int_point & point)
+   ::user::interaction* window::ChildWindowFromPoint(const ::int_point& point)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -8569,7 +8568,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::user::interaction * window::ChildWindowFromPoint(const ::int_point & point, unsigned int nFlags)
+   ::user::interaction* window::ChildWindowFromPoint(const ::int_point& point, unsigned int nFlags)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -8595,7 +8594,7 @@ void window::set_oswindow(::oswindow oswindow)
    //   }
 
 
-   ::user::interaction * window::GetTopWindow()
+   ::user::interaction* window::GetTopWindow()
    {
 
       throw ::interface_only();
@@ -8605,7 +8604,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::user::interaction * window::GetLastActivePopup()
+   ::user::interaction* window::GetLastActivePopup()
    {
 
       throw ::interface_only();
@@ -8676,7 +8675,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       }
 
-      for (auto & pinteraction : userinteractiona)
+      for (auto& pinteraction : userinteractiona)
       {
 
          pinteraction->post_message(e_message_mouse_leave);
@@ -8726,7 +8725,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   void window::Print(::draw2d::graphics_pointer & pgraphics, unsigned int dwFlags) const
+   void window::Print(::draw2d::graphics_pointer& pgraphics, unsigned int dwFlags) const
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
@@ -8737,7 +8736,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::PrintClient(::draw2d::graphics_pointer & pgraphics, unsigned int dwFlags) const
+   void window::PrintClient(::draw2d::graphics_pointer& pgraphics, unsigned int dwFlags) const
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
@@ -8777,7 +8776,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   void window::_001OnPrioAfterCreate(::message::message * pmessage)
+   void window::_001OnPrioAfterCreate(::message::message* pmessage)
    {
 
       if (user_interaction())
@@ -8807,7 +8806,7 @@ void window::set_oswindow(::oswindow oswindow)
 
          add(pusersystem->m_prequest);
 
-         for (auto & poutputpurpose : pusersystem->m_graphicsoutputpurposea)
+         for (auto& poutputpurpose : pusersystem->m_graphicsoutputpurposea)
          {
 
             information() << "adding graphical output_purpose from user::system";
@@ -8825,8 +8824,24 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::_001OnPrioCreate(::message::message * pmessage)
+   void window::_001OnPrioCreate(::message::message* pmessage)
    {
+
+      if (user_interaction()->is_graphical())
+      {
+
+         if (::is_null(m_papplication->m_pacmeuserinteractionMain))
+         {
+
+            m_papplication->m_pacmeuserinteractionMain = user_interaction();
+
+         }
+
+         draw2d()->on_create_window(this);
+
+         user_interaction()->defer_set_icon();
+
+      }
 
       user_interaction()->on_after_set_parent();
 
@@ -9011,7 +9026,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::on_message_show_window(::message::message * pmessage)
+   void window::on_message_show_window(::message::message* pmessage)
    {
 
       ::pointer<::message::show_window> pshowwindow(pmessage);
@@ -9069,7 +9084,7 @@ void window::set_oswindow(::oswindow oswindow)
 
             }
 
-            for (auto & pinteraction : userinteractiona)
+            for (auto& pinteraction : userinteractiona)
             {
 
                try
@@ -9205,7 +9220,7 @@ void window::set_oswindow(::oswindow oswindow)
 #ifdef WINDOWS_DESKTOP
 
 
-   void window::_001OnWindowPosChanged(::message::message * pmessage)
+   void window::_001OnWindowPosChanged(::message::message* pmessage)
    {
 
       throw ::interface_only();
@@ -9533,9 +9548,9 @@ void window::set_oswindow(::oswindow oswindow)
       //}
 
       if (user_interaction()->has_flag(e_flag_destroying)
-          || user_interaction()->has_finishing_flag()
-          || has_flag(e_flag_destroying)
-          || has_finishing_flag())
+         || user_interaction()->has_finishing_flag()
+         || has_flag(e_flag_destroying)
+         || has_finishing_flag())
       {
 
          information() << "do_graphics exit(A2)";
@@ -9678,7 +9693,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   void window::defer_do_graphics(::draw2d::graphics_pointer & pgraphics)
+   void window::defer_do_graphics(::draw2d::graphics_pointer& pgraphics)
    {
 
       debug() << "windowing::window::defer_do_graphics";
@@ -10019,11 +10034,11 @@ void window::set_oswindow(::oswindow oswindow)
 
                }
 
-                  });
+            });
 
       }
 
-      if(m_pgraphicsgraphics)
+      if (m_pgraphicsgraphics)
       {
 
 
@@ -10091,243 +10106,243 @@ void window::set_oswindow(::oswindow oswindow)
          }
 
          pgraphics->do_on_context([this, &pgraphics, &pbufferitem]()
-   {
-
-            _synchronous_lock synchronous_lock(m_pmutexGraphics);
-
-
-
-      {
-
-         //pgraphics->m_egraphics = e_graphics_draw;
-
-         //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
-         //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
-         //#endif
-
-         pgraphics->payload("set_transparent") = "";
-
-         pgraphics->m_pgraphicsgraphics = m_pgraphicsgraphics;
-
-         pgraphics->m_pgraphicsbufferitem = pbufferitem;
-
-         ::string strType = type(m_pacmeuserinteraction).name();
-
-         if (strType.case_insensitive_contains("menu"))
-         {
-
-            printf_line("menu");
-
-         }
-
-         pgraphics->on_begin_draw();
-
-         pgraphics->reset_clip();
-
-         pgraphics->set_origin(0., 0.);
-
-         //{
-
-         //   _synchronous_lock synchronouslock(synchronization());
-
-         //   pgraphics->__construct_new(pgraphics->m_puserredraw);
-
-         //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
-
-         //   pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
-
-         //   if (m_redrawitema.has_element())
-         //   {
-
-         //      throw "what?!?!";
-
-         //   }
-
-         //}
-
-
-
-         //pgraphics->m_egraphics = e_graphics_layout;
-
-         //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
-         //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
-         ////#endif
-
-         //pgraphics->payload("set_transparent") = "";
-
-         //pgraphics->m_pgraphicsgraphics = m_pgraphics;
-
-         //pgraphics->m_pgraphicsbufferitem = pbufferitem;
-
-         //pgraphics->on_begin_draw();
-
-         //pgraphics->reset_clip();
-
-         //pgraphics->set_origin(0., 0.);
-
-         //{
-
-         //   _synchronous_lock synchronouslock(synchronization());
-
-         //   pgraphics->__construct_new(pgraphics->m_puserredraw);
-
-         //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
-
-         //   pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
-
-         //   if (m_redrawitema.has_element())
-         //   {
-
-         //      throw "what?!?!";
-
-         //   }
-
-         //}
-
-
-
-         //if (!bDraw)
-         //{
-
-         //   if (pgraphics->m_rectangleaNeedRedraw.has_element())
-         //   {
-
-         //      bDraw = true;
-
-         //   }
-
-         //}
-
-         //pgraphics->m_pdraw2dhost = user_interaction();
-
-         //pgraphics->m_puserstyle.release();
-
-         //if (pgraphics->m_pimage)
-         //{
-
-         //   pgraphics->m_pimage->m_rectangleTag.Null();
-
-         //   //sizeDrawn = pgraphics->m_pimage->m_size;
-
-         //   ///sizeDrawn = user_interaction()->const_layout().design().size();
-
-         //}
-
-         //string strBitmapSource = payload("bitmap-source");
-
-         //if (strBitmapSource.has_character())
-         //{
-
-         //   //            ::pointer < ::graphics::bitmap_source_buffer > pbitmapsourcebuffer = pgraphics;
-         //   //
-         //   //            if(pbitmapsourcebuffer)
-         //   //            {
-         //   //
-         //   //
-         //   //
-         //   //
-         //   //            }
-
-         //}
-
-         if (user_interaction())
-         {
-
-            //auto r = user_interaction()->screen_rect();
-
-            if (user_interaction()->has_finishing_flag())
             {
 
-               informationf("::windowing::window set_finish");
+               _synchronous_lock synchronous_lock(m_pmutexGraphics);
 
-            }
-            else
-            {
 
-               //pgraphics->m_bDraw = bDraw;
 
-               pgraphics->m_bDraw = true;
+               {
 
-               pgraphics->m_bInheritDraw = true;
+                  //pgraphics->m_egraphics = e_graphics_draw;
 
-               //            pgraphics->fill_solid_rectangle({ 0, 0, 200, 200 }, ::color::green);
+                  //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
+                  //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
+                  //#endif
+
+                  pgraphics->payload("set_transparent") = "";
+
+                  pgraphics->m_pgraphicsgraphics = m_pgraphicsgraphics;
+
+                  pgraphics->m_pgraphicsbufferitem = pbufferitem;
+
+                  ::string strType = type(m_pacmeuserinteraction).name();
+
+                  if (strType.case_insensitive_contains("menu"))
+                  {
+
+                     printf_line("menu");
+
+                  }
+
+                  pgraphics->on_begin_draw();
+
+                  pgraphics->reset_clip();
+
+                  pgraphics->set_origin(0., 0.);
+
+                  //{
+
+                  //   _synchronous_lock synchronouslock(synchronization());
+
+                  //   pgraphics->__construct_new(pgraphics->m_puserredraw);
+
+                  //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
+
+                  //   pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+
+                  //   if (m_redrawitema.has_element())
+                  //   {
+
+                  //      throw "what?!?!";
+
+                  //   }
+
+                  //}
+
+
+
+                  //pgraphics->m_egraphics = e_graphics_layout;
+
+                  //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
+                  //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
+                  ////#endif
+
+                  //pgraphics->payload("set_transparent") = "";
+
+                  //pgraphics->m_pgraphicsgraphics = m_pgraphics;
+
+                  //pgraphics->m_pgraphicsbufferitem = pbufferitem;
+
+                  //pgraphics->on_begin_draw();
+
+                  //pgraphics->reset_clip();
+
+                  //pgraphics->set_origin(0., 0.);
+
+                  //{
+
+                  //   _synchronous_lock synchronouslock(synchronization());
+
+                  //   pgraphics->__construct_new(pgraphics->m_puserredraw);
+
+                  //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
+
+                  //   pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+
+                  //   if (m_redrawitema.has_element())
+                  //   {
+
+                  //      throw "what?!?!";
+
+                  //   }
+
+                  //}
+
+
+
+                  //if (!bDraw)
+                  //{
+
+                  //   if (pgraphics->m_rectangleaNeedRedraw.has_element())
+                  //   {
+
+                  //      bDraw = true;
+
+                  //   }
+
+                  //}
+
+                  //pgraphics->m_pdraw2dhost = user_interaction();
+
+                  //pgraphics->m_puserstyle.release();
+
+                  //if (pgraphics->m_pimage)
+                  //{
+
+                  //   pgraphics->m_pimage->m_rectangleTag.Null();
+
+                  //   //sizeDrawn = pgraphics->m_pimage->m_size;
+
+                  //   ///sizeDrawn = user_interaction()->const_layout().design().size();
+
+                  //}
+
+                  //string strBitmapSource = payload("bitmap-source");
+
+                  //if (strBitmapSource.has_character())
+                  //{
+
+                  //   //            ::pointer < ::graphics::bitmap_source_buffer > pbitmapsourcebuffer = pgraphics;
+                  //   //
+                  //   //            if(pbitmapsourcebuffer)
+                  //   //            {
+                  //   //
+                  //   //
+                  //   //
+                  //   //
+                  //   //            }
+
+                  //}
+
+                  if (user_interaction())
+                  {
+
+                     //auto r = user_interaction()->screen_rect();
+
+                     if (user_interaction()->has_finishing_flag())
+                     {
+
+                        informationf("::windowing::window set_finish");
+
+                     }
+                     else
+                     {
+
+                        //pgraphics->m_bDraw = bDraw;
+
+                        pgraphics->m_bDraw = true;
+
+                        pgraphics->m_bInheritDraw = true;
+
+                        //            pgraphics->fill_solid_rectangle({ 0, 0, 200, 200 }, ::color::green);
 
 
 #ifdef MORE_LOG
-               debug() << "defer_do_graphics _000TopCallOnDraw";
+                        debug() << "defer_do_graphics _000TopCallOnDraw";
 #endif
-               ///xxxopengl  user_interaction()->_000TopCallOnDraw(pgraphics);
+                        ///xxxopengl  user_interaction()->_000TopCallOnDraw(pgraphics);
 
-               user_interaction()->_000TopCallOnDraw(pgraphics);
+                        user_interaction()->_000TopCallOnDraw(pgraphics);
 
-               ////user_interaction()->_000CallOnDraw(pgraphics);
+                        ////user_interaction()->_000CallOnDraw(pgraphics);
 
-               //                  if (!bDraw && m_redrawa.has_element())
-               //                  {
-               //
-               //                     synchronouslock.unlock();
-               //
-               //                     bDraw = true;
-               //
-               //                     pgraphics->m_bDraw = bDraw;
-               //
-               //                     user_interaction()->_000CallOnDraw(pgraphics);
-               //
-               //                  }
+                        //                  if (!bDraw && m_redrawa.has_element())
+                        //                  {
+                        //
+                        //                     synchronouslock.unlock();
+                        //
+                        //                     bDraw = true;
+                        //
+                        //                     pgraphics->m_bDraw = bDraw;
+                        //
+                        //                     user_interaction()->_000CallOnDraw(pgraphics);
+                        //
+                        //                  }
 
-            }
+                     }
 
-            //m_rectangleUpdateBuffer = r;
+                     //m_rectangleUpdateBuffer = r;
 
-            //informationf("PrintBuffer (%d, %d)",  r.right(), r.bottom());
+                     //informationf("PrintBuffer (%d, %d)",  r.right(), r.bottom());
 
-            if (!m_pgraphicsgraphics)
-            {
+                     if (!m_pgraphicsgraphics)
+                     {
 
-               return;
+                        return;
 
-            }
+                     }
 
-            m_pgraphicsgraphics->m_bNewBuffer = true;
+                     m_pgraphicsgraphics->m_bNewBuffer = true;
 
-         }
-         else
-         {
+                  }
+                  else
+                  {
 
 
-            information() << "defer_do_graphics !user_interaction()";
+                     information() << "defer_do_graphics !user_interaction()";
 
-         }
+                  }
 
-         //if (pgraphics->m_pimage.ok())
-         //{
+                  //if (pgraphics->m_pimage.ok())
+                  //{
 
-         //   //pgraphics->m_pimage->m_rectangleTag = m_rectangleUpdateBuffer;
+                  //   //pgraphics->m_pimage->m_rectangleTag = m_rectangleUpdateBuffer;
 
-         //   //m_sizeDrawn = sizeDrawn;
+                  //   //m_sizeDrawn = sizeDrawn;
 
-         //   pgraphics->m_sizeDrawnAnnotation = sizeDrawn;
+                  //   pgraphics->m_sizeDrawnAnnotation = sizeDrawn;
 
-         //}
+                  //}
 
-         m_sizeLastBuffer = pbufferitem->m_sizeBufferItemDraw;
+                  m_sizeLastBuffer = pbufferitem->m_sizeBufferItemDraw;
 
-         //}
+                  //}
 
-         pgraphics->on_end_draw();
+                  pgraphics->on_end_draw();
 
-         if (m_pgraphicsgraphics)
-         {
+                  if (m_pgraphicsgraphics)
+                  {
 
 #ifndef LINUX
-            m_pgraphicsgraphics->on_end_draw();
+                     m_pgraphicsgraphics->on_end_draw();
 #endif
 
-         }
+                  }
 
-      }
+               }
 
-      });
+            });
 
       }
 
@@ -10586,7 +10601,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   void window::set_bitmap_source(const string & strBitmapSource)
+   void window::set_bitmap_source(const string& strBitmapSource)
    {
 
       m_strBitmapSource = strBitmapSource;
@@ -10655,7 +10670,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::interaction_post(const ::procedure & procedure)
+   void window::interaction_post(const ::procedure& procedure)
    {
 
       auto puserinteraction = user_interaction();
@@ -10933,7 +10948,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::graphics::graphics * window::get_window_graphics()
+   ::graphics::graphics* window::get_window_graphics()
    {
 
       return m_pgraphicsgraphics;
@@ -10941,10 +10956,10 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::user::element * window::get_keyboard_focus()
+   ::user::element* window::get_keyboard_focus()
    {
 
-      if(!has_keyboard_focus())
+      if (!has_keyboard_focus())
       {
 
          return nullptr;
@@ -10956,7 +10971,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::on_prio_message_set_focus(::message::message * pmessage)
+   void window::on_prio_message_set_focus(::message::message* pmessage)
    {
 
       ::pointer<::message::set_keyboard_focus> psetkeyboardfocus(pmessage);
@@ -10986,7 +11001,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::set_mouse_capture(::user::interaction * puserinteraction)
+   void window::set_mouse_capture(::user::interaction* puserinteraction)
    {
 
       this->set_mouse_capture();
@@ -10996,7 +11011,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   bool window::defer_release_mouse_capture(::user::interaction * puserinteraction)
+   bool window::defer_release_mouse_capture(::user::interaction* puserinteraction)
    {
 
       //if (puserinteraction != m_puserinteractionMouseCapture)
@@ -11005,7 +11020,7 @@ void window::set_oswindow(::oswindow oswindow)
       //   return false;
 
       //}
-      
+
       this->defer_release_mouse_capture();
 
       //if (!this->defer_release_mouse_capture())
@@ -11022,7 +11037,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   bool window::on_keyboard_focus(::user::interaction_base * pfocus)
+   bool window::on_keyboard_focus(::user::interaction_base* pfocus)
    {
 
       auto pwindowing = windowing();
@@ -11230,7 +11245,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   void window::on_message_kill_focus(::message::message * pmessage)
+   void window::on_message_kill_focus(::message::message* pmessage)
    {
 
       ::pointer<::message::kill_keyboard_focus> pkillkeyboardfocus(pmessage);
@@ -11451,7 +11466,7 @@ void window::set_oswindow(::oswindow oswindow)
    // }
 
 
-   void window::set_keyboard_focus(::acme::user::interaction * pacmeuserinteraction)
+   void window::set_keyboard_focus(::acme::user::interaction* pacmeuserinteraction)
    {
 
       ::cast < ::user::interaction > puserinteraction = pacmeuserinteraction;
@@ -11695,7 +11710,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   void window::redraw_add(::particle * pparticle)
+   void window::redraw_add(::particle* pparticle)
    {
 
       _synchronous_lock synchronouslock(mutex_redraw());
@@ -11705,7 +11720,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::redraw_erase(::particle * pparticle)
+   void window::redraw_erase(::particle* pparticle)
    {
 
       _synchronous_lock synchronouslock(mutex_redraw());
@@ -11725,7 +11740,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::particle * window::mutex_redraw()
+   ::particle* window::mutex_redraw()
    {
 
       if (m_pmutexRedraw == nullptr)
@@ -12347,7 +12362,7 @@ void window::set_oswindow(::oswindow oswindow)
    //   }
 
 
-   void window::ShowWindow(const ::e_display & edisplay)
+   void window::ShowWindow(const ::e_display& edisplay)
    {
 
       //return false;
@@ -12371,12 +12386,12 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::on_configuration_change(::user::interaction_base * pprimitiveSource)
+   void window::on_configuration_change(::user::interaction_base* pprimitiveSource)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      for (auto & puserinteraction : m_userinteractionaHideOnConfigurationChange.m_interactiona)
+      for (auto& puserinteraction : m_userinteractionaHideOnConfigurationChange.m_interactiona)
       {
 
          if (puserinteraction->is_window_screen_visible())
@@ -12567,15 +12582,15 @@ void window::set_oswindow(::oswindow oswindow)
    //             && !user_interaction()->is_window_docking())
 
 
-   void window::on_configure(const ::int_rectangle & rectangle)
+   void window::on_configure(const ::int_rectangle& rectangle)
    {
 
       if (!user_interaction()->is_window_repositioning()
-          && !user_interaction()->is_window_resizing()
-          && !user_interaction()->is_window_docking())
+         && !user_interaction()->is_window_resizing()
+         && !user_interaction()->is_window_docking())
       {
 
-         user_interaction()->main_async() 
+         user_interaction()->main_async()
             << [this, rectangle]()
             {
 
@@ -12588,11 +12603,11 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::_on_configure(const ::int_rectangle & rectangle)
+   void window::_on_configure(const ::int_rectangle& rectangle)
    {
 
       if (user_interaction()->const_layout().sketch().display() !=
-          e_display_iconic)
+         e_display_iconic)
       {
 
          auto rectangleRequest = user_interaction()->const_layout().design().parent_raw_rectangle();
@@ -12647,7 +12662,7 @@ void window::set_oswindow(::oswindow oswindow)
             {
 
                user_interaction()->set_position(rectangle.origin(),
-                                                ::user::e_layout_window);
+                  ::user::e_layout_window);
 
             }
 
@@ -12720,7 +12735,7 @@ void window::set_oswindow(::oswindow oswindow)
    //   }
 
 
-   void window::on_message_reposition(::message::message * pmessage)
+   void window::on_message_reposition(::message::message* pmessage)
    {
 
       user_interaction()->m_pinteractionScaler->on_display_change(user_interaction());
@@ -12778,7 +12793,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       //m_point = preposition->m_point;
 
-      auto & layout = user_interaction()->const_layout();
+      auto& layout = user_interaction()->const_layout();
 
       auto sketch_origin = layout.sketch().origin();
 
@@ -12803,9 +12818,9 @@ void window::set_oswindow(::oswindow oswindow)
 
 
          if (!placement_log()->has_recent(preposition->m_point)
-             && !user_interaction()->is_window_resizing()
-             && !user_interaction()->is_window_repositioning()
-             && !user_interaction()->is_window_docking())
+            && !user_interaction()->is_window_resizing()
+            && !user_interaction()->is_window_repositioning()
+            && !user_interaction()->is_window_docking())
          {
 
             information() << "window::on_message_reposition " << preposition->m_point;
@@ -12853,7 +12868,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::on_message_size(::message::message * pmessage)
+   void window::on_message_size(::message::message* pmessage)
    {
 
       if (m_bEatSizeEvent)
@@ -12927,9 +12942,9 @@ void window::set_oswindow(::oswindow oswindow)
 
       if (!placement_log()->has_recent(psize->m_size)
          && user_interaction()->is_this_screen_visible()
-          && !user_interaction()->is_window_resizing()
-          && !user_interaction()->is_window_repositioning()
-          && !user_interaction()->is_window_docking())
+         && !user_interaction()->is_window_resizing()
+         && !user_interaction()->is_window_repositioning()
+         && !user_interaction()->is_window_docking())
       {
 
          information() << "window::on_message_size " << psize->m_size;
@@ -12981,7 +12996,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::_001OnDestroyWindow(::message::message * pmessage)
+   void window::_001OnDestroyWindow(::message::message* pmessage)
    {
 
       if (user_interaction() && ::type(user_interaction()).name().contains("notify_icon"))
@@ -13009,7 +13024,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::show_software_keyboard(::user::element * pelement)
+   void window::show_software_keyboard(::user::element* pelement)
    {
 
       throw ::interface_only();
@@ -13017,7 +13032,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::hide_software_keyboard(::user::element * pelement)
+   void window::hide_software_keyboard(::user::element* pelement)
    {
 
       //throw ::interface_only();
@@ -13025,7 +13040,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::non_top_most_upper_window_rects(::int_rectangle_array & recta)
+   void window::non_top_most_upper_window_rects(::int_rectangle_array& recta)
    {
 
       //non_top_most_upper_window_rects(recta);
@@ -13046,7 +13061,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       ::int_rectangle rTest;
 
-      for (auto & rHigher : recta)
+      for (auto& rHigher : recta)
       {
 
          if (rTest.intersect(rHigher, rectangle))
@@ -13063,7 +13078,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::approximate_occlusion_rects(int_rectangle_array & raTest)
+   void window::approximate_occlusion_rects(int_rectangle_array& raTest)
    {
 
       raTest.erase_all();
@@ -13083,7 +13098,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       user_interaction()->window_rectangle(rectangle);
 
-      for (auto & rHigher : ra)
+      for (auto& rHigher : ra)
       {
 
          ::int_rectangle rTest;
@@ -13193,7 +13208,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   long long window::opaque_area(const ::int_rectangle & rect)
+   long long window::opaque_area(const ::int_rectangle& rect)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -13213,7 +13228,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   long long window::_001GetRectTopLeftWeightedArea(const ::int_rectangle & rect)
+   long long window::_001GetRectTopLeftWeightedArea(const ::int_rectangle& rect)
    {
 
       ::int_rectangle rectangle(rect);
@@ -13290,7 +13305,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       long long cApproxOpaqueArea = 0;
 
-      for (auto & r : ra)
+      for (auto& r : ra)
       {
 
          cApproxOpaqueArea += opaque_area(r);
@@ -13319,7 +13334,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       long long cApproxOpaqueArea = 0;
 
-      for (auto & r : ra)
+      for (auto& r : ra)
       {
 
          cApproxOpaqueArea += _001GetRectTopLeftWeightedArea(r);
@@ -13370,7 +13385,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       ::graphics::enum_output_purpose epurposeMostDemanding = ::graphics::e_output_purpose_none;
 
-      for (auto & ppurpose : m_graphicaloutputpurposea)
+      for (auto& ppurpose : m_graphicaloutputpurposea)
       {
 
          if (ppurpose->m_egraphicsoutputpurpose > epurposeMostDemanding)
@@ -13392,7 +13407,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       //::graphics::enum_output_purpose epurposeMostDemanding = ::graphics::e_output_purpose_none;
 
-      for (auto & ppurpose : m_graphicaloutputpurposea)
+      for (auto& ppurpose : m_graphicaloutputpurposea)
       {
 
          if (ppurpose->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
@@ -13416,7 +13431,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       //::graphics::enum_output_purpose epurposeMostDemanding = ::graphics::e_output_purpose_none;
 
-      for (auto & ppurpose : m_graphicaloutputpurposea)
+      for (auto& ppurpose : m_graphicaloutputpurposea)
       {
 
          if (ppurpose->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_offscreen)
@@ -13448,7 +13463,7 @@ void window::set_oswindow(::oswindow oswindow)
 
       //::graphics::enum_output_purpose epurposeMostDemanding = ::graphics::e_output_purpose_none;
 
-      for (auto & ppurpose : m_graphicaloutputpurposea)
+      for (auto& ppurpose : m_graphicaloutputpurposea)
       {
 
          if (ppurpose && ppurpose->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_fps)
@@ -13582,7 +13597,7 @@ void window::set_oswindow(::oswindow oswindow)
        //}
 
 
-   void window::android_fill_plasma(const void * pixels, int width, int height, int stride, long long time_ms)
+   void window::android_fill_plasma(const void* pixels, int width, int height, int stride, long long time_ms)
    {
 
       auto pitem = m_pgraphicsgraphics->get_screen_item();
@@ -13605,12 +13620,12 @@ void window::set_oswindow(::oswindow oswindow)
 
 #ifdef __i386__
 
-      ((image32_t *)pixels)->copy_swap_red_blue(minimum(width, wSource), minimum(height, hSource), stride, pdataSource, scanSource);
+      ((image32_t*)pixels)->copy_swap_red_blue(minimum(width, wSource), minimum(height, hSource), stride, pdataSource, scanSource);
 
 #else
 
-      ((image32_t *)pixels)->copy(minimum(width, wSource), minimum(height, hSource), stride, pdataSource,
-                     scanSource);
+      ((image32_t*)pixels)->copy(minimum(width, wSource), minimum(height, hSource), stride, pdataSource,
+         scanSource);
 
 #endif
 
@@ -13690,7 +13705,7 @@ void window::set_oswindow(::oswindow oswindow)
 
 
 
-   iptr_map < string > * g_p = nullptr;
+   iptr_map < string >* g_p = nullptr;
 
 
    //window::window()
@@ -14064,7 +14079,7 @@ void window::set_oswindow(::oswindow oswindow)
       //}
 
 
-   void window::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
+   void window::_001OnNcClip(::draw2d::graphics_pointer& pgraphics)
    {
 
       user_interaction()->_001OnTopNcClip(pgraphics);
@@ -14156,13 +14171,13 @@ void window::set_oswindow(::oswindow oswindow)
    //   }
 
 
-   void window::set_origin(::draw2d::graphics_pointer & pgraphics)
+   void window::set_origin(::draw2d::graphics_pointer& pgraphics)
    {
 
    }
 
 
-   void window::viewport_client_to_screen(::sequence2_int & sequence)
+   void window::viewport_client_to_screen(::sequence2_int& sequence)
    {
 
       if (user_interaction())
@@ -14175,7 +14190,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::viewport_screen_to_client(::sequence2_int & sequence)
+   void window::viewport_screen_to_client(::sequence2_int& sequence)
    {
 
       if (user_interaction())
@@ -14188,7 +14203,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::viewport_client_to_screen(::int_rectangle & rectangle)
+   void window::viewport_client_to_screen(::int_rectangle& rectangle)
    {
 
       viewport_client_to_screen(rectangle.top_left());
@@ -14198,16 +14213,16 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::viewport_screen_to_client(::int_rectangle & rectangle)
+   void window::viewport_screen_to_client(::int_rectangle& rectangle)
    {
 
-      viewport_screen_to_client((::int_point &)rectangle.top_left());
-      viewport_screen_to_client((::int_point &)rectangle.bottom_right());
+      viewport_screen_to_client((::int_point&)rectangle.top_left());
+      viewport_screen_to_client((::int_point&)rectangle.bottom_right());
 
    }
 
 
-   void window::post_message(::message::message * pmessage)
+   void window::post_message(::message::message* pmessage)
    {
 
       if (!user_interaction())
@@ -14484,441 +14499,441 @@ void window::set_oswindow(::oswindow oswindow)
 
    }
 
-//   {
-//
-//      ::pointer<::message::message>pmessageBase;
-//
-//      if (eprototype == ::message::e_prototype_none)
-//      {
-//
-//         eprototype = ::message::get_message_prototype(atom.as_emessage(), 0);
-//
-//      }
-//
-//      auto pwindow = this;
-//
-//      auto oswindow = pwindow ? pwindow->oswindow() : nullptr;
-//
-//      switch (eprototype)
-//      {
-//      case ::message::e_prototype_none:
-//      {
-//
-//         _NEW_MESSAGE(::user::message);
-//
-//      }
-//      break;
-//      case ::message::e_prototype_create:
-//      {
-//         _NEW_MESSAGE(::message::create);
-//
-//      }
-//      break;
-//      case ::message::e_prototype_enable:
-//      {
-//         _NEW_MESSAGE(::message::enable);
-//
-//      }
-//      break;
-//      case ::message::e_prototype_non_client_activate:
-//      {
-//         _NEW_MESSAGE(::message::nc_activate);
-//         {
-//
-//            //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
-//
-//            pmessage->m_bActive = wparam != false;
-//
-//         }
-//      }
-//      break;
-//      case ::message::e_prototype_key:
-//      {
-//         _NEW_MESSAGE(::message::key);
-//         //void key::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
-//         {
-//
-//            // ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
-//
-//            pmessage->m_nChar = static_cast<unsigned int>(wparam);
-//
-//            pmessage->m_nRepCnt = lower_unsigned_short(lparam);
-//
-//            pmessage->m_nFlags = upper_unsigned_short(lparam);
-//
-//            pmessage->m_iVirtualKey = (int)wparam;
-//
-//            pmessage->m_nScanCode = ((lparam >> 16) & 0xff);
-//
-//            pmessage->m_bExt = (lparam & (1 << 24)) != 0;
-//
-//         }
-//
-//      }
-//      break;
-//      case ::message::e_prototype_timer:
-//      {
-//
-//         //throw ::exception(::exception("do not use e_message_timer or Windows set_timer/kill_timer"));
-//
-//         _NEW_MESSAGE(::message::timer);
-//
-//         pmessage->m_uTimer = static_cast<unsigned int>(wparam);
-//
-//      }
-//      break;
-//      case ::message::e_prototype_show_window:
-//      {
-//         _NEW_MESSAGE(::message::show_window);
-//         pmessage->m_bShow = wparam != false;
-//
-//         pmessage->m_nStatus = static_cast<unsigned int>(lparam);
-//
-//      }
-//      break;
-//      case ::message::e_prototype_set_cursor:
-//      {
-//         _NEW_MESSAGE(::message::set_cursor);
-//      }
-//      break;
-//      case ::message::e_prototype_non_client_hit_test:
-//      {
-//         _NEW_MESSAGE(::message::nc_hit_test);
-//         pmessage->m_point.x() = lparam_int_x(lparam);
-//
-//         pmessage->m_point.y() = lparam_int_y(lparam);
-//      }
-//      break;
-//      case ::message::e_prototype_move:
-//      {
-//         _NEW_MESSAGE(::message::reposition);
-//         pmessage->m_point = lparam.point();
-//      }
-//      break;
-//      case ::message::e_prototype_erase_background:
-//      {
-//         _NEW_MESSAGE(::message::erase_bkgnd);
-//      }
-//      break;
-//      case ::message::e_prototype_scroll:
-//      {
-//         _NEW_MESSAGE(::message::scroll);
-//
-//#ifdef WINDOWS_DESKTOP
-//         pmessage->m_oswindowScrollBar = (::oswindow)(::iptr)(lparam);
-//
-//#endif
-//
-//         //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
-//
-//         pmessage->m_ecommand = (enum_scroll_command)(short)lower_unsigned_short(wparam);
-//
-//         pmessage->m_dPosition = (double)(short)upper_unsigned_short(wparam);
-//
-//      }
-//      break;
-//      case ::message::e_prototype_set_focus:
-//      {
-//         _NEW_MESSAGE(::message::set_keyboard_focus);
-//      }
-//      break;
-//      case ::message::e_prototype_kill_focus:
-//      {
-//         _NEW_MESSAGE(::message::kill_keyboard_focus);
-//         pmessage->m_oswindowNew = (::oswindow)wparam.m_number;
-//      }
-//      break;
-//#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__) && !defined(__BSD__)
-//      case ::message::e_prototype_window_pos:
-//
-//      {
-//         _NEW_MESSAGE(::message::window_pos);
-//         pmessage->m_pWINDOWPOS = reinterpret_cast<void *>(lparam.m_lparam);
-//      }
-//      break;
-//      case ::message::e_prototype_non_client_calc_size:
-//      {
-//         _NEW_MESSAGE(::message::nc_calc_size);
-//         pmessage->m_pNCCALCSIZE_PARAMS = reinterpret_cast<void *>(lparam.m_lparam);
-//      }
-//      break;
-//#endif
-//      case ::message::e_prototype_mouse:
-//      {
-//         _NEW_MESSAGE(::message::mouse);
-//         pmessage->m_ebuttonstate = (::user::enum_button_state)wparam.m_number;
-//
-//         //         if ((pmessage->m_ebuttonstate & I32_MINIMUM) == (I32_MINIMUM))
-//         //         {
-//         //
-//         //            informationf("(m_ebuttonstate & I32_MINIMUM) == (I32_MINIMUM)");
-//         //
-//         //         }
-//
-//         pmessage->m_pointHost = lparam.point();
-//
-//         pmessage->m_pointAbsolute = lparam.point();
-//
-//         _raw_client_to_screen(pmessage->m_pointAbsolute);
-//
-//      }
-//      break;
-//      case ::message::e_prototype_object:
-//      {
-//         _NEW_MESSAGE(::message::particle);
-//         //void particle::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
-//         {
-//
-//            //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
-//
-//            ::particle_pointer pparticle(lparam);
-//
-//            pmessage->m_pparticle = pparticle;
-//
-//            pmessage->m_lparam = 0;
-//
-//         }
-//      }
-//      break;
-//      case ::message::e_prototype_mouse_wheel:
-//      {
-//         _NEW_MESSAGE(::message::mouse_wheel);
-//
-//         pmessage->m_ebuttonstate = (::user::enum_button_state)lower_unsigned_short(wparam);
-//
-//         pmessage->m_pointAbsolute = lparam.point();
-//
-//         pmessage->m_Δ = upper_short(wparam);
-//
-//         pmessage->m_pointHost = pmessage->m_pointAbsolute;
-//
-//         _raw_screen_to_client(pmessage->m_pointHost);
-//
-//      }
-//      break;
-//      case ::message::e_prototype_size:
-//      {
-//         _NEW_MESSAGE(::message::size);
-//
-//         pmessage->m_nType = static_cast <unsigned int> (wparam);
-//
-//         pmessage->m_size = ::int_size(lparam_int_x(lparam), lparam_int_y(lparam));
-//      }
-//      break;
-//      case ::message::e_prototype_activate:
-//      {
-//         _NEW_MESSAGE(::message::activate);
-//         //pmessage = p;
-//         //default_set(pmessage, emessage, wparam, lparam)
-//         //void activate::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
-//         //{
-//
-//            //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
-//
-//         pmessage->m_eactivate = (enum_activate)(lower_unsigned_short(wparam));
-//
-//         if (lparam == 0)
-//         {
-//
-//            pmessage->m_pWndOther = nullptr;
-//
-//         }
-//         else
-//         {
-//
-//            auto paurasession = m_papplication->m_psession;
-//
-//            auto puser = paurasession->m_puser;
-//
-//            auto pwindowing = system()->windowing();
-//
-//            pmessage->m_pWndOther = pwindowing->window(lparam.raw_cast <::oswindow>())->user_interaction();
-//
-//         }
-//
-//         pmessage->m_bMinimized = upper_unsigned_short(wparam) != false;
-//
-//         //}
-//
-//      }
-//      break;
-//      case ::message::e_prototype_mouse_activate:
-//      {
-//         _NEW_MESSAGE(::message::mouse_activate);
-//      }
-//      break;
-//      default:
-//      {
-//
-//         auto pmessage = ::channel::get_message(emessage, wparam, lparam, eprototype);
-//
-//         pmessageBase = pmessage;
-//
-//      }
-//      break;
-//      }
-//
-//      if (pmessageBase.is_null())
-//      {
-//
-//         return nullptr;
-//
-//      }
-//
-//      //auto estatus =
-//
-//
-//
-//
-//      //if (!estatus)
-//      //{
-//
-//      //   return nullptr;
-//
-//      //}
-//
-//      return pmessageBase;
-
-   //}
-
-
-
-   //void window::post_message(const ::atom& atom, ::wparam wParam, ::lparam lParam)
-   //{
-
-
-   //}
-
-
-   //   void window::set_window_text(const ::string& pszString)
    //   {
    //
+   //      ::pointer<::message::message>pmessageBase;
    //
-   //   }
+   //      if (eprototype == ::message::e_prototype_none)
+   //      {
+   //
+   //         eprototype = ::message::get_message_prototype(atom.as_emessage(), 0);
+   //
+   //      }
+   //
+   //      auto pwindow = this;
+   //
+   //      auto oswindow = pwindow ? pwindow->oswindow() : nullptr;
+   //
+   //      switch (eprototype)
+   //      {
+   //      case ::message::e_prototype_none:
+   //      {
+   //
+   //         _NEW_MESSAGE(::user::message);
+   //
+   //      }
+   //      break;
+   //      case ::message::e_prototype_create:
+   //      {
+   //         _NEW_MESSAGE(::message::create);
+   //
+   //      }
+   //      break;
+   //      case ::message::e_prototype_enable:
+   //      {
+   //         _NEW_MESSAGE(::message::enable);
+   //
+   //      }
+   //      break;
+   //      case ::message::e_prototype_non_client_activate:
+   //      {
+   //         _NEW_MESSAGE(::message::nc_activate);
+   //         {
+   //
+   //            //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
+   //
+   //            pmessage->m_bActive = wparam != false;
+   //
+   //         }
+   //      }
+   //      break;
+   //      case ::message::e_prototype_key:
+   //      {
+   //         _NEW_MESSAGE(::message::key);
+   //         //void key::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   //         {
+   //
+   //            // ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
+   //
+   //            pmessage->m_nChar = static_cast<unsigned int>(wparam);
+   //
+   //            pmessage->m_nRepCnt = lower_unsigned_short(lparam);
+   //
+   //            pmessage->m_nFlags = upper_unsigned_short(lparam);
+   //
+   //            pmessage->m_iVirtualKey = (int)wparam;
+   //
+   //            pmessage->m_nScanCode = ((lparam >> 16) & 0xff);
+   //
+   //            pmessage->m_bExt = (lparam & (1 << 24)) != 0;
+   //
+   //         }
+   //
+   //      }
+   //      break;
+   //      case ::message::e_prototype_timer:
+   //      {
+   //
+   //         //throw ::exception(::exception("do not use e_message_timer or Windows set_timer/kill_timer"));
+   //
+   //         _NEW_MESSAGE(::message::timer);
+   //
+   //         pmessage->m_uTimer = static_cast<unsigned int>(wparam);
+   //
+   //      }
+   //      break;
+   //      case ::message::e_prototype_show_window:
+   //      {
+   //         _NEW_MESSAGE(::message::show_window);
+   //         pmessage->m_bShow = wparam != false;
+   //
+   //         pmessage->m_nStatus = static_cast<unsigned int>(lparam);
+   //
+   //      }
+   //      break;
+   //      case ::message::e_prototype_set_cursor:
+   //      {
+   //         _NEW_MESSAGE(::message::set_cursor);
+   //      }
+   //      break;
+   //      case ::message::e_prototype_non_client_hit_test:
+   //      {
+   //         _NEW_MESSAGE(::message::nc_hit_test);
+   //         pmessage->m_point.x() = lparam_int_x(lparam);
+   //
+   //         pmessage->m_point.y() = lparam_int_y(lparam);
+   //      }
+   //      break;
+   //      case ::message::e_prototype_move:
+   //      {
+   //         _NEW_MESSAGE(::message::reposition);
+   //         pmessage->m_point = lparam.point();
+   //      }
+   //      break;
+   //      case ::message::e_prototype_erase_background:
+   //      {
+   //         _NEW_MESSAGE(::message::erase_bkgnd);
+   //      }
+   //      break;
+   //      case ::message::e_prototype_scroll:
+   //      {
+   //         _NEW_MESSAGE(::message::scroll);
+   //
+   //#ifdef WINDOWS_DESKTOP
+   //         pmessage->m_oswindowScrollBar = (::oswindow)(::iptr)(lparam);
+   //
+   //#endif
+   //
+   //         //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
+   //
+   //         pmessage->m_ecommand = (enum_scroll_command)(short)lower_unsigned_short(wparam);
+   //
+   //         pmessage->m_dPosition = (double)(short)upper_unsigned_short(wparam);
+   //
+   //      }
+   //      break;
+   //      case ::message::e_prototype_set_focus:
+   //      {
+   //         _NEW_MESSAGE(::message::set_keyboard_focus);
+   //      }
+   //      break;
+   //      case ::message::e_prototype_kill_focus:
+   //      {
+   //         _NEW_MESSAGE(::message::kill_keyboard_focus);
+   //         pmessage->m_oswindowNew = (::oswindow)wparam.m_number;
+   //      }
+   //      break;
+   //#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__) && !defined(__BSD__)
+   //      case ::message::e_prototype_window_pos:
+   //
+   //      {
+   //         _NEW_MESSAGE(::message::window_pos);
+   //         pmessage->m_pWINDOWPOS = reinterpret_cast<void *>(lparam.m_lparam);
+   //      }
+   //      break;
+   //      case ::message::e_prototype_non_client_calc_size:
+   //      {
+   //         _NEW_MESSAGE(::message::nc_calc_size);
+   //         pmessage->m_pNCCALCSIZE_PARAMS = reinterpret_cast<void *>(lparam.m_lparam);
+   //      }
+   //      break;
+   //#endif
+   //      case ::message::e_prototype_mouse:
+   //      {
+   //         _NEW_MESSAGE(::message::mouse);
+   //         pmessage->m_ebuttonstate = (::user::enum_button_state)wparam.m_number;
+   //
+   //         //         if ((pmessage->m_ebuttonstate & I32_MINIMUM) == (I32_MINIMUM))
+   //         //         {
+   //         //
+   //         //            informationf("(m_ebuttonstate & I32_MINIMUM) == (I32_MINIMUM)");
+   //         //
+   //         //         }
+   //
+   //         pmessage->m_pointHost = lparam.point();
+   //
+   //         pmessage->m_pointAbsolute = lparam.point();
+   //
+   //         _raw_client_to_screen(pmessage->m_pointAbsolute);
+   //
+   //      }
+   //      break;
+   //      case ::message::e_prototype_object:
+   //      {
+   //         _NEW_MESSAGE(::message::particle);
+   //         //void particle::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   //         {
+   //
+   //            //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
+   //
+   //            ::particle_pointer pparticle(lparam);
+   //
+   //            pmessage->m_pparticle = pparticle;
+   //
+   //            pmessage->m_lparam = 0;
+   //
+   //         }
+   //      }
+   //      break;
+   //      case ::message::e_prototype_mouse_wheel:
+   //      {
+   //         _NEW_MESSAGE(::message::mouse_wheel);
+   //
+   //         pmessage->m_ebuttonstate = (::user::enum_button_state)lower_unsigned_short(wparam);
+   //
+   //         pmessage->m_pointAbsolute = lparam.point();
+   //
+   //         pmessage->m_Δ = upper_short(wparam);
+   //
+   //         pmessage->m_pointHost = pmessage->m_pointAbsolute;
+   //
+   //         _raw_screen_to_client(pmessage->m_pointHost);
+   //
+   //      }
+   //      break;
+   //      case ::message::e_prototype_size:
+   //      {
+   //         _NEW_MESSAGE(::message::size);
+   //
+   //         pmessage->m_nType = static_cast <unsigned int> (wparam);
+   //
+   //         pmessage->m_size = ::int_size(lparam_int_x(lparam), lparam_int_y(lparam));
+   //      }
+   //      break;
+   //      case ::message::e_prototype_activate:
+   //      {
+   //         _NEW_MESSAGE(::message::activate);
+   //         //pmessage = p;
+   //         //default_set(pmessage, emessage, wparam, lparam)
+   //         //void activate::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   //         //{
+   //
+   //            //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
+   //
+   //         pmessage->m_eactivate = (enum_activate)(lower_unsigned_short(wparam));
+   //
+   //         if (lparam == 0)
+   //         {
+   //
+   //            pmessage->m_pWndOther = nullptr;
+   //
+   //         }
+   //         else
+   //         {
+   //
+   //            auto paurasession = m_papplication->m_psession;
+   //
+   //            auto puser = paurasession->m_puser;
+   //
+   //            auto pwindowing = system()->windowing();
+   //
+   //            pmessage->m_pWndOther = pwindowing->window(lparam.raw_cast <::oswindow>())->user_interaction();
+   //
+   //         }
+   //
+   //         pmessage->m_bMinimized = upper_unsigned_short(wparam) != false;
+   //
+   //         //}
+   //
+   //      }
+   //      break;
+   //      case ::message::e_prototype_mouse_activate:
+   //      {
+   //         _NEW_MESSAGE(::message::mouse_activate);
+   //      }
+   //      break;
+   //      default:
+   //      {
+   //
+   //         auto pmessage = ::channel::get_message(emessage, wparam, lparam, eprototype);
+   //
+   //         pmessageBase = pmessage;
+   //
+   //      }
+   //      break;
+   //      }
+   //
+   //      if (pmessageBase.is_null())
+   //      {
+   //
+   //         return nullptr;
+   //
+   //      }
+   //
+   //      //auto estatus =
+   //
+   //
+   //
+   //
+   //      //if (!estatus)
+   //      //{
+   //
+   //      //   return nullptr;
+   //
+   //      //}
+   //
+   //      return pmessageBase;
+
+      //}
 
 
-      //void window::on_set_window_text()
+
+      //void window::post_message(const ::atom& atom, ::wparam wParam, ::lparam lParam)
       //{
 
 
       //}
 
-      //   character_count window::get_window_text(char* pszStringBuf, character_count nMaxCount)
-      //   {
-      //
-      //      return 0;
-      //
-      //   }
 
-
-      //   void window::get_window_text(string& rString)
+      //   void window::set_window_text(const ::string& pszString)
       //   {
       //
       //
       //   }
 
 
-      //   character_count window::get_window_text_length()
-      //   {
-      //
-      //      return 0;
-      //
-      //   }
+         //void window::on_set_window_text()
+         //{
 
 
-         //void window::UpdateWindow()
+         //}
+
+         //   character_count window::get_window_text(char* pszStringBuf, character_count nMaxCount)
+         //   {
+         //
+         //      return 0;
+         //
+         //   }
+
+
+         //   void window::get_window_text(string& rString)
+         //   {
+         //
+         //
+         //   }
+
+
+         //   character_count window::get_window_text_length()
+         //   {
+         //
+         //      return 0;
+         //
+         //   }
+
+
+            //void window::UpdateWindow()
+            //{
+
+
+            //}
+
+
+            //void window::SetRedraw(bool bRedraw)
+            //{
+
+
+            //}
+
+
+         //   void window::graphics_thread_redraw(bool bUpdateBuffer)
+         //   {
+         //
+         //
+         //   }
+
+
+
+         //void window::set_mouse_cursor(::windowing::cursor * pcursor)
+         //{
+
+
+         //}
+
+         //::user::interaction * window::ChildWindowFromPoint(const ::int_point & point)
+         //{
+
+         //   return nullptr;
+
+         //}
+
+
+         //::user::interaction * window::ChildWindowFromPoint(const ::int_point & point, unsigned int nFlags)
+         //{
+
+         //   return nullptr;
+
+         //}
+
+
+         //::user::interaction * window::GetLastActivePopup()
+         //{
+
+         //   return nullptr;
+
+         //}
+
+
+         //void window::update_data(bool bSaveAndValidate)
          //{
 
 
          //}
 
 
-         //void window::SetRedraw(bool bRedraw)
+         //void window::CenterWindow(::user::interaction * pAlternateOwner)
          //{
 
 
          //}
 
 
-      //   void window::graphics_thread_redraw(bool bUpdateBuffer)
-      //   {
-      //
-      //
-      //   }
+         //bool window::OnChildNotify(::message::message * pusermessage)
+         //{
+
+         //   return false;
+
+         //}
 
 
-
-      //void window::set_mouse_cursor(::windowing::cursor * pcursor)
-      //{
-
-
-      //}
-
-      //::user::interaction * window::ChildWindowFromPoint(const ::int_point & point)
-      //{
-
-      //   return nullptr;
-
-      //}
+         //void window::ActivateTopParent()
+         //{
 
 
-      //::user::interaction * window::ChildWindowFromPoint(const ::int_point & point, unsigned int nFlags)
-      //{
-
-      //   return nullptr;
-
-      //}
+         //}
 
 
-      //::user::interaction * window::GetLastActivePopup()
-      //{
-
-      //   return nullptr;
-
-      //}
+         //void window::_001UpdateWindow()
+         //{
 
 
-      //void window::update_data(bool bSaveAndValidate)
-      //{
+         //}
 
 
-      //}
+         //void window::on_start_layout_experience(enum_layout_experience elayoutexperience)
+         //{
 
 
-      //void window::CenterWindow(::user::interaction * pAlternateOwner)
-      //{
-
-
-      //}
-
-
-      //bool window::OnChildNotify(::message::message * pusermessage)
-      //{
-
-      //   return false;
-
-      //}
-
-
-      //void window::ActivateTopParent()
-      //{
-
-
-      //}
-
-
-      //void window::_001UpdateWindow()
-      //{
-
-
-      //}
-
-
-      //void window::on_start_layout_experience(enum_layout_experience elayoutexperience)
-      //{
-
-
-      //}
+         //}
 
 
    void window::on_end_layout_experience(enum_layout_experience elayoutexperience)
@@ -15046,14 +15061,14 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   void window::edit_on_set_focus(::user::interaction * pinteraction)
+   void window::edit_on_set_focus(::user::interaction* pinteraction)
    {
 
 
    }
 
 
-   void window::edit_on_kill_focus(::user::interaction * pinteraction)
+   void window::edit_on_kill_focus(::user::interaction* pinteraction)
    {
 
 
@@ -15076,7 +15091,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   ::user::interaction * window::get_child_by_id(const ::atom & atom, ::collection::index iItem, int iLevel)
+   ::user::interaction* window::get_child_by_id(const ::atom& atom, ::collection::index iItem, int iLevel)
    {
 
       return nullptr;
@@ -15239,7 +15254,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   atom window::SetDlgCtrlId(const atom & atom)
+   atom window::SetDlgCtrlId(const atom& atom)
    {
 
       if (!user_interaction())
@@ -15255,7 +15270,7 @@ void window::set_oswindow(::oswindow oswindow)
 
 
 
-   ::user::interaction * window::first_child()
+   ::user::interaction* window::first_child()
    {
 
       if (!user_interaction())
@@ -15270,7 +15285,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::user::interaction * window::top_child()
+   ::user::interaction* window::top_child()
    {
 
       if (!user_interaction())
@@ -15285,7 +15300,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::user::interaction * window::under_sibling()
+   ::user::interaction* window::under_sibling()
    {
 
       if (!user_interaction())
@@ -15300,7 +15315,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::user::interaction * window::above_sibling()
+   ::user::interaction* window::above_sibling()
    {
 
       if (!user_interaction())
@@ -15315,7 +15330,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::user::interaction * window::above_sibling(::user::interaction * pinteraction)
+   ::user::interaction* window::above_sibling(::user::interaction* pinteraction)
    {
 
       if (!user_interaction())
@@ -15330,7 +15345,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::user::interaction * window::under_sibling(::user::interaction * pinteraction)
+   ::user::interaction* window::under_sibling(::user::interaction* pinteraction)
    {
 
       if (!user_interaction())
@@ -15354,7 +15369,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   bool window::is_ascendant(::user::element * puiIsAscendant, bool bIncludeSelf)
+   bool window::is_ascendant(::user::element* puiIsAscendant, bool bIncludeSelf)
    {
 
       if (::is_null(puiIsAscendant))
@@ -15369,7 +15384,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   bool window::is_parent(::user::element * puiIsParent)
+   bool window::is_parent(::user::element* puiIsParent)
    {
 
       if (puiIsParent == nullptr)
@@ -15384,7 +15399,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   bool window::is_child(::user::element * puiIsChild)
+   bool window::is_child(::user::element* puiIsChild)
    {
 
       if (puiIsChild == nullptr)
@@ -15394,17 +15409,17 @@ void window::set_oswindow(::oswindow oswindow)
 
       }
 
-      ::user::interaction * puiProbe = puiIsChild->get_parent();
+      ::user::interaction* puiProbe = puiIsChild->get_parent();
 
       return puiProbe == user_interaction();
 
    }
 
 
-   bool window::is_descendant(::user::element * puiIsDescendant, bool bIncludeSelf)
+   bool window::is_descendant(::user::element* puiIsDescendant, bool bIncludeSelf)
    {
 
-      ::user::element * puiProbe;
+      ::user::element* puiProbe;
 
       if (bIncludeSelf)
       {
@@ -15447,7 +15462,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::user::interaction * window::get_wnd()
+   ::user::interaction* window::get_wnd()
    {
 
       if (!user_interaction())
@@ -15462,7 +15477,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::user::interaction * window::get_wnd(unsigned int nCmd)
+   ::user::interaction* window::get_wnd(unsigned int nCmd)
    {
 
       if (!user_interaction())
@@ -15509,7 +15524,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   ::user::interaction * window::get_owner()
+   ::user::interaction* window::get_owner()
    {
 
       if (!user_interaction())
@@ -15524,7 +15539,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::user::frame_interaction * window::frame()
+   ::user::frame_interaction* window::frame()
    {
 
       if (!user_interaction())
@@ -15554,7 +15569,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   ::user::interaction * window::get_parent_owner()
+   ::user::interaction* window::get_parent_owner()
    {
 
       if (!user_interaction())
@@ -15569,7 +15584,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::user::interaction * window::get_parent_or_owner()
+   ::user::interaction* window::get_parent_or_owner()
    {
 
       if (!user_interaction())
@@ -15584,7 +15599,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::user::interaction * window::get_top_level_owner()
+   ::user::interaction* window::get_top_level_owner()
    {
 
       if (!user_interaction())
@@ -15599,7 +15614,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   ::user::frame_interaction * window::top_level_frame()
+   ::user::frame_interaction* window::top_level_frame()
    {
 
       if (!user_interaction())
@@ -15671,7 +15686,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   lresult window::message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
+   lresult window::message_call(::enum_message emessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
    {
 
       ::pointer<::message::message>pmessage;
@@ -15696,7 +15711,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   lresult window::message_call(::message::message * pmessage)
+   lresult window::message_call(::message::message* pmessage)
    {
 
       if (user_interaction() == nullptr)
@@ -16318,7 +16333,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   void window::on_message_non_client_destroy(::message::message * pmessage)
+   void window::on_message_non_client_destroy(::message::message* pmessage)
    {
 
       if (user_interaction() && ::type(user_interaction()).name().contains("notify_icon"))
@@ -16335,7 +16350,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::set_user_interaction(::acme::user::interaction * pacmeuserinteraction)
+   void window::set_user_interaction(::acme::user::interaction* pacmeuserinteraction)
    {
 
       ::windowing::window_base::set_user_interaction(pacmeuserinteraction);
@@ -16345,7 +16360,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::set_user_thread(::user::thread * puserthread)
+   void window::set_user_thread(::user::thread* puserthread)
    {
 
       m_puserthread = puserthread;
@@ -16360,7 +16375,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::set_user_graphics_thread(::user::graphics_thread * pusergraphicsthread)
+   void window::set_user_graphics_thread(::user::graphics_thread* pusergraphicsthread)
    {
 
       m_pgraphicsthread = pusergraphicsthread;
@@ -16375,7 +16390,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::prio_install_message_routing(::channel * pchannel)
+   void window::prio_install_message_routing(::channel* pchannel)
    {
 
       //if (g_p == nullptr)
@@ -16526,7 +16541,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   void window::create_child(::user::interaction * puserinteraction, ::user::interaction_base * puserprimitiveParent)
+   void window::create_child(::user::interaction* puserinteraction, ::user::interaction_base* puserprimitiveParent)
    {
 
       //return false;
@@ -16685,7 +16700,7 @@ void window::set_oswindow(::oswindow oswindow)
 #ifdef LINUX
 
 
-   lresult window::send_x11_event(void * phappening)
+   lresult window::send_x11_event(void* phappening)
    {
 
       throw interface_only();
@@ -16706,7 +16721,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   ::user::frame_interaction * window::parent_frame()
+   ::user::frame_interaction* window::parent_frame()
    {
 
       return user_interaction()->parent_frame();
@@ -16752,21 +16767,21 @@ void window::set_oswindow(::oswindow oswindow)
 
    //}
 
-   void window::_raw_client_to_screen(::int_point & point)
+   void window::_raw_client_to_screen(::int_point& point)
    {
 
       user_interaction()->client_to_screen(::user::e_layout_design)(point);
 
    }
 
-   void window::_raw_screen_to_client(::int_point & point)
+   void window::_raw_screen_to_client(::int_point& point)
    {
 
       user_interaction()->screen_to_client(::user::e_layout_design)(point);
 
    }
 
-   ::windowing::window * window::windowing_window()
+   ::windowing::window* window::windowing_window()
    {
 
       return this;
@@ -16789,7 +16804,7 @@ void window::set_oswindow(::oswindow oswindow)
    //}
 
 
-   void window::_user_send(const ::procedure & procedure)
+   void window::_user_send(const ::procedure& procedure)
    {
 
       if (!user_interaction())
@@ -16806,7 +16821,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::_user_post(const ::procedure & procedure)
+   void window::_user_post(const ::procedure& procedure)
    {
 
       if (!user_interaction())
@@ -16823,7 +16838,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::_main_send(const ::procedure & procedure)
+   void window::_main_send(const ::procedure& procedure)
    {
 
       if (!user_interaction())
@@ -16840,7 +16855,7 @@ void window::set_oswindow(::oswindow oswindow)
    }
 
 
-   void window::_main_post(const ::procedure & procedure)
+   void window::_main_post(const ::procedure& procedure)
    {
 
       if (!user_interaction())

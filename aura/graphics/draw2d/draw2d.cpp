@@ -1537,10 +1537,10 @@ void draw2d::emboss_predicate(
 }
 
 
-   void draw2d::lock_device()
+   bool draw2d::lock_device()
    {
 
-      //return ::success;
+      return false;
 
    }
 
@@ -1548,7 +1548,6 @@ void draw2d::emboss_predicate(
    void draw2d::unlock_device()
    {
 
-      //return ::success;
 
    }
 

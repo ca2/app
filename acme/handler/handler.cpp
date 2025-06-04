@@ -22,7 +22,7 @@ namespace handler
    handler::handler()
    {
 
-
+      m_bReadyToAttendRequests = false;
       m_hnHandlerFlag = 0;
 
    }
@@ -149,6 +149,13 @@ namespace handler
 
    bool handler::pick_next_posted_request()
    {
+
+      if (!m_bReadyToAttendRequests)
+      {
+
+         return false;
+
+      }
       
       if(m_prequestBeingAttended)
       {
@@ -200,6 +207,13 @@ namespace handler
 
    bool handler::handle_next_posted_request()
    {
+
+      if (!m_bReadyToAttendRequests)
+      {
+
+         return true;
+
+      }
 
       while (pick_next_posted_request())
       {

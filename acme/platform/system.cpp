@@ -2979,11 +2979,15 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    {
 
       auto prequest = __create_new<::request>();
+
       prequest->m_ecommand = e_command_application_start;
+
       ::string strAppId = m_papplication->m_strAppId;
+
       prequest->m_strAppId = strAppId;
       prequest->m_bPreferSync = true;
-      call_request(prequest);
+
+      post_request(prequest);
 
    }
 
@@ -3238,10 +3242,12 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    {
 
       auto prequest = __create_new<::request>();
+      
       prequest->m_ecommand = e_command_application_started;
       prequest->m_strAppId = m_papplication->m_strAppId;
       prequest->m_bPreferSync = true;
-      call_request(prequest);
+
+      post_request(prequest);
 
    }
 

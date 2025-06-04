@@ -40,6 +40,10 @@ namespace draw2d_gpu
 
       void _set(const ::geometry2d::matrix& matrix);
 
+      void do_on_context(const ::procedure& procedure) override;
+ 
+
+
    };
 
 

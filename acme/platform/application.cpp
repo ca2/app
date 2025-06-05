@@ -8,6 +8,7 @@
 #include "application_menu.h"
 #include "acme/exception/exit.h"
 #include "acme/exception/interface_only.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -2441,6 +2442,33 @@ void application::start_application()
 
       system()->acme_windowing()->windowing_application_main_loop();
 
+
+   }
+
+
+   string application::application_file_setting(const ::scoped_string& scopedstrFileName)
+   {
+
+      ::file::path path;
+
+      path = "dropbox-app://" / scopedstrFileName;
+
+      ::string str = file()->safe_get_string(path);
+
+      str.trim();
+
+      if (str.is_empty())
+      {
+
+         path = directory()->home() / scopedstrFileName;
+
+         str = file()->safe_get_string(path);
+
+         str.trim();
+
+      }
+
+      return str;
 
    }
 

@@ -758,6 +758,10 @@ namespace platform
 
       virtual void on_system_main();
 
+
+      virtual string application_file_setting(const ::scoped_string& scopedstrFileName);
+
+
    };
 
 

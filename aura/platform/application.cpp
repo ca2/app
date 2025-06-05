@@ -1784,11 +1784,7 @@ namespace aura
 
       {
 
-         ::file::path pathImplementation = directory()->home() / "graphics3d.txt";
-
-         ::string strImplementation = file()->safe_get_string(pathImplementation);
-
-         strImplementation.trim();
+         ::string strImplementation = application_file_setting("graphics3d.txt");
 
          strImplementation.make_lower();
 
@@ -1823,15 +1819,11 @@ namespace aura
 
       {
 
-         ::file::path pathOutput = directory()->home() / "graphics3d_output.txt";
+         ::string strOutput = application_file_setting("graphics3d_output.txt");
 
-         ::string strGraphics3DOutput = file()->safe_get_string(pathOutput);
+         strOutput.make_lower();
 
-         strGraphics3DOutput.trim();
-
-         strGraphics3DOutput.make_lower();
-
-         if (strGraphics3DOutput.equals("swap_chain"))
+         if (strOutput.equals("swap_chain"))
          {
 
             m_bUseSwapChainWindow = true;

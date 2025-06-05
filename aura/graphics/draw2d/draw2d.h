@@ -174,6 +174,8 @@ namespace draw2d
       virtual void unlock_device();
 
 
+      virtual void adjust_composited_window_styles(unsigned int& nExStyle, unsigned int& nStyle);
+
 
    };
 

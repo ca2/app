@@ -1552,6 +1552,26 @@ void draw2d::emboss_predicate(
    }
 
 
+   void draw2d::adjust_composited_window_styles(unsigned int& nExStyle, unsigned int& nStyle)
+   {
+
+      ////if (!m_papplication->m_bUseSwapChainWindow)
+      //{
+
+      //   nExStyle |= WS_EX_LAYERED;
+
+      //}
+      //if (m_papplication->m_bUseSwapChainWindow)
+      //{
+
+      //   nExStyle |= WS_EX_NOREDIRECTIONBITMAP;
+      //   //nExStyle |= WS_EX_TRANSPARENT;
+      //}
+
+
+   }
+
+
 } // namespace draw2d
 
 

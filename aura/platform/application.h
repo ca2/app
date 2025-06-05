@@ -153,7 +153,8 @@ namespace aura
 //
 //
 
-::pointer<::gpu::approach>                        m_pgpu;
+      ::pointer<::gpu::approach>                         m_pgpu;
+      ::string                                           m_strGraphics3DImplementation;
 
 
       application();
@@ -1060,7 +1061,7 @@ void initialize_context() override;
 //
 //#endif
 
-      virtual string draw2d_get_default_implementation_name() override;
+      //virtual string draw2d_get_default_implementation_name() override;
 
 
       void on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine) override;
@@ -1097,7 +1098,10 @@ void initialize_context() override;
 
       //virtual void on_layout_cube(int cx, int cy);
 
+      ::string draw2d_get_default_implementation_name() override;
+
       virtual ::string graphics3d_get_implementation_name();
+
 
    };
 

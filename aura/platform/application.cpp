@@ -48,7 +48,6 @@
 #include "aura/windowing/windowing.h"
 
 
-
 extern "C"
 {
 
@@ -1782,6 +1781,71 @@ namespace aura
       //auto estatus =
       
       ::aqua::application::init_instance();
+
+      {
+
+         ::file::path pathImplementation = directory()->home() / "graphics3d.txt";
+
+         ::string strImplementation = file()->safe_get_string(pathImplementation);
+
+         strImplementation.trim();
+
+         strImplementation.make_lower();
+
+         if (strImplementation == "directx11")
+         {
+
+            strImplementation = "directx11";
+
+         }
+         else if (strImplementation == "opengl")
+         {
+
+            strImplementation = "opengl";
+
+         }
+         else if (strImplementation == "vulkan")
+         {
+
+            strImplementation = "vulkan";
+
+         }
+         else
+         {
+
+            strImplementation = "opengl";
+
+         }
+
+         m_strGraphics3DImplementation = strImplementation;
+
+      }
+
+      {
+
+         ::file::path pathOutput = directory()->home() / "graphics3d_output.txt";
+
+         ::string strGraphics3DOutput = file()->safe_get_string(pathOutput);
+
+         strGraphics3DOutput.trim();
+
+         strGraphics3DOutput.make_lower();
+
+         if (strGraphics3DOutput.equals("swap_chain"))
+         {
+
+            m_bUseSwapChainWindow = true;
+
+         }
+         else
+         {
+
+            m_bUseSwapChainWindow = false;
+
+         }
+
+      }
+
 
       //if (!estatus)
       //{
@@ -9176,12 +9240,12 @@ namespace aura
    // }
    //
 
-   string application::draw2d_get_default_implementation_name()
-   {
+   //string application::draw2d_get_default_implementation_name()
+   //{
 
-      return {};
+   //   return {};
 
-   }
+   //}
 
 
    void application::on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine)
@@ -9427,16 +9491,20 @@ namespace aura
       if (!pfactoryGpu)
       {
 
-         ::string strImplementation = m_papplication->draw2d_get_default_implementation_name();
+         ::string strDraw2dImplementation = m_papplication->draw2d_get_default_implementation_name();
 
-         if (strImplementation == "vkvg")
+         if (strDraw2dImplementation == "vkvg")
          {
 
-            strImplementation = "vulkan";
+            strDraw2dImplementation = "vulkan";
+
+         }
+         else if (strDraw2dImplementation.begins_eat("direct2d_"))
+         {
 
          }
 
-         pfactoryGpu = factory("gpu", strImplementation);
+         pfactoryGpu = factory("gpu", strDraw2dImplementation);
 
          pfactoryGpu->merge_to_global_factory();
 
@@ -9750,15 +9818,52 @@ namespace aura
    //}
 
 
-
-   ::string application::graphics3d_get_implementation_name()
+   ::string application::draw2d_get_default_implementation_name()
    {
 
-      return "opengl";
+      if (m_bUseSwapChainWindow)
+      {
+
+         ::string strGraphics3DImplementation = graphics3d_get_implementation_name();
+
+         if (strGraphics3DImplementation == "vulkan")
+         {
+
+            //return system()->implementation_name("draw2d", "vkvg");
+
+            return system()->implementation_name("draw2d", "vulkan");
+
+         }
+         else if (strGraphics3DImplementation.begins("directx"))
+         {
+
+            return system()->implementation_name("draw2d", "direct2d_" + strGraphics3DImplementation);
+
+         }
+         else
+         {
+
+            return system()->implementation_name("draw2d", strGraphics3DImplementation);
+
+         }
+
+      }
+      else
+      {
+
+         return ::aqua::application::draw2d_get_default_implementation_name();
+
+      }
 
    }
 
 
+   ::string application::graphics3d_get_implementation_name()
+   {
+
+      return m_strGraphics3DImplementation;
+
+   }
 
 
 } // namespace aura

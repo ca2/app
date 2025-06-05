@@ -462,6 +462,8 @@ namespace apex
       //
       // //return estatus;
 
+      m_bReadyToAttendRequests = true;
+
    }
 
 

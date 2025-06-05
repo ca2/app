@@ -91,7 +91,7 @@ namespace graphics3d
 		virtual void _engine_on_frame_context_initialization();
 
 		virtual void _do_frame_step();
-
+		virtual void on_after_done_frame_step(::draw2d::graphics_pointer& pgraphics);
 		virtual void defer_update_engine(const ::int_rectangle & rectangle);
 
 		virtual void on_layout(const ::int_rectangle & rectanglePlacement);

@@ -9704,10 +9704,11 @@ namespace windowing
 
       //user_interaction()->layout_to_design();
 
-      ::draw2d::lock draw2dlock(this);
-
 
       {
+         
+         //::draw2d::lock draw2dlock(this);
+
 
 
          _synchronous_lock slGraphics(m_pgraphicsgraphics->synchronization());
@@ -9795,6 +9796,8 @@ namespace windowing
             return;
 
          }
+
+         //draw2dlock.unlock();
 
          pgraphics->do_on_context([this, &pgraphics, &pbufferitem]()
             {
@@ -10041,6 +10044,7 @@ namespace windowing
       if (m_pgraphicsgraphics)
       {
 
+         //::draw2d::lock draw2dlock(this);
 
          _synchronous_lock slGraphics(m_pgraphicsgraphics->synchronization());
 
@@ -10104,6 +10108,8 @@ namespace windowing
             return;
 
          }
+
+         //draw2dlock.unlock();
 
          pgraphics->do_on_context([this, &pgraphics, &pbufferitem]()
             {
@@ -10273,7 +10279,10 @@ namespace windowing
 #endif
                         ///xxxopengl  user_interaction()->_000TopCallOnDraw(pgraphics);
 
+                        //xxxdirectx user_interaction()->_000TopCallOnDraw(pgraphics);
                         user_interaction()->_000TopCallOnDraw(pgraphics);
+
+                        //pgraphics->fill_solid_rectangle({ 0., 0., 100., 100. }, ::argb(0.5, 0.5, 0.8, 0.75));
 
                         ////user_interaction()->_000CallOnDraw(pgraphics);
 

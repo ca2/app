@@ -692,6 +692,8 @@ namespace graphics3d
 
          do_frame_step(pcontext);
 
+         on_after_done_frame_step(pgraphics);
+
       }
 
    }
@@ -802,6 +804,13 @@ namespace graphics3d
          on_render_frame();
 
       }
+
+   }
+
+   void engine::on_after_done_frame_step(::draw2d::graphics_pointer& pgraphics)
+   {
+
+
 
    }
 

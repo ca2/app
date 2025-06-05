@@ -18,24 +18,24 @@
 #include "stb/stb_image_write.h"
 
 
-void stb_memory_write(void *context, void *data, int size)
+void stb_memory_write(void* context, void* data, int size)
 {
- 
-    auto pmemory = (::memory *) context;
-   
+
+   auto pmemory = (::memory*)context;
+
    pmemory->append(data, size);
-   
+
 }
 
 
 namespace image
 {
-   pool_image::pool_image(image_context * pimagecontext, const ::image::image * pimage) :
+   pool_image::pool_image(image_context* pimagecontext, const ::image::image* pimage) :
       m_pimagecontext(pimagecontext),
       m_pimage(pimage)
    {
 
-      
+
    }
 
 
@@ -47,7 +47,7 @@ namespace image
    }
 
 
-   ::image::image * pool_image::image()
+   ::image::image* pool_image::image()
    {
 
       return m_pimage;
@@ -70,7 +70,7 @@ namespace image
    }
 
 
-   void image_context::initialize(::particle * pparticle)
+   void image_context::initialize(::particle* pparticle)
    {
 
       ::object::initialize(pparticle);
@@ -118,7 +118,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::create_image(const ::int_size & size, const image32_t * pcolor, int iScan, ::enum_flag eflagCreate)
+   ::image::image_pointer image_context::create_image(const ::int_size& size, const image32_t* pcolor, int iScan, ::enum_flag eflagCreate)
    {
 
       auto pimage = m_papplication->__øcreate < ::image::image >();
@@ -146,12 +146,12 @@ namespace image
    }
 
 
-   ::image::pool_image image_context::pool_image(const ::int_size & size)
+   ::image::pool_image image_context::pool_image(const ::int_size& size)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      auto &imagea = m_imagepool[size];
+      auto& imagea = m_imagepool[size];
 
       if (imagea.has_element())
       {
@@ -164,20 +164,20 @@ namespace image
 
    }
 
-   
-   void image_context::release_pool_image(::image::pool_image * ppoolimage)
+
+   void image_context::release_pool_image(::image::pool_image* ppoolimage)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      auto & imagea = m_imagepool[ppoolimage->image()->size()];
+      auto& imagea = m_imagepool[ppoolimage->image()->size()];
 
       imagea.add(ppoolimage->image());
 
    }
 
 
-   int image_context::image_integer(const ::file::path & path)
+   int image_context::image_integer(const ::file::path& path)
    {
 
       _synchronous_lock  synchronouslock(this->synchronization());
@@ -202,7 +202,7 @@ namespace image
    }
 
 
-   int image_context::create_image_integer(int w, int h, const image32_t * pimage32, int iScan)
+   int image_context::create_image_integer(int w, int h, const image32_t* pimage32, int iScan)
    {
 
       if (w <= 0 || h <= 0)
@@ -256,12 +256,12 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::path_image(const ::file::path & path)
+   ::image::image_pointer image_context::path_image(const ::file::path& path)
    {
 
       _synchronous_lock  synchronouslock(this->synchronization());
 
-      auto & pimage = m_mapPathImage[path];
+      auto& pimage = m_mapPathImage[path];
 
       if (::is_null(pimage))
       {
@@ -277,7 +277,7 @@ namespace image
 
 
 
-   ::image::image_pointer image_context::_load_image_from_file(const ::payload & payloadFile, const ::payload & varOptions)
+   ::image::image_pointer image_context::_load_image_from_file(const ::payload& payloadFile, const ::payload& varOptions)
    {
 
       return load_image(
@@ -288,7 +288,7 @@ namespace image
    }
 
 
-   void image_context::_save_to_file(const ::payload & payloadFile, ::image::image * pimage, const ::image::encoding_options & encodingoptions)
+   void image_context::_save_to_file(const ::payload& payloadFile, ::image::image* pimage, const ::image::encoding_options& encodingoptions)
    {
 
       return save_image(payloadFile, pimage, encodingoptions);
@@ -296,7 +296,7 @@ namespace image
    }
 
 
-   ::image::icon_pointer image_context::get_icon(const ::payload & payloadFile, const ::image::load_options & loadoptions)
+   ::image::icon_pointer image_context::get_icon(const ::payload& payloadFile, const ::image::load_options& loadoptions)
    {
 
       ::image::icon_pointer picon;
@@ -310,7 +310,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::get_image(const ::payload & payloadFile, const ::image::load_options & loadoptions)
+   ::image::image_pointer image_context::get_image(const ::payload& payloadFile, const ::image::load_options& loadoptions)
    {
 
       ::image::image_pointer pimage;
@@ -324,7 +324,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::matter_image(const ::string & strMatter, const ::image::load_options & loadoptions)
+   ::image::image_pointer image_context::matter_image(const ::string& strMatter, const ::image::load_options& loadoptions)
    {
 
       ::image::image_pointer pimage;
@@ -352,7 +352,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::load_image(const ::payload & payloadFile, const ::image::load_options & loadoptions)
+   ::image::image_pointer image_context::load_image(const ::payload& payloadFile, const ::image::load_options& loadoptions)
    {
 
       ::image::image_pointer pimage;
@@ -387,7 +387,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::load_matter_image(const ::string & strMatter, const ::image::load_options & loadoptions)
+   ::image::image_pointer image_context::load_matter_image(const ::string& strMatter, const ::image::load_options& loadoptions)
    {
 
       ::image::image_pointer pimage;
@@ -433,7 +433,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::load_matter_icon(string_array & straMatter, string strIcon)
+   ::image::image_pointer image_context::load_matter_icon(string_array& straMatter, string strIcon)
    {
 
       ::image::image_pointer pimage;
@@ -465,7 +465,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::load_thumbnail(const ::payload & payloadFile, int w, int h)
+   ::image::image_pointer image_context::load_thumbnail(const ::payload& payloadFile, int w, int h)
    {
 
       ::image::image_pointer pimage;
@@ -497,7 +497,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::load_thumbnail(const ::string & strPath)
+   ::image::image_pointer image_context::load_thumbnail(const ::string& strPath)
    {
 
       ::image::image_pointer pimage;
@@ -529,7 +529,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::load_dib(const ::file::path & pathDib)
+   ::image::image_pointer image_context::load_dib(const ::file::path& pathDib)
    {
 
       ::image::image_pointer pimage;
@@ -559,7 +559,7 @@ namespace image
    }
 
 
-   void image_context::_get_icon(::image::icon * picon, const ::payload & payloadFile)
+   void image_context::_get_icon(::image::icon* picon, const ::payload& payloadFile)
    {
 
       _load_icon(picon, payloadFile);
@@ -567,7 +567,7 @@ namespace image
    }
 
 
-   void image_context::_load_icon(::image::icon * picon, const ::payload & payloadFile)
+   void image_context::_load_icon(::image::icon* picon, const ::payload& payloadFile)
    {
 
       auto pwindowingicon = __øcreate < ::windowing::icon >();
@@ -590,7 +590,7 @@ namespace image
 
 
 
-   void image_context::_get_image(::image::image * pimage, const ::payload & payloadFile, const ::image::load_options & loadoptions)
+   void image_context::_get_image(::image::image* pimage, const ::payload& payloadFile, const ::image::load_options& loadoptions)
    {
 
       _load_image(pimage, payloadFile, loadoptions);
@@ -598,7 +598,7 @@ namespace image
    }
 
 
-   void image_context::_matter_image(::image::image * pimage, const ::string & strMatter, const ::image::load_options & loadoptions)
+   void image_context::_matter_image(::image::image* pimage, const ::string& strMatter, const ::image::load_options& loadoptions)
    {
 
       if (loadoptions.sync)
@@ -620,13 +620,13 @@ namespace image
    }
 
 
-   void image_context::_load_image(::image::image * pimage, const ::payload & payloadFile, const ::image::load_options & loadoptions)
+   void image_context::_load_image(::image::image* pimage, const ::payload& payloadFile, const ::image::load_options& loadoptions)
    {
 
    }
 
 
-   void image_context::_load_matter_image(::image::image * pimage, const ::string & strMatter, const ::image::load_options & loadoptions)
+   void image_context::_load_matter_image(::image::image* pimage, const ::string& strMatter, const ::image::load_options& loadoptions)
    {
 
       // auto pcontext = get_context();
@@ -648,14 +648,14 @@ namespace image
    }
 
 
-   void image_context::_load_matter_icon(::image::image * pimage, string_array & straMatter, string strIcon)
+   void image_context::_load_matter_icon(::image::image* pimage, string_array& straMatter, string strIcon)
    {
 
       ::file::path path;
 
       // auto pcontext = get_context();
 
-      for (auto & strMatter : straMatter)
+      for (auto& strMatter : straMatter)
       {
 
          path = strMatter;
@@ -687,7 +687,7 @@ namespace image
    }
 
 
-   void image_context::_load_thumbnail(::image::image * pimage, const ::payload & payloadFile, int w, int h)
+   void image_context::_load_thumbnail(::image::image* pimage, const ::payload& payloadFile, int w, int h)
    {
 
       //try
@@ -731,7 +731,7 @@ namespace image
    }
 
 
-   void image_context::_load_thumbnail(::image::image * pimage, const ::payload & payloadFile)
+   void image_context::_load_thumbnail(::image::image* pimage, const ::payload& payloadFile)
    {
 
       ::file::path path = payloadFile.as_file_path();
@@ -753,7 +753,7 @@ namespace image
    }
 
 
-   void image_context::_load_dib(::image::image * pimage, const ::file::path & pathDib)
+   void image_context::_load_dib(::image::image* pimage, const ::file::path& pathDib)
    {
 
       //try
@@ -802,7 +802,7 @@ namespace image
    }
 
 
-   void image_context::save_image(const ::payload & payloadFile, ::image::image * pimage, const ::image::encoding_options & encodingoptions)
+   void image_context::save_image(const ::payload& payloadFile, ::image::image* pimage, const ::image::encoding_options& encodingoptions)
    {
 
       memory mem;
@@ -821,62 +821,62 @@ namespace image
    }
 
 
-   void image_context::save_image(::memory & memory, ::image::image * pimage, const ::image::encoding_options & encodingoptions)
+   void image_context::save_image(::memory& memory, ::image::image* pimage, const ::image::encoding_options& encodingoptions)
    {
-      
-      
+
+
       switch (encodingoptions.m_eformat)
       {
-         case ::image::e_format_bmp:
-         {
-            
-            auto m = pimage->vertical_swap_copy_with_no_stride();
-            
-            stbi_write_bmp_to_func(&::stb_memory_write, &memory, pimage->width(), pimage->height(), 4, (const uint8_t *) m.data() );
+      case ::image::e_format_bmp:
+      {
 
-        
-            }
-            break;
-         case ::image::e_format_tga:
-         {
-            
-            auto m = pimage->vertical_swap_copy_with_no_stride();
-            
-            stbi_write_tga_to_func(&::stb_memory_write, &memory, pimage->width(), pimage->height(), 4, (const uint8_t *) m.data() );
+         auto m = pimage->vertical_swap_copy_with_no_stride();
 
-        
-            }
-            break;
+         stbi_write_bmp_to_func(&::stb_memory_write, &memory, pimage->width(), pimage->height(), 4, (const uint8_t*)m.data());
 
-         default:
-         {
-          
-            throw not_implemented();
-            
-         }
-            break;
-            
+
+      }
+      break;
+      case ::image::e_format_tga:
+      {
+
+         auto m = pimage->vertical_swap_copy_with_no_stride();
+
+         stbi_write_tga_to_func(&::stb_memory_write, &memory, pimage->width(), pimage->height(), 4, (const uint8_t*)m.data());
+
+
+      }
+      break;
+
+      default:
+      {
+
+         throw not_implemented();
+
+      }
+      break;
+
       };
-//
-//      auto pfile = create_memory_file(memory);
-//
-//      //auto estatus = 
-//
-//      save_image(pfile, pimage, encodingoptions);
-//
-//      //if (!estatus)
-//      //{
-//
-//      //   return estatus;
-//
-//      //}
-//      //
-//      //return estatus;
+      //
+      //      auto pfile = create_memory_file(memory);
+      //
+      //      //auto estatus = 
+      //
+      //      save_image(pfile, pimage, encodingoptions);
+      //
+      //      //if (!estatus)
+      //      //{
+      //
+      //      //   return estatus;
+      //
+      //      //}
+      //      //
+      //      //return estatus;
 
    }
 
 
-   void image_context::save_dib(const ::file::path & pathDib, ::image::image * pimage)
+   void image_context::save_dib(const ::file::path& pathDib, ::image::image* pimage)
    {
 
       //try
@@ -910,7 +910,7 @@ namespace image
 
 
 
-   void image_context::_load_image(::image::image * pimage, ::pointer<image_frame_array> & pframea, ::memory & memory)
+   void image_context::_load_image(::image::image* pimage, ::pointer<image_frame_array>& pframea, ::memory& memory)
    {
 
       //return ::success;
@@ -986,7 +986,7 @@ namespace image
    //}
 
 
-   void image_context::_load_multi_frame_image(::image::image * pimage, memory & memory)
+   void image_context::_load_multi_frame_image(::image::image* pimage, memory& memory)
    {
 
       ::pointer<image_frame_array>pframea;
@@ -1064,7 +1064,7 @@ namespace image
 
 
    // platform implementation may use this imaging-"routing" to manipulate the image/clipboard
-   bool image_context::_desk_to_image(::image::image * pimage)
+   bool image_context::_desk_to_image(::image::image* pimage)
    {
 
       return false;
@@ -1083,7 +1083,7 @@ namespace image
 
 
    // platform implementation may use this imaging-"routing" to manipulate the image/clipboard
-   bool image_context::_image_to_desk(::image::image * pimage)
+   bool image_context::_image_to_desk(::image::image* pimage)
    {
 
       return false;
@@ -1094,7 +1094,7 @@ namespace image
 #endif // UNIVERSAL_WINDOWS
 
 
-   void image_context::_task_load_image(::image::image * pimage, ::payload payload, bool bCache)
+   void image_context::_task_load_image(::image::image* pimage, ::payload payload, bool bCache)
    {
 
       pimage->m_estatus = ::error_failed;
@@ -1120,7 +1120,7 @@ namespace image
 
       information("file_as_memory time " + ::as_string(dt.floating_millisecond()) + "ms");
 
-      const ::ansi_character * psz = (const char *)memory.data();
+      const ::ansi_character* psz = (const char*)memory.data();
 
       auto size = memory.size();
 
@@ -1135,48 +1135,52 @@ namespace image
 
       }
 
-      ::draw2d::lock draw2dlock(this);
-
-      image()->load_svg(pimage, memory);
-
-      if (pimage->m_estatus.succeeded())
       {
 
-         pimage->on_load_image();
+         ::draw2d::lock draw2dlock(this);
 
-         pimage->set_ok_flag();
+         image()->load_svg(pimage, memory);
 
-         pimage->m_estatus = ::success;
-
-         return;
-
-      }
-
-      if (memory.size() > 3 && ansi_nicmp(psz, "gif", 3) == 0)
-      {
-
-         _load_multi_frame_image(pimage, memory);
-
-         if (pimage->has_failed_status())
+         if (pimage->m_estatus.succeeded())
          {
 
-            pimage->set_nok();
+            pimage->on_load_image();
 
-            pimage->m_estatus = ::error_failed;
+            pimage->set_ok_flag();
+
+            pimage->m_estatus = ::success;
 
             return;
 
          }
 
-         pimage->defer_update_image();
+         if (memory.size() > 3 && ansi_nicmp(psz, "gif", 3) == 0)
+         {
 
-         pimage->on_load_image();
+            _load_multi_frame_image(pimage, memory);
 
-         pimage->set_ok_flag();
+            if (pimage->has_failed_status())
+            {
 
-         pimage->m_estatus = ::success;
+               pimage->set_nok();
 
-         return;
+               pimage->m_estatus = ::error_failed;
+
+               return;
+
+            }
+
+            pimage->defer_update_image();
+
+            pimage->on_load_image();
+
+            pimage->set_ok_flag();
+
+            pimage->m_estatus = ::success;
+
+            return;
+
+         }
 
       }
 
@@ -1185,7 +1189,7 @@ namespace image
    }
 
 
-   void image_context::_os_load_image(::image::image * pimage, memory & memory)
+   void image_context::_os_load_image(::image::image* pimage, memory& memory)
    {
 
 
@@ -1194,7 +1198,7 @@ namespace image
 
 
 
-   ::image::image_pointer image_context::matter_cache_image(const ::string & strMatter)
+   ::image::image_pointer image_context::matter_cache_image(const ::string& strMatter)
    {
 
       string str(strMatter);
@@ -1211,7 +1215,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::get_cache_image(const ::payload & payloadFile)
+   ::image::image_pointer image_context::get_cache_image(const ::payload& payloadFile)
    {
 
       ::file::path path = payloadFile.as_file_path();
@@ -1234,7 +1238,7 @@ namespace image
 
       _synchronous_lock synchronouslock(image_synchronization());
 
-      auto & pimage = system()->m_mapImage[path];
+      auto& pimage = system()->m_mapImage[path];
 
       if (!pimage)
       {
@@ -1288,7 +1292,7 @@ namespace image
    //}
 
 
-   ::image::encoding_options image_context::create_encoding_options(const ::payload & payloadFile)
+   ::image::encoding_options image_context::create_encoding_options(const ::payload& payloadFile)
    {
 
       encoding_options encodingoptions;
@@ -1347,7 +1351,7 @@ namespace image
    }
 
 
-   enum_format image_context::file_extension_to_format(const ::payload & payloadFile)
+   enum_format image_context::file_extension_to_format(const ::payload& payloadFile)
    {
 
       return text_to_format(payloadFile.as_file_path().final_extension());
@@ -1394,4 +1398,4 @@ namespace image
    }
 
 
-      } // namespace image
+} // namespace image

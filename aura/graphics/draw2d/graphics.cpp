@@ -417,6 +417,18 @@ namespace draw2d
    void graphics::create_memory_graphics(const ::int_size & size)
    {
 
+      _create_memory_graphics(size);
+
+   }
+
+   void graphics::defer_set_size(const ::int_size& size)
+   {
+
+   }
+
+   void graphics::_create_memory_graphics(const ::int_size& size)
+   {
+
       __UNREFERENCED_PARAMETER(size);
 
       CreateCompatibleDC(nullptr);

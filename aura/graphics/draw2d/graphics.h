@@ -74,6 +74,7 @@ namespace draw2d
 
 
       e_graphics                                   m_egraphics;
+      bool                                         m_bSwapChainFinalInterop = false;
       bool                                         m_bBeginDraw;
       bool                                         m_bInheritDraw;
       bool                                         m_bOutline;
@@ -304,6 +305,8 @@ namespace draw2d
 
       virtual void create_window_graphics(::windowing::window* pwindow);
       virtual void create_memory_graphics(const ::int_size& size = {});
+      virtual void defer_set_size(const ::int_size& size = {});
+      virtual void _create_memory_graphics(const ::int_size& size = {});
       virtual void CreateCompatibleDC(::draw2d::graphics* pgraphics);
       virtual void CreateWindowDC(oswindow wnd);
 

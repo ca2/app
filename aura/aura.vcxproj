@@ -1466,6 +1466,7 @@
     <ClCompile Include="graphics\gpu\cpu_buffer.cpp" />
     <ClCompile Include="graphics\gpu\device.cpp" />
     <ClCompile Include="graphics\gpu\draw2d.cpp" />
+    <ClCompile Include="graphics\gpu\end_draw.cpp" />
     <ClCompile Include="graphics\gpu\face.cpp" />
     <ClCompile Include="graphics\gpu\frame.cpp" />
     <ClCompile Include="graphics\gpu\graphics.cpp" />
@@ -1765,6 +1766,7 @@
     <ClInclude Include="graphics\gpu\cpu_buffer.h" />
     <ClInclude Include="graphics\gpu\device.h" />
     <ClInclude Include="graphics\gpu\draw2d.h" />
+    <ClInclude Include="graphics\gpu\end_draw.h" />
     <ClInclude Include="graphics\gpu\face.h" />
     <ClInclude Include="graphics\gpu\frame.h" />
     <ClInclude Include="graphics\gpu\graphics.h" />

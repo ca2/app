@@ -1778,7 +1778,6 @@ void application::start_application()
 
       init_instance();
 
-      m_bReadyToAttendRequests = true;
 
       //return true;
 

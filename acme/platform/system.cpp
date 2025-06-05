@@ -724,6 +724,8 @@ namespace platform
 
       //return estatus;
 
+      m_bReadyToAttendRequests = true;
+
    }
 
 
@@ -2940,7 +2942,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       information() << "::apex::system::on_request session = " << ::type(psession).name() << "(" << ((iptr)psession) <<
          ")";
 
-      psession->call_request(prequest);
+      psession->post_request(prequest);
 
    }
 

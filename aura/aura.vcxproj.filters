@@ -789,6 +789,9 @@
     <ClCompile Include="graphics\gpu\properties.cpp">
       <Filter>Source Files\graphics\gpu</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\gpu\end_draw.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windowing\_.h">
@@ -1884,6 +1887,9 @@
       <Filter>Header Files\graphics\gpu</Filter>
     </ClInclude>
     <ClInclude Include="graphics\gpu\graphics.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\end_draw.h">
       <Filter>Header Files\graphics\gpu</Filter>
     </ClInclude>
   </ItemGroup>

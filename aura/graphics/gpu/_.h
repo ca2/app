@@ -70,6 +70,17 @@ namespace gpu
 } // gpu
 
 
+namespace draw2d_gpu
+{
+
+   
+   class graphics;
+   class end_draw;
+
+
+} // namespace draw2d_gpu
+
+
 #include "_constant.h"
 
 

@@ -62,6 +62,8 @@ namespace micro
             m_colorHyperlink = argb(255, 40, 90, 245);
             m_colorHyperlinkHover = argb(255, 70, 180, 255);
             m_colorFocus = argb(255, 2, 128, 255);
+            m_colorHover = argb(255, 2, 108, 235);
+            m_colorHoverAndFocus = argb(255, 62, 188, 255);
 
          }
          else
@@ -72,6 +74,8 @@ namespace micro
             m_colorHyperlink = argb(255, 50, 100, 185);
             m_colorHyperlinkHover = argb(255, 100, 180, 225);
             m_colorFocus = argb(255, 2, 58, 235);
+            m_colorHover = argb(255, 2, 38, 235);
+            m_colorHoverAndFocus = argb(255, 2, 108, 255);
 
          }
 
@@ -86,6 +90,10 @@ namespace micro
          m_ppenBorder = ::nano::graphics::create_pen(this, 2, m_colorText);
 
          m_ppenBorderFocus = ::nano::graphics::create_pen(this, 2, m_colorFocus);
+
+         m_ppenBorderHover = ::nano::graphics::create_pen(this, 2, m_colorHover);
+
+         m_ppenBorderHoverAndFocus = ::nano::graphics::create_pen(this, 2, m_colorHoverAndFocus);
 
       }
 

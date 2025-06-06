@@ -198,6 +198,40 @@ namespace acme
       }
 
 
+      void interaction::on_mouse_enter()
+      {
+
+         m_bHover = true;
+
+         redraw();
+
+      }
+
+
+      void interaction::back_on_mouse_move(::user::mouse * pmouse)
+      {
+
+
+      }
+
+
+      void interaction::fore_on_mouse_move(::user::mouse * pmouse)
+      {
+
+
+      }
+
+
+      void interaction::on_mouse_leave()
+      {
+
+         m_bHover = false;
+
+         redraw();
+
+      }
+
+
 
       void interaction::release_mouse_capture()
       {
@@ -248,6 +282,64 @@ namespace acme
       void interaction::_on_draw(::nano::graphics::device * pnanodevice)
       {
 
+
+      }
+
+
+      ::acme::user::interaction * interaction::acme_hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
+      {
+
+         auto point = pmouse->m_pointHost;
+
+         host_to_client()(point);
+
+         auto pchild = on_acme_hit_test(point, ezorder);
+
+         if (pchild)
+         {
+
+            auto pchildchild = pchild->acme_hit_test(pmouse, ezorder);
+
+            if (pchildchild)
+            {
+
+               return pchildchild;
+
+            }
+
+         }
+
+         return pchild;
+
+      }
+
+
+      ::acme::user::interaction * interaction::on_acme_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+      {
+
+         if (m_pacmeuserinteractionaChildren)
+         {
+
+            for (::collection::index i = m_pacmeuserinteractionaChildren->get_upper_bound();
+                i >= 0; i--)
+            {
+
+               ::pointer<::micro::elemental> pelemental = m_pacmeuserinteractionaChildren->element_at(i);
+
+               auto rectangle = pelemental->m_rectangle;
+
+               if (rectangle.contains(point))
+               {
+
+                  return pelemental;
+
+               }
+
+            }
+
+         }
+
+         return nullptr;
 
       }
 

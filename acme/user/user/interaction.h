@@ -53,6 +53,7 @@ namespace acme
             {
                bool     m_bChild : 1;
                bool     m_bMessageOnlyWindow : 1;
+               bool     m_bHover : 1;
             };
             unsigned int m_uFlagsAcmeUserInteraction;
          };
@@ -163,6 +164,9 @@ namespace acme
          //virtual void add_child(::acme::user::interaction * pchild);
          //virtual ::acme::user::interaction * get_child_by_id(const ::atom & atom);
 
+         virtual ::acme::user::interaction * acme_hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder);
+         virtual ::acme::user::interaction * on_acme_hit_test(const ::int_point & point, ::user::e_zorder ezorder);
+
          virtual ::int_rectangle get_client_rectangle();
 
 
@@ -180,6 +184,11 @@ namespace acme
          void release_mouse_capture() override;
 
          
+         virtual void on_mouse_enter();
+         virtual void back_on_mouse_move(::user::mouse * pmouse);
+         virtual void fore_on_mouse_move(::user::mouse * pmouse);
+         virtual void on_mouse_leave();
+
          //virtual void resize_to_fit();
 
 

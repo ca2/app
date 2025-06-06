@@ -57,19 +57,24 @@ namespace app_message_box
    void application::on_request(::request * prequest)
    {
 
-      __construct_new(m_pmainwindow);
+      if (!m_pmainwindow)
+      {
 
-      m_pmainwindow->display(e_display_normal);
+         __construct_new(m_pmainwindow);
 
-      //m_pmainwindow->create_main_window_asynchronously();
+         m_pmainwindow->display(e_display_normal);
 
-      m_pmainwindow->create_main_window(prequest);
+         //m_pmainwindow->create_main_window_asynchronously();
 
-//      m_pmainwindow->set_need_layout();
-//
-//      m_pmainwindow->set_need_redraw();
-//
-//      m_pmainwindow->post_redraw();
+         m_pmainwindow->create_main_window(prequest);
+
+         //      m_pmainwindow->set_need_layout();
+         //
+         //      m_pmainwindow->set_need_redraw();
+         //
+         //      m_pmainwindow->post_redraw();
+
+      }
 
    }
 

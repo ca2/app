@@ -80,25 +80,26 @@ namespace micro
    }
 
 
-::shift_int main_window::client_to_host()
-{
-   
-   if (system()->acme_windowing()->get_application_host_window())
+   ::shift_int main_window::client_to_host()
    {
-      return ::micro::elemental::client_to_host();
-   }
-   else
-   {
-      return {};
+
+      if (system()->acme_windowing()->get_application_host_window())
+      {
+
+         return ::micro::elemental::client_to_host();
+
+      }
+      else
+      {
+
+         return {};
+
+      }
 
    }
-   
-
-}
 
 
-
-   void main_window::on_before_create_window(acme::windowing::window* pacmewindowingwindow)
+   void main_window::on_before_create_window(acme::windowing::window * pacmewindowingwindow)
    {
 
       ::micro::elemental::on_before_create_window(pacmewindowingwindow);
@@ -123,126 +124,126 @@ namespace micro
         }*/
 
 
-   /* enum_font main_window::micro_font()
-    {
+        /* enum_font main_window::micro_font()
+         {
 
-       if (m_efont != e_font_none)
-       {
+            if (m_efont != e_font_none)
+            {
 
-          return m_efont;
+               return m_efont;
 
-       }
+            }
 
-       return micro_theme()->m_efont;
+            return micro_theme()->m_efont;
 
-    }*/
+         }*/
 
-   ///child
-
-
-   //void main_window::set_keyboard_focus()
-   //{
-
-   //   acme_windowing_window()->m_pmicrouserinteractionFocus = this;
-
-   //   acme_windowing_window()->redraw();
-
-   //}
+         ///child
 
 
-   //bool main_window::is_keyboard_focusable()
-   //{
+         //void main_window::set_keyboard_focus()
+         //{
 
-   //   return false;
+         //   acme_windowing_window()->m_pmicrouserinteractionFocus = this;
 
-   //}
+         //   acme_windowing_window()->redraw();
 
-
-   //void main_window::set_mouse_capture()
-   //{
-
-   //   acme_windowing_window()->m_pmicrouserinteractionCapture = this;
-
-   //   acme_windowing_window()->set_mouse_capture();
-
-   //}
+         //}
 
 
-   //bool main_window::has_mouse_capture()
-   //{
+         //bool main_window::is_keyboard_focusable()
+         //{
 
-   //   if (!acme_windowing_window()->has_mouse_capture())
-   //   {
+         //   return false;
 
-   //      return false;
-
-   //   }
-
-   //   return acme_windowing_window()->m_pmicrouserinteractionCapture == this;
-
-   //}
+         //}
 
 
-   //void main_window::release_mouse_capture()
-   //{
+         //void main_window::set_mouse_capture()
+         //{
 
-   //   if (acme_windowing_window()->m_pmicrouserinteractionCapture == this)
-   //   {
+         //   acme_windowing_window()->m_pmicrouserinteractionCapture = this;
 
-   //      acme_windowing_window()->m_pmicrouserinteractionCapture.release();
+         //   acme_windowing_window()->set_mouse_capture();
 
-   //      acme_windowing_window()->release_mouse_capture();
-
-   //   }
-
-   //}
+         //}
 
 
-   //void main_window::draw(::nano::graphics::device * pmicrodevice)
-   //{
+         //bool main_window::has_mouse_capture()
+         //{
 
-   //   ::pointer<::nano::graphics::pen>pmicropenBorder;
+         //   if (!acme_windowing_window()->has_mouse_capture())
+         //   {
 
-   //   if (acme_windowing_window()->is_active_window())
-   //   {
+         //      return false;
 
-   //      pmicropenBorder = micro_theme()->m_ppenBorderFocus;
+         //   }
 
-   //   }
-   //   else
-   //   {
+         //   return acme_windowing_window()->m_pmicrouserinteractionCapture == this;
 
-   //      pmicropenBorder = micro_theme()->m_ppenBorder;
-
-   //   }
-
-   //   ::int_rectangle rectangleX;
-
-   //   rectangleX = get_client_rectangle();
-
-   //   pmicrodevice->rectangle(rectangleX, micro_theme()->m_pbrushWindow, pmicropenBorder);
-
-   //   on_draw(pmicrodevice);
-
-   //   draw_children(pmicrodevice);
-
-   //}
+         //}
 
 
-   //void main_window::draw_children(::nano::graphics::device * pmicrodevice)
-   //{
+         //void main_window::release_mouse_capture()
+         //{
 
-   //   for (auto & pchild : m_microuserelementalaChildren)
-   //   {
+         //   if (acme_windowing_window()->m_pmicrouserinteractionCapture == this)
+         //   {
 
-   //      pchild->on_draw(pmicrodevice);
+         //      acme_windowing_window()->m_pmicrouserinteractionCapture.release();
 
-   //   }
+         //      acme_windowing_window()->release_mouse_capture();
 
-   //}
+         //   }
+
+         //}
 
 
-   ::micro::main_window* main_window::micro_main_window()
+         //void main_window::draw(::nano::graphics::device * pmicrodevice)
+         //{
+
+         //   ::pointer<::nano::graphics::pen>pmicropenBorder;
+
+         //   if (acme_windowing_window()->is_active_window())
+         //   {
+
+         //      pmicropenBorder = micro_theme()->m_ppenBorderFocus;
+
+         //   }
+         //   else
+         //   {
+
+         //      pmicropenBorder = micro_theme()->m_ppenBorder;
+
+         //   }
+
+         //   ::int_rectangle rectangleX;
+
+         //   rectangleX = get_client_rectangle();
+
+         //   pmicrodevice->rectangle(rectangleX, micro_theme()->m_pbrushWindow, pmicropenBorder);
+
+         //   on_draw(pmicrodevice);
+
+         //   draw_children(pmicrodevice);
+
+         //}
+
+
+         //void main_window::draw_children(::nano::graphics::device * pmicrodevice)
+         //{
+
+         //   for (auto & pchild : m_microuserelementalaChildren)
+         //   {
+
+         //      pchild->on_draw(pmicrodevice);
+
+         //   }
+
+         //}
+
+
+   ::micro::main_window * main_window::micro_main_window()
    {
 
       return this;
@@ -615,12 +616,12 @@ namespace micro
 
    void main_window::show()
    {
-      
-      if(!m_pacmeuserinteractionParent)
+
+      if (!m_pacmeuserinteractionParent)
       {
-         
+
          acme_windowing_window()->show_window();
-         
+
       }
 
    }
@@ -628,12 +629,12 @@ namespace micro
 
    void main_window::hide()
    {
-      
-      if(!m_pacmeuserinteractionParent)
+
+      if (!m_pacmeuserinteractionParent)
       {
-         
+
          acme_windowing_window()->hide_window();
-         
+
       }
 
    }
@@ -660,11 +661,11 @@ namespace micro
          }*/
 
 
-   //void main_window::message_loop()
-   //{
+         //void main_window::message_loop()
+         //{
 
 
-   //}
+         //}
 
 
    void main_window::implementation_message_loop_step()
@@ -1116,62 +1117,62 @@ namespace micro
           }*/
 
 
-   //void main_window::update_drawing_objects()
-   //{
+          //void main_window::update_drawing_objects()
+          //{
 
 
-   //}
+          //}
 
 
-   //::int_point main_window::origin()
-   //{
+          //::int_point main_window::origin()
+          //{
 
-   //   throw ::exception(error_wrong_state);
+          //   throw ::exception(error_wrong_state);
 
-   //   return {};
+          //   return {};
 
-   //}
-
-
-   //::shift_int main_window::host_to_client()
-   //{
-
-   //   return -client_to_host();
-
-   //}
+          //}
 
 
-   //::shift_int main_window::client_to_host()
-   //{
+          //::shift_int main_window::host_to_client()
+          //{
 
-   //   return {};
+          //   return -client_to_host();
 
-   //}
-
-
-   //::shift_int main_window::absolute_to_client()
-   //{
-
-   //   return -client_to_host();
-
-   //}
+          //}
 
 
-   //::shift_int main_window::client_to_absolute()
-   //{
+          //::shift_int main_window::client_to_host()
+          //{
 
-   //   if (::windowing::get_ewindowing() == ::windowing::e_windowing_wayland)
-   //   {
+          //   return {};
 
-   //      return {};
+          //}
 
-   //   }
 
-   //   auto r = get_window_rectangle();
+          //::shift_int main_window::absolute_to_client()
+          //{
 
-   //   return r.top_left();
+          //   return -client_to_host();
 
-   //}
+          //}
+
+
+          //::shift_int main_window::client_to_absolute()
+          //{
+
+          //   if (::windowing::get_ewindowing() == ::windowing::e_windowing_wayland)
+          //   {
+
+          //      return {};
+
+          //   }
+
+          //   auto r = get_window_rectangle();
+
+          //   return r.top_left();
+
+          //}
 
 
    ::int_point main_window::origin()
@@ -1383,56 +1384,56 @@ namespace micro
       }*/
 
 
-   //void main_window::on_mouse_move(::user::mouse * pmouse)
-   //{
+      //void main_window::on_mouse_move(::user::mouse * pmouse)
+      //{
 
 
-   //}
+      //}
 
 
-   //void main_window::on_left_button_down(::user::mouse * pmouse)
-   //{
+      //void main_window::on_left_button_down(::user::mouse * pmouse)
+      //{
 
 
-   //}
+      //}
 
 
-   //void main_window::on_left_button_up(::user::mouse * pmouse)
-   //{
+      //void main_window::on_left_button_up(::user::mouse * pmouse)
+      //{
 
 
-   //}
+      //}
 
 
-   //void main_window::on_click(const ::payload & payload, ::user::mouse * pmouse)
-   //{
+      //void main_window::on_click(const ::payload & payload, ::user::mouse * pmouse)
+      //{
 
 
-   //}
+      //}
 
 
-   //void main_window::on_right_button_down(::user::mouse * pmouse)
-   //{
+      //void main_window::on_right_button_down(::user::mouse * pmouse)
+      //{
 
 
-   //}
+      //}
 
 
-   //void main_window::on_right_button_up(::user::mouse * pmouse)
-   //{
+      //void main_window::on_right_button_up(::user::mouse * pmouse)
+      //{
 
 
-   //}
+      //}
 
 
-   //void main_window::on_right_click(const ::payload & payload, ::user::mouse * pmouse)
-   //{
+      //void main_window::on_right_click(const ::payload & payload, ::user::mouse * pmouse)
+      //{
 
 
-   //}
+      //}
 
 
-   void main_window::set_position(const ::int_point& point)
+   void main_window::set_position(const ::int_point & point)
    {
 
       m_pacmewindowingwindow->set_position(point);
@@ -1440,7 +1441,7 @@ namespace micro
    }
 
 
-   void main_window::display_temporary_file_with_text(const ::string& str)
+   void main_window::display_temporary_file_with_text(const ::string & str)
    {
 
       string strAppId;
@@ -1609,7 +1610,7 @@ namespace micro
    }
 
 
-   void main_window::_on_window_simple_action(const char* pszActionName, ::user::activation_token * puseractivationtoken)
+   void main_window::_on_window_simple_action(const char * pszActionName, ::user::activation_token * puseractivationtoken)
    {
 
       ::string strActionName(pszActionName);
@@ -1738,77 +1739,77 @@ namespace micro
    }
 */
 
-   //void main_window::get_text_selection(character_count & iBeg, character_count & iEnd) const
-   //{
+//void main_window::get_text_selection(character_count & iBeg, character_count & iEnd) const
+//{
 
 
-   //}
+//}
 
 
-   //void main_window::get_text_selection(character_count & iBeg, character_count & iEnd, character_count & iComposingStart, character_count & iComposingEnd) const
-   //{
+//void main_window::get_text_selection(character_count & iBeg, character_count & iEnd, character_count & iComposingStart, character_count & iComposingEnd) const
+//{
 
 
-   //}
+//}
 
 
-   //::collection::index main_window::plain_edit_sel_to_column(::draw2d::graphics_pointer & pgraphics, character_count iSel)
-   //{
+//::collection::index main_window::plain_edit_sel_to_column(::draw2d::graphics_pointer & pgraphics, character_count iSel)
+//{
 
-   //   return -1;
+//   return -1;
 
-   //}
-
-
-   //::collection::index main_window::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x)
-   //{
-
-   //   return -1;
-
-   //}
+//}
 
 
-   //::collection::index main_window::plain_edit_sel_to_line(::draw2d::graphics_pointer & pgraphics, character_count iSel)
-   //{
+//::collection::index main_window::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x)
+//{
 
-   //   return -1;
+//   return -1;
 
-   //}
-
-
-   //::collection::index main_window::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x)
-   //{
-
-   //   return -1;
-
-   //}
+//}
 
 
-   //character_count main_window::plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::collection::index iColumn)
-   //{
+//::collection::index main_window::plain_edit_sel_to_line(::draw2d::graphics_pointer & pgraphics, character_count iSel)
+//{
 
-   //   return -1;
+//   return -1;
 
-   //}
-
-
-   //character_count main_window::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, int x)
-   //{
-
-   //   return -1;
-
-   //}
+//}
 
 
-   //::collection::index main_window::plain_edit_char_to_line(::draw2d::graphics_pointer & pgraphics, character_count iSel)
-   //{
+//::collection::index main_window::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, character_count iSel, int & x)
+//{
 
-   //   return -1;
+//   return -1;
 
-   //}
+//}
 
 
-   ::trace_statement& main_window::raw_trace_statement_prefix(::trace_statement& statement) const
+//character_count main_window::plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::collection::index iColumn)
+//{
+
+//   return -1;
+
+//}
+
+
+//character_count main_window::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, int x)
+//{
+
+//   return -1;
+
+//}
+
+
+//::collection::index main_window::plain_edit_char_to_line(::draw2d::graphics_pointer & pgraphics, character_count iSel)
+//{
+
+//   return -1;
+
+//}
+
+
+   ::trace_statement & main_window::raw_trace_statement_prefix(::trace_statement & statement) const
    {
 
       ::string strType = ::type(this).name();

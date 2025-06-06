@@ -40,9 +40,11 @@
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
+#include "acme/user/micro/elemental.h"
 #include "acme/user/micro/user.h"
 #include "acme/user/user/frame_interaction.h"
 #include "acme/user/user/interaction.h"
+#include "acme/user/user/mouse.h"
 
 
 
@@ -57,7 +59,7 @@ namespace acme
       window::window() :
          m_pointCursor2(I32_MINIMUM)
       {
-
+         m_bMouseOn = false;
          m_bPerformingEntireRepositionProcess = false;
          m_bPerformingEntireResizingProcess = false;
          //m_ebias = e_bias_unknown;
@@ -879,6 +881,152 @@ namespace acme
          throw interface_only();
 
          return nullptr;
+
+      }
+
+
+      void window::on_mouse_enter()
+      {
+
+
+      }
+
+
+      void window::fore_on_mouse_move(::user::mouse * pmouse)
+      {
+         
+         if (m_pacmeuserinteractionMouseCapture
+   && m_pacmeuserinteractionMouseCapture != this)
+         {
+
+            ::pointer<::micro::elemental> pelemental;
+
+            pelemental = m_pacmeuserinteractionMouseCapture;
+
+            if (pelemental)
+            {
+
+               pelemental->fore_on_mouse_move(pmouse);
+
+               if (pmouse->m_bRet)
+               {
+
+                  return;
+
+               }
+
+            }
+
+         }
+
+         auto pchild = m_pacmeuserinteraction->acme_hit_test(pmouse, ::user::e_zorder_front);
+
+         if (pchild)
+         {
+
+            if (acme_windowing_window()->m_pacmeuserinteractionHover != pchild)
+            {
+
+               if (acme_windowing_window()->m_pacmeuserinteractionHover)
+               {
+
+                  acme_windowing_window()->m_pacmeuserinteractionHover->on_mouse_leave();
+
+               }
+
+               acme_windowing_window()->m_pacmeuserinteractionHover = pchild;
+
+               acme_windowing_window()->m_pacmeuserinteractionHover->on_mouse_enter();
+
+            }
+
+            pchild->fore_on_mouse_move(pmouse);
+
+            if (pmouse->m_bRet)
+            {
+
+               return;
+
+            }
+
+         }
+
+      }
+
+
+      void window::back_on_mouse_move(::user::mouse * pmouse)
+      {
+         if (m_pacmeuserinteractionMouseCapture
+&& m_pacmeuserinteractionMouseCapture != this)
+         {
+
+            ::pointer<::micro::elemental> pelemental;
+
+            pelemental = m_pacmeuserinteractionMouseCapture;
+
+            if (pelemental)
+            {
+
+               pelemental->back_on_mouse_move(pmouse);
+
+               if (pmouse->m_bRet)
+               {
+
+                  return;
+
+               }
+
+            }
+
+         }
+
+         auto pchild = m_pacmeuserinteraction->acme_hit_test(pmouse, ::user::e_zorder_back);
+
+         if (pchild)
+         {
+
+            //if (acme_windowing_window()->m_pacmeuserinteractionHover != pchild)
+            //{
+
+            //   if (acme_windowing_window()->m_pacmeuserinteractionHover)
+            //   {
+
+            //      acme_windowing_window()->m_pacmeuserinteractionHover->on_mouse_leave();
+
+            //   }
+
+            //   acme_windowing_window()->m_pacmeuserinteractionHover = pchild;
+
+            //   acme_windowing_window()->m_pacmeuserinteractionHover->on_mouse_enter();
+
+            //}
+
+            pchild->fore_on_mouse_move(pmouse);
+
+            if (pmouse->m_bRet)
+            {
+
+               return;
+
+            }
+
+         }
+
+
+      }
+
+
+      void window::on_mouse_leave()
+      {
+
+         if (m_pacmeuserinteractionHover)
+         {
+            
+            m_pacmeuserinteractionHover->on_mouse_leave();
+
+            m_pacmeuserinteractionHover = nullptr;
+
+         }
 
       }
 

@@ -673,7 +673,7 @@ namespace dynamic_source
 
          _synchronous_lock synchronouslock(m_pmanager->m_pmutexShouldBuild);
 
-         m_pmanager->m_mapShouldBuild[m_strSourcePath] = false;
+         m_pmanager->m_mapShouldBuild2[m_strSourcePath] = false;
 
       }
 

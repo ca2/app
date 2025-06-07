@@ -1235,6 +1235,16 @@ int directory_system::make_path(const ::scoped_string & scopedstr)
 }
 
 
+::file::e_type directory_system::__file_type(const ::file::path& path)
+{
+
+   auto etype = ::safe_file_type(path);
+
+   return etype;
+
+}
+
+
 void directory_system::_create4(const ::file::path & path)
 {
 

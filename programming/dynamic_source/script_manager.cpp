@@ -10,6 +10,7 @@
 #include "acme/exception/exit.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
@@ -93,11 +94,11 @@ namespace dynamic_source
       m_timeTimeRandomInterval = 30_s;
       m_timeDatabaseWaitTimeOut = 15_minutes;
 
-      m_mapIncludeMatchesFileExists.InitHashTable(256 * 1024);
-      m_mapIncludeMatchesIsDir.InitHashTable(256 * 1024);
-      m_mapIncludeHasScript.InitHashTable(256 * 1024);
-      m_mapIncludeExpandMd5.InitHashTable(256 * 1024);
-      m_mapSession.InitHashTable(256 * 1024);
+      m_mapIncludeMatchesFileExists2.InitHashTable(256 * 1024-1);
+      m_mapIncludeMatchesIsDir2.InitHashTable(256 * 1024-1);
+      m_mapIncludeHasScript2.InitHashTable(256 * 1024-1);
+      m_mapIncludeExpandMd5.InitHashTable(256 * 1024-1);
+      m_mapSession.InitHashTable(256 * 1024-1);
 
       m_strRepos = "app-core";
       m_strNamespace = "netnode"; // default namespace is linked to outer project netnode
@@ -970,7 +971,7 @@ namespace dynamic_source
          try
          {
 
-            m_mapIncludeMatchesFileExists.erase_item(path);
+            m_mapIncludeMatchesFileExists2.erase_item(path);
 
          }
          catch (...)
@@ -981,7 +982,7 @@ namespace dynamic_source
          try
          {
 
-            m_mapIncludeMatchesIsDir.erase_item(path);
+            m_mapIncludeMatchesIsDir2.erase_item(path);
 
          }
          catch (...)
@@ -1022,7 +1023,7 @@ namespace dynamic_source
          try
          {
 
-            m_mapIncludeMatchesFileExists.erase_all();
+            m_mapIncludeMatchesFileExists2.erase_all();
 
          }
          catch (...)
@@ -1033,7 +1034,7 @@ namespace dynamic_source
          try
          {
 
-            m_mapIncludeMatchesIsDir.erase_all();
+            m_mapIncludeMatchesIsDir2.erase_all();
 
          }
          catch (...)
@@ -1067,24 +1068,18 @@ namespace dynamic_source
    bool script_manager::include_matches_file_exists(const ::scoped_string& scopedstrPath)
    {
 
-      // auto pcontext = get_context();
-
       _synchronous_lock synchronouslock(m_pmutexIncludeMatches);
 
-      auto p = m_mapIncludeMatchesFileExists.plookup(scopedstrPath);
+      auto & bExists = m_mapIncludeMatchesFileExists2[scopedstrPath];
 
-      if (p)
+      if (!bExists.is_set())
       {
 
-         return p->payload();
+         bExists = file_system()->__exists(scopedstrPath);
 
       }
 
-      bool bFileExists = file()->exists(scopedstrPath);
-
-      m_mapIncludeMatchesFileExists.set_at(scopedstrPath, bFileExists);
-
-      return bFileExists;
+      return bExists;
 
    }
 
@@ -1094,7 +1089,7 @@ namespace dynamic_source
 
       _synchronous_lock synchronouslock(m_pmutexIncludeMatches);
 
-      m_mapIncludeMatchesFileExists.set_at(scopedstrPath, bFileExists);
+      m_mapIncludeMatchesFileExists2.set_at(scopedstrPath, bFileExists);
 
    }
 
@@ -1104,18 +1099,17 @@ namespace dynamic_source
 
       _synchronous_lock synchronouslock(m_pmutexIncludeMatches);
 
-      auto p = m_mapIncludeMatchesIsDir.plookup(scopedstrPath);
+      auto &bIsDir = m_mapIncludeMatchesIsDir2[scopedstrPath];
 
-      //// auto pcontext = get_context();
-
-      if (p)
+      if (!bIsDir.is_set())
       {
-         return p->element2();
+
+         bIsDir = directory_system()->__is(scopedstrPath);
+
       }
 
-      bool bIsDir = directory()->is(scopedstrPath);
-      m_mapIncludeMatchesIsDir.set_at(scopedstrPath, bIsDir);
       return bIsDir;
+
    }
 
 
@@ -1131,25 +1125,16 @@ namespace dynamic_source
 
       _synchronous_lock synchronouslock(m_pmutexIncludeHasScript);
 
-      auto p = m_mapIncludeHasScript.plookup(scopedstrPath);
+      auto &bHasScript = m_mapIncludeHasScript2[scopedstrPath];
 
-      if (p)
+      if (!bHasScript.is_set())
       {
 
-         return p->element2();
+         bHasScript = file_system()->__safe_find_string(scopedstrPath, "<?") >= 0;
 
       }
 
-      // auto pcontext = get_context();
-
-      // roughly detect this way: by finding the <?
-
-      bool bHasScript = file()->safe_get_string(scopedstrPath).contains("<?");
-
-      m_mapIncludeHasScript.set_at(scopedstrPath, bHasScript);
-
       return bHasScript;
-
 
    }
 
@@ -1231,7 +1216,7 @@ namespace dynamic_source
 
          _synchronous_lock synchronouslock(m_pmanager->m_pmutexShouldBuild);
 
-         m_pmanager->m_mapShouldBuild[path] = true;
+         m_pmanager->m_mapShouldBuild2[path] = true;
 
       }
       catch (...)
@@ -1846,9 +1831,9 @@ namespace dynamic_source
 
       _synchronous_lock synchronouslock(m_pmutexShouldBuild);
 
-      bool bShouldBuild = false;
+      ::logic::boolean bShouldBuild = false;
 
-      if (!m_mapShouldBuild.lookup(strScriptPath, bShouldBuild))
+      if (!m_mapShouldBuild2.lookup(strScriptPath, bShouldBuild))
          return false;
 
       return bShouldBuild;

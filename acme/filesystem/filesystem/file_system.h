@@ -63,6 +63,7 @@ public:
    virtual ::collection::count find_and_erase(const ::file::path & pathFile, const block & block);
 
    virtual bool exists(const ::file::path & path);
+   virtual bool __exists(const ::file::path& path);
 
    //virtual void put_contents(const ::file::path & path, const scoped_string & contents);
    virtual filesize get_size(const ::file::path & path);
@@ -180,8 +181,11 @@ public:
    virtual memory as_memory(const ::file::path & path, character_count iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);
    virtual memsize as_memory(const ::file::path & path, void * p, memsize s);
    virtual memory safe_get_memory(const file::path & path, character_count iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);
+   virtual memory __safe_get_memory(const file::path& path, character_count iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);
+   virtual memsize __safe_find_string(const ::file::path& path, const char* psz);
    virtual string as_string(const ::file::path & path, character_count iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);
    virtual string safe_get_string(const ::file::path & path, character_count iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);
+   virtual string __safe_get_string(const ::file::path& path, character_count iReadAtMostByteCount = -1, bool bNoExceptionOnOpen = true);
 
 
    virtual void put_block(const ::file::path & path, const block & block);

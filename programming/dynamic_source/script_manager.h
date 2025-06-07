@@ -73,12 +73,12 @@ namespace dynamic_source
 
       ::semaphore                                           m_semCompiler;
       ::pointer < ::mutex >                                 m_pmutexIncludeMatches;
-      string_map < bool >                                   m_mapIncludeMatchesFileExists;
-      string_map < bool >                                   m_mapIncludeMatchesIsDir;
+      string_map < ::logic::boolean >                       m_mapIncludeMatchesFileExists2;
+      string_map < ::logic::boolean >                       m_mapIncludeMatchesIsDir2;
       ::pointer < ::mutex >                                 m_pmutexIncludeHasScript;
-      string_map < bool >                                   m_mapIncludeHasScript;
+      string_map < ::logic::boolean >                       m_mapIncludeHasScript2;
       ::pointer < ::mutex >                                 m_pmutexShouldBuild;
-      string_map < bool >                                   m_mapShouldBuild;
+      string_map < ::logic::boolean >                       m_mapShouldBuild2;
       ::pointer < ::mutex >                                 m_pmutexIncludeExpandMd5;
       string_to_string                                      m_mapIncludeExpandMd5;
       //::pointer<::user::message_window>                  m_pmessagequeue;

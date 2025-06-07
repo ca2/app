@@ -435,6 +435,38 @@ namespace windows
          ::information() << "::windows::window_procedure WM_USER + 123";
 
       }
+      else if (msg == (WM_APP + 876))
+      {
+
+         warning() << "WM_APP + 876  At thread " << ::GetCurrentThreadId();
+
+         if (wParam == 0)
+         {
+
+            warning() << "WM_APP + 876 wParam is Zero At thread " << ::GetCurrentThreadId();
+
+            ::procedure procedure;
+
+            procedure.m_pbase = { transfer_t{}, (decltype(procedure.m_pbase.m_p))lParam };
+
+            try
+            {
+
+               procedure();
+
+            }
+            catch (...)
+            {
+
+
+            }
+
+            return 0;
+
+
+         }
+
+      }
       if (msg == WM_NCCREATE)
       {
 

@@ -463,7 +463,15 @@ bool subparticle::subparticle_step()
 class ::time subparticle::timeout() const
 {
 
+#if defined(_DEBUG)
+
+   return 1_hour;
+
+#else
+
    return 1_min;
+
+#endif
 
 }
 

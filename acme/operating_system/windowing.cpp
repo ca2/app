@@ -91,22 +91,16 @@ CLASS_DECL_ACME string message_box_result_to_string(enum_dialog_result edialogre
       strResult = "ok";
 
    }
-   else if (edialogresult == e_dialog_result_try_again)
+   else if (edialogresult == e_dialog_result_retry)
    {
 
-      strResult = "tryagain";
+      strResult = "retry";
 
    }
    else if (edialogresult == e_dialog_result_abort)
    {
 
       strResult = "abort";
-
-   }
-   else if (edialogresult == e_dialog_result_retry)
-   {
-
-      strResult = "retry";
 
    }
    else if (edialogresult == e_dialog_result_continue)

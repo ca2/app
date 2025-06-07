@@ -232,24 +232,56 @@ namespace micro
       if (m_pacmeuserinteractionaChildren)
       {
 
+         ::pointer<::micro::elemental> pelementalHover = acme_windowing_window()->m_pacmeuserinteractionHover;
+
          for (auto & pchild : *m_pacmeuserinteractionaChildren)
          {
 
             ::pointer<::micro::elemental> pelemental = pchild;
 
-            auto r = pelemental->get_rectangle();
+            if (pchild != pelementalHover)
+            {
 
-            pmicrodevice->translate(r.left(), r.top());
+               draw_child(pmicrodevice, pelemental);
 
-            pelemental->draw_background(pmicrodevice);
+            }
 
-            pelemental->draw_foreground(pmicrodevice);
+            //auto r = pelemental->get_rectangle();
 
-            pmicrodevice->translate(-r.left(), -r.top());
+            //pmicrodevice->translate(r.left(), r.top());
+
+            //pelemental->draw_background(pmicrodevice);
+
+            //pelemental->draw_foreground(pmicrodevice);
+
+            //pmicrodevice->translate(-r.left(), -r.top());
+
+         }
+
+         if (pelementalHover)
+         {
+
+            draw_child(pmicrodevice, pelementalHover);
 
          }
 
       }
+
+   }
+
+
+   void elemental::draw_child(::nano::graphics::device* pmicrodevice, ::micro::elemental* pelemental)
+   {
+
+      auto r = pelemental->get_rectangle();
+
+      pmicrodevice->translate(r.left(), r.top());
+
+      pelemental->draw_background(pmicrodevice);
+
+      pelemental->draw_foreground(pmicrodevice);
+
+      pmicrodevice->translate(-r.left(), -r.top());
 
    }
 

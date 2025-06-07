@@ -1924,6 +1924,14 @@ void task::_send(const ::procedure & procedure)
    if (!waitforendofsequence.lock(procedure.timeout()))
    {
 
+#ifdef _DEBUG
+
+      warning() << "waitforendofsequence timeout";
+
+      __debugbreak();
+
+#endif
+
       procedure.m_pbase->on_timed_out();
 
    }

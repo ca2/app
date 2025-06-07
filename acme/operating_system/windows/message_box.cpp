@@ -172,7 +172,7 @@ CLASS_DECL_ACME enum_dialog_result windows_message_box_result_to_dialog_result(i
    case IDHELP:
       return e_dialog_result_help;
    case IDTRYAGAIN:
-      return e_dialog_result_try_again;
+      return e_dialog_result_retry;
    case IDCONTINUE:
       return e_dialog_result_continue;
    case IDTIMEOUT:

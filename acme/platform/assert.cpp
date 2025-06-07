@@ -143,7 +143,7 @@ CLASS_DECL_ACME bool __assert_failed_line(const char * pszFileName, int iLineNum
       exit(0);
 
    }
-   else if(edialogresult == e_dialog_result_try_again)
+   else if(edialogresult == e_dialog_result_retry)
    {
 
       return false;

@@ -107,6 +107,7 @@ namespace micro
       virtual void draw_foreground(::nano::graphics::device * pnanodevice);
 
       virtual void draw_children(::nano::graphics::device * pnanodevice);
+      virtual void draw_child(::nano::graphics::device* pnanodevice, ::micro::elemental * pelemental);
 
 
 

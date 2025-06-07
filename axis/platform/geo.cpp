@@ -657,8 +657,8 @@ namespace geo
          if (iError != 0)
          {
 
-
-            throw ::exception(error_wrong_state, "unac_string returned error");
+            warning() << "unac_string returned error : " << iError;
+            //throw ::exception(error_wrong_state, "unac_string returned error");
             //throw_errno_exception();
 
          }

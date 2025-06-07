@@ -863,6 +863,8 @@ void task::main()
 
    call_init_task();
 
+   m_bReadyToAttendRequests = true;
+
    if (defer_implement(application()))
    {
 

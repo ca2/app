@@ -1794,6 +1794,12 @@ namespace aura
             strImplementation = "directx11";
 
          }
+         else if (strImplementation == "directx12")
+         {
+
+            strImplementation = "directx12";
+
+         }
          else if (strImplementation == "opengl")
          {
 

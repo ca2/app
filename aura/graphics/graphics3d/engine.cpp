@@ -450,6 +450,13 @@ namespace graphics3d
 
                }
 
+               if (!m_bLoadedEngine)
+               {
+
+                  continue;
+
+               }
+
                ::gpu::context_guard guard(m_pgpucontext);
 
                //m_pgpucontext->make_current();
@@ -570,6 +577,8 @@ namespace graphics3d
             m_pgpucontext = pgpucontext;
 
             pgpucontext->m_pengine = this;
+
+            m_bLoadedEngine = true;
 
             if (m_pgpucontext->m_eoutput == ::gpu::e_output_cpu_buffer)
             {

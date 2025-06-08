@@ -50,7 +50,7 @@ namespace graphics3d
 		::int_rectangle									m_rectanglePlacement;
 		bool													m_bEngineOnFrameContextInitialization = false;
 
-
+		bool m_bLoadedEngine = false;
 
 		//::image32_callback                        m_callbackImage32CpuBuffer;
 

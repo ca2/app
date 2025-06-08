@@ -1930,7 +1930,7 @@ void task::_send(const ::procedure & procedure)
 
       warning() << "waitforendofsequence timeout";
 
-      __debugbreak();
+      debug_break();
 
 #endif
 

@@ -170,7 +170,7 @@ namespace draw2d
       //virtual void enum_draw2d_fonts(::write_text::font_enumeration_item_array& itema);
 
 
-      virtual [[nodiscard]] bool lock_device();
+      [[nodiscard]] virtual bool lock_device();
       virtual void unlock_device();
 
 

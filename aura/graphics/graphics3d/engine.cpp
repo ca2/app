@@ -84,12 +84,12 @@ namespace graphics3d
 
       auto prenderer = m_pgpucontext->get_renderer(::gpu::e_scene_3d);
 
-      _prepare_frame();
-
       prenderer->on_new_frame();
 
       if (auto pframe = prenderer->beginFrame())
       {
+
+         _prepare_frame();
 
          on_begin_frame();
          // render
@@ -467,10 +467,14 @@ namespace graphics3d
 
                prenderer->defer_update_renderer();
 
-               if (!m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_callbackOnImagePixels)
+               auto pcpubuffer = m_pgpucontext->m_pcpubuffer;
+
+               auto pimagetarget = pcpubuffer->m_pimagetarget;
+
+               if (!pimagetarget->m_callbackOnImagePixels)
                {
 
-                  m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_callbackOnImagePixels =
+                  pimagetarget->m_callbackOnImagePixels =
                      [this]()
                      {
 
@@ -608,6 +612,13 @@ namespace graphics3d
 
    }
 
+
+   void engine::engine_on_after_load_scene(::graphics3d::scene* pscene)
+   {
+
+
+
+   }
 
 
    void engine::do_frame_step(::gpu::context* pcontext)
@@ -855,6 +866,9 @@ namespace graphics3d
           //  };
 
       m_pscene->defer_load_scene(m_pgpucontext);
+
+      engine_on_after_load_scene(m_pscene);
+
       if (!m_bCreatedGlobalUbo)
       {
 

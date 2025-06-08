@@ -24,7 +24,6 @@ namespace graphics3d
 {
 
 
-
 	class CLASS_DECL_AURA engine :
 		virtual public ::app_consumer < ::aura::application, ::object >
 	{
@@ -69,6 +68,10 @@ namespace graphics3d
 		virtual void on_begin_frame();
 
 		virtual void update_global_ubo(::gpu::context* pgpucontext);
+
+
+		virtual void engine_on_after_load_scene(::graphics3d::scene* pscene);
+
 
 		float dt() { return m_fFrameTime; }
 

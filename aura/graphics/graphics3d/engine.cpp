@@ -84,15 +84,15 @@ namespace graphics3d
 
       auto prenderer = m_pgpucontext->get_renderer(::gpu::e_scene_3d);
 
+      _prepare_frame();
+
       prenderer->on_new_frame();
 
       if (auto pframe = prenderer->beginFrame())
       {
 
-         _prepare_frame();
-
          on_begin_frame();
-         // render
+         
          prenderer->on_begin_render(pframe);
 
          {

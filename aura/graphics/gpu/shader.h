@@ -45,7 +45,7 @@ namespace gpu
          e_descriptor_set_slot_local,
 
       };
-
+      int m_iVertexLevel = -1;
 
       //unsigned int               m_uId;
 

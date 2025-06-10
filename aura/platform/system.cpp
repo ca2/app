@@ -1299,7 +1299,13 @@ namespace aura
       else if (strImplementationName == "directx11")
       {
 
-         strImplementationName = "direct2d_directx11";
+         strImplementationName = "direct2d";
+
+      }
+      else if (strImplementationName == "directx12")
+      {
+
+         strImplementationName = "direct2d";
 
       }
 

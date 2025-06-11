@@ -17,11 +17,11 @@ namespace draw2d_gpu
 
 
       ::pointer < ::gpu::context >           m_pgpucontext;
-      ::gpu::enum_output                     m_eoutputOnEndDraw;
-      ::pointer < ::gpu::context >           m_pgpucontextOutput;
+      //::gpu::enum_output                     m_eoutputOnEndDraw;
+      //::pointer < ::gpu::context >           m_pgpucontextOutput;
       ::pointer < ::gpu::frame >             m_pgpuframe;
       ::geometry2d::matrix                   m_m1;
-      ::pointer < ::draw2d_gpu::end_draw >   m_penddraw;
+      //::pointer < ::draw2d_gpu::end_draw >   m_penddraw;
 
 
       graphics();
@@ -35,13 +35,13 @@ namespace draw2d_gpu
       void on_end_draw() override;
 
 
-      virtual ::gpu::renderer* end_draw_renderer_output();
+      //virtual ::gpu::renderer* end_draw_renderer_output();
 
 
-      virtual void create_end_draw();
+      //virtual void create_end_draw();
 
 
-      void set_hint_window_output() override;
+      //void set_hint_window_output() override;
 
 
       void thread_select() override;

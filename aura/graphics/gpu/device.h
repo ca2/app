@@ -17,6 +17,16 @@ namespace gpu
 {
 
 
+   enum enum_device_target
+   {
+
+      e_device_target_undefined,
+      e_device_target_swap_chain,
+      e_device_target_off_screen,
+
+   };
+
+
    class CLASS_DECL_AURA device :
       virtual public ::particle
    {
@@ -48,14 +58,18 @@ namespace gpu
       //::int_size                             m_sizeOffscreen;
       //int                                    m_iScanOffscreen;
       //::memory                               m_memoryOffscreen;
+      enum_device_target                       m_edevicetarget;
 
+      ::pointer < ::gpu::swap_chain >          m_pswapchain;
+      
 
       device();
       ~device() override;
 
 
-
       virtual ::gpu::context* current_context();
+
+      virtual ::gpu::swap_chain* get_swap_chain();
       //virtual void start_gpu_context(const start_context_t& startcontext);
 
       //virtual void initialize_gpu_context(const start_context_t& startcontext);
@@ -64,11 +78,13 @@ namespace gpu
 
       //bool task_iteration() override;
 
+
       virtual void lock_context();
       virtual void unlock_context();
 
 
-      virtual void initialize_gpu_device(::gpu::approach * papproach, ::windowing::window * pwindow, const ::int_rectangle & rectanglePlacement, bool bAddSwapChainSupport);
+      virtual void initialize_gpu_device_for_swap_chain(::gpu::approach * papproach, ::windowing::window * pwindow);
+      virtual void initialize_gpu_device_for_off_screen(::gpu::approach * papproach, const ::int_rectangle & rectanglePlacement);
 
 
       virtual ::pointer < ::gpu::context > allocate_context(::particle* pparticle);

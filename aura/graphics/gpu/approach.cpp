@@ -6,8 +6,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/platform/application.h"
-//#include "_.h"
-//#include "_gpu.h"
+#include "acme/user/user/interaction.h"
 
 
 namespace gpu
@@ -44,7 +43,7 @@ namespace gpu
    }
 
 
-   ::gpu::device* approach::get_device(::windowing::window * pwindow, const ::int_rectangle & rectanglePlacement)
+   ::gpu::device* approach::get_device()
    {
 
       if (!m_pgpudevice)
@@ -52,7 +51,25 @@ namespace gpu
 
          __øconstruct(m_pgpudevice);
 
-         m_pgpudevice->initialize_gpu_device(this, pwindow, rectanglePlacement, m_papplication->m_bUseSwapChainWindow);
+         if (m_papplication->m_bUseSwapChainWindow)
+         {
+
+            m_pgpudevice->initialize_gpu_device_for_swap_chain(this, m_papplication->m_pacmeuserinteractionMain->window());
+
+         }
+         else
+         {
+
+            if (m_rectangleOffscreen.is_empty())
+            {
+
+               m_rectangleOffscreen = {1920, 1080};
+
+            }
+
+            m_pgpudevice->initialize_gpu_device_for_off_screen(this, m_rectangleOffscreen);
+
+         }
 
       }
 
@@ -97,8 +114,13 @@ namespace gpu
 
    }
 
-   
-   
+   /*::subparticle* approach::get_draw2d_connector_for_swap_chain(::windowing::window* pwindow)
+   {
+
+      return nullptr;
+
+   }
+   */
 
 } // namespace gpu
 

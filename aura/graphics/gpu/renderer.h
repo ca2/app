@@ -153,7 +153,7 @@ namespace gpu
       virtual void on_end_render(frame* pframe);
 
       virtual void endFrame();
-      virtual void endDraw(::user::interaction * puserinteraction, ::gpu::renderer * prendererSrc);
+      virtual void endDraw(::draw2d_gpu::graphics* pgraphics, ::user::interaction* puserinteraction);
 
 
       virtual void defer_update_renderer();
@@ -164,6 +164,12 @@ namespace gpu
 
 
       virtual void soft_restore_context();
+
+      virtual void endDrawEndDraw();
+
+
+      virtual void do_on_frame(const ::procedure& procedure);
+
 
    };
 

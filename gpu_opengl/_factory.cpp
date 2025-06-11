@@ -9,6 +9,7 @@
 #include "cpu_buffer.h"
 #include "object.h"
 #include "renderer.h"
+#include "swap_chain.h"
 
 
 //BEGIN_FACTORY(gpu_opengl)
@@ -38,6 +39,9 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::gpu_opengl::device_win32, ::gpu::device >();
 
 #endif
+
+   pfactory->add_factory_item < ::gpu_opengl::swap_chain, ::gpu::swap_chain >();
+
 
 }
 

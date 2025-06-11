@@ -30,7 +30,8 @@ namespace gpu_opengl
       device_win32();
       ~device_win32() override;
 
-      void initialize_gpu_device(::gpu::approach* papproach, ::windowing::window* pwindow, const ::int_rectangle & rectanglePlacement, bool bAddSwapChainSupport) override;
+      void initialize_gpu_device_for_swap_chain(::gpu::approach* papproach, ::windowing::window* pwindow) override;
+      void initialize_gpu_device_for_off_screen(::gpu::approach* papproach, const ::int_rectangle& rectanglePlacement) override;
 
       virtual void destroy_device();
 

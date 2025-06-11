@@ -21,8 +21,6 @@ namespace gpu_opengl
 
       int instanceCount = 0;
 
-      GLuint m_VAOFullScreenQuad;
-      GLuint m_VBOFullScreenQuad;
       ::pointer < ::gpu::shader > m_pshaderBlend; 
 
       GLuint m_vaoQuadBlend, m_vboQuadBlend;
@@ -63,7 +61,7 @@ namespace gpu_opengl
 
       virtual void _swap();
 
-      void endDraw(::user::interaction * puserinteraction, ::gpu::renderer * pgpurendererSrc) override;
+      void endDraw(::draw2d_gpu::graphics * pgraphics, ::user::interaction * puserinteraction) override;
 
       //virtual void on_layout(int cx, int cy);
 

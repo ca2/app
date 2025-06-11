@@ -5,6 +5,7 @@
 #include "cpu_buffer.h"
 #include "render.h"
 #include "renderer.h"
+#include "swap_chain.h"
 #include "types.h"
 //#include "_gpu.h"
 #include "acme/exception/interface_only.h"
@@ -26,6 +27,8 @@ namespace gpu
    device::device()
    {
 
+      m_edevicetarget = e_device_target_undefined;
+
       t_pgpudevice = this;
 
       m_bCreated = false;
@@ -39,12 +42,18 @@ namespace gpu
    }
 
 
-   void device::initialize_gpu_device(::gpu::approach  * pgpuapproach, ::windowing::window* pwindow, const ::int_rectangle & rectanglePlacement, bool bAddSwapChainSupport)
+   void device::initialize_gpu_device_for_swap_chain(::gpu::approach * pgpuapproach, ::windowing::window* pwindow)
    {
+
+      m_edevicetarget = e_device_target_swap_chain;
 
       m_pgpuapproach = pgpuapproach;
 
       m_pwindow = pwindow;
+
+      get_swap_chain();
+
+      
 
 
       //::e_status estatus = 
@@ -61,6 +70,30 @@ namespace gpu
 
    }
 
+
+   void device::initialize_gpu_device_for_off_screen(::gpu::approach* pgpuapproach, const ::int_rectangle& rectanglePlacement)
+   {
+
+      m_edevicetarget = e_device_target_off_screen;
+
+      m_pgpuapproach = pgpuapproach;
+
+      //m_pwindow = pwindow;
+
+
+      //::e_status estatus = 
+      //::particle::initialize(pparticle);
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //return estatus;
+
+   }
 
 
    ::pointer < ::gpu::context > device::allocate_context(::particle* pparticle)
@@ -618,6 +651,32 @@ namespace gpu
    }
 
 
+   ::gpu::swap_chain* device::get_swap_chain()
+   {
+
+      if (m_edevicetarget != e_device_target_swap_chain)
+      {
+
+         throw ::exception(error_failed);
+
+         return nullptr;
+
+      }
+
+      if (!m_pswapchain)
+      {
+
+         __defer_construct(m_pswapchain);
+
+         m_pswapchain->initialize_gpu_swap_chain(this, m_pwindow);
+
+      }
+
+      return m_pswapchain;
+
+   }
+
+
    void device::lock_context()
    {
 
@@ -975,6 +1034,7 @@ namespace gpu
    //}
 
 
+   
 
 
 } // namespace gpu

@@ -789,7 +789,10 @@
     <ClCompile Include="graphics\gpu\properties.cpp">
       <Filter>Source Files\graphics\gpu</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\gpu\end_draw.cpp">
+    <ClCompile Include="graphics\gpu\aaa_end_draw.cpp">
+      <Filter>Source Files\graphics\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\gpu\swap_chain.cpp">
       <Filter>Source Files\graphics\gpu</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1889,7 +1892,10 @@
     <ClInclude Include="graphics\gpu\graphics.h">
       <Filter>Header Files\graphics\gpu</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\gpu\end_draw.h">
+    <ClInclude Include="graphics\gpu\aaa_end_draw.h">
+      <Filter>Header Files\graphics\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\gpu\swap_chain.h">
       <Filter>Header Files\graphics\gpu</Filter>
     </ClInclude>
   </ItemGroup>

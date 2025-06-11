@@ -592,7 +592,7 @@ namespace gpu
    }
 
    
-   void renderer::endDraw(::user::interaction * puserinteraction, ::gpu::renderer * pgpurenderer)
+   void renderer::endDraw(::draw2d_gpu::graphics * pgraphics, ::user::interaction * puserinteraction)
    {
 
 
@@ -624,6 +624,34 @@ namespace gpu
    void renderer::soft_restore_context()
    {
 
+
+   }
+
+
+   void renderer::endDrawEndDraw()
+   {
+
+
+   }
+
+
+   void renderer::do_on_frame(const ::procedure& procedure)
+   {
+
+      defer_update_renderer();
+
+      on_new_frame();
+
+      auto pframe = beginFrame();
+
+      on_begin_render(pframe);
+
+      procedure();
+      //_copy_image(vkimage, rectangle, false);
+
+      on_end_render(pframe);
+
+      endFrame();
 
    }
 

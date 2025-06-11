@@ -66,6 +66,8 @@ namespace gpu
 
    class character;
 
+   class swap_chain;
+
 
 } // gpu
 
@@ -75,7 +77,7 @@ namespace draw2d_gpu
 
    
    class graphics;
-   class end_draw;
+   //class end_draw;
 
 
 } // namespace draw2d_gpu

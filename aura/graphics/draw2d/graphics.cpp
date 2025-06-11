@@ -468,11 +468,11 @@ namespace draw2d
    }
 
 
-   void graphics::set_hint_window_output()
-   {
+   //void graphics::set_hint_window_output()
+   //{
 
 
-   }
+   //}
 
 
    /*   int graphics::ExcludeUpdateRgn(::windowing::window * pwindow)

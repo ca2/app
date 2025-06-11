@@ -9489,20 +9489,22 @@ namespace aura
       if (!pfactoryGpu)
       {
 
-         ::string strDraw2dImplementation = m_papplication->draw2d_get_default_implementation_name();
+         ::string strGpuImplementation = m_papplication->draw2d_get_default_implementation_name();
 
-         if (strDraw2dImplementation == "vkvg")
+         if (strGpuImplementation == "vkvg")
          {
 
-            strDraw2dImplementation = "vulkan";
+            strGpuImplementation = "vulkan";
 
          }
-         else if (strDraw2dImplementation.begins_eat("direct2d_"))
+         else if (strGpuImplementation.begins_eat("direct2d"))
          {
 
+            strGpuImplementation = graphics3d_get_implementation_name();
+
          }
 
-         pfactoryGpu = factory("gpu", strDraw2dImplementation);
+         pfactoryGpu = factory("gpu", strGpuImplementation);
 
          pfactoryGpu->merge_to_global_factory();
 
@@ -9835,7 +9837,7 @@ namespace aura
          else if (strGraphics3DImplementation.begins("directx"))
          {
 
-            return system()->implementation_name("draw2d", "direct2d_" + strGraphics3DImplementation);
+            return system()->implementation_name("draw2d", "direct2d");
 
          }
          else

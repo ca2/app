@@ -57,6 +57,8 @@ namespace gpu
 
       ::pointer < device >       m_pgpudevice;
 
+      ::int_rectangle            m_rectangleOffscreen;
+
 
       approach();
       ~approach() override;
@@ -68,7 +70,10 @@ namespace gpu
       virtual void initialize_gpu_approach();
 
 
-      virtual ::gpu::device* get_device(::windowing::window * pwindow, const ::int_rectangle & rectanglePlacement);
+      virtual ::gpu::device* get_device();
+
+
+      //virtual ::subparticle* get_draw2d_connector_for_swap_chain(::windowing::window* pwindow);
 
 
       virtual void engine_on_frame_context_initialization(::gpu::context* pgpucontext);

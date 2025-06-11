@@ -731,6 +731,7 @@
     <ClInclude Include="program.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="shader.h" />
+    <ClInclude Include="swap_chain.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="factory_exchange.h" />
     <ClInclude Include="framework.h" />
@@ -774,6 +775,7 @@
     <ClCompile Include="frame_buffer.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="renderer.cpp" />
+    <ClCompile Include="swap_chain.cpp" />
     <ClCompile Include="_factory.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

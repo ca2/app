@@ -105,6 +105,11 @@ namespace gpu
 
       //virtual void initialize(::particle * pparticle) override;
 
+      virtual void do_on_context(const ::procedure & procedure);
+      virtual void send_on_context(const ::procedure & procedure);
+      
+
+
 
       virtual ::gpu::renderer* get_renderer(::gpu::enum_scene escene);
 

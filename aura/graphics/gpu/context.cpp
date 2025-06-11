@@ -607,6 +607,36 @@ namespace gpu
    }
 
 
+   void context::do_on_context(const ::procedure & procedure)
+   {
+
+      context_guard contextguard(this);
+
+      procedure();
+
+   }
+
+
+   void context::send_on_context(const ::procedure& procedureParam)
+   {
+
+      ::gpu::rear_guard rear_guard(this);
+
+      auto procedure = procedureParam;
+
+      _send([this, procedure]()
+         {
+
+            do_on_context(procedure);
+
+         });
+
+   }
+
+
+
+
+
    ::gpu::renderer* context::get_renderer(::gpu::enum_scene escene)
    {
 

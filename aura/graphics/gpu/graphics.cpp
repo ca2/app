@@ -6,9 +6,9 @@
 #include "aura/windowing/window.h"
 #include "aura/graphics/gpu/approach.h"
 #include "aura/graphics/gpu/context.h"
-#include "aura/graphics/gpu/end_draw.h"
 #include "aura/graphics/gpu/device.h"
 #include "aura/graphics/gpu/renderer.h"
+#include "aura/graphics/gpu/swap_chain.h"
 
 
 namespace draw2d_gpu
@@ -28,7 +28,7 @@ namespace draw2d_gpu
    graphics::graphics()
    {
 
-      m_eoutputOnEndDraw = ::gpu::e_output_none;
+      //m_eoutputOnEndDraw = ::gpu::e_output_none;
 
    }
 
@@ -138,40 +138,40 @@ namespace draw2d_gpu
    }
 
 
-   void graphics::create_end_draw()
-   {
+   //void graphics::create_end_draw()
+   //{
 
 
-   }
+   //}
 
 
-   ::gpu::renderer* graphics::end_draw_renderer_output()
-   {
+   //::gpu::renderer* graphics::end_draw_renderer_output()
+   //{
 
-      ::cast < ::windowing::window > pwindow = m_puserinteraction->m_pacmewindowingwindow;
+   //   ::cast < ::windowing::window > pwindow = m_puserinteraction->m_pacmewindowingwindow;
 
-      if (!m_pgpucontextOutput)
-      {
+   //   if (!m_pgpucontextOutput)
+   //   {
 
-         __øconstruct(m_pgpucontextOutput);
+   //      __øconstruct(m_pgpucontextOutput);
 
-         m_pgpucontextOutput = m_papplication->get_gpu()->get_device(pwindow, pwindow->get_window_rectangle())->start_swap_chain_context(this, pwindow);
+   //      m_pgpucontextOutput = m_papplication->get_gpu()->get_device()->start_swap_chain_context(this, pwindow);
 
-         //m_pgpucontextOutput->create_window_buffer(pwindow);
+   //      //m_pgpucontextOutput->create_window_buffer(pwindow);
 
-      }
+   //   }
 
-      auto rectanglePlacement = pwindow->get_window_rectangle();
+   //   auto rectanglePlacement = pwindow->get_window_rectangle();
 
-      m_pgpucontextOutput->set_placement(rectanglePlacement);
+   //   m_pgpucontextOutput->set_placement(rectanglePlacement);
 
-      auto prendererOutput = m_pgpucontextOutput->get_renderer(::gpu::e_scene_2d);
+   //   auto prendererOutput = m_pgpucontextOutput->get_renderer(::gpu::e_scene_2d);
 
-      prendererOutput->defer_update_renderer();
+   //   prendererOutput->defer_update_renderer();
 
-      return prendererOutput;
+   //   return prendererOutput;
 
-   }
+   //}
 
 
    void graphics::on_end_draw()
@@ -186,7 +186,8 @@ namespace draw2d_gpu
 
          pgpurenderer->endFrame();
 
-         if (m_eoutputOnEndDraw == ::gpu::e_output_swap_chain)
+         if(m_pgpucontext->m_pgpudevice->m_edevicetarget
+            == ::gpu::e_device_target_swap_chain)
          {
 
             if (!m_puserinteraction)
@@ -260,32 +261,39 @@ namespace draw2d_gpu
 
             //prendererOutput->defer_update_render_pass();
 
-            if (!m_penddraw)
+            //if (!m_penddraw)
+            //{
+
+            //   create_end_draw();
+
+            //}
+
+            //if (m_penddraw)
+            //{
+
+            //   on_endDraw(m_puserinteraction, pgpurenderer);
+
+            //}
+            //else
             {
 
-               create_end_draw();
+               //auto pswapchain = m_pgpucontext->m_pgpudevice->get_swap_chain();
 
-            }
+               auto pgpurenderer = m_pgpucontext->m_pgpurenderer;
 
-            if (m_penddraw)
-            {
+               pgpurenderer->endDraw(this, m_puserinteraction);
 
-               m_penddraw->endDraw(m_puserinteraction, pgpurenderer);
+               //auto prendererOutput = end_draw_renderer_output();
 
-            }
-            else
-            {
-
-               auto prendererOutput = end_draw_renderer_output();
-
-               prendererOutput->endDraw(m_puserinteraction, pgpurenderer);
+               //prendererOutput->endDraw(m_puserinteraction, pgpurenderer);
 
             }
 
             m_pgpucontext->m_pgpudevice->on_top_end_frame();
 
          }
-         else if (m_eoutputOnEndDraw == ::gpu::e_output_cpu_buffer)
+         else if (m_pgpucontext->m_pgpudevice->m_edevicetarget
+            == ::gpu::e_device_target_off_screen)
          {
 
             //m_pgpucontext->swap_buffers();
@@ -309,12 +317,12 @@ namespace draw2d_gpu
    }
 
 
-   void graphics::set_hint_window_output()
-   {
+   //void graphics::set_hint_window_output()
+   //{
 
-      m_eoutputOnEndDraw = ::gpu::e_output_swap_chain;
+   //   m_eoutputOnEndDraw = ::gpu::e_output_swap_chain;
 
-   }
+   //}
 
 
 

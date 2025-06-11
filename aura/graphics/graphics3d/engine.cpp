@@ -539,7 +539,9 @@ namespace graphics3d
 
       auto pwindow = m_pusergraphics3d->window();
 
-      ::cast < ::gpu::device > pgpudevice = pgpu->get_device(pwindow, rectanglePlacement);
+      pgpu->m_rectangleOffscreen = rectanglePlacement;
+
+      ::cast < ::gpu::device > pgpudevice = pgpu->get_device();
 
       ::pointer < ::gpu::context > pgpucontext;
 

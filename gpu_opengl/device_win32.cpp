@@ -58,13 +58,30 @@ namespace gpu_opengl
    }
 
 
-   void device_win32::initialize_gpu_device(::gpu::approach* papproach, ::windowing::window* pwindow, const ::int_rectangle & rectanglePlacement, bool bAddSwapChainSupport)
+   void device_win32::initialize_gpu_device_for_swap_chain(::gpu::approach* papproach, ::windowing::window* pwindow)
    {
+
+      ::gpu::device::initialize_gpu_device_for_swap_chain(papproach, pwindow);
 
       m_pgpuapproach = papproach;
       m_pwindow = pwindow;
-      m_bAddSwapChainSupport = bAddSwapChainSupport;
+      m_bAddSwapChainSupport = true;
       m_hwnd = (HWND) m_pwindow->oswindow();
+
+      _create_device(m_pwindow->get_window_rectangle().size());
+
+   }
+
+
+   void device_win32::initialize_gpu_device_for_off_screen(::gpu::approach* papproach, const ::int_rectangle& rectanglePlacement)
+   {
+
+      ::gpu::device::initialize_gpu_device_for_off_screen(papproach, rectanglePlacement);
+
+      m_pgpuapproach = papproach;
+      m_pwindow = nullptr;
+      m_bAddSwapChainSupport = false;
+      m_hwnd = nullptr;
 
       _create_device(rectanglePlacement.size());
 

@@ -51,23 +51,6 @@ namespace gpu
 
       m_pwindow = pwindow;
 
-      get_swap_chain();
-
-      
-
-
-      //::e_status estatus = 
-      //::particle::initialize(pparticle);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
-
    }
 
 
@@ -668,7 +651,7 @@ namespace gpu
 
          __defer_construct(m_pswapchain);
 
-         m_pswapchain->initialize_gpu_swap_chain(this, m_pwindow);
+         ///m_pswapchain->initialize_gpu_swap_chain(this, m_pwindow);
 
       }
 

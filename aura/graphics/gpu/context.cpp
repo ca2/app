@@ -6,16 +6,13 @@
 #include "render.h"
 #include "renderer.h"
 #include "types.h"
-//#include "_gpu.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/platform/system.h"
-////#include "aura/graphics/draw2d/_component.h"
 #include "aura/graphics/image/image.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/platform/system.h"
 #include "aura/graphics/image/context.h"
-//#include "_defer.h"
 
 
 namespace gpu
@@ -108,12 +105,9 @@ namespace gpu
 
          }
 
-         //m_pcontextUpper->m_pgpudevice->m_itaskCurrentGpuContext = m_itaskUpper;
-
          m_pcontextUpper->make_current();
 
       }
-
 
    }
 
@@ -129,78 +123,20 @@ namespace gpu
    context::~context()
    {
 
+
    }
-
-
-   //void context::initialize(::particle* pparticle)
-   //{
-
-   //   //::e_status estatus = 
-   //   ::object::initialize(pparticle);
-
-   //   //if (!estatus)
-   //   //{
-
-   //   //   return estatus;
-
-   //   //}
-
-   //   //return estatus;
-
-   //}
 
 
    void context::draw()
    {
-      //
-      //      if (m_VAO != 0)
-      //      {
-      //
-      //         //return ::success;
-      //         return;
-      //
-      //      }
-      //      //glGenBuffers(1, &VAO);
-      ////      float vertices[] = {
-      //         // positions         // colors
-      //  //        0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // bottom right
-      //    //     -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // bottom left
-      //      //    0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // top
-      //      //};
-      //      float vertices[] = {
-      //         // first triangle
-      //          1.f,  1.f, 0.0f,  // top right
-      //          1.f, -1.f, 0.0f,  // bottom right
-      //         -1.f,  1.f, 0.0f,  // top left
-      //         // second triangle
-      //          1.f, -1.f, 0.0f,  // bottom right
-      //         -1.f, -1.f, 0.0f,  // bottom left
-      //         -1.f,  1.f, 0.0f   // top left
-      //      };
 
-            //glGenVertexArrays(1, &m_VAO);
-            //glGenBuffers(1, &m_VBO);
-            //// bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
-            //glBindVertexArray(m_VAO);
 
-            //glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-            //glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-            //// position attribute
-            //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-            //glEnableVertexAttribArray(0);
-            //// color attribute
-            ////glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-            ////glEnableVertexAttribArray(1);
-
-            //return ::success;
    }
 
 
    void context::prepare_for_gpu_read()
    {
 
-      //return ::success;
       swap_buffers();
 
    }
@@ -209,28 +145,6 @@ namespace gpu
    void context::start_drawing()
    {
 
-      //glClearColor(0.2f, 0.3f, 0.3f, 0.5f);
-
-      //glClear(GL_COLOR_BUFFER_BIT);
-
-
-      //if (m_pprogram && m_pprogram->m_pshader)
-      //{
-
-      //   m_pprogram->m_pshader->use();
-
-      //}
-
-      //// be sure to activate the shader
-      ////glUseProgram(shaderProgram);
-
-      //// update the uniform color
-      ////float timeValue = glfwGetTime();
-      ////float greenValue = sin(timeValue) / 2.0f + 0.5f;
-      ////int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
-      ////glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
-
-      //return ::success;
 
    }
 
@@ -238,17 +152,13 @@ namespace gpu
    void context::global_transform()
    {
 
+
    }
 
 
    void context::render()
    {
 
-      //glBindVertexArray(m_VAO);
-
-      //glDrawArrays(GL_TRIANGLES, 0, 6);
-
-      //return ::success;
 
    }
 
@@ -280,35 +190,13 @@ namespace gpu
 
       }
 
-      //__øconstruct(m_pbuffer);
-
-      //m_pbuffer->m_pimage = image()->create_image(size);
-
-      //if (!::is_ok(m_pbuffer->m_pimage))
-      //{
-
-      //   throw ::exception(error_resource);
-
-      //}
-
       _create_window_buffer(pwindow);
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return ::success_none;
 
    }
 
 
    void context::_create_window_buffer(::windowing::window * pwindow)
    {
-
-      //return ::success_none;
 
    }
 
@@ -343,15 +231,6 @@ namespace gpu
 
             _create_cpu_buffer(size);
 
-            //if(!estatus)
-            //{
-
-            //   return estatus;
-
-            //}
-
-            //return ::success_none;
-
             m_bCreated = true;
 
          });
@@ -365,42 +244,7 @@ namespace gpu
       send([this, pwindow]()
          {
 
-            //::pointer<::aura::system>psystem = system();
-
-            //auto pgpu = application()->get_gpu();
-
-            //if (::is_null(pgpu))
-            //{
-
-            //   throw ::exception(error_null_pointer);
-
-            //}
-
-            //__defer_construct(m_pcpubuffer);
-
-            //m_pcpubuffer->m_pgpucontext = this;
-
-            ////m_pbuffer->m_pimage = image()->create_image(size);
-
-            //m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
-
-            //if (m_pcpubuffer->m_pixmap.nok())
-            //{
-
-            //   throw ::exception(error_resource);
-
-            //}
-
             _defer_create_window_context(pwindow);
-
-            //if(!estatus)
-            //{
-
-            //   return estatus;
-
-            //}
-
-            //return ::success_none;
 
             m_bCreated = true;
 
@@ -412,15 +256,11 @@ namespace gpu
    void context::_create_cpu_buffer(const ::int_size& size)
    {
 
-      //return ::success_none;
-
    }
 
 
    void context::_defer_create_window_context(::windowing::window* pwindow)
    {
-
-      //return ::success_none;
 
    }
 
@@ -461,16 +301,7 @@ namespace gpu
 
             initialize_gpu_context(startcontext);
 
-            //            run_vulkan_example();
-
-
-
-            //m_pimpact->m_ptaskEngine.release();
-
          });
-      //pgpucontext->initialize_gpu_context(this, eoutput, pwindow, rectanglePlacement);
-
-      //return pgpucontext;
 
    }
 
@@ -485,15 +316,6 @@ namespace gpu
       t_pgpudevice = m_pgpudevice;
 
       m_eoutput = startcontext.m_eoutput;
-
-      //if (m_eoutput == ::gpu::e_output_cpu_buffer
-      //   && startcontext.m_callbackImage32CpuBuffer
-      //   && !m_callbackImage32CpuBuffer)
-      //{
-
-      //   m_callbackImage32CpuBuffer = startcontext.m_callbackImage32CpuBuffer;
-
-      //}
 
       on_create_context(startcontext);
 

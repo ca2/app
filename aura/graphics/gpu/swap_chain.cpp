@@ -31,6 +31,8 @@ namespace gpu
 
       m_pwindow = pwindow;
 
+      m_bSwapChainInitialized = true;
+
    }
 
 

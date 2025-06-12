@@ -28,18 +28,6 @@ int run_vulkan_example2(const ::image32_callback& callback);
 int run_vulkan_example5(::graphics3d::mouse_state* pmousestate, const ::image32_callback& callback);
 
 
-//namespace vulkan
-//{
-//
-//
-//   ::pointer<::vulkan::application > start_offscreen_application(vkc::VkContainer* pvkcontainer, mouse_state* pmousestate);
-//
-//
-//} // namespace vulkan
-//
-
-
-
 
 //#include "aura/update.h"
 //#include <math.h>
@@ -439,37 +427,7 @@ namespace user
 
    void graphics3d::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
    {
-
-      //return;
-
-      //pgraphics->fill_solid_rectangle(::int_rectangle_dimension(10, 10, 100, 100), argb(128, 200, 220, 255));
-
-      ////return;
-
-      //pgraphics->fill_solid_rectangle(::int_rectangle_dimension(110, 100, 100, 100), argb(255, 200, 220, 255));
-
-      //auto ppen = __øcreate < ::draw2d::pen > ();
-
-      //ppen->create_solid(10, argb(200, 20, 155, 50));
-
-      //pgraphics->set(ppen);
-
-      //pgraphics->draw_line(::double_point( 0.0, 0.0 ), ::double_point(300.0, 300.0));
-
-      //pgraphics->fill_solid_rectangle(::int_rectangle_dimension(10, 150, 100, 100), argb(128, 100, 255, 120));
-
-      //pgraphics->fill_solid_rectangle(::int_rectangle_dimension(110, 150, 100, 100), argb(255, 100, 255, 120));
-
-      //auto ppen2 = __øcreate < ::draw2d::pen > ();
-
-      //ppen2->create_solid(5, argb(200, 20, 155, 50));
-
-      //pgraphics->set(ppen2);
-
-      //pgraphics->draw_line(::double_point(300.0, 0.0), ::double_point(100.0, 300.0));
-
-      //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
-
+            
       if (1)
       {
 

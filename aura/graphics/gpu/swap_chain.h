@@ -12,6 +12,7 @@ namespace gpu
    public:
 
 
+      bool m_bSwapChainInitialized = false;
       //::pointer < ::draw2d_gpu::graphics > m_pgraphics;
       ::pointer < ::gpu::device > m_pgpudevice;
       ::pointer < ::windowing::window > m_pwindow;
@@ -21,7 +22,6 @@ namespace gpu
 
 
       virtual void initialize_gpu_swap_chain(::gpu::device* pdevice, ::windowing::window* pwindow);
-
 
       virtual void endDraw(::draw2d_gpu::graphics* pgraphics, ::user::interaction* puserinteraction, ::gpu::renderer* prendererSrc);
       virtual void present();

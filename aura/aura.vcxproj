@@ -1605,7 +1605,6 @@
     <ClCompile Include="user\user\form_callback.cpp" />
     <ClCompile Include="user\user\form_handler.cpp" />
     <ClCompile Include="user\user\frame_interaction.cpp" />
-    <ClCompile Include="user\user\graphics3d.cpp" />
     <ClCompile Include="user\user\scroll_base.cpp" />
     <ClCompile Include="user\user\scroll_base_x.cpp" />
     <ClCompile Include="user\user\interaction.cpp" />

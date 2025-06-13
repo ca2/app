@@ -14,7 +14,7 @@ namespace user
 
   
 
-   class CLASS_DECL_AURA graphics3d :
+   class CLASS_DECL_BRED graphics3d :
       virtual public ::app_consumer < ::aura::application, ::user::box>
    {
    public:

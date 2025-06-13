@@ -216,6 +216,13 @@ namespace graphics
 
       }
 
+      if (pbufferitem->m_sizeBufferItemDraw.is_empty())
+      {
+
+         pbufferitem->m_sizeBufferItemDraw = puserinteraction->window()->get_window_rectangle().size();
+
+      }
+
       //pbufferitem->m_point = m_pimpl->m_puserinteraction->const_layout().layout().origin();
 
       //pbufferitem->m_size = m_pimpl->m_puserinteraction->const_layout().layout().size();

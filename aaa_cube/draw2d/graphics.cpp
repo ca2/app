@@ -4,10 +4,10 @@
 #include "acme/platform/application.h"
 #include "aura/user/user/interaction.h"
 #include "aura/windowing/window.h"
-#include "aura/graphics/gpu/approach.h"
-#include "aura/graphics/gpu/context.h"
-#include "aura/graphics/gpu/device.h"
-#include "aura/graphics/gpu/renderer.h"
+#include "bred/gpu/approach.h"
+#include "bred/gpu/context.h"
+#include "bred/gpu/device.h"
+#include "bred/gpu/renderer.h"
 
 
 namespace draw2d_gpu

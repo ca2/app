@@ -5,7 +5,7 @@
 //#include "acme/prototype/geometry2d/_geometry2d.h"
 #include "acme/prototype/geometry2d/rectangle.h"
 #include "apex/platform/app_consumer.h"
-#include "aura/graphics/gpu/render.h"
+#include "bred/gpu/render.h"
 
 
 namespace app_shader

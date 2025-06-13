@@ -1,9 +1,9 @@
 #include "framework.h"
 #include "graphics3d.h"
 #include "acme/exception/interface_only.h"
-#include "aura/graphics/gpu/context.h"
-#include "aura/graphics/graphics3d/engine.h"
-#include "aura/graphics/graphics3d/input.h"
+#include "bred/gpu/context.h"
+#include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/input.h"
 #include "acme/constant/message.h"
 #include "acme/graphics/image/image32.h"
 #include "acme/handler/topic.h"
@@ -16,7 +16,7 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/target.h"
 #include "aura/message/user.h"
-#include "aura/graphics/graphics3d/types.h"
+#include "bred/graphics3d/types.h"
 #include "aura/platform/application.h"
 //#include "vulkan/vk_container.h"
 
@@ -427,6 +427,8 @@ namespace user
 
    void graphics3d::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
    {
+
+      pgraphics->defer_snapshot_for_composition();
             
       if (1)
       {

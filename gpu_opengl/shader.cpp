@@ -1,11 +1,11 @@
 #include "framework.h"
 #include "shader.h"
 #include "acme/filesystem/filesystem/file_context.h"
-#include "aura/graphics/gpu/approach.h"
-#include "aura/graphics/gpu/context.h"
-#include "aura/graphics/gpu/device.h"
-#include "aura/graphics/gpu/renderer.h"
-#include "aura/graphics/gpu/types.h"
+#include "bred/gpu/approach.h"
+#include "bred/gpu/context.h"
+#include "bred/gpu/device.h"
+#include "bred/gpu/renderer.h"
+#include "bred/gpu/types.h"
 
 
 namespace gpu_opengl

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "aura/graphics/gpu/approach.h"
+#include "bred/gpu/approach.h"
 
 
 namespace gpu_opengl

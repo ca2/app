@@ -1461,54 +1461,6 @@
     <ClCompile Include="graphics\draw2d\task_tool.cpp" />
     <ClCompile Include="graphics\draw2d\_.cpp" />
     <ClCompile Include="graphics\draw3d\ortho.cpp" />
-    <ClCompile Include="graphics\gpu\aaa_end_draw.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugWithInlOpt|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ASanDbgWithInlOpt|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ASanStaticDebug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticReleaseWithDbgInfo|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugWithInlOpt|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ASanDbgWithInlOpt|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ASanStaticDebug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticReleaseWithDbgInfo|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="graphics\gpu\approach.cpp" />
-    <ClCompile Include="graphics\gpu\context.cpp" />
-    <ClCompile Include="graphics\gpu\cpu_buffer.cpp" />
-    <ClCompile Include="graphics\gpu\device.cpp" />
-    <ClCompile Include="graphics\gpu\draw2d.cpp" />
-    <ClCompile Include="graphics\gpu\face.cpp" />
-    <ClCompile Include="graphics\gpu\frame.cpp" />
-    <ClCompile Include="graphics\gpu\graphics.cpp" />
-    <ClCompile Include="graphics\gpu\object.cpp" />
-    <ClCompile Include="graphics\gpu\program.cpp" />
-    <ClCompile Include="graphics\gpu\properties.cpp" />
-    <ClCompile Include="graphics\gpu\render.cpp" />
-    <ClCompile Include="graphics\gpu\renderer.cpp" />
-    <ClCompile Include="graphics\gpu\shader.cpp" />
-    <ClCompile Include="graphics\gpu\swap_chain.cpp" />
-    <ClCompile Include="graphics\gpu\_.cpp" />
-    <ClCompile Include="graphics\graphics3d\camera.cpp" />
-    <ClCompile Include="graphics\graphics3d\context.cpp" />
-    <ClCompile Include="graphics\graphics3d\engine.cpp" />
-    <ClCompile Include="graphics\graphics3d\frame.cpp" />
-    <ClCompile Include="graphics\graphics3d\input.cpp" />
-    <ClCompile Include="graphics\graphics3d\key_map.cpp" />
-    <ClCompile Include="graphics\graphics3d\model.cpp" />
-    <ClCompile Include="graphics\graphics3d\renderer.cpp" />
-    <ClCompile Include="graphics\graphics3d\scene.cpp" />
-    <ClCompile Include="graphics\graphics3d\scene_object.cpp" />
-    <ClCompile Include="graphics\graphics3d\scene_system.cpp" />
-    <ClCompile Include="graphics\graphics3d\shader.cpp" />
     <ClCompile Include="graphics\graphics\bitmap_source_buffer.cpp" />
     <ClCompile Include="graphics\graphics\buffer.cpp" />
     <ClCompile Include="graphics\graphics\console.cpp" />
@@ -1779,42 +1731,6 @@
     <ClInclude Include="graphics\draw3d\matrix.h" />
     <ClInclude Include="graphics\draw3d\ortho.h" />
     <ClInclude Include="graphics\draw3d\_.h" />
-    <ClInclude Include="graphics\gpu\aaaa_gpu.h" />
-    <ClInclude Include="graphics\gpu\approach.h" />
-    <ClInclude Include="graphics\gpu\character.h" />
-    <ClInclude Include="graphics\gpu\context.h" />
-    <ClInclude Include="graphics\gpu\cpu_buffer.h" />
-    <ClInclude Include="graphics\gpu\device.h" />
-    <ClInclude Include="graphics\gpu\draw2d.h" />
-    <ClInclude Include="graphics\gpu\aaa_end_draw.h" />
-    <ClInclude Include="graphics\gpu\face.h" />
-    <ClInclude Include="graphics\gpu\frame.h" />
-    <ClInclude Include="graphics\gpu\graphics.h" />
-    <ClInclude Include="graphics\gpu\object.h" />
-    <ClInclude Include="graphics\gpu\program.h" />
-    <ClInclude Include="graphics\gpu\properties.h" />
-    <ClInclude Include="graphics\gpu\render.h" />
-    <ClInclude Include="graphics\gpu\renderer.h" />
-    <ClInclude Include="graphics\gpu\shader.h" />
-    <ClInclude Include="graphics\gpu\swap_chain.h" />
-    <ClInclude Include="graphics\gpu\types.h" />
-    <ClInclude Include="graphics\gpu\_.h" />
-    <ClInclude Include="graphics\gpu\_constant.h" />
-    <ClInclude Include="graphics\graphics3d\aaa_context.h" />
-    <ClInclude Include="graphics\graphics3d\camera.h" />
-    <ClInclude Include="graphics\graphics3d\engine.h" />
-    <ClInclude Include="graphics\graphics3d\frame.h" />
-    <ClInclude Include="graphics\graphics3d\input.h" />
-    <ClInclude Include="graphics\graphics3d\key_map.h" />
-    <ClInclude Include="graphics\graphics3d\model.h" />
-    <ClInclude Include="graphics\graphics3d\renderer.h" />
-    <ClInclude Include="graphics\graphics3d\scene.h" />
-    <ClInclude Include="graphics\graphics3d\scene_object.h" />
-    <ClInclude Include="graphics\graphics3d\scene_system.h" />
-    <ClInclude Include="graphics\graphics3d\shader.h" />
-    <ClInclude Include="graphics\graphics3d\types.h" />
-    <ClInclude Include="graphics\graphics3d\utilities.h" />
-    <ClInclude Include="graphics\graphics3d\_.h" />
     <ClInclude Include="graphics\graphics\aaa_wat_to_remove_window_graphics.h" />
     <ClInclude Include="graphics\graphics\bitmap_source_buffer.h" />
     <ClInclude Include="graphics\graphics\buffer.h" />

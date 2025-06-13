@@ -3,7 +3,7 @@
 #include "frame_buffer.h"
 #include "renderer.h"
 #include "swap_chain.h"
-#include "aura/graphics/gpu/device.h"
+#include "bred/gpu/device.h"
 #include "aura/user/user/interaction.h"
 #include "aura/windowing/window.h"
 

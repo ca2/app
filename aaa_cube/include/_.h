@@ -46,9 +46,9 @@ namespace bred
 //
 //#include "bred/platform/system.h"
 
-#include "aura/graphics/gpu/_.h"
-#include "aura/graphics/gpu/_.h"
-#include "aura/graphics/graphics3d/_.h"
+#include "bred/gpu/_.h"
+#include "bred/gpu/_.h"
+#include "bred/graphics3d/_.h"
 
 
 

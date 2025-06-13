@@ -31,7 +31,6 @@
 #include "aura/constant/idpool.h"
 #include "aura/platform/component.h"
 #include "aura/platform/node.h"
-#include "aura/graphics/gpu/approach.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/user/user/interaction_array.h"
 #include "aura/user/user/interaction.h"
@@ -46,6 +45,7 @@
 #include "aura/windowing/icon.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
+//#include "bred/gpu/approach.h"
 
 
 extern "C"
@@ -9448,98 +9448,6 @@ namespace aura
    //#endif
 
 
-   ::gpu::approach* application::get_gpu()
-   {
-
-      if (!m_pgpu)
-      {
-
-         create_gpu();
-
-      }
-
-      return m_pgpu.get();
-
-   }
-
-
-   ::gpu::approach* application::gpu()
-   {
-
-      return m_pgpu.get();
-
-   }
-
-
-   //#ifdef _OPENGL
-   void application::create_gpu()
-   {
-
-      if (m_pgpu)
-      {
-
-         return;
-
-      }
-
-      //load_library("gpu_opengl");
-
-      auto pfactoryGpu = component_factory("gpu");
-
-      if (!pfactoryGpu)
-      {
-
-         ::string strGpuImplementation = m_papplication->draw2d_get_default_implementation_name();
-
-         if (strGpuImplementation == "vkvg")
-         {
-
-            strGpuImplementation = "vulkan";
-
-         }
-         else if (strGpuImplementation.begins_eat("direct2d"))
-         {
-
-            strGpuImplementation = graphics3d_get_implementation_name();
-
-         }
-
-         pfactoryGpu = factory("gpu", strGpuImplementation);
-
-         pfactoryGpu->merge_to_global_factory();
-
-      }
-
-      //get_library("gpu_opengl");
-
-
-
-      //if (!pfactoryGpu)
-      //{
-
-      //   error() <<"gpu_opengl ([a-z0-9_]+)_factory has failed";
-
-      //   return pfactoryGpu;
-
-      //}
-
-      //auto estatus =
-
-      pfactoryGpu->__øconstruct(this, m_pgpu);
-
-
-      m_pgpu->initialize_gpu_approach();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return ::success;
-
-   }
 
    //void application::run_application()
    //{

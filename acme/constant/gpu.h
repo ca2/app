@@ -15,7 +15,7 @@ namespace gpu
       e_output_gpu_buffer,
       e_output_color_and_alpha_accumulation_buffers,
       e_output_resolve_color_and_alpha_accumulation_buffers,
-
+      e_output_gpu_buffer_to_swap_chain,
 
    };
 

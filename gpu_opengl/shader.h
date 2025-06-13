@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "aura/graphics/gpu/shader.h"
+#include "bred/gpu/shader.h"
 
 
 namespace gpu_opengl

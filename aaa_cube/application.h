@@ -3,7 +3,7 @@
 
 
 #include "core/platform/application.h"
-#include "aura/graphics/graphics3d/camera.h"
+#include "bred/graphics3d/camera.h"
 
 
 namespace cube

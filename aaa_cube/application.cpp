@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "application.h"
-#include "aura/graphics/gpu/approach.h"
+#include "bred/gpu/approach.h"
 #include "graphics3d/engine.h"
 #include "graphics3d/model.h"
 

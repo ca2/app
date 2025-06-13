@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "aura/graphics/gpu/swap_chain.h"
+#include "bred/gpu/swap_chain.h"
 
 
 namespace gpu_opengl

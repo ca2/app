@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "aura/graphics/gpu/cpu_buffer.h"
+#include "bred/gpu/cpu_buffer.h"
 
 
 namespace gpu_opengl

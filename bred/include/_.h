@@ -50,4 +50,13 @@ namespace bred
 //#include "bred/graphics3d/_.h"
 
 
+#include "bred/gpu/_.h"
+
+
+#include "bred/graphics3d/_.h"
+
+
+
+
+
 

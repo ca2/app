@@ -2,9 +2,9 @@
 
 
 #include "aura/user/user/box.h"
-#include "aura/graphics/graphics3d/engine.h"
-#include "aura/graphics/graphics3d/key_map.h"
-#include "aura/graphics/graphics3d/types.h"
+#include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/key_map.h"
+#include "bred/graphics3d/types.h"
 #include "apex/platform/app_consumer.h"
 #include "apex/platform/application.h"
 

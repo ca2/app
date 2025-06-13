@@ -196,7 +196,7 @@ namespace draw2d
       virtual ::file::path get_font_path(const ::string& strName, int iWeight, bool bItalic);
 
       //virtual oswindow get_window_handle() const;
-
+      virtual void defer_snapshot_for_composition();
 
 
       inline ::draw2d::graphics* g(const ::double_size& sizeHint) { return this; }
@@ -304,6 +304,7 @@ namespace draw2d
       virtual void create_information_context(const ::string& pszDriverName, const ::string& pszDeviceName, const ::string& pszOutput, const void* lpInitData);
 
       virtual void create_window_graphics(::windowing::window* pwindow);
+      virtual void create_offscreen_graphics_for_swap_chain_blitting(const ::int_size& size = {});
       virtual void create_memory_graphics(const ::int_size& size = {});
       virtual void defer_set_size(const ::int_size& size = {});
       virtual void _create_memory_graphics(const ::int_size& size = {});

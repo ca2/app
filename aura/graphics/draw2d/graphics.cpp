@@ -414,6 +414,14 @@ namespace draw2d
    }
 
 
+   void graphics::create_offscreen_graphics_for_swap_chain_blitting(const ::int_size& size)
+   {
+
+      create_memory_graphics(size);
+
+   }
+
+
    void graphics::create_memory_graphics(const ::int_size & size)
    {
 
@@ -5652,6 +5660,14 @@ namespace draw2d
          draw_rectangle(rectangle, ppen);
 
       }
+
+   }
+
+
+   void graphics::defer_snapshot_for_composition()
+   {
+
+
 
    }
 

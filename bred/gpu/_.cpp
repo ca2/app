@@ -11,7 +11,7 @@ namespace gpu
    extern thread_local device* t_pgpudevice;
 
 
-   CLASS_DECL_AURA int get_type_size(enum_type e)
+   CLASS_DECL_BRED int get_type_size(enum_type e)
    {
 
       return t_pgpudevice->get_type_size(e);

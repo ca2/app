@@ -18,77 +18,8 @@
 #include "aura/message/user.h"
 #include "bred/graphics3d/types.h"
 #include "aura/platform/application.h"
-//#include "vulkan/vk_container.h"
-
-
-int run_vulkan_example();
-
-int run_vulkan_example2(const ::image32_callback& callback);
-
-int run_vulkan_example5(::graphics3d::mouse_state* pmousestate, const ::image32_callback& callback);
-
-
-
-//#include "aura/update.h"
-//#include <math.h>
-// http://stackoverflow.com/questions/4052940/how-to-make-an-opengl-rendering-context-with-transparent-background
-//http://stackoverflow.com/users/176769/karlphillip
-//#include <windows.h>
-//#ifdef WINDOWS
-//#include <windowsx.h>
-//#endif
-
-//
-//#ifdef LINUX
-//
-//#define WIDTH 3200
-//#define HEIGHT 1800f
-//
-//const int sbAttrib[] = {GLX_DOUBLEBUFFER, 0, GLX_RED_SIZE, 1,GLX_GREEN_SIZE, 1, GLX_BLUE_SIZE, 1,GLX_ALPHA_SIZE, 1, GLX_DEPTH_SIZE, 16,None};
-//int pbAttrib[] = {GLX_PBUFFER_WIDTH, WIDTH,GLX_PBUFFER_HEIGHT, HEIGHT,GLX_PRESERVED_CONTENTS, True,None };
-//
-//#endif
-//
-//
-////extern CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
-//GLfloat LightAmbient[] = { 0.5f, 0.5f, 0.5f, 1.00f };
-//GLfloat LightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.00f };
-//GLfloat LightPosition[] = { 0.0f, 0.0f, 2.0f, 1.00f };
-////GLfloat LightPosition2[] = { -5.0f, -5.0f, 32.0f, 1.00f };
-
-//#ifdef WINDOWS
-//typedef BOOL(WINAPI * PFNWGLDESTROYPBUFFERARBPROC) (HPBUFFERARB hPbuffer);
-//typedef BOOL(WINAPI * PFNWGLQUERYPBUFFERARBPROC) (HPBUFFERARB hPbuffer, int iAttribute, int *piValue);
-//typedef HDC(WINAPI * PFNWGLGETPBUFFERDCARBPROC) (HPBUFFERARB hPbuffer);
-//typedef HPBUFFERARB(WINAPI * PFNWGLCREATEPBUFFERARBPROC) (HDC hDC, int iPixelFormat, int iWidth, int iHeight, const int *piAttribList);
-//typedef int (WINAPI * PFNWGLRELEASEPBUFFERDCARBPROC) (HPBUFFERARB hPbuffer, HDC hDC);
-//
-//PFNWGLDESTROYPBUFFERARBPROC                       wglDestroyPbufferARB;
-//PFNWGLQUERYPBUFFERARBPROC                         wglQueryPbufferARB;
-//PFNWGLGETPBUFFERDCARBPROC                         wglGetPbufferDCARB;
-//PFNWGLCREATEPBUFFERARBPROC                        wglCreatePbufferARB;
-//PFNWGLRELEASEPBUFFERDCARBPROC                     wglReleasePbufferDCARB;
-//
-//
-//typedef BOOL(WINAPI * PFNWGLCHOOSEPIXELFORMATARBPROC) (HDC hdc, const int *piAttribIList, const FLOAT *pfAttribFList, unsigned int nMaxFormats, int *piFormats, unsigned int *nNumFormats);
-//typedef BOOL(WINAPI * PFNWGLGETPIXELFORMATATTRIBFVARBPROC) (HDC hdc, int iPixelFormat, int iLayerPlane, unsigned int nAttributes, const int *piAttributes, FLOAT *pfValues);
-//typedef BOOL(WINAPI * PFNWGLGETPIXELFORMATATTRIBIVARBPROC) (HDC hdc, int iPixelFormat, int iLayerPlane, unsigned int nAttributes, const int *piAttributes, int *piValues);
-//
-//PFNWGLCHOOSEPIXELFORMATARBPROC                    wglChoosePixelFormatARB;
-//PFNWGLGETPIXELFORMATATTRIBFVARBPROC               wglGetPixelFormatAttribfvARB;
-//PFNWGLGETPIXELFORMATATTRIBIVARBPROC               wglGetPixelFormatAttribivARB;
-//
-//
-//#endif
-
-#include <assert.h>
-#ifdef WINDOWS
-#include <tchar.h>
-#endif // WINDOWS
-//#ifdef  assert
-//#define verify(expr) if(!expr) assert(0)
-//#else verify(expr) expr
-//#endif
+#include "bred/gpu/graphics.h"
+#include "bred/gpu/renderer.h"
 
 
 
@@ -327,28 +258,6 @@ namespace user
    }
 
 
-   //::pointer < ::graphics3d::application > graphics3d::start_graphics3d_application()
-   //{
-
-   //   auto p3dapplication = get_app()->start_graphics3d_aplication();
-
-   //   p3dapplication->initialize_application(this);
-
-   //   //p3dapplication->m_pmousestate = &m_mousestate;
-
-   //   return p3dapplication;
-   //   //return ::vulkan::start_offscreen_application(this, &m_mousestate);
-
-   //}
-
-
-   //::int_size graphics3d::size()
-   //{
-
-   //   return this->raw_rectangle().size();
-
-   //}
-
 
    void graphics3d::on_message_create(::message::message* pmessage)
    {
@@ -428,12 +337,44 @@ namespace user
    void graphics3d::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
-      pgraphics->defer_snapshot_for_composition();
+      //return;
+
+      ::int_rectangle rectangleHostUpperLayer;
+
+      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      {
+
+         rectangleHostUpperLayer = pgraphics->end_gpu_layer();
+
+      }
             
       if (1)
       {
 
+         if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+         {
+
+            auto rectangleHost = host_rectangle();
+
+            m_pengine->m_pgpurendererGraphics3D->start_layer(rectangleHost);
+
+         }
+
          m_pengine->_001OnDraw(pgraphics);
+
+         if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+         {
+
+            m_pengine->m_pgpurendererGraphics3D->end_layer();
+
+         }
+
+      }
+
+      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      {
+
+         pgraphics->start_gpu_layer(rectangleHostUpperLayer);
 
       }
 

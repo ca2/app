@@ -1,5 +1,6 @@
 // Created by camilo on 2025-06-12 12:38 <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "renderer.h"
 #include "render_target.h"
 
 
@@ -27,6 +28,16 @@ namespace gpu
    }
 
 
+   void render_target::initialize_render_target(::gpu::renderer* pgpurenderer, const ::int_size& size, ::pointer <::gpu::render_target>previous)
+   {
+
+      m_pgpurenderer = pgpurenderer;
+      m_size = size;
+      m_prendertargetviewOld = previous;
+
+   }
+
+
    void render_target::init()
    {
 
@@ -37,7 +48,11 @@ namespace gpu
    texture * render_target::current_texture()
    {
 
-      return nullptr;
+      auto iFrameIndex = m_pgpurenderer->get_frame_index();
+
+      auto size = m_texturea.size();
+
+      return m_texturea[iFrameIndex];
 
    }
 

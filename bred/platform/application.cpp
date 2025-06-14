@@ -3,6 +3,7 @@
 #include "system.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/directory_system.h"
+#include "bred/gpu/approach.h"
 
 
 namespace bred
@@ -97,34 +98,34 @@ namespace bred
 
    //}
 
-   ::gpu::approach* application::get_gpu()
+   ::gpu::approach* application::get_gpu_approach()
    {
 
-      if (!m_pgpu)
+      if (!m_pgpuapproach)
       {
 
-         create_gpu();
+         create_gpu_approach();
 
       }
 
-      return m_pgpu.get();
+      return m_pgpuapproach.get();
 
    }
 
 
-   ::gpu::approach* application::gpu()
+   ::gpu::approach* application::gpu_approach()
    {
 
-      return m_pgpu.get();
+      return m_pgpuapproach.get();
 
    }
 
 
    //#ifdef _OPENGL
-   void application::create_gpu()
+   void application::create_gpu_approach()
    {
 
-      if (m_pgpu)
+      if (m_pgpuapproach)
       {
 
          return;
@@ -174,10 +175,10 @@ namespace bred
 
       //auto estatus =
 
-      pfactoryGpu->__øconstruct(this, m_pgpu);
+      pfactoryGpu->__øconstruct(this, m_pgpuapproach);
 
 
-      m_pgpu->initialize_gpu_approach();
+      m_pgpuapproach->initialize_gpu_approach();
 
       //if (!estatus)
       //{

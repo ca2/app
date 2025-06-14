@@ -51,6 +51,20 @@ namespace gpu
    }
 
 
+   ::image::target* cpu_buffer::get_image_target()
+   {
+
+      if (!m_pimagetarget)
+      {
+
+         __defer_construct_new(m_pimagetarget);
+
+      }
+
+      return m_pimagetarget;
+
+   }
+
 
    void cpu_buffer::gpu_read()
    {
@@ -61,7 +75,6 @@ namespace gpu
          return;
 
       }
-
 
    }
 

@@ -93,29 +93,29 @@ namespace gpu_opengl
       if(glReadnPixels)
       {
 
-         auto lock = m_pimagetarget->source_scan_lock(::image::e_copy_disposition_y_swap);
+         auto targeting = m_pimagetarget->source_scan_targeting(::image::e_copy_disposition_y_swap);
 
          glReadnPixels(
             0, 0,
-            lock.width(), lock.height(),
+            targeting.width(), targeting.height(),
             GL_BGRA,
             GL_UNSIGNED_BYTE,
-            lock.scan(),
-            lock.data());
+            targeting.scan(),
+            targeting.data());
 
       }
       else
       {
 
-         auto lock = m_pimagetarget->no_padded_lock(::image::e_copy_disposition_y_swap);
+         auto targeting = m_pimagetarget->no_padded_targeting(::image::e_copy_disposition_y_swap);
 
          glReadPixels(
             0, 0,
-            lock.width(), lock.height(),
+            targeting.width(), targeting.height(),
             GL_BGRA,
             //GL_RGBA,
             GL_UNSIGNED_BYTE,
-            lock.data());
+            targeting.data());
 
       }
 

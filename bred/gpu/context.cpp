@@ -6,16 +6,18 @@
 #include "render.h"
 #include "renderer.h"
 #include "render_target.h"
-#include "snapshot.h"
+#include "layer.h"
 #include "texture.h"
 #include "types.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "aura/platform/application.h"
 #include "aura/platform/system.h"
 #include "aura/graphics/image/image.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/platform/system.h"
 #include "aura/graphics/image/context.h"
+#include "bred/gpu/graphics.h"
 
 
 namespace gpu
@@ -320,6 +322,10 @@ namespace gpu
 
       m_eoutput = startcontext.m_eoutput;
 
+      m_rectangle = startcontext.m_rectanglePlacement;
+
+      m_escene = startcontext.m_escene;
+
       on_create_context(startcontext);
 
    }
@@ -383,10 +389,25 @@ namespace gpu
    }
 
 
-   ::gpu::enum_output context::eoutput_for_begin_draw()
+   ::gpu::enum_output context::get_eoutput()
    {
 
-      return ::gpu::e_output_gpu_buffer;
+      return m_eoutput;
+
+   }
+
+
+   ::gpu::cpu_buffer * context::get_cpu_buffer()
+   {
+
+      if(!m_pcpubuffer)
+      {
+      
+         create_cpu_buffer(m_rectangle.size());
+
+      }
+
+      return m_pcpubuffer;
 
    }
 
@@ -475,21 +496,98 @@ namespace gpu
    }
 
 
-   ::gpu::renderer* context::get_renderer(::gpu::enum_scene escene)
+   ::gpu::renderer* context::get_output_renderer()
    {
 
-      if (!m_pgpurenderer)
+      if (!m_pgpurendererOutput2)
       {
 
-         __øconstruct(m_pgpurenderer);
+         ::gpu::enum_scene escene = m_escene;
 
-         m_pgpurenderer->initialize_renderer(this, m_eoutput, escene);
+         __øconstruct(m_pgpurendererOutput2);
+
+         m_pgpurendererOutput2->initialize_renderer(this, m_eoutput, escene);
+
+         m_pgpurendererOutput2->m_iFrameCount2 = ::gpu::render_target::MAX_FRAMES_IN_FLIGHT;
 
       }
 
-      return m_pgpurenderer;
+      return m_pgpurendererOutput2;
 
    }
+
+
+   ::gpu::renderer* context::draw2d_renderer()
+   {
+
+      if (!m_pgpurendererDraw2d)
+      {
+
+         ::gpu::enum_scene escene = m_escene;
+
+         __øconstruct(m_pgpurendererDraw2d);
+
+         auto eoutputDraw2d = m_papplication->m_gpu.m_eoutputDraw2d;
+
+         m_pgpurendererDraw2d->initialize_renderer(this, eoutputDraw2d, escene);
+
+         m_pgpurendererDraw2d->set_single_frame();
+
+         m_pgpurendererDraw2d->defer_update_renderer();
+
+      }
+
+      return m_pgpurendererDraw2d;
+
+   }
+
+
+   ::gpu::renderer* context::graphics3d_renderer()
+   {
+
+      if (!m_pgpurendererEngine)
+      {
+
+         ::gpu::enum_scene escene = m_escene;
+
+         __øconstruct(m_pgpurendererEngine);
+
+         auto eoutputEngine = m_papplication->m_gpu.m_eoutputEngine;
+
+         m_pgpurendererEngine->initialize_renderer(this, eoutputEngine, escene);
+
+         m_pgpurendererEngine->set_single_frame();
+
+         m_pgpurendererEngine->defer_update_renderer();
+
+      }
+
+      return m_pgpurendererEngine;
+
+   }
+
+
+   ::gpu::renderer* context::new_draw2d_renderer()
+   {
+
+      ::pointer < ::gpu::renderer > pgpurendererDraw2d;
+
+      ::gpu::enum_scene escene = m_escene;
+
+      __øconstruct(pgpurendererDraw2d);
+
+      //auto eoutputDraw2d = m_papplication->m_gpu.m_eoutputDraw2d;
+
+      auto eoutputDraw2d = ::gpu::e_output_gpu_buffer;
+
+      pgpurendererDraw2d->initialize_renderer(this, eoutputDraw2d, escene);
+
+      m_gpurendereraDraw2d.add(pgpurendererDraw2d);
+
+      return pgpurendererDraw2d;
+
+   }
+
 
 
    string context::_001GetIntroProjection()
@@ -756,58 +854,6 @@ namespace gpu
    }
 
 
-   void context::start_composition()
-   {
-
-      m_pgpudevice->composition_start(this);
-
-   }
-
-
-   void context::end_composition()
-   {
-
-      m_pgpudevice->composition_end(this);
-
-   }
-
-   
-   ::pointer < texture> context::create_texture(const ::int_size& size)
-   {
-
-      auto ptexture = __øcreate< texture>();
-
-      ptexture->initialize_gpu_texture(size);
-
-      on_create_texture(ptexture);
-
-      return nullptr;
-
-   }
-
-
-   ::pointer < snapshot > context::take_snapshot(const ::int_rectangle& rectangleTarget)
-   {
-
-      auto psnapshot = __øcreate< snapshot>();
-
-      auto ptexture = m_pgpurenderer->m_pgpurendertarget->current_texture();
-
-      psnapshot->initialize_gpu_snapshot(this, ptexture, rectangleTarget);
-
-      on_take_snapshot(psnapshot);
-
-      return psnapshot;
-
-   }
-
-   void context::merge_snapshots(::pointer<::pointer_array < snapshot >>&& psnapshota)
-   {
-
-
-   }
-
-
    void context::on_create_texture(texture* ptexture)
    {
 
@@ -815,10 +861,91 @@ namespace gpu
    }
 
 
-
-   void context::on_take_snapshot(snapshot* psnapshot)
+   void context::on_take_snapshot(layer* player, texture* ptextureSource)
    {
 
+
+   }
+
+
+   void context::on_begin_draw_attach(::draw2d_gpu::graphics* pgpugraphics, const ::int_rectangle& rectangle)
+   {
+
+      draw2d_on_begin_draw(pgpugraphics, rectangle);
+
+   }
+
+   void context::on_end_draw_detach(::draw2d_gpu::graphics* pgpugraphics)
+   {
+
+      draw2d_on_end_draw(pgpugraphics);
+
+   }
+
+
+   void context::draw2d_on_begin_draw(::draw2d_gpu::graphics* pgpugraphics, const ::int_rectangle& rectangle)
+   {
+
+      if (pgpugraphics->m_egraphics == e_graphics_draw)
+      {
+
+         auto pgpurendererDraw2d = m_pgpurendererDraw2d;
+
+         if (pgpurendererDraw2d->m_pgpurendertarget)
+         {
+
+            pgpurendererDraw2d->m_pgpurendertarget->on_before_begin_draw_frame(pgpugraphics);
+
+         }
+
+         pgpurendererDraw2d->m_pgpucontext->get_output_renderer()->start_frame();
+
+         pgpurendererDraw2d->m_pgpucontext->m_pgpudevice->start_stacking_layers();
+
+         pgpurendererDraw2d->start_layer(rectangle);
+
+      }
+
+   }
+
+
+   void context::frame_prefix()
+   {
+
+
+   }
+
+
+   void context::frame_suffix()
+   {
+
+
+   }
+
+
+
+
+
+   void context::draw2d_on_end_draw(::draw2d_gpu::graphics* pgpugraphics)
+   {
+
+      if (pgpugraphics->m_egraphics == e_graphics_draw)
+      {
+
+         auto pgpurendererDraw2d = m_pgpurendererDraw2d;
+
+         pgpurendererDraw2d->end_layer();
+
+         pgpurendererDraw2d->m_pgpucontext->get_output_renderer()->end_frame();
+
+         if (pgpurendererDraw2d->m_pgpurendertarget)
+         {
+
+            pgpurendererDraw2d->m_pgpurendertarget->on_after_end_draw_frame(pgpugraphics);
+
+         }
+
+      }
 
    }
 

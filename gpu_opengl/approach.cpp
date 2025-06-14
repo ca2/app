@@ -2,12 +2,8 @@
 #include "approach.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "acme/platform/application.h"
 #include "bred/gpu/context.h"
-
-
-//#if defined(FREEBSD) || defined(OPENBSD)
-//#include <string.h>
-//#endif
 
 
 namespace gpu_opengl
@@ -51,16 +47,22 @@ namespace gpu_opengl
    void approach::initialize(::particle * pparticle)
    {
 
-      //::e_status estatus =
-      
       ::object::initialize(pparticle);
 
-      //if (!estatus)
-      //{
+      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      {
 
-      //   return estatus;
+         m_papplication->m_gpu.m_eoutputDraw2d = ::gpu::e_output_gpu_buffer;
+         m_papplication->m_gpu.m_eoutputEngine = ::gpu::e_output_gpu_buffer;
 
-      //}
+      }
+      else
+      {
+
+         m_papplication->m_gpu.m_eoutputDraw2d = ::gpu::e_output_cpu_buffer;
+         m_papplication->m_gpu.m_eoutputEngine = ::gpu::e_output_cpu_buffer;
+
+      }
 
 #ifdef WINDOWS_DESKTOP
 
@@ -86,8 +88,6 @@ namespace gpu_opengl
       }
 
 #endif
-
-      //return estatus;
 
    }
 

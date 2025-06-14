@@ -55,7 +55,12 @@ namespace platform
    application::application()
    {
 
-      m_bUseSwapChainWindow = false;
+      
+      m_gpu.m_bUseSwapChainWindow = false;
+      m_gpu.m_eoutputDraw2d = ::gpu::e_output_none;
+      m_gpu.m_eoutputEngine = ::gpu::e_output_none;
+
+
       //m_bTransferToContainer = true;
       //m_bTransferredToContainer = false;
 
@@ -194,30 +199,30 @@ namespace platform
    }
 
 
-   ::gpu::approach* application::get_gpu()
+   ::gpu::approach* application::get_gpu_approach()
    {
 
-      if (!m_pgpu)
+      if (!m_pgpuapproach)
       {
 
-         create_gpu();
+         create_gpu_approach();
 
       }
 
-      return m_pgpu;
+      return m_pgpuapproach;
 
    }
    
    
-   ::gpu::approach* application::gpu()
+   ::gpu::approach* application::gpu_approach()
    {
 
-      return m_pgpu;
+      return m_pgpuapproach;
 
    }
 
 
-   void application::create_gpu()
+   void application::create_gpu_approach()
    {
 
 

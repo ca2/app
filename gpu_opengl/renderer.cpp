@@ -7,16 +7,12 @@
 #include "frame.h"
 #include "frame_buffer.h"
 #include "glad.h"
-#include "swap_chain.h"
-//#include "GLFW/glfw3.h"
-//#include <vector>
-//#include <map>
-//#include "GLError.h"
+#include "offscreen_render_target.h"
 #include "renderer.h"
-//#include "mesh.h"
+#include "swap_chain.h"
 #include "aura/graphics/image/target.h"
 #include "aura/platform/application.h"
-#include "aura/user/user/graphics3d.h"
+#include "bred/user/user/graphics3d.h"
 #include "aura/windowing/window.h"
 
 
@@ -392,7 +388,7 @@ namespace gpu_opengl
    int renderer::get_frame_count() const
    {
 
-      return 0;
+      return ::gpu::renderer::get_frame_count();
 
    }
 
@@ -487,7 +483,7 @@ namespace gpu_opengl
 
       //}
 
-      auto eoutput = m_pgpucontext->m_eoutput;
+      auto eoutput = m_eoutput;
 
       if (eoutput == ::gpu::e_output_swap_chain)
       {
@@ -498,7 +494,7 @@ namespace gpu_opengl
       else if (eoutput == ::gpu::e_output_cpu_buffer)
       {
 
-         _sample();
+         do_sampling_to_cpu();
 
       }
 
@@ -507,107 +503,115 @@ namespace gpu_opengl
    }
 
 
-   //void renderer::endDraw(::user::interaction * puserinteraction)
-   //{
-   //   //prenderer->_blend_image(vkimage, rectangle);
-
-   //   if (m_eoutputOnEndDraw == ::gpu::e_output_swap_chain)
-   //   {
-
-   //      //m_pgpucontext->swap_buffers();
-
-   //      //m_pwindow->m_timeLastDrawGuard1.Now();
-
-
-   //   //VkImage vkimage = prenderer->m_pvkcrenderpass->m_images[prenderer->currentImageIndex];
-
-   //      ::int_rectangle rectangle;
-
-   //      if (puserinteraction && !puserinteraction->host_rectangle().size().is_empty())
-   //      {
-
-   //         rectangle = puserinteraction->host_rectangle();
-
-   //      }
-   //      else
-   //      {
-
-   //         rectangle = { 0, 0, 1920, 1080 };
-
-   //      }
-
-   //      ::cast < ::windowing::window > pwindow = puserinteraction->m_pacmewindowingwindow;
-
-   //      if (!m_pgpucontextOutput)
-   //      {
-
-   //         __øconstruct(m_pgpucontextOutput);
-
-   //         m_pgpucontextOutput = m_papplication->get_gpu()->get_device(pwindow, pwindow->get_window_rectangle())->start_swap_chain_context(this, pwindow);
-
-   //         //m_pgpucontextOutput->create_window_buffer(pwindow);
-
-   //      }
-
-   //      ::cast < ::gpu_opengl::renderer > prendererOutput = m_pgpucontextOutput->get_renderer();
-
-   //      auto rectanglePlacement = pwindow->get_window_rectangle();
-
-   //      m_pgpucontextOutput->set_placement(rectanglePlacement);
-
-   //      //m_pgpucontextOutput->m_size = rectanglePlacement.size();
-
-   //      ::cast < ::gpu_opengl::context > pgpucontextOpenGL = m_pgpucontextOutput;
-
-   //      pgpucontextOpenGL->m_sizeHost = rectanglePlacement.size();
-
-   //      pgpucontextOpenGL->set_placement(rectanglePlacement);
-
-   //      //m_pgpucontext->m_eoutput = ::gpu::e_output_gpu_buffer;
-
-   //      //prendererOutput->defer_update_render_pass();
-
-   //      prendererOutput->_on_graphics_end_draw(this);
-
-
-   //   }
-   //   else if (m_eoutputOnEndDraw == ::gpu::e_output_cpu_buffer)
-   //   {
-
-   //      //m_pgpucontext->swap_buffers();
-
-   //    //}
-   //    //else
-   //    //{
-
-   //      read_to_cpu_buffer();
-
-   //      throw ::exception(error_not_implemented, "renderer::endDraw() not implemented for e_output_cpu_buffer");
-
-   //      /*m_pimage->map();
-
-   //      m_pimage->copy(&m_pgpucontext->m_pcpubuffer->m_pixmap);*/
-
-   //   }
-
-
-
-   //}
-
-
-   void renderer::_sample()
+   void renderer::defer_update_renderer()
    {
 
-      //      glDisable(GL_DEPTH_TEST);
-      //
-      //
-      //      //}
-      //
-      ////            glDepthFunc(GL_LESS);
-      //
-      //      glPopAttrib();
-      //      glPopMatrix();
+      if (m_sizeRenderer.width() == m_pgpucontext->rectangle().width()
+         && m_sizeRenderer.height() == m_pgpucontext->rectangle().height())
+      {
 
+         return;
+
+      }
+
+      auto size = m_pgpucontext->rectangle().size();
+
+      m_sizeRenderer = size;
+
+      auto eoutput = m_eoutput;
+
+      auto previous = m_pgpurendertarget;
+
+      if (eoutput == ::gpu::e_output_cpu_buffer
+         || eoutput == ::gpu::e_output_gpu_buffer)
+      {
+
+         auto poffscreenrendertargetview = __allocate offscreen_render_target();
+         //#ifdef WINDOWS_DESKTOP
+         //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
+         //#else
+         //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
+         //#endif
+         m_pgpurendertarget = poffscreenrendertargetview;
+         //         //m_prendererResolve.release();
+         //
+      }
+      else if (eoutput == ::gpu::e_output_swap_chain)
+      {
+
+         //m_prendertargetview = __allocate swap_chain_render_target(this, size, m_prendertargetview);
+         //m_prendererResolve.release();
+
+      }
+      //      else if (eoutput == ::gpu::e_output_gpu_buffer)
+      //      {
+      //
+      //         auto poffscreenrendertargetview = __allocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
+      //#ifdef WINDOWS_DESKTOP
+      //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
+      //#else
+      //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
+      //#endif
+      //         m_prendertargetview = poffscreenrendertargetview;
+      //         //m_prendererResolve;
+      //
+      //      }
+      //      else if (eoutput == ::gpu::e_output_color_and_alpha_accumulation_buffers)
+      //      {
+      //
+      //         auto paccumulationrendertargetview = __allocate accumulation_render_target(this, m_extentRenderer, m_prendertargetview);
+      //         paccumulationrendertargetview->m_formatImage = VK_FORMAT_R32G32B32A32_SFLOAT;
+      //         paccumulationrendertargetview->m_formatAlphaAccumulation = VK_FORMAT_R32_SFLOAT;
+      //         m_prendertargetview = paccumulationrendertargetview;
+      //
+      //         //__construct_new(m_prendererResolve);
+      //
+      //         //m_prendererResolve->initialize_renderer(m_pgpucontext, ::gpu::e_output_resolve_color_and_alpha_accumulation_buffers);
+      //
+      //         //m_prendererResolve->set_placement(m_pgpucontext->rectangle);
+      //         //
+      //         //            auto poffscreenrendertargetview = __allocate offscreen_render_target(m_pgpucontext, m_extentRenderer, m_prendertargetviewResolve);
+      //         //#ifdef WINDOWS_DESKTOP
+      //         //            poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
+      //         //#else
+      //         //            poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
+      //         //#endif
+      //         //            m_prendertargetviewResolve = poffscreenrendertargetview;
+      //      }
+      //      else if (eoutput == ::gpu::e_output_resolve_color_and_alpha_accumulation_buffers)
+      //      {
+      //
+      //         auto poffscreenrendertargetview = __allocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
+      //#ifdef WINDOWS_DESKTOP
+      //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
+      //#else
+      //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
+      //#endif
+      //         m_prendertargetview = poffscreenrendertargetview;
+      //
+      //      }
+      //      else
+      //      {
+      //
+      //         throw ::exception(error_wrong_state, "Unexpected gpu e_output");
+      //
+      //      }
+      //
+      if (!m_pgpurendertarget->has_ok_flag() && m_sizeRenderer.area() > 0)
+      {
+
+         m_pgpurendertarget->initialize_render_target(this, size, previous);
+
+         m_pgpurendertarget->init();
+
+      }
+
+
+   }
+
+
+   void renderer::do_sampling_to_cpu()
+   {
 
       ::cast<context>pgpucontext = m_pgpucontext;
 
@@ -619,30 +623,9 @@ namespace gpu_opengl
          if (pcpubuffer)
          {
 
-            auto pimagetarget = pcpubuffer->m_pimagetarget;
+            pcpubuffer->set_size(pgpucontext->m_rectangle.size());
 
-            if (pimagetarget)
-            {
-
-               auto pcpubuffer = pgpucontext->m_pcpubuffer;
-
-               if (pcpubuffer)
-               {
-
-                  pcpubuffer->set_size(pgpucontext->m_rectangle.size());
-
-                  pcpubuffer->gpu_read();
-
-                  //auto data = pcpubuffer->m_pixmap.data();
-                  //auto width = pcpubuffer->m_pixmap.width();
-                  //auto height = pcpubuffer->m_pixmap.height();
-                  //auto scan = pcerrorpubuffer->m_pixmap.m_iScan;
-
-                  //pimagetarget->set_image_pixels(data, width, height, scan);
-
-               }
-
-            }
+            pcpubuffer->gpu_read();
 
          }
 
@@ -1049,6 +1032,7 @@ namespace gpu_opengl
    }
 
 
+
    void renderer::blend(::gpu::renderer* prendererSource)
    {
 
@@ -1113,7 +1097,7 @@ namespace gpu_opengl
 
 
          m_pshaderBlend->initialize_shader_with_block(
-            m_pgpucontext->m_pgpurenderer,
+            this,
             quad_vertex_shader,
             blend_fragment_shader);
 
@@ -1129,15 +1113,15 @@ namespace gpu_opengl
 
       }
 
-      float WIDTH = (float) wHost;
-      float HEIGHT = (float) hHost;
+      float WIDTH = (float)wHost;
+      float HEIGHT = (float)hHost;
 
       auto rectangle = prendererSource->m_pgpucontext->rectangle();
 
-      float w = (float) rectangle.width();
-      float h = (float) rectangle.height();
-      float x = (float) rectangle.left();
-      float y = (float) (hHost - rectangle.bottom());
+      float w = (float)rectangle.width();
+      float h = (float)rectangle.height();
+      float x = (float)rectangle.left();
+      float y = (float)(hHost - rectangle.bottom());
 
       // 3. Composite scene texture at 1:1 into UI FBO at position (200, 150)
       //float x = 200.0f, y = 150.0f, w = SCENE_W, h = SCENE_H;
@@ -1153,7 +1137,7 @@ namespace gpu_opengl
       }
       else
       {
-         l = (float) rectangle.left();
+         l = (float)rectangle.left();
          r = (float)rectangle.right();
          b = (float)rectangle.bottom();
          t = (float)rectangle.top();
@@ -1191,6 +1175,7 @@ namespace gpu_opengl
       }
 
    }
+
 
 
 } // namespace gpu_opengl

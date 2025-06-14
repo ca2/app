@@ -728,10 +728,14 @@
     <ClInclude Include="frame_buffer.h" />
     <ClInclude Include="object.h" />
     <ClInclude Include="approach.h" />
+    <ClInclude Include="offscreen_render_target.h" />
     <ClInclude Include="program.h" />
     <ClInclude Include="renderer.h" />
+    <ClInclude Include="render_target.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="swap_chain.h" />
+    <ClInclude Include="swap_chain_render_target.h" />
+    <ClInclude Include="texture.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="factory_exchange.h" />
     <ClInclude Include="framework.h" />
@@ -774,8 +778,12 @@
     <ClCompile Include="device_win32.cpp" />
     <ClCompile Include="frame_buffer.cpp" />
     <ClCompile Include="object.cpp" />
+    <ClCompile Include="offscreen_render_target.cpp" />
     <ClCompile Include="renderer.cpp" />
+    <ClCompile Include="render_target.cpp" />
     <ClCompile Include="swap_chain.cpp" />
+    <ClCompile Include="swap_chain_render_target.cpp" />
+    <ClCompile Include="texture.cpp" />
     <ClCompile Include="_factory.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -808,6 +816,15 @@
     </ProjectReference>
     <ProjectReference Include="..\..\app\aura\aura.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\axis\axis.vcxproj">
+      <Project>{a2cbd4ed-ed0f-482b-9b16-f48f21c32835}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\base\base.vcxproj">
+      <Project>{a216abd4-26c4-4746-96b3-9d30ed28cf92}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\bred\bred.vcxproj">
+      <Project>{dfbf067f-aff9-4bd6-a5e1-72af984d1476}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

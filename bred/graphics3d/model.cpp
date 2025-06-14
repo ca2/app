@@ -1,10 +1,11 @@
 // Created by camilo on 2025-05-17 02:45s <3ThomasBorregaardSorensen!!
 #include "framework.h"
-#include "bred/gpu/context.h"
 #include "model.h"
 #include "utilities.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/path_system.h"
+#include "bred/gpu/context.h"
+#include "bred/gpu/renderer.h"
 
 
 // lib headers
@@ -40,17 +41,19 @@ namespace graphics3d
    }
 
 
-   void model::initialize_model(::gpu::context* pgpucontext, const model::Builder& builder)
+   void model::initialize_model(::gpu::renderer* pgpurenderer, const model::Builder& builder)
    {
 
-      m_pgpucontext = pgpucontext;
+      m_pgpurenderer = pgpurenderer;
+
       // initialize(pvkcdevice);
       //createVertexBuffers(builder.vertices);
       //createIndexBuffers(builder.indices);
+
    }
 
 
-   void model::draw(::gpu::context* pgpucontext)
+   void model::draw()
    {
 
 
@@ -58,7 +61,7 @@ namespace graphics3d
 
 
 
-   void model::bind(::gpu::context* pgpucontext)
+   void model::bind()
    {
 
 
@@ -66,7 +69,7 @@ namespace graphics3d
    }
 
 
-   void model::unbind(::gpu::context* pgpucontext)
+   void model::unbind()
    {
 
 

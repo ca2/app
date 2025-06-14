@@ -43,7 +43,7 @@ namespace gpu
    }
 
 
-   ::gpu::device* approach::get_device()
+   ::gpu::device* approach::get_gpu_device()
    {
 
       if (!m_pgpudevice)
@@ -51,7 +51,7 @@ namespace gpu
 
          __øconstruct(m_pgpudevice);
 
-         if (m_papplication->m_bUseSwapChainWindow)
+         if (m_papplication->m_gpu.m_bUseSwapChainWindow)
          {
 
             m_pgpudevice->initialize_gpu_device_for_swap_chain(this, m_papplication->m_pacmeuserinteractionMain->window());

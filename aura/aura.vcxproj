@@ -1605,7 +1605,6 @@
     <ClCompile Include="user\user\form_callback.cpp" />
     <ClCompile Include="user\user\form_handler.cpp" />
     <ClCompile Include="user\user\frame_interaction.cpp" />
-    <ClCompile Include="user\user\graphics3d.cpp" />
     <ClCompile Include="user\user\scroll_base.cpp" />
     <ClCompile Include="user\user\scroll_base_x.cpp" />
     <ClCompile Include="user\user\interaction.cpp" />
@@ -1922,7 +1921,6 @@
     <ClInclude Include="user\user\form_callback.h" />
     <ClInclude Include="user\user\form_handler.h" />
     <ClInclude Include="user\user\frame_interaction.h" />
-    <ClInclude Include="user\user\graphics3d.h" />
     <ClInclude Include="user\user\graphics_call.h" />
     <ClInclude Include="user\user\scroll_base_x.h" />
     <ClInclude Include="user\user\interaction.h" />

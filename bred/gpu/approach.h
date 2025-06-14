@@ -70,7 +70,7 @@ namespace gpu
       virtual void initialize_gpu_approach();
 
 
-      virtual ::gpu::device* get_device();
+      virtual ::gpu::device* get_gpu_device();
 
 
       //virtual ::subparticle* get_draw2d_connector_for_swap_chain(::windowing::window* pwindow);

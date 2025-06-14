@@ -27,6 +27,7 @@ namespace gpu
    struct start_context_t
    {
 
+      ::gpu::enum_scene m_escene;
       ::particle* m_pparticle;
       ::gpu::device * m_pgpudevice;
       ::gpu::enum_output m_eoutput;

@@ -50,7 +50,8 @@ namespace gpu
       const ::array<enum_descriptor_set_slot>& eslota,
       const ::particle_pointer& pLocalDescriptorSet,
       const ::particle_pointer& pVertexInput,
-      const ::gpu::property* pproperties,
+      const ::gpu::property* ppropertiesPush,
+      const ::gpu::property* ppropertiesInputLayout,
       enum_flag eflag)
    {
 
@@ -60,9 +61,13 @@ namespace gpu
       m_edescriptorsetslota.copy(eslota);
       m_pLocalDescriptorSet = pLocalDescriptorSet;
       m_pVertexInput = pVertexInput;
-      if (pproperties)
+      if (ppropertiesPush)
       {
-         m_properties.set(pproperties);
+         m_propertiesPush.set(ppropertiesPush);
+      }
+      if (ppropertiesInputLayout)
+      {
+         m_propertiesInputLayout.set(ppropertiesInputLayout);
       }
       m_eflag = eflag;
 
@@ -78,7 +83,8 @@ namespace gpu
       const ::array<enum_descriptor_set_slot>& eslota,
       const ::particle_pointer& pLocalDescriptorSet,
       const ::particle_pointer& pVertexInput,
-      const ::gpu::property* pproperties,
+      const ::gpu::property* ppropertiesPush,
+      const ::gpu::property* ppropertiesInputLayout,
       enum_flag eflag)
    {
 
@@ -88,9 +94,13 @@ namespace gpu
       m_edescriptorsetslota.copy(eslota);
       m_pLocalDescriptorSet = pLocalDescriptorSet;
       m_pVertexInput = pVertexInput;
-      if (pproperties)
+      if (ppropertiesPush)
       {
-         m_properties.set(pproperties);
+         m_propertiesPush.set(ppropertiesPush);
+      }
+      if (ppropertiesInputLayout)
+      {
+         m_propertiesInputLayout.set(ppropertiesInputLayout);
 
       }
       m_eflag = eflag;
@@ -284,7 +294,7 @@ namespace gpu
 
       ::string strName(scopedstrName);
 
-      auto& a = m_properties.as_int(strName);
+      auto& a = m_propertiesPush.as_int(strName);
 
       a = value;
 
@@ -296,7 +306,7 @@ namespace gpu
       
       ::string strName(scopedstrName);
 
-      auto& a = m_properties.as_float(strName);
+      auto& a = m_propertiesPush.as_float(strName);
 
       a = value;
 
@@ -308,7 +318,7 @@ namespace gpu
 
       ::string strName(scopedstrName);
 
-      auto& a = m_properties.seq2(strName);
+      auto& a = m_propertiesPush.seq2(strName);
 
       a.x = x;
       a.y = y;
@@ -321,7 +331,7 @@ namespace gpu
 
       ::string strName(scopedstrName);
 
-      m_properties.seq2(strName) = a;
+      m_propertiesPush.seq2(strName) = a;
 
    }
 
@@ -331,7 +341,7 @@ namespace gpu
 
       ::string strName(scopedstrName);
 
-      auto& a = m_properties.seq3(strName);
+      auto& a = m_propertiesPush.seq3(strName);
 
       a.x = x;
       a.y = y;
@@ -345,7 +355,7 @@ namespace gpu
 
       ::string strName(scopedstrName);
 
-      m_properties.seq3(strName) = a;
+      m_propertiesPush.seq3(strName) = a;
 
    }
 
@@ -355,7 +365,7 @@ namespace gpu
 
       ::string strName(scopedstrName);
 
-      auto& a = m_properties.seq4(strName);
+      auto& a = m_propertiesPush.seq4(strName);
 
       a.x = x;
       a.y = y;
@@ -370,7 +380,7 @@ namespace gpu
 
       ::string strName(scopedstrName);
 
-      m_properties.seq4(strName) = a;
+      m_propertiesPush.seq4(strName) = a;
 
    }
 
@@ -380,7 +390,7 @@ namespace gpu
       
       ::string strName(scopedstrName);
 
-      m_properties.mat2(strName.c_str()) = a;
+      m_propertiesPush.mat2(strName.c_str()) = a;
 
    }
 
@@ -390,7 +400,7 @@ namespace gpu
 
       ::string strName(scopedstrName);
 
-      m_properties.mat3(strName.c_str()) = a;
+      m_propertiesPush.mat3(strName.c_str()) = a;
 
    }
 
@@ -400,7 +410,7 @@ namespace gpu
 
       ::string strName(scopedstrName);
 
-      m_properties.mat4(strName.c_str()) = a;
+      m_propertiesPush.mat4(strName.c_str()) = a;
 
    }
 

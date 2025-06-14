@@ -74,7 +74,7 @@ namespace draw2d_gpu
       ::draw2d::draw2d::initialize(pparticle);
 
 
-      application()->create_gpu();
+      //application()->create_gpu_approach();
       //if (!estatus)
       //{
 

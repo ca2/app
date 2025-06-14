@@ -49,7 +49,7 @@ namespace graphics3d
       };
 
 
-      ::pointer < ::gpu::context >        m_pgpucontext;
+      ::pointer < ::gpu::renderer >        m_pgpurenderer;
 
       //static ::pointer<model> createModelFromFile(::cube::context * pgpucontext, const ::file::path & path);
 
@@ -58,11 +58,14 @@ namespace graphics3d
       ~model();
 
 
-      virtual void initialize_model(::gpu::context * pgpucontext, const model::Builder& builder);
+      virtual void initialize_model(::gpu::renderer * prenderer, const model::Builder& builder);
 
-      virtual void draw(::gpu::context* pgpucontext);
-      virtual void bind(::gpu::context* pgpucontext);
-      virtual void unbind(::gpu::context* pgpucontext);
+      //virtual void draw(::gpu::context* pgpucontext);
+      //virtual void bind(::gpu::context* pgpucontext);
+      //virtual void unbind(::gpu::context* pgpucontext);
+      virtual void draw();
+      virtual void bind();
+      virtual void unbind();
 
    //private:
    //   void createVertexBuffers(const ::array<Vertex>& vertices);

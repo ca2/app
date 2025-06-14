@@ -45,6 +45,8 @@ namespace gpu
 
 		inline int get_size() const;
 
+		inline ::collection::count count() const;
+
 		inline int get_offset(const char* pszName) const;
 
 		inline int get_item_size() const
@@ -138,6 +140,32 @@ namespace gpu
 	}
 
 
+	inline ::collection::count property::count() const
+	{
+		
+		auto p = this;
+
+		::collection::count count = 0;
+
+		while (true)
+		{
+
+			if (::is_null(p->m_pszName))
+			{
+
+				return count;
+
+			}
+
+			count++;
+
+			p++;
+
+		}
+
+	}
+
+
 	inline int property::get_offset(const char* pszName) const
 	{
 		auto p = this;
@@ -210,6 +238,7 @@ namespace gpu
 
 		}
 		memsize size() const { return m_block.size(); }
+		::collection::count count() const { return ::is_null(m_pproperties) ? 0:m_pproperties->count(); }
 		unsigned char* data() const { return m_block.data(); }
 		void* plookup(const char* pszName) {
 			auto iOffset = m_pproperties->get_offset(pszName);

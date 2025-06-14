@@ -3,6 +3,7 @@
 #include "context.h"
 #include "device.h"
 #include "cpu_buffer.h"
+#include "layer.h"
 #include "render.h"
 #include "renderer.h"
 #include "swap_chain.h"
@@ -10,6 +11,7 @@
 //#include "_gpu.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "aura/platform/application.h"
 #include "aura/platform/system.h"
 ////#include "aura/graphics/draw2d/_component.h"
 #include "aura/graphics/image/image.h"
@@ -156,6 +158,34 @@ namespace gpu
       pgpucontext->start_gpu_context(startcontext);
 
       return pgpucontext;
+
+   }
+
+
+   ::gpu::context* device::get_main_context()
+   {
+
+      if (__defer_construct(m_pgpucontextMain))
+      {
+
+         ::cast < ::user::interaction > puserinteractionMain = m_papplication->m_pacmeuserinteractionMain;
+
+         auto pwindowMain = puserinteractionMain->window();
+
+         auto rectangleMainWindow = pwindowMain->get_window_rectangle();
+
+         m_pgpucontextMain->start_gpu_context(
+            ::gpu::start_gpu_output_context_t
+            {
+               this,
+               this,
+               ::gpu::e_output_gpu_buffer,
+               rectangleMainWindow
+            });
+
+      }
+
+      return m_pgpucontextMain;
 
    }
 
@@ -876,19 +906,13 @@ namespace gpu
       
    }
 
+
    void device::set_mat4(void* p, const ::glm::mat4& mat4)
    {
 
       *((::glm::mat4*)p) = mat4;
 
    }
-
-   //void device::set_matrix_uniform(const ::gpu::payload& payloadMatrix)
-   //{
-
-   //   throw interface_only();
-
-   //}
 
 
    void device::translate_shader(string& strFragment)
@@ -926,127 +950,53 @@ namespace gpu
    }
 
 
-   //image_data device::image32(const ::payload& payloadFile)
-   //{
-
-   //   auto pimage = image()->get_image(payloadFile, { .sync = true, .cache = false });
-
-   //   class image_data image32;
-
-   //   image32.m_memory.set_size(pimage->area() * 4);
-
-   //   {
-
-
-   //      auto p = image32.m_memory.data();
-
-   //      for (auto y = 0; y < pimage->height(); y++)
-   //      {
-
-   //         auto psource = pimage->line_data(pimage->height() - y - 1);
-   //         for (auto x = 0; x < pimage->width(); x++)
-   //         {
-
-   //            *p++ = psource->byte_red(pimage->color_indexes());
-   //            *p++ = psource->byte_green(pimage->color_indexes());
-   //            *p++ = psource->byte_blue(pimage->color_indexes());
-   //            *p++ = psource->byte_opacity(pimage->color_indexes());
-
-   //            psource++;
-
-   //         }
-
-   //      }
-
-   //   }
-
-   //   image32.m_iWidth = pimage->width();
-   //   image32.m_iHeight = pimage->height();
-
-   //   return ::transfer(image32);
-
-
-   //}
-
-
-   //image_data device::image24(const ::payload& payloadFile)
-   //{
-
-   //   auto pimage = image()->get_image(payloadFile, { .sync = true, .cache = false });
-
-   //   class image_data image24;
-
-   //   image24.m_memory.set_size(pimage->area() * 3);
-
-   //   {
-
-
-   //      auto p = image24.m_memory.data();
-
-   //      for (auto y = 0; y < pimage->height(); y++)
-   //      {
-
-   //         auto psource = pimage->line_data(pimage->height() - y - 1);
-   //         for (auto x = 0; x < pimage->width(); x++)
-   //         {
-
-   //            *p++ = psource->byte_red(pimage->color_indexes());
-   //            *p++ = psource->byte_green(pimage->color_indexes());
-   //            *p++ = psource->byte_blue(pimage->color_indexes());
-
-   //            psource++;
-
-   //         }
-
-   //      }
-
-   //   }
-
-   //   image24.m_iWidth = pimage->width();
-   //   image24.m_iHeight = pimage->height();
-
-   //   return ::transfer(image24);
-
-   //}
-
-
-   //void device::clear(const ::color::color& color)
-   //{
-
-
-   //}
-
-
-   void device::composition_start(context* pcontext)
+   void device::start_stacking_layers()
    {
 
-      m_pcontextComposing = pcontext;
+      m_iLayerCount = 0;
 
    }
 
 
-   void device::composition_store(const ::int_rectangle & rectangleTarget)
+   void device::layer_start(renderer* pgpurenderer, const ::int_rectangle & rectangleHost)
    {
 
-      auto psnapshot = m_pcontextComposing->take_snapshot(rectangleTarget);
+      m_iLayer = m_iLayerCount;
+      m_iLayerCount++;
 
-      __defer_construct_new(m_psnapshota);
+      __defer_construct_new(m_playera);
 
-      m_psnapshota->add(psnapshot);
+      auto & player = m_playera->element_at_grow(m_iLayer);
 
+      __defer_construct_new(player);
+
+      player->initialize_gpu_layer(pgpurenderer, rectangleHost);
 
    }
 
 
-   void device::composition_end(context* pcontextTarget)
+   ::int_rectangle device::layer_end()
    {
 
-      auto psnapshota = ::transfer(m_psnapshota);
+      auto& layera = *m_playera;
 
-      pcontextTarget->merge_snapshots(::transfer(psnapshota));
+      auto& player = layera[m_iLayer];
+
+      player->take_snapshot();
+
+      return player->m_rectangleTarget;
 
    }
 
+
+   //void device::layer_merge(context* pcontextTarget)
+   //{
+
+   //   auto playera = m_playera;
+
+   //   pcontextTarget->merge_layers(playera);
+
+   //}
 
 
 

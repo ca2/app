@@ -198,6 +198,21 @@ namespace draw2d
    }
 
 
+   void graphics::start_gpu_layer(const ::int_rectangle& rectangleTarget)
+   {
+
+
+   }
+
+
+   ::int_rectangle graphics::end_gpu_layer()
+   {
+
+      return {};
+
+   }
+
+
    ::user::redraw * graphics::user_redraw()
    {
 
@@ -428,6 +443,15 @@ namespace draw2d
       _create_memory_graphics(size);
 
    }
+
+
+   void graphics::create_for_window_drawing(const ::int_size& size)
+   {
+
+      create_memory_graphics(size);
+
+   }
+
 
    void graphics::defer_set_size(const ::int_size& size)
    {

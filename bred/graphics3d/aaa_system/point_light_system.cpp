@@ -2,7 +2,7 @@
 #include "bred/graphics3d/context.h"
 #include "bred/graphics3d/scene.h"
 #include "bred/gpu/shader.h"
-#include "aura/user/user/graphics3d.h"
+#include "bred/user/user/graphics3d.h"
 #include "point_light_system.h"
 
 // libs

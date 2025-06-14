@@ -211,6 +211,9 @@ namespace draw2d
       ::int_size image_source_size() const override;
 
 
+      virtual void start_gpu_layer(const ::int_rectangle & rectangleTarget);
+      virtual ::int_rectangle end_gpu_layer();
+
       ::user::redraw* user_redraw();
       //#ifdef UNIVERSAL_WINDOWS
       //
@@ -306,6 +309,7 @@ namespace draw2d
       virtual void create_window_graphics(::windowing::window* pwindow);
       virtual void create_offscreen_graphics_for_swap_chain_blitting(const ::int_size& size = {});
       virtual void create_memory_graphics(const ::int_size& size = {});
+      virtual void create_for_window_drawing(const ::int_size& size = {});
       virtual void defer_set_size(const ::int_size& size = {});
       virtual void _create_memory_graphics(const ::int_size& size = {});
       virtual void CreateCompatibleDC(::draw2d::graphics* pgraphics);
@@ -589,11 +593,6 @@ namespace draw2d
 
 
       virtual void draw_error_line(double x1, double h, double x2, int iStyle);
-
-
-
-
-
 
 
       virtual void arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);

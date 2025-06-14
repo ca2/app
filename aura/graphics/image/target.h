@@ -10,6 +10,33 @@ namespace image
 {
 
 
+   class CLASS_DECL_AURA targeting
+   {
+   public:
+
+
+      ::image::target* m_pimagetarget;
+
+
+      targeting(::image::target* pimagetarget);
+
+      ~targeting();
+
+      int width() const;
+
+      int height() const;
+
+      int scan() const;
+
+      image32_t* data();
+
+
+   };
+
+
+
+
+
    class CLASS_DECL_AURA target :
       virtual public ::particle
    {
@@ -37,13 +64,29 @@ namespace image
 
       virtual void on_image_pixels();
 
+      virtual void do_target();
+
+
       virtual ::image::lock no_padded_lock(::image::enum_copy_disposition ecopydisposition);
       virtual ::image::lock source_scan_lock(::image::enum_copy_disposition ecopydisposition);
+
+
+      virtual ::image::targeting no_padded_targeting(::image::enum_copy_disposition ecopydisposition);
+      virtual ::image::targeting source_scan_targeting(::image::enum_copy_disposition ecopydisposition);
 
 
    };
 
 
+   //class CLASS_DECL_AURA targeting
+   //{
+   //public:
+
+
+      //::image::target* m_pimagetarget;
+
+
+   
 } // namespace image
 
 

@@ -4,7 +4,9 @@
 #include "frame_buffer.h"
 #include "program.h"
 #include "shader.h"
+#include "texture.h"
 #include "aura/graphics/image/image.h"
+#include "bred/gpu/layer.h"
 #include "bred/gpu/types.h"
 #include "glm/mat4x4.hpp"
 
@@ -851,6 +853,43 @@ namespace gpu_opengl
             });
 
       }
+
+
+   }
+
+   
+   void context::on_take_snapshot(::gpu::layer* player, ::gpu::texture* ptextureSource)
+   {
+
+      ::cast < texture > ptextureDst = player->m_pgputexture;
+
+      ::cast < texture > ptextureSrc = ptextureSource;
+
+      GLuint fboSrc, fboDst;
+      glGenFramebuffers(1, &fboSrc);
+      glGenFramebuffers(1, &fboDst);
+
+      // Attach source texture to fboSrc
+      glBindFramebuffer(GL_READ_FRAMEBUFFER, fboSrc);
+      glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, 
+         GL_TEXTURE_2D, ptextureSrc->m_gluTextureID, 0);
+
+      // Attach dest texture to fboDst
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, fboDst);
+      glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+         GL_TEXTURE_2D, ptextureDst->m_gluTextureID, 0);
+
+      // Blit from source to destination
+      glBlitFramebuffer(
+         0, 0, ptextureSrc->m_size.cx(), ptextureSrc->m_size.cy(),
+         0, 0, ptextureDst->m_size.cx(), ptextureDst->m_size.cy(),
+         GL_COLOR_BUFFER_BIT, GL_NEAREST
+      );
+
+      // Cleanup
+      glBindFramebuffer(GL_FRAMEBUFFER, 0);
+      glDeleteFramebuffers(1, &fboSrc);
+      glDeleteFramebuffers(1, &fboDst);
 
 
    }

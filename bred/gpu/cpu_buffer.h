@@ -30,10 +30,13 @@ namespace gpu
       virtual void set_size(const ::int_size & size);
 
 
+      virtual ::image::target* get_image_target();
+
+
       virtual void gpu_read();
       virtual void gpu_write();
-      
 
+      
       virtual void set_pixels(const void * p, int w, int h, int s, bool bYSwap);
 
 

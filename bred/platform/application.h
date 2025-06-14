@@ -34,9 +34,9 @@ namespace bred
       ::file::path get_main_weather_file_path(const ::scoped_string & scopedstringAspect) override;
 
 
-      ::gpu::approach* get_gpu() override;
-      ::gpu::approach* gpu() override;
-      void create_gpu() override;
+      ::gpu::approach* get_gpu_approach() override;
+      ::gpu::approach* gpu_approach() override;
+      void create_gpu_approach() override;
 
 
    };

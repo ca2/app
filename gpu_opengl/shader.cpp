@@ -560,7 +560,8 @@ namespace gpu_opengl
    void shader::push_properties()
    {
 
-      auto p = m_properties.m_pproperties;
+      auto p = m_propertiesPush.m_pproperties;
+
       int iLen = 0;
 
       while (true)
@@ -576,28 +577,28 @@ namespace gpu_opengl
          switch (p->m_etype)
          {
          case ::gpu::e_type_int:
-            _set_int(p->m_pszName, *(int*)(m_properties.data() + iLen));
+            _set_int(p->m_pszName, *(int*)(m_propertiesPush.data() + iLen));
             break;
          case ::gpu::e_type_float:
-            _set_float(p->m_pszName, *(float*)(m_properties.data() + iLen));
+            _set_float(p->m_pszName, *(float*)(m_propertiesPush.data() + iLen));
             break;
          case ::gpu::e_type_seq2:
-            _set_vec2(p->m_pszName, *(glm::vec2*)(m_properties.data() + iLen));
+            _set_vec2(p->m_pszName, *(glm::vec2*)(m_propertiesPush.data() + iLen));
             break;
          case ::gpu::e_type_seq3:
-            _set_vec3(p->m_pszName, *(glm::vec3*)(m_properties.data() + iLen));
+            _set_vec3(p->m_pszName, *(glm::vec3*)(m_propertiesPush.data() + iLen));
             break;
          case ::gpu::e_type_seq4:
-            _set_vec4(p->m_pszName, *(glm::vec4*)(m_properties.data() + iLen));
+            _set_vec4(p->m_pszName, *(glm::vec4*)(m_propertiesPush.data() + iLen));
             break;
          case ::gpu::e_type_mat2:
-            _set_mat2(p->m_pszName, *(glm::mat2*)(m_properties.data() + iLen));
+            _set_mat2(p->m_pszName, *(glm::mat2*)(m_propertiesPush.data() + iLen));
             break;
          case ::gpu::e_type_mat3:
-            _set_mat3(p->m_pszName, *(glm::mat3*)(m_properties.data() + iLen));
+            _set_mat3(p->m_pszName, *(glm::mat3*)(m_propertiesPush.data() + iLen));
             break;
          case ::gpu::e_type_mat4:
-            _set_mat4(p->m_pszName, *(glm::mat4*)(m_properties.data() + iLen));
+            _set_mat4(p->m_pszName, *(glm::mat4*)(m_propertiesPush.data() + iLen));
             break;
 
          }

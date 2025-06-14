@@ -26,6 +26,7 @@ namespace gpu
          e_state_began_render,
          e_state_ended_render,
          e_state_ended_frame,
+         e_state_single_frame = 256,
 
       };
 
@@ -43,12 +44,18 @@ namespace gpu
       };
 
 
+      ::collection::index                   m_iCurrentFrame2 = -1;
+      ::collection::index                   m_iFrameSerial2 = -1;
+      ::collection::count                   m_iFrameCount2 = -1;
+
+
       ::gpu::enum_output                    m_eoutput;
       ::gpu::enum_scene                     m_escene;
       //bool                                m_bPendingShaderUpdate;
       //string                              m_strProjection;
       //string                              m_strFragment;
       ::pointer<::gpu::context>             m_pgpucontext;
+      ::pointer<::draw2d_gpu::graphics>     m_pgraphics;
       //::pointer<::gpu::context>             m_pgpucontextOutput;
       bool                                  m_bDisableDepthStencil = false;
 
@@ -82,11 +89,16 @@ namespace gpu
       long long decrement_reference_count() override;
 #endif
 
+
+      virtual void restart_frame_counter();
+
       virtual void on_happening(enum_happening ehappening);
       //virtual ::int_rectangle rectangle();
       //virtual int height();
 
       virtual bool render_step();
+
+      virtual void set_single_frame();
 
       virtual void initialize_renderer(::gpu::context * pgpucontext, ::gpu::enum_output eoutput, ::gpu::enum_scene escene);
 
@@ -102,7 +114,8 @@ namespace gpu
          const ::array<::gpu::shader::enum_descriptor_set_slot>& eslota = {},
          const ::particle_pointer& pLocalDescriptorSet = {},
          const ::particle_pointer& pVertexInput = {},
-         const ::gpu::property* pproperties = nullptr,
+         const ::gpu::property* ppropertiesPush = nullptr,
+         const ::gpu::property* ppropertiesInputLayout = nullptr,
          ::gpu::shader::enum_flag eflag = ::gpu::shader::e_flag_none);
 
 
@@ -153,7 +166,12 @@ namespace gpu
       virtual ::pointer < frame > beginFrame();
 
 
+      bool is_starting_frame()const
+      {
 
+         return m_iFrameSerial2 == m_iCurrentFrame2;
+
+      }
 
       virtual void on_begin_render(frame* pframe);
       virtual void on_end_render(frame* pframe);
@@ -176,6 +194,20 @@ namespace gpu
 
       virtual void do_on_frame(const ::procedure& procedure);
 
+
+      virtual void start_layer(const ::int_rectangle& rectangleTarget);
+      //virtual void take_snapshot(layer * player, const ::int_rectangle& rectangleTarget);
+      virtual ::int_rectangle end_layer();
+      //virtual void merge_layers(::pointer_array < layer > * playera);
+
+
+      virtual void start_frame();
+      virtual void end_frame();
+
+
+      virtual ::pointer < ::gpu::texture > create_texture(const ::int_size& size);
+      virtual void take_snapshot(layer* player, const ::int_rectangle& rectangleTarget);
+     
 
    };
 

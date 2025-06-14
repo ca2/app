@@ -12,6 +12,7 @@ namespace gpu
    public:
 
 
+      ::pointer < ::gpu::renderer > m_pgpurenderer;
       ::int_size m_size;
 
 
@@ -19,8 +20,11 @@ namespace gpu
       ~texture() override;
 
       
-      virtual void initialize_gpu_texture(const ::int_size& size);
+      virtual void initialize_gpu_texture(::gpu::renderer * pgpurenderer, const ::int_size& size);
 
+      virtual void merge_layers(::pointer_array < ::gpu::layer >* playera);
+      virtual void blend(::gpu::layer * player);
+      virtual void blend(::gpu::texture * ptexture, const ::int_rectangle & rectangleTarget);
 
    };
 

@@ -78,6 +78,8 @@ namespace gpu_opengl
 
       virtual void _create_offscreen_window(const ::int_size & size);
 
+      void on_take_snapshot(::gpu::layer* player, ::gpu::texture* ptextureSource) override;
+
       void on_create_context(const ::gpu::start_context_t& startcontext) override;
 
       void defer_create_window_context(::windowing::window * pwindow) override;

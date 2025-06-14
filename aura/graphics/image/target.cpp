@@ -72,80 +72,99 @@ namespace image
 
       ::int_size s(w, h);
 
-      _synchronous_lock synchronouslock(m_pparticleSynchronization);
-
-      m_pimage->create(s);
-
-      if (bYSwap)
       {
 
-         m_pimage->image32()->vertical_swap_copy(s, m_pimage->m_iScan, pimage32, stride);
+         _synchronous_lock synchronouslock(m_pparticleSynchronization);
+
+         m_pimage->create(s);
+
+         if (bYSwap)
+         {
+
+            m_pimage->image32()->vertical_swap_copy(s, m_pimage->m_iScan, pimage32, stride);
+
+         }
+         else
+         {
+
+            m_pimage->image32()->copy(s, m_pimage->m_iScan, pimage32, stride);
+
+         }
+
+
+         //}
+
+         ////   for (int y = 0; y < h; y++)
+         ////   {
+
+         ////      auto p = (unsigned char*)(m_pimage->image32() + (y * m_pimage->m_iScan) / 4);
+
+         ////      for (int x = 0; x < w; x++)
+         ////      {
+
+         ////         //p[0] = p[0] * p[3] / 255;
+         ////         //p[1] = p[1] * p[3] / 255;
+         ////         //p[2] = p[2] * p[3] / 255;
+
+         ////         auto r = p[0];
+         ////         auto g = p[1];
+         ////         auto b = p[2];
+         ////         auto a = p[3];
+         ////         //p[0] = b;
+         ////         //p[2] = r;
+         ////         //p[3] = 255;
+
+         ////         /*         if (r > a)
+         ////                  {
+
+         ////                     information("What a red!!"_ansi);
+
+         ////                  }
+
+         ////                  if (g > a)
+         ////                  {
+
+         ////                     information("What a green!!"_ansi);
+
+         ////                  }
+
+         ////                  if (b > a)
+         ////                  {
+
+         ////                     information("What a blue!!"_ansi);
+
+         ////                  }*/
+
+         ////         p += 4;
+
+         ////      }
+
+         ////   }
+
+         ////}
+
+         //m_pimpact->set_need_redraw();
+
+         //m_pimpact->post_redraw();
 
       }
-      else
-      {
-
-         m_pimage->image32()->copy(s, m_pimage->m_iScan, pimage32, stride);
-
-      }
-
-
-      //}
-
-      ////   for (int y = 0; y < h; y++)
-      ////   {
-
-      ////      auto p = (unsigned char*)(m_pimage->image32() + (y * m_pimage->m_iScan) / 4);
-
-      ////      for (int x = 0; x < w; x++)
-      ////      {
-
-      ////         //p[0] = p[0] * p[3] / 255;
-      ////         //p[1] = p[1] * p[3] / 255;
-      ////         //p[2] = p[2] * p[3] / 255;
-
-      ////         auto r = p[0];
-      ////         auto g = p[1];
-      ////         auto b = p[2];
-      ////         auto a = p[3];
-      ////         //p[0] = b;
-      ////         //p[2] = r;
-      ////         //p[3] = 255;
-
-      ////         /*         if (r > a)
-      ////                  {
-
-      ////                     information("What a red!!"_ansi);
-
-      ////                  }
-
-      ////                  if (g > a)
-      ////                  {
-
-      ////                     information("What a green!!"_ansi);
-
-      ////                  }
-
-      ////                  if (b > a)
-      ////                  {
-
-      ////                     information("What a blue!!"_ansi);
-
-      ////                  }*/
-
-      ////         p += 4;
-
-      ////      }
-
-      ////   }
-
-      ////}
-
-      //m_pimpact->set_need_redraw();
-
-      //m_pimpact->post_redraw();
 
       on_image_pixels();
+
+   }
+
+
+   void target::do_target()
+   {
+
+      m_imagebuffer.unlock();
+
+      set_image_pixels(
+         m_imagebuffer.data(),
+         m_imagebuffer.width(),
+         m_imagebuffer.height(),
+         m_imagebuffer.scan_size(),
+         (m_imagebuffer.m_ecopydisposition & e_copy_disposition_y_swap) != 0);
 
    }
 
@@ -178,12 +197,83 @@ namespace image
 
    }
 
+
+   ::image::targeting target::no_padded_targeting(::image::enum_copy_disposition ecopydisposition)
+   {
+
+      m_imagebuffer.no_padding_lock(ecopydisposition, m_pimage);
+
+      return this;
+
+   }
+
+
+   ::image::targeting target::source_scan_targeting(::image::enum_copy_disposition ecopydisposition)
+   {
+
+      m_imagebuffer.source_lock(ecopydisposition, m_pimage);
+
+      return this;
+
+   }
+
+
    //void target::unlock(const ::pixmap* ppixmap)
    //{
 
    //   m_imagebuffer.unlock(ppixmap);
 
    //}
+
+
+   targeting::targeting(::image::target* pimagetarget)
+   {
+
+      m_pimagetarget = pimagetarget;
+
+   }
+
+
+   targeting::~targeting()
+   {
+
+      m_pimagetarget->do_target();
+
+   }
+
+
+   int targeting::width() const
+   {
+
+      return m_pimagetarget->m_imagebuffer.width();
+
+   }
+
+
+   int targeting::height() const
+   {
+
+      return m_pimagetarget->m_imagebuffer.height();
+
+   }
+
+
+   int targeting::scan() const
+   {
+
+      return m_pimagetarget->m_imagebuffer.scan_size();
+
+   }
+
+
+   image32_t* targeting::data()
+   {
+
+      return m_pimagetarget->m_imagebuffer.data();
+
+   }
+
+
 
 
 } // namespace image

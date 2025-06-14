@@ -34,17 +34,20 @@ namespace gpu
 
 
       ::gpu::enum_output m_eoutput;
-      ::pointer < context > m_pcontextComposing;
-      //::array<::comptr<ID3D12Resource>>   m_resourceaSnapshot;
-      ::pointer < ::pointer_array < snapshot > >     m_psnapshota;
 
+
+      int m_iLayer;
+      int m_iLayerCount;
+      //::pointer < layer > m_playerComposing;
+      //::array<::comptr<ID3D12Resource>>   m_resourceaSnapshot;
+      ::pointer < ::pointer_array < layer > >     m_playera;
 
       itask									         m_itaskCurrentGpuContext;
-
 
       ::pointer < ::gpu::approach >          m_pgpuapproach;
       ::pointer < ::windowing::window >      m_pwindow;
       ::pointer < ::gpu::context >           m_pgpucontextCurrent4;
+      ::pointer < ::gpu::context >           m_pgpucontextMain;
       //::int_size                             m_sizeNew;
       //::int_size                             m_size;
       //float                                  m_z;
@@ -103,6 +106,8 @@ namespace gpu
 
       virtual ::pointer < ::gpu::context > start_gpu_context(const start_context_t& startcontext);
 
+
+      virtual context* get_main_context();
 
       virtual bool make_current(::gpu::context* pgpucontext);
 
@@ -177,9 +182,10 @@ namespace gpu
       virtual void set_mat4(void* p, const ::glm::mat4& mat4);
 
 
-      virtual void composition_start(context * pcontextForComposition);
-      virtual void composition_store(const ::int_rectangle & rectangleTarget);
-      virtual void composition_end(context* pcontextTarget);
+      virtual void start_stacking_layers();
+      virtual void layer_start(renderer * pgpurenderer, const ::int_rectangle & rectangleHost);
+      virtual ::int_rectangle layer_end();
+      //virtual void layer_merge(context* pcontextTarget);
 
 
    };

@@ -7,7 +7,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "bred/gpu/context.h"
 #include "aura/platform/application.h"
-#include "aura/user/user/graphics3d.h"
+#include "bred/user/user/graphics3d.h"
 
 
 namespace graphics3d

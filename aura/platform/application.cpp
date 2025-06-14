@@ -1832,37 +1832,26 @@ namespace aura
          if (strOutput.equals("swap_chain"))
          {
 
-            m_bUseSwapChainWindow = true;
+            m_gpu.m_bUseSwapChainWindow = true;
 
          }
          else
          {
 
-            m_bUseSwapChainWindow = false;
+            m_gpu.m_bUseSwapChainWindow = false;
 
          }
 
       }
 
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-
       ::cast < ::manager > pmanager = system();
-
+ 
       if(pmanager)
       {
          auto psignal = pmanager->signal(id_app_activated);
       
          psignal->add_handler(this);
       }
-
-      //return true;
 
    }
 
@@ -9729,7 +9718,7 @@ namespace aura
    ::string application::draw2d_get_default_implementation_name()
    {
 
-      if (m_bUseSwapChainWindow)
+      if (m_gpu.m_bUseSwapChainWindow)
       {
 
          ::string strGraphics3DImplementation = graphics3d_get_implementation_name();

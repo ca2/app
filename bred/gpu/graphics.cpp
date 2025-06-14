@@ -56,7 +56,7 @@ namespace draw2d_gpu
 
       ::int_rectangle rectangle;
 
-      if (!m_puserinteraction && m_papplication->m_bUseSwapChainWindow)
+      if (!m_puserinteraction && m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
          m_puserinteraction = dynamic_cast <::user::interaction*>(m_papplication->m_pacmeuserinteractionMain.m_p);
@@ -76,76 +76,7 @@ namespace draw2d_gpu
 
       }
 
-      bool bYSwap = m_papplication->m_bUseSwapChainWindow;
-
-      //::vulkan::resize(rectangle.size(), bYSwap);
-
-      //m_z = 0.f;
-
-      if (!m_pgpucontext->m_pgpurenderer)
-      {
-
-         __øconstruct(m_pgpucontext->m_pgpurenderer);
-
-         auto eoutputForBeginDraw = m_pgpucontext->eoutput_for_begin_draw();
-
-         //m_pgpucontext->m_eoutput = ::gpu::e_output_color_and_alpha_accumulation_buffers;
-
-         //m_pgpucontext->m_eoutput = ::gpu::e_output_gpu_buffer;
-
-         //m_pgpucontext->m_pgpurenderer->initialize_renderer(m_pgpucontext, ::gpu::e_output_color_and_alpha_accumulation_buffers);
-
-         m_pgpucontext->m_pgpurenderer->initialize_renderer(m_pgpucontext, eoutputForBeginDraw, ::gpu::e_scene_2d);
-
-         //::cast < ::gpu_vulkan::renderer >prenderer = m_pgpucontext->m_prenderer;
-
-         //prenderer->m_poffscreensampler->initialize_offscreen_sampler(m_pgpucontext);
-
-         //prenderer->m_poffscreensampler->update({ (uint32_t)rectangle.width(),(uint32_t)rectangle.height() });
-
-      }
-      else
-      {
-
-
-      }
-
-      if (m_egraphics == e_graphics_draw)
-      {
-
-         //::cast < ::gpu_vulkan::renderer > pgpurenderer = m_pgpucontext->m_pgpurenderer;
-
-         auto pgpurenderer = m_pgpucontext->m_pgpurenderer;
-
-         if (pgpurenderer->m_pgpurendertarget)
-         {
-
-            pgpurenderer->m_pgpurendertarget->on_before_begin_draw_frame(this);
-
-         }
-
-         auto eoutputContext = m_pgpucontext->m_eoutput;
-
-         auto eoutputRenderer = pgpurenderer->m_eoutput;
-
-         m_pgpucontext->set_placement(rectangle);
-
-         pgpurenderer->defer_update_renderer();
-
-         pgpurenderer->on_new_frame();
-
-         m_pgpuframe = pgpurenderer->beginFrame();
-
-         pgpurenderer->on_begin_render(m_pgpuframe);
-
-      }
-
-      //if (m_callbackImage32CpuBuffer)
-      //{
-
-      //   m_pgpucontext->m_callbackImage32CpuBuffer = m_callbackImage32CpuBuffer;
-
-      //}
+      m_pgpurendererDraw2d->m_pgpucontext->on_begin_draw_attach(this, rectangle);
 
    }
 
@@ -189,149 +120,25 @@ namespace draw2d_gpu
    void graphics::on_end_draw()
    {
 
-      if (m_egraphics == e_graphics_draw)
-      {
+      m_pgpurendererDraw2d->m_pgpucontext->on_end_draw_detach(this);
 
-         auto pgpurenderer = m_pgpucontext->m_pgpurenderer;
-
-         pgpurenderer->on_end_render(m_pgpuframe);
-
-         pgpurenderer->endFrame();
-
-         if (pgpurenderer->m_pgpurendertarget)
-         {
-
-            pgpurenderer->m_pgpurendertarget->on_after_end_draw_frame(this);
-
-         }
-
-         if(m_pgpucontext->m_pgpudevice->m_edevicetarget
-            == ::gpu::e_device_target_swap_chain)
-         {
-
-            if (!m_puserinteraction)
-            {
-
-               throw ::exception(error_not_ready, "m_puserinteraction is null in graphics::on_end_draw()");
-
-            }
+   }
 
 
-            //auto prendererOutput = m_pgpucontextOutput->get_renderer();
+   void graphics::start_gpu_layer(const ::int_rectangle& rectangleTarget)
+   {
 
-            //m_pgpucontext->m_eoutput = ::gpu::e_output_gpu_buffer;
+      m_pgpurendererDraw2d->start_layer(rectangleTarget);
 
-            /*prendererOutput->defer_update_renderer();
-
-            prendererOutput->on_graphics_end_draw(m_puserinteraction);
-
-            prenderer->_blend_image(vkimage, rectangle);*/
-
-            //if (m_eoutputOnEndDraw == ::gpu::e_output_swap_chain)
-            //{
-
-            //   m_pgpucontext->swap_buffers();
-
-               //m_pwindow->m_timeLastDrawGuard1.Now();
+   }
 
 
-            //VkImage vkimage = prenderer->m_pvkcrenderpass->m_images[prenderer->currentImageIndex];
+   ::int_rectangle graphics::end_gpu_layer()
+   {
 
-            ::int_rectangle rectangle;
+      auto rectangleHostUpperLayer = m_pgpurendererDraw2d->end_layer();
 
-            if (!m_puserinteraction->host_rectangle().size().is_empty())
-            {
-
-               rectangle = m_puserinteraction->host_rectangle();
-
-            }
-            else
-            {
-
-               rectangle = { 0, 0, 1920, 1080 };
-
-            }
-
-            //::cast < ::windowing::window > pwindow = m_puserinteraction->m_pacmewindowingwindow;
-
-            //if (!m_pgpucontextOutput)
-            //{
-
-            //   __øconstruct(m_pgpucontextOutput);
-
-            //   m_pgpucontextOutput = m_papplication->get_gpu()->get_device(pwindow, pwindow->get_window_rectangle())->start_swap_chain_context(this, pwindow);
-
-            //   //m_pgpucontextOutput->create_window_buffer(pwindow);
-
-            //}
-
-            //auto prendererOutput = m_pgpucontextOutput->get_renderer();
-
-            
-            //m_pgpucontextOutput->m_size = rectanglePlacement.size();
-
-            //auto pgpucontextOpenGL = m_pgpucontextOutput;
-
-            //pgpucontextOpenGL->m_sizeHost = rectanglePlacement.size();
-
-            //pgpucontextOpenGL->set_placement(rectanglePlacement);
-
-            //m_pgpucontext->m_eoutput = ::gpu::e_output_gpu_buffer;
-
-            //prendererOutput->defer_update_render_pass();
-
-            //if (!m_penddraw)
-            //{
-
-            //   create_end_draw();
-
-            //}
-
-            //if (m_penddraw)
-            //{
-
-            //   on_endDraw(m_puserinteraction, pgpurenderer);
-
-            //}
-            //else
-            {
-
-               //auto pswapchain = m_pgpucontext->m_pgpudevice->get_swap_chain();
-
-               auto pgpurenderer = m_pgpucontext->m_pgpurenderer;
-
-               pgpurenderer->endDraw(this, m_puserinteraction);
-
-               //auto prendererOutput = end_draw_renderer_output();
-
-               //prendererOutput->endDraw(m_puserinteraction, pgpurenderer);
-
-            }
-
-            m_pgpucontext->m_pgpudevice->on_top_end_frame();
-
-         }
-         else if (m_pgpucontext->m_pgpudevice->m_edevicetarget
-            == ::gpu::e_device_target_off_screen)
-         {
-
-            //m_pgpucontext->swap_buffers();
-
-          //}
-          //else
-          //{
-
-            //read_to_cpu_buffer();
-
-            throw ::exception(error_not_implemented, "renderer::endDraw() not implemented for e_output_cpu_buffer");
-
-            /*m_pimage->map();
-
-            m_pimage->copy(&m_pgpucontext->m_pcpubuffer->m_pixmap);*/
-
-         }
-
-      }
+      return rectangleHostUpperLayer;
 
    }
 
@@ -356,7 +163,7 @@ namespace draw2d_gpu
 
       //wglMakeCurrent(m_hdc, m_hglrc);
 
-      m_pgpucontext->make_current();
+      m_pgpurendererDraw2d->m_pgpucontext->make_current();
 
       thread_graphics(this);
 
@@ -373,8 +180,14 @@ namespace draw2d_gpu
 
    void graphics::do_on_context(const ::procedure& procedure)
    {
+
+      auto pgpuapproach = m_papplication->get_gpu_approach();
+
+      auto pgpudevice = pgpuapproach->get_gpu_device();
+
+      auto pgpucontext = pgpudevice->get_main_context();
      
-      m_pgpucontext->_send([procedure]()
+      pgpucontext->_send([procedure]()
          {
 
             procedure();
@@ -388,6 +201,14 @@ namespace draw2d_gpu
    {
 
       create_memory_graphics(size);
+
+   }
+
+
+   void graphics::create_for_window_drawing(const ::int_size& size)
+   {
+
+      create_offscreen_graphics_for_swap_chain_blitting(size);
 
    }
 

@@ -43,6 +43,7 @@ namespace gpu
          e_descriptor_set_slot_per_pass,
          e_descriptor_set_slot_material,
          e_descriptor_set_slot_local,
+         e_descriptor_set_shader_resource_view_and_sampler,
 
       };
       int m_iVertexLevel = -1;
@@ -63,7 +64,8 @@ namespace gpu
       memory                     m_memoryFragment;
       memory                     m_memoryGeometry;
 
-      ::gpu::properties          m_properties;
+      ::gpu::properties          m_propertiesInputLayout;
+      ::gpu::properties          m_propertiesPush;
 
       enum_flag                  m_eflag;
       ::comparable_array<enum_descriptor_set_slot>   m_edescriptorsetslota;
@@ -81,7 +83,8 @@ namespace gpu
          const ::array<enum_descriptor_set_slot>& eslota = {},
          const ::particle_pointer& pLocalDescriptorSet = {},
          const ::particle_pointer& pVertexInput = {},
-         const ::gpu::property* pproperties = nullptr,
+         const ::gpu::property* ppropertiesPush = nullptr,
+         const ::gpu::property* ppropertiesInputLayout = nullptr,
          enum_flag eflag = e_flag_none);
 
       virtual void initialize_shader_with_block(
@@ -91,7 +94,8 @@ namespace gpu
          const ::array<enum_descriptor_set_slot>& eslota = {},
          const ::particle_pointer& pLocalDescriptorSet = {},
          const ::particle_pointer& pVertexInput = {},
-         const ::gpu::property* pproperties = nullptr,
+         const ::gpu::property* ppropertiesPush = nullptr,
+         const ::gpu::property* ppropertiesInputLayout = nullptr,
          enum_flag eflag = e_flag_none);
 
       virtual void on_initialize_shader();

@@ -29,9 +29,12 @@ namespace graphics3d
 	{
 	public:
 
+
+
 		float m_fYScale;
-		::pointer < ::gpu::approach >					m_papproach;
-		::pointer < ::gpu::context >					m_pgpucontext;
+		//::pointer < ::gpu::approach >					m_papproach;
+		//::pointer < ::gpu::context >					m_pgpucontext;
+		::pointer < ::gpu::renderer >					m_pgpurendererGraphics3D;
 		::pointer < ::user::graphics3d >				m_pusergraphics3d;
 		::string_map < ::pointer < scene > >		m_mapScene;
 		::pointer < scene >								m_pscene;
@@ -79,7 +82,7 @@ namespace graphics3d
 		virtual glm::mat4 normal_matrix(TransformComponent& transformcomponent);
 
 		//void on_begin_frame() override;
-		virtual void run_offscreen();
+		virtual void run_cpu_buffer();
 
 		virtual void run();
 

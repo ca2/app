@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "aura/_.h"
+#include "bred/_.h"
 
 
 #if defined(WINDOWS_DESKTOP)
@@ -163,6 +163,8 @@ namespace gpu_opengl
    class frame_buffer;
 
    class device;
+
+   class renderer;
 
 #if defined(WINDOWS_DESKTOP)
 

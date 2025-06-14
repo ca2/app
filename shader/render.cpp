@@ -198,7 +198,7 @@ namespace app_shader
       //{
 
          //estatus = 
-         m_pshader->initialize_shader(m_pgpucontext->m_pgpurenderer, strProjection, strFragment);
+         m_pshader->initialize_shader(m_pgpucontext->m_pgpurendererOutput2, strProjection, strFragment);
 
       //}
 

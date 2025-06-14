@@ -357,7 +357,7 @@
     <ClInclude Include="gpu\renderer.h" />
     <ClInclude Include="gpu\render_target.h" />
     <ClInclude Include="gpu\shader.h" />
-    <ClInclude Include="gpu\snapshot.h" />
+    <ClInclude Include="gpu\layer.h" />
     <ClInclude Include="gpu\swap_chain.h" />
     <ClInclude Include="gpu\texture.h" />
     <ClInclude Include="gpu\types.h" />
@@ -370,7 +370,6 @@
     <ClInclude Include="graphics3d\input.h" />
     <ClInclude Include="graphics3d\key_map.h" />
     <ClInclude Include="graphics3d\model.h" />
-    <ClInclude Include="graphics3d\renderer.h" />
     <ClInclude Include="graphics3d\scene.h" />
     <ClInclude Include="graphics3d\scene_object.h" />
     <ClInclude Include="graphics3d\scene_system.h" />
@@ -420,7 +419,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="gpu\aaa_end_draw.cpp" />
     <ClCompile Include="gpu\approach.cpp" />
     <ClCompile Include="gpu\context.cpp" />
     <ClCompile Include="gpu\cpu_buffer.cpp" />
@@ -436,9 +434,10 @@
     <ClCompile Include="gpu\renderer.cpp" />
     <ClCompile Include="gpu\render_target.cpp" />
     <ClCompile Include="gpu\shader.cpp" />
-    <ClCompile Include="gpu\snapshot.cpp" />
+    <ClCompile Include="gpu\layer.cpp" />
     <ClCompile Include="gpu\swap_chain.cpp" />
     <ClCompile Include="gpu\texture.cpp" />
+    <ClCompile Include="gpu\_.cpp" />
     <ClCompile Include="graphics3d\camera.cpp" />
     <ClCompile Include="graphics3d\context.cpp" />
     <ClCompile Include="graphics3d\engine.cpp" />
@@ -446,7 +445,6 @@
     <ClCompile Include="graphics3d\input.cpp" />
     <ClCompile Include="graphics3d\key_map.cpp" />
     <ClCompile Include="graphics3d\model.cpp" />
-    <ClCompile Include="graphics3d\renderer.cpp" />
     <ClCompile Include="graphics3d\scene.cpp" />
     <ClCompile Include="graphics3d\scene_object.cpp" />
     <ClCompile Include="graphics3d\scene_system.cpp" />

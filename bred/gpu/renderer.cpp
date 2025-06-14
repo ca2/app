@@ -3,7 +3,11 @@
 #include "approach.h"
 #include "context.h"
 #include "cpu_buffer.h"
+#include "device.h"
+#include "layer.h"
+#include "texture.h"
 #include "renderer.h"
+#include "render_target.h"
 #include "acme/exception/interface_only.h"
 #include "acme/prototype/geometry2d/matrix.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -71,12 +75,40 @@ namespace gpu
    }
 
 
+   void renderer::set_single_frame()
+   {
+
+      m_iFrameSerial2 = 0;
+      m_iCurrentFrame2 = 0;
+      m_iFrameCount2 = 1;
+      m_estate = e_state_single_frame;
+
+   }
+
+
+   void renderer::restart_frame_counter()
+   {
+
+      if (m_estate != e_state_single_frame)
+      {
+
+         m_iCurrentFrame2 = -1;
+         m_iFrameSerial2 = -1;
+
+         on_happening(e_happening_reset_frame_counter);
+
+      }
+
+   }
+
+
    void renderer::on_happening(enum_happening ehappening)
    {
 
       switch (ehappening)
       {
       case e_happening_reset_frame_counter:
+         ASSERT(m_estate != e_state_single_frame);
          m_estate = e_state_initial;
          break;
       case e_happening_new_frame:
@@ -127,19 +159,51 @@ namespace gpu
    }
 
 
+   ::pointer < texture> renderer::create_texture(const ::int_size& size)
+   {
+
+      auto ptexture = __øcreate< texture>();
+
+      ptexture->initialize_gpu_texture(this, size);
+
+      m_pgpucontext->on_create_texture(ptexture);
+
+      return ptexture;
+
+   }
+
+
+   void renderer::take_snapshot(layer* player, const ::int_rectangle& rectangleTarget)
+   {
+
+      auto ptextureSource = m_pgpurendertarget->current_texture();
+
+      __defer_construct(player->m_pgputexture);
+
+      player->m_pgputexture->initialize_gpu_texture(this, rectangleTarget.size());
+
+      m_pgpucontext->on_take_snapshot(player, ptextureSource);
+
+   }
+
+
    ::pointer<::gpu::shader> renderer::create_shader(
       const ::file::path& pathVert,
       const ::file::path& pathFrag,
       const ::array<::gpu::shader::enum_descriptor_set_slot>& eslota,
       const ::particle_pointer& pLocalDescriptorSet,
       const ::particle_pointer& pVertexInput,
-      const ::gpu::property* pproperties,
+      const ::gpu::property* ppropertiesPush,
+      const ::gpu::property* ppropertiesInputLayout,
       ::gpu::shader::enum_flag eflag)
    {
 
       auto pshader = __øcreate < ::gpu::shader >();
 
-      pshader->initialize_shader(this, pathVert, pathFrag, eslota, pLocalDescriptorSet, pVertexInput, pproperties, eflag);
+      pshader->initialize_shader(this, 
+         pathVert, pathFrag, eslota, 
+         pLocalDescriptorSet, pVertexInput, 
+         ppropertiesPush, ppropertiesInputLayout, eflag);
 
       return pshader;
 
@@ -544,9 +608,12 @@ namespace gpu
    int renderer::get_frame_index() const
    {
 
-      throw ::interface_only();
+      assert(m_iFrameSerial2 >= 0
+         && m_iCurrentFrame2 >= 0
+         && m_estate != e_state_initial
+         && "Cannot get frame index when frame not in progress");
 
-      return -1;
+      return (int)m_iCurrentFrame2;
 
    }
 
@@ -554,9 +621,7 @@ namespace gpu
    int renderer::get_frame_count() const
    {
 
-      throw ::interface_only();
-
-      return -1;
+      return m_iFrameCount2;
 
    }
 
@@ -668,6 +733,183 @@ namespace gpu
       on_end_render(pframe);
 
       endFrame();
+
+   }
+
+
+   void renderer::start_layer(const ::int_rectangle& rectangleLayer)
+   {
+
+      m_pgpucontext->m_pgpudevice->layer_start(this, rectangleLayer);
+
+   }
+
+
+   int_rectangle renderer::end_layer()
+   {
+
+      return m_pgpucontext->m_pgpudevice->layer_end();
+
+   }
+
+
+   void renderer::start_frame()
+   {
+
+      auto eoutput = m_eoutput;
+
+      defer_update_renderer();
+
+      on_new_frame();
+
+      beginFrame();
+
+      on_begin_render(m_pframe);
+
+      m_pgpucontext->frame_prefix();
+
+   }
+
+
+   void renderer::end_frame()
+   {
+
+      m_pgpucontext->frame_suffix();
+
+      //end_layer();
+
+      on_end_render(m_pframe);
+
+      endFrame();
+
+
+      //if (m_pgpudevice->m_edevicetarget
+      //   == ::gpu::e_device_target_swap_chain)
+      //{
+
+      //   //if (!m_puserinteraction)
+      //   //{
+
+      //   //   throw ::exception(error_not_ready, "m_puserinteraction is null in graphics::on_end_draw()");
+
+      //   //}
+
+
+      //   ////auto prendererOutput = m_pgpucontextOutput->get_renderer();
+
+      //   ////m_pgpucontext->m_eoutput = ::gpu::e_output_gpu_buffer;
+
+      //   ///*prendererOutput->defer_update_renderer();
+
+      //   //prendererOutput->on_graphics_end_draw(m_puserinteraction);
+
+      //   //prenderer->_blend_image(vkimage, rectangle);*/
+
+      //   ////if (m_eoutputOnEndDraw == ::gpu::e_output_swap_chain)
+      //   ////{
+
+      //   ////   m_pgpucontext->swap_buffers();
+
+      //   //   //m_pwindow->m_timeLastDrawGuard1.Now();
+
+
+      //   ////VkImage vkimage = prenderer->m_pvkcrenderpass->m_images[prenderer->currentImageIndex];
+
+      //   //::int_rectangle rectangle;
+
+      //   //if (!m_puserinteraction->host_rectangle().size().is_empty())
+      //   //{
+
+      //   //   rectangle = m_puserinteraction->host_rectangle();
+
+      //   //}
+      //   //else
+      //   //{
+
+      //   //   rectangle = { 0, 0, 1920, 1080 };
+
+      //   //}
+
+      //   ////::cast < ::windowing::window > pwindow = m_puserinteraction->m_pacmewindowingwindow;
+
+      //   ////if (!m_pgpucontextOutput)
+      //   ////{
+
+      //   ////   __øconstruct(m_pgpucontextOutput);
+
+      //   ////   m_pgpucontextOutput = m_papplication->get_gpu()->get_device(pwindow, pwindow->get_window_rectangle())->start_swap_chain_context(this, pwindow);
+
+      //   ////   //m_pgpucontextOutput->create_window_buffer(pwindow);
+
+      //   ////}
+
+      //   ////auto prendererOutput = m_pgpucontextOutput->get_renderer();
+
+
+      //   ////m_pgpucontextOutput->m_size = rectanglePlacement.size();
+
+      //   ////auto pgpucontextOpenGL = m_pgpucontextOutput;
+
+      //   ////pgpucontextOpenGL->m_sizeHost = rectanglePlacement.size();
+
+      //   ////pgpucontextOpenGL->set_placement(rectanglePlacement);
+
+      //   ////m_pgpucontext->m_eoutput = ::gpu::e_output_gpu_buffer;
+
+      //   ////prendererOutput->defer_update_render_pass();
+
+      //   ////if (!m_penddraw)
+      //   ////{
+
+      //   ////   create_end_draw();
+
+      //   ////}
+
+      //   ////if (m_penddraw)
+      //   ////{
+
+      //   ////   on_endDraw(m_puserinteraction, pgpurenderer);
+
+      //   ////}
+      //   ////else
+      ////   {
+
+      ////      //auto pswapchain = m_pgpucontext->m_pgpudevice->get_swap_chain();
+
+      ////      auto pgpurenderer = m_pgpurenderer;
+
+      ////      pgpurenderer->endDraw(this, m_puserinteraction);
+
+      ////      //auto prendererOutput = end_draw_renderer_output();
+
+      ////      //prendererOutput->endDraw(m_puserinteraction, pgpurenderer);
+
+      ////   }
+
+      ////   m_pgpucontext->m_pgpudevice->on_top_end_frame();
+
+      ////}
+      ////else if (m_pgpucontext->m_pgpudevice->m_edevicetarget
+      ////   == ::gpu::e_device_target_off_screen)
+      ////{
+
+      ////   //m_pgpucontext->swap_buffers();
+
+      //// //}
+      //// //else
+      //// //{
+
+      ////   //read_to_cpu_buffer();
+
+      ////   throw ::exception(error_not_implemented, "renderer::endDraw() not implemented for e_output_cpu_buffer");
+
+      ////   /*m_pimage->map();
+
+      ////   m_pimage->copy(&m_pgpucontext->m_pcpubuffer->m_pixmap);*/
+
+      ////}
+
+      //}
 
    }
 

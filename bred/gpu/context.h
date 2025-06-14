@@ -61,7 +61,10 @@ namespace gpu
 
       //bool m_bOffscreen = true;
       enum_output m_eoutput = e_output_none;
+      //enum_output m_eoutputContextDraw2d = e_output_gpu_buffer;
+      //enum_output m_eoutputContextEngine = e_output_gpu_buffer;
 
+      ::gpu::enum_scene m_escene;
       ::pointer<::gpu::device>               m_pgpudevice;
       //::int_rectangle                        m_rectangleNew;
       ::int_rectangle                        m_rectangle;
@@ -72,7 +75,12 @@ namespace gpu
       bool                                   m_bCreated;
       ::draw3d::matrix                       m_matrixProjection;
       ::draw3d::matrix                       m_matrixImpact;
-      ::pointer < ::gpu::renderer >          m_pgpurenderer;
+      //::pointer < ::gpu::renderer >          m_pgpurenderer;
+      ::pointer < ::gpu::renderer >          m_pgpurendererDraw2d;
+      ::pointer < ::gpu::renderer >          m_pgpurendererEngine;
+      ::pointer < ::gpu::renderer >          m_pgpurendererOutput2;
+      ::pointer < ::gpu::renderer >          m_pgpurendererSwap;
+      ::pointer_array < ::gpu::renderer >    m_gpurendereraDraw2d;
       ::pointer < ::graphics3d::engine >     m_pengine;
       ::pointer_array < ::gpu::render >      m_rendera;
 
@@ -101,7 +109,10 @@ namespace gpu
       virtual void lock_context();
       virtual void unlock_context();
 
-      virtual ::gpu::enum_output eoutput_for_begin_draw();
+      virtual ::gpu::enum_output get_eoutput();
+
+
+      virtual ::gpu::cpu_buffer * get_cpu_buffer();
 
 
       //virtual void initialize(::particle * pparticle) override;
@@ -112,7 +123,11 @@ namespace gpu
       virtual bool create_offscreen_graphics_for_swap_chain_blitting(::draw2d_gpu::graphics * pgraphics, const ::int_size& size = {});
 
 
-      virtual ::gpu::renderer* get_renderer(::gpu::enum_scene escene);
+      virtual ::gpu::renderer* get_output_renderer();
+      virtual ::gpu::renderer* draw2d_renderer();
+      virtual ::gpu::renderer* graphics3d_renderer();
+
+      virtual ::gpu::renderer* new_draw2d_renderer();
 
 
       virtual ::int_rectangle rectangle();
@@ -181,16 +196,22 @@ namespace gpu
       virtual void update_global_ubo(const ::block& block);
 
       
-      virtual void start_composition();
-      virtual ::pointer < texture > create_texture(const ::int_size& size);
-      virtual ::pointer < snapshot > take_snapshot(const ::int_rectangle& rectangleTarget);
-      virtual void merge_snapshots(::pointer<::pointer_array < snapshot >> && psnapshota);
-      virtual void end_composition();
 
 
       virtual void on_create_texture(texture * ptexture);
-      virtual void on_take_snapshot(snapshot * psnapshot);
+      virtual void on_take_snapshot(layer * player, texture* ptextureSource);
 
+      virtual void frame_prefix();
+      virtual void frame_suffix();
+
+      virtual void on_begin_draw_attach(::draw2d_gpu::graphics* pgpugraphics, const ::int_rectangle& rectangle);
+      virtual void draw2d_on_begin_draw(::draw2d_gpu::graphics* pgpugraphics, const ::int_rectangle & rectangle);
+
+
+      virtual void on_end_draw_detach(::draw2d_gpu::graphics* pgpugraphics);
+      virtual void draw2d_on_end_draw(::draw2d_gpu::graphics* pgpugraphics);
+      //virtual void start_layer();
+      //virtual void end_layer();
 
       //virtual render_target* draw2d_render_target();
       //virtual render_target* graphics3d_render_target();

@@ -16,7 +16,7 @@ namespace draw2d_gpu
    public:
 
 
-      ::pointer < ::gpu::context >           m_pgpucontext;
+      ::pointer < ::gpu::renderer >          m_pgpurendererDraw2d;
       //::gpu::enum_output                     m_eoutputOnEndDraw;
       //::pointer < ::gpu::context >           m_pgpucontextOutput;
       ::pointer < ::gpu::frame >             m_pgpuframe;
@@ -35,6 +35,10 @@ namespace draw2d_gpu
       void on_end_draw() override;
 
 
+      void start_gpu_layer(const ::int_rectangle& rectangleTarget) override;
+      ::int_rectangle end_gpu_layer() override;
+
+
       //virtual ::gpu::renderer* end_draw_renderer_output();
 
 
@@ -51,7 +55,8 @@ namespace draw2d_gpu
       void do_on_context(const ::procedure& procedure) override;
  
       void create_offscreen_graphics_for_swap_chain_blitting(const ::int_size& size = {}) override;
-  
+      void create_for_window_drawing(const ::int_size& size) override;
+
 
    };
 

@@ -70,7 +70,8 @@ namespace gpu
 
    class render_target;
 
-   class snapshot;
+   class layer;
+
    class texture;
 
 

@@ -25,10 +25,9 @@ namespace gpu_opengl
 
       GLuint m_vaoQuadBlend, m_vboQuadBlend;
 
+      ::int_size m_sizeRenderer;
 
 
-      //memory m_memory;
-      //pixmap m_pixmap;
       renderer();
       ~renderer();
 
@@ -57,7 +56,7 @@ namespace gpu_opengl
 
       //void endDraw(::user::interaction * puserinteraction) override;
 
-      virtual void _sample();
+      virtual void do_sampling_to_cpu();
 
       virtual void _swap();
 
@@ -66,6 +65,9 @@ namespace gpu_opengl
       //virtual void on_layout(int cx, int cy);
 
       void blend(::gpu::renderer* prendererSource) override;
+
+
+      void defer_update_renderer() override;
 
    };
 

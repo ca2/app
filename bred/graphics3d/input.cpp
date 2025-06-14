@@ -4,11 +4,12 @@
 #include "input.h"
 #include "scene_object.h"
 #include "bred/gpu/context.h"
+#include "bred/gpu/renderer.h"
 #include "bred/graphics3d/camera.h"
 #include "bred/graphics3d/types.h"
 #include "aura/platform/application.h"
 #include "aura/platform/session.h"
-#include "aura/user/user/graphics3d.h"
+#include "bred/user/user/graphics3d.h"
 #include <limits>
 
 
@@ -247,7 +248,7 @@ namespace graphics3d
          if (pinput->key(e_key_Exit) == ::user::e_key_state_pressed)
          {
 
-            m_pengine->m_pgpucontext->set_finish();
+            m_pengine->m_pgpurendererGraphics3D->m_pgpucontext->set_finish();
 
          }
 
@@ -350,7 +351,7 @@ namespace graphics3d
       if (IsKeyPressed(::user::e_key_escape))
       {
 
-         m_pengine->m_pgpucontext->set_finish();
+         m_pengine->m_pgpurendererGraphics3D->m_pgpucontext->set_finish();
 
       }
 

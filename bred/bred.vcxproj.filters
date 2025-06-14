@@ -22,9 +22,6 @@
     <Filter Include="Header Files\const">
       <UniqueIdentifier>{e726455b-c389-40bc-b818-1f8f9c6441f8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\const">
-      <UniqueIdentifier>{b64687ba-08b5-4462-a4fb-426514e2f646}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{fb21971a-983b-4337-9bf9-838884db6957}</UniqueIdentifier>
     </Filter>
@@ -51,6 +48,9 @@
     </Filter>
     <Filter Include="Source Files\graphics3d">
       <UniqueIdentifier>{cbae24f5-5592-4d64-8708-897504cfa2f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gpu\const">
+      <UniqueIdentifier>{b64687ba-08b5-4462-a4fb-426514e2f646}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -144,7 +144,7 @@
     <ClInclude Include="gpu\shader.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
-    <ClInclude Include="gpu\snapshot.h">
+    <ClInclude Include="gpu\layer.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
     <ClInclude Include="gpu\swap_chain.h">
@@ -180,9 +180,6 @@
     <ClInclude Include="graphics3d\model.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics3d\renderer.h">
-      <Filter>Header Files\graphics3d</Filter>
-    </ClInclude>
     <ClInclude Include="graphics3d\scene.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
@@ -216,7 +213,7 @@
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="const\idpool.cpp">
-      <Filter>Source Files\const</Filter>
+      <Filter>Source Files\gpu\const</Filter>
     </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
@@ -248,9 +245,6 @@
     <ClCompile Include="graphics3d\model.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics3d\renderer.cpp">
-      <Filter>Source Files\graphics3d</Filter>
-    </ClCompile>
     <ClCompile Include="graphics3d\scene.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
@@ -262,9 +256,6 @@
     </ClCompile>
     <ClCompile Include="graphics3d\shader.cpp">
       <Filter>Source Files\graphics3d</Filter>
-    </ClCompile>
-    <ClCompile Include="gpu\aaa_end_draw.cpp">
-      <Filter>Source Files\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\approach.cpp">
       <Filter>Source Files\gpu</Filter>
@@ -311,7 +302,7 @@
     <ClCompile Include="gpu\shader.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
-    <ClCompile Include="gpu\snapshot.cpp">
+    <ClCompile Include="gpu\layer.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\swap_chain.cpp">
@@ -322,6 +313,9 @@
     </ClCompile>
     <ClCompile Include="user\user\graphics3d.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\_.cpp">
+      <Filter>Source Files\gpu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

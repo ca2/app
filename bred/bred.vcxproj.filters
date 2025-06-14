@@ -263,9 +263,6 @@
     <ClCompile Include="graphics3d\shader.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
-    <ClCompile Include="gpu\aaa_end_draw.cpp">
-      <Filter>Source Files\gpu</Filter>
-    </ClCompile>
     <ClCompile Include="gpu\approach.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>

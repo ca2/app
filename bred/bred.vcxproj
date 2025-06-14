@@ -420,7 +420,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="gpu\aaa_end_draw.cpp" />
     <ClCompile Include="gpu\approach.cpp" />
     <ClCompile Include="gpu\context.cpp" />
     <ClCompile Include="gpu\cpu_buffer.cpp" />

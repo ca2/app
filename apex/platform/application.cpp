@@ -1006,7 +1006,7 @@ namespace apex
          try
          {
 
-            on_request(prequest);
+            ::platform::application::request(prequest);
             
 
          }

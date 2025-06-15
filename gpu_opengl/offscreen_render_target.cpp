@@ -41,24 +41,7 @@ namespace gpu_opengl
 
       set_ok_flag();
 
-      auto iFrameCount = m_pgpurenderer->get_frame_count();
-
-      m_texturea.set_size(iFrameCount);
-
-      for (auto& ptexture : m_texturea)
-      {
-
-         __defer_construct(ptexture);
-
-         if (ptexture->m_size != m_size && !m_size.is_empty())
-         {
-
-            ptexture->initialize_gpu_texture(m_pgpurenderer, m_size);
-
-         }
-
-      }
-
+      createImages();
       createRenderPassImpl();
       createImageViews();
       createRenderPass();

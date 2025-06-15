@@ -5,7 +5,7 @@
 namespace gpu
 {
 
-   struct start_context_t;
+   //struct start_context_t;
 
    class cpu_buffer;
    class context;

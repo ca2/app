@@ -812,10 +812,10 @@ namespace gpu_opengl
    //}
 
 
-   void context::on_create_context(const ::gpu::start_context_t& startcontext)
+   void context::on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::int_size& size)
    {
 
-      if (startcontext.m_eoutput == ::gpu::e_output_cpu_buffer)
+      if (eoutput == ::gpu::e_output_cpu_buffer)
       {
 
          //if (startcontext.m_callbackImage32CpuBuffer
@@ -825,21 +825,21 @@ namespace gpu_opengl
          //   ASSERT(startcontext.m_callbackImage32CpuBuffer);
          //   ASSERT(!startcontext.m_rectanglePlacement.is_empty());
 
-            create_cpu_buffer(startcontext.m_rectanglePlacement.size());
+            create_cpu_buffer(size);
 
          //}
 
       }
-      else if (startcontext.m_eoutput == ::gpu::e_output_swap_chain)
+      else if (eoutput == ::gpu::e_output_swap_chain)
       {
 
-         defer_create_window_context(startcontext.m_pwindow);
+         defer_create_window_context(pwindow);
 
       }
       else
       {
 
-         auto r = startcontext.m_rectanglePlacement;
+         auto r = ::int_rectangle(::int_point{}, size);
          
          ::gpu::rear_guard guard(this);
 

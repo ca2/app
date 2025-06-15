@@ -1,7 +1,9 @@
 // Created by camilo on 2025-06-12 12:38 <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "context.h"
 #include "renderer.h"
 #include "render_target.h"
+#include "texture.h"
 
 
 namespace gpu
@@ -41,12 +43,41 @@ namespace gpu
    void render_target::init()
    {
 
+      createImages();
+
+   }
+
+
+   void render_target::createImages()
+   {
+
+      auto iFrameCount = m_pgpurenderer->get_frame_count();
+
+      m_texturea.set_size(iFrameCount);
+
+      for (auto& ptexture : m_texturea)
+      {
+
+         __defer_construct(ptexture);
+
+         if (ptexture->m_size != m_size && !m_size.is_empty())
+         {
+
+            ptexture->initialize_gpu_texture(m_pgpurenderer, m_size);
+
+         }
+
+      }
 
    }
 
 
    texture * render_target::current_texture()
    {
+
+      auto pgpucontext = m_pgpurenderer->m_pgpucontext;
+
+      auto etype = pgpucontext->m_etype;
 
       auto iFrameIndex = m_pgpurenderer->get_frame_index();
 

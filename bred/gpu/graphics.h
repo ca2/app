@@ -16,7 +16,7 @@ namespace draw2d_gpu
    public:
 
 
-      ::pointer < ::gpu::renderer >          m_pgpurendererDraw2d;
+      ::pointer < ::gpu::context >           m_pgpucontextDraw2d;
       //::gpu::enum_output                     m_eoutputOnEndDraw;
       //::pointer < ::gpu::context >           m_pgpucontextOutput;
       ::pointer < ::gpu::frame >             m_pgpuframe;

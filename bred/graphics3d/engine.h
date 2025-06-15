@@ -34,7 +34,7 @@ namespace graphics3d
 		float m_fYScale;
 		//::pointer < ::gpu::approach >					m_papproach;
 		//::pointer < ::gpu::context >					m_pgpucontext;
-		::pointer < ::gpu::renderer >					m_pgpurendererGraphics3D;
+		::pointer < ::gpu::context >					m_pgpucontextGraphics3D;
 		::pointer < ::user::graphics3d >				m_pusergraphics3d;
 		::string_map < ::pointer < scene > >		m_mapScene;
 		::pointer < scene >								m_pscene;
@@ -66,11 +66,19 @@ namespace graphics3d
 
 		virtual void create_global_ubo(::gpu::context * pgpucontext);
 
+		virtual ::gpu::enum_output get_engine_gpu_eoutput();
+
 		virtual void defer_start(::user::graphics3d * pusergraphics3d, const ::int_rectangle& rectangle);
 
 		virtual void on_begin_frame();
 
 		virtual void update_global_ubo(::gpu::context* pgpucontext);
+
+
+
+		virtual ::gpu::context* get_gpu_context();
+
+
 
 
 		virtual void engine_on_after_load_scene(::graphics3d::scene* pscene);

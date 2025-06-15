@@ -54,6 +54,7 @@ namespace gpu
       //bool                                m_bPendingShaderUpdate;
       //string                              m_strProjection;
       //string                              m_strFragment;
+      //::pointer<::gpu::context>             m_pgpucontextUpper;
       ::pointer<::gpu::context>             m_pgpucontext;
       ::pointer<::draw2d_gpu::graphics>     m_pgraphics;
       //::pointer<::gpu::context>             m_pgpucontextOutput;

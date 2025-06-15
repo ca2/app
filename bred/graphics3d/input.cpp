@@ -248,7 +248,7 @@ namespace graphics3d
          if (pinput->key(e_key_Exit) == ::user::e_key_state_pressed)
          {
 
-            m_pengine->m_pgpurendererGraphics3D->m_pgpucontext->set_finish();
+            m_pengine->m_pgpucontextGraphics3D->set_finish();
 
          }
 
@@ -351,7 +351,7 @@ namespace graphics3d
       if (IsKeyPressed(::user::e_key_escape))
       {
 
-         m_pengine->m_pgpurendererGraphics3D->m_pgpucontext->set_finish();
+         m_pengine->m_pgpucontextGraphics3D->set_finish();
 
       }
 

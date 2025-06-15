@@ -98,7 +98,26 @@ namespace gpu_opengl
 
       //context_guard guard(this);
 
-      m_pgpucontext->make_current();
+      //m_pgpucontextUpper = m_pgpucontext->m_pgpudevice->current_context();
+
+      //if (m_pgpucontextUpper
+      //   && m_pgpucontextUpper != m_pgpucontext)
+      //{
+
+      //   m_pgpucontext->m_pgpudevice->release_current(m_pgpucontextUpper);
+
+      //   m_pgpucontext->make_current();
+
+      //}
+
+
+      if (m_pgpucontext != m_pgpucontext->m_pgpudevice->current_context())
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
       //glEnable(GL_DEPTH_TEST);
       //glDepthMask(GL_TRUE);
       //glDisable(GL_BLEND);
@@ -186,6 +205,8 @@ namespace gpu_opengl
          height = r.height();
 
       }
+
+      defer_update_renderer();
 
       if (!m_pframe)
       {
@@ -382,6 +403,8 @@ namespace gpu_opengl
 
       }
 
+      ::gpu::renderer::on_begin_render(pframe);
+
    }
 
 
@@ -447,6 +470,14 @@ namespace gpu_opengl
    void renderer::endFrame()
    {
 
+      if (m_pgpucontext != m_pgpucontext->m_pgpudevice->current_context())
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+
 
       //glDisable(GL_DEPTH_TEST);
 
@@ -498,7 +529,16 @@ namespace gpu_opengl
 
       }
 
-      m_pgpucontext->release_current();
+      //if (m_pgpucontextUpper)
+      //{
+
+      //   m_pgpucontext->release_current();
+
+      //   m_pgpucontextUpper->make_current();
+
+      //}
+
+      on_happening(e_happening_end_frame);
 
    }
 
@@ -506,8 +546,13 @@ namespace gpu_opengl
    void renderer::defer_update_renderer()
    {
 
-      if (m_sizeRenderer.width() == m_pgpucontext->rectangle().width()
-         && m_sizeRenderer.height() == m_pgpucontext->rectangle().height())
+      auto rectangleContext = m_pgpucontext->rectangle();
+
+      auto sizeContext = rectangleContext.size();
+
+      auto etypeContext = m_pgpucontext->m_etype;
+
+      if (m_sizeRenderer == sizeContext)
       {
 
          return;

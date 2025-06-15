@@ -48,6 +48,7 @@ namespace gpu
       ::pointer < ::windowing::window >      m_pwindow;
       ::pointer < ::gpu::context >           m_pgpucontextCurrent4;
       ::pointer < ::gpu::context >           m_pgpucontextMain;
+      ::pointer < ::gpu::context >           m_pgpucontextMainWindow;
       //::int_size                             m_sizeNew;
       //::int_size                             m_size;
       //float                                  m_z;
@@ -79,6 +80,9 @@ namespace gpu
       virtual ::gpu::context* current_context();
 
       virtual ::gpu::swap_chain* get_swap_chain();
+
+
+      virtual ::gpu::context * get_main_window_context();
       //virtual void start_gpu_context(const start_context_t& startcontext);
 
       //virtual void initialize_gpu_context(const start_context_t& startcontext);
@@ -96,16 +100,19 @@ namespace gpu
       virtual void initialize_gpu_device_for_off_screen(::gpu::approach * papproach, const ::int_rectangle & rectanglePlacement);
 
 
-      virtual ::pointer < ::gpu::context > allocate_context(::particle* pparticle);
+      virtual ::pointer < ::gpu::context > allocate_context();
 
-      virtual ::pointer < ::gpu::context > start_gpu_output_context(::particle* pparticle, const ::gpu::enum_output & eoutput, const ::int_rectangle& rectanglePlacement);
+//      virtual ::pointer < ::gpu::context > start_gpu_output_context(const ::gpu::enum_output & eoutput, const ::int_size& size);
 
-      virtual ::pointer < ::gpu::context > start_cpu_buffer_context(::particle* pparticle, const ::function< void(::image::target* ptarget) >& callbackOnImagePixels, const ::int_rectangle& rectanglePlacement);
+      ///virtual ::pointer < ::gpu::context > start_cpu_buffer_context(::particle* pparticle, const ::function< void(::image::target* ptarget) >& callbackOnImagePixels, const ::int_rectangle& rectanglePlacement);
 
-      virtual ::pointer < ::gpu::context > start_swap_chain_context(::particle* pparticle, ::windowing::window* pwindow);
+      virtual ::pointer < ::gpu::context > create_window_context(::windowing::window* pwindow);
 
-      virtual ::pointer < ::gpu::context > start_gpu_context(const start_context_t& startcontext);
+      virtual ::pointer < ::gpu::context > create_gpu_context(const ::gpu::enum_output& eoutput, const ::int_size & size);
 
+      virtual ::pointer < ::gpu::context > create_draw2d_context(const ::gpu::enum_output& eoutput, const ::int_size & size);
+
+      //virtual ::pointer < ::gpu::context > create_draw2d_off_screen_context(const ::int_size & size);
 
       virtual context* get_main_context();
 

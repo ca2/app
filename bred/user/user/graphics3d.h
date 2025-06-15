@@ -70,6 +70,7 @@ namespace user
       //::user::document * get_document();
 
 
+
       //virtual ::pointer < ::cube::application > start_graphics3d_application();
 
 

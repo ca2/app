@@ -80,7 +80,7 @@ namespace gpu_opengl
 
       void on_take_snapshot(::gpu::layer* player, ::gpu::texture* ptextureSource) override;
 
-      void on_create_context(const ::gpu::start_context_t& startcontext) override;
+      void on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::int_size& size) override;
 
       void defer_create_window_context(::windowing::window * pwindow) override;
       void _defer_create_window_context(::windowing::window * pwindow) override;

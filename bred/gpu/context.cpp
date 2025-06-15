@@ -66,6 +66,15 @@ namespace gpu
 
       auto pcontextUpper = pcontext->m_pgpudevice->current_context();
 
+      ::gpu::context::enum_type etypeContextUpper = ::gpu::context::e_type_undefined;
+
+      if (pcontextUpper)
+      {
+
+         etypeContextUpper = pcontextUpper->m_etype;
+
+      }
+
       auto itaskUpperCurrent = pcontext->m_pgpudevice->m_itaskCurrentGpuContext;
 
       if (pcontextUpper
@@ -119,6 +128,8 @@ namespace gpu
 
    context::context()
    {
+
+      m_etype = e_type_generic;
 
       m_bCreated = false;
 
@@ -292,46 +303,154 @@ namespace gpu
    }
 
 
-   void context::start_gpu_context(const start_context_t & startcontext)
+   void context::create_window_context(::gpu::device* pgpudevice, ::windowing::window * pwindow)
    {
+
+      m_etype = e_type_draw2d;
 
       branch_synchronously();
 
-      m_pgpudevice = startcontext.m_pgpudevice;
+      m_pgpudevice = pgpudevice;
 
       rear_guard guard(this);
 
-      _send([this, &startcontext]()
+      _send([this, pgpudevice, pwindow]()
          {
 
-            initialize_gpu_context(startcontext);
+            auto eoutput = ::gpu::e_output_swap_chain;
+
+            initialize_gpu_context(pgpudevice, eoutput, pwindow, {});
 
          });
 
    }
 
 
-   void context::initialize_gpu_context(const start_context_t& startcontext)
+   void context::create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::int_size& size)
    {
 
-      ASSERT(is_current_task());
+      m_etype = e_type_draw2d;
 
-      m_pgpudevice = startcontext.m_pgpudevice;
+      branch_synchronously();
 
-      t_pgpudevice = m_pgpudevice;
+      m_pgpudevice = pgpudevice;
 
-      m_eoutput = startcontext.m_eoutput;
+      rear_guard guard(this);
 
-      m_rectangle = startcontext.m_rectanglePlacement;
+      _send([this, pgpudevice, eoutput, size]()
+         {
 
-      m_escene = startcontext.m_escene;
+            initialize_gpu_context(pgpudevice, eoutput, nullptr, size);
 
-      on_create_context(startcontext);
+         });
 
    }
 
 
-   void context::on_create_context(const start_context_t& startcontext)
+   void context::create_draw2d_context(::gpu::device* pgpudevice, const ::gpu::enum_output & eoutput, const ::int_size & size)
+   {
+
+      m_etype = e_type_draw2d;
+
+      branch_synchronously();
+
+      m_pgpudevice = pgpudevice;
+
+      rear_guard guard(this);
+
+      _send([this, pgpudevice, eoutput, size]()
+         {
+
+            initialize_gpu_context(pgpudevice, eoutput, nullptr, size);
+
+         });
+
+   }
+
+
+   //void context::create_draw2d_window_context(::gpu::device* pgpudevice, const ::gpu::enum_output & eoutput,  ::windowing::window* pwindow)
+   //{
+
+   //   m_etype = e_type_draw2d;
+
+   //   branch_synchronously();
+
+   //   m_pgpudevice = pgpudevice;
+
+   //   rear_guard guard(this);
+
+   //   _send([this, pgpudevice, eoutput, pwindow]()
+   //      {
+
+   //         initialize_gpu_context(pgpudevice, eoutput, pwindow, {});
+
+   //      });
+
+   //}
+
+
+   //void context::create_draw2d_off_screen_context(::gpu::device* pgpudevice, const ::gpu::enum_output & eoutput, const::int_size& size)
+   //{
+
+   //   m_etype = e_type_draw2d;
+
+   //   branch_synchronously();
+
+   //   m_pgpudevice = pgpudevice;
+
+   //   rear_guard guard(this);
+
+   //   _send([this]()
+   //      {
+
+   //         initialize_gpu_context(startcontext);
+
+   //      });
+
+   //}
+
+
+   //void context::start_gpu_context(const start_context_t& startcontext)
+   //{
+
+   //   branch_synchronously();
+
+   //   m_pgpudevice = startcontext.m_pgpudevice;
+
+   //   rear_guard guard(this);
+
+   //   _send([this, &startcontext]()
+   //      {
+
+   //         initialize_gpu_context(startcontext);
+
+   //      });
+
+   //}
+
+   void context::initialize_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::int_size& size)
+   {
+
+      ASSERT(is_current_task());
+
+      m_pgpudevice = pgpudevice;
+
+      t_pgpudevice = m_pgpudevice;
+
+      m_eoutput = eoutput;
+
+      m_rectangle.top_left() = { 0, 0 };
+
+      m_rectangle.set_size(size);
+
+      m_escene = m_escene;
+
+      on_create_context(pgpudevice, eoutput, pwindow, size);
+
+   }
+
+
+   void context::on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::int_size& size)
    {
 
 
@@ -496,7 +615,7 @@ namespace gpu
    }
 
 
-   ::gpu::renderer* context::get_output_renderer()
+   ::gpu::renderer* context::get_gpu_renderer()
    {
 
       if (!m_pgpurendererOutput2)
@@ -510,6 +629,8 @@ namespace gpu
 
          m_pgpurendererOutput2->m_iFrameCount2 = ::gpu::render_target::MAX_FRAMES_IN_FLIGHT;
 
+         m_pgpurendererOutput2->defer_update_renderer();
+
       }
 
       return m_pgpurendererOutput2;
@@ -517,76 +638,78 @@ namespace gpu
    }
 
 
-   ::gpu::renderer* context::draw2d_renderer()
-   {
+   //::gpu::renderer* context::draw2d_renderer()
+   //{
 
-      if (!m_pgpurendererDraw2d)
-      {
+   //   if (!m_pgpucontextDraw2d->m_pgpurendererOutput2)
+   //   {
 
-         ::gpu::enum_scene escene = m_escene;
+   //      ::gpu::enum_scene escene = m_escene;
 
-         __øconstruct(m_pgpurendererDraw2d);
+   //      __øconstruct(m_pgpucontextDraw2d->m_pgpurendererOutput2);
 
-         auto eoutputDraw2d = m_papplication->m_gpu.m_eoutputDraw2d;
+   //      auto eoutputDraw2d = m_papplication->m_gpu.m_eoutputDraw2d;
 
-         m_pgpurendererDraw2d->initialize_renderer(this, eoutputDraw2d, escene);
+   //      m_pgpucontextDraw2d->m_pgpurendererOutput2->initialize_renderer(this, eoutputDraw2d, escene);
 
-         m_pgpurendererDraw2d->set_single_frame();
+   //      m_pgpucontextDraw2d->m_pgpurendererOutput2->set_single_frame();
 
-         m_pgpurendererDraw2d->defer_update_renderer();
+   //      m_pgpucontextDraw2d->m_pgpurendererOutput2->defer_update_renderer();
 
-      }
+   //   }
 
-      return m_pgpurendererDraw2d;
+   //   return m_pgpucontextDraw2d->m_pgpurendererOutput2;
 
-   }
-
-
-   ::gpu::renderer* context::graphics3d_renderer()
-   {
-
-      if (!m_pgpurendererEngine)
-      {
-
-         ::gpu::enum_scene escene = m_escene;
-
-         __øconstruct(m_pgpurendererEngine);
-
-         auto eoutputEngine = m_papplication->m_gpu.m_eoutputEngine;
-
-         m_pgpurendererEngine->initialize_renderer(this, eoutputEngine, escene);
-
-         m_pgpurendererEngine->set_single_frame();
-
-         m_pgpurendererEngine->defer_update_renderer();
-
-      }
-
-      return m_pgpurendererEngine;
-
-   }
+   //}
 
 
-   ::gpu::renderer* context::new_draw2d_renderer()
-   {
+   //::gpu::renderer* context::graphics3d_renderer()
+   //{
 
-      ::pointer < ::gpu::renderer > pgpurendererDraw2d;
+   //   if (!m_pgpurendererEngine)
+   //   {
 
-      ::gpu::enum_scene escene = m_escene;
+   //      ::gpu::enum_scene escene = m_escene;
 
-      __øconstruct(pgpurendererDraw2d);
+   //      __øconstruct(m_pgpurendererEngine);
 
-      //auto eoutputDraw2d = m_papplication->m_gpu.m_eoutputDraw2d;
+   //      auto eoutputEngine = m_papplication->m_gpu.m_eoutputEngine;
 
-      auto eoutputDraw2d = ::gpu::e_output_gpu_buffer;
+   //      m_pgpurendererEngine->initialize_renderer(this, eoutputEngine, escene);
 
-      pgpurendererDraw2d->initialize_renderer(this, eoutputDraw2d, escene);
+   //      //m_pgpurendererEngine->set_single_frame();
 
-      m_gpurendereraDraw2d.add(pgpurendererDraw2d);
+   //      m_pgpurendererEngine->m_iFrameCount2 = ::gpu::render_target::MAX_FRAMES_IN_FLIGHT;
 
-      return pgpurendererDraw2d;
+   //      m_pgpurendererEngine->defer_update_renderer();
 
-   }
+   //   }
+
+   //   return m_pgpurendererEngine;
+
+   //}
+
+
+   //::gpu::renderer* context::new_draw2d_renderer()
+   //{
+
+   //   ::pointer < ::gpu::renderer > pgpurendererDraw2d;
+
+   //   ::gpu::enum_scene escene = m_escene;
+
+   //   __øconstruct(pgpurendererDraw2d);
+
+   //   //auto eoutputDraw2d = m_papplication->m_gpu.m_eoutputDraw2d;
+
+   //   auto eoutputDraw2d = ::gpu::e_output_gpu_buffer;
+
+   //   pgpurendererDraw2d->initialize_renderer(this, eoutputDraw2d, escene);
+
+   //   m_gpurendereraDraw2d.add(pgpurendererDraw2d);
+
+   //   return pgpurendererDraw2d;
+
+   //}
 
 
 
@@ -889,18 +1012,18 @@ namespace gpu
       if (pgpugraphics->m_egraphics == e_graphics_draw)
       {
 
-         auto pgpurendererDraw2d = m_pgpurendererDraw2d;
+         auto pgpurendererDraw2d = get_gpu_renderer();
 
-         if (pgpurendererDraw2d->m_pgpurendertarget)
-         {
+         //if (pgpurendererDraw2d->m_pgpurendertarget)
+         //{
 
-            pgpurendererDraw2d->m_pgpurendertarget->on_before_begin_draw_frame(pgpugraphics);
+         //   pgpurendererDraw2d->m_pgpurendertarget->on_before_begin_draw_frame(pgpugraphics);
 
-         }
+         //}
 
-         pgpurendererDraw2d->m_pgpucontext->get_output_renderer()->start_frame();
+         //pgpurendererDraw2d->m_pgpucontext->get_gpu_renderer()->start_frame();
 
-         pgpurendererDraw2d->m_pgpucontext->m_pgpudevice->start_stacking_layers();
+         //pgpurendererDraw2d->m_pgpucontext->m_pgpudevice->start_stacking_layers();
 
          pgpurendererDraw2d->start_layer(rectangle);
 
@@ -932,18 +1055,18 @@ namespace gpu
       if (pgpugraphics->m_egraphics == e_graphics_draw)
       {
 
-         auto pgpurendererDraw2d = m_pgpurendererDraw2d;
+         auto pgpurendererDraw2d = m_pgpurendererOutput2;
 
          pgpurendererDraw2d->end_layer();
 
-         pgpurendererDraw2d->m_pgpucontext->get_output_renderer()->end_frame();
+         //pgpurendererDraw2d->m_pgpucontext->get_gpu_renderer()->end_frame();
 
-         if (pgpurendererDraw2d->m_pgpurendertarget)
-         {
+         //if (pgpurendererDraw2d->m_pgpurendertarget)
+         //{
 
-            pgpurendererDraw2d->m_pgpurendertarget->on_after_end_draw_frame(pgpugraphics);
+         //   pgpurendererDraw2d->m_pgpurendertarget->on_after_end_draw_frame(pgpugraphics);
 
-         }
+         //}
 
       }
 

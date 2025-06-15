@@ -644,7 +644,7 @@ GLuint createFullscreenQuad(GLuint& quadVBO);
       if (!m_pgpucontextSwapChain)
       {
 
-         m_pgpucontextSwapChain = pgpurendererSrc->m_pgpucontext->m_pgpudevice->start_swap_chain_context(this, pwindow);
+         m_pgpucontextSwapChain = pgpurendererSrc->m_pgpucontext->m_pgpudevice->create_window_context(pwindow);
 
       }
 
@@ -652,7 +652,7 @@ GLuint createFullscreenQuad(GLuint& quadVBO);
 
       m_pgpucontextSwapChain->set_placement(rectanglePlacement);
 
-      auto prendererOutput = m_pgpucontextSwapChain->get_output_renderer();
+      auto prendererOutput = m_pgpucontextSwapChain->get_gpu_renderer();
 
       prendererOutput->defer_update_renderer();
 
@@ -663,7 +663,7 @@ GLuint createFullscreenQuad(GLuint& quadVBO);
       m_pgpucontextSwapChain->send_on_context([this, prendererSrc]()
          {
 
-            m_pgpucontextSwapChain->m_pgpurendererDraw2d->do_on_frame([this, prendererSrc]()
+            m_pgpucontextSwapChain->m_pgpurendererOutput2->do_on_frame([this, prendererSrc]()
                {
 
                   m_pgpucontextSwapChain->clear(::argb(127, 140 / 2, 220 / 2, 240 / 2));
@@ -719,7 +719,7 @@ void main() {
                         m_pshaderCopyTextureOnEndDraw = __create_new < ::gpu_opengl::shader >();
 
                         m_pshaderCopyTextureOnEndDraw->initialize_shader_with_block(
-                           m_pgpucontextSwapChain->m_pgpurendererDraw2d,
+                           m_pgpucontextSwapChain->m_pgpurendererOutput2,
                            pvertexshader, pfragmentshader);
 
 

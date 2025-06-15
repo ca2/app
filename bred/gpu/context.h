@@ -59,6 +59,19 @@ namespace gpu
    public:
 
 
+      enum enum_type
+      {
+         e_type_undefined,
+         e_type_none,
+         e_type_generic,
+         e_type_draw2d,
+         e_type_graphics3d,
+         e_type_window
+      };
+
+      enum_type         m_etype = e_type_none;
+
+
       //bool m_bOffscreen = true;
       enum_output m_eoutput = e_output_none;
       //enum_output m_eoutputContextDraw2d = e_output_gpu_buffer;
@@ -76,8 +89,8 @@ namespace gpu
       ::draw3d::matrix                       m_matrixProjection;
       ::draw3d::matrix                       m_matrixImpact;
       //::pointer < ::gpu::renderer >          m_pgpurenderer;
-      ::pointer < ::gpu::renderer >          m_pgpurendererDraw2d;
-      ::pointer < ::gpu::renderer >          m_pgpurendererEngine;
+      //::pointer < ::gpu::renderer >          m_pgpurendererDraw2d;
+      //::pointer < ::gpu::renderer >          m_pgpurendererEngine;
       ::pointer < ::gpu::renderer >          m_pgpurendererOutput2;
       ::pointer < ::gpu::renderer >          m_pgpurendererSwap;
       ::pointer_array < ::gpu::renderer >    m_gpurendereraDraw2d;
@@ -96,11 +109,23 @@ namespace gpu
       ~context() override;
 
 
-      virtual void start_gpu_context(const start_context_t & startcontext);
+      //virtual void start_gpu_context(const start_context_t & startcontext);
 
-      virtual void initialize_gpu_context(const start_context_t& startcontext);
+      virtual void create_window_context(::gpu::device* pgpudevice, ::windowing::window * pwindow);
 
-      virtual void on_create_context(const start_context_t& startcontext);
+      virtual void create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::int_size& size);
+
+      /// <summary>
+      ///  a draw2d context is a offscreen context that is used for drawing 2d graphics
+      /// </summary>
+      /// <param name="pgpudevice"></param>
+      /// <param name="eoutput"></param>
+      /// <param name="size"></param>
+      virtual void create_draw2d_context(::gpu::device* pgpudevice, const enum_output& eoutput, const ::int_size& size);
+
+      virtual void initialize_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::int_size & size);
+
+      virtual void on_create_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, ::windowing::window* pwindow, const ::int_size & size);
 
       virtual void engine_on_frame_context_initialization();
 
@@ -123,11 +148,11 @@ namespace gpu
       virtual bool create_offscreen_graphics_for_swap_chain_blitting(::draw2d_gpu::graphics * pgraphics, const ::int_size& size = {});
 
 
-      virtual ::gpu::renderer* get_output_renderer();
-      virtual ::gpu::renderer* draw2d_renderer();
-      virtual ::gpu::renderer* graphics3d_renderer();
+      virtual ::gpu::renderer* get_gpu_renderer();
+      ///virtual ::gpu::renderer* draw2d_renderer();
+      //virtual ::gpu::renderer* graphics3d_renderer();
 
-      virtual ::gpu::renderer* new_draw2d_renderer();
+      //virtual ::gpu::renderer* new_draw2d_renderer();
 
 
       virtual ::int_rectangle rectangle();

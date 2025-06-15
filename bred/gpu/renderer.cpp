@@ -621,7 +621,7 @@ namespace gpu
    int renderer::get_frame_count() const
    {
 
-      return m_iFrameCount2;
+      return (int) m_iFrameCount2;
 
    }
 
@@ -629,12 +629,21 @@ namespace gpu
    void renderer::on_new_frame()
    {
 
+      auto iFrameCount = get_frame_count();
+
+      m_iFrameSerial2++;
+
+      m_iCurrentFrame2 = (m_iCurrentFrame2 + 1) % iFrameCount;
+
+      on_happening(e_happening_new_frame);
 
    }
 
 
    ::pointer < frame > renderer::beginFrame()
    {
+
+      on_happening(e_happening_begin_frame);
 
       return m_pframe;
 
@@ -658,6 +667,7 @@ namespace gpu
    void renderer::on_begin_render(frame* pframe)
    {
 
+      on_happening(e_happening_begin_render);
 
    }
 
@@ -665,10 +675,15 @@ namespace gpu
    void renderer::on_end_render(frame* pframe)
    {
 
+      on_happening(e_happening_end_render);
+
    }
+
 
    void renderer::endFrame()
    {
+
+      on_happening(e_happening_end_frame);
 
    }
 
@@ -728,7 +743,6 @@ namespace gpu
       on_begin_render(pframe);
 
       procedure();
-      //_copy_image(vkimage, rectangle, false);
 
       on_end_render(pframe);
 

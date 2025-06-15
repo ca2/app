@@ -37,6 +37,10 @@ namespace gpu
 
       virtual void init();
 
+
+      virtual void createImages();
+
+
       //virtual int get_image_index() const;
       size_t imageCount() { return m_texturea.size(); }
       uint32_t width() { return m_size.cx(); }

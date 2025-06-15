@@ -52,7 +52,7 @@ namespace draw2d_gpu
    void graphics::on_begin_draw()
    {
 
-      thread_select();
+      //thread_select();
 
       ::int_rectangle rectangle;
 
@@ -76,7 +76,7 @@ namespace draw2d_gpu
 
       }
 
-      m_pgpurendererDraw2d->m_pgpucontext->on_begin_draw_attach(this, rectangle);
+      m_pgpucontextDraw2d->on_begin_draw_attach(this, rectangle);
 
    }
 
@@ -120,7 +120,7 @@ namespace draw2d_gpu
    void graphics::on_end_draw()
    {
 
-      m_pgpurendererDraw2d->m_pgpucontext->on_end_draw_detach(this);
+      m_pgpucontextDraw2d->on_end_draw_detach(this);
 
    }
 
@@ -128,7 +128,7 @@ namespace draw2d_gpu
    void graphics::start_gpu_layer(const ::int_rectangle& rectangleTarget)
    {
 
-      m_pgpurendererDraw2d->start_layer(rectangleTarget);
+      m_pgpucontextDraw2d->m_pgpurendererOutput2->start_layer(rectangleTarget);
 
    }
 
@@ -136,7 +136,7 @@ namespace draw2d_gpu
    ::int_rectangle graphics::end_gpu_layer()
    {
 
-      auto rectangleHostUpperLayer = m_pgpurendererDraw2d->end_layer();
+      auto rectangleHostUpperLayer = m_pgpucontextDraw2d->m_pgpurendererOutput2->end_layer();
 
       return rectangleHostUpperLayer;
 
@@ -163,7 +163,7 @@ namespace draw2d_gpu
 
       //wglMakeCurrent(m_hdc, m_hglrc);
 
-      m_pgpurendererDraw2d->m_pgpucontext->make_current();
+      m_pgpucontextDraw2d->make_current();
 
       thread_graphics(this);
 
@@ -181,16 +181,33 @@ namespace draw2d_gpu
    void graphics::do_on_context(const ::procedure& procedure)
    {
 
-      auto pgpuapproach = m_papplication->get_gpu_approach();
+      auto pgpucontextMainWindow = m_papplication->get_gpu_approach()->get_gpu_device()->get_main_window_context();
 
-      auto pgpudevice = pgpuapproach->get_gpu_device();
-
-      auto pgpucontext = pgpudevice->get_main_context();
-     
-      pgpucontext->_send([procedure]()
+      pgpucontextMainWindow->send_on_context([this, pgpucontextMainWindow, procedure]()
          {
 
-            procedure();
+            m_pgpucontextDraw2d->send_on_context([this, procedure]()
+               {
+
+                  if (m_egraphics & e_graphics_draw)
+                  {
+
+                     m_pgpucontextDraw2d->get_gpu_renderer()->do_on_frame([procedure]()
+                        {
+
+                           procedure();
+
+                        });
+
+                  }
+                  else
+                  {
+
+                     procedure();
+
+                  }
+
+               });
 
          });
 

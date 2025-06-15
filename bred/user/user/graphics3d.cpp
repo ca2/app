@@ -356,7 +356,7 @@ namespace user
 
             auto rectangleHost = host_rectangle();
 
-            m_pengine->m_pgpurendererGraphics3D->start_layer(rectangleHost);
+            m_pengine->get_gpu_context()->get_gpu_renderer()->start_layer(rectangleHost);
 
          }
 
@@ -365,7 +365,7 @@ namespace user
          if (m_papplication->m_gpu.m_bUseSwapChainWindow)
          {
 
-            m_pengine->m_pgpurendererGraphics3D->end_layer();
+            m_pengine->m_pgpucontextGraphics3D->m_pgpurendererOutput2->end_layer();
 
          }
 

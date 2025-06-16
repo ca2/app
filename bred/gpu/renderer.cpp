@@ -704,6 +704,7 @@ namespace gpu
    void renderer::blend(::gpu::renderer* prenderer)
    {
 
+      throw ::interface_only();
 
    }
 
@@ -711,6 +712,7 @@ namespace gpu
    void renderer::clear(::gpu::texture* ptexture)
    {
 
+      throw ::interface_only();
 
    }
 
@@ -718,9 +720,9 @@ namespace gpu
    void renderer::blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, const ::int_rectangle& rectangleTarget)
    {
 
+      throw::interface_only();
 
    }
-
 
 
    void renderer::soft_restore_context()

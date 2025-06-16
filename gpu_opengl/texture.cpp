@@ -3,6 +3,7 @@
 #include "texture.h"
 #include "renderer.h"
 
+
 namespace gpu_opengl
 {
 
@@ -44,8 +45,6 @@ namespace gpu_opengl
       glBindTexture(GL_TEXTURE_2D, m_gluTextureID);  // 2. Bind the texture to the 2D texture target
       GLCheckError("");
 
-
-
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
       GLCheckError("");
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
@@ -81,12 +80,12 @@ namespace gpu_opengl
    }
 
 
-   void texture::blend(::gpu::texture* ptexture, const ::int_rectangle& rectangleTarget)
-   {
+   //void texture::blend(::gpu::texture* ptexture, const ::int_rectangle& rectangleTarget)
+   //{
 
-      m_pgpurenderer->blend(this, ptexture, rectangleTarget);
+   //   m_pgpurenderer->blend(this, ptexture, rectangleTarget);
 
-   }
+   //}
 
 
 } // namespace gpu_opengl

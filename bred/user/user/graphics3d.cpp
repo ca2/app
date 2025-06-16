@@ -381,14 +381,6 @@ namespace user
    }
 
 
-   //::user::document* graphics3d::get_document()
-   //{
-
-   //   return  (::user::box::get_document());
-
-   //}
-
-
    ::user::enum_key_state graphics3d::get_key_state(::user::e_key ekey)
    {
 
@@ -438,72 +430,6 @@ namespace user
       //reset_mouse_last_position();
 
    }
-
-   //
-   //void container::initWindow() 
-   //{
-   //   //glfwInit();
-   //   //glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-   //   //glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
-
-   //   //window = glfwCreateWindow(m_iWidth, m_iHeight, windowName.c_str(), nullptr, nullptr);
-   //   //glfwSetWindowUserPointer(window, this);
-   //   //glfwSetFramebufferSizeCallback(window, framebufferResizeCallback);
-   //}
-
-
-   //::user::enum_key_state graphics3d::get_key_state(::user::e_key ekey)
-   //{
-
-   //   return ::user::e_key_state_none;
-
-   //}
-
-
-   //bool container::is_absolute_mouse_position()
-   //{
-
-
-   //	return true;
-
-   //}
-
-   //void container::createWindowSurface(VkInstance instance, VkSurfaceKHR* surface) {
-   //	if (glfwCreateWindowSurface(instance, window, nullptr, surface) != VK_SUCCESS) {
-   //		throw ::exception(error_failed, "Failed to create window surface");
-   //	}
-   //}
-
-   /*void container::framebufferResizeCallback(GLFWwindow* window, int m_iWidth, int m_iHeight) {
-      auto Window = reinterpret_cast<container*>(glfwGetWindowUserPointer(window));
-      Window->framebufferResized = true;
-      Window->m_iWidth = m_iWidth;
-      Window->m_iHeight = m_iHeight;
-   }*/
-
-
-   //bool graphics3d::is_absolute_mouse_position()
-   //{
-
-   //   return false;
-
-   //}
-
-
-   //bool graphics3d::shouldClose()
-   //{
-
-   //   return m_bShouldClose;
-
-   //}
-
-
-   //::int_size container::size()
-   //{
-
-   //   return {};
-
-   //}
 
 
    bool graphics3d::wasWindowResized()

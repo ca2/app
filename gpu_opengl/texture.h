@@ -15,7 +15,7 @@ namespace gpu_opengl
       virtual public ::gpu::texture
    {
    public:
-
+      
 
       GLuint            m_gluTextureID;
 
@@ -26,7 +26,7 @@ namespace gpu_opengl
 
       void initialize_gpu_texture(::gpu::renderer* prenderer, const ::int_size & size);
 
-      void blend(::gpu::texture* ptexture, const ::int_rectangle& rectangleTarget) override;
+      //void blend(::gpu::texture* ptexture, const ::int_rectangle& rectangleTarget) override;
 
 
    };

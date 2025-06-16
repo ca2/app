@@ -59,7 +59,7 @@ namespace gpu
    void texture::blend(::gpu::texture* ptexture, const ::int_rectangle& rectangleTarget)
    {
 
-      throw ::interface_only();
+      m_pgpurenderer->blend(this, ptexture, rectangleTarget);
 
    }
 

@@ -669,12 +669,16 @@ namespace gpu
 
                            auto prenderer = pcontextInnerStart->get_gpu_renderer();
 
-                           prenderer->do_on_frame([procedure]()
+                           prenderer->defer_update_renderer();
+
+                           ::procedure λ = [procedure]()
                               {
 
                                  procedure();
 
-                              });
+                              };
+
+                           prenderer->do_on_frame(λ);
 
                         }
                         else

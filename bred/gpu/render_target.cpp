@@ -93,7 +93,9 @@ namespace gpu
 
       auto size = m_texturea.size();
 
-      return m_texturea[iFrameIndex];
+      auto ptexture = m_texturea[iFrameIndex];
+
+      return ptexture;
 
    }
 

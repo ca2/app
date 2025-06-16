@@ -26,7 +26,7 @@ namespace gpu_opengl
       void on_initialize_shader() override;
 
 
-      void bind() override;
+      void bind(::gpu::texture * pgputexture) override;
       void unbind() override;
       
       //virtual void initialize_shader(

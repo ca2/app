@@ -153,7 +153,7 @@ namespace gpu_opengl
       if (m_pshader)
       {
 
-         m_pshader->bind();
+         m_pshader->bind(nullptr);
 
       }
       // Use our shader
@@ -817,7 +817,7 @@ namespace gpu_opengl
 
       // Blit from source to default framebuffer
       glBlitFramebuffer(
-         0, 0, ptexture->m_size.cx(), ptexture->m_size.cy(), // src rect
+         0, 0, ptexture->size().cx(), ptexture->size().cy(), // src rect
          0, 0, m_rectangle.width(), m_rectangle.height(), // dst rect
          GL_COLOR_BUFFER_BIT, GL_NEAREST);
 
@@ -903,7 +903,7 @@ namespace gpu_opengl
    void context::on_take_snapshot(::gpu::layer* player, ::gpu::texture* ptextureSource)
    {
 
-      ::cast < texture > ptextureDst = player->m_pgputexture;
+      ::cast < texture > ptextureDst = player->m_pgputextureTarget;
 
       ::cast < texture > ptextureSrc = ptextureSource;
 
@@ -931,8 +931,8 @@ namespace gpu_opengl
          GL_TEXTURE_2D, textureDst, 0);
       GLCheckError("");
 
-      auto sizeSrc = ptextureSrc->m_size;
-      auto sizeDst = ptextureDst->m_size;
+      auto sizeSrc = ptextureSrc->size();
+      auto sizeDst = ptextureDst->size();
 
       // Blit from source to destination
       glBlitFramebuffer(

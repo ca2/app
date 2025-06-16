@@ -55,6 +55,9 @@ namespace gpu
       virtual void on_after_end_draw_frame(::draw2d_gpu::graphics* pgraphics);
 
 
+      virtual void on_end_render(::gpu::frame* pgpuframe);
+
+
    };
 
 

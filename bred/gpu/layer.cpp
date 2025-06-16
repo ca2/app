@@ -28,17 +28,20 @@ namespace gpu
    {
 
       m_pgpurenderer = pgpurenderer;
-      m_rectangleTarget = rectangleTarget;
+
+      __defer_construct(m_pgputextureTarget);
+
+      m_pgputextureTarget->initialize_gpu_texture(pgpurenderer, rectangleTarget);
 
       m_pgpurenderer->defer_update_renderer();
 
    }
 
 
-   void layer::set_texture(texture* ptexture)
+   void layer::set_target_texture(texture* ptextureTarget)
    {
 
-      m_pgputexture = ptexture;
+      m_pgputextureTarget = ptextureTarget;
 
    }
 
@@ -46,7 +49,7 @@ namespace gpu
    void layer::take_snapshot()
    {
 
-      m_pgpurenderer->take_snapshot(this, m_rectangleTarget);
+      m_pgpurenderer->take_snapshot(this);
 
    }
 

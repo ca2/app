@@ -1232,7 +1232,7 @@ namespace gpu_opengl
          ::cast < ::gpu_opengl::context > pcontextSource = prendererSource->m_pgpucontext;
 
          //glUseProgram(blendShader);
-         m_pshaderBlend->bind();
+         m_pshaderBlend->bind(nullptr);
          glActiveTexture(GL_TEXTURE0);
          auto texture = pcontextSource->m_pframebuffer->m_tex;
          glBindTexture(GL_TEXTURE_2D, texture);
@@ -1279,7 +1279,7 @@ namespace gpu_opengl
 
 
       // Set viewport size (match texture dimensions)
-      glViewport(0, 0, ptexture->m_size.cx(), ptexture->m_size.cy());
+      glViewport(0, 0, ptexture->size().cx(), ptexture->size().cy());
 
       // Clear destination texture before blending
       glClearColor(0, 0, 0, 0); // Transparent
@@ -1292,7 +1292,7 @@ namespace gpu_opengl
    }
 
 
-   void renderer::blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, const ::int_rectangle& rectangleTarget)
+   void renderer::blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource)
    {
 
       ::cast < texture > ptextureDst = ptextureTarget;
@@ -1334,9 +1334,12 @@ namespace gpu_opengl
           1.0f,  1.0f,  1.0f, 1.0f,
       };
 
+
+      auto rectangleTarget = ptextureSource->m_rectangleTarget;
+
       glViewport(
          rectangleTarget.left(),
-         ptextureDst->m_size.cy() - rectangleTarget.bottom(),
+         ptextureDst->size().cy() - rectangleTarget.bottom(),
          rectangleTarget.width(),
          rectangleTarget.height());
 
@@ -1344,7 +1347,7 @@ namespace gpu_opengl
       glEnable(GL_SCISSOR_TEST);
       glScissor(
          rectangleTarget.left(),
-         ptextureDst->m_size.cy() - rectangleTarget.bottom(),
+         ptextureDst->size().cy() - rectangleTarget.bottom(),
          rectangleTarget.width(),
          rectangleTarget.height()
       );
@@ -1362,7 +1365,7 @@ namespace gpu_opengl
       glEnableVertexAttribArray(1); // texcoord
       glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
 
-      m_pshaderBlend2->bind();
+      m_pshaderBlend2->bind(nullptr);
 
       GLint uTexture = glGetUniformLocation(m_pshaderBlend2->m_ProgramID, "uTexture");
 

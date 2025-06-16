@@ -22,11 +22,19 @@ namespace gpu
    }
 
 
-   void texture::initialize_gpu_texture(::gpu::renderer * pgpurenderer, const ::int_size& size)
+   void texture::initialize_gpu_texture(::gpu::renderer * pgpurenderer, const ::int_rectangle& rectangleTarget)
    {
 
       m_pgpurenderer = pgpurenderer;
-      m_size = size;
+      m_rectangleTarget = rectangleTarget;
+
+   }
+
+
+   ::int_size texture::size()
+   {
+
+      return m_rectangleTarget.size();
 
    }
 
@@ -41,7 +49,7 @@ namespace gpu
       for (auto player : layera)
       {
 
-         blend(player->m_pgputexture, player->m_rectangleTarget);
+         blend(player->m_pgputextureTarget);
 
       }
 
@@ -51,15 +59,15 @@ namespace gpu
    void texture::blend(::gpu::layer* player)
    {
 
-      blend(player->m_pgputexture, player->m_rectangleTarget);
+      blend(player->m_pgputextureTarget);
 
    }
 
 
-   void texture::blend(::gpu::texture* ptexture, const ::int_rectangle& rectangleTarget)
+   void texture::blend(::gpu::texture* ptexture)
    {
 
-      m_pgpurenderer->blend(this, ptexture, rectangleTarget);
+      m_pgpurenderer->blend(this, ptexture);
 
    }
 

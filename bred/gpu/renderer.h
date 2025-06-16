@@ -187,7 +187,7 @@ namespace gpu
 
       virtual void blend(::gpu::renderer* prenderer);
       virtual void clear(::gpu::texture* ptexture);
-      virtual void blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, const ::int_rectangle& rectangleTarget);
+      virtual void blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
 
       virtual void soft_restore_context();
 
@@ -211,7 +211,7 @@ namespace gpu
 
 
       virtual ::pointer < ::gpu::texture > create_texture(const ::int_size& size);
-      virtual void take_snapshot(layer* player, const ::int_rectangle& rectangleTarget);
+      virtual void take_snapshot(layer* player);
      
 
    };

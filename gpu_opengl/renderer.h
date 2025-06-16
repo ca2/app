@@ -73,7 +73,7 @@ namespace gpu_opengl
 
       void blend(::gpu::renderer* prendererSource) override;
       void clear(::gpu::texture* ptextureSource) override;
-      void blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, const ::int_rectangle& rectangleTarget) override;
+      void blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
 
       void defer_update_renderer() override;
 

@@ -164,14 +164,12 @@ namespace gpu
    }
 
 
-   void renderer::take_snapshot(layer* player, const ::int_rectangle& rectangleTarget)
+   void renderer::take_snapshot(layer* player)
    {
 
       auto ptextureSource = m_pgpurendertarget->current_texture();
 
-      __defer_construct(player->m_pgputexture);
-
-      player->m_pgputexture->initialize_gpu_texture(this, rectangleTarget.size());
+      player->m_pgputextureTarget->initialize_gpu_texture(this, player->m_pgputextureTarget->m_rectangleTarget);
 
       m_pgpucontext->on_take_snapshot(player, ptextureSource);
 
@@ -717,7 +715,7 @@ namespace gpu
    }
 
 
-   void renderer::blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, const ::int_rectangle& rectangleTarget)
+   void renderer::blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource)
    {
 
       throw::interface_only();

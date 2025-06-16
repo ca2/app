@@ -43,6 +43,7 @@ namespace gpu
          e_descriptor_set_slot_per_pass,
          e_descriptor_set_slot_material,
          e_descriptor_set_slot_local,
+         e_descriptor_set_slot_s1,
          e_descriptor_set_shader_resource_view_and_sampler,
 
       };
@@ -71,6 +72,9 @@ namespace gpu
       ::comparable_array<enum_descriptor_set_slot>   m_edescriptorsetslota;
       ::particle_pointer         m_pLocalDescriptorSet;
       ::particle_pointer         m_pVertexInput;
+
+
+
 
       shader();
       ~shader() override;
@@ -136,7 +140,7 @@ namespace gpu
       //virtual void on_initialize_shader();
 
 
-      virtual void bind();
+      virtual void bind(::gpu::texture * pgputexture);
       virtual void unbind();
 
 
@@ -161,6 +165,7 @@ namespace gpu
       virtual void set_mat2(const ::scoped_string& scopedstrName, const ::glm::mat2& a);
       virtual void set_mat3(const ::scoped_string& scopedstrName, const ::glm::mat3& a);
       virtual void set_mat4(const ::scoped_string& scopedstrName, const ::glm::mat4& a);
+
 
 
    };

@@ -1023,7 +1023,7 @@ namespace gpu
 
       player->take_snapshot();
 
-      return player->m_rectangleTarget;
+      return player->m_pgputextureTarget->m_rectangleTarget;
 
    }
 

@@ -725,7 +725,7 @@ void main() {
 
                      }
 
-                     m_pshaderCopyTextureOnEndDraw->bind();
+                     m_pshaderCopyTextureOnEndDraw->bind(nullptr);
 
                      if (1)
                      {

@@ -70,7 +70,7 @@ namespace gpu
 
          __defer_construct(ptexture);
 
-         if (ptexture->m_size != m_size && !m_size.is_empty())
+         if (ptexture->size() != m_size && !m_size.is_empty())
          {
 
             ptexture->initialize_gpu_texture(m_pgpurenderer, m_size);
@@ -109,6 +109,14 @@ namespace gpu
 
    void render_target::on_after_end_draw_frame(::draw2d_gpu::graphics* pgraphics)
    {
+
+
+   }
+
+   
+   void render_target::on_end_render(::gpu::frame* pgpurender)
+   {
+
 
 
    }

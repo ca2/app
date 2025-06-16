@@ -177,6 +177,7 @@ error_rtf_section_format,
 error_rtf_paragraph_format,
 error_rtf_image,
 error_rtf_table,
+error_opengl,
 
 
 

@@ -33,15 +33,25 @@ namespace gpu
    void render_target::initialize_render_target(::gpu::renderer* pgpurenderer, const ::int_size& size, ::pointer <::gpu::render_target>previous)
    {
 
+      m_bInit = false;
       m_pgpurenderer = pgpurenderer;
       m_size = size;
-      m_prendertargetviewOld = previous;
+      m_prendertargetOld = previous;
 
    }
 
 
    void render_target::init()
    {
+
+      if (m_bInit)
+      {
+
+         return;
+
+      }
+
+      m_bInit = true;
 
       createImages();
 

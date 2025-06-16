@@ -46,23 +46,6 @@ namespace gpu_opengl
    }
 
 
-   //void context::initialize(::particle * pparticle)
-   //{
-
-   //   ::e_status estatus = ::object::initialize(pparticle);
-
-   //   if (!estatus)
-   //   {
-
-   //      return estatus;
-
-   //   }
-
-   //   return estatus;
-
-   //}
-
-
    void context::draw()
    {
 
@@ -733,11 +716,11 @@ namespace gpu_opengl
    {
 
       // Clear the screen 
-      GLCheckError();
+      GLCheckError("");
       //   glClearColor(0.678f, 0.847f, 0.902f, 1.0f);//
       glClearColor(color.f32_red(), color.f32_green(), color.f32_blue(), color.f32_opacity());//
       glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-      GLCheckError();
+      GLCheckError("");
 
    }
 
@@ -783,6 +766,65 @@ namespace gpu_opengl
       }
 
       glBindBuffer(GL_UNIFORM_BUFFER, 0);
+
+   }
+
+
+   void context::copy(::gpu::texture* ptextureParam)
+   {
+
+      ::cast < texture > ptexture = ptextureParam;
+
+
+      GLuint framebuffer;
+      glGenFramebuffers(1, &framebuffer);
+      glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+
+      // Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
+      glFramebufferTexture2D(
+         GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
+         ptexture->m_gluTextureID,
+         0);
+
+      if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+         printf("Framebuffer not complete!\n");
+         glDeleteFramebuffers(1, &framebuffer);
+         return;
+      }
+
+
+      glReadBuffer(GL_COLOR_ATTACHMENT0);
+
+      // Bind default framebuffer as draw target
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+
+
+      glViewport(
+         0,
+         0,
+         m_rectangle.width(),
+         m_rectangle.height());
+
+      // Optional: scissor if you want to limit drawing region
+      glEnable(GL_SCISSOR_TEST);
+      glScissor(
+         0,
+         0,
+         m_rectangle.width(),
+         m_rectangle.height()
+      );
+
+
+      // Blit from source to default framebuffer
+      glBlitFramebuffer(
+         0, 0, ptexture->m_size.cx(), ptexture->m_size.cy(), // src rect
+         0, 0, m_rectangle.width(), m_rectangle.height(), // dst rect
+         GL_COLOR_BUFFER_BIT, GL_NEAREST);
+
+      glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
+
+      glDeleteFramebuffers(1, &framebuffer);
+
 
    }
 
@@ -865,31 +907,48 @@ namespace gpu_opengl
 
       ::cast < texture > ptextureSrc = ptextureSource;
 
+      auto textureSrc = ptextureSrc->m_gluTextureID;
+
+      auto textureDst = ptextureDst->m_gluTextureID;
+
       GLuint fboSrc, fboDst;
       glGenFramebuffers(1, &fboSrc);
+      GLCheckError("");
       glGenFramebuffers(1, &fboDst);
+      GLCheckError("");
 
       // Attach source texture to fboSrc
       glBindFramebuffer(GL_READ_FRAMEBUFFER, fboSrc);
+      GLCheckError("");
       glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, 
-         GL_TEXTURE_2D, ptextureSrc->m_gluTextureID, 0);
+         GL_TEXTURE_2D, textureSrc, 0);
+      GLCheckError("");
 
       // Attach dest texture to fboDst
       glBindFramebuffer(GL_DRAW_FRAMEBUFFER, fboDst);
+      GLCheckError("");
       glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-         GL_TEXTURE_2D, ptextureDst->m_gluTextureID, 0);
+         GL_TEXTURE_2D, textureDst, 0);
+      GLCheckError("");
+
+      auto sizeSrc = ptextureSrc->m_size;
+      auto sizeDst = ptextureDst->m_size;
 
       // Blit from source to destination
       glBlitFramebuffer(
-         0, 0, ptextureSrc->m_size.cx(), ptextureSrc->m_size.cy(),
-         0, 0, ptextureDst->m_size.cx(), ptextureDst->m_size.cy(),
+         0, 0, sizeSrc.cx(), sizeSrc.cy(),
+         0, 0, sizeDst.cx(), sizeDst.cy(),
          GL_COLOR_BUFFER_BIT, GL_NEAREST
       );
+      GLCheckError("");
 
       // Cleanup
       glBindFramebuffer(GL_FRAMEBUFFER, 0);
+      GLCheckError("");
       glDeleteFramebuffers(1, &fboSrc);
+      GLCheckError("");
       glDeleteFramebuffers(1, &fboDst);
+      GLCheckError("");
 
 
    }

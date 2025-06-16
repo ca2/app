@@ -739,6 +739,7 @@
     <ClInclude Include="_.h" />
     <ClInclude Include="factory_exchange.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="_gpu_opengl.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="assimp.cpp" />
@@ -800,6 +801,7 @@
     <ClCompile Include="program.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="_.cpp" />
+    <ClCompile Include="_gpu_opengl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc" />

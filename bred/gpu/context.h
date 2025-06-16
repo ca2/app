@@ -66,18 +66,18 @@ namespace gpu
          e_type_generic,
          e_type_draw2d,
          e_type_graphics3d,
-         e_type_window
+         e_type_window,
       };
 
-      enum_type         m_etype = e_type_none;
 
 
       //bool m_bOffscreen = true;
-      enum_output m_eoutput = e_output_none;
+      enum_type                              m_etype;
+      enum_output                            m_eoutput;
+      ::gpu::enum_scene                      m_escene;
       //enum_output m_eoutputContextDraw2d = e_output_gpu_buffer;
       //enum_output m_eoutputContextEngine = e_output_gpu_buffer;
 
-      ::gpu::enum_scene m_escene;
       ::pointer<::gpu::device>               m_pgpudevice;
       //::int_rectangle                        m_rectangleNew;
       ::int_rectangle                        m_rectangle;
@@ -113,7 +113,7 @@ namespace gpu
 
       virtual void create_window_context(::gpu::device* pgpudevice, ::windowing::window * pwindow);
 
-      virtual void create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::int_size& size);
+      virtual void create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene & escene, const ::int_size& size);
 
       /// <summary>
       ///  a draw2d context is a offscreen context that is used for drawing 2d graphics
@@ -144,6 +144,7 @@ namespace gpu
 
       virtual void do_on_context(const ::procedure & procedure);
       virtual void send_on_context(const ::procedure & procedure);
+      virtual void top_send_on_context(::gpu::context * pcontextInnerStart, bool bForDrawing, const ::procedure& procedure);
       
       virtual bool create_offscreen_graphics_for_swap_chain_blitting(::draw2d_gpu::graphics * pgraphics, const ::int_size& size = {});
 
@@ -220,7 +221,7 @@ namespace gpu
       virtual void create_global_ubo(int iSize, int iFrameCount);
       virtual void update_global_ubo(const ::block& block);
 
-      
+      virtual void copy(::gpu::texture* ptexture);
 
 
       virtual void on_create_texture(texture * ptexture);

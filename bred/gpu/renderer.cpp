@@ -25,7 +25,6 @@ namespace gpu
    renderer::renderer()
    {
 
-      m_eoutput = ::gpu::e_output_none;
 
    }
 
@@ -57,14 +56,6 @@ namespace gpu
 
 
 #endif
-
-
-   //::int_rectangle renderer::rectangle()
-   //{
-
-   //   return m_rectangle;
-
-   //}
 
 
    bool renderer::render_step()
@@ -138,16 +129,16 @@ namespace gpu
    }
 
 
-   void renderer::initialize_renderer(::gpu::context * pgpucontext, ::gpu::enum_output eoutput, ::gpu::enum_scene escene)
+   void renderer::initialize_renderer(::gpu::context * pgpucontext)
    {
 
       m_pgpucontext = pgpucontext;
 
       //m_pgpucontext->m_prenderer = this;
 
-      m_eoutput = eoutput;
+      //m_eoutput = eoutput;
 
-      m_escene = escene;
+      //m_escene = escene;
 
       //::particle::initialize(pparticle);
 
@@ -717,6 +708,21 @@ namespace gpu
    }
 
 
+   void renderer::clear(::gpu::texture* ptexture)
+   {
+
+
+   }
+
+
+   void renderer::blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, const ::int_rectangle& rectangleTarget)
+   {
+
+
+   }
+
+
+
    void renderer::soft_restore_context()
    {
 
@@ -767,10 +773,21 @@ namespace gpu
    }
 
 
+   void renderer::on_start_layer(layer* player)
+   {
+
+
+   }
+
+
    void renderer::start_frame()
    {
 
-      auto eoutput = m_eoutput;
+      auto etype = m_pgpucontext->m_etype;
+
+      auto eoutput = m_pgpucontext->m_eoutput;
+
+      auto escene = m_pgpucontext->m_escene;
 
       defer_update_renderer();
 

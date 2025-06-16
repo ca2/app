@@ -37,7 +37,7 @@ namespace gpu_opengl
       createFramebuffers();
       createSyncObjects();
       
-      m_prendertargetviewOld = nullptr;
+      m_prendertargetOld = nullptr;
 
    }
 

@@ -47,7 +47,7 @@ namespace gpu
       ::pointer < ::gpu::approach >          m_pgpuapproach;
       ::pointer < ::windowing::window >      m_pwindow;
       ::pointer < ::gpu::context >           m_pgpucontextCurrent4;
-      ::pointer < ::gpu::context >           m_pgpucontextMain;
+      //::pointer < ::gpu::context >           m_pgpucontextMain;
       ::pointer < ::gpu::context >           m_pgpucontextMainWindow;
       //::int_size                             m_sizeNew;
       //::int_size                             m_size;
@@ -108,13 +108,13 @@ namespace gpu
 
       virtual ::pointer < ::gpu::context > create_window_context(::windowing::window* pwindow);
 
-      virtual ::pointer < ::gpu::context > create_gpu_context(const ::gpu::enum_output& eoutput, const ::int_size & size);
+      virtual ::pointer < ::gpu::context > create_gpu_context(const ::gpu::enum_output& eoutput,  const ::gpu::enum_scene & escene, const ::int_size & size);
 
       virtual ::pointer < ::gpu::context > create_draw2d_context(const ::gpu::enum_output& eoutput, const ::int_size & size);
 
       //virtual ::pointer < ::gpu::context > create_draw2d_off_screen_context(const ::int_size & size);
 
-      virtual context* get_main_context();
+      //virtual context* get_main_context();
 
       virtual bool make_current(::gpu::context* pgpucontext);
 

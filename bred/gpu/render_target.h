@@ -12,6 +12,7 @@ namespace gpu
    public:
 
 
+      bool m_bInit = false;
       static constexpr int MAX_FRAMES_IN_FLIGHT = 2;
 
       bool m_bDepthStencil = false;
@@ -24,7 +25,7 @@ namespace gpu
 
       ::pointer < renderer >  m_pgpurenderer;
 
-      ::pointer<render_target> m_prendertargetviewOld;
+      ::pointer<render_target> m_prendertargetOld;
 
 
       

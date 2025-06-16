@@ -83,6 +83,9 @@
     <ClInclude Include="texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="_gpu_opengl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -152,6 +155,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_gpu_opengl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

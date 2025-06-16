@@ -71,6 +71,7 @@ namespace graphics3d
 		virtual void defer_start(::user::graphics3d * pusergraphics3d, const ::int_rectangle& rectangle);
 
 		virtual void on_begin_frame();
+		virtual void on_end_frame();
 
 		virtual void update_global_ubo(::gpu::context* pgpucontext);
 

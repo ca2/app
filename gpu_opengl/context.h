@@ -100,6 +100,8 @@ namespace gpu_opengl
       void update_global_ubo(const ::block& block) override;
 
 
+      void copy(::gpu::texture* ptexture) override;
+
       
       void make_current() override;
 

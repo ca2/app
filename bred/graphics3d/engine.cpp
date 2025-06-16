@@ -111,6 +111,8 @@ namespace graphics3d
 
          prenderer->on_end_render(pframe);
 
+         on_end_frame();
+
          prenderer->endFrame();
 
       }
@@ -148,6 +150,13 @@ namespace graphics3d
    }
 
    
+   void engine::on_end_frame()
+   {
+
+
+   }
+
+
    //glm::vec3 engine::camera_pole_up()
    //{
    //   
@@ -438,9 +447,9 @@ namespace graphics3d
 
       auto pgpudevice = pgpuapproach->get_gpu_device();
 
-      auto pgpucontext = pgpudevice->get_main_context();
+      //auto pgpucontext = pgpudevice->get_main_context();
 
-      pgpucontext->m_pengine = this;
+      //pgpucontext->m_pengine = this;
 
       //auto prenderer = m_pgpucontextGraphics3D->m_pgpurendererOutput2;
 
@@ -584,10 +593,11 @@ namespace graphics3d
       //   rectanglePlacement
       //);
 
-      m_pgpucontextGraphics3D = pgpudevice->create_gpu_context(
-         get_engine_gpu_eoutput(),
-         rectanglePlacement.size()
-      );
+      //m_pgpucontextGraphics3D = pgpudevice->create_gpu_context(
+      //   get_engine_gpu_eoutput(),
+      //   ::gpu::e_scene_3d,
+      //   rectanglePlacement.size()
+      //);
 
       //m_pgpurendererGraphics3D = pgpucontext->graphics3d_renderer();
 
@@ -621,7 +631,7 @@ namespace graphics3d
 
       set_ok_flag();
 
-      m_pgpucontextGraphics3D->post([this, rectanglePlacement]()
+      get_gpu_context()->post([this, rectanglePlacement]()
          {
 
             m_pusergraphics3d->on_load_engine();
@@ -667,7 +677,10 @@ namespace graphics3d
 
          auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device();
 
-         m_pgpucontextGraphics3D = pgpudevice->create_gpu_context(::gpu::e_output_gpu_buffer, m_rectanglePlacement.size());
+         m_pgpucontextGraphics3D = pgpudevice->create_gpu_context(
+            get_engine_gpu_eoutput(),
+            ::gpu::e_scene_3d,
+            m_rectanglePlacement.size());
 
       }
 
@@ -746,7 +759,9 @@ namespace graphics3d
    void engine::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
-      if (get_gpu_context()->get_gpu_renderer()->m_eoutput == ::gpu::e_output_cpu_buffer)
+      auto eoutput = get_gpu_context()->m_eoutput;
+
+      if (eoutput == ::gpu::e_output_cpu_buffer)
       {
 
          auto pgpucontext = m_pgpucontextGraphics3D;

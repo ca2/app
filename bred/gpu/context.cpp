@@ -24,7 +24,7 @@ namespace gpu
 {
 
 
-   extern thread_local device * t_pgpudevice;
+   extern thread_local device* t_pgpudevice;
 
    context_guard::context_guard(context* pcontext) :
       m_pcontext(pcontext)
@@ -46,13 +46,13 @@ namespace gpu
    rear_guard::rear_guard(context* pcontext)
    {
 
-      if(::is_null(pcontext))
+      if (::is_null(pcontext))
       {
 
          m_itaskUpper = {};
 
          m_pcontextUpper = nullptr;
-         
+
          return;
 
       }
@@ -129,7 +129,11 @@ namespace gpu
    context::context()
    {
 
-      m_etype = e_type_generic;
+      m_eoutput = ::gpu::e_output_none;
+
+      m_etype = e_type_undefined;
+
+      m_escene = e_scene_none;
 
       m_bCreated = false;
 
@@ -194,7 +198,7 @@ namespace gpu
    }
 
 
-   void context::create_window_buffer(::windowing::window * pwindow)
+   void context::create_window_buffer(::windowing::window* pwindow)
    {
 
       ::cast < device > pgpudevice = m_pgpudevice;
@@ -211,7 +215,7 @@ namespace gpu
    }
 
 
-   void context::_create_window_buffer(::windowing::window * pwindow)
+   void context::_create_window_buffer(::windowing::window* pwindow)
    {
 
    }
@@ -303,10 +307,17 @@ namespace gpu
    }
 
 
-   void context::create_window_context(::gpu::device* pgpudevice, ::windowing::window * pwindow)
+   void context::create_window_context(::gpu::device* pgpudevice, ::windowing::window* pwindow)
    {
 
-      m_etype = e_type_draw2d;
+      if (m_etype != e_type_window)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      m_escene = e_scene_2d;
 
       branch_synchronously();
 
@@ -326,10 +337,12 @@ namespace gpu
    }
 
 
-   void context::create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::int_size& size)
+   void context::create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, const ::int_size& size)
    {
 
-      m_etype = e_type_draw2d;
+      m_eoutput = eoutput;
+
+      m_escene = escene;
 
       branch_synchronously();
 
@@ -347,10 +360,12 @@ namespace gpu
    }
 
 
-   void context::create_draw2d_context(::gpu::device* pgpudevice, const ::gpu::enum_output & eoutput, const ::int_size & size)
+   void context::create_draw2d_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::int_size& size)
    {
 
       m_etype = e_type_draw2d;
+
+      m_escene = e_scene_2d;
 
       branch_synchronously();
 
@@ -432,6 +447,25 @@ namespace gpu
    {
 
       ASSERT(is_current_task());
+
+      if (m_etype == e_type_window)
+      {
+
+         task_set_name("gctx::window");
+
+      }
+      else if (m_etype == e_type_graphics3d)
+      {
+
+         task_set_name("gctx::3d");
+
+      }
+      else
+      {
+
+         task_set_name("gctx::unknown");
+
+      }
 
       m_pgpudevice = pgpudevice;
 
@@ -516,12 +550,12 @@ namespace gpu
    }
 
 
-   ::gpu::cpu_buffer * context::get_cpu_buffer()
+   ::gpu::cpu_buffer* context::get_cpu_buffer()
    {
 
-      if(!m_pcpubuffer)
+      if (!m_pcpubuffer)
       {
-      
+
          create_cpu_buffer(m_rectangle.size());
 
       }
@@ -580,7 +614,7 @@ namespace gpu
    }
 
 
-   void context::do_on_context(const ::procedure & procedure)
+   void context::do_on_context(const ::procedure& procedure)
    {
 
       context_guard contextguard(this);
@@ -607,6 +641,75 @@ namespace gpu
    }
 
 
+   void context::top_send_on_context(::gpu::context* pcontextInnerStart, bool bForDrawing, const ::procedure& procedure)
+   {
+
+      if (m_etype != e_type_window)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device();
+
+      pgpudevice->start_stacking_layers();
+
+      send_on_context([this, pcontextInnerStart, bForDrawing, procedure]()
+         {
+
+            get_gpu_renderer()->do_on_frame([this, pcontextInnerStart, bForDrawing, procedure]()
+               {
+
+                  pcontextInnerStart->send_on_context([this, pcontextInnerStart, bForDrawing, procedure]()
+                     {
+
+                        if (bForDrawing)
+                        {
+
+                           auto prenderer = pcontextInnerStart->get_gpu_renderer();
+
+                           prenderer->do_on_frame([procedure]()
+                              {
+
+                                 procedure();
+
+                              });
+
+                        }
+                        else
+                        {
+
+                           procedure();
+
+                        }
+
+                     });
+
+                  auto playera = m_pgpudevice->m_playera;
+
+                  if (playera)
+                  {
+
+                     auto prenderer = get_gpu_renderer();
+
+                     auto prendertarget = prenderer->m_pgpurendertarget;
+
+                     auto ptexture = prendertarget->current_texture();
+
+                     ptexture->merge_layers(m_pgpudevice->m_playera);
+
+                     this->copy(ptexture);
+
+                  }
+
+               });
+
+         });
+
+   }
+
+
    bool context::create_offscreen_graphics_for_swap_chain_blitting(::draw2d_gpu::graphics* pgraphics, const ::int_size& size)
    {
 
@@ -621,11 +724,9 @@ namespace gpu
       if (!m_pgpurendererOutput2)
       {
 
-         ::gpu::enum_scene escene = m_escene;
-
          __øconstruct(m_pgpurendererOutput2);
 
-         m_pgpurendererOutput2->initialize_renderer(this, m_eoutput, escene);
+         m_pgpurendererOutput2->initialize_renderer(this);
 
          m_pgpurendererOutput2->m_iFrameCount2 = ::gpu::render_target::MAX_FRAMES_IN_FLIGHT;
 
@@ -977,6 +1078,13 @@ namespace gpu
    }
 
 
+   void context::copy(::gpu::texture* ptexture)
+   {
+
+
+   }
+
+
    void context::on_create_texture(texture* ptexture)
    {
 
@@ -1072,7 +1180,7 @@ namespace gpu
 
    }
 
-   
+
    //render_target* context::draw2d_render_target()
    //{
 

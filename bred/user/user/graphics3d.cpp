@@ -22,10 +22,8 @@
 #include "bred/gpu/renderer.h"
 
 
-
 namespace user
 {
-
 
 
    graphics3d::graphics3d()
@@ -44,12 +42,7 @@ namespace user
    {
 
    }
-   //::block graphics3d::global_ubo()
-   //{
 
-   //   return {};
-
-   //}
 
    void graphics3d::install_message_routing(::channel* pchannel)
    {

@@ -10,7 +10,6 @@ namespace gpu
 {
 
 
-
    texture::texture()
    {
 
@@ -35,9 +34,11 @@ namespace gpu
    void texture::merge_layers(::pointer_array < ::gpu::layer >* playera)
    {
 
+      //return;
+
       auto& layera = *playera;
 
-      for (auto& player : layera)
+      for (auto player : layera)
       {
 
          blend(player->m_pgputexture, player->m_rectangleTarget);

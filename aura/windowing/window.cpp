@@ -8200,6 +8200,15 @@ namespace windowing
 
       //bool bForceUpdateBuffer = false;
 
+      if (!m_pgraphicsthread->is_thread())
+      {
+
+         warning() << "graphics thread is not a thread but posting redraw";
+
+         return;
+
+      }
+
       m_pgraphicsthread->post_redraw();
 
       //user_interaction()->post_message(::e_message_redraw, bForceUpdateBuffer);

@@ -3,7 +3,6 @@
 #include "texture.h"
 #include "renderer.h"
 
-
 namespace gpu_opengl
 {
 
@@ -25,15 +24,36 @@ namespace gpu_opengl
    void texture::initialize_gpu_texture(::gpu::renderer* prenderer, const ::int_size& size) //, bool bCreateRenderTargetView, bool bCreateShaderResourceView)
    {
 
+      if (m_size == size)
+      {
+
+         return;
+
+      }
+
       ::gpu::texture::initialize_gpu_texture(prenderer, size);
 
-      glGenTextures(1, &m_gluTextureID);             // 1. Generate a texture ID
+      if (!m_gluTextureID)
+      {
+
+         glGenTextures(1, &m_gluTextureID);             // 1. Generate a texture ID
+         GLCheckError("");
+
+      }
+
       glBindTexture(GL_TEXTURE_2D, m_gluTextureID);  // 2. Bind the texture to the 2D texture target
+      GLCheckError("");
+
+
 
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+      GLCheckError("");
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+      GLCheckError("");
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+      GLCheckError("");
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+      GLCheckError("");
 
       ::memory memory;
 
@@ -48,6 +68,7 @@ namespace gpu_opengl
          m_size.cx(),
          m_size.cy(),
          0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+      GLCheckError("");
 
       // Optional: generate mipmaps
       // glGenerateMipmap(GL_TEXTURE_2D);
@@ -55,6 +76,7 @@ namespace gpu_opengl
       //free(data);
 
       glBindTexture(GL_TEXTURE_2D, 0);  // Unbind when done
+      GLCheckError("");
 
    }
 
@@ -62,7 +84,7 @@ namespace gpu_opengl
    void texture::blend(::gpu::texture* ptexture, const ::int_rectangle& rectangleTarget)
    {
 
-      
+      m_pgpurenderer->blend(this, ptexture, rectangleTarget);
 
    }
 

@@ -6,7 +6,9 @@
 #include "layer.h"
 #include "render.h"
 #include "renderer.h"
+#include "render_target.h"
 #include "swap_chain.h"
+#include "texture.h"
 #include "types.h"
 //#include "_gpu.h"
 #include "acme/exception/interface_only.h"
@@ -132,7 +134,7 @@ namespace gpu
    }
 
 
-   ::pointer < ::gpu::context > device::create_gpu_context(const ::gpu::enum_output& eoutput, const ::int_size& size)
+   ::pointer < ::gpu::context > device::create_gpu_context(const ::gpu::enum_output& eoutput, const ::gpu::enum_scene & escene, const ::int_size& size)
    {
 
       auto pgpucontext = allocate_context();
@@ -146,36 +148,36 @@ namespace gpu
 
       pgpucontext->m_pgpudevice = this;
 
-      pgpucontext->create_gpu_context(this, eoutput, size);
+      pgpucontext->create_gpu_context(this, eoutput, escene, size);
 
       return pgpucontext;
 
    }
 
 
-   ::gpu::context* device::get_main_context()
-   {
+   //::gpu::context* device::get_main_context()
+   //{
 
-      if (__defer_construct(m_pgpucontextMain))
-      {
+   //   if (__defer_construct(m_pgpucontextMain))
+   //   {
 
-         ::cast < ::user::interaction > puserinteractionMain = m_papplication->m_pacmeuserinteractionMain;
+   //      ::cast < ::user::interaction > puserinteractionMain = m_papplication->m_pacmeuserinteractionMain;
 
-         auto pwindowMain = puserinteractionMain->window();
+   //      auto pwindowMain = puserinteractionMain->window();
 
-         auto rectangleMainWindow = pwindowMain->get_window_rectangle();
+   //      auto rectangleMainWindow = pwindowMain->get_window_rectangle();
 
-         m_pgpucontextMain->create_gpu_context(
-               this,
-               ::gpu::e_output_gpu_buffer,
-               rectangleMainWindow.size()
-            );
+   //      m_pgpucontextMain->create_gpu_context(
+   //            this,
+   //            ::gpu::e_output_gpu_buffer,
+   //            rectangleMainWindow.size()
+   //         );
 
-      }
+   //   }
 
-      return m_pgpucontextMain;
+   //   return m_pgpucontextMain;
 
-   }
+   //}
 
 
    ::pointer < ::gpu::context > device::create_draw2d_context(const ::gpu::enum_output& eoutput, const ::int_size& size)
@@ -997,6 +999,17 @@ namespace gpu
       __defer_construct_new(player);
 
       player->initialize_gpu_layer(pgpurenderer, rectangleHost);
+
+      pgpurenderer->defer_update_renderer();
+
+      if (pgpurenderer->m_pgpurendertarget)
+      {
+
+         player->m_pgputextureSource = pgpurenderer->m_pgpurendertarget->current_texture();
+
+      }
+
+      pgpurenderer->on_start_layer(player);
 
    }
 

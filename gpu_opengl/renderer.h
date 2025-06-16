@@ -22,10 +22,13 @@ namespace gpu_opengl
       int instanceCount = 0;
 
       ::pointer < ::gpu::shader > m_pshaderBlend; 
+      ::pointer < ::gpu_opengl::shader > m_pshaderBlend2;
 
       GLuint m_vaoQuadBlend, m_vboQuadBlend;
 
       ::int_size m_sizeRenderer;
+
+      GLuint m_iFrameBufferRenderer;
 
 
       renderer();
@@ -37,6 +40,8 @@ namespace gpu_opengl
       void on_context_resize() override;
 
       ::pointer < ::gpu::frame > beginFrame() override;
+
+      void _on_begin_render();
 
       virtual void on_begin_render(::gpu::frame* pframe);
 
@@ -64,8 +69,11 @@ namespace gpu_opengl
 
       //virtual void on_layout(int cx, int cy);
 
-      void blend(::gpu::renderer* prendererSource) override;
+      void on_start_layer(::gpu::layer* player) override;
 
+      void blend(::gpu::renderer* prendererSource) override;
+      void clear(::gpu::texture* ptextureSource) override;
+      void blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, const ::int_rectangle& rectangleTarget) override;
 
       void defer_update_renderer() override;
 

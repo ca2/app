@@ -49,8 +49,8 @@ namespace gpu
       ::collection::count                   m_iFrameCount2 = -1;
 
 
-      ::gpu::enum_output                    m_eoutput;
-      ::gpu::enum_scene                     m_escene;
+      //::gpu::enum_output                    m_eoutput;
+      //::gpu::enum_scene                     m_escene;
       //bool                                m_bPendingShaderUpdate;
       //string                              m_strProjection;
       //string                              m_strFragment;
@@ -101,7 +101,7 @@ namespace gpu
 
       virtual void set_single_frame();
 
-      virtual void initialize_renderer(::gpu::context * pgpucontext, ::gpu::enum_output eoutput, ::gpu::enum_scene escene);
+      virtual void initialize_renderer(::gpu::context * pgpucontext);
 
       //virtual void initialize_render(::user::interaction * puserinteraction);
       ///// Initialization routines
@@ -186,7 +186,8 @@ namespace gpu
       //virtual void on_graphics_end_draw(::user::interaction * puserinteraction);
 
       virtual void blend(::gpu::renderer* prenderer);
-
+      virtual void clear(::gpu::texture* ptexture);
+      virtual void blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, const ::int_rectangle& rectangleTarget);
 
       virtual void soft_restore_context();
 
@@ -200,6 +201,9 @@ namespace gpu
       //virtual void take_snapshot(layer * player, const ::int_rectangle& rectangleTarget);
       virtual ::int_rectangle end_layer();
       //virtual void merge_layers(::pointer_array < layer > * playera);
+
+
+      virtual void on_start_layer(layer * player);
 
 
       virtual void start_frame();

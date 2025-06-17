@@ -216,7 +216,7 @@
 //
 //		auto result = S_OK;
 //
-//		uint32_t* imageIndex = &currentImageIndex;
+//		uint32_t* imageIndex = &m_uCurrentSwapChainImage;
 //
 //		//auto currentFrame = m_pgpurenderer->get_frame_index();
 //
@@ -285,7 +285,7 @@
 //	//{
 //
 //
-//	//	uint32_t* imageIndex = &currentImageIndex;
+//	//	uint32_t* imageIndex = &m_uCurrentSwapChainImage;
 //
 //	//	auto currentFrame = m_pgpurenderer->get_frame_index();
 //
@@ -380,7 +380,7 @@
 //	int swap_chain_render_target::get_image_index() const
 //	{
 //
-//		return currentImageIndex;
+//		return m_uCurrentSwapChainImage;
 //
 //	}
 //

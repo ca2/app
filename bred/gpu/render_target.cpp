@@ -82,6 +82,14 @@ namespace gpu
    }
 
 
+   int render_target::get_frame_index()
+   {
+
+      return m_pgpurenderer->_default_get_frame_index();
+
+   }
+
+
    texture * render_target::current_texture()
    {
 
@@ -89,7 +97,20 @@ namespace gpu
 
       auto etype = pgpucontext->m_etype;
 
-      auto iFrameIndex = m_pgpurenderer->get_frame_index();
+      int iFrameIndex;
+      
+      if (m_bBackBuffer)
+      {
+
+         iFrameIndex = m_pgpurenderer->_get_frame_index();
+
+      }
+      else
+      {
+
+         iFrameIndex = m_pgpurenderer->get_frame_index();
+
+      }
 
       auto size = m_texturea.size();
 

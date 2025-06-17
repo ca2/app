@@ -92,6 +92,7 @@ namespace gpu
       //::pointer < ::gpu::renderer >          m_pgpurendererDraw2d;
       //::pointer < ::gpu::renderer >          m_pgpurendererEngine;
       ::pointer < ::gpu::renderer >          m_pgpurendererOutput2;
+      ::pointer < ::gpu::renderer >          m_pgpurendererBackBuffer;
       ::pointer < ::gpu::renderer >          m_pgpurendererSwap;
       ::pointer_array < ::gpu::renderer >    m_gpurendereraDraw2d;
       ::pointer < ::graphics3d::engine >     m_pengine;
@@ -150,6 +151,7 @@ namespace gpu
 
 
       virtual ::gpu::renderer* get_gpu_renderer();
+      virtual ::gpu::renderer* back_buffer_gpu_renderer();
       ///virtual ::gpu::renderer* draw2d_renderer();
       //virtual ::gpu::renderer* graphics3d_renderer();
 
@@ -221,7 +223,7 @@ namespace gpu
       virtual void create_global_ubo(int iSize, int iFrameCount);
       virtual void update_global_ubo(const ::block& block);
 
-      virtual void copy(::gpu::texture* ptexture);
+      //virtual void copy(::gpu::texture* ptexture);
 
 
       virtual void on_create_texture(texture * ptexture);

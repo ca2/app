@@ -13,7 +13,7 @@ namespace gpu
 
 
       bool m_bInit = false;
-      static constexpr int MAX_FRAMES_IN_FLIGHT = 2;
+      bool m_bBackBuffer = false;
 
       bool m_bDepthStencil = false;
 
@@ -41,6 +41,9 @@ namespace gpu
 
       virtual void createImages();
 
+      
+      virtual int get_frame_index();
+    
 
       //virtual int get_image_index() const;
       size_t imageCount() { return m_texturea.size(); }

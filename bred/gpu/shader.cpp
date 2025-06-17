@@ -119,7 +119,14 @@ namespace gpu
 
    // activate the shader
    // ------------------------------------------------------------------------
-   void shader::bind(::gpu::texture * pgputexture)
+   void shader::bind()
+   {
+
+
+   }
+
+
+   void shader::bind(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
    {
 
 

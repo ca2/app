@@ -71,7 +71,6 @@ namespace gpu
 
       m_iFrameSerial2 = 0;
       m_iCurrentFrame2 = 0;
-      m_iFrameCount2 = 1;
       m_estate = e_state_single_frame;
 
    }
@@ -594,7 +593,23 @@ namespace gpu
    }
 
 
-   int renderer::get_frame_index() const
+   int renderer::get_frame_index()
+   {
+
+      return _default_get_frame_index();
+
+   }
+
+
+   int renderer::_get_frame_index()
+   {
+
+      return __default_get_frame_index();
+
+   }
+
+
+   int renderer::_default_get_frame_index()
    {
 
       assert(m_iFrameSerial2 >= 0
@@ -607,10 +622,18 @@ namespace gpu
    }
 
 
-   int renderer::get_frame_count() const
+   int renderer::__default_get_frame_index()
    {
 
-      return (int) m_iFrameCount2;
+      return (int)m_iCurrentFrame2;
+
+   }
+
+
+   int renderer::get_frame_count()
+   {
+
+      return (int) m_pgpurendertarget->m_texturea.size();
 
    }
 
@@ -691,6 +714,16 @@ namespace gpu
    }
 
 
+   render_target* renderer::back_buffer_render_target()
+   {
+
+      throw ::interface_only();
+
+      return nullptr;
+
+   }
+
+
    //void renderer::endDraw(::user::interaction* puserinteraction)
    //{
 
@@ -715,7 +748,15 @@ namespace gpu
    }
 
 
-   void renderer::blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource)
+   void renderer::copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
+   {
+
+      throw::interface_only();
+
+   }
+
+
+   void renderer::blend(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
    {
 
       throw::interface_only();
@@ -844,7 +885,7 @@ namespace gpu
       //   //   //m_pwindow->m_timeLastDrawGuard1.Now();
 
 
-      //   ////VkImage vkimage = prenderer->m_pvkcrenderpass->m_images[prenderer->currentImageIndex];
+      //   ////VkImage vkimage = prenderer->m_pvkcrenderpass->m_images[prenderer->m_uCurrentSwapChainImage];
 
       //   //::int_rectangle rectangle;
 

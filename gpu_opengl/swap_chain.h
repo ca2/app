@@ -14,7 +14,7 @@ namespace gpu_opengl
    public:
 
       //VkSwapchainKHR                m_vkswapchain;
-      //uint32_t                      currentImageIndex;
+      //uint32_t                      m_uCurrentSwapChainImage;
       ::pointer < ::gpu::context >  m_pgpucontextSwapChain;
       GLuint m_VAOFullScreenQuad;
       GLuint m_VBOFullScreenQuad;

@@ -105,7 +105,7 @@ namespace gpu_opengl
    //VkResult swap_chain::acquireNextImage()
    //{
 
-   //	uint32_t* imageIndex = &currentImageIndex;
+   //	uint32_t* imageIndex = &m_uCurrentSwapChainImage;
 
    //	auto currentFrame = m_pgpurenderer->get_frame_index();
 
@@ -173,7 +173,7 @@ namespace gpu_opengl
    //VkResult swap_chain::submitCommandBuffers(const VkCommandBuffer* buffers)
    //{
 
-   //	uint32_t* imageIndex = &currentImageIndex;
+   //	uint32_t* imageIndex = &m_uCurrentSwapChainImage;
 
    //	auto currentFrame = m_pgpurenderer->get_frame_index();
 
@@ -268,7 +268,7 @@ namespace gpu_opengl
    //int swap_chain::get_image_index() const
    //{
 
-   //	return currentImageIndex;
+   //	return m_uCurrentSwapChainImage;
 
    //}
 
@@ -725,7 +725,7 @@ void main() {
 
                      }
 
-                     m_pshaderCopyTextureOnEndDraw->bind(nullptr);
+                     m_pshaderCopyTextureOnEndDraw->bind();
 
                      if (1)
                      {

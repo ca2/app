@@ -195,7 +195,15 @@ namespace gpu_opengl
 
    // activate the shader
    // ------------------------------------------------------------------------
-   void shader::bind(::gpu::texture * pgputexture)
+   void shader::bind(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
+   {
+
+      bind();
+
+   }
+
+
+   void shader::bind()
    {
       
       glUseProgram(m_ProgramID);

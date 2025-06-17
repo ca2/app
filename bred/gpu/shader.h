@@ -140,7 +140,8 @@ namespace gpu
       //virtual void on_initialize_shader();
 
 
-      virtual void bind(::gpu::texture * pgputexture);
+      virtual void bind(::gpu::texture * pgputextureTarget, ::gpu::texture* pgputextureSource);
+      virtual void bind();
       virtual void unbind();
 
 

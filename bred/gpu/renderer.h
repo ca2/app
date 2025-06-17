@@ -17,6 +17,9 @@ namespace gpu
    public:
 
 
+      static constexpr int DEFAULT_FRAME_COUNT = 2;
+
+
       enum enum_state
       {
 
@@ -46,7 +49,7 @@ namespace gpu
 
       ::collection::index                   m_iCurrentFrame2 = -1;
       ::collection::index                   m_iFrameSerial2 = -1;
-      ::collection::count                   m_iFrameCount2 = -1;
+      ::collection::count                   m_iFrameCountRequest = DEFAULT_FRAME_COUNT;
 
 
       //::gpu::enum_output                    m_eoutput;
@@ -80,6 +83,8 @@ namespace gpu
       ::pointer < frame > m_pframe;
       enum_state m_estate = e_state_initial;
       ::pointer < render_target > m_pgpurendertarget;
+      ::pointer < render_target > m_pgpurendertargetBackBuffer;
+
 
       renderer();
       ~renderer() override;
@@ -158,8 +163,11 @@ namespace gpu
       virtual void on_global_transform();
       virtual void on_draw();
       //virtual void render();
-      virtual int get_frame_index() const;
-      virtual int get_frame_count() const;
+      virtual int get_frame_index();
+      virtual int get_frame_count();
+      virtual int _get_frame_index();
+      virtual int _default_get_frame_index();
+      virtual int __default_get_frame_index();
 
 
       virtual void on_new_frame();
@@ -183,11 +191,14 @@ namespace gpu
 
       virtual void defer_update_renderer();
 
+      virtual render_target* back_buffer_render_target();
+
       //virtual void on_graphics_end_draw(::user::interaction * puserinteraction);
 
       virtual void blend(::gpu::renderer* prenderer);
       virtual void clear(::gpu::texture* ptexture);
-      virtual void blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
+      virtual void copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource);
+      virtual void blend(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource);
 
       virtual void soft_restore_context();
 

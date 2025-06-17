@@ -695,15 +695,21 @@ namespace gpu
                   if (playera)
                   {
 
-                     auto prenderer = get_gpu_renderer();
+                     auto prendererSwapChain = get_gpu_renderer();
 
-                     auto prendertarget = prenderer->m_pgpurendertarget;
+                     auto iFrameIndex = prendererSwapChain->get_frame_index();
 
-                     auto ptexture = prendertarget->current_texture();
+                     auto prendertargetBackBuffer = prendererSwapChain->back_buffer_render_target();
 
-                     ptexture->merge_layers(m_pgpudevice->m_playera);
+                     auto ptextureBackBuffer = prendertargetBackBuffer->current_texture();
 
-                     this->copy(ptexture);
+                     ptextureBackBuffer->merge_layers(m_pgpudevice->m_playera);
+
+                     auto prendertargetSwapChain = prendererSwapChain->m_pgpurendertarget;
+
+                     auto ptextureSwapChain = prendertargetSwapChain->current_texture();
+
+                     prendererSwapChain->copy(ptextureSwapChain, ptextureBackBuffer);
 
                   }
 
@@ -732,9 +738,32 @@ namespace gpu
 
          m_pgpurendererOutput2->initialize_renderer(this);
 
-         m_pgpurendererOutput2->m_iFrameCount2 = ::gpu::render_target::MAX_FRAMES_IN_FLIGHT;
+         m_pgpurendererOutput2->m_iFrameCountRequest = renderer::DEFAULT_FRAME_COUNT;
 
          m_pgpurendererOutput2->defer_update_renderer();
+
+      }
+
+      return m_pgpurendererOutput2;
+
+   }
+
+
+   ::gpu::renderer* context::back_buffer_gpu_renderer()
+   {
+
+      if (!m_pgpurendererBackBuffer)
+      {
+
+         __øconstruct(m_pgpurendererBackBuffer);
+
+         m_pgpurendererBackBuffer->initialize_renderer(this);
+
+         m_pgpurendererBackBuffer->m_iFrameCountRequest = 1;
+
+         m_pgpurendererBackBuffer->m_estate = ::gpu::renderer::e_state_single_frame;
+
+         m_pgpurendererBackBuffer->defer_update_renderer();
 
       }
 
@@ -1082,11 +1111,11 @@ namespace gpu
    }
 
 
-   void context::copy(::gpu::texture* ptexture)
-   {
+   //void context::copy(::gpu::texture* ptexture)
+   //{
 
 
-   }
+   //}
 
 
    void context::on_create_texture(texture* ptexture)

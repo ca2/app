@@ -48,7 +48,7 @@ namespace gpu_opengl
       void Clear() const;
 
 
-      int get_frame_count() const override;
+      int get_frame_count() override;
       // Draws the skybox using the given mesh and shader
       //void DrawSkybox(const mesh *pskyboxMesh, ::gpu::shader * pshader) const;
 
@@ -73,6 +73,7 @@ namespace gpu_opengl
 
       void blend(::gpu::renderer* prendererSource) override;
       void clear(::gpu::texture* ptextureSource) override;
+      void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
       void blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
 
       void defer_update_renderer() override;

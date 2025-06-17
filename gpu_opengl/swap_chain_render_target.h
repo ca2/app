@@ -17,7 +17,7 @@
 //
 //      ::comptr<ID3D11Texture2D> m_ptextureShared;
 //      //VkSwapchainKHR       m_vkswapchain;
-//      uint32_t             currentImageIndex;
+//      uint32_t             m_uCurrentSwapChainImage;
 //      //::int_size m_size;
 //
 //      ::comptr<ID3D11VertexShader> m_pvertexshaderFullscreen;

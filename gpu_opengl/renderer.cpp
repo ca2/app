@@ -400,7 +400,7 @@ namespace gpu_opengl
    }
 
 
-   int renderer::get_frame_count() const
+   int renderer::get_frame_count()
    {
 
       return ::gpu::renderer::get_frame_count();
@@ -1232,7 +1232,7 @@ namespace gpu_opengl
          ::cast < ::gpu_opengl::context > pcontextSource = prendererSource->m_pgpucontext;
 
          //glUseProgram(blendShader);
-         m_pshaderBlend->bind(nullptr);
+         m_pshaderBlend->bind();
          glActiveTexture(GL_TEXTURE0);
          auto texture = pcontextSource->m_pframebuffer->m_tex;
          glBindTexture(GL_TEXTURE_2D, texture);
@@ -1365,7 +1365,7 @@ namespace gpu_opengl
       glEnableVertexAttribArray(1); // texcoord
       glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
 
-      m_pshaderBlend2->bind(nullptr);
+      m_pshaderBlend2->bind();
 
       GLint uTexture = glGetUniformLocation(m_pshaderBlend2->m_ProgramID, "uTexture");
 
@@ -1386,6 +1386,103 @@ namespace gpu_opengl
       glDeleteFramebuffers(1, &framebuffer);
 
    }
+
+
+   void renderer::copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource)
+   {
+
+      ::cast < texture > ptextureDst = ptextureTarget;
+      ::cast < texture > ptextureSrc = ptextureSource;
+
+      GLuint framebuffer;
+      glGenFramebuffers(1, &framebuffer);
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
+
+      // Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
+      glFramebufferTexture2D(
+         GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
+         ptextureDst->m_gluTextureID,
+         0);
+
+      if (glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+         printf("Framebuffer not complete!\n");
+         glDeleteFramebuffers(1, &framebuffer);
+         return;
+      }
+
+      if (!m_pshaderBlend2)
+      {
+
+         __construct_new(m_pshaderBlend2);
+
+         m_pshaderBlend2->initialize_shader_with_block(
+            this,
+            blend_vert,
+            blend_frag);
+
+      }
+
+      float quadVertices[] = {
+         // pos      // uv
+         -1.0f, -1.0f,  0.0f, 0.0f,
+          1.0f, -1.0f,  1.0f, 0.0f,
+         -1.0f,  1.0f,  0.0f, 1.0f,
+          1.0f,  1.0f,  1.0f, 1.0f,
+      };
+
+
+      auto rectangleTarget = ptextureSource->m_rectangleTarget;
+
+      glViewport(
+         rectangleTarget.left(),
+         ptextureDst->size().cy() - rectangleTarget.bottom(),
+         rectangleTarget.width(),
+         rectangleTarget.height());
+
+      // Optional: scissor if you want to limit drawing region
+      glEnable(GL_SCISSOR_TEST);
+      glScissor(
+         rectangleTarget.left(),
+         ptextureDst->size().cy() - rectangleTarget.bottom(),
+         rectangleTarget.width(),
+         rectangleTarget.height()
+      );
+
+
+      // VAO/VBO setup
+      GLuint vao, vbo;
+      glGenVertexArrays(1, &vao);
+      glGenBuffers(1, &vbo);
+      glBindVertexArray(vao);
+      glBindBuffer(GL_ARRAY_BUFFER, vbo);
+      glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
+      glEnableVertexAttribArray(0); // position
+      glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+      glEnableVertexAttribArray(1); // texcoord
+      glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+
+      m_pshaderBlend2->bind();
+
+      GLint uTexture = glGetUniformLocation(m_pshaderBlend2->m_ProgramID, "uTexture");
+
+      glActiveTexture(GL_TEXTURE0);
+      glBindTexture(GL_TEXTURE_2D, ptextureSrc->m_gluTextureID);
+      glUniform1i(uTexture, 0);
+
+      // Optional: if each texture should be rendered to a specific portion of the screen
+      // set a model/view/projection matrix or glViewport/scissor here.
+
+      glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+      //}
+
+      m_pshaderBlend2->unbind();
+
+      glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
+
+      glDeleteFramebuffers(1, &framebuffer);
+
+   }
+
 
 
 } // namespace gpu_opengl

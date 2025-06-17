@@ -9,7 +9,6 @@ namespace gpu_opengl
 {
 
 
-
    class CLASS_DECL_GPU_OPENGL context :
       virtual public ::gpu::context
    {
@@ -100,7 +99,7 @@ namespace gpu_opengl
       void update_global_ubo(const ::block& block) override;
 
 
-      //void copy(::gpu::texture* ptexture) override;
+      void copy(::gpu::texture* ptexture) override;
 
       
       void make_current() override;

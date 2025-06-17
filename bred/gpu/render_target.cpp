@@ -10,15 +10,10 @@ namespace gpu
 {
 
 
-   //class CLASS_DECL_BRED render_target :
-   //   virtual public ::particle
-   //{
-   //public:
-
-
    render_target::render_target()
    {
 
+      m_bInit = false;
 
    }
 
@@ -61,7 +56,7 @@ namespace gpu
    void render_target::createImages()
    {
 
-      auto iFrameCount = m_pgpurenderer->get_frame_count();
+      auto iFrameCount = m_pgpurenderer->m_iFrameCountRequest;
 
       m_texturea.set_size(iFrameCount);
 

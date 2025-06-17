@@ -1111,11 +1111,11 @@ namespace gpu
    }
 
 
-   //void context::copy(::gpu::texture* ptexture)
-   //{
+   void context::copy(::gpu::texture* ptexture)
+   {
 
 
-   //}
+   }
 
 
    void context::on_create_texture(texture* ptexture)

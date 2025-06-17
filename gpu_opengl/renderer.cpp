@@ -547,6 +547,18 @@ namespace gpu_opengl
       if (m_sizeRenderer == sizeContext)
       {
 
+         if (m_pgpucontext->is_current_task())
+         {
+
+            if (!m_pgpurendertarget->m_bInit)
+            {
+
+               m_pgpurendertarget->init();
+
+            }
+
+         }
+
          return;
 
       }
@@ -646,10 +658,24 @@ namespace gpu_opengl
 
          m_pgpurendertarget->initialize_render_target(this, size, previous);
 
-         //m_pgpurendertarget->init();
+         if (m_pgpucontext->is_current_task())
+         {
+
+            m_pgpurendertarget->init();
+
+         }
 
       }
 
+   }
+
+
+   ::pointer < ::gpu::render_target > renderer::allocate_offscreen_render_target()
+   {
+
+      auto poffscreenrendertarget = __allocate offscreen_render_target();
+
+      return poffscreenrendertarget;
 
    }
 
@@ -1388,11 +1414,20 @@ namespace gpu_opengl
    }
 
 
-   void renderer::copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource)
+   void renderer::copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
    {
 
-      ::cast < texture > ptextureDst = ptextureTarget;
-      ::cast < texture > ptextureSrc = ptextureSource;
+      ::cast < texture > ptextureDst = pgputextureTarget;
+      ::cast < texture > ptextureSrc = pgputextureSource;
+
+      if (ptextureDst->m_pgpurenderer->m_pgpucontext->m_etype == ::gpu::context::e_type_window)
+      {
+
+         ptextureDst->m_pgpurenderer->m_pgpucontext->copy(pgputextureSource);
+
+         return;
+
+      }
 
       GLuint framebuffer;
       glGenFramebuffers(1, &framebuffer);
@@ -1431,7 +1466,7 @@ namespace gpu_opengl
       };
 
 
-      auto rectangleTarget = ptextureSource->m_rectangleTarget;
+      auto rectangleTarget = ptextureSrc->m_rectangleTarget;
 
       glViewport(
          rectangleTarget.left(),

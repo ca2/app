@@ -717,19 +717,70 @@ namespace gpu
    render_target* renderer::back_buffer_render_target()
    {
 
+      auto rectangle = m_pgpucontext->rectangle();
+
+      if (m_pgpurendertargetBackBuffer)
+      {
+
+         auto size = m_pgpurendertargetBackBuffer->m_size;
+
+         auto sizeNew = rectangle.size();
+
+         if (size == sizeNew)
+         {
+
+            if (m_pgpucontext->is_current_task())
+            {
+
+               if (!m_pgpurendertargetBackBuffer->m_bInit
+                  || !m_pgpurendertargetBackBuffer->is_ok())
+               {
+
+                  m_pgpurendertargetBackBuffer->init();
+
+               }
+
+            }
+
+            return m_pgpurendertargetBackBuffer;
+
+         }
+
+      }
+
+      auto pgpurendertargetBackBufferOld = m_pgpurendertargetBackBuffer;
+
+      auto poffscreenrenderpass = allocate_offscreen_render_target();
+
+      poffscreenrenderpass->m_bBackBuffer = true;
+
+      m_pgpurendertargetBackBuffer = poffscreenrenderpass;
+
+      ::int_size size = rectangle.size();
+
+      m_pgpurendertargetBackBuffer->initialize_render_target(
+         this, size, pgpurendertargetBackBufferOld);
+
+      if (m_pgpucontext->is_current_task())
+      {
+
+         m_pgpurendertargetBackBuffer->init();
+
+      }
+
+      return m_pgpurendertargetBackBuffer;
+
+   }
+
+
+   ::pointer < render_target > renderer::allocate_offscreen_render_target()
+   {
+
       throw ::interface_only();
 
       return nullptr;
 
    }
-
-
-   //void renderer::endDraw(::user::interaction* puserinteraction)
-   //{
-
-
-
-   //}
 
 
    void renderer::blend(::gpu::renderer* prenderer)

@@ -32,9 +32,11 @@ namespace gpu_opengl
 
       }
 
+      auto sizeCurrent = m_rectangleTarget.size();
+
       ::gpu::texture::initialize_gpu_texture(prenderer, rectangleTarget);
 
-      if (m_rectangleTarget.size() != rectangleTarget.size())
+      if (sizeCurrent != rectangleTarget.size())
       {
 
          if (!m_gluTextureID)

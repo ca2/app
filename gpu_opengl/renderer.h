@@ -78,6 +78,9 @@ namespace gpu_opengl
 
       void defer_update_renderer() override;
 
+      ::pointer < ::gpu::render_target > allocate_offscreen_render_target() override;
+
+
    };
 
 

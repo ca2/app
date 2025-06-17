@@ -193,6 +193,8 @@ namespace gpu
 
       virtual render_target* back_buffer_render_target();
 
+      virtual ::pointer < render_target > allocate_offscreen_render_target();
+
       //virtual void on_graphics_end_draw(::user::interaction * puserinteraction);
 
       virtual void blend(::gpu::renderer* prenderer);

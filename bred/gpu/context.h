@@ -223,7 +223,7 @@ namespace gpu
       virtual void create_global_ubo(int iSize, int iFrameCount);
       virtual void update_global_ubo(const ::block& block);
 
-      //virtual void copy(::gpu::texture* ptexture);
+      virtual void copy(::gpu::texture* ptexture);
 
 
       virtual void on_create_texture(texture * ptexture);

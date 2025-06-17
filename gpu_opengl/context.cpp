@@ -770,6 +770,64 @@ namespace gpu_opengl
    }
 
 
+   void context::copy(::gpu::texture* ptextureParam)
+   {
+
+      ::cast < texture > ptexture = ptextureParam;
+
+
+      GLuint framebuffer;
+      glGenFramebuffers(1, &framebuffer);
+      glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+
+      // Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
+      glFramebufferTexture2D(
+         GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
+         ptexture->m_gluTextureID,
+         0);
+
+      if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+         printf("Framebuffer not complete!\n");
+         glDeleteFramebuffers(1, &framebuffer);
+         return;
+      }
+
+
+      glReadBuffer(GL_COLOR_ATTACHMENT0);
+
+      // Bind default framebuffer as draw target
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+
+
+      glViewport(
+         0,
+         0,
+         m_rectangle.width(),
+         m_rectangle.height());
+
+      // Optional: scissor if you want to limit drawing region
+      glEnable(GL_SCISSOR_TEST);
+      glScissor(
+         0,
+         0,
+         m_rectangle.width(),
+         m_rectangle.height()
+      );
+
+
+      // Blit from source to default framebuffer
+      glBlitFramebuffer(
+         0, 0, ptexture->size().cx(), ptexture->size().cy(), // src rect
+         0, 0, m_rectangle.width(), m_rectangle.height(), // dst rect
+         GL_COLOR_BUFFER_BIT, GL_NEAREST);
+
+      glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
+
+      glDeleteFramebuffers(1, &framebuffer);
+
+
+   }
+
 
    //context::context()
    //{

@@ -211,8 +211,7 @@ namespace draw2d
       ::int_size image_source_size() const override;
 
 
-      virtual void start_gpu_layer(const ::int_rectangle & rectangleTarget);
-      virtual ::int_rectangle end_gpu_layer();
+      //virtual void start_gpu_layer(const ::int_rectangle & rectangleTarget);
 
       ::user::redraw* user_redraw();
       //#ifdef UNIVERSAL_WINDOWS

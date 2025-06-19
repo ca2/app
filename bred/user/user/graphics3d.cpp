@@ -4,6 +4,7 @@
 #include "bred/gpu/context.h"
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/input.h"
+#include "bred/graphics3d/scene.h"
 #include "acme/constant/message.h"
 #include "acme/graphics/image/image32.h"
 #include "acme/handler/topic.h"
@@ -330,44 +331,52 @@ namespace user
    void graphics3d::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
+      if (!m_pengine)
+      {
+
+         return;
+
+      }
+
+      if (!m_pengine->m_bLoadedEngine)
+      {
+
+         return;
+
+      }
+
       //return;
 
-      ::int_rectangle rectangleHostUpperLayer;
+      ::cast < ::gpu::compositor > pcompositor = pgraphics;
 
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
-         rectangleHostUpperLayer = pgraphics->end_gpu_layer();
+         if(pcompositor)
+         {
+            
+            pcompositor->end_gpu_layer();
+
+         }
 
       }
             
       if (1)
       {
 
-         if (m_papplication->m_gpu.m_bUseSwapChainWindow)
-         {
-
-            auto rectangleHost = host_rectangle();
-
-            m_pengine->get_gpu_context()->get_gpu_renderer()->start_layer(rectangleHost);
-
-         }
-
          m_pengine->_001OnDraw(pgraphics);
-
-         if (m_papplication->m_gpu.m_bUseSwapChainWindow)
-         {
-
-            m_pengine->m_pgpucontextGraphics3D->m_pgpurendererOutput2->end_layer();
-
-         }
 
       }
 
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
-         pgraphics->start_gpu_layer(rectangleHostUpperLayer);
+         if (pcompositor)
+         {
+
+            pcompositor->start_gpu_layer();
+
+         }
 
       }
 

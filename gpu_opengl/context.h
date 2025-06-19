@@ -20,9 +20,10 @@ namespace gpu_opengl
       //::int_size m_sizeTex;
 
       bool     m_bDepthBuffer = true;
-
+      GLuint m_vaoFullScreenQuad;
+      GLuint m_vboFullScreenQuad;
       ::pointer < ::gpu_opengl::frame_buffer >   m_pframebuffer;
-
+      ::pointer < ::gpu_opengl::shader >   m_pshaderCopy;
       ::int_size                    m_sizeHost;
       //bool m_bMesa;
 
@@ -77,7 +78,9 @@ namespace gpu_opengl
 
       virtual void _create_offscreen_window(const ::int_size & size);
 
-      void on_take_snapshot(::gpu::layer* player, ::gpu::texture* ptextureSource) override;
+      void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
+
+      void on_take_snapshot(::gpu::layer* player) override;
 
       void on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::int_size& size) override;
 
@@ -100,7 +103,9 @@ namespace gpu_opengl
 
 
       void copy(::gpu::texture* ptexture) override;
-
+      virtual void _copy_using_shader(::gpu::texture* ptexture);
+      virtual void _copy_using_blit(::gpu::texture* ptexture);
+      void merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera) override;
       
       void make_current() override;
 

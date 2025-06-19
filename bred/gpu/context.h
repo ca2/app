@@ -77,7 +77,7 @@ namespace gpu
       ::gpu::enum_scene                      m_escene;
       //enum_output m_eoutputContextDraw2d = e_output_gpu_buffer;
       //enum_output m_eoutputContextEngine = e_output_gpu_buffer;
-
+      ::gpu::compositor *                    m_pgpucompositor;
       ::pointer<::gpu::device>               m_pgpudevice;
       //::int_rectangle                        m_rectangleNew;
       ::int_rectangle                        m_rectangle;
@@ -224,16 +224,20 @@ namespace gpu
       virtual void update_global_ubo(const ::block& block);
 
       virtual void copy(::gpu::texture* ptexture);
+      virtual void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
+      virtual void merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera);
 
 
       virtual void on_create_texture(texture * ptexture);
-      virtual void on_take_snapshot(layer * player, texture* ptextureSource);
+      virtual void on_take_snapshot(layer * player);
 
       virtual void frame_prefix();
       virtual void frame_suffix();
 
-      virtual void on_begin_draw_attach(::draw2d_gpu::graphics* pgpugraphics, const ::int_rectangle& rectangle);
-      virtual void draw2d_on_begin_draw(::draw2d_gpu::graphics* pgpugraphics, const ::int_rectangle & rectangle);
+      //virtual void on_begin_draw_attach(::draw2d_gpu::graphics* pgpugraphics, const ::int_rectangle& rectangle);
+      //virtual void draw2d_on_begin_draw(::draw2d_gpu::graphics* pgpugraphics, const ::int_rectangle & rectangle);
+      virtual void on_begin_draw_attach(::draw2d_gpu::graphics* pgpugraphics);
+      virtual void draw2d_on_begin_draw(::draw2d_gpu::graphics* pgpugraphics);
 
 
       virtual void on_end_draw_detach(::draw2d_gpu::graphics* pgpugraphics);

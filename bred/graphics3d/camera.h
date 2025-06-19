@@ -68,7 +68,8 @@ namespace graphics3d
 
 
 		::pointer < ::graphics3d::engine > m_pengine;
-		camera() {};
+		camera();
+		~camera() override;
 		//camera(glm::vec3 position, float yaw, float pitch);
 		//camera(glm::vec3 position, glm::vec3 to, glm::vec3 from);
 

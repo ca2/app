@@ -3,6 +3,8 @@
 #include "device_win32.h"
 #include "frame_buffer.h"
 #include "program.h"
+#include "renderer.h"
+#include "render_target.h"
 #include "shader.h"
 #include "texture.h"
 #include "aura/graphics/image/image.h"
@@ -14,7 +16,10 @@
 namespace gpu_opengl
 {
 
+   void vertex2f(const ::double_rectangle& rectangle, float fZ);
 
+   void vertex2f(const ::double_polygon& a, float fZ);
+   
 
    context::context()
    {
@@ -769,8 +774,170 @@ namespace gpu_opengl
 
    }
 
+   void createFullscreenQuad(GLuint* vao, GLuint* vbo) {
+      float quadVertices[] = {
+         // pos     // uv
+         -1, -1,    0, 0,
+         +1, -1,    1, 0,
+         -1, +1,    0, 1,
+         +1, +1,    1, 1,
+      };
+
+      glGenVertexArrays(1, vao);
+      glGenBuffers(1, vbo);
+      glBindVertexArray(*vao);
+
+      glBindBuffer(GL_ARRAY_BUFFER, *vbo);
+      glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
+
+      glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0); // position
+      glEnableVertexAttribArray(0);
+
+      glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float))); // UV
+      glEnableVertexAttribArray(1);
+
+      glBindVertexArray(0);
+   }
+   
 
    void context::copy(::gpu::texture* ptextureParam)
+   {
+
+      _copy_using_shader(ptextureParam);
+
+   }
+
+
+   void context::_copy_using_shader(::gpu::texture* ptextureParam)
+   {
+
+
+      if (!m_pshaderCopy)
+      {
+
+         __construct_new(m_pshaderCopy);
+
+         // Vertex shader
+         const char* vertexShaderSource = R"(
+#version 330 core
+layout(location = 0) in vec2 inPos;
+layout(location = 1) in vec2 inUV;
+out vec2 fragUV;
+void main() {
+    fragUV = inUV;
+    gl_Position = vec4(inPos, 0.0, 1.0);
+}
+)";
+
+         // Fragment shader
+         const char* fragmentShaderSource = R"(
+#version 330 core
+in vec2 fragUV;
+out vec4 outColor;
+uniform sampler2D uTexture;
+void main() {
+    outColor = texture(uTexture, fragUV);
+}
+)";
+
+         m_pshaderCopy->initialize_shader_with_block(
+            m_pgpurendererOutput2,
+            vertexShaderSource,
+            fragmentShaderSource);
+      }
+
+      if (!m_vaoFullScreenQuad)
+      {
+
+         createFullscreenQuad(&m_vaoFullScreenQuad, &m_vboFullScreenQuad);
+
+      }
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+      //glDisable(GL_BLEND);                    // Ensure no blending
+
+      int cx = m_rectangle.width();
+      int cy = m_rectangle.height();   
+      glViewport(0, 0, cx, cy);
+      //glClearColor(0.1, 0.1, 0.1, 1.0);
+      //glClear(GL_COLOR_BUFFER_BIT);
+
+      m_pshaderCopy->bind();
+      glBindVertexArray(m_vaoFullScreenQuad);
+
+      ::cast < texture > ptexture = ptextureParam;
+
+
+      glActiveTexture(GL_TEXTURE0);
+      glBindTexture(GL_TEXTURE_2D, ptexture->m_gluTextureID);
+      m_pshaderCopy->_set_int("uTexture", 0);
+
+      glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+      m_pshaderCopy->unbind();
+
+   }
+
+
+   void context::merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera)
+   {
+
+      ::cast < texture > ptextureDst = ptextureTarget;
+
+      GLuint framebuffer;
+      glGenFramebuffers(1, &framebuffer);
+      GLCheckError("glGenFramebuffers");
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
+      GLCheckError("glBindFramebuffer");
+
+      auto gluTextureID = ptextureDst->m_gluTextureID;
+
+      // Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
+      glFramebufferTexture2D(
+         GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
+         gluTextureID,
+         0);
+      GLCheckError("glFramebufferTexture2D");
+
+      if (glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+         printf("Framebuffer not complete!\n");
+         glDeleteFramebuffers(1, &framebuffer);
+         return;
+      }
+
+      glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+      glFlush();
+
+      ::cast < renderer > prenderer = m_pgpurendererOutput2;
+
+      for(auto & player : *playera)
+      {
+
+         if (player.is_null())
+         {
+
+            continue;
+
+         }
+         
+         prenderer->__blend(ptextureTarget, player->texture());
+
+      }
+
+      glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
+      GLCheckError("glBindFramebuffer");
+
+      glDeleteFramebuffers(1, &framebuffer);
+      GLCheckError("glDeleteFramebuffers");
+
+
+
+
+   }
+
+
+   void context::_copy_using_blit(::gpu::texture * ptextureParam)
    {
 
       ::cast < texture > ptexture = ptextureParam;
@@ -778,22 +945,22 @@ namespace gpu_opengl
 
       GLuint framebuffer;
       glGenFramebuffers(1, &framebuffer);
-      glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+      glBindFramebuffer(GL_READ_FRAMEBUFFER, framebuffer);
 
       // Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
       glFramebufferTexture2D(
-         GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
+         GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
          ptexture->m_gluTextureID,
          0);
 
-      if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+      if (glCheckFramebufferStatus(GL_READ_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
          printf("Framebuffer not complete!\n");
          glDeleteFramebuffers(1, &framebuffer);
          return;
       }
 
 
-      glReadBuffer(GL_COLOR_ATTACHMENT0);
+      //glReadBuffer(GL_COLOR_ATTACHMENT0);
 
       // Bind default framebuffer as draw target
       glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
@@ -825,7 +992,44 @@ namespace gpu_opengl
 
       glDeleteFramebuffers(1, &framebuffer);
 
+#ifdef SHOW_DEBUG_DRAWING
+      {
 
+         glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+
+         glEnable(GL_BLEND);
+         glBlendFunc(GL_ONE, GL_ZERO); // Source Copy mode
+         //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
+
+         {
+            float fOpacity = 0.5;
+            float fRed = 0.5;
+            float fGreen = 0.75;
+            float fBlue = 0.95;
+            auto f32Opacity = (float)fOpacity;
+            auto f32Red = (float)(fRed * fOpacity);
+            auto f32Green = (float)(fGreen * fOpacity);
+            auto f32Blue = (float)(fBlue * fOpacity);
+            ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
+         }
+
+         ::double_polygon polygon;
+
+         ::double_rectangle rectangle(100, 100, 200, 200);
+
+         polygon = rectangle;
+
+         glBegin(GL_QUADS);
+
+
+         vertex2f(polygon, 0.f);
+
+         glEnd();
+
+      }
+#endif // SHOW_DEBUG_DRAWING
+      
    }
 
 
@@ -900,17 +1104,110 @@ namespace gpu_opengl
 
    }
 
-   
-   void context::on_take_snapshot(::gpu::layer* player, ::gpu::texture* ptextureSource)
+
+   void context::copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource)
    {
 
-      ::cast < texture > ptextureDst = player->m_pgputextureTarget;
+      ::cast < texture > ptextureDst = ptextureTarget;
 
       ::cast < texture > ptextureSrc = ptextureSource;
 
       auto textureSrc = ptextureSrc->m_gluTextureID;
 
       auto textureDst = ptextureDst->m_gluTextureID;
+
+      GLuint fboSrc, fboDst;
+      glGenFramebuffers(1, &fboSrc);
+      GLCheckError("");
+      glGenFramebuffers(1, &fboDst);
+      GLCheckError("");
+
+      // Attach source texture to fboSrc
+      glBindFramebuffer(GL_READ_FRAMEBUFFER, fboSrc);
+      GLCheckError("");
+      glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+         GL_TEXTURE_2D, textureSrc, 0);
+      GLCheckError("");
+
+      // Attach dest texture to fboDst
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, fboDst);
+      GLCheckError("");
+      glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+         GL_TEXTURE_2D, textureDst, 0);
+      GLCheckError("");
+
+      auto sizeSrc = ptextureSrc->size();
+      auto sizeDst = ptextureDst->size();
+
+      // Blit from source to destination
+      glBlitFramebuffer(
+         0, 0, sizeSrc.cx(), sizeSrc.cy(),
+         0, 0, sizeDst.cx(), sizeDst.cy(),
+         GL_COLOR_BUFFER_BIT, GL_NEAREST
+      );
+      GLCheckError("");
+#ifdef SHOW_DEBUG_DRAWING
+      {
+
+         //glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+
+         glEnable(GL_BLEND);
+         glBlendFunc(GL_ONE, GL_ZERO); // Source Copy mode
+         //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
+
+         {
+            float fOpacity = 0.5;
+            float fRed = 0.5;
+            float fGreen = 0.75;
+            float fBlue = 0.95;
+            auto f32Opacity = (float)fOpacity;
+            auto f32Red = (float)(fRed * fOpacity);
+            auto f32Green = (float)(fGreen * fOpacity);
+            auto f32Blue = (float)(fBlue * fOpacity);
+            ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
+         }
+
+         ::double_polygon polygon;
+
+         ::double_rectangle rectangle(300, 300, 400, 400);
+
+         polygon = rectangle;
+
+         glBegin(GL_QUADS);
+
+
+         vertex2f(polygon, 0.f);
+
+         glEnd();
+
+      }
+#endif
+
+      // Cleanup
+      glBindFramebuffer(GL_FRAMEBUFFER, 0);
+      GLCheckError("");
+      glDeleteFramebuffers(1, &fboSrc);
+      GLCheckError("");
+      glDeleteFramebuffers(1, &fboDst);
+      GLCheckError("");
+
+
+   }
+
+   
+   void context::on_take_snapshot(::gpu::layer* player)
+   {
+
+      ::cast < texture > ptextureDst = player->texture();
+
+      ::cast < texture > ptextureSrc = m_pgpurendererOutput2->m_pgpurendertarget->current_texture();
+
+      auto textureSrc = ptextureSrc->m_gluTextureID;
+
+      auto textureDst = ptextureDst->m_gluTextureID;
+
+      glFlush();
 
       GLuint fboSrc, fboDst;
       glGenFramebuffers(1, &fboSrc);
@@ -942,6 +1239,43 @@ namespace gpu_opengl
          GL_COLOR_BUFFER_BIT, GL_NEAREST
       );
       GLCheckError("");
+#ifdef SHOW_DEBUG_DRAWING
+      {
+
+         //glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+
+         glEnable(GL_BLEND);
+         glBlendFunc(GL_ONE, GL_ZERO); // Source Copy mode
+         //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
+
+         {
+            float fOpacity = 0.5;
+            float fRed = 0.5;
+            float fGreen = 0.75;
+            float fBlue = 0.95;
+            auto f32Opacity = (float)fOpacity;
+            auto f32Red = (float)(fRed * fOpacity);
+            auto f32Green = (float)(fGreen * fOpacity);
+            auto f32Blue = (float)(fBlue * fOpacity);
+            ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
+         }
+
+         ::double_polygon polygon;
+
+         ::double_rectangle rectangle(300, 300, 400, 400);
+
+         polygon = rectangle;
+
+         glBegin(GL_QUADS);
+
+
+         vertex2f(polygon, 0.f);
+
+         glEnd();
+
+      }
+#endif
 
       // Cleanup
       glBindFramebuffer(GL_FRAMEBUFFER, 0);

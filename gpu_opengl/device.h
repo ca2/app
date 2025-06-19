@@ -17,7 +17,7 @@ namespace gpu_opengl
    {
    public:
 
-
+      //GLuint m_iCurrentRendererFrameBuffer;
       ///itask									m_itaskGpu;
 
       //unsigned int                     m_VAO;

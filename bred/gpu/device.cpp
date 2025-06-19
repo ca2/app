@@ -986,7 +986,7 @@ namespace gpu
    }
 
 
-   void device::layer_start(renderer* pgpurenderer, const ::int_rectangle & rectangleHost)
+   void device::layer_start(renderer* pgpurenderer)
    {
 
       m_iLayer = m_iLayerCount;
@@ -998,23 +998,23 @@ namespace gpu
 
       __defer_construct_new(player);
 
-      player->initialize_gpu_layer(pgpurenderer, rectangleHost);
+      player->initialize_gpu_layer(pgpurenderer);
 
       pgpurenderer->defer_update_renderer();
 
-      if (pgpurenderer->m_pgpurendertarget)
-      {
+      //if (pgpurenderer->m_pgpurendertarget)
+      //{
 
-         player->m_pgputextureSource = pgpurenderer->m_pgpurendertarget->current_texture();
+      //   player->m_pgputextureSource = pgpurenderer->m_pgpurendertarget->current_texture();
 
-      }
+      //}
 
       pgpurenderer->on_start_layer(player);
 
    }
 
 
-   ::int_rectangle device::layer_end()
+   void device::layer_end()
    {
 
       auto& layera = *m_playera;
@@ -1023,20 +1023,28 @@ namespace gpu
 
       player->take_snapshot();
 
-      return player->m_pgputextureTarget->m_rectangleTarget;
+      //return player->texture()->m_pgpurenderer->m_pgpucontext->rectangle();
 
    }
 
 
-   //void device::layer_merge(context* pcontextTarget)
-   //{
+   layer* device::current_layer()
+   {
+      
+      if (m_iLayer < 0 || m_iLayer >= m_playera->get_count())
+      {
+      
+         throw ::exception(error_wrong_state);
 
-   //   auto playera = m_playera;
+      }
 
-   //   pcontextTarget->merge_layers(playera);
+      auto& layera = *m_playera;
 
-   //}
+      auto& player = layera[m_iLayer];
 
+      return player;
+
+   }
 
 
 } // namespace gpu

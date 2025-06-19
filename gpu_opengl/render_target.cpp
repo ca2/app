@@ -25,9 +25,8 @@ namespace gpu_opengl
 
    }
 
-
       
-   void render_target::init() 
+   void render_target::on_init() 
    {
 
       createRenderPassImpl();

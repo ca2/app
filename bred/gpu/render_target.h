@@ -12,10 +12,10 @@ namespace gpu
    public:
 
 
-      bool m_bInit = false;
-      bool m_bBackBuffer = false;
+      bool m_bRenderTargetInit;
+      bool m_bBackBuffer;
 
-      bool m_bDepthStencil = false;
+      bool m_bDepthStencil;
 
       ::pointer_array < texture >            m_texturea;
 
@@ -37,6 +37,8 @@ namespace gpu
 
 
       virtual void init();
+
+      virtual void on_init();
 
 
       virtual void createImages();

@@ -49,7 +49,9 @@ namespace gpu
       for (auto player : layera)
       {
 
-         blend(player->m_pgputextureTarget);
+         blend(player);
+
+         break;
 
       }
 
@@ -59,7 +61,7 @@ namespace gpu
    void texture::blend(::gpu::layer* player)
    {
 
-      blend(player->m_pgputextureTarget);
+      blend(player->texture());
 
    }
 

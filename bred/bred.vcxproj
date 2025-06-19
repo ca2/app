@@ -343,6 +343,7 @@
     <ClInclude Include="gpu\aaa_end_draw.h" />
     <ClInclude Include="gpu\approach.h" />
     <ClInclude Include="gpu\character.h" />
+    <ClInclude Include="gpu\compositor.h" />
     <ClInclude Include="gpu\context.h" />
     <ClInclude Include="gpu\cpu_buffer.h" />
     <ClInclude Include="gpu\device.h" />
@@ -420,6 +421,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="gpu\approach.cpp" />
+    <ClCompile Include="gpu\compositor.cpp" />
     <ClCompile Include="gpu\context.cpp" />
     <ClCompile Include="gpu\cpu_buffer.cpp" />
     <ClCompile Include="gpu\device.cpp" />

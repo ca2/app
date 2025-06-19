@@ -23,7 +23,7 @@ namespace graphics3d
       ::string                               m_strName;
       scene_object::map				            m_mapObjects;
       bool                                   m_bInitialized;
-      bool                                   m_bLoaded;
+      bool                                   m_bLoadedScene;
       ::gpu::properties                      m_propertiesGlobalUbo;
 
 

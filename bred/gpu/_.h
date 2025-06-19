@@ -58,11 +58,7 @@ namespace gpu
 
    class device;
 
-   class draw2d;
-
-   class face;
-
-   class graphics;
+   class compositor;
 
    class character;
 
@@ -83,8 +79,11 @@ namespace draw2d_gpu
 {
 
    
+   class draw2d;
+
+   class face;
+
    class graphics;
-   //class end_draw;
 
 
 } // namespace draw2d_gpu

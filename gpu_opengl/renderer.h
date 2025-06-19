@@ -26,7 +26,9 @@ namespace gpu_opengl
 
       GLuint m_vaoQuadBlend, m_vboQuadBlend;
 
-      ::int_size m_sizeRenderer;
+      GLuint m_vaoQuadBlend2, m_vboQuadBlend2;
+
+      //::int_size m_sizeRenderer;
 
       GLuint m_iFrameBufferRenderer;
 
@@ -41,7 +43,9 @@ namespace gpu_opengl
 
       ::pointer < ::gpu::frame > beginFrame() override;
 
-      void _on_begin_render();
+      virtual void _ensure_renderer_framebuffer();
+
+      void _on_begin_render(::gpu::frame * pframe) override;
 
       virtual void on_begin_render(::gpu::frame* pframe);
 
@@ -75,8 +79,14 @@ namespace gpu_opengl
       void clear(::gpu::texture* ptextureSource) override;
       void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
       void blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
+      void _blend_with_shader(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
+      void _blend_with_blit(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
 
-      void defer_update_renderer() override;
+
+      virtual void __blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
+
+      //void defer_update_renderer() override;
+      void on_defer_update_renderer_allocate_render_target(::gpu::enum_output eoutput, const ::int_size& size, ::gpu::render_target* previous) override;
 
       ::pointer < ::gpu::render_target > allocate_offscreen_render_target() override;
 

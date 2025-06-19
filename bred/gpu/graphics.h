@@ -4,6 +4,7 @@
 
 #include "acme/constant/gpu.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "bred/gpu/compositor.h"
 
 
 namespace draw2d_gpu
@@ -11,12 +12,13 @@ namespace draw2d_gpu
 
 
    class CLASS_DECL_BRED graphics :
-      virtual public ::draw2d::graphics
+      virtual public ::draw2d::graphics,
+      virtual public ::gpu::compositor
    {
    public:
 
 
-      ::pointer < ::gpu::context >           m_pgpucontextDraw2d;
+      //::pointer < ::gpu::context >           m_pgpucontextDraw2d;
       //::gpu::enum_output                     m_eoutputOnEndDraw;
       //::pointer < ::gpu::context >           m_pgpucontextOutput;
       ::pointer < ::gpu::frame >             m_pgpuframe;
@@ -35,8 +37,8 @@ namespace draw2d_gpu
       void on_end_draw() override;
 
 
-      void start_gpu_layer(const ::int_rectangle& rectangleTarget) override;
-      ::int_rectangle end_gpu_layer() override;
+      //void start_gpu_layer() override;
+      //void end_gpu_layer() override;
 
 
       //virtual ::gpu::renderer* end_draw_renderer_output();

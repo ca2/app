@@ -51,6 +51,12 @@ namespace gpu
 
       //unsigned int               m_uId;
 
+      bool m_bDisableDepthTest = false;
+      bool m_bDepthTestButNoDepthWrite = false;
+      bool m_bEnableBlend = false;
+      bool m_bAccumulationEnable = false;
+
+
       string                     m_strError;
 
       //string_map < payload >     m_mapLayout;

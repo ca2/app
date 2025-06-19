@@ -57,7 +57,7 @@ namespace gpu_opengl
 		//}
 
 	//public:
-		void init();
+		void on_init() override;
 		void createRenderPassImpl();
 		void createImageViews();
 		void createDepthResources();

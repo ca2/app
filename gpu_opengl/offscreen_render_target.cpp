@@ -36,19 +36,8 @@ namespace gpu_opengl
    }
 
 
-   void offscreen_render_target::init()
+   void offscreen_render_target::on_init()
    {
-
-      if (m_bInit)
-      {
-
-         return;
-
-      }
-
-      m_bInit = true;
-
-      set_ok_flag();
 
       createImages();
       createRenderPassImpl();

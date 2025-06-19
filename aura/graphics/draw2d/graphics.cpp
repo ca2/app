@@ -198,19 +198,19 @@ namespace draw2d
    }
 
 
-   void graphics::start_gpu_layer(const ::int_rectangle& rectangleTarget)
-   {
+   //void graphics::start_gpu_layer()
+   //{
 
 
-   }
+   //}
 
 
-   ::int_rectangle graphics::end_gpu_layer()
-   {
+   //::int_rectangle graphics::end_gpu_layer()
+   //{
 
-      return {};
+   //   return {};
 
-   }
+   //}
 
 
    ::user::redraw * graphics::user_redraw()

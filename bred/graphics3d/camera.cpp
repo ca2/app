@@ -18,6 +18,22 @@ namespace graphics3d
 {
 
 
+   camera::camera()
+   {
+
+
+
+   }
+
+
+
+   camera::~camera()
+   {
+
+
+   }
+
+
    void camera::initialize_camera(glm::vec3 position, float yaw, float pitch)
    {
       

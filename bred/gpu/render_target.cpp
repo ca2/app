@@ -13,7 +13,9 @@ namespace gpu
    render_target::render_target()
    {
 
-      m_bInit = false;
+      m_bRenderTargetInit = false;
+      m_bBackBuffer = false;
+      m_bDepthStencil = false;
 
    }
 
@@ -28,7 +30,8 @@ namespace gpu
    void render_target::initialize_render_target(::gpu::renderer* pgpurenderer, const ::int_size& size, ::pointer <::gpu::render_target>previous)
    {
 
-      m_bInit = false;
+      set_fail_flag();
+      m_bRenderTargetInit = false;
       m_pgpurenderer = pgpurenderer;
       m_size = size;
       m_prendertargetOld = previous;
@@ -39,14 +42,38 @@ namespace gpu
    void render_target::init()
    {
 
-      if (m_bInit)
+      if (m_size.is_empty())
       {
 
          return;
 
       }
 
-      m_bInit = true;
+      if (m_bRenderTargetInit)
+      {
+
+         return;
+
+      }
+
+      m_bRenderTargetInit = true;
+
+      if (!m_bBackBuffer)
+      {
+
+         m_pgpurenderer->restart_frame_counter();
+
+      }
+
+      on_init();
+
+      set_ok_flag();
+
+   }
+
+
+   void render_target::on_init()
+   {
 
       createImages();
 

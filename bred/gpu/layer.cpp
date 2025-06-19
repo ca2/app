@@ -24,26 +24,22 @@ namespace gpu
    }
 
 
-   void layer::initialize_gpu_layer(renderer * pgpurenderer, const ::int_rectangle& rectangleTarget)
+   void layer::initialize_gpu_layer(::gpu::renderer * pgpurenderer)
    {
 
       m_pgpurenderer = pgpurenderer;
-
-      __defer_construct(m_pgputextureTarget);
-
-      m_pgputextureTarget->initialize_gpu_texture(pgpurenderer, rectangleTarget);
 
       m_pgpurenderer->defer_update_renderer();
 
    }
 
 
-   void layer::set_target_texture(texture* ptextureTarget)
-   {
+   //void layer::set_target_texture(texture* ptextureTarget)
+   //{
 
-      m_pgputextureTarget = ptextureTarget;
+   //   target_texture() = ptextureTarget;
 
-   }
+   //}
 
 
    void layer::take_snapshot()
@@ -52,6 +48,42 @@ namespace gpu
       m_pgpurenderer->take_snapshot(this);
 
    }
+
+
+   ::pointer < texture >& layer::texture()
+   {
+
+      int iFrameIndex = m_pgpurenderer->_get_frame_index();
+
+      auto & ptexture = m_gputexturea.element_at_grow(iFrameIndex);
+
+      m_pgpurenderer->__defer_construct(ptexture);
+
+      auto rectangle = m_pgpurenderer->m_pgpucontext->rectangle();
+
+      ptexture->initialize_gpu_texture(m_pgpurenderer, rectangle);
+
+      return ptexture;
+
+   }
+
+
+   //::pointer < texture >& layer::target_texture()
+   //{
+   //   
+   //   int iTargetFrameIndex = m_pgpurendererTarget->_get_frame_index();
+   //   
+   //   auto & ptextureTarget = m_gputextureaTarget[iTargetFrameIndex];
+
+   //   m_pgpurendererTarget->__defer_construct(ptextureTarget);
+
+   //   auto rectangleTarget = m_pgpurendererTarget->m_pgpucontext->rectangle();
+
+   //   ptextureTarget->initialize_gpu_texture(m_pgpurendererTarget, rectangleTarget);
+
+   //   return ptextureTarget;
+
+   //}
 
 
 } // namespace gpu

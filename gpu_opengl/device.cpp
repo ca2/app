@@ -39,6 +39,7 @@ namespace gpu_opengl
    device::device()
    {
 
+      //m_iCurrentRendererFrameBuffer = -1;
       //m_emode = e_mode_none;
       ////m_itaskGpu = 0;
       //m_iLastBitmap1Scan = -1;

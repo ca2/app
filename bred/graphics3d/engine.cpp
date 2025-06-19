@@ -50,6 +50,7 @@ namespace graphics3d
    engine::~engine()
    {
 
+      debug() << "engine::~engine()";
 
    }
 
@@ -83,12 +84,23 @@ namespace graphics3d
 
       _prepare_frame();
 
-      auto prenderer = m_pgpucontextGraphics3D->m_pgpurendererOutput2;
+      auto prenderer = m_pgpucontext->m_pgpurendererOutput2;
 
       prenderer->on_new_frame();
 
       if (auto pframe = prenderer->beginFrame())
       {
+
+         if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+         {
+
+            //auto prenderer = get_gpu_context()->get_gpu_renderer();
+
+            //prenderer->start_layer();
+
+            start_gpu_layer();
+
+         }
 
          on_begin_frame();
          
@@ -101,17 +113,26 @@ namespace graphics3d
             if (m_pscene->global_ubo().size() > 0)
             {
 
-               update_global_ubo(m_pgpucontextGraphics3D);
+               update_global_ubo(m_pgpucontext);
 
             }
 
-            m_pscene->on_render(m_pgpucontextGraphics3D);
+            m_pscene->on_render(m_pgpucontext);
 
          }
 
          prenderer->on_end_render(pframe);
 
          on_end_frame();
+
+         if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+         {
+
+            //m_pgpucontext->m_pgpurendererOutput2->end_layer();
+
+            end_gpu_layer();
+
+         }
 
          prenderer->endFrame();
 
@@ -153,6 +174,24 @@ namespace graphics3d
    void engine::on_end_frame()
    {
 
+
+   }
+
+
+   void engine::start_gpu_layer()
+   {
+
+      m_pgpucontext->m_pgpudevice->layer_start(m_pgpucontext->m_pgpurendererOutput2);
+
+   }
+
+
+   void engine::end_gpu_layer()
+   {
+
+      auto prendererOutput = m_pgpucontext->m_pgpurendererOutput2;
+
+      prendererOutput->end_layer();
 
    }
 
@@ -451,11 +490,11 @@ namespace graphics3d
 
       //pgpucontext->m_pengine = this;
 
-      //auto prenderer = m_pgpucontextGraphics3D->m_pgpurendererOutput2;
+      //auto prenderer = m_pgpucontext->m_pgpurendererOutput2;
 
       //m_pgpurendererGraphics3D = pgpucontext->graphics3d_renderer();
 
-      m_pgpucontextGraphics3D->send([this]()
+      m_pgpucontext->send([this]()
          {
 
             while (task_get_run())
@@ -477,17 +516,17 @@ namespace graphics3d
 
                }
 
-               ::gpu::context_guard guard(m_pgpucontextGraphics3D);
+               ::gpu::context_guard guard(m_pgpucontext);
 
                //m_pgpucontext->make_current();
 
-               m_pgpucontextGraphics3D->set_placement(m_rectanglePlacementNew);
+               m_pgpucontext->set_placement(m_rectanglePlacementNew);
 
-               auto prenderer = m_pgpucontextGraphics3D->get_gpu_renderer();
+               auto prenderer = m_pgpucontext->get_gpu_renderer();
 
                prenderer->defer_update_renderer();
 
-               auto pgpucontext = m_pgpucontextGraphics3D;
+               auto pgpucontext = m_pgpucontext;
 
                //auto pgpucontext = m_pgpurendererGraphics3D->m_pgpucontext;
 
@@ -521,7 +560,7 @@ namespace graphics3d
 
                }
 
-               auto pdevice = m_pgpucontextGraphics3D->m_pgpudevice;
+               auto pdevice = m_pgpucontext->m_pgpudevice;
 
                pdevice->on_top_end_frame();
 
@@ -593,7 +632,7 @@ namespace graphics3d
       //   rectanglePlacement
       //);
 
-      //m_pgpucontextGraphics3D = pgpudevice->create_gpu_context(
+      //m_pgpucontext = pgpudevice->create_gpu_context(
       //   get_engine_gpu_eoutput(),
       //   ::gpu::e_scene_3d,
       //   rectanglePlacement.size()
@@ -636,11 +675,11 @@ namespace graphics3d
 
             m_pusergraphics3d->on_load_engine();
 
-            m_pgpucontextGraphics3D->m_pengine = this;
+            m_pgpucontext->m_pengine = this;
 
             m_bLoadedEngine = true;
 
-            if (m_pgpucontextGraphics3D->m_eoutput == ::gpu::e_output_cpu_buffer)
+            if (m_pgpucontext->m_eoutput == ::gpu::e_output_cpu_buffer)
             {
 
                run_cpu_buffer();
@@ -662,7 +701,7 @@ namespace graphics3d
 
          m_pscene->on_update_global_ubo(pgpucontext);
 
-         m_pgpucontextGraphics3D->update_global_ubo(m_pscene->global_ubo().m_block);
+         m_pgpucontext->update_global_ubo(m_pscene->global_ubo().m_block);
 
       }
 
@@ -672,19 +711,19 @@ namespace graphics3d
    ::gpu::context* engine::get_gpu_context()
    {
 
-      if (!m_pgpucontextGraphics3D)
+      if (!m_pgpucontext)
       {
 
          auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device();
 
-         m_pgpucontextGraphics3D = pgpudevice->create_gpu_context(
+         m_pgpucontext = pgpudevice->create_gpu_context(
             get_engine_gpu_eoutput(),
             ::gpu::e_scene_3d,
             m_rectanglePlacement.size());
 
       }
 
-      return m_pgpucontextGraphics3D;
+      return m_pgpucontext;
 
    }
 
@@ -709,21 +748,21 @@ namespace graphics3d
 
       ::gpu::rear_guard rear_guard(pcontext);
 
-      m_pgpucontextGraphics3D->_send([this]()
+      m_pgpucontext->_send([this]()
          {
 
-            ::gpu::context_guard guard(m_pgpucontextGraphics3D);
+            ::gpu::context_guard guard(m_pgpucontext);
 
-            m_pgpucontextGraphics3D->set_placement(m_rectanglePlacementNew);
+            m_pgpucontext->set_placement(m_rectanglePlacementNew);
 
-            auto prenderer = m_pgpucontextGraphics3D->get_gpu_renderer();
+            auto prenderer = m_pgpucontext->get_gpu_renderer();
 
             prenderer->defer_update_renderer();
 
             try
             {
 
-               m_pgpucontextGraphics3D->m_pengine->_do_frame_step();
+               _do_frame_step();
 
             }
             catch (...)
@@ -764,7 +803,7 @@ namespace graphics3d
       if (eoutput == ::gpu::e_output_cpu_buffer)
       {
 
-         auto pgpucontext = m_pgpucontextGraphics3D;
+         auto pgpucontext = m_pgpucontext;
 
          auto pcpubuffer = pgpucontext->m_pcpubuffer;
 
@@ -786,7 +825,7 @@ namespace graphics3d
       else
       {
 
-         auto pcontext = m_pgpucontextGraphics3D;
+         auto pcontext = m_pgpucontext;
 
          do_frame_step(pcontext);
 
@@ -824,7 +863,7 @@ namespace graphics3d
 
             m_rectanglePlacement = m_rectanglePlacementNew;
 
-            auto pgpucontext = m_pgpucontextGraphics3D;
+            auto pgpucontext = m_pgpucontext;
 
             pgpucontext->set_placement(m_rectanglePlacement);
 
@@ -943,7 +982,7 @@ namespace graphics3d
         //        globalSetLayout->getDescriptorSetLayout()
           //  };
 
-      m_pscene->defer_load_scene(m_pgpucontextGraphics3D);
+      m_pscene->defer_load_scene(m_pgpucontext);
 
       engine_on_after_load_scene(m_pscene);
 
@@ -957,7 +996,7 @@ namespace graphics3d
          if (iGlobalUboSize > 0)
          {
 
-            create_global_ubo(m_pgpucontextGraphics3D);
+            create_global_ubo(m_pgpucontext);
 
          }
 
@@ -1057,11 +1096,11 @@ namespace graphics3d
 
       model::tinyobjloader_Builder builder{};
 
-      builder.loadModel(m_pgpucontextGraphics3D, path);
+      builder.loadModel(m_pgpucontext, path);
 
       auto pmodel = __øcreate < model>();
 
-      pmodel->initialize_model(m_pgpucontextGraphics3D->m_pgpurendererOutput2, builder);
+      pmodel->initialize_model(m_pgpucontext->m_pgpurendererOutput2, builder);
 
       return pmodel;
 

@@ -38,6 +38,7 @@ namespace gpu_opengl
 
 #endif
 
+   class shader;
 
 } // namespace gpu_opengl
 

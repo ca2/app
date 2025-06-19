@@ -82,7 +82,7 @@ namespace image
          {
 
             m_pimage->image32()->vertical_swap_copy(s, m_pimage->m_iScan, pimage32, stride);
-
+            //m_pimage->fill_rectangle({100, 100, 200, 200}, argb(0.5, 0.5, 0.75, 0.95));
          }
          else
          {

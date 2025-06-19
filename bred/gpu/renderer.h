@@ -17,7 +17,7 @@ namespace gpu
    public:
 
 
-      static constexpr int DEFAULT_FRAME_COUNT = 2;
+      static constexpr int DEFAULT_FRAME_COUNT = 3;
 
 
       enum enum_state
@@ -62,7 +62,7 @@ namespace gpu
       ::pointer<::draw2d_gpu::graphics>     m_pgraphics;
       //::pointer<::gpu::context>             m_pgpucontextOutput;
       bool                                  m_bDisableDepthStencil = false;
-
+      ::int_size m_sizeRenderer;
       //::pointer<::gpu::approach>            m_papproach;
       //::image::image_pointer                m_pimageFromGpu;
       ///::pointer<::gpu::shader>              m_pshader;
@@ -185,11 +185,15 @@ namespace gpu
       virtual void on_begin_render(frame* pframe);
       virtual void on_end_render(frame* pframe);
 
+      virtual void _on_begin_render(frame* pframe);
+      virtual void _on_end_render(frame* pframe);
+
       virtual void endFrame();
       virtual void endDraw(::draw2d_gpu::graphics* pgraphics, ::user::interaction* puserinteraction);
 
 
       virtual void defer_update_renderer();
+      virtual void on_defer_update_renderer_allocate_render_target(::gpu::enum_output eoutput, const ::int_size & size, ::gpu::render_target * previous);
 
       virtual render_target* back_buffer_render_target();
 
@@ -210,9 +214,10 @@ namespace gpu
       virtual void do_on_frame(const ::procedure& procedure);
 
 
-      virtual void start_layer(const ::int_rectangle& rectangleTarget);
+      //virtual void start_layer(const ::int_rectangle& rectangleTarget);
+      virtual void start_layer();
       //virtual void take_snapshot(layer * player, const ::int_rectangle& rectangleTarget);
-      virtual ::int_rectangle end_layer();
+      virtual void end_layer();
       //virtual void merge_layers(::pointer_array < layer > * playera);
 
 

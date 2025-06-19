@@ -18,6 +18,7 @@ namespace gpu_opengl
       
 
       GLuint            m_gluTextureID;
+      GLuint            m_gluDepthStencilRBO;
 
 
       texture();

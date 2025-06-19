@@ -12,6 +12,7 @@ namespace gpu_opengl
    {
 
       m_gluTextureID = 0;
+      m_gluDepthStencilRBO = 0;
 
    }
 

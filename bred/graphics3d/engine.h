@@ -7,6 +7,7 @@
 #include "bred/graphics3d/camera.h"
 #include "bred/graphics3d/scene_object.h"
 #include "bred/gpu/properties.h"
+#include "bred/gpu/compositor.h"
 #include "bred/gpu/shader.h"
 
 // libs
@@ -25,7 +26,7 @@ namespace graphics3d
 
 
 	class CLASS_DECL_BRED engine :
-		virtual public ::app_consumer < ::aura::application, ::object >
+		virtual public ::app_consumer < ::aura::application, ::object, ::gpu::compositor >
 	{
 	public:
 
@@ -34,7 +35,7 @@ namespace graphics3d
 		float m_fYScale;
 		//::pointer < ::gpu::approach >					m_papproach;
 		//::pointer < ::gpu::context >					m_pgpucontext;
-		::pointer < ::gpu::context >					m_pgpucontextGraphics3D;
+		//::pointer < ::gpu::context >					m_pgpucontextGraphics3D;
 		::pointer < ::user::graphics3d >				m_pusergraphics3d;
 		::string_map < ::pointer < scene > >		m_mapScene;
 		::pointer < scene >								m_pscene;
@@ -72,6 +73,10 @@ namespace graphics3d
 
 		virtual void on_begin_frame();
 		virtual void on_end_frame();
+
+		virtual void start_gpu_layer();
+		virtual void end_gpu_layer();
+
 
 		virtual void update_global_ubo(::gpu::context* pgpucontext);
 

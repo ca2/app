@@ -11,6 +11,7 @@
 #include "renderer.h"
 #include "swap_chain.h"
 #include "texture.h"
+#include "bred/gpu/graphics.h"
 #include "aura/graphics/image/target.h"
 #include "aura/platform/application.h"
 #include "bred/gpu/layer.h"
@@ -43,6 +44,8 @@ void main() {
 
 namespace gpu_opengl
 {
+
+   void vertex2f(const ::double_polygon& a, float fZ);
 
 
    renderer::renderer()
@@ -190,10 +193,31 @@ namespace gpu_opengl
 
       }
 
-      if (!m_pgpurendertarget->m_bInit)
+      if (!m_pgpurendertarget->m_bRenderTargetInit)
       {
 
          m_pgpurendertarget->init();
+
+      }
+
+      _ensure_renderer_framebuffer();
+
+      return ::gpu::renderer::beginFrame();
+
+   }
+
+
+   void renderer::_ensure_renderer_framebuffer()
+   {
+
+      GLint fbo = 0;
+      glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &fbo);
+
+      if (m_iFrameBufferRenderer &&
+         m_iFrameBufferRenderer == fbo)
+      {
+
+         return; // already bound
 
       }
 
@@ -217,12 +241,33 @@ namespace gpu_opengl
          GL_TEXTURE_2D, textureID, 0);
       GLCheckError("");
 
-      return ::gpu::renderer::beginFrame();
+      ::cast < context > pgpucontext = m_pgpucontext;
+
+      if (pgpucontext->m_escene == ::gpu::e_scene_3d)
+      {
+
+         if (!ptexture->m_gluDepthStencilRBO)
+         {
+
+            int width = pgpucontext->m_rectangle.width();
+
+            int height = pgpucontext->m_rectangle.height();
+
+            glGenRenderbuffers(1, &ptexture->m_gluDepthStencilRBO);
+
+            glBindRenderbuffer(GL_RENDERBUFFER, ptexture->m_gluDepthStencilRBO);
+            glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
+
+         }
+
+         glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, ptexture->m_gluDepthStencilRBO);
+
+      }
 
    }
 
 
-   void renderer::_on_begin_render()
+   void renderer::_on_begin_render(::gpu::frame * pframe)
    {
 
       auto escene = m_pgpucontext->m_escene;
@@ -350,7 +395,7 @@ namespace gpu_opengl
 
          glFrontFace(GL_CCW);      // Default
          glEnable(GL_CULL_FACE);   // Optional
-         glCullFace(GL_FRONT);     
+         glCullFace(GL_FRONT);
 
          bool bYSwap = true;
          //double d = 200.0 / 72.0;
@@ -392,8 +437,6 @@ namespace gpu_opengl
 
    void renderer::on_begin_render(::gpu::frame* pframe)
    {
-
-      _on_begin_render();
 
       ::gpu::renderer::on_begin_render(pframe);
 
@@ -535,139 +578,141 @@ namespace gpu_opengl
    }
 
 
-   void renderer::defer_update_renderer()
-   {
+   //void renderer::defer_update_renderer()
+   //{
 
-      auto rectangleContext = m_pgpucontext->rectangle();
+   //   ::gpu::renderer::defer_update_renderer();
 
-      auto sizeContext = rectangleContext.size();
+   //   //auto rectangleContext = m_pgpucontext->rectangle();
 
-      auto etypeContext = m_pgpucontext->m_etype;
+   //   //auto sizeContext = rectangleContext.size();
 
-      if (m_sizeRenderer == sizeContext)
-      {
+   //   //auto etypeContext = m_pgpucontext->m_etype;
 
-         if (m_pgpucontext->is_current_task())
-         {
+   //   //if (m_sizeRenderer == sizeContext)
+   //   //{
 
-            if (!m_pgpurendertarget->m_bInit)
-            {
+   //   //   if (m_pgpucontext->is_current_task())
+   //   //   {
 
-               m_pgpurendertarget->init();
+   //   //      if (!m_pgpurendertarget->m_bInit)
+   //   //      {
 
-            }
+   //   //         m_pgpurendertarget->init();
 
-         }
+   //   //      }
 
-         return;
+   //   //   }
 
-      }
+   //   //   return;
 
-      auto size = m_pgpucontext->rectangle().size();
+   //   //}
 
-      m_sizeRenderer = size;
+   //   //auto size = m_pgpucontext->rectangle().size();
 
-      auto eoutput = m_pgpucontext->m_eoutput;
+   //   //m_sizeRenderer = size;
 
-      auto previous = m_pgpurendertarget;
+   //   //auto eoutput = m_pgpucontext->m_eoutput;
 
-      if (eoutput == ::gpu::e_output_cpu_buffer
-         || eoutput == ::gpu::e_output_gpu_buffer)
-      {
+   //   //auto previous = m_pgpurendertarget;
 
-         auto poffscreenrendertargetview = __allocate offscreen_render_target();
-         //#ifdef WINDOWS_DESKTOP
-         //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
-         //#else
-         //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
-         //#endif
-         m_pgpurendertarget = poffscreenrendertargetview;
-         //         //m_prendererResolve.release();
-         //
-      }
-      else if (eoutput == ::gpu::e_output_swap_chain)
-      {
-         auto poffscreenrendertargetview = __allocate offscreen_render_target();
-         //#ifdef WINDOWS_DESKTOP
-         //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
-         //#else
-         //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
-         //#endif
-         m_pgpurendertarget = poffscreenrendertargetview;
+   //   //if (eoutput == ::gpu::e_output_cpu_buffer
+   //   //   || eoutput == ::gpu::e_output_gpu_buffer)
+   //   //{
 
-         //m_prendertargetview = __allocate swap_chain_render_target(this, size, m_prendertargetview);
-         //m_prendererResolve.release();
+   //   //   auto poffscreenrendertargetview = __allocate offscreen_render_target();
+   //   //   //#ifdef WINDOWS_DESKTOP
+   //   //   //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
+   //   //   //#else
+   //   //   //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
+   //   //   //#endif
+   //   //   m_pgpurendertarget = poffscreenrendertargetview;
+   //   //   //         //m_prendererResolve.release();
+   //   //   //
+   //   //}
+   //   //else if (eoutput == ::gpu::e_output_swap_chain)
+   //   //{
+   //   //   auto poffscreenrendertargetview = __allocate offscreen_render_target();
+   //   //   //#ifdef WINDOWS_DESKTOP
+   //   //   //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
+   //   //   //#else
+   //   //   //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
+   //   //   //#endif
+   //   //   m_pgpurendertarget = poffscreenrendertargetview;
 
-      }
-      //      else if (eoutput == ::gpu::e_output_gpu_buffer)
-      //      {
-      //
-      //         auto poffscreenrendertargetview = __allocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
-      //#ifdef WINDOWS_DESKTOP
-      //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
-      //#else
-      //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
-      //#endif
-      //         m_prendertargetview = poffscreenrendertargetview;
-      //         //m_prendererResolve;
-      //
-      //      }
-      //      else if (eoutput == ::gpu::e_output_color_and_alpha_accumulation_buffers)
-      //      {
-      //
-      //         auto paccumulationrendertargetview = __allocate accumulation_render_target(this, m_extentRenderer, m_prendertargetview);
-      //         paccumulationrendertargetview->m_formatImage = VK_FORMAT_R32G32B32A32_SFLOAT;
-      //         paccumulationrendertargetview->m_formatAlphaAccumulation = VK_FORMAT_R32_SFLOAT;
-      //         m_prendertargetview = paccumulationrendertargetview;
-      //
-      //         //__construct_new(m_prendererResolve);
-      //
-      //         //m_prendererResolve->initialize_renderer(m_pgpucontext, ::gpu::e_output_resolve_color_and_alpha_accumulation_buffers);
-      //
-      //         //m_prendererResolve->set_placement(m_pgpucontext->rectangle);
-      //         //
-      //         //            auto poffscreenrendertargetview = __allocate offscreen_render_target(m_pgpucontext, m_extentRenderer, m_prendertargetviewResolve);
-      //         //#ifdef WINDOWS_DESKTOP
-      //         //            poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
-      //         //#else
-      //         //            poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
-      //         //#endif
-      //         //            m_prendertargetviewResolve = poffscreenrendertargetview;
-      //      }
-      //      else if (eoutput == ::gpu::e_output_resolve_color_and_alpha_accumulation_buffers)
-      //      {
-      //
-      //         auto poffscreenrendertargetview = __allocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
-      //#ifdef WINDOWS_DESKTOP
-      //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
-      //#else
-      //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
-      //#endif
-      //         m_prendertargetview = poffscreenrendertargetview;
-      //
-      //      }
-      //      else
-      //      {
-      //
-      //         throw ::exception(error_wrong_state, "Unexpected gpu e_output");
-      //
-      //      }
-      //
-      if (!m_pgpurendertarget->has_ok_flag() && m_sizeRenderer.area() > 0)
-      {
+   //   //   //m_prendertargetview = __allocate swap_chain_render_target(this, size, m_prendertargetview);
+   //   //   //m_prendererResolve.release();
 
-         m_pgpurendertarget->initialize_render_target(this, size, previous);
+   //   //}
+   //   ////      else if (eoutput == ::gpu::e_output_gpu_buffer)
+   //   ////      {
+   //   ////
+   //   ////         auto poffscreenrendertargetview = __allocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
+   //   ////#ifdef WINDOWS_DESKTOP
+   //   ////         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
+   //   ////#else
+   //   ////         poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
+   //   ////#endif
+   //   ////         m_prendertargetview = poffscreenrendertargetview;
+   //   ////         //m_prendererResolve;
+   //   ////
+   //   ////      }
+   //   ////      else if (eoutput == ::gpu::e_output_color_and_alpha_accumulation_buffers)
+   //   ////      {
+   //   ////
+   //   ////         auto paccumulationrendertargetview = __allocate accumulation_render_target(this, m_extentRenderer, m_prendertargetview);
+   //   ////         paccumulationrendertargetview->m_formatImage = VK_FORMAT_R32G32B32A32_SFLOAT;
+   //   ////         paccumulationrendertargetview->m_formatAlphaAccumulation = VK_FORMAT_R32_SFLOAT;
+   //   ////         m_prendertargetview = paccumulationrendertargetview;
+   //   ////
+   //   ////         //__construct_new(m_prendererResolve);
+   //   ////
+   //   ////         //m_prendererResolve->initialize_renderer(m_pgpucontext, ::gpu::e_output_resolve_color_and_alpha_accumulation_buffers);
+   //   ////
+   //   ////         //m_prendererResolve->set_placement(m_pgpucontext->rectangle);
+   //   ////         //
+   //   ////         //            auto poffscreenrendertargetview = __allocate offscreen_render_target(m_pgpucontext, m_extentRenderer, m_prendertargetviewResolve);
+   //   ////         //#ifdef WINDOWS_DESKTOP
+   //   ////         //            poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
+   //   ////         //#else
+   //   ////         //            poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
+   //   ////         //#endif
+   //   ////         //            m_prendertargetviewResolve = poffscreenrendertargetview;
+   //   ////      }
+   //   ////      else if (eoutput == ::gpu::e_output_resolve_color_and_alpha_accumulation_buffers)
+   //   ////      {
+   //   ////
+   //   ////         auto poffscreenrendertargetview = __allocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
+   //   ////#ifdef WINDOWS_DESKTOP
+   //   ////         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
+   //   ////#else
+   //   ////         poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
+   //   ////#endif
+   //   ////         m_prendertargetview = poffscreenrendertargetview;
+   //   ////
+   //   ////      }
+   //   ////      else
+   //   ////      {
+   //   ////
+   //   ////         throw ::exception(error_wrong_state, "Unexpected gpu e_output");
+   //   ////
+   //   ////      }
+   //   ////
+   //   //if (!m_pgpurendertarget->has_ok_flag() && m_sizeRenderer.area() > 0)
+   //   //{
 
-         if (m_pgpucontext->is_current_task())
-         {
+   //   //   m_pgpurendertarget->initialize_render_target(this, size, previous);
 
-            m_pgpurendertarget->init();
+   //   //   if (m_pgpucontext->is_current_task())
+   //   //   {
 
-         }
+   //   //      m_pgpurendertarget->init();
 
-      }
+   //   //   }
 
-   }
+   //   //}
+
+   //}
 
 
    ::pointer < ::gpu::render_target > renderer::allocate_offscreen_render_target()
@@ -676,6 +721,25 @@ namespace gpu_opengl
       auto poffscreenrendertarget = __allocate offscreen_render_target();
 
       return poffscreenrendertarget;
+
+   }
+
+
+   void renderer::on_defer_update_renderer_allocate_render_target(::gpu::enum_output eoutput, const ::int_size& size, ::gpu::render_target* previous)
+   {
+
+      if (eoutput == ::gpu::e_output_cpu_buffer
+         || eoutput == ::gpu::e_output_gpu_buffer
+         || eoutput == ::gpu::e_output_swap_chain)
+      {
+
+         auto poffscreenrendertarget = __allocate offscreen_render_target();
+
+         m_pgpurendertarget = poffscreenrendertarget;
+
+      }
+
+      //return poffscreenrendertarget;
 
    }
 
@@ -1105,40 +1169,56 @@ namespace gpu_opengl
    void renderer::on_start_layer(::gpu::layer* player)
    {
 
-      if (player->m_pgputextureSource)
-      {
+      _ensure_renderer_framebuffer();
 
-         clear(player->m_pgputextureSource);
+      //if (player->texture())
+      //{
 
-         if (!m_iFrameBufferRenderer)
-         {
+      //   if (!m_iFrameBufferRenderer)
+      //   {
 
-            GLuint fboSrc, fboDst;
-            glGenFramebuffers(1, &m_iFrameBufferRenderer);
-            GLCheckError("");
+      //      GLuint fboSrc, fboDst;
+      //      glGenFramebuffers(1, &m_iFrameBufferRenderer);
+      //      GLCheckError("");
 
-         }
+      //   }
 
-         glBindFramebuffer(GL_FRAMEBUFFER, m_iFrameBufferRenderer);
-         GLCheckError("");
+      //   glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_iFrameBufferRenderer);
+      //   GLCheckError("");
 
-         ::cast < texture > ptexture = player->m_pgputextureSource;
+         ::cast < texture > ptexture = player->m_pgpurenderer->m_pgpurendertarget->current_texture();
+         ::cast < context > pcontext = player->m_pgpurenderer->m_pgpucontext;
+      //   int textureID = ptexture->m_gluTextureID;
 
-         int textureID = ptexture->m_gluTextureID;
+      //   glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+      //      GL_TEXTURE_2D, textureID, 0);
+      //   GLCheckError("");
 
-         glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-            GL_TEXTURE_2D, textureID, 0);
-         GLCheckError("");
+         auto escene = pcontext->m_escene;
 
-      }
+      //   auto etype = m_pgpucontext->m_etype;
+
+      //   auto eoutput = m_pgpucontext->m_eoutput;
+
+         auto r = pcontext->rectangle();
+
+         int width = r.width();
+
+         int height = r.height();
+
+      //   //clear(player->m_pgputextureSource);
+
+      //   //_on_begin_render();
+
+
+      //}
 
    }
-
-
-
+   
+   
    void renderer::blend(::gpu::renderer* prendererSource)
    {
-
+   
       auto rectangleHost = m_pgpucontext->rectangle();
 
       int wHost = rectangleHost.width();
@@ -1318,6 +1398,148 @@ namespace gpu_opengl
    }
 
 
+   void renderer::__blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource)
+   {
+
+      ::cast < texture > ptextureDst = ptextureTarget;
+      ::cast < texture > ptextureSrc = ptextureSource;
+
+
+      if (!m_pshaderBlend2)
+      {
+
+         __construct_new(m_pshaderBlend2);
+
+         m_pshaderBlend2->initialize_shader_with_block(
+            this,
+            blend_vert,
+            blend_frag);
+
+      }
+
+      float quadVertices[] = {
+         // pos      // uv
+         -1.0f, -1.0f,  0.0f, 0.0f,
+          1.0f, -1.0f,  1.0f, 0.0f,
+         -1.0f,  1.0f,  0.0f, 1.0f,
+          1.0f,  1.0f,  1.0f, 1.0f,
+      };
+
+
+      auto rectangleTarget = ptextureSource->m_rectangleTarget;
+
+      int iTopH = ptextureDst->size().cy();
+      int rectangleBottom = rectangleTarget.bottom();
+      int iY = iTopH - rectangleBottom;
+
+      glViewport(
+         rectangleTarget.left(),
+          iY,
+         rectangleTarget.width(),
+         rectangleTarget.height());
+
+      // Optional: scissor if you want to limit drawing region
+      glEnable(GL_SCISSOR_TEST);
+      glScissor(
+         rectangleTarget.left(),
+         iY,
+         rectangleTarget.width(),
+         rectangleTarget.height()
+      );
+
+      glDepthMask(FALSE);
+      glDisable(GL_DEPTH_TEST);
+
+      glEnable(GL_BLEND);
+      glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+      glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
+
+      // VAO/VBO setup
+      GLuint& vao = m_vaoQuadBlend2;
+      GLuint& vbo = m_vboQuadBlend2;
+
+      if (!vao)
+      {
+
+         glGenVertexArrays(1, &vao);
+         glGenBuffers(1, &vbo);
+         glBindVertexArray(vao);
+         glBindBuffer(GL_ARRAY_BUFFER, vbo);
+         glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
+         glEnableVertexAttribArray(0); // position
+         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+         glEnableVertexAttribArray(1); // texcoord
+         glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+
+      }
+      else
+      {
+
+         glBindVertexArray(vao);
+
+      }
+
+      m_pshaderBlend2->bind();
+
+      glActiveTexture(GL_TEXTURE0);
+      glBindTexture(GL_TEXTURE_2D, ptextureSrc->m_gluTextureID);
+      m_pshaderBlend2->_set_int("uTexture", 0);
+
+      // Optional: if each texture should be rendered to a specific portion of the screen
+      // set a model/view/projection matrix or glViewport/scissor here.
+
+      glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+      //}
+
+      m_pshaderBlend2->unbind();
+
+#if SHOW_DEBUG_DRAWING
+
+      {
+
+
+         {
+
+            ///glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+
+
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_ONE, GL_ZERO); // Source Copy mode
+            //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
+
+            {
+               float fOpacity = 0.5;
+               float fRed = 0.5;
+               float fGreen = 0.75;
+               float fBlue = 0.95;
+               auto f32Opacity = (float)fOpacity;
+               auto f32Red = (float)(fRed * fOpacity);
+               auto f32Green = (float)(fGreen * fOpacity);
+               auto f32Blue = (float)(fBlue * fOpacity);
+               ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
+            }
+
+            ::double_polygon polygon;
+
+            ::double_rectangle rectangle(500, 100, 550, 150);
+
+            polygon = rectangle;
+
+            glBegin(GL_QUADS);
+
+
+            vertex2f(polygon, 0.f);
+
+            glEnd();
+
+         }
+      }
+#endif // SHOW_DEBUG_DRAWING
+
+
+   }
+
+
    void renderer::blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource)
    {
 
@@ -1378,6 +1600,12 @@ namespace gpu_opengl
          rectangleTarget.height()
       );
 
+      glDepthMask(FALSE);
+      glDisable(GL_DEPTH_TEST);
+
+      glEnable(GL_BLEND);
+      glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+      glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
 
       // VAO/VBO setup
       GLuint vao, vbo;
@@ -1407,6 +1635,50 @@ namespace gpu_opengl
 
       m_pshaderBlend2->unbind();
 
+
+#if SHOW_DEBUG_DRAWING
+      {
+
+
+         {
+
+            glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_ONE, GL_ZERO); // Source Copy mode
+            //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
+
+            {
+               float fOpacity = 0.5;
+               float fRed = 0.5;
+               float fGreen = 0.75;
+               float fBlue = 0.95;
+               auto f32Opacity = (float)fOpacity;
+               auto f32Red = (float)(fRed * fOpacity);
+               auto f32Green = (float)(fGreen * fOpacity);
+               auto f32Blue = (float)(fBlue * fOpacity);
+               ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
+            }
+
+            ::double_polygon polygon;
+
+            ::double_rectangle rectangle(500, 100, 550, 150);
+
+            polygon = rectangle;
+
+            glBegin(GL_QUADS);
+
+
+            vertex2f(polygon, 0.f);
+
+            glEnd();
+
+         }
+      }
+
+#endif
+
       glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
 
       glDeleteFramebuffers(1, &framebuffer);
@@ -1414,8 +1686,55 @@ namespace gpu_opengl
    }
 
 
+   void vertex2f(const ::double_polygon& a, float fZ)
+   {
+      for (auto& p : a)
+      {
+
+         glVertex3f((GLfloat)p.x(), (GLfloat)p.y(), fZ);
+
+      }
+
+   }
+
+
    void renderer::copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
    {
+
+      //glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+
+      //glEnable(GL_BLEND);
+      //glBlendFunc(GL_ONE, GL_ZERO); // Source Copy mode
+      ////glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
+
+      //glBegin(GL_QUADS);
+
+      //{
+      //   float fOpacity = 0.5;
+      //   float fRed = 0.5;
+      //   float fGreen = 0.75;
+      //   float fBlue = 0.95;
+      //   auto f32Opacity = (float)fOpacity;
+      //   auto f32Red = (float)(fRed * fOpacity);
+      //   auto f32Green = (float)(fGreen * fOpacity);
+      //   auto f32Blue = (float)(fBlue * fOpacity);
+      //   ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
+      //}
+
+      //::double_polygon polygon;
+
+      //::double_rectangle rectangle(100, 100, 200, 200);
+
+      //polygon = rectangle;
+
+
+      //vertex2f(polygon, 0.f);
+
+      //glEnd();
+
+
+      //return;
 
       ::cast < texture > ptextureDst = pgputextureTarget;
       ::cast < texture > ptextureSrc = pgputextureSource;
@@ -1483,6 +1802,12 @@ namespace gpu_opengl
          rectangleTarget.height()
       );
 
+      glDisable(GL_BLEND);
+      // glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+      //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
+      glDisable(GL_DEPTH_TEST);
+      glDepthMask(FALSE);
+
 
       // VAO/VBO setup
       GLuint vao, vbo;
@@ -1512,9 +1837,47 @@ namespace gpu_opengl
 
       m_pshaderBlend2->unbind();
 
+
+      {
+
+         glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+
+         glEnable(GL_BLEND);
+         glBlendFunc(GL_ONE, GL_ZERO); // Source Copy mode
+         //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
+
+         {
+            float fOpacity = 0.5;
+            float fRed = 0.5;
+            float fGreen = 0.75;
+            float fBlue = 0.95;
+            auto f32Opacity = (float)fOpacity;
+            auto f32Red = (float)(fRed * fOpacity);
+            auto f32Green = (float)(fGreen * fOpacity);
+            auto f32Blue = (float)(fBlue * fOpacity);
+            ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
+         }
+
+         ::double_polygon polygon;
+
+         ::double_rectangle rectangle(100, 100, 200, 200);
+
+         polygon = rectangle;
+
+         glBegin(GL_QUADS);
+
+
+         vertex2f(polygon, 0.f);
+
+         glEnd();
+
+      }
+
       glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
 
       glDeleteFramebuffers(1, &framebuffer);
+
 
    }
 

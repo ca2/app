@@ -129,6 +129,8 @@ namespace gpu
    context::context()
    {
 
+      //m_pdraw2dgraphics = nullptr;
+
       m_eoutput = ::gpu::e_output_none;
 
       m_etype = e_type_undefined;
@@ -644,6 +646,12 @@ namespace gpu
    void context::top_send_on_context(::gpu::context* pcontextInnerStart, bool bForDrawing, const ::procedure& procedure)
    {
 
+      auto etype = this->m_etype;
+
+      auto eoutput = this->m_eoutput;
+
+      auto rectangleContext = this->rectangle();
+
       if (m_etype != e_type_window)
       {
 
@@ -658,8 +666,10 @@ namespace gpu
       send_on_context([this, pcontextInnerStart, bForDrawing, procedure]()
          {
 
-            get_gpu_renderer()->do_on_frame([this, pcontextInnerStart, bForDrawing, procedure]()
-               {
+            auto pgpurenderer = get_gpu_renderer();
+
+            pgpurenderer->do_on_frame([this, pcontextInnerStart, bForDrawing, procedure]()
+            {
 
                   pcontextInnerStart->send_on_context([this, pcontextInnerStart, bForDrawing, procedure]()
                      {
@@ -703,11 +713,14 @@ namespace gpu
 
                      auto ptextureBackBuffer = prendertargetBackBuffer->current_texture();
 
-                     ptextureBackBuffer->merge_layers(m_pgpudevice->m_playera);
+                     merge_layers(ptextureBackBuffer, m_pgpudevice->m_playera);
 
                      auto prendertargetSwapChain = prendererSwapChain->m_pgpurendertarget;
 
                      auto ptextureSwapChain = prendertargetSwapChain->current_texture();
+
+                     clear(::color::transparent);
+                     ///clear(::rgba(0.5*0.5, 0.75 * 0.5, 0.95 * 0.5, 0.5));
 
                      prendererSwapChain->copy(ptextureSwapChain, ptextureBackBuffer);
 
@@ -1118,6 +1131,20 @@ namespace gpu
    }
 
 
+   void context::copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource)
+   {
+
+
+   }
+
+
+   void context::merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera)
+   {
+
+
+   }
+
+
    void context::on_create_texture(texture* ptexture)
    {
 
@@ -1125,17 +1152,17 @@ namespace gpu
    }
 
 
-   void context::on_take_snapshot(layer* player, texture* ptextureSource)
+   void context::on_take_snapshot(layer* player)
    {
 
 
    }
 
 
-   void context::on_begin_draw_attach(::draw2d_gpu::graphics* pgpugraphics, const ::int_rectangle& rectangle)
+   void context::on_begin_draw_attach(::draw2d_gpu::graphics* pgpugraphics)
    {
 
-      draw2d_on_begin_draw(pgpugraphics, rectangle);
+      draw2d_on_begin_draw(pgpugraphics);
 
    }
 
@@ -1147,28 +1174,31 @@ namespace gpu
    }
 
 
-   void context::draw2d_on_begin_draw(::draw2d_gpu::graphics* pgpugraphics, const ::int_rectangle& rectangle)
+   void context::draw2d_on_begin_draw(::draw2d_gpu::graphics* pgpugraphics)
    {
 
-      if (pgpugraphics->m_egraphics == e_graphics_draw)
-      {
+      //if (pgpugraphics->m_egraphics == e_graphics_draw)
+      //{
 
-         auto pgpurendererDraw2d = get_gpu_renderer();
+      //   pgpugraphics->start_gpu_layer();
 
-         //if (pgpurendererDraw2d->m_pgpurendertarget)
-         //{
+      //   //auto pgpurendererDraw2d = get_gpu_renderer();
 
-         //   pgpurendererDraw2d->m_pgpurendertarget->on_before_begin_draw_frame(pgpugraphics);
+      //   //if (pgpurendererDraw2d->m_pgpurendertarget)
+      //   //{
 
-         //}
+      //   //   pgpurendererDraw2d->m_pgpurendertarget->on_before_begin_draw_frame(pgpugraphics);
 
-         //pgpurendererDraw2d->m_pgpucontext->get_gpu_renderer()->start_frame();
+      //   //}
 
-         //pgpurendererDraw2d->m_pgpucontext->m_pgpudevice->start_stacking_layers();
+      //   //pgpurendererDraw2d->m_pgpucontext->get_gpu_renderer()->start_frame();
 
-         pgpurendererDraw2d->start_layer(rectangle);
+      //   //pgpurendererDraw2d->m_pgpucontext->m_pgpudevice->start_stacking_layers();
 
-      }
+      //   //pgpurendererDraw2d->start_layer(rectangle);
+
+
+      //}
 
    }
 
@@ -1193,23 +1223,23 @@ namespace gpu
    void context::draw2d_on_end_draw(::draw2d_gpu::graphics* pgpugraphics)
    {
 
-      if (pgpugraphics->m_egraphics == e_graphics_draw)
-      {
+      //if (pgpugraphics->m_egraphics == e_graphics_draw)
+      //{
 
-         auto pgpurendererDraw2d = m_pgpurendererOutput2;
+      //   auto pgpurendererDraw2d = m_pgpurendererOutput2;
 
-         pgpurendererDraw2d->end_layer();
+      //   pgpurendererDraw2d->end_layer();
 
-         //pgpurendererDraw2d->m_pgpucontext->get_gpu_renderer()->end_frame();
+      //   //pgpurendererDraw2d->m_pgpucontext->get_gpu_renderer()->end_frame();
 
-         //if (pgpurendererDraw2d->m_pgpurendertarget)
-         //{
+      //   //if (pgpurendererDraw2d->m_pgpurendertarget)
+      //   //{
 
-         //   pgpurendererDraw2d->m_pgpurendertarget->on_after_end_draw_frame(pgpugraphics);
+      //   //   pgpurendererDraw2d->m_pgpurendertarget->on_after_end_draw_frame(pgpugraphics);
 
-         //}
+      //   //}
 
-      }
+      //}
 
    }
 

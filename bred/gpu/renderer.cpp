@@ -10,10 +10,12 @@
 #include "render_target.h"
 #include "acme/exception/interface_only.h"
 #include "acme/prototype/geometry2d/matrix.h"
-#include "aura/graphics/draw2d/graphics.h"
+#include "bred/gpu/graphics.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/target.h"
+
+#include "aura/platform/application.h"
 #include "aura/platform/system.h"
 #include "aura/user/user/interaction.h"
 
@@ -21,7 +23,7 @@
 namespace gpu
 {
 
-   
+
    renderer::renderer()
    {
 
@@ -128,7 +130,7 @@ namespace gpu
    }
 
 
-   void renderer::initialize_renderer(::gpu::context * pgpucontext)
+   void renderer::initialize_renderer(::gpu::context* pgpucontext)
    {
 
       m_pgpucontext = pgpucontext;
@@ -166,11 +168,11 @@ namespace gpu
    void renderer::take_snapshot(layer* player)
    {
 
-      auto ptextureSource = m_pgpurendertarget->current_texture();
+//      auto ptextureSource = m_pgpurendertarget->current_texture();
 
-      player->m_pgputextureTarget->initialize_gpu_texture(this, player->m_pgputextureTarget->m_rectangleTarget);
+  //    player->m_pgputextureTarget->initialize_gpu_texture(this, player->m_pgputextureTarget->m_rectangleTarget);
 
-      m_pgpucontext->on_take_snapshot(player, ptextureSource);
+      m_pgpucontext->on_take_snapshot(player);
 
    }
 
@@ -187,10 +189,9 @@ namespace gpu
    {
 
       auto pshader = __øcreate < ::gpu::shader >();
-
-      pshader->initialize_shader(this, 
-         pathVert, pathFrag, eslota, 
-         pLocalDescriptorSet, pVertexInput, 
+      pshader->initialize_shader(this,
+         pathVert, pathFrag, eslota,
+         pLocalDescriptorSet, pVertexInput,
          ppropertiesPush, ppropertiesInputLayout, eflag);
 
       return pshader;
@@ -376,7 +377,7 @@ namespace gpu
                //         pgraphics->set(matrixOriginal);
                //
                //#endif
-         });
+            });
 
       }
 
@@ -391,11 +392,11 @@ namespace gpu
    void renderer::read_to_cpu_buffer()
    {
 
-//      ::gpu::context_lock lock(m_pgpucontext);
+      //      ::gpu::context_lock lock(m_pgpucontext);
 
-      //if (::is_set(m_papplication) && ::is_set(m_papplication->m_pbuffer)
-      //   && m_papplication->m_pbuffer->m_pimage.ok()
-      //   && ::is_set(m_pprogram))
+            //if (::is_set(m_papplication) && ::is_set(m_papplication->m_pbuffer)
+            //   && m_papplication->m_pbuffer->m_pimage.ok()
+            //   && ::is_set(m_pprogram))
       if (::is_set(m_pgpucontext) && ::is_set(m_pgpucontext->m_pcpubuffer)
          && m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_pimage.ok())
       {
@@ -508,61 +509,61 @@ namespace gpu
    }
 
 
-//   void renderer::to_draw2d_graphics(::draw2d::graphics_pointer & pgraphics)
-//   {
-//
-//      
-//   //   m_pgpucontext->prepare_for_gpu_read();
-//
-//   //   slImage.lock();
-//
-//   //   m_pgpucontext->m_pcpubuffer->gpu_read();
-//
-//   //}
-//
-//#if !defined(__APPLE__)
-//
-//   ::geometry2d::matrix matrixOriginal;
-//
-//   pgraphics->get(matrixOriginal);
-//
-//   ::geometry2d::matrix matrix(matrixOriginal);
-//
-//   matrix.scale(1.0, -1.0);
-//
-//   matrix.translate(0, m_rectangle.height());
-//
-//   pgraphics->set(matrix);
-//
-//#endif
-//
-//
-//   __defer_construct(m_pimageFromGpu);
-//
-//   auto size = m_pgpucontext->m_pcpubuffer->m_pixmap.m_size;
-//
-//   m_pimageFromGpu->create(size);
-//
-//   m_pimageFromGpu->map();
-//
-//   m_pimageFromGpu->copy(&m_pgpucontext->m_pcpubuffer->m_pixmap);
-//
-//   ::image::image_source imagesource(m_pimageFromGpu);
-//
-//   ::image::image_drawing_options imagedrawingoptions(m_rectangle);
-//
-//   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-//
-//   pgraphics->draw(imagedrawing);
-//
-//#if !defined(__APPLE__)
-//
-//   pgraphics->set(matrixOriginal);
-//
-//#endif
-//
-//
-//   }
+   //   void renderer::to_draw2d_graphics(::draw2d::graphics_pointer & pgraphics)
+   //   {
+   //
+   //      
+   //   //   m_pgpucontext->prepare_for_gpu_read();
+   //
+   //   //   slImage.lock();
+   //
+   //   //   m_pgpucontext->m_pcpubuffer->gpu_read();
+   //
+   //   //}
+   //
+   //#if !defined(__APPLE__)
+   //
+   //   ::geometry2d::matrix matrixOriginal;
+   //
+   //   pgraphics->get(matrixOriginal);
+   //
+   //   ::geometry2d::matrix matrix(matrixOriginal);
+   //
+   //   matrix.scale(1.0, -1.0);
+   //
+   //   matrix.translate(0, m_rectangle.height());
+   //
+   //   pgraphics->set(matrix);
+   //
+   //#endif
+   //
+   //
+   //   __defer_construct(m_pimageFromGpu);
+   //
+   //   auto size = m_pgpucontext->m_pcpubuffer->m_pixmap.m_size;
+   //
+   //   m_pimageFromGpu->create(size);
+   //
+   //   m_pimageFromGpu->map();
+   //
+   //   m_pimageFromGpu->copy(&m_pgpucontext->m_pcpubuffer->m_pixmap);
+   //
+   //   ::image::image_source imagesource(m_pimageFromGpu);
+   //
+   //   ::image::image_drawing_options imagedrawingoptions(m_rectangle);
+   //
+   //   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+   //
+   //   pgraphics->draw(imagedrawing);
+   //
+   //#if !defined(__APPLE__)
+   //
+   //   pgraphics->set(matrixOriginal);
+   //
+   //#endif
+   //
+   //
+   //   }
 
 
    void renderer::on_start_drawing()
@@ -586,7 +587,7 @@ namespace gpu
    }
 
 
-   void renderer::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void renderer::on_layout(::draw2d::graphics_pointer& pgraphics)
    {
 
 
@@ -633,7 +634,7 @@ namespace gpu
    int renderer::get_frame_count()
    {
 
-      return (int) m_pgpurendertarget->m_texturea.size();
+      return (int)m_pgpurendertarget->m_texturea.size();
 
    }
 
@@ -681,13 +682,77 @@ namespace gpu
 
       on_happening(e_happening_begin_render);
 
+      bool bLayerStarted = false;
+
+      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      {
+
+         if (m_pgpucontext->m_pgpucompositor)
+         {
+
+            m_pgpucontext->m_pgpucompositor->start_gpu_layer();
+
+            bLayerStarted = true;
+
+         }
+
+      }
+
+      //if(!bLayerStarted)
+      {
+
+         _on_begin_render(pframe);
+
+      }
+
    }
 
 
    void renderer::on_end_render(frame* pframe)
    {
 
+      bool bLayerPresent = false;
+
+      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      {
+
+         if (m_pgpucontext->m_pgpucompositor)
+         {
+
+            bLayerPresent = true;
+
+         }
+
+      }
+
+      if(bLayerPresent)
+      {
+         
+         m_pgpucontext->m_pgpucompositor->end_gpu_layer();
+
+      }
+      else
+      {
+
+         _on_end_render(pframe);
+
+      }  
+
       on_happening(e_happening_end_render);
+
+   }
+
+
+   void renderer::_on_begin_render(frame* pframe)
+   {
+
+
+   }
+
+
+   void renderer::_on_end_render(frame* pframe)
+   {
+
 
    }
 
@@ -699,10 +764,50 @@ namespace gpu
 
    }
 
-   
-   void renderer::endDraw(::draw2d_gpu::graphics * pgraphics, ::user::interaction * puserinteraction)
+
+   void renderer::endDraw(::draw2d_gpu::graphics* pgraphics, ::user::interaction* puserinteraction)
    {
 
+
+   }
+
+
+   void renderer::on_defer_update_renderer_allocate_render_target(::gpu::enum_output eoutput, const ::int_size& size, ::gpu::render_target* previous)
+   {
+
+      throw ::interface_only();
+      //::pointer < ::gpu::render_target > pgpurendertarget;
+
+      //if (eoutput == ::gpu::e_output_cpu_buffer
+      //   || eoutput == ::gpu::e_output_gpu_buffer)
+      //{
+
+      //   pgpurendertarget = __allocate offscreen_render_target();
+      //   //#ifdef WINDOWS_DESKTOP
+      //   //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
+      //   //#else
+      //   //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
+      //   //#endif
+      //   //m_pgpurendertarget = poffscreenrendertargetview;
+      //   //         //m_prendererResolve.release();
+      //   //
+      //}
+      //else if (eoutput == ::gpu::e_output_swap_chain)
+      //{
+      //   pgpurendertarget = __allocate offscreen_render_target();
+      //   //#ifdef WINDOWS_DESKTOP
+      //   //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
+      //   //#else
+      //   //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
+      //   //#endif
+      //   //m_pgpurendertarget = poffscreenrendertargetview;
+
+      //   //m_prendertargetview = __allocate swap_chain_render_target(this, size, m_prendertargetview);
+      //   //m_prendererResolve.release();
+
+      //}
+
+      //return pgpurendertarget;
 
    }
 
@@ -710,6 +815,121 @@ namespace gpu
    void renderer::defer_update_renderer()
    {
 
+      auto rectangleContext = m_pgpucontext->rectangle();
+
+      auto sizeContext = rectangleContext.size();
+
+      auto etypeContext = m_pgpucontext->m_etype;
+
+      if (m_pgpurendertarget && m_sizeRenderer == sizeContext)
+      {
+
+         if (m_pgpucontext->is_current_task())
+         {
+
+            if (!sizeContext.is_empty())
+            {
+
+               if (!m_pgpurendertarget->m_bRenderTargetInit)
+               {
+
+                  m_pgpurendertarget->init();
+
+               }
+
+            }
+
+         }
+
+         return;
+
+      }
+
+      auto size = m_pgpucontext->rectangle().size();
+
+      auto eoutput = m_pgpucontext->m_eoutput;
+
+      auto previous = m_pgpurendertarget;
+
+      on_defer_update_renderer_allocate_render_target(eoutput, size, previous);
+
+      if (!m_pgpurendertarget)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      m_sizeRenderer = size;
+
+      //m_pgpurendertarget = pgpurendertarget;
+      //      else if (eoutput == ::gpu::e_output_gpu_buffer)
+      //      {
+      //
+      //         auto poffscreenrendertargetview = __allocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
+      //#ifdef WINDOWS_DESKTOP
+      //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
+      //#else
+      //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
+      //#endif
+      //         m_prendertargetview = poffscreenrendertargetview;
+      //         //m_prendererResolve;
+      //
+      //      }
+      //      else if (eoutput == ::gpu::e_output_color_and_alpha_accumulation_buffers)
+      //      {
+      //
+      //         auto paccumulationrendertargetview = __allocate accumulation_render_target(this, m_extentRenderer, m_prendertargetview);
+      //         paccumulationrendertargetview->m_formatImage = VK_FORMAT_R32G32B32A32_SFLOAT;
+      //         paccumulationrendertargetview->m_formatAlphaAccumulation = VK_FORMAT_R32_SFLOAT;
+      //         m_prendertargetview = paccumulationrendertargetview;
+      //
+      //         //__construct_new(m_prendererResolve);
+      //
+      //         //m_prendererResolve->initialize_renderer(m_pgpucontext, ::gpu::e_output_resolve_color_and_alpha_accumulation_buffers);
+      //
+      //         //m_prendererResolve->set_placement(m_pgpucontext->rectangle);
+      //         //
+      //         //            auto poffscreenrendertargetview = __allocate offscreen_render_target(m_pgpucontext, m_extentRenderer, m_prendertargetviewResolve);
+      //         //#ifdef WINDOWS_DESKTOP
+      //         //            poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
+      //         //#else
+      //         //            poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
+      //         //#endif
+      //         //            m_prendertargetviewResolve = poffscreenrendertargetview;
+      //      }
+      //      else if (eoutput == ::gpu::e_output_resolve_color_and_alpha_accumulation_buffers)
+      //      {
+      //
+      //         auto poffscreenrendertargetview = __allocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
+      //#ifdef WINDOWS_DESKTOP
+      //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
+      //#else
+      //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
+      //#endif
+      //         m_prendertargetview = poffscreenrendertargetview;
+      //
+      //      }
+      //      else
+      //      {
+      //
+      //         throw ::exception(error_wrong_state, "Unexpected gpu e_output");
+      //
+      //      }
+      //
+      if (!m_pgpurendertarget->has_ok_flag())
+      {
+
+         m_pgpurendertarget->initialize_render_target(this, size, previous);
+
+         if (!size.is_empty() && m_pgpucontext->is_current_task())
+         {
+
+            m_pgpurendertarget->init();
+
+         }
+
+      }
 
    }
 
@@ -732,7 +952,7 @@ namespace gpu
             if (m_pgpucontext->is_current_task())
             {
 
-               if (!m_pgpurendertargetBackBuffer->m_bInit
+               if (!m_pgpurendertargetBackBuffer->m_bRenderTargetInit
                   || !m_pgpurendertargetBackBuffer->is_ok())
                {
 
@@ -849,18 +1069,18 @@ namespace gpu
    }
 
 
-   void renderer::start_layer(const ::int_rectangle& rectangleLayer)
+   void renderer::start_layer()
    {
 
-      m_pgpucontext->m_pgpudevice->layer_start(this, rectangleLayer);
+      m_pgpucontext->m_pgpudevice->layer_start(this);
 
    }
 
 
-   int_rectangle renderer::end_layer()
+   void renderer::end_layer()
    {
 
-      return m_pgpucontext->m_pgpudevice->layer_end();
+      m_pgpucontext->m_pgpudevice->layer_end();
 
    }
 

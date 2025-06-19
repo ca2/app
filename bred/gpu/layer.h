@@ -12,10 +12,11 @@ namespace gpu
    public:
 
 
-      ::pointer < renderer > m_pgpurenderer;
+      ::pointer < renderer >        m_pgpurenderer;
+      //::pointer < renderer >        m_pgpurendererTarget;
       //::int_rectangle m_rectangleTarget;
-      ::pointer <texture > m_pgputextureSource;
-      ::pointer <texture > m_pgputextureTarget;
+      ::pointer_array <texture >    m_gputexturea;
+      //::pointer_array <texture >    m_gputextureaTarget;
 
       //::comptr < ID3D12Resource > m_presource;
 
@@ -23,13 +24,17 @@ namespace gpu
       ~layer() override;
 
 
-      virtual void initialize_gpu_layer(renderer * pgpurenderer, const ::int_rectangle & rectangleTarget);
+      virtual void initialize_gpu_layer(renderer * pgpurenderer);
 
 
-      virtual void set_target_texture(texture* ptextureTarget);
+      //virtual void set_target_texture(texture* ptextureTarget);
 
 
       virtual void take_snapshot();
+
+
+      ::pointer < texture > & texture();
+      renderer * renderer();
 
 
    };

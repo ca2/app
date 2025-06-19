@@ -201,6 +201,9 @@
     <ClInclude Include="user\user\graphics3d.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="gpu\compositor.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -315,6 +318,9 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="gpu\_.cpp">
+      <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\compositor.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
   </ItemGroup>

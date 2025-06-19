@@ -18,7 +18,7 @@ namespace graphics3d
    {
 
       m_bInitialized = false;
-      m_bLoaded = false;
+      m_bLoadedScene = false;
 
    }
 
@@ -78,12 +78,12 @@ namespace graphics3d
 
       }
 
-      if (!m_bLoaded)
+      if (!m_bLoadedScene)
       {
 
-         m_bLoaded = true;
-
          on_load_scene(pgpucontext);
+
+         m_bLoadedScene = true;
 
       }
 

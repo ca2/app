@@ -41,7 +41,7 @@ namespace gpu_opengl
          return (float) width() / (float) height();
       }
 
-      virtual void init();
+      void on_init() override;
       virtual void createRenderPassImpl();
       virtual void createImageViews();
       virtual void createDepthResources();

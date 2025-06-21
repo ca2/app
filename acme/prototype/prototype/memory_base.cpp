@@ -1108,6 +1108,8 @@ void memory_base::set(unsigned char b, memsize iStart, memsize uiSize)
 
    if (uiSize + iStart > size())
       uiSize = size() - iStart;
+   else if (uiSize < 0)
+      uiSize = size() + uiSize + 1 - iStart;
 
    memory_set(data() + iStart, b, (size_t)uiSize);
 

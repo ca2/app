@@ -17,40 +17,7 @@ namespace gpu
    public:
 
 
-      static constexpr int DEFAULT_FRAME_COUNT = 3;
-
-
-      enum enum_state
-      {
-
-         e_state_initial,
-         e_state_new_frame,
-         e_state_began_frame,
-         e_state_began_render,
-         e_state_ended_render,
-         e_state_ended_frame,
-         e_state_single_frame = 256,
-
-      };
-
-
-      enum enum_happening
-      {
-         
-         e_happening_reset_frame_counter,
-         e_happening_new_frame,
-         e_happening_begin_frame,
-         e_happening_begin_render,
-         e_happening_end_render,
-         e_happening_end_frame,
-
-      };
-
-
-      ::collection::index                   m_iCurrentFrame2 = -1;
-      ::collection::index                   m_iFrameSerial2 = -1;
-      ::collection::count                   m_iFrameCountRequest = DEFAULT_FRAME_COUNT;
-
+      ::collection::count     m_iDefaultFrameCount;
 
       //::gpu::enum_output                    m_eoutput;
       //::gpu::enum_scene                     m_escene;
@@ -80,11 +47,9 @@ namespace gpu
       //bool                                m_bPrepared;
       //::string                            m_strRender;
 
-      ::pointer < frame > m_pframe;
-      enum_state m_estate = e_state_initial;
-      ::pointer < render_target > m_pgpurendertarget;
-      ::pointer < render_target > m_pgpurendertargetBackBuffer;
-
+      ::pointer < render_target >   m_pgpurendertarget;
+      ::pointer < swap_chain >      m_pswapchain;
+      ::pointer < render_state >    m_prenderstate;
 
       renderer();
       ~renderer() override;
@@ -96,17 +61,18 @@ namespace gpu
 #endif
 
 
-      virtual void restart_frame_counter();
+      //virtual void set_no_frame();
 
-      virtual void on_happening(enum_happening ehappening);
+      //virtual void set_single_frame();
+
+
+
       //virtual ::int_rectangle rectangle();
       //virtual int height();
 
       virtual bool render_step();
 
-      virtual void set_single_frame();
-
-      virtual void initialize_renderer(::gpu::context * pgpucontext);
+      virtual void initialize_gpu_renderer(::gpu::context * pgpucontext);
 
       //virtual void initialize_render(::user::interaction * puserinteraction);
       ///// Initialization routines
@@ -152,8 +118,30 @@ namespace gpu
 
       virtual void on_context_resize();
 
+      virtual void on_begin_render(frame* pframe);
+      virtual void on_end_render(frame* pframe);
+
+      virtual void _on_begin_render(frame* pframe);
+      virtual void _on_end_render(frame* pframe);
+
+
+
+
+      virtual bool is_starting_frame()const;
+
+      virtual void on_new_frame();
+
+      virtual ::pointer < frame > beginFrame();
+
+
+
+      virtual void endFrame();
+
+
+
       virtual void on_begin_draw();
       virtual void on_end_draw();
+
 
       virtual void draw();
       virtual void read_to_cpu_buffer();
@@ -163,41 +151,24 @@ namespace gpu
       virtual void on_global_transform();
       virtual void on_draw();
       //virtual void render();
-      virtual int get_frame_index();
-      virtual int get_frame_count();
-      virtual int _get_frame_index();
-      virtual int _default_get_frame_index();
-      virtual int __default_get_frame_index();
+      //virtual int get_frame_index();
+      //virtual int get_frame_count();
+      //virtual int _get_frame_index();
+      //virtual int _default_get_frame_index();
+      //virtual int __default_get_frame_index();
 
 
-      virtual void on_new_frame();
-      
-      virtual ::pointer < frame > beginFrame();
-
-
-      bool is_starting_frame()const
-      {
-
-         return m_iFrameSerial2 == m_iCurrentFrame2;
-
-      }
-
-      virtual void on_begin_render(frame* pframe);
-      virtual void on_end_render(frame* pframe);
-
-      virtual void _on_begin_render(frame* pframe);
-      virtual void _on_end_render(frame* pframe);
-
-      virtual void endFrame();
       virtual void endDraw(::draw2d_gpu::graphics* pgraphics, ::user::interaction* puserinteraction);
 
 
       virtual void defer_update_renderer();
-      virtual void on_defer_update_renderer_allocate_render_target(::gpu::enum_output eoutput, const ::int_size & size, ::gpu::render_target * previous);
 
-      virtual render_target* back_buffer_render_target();
+      virtual ::pointer < render_target > on_create_render_target();
+      virtual ::pointer < swap_chain > on_create_swap_chain();
 
-      virtual ::pointer < render_target > allocate_offscreen_render_target();
+      //virtual render_target* back_buffer_render_target();
+
+      //virtual ::pointer < render_target > allocate_offscreen_render_target();
 
       //virtual void on_graphics_end_draw(::user::interaction * puserinteraction);
 
@@ -222,6 +193,7 @@ namespace gpu
 
 
       virtual void on_start_layer(layer * player);
+      virtual void on_end_layer(layer* player);
 
 
       virtual void start_frame();
@@ -229,7 +201,7 @@ namespace gpu
 
 
       virtual ::pointer < ::gpu::texture > create_texture(const ::int_size& size);
-      virtual void take_snapshot(layer* player);
+      //virtual void take_snapshot(layer* player);
      
 
    };

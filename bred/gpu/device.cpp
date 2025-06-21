@@ -1021,7 +1021,8 @@ namespace gpu
 
       auto& player = layera[m_iLayer];
 
-      player->take_snapshot();
+      player->layer_end();
+      //player->take_snapshot();
 
       //return player->texture()->m_pgpurenderer->m_pgpucontext->rectangle();
 

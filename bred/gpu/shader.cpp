@@ -2,6 +2,7 @@
 #include "context.h"
 #include "renderer.h"
 #include "shader.h"
+#include "acme/exception/interface_only.h"
 //#include "_.h"
 //#include "_gpu.h"
 
@@ -129,9 +130,16 @@ namespace gpu
    void shader::bind(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
    {
 
+      throw ::interface_only("shader::bind(::gpu::texture*, ::gpu::texture*) not implemented at this shader implementation");
 
    }
 
+   void shader::bind(::gpu::texture* pgputextureTarget)
+   {
+
+      throw ::interface_only("shader::bind(::gpu::texture*) not implemented at this shader implementation");
+
+   }
 
    void shader::unbind()
    {

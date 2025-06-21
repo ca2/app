@@ -12,6 +12,10 @@ namespace gpu
    public:
 
 
+      ::collection::index           m_iCurrentFrame2 = -1;
+      ::collection::index           m_iFrameSerial2 = -1;
+
+
       bool m_bRenderTargetInit;
       bool m_bBackBuffer;
 
@@ -27,6 +31,7 @@ namespace gpu
 
       ::pointer<render_target> m_prendertargetOld;
 
+      ::pointer < frame > m_pframe;
 
       
       render_target();
@@ -35,6 +40,12 @@ namespace gpu
 
       virtual void initialize_render_target(::gpu::renderer* prenderer, const ::int_size& size, ::pointer <::gpu::render_target>previous);
 
+      virtual void restart_frame_counter();
+
+      virtual bool is_starting_frame()const;
+
+
+      virtual void on_new_frame();
 
       virtual void init();
 
@@ -43,14 +54,14 @@ namespace gpu
 
       virtual void createImages();
 
-      
+
       virtual int get_frame_index();
-    
+      virtual int get_frame_count();
 
       //virtual int get_image_index() const;
-      size_t imageCount() { return m_texturea.size(); }
-      uint32_t width() { return m_size.cx(); }
-      uint32_t height() { return m_size.cy(); }
+      virtual int imageCount();
+      virtual int width();
+      virtual int height();
 
 
       virtual texture * current_texture();
@@ -60,7 +71,7 @@ namespace gpu
       virtual void on_after_end_draw_frame(::draw2d_gpu::graphics* pgraphics);
 
 
-      virtual void on_end_render(::gpu::frame* pgpuframe);
+//      virtual void on_end_render(::gpu::frame* pgpuframe);
 
 
    };

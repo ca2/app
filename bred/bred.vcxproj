@@ -356,6 +356,7 @@
     <ClInclude Include="gpu\properties.h" />
     <ClInclude Include="gpu\render.h" />
     <ClInclude Include="gpu\renderer.h" />
+    <ClInclude Include="gpu\render_state.h" />
     <ClInclude Include="gpu\render_target.h" />
     <ClInclude Include="gpu\shader.h" />
     <ClInclude Include="gpu\layer.h" />
@@ -434,6 +435,7 @@
     <ClCompile Include="gpu\properties.cpp" />
     <ClCompile Include="gpu\render.cpp" />
     <ClCompile Include="gpu\renderer.cpp" />
+    <ClCompile Include="gpu\render_state.cpp" />
     <ClCompile Include="gpu\render_target.cpp" />
     <ClCompile Include="gpu\shader.cpp" />
     <ClCompile Include="gpu\layer.cpp" />

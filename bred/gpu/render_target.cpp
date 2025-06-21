@@ -2,8 +2,10 @@
 #include "framework.h"
 #include "context.h"
 #include "renderer.h"
+#include "render_state.h"
 #include "render_target.h"
 #include "texture.h"
+#include "acme/platform/application.h"
 
 
 namespace gpu
@@ -61,7 +63,7 @@ namespace gpu
       if (!m_bBackBuffer)
       {
 
-         m_pgpurenderer->restart_frame_counter();
+         restart_frame_counter();
 
       }
 
@@ -70,6 +72,57 @@ namespace gpu
       set_ok_flag();
 
    }
+
+
+   void render_target::restart_frame_counter()
+   {
+
+      if (m_pgpurenderer->m_pgpurendertarget->get_frame_count() > 1)
+      {
+
+         m_iCurrentFrame2 = -1;
+         m_iFrameSerial2 = -1;
+
+         m_pgpurenderer->m_prenderstate->on_happening(e_happening_reset_frame_counter);
+
+      }
+
+   }
+
+
+   int render_target::get_frame_index()
+   {
+
+      if (m_pgpurenderer->m_pgpurendertarget->get_frame_count() > 1)
+      {
+
+         assert(m_iFrameSerial2 >= 0
+            && m_iCurrentFrame2 >= 0
+            && m_pgpurenderer->m_prenderstate->m_estate != e_state_initial
+            && "Cannot get frame index when frame not in progress");
+
+         return (int)m_iCurrentFrame2;
+
+      }
+      else
+      {
+
+         return 0;
+
+      }
+
+   }
+
+
+   int render_target::get_frame_count()
+   {
+
+      return (int)m_texturea.size();
+
+   }
+
+
+
 
 
    void render_target::on_init()
@@ -83,7 +136,7 @@ namespace gpu
    void render_target::createImages()
    {
 
-      auto iFrameCount = m_pgpurenderer->m_iFrameCountRequest;
+      auto iFrameCount = m_pgpurenderer->m_iDefaultFrameCount;
 
       m_texturea.set_size(iFrameCount);
 
@@ -104,12 +157,30 @@ namespace gpu
    }
 
 
-   int render_target::get_frame_index()
+   int render_target::imageCount() 
    {
-
-      return m_pgpurenderer->_default_get_frame_index();
-
+      
+      return m_texturea.size(); 
+   
    }
+
+
+   int render_target::width() 
+   {
+      
+      return m_size.cx(); 
+   
+   }
+
+
+   int render_target::height() 
+   {
+      
+      return m_size.cy(); 
+   
+   }
+
+
 
 
    texture * render_target::current_texture()
@@ -119,21 +190,8 @@ namespace gpu
 
       auto etype = pgpucontext->m_etype;
 
-      int iFrameIndex;
+      int iFrameIndex = get_frame_index();
       
-      if (m_bBackBuffer)
-      {
-
-         iFrameIndex = m_pgpurenderer->_get_frame_index();
-
-      }
-      else
-      {
-
-         iFrameIndex = m_pgpurenderer->get_frame_index();
-
-      }
-
       auto size = m_texturea.size();
 
       auto ptexture = m_texturea[iFrameIndex];
@@ -156,14 +214,35 @@ namespace gpu
 
    }
 
-   
-   void render_target::on_end_render(::gpu::frame* pgpurender)
+
+
+
+   //void render_target::on_end_render(::gpu::frame* pgpurender)
+   //{
+
+
+
+   //}
+
+
+   void render_target::on_new_frame()
    {
 
+      auto iFrameCount = get_frame_count();
 
+      m_iFrameSerial2++;
+
+      m_iCurrentFrame2 = (m_iCurrentFrame2 + 1) % iFrameCount;
 
    }
 
+
+   bool render_target::is_starting_frame()const
+   {
+
+      return m_iFrameSerial2 == m_iCurrentFrame2;
+
+   }
 
 } // namespace gpu
 

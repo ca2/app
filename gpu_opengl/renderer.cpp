@@ -15,6 +15,7 @@
 #include "aura/graphics/image/target.h"
 #include "aura/platform/application.h"
 #include "bred/gpu/layer.h"
+#include "bred/gpu/render_state.h"
 #include "bred/user/user/graphics3d.h"
 #include "aura/windowing/window.h"
 
@@ -186,10 +187,10 @@ namespace gpu_opengl
 
       defer_update_renderer();
 
-      if (!m_pframe)
+      if (!m_pgpurendertarget->m_pframe)
       {
 
-         m_pframe = __create_new < ::gpu_opengl::frame >();
+         m_pgpurendertarget->m_pframe = __create_new < ::gpu_opengl::frame >();
 
       }
 
@@ -443,12 +444,12 @@ namespace gpu_opengl
    }
 
 
-   int renderer::get_frame_count()
-   {
+   //int renderer::get_frame_count()
+   //{
 
-      return ::gpu::renderer::get_frame_count();
+   //   return ::gpu::renderer::get_frame_count();
 
-   }
+   //}
 
 
    //void renderer::Clear() const
@@ -551,13 +552,14 @@ namespace gpu_opengl
 
       auto eoutput = m_pgpucontext->m_eoutput;
 
-      if (eoutput == ::gpu::e_output_swap_chain)
-      {
+      //if (eoutput == ::gpu::e_output_swap_chain)
+      //{
 
-         _swap();
+      //   _swap();
 
-      }
-      else if (eoutput == ::gpu::e_output_cpu_buffer)
+      //}
+      //else 
+         if (eoutput == ::gpu::e_output_cpu_buffer)
       {
 
          do_sampling_to_cpu();
@@ -573,7 +575,7 @@ namespace gpu_opengl
 
       //}
 
-      on_happening(e_happening_end_frame);
+      m_prenderstate->on_happening(::gpu::e_happening_end_frame);
 
    }
 
@@ -715,33 +717,40 @@ namespace gpu_opengl
    //}
 
 
-   ::pointer < ::gpu::render_target > renderer::allocate_offscreen_render_target()
-   {
+   //::pointer < ::gpu::render_target > renderer::allocate_offscreen_render_target()
+   //{
 
-      auto poffscreenrendertarget = __allocate offscreen_render_target();
+   //   auto poffscreenrendertarget = __allocate offscreen_render_target();
 
-      return poffscreenrendertarget;
+   //   return poffscreenrendertarget;
 
-   }
+   //}
 
 
-   void renderer::on_defer_update_renderer_allocate_render_target(::gpu::enum_output eoutput, const ::int_size& size, ::gpu::render_target* previous)
-   {
+   //void renderer::on_defer_update_renderer_allocate_render_target(::gpu::enum_output eoutput, const ::int_size& size, ::gpu::render_target* previous)
+   //{
 
-      if (eoutput == ::gpu::e_output_cpu_buffer
-         || eoutput == ::gpu::e_output_gpu_buffer
-         || eoutput == ::gpu::e_output_swap_chain)
-      {
+   //   if (eoutput == ::gpu::e_output_cpu_buffer
+   //      || eoutput == ::gpu::e_output_gpu_buffer)
+   //   {
 
-         auto poffscreenrendertarget = __allocate offscreen_render_target();
+   //      auto poffscreenrendertarget = __allocate offscreen_render_target();
 
-         m_pgpurendertarget = poffscreenrendertarget;
+   //      m_pgpurendertarget = poffscreenrendertarget;
 
-      }
+   //   }
+   //   else if (eoutput == ::gpu::e_output_swap_chain)
+   //   {
 
-      //return poffscreenrendertarget;
+   //      auto pswapchain = m_pgpucontext->m_pgpudevice->get_swap_chain();
 
-   }
+   //      m_pgpurendertarget = pswapchain;
+
+   //   }
+
+   //   //return poffscreenrendertarget;
+
+   //}
 
 
    void renderer::do_sampling_to_cpu()
@@ -877,12 +886,12 @@ namespace gpu_opengl
    }
 
 
-   void renderer::_swap()
-   {
+   //void renderer::_swap()
+   //{
 
-      m_pgpucontext->swap_buffers();
+   //   m_pgpucontext->swap_buffers();
 
-   }
+   //}
    GLuint createFullscreenQuad(GLuint& quadVBO) {
       // Vertex data: (x, y, u, v)
 #if 1
@@ -932,238 +941,238 @@ namespace gpu_opengl
    }
 
 
-   void renderer::endDraw(::draw2d_gpu::graphics* pgraphics, ::user::interaction* puserinteraction)
-   {
-
-      ::cast < ::gpu_opengl::renderer > prenderer = this;
-
-      ::cast < ::gpu_opengl::swap_chain > pswapchain = m_pgpucontext->m_pgpudevice->get_swap_chain();
-
-      pswapchain->endDraw(pgraphics, puserinteraction, this);
-
-      //auto rectangle = prenderer->m_pgpucontext->rectangle();
-
-      //m_pgpucontext->set_placement(rectangle);
-
-      //VkImage image = prenderer->m_pvkcrenderpass->m_images[prenderer->get_frame_index()];
-
-      //on_new_frame();
-
-      //if (1)
-      //{
-      //   //auto cmdBuffer = m_pgpucontext->beginSingleTimeCommands();
-
-      //   //VkImageMemoryBarrier barrier = {
-      //   //    .sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER,
-      //   //    .srcAccessMask = VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT,
-      //   //    .dstAccessMask = VK_ACCESS_SHADER_READ_BIT,
-      //   //    .oldLayout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL,
-      //   //    .newLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL,
-      //   //    .srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED,
-      //   //    .dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED,
-      //   //    .image = image,
-      //   //    .subresourceRange = {
-      //   //        .aspectMask = VK_IMAGE_ASPECT_COLOR_BIT,
-      //   //        .baseMipLevel = 0,
-      //   //        .levelCount = 1,
-      //   //        .baseArrayLayer = 0,
-      //   //        .layerCount = 1
-      //   //    },
-      //   //};
-
-      //   //vkCmdPipelineBarrier(
-      //   //   cmdBuffer,
-      //   //   VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT,
-      //   //   VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT,
-      //   //   0,
-      //   //   0, NULL,
-      //   //   0, NULL,
-      //   //   1, &barrier
-      //   //);
-
-      //   //VkSubmitInfo submitInfo = {};
-      //   //submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-
-      //   //VkSemaphore waitSemaphores[] = { prendererSrc->m_pvkcrenderpass->renderFinishedSemaphores[prendererSrc->m_pvkcrenderpass->currentFrame] };
-      //   //VkPipelineStageFlags waitStages[] = { VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT };
-      //   //submitInfo.waitSemaphoreCount = 1;
-      //   //submitInfo.pWaitSemaphores = waitSemaphores;
-      //   //submitInfo.pWaitDstStageMask = waitStages;
-
-      //   //submitInfo.commandBufferCount = 1;
-      //   //submitInfo.pCommandBuffers = &cmdBuffer;
-
-      //   //m_pgpucontext->endSingleTimeCommands(cmdBuffer, 1, &submitInfo);
-      //   auto cmdBuffer = m_pgpucontext->beginSingleTimeCommands();
-
-
-      //   insertImageMemoryBarrier(cmdBuffer,
-      //      image,
-      //      0,
-      //      VK_ACCESS_TRANSFER_WRITE_BIT,
-      //      VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL,
-      //      VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL,
-      //      VK_PIPELINE_STAGE_TRANSFER_BIT,
-      //      VK_PIPELINE_STAGE_TRANSFER_BIT,
-      //      VkImageSubresourceRange{ VK_IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1 });
-
-
-
-      //   VkSubmitInfo submitInfo{};
-      //   submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
-      //   submitInfo.commandBufferCount = 1;
-      //   submitInfo.pCommandBuffers = &cmdBuffer;
-      //   ::array<VkSemaphore> waitSemaphores;
-      //   ::array<VkPipelineStageFlags> waitStages;
-      //   waitStages.add(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
-      //   waitSemaphores.add(prenderer->m_pvkcrenderpass->renderFinishedSemaphores[prenderer->get_frame_index()]);
-      //   submitInfo.waitSemaphoreCount = waitSemaphores.size();
-      //   submitInfo.pWaitSemaphores = waitSemaphores.data();
-      //   submitInfo.pWaitDstStageMask = waitStages.data();
-      //   m_pgpucontext->endSingleTimeCommands(cmdBuffer, 1, &submitInfo);
-
-      //   //m_prendererResolve->m_pvkcrenderpass->m_semaphoreaWaitToSubmit.add(
-      //   //   m_pvkcrenderpass->renderFinishedSemaphores[iPassCurrentFrame]
-      //   //);
-
-
-      //}
-
-//      m_pgpucontext->send([this, prenderer]()
-//         {
+//   void renderer::endDraw(::draw2d_gpu::graphics* pgraphics, ::user::interaction* puserinteraction)
+//   {
 //
-//            if (auto pframe = beginFrame())
-//            {
+//      ::cast < ::gpu_opengl::renderer > prenderer = this;
 //
-//               //m_pvkcrenderpass->m_semaphoreaSignalOnSubmit.add(prendererSrc->m_pvkcrenderpass->imageAvailableSemaphores[prendererSrc->get_frame_index()]);
+//      ::cast < ::gpu_opengl::swap_chain > pswapchain = m_pgpucontext->m_pgpudevice->get_swap_chain();
+//
+//      pswapchain->endDraw(pgraphics, puserinteraction, this);
+//
+//      //auto rectangle = prenderer->m_pgpucontext->rectangle();
+//
+//      //m_pgpucontext->set_placement(rectangle);
+//
+//      //VkImage image = prenderer->m_pvkcrenderpass->m_images[prenderer->get_frame_index()];
+//
+//      //on_new_frame();
+//
+//      //if (1)
+//      //{
+//      //   //auto cmdBuffer = m_pgpucontext->beginSingleTimeCommands();
+//
+//      //   //VkImageMemoryBarrier barrier = {
+//      //   //    .sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER,
+//      //   //    .srcAccessMask = VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT,
+//      //   //    .dstAccessMask = VK_ACCESS_SHADER_READ_BIT,
+//      //   //    .oldLayout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL,
+//      //   //    .newLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL,
+//      //   //    .srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED,
+//      //   //    .dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED,
+//      //   //    .image = image,
+//      //   //    .subresourceRange = {
+//      //   //        .aspectMask = VK_IMAGE_ASPECT_COLOR_BIT,
+//      //   //        .baseMipLevel = 0,
+//      //   //        .levelCount = 1,
+//      //   //        .baseArrayLayer = 0,
+//      //   //        .layerCount = 1
+//      //   //    },
+//      //   //};
+//
+//      //   //vkCmdPipelineBarrier(
+//      //   //   cmdBuffer,
+//      //   //   VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT,
+//      //   //   VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT,
+//      //   //   0,
+//      //   //   0, NULL,
+//      //   //   0, NULL,
+//      //   //   1, &barrier
+//      //   //);
+//
+//      //   //VkSubmitInfo submitInfo = {};
+//      //   //submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+//
+//      //   //VkSemaphore waitSemaphores[] = { prendererSrc->m_pvkcrenderpass->renderFinishedSemaphores[prendererSrc->m_pvkcrenderpass->currentFrame] };
+//      //   //VkPipelineStageFlags waitStages[] = { VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT };
+//      //   //submitInfo.waitSemaphoreCount = 1;
+//      //   //submitInfo.pWaitSemaphores = waitSemaphores;
+//      //   //submitInfo.pWaitDstStageMask = waitStages;
+//
+//      //   //submitInfo.commandBufferCount = 1;
+//      //   //submitInfo.pCommandBuffers = &cmdBuffer;
+//
+//      //   //m_pgpucontext->endSingleTimeCommands(cmdBuffer, 1, &submitInfo);
+//      //   auto cmdBuffer = m_pgpucontext->beginSingleTimeCommands();
 //
 //
-//               //on_begin_frame();
-//               // render
-//               on_begin_render(pframe);
-//
-//               m_pgpucontext->clear(::argb(127, 140 / 2, 220 / 2, 240 / 2));
-//               //m_pgpucontext->clear(::color::transparent);
-//
-//
-//               if (1)
-//               {
-//
-//
-//                  //if (m_pimpact->global_ubo_block().size() > 0)
-//                  //{
-//
-//                    // update_global_ubo(m_pgpucontext);
-//
-//                  //}
-//
-//                  //m_pscene->on_render(m_pgpucontext);
-//
-//                  //_blend_image(image, m_rectangle);
-//
-//         //         glDisable(GL_BLEND);
-//         //         //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+//      //   insertImageMemoryBarrier(cmdBuffer,
+//      //      image,
+//      //      0,
+//      //      VK_ACCESS_TRANSFER_WRITE_BIT,
+//      //      VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL,
+//      //      VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL,
+//      //      VK_PIPELINE_STAGE_TRANSFER_BIT,
+//      //      VK_PIPELINE_STAGE_TRANSFER_BIT,
+//      //      VkImageSubresourceRange{ VK_IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1 });
 //
 //
-//                  if (!m_pshaderCopyTextureOnEndDraw)
-//                  {
 //
-//                     auto pvertexshader = R"vert(#version 330 core
-//layout(location = 0) in vec2 aPos;
-//layout(location = 1) in vec2 aTexCoord;
+//      //   VkSubmitInfo submitInfo{};
+//      //   submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+//      //   submitInfo.commandBufferCount = 1;
+//      //   submitInfo.pCommandBuffers = &cmdBuffer;
+//      //   ::array<VkSemaphore> waitSemaphores;
+//      //   ::array<VkPipelineStageFlags> waitStages;
+//      //   waitStages.add(VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
+//      //   waitSemaphores.add(prenderer->m_pvkcrenderpass->renderFinishedSemaphores[prenderer->get_frame_index()]);
+//      //   submitInfo.waitSemaphoreCount = waitSemaphores.size();
+//      //   submitInfo.pWaitSemaphores = waitSemaphores.data();
+//      //   submitInfo.pWaitDstStageMask = waitStages.data();
+//      //   m_pgpucontext->endSingleTimeCommands(cmdBuffer, 1, &submitInfo);
 //
-//out vec2 TexCoord;
-//
-//void main() {
-//   gl_Position = vec4(aPos.xy, 0.0, 1.0);
-//   TexCoord = aTexCoord;
-//}
-//)vert";
-//
-//
-//                     auto pfragmentshader = R"frag(#version 330 core
-//in vec2 TexCoord;
-//out vec4 FragColor;
-//
-//uniform sampler2D uTexture;
-//
-//void main() {
-//   FragColor = texture(uTexture, TexCoord);
-//}
-//)frag";
-//
-//                     m_pshaderCopyTextureOnEndDraw = __create_new < ::gpu_opengl::shader >();
-//
-//                     m_pshaderCopyTextureOnEndDraw->initialize_shader_with_block(
-//                        this,
-//                        pvertexshader, pfragmentshader);
+//      //   //m_prendererResolve->m_pvkcrenderpass->m_semaphoreaWaitToSubmit.add(
+//      //   //   m_pvkcrenderpass->renderFinishedSemaphores[iPassCurrentFrame]
+//      //   //);
 //
 //
-//                  }
+//      //}
 //
-//                  m_pshaderCopyTextureOnEndDraw->bind();
+////      m_pgpucontext->send([this, prenderer]()
+////         {
+////
+////            if (auto pframe = beginFrame())
+////            {
+////
+////               //m_pvkcrenderpass->m_semaphoreaSignalOnSubmit.add(prendererSrc->m_pvkcrenderpass->imageAvailableSemaphores[prendererSrc->get_frame_index()]);
+////
+////
+////               //on_begin_frame();
+////               // render
+////               on_begin_render(pframe);
+////
+////               m_pgpucontext->clear(::argb(127, 140 / 2, 220 / 2, 240 / 2));
+////               //m_pgpucontext->clear(::color::transparent);
+////
+////
+////               if (1)
+////               {
+////
+////
+////                  //if (m_pimpact->global_ubo_block().size() > 0)
+////                  //{
+////
+////                    // update_global_ubo(m_pgpucontext);
+////
+////                  //}
+////
+////                  //m_pscene->on_render(m_pgpucontext);
+////
+////                  //_blend_image(image, m_rectangle);
+////
+////         //         glDisable(GL_BLEND);
+////         //         //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+////
+////
+////                  if (!m_pshaderCopyTextureOnEndDraw)
+////                  {
+////
+////                     auto pvertexshader = R"vert(#version 330 core
+////layout(location = 0) in vec2 aPos;
+////layout(location = 1) in vec2 aTexCoord;
+////
+////out vec2 TexCoord;
+////
+////void main() {
+////   gl_Position = vec4(aPos.xy, 0.0, 1.0);
+////   TexCoord = aTexCoord;
+////}
+////)vert";
+////
+////
+////                     auto pfragmentshader = R"frag(#version 330 core
+////in vec2 TexCoord;
+////out vec4 FragColor;
+////
+////uniform sampler2D uTexture;
+////
+////void main() {
+////   FragColor = texture(uTexture, TexCoord);
+////}
+////)frag";
+////
+////                     m_pshaderCopyTextureOnEndDraw = __create_new < ::gpu_opengl::shader >();
+////
+////                     m_pshaderCopyTextureOnEndDraw->initialize_shader_with_block(
+////                        this,
+////                        pvertexshader, pfragmentshader);
+////
+////
+////                  }
+////
+////                  m_pshaderCopyTextureOnEndDraw->bind();
+////
+////                  if (1)
+////                  {
+////
+////                     glActiveTexture(GL_TEXTURE0);
+////
+////                     int iGlError1 = glGetError();
+////
+////                     ::cast < context > pcontext = prenderer->m_pgpucontext;
+////
+////                     GLuint tex = pcontext->m_pframebuffer->m_tex;
+////
+////                     glBindTexture(GL_TEXTURE_2D, tex);
+////
+////                     int iGlError2 = glGetError();
+////
+////                     ::cast < ::gpu_opengl::shader > pshaderOnEndDraw = m_pshaderCopyTextureOnEndDraw;
+////
+////                     pshaderOnEndDraw->_set_int("uTexture", 0);
+////
+////                     if (!m_VAOFullScreenQuad)
+////                     {
+////
+////                        m_VAOFullScreenQuad = createFullscreenQuad(m_VBOFullScreenQuad);
+////
+////                     }
+////
+////                     glBindVertexArray(m_VAOFullScreenQuad);
+////
+////                     int iGlError00 = glGetError();
+////
+////                     glDrawArrays(GL_TRIANGLES, 0, 6); // assuming 2 triangles (quad)
+////
+////                     int iGlError01 = glGetError();
+////
+////                     glBindVertexArray(0);
+////
+////                     int iGlErrorA = glGetError();
+////
+////                     glBindTexture(GL_TEXTURE_2D, 0);
+////
+////                     int iGlErrorB = glGetError();
+////
+////                     debug() << "gl error";
+////
+////                  }
+////
+////                  m_pshaderCopyTextureOnEndDraw->unbind();
+////
+////               }
+////
+////               on_end_render(pframe);
+////
+////               endFrame();
+////
+////
+////            }
+////
+////         });
 //
-//                  if (1)
-//                  {
 //
-//                     glActiveTexture(GL_TEXTURE0);
-//
-//                     int iGlError1 = glGetError();
-//
-//                     ::cast < context > pcontext = prenderer->m_pgpucontext;
-//
-//                     GLuint tex = pcontext->m_pframebuffer->m_tex;
-//
-//                     glBindTexture(GL_TEXTURE_2D, tex);
-//
-//                     int iGlError2 = glGetError();
-//
-//                     ::cast < ::gpu_opengl::shader > pshaderOnEndDraw = m_pshaderCopyTextureOnEndDraw;
-//
-//                     pshaderOnEndDraw->_set_int("uTexture", 0);
-//
-//                     if (!m_VAOFullScreenQuad)
-//                     {
-//
-//                        m_VAOFullScreenQuad = createFullscreenQuad(m_VBOFullScreenQuad);
-//
-//                     }
-//
-//                     glBindVertexArray(m_VAOFullScreenQuad);
-//
-//                     int iGlError00 = glGetError();
-//
-//                     glDrawArrays(GL_TRIANGLES, 0, 6); // assuming 2 triangles (quad)
-//
-//                     int iGlError01 = glGetError();
-//
-//                     glBindVertexArray(0);
-//
-//                     int iGlErrorA = glGetError();
-//
-//                     glBindTexture(GL_TEXTURE_2D, 0);
-//
-//                     int iGlErrorB = glGetError();
-//
-//                     debug() << "gl error";
-//
-//                  }
-//
-//                  m_pshaderCopyTextureOnEndDraw->unbind();
-//
-//               }
-//
-//               on_end_render(pframe);
-//
-//               endFrame();
-//
-//
-//            }
-//
-//         });
-
-
-   }
+//   }
 
 
    void renderer::on_start_layer(::gpu::layer* player)
@@ -1881,6 +1890,98 @@ namespace gpu_opengl
 
    }
 
+
+   void renderer::on_end_layer(::gpu::layer* player)
+   {
+
+      ::cast < texture > ptextureDst = player->texture();
+
+      ::cast < texture > ptextureSrc = m_pgpurendertarget->current_texture();
+
+      auto textureSrc = ptextureSrc->m_gluTextureID;
+
+      auto textureDst = ptextureDst->m_gluTextureID;
+
+      glFlush();
+
+      GLuint fboSrc, fboDst;
+      glGenFramebuffers(1, &fboSrc);
+      GLCheckError("");
+      glGenFramebuffers(1, &fboDst);
+      GLCheckError("");
+
+      // Attach source texture to fboSrc
+      glBindFramebuffer(GL_READ_FRAMEBUFFER, fboSrc);
+      GLCheckError("");
+      glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+         GL_TEXTURE_2D, textureSrc, 0);
+      GLCheckError("");
+
+      // Attach dest texture to fboDst
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, fboDst);
+      GLCheckError("");
+      glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+         GL_TEXTURE_2D, textureDst, 0);
+      GLCheckError("");
+
+      auto sizeSrc = ptextureSrc->size();
+      auto sizeDst = ptextureDst->size();
+
+      // Blit from source to destination
+      glBlitFramebuffer(
+         0, 0, sizeSrc.cx(), sizeSrc.cy(),
+         0, 0, sizeDst.cx(), sizeDst.cy(),
+         GL_COLOR_BUFFER_BIT, GL_NEAREST
+      );
+      GLCheckError("");
+#ifdef SHOW_DEBUG_DRAWING
+      {
+
+         //glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+
+         glEnable(GL_BLEND);
+         glBlendFunc(GL_ONE, GL_ZERO); // Source Copy mode
+         //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
+
+         {
+            float fOpacity = 0.5;
+            float fRed = 0.5;
+            float fGreen = 0.75;
+            float fBlue = 0.95;
+            auto f32Opacity = (float)fOpacity;
+            auto f32Red = (float)(fRed * fOpacity);
+            auto f32Green = (float)(fGreen * fOpacity);
+            auto f32Blue = (float)(fBlue * fOpacity);
+            ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
+         }
+
+         ::double_polygon polygon;
+
+         ::double_rectangle rectangle(300, 300, 400, 400);
+
+         polygon = rectangle;
+
+         glBegin(GL_QUADS);
+
+
+         vertex2f(polygon, 0.f);
+
+         glEnd();
+
+      }
+#endif
+
+      // Cleanup
+      glBindFramebuffer(GL_FRAMEBUFFER, 0);
+      GLCheckError("");
+      glDeleteFramebuffers(1, &fboSrc);
+      GLCheckError("");
+      glDeleteFramebuffers(1, &fboDst);
+      GLCheckError("");
+
+
+   }
 
 
 } // namespace gpu_opengl

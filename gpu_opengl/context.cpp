@@ -372,14 +372,14 @@ namespace gpu_opengl
    }
 
 
-   void context::swap_buffers()
-   {
+   //void context::swap_buffers()
+   //{
 
-      ::cast < device_win32 > pgpudevice = m_pgpudevice;
+   //   ::cast < device_win32 > pgpudevice = m_pgpudevice;
 
-      pgpudevice->_swap_buffers();
+   //   pgpudevice->_swap_buffers();
 
-   }
+   //}
 
 
    void context::update_framebuffer(const ::int_size& size)
@@ -841,7 +841,7 @@ void main() {
 )";
 
          m_pshaderCopy->initialize_shader_with_block(
-            m_pgpurendererOutput2,
+            m_pgpurenderer,
             vertexShaderSource,
             fragmentShaderSource);
       }
@@ -909,7 +909,7 @@ void main() {
 
       glFlush();
 
-      ::cast < renderer > prenderer = m_pgpurendererOutput2;
+      ::cast < renderer > prenderer = m_pgpurenderer;
 
       for(auto & player : *playera)
       {
@@ -1196,99 +1196,6 @@ void main() {
    }
 
    
-   void context::on_take_snapshot(::gpu::layer* player)
-   {
-
-      ::cast < texture > ptextureDst = player->texture();
-
-      ::cast < texture > ptextureSrc = m_pgpurendererOutput2->m_pgpurendertarget->current_texture();
-
-      auto textureSrc = ptextureSrc->m_gluTextureID;
-
-      auto textureDst = ptextureDst->m_gluTextureID;
-
-      glFlush();
-
-      GLuint fboSrc, fboDst;
-      glGenFramebuffers(1, &fboSrc);
-      GLCheckError("");
-      glGenFramebuffers(1, &fboDst);
-      GLCheckError("");
-
-      // Attach source texture to fboSrc
-      glBindFramebuffer(GL_READ_FRAMEBUFFER, fboSrc);
-      GLCheckError("");
-      glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, 
-         GL_TEXTURE_2D, textureSrc, 0);
-      GLCheckError("");
-
-      // Attach dest texture to fboDst
-      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, fboDst);
-      GLCheckError("");
-      glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-         GL_TEXTURE_2D, textureDst, 0);
-      GLCheckError("");
-
-      auto sizeSrc = ptextureSrc->size();
-      auto sizeDst = ptextureDst->size();
-
-      // Blit from source to destination
-      glBlitFramebuffer(
-         0, 0, sizeSrc.cx(), sizeSrc.cy(),
-         0, 0, sizeDst.cx(), sizeDst.cy(),
-         GL_COLOR_BUFFER_BIT, GL_NEAREST
-      );
-      GLCheckError("");
-#ifdef SHOW_DEBUG_DRAWING
-      {
-
-         //glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-
-         glEnable(GL_BLEND);
-         glBlendFunc(GL_ONE, GL_ZERO); // Source Copy mode
-         //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
-
-         {
-            float fOpacity = 0.5;
-            float fRed = 0.5;
-            float fGreen = 0.75;
-            float fBlue = 0.95;
-            auto f32Opacity = (float)fOpacity;
-            auto f32Red = (float)(fRed * fOpacity);
-            auto f32Green = (float)(fGreen * fOpacity);
-            auto f32Blue = (float)(fBlue * fOpacity);
-            ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
-         }
-
-         ::double_polygon polygon;
-
-         ::double_rectangle rectangle(300, 300, 400, 400);
-
-         polygon = rectangle;
-
-         glBegin(GL_QUADS);
-
-
-         vertex2f(polygon, 0.f);
-
-         glEnd();
-
-      }
-#endif
-
-      // Cleanup
-      glBindFramebuffer(GL_FRAMEBUFFER, 0);
-      GLCheckError("");
-      glDeleteFramebuffers(1, &fboSrc);
-      GLCheckError("");
-      glDeleteFramebuffers(1, &fboDst);
-      GLCheckError("");
-
-
-   }
-
-
    void context::_create_offscreen_window(const ::int_size& size)
    {
 

@@ -55,7 +55,7 @@ namespace gpu_opengl
 
       void set_bitmap_1(::image::image *pimage) override;
 
-      void swap_buffers() override;
+      //void swap_buffers() override;
 
 
       virtual void update_framebuffer(const ::int_size& size);
@@ -79,8 +79,6 @@ namespace gpu_opengl
       virtual void _create_offscreen_window(const ::int_size & size);
 
       void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
-
-      void on_take_snapshot(::gpu::layer* player) override;
 
       void on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::int_size& size) override;
 

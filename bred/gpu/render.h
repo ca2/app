@@ -73,6 +73,8 @@ namespace gpu
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 
+  
+
       //virtual void defer_prepare();
 
       //virtual void _prepare();

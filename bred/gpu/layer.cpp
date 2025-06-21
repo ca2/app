@@ -3,6 +3,7 @@
 #include "context.h"
 #include "layer.h"
 #include "renderer.h"
+#include "render_target.h"
 #include "texture.h"
 
 
@@ -42,10 +43,10 @@ namespace gpu
    //}
 
 
-   void layer::take_snapshot()
+   void layer::layer_end()
    {
 
-      m_pgpurenderer->take_snapshot(this);
+      m_pgpurenderer->on_end_layer(this);
 
    }
 
@@ -53,7 +54,7 @@ namespace gpu
    ::pointer < texture >& layer::texture()
    {
 
-      int iFrameIndex = m_pgpurenderer->_get_frame_index();
+      int iFrameIndex = m_pgpurenderer->m_pgpurendertarget->get_frame_index();
 
       auto & ptexture = m_gputexturea.element_at_grow(iFrameIndex);
 

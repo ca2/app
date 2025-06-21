@@ -52,7 +52,7 @@ namespace gpu_opengl
       void Clear() const;
 
 
-      int get_frame_count() override;
+      //int get_frame_count() override;
       // Draws the skybox using the given mesh and shader
       //void DrawSkybox(const mesh *pskyboxMesh, ::gpu::shader * pshader) const;
 
@@ -67,13 +67,16 @@ namespace gpu_opengl
 
       virtual void do_sampling_to_cpu();
 
-      virtual void _swap();
+      //virtual void _swap();
 
-      void endDraw(::draw2d_gpu::graphics * pgraphics, ::user::interaction * puserinteraction) override;
+      //void endDraw(::draw2d_gpu::graphics * pgraphics, ::user::interaction * puserinteraction) override;
 
       //virtual void on_layout(int cx, int cy);
 
       void on_start_layer(::gpu::layer* player) override;
+      void on_end_layer(::gpu::layer* player) override;
+
+
 
       void blend(::gpu::renderer* prendererSource) override;
       void clear(::gpu::texture* ptextureSource) override;
@@ -86,9 +89,9 @@ namespace gpu_opengl
       virtual void __blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
 
       //void defer_update_renderer() override;
-      void on_defer_update_renderer_allocate_render_target(::gpu::enum_output eoutput, const ::int_size& size, ::gpu::render_target* previous) override;
+      //void on_defer_update_renderer_allocate_render_target(::gpu::enum_output eoutput, const ::int_size& size, ::gpu::render_target* previous) override;
 
-      ::pointer < ::gpu::render_target > allocate_offscreen_render_target() override;
+      //::pointer < ::gpu::render_target > allocate_offscreen_render_target() override;
 
 
    };

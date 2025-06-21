@@ -66,9 +66,51 @@ namespace gpu
 
    class render_target;
 
+   class render_state;
+
    class layer;
 
    class texture;
+
+
+
+   enum enum_state
+   {
+
+      e_state_initial,
+      e_state_new_frame,
+      e_state_began_frame,
+      e_state_began_render,
+      e_state_ended_render,
+      e_state_ended_frame,
+      e_state_no_frame = 256,
+      e_state_single_frame = 1024,
+
+   };
+
+
+   enum enum_happening
+   {
+
+      e_happening_reset_frame_counter,
+      e_happening_new_frame,
+      e_happening_begin_frame,
+      e_happening_begin_render,
+      e_happening_end_render,
+      e_happening_end_frame,
+
+   };
+
+
+   enum enum_render_mode
+   {
+
+      e_render_mode_none,
+      e_render_mode_multiple_frame_states,
+      e_render_mode_single_frame_state,
+
+   };
+
 
 
 

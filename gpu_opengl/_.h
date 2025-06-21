@@ -40,6 +40,8 @@ namespace gpu_opengl
 
    class shader;
 
+   class texture;
+
 } // namespace gpu_opengl
 
 

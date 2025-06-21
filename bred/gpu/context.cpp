@@ -5,8 +5,10 @@
 #include "cpu_buffer.h"
 #include "render.h"
 #include "renderer.h"
+#include "render_state.h"
 #include "render_target.h"
 #include "layer.h"
+#include "swap_chain.h"
 #include "texture.h"
 #include "types.h"
 #include "acme/exception/interface_only.h"
@@ -159,7 +161,7 @@ namespace gpu
    void context::prepare_for_gpu_read()
    {
 
-      swap_buffers();
+      //swap_buffers();
 
    }
 
@@ -193,11 +195,19 @@ namespace gpu
    }
 
 
-   void context::swap_buffers()
-   {
+   //void context::swap_buffers()
+   //{
 
+   //   ::cast < swap_chain > pswapchain = m_pgpurenderer->m_pgpurendertarget;
 
-   }
+   //   if (pswapchain)
+   //   {
+
+   //      pswapchain->present();
+
+   //   }
+
+   //}
 
 
    void context::create_window_buffer(::windowing::window* pwindow)
@@ -705,24 +715,31 @@ namespace gpu
                   if (playera)
                   {
 
-                     auto prendererSwapChain = get_gpu_renderer();
+                     auto prendererBackBuffer = get_gpu_renderer();
 
-                     auto iFrameIndex = prendererSwapChain->get_frame_index();
+                     auto iFrameIndex = prendererBackBuffer->m_pgpurendertarget->get_frame_index();
 
-                     auto prendertargetBackBuffer = prendererSwapChain->back_buffer_render_target();
+                     auto prendertargetBackBuffer = prendererBackBuffer->m_pgpurendertarget;
 
                      auto ptextureBackBuffer = prendertargetBackBuffer->current_texture();
 
                      merge_layers(ptextureBackBuffer, m_pgpudevice->m_playera);
 
-                     auto prendertargetSwapChain = prendererSwapChain->m_pgpurendertarget;
+                     ::cast < swap_chain > pswapchain = m_pgpudevice->get_swap_chain();
 
-                     auto ptextureSwapChain = prendertargetSwapChain->current_texture();
+                     if (!pswapchain->m_bSwapChainInitialized)
+                     {
 
-                     clear(::color::transparent);
-                     ///clear(::rgba(0.5*0.5, 0.75 * 0.5, 0.95 * 0.5, 0.5));
+                        pswapchain->initialize_gpu_swap_chain(prendererBackBuffer);
 
-                     prendererSwapChain->copy(ptextureSwapChain, ptextureBackBuffer);
+                     }
+
+                     //auto ptextureSwapChain = pswapchain->current_texture();
+
+                     //clear(::color::transparent);
+                     /////clear(::rgba(0.5*0.5, 0.75 * 0.5, 0.95 * 0.5, 0.5));
+
+                     pswapchain->present(ptextureBackBuffer);
 
                   }
 
@@ -744,68 +761,66 @@ namespace gpu
    ::gpu::renderer* context::get_gpu_renderer()
    {
 
-      if (!m_pgpurendererOutput2)
+      if (!m_pgpurenderer)
       {
 
-         __øconstruct(m_pgpurendererOutput2);
+         __øconstruct(m_pgpurenderer);
 
-         m_pgpurendererOutput2->initialize_renderer(this);
+         m_pgpurenderer->initialize_gpu_renderer(this);
 
-         m_pgpurendererOutput2->m_iFrameCountRequest = renderer::DEFAULT_FRAME_COUNT;
-
-         m_pgpurendererOutput2->defer_update_renderer();
+         m_pgpurenderer->defer_update_renderer();
 
       }
 
-      return m_pgpurendererOutput2;
+      return m_pgpurenderer;
 
    }
 
 
-   ::gpu::renderer* context::back_buffer_gpu_renderer()
-   {
+   //::gpu::renderer* context::back_buffer_gpu_renderer()
+   //{
 
-      if (!m_pgpurendererBackBuffer)
-      {
+   //   if (!m_pgpurendererBackBuffer)
+   //   {
 
-         __øconstruct(m_pgpurendererBackBuffer);
+   //      __øconstruct(m_pgpurendererBackBuffer);
 
-         m_pgpurendererBackBuffer->initialize_renderer(this);
+   //      m_pgpurendererBackBuffer->initialize_gpu_renderer(this);
 
-         m_pgpurendererBackBuffer->m_iFrameCountRequest = 1;
+   //      //m_pgpurendererBackBuffer->m_pgpurendertarget->m_iFrameCountRequest = 1;
 
-         m_pgpurendererBackBuffer->m_estate = ::gpu::renderer::e_state_single_frame;
+   //      m_pgpurendererBackBuffer->m_prenderstate->m_estate = ::gpu::e_state_single_frame;
 
-         m_pgpurendererBackBuffer->defer_update_renderer();
+   //      m_pgpurendererBackBuffer->defer_update_renderer();
 
-      }
+   //   }
 
-      return m_pgpurendererOutput2;
+   //   return m_pgpurenderer;
 
-   }
+   //}
 
 
    //::gpu::renderer* context::draw2d_renderer()
    //{
 
-   //   if (!m_pgpucontextDraw2d->m_pgpurendererOutput2)
+   //   if (!m_pgpucontextDraw2d->m_pgpurenderer)
    //   {
 
    //      ::gpu::enum_scene escene = m_escene;
 
-   //      __øconstruct(m_pgpucontextDraw2d->m_pgpurendererOutput2);
+   //      __øconstruct(m_pgpucontextDraw2d->m_pgpurenderer);
 
    //      auto eoutputDraw2d = m_papplication->m_gpu.m_eoutputDraw2d;
 
-   //      m_pgpucontextDraw2d->m_pgpurendererOutput2->initialize_renderer(this, eoutputDraw2d, escene);
+   //      m_pgpucontextDraw2d->m_pgpurenderer->initialize_renderer(this, eoutputDraw2d, escene);
 
-   //      m_pgpucontextDraw2d->m_pgpurendererOutput2->set_single_frame();
+   //      m_pgpucontextDraw2d->m_pgpurenderer->set_single_frame();
 
-   //      m_pgpucontextDraw2d->m_pgpurendererOutput2->defer_update_renderer();
+   //      m_pgpucontextDraw2d->m_pgpurenderer->defer_update_renderer();
 
    //   }
 
-   //   return m_pgpucontextDraw2d->m_pgpurendererOutput2;
+   //   return m_pgpucontextDraw2d->m_pgpurenderer;
 
    //}
 
@@ -1127,6 +1142,7 @@ namespace gpu
    void context::copy(::gpu::texture* ptexture)
    {
 
+      throw ::interface_only();
 
    }
 
@@ -1134,6 +1150,7 @@ namespace gpu
    void context::copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource)
    {
 
+      throw ::interface_only();
 
    }
 
@@ -1141,6 +1158,7 @@ namespace gpu
    void context::merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera)
    {
 
+      throw ::interface_only();
 
    }
 
@@ -1152,11 +1170,11 @@ namespace gpu
    }
 
 
-   void context::on_take_snapshot(layer* player)
-   {
+   //void context::on_take_snapshot(layer* player)
+   //{
 
 
-   }
+   //}
 
 
    void context::on_begin_draw_attach(::draw2d_gpu::graphics* pgpugraphics)
@@ -1226,7 +1244,7 @@ namespace gpu
       //if (pgpugraphics->m_egraphics == e_graphics_draw)
       //{
 
-      //   auto pgpurendererDraw2d = m_pgpurendererOutput2;
+      //   auto pgpurendererDraw2d = m_pgpurenderer;
 
       //   pgpurendererDraw2d->end_layer();
 

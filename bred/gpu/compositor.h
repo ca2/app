@@ -23,6 +23,10 @@ namespace gpu
       virtual void end_gpu_layer();
 
 
+      virtual void gpu_layer_on_after_begin_render();
+      virtual void gpu_layer_on_before_end_render();
+
+
    };
 
 }

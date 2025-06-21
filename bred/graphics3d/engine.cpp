@@ -16,6 +16,7 @@
 #include "bred/gpu/cpu_buffer.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/renderer.h"
+#include "bred/gpu/render_target.h"
 #include "bred/graphics3d/camera.h"
 #include "bred/user/user/graphics3d.h"
 #include "aura/graphics/image/target.h"
@@ -84,7 +85,7 @@ namespace graphics3d
 
       _prepare_frame();
 
-      auto prenderer = m_pgpucontext->m_pgpurendererOutput2;
+      auto prenderer = m_pgpucontext->m_pgpurenderer;
 
       prenderer->on_new_frame();
 
@@ -128,7 +129,7 @@ namespace graphics3d
          if (m_papplication->m_gpu.m_bUseSwapChainWindow)
          {
 
-            //m_pgpucontext->m_pgpurendererOutput2->end_layer();
+            //m_pgpucontext->m_pgpurenderer->end_layer();
 
             end_gpu_layer();
 
@@ -149,7 +150,7 @@ namespace graphics3d
       if (iGlobalUboSize > 0)
       {
 
-         pgpucontext->create_global_ubo((int)iGlobalUboSize, pgpucontext->get_gpu_renderer()->get_frame_count());
+         pgpucontext->create_global_ubo((int)iGlobalUboSize, pgpucontext->get_gpu_renderer()->m_pgpurendertarget->get_frame_count());
 
       }
 
@@ -181,7 +182,7 @@ namespace graphics3d
    void engine::start_gpu_layer()
    {
 
-      m_pgpucontext->m_pgpudevice->layer_start(m_pgpucontext->m_pgpurendererOutput2);
+      m_pgpucontext->m_pgpudevice->layer_start(m_pgpucontext->m_pgpurenderer);
 
    }
 
@@ -189,7 +190,7 @@ namespace graphics3d
    void engine::end_gpu_layer()
    {
 
-      auto prendererOutput = m_pgpucontext->m_pgpurendererOutput2;
+      auto prendererOutput = m_pgpucontext->m_pgpurenderer;
 
       prendererOutput->end_layer();
 
@@ -380,119 +381,13 @@ namespace graphics3d
    void engine::run_cpu_buffer()
    {
 
-      //auto papp = get_app();
-
-      //__øconstruct(m_pgpucontext);
-
-      //m_pgpucontext->initialize_context(papp->m_pimpact);
-
-      //__construct_new(m_prenderer);
-
-      //m_prenderer->initialize_renderer(papp->m_pimpact, m_pgpucontext);
-
-      //auto pglobalpoolbuilder = __allocate descriptor_pool::Builder();
-
-      //pglobalpoolbuilder->initialize_builder(m_pgpucontext);
-      //pglobalpoolbuilder->setMaxSets(render_pass::MAX_FRAMES_IN_FLIGHT);
-      //pglobalpoolbuilder->addPoolSize(VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, render_pass::MAX_FRAMES_IN_FLIGHT);
-
-      //m_pglobalpool = pglobalpoolbuilder->build();
-
-      ////m_pglobalpool->initialize_pool(pgpucontext);
-
-      ////= __allocate
-      ////   descriptor_pool::Builder(pgpucontext)
-      ////   .setMaxSets(swap_chain_render_pass::MAX_FRAMES_IN_FLIGHT)
-      ////   .addPoolSize(VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, swap_chain_render_pass::MAX_FRAMES_IN_FLIGHT)
-      ////   .build();
-      //m_pscene->on_load_scene();
-
-      ////pgpucontext = __allocate context(m_pvulkandevice);
-
-      //::pointer_array<buffer> uboBuffers;
-
-      //uboBuffers.set_size(render_pass::MAX_FRAMES_IN_FLIGHT);
-
-      //::cast < context > pgpucontext = m_pgpucontext;
-
-      //for (int i = 0; i < uboBuffers.size(); i++)
-      //{
-
-      //   uboBuffers[i] = __allocate buffer();
-
-      //   uboBuffers[i]->initialize_buffer(
-      //      pgpucontext,
-      //      sizeof(GlobalUbo),
-      //      1,
-      //      VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT,
-      //      VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT);
-
-      //   uboBuffers[i]->map();
-
-      //}
-      //auto globalSetLayout = set_descriptor_layout::Builder(pgpucontext)
-      //   .addBinding(0, VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, VK_SHADER_STAGE_ALL_GRAPHICS)
-      //   .build();
-
-
-      //std::vector<VkDescriptorSet> globalDescriptorSets(render_pass::MAX_FRAMES_IN_FLIGHT);
-
-      //for (int i = 0; i < globalDescriptorSets.size(); i++)
-      //{
-
-      //   auto bufferInfo = uboBuffers[i]->descriptorInfo();
-
-      //   descriptor_writer(*globalSetLayout, *m_pglobalpool)
-      //      .writeBuffer(0, &bufferInfo)
-      //      .build(globalDescriptorSets[i]);
-
-      //}
-
-      //simple_render_system simpleRenderSystem{
-      //    pgpucontext,
-      //    m_prenderer->getRenderPass(),
-      //    globalSetLayout->getDescriptorSetLayout() };
-
-      //point_light_system pointLightSystem{
-      //    pgpucontext,
-      //    m_prenderer->getRenderPass(),
-      //    globalSetLayout->getDescriptorSetLayout()
-      //};
-
-      //camera camera{ glm::vec3(0.0f, 2.0f, -15.0f), -90.0f, 0.0f };
-      //{ glm::vec3(0.0f, 2.0f, -15.0f), -90.0f, 0.0f };
-      //m_pcamera = m_pscene->get_default_camera();
-
-      ////VkcCamera camera(glm::vec3(0.0f, 2.0f, -10.0f), .0f, 0.0f);
-
-      ////auto viewerObject = __øcreate <::graphics3d::scene_object>();
-      ////papp->m_pimpact->m_bLastMouse = true;
-      ////viewerObject->m_transform.translation.z = -2.5f;
-      //m_transform.translation.z = -2.5f;
-      //TransformComponent transform;
-
-      /*    glfwSetInputMode(_window.getGLFWwindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-          glfwSetWindowUserPointer(_window.getGLFWwindow(), &cameraController);*/
-          //m_pinput->m_bMouseAbsolute;
-
-      ///auto pimpact = m_pusergraphics3d;
-
       m_stdtimepoint = std::chrono::high_resolution_clock::now();
-      //while (!_window.shouldClose())
 
       set_ok_flag();
 
       auto pgpuapproach = m_papplication->get_gpu_approach();
 
       auto pgpudevice = pgpuapproach->get_gpu_device();
-
-      //auto pgpucontext = pgpudevice->get_main_context();
-
-      //pgpucontext->m_pengine = this;
-
-      //auto prenderer = m_pgpucontext->m_pgpurendererOutput2;
-
-      //m_pgpurendererGraphics3D = pgpucontext->graphics3d_renderer();
 
       m_pgpucontext->send([this]()
          {
@@ -518,8 +413,6 @@ namespace graphics3d
 
                ::gpu::context_guard guard(m_pgpucontext);
 
-               //m_pgpucontext->make_current();
-
                m_pgpucontext->set_placement(m_rectanglePlacementNew);
 
                auto prenderer = m_pgpucontext->get_gpu_renderer();
@@ -527,8 +420,6 @@ namespace graphics3d
                prenderer->defer_update_renderer();
 
                auto pgpucontext = m_pgpucontext;
-
-               //auto pgpucontext = m_pgpurendererGraphics3D->m_pgpucontext;
 
                auto pcpubuffer = pgpucontext->get_cpu_buffer();
 
@@ -1100,7 +991,7 @@ namespace graphics3d
 
       auto pmodel = __øcreate < model>();
 
-      pmodel->initialize_model(m_pgpucontext->m_pgpurendererOutput2, builder);
+      pmodel->initialize_model(m_pgpucontext->m_pgpurenderer, builder);
 
       return pmodel;
 

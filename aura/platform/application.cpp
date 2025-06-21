@@ -1829,7 +1829,7 @@ namespace aura
 
          strOutput.make_lower();
 
-         if (strOutput.equals("swap_chain"))
+         if (strOutput.equals("swap_chain") || strOutput.equals("on_screen"))
          {
 
             m_gpu.m_bUseSwapChainWindow = true;

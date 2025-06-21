@@ -130,7 +130,7 @@ namespace draw2d_gpu
    //void graphics::start_gpu_layer()
    //{
 
-   //   m_pgpucontext->m_pgpudevice->layer_start(m_pgpucontext->m_pgpurendererOutput2);
+   //   m_pgpucontext->m_pgpudevice->layer_start(m_pgpucontext->m_pgpurenderer);
 
    //}
 
@@ -138,7 +138,7 @@ namespace draw2d_gpu
    //void graphics::end_gpu_layer()
    //{
 
-   //   auto prendererOutput = m_pgpucontextDraw2d->m_pgpurendererOutput2;
+   //   auto prendererOutput = m_pgpucontextDraw2d->m_pgpurenderer;
 
    //   prendererOutput->end_layer();
 

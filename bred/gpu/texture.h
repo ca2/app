@@ -12,6 +12,7 @@ namespace gpu
    public:
 
 
+      bool                                m_bRenderTarget;
       ::pointer < ::gpu::renderer >       m_pgpurenderer;
       ::int_rectangle                     m_rectangleTarget;
 

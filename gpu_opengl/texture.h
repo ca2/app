@@ -30,6 +30,9 @@ namespace gpu_opengl
       //void blend(::gpu::texture* ptexture, const ::int_rectangle& rectangleTarget) override;
 
 
+      
+
+
    };
 
 

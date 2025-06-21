@@ -1,7 +1,9 @@
 // From opengl/draw2d by camilo on 2025-06-02 03:26 <3ThomasBorregaardSørensen!!
 #include "framework.h"
-//#include "_opengl.h"
+#include "approach.h"
+#include "device.h"
 #include "draw2d.h"
+#include "swap_chain.h"
 #include "acme/exception/resource.h"
 #include "acme/platform/application.h"
 #include "acme/platform/system.h"
@@ -98,6 +100,31 @@ namespace draw2d_gpu
       //}
 
       //return estatus;
+
+   }
+
+
+   void draw2d::on_create_window(::windowing::window* pwindow)
+   {
+
+      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      {
+
+         auto pgpuapproach = m_papplication->get_gpu_approach();
+
+         auto pgpudevice = pgpuapproach->get_gpu_device();
+
+         auto pswapchain = pgpudevice->get_swap_chain();
+
+         if (!pswapchain->m_bWindowInitialized)
+         {
+
+            pswapchain->initialize_swap_chain_window(pgpudevice, pwindow);
+
+         }
+
+
+      }
 
    }
 

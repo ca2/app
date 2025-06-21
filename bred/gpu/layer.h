@@ -30,7 +30,7 @@ namespace gpu
       //virtual void set_target_texture(texture* ptextureTarget);
 
 
-      virtual void take_snapshot();
+      virtual void layer_end();
 
 
       ::pointer < texture > & texture();

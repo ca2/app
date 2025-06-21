@@ -13,6 +13,8 @@ namespace gpu
    texture::texture()
    {
 
+      m_bRenderTarget = false;
+
    }
 
 

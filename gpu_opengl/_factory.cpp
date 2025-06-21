@@ -1,14 +1,15 @@
 #include "framework.h"
 #include "approach.h"
 #include "context.h"
+#include "cpu_buffer.h"
 #include "device.h"
 #include "device_win32.h"
 #include "frame_buffer.h"
-#include "program.h"
-#include "shader.h"
-#include "cpu_buffer.h"
 #include "object.h"
+#include "offscreen_render_target.h"
+#include "program.h"
 #include "renderer.h"
+#include "shader.h"
 #include "swap_chain.h"
 #include "texture.h"
 
@@ -43,6 +44,7 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
 
 #endif
 
+   pfactory->add_factory_item < ::gpu_opengl::offscreen_render_target, ::gpu::render_target >();
    pfactory->add_factory_item < ::gpu_opengl::swap_chain, ::gpu::swap_chain >();
 
 

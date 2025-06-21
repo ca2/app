@@ -148,6 +148,7 @@ namespace gpu
 
       virtual void bind(::gpu::texture* pgputextureTarget);
       virtual void bind(::gpu::texture * pgputextureTarget, ::gpu::texture* pgputextureSource);
+      virtual void bind_source(::gpu::texture* pgputextureSource);
       virtual void bind();
       virtual void unbind();
 

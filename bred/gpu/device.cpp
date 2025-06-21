@@ -990,7 +990,7 @@ namespace gpu
    }
 
 
-   void device::layer_start(renderer* pgpurenderer)
+   layer * device::layer_start(renderer* pgpurenderer)
    {
 
       m_iLayer = m_iLayerCount;
@@ -1013,7 +1013,7 @@ namespace gpu
 
       //}
 
-      pgpurenderer->on_start_layer(player);
+      return player
 
    }
 

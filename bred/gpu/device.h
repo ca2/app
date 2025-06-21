@@ -191,7 +191,7 @@ namespace gpu
 
       virtual void start_stacking_layers();
       //virtual void layer_start(renderer * pgpurenderer, const ::int_rectangle & rectangleHost);
-      virtual void layer_start(renderer* pgpurenderer);
+      virtual layer * next_layer(renderer* pgpurenderer);
       virtual void layer_end();
       virtual layer* current_layer();
       //virtual void layer_merge(context* pcontextTarget);

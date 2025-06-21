@@ -134,12 +134,22 @@ namespace gpu
 
    }
 
+
    void shader::bind(::gpu::texture* pgputextureTarget)
    {
 
       throw ::interface_only("shader::bind(::gpu::texture*) not implemented at this shader implementation");
 
    }
+
+
+   void shader::bind_source(::gpu::texture* pgputextureSource)
+   {
+
+      throw ::interface_only("shader::bind_source(::gpu::texture*) not implemented at this shader implementation");
+
+   }
+
 
    void shader::unbind()
    {

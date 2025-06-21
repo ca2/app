@@ -710,36 +710,42 @@ namespace gpu
 
                      });
 
-                  auto playera = m_pgpudevice->m_playera;
-
-                  if (playera)
+                  if (bForDrawing)
                   {
 
-                     auto prendererBackBuffer = get_gpu_renderer();
+                     auto playera = m_pgpudevice->m_playera;
 
-                     auto iFrameIndex = prendererBackBuffer->m_pgpurendertarget->get_frame_index();
-
-                     auto prendertargetBackBuffer = prendererBackBuffer->m_pgpurendertarget;
-
-                     auto ptextureBackBuffer = prendertargetBackBuffer->current_texture();
-
-                     merge_layers(ptextureBackBuffer, m_pgpudevice->m_playera);
-
-                     ::cast < swap_chain > pswapchain = m_pgpudevice->get_swap_chain();
-
-                     if (!pswapchain->m_bSwapChainInitialized)
+                     if (playera)
                      {
 
-                        pswapchain->initialize_gpu_swap_chain(prendererBackBuffer);
+                        auto prendererBackBuffer = get_gpu_renderer();
+
+                        auto iFrameIndex = prendererBackBuffer->m_pgpurendertarget->get_frame_index();
+
+                        auto prendertargetBackBuffer = prendererBackBuffer->m_pgpurendertarget;
+
+                        auto ptextureBackBuffer = prendertargetBackBuffer->current_texture();
+
+                        merge_layers(ptextureBackBuffer, m_pgpudevice->m_playera);
+
+                        ::cast < swap_chain > pswapchain = m_pgpudevice->get_swap_chain();
+
+                        if (!pswapchain->m_bSwapChainInitialized)
+                        {
+
+                           pswapchain->initialize_gpu_swap_chain(prendererBackBuffer);
+
+                        }
+
+                        //auto ptextureSwapChain = pswapchain->current_texture();
+
+                        //clear(::color::transparent);
+                        /////clear(::rgba(0.5*0.5, 0.75 * 0.5, 0.95 * 0.5, 0.5));
+
+
+                        pswapchain->present(ptextureBackBuffer);
 
                      }
-
-                     //auto ptextureSwapChain = pswapchain->current_texture();
-
-                     //clear(::color::transparent);
-                     /////clear(::rgba(0.5*0.5, 0.75 * 0.5, 0.95 * 0.5, 0.5));
-
-                     pswapchain->present(ptextureBackBuffer);
 
                   }
 

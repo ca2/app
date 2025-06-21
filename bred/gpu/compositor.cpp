@@ -29,7 +29,9 @@ namespace gpu
    void compositor::start_gpu_layer()
    {
 
-      m_pgpucontext->m_pgpudevice->layer_start(m_pgpucontext->m_pgpurenderer);
+      auto player = m_pgpucontext->m_pgpudevice->next_layer(m_pgpucontext->m_pgpurenderer);
+
+      player->layer_start();
 
    }
 
@@ -37,13 +39,15 @@ namespace gpu
    void compositor::end_gpu_layer()
    {
 
-      auto prendererOutput = m_pgpucontext->m_pgpurenderer;
+      //auto prendererOutput = m_pgpucontext->m_pgpurenderer;
 
-      auto prendertarget = prendererOutput->m_pgpurendertarget;
+      //auto prendertarget = prendererOutput->m_pgpurendertarget;
 
       auto player = m_pgpucontext->m_pgpudevice->current_layer();
 
-      m_pgpucontext->copy(player->texture(), prendertarget->current_texture());
+      player->layer_end();
+
+//      m_pgpucontext->copy(player->texture(), prendertarget->current_texture());
 
    }
 

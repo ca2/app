@@ -29,7 +29,7 @@ namespace gpu
 
       //virtual void set_target_texture(texture* ptextureTarget);
 
-
+      virtual void layer_start();
       virtual void layer_end();
 
 

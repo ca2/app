@@ -120,7 +120,7 @@ namespace draw2d_gpu
    void graphics::on_end_draw()
    {
 
-      end_gpu_layer();
+      //end_gpu_layer();
 
       m_pgpucontext->on_end_draw_detach(this);
 

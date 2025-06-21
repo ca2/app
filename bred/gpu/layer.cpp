@@ -43,6 +43,14 @@ namespace gpu
    //}
 
 
+   void layer::layer_start()
+   {
+
+      m_pgpurenderer->on_start_layer(this);
+
+   }
+
+
    void layer::layer_end()
    {
 

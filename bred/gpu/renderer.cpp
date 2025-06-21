@@ -976,7 +976,7 @@ namespace gpu
    void renderer::on_end_layer(layer* player)
    {
 
-      //m_pgpucontext->on_take_snapshot(player);
+      m_pgpucontext->copy(player->texture(), m_pgpurendertarget->current_texture());
 
    }
 

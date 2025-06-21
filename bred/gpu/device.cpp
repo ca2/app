@@ -927,6 +927,10 @@ namespace gpu
       case e_type_float: return sizeof(float);
       case e_type_seq4: return sizeof(glm::vec4);
       case e_type_mat4: return sizeof(glm::mat4);
+      case e_type_seq3: return sizeof(glm::vec3);
+      case e_type_mat3: return sizeof(glm::mat3);
+      case e_type_seq2: return sizeof(glm::vec2);
+      case e_type_mat2: return sizeof(glm::mat2);
       default:
          throw ::exception(error_wrong_state);
 

@@ -13,6 +13,7 @@ namespace gpu
 
 
       bool                                m_bRenderTarget;
+      bool                                m_bDepthStencil;
       ::pointer < ::gpu::renderer >       m_pgpurenderer;
       ::int_rectangle                     m_rectangleTarget;
 

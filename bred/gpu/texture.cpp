@@ -14,6 +14,7 @@ namespace gpu
    {
 
       m_bRenderTarget = false;
+      m_bDepthStencil = false;
 
    }
 

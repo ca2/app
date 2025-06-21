@@ -443,7 +443,6 @@
     <ClCompile Include="gpu\texture.cpp" />
     <ClCompile Include="gpu\_.cpp" />
     <ClCompile Include="graphics3d\camera.cpp" />
-    <ClCompile Include="graphics3d\context.cpp" />
     <ClCompile Include="graphics3d\engine.cpp" />
     <ClCompile Include="graphics3d\frame.cpp" />
     <ClCompile Include="graphics3d\input.cpp" />

@@ -233,9 +233,6 @@
     <ClCompile Include="graphics3d\camera.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics3d\context.cpp">
-      <Filter>Source Files\graphics3d</Filter>
-    </ClCompile>
     <ClCompile Include="graphics3d\engine.cpp">
       <Filter>Source Files\graphics3d</Filter>
     </ClCompile>

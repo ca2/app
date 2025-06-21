@@ -953,7 +953,9 @@ namespace gpu
    void renderer::start_layer()
    {
 
-      m_pgpucontext->m_pgpudevice->layer_start(this);
+      auto player = m_pgpucontext->m_pgpudevice->next_layer(this);
+
+      player->layer_start();
 
    }
 
@@ -961,7 +963,9 @@ namespace gpu
    void renderer::end_layer()
    {
 
-      m_pgpucontext->m_pgpudevice->layer_end();
+      auto player = m_pgpucontext->m_pgpudevice->current_layer();
+
+      player->layer_end();
 
    }
 

@@ -235,18 +235,19 @@ namespace draw2d_gpu
    }
 
 
-   void graphics::create_offscreen_graphics_for_swap_chain_blitting(const ::int_size& size)
+   //void graphics::create_offscreen_graphics_for_swap_chain_blitting(::user::interaction* puserinteraction, const ::int_size& size)
+   //{
+
+   //   create_memory_graphics(size);
+
+   //}
+
+
+   void graphics::create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size)
    {
 
-      create_memory_graphics(size);
-
-   }
-
-
-   void graphics::create_for_window_drawing(const ::int_size& size)
-   {
-
-      create_offscreen_graphics_for_swap_chain_blitting(size);
+      ::draw2d::graphics::create_for_window_draw2d(puserinteraction, size);
+      ///create_offscreen_graphics_for_swap_chain_blitting(puserinteraction, size);
 
    }
 

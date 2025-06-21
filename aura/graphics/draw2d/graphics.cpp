@@ -17,9 +17,6 @@
 #include "aura/graphics/write_text/font_enumeration_item.h"
 #include "aura/graphics/write_text/fonts.h"
 #include "acme/parallelization/single_lock.h"
-//#include "acme/prototype/geometry2d/_enhanced.h"
-//#include "acme/prototype/geometry2d/_collection_enhanced.h"
-//#include "acme/prototype/geometry2d/_defer_shape.h"
 #include "acme/prototype/string/str.h"
 #include "aura/user/user/interaction.h"
 #include "nanosvg.h"
@@ -157,13 +154,6 @@ namespace draw2d
       return get_os_data() != 0;
 
    }
-
-
-   //void graphics::set_direct2d_plugin(::draw2d_direct2d::plugin * pplugin)
-   //{
-
-
-   //}
 
 
    bool graphics::_is_ok() const
@@ -429,7 +419,7 @@ namespace draw2d
    }
 
 
-   void graphics::create_offscreen_graphics_for_swap_chain_blitting(const ::int_size& size)
+   void graphics::create_offscreen_graphics_for_swap_chain_blitting(::user::interaction * puserinteraction, const ::int_size& size)
    {
 
       create_memory_graphics(size);
@@ -445,10 +435,12 @@ namespace draw2d
    }
 
 
-   void graphics::create_for_window_drawing(const ::int_size& size)
+   void graphics::create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size)
    {
 
-      create_memory_graphics(size);
+      m_puserinteraction = puserinteraction;
+
+      //create_memory_graphics(size);
 
    }
 

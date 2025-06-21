@@ -15,6 +15,7 @@
 #include "bred/gpu/context.h"
 #include "bred/gpu/cpu_buffer.h"
 #include "bred/gpu/device.h"
+#include "bred/gpu/layer.h"
 #include "bred/gpu/renderer.h"
 #include "bred/gpu/render_target.h"
 #include "bred/graphics3d/camera.h"
@@ -182,7 +183,9 @@ namespace graphics3d
    void engine::start_gpu_layer()
    {
 
-      m_pgpucontext->m_pgpudevice->layer_start(m_pgpucontext->m_pgpurenderer);
+      auto player = m_pgpucontext->m_pgpudevice->next_layer(m_pgpucontext->m_pgpurenderer);
+
+      player->layer_start();
 
    }
 
@@ -190,9 +193,9 @@ namespace graphics3d
    void engine::end_gpu_layer()
    {
 
-      auto prendererOutput = m_pgpucontext->m_pgpurenderer;
+      auto player = m_pgpucontext->m_pgpudevice->current_layer();
 
-      prendererOutput->end_layer();
+      player->layer_end();
 
    }
 

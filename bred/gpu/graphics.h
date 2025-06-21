@@ -56,8 +56,8 @@ namespace draw2d_gpu
 
       void do_on_context(const ::procedure& procedure) override;
  
-      void create_offscreen_graphics_for_swap_chain_blitting(const ::int_size& size = {}) override;
-      void create_for_window_drawing(const ::int_size& size) override;
+      ///void create_offscreen_graphics_for_swap_chain_blitting(::user::interaction* puserinteraction, const ::int_size& size = {}) override;
+      void create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size) override;
 
 
    };

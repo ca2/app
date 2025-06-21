@@ -28,7 +28,7 @@ namespace gpu
 
 
    class CLASS_DECL_BRED device :
-      virtual public ::particle
+      virtual public ::object
    {
    public:
 

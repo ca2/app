@@ -2,16 +2,12 @@
 
 
 #include "acme/constant/element.h"
-//#include "acme/constant/gpu_output.h"
 #include "acme/graphics/image/image32.h"
 
 #include "aura/platform/draw_context2.h"
-
-
 #include "aura/graphics/write_text/drawer.h"
 #include "aura/graphics/image/drawer.h"
 #include "aura/graphics/image/source.h"
-//#include "acme/prototype/geometry2d/collection.h"
 #include "acme/prototype/geometry2d/angle.h"
 #include "acme/prototype/geometry2d/matrix.h"
 #include "acme/prototype/geometry2d/shift.h"
@@ -306,9 +302,9 @@ namespace draw2d
       virtual void create_information_context(const ::string& pszDriverName, const ::string& pszDeviceName, const ::string& pszOutput, const void* lpInitData);
 
       virtual void create_window_graphics(::windowing::window* pwindow);
-      virtual void create_offscreen_graphics_for_swap_chain_blitting(const ::int_size& size = {});
+      virtual void create_offscreen_graphics_for_swap_chain_blitting(::user::interaction* puserinteraction, const ::int_size& size = {});
       virtual void create_memory_graphics(const ::int_size& size = {});
-      virtual void create_for_window_drawing(const ::int_size& size = {});
+      virtual void create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size = {});
       virtual void defer_set_size(const ::int_size& size = {});
       virtual void _create_memory_graphics(const ::int_size& size = {});
       virtual void CreateCompatibleDC(::draw2d::graphics* pgraphics);

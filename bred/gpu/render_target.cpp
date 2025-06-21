@@ -67,6 +67,13 @@ namespace gpu
 
       }
 
+      if (m_pgpurenderer->m_pgpucontext->m_escene == ::gpu::e_scene_3d)
+      {
+
+         m_bDepthStencil = true;
+
+      }
+
       on_init();
 
       set_ok_flag();

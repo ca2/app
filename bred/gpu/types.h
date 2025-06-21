@@ -3,7 +3,7 @@
 
 
 #include "acme/constant/gpu.h"
-
+#include "bred/gpu/properties.h"
 
 #define GLM_ENABLE_EXPERIMENTAL
 #define GLM_FORCE_RADIANS	
@@ -131,8 +131,18 @@ namespace gpu
 
 	};
 
-
 } // namespace gpu
+
+
+BEGIN_GPU_PROPERTIES(gpu_Vertex)
+GPU_PROPERTY("position", ::gpu::e_type_seq3)
+GPU_PROPERTY("color", ::gpu::e_type_seq3)
+GPU_PROPERTY("normal", ::gpu::e_type_seq3)
+GPU_PROPERTY("uv", ::gpu::e_type_seq2)
+END_GPU_PROPERTIES()
+
+
+
 
 
 template < >

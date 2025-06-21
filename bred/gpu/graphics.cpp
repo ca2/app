@@ -252,6 +252,14 @@ namespace draw2d_gpu
    }
 
 
+   void graphics::__on_begin_draw()
+   {
+
+      m_pgpucontext->__bind_draw2d_compositor(this);
+
+   }
+
+
 } // namespace draw2d_gpu
 
 

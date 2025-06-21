@@ -1268,6 +1268,13 @@ namespace gpu
    }
 
 
+   void context::__bind_draw2d_compositor(::gpu::compositor* pgpucompositor)
+   {
+
+
+   }
+
+
    //render_target* context::draw2d_render_target()
    //{
 

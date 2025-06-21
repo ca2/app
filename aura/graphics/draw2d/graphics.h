@@ -225,6 +225,8 @@ namespace draw2d
       virtual void on_begin_draw();
       virtual void on_end_draw();
 
+      virtual void __on_begin_draw();
+
       virtual bool fill_contains(const double_point& point);
 
       void draw_ca2(int x, int y, int z, const ::color::color& colorBk, const ::color::color& color);

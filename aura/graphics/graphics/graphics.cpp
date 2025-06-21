@@ -290,6 +290,14 @@ namespace graphics
 
       }
 
+      if (pbufferitem->m_pgraphics &&
+         pbufferitem->m_pgraphics.ok())
+      {
+
+         pbufferitem->m_pgraphics->__on_begin_draw();
+
+      }
+
       return pbufferitem;
 
    }

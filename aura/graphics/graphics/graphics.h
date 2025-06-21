@@ -95,6 +95,8 @@ namespace graphics
 
       virtual bool _on_begin_draw(buffer_item * pbufferitem);
 
+      //virtual void __on_begin_draw();
+
       virtual void on_end_draw();
 
       //virtual bool update_buffer(const ::int_size & size, int iStrideParam = -1);

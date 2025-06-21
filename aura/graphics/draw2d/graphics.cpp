@@ -235,6 +235,14 @@ namespace draw2d
    }
 
 
+   void graphics::__on_begin_draw()
+   {
+
+
+
+   }
+
+
    void graphics::on_end_draw()
    {
 

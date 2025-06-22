@@ -3,6 +3,7 @@
 #include "context.h"
 #include "device.h"
 #include "cpu_buffer.h"
+#include "guard.h"
 #include "render.h"
 #include "renderer.h"
 #include "render_state.h"
@@ -27,106 +28,6 @@ namespace gpu
 
 
    extern thread_local device* t_pgpudevice;
-
-   //context_guard::context_guard(context* pcontext) :
-   //   m_pcontext(pcontext)
-   //{
-
-   //   m_pcontext->make_current();
-
-   //}
-
-
-   //context_guard::~context_guard()
-   //{
-
-   //   m_pcontext->release_current();
-
-   //}
-
-
-   //rear_guard::rear_guard(context* pcontext)
-   //{
-
-   //   if (::is_null(pcontext))
-   //   {
-
-   //      m_itaskUpper = {};
-
-   //      m_pcontextUpper = nullptr;
-
-   //      return;
-
-   //   }
-
-   //   if (::is_null(pcontext->m_pgpudevice))
-   //   {
-
-   //      throw ::exception(error_wrong_state);
-
-   //   }
-
-   //   auto pcontextUpper = pcontext->m_pgpudevice->current_context();
-
-   //   ::gpu::context::enum_type etypeContextUpper = ::gpu::context::e_type_undefined;
-
-   //   if (pcontextUpper)
-   //   {
-
-   //      etypeContextUpper = pcontextUpper->m_etype;
-
-   //   }
-
-   //   auto itaskUpperCurrent = pcontext->m_pgpudevice->m_itaskCurrentGpuContext;
-
-   //   if (pcontextUpper
-   //      && pcontextUpper->m_itask == itaskUpperCurrent)
-   //   {
-
-   //      m_pcontextUpper = pcontextUpper;
-
-   //      m_itaskUpper = pcontext->m_pgpudevice->m_itaskCurrentGpuContext;
-
-   //      if (m_itaskUpper != ::current_itask())
-   //      {
-
-   //         throw ::exception(error_wrong_state);
-
-   //      }
-
-   //      m_pcontextUpper->release_current();
-
-   //   }
-   //   else
-   //   {
-
-   //      m_pcontextUpper = nullptr;
-
-   //   }
-
-   //}
-
-
-   //rear_guard::~rear_guard()
-   //{
-
-   //   if (m_pcontextUpper)
-   //   {
-
-   //      if (m_itaskUpper != ::current_itask())
-   //      {
-
-   //         warning() << "rear_guard::~rear_guard() - m_itaskUpper != ::current_itask()";
-   //         //throw ::exception(error_wrong_state);
-
-   //      }
-
-   //      m_pcontextUpper->make_current();
-
-   //   }
-
-   //}
-
 
    context::context()
    {
@@ -333,26 +234,31 @@ namespace gpu
 
       };
 
+      //rear_guard rearguard(this);
+
       ::thread::_send(procedureForward);
 
    }
 
 
-   void context::_post(const ::procedure& procedure)
-   {
-      auto procedureForward = [this, procedure]()
-         {
+   //void context::_post(const ::procedure& procedure)
+   //{
 
-            _synchronous_lock(this->synchronization());
+   //   //throw ::error_not_supported;
 
-            procedure();
+   //   ////auto procedureForward = [this, procedure]()
+   //   ////   {
+
+   //   ////      _synchronous_lock(this->synchronization());
+
+   //   ////      procedure();
 
 
-         };
+   //   ////   };
 
-      ::thread::_post(procedureForward);
+   //   ::thread::_post(procedureForward);
 
-   }
+   //}
 
 
    void context::defer_make_current()
@@ -620,20 +526,20 @@ namespace gpu
    }
 
 
-   void context::make_current()
-   {
+   //void context::make_current()
+   //{
 
-      m_pgpudevice->make_current(this);
+   //   m_pgpudevice->make_current(this);
 
-   }
+   //}
 
 
-   void context::release_current()
-   {
+   //void context::release_current()
+   //{
 
-      m_pgpudevice->release_current(this);
+   //   m_pgpudevice->release_current(this);
 
-   }
+   //}
 
 
    void context::destroy_cpu_buffer()

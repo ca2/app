@@ -8209,6 +8209,15 @@ namespace windowing
 
       }
 
+      if (m_pgraphicsthread->m_bFps)
+      {
+
+         warning() << "graphics thread is going to ignore post redraw as it should be doing Fps drawing";
+
+         return;
+
+      }
+
       m_pgraphicsthread->post_redraw();
 
       //user_interaction()->post_message(::e_message_redraw, bForceUpdateBuffer);

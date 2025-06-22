@@ -177,9 +177,9 @@ namespace app_shader
 
       string strFragment = m_strFragment;
 
-      ::gpu::context_lock lock(m_pgpucontext);
+      //::gpu::context_lock lock(m_pgpucontext);
 
-      m_pgpucontext->make_current();
+      //m_pgpucontext->make_current();
 
       if (!m_pshader)
       {
@@ -252,10 +252,10 @@ namespace app_shader
          
       }
       
-      m_pgpucontext->send([this]
+      m_pgpucontext->_send([this]
                                     {
          
-         ::gpu::context_lock lock(m_pgpucontext);
+         //::gpu::context_lock lock(m_pgpucontext);
          
          defer_update_shader();
          
@@ -270,7 +270,7 @@ namespace app_shader
                
                //::gpu::context_lock lock(m_pgpucontext);
                
-               m_pgpucontext->make_current();
+               //m_pgpucontext->make_current();
                
                m_pgpucontext->start_drawing();
                

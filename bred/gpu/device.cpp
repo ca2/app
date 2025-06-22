@@ -28,6 +28,13 @@ namespace gpu
 
    thread_local device* t_pgpudevice = nullptr;
 
+   void thread_set_gpu_device(::gpu::device* pgpudevice)
+   {
+
+      t_pgpudevice = pgpudevice;
+
+   }
+
    device::device()
    {
 
@@ -233,105 +240,105 @@ namespace gpu
    }
 
 
-   bool device::make_current(::gpu::context* pgpucontext)
-   {
+   //bool device::make_current(::gpu::context* pgpucontext)
+   //{
 
-      if (m_itaskCurrentGpuContext == ::current_itask()
-         && pgpucontext == current_context())
-      {
+   //   if (m_itaskCurrentGpuContext == ::current_itask()
+   //      && pgpucontext == current_context())
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      if (::is_set(current_context()))
-      {
+   //   if (::is_set(current_context()))
+   //   {
 
-         throw ::exception(error_wrong_state, "device is in use by other context");
+   //      throw ::exception(error_wrong_state, "device is in use by other context");
 
-      }
+   //   }
 
-      if (m_itaskCurrentGpuContext.is_set())
-      {
+   //   if (m_itaskCurrentGpuContext.is_set())
+   //   {
 
-         throw ::exception(error_wrong_state, "HGLRC is in use in other thread");
+   //      throw ::exception(error_wrong_state, "HGLRC is in use in other thread");
 
-      }
+   //   }
 
-      ::e_status estatus = ::success;
+   //   ::e_status estatus = ::success;
 
-      bool bMadeCurrentNow = false;
+   //   bool bMadeCurrentNow = false;
 
-      on_make_current();
+   //   on_make_current();
 
-      m_pgpucontextCurrent4 = pgpucontext;
+   //   m_pgpucontextCurrent4 = pgpucontext;
 
-      if (m_pgpucontextCurrent4->m_itask != ::current_itask())
-      {
+   //   if (m_pgpucontextCurrent4->m_itask != ::current_itask())
+   //   {
 
-         throw ::exception(error_wrong_state);
+   //      throw ::exception(error_wrong_state);
 
-      }
+   //   }
 
-      m_itaskCurrentGpuContext = ::current_itask();
+   //   m_itaskCurrentGpuContext = ::current_itask();
 
-      return bMadeCurrentNow;
+   //   return bMadeCurrentNow;
 
-   }
-
-
-   void device::release_current(::gpu::context* pgpucontext)
-   {
-
-      if (::is_null(current_context()))
-      {
-
-         // There is no active context in the device, no nothing to release;
-
-         return;
-
-      }
-      else if (!m_itaskCurrentGpuContext)
-      {
-
-         throw ::exception(error_wrong_state, "HGLRC is in use in other thread");
-
-      }
-      else if (m_itaskCurrentGpuContext != ::current_itask())
-      {
-
-         throw ::exception(error_wrong_state, "HGLRC is taken by other thread");
-
-      }
-      else if (pgpucontext != current_context())
-      {
-
-         throw ::exception(error_wrong_state, "should release current context");
-
-      }
-      
-      on_release_current();
-
-      m_itaskCurrentGpuContext = {};
-
-      m_pgpucontextCurrent4.release();
-
-   }
+   //}
 
 
-   void device::on_make_current()
-   {
+   //void device::release_current(::gpu::context* pgpucontext)
+   //{
+
+   //   if (::is_null(current_context()))
+   //   {
+
+   //      // There is no active context in the device, no nothing to release;
+
+   //      return;
+
+   //   }
+   //   else if (!m_itaskCurrentGpuContext)
+   //   {
+
+   //      throw ::exception(error_wrong_state, "HGLRC is in use in other thread");
+
+   //   }
+   //   else if (m_itaskCurrentGpuContext != ::current_itask())
+   //   {
+
+   //      throw ::exception(error_wrong_state, "HGLRC is taken by other thread");
+
+   //   }
+   //   else if (pgpucontext != current_context())
+   //   {
+
+   //      throw ::exception(error_wrong_state, "should release current context");
+
+   //   }
+   //   
+   //   on_release_current();
+
+   //   m_itaskCurrentGpuContext = {};
+
+   //   m_pgpucontextCurrent4.release();
+
+   //}
 
 
-   }
+   //void device::on_make_current()
+   //{
 
 
-   void device::on_release_current()
-   {
+   //}
+
+
+   //void device::on_release_current()
+   //{
 
 
 
-   }
+   //}
 
 
 
@@ -706,12 +713,12 @@ namespace gpu
    //}
 
 
-   ::gpu::context* device::current_context()
-   {
+   //::gpu::context* device::current_context()
+   //{
 
-      return m_pgpucontextCurrent4;
+   //   return m_pgpucontextCurrent4;
 
-   }
+   //}
 
 
    ::gpu::swap_chain* device::get_swap_chain()

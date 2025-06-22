@@ -120,14 +120,14 @@ namespace gpu
            // && m_pgpucontext->m_pbuffer->m_pixmap.is_ok())
       if (::is_set(m_pgpucontext))
       {
-         m_pgpucontext->send([this]()
+         m_pgpucontext->_send([this]()
             {
                //if (::is_set(m_pobject))
                {
 
-                  ::gpu::context_lock lock(m_pgpucontext);
+//                  ::gpu::context_guar lock(m_pgpucontext);
 
-                  m_pgpucontext->make_current();
+                  //m_pgpucontext->make_current();
 
                   // global_transform
 
@@ -249,7 +249,7 @@ namespace gpu
          //if (::is_set(m_pobject))
          {
 
-            ::gpu::context_lock lock(m_pgpucontext);
+            ///::gpu::context_lock lock(m_pgpucontext);
 
             //m_pgpucontext->make_current();
 

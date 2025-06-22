@@ -77,7 +77,7 @@ namespace gpu
       ~device() override;
 
 
-      virtual ::gpu::context* current_context();
+      ///virtual ::gpu::context* current_context();
 
       virtual ::gpu::swap_chain* get_swap_chain();
 
@@ -118,13 +118,13 @@ namespace gpu
 
       //virtual context* get_main_context();
 
-      virtual bool make_current(::gpu::context* pgpucontext);
+      //virtual bool make_current(::gpu::context* pgpucontext);
 
-      virtual void release_current(::gpu::context* pgpucontext);
+      ///virtual void release_current(::gpu::context* pgpucontext);
 
-      virtual void on_make_current();
+      ///virtual void on_make_current();
 
-      virtual void on_release_current();
+      //virtual void on_release_current();
 
       //virtual ::gpu::renderer* get_renderer();
 
@@ -217,6 +217,8 @@ namespace gpu
 
    //};
 
+   
+   CLASS_DECL_BRED void thread_set_gpu_device(::gpu::device* pgpudevice);
 
 
 } // namespace gpu

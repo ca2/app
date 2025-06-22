@@ -1712,11 +1712,30 @@ namespace user
    void graphics_thread::post_redraw()
    {
 
+      if (m_bFps)
+      {
+
+         warning() << "graphics thread is going to ignore post redraw as it should be doing Fps drawing";
+
+         return;
+
+      }
+
       //information() << node()->get_callstack();
 
       //information() << "graphics_thread::post_redraw";
 
-      post_message(e_message_redraw);
+      try
+      {
+
+         post_message(e_message_redraw);
+
+      }
+      catch (...)
+      {
+
+
+      }
 
    }
 

@@ -759,59 +759,59 @@ namespace gpu_opengl
    //}
 
    
-   void device_win32::on_make_current()
-   {
+   //void device_win32::on_make_current()
+   //{
 
 
-      if (wglGetCurrentContext() != m_hrc || wglGetCurrentDC() != m_hdc)
-      {
+   //   if (wglGetCurrentContext() != m_hrc || wglGetCurrentDC() != m_hdc)
+   //   {
 
-         bool bMakeCurrentOk = wglMakeCurrent(m_hdc, m_hrc);
+   //      bool bMakeCurrentOk = wglMakeCurrent(m_hdc, m_hrc);
 
-         if (!bMakeCurrentOk)
-         {
+   //      if (!bMakeCurrentOk)
+   //      {
 
-            informationf("MS WGL - wglMakeCurrent failed");
+   //         informationf("MS WGL - wglMakeCurrent failed");
 
-            int iLastError = GetLastError();
+   //         int iLastError = GetLastError();
 
-            informationf("last-error code: %d\n", iLastError);
+   //         informationf("last-error code: %d\n", iLastError);
 
-            throw ::exception(error_failed);
+   //         throw ::exception(error_failed);
 
-         }
+   //      }
 
-         //bMadeCurrentNow = true;
+   //      //bMadeCurrentNow = true;
 
-      }
+   //   }
 
-   }
+   //}
 
-   void device_win32::on_release_current()
-   {
+   //void device_win32::on_release_current()
+   //{
 
 
-      if (wglGetCurrentContext() != m_hrc || wglGetCurrentDC() != m_hdc)
-      {
+   //   if (wglGetCurrentContext() != m_hrc || wglGetCurrentDC() != m_hdc)
+   //   {
 
-         throw ::exception(error_wrong_state, "wrong state");
+   //      throw ::exception(error_wrong_state, "wrong state");
 
-      }
+   //   }
 
-      bool bReleaseOk = wglMakeCurrent(nullptr, nullptr);
+   //   bool bReleaseOk = wglMakeCurrent(nullptr, nullptr);
 
-      if (!bReleaseOk)
-      {
+   //   if (!bReleaseOk)
+   //   {
 
-         informationf("MS WGL - wglMakeCurrent failed");
+   //      informationf("MS WGL - wglMakeCurrent failed");
 
-         informationf("last-error code: %d\n", GetLastError());
+   //      informationf("last-error code: %d\n", GetLastError());
 
-         throw ::exception(error_failed);
+   //      throw ::exception(error_failed);
 
-      }
+   //   }
 
-   }
+   //}
 
    //void device_win32::release_current(::gpu::context * pgpucontext)
    //{
@@ -936,6 +936,62 @@ namespace gpu_opengl
    //   }
 
    //}
+
+
+   void device_win32::_opengl_lock()
+   {
+
+      if (wglGetCurrentContext() != m_hrc || wglGetCurrentDC() != m_hdc)
+      {
+
+         bool bMakeCurrentOk = wglMakeCurrent(m_hdc, m_hrc);
+
+         if (!bMakeCurrentOk)
+         {
+
+            informationf("MS WGL - wglMakeCurrent failed");
+
+            int iLastError = GetLastError();
+
+            informationf("last-error code: %d\n", iLastError);
+
+            throw ::exception(error_failed);
+
+         }
+
+         //bMadeCurrentNow = true;
+
+      }
+
+
+   }
+
+
+   void device_win32::_opengl_unlock()
+   {
+
+
+      if (wglGetCurrentContext() != m_hrc || wglGetCurrentDC() != m_hdc)
+      {
+
+         throw ::exception(error_wrong_state, "wrong state");
+
+      }
+
+      bool bReleaseOk = wglMakeCurrent(nullptr, nullptr);
+
+      if (!bReleaseOk)
+      {
+
+         informationf("MS WGL - wglMakeCurrent failed");
+
+         informationf("last-error code: %d\n", GetLastError());
+
+         throw ::exception(error_failed);
+
+      }
+
+   }
 
 
 } // namespace gpu_opengl

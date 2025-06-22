@@ -1,5 +1,6 @@
 // Created by camilo on 2025-06-08 18:14 < 3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "lock.h"
 #include "texture.h"
 #include "renderer.h"
 
@@ -36,6 +37,8 @@ namespace gpu_opengl
       auto sizeCurrent = m_rectangleTarget.size();
 
       ::gpu::texture::initialize_gpu_texture(prenderer, rectangleTarget);
+
+      opengl_lock opengl_lock(m_pgpurenderer->m_pgpucontext);
 
       if (sizeCurrent != rectangleTarget.size())
       {

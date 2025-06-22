@@ -392,8 +392,10 @@ namespace graphics3d
 
       auto pgpudevice = pgpuapproach->get_gpu_device();
 
-      m_pgpucontext->send([this]()
+      m_papplication->fork([this]()
          {
+
+            ::gpu::thread_set_gpu_device(m_pgpucontext->m_pgpudevice);
 
             while (task_get_run())
             {
@@ -460,18 +462,20 @@ namespace graphics3d
 
             }
 
+            ::pointer <::database::client> pdatabaseclient = m_papplication;
+
+            if (pdatabaseclient)
+            {
+
+               pdatabaseclient->datastream()->set("input", m_pinput->as_block());
+               pdatabaseclient->datastream()->set("transform", as_memory_block(m_transform));
+               pdatabaseclient->datastream()->set("camera", m_pcamera->as_block());
+
+            }
+
+
          });
 
-      ::pointer <::database::client> pdatabaseclient = m_papplication;
-
-      if (pdatabaseclient)
-      {
-
-         pdatabaseclient->datastream()->set("input", m_pinput->as_block());
-         pdatabaseclient->datastream()->set("transform", as_memory_block(m_transform));
-         pdatabaseclient->datastream()->set("camera", m_pcamera->as_block());
-
-      }
 
       //if (pgpucontext->logicalDevice() != VK_NULL_HANDLE)
       //{
@@ -564,7 +568,9 @@ namespace graphics3d
 
       set_ok_flag();
 
-      get_gpu_context()->post([this, rectanglePlacement]()
+      m_rectanglePlacementNew = rectanglePlacement;
+
+      get_gpu_context()->_send([this, rectanglePlacement]()
          {
 
             m_pusergraphics3d->on_load_engine();
@@ -581,8 +587,6 @@ namespace graphics3d
             }
 
          });
-
-      m_rectanglePlacementNew = rectanglePlacement;
 
    }
 

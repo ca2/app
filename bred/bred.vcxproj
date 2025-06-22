@@ -351,6 +351,7 @@
     <ClInclude Include="gpu\face.h" />
     <ClInclude Include="gpu\frame.h" />
     <ClInclude Include="gpu\graphics.h" />
+    <ClInclude Include="gpu\guard.h" />
     <ClInclude Include="gpu\object.h" />
     <ClInclude Include="gpu\program.h" />
     <ClInclude Include="gpu\properties.h" />
@@ -430,6 +431,7 @@
     <ClCompile Include="gpu\face.cpp" />
     <ClCompile Include="gpu\frame.cpp" />
     <ClCompile Include="gpu\graphics.cpp" />
+    <ClCompile Include="gpu\guard.cpp" />
     <ClCompile Include="gpu\object.cpp" />
     <ClCompile Include="gpu\program.cpp" />
     <ClCompile Include="gpu\properties.cpp" />

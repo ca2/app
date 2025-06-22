@@ -166,7 +166,7 @@ namespace draw2d_gpu
 
       //wglMakeCurrent(m_hdc, m_hglrc);
 
-      m_pgpucontext->make_current();
+      //m_pgpucontext->make_current();
 
       thread_graphics(this);
 

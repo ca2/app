@@ -61,8 +61,8 @@ namespace gpu_opengl
 
       //void release_current(::gpu::context* pgpucontext) override;
 
-      void on_make_current() override;
-      void on_release_current() override;
+      //void on_make_current() override;
+      //void on_release_current() override;
 
 
       void _swap_buffers() override;
@@ -76,6 +76,9 @@ namespace gpu_opengl
       //void _translate_shader(string_array& straFragment) override;
 
       //void swap_buffers() override;
+
+      virtual void _opengl_lock();
+      virtual void _opengl_unlock();
 
 
    };

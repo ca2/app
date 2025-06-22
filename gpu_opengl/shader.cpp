@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "lock.h"
+#include "renderer.h"
 #include "shader.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "bred/gpu/approach.h"
@@ -49,6 +51,8 @@ namespace gpu_opengl
    unsigned int shader::create_shader(const ::block & blockSource, GLenum type)
    {
 
+      opengl_lock opengl_lock(m_pgpurenderer->m_pgpucontext);
+
       unsigned int uShader;
 
       uShader = glCreateShader(type);
@@ -62,7 +66,7 @@ namespace gpu_opengl
 
          informationf("error %d \"%s\"", eerror, errString);
 
-         return ::error_failed;
+         throw ::exception(::error_failed);
 
       }
 
@@ -207,6 +211,7 @@ namespace gpu_opengl
    {
       
       glUseProgram(m_ProgramID);
+      GLCheckError("");
       
    }
 
@@ -216,6 +221,7 @@ namespace gpu_opengl
    {
 
       glUseProgram(0);
+      GLCheckError("");
 
    }
 

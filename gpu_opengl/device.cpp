@@ -58,10 +58,20 @@ namespace gpu_opengl
 
 
 
-   bool device::make_current(::gpu::context* pgpucontext)
+//   bool device::make_current(::gpu::context* pgpucontext)
+   //{
+
+   //   return ::gpu::device::make_current(pgpucontext);
+
+   //}
+
+
+   void device::on_initialize_particle()
    {
 
-      return ::gpu::device::make_current(pgpucontext);
+      ::gpu::device::on_initialize_particle();
+
+      defer_create_synchronization();
 
    }
 
@@ -73,12 +83,12 @@ namespace gpu_opengl
    }
 
 
-   void device::release_current(::gpu::context* pgpucontext)
-   {
+   //void device::release_current(::gpu::context* pgpucontext)
+   //{
 
-      ::gpu::device::release_current(pgpucontext);
+   //   ::gpu::device::release_current(pgpucontext);
 
-   }
+   //}
 
    //void device::initialize(::particle * pparticle)
    //{
@@ -644,6 +654,20 @@ namespace gpu_opengl
 
    //}
 
+   
+   void device::_opengl_lock()
+   {
+
+
+   }
+
+   
+   void device::_opengl_unlock()
+   {
+
+
+
+   }
 
 
 } // namespace gpu_opengl

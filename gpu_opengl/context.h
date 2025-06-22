@@ -57,6 +57,8 @@ namespace gpu_opengl
 
       //void swap_buffers() override;
 
+      virtual void _opengl_lock();
+      virtual void _opengl_unlock();
 
       virtual void update_framebuffer(const ::int_size& size);
 
@@ -105,13 +107,13 @@ namespace gpu_opengl
       virtual void _copy_using_blit(::gpu::texture* ptexture);
       void merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera) override;
       
-      void make_current() override;
+      //void make_current() override;
 
 
       void defer_make_current() override;
 
 
-      void release_current() override;
+      //void release_current() override;
 
       //bool is_mesa() override;
 

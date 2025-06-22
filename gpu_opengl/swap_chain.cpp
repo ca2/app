@@ -2,6 +2,7 @@
 #include "context.h"
 #include "device.h"
 #include "frame_buffer.h"
+#include "lock.h"
 #include "renderer.h"
 #include "swap_chain.h"
 #include "texture.h"
@@ -214,7 +215,7 @@ namespace gpu_opengl
    void swap_chain::present(::gpu::texture* pgputexture)
    {
 
-
+      ::gpu_opengl::opengl_lock opengl_lock(m_pgpurenderer->m_pgpucontext);
 
       if (!m_pshaderCopyTextureOnEndDraw)
       {

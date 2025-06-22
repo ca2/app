@@ -2,6 +2,7 @@
 #include "context.h"
 #include "device_win32.h"
 #include "frame_buffer.h"
+#include "lock.h"
 #include "program.h"
 #include "renderer.h"
 #include "render_target.h"
@@ -53,6 +54,8 @@ namespace gpu_opengl
 
    void context::draw()
    {
+
+      opengl_lock opengl_lock(this);
 
       ::cast < device_win32 > pgpudevice = m_pgpudevice;
 
@@ -128,6 +131,7 @@ namespace gpu_opengl
    void context::start_drawing()
    {
 
+      opengl_lock opengl_lock(this);
 
       //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo_elements);
 //int iError16 = glGetError();
@@ -182,6 +186,7 @@ namespace gpu_opengl
    void context::global_transform()
    {
 
+      opengl_lock opengl_lock(this);
 
       // Get a handle for our "MVP" uniform
       //GLint MatrixID = glGetUniformLocation(programID, "MVP");
@@ -229,6 +234,8 @@ namespace gpu_opengl
 
    void context::render()
    {
+
+      opengl_lock opengl_lock(this);
 
       ::cast < device_win32 > pgpudevice = m_pgpudevice;
 
@@ -297,6 +304,8 @@ namespace gpu_opengl
 
    void context::set_bitmap_1(::image::image *pimage)
    {
+
+      opengl_lock opengl_lock(this);
 
       ::cast < device_win32 > pgpudevice = m_pgpudevice;
 
@@ -720,6 +729,7 @@ namespace gpu_opengl
    void context::clear(const ::color::color& color)
    {
 
+      opengl_lock opengl_lock(this);
       // Clear the screen 
       GLCheckError("");
       //   glClearColor(0.678f, 0.847f, 0.902f, 1.0f);//
@@ -732,6 +742,8 @@ namespace gpu_opengl
 
    void context::create_global_ubo(int iGlobalUboSize, int iFrameCount)
    {
+
+      opengl_lock opengl_lock(this);
 
       // Create the UBO
       glGenBuffers(1, &m_globalUBO);
@@ -746,6 +758,8 @@ namespace gpu_opengl
 
    void context::update_global_ubo(const ::block& block)
    {
+
+      opengl_lock opengl_lock(this);
 
       glBindBuffer(GL_UNIFORM_BUFFER, m_globalUBO);
 
@@ -811,6 +825,7 @@ namespace gpu_opengl
    void context::_copy_using_shader(::gpu::texture* ptextureParam)
    {
 
+      opengl_lock opengl_lock(this);
 
       if (!m_pshaderCopy)
       {
@@ -881,6 +896,8 @@ void main() {
    void context::merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera)
    {
 
+      opengl_lock opengl_lock(this);
+
       ::cast < texture > ptextureDst = ptextureTarget;
 
       GLuint framebuffer;
@@ -940,6 +957,8 @@ void main() {
 
    void context::_copy_using_blit(::gpu::texture * ptextureParam)
    {
+
+      opengl_lock opengl_lock(this);
 
       ::cast < texture > ptexture = ptextureParam;
 
@@ -1108,6 +1127,8 @@ void main() {
 
    void context::copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource)
    {
+
+      opengl_lock opengl_lock(this);
 
       ::cast < texture > ptextureDst = ptextureTarget;
 
@@ -1706,7 +1727,7 @@ void main() {
 
             create_cpu_buffer(size);
 
-
+            opengl_lock opengl_lock(this);
             ///m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
 
       //#ifdef WINDOWS_DESKTOP
@@ -1726,7 +1747,7 @@ void main() {
 
       //#endif
 
-            make_current();
+            //make_current();
 
             glViewport(0, 0, size.cx(), size.cy());
             //glMatrixMode(GL_PROJECTION);
@@ -1754,67 +1775,89 @@ void main() {
             m_pgpudevice->m_pgpucontextCurrent4->_send([this]()
                {
 
-                  m_pgpudevice->release_current(m_pgpudevice->m_pgpucontextCurrent4);
+                  ///m_pgpudevice->release_current(m_pgpudevice->m_pgpucontextCurrent4);
 
                });
 
          }
 
-         make_current();
+         //make_current();
 
       }
 
    }
 
 
-   void context::make_current()
+   //xxxopengl
+   //void context::make_current()
+   //{
+
+   //   ::gpu::context::make_current();
+
+   //   update_framebuffer(m_rectangle.size());
+
+   //   if (m_pframebuffer)
+   //   {
+
+   //      m_pframebuffer->bind();
+
+   //   }
+   //   else if(m_eoutput == ::gpu::e_output_swap_chain)
+   //   {
+   //      
+   //      // If using swap chain, no need to bind framebuffer
+
+   //      GLint drawFboId = 0, readFboId = 0;
+
+   //      glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFboId);
+   //      glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFboId);
+
+   //      if (drawFboId != 0)
+   //      {
+
+   //         glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+   //         glViewport(0, 0, m_rectangle.width(), m_rectangle.height());
+
+   //      }
+
+   //   }
+
+   //   //pgpudevice->m_pgpucontextCurrent = this;
+
+   //   //glBindFramebuffer(GL_FRAMEBUFFER, m_fboID);
+
+   //   //return estatus;
+
+   //}
+
+
+   ////xxxopengl
+   //void context::release_current()
+   //{
+
+   //   ::gpu::context::release_current();
+
+   //}
+
+
+   void context::_opengl_lock()
    {
 
-      ::gpu::context::make_current();
+      ::cast < device > pdevice = m_pgpudevice;
 
-      update_framebuffer(m_rectangle.size());
-
-      if (m_pframebuffer)
-      {
-
-         m_pframebuffer->bind();
-
-      }
-      else if(m_eoutput == ::gpu::e_output_swap_chain)
-      {
-         
-         // If using swap chain, no need to bind framebuffer
-
-         GLint drawFboId = 0, readFboId = 0;
-
-         glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFboId);
-         glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFboId);
-
-         if (drawFboId != 0)
-         {
-
-            glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-            glViewport(0, 0, m_rectangle.width(), m_rectangle.height());
-
-         }
-
-      }
-
-      //pgpudevice->m_pgpucontextCurrent = this;
-
-      //glBindFramebuffer(GL_FRAMEBUFFER, m_fboID);
-
-      //return estatus;
+      pdevice->_opengl_lock();
 
    }
 
 
-   void context::release_current()
+   void context::_opengl_unlock()
    {
 
-      ::gpu::context::release_current();
-
+      ::cast < device > pdevice = m_pgpudevice;
+   
+      pdevice->_opengl_unlock();
+   
    }
 
 

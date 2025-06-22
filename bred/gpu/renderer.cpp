@@ -206,14 +206,14 @@ namespace gpu
            // && m_pgpucontext->m_pbuffer->m_pixmap.is_ok())
       if (::is_set(m_pgpucontext))
       {
-         m_pgpucontext->send([this]()
+         m_pgpucontext->_send([this]()
             {
                //if (::is_set(m_pobject))
                {
 
-                  ::gpu::context_lock lock(m_pgpucontext);
+                  //::gpu::context_lock lock(m_pgpucontext);
 
-                  m_pgpucontext->make_current();
+                  //m_pgpucontext->make_current();
 
                   // global_transform
 
@@ -335,7 +335,7 @@ namespace gpu
          //if (::is_set(m_pobject))
          {
 
-            ::gpu::context_lock lock(m_pgpucontext);
+            //::gpu::context_lock lock(m_pgpucontext);
 
             //m_pgpucontext->make_current();
 
@@ -688,7 +688,7 @@ namespace gpu
       if (m_pgpurendertarget && m_sizeRenderer == sizeContext)
       {
 
-         if (m_pgpucontext->is_current_task())
+         //if (m_pgpucontext->is_current_task())
          {
 
             if (!sizeContext.is_empty())
@@ -787,7 +787,8 @@ namespace gpu
 
          m_pgpurendertarget->initialize_render_target(this, size, previous);
 
-         if (!size.is_empty() && m_pgpucontext->is_current_task())
+         //if (!size.is_empty() && m_pgpucontext->is_current_task())
+         if (!size.is_empty())
          //if (!size.is_empty())
          {
 

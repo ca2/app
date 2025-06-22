@@ -118,7 +118,7 @@ namespace gpu_opengl
             targeting.data());
 
       }
-
+      GLCheckError("");
       int iError = glGetError();
 
       if(iError != 0)
@@ -183,6 +183,7 @@ namespace gpu_opengl
          lock.height(), 
          GL_RGBA, GL_UNSIGNED_BYTE, 
          lock.data());
+      GLCheckError("");
 
    }
 

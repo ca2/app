@@ -56,6 +56,13 @@ namespace gpu
    class CLASS_DECL_BRED context :
       virtual public ::thread
    {
+
+   protected:
+
+      using thread::send;
+      using thread::post;
+      using thread::_send;
+      using thread::_post;
    public:
 
 
@@ -112,7 +119,7 @@ namespace gpu
 
 
       void _send(const ::procedure& procedure) override;
-      void _post(const ::procedure& procedure) override;
+      //void _post(const ::procedure& procedure) override;
 
 
       virtual void defer_make_current();
@@ -209,8 +216,8 @@ namespace gpu
 
       virtual void _translate_shader(string_array& stra);
 
-      virtual void make_current();
-      virtual void release_current();
+      //virtual void make_current();
+      //virtual void release_current();
 
       virtual string load_fragment(const ::string & pszPath, enum_shader_source & eshadersource);
 
@@ -259,78 +266,8 @@ namespace gpu
 
    };
 
-   class context_lock
-   {
-   public:
-      
-      context *      m_papplication;
-      ::e_status     m_estatus;
-      critical_section m_cs;
-      
-      context_lock(context * pgpucontext):
-         m_estatus(error_failed),
-         m_papplication(pgpucontext)
-      {
-         
-         if(m_papplication)
-         {
-
-            m_cs.lock();
-            try
-            {
-
-               m_papplication->lock_context();
-
-               m_estatus = success;
-
-            }
-            catch (const ::exception& exception)
-            {
-
-               m_estatus = exception.m_estatus;
-
-            }
-            
-         }
-         
-      }
-      
-      ~context_lock()
-      {
-         
-         if(m_papplication)
-         {
-         
-            if(m_estatus)
-            {
-            
-               m_papplication->unlock_context();
-               
-            }
-            m_cs.unlock();
-         }
-         
-      }
 
 
-   };
-
-
-
-   //class CLASS_DECL_BRED rear_guard
-   //{
-   //public:
-
-
-   //   ::itask           m_itaskUpper;
-   //   ::gpu::context *  m_pcontextUpper;
-
-
-   //   rear_guard(context* pcontext);
-   //   ~rear_guard();
-
-
-   //};
 
 
 

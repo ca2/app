@@ -2013,6 +2013,20 @@ namespace user
 
       }
 
+      if (
+         window() &&
+         window()->m_pgraphicsthread &&
+         window()->m_pgraphicsthread->m_bFps)
+      {
+
+         warning() << "graphics thread is going to ignore post redraw as it should be doing Fps drawing";
+
+         m_setneedredrawa.clear();
+
+         return;
+
+      }
+
       if (!this->is_window_screen_visible(e_layout_sketch))
       {
 
@@ -2200,7 +2214,11 @@ namespace user
       //
       //      }
 
-      if (windowing_window()->m_pgraphicsgraphics->is_single_buffer_mode())
+      if (windowing_window()
+         && 
+         windowing_window()->m_pgraphicsgraphics
+         &&
+         windowing_window()->m_pgraphicsgraphics->is_single_buffer_mode())
       {
 
          auto * pinteraction = get_wnd();
@@ -3830,6 +3848,18 @@ namespace user
 
    bool interaction::post_pending_set_need_redraw()
    {
+
+      if (window()->m_pgraphicsthread->m_bFps)
+      {
+
+         warning() << "graphics thread is going to ignore post redraw as it should be doing Fps drawing";
+
+         m_setneedredrawa.clear();
+
+         return true;
+
+      }
+
 
       {
 

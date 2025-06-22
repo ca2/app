@@ -39,12 +39,15 @@ namespace gpu_opengl
       //::pointer < ::gpu::context > allocate_context(::particle* pparticle) override;
 
 
+      void on_initialize_particle() override;
+
+
       /// <summary>
       /// 
       /// </summary>
       /// <returns>true if changed to make current</returns>
-      virtual bool make_current(::gpu::context * pgpucontext);
-      virtual void release_current(::gpu::context* pgpucontext);
+      //virtual bool make_current(::gpu::context * pgpucontext);
+      //virtual void release_current(::gpu::context* pgpucontext);
       virtual void _swap_buffers();
       //string _001GetIntroProjection() override;
       //string _001GetIntroFragment() override;
@@ -78,6 +81,10 @@ namespace gpu_opengl
 
 
       //void clear(const ::color::color& color) override;
+
+
+      virtual void _opengl_lock();
+      virtual void _opengl_unlock();
 
 
    };

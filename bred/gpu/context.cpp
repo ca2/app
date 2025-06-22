@@ -321,15 +321,17 @@ namespace gpu
 
    void context::_send(const ::procedure& procedure)
    {
+
       auto procedureForward = [this, procedure]()
-         {
+      {
 
-            _synchronous_lock(this->synchronization());
+         _synchronous_lock(this->synchronization());
 
-            procedure();
+         defer_make_current();
 
+         procedure();
 
-         };
+      };
 
       ::thread::_send(procedureForward);
 
@@ -349,6 +351,13 @@ namespace gpu
          };
 
       ::thread::_post(procedureForward);
+
+   }
+
+
+   void context::defer_make_current()
+   {
+
 
    }
 
@@ -713,7 +722,7 @@ namespace gpu
             auto pgpurenderer = get_gpu_renderer();
 
             pgpurenderer->do_on_frame([this, pcontextInnerStart, bForDrawing, procedure]()
-            {
+               {
 
                   pcontextInnerStart->send_on_context([this, pcontextInnerStart, bForDrawing, procedure]()
                      {

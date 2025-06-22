@@ -108,6 +108,9 @@ namespace gpu_opengl
       void make_current() override;
 
 
+      void defer_make_current() override;
+
+
       void release_current() override;
 
       //bool is_mesa() override;

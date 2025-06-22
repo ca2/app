@@ -114,6 +114,10 @@ namespace gpu
       void _send(const ::procedure& procedure) override;
       void _post(const ::procedure& procedure) override;
 
+
+      virtual void defer_make_current();
+
+
       virtual void create_window_context(::gpu::device* pgpudevice, ::windowing::window * pwindow);
 
       virtual void create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene & escene, const ::int_size& size);

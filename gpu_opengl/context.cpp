@@ -1742,6 +1742,31 @@ void main() {
    }
 
 
+   void context::defer_make_current()
+   {
+
+      if (m_pgpudevice->m_pgpucontextCurrent4 != this)
+      {
+
+         if (::is_set(m_pgpudevice->m_pgpucontextCurrent4))
+         {
+
+            m_pgpudevice->m_pgpucontextCurrent4->_send([this]()
+               {
+
+                  m_pgpudevice->release_current(m_pgpudevice->m_pgpucontextCurrent4);
+
+               });
+
+         }
+
+         make_current();
+
+      }
+
+   }
+
+
    void context::make_current()
    {
 

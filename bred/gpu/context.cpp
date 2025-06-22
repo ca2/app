@@ -28,104 +28,104 @@ namespace gpu
 
    extern thread_local device* t_pgpudevice;
 
-   context_guard::context_guard(context* pcontext) :
-      m_pcontext(pcontext)
-   {
+   //context_guard::context_guard(context* pcontext) :
+   //   m_pcontext(pcontext)
+   //{
 
-      m_pcontext->make_current();
+   //   m_pcontext->make_current();
 
-   }
-
-
-   context_guard::~context_guard()
-   {
-
-      m_pcontext->release_current();
-
-   }
+   //}
 
 
-   rear_guard::rear_guard(context* pcontext)
-   {
+   //context_guard::~context_guard()
+   //{
 
-      if (::is_null(pcontext))
-      {
+   //   m_pcontext->release_current();
 
-         m_itaskUpper = {};
-
-         m_pcontextUpper = nullptr;
-
-         return;
-
-      }
-
-      if (::is_null(pcontext->m_pgpudevice))
-      {
-
-         throw ::exception(error_wrong_state);
-
-      }
-
-      auto pcontextUpper = pcontext->m_pgpudevice->current_context();
-
-      ::gpu::context::enum_type etypeContextUpper = ::gpu::context::e_type_undefined;
-
-      if (pcontextUpper)
-      {
-
-         etypeContextUpper = pcontextUpper->m_etype;
-
-      }
-
-      auto itaskUpperCurrent = pcontext->m_pgpudevice->m_itaskCurrentGpuContext;
-
-      if (pcontextUpper
-         && pcontextUpper->m_itask == itaskUpperCurrent)
-      {
-
-         m_pcontextUpper = pcontextUpper;
-
-         m_itaskUpper = pcontext->m_pgpudevice->m_itaskCurrentGpuContext;
-
-         if (m_itaskUpper != ::current_itask())
-         {
-
-            throw ::exception(error_wrong_state);
-
-         }
-
-         m_pcontextUpper->release_current();
-
-      }
-      else
-      {
-
-         m_pcontextUpper = nullptr;
-
-      }
-
-   }
+   //}
 
 
-   rear_guard::~rear_guard()
-   {
+   //rear_guard::rear_guard(context* pcontext)
+   //{
 
-      if (m_pcontextUpper)
-      {
+   //   if (::is_null(pcontext))
+   //   {
 
-         if (m_itaskUpper != ::current_itask())
-         {
+   //      m_itaskUpper = {};
 
-            warning() << "rear_guard::~rear_guard() - m_itaskUpper != ::current_itask()";
-            //throw ::exception(error_wrong_state);
+   //      m_pcontextUpper = nullptr;
 
-         }
+   //      return;
 
-         m_pcontextUpper->make_current();
+   //   }
 
-      }
+   //   if (::is_null(pcontext->m_pgpudevice))
+   //   {
 
-   }
+   //      throw ::exception(error_wrong_state);
+
+   //   }
+
+   //   auto pcontextUpper = pcontext->m_pgpudevice->current_context();
+
+   //   ::gpu::context::enum_type etypeContextUpper = ::gpu::context::e_type_undefined;
+
+   //   if (pcontextUpper)
+   //   {
+
+   //      etypeContextUpper = pcontextUpper->m_etype;
+
+   //   }
+
+   //   auto itaskUpperCurrent = pcontext->m_pgpudevice->m_itaskCurrentGpuContext;
+
+   //   if (pcontextUpper
+   //      && pcontextUpper->m_itask == itaskUpperCurrent)
+   //   {
+
+   //      m_pcontextUpper = pcontextUpper;
+
+   //      m_itaskUpper = pcontext->m_pgpudevice->m_itaskCurrentGpuContext;
+
+   //      if (m_itaskUpper != ::current_itask())
+   //      {
+
+   //         throw ::exception(error_wrong_state);
+
+   //      }
+
+   //      m_pcontextUpper->release_current();
+
+   //   }
+   //   else
+   //   {
+
+   //      m_pcontextUpper = nullptr;
+
+   //   }
+
+   //}
+
+
+   //rear_guard::~rear_guard()
+   //{
+
+   //   if (m_pcontextUpper)
+   //   {
+
+   //      if (m_itaskUpper != ::current_itask())
+   //      {
+
+   //         warning() << "rear_guard::~rear_guard() - m_itaskUpper != ::current_itask()";
+   //         //throw ::exception(error_wrong_state);
+
+   //      }
+
+   //      m_pcontextUpper->make_current();
+
+   //   }
+
+   //}
 
 
    context::context()
@@ -319,6 +319,40 @@ namespace gpu
    }
 
 
+   void context::_send(const ::procedure& procedure)
+   {
+      auto procedureForward = [this, procedure]()
+         {
+
+            _synchronous_lock(this->synchronization());
+
+            procedure();
+
+
+         };
+
+      ::thread::_send(procedureForward);
+
+   }
+
+
+   void context::_post(const ::procedure& procedure)
+   {
+      auto procedureForward = [this, procedure]()
+         {
+
+            _synchronous_lock(this->synchronization());
+
+            procedure();
+
+
+         };
+
+      ::thread::_post(procedureForward);
+
+   }
+
+
    void context::create_window_context(::gpu::device* pgpudevice, ::windowing::window* pwindow)
    {
 
@@ -335,7 +369,7 @@ namespace gpu
 
       m_pgpudevice = pgpudevice;
 
-      rear_guard guard(this);
+      //rear_guard guard(this);
 
       _send([this, pgpudevice, pwindow]()
          {
@@ -360,7 +394,7 @@ namespace gpu
 
       m_pgpudevice = pgpudevice;
 
-      rear_guard guard(this);
+      //rear_guard guard(this);
 
       _send([this, pgpudevice, eoutput, size]()
          {
@@ -383,7 +417,7 @@ namespace gpu
 
       m_pgpudevice = pgpudevice;
 
-      rear_guard guard(this);
+      //rear_guard guard(this);
 
       _send([this, pgpudevice, eoutput, size]()
          {
@@ -511,31 +545,31 @@ namespace gpu
    }
 
 
-   bool context::task_iteration()
-   {
+   //bool context::task_iteration()
+   //{
 
-      if (!::thread::task_iteration())
-      {
+   //   if (!::thread::task_iteration())
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      for (auto prender : m_rendera)
-      {
+   //   for (auto prender : m_rendera)
+   //   {
 
-         if (!prender->render_step())
-         {
+   //      if (!prender->render_step())
+   //      {
 
-            return false;
+   //         return false;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    void context::lock_context()
@@ -629,7 +663,7 @@ namespace gpu
    void context::do_on_context(const ::procedure& procedure)
    {
 
-      context_guard contextguard(this);
+      ///context_guard contextguard(this);
 
       procedure();
 
@@ -639,7 +673,7 @@ namespace gpu
    void context::send_on_context(const ::procedure& procedureParam)
    {
 
-      ::gpu::rear_guard rear_guard(this);
+      //::gpu::rear_guard rear_guard(this);
 
       auto procedure = procedureParam;
 

@@ -110,7 +110,9 @@ namespace gpu
       ~context() override;
 
 
-      //virtual void start_gpu_context(const start_context_t & startcontext);
+
+      void _send(const ::procedure& procedure) override;
+      void _post(const ::procedure& procedure) override;
 
       virtual void create_window_context(::gpu::device* pgpudevice, ::windowing::window * pwindow);
 
@@ -130,7 +132,7 @@ namespace gpu
 
       virtual void engine_on_frame_context_initialization();
 
-      bool task_iteration() override;
+      //bool task_iteration() override;
 
       virtual void lock_context();
       virtual void unlock_context();
@@ -310,35 +312,21 @@ namespace gpu
    };
 
 
-   class CLASS_DECL_BRED context_guard
-   {
-   public:
+
+   //class CLASS_DECL_BRED rear_guard
+   //{
+   //public:
 
 
-      context* m_pcontext;
+   //   ::itask           m_itaskUpper;
+   //   ::gpu::context *  m_pcontextUpper;
 
 
-      context_guard(context* pcontext);
-      ~context_guard();
+   //   rear_guard(context* pcontext);
+   //   ~rear_guard();
 
 
-   };
-
-
-   class CLASS_DECL_BRED rear_guard
-   {
-   public:
-
-
-      ::itask           m_itaskUpper;
-      ::gpu::context *  m_pcontextUpper;
-
-
-      rear_guard(context* pcontext);
-      ~rear_guard();
-
-
-   };
+   //};
 
 
 

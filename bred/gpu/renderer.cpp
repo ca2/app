@@ -788,6 +788,7 @@ namespace gpu
          m_pgpurendertarget->initialize_render_target(this, size, previous);
 
          if (!size.is_empty() && m_pgpucontext->is_current_task())
+         //if (!size.is_empty())
          {
 
             m_pgpurendertarget->init();

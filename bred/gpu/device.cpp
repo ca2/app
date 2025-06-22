@@ -55,6 +55,10 @@ namespace gpu
 
       m_pwindow = pwindow;
 
+      m_pwindow->m_ptaskUpdateScreen = this;
+
+      //branch_synchronously();
+
    }
 
 
@@ -64,6 +68,8 @@ namespace gpu
       m_edevicetarget = e_device_target_off_screen;
 
       m_pgpuapproach = pgpuapproach;
+
+      //branch_synchronously();
 
       //m_pwindow = pwindow;
 
@@ -81,6 +87,41 @@ namespace gpu
       //return estatus;
 
    }
+
+
+   //void device::_send(const ::procedure& procedure)
+   //{
+
+   //   auto procedureForward = [this, procedure]()
+   //      {
+
+   //         _synchronous_lock(this->synchronization());
+
+   //            procedure();
+   //         
+
+   //      };
+
+   //   ::thread::_send(procedureForward);
+
+   //}
+
+
+   //void device::_post(const ::procedure& procedure)
+   //{
+   //   auto procedureForward = [this, procedure]()
+   //      {
+
+   //         _synchronous_lock(this->synchronization());
+
+   //         procedure();
+
+
+   //      };
+
+   //   ::thread::_post(procedureForward);
+   //}
+
 
 
    ::pointer < ::gpu::context > device::allocate_context()

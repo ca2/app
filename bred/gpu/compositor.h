@@ -27,6 +27,9 @@ namespace gpu
       virtual void gpu_layer_on_before_end_render();
 
 
+      virtual void just_after_new_frame();
+
+
    };
 
 }

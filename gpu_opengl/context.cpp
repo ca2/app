@@ -1088,15 +1088,15 @@ void main() {
       {
 
          auto r = ::int_rectangle(::int_point{}, size);
-         
-         ::gpu::rear_guard guard(this);
+//         
+  //       ::gpu::rear_guard guard(this);
 
          send([this, r]()
             {
 
                _create_cpu_buffer(r.size());
 
-               ::gpu::context_guard guard(this);
+               //::gpu::context_guard guard(this);
 
             });
 

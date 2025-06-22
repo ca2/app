@@ -59,7 +59,7 @@ namespace windowing
 
       ::sandbox_windowing::window *             m_psandboxwindowingwindow;
       //void *                                    m_pWindow4;
-
+      ::task_pointer                            m_ptaskUpdateScreen;
       //::pointer<::windowing::display>           m_pdisplay;
       //::pointer<::user::interaction>            m_puserinteraction;
       string                                    m_strDebug;

@@ -66,6 +66,13 @@ namespace gpu
    }
 
 
+   void compositor::just_after_new_frame()
+   {
+
+
+   }
+
+
 } // namespace gpu
 
 

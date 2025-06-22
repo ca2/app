@@ -90,6 +90,8 @@ namespace gpu
       //virtual void on_create_context(const start_context_t& startcontext);
 
       //bool task_iteration() override;
+      //void _send(const ::procedure& procedure) override;
+      //void _post(const ::procedure& procedure) override;
 
 
       virtual void lock_context();
@@ -198,6 +200,23 @@ namespace gpu
 
 
    };
+
+
+
+   //class CLASS_DECL_BRED device_guard
+   //{
+   //public:
+
+
+   //   device* m_pdevice;
+
+
+   //   context_guard(device* pcontext);
+   //   ~context_guard();
+
+
+   //};
+
 
 
 } // namespace gpu

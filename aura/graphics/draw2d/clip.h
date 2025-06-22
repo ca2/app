@@ -50,6 +50,28 @@ namespace draw2d
    {
    public:
 
+      bool is_rectangle_only(::int_rectangle_array& rectanglea) const
+      {
+         for (auto& pclipitem : *this)
+         {
+            switch (pclipitem->clip_item_type())
+            {
+            case ::draw2d::e_clip_item_rectangle:
+               rectanglea.add(dynamic_cast<::draw2d::clip_rectangle*>(pclipitem.m_p)->m_item);
+               break;
+            case ::draw2d::e_clip_item_ellipse:
+               return false;
+            case ::draw2d::e_clip_item_polygon:
+               return false;
+            default:
+               break;
+            };
+         }
+
+         return true;
+
+      }
+
    };
 
 

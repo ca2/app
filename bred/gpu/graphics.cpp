@@ -3,6 +3,7 @@
 #include "graphics.h"
 #include "acme/platform/application.h"
 #include "aura/user/user/interaction.h"
+#include "aura/graphics/graphics/graphics.h"
 #include "aura/windowing/window.h"
 #include "bred/gpu/approach.h"
 #include "bred/gpu/context.h"
@@ -252,7 +253,8 @@ namespace draw2d_gpu
    }
 
 
-   void graphics::__on_begin_draw()
+   
+   void graphics::bind_draw2d_compositor()
    {
 
       m_pgpucontext->__bind_draw2d_compositor(this);

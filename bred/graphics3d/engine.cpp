@@ -414,7 +414,7 @@ namespace graphics3d
 
                }
 
-               ::gpu::context_guard guard(m_pgpucontext);
+               //::gpu::context_guard guard(m_pgpucontext);
 
                m_pgpucontext->set_placement(m_rectanglePlacementNew);
 
@@ -640,12 +640,12 @@ namespace graphics3d
 
       }
 
-      ::gpu::rear_guard rear_guard(pcontext);
+      //::gpu::rear_guard rear_guard(pcontext);
 
       m_pgpucontext->_send([this]()
          {
 
-            ::gpu::context_guard guard(m_pgpucontext);
+            //::gpu::context_guard guard(m_pgpucontext);
 
             m_pgpucontext->set_placement(m_rectanglePlacementNew);
 

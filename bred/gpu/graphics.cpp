@@ -262,6 +262,16 @@ namespace draw2d_gpu
    }
 
 
+
+   void graphics::soft_unbind_draw2d_compositor()
+   {
+
+      m_pgpucontext->__soft_unbind_draw2d_compositor(this);
+
+   }
+
+
+
 } // namespace draw2d_gpu
 
 

@@ -95,6 +95,7 @@ namespace gpu
       bool                                   m_bCreated;
       ::draw3d::matrix                       m_matrixProjection;
       ::draw3d::matrix                       m_matrixImpact;
+      bool  m_bD3D11On12Shared = false;
       //::pointer < ::gpu::renderer >          m_pgpurenderer;
       //::pointer < ::gpu::renderer >          m_pgpurendererDraw2d;
       //::pointer < ::gpu::renderer >          m_pgpurendererEngine;
@@ -262,6 +263,7 @@ namespace gpu
       //virtual render_target* graphics3d_render_target();
 
       virtual void __bind_draw2d_compositor(::gpu::compositor * pgpucompositor);
+      virtual void __soft_unbind_draw2d_compositor(::gpu::compositor* pgpucompositor);
 
 
    };

@@ -334,6 +334,8 @@ namespace gpu
 
       //rear_guard guard(this);
 
+      m_bD3D11On12Shared = true;
+
       _send([this, pgpudevice, eoutput, size]()
          {
 
@@ -1218,6 +1220,13 @@ namespace gpu
 
 
    void context::__bind_draw2d_compositor(::gpu::compositor* pgpucompositor)
+   {
+
+
+   }
+
+
+   void context::__soft_unbind_draw2d_compositor(::gpu::compositor* pgpucompositor)
    {
 
 

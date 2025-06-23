@@ -61,6 +61,7 @@ namespace draw2d_gpu
 
 
       virtual void bind_draw2d_compositor();
+      virtual void soft_unbind_draw2d_compositor();
 
 
    };

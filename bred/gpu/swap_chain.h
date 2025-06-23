@@ -18,6 +18,7 @@ namespace gpu
       ::pointer < ::gpu::device >         m_pgpudevice;
       ::pointer < ::gpu::renderer >       m_pgpurenderer;
       ::pointer < ::windowing::window >   m_pwindow;
+      int                                 m_iSwapChainIndex;
 
       swap_chain();
       ~swap_chain() override;
@@ -28,7 +29,9 @@ namespace gpu
 
       //virtual void endDraw(::draw2d_gpu::graphics* pgraphics, ::user::interaction* puserinteraction, ::gpu::renderer* prendererSrc);
       virtual void present(::gpu::texture * pgputexture);
-
+      virtual void set_present_state();
+      virtual void swap_buffers();
+      virtual void get_new_swap_chain_index();
       //virtual ::gpu::texture* current_texture();
 
    };

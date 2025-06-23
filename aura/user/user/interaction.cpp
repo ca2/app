@@ -2019,7 +2019,7 @@ namespace user
          window()->m_pgraphicsthread->m_bFps)
       {
 
-         warning() << "graphics thread is going to ignore post redraw as it should be doing Fps drawing";
+         //warning() << "graphics thread is going to ignore post redraw as it should be doing Fps drawing";
 
          m_setneedredrawa.clear();
 
@@ -3852,7 +3852,7 @@ namespace user
       if (window()->m_pgraphicsthread->m_bFps)
       {
 
-         warning() << "graphics thread is going to ignore post redraw as it should be doing Fps drawing";
+         //warning() << "graphics thread is going to ignore post redraw as it should be doing Fps drawing";
 
          m_setneedredrawa.clear();
 

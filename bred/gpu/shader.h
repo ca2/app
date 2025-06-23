@@ -79,7 +79,7 @@ namespace gpu
       ::particle_pointer         m_pLocalDescriptorSet;
       ::particle_pointer         m_pVertexInput;
 
-
+      bool m_bTextureAndSampler;
 
 
       shader();

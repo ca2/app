@@ -627,7 +627,7 @@ namespace gpu
 
             auto pgpurenderer = get_gpu_renderer();
 
-            pgpurenderer->do_on_frame([this, pcontextInnerStart, bForDrawing, procedure]()
+            pgpurenderer->do_on_frame(bForDrawing, [this, pcontextInnerStart, bForDrawing, procedure]()
                {
 
                   pcontextInnerStart->send_on_context([this, pcontextInnerStart, bForDrawing, procedure]()
@@ -647,7 +647,7 @@ namespace gpu
 
                               };
 
-                           prenderer->do_on_frame(λ);
+                           prenderer->do_on_frame(true, λ);
 
                         }
                         else

@@ -71,6 +71,27 @@ namespace gpu
    }
 
 
+   void swap_chain::set_present_state()
+   {
+
+
+   }
+
+
+   void swap_chain::swap_buffers()
+   {
+
+
+   }
+
+
+   void swap_chain::get_new_swap_chain_index()
+   {
+
+
+   }
+
+
    //::gpu::texture* swap_chain::current_texture()
    //{
 

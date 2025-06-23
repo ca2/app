@@ -182,7 +182,7 @@ namespace gpu
       virtual void endDrawEndDraw();
 
 
-      virtual void do_on_frame(const ::procedure& procedure);
+      virtual void do_on_frame(bool bForDrawing, const ::procedure& procedure);
 
 
       //virtual void start_layer(const ::int_rectangle& rectangleTarget);

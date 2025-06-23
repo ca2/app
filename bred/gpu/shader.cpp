@@ -33,7 +33,7 @@ namespace gpu
    shader::shader()
    {
 
-
+      m_bTextureAndSampler = false;
    }
 
 

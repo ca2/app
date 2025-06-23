@@ -932,8 +932,17 @@ namespace gpu
    }
 
 
-   void renderer::do_on_frame(const ::procedure& procedure)
+   void renderer::do_on_frame(bool bForDrawing, const ::procedure& procedure)
    {
+
+      if (!bForDrawing)
+      {
+
+         procedure();
+
+         return;
+
+      }
 
       defer_update_renderer();
 

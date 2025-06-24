@@ -15,7 +15,7 @@ namespace gpu
       bool                                m_bWindowInitialized;
       bool                                m_bSwapChainInitialized;
 
-      ::pointer < ::gpu::device >         m_pgpudevice;
+      ::pointer < ::gpu::context >        m_pgpucontext;
       ::pointer < ::gpu::renderer >       m_pgpurenderer;
       ::pointer < ::windowing::window >   m_pwindow;
       int                                 m_iSwapChainIndex;
@@ -24,7 +24,7 @@ namespace gpu
       ~swap_chain() override;
 
 
-      virtual void initialize_swap_chain_window(::gpu::device * pgpudevice, ::windowing::window* pwindow);
+      virtual void initialize_swap_chain_window(::gpu::context * pcontext, ::windowing::window* pwindow);
       virtual void initialize_gpu_swap_chain(::gpu::renderer * pgpurenderer);
 
       //virtual void endDraw(::draw2d_gpu::graphics* pgraphics, ::user::interaction* puserinteraction, ::gpu::renderer* prendererSrc);

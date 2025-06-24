@@ -721,47 +721,74 @@ namespace gpu
    //}
 
 
-   ::gpu::swap_chain* device::get_swap_chain()
+   ::gpu::context* device::get_main_context()
    {
 
-      if (m_edevicetarget != e_device_target_swap_chain)
+      if (!m_pgpucontextMain)
       {
 
-         throw ::exception(error_failed);
+         __øconstruct(m_pgpucontextMain);
 
-         return nullptr;
+         ::gpu::enum_output eoutput;
+
+         if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+         {
+
+            m_pgpucontextMain->m_etype = ::gpu::context::e_type_window;
+
+            eoutput = ::gpu::e_output_swap_chain;
+
+         }
+         else
+         {
+
+            m_pgpucontextMain->m_etype = ::gpu::context::e_type_generic;
+
+            eoutput = ::gpu::e_output_gpu_buffer;
+
+         }
+
+         ::cast < ::user::interaction > puserinteraction = m_papplication->m_pacmeuserinteractionMain;
+
+         if (!m_pgpucontextMain->m_itask
+            && puserinteraction->m_pacmewindowingwindow)
+         {
+
+            m_pgpucontextMain->branch_synchronously();
+
+            m_pgpucontextMain->_send([this, eoutput, puserinteraction]()
+               {
+
+                  auto pinteraction = (::user::interaction*)puserinteraction.m_p;
+
+                  m_pgpucontextMain->initialize_gpu_context(
+                     this,
+                     eoutput,
+                     pinteraction->window(),
+                     pinteraction->window()->get_window_rectangle().size()
+                  );
+
+               });
+
+         }
+
 
       }
 
-      if (!m_pswapchain)
-      {
+      return m_pgpucontextMain;
 
-         __defer_construct(m_pswapchain);
+      //if(!m_pgpucontextMainWindow)
+      //{
 
-         ///m_pswapchain->initialize_gpu_swap_chain(this, m_pwindow);
+      //   ::cast < ::user::interaction > puserinteractionMain = m_papplication->m_pacmeuserinteractionMain;
 
-      }
+      //   auto pwindowMain = puserinteractionMain->window();
 
-      return m_pswapchain;
+      //   m_pgpucontextMainWindow = create_window_context(pwindowMain);
 
-   }
+      //}
 
-
-   ::gpu::context* device::get_main_window_context()
-   {
-
-      if(!m_pgpucontextMainWindow)
-      {
-
-         ::cast < ::user::interaction > puserinteractionMain = m_papplication->m_pacmeuserinteractionMain;
-
-         auto pwindowMain = puserinteractionMain->window();
-
-         m_pgpucontextMainWindow = create_window_context(pwindowMain);
-
-      }
-
-      return m_pgpucontextMainWindow;
+      //return m_pgpucontextMainWindow;
 
    }
 

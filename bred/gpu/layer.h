@@ -15,8 +15,8 @@ namespace gpu
       ::pointer < renderer >        m_pgpurenderer;
       //::pointer < renderer >        m_pgpurendererTarget;
       //::int_rectangle m_rectangleTarget;
-      ::pointer_array <texture >    m_gputexturea;
-      //::pointer_array <texture >    m_gputextureaTarget;
+      ::pointer_array <texture >    m_texturea;
+      //::pointer_array <texture >    m_textureaTarget;
 
       //::comptr < ID3D12Resource > m_presource;
 

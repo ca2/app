@@ -11,6 +11,7 @@ namespace gpu
       virtual public ::particle
    {
    public:
+      bool m_bInLayer = false;
 
       ::pointer <::gpu::context> m_pgpucontext;
 
@@ -29,6 +30,8 @@ namespace gpu
 
       virtual void just_after_new_frame();
 
+      virtual void on_start_layer();
+      virtual void on_end_layer();
 
    };
 

@@ -27,12 +27,12 @@ namespace gpu
    }
 
 
-   void swap_chain::initialize_swap_chain_window(::gpu::device * pgpudevice, ::windowing::window* pwindow)
+   void swap_chain::initialize_swap_chain_window(::gpu::context * pgpucontext, ::windowing::window* pwindow)
    {
 
-      ASSERT(pgpudevice && pgpudevice->m_edevicetarget == ::gpu::e_device_target_swap_chain);
+      ASSERT(pgpucontext && pgpucontext->m_etype == ::gpu::context::e_type_window);
 
-      m_pgpudevice = pgpudevice;
+      m_pgpucontext = pgpucontext;
 
       m_pwindow = pwindow;
 
@@ -46,8 +46,8 @@ namespace gpu
 
       ASSERT(m_bWindowInitialized && m_pwindow);
 
-      ASSERT(pgpurenderer->m_pgpucontext->m_pgpudevice == m_pgpudevice
-      && m_pgpudevice->m_edevicetarget == ::gpu::e_device_target_swap_chain);
+      ASSERT(pgpurenderer->m_pgpucontext == m_pgpucontext
+      && m_pgpucontext->m_etype == ::gpu::context::e_type_window);
 
       m_pgpurenderer = pgpurenderer;
 

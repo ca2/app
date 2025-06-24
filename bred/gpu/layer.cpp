@@ -64,7 +64,7 @@ namespace gpu
 
       int iFrameIndex = m_pgpurenderer->m_pgpurendertarget->get_frame_index();
 
-      auto & ptexture = m_gputexturea.element_at_grow(iFrameIndex);
+      auto & ptexture = m_texturea.element_at_grow(iFrameIndex);
 
       m_pgpurenderer->__defer_construct(ptexture);
 

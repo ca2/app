@@ -186,7 +186,7 @@ namespace draw2d_gpu
 
       auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device();
 
-      auto pgpucontextMainWindow = pgpudevice->get_main_window_context();
+      auto pcontextMain = pgpudevice->get_main_context();
 
       ::cast < ::user::interaction > puserinteraction = m_puserinteraction;
 
@@ -194,11 +194,11 @@ namespace draw2d_gpu
 
       auto rectangleWindow = pwindow->get_window_rectangle();
 
-      pgpucontextMainWindow->set_placement(rectangleWindow);
+      pcontextMain->set_placement(rectangleWindow);
       
       m_pgpucontext->m_escene = ::gpu::e_scene_2d;
 
-      pgpucontextMainWindow->top_send_on_context(
+      pcontextMain->top_send_on_context(
          m_pgpucontext,
          m_egraphics & e_graphics_draw,
          procedure);

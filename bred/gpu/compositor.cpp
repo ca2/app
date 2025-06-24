@@ -73,6 +73,22 @@ namespace gpu
    }
 
 
+   void compositor::on_start_layer()
+   {
+
+
+
+   }
+
+
+   void compositor::on_end_layer()
+   {
+
+
+
+   }
+
+
 } // namespace gpu
 
 

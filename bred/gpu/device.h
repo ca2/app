@@ -47,8 +47,8 @@ namespace gpu
       ::pointer < ::gpu::approach >          m_pgpuapproach;
       ::pointer < ::windowing::window >      m_pwindow;
       ::pointer < ::gpu::context >           m_pgpucontextCurrent4;
-      //::pointer < ::gpu::context >           m_pgpucontextMain;
-      ::pointer < ::gpu::context >           m_pgpucontextMainWindow;
+      ::pointer < ::gpu::context >           m_pgpucontextMain;
+      //::pointer < ::gpu::context >           m_pgpucontextMainWindow;
       //::int_size                             m_sizeNew;
       //::int_size                             m_size;
       //float                                  m_z;
@@ -70,7 +70,6 @@ namespace gpu
       //::memory                               m_memoryOffscreen;
       enum_device_target                       m_edevicetarget;
 
-      ::pointer < ::gpu::swap_chain >          m_pswapchain;
       
 
       device();
@@ -79,10 +78,8 @@ namespace gpu
 
       ///virtual ::gpu::context* current_context();
 
-      virtual ::gpu::swap_chain* get_swap_chain();
 
-
-      virtual ::gpu::context * get_main_window_context();
+      virtual ::gpu::context * get_main_context();
       //virtual void start_gpu_context(const start_context_t& startcontext);
 
       //virtual void initialize_gpu_context(const start_context_t& startcontext);

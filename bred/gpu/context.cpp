@@ -604,6 +604,14 @@ namespace gpu
    }
 
 
+   ::gpu::swap_chain* context::get_swap_chain()
+   {
+
+      return nullptr;
+
+   }
+
+
    void context::top_send_on_context(::gpu::context* pcontextInnerStart, bool bForDrawing, const ::procedure& procedure)
    {
 
@@ -679,7 +687,7 @@ namespace gpu
 
                         merge_layers(ptextureBackBuffer, m_pgpudevice->m_playera);
 
-                        ::cast < swap_chain > pswapchain = m_pgpudevice->get_swap_chain();
+                        ::cast < swap_chain > pswapchain = get_swap_chain();
 
                         if (!pswapchain->m_bSwapChainInitialized)
                         {

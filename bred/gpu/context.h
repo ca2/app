@@ -112,10 +112,14 @@ namespace gpu
       //::int_size                             m_sizeOffscreen;
       //int                                    m_iScanOffscreen;
       //::memory                               m_memoryOffscreen;
+      ::pointer < ::gpu::swap_chain >          m_pswapchain;
 
 
       context();
       ~context() override;
+
+
+      virtual ::gpu::swap_chain* get_swap_chain();
 
 
 

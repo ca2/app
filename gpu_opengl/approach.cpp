@@ -108,6 +108,8 @@ namespace gpu_opengl
 
       gladLoadGL();
 
+      informationf("GL Version: %s\n", glGetString(GL_VERSION));
+
       m_bGpuLibraryInit = true;
 
 #endif

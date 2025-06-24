@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "cpu_buffer.h"
+#include "lock.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/target.h"
@@ -33,6 +34,8 @@ namespace gpu_opengl
          return;
 
       }
+
+      ::gpu_opengl::opengl_lock opengl_lock(m_pgpucontext);
 
       ////m_pixmap.map();
 
@@ -95,14 +98,18 @@ namespace gpu_opengl
 
          auto targeting = m_pimagetarget->source_scan_targeting(::image::e_copy_disposition_y_swap);
 
+         auto w = targeting.width();
+         auto h = targeting.height();
+         auto s = targeting.scan() * h * 4;
+         auto p = targeting.data();
          glReadnPixels(
             0, 0,
-            targeting.width(), targeting.height(),
+            w, h,
             GL_BGRA,
             GL_UNSIGNED_BYTE,
-            targeting.scan(),
-            targeting.data());
-
+            s,
+            p);
+         GLCheckError("");
       }
       else
       {
@@ -116,9 +123,9 @@ namespace gpu_opengl
             //GL_RGBA,
             GL_UNSIGNED_BYTE,
             targeting.data());
+         GLCheckError("");
 
       }
-      GLCheckError("");
       int iError = glGetError();
 
       if(iError != 0)

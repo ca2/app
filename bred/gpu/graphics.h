@@ -31,7 +31,7 @@ namespace draw2d_gpu
 
 
       void initialize(::particle* pparticle) override;
-      
+      bool _is_ok() const override;
       
       void on_begin_draw() override;
       void on_end_draw() override;

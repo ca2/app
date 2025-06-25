@@ -11,7 +11,7 @@ namespace gpu
       virtual public ::particle
    {
    public:
-      bool m_bInLayer = false;
+      //bool m_bInLayer = false;
 
       ::pointer <::gpu::context> m_pgpucontext;
 

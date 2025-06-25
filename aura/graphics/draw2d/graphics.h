@@ -71,6 +71,7 @@ namespace draw2d
 
       e_graphics                                   m_egraphics;
       bool                                         m_bSwapChainFinalInterop = false;
+      bool                                         m_bForWindowDraw2d;
       bool                                         m_bBeginDraw;
       bool                                         m_bInheritDraw;
       bool                                         m_bOutline;

@@ -721,7 +721,7 @@ namespace gpu
    //}
 
 
-   ::gpu::context* device::get_main_context()
+   ::gpu::context* device::main_context()
    {
 
       if (!m_pgpucontextMain)
@@ -755,6 +755,8 @@ namespace gpu
          {
 
             m_pgpucontextMain->branch_synchronously();
+
+            m_pgpucontextMain->m_pgpudevice = this;
 
             m_pgpucontextMain->_send([this, eoutput, puserinteraction]()
                {
@@ -791,6 +793,56 @@ namespace gpu
       //return m_pgpucontextMainWindow;
 
    }
+
+
+   ::gpu::context* device::main_draw2d_context()
+   {
+
+      if (!m_pgpucontextMainDraw2d)
+      {
+
+         __øconstruct(m_pgpucontextMainDraw2d);
+
+         m_pgpucontextMainDraw2d->m_etype = ::gpu::context::e_type_draw2d;
+
+         m_pgpucontextMainDraw2d->m_eoutput = ::gpu::e_output_gpu_buffer;
+
+         ::cast < ::user::interaction > puserinteraction = m_papplication->m_pacmeuserinteractionMain;
+
+         if (!m_pgpucontextMainDraw2d->m_itask
+            && puserinteraction->m_pacmewindowingwindow)
+         {
+
+            m_pgpucontextMainDraw2d->branch_synchronously();
+
+            m_pgpucontextMainDraw2d->_send([this, puserinteraction]()
+               {
+
+                  auto pinteraction = (::user::interaction*)puserinteraction.m_p;
+
+                  auto eoutput = m_pgpucontextMainDraw2d->m_eoutput;
+
+                  auto pwindow = pinteraction->window();
+
+                  auto size = pwindow->get_window_rectangle().size();
+
+                  m_pgpucontextMainDraw2d->initialize_gpu_context(
+                     this,
+                     eoutput,
+                     pwindow,
+                     size
+                  );
+
+               });
+
+         }
+
+      }
+
+      return m_pgpucontextMainDraw2d;
+
+   }
+
 
 
    void device::lock_context()

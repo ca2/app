@@ -49,6 +49,15 @@ namespace draw2d_gpu
 
    }
 
+   
+   bool graphics::_is_ok() const
+   {
+
+      return ::is_set(this) & ::is_set(m_pgpucontext);
+
+   }
+
+
 
    void graphics::on_begin_draw()
    {
@@ -186,7 +195,7 @@ namespace draw2d_gpu
 
       auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device();
 
-      auto pcontextMain = pgpudevice->get_main_context();
+      auto pcontextMain = pgpudevice->main_context();
 
       ::cast < ::user::interaction > puserinteraction = m_puserinteraction;
 
@@ -269,7 +278,6 @@ namespace draw2d_gpu
       m_pgpucontext->__soft_unbind_draw2d_compositor(this);
 
    }
-
 
 
 } // namespace draw2d_gpu

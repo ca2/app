@@ -7,6 +7,7 @@
 #include "device.h"
 #include "cpu_buffer.h"
 #include "renderer.h"
+#include "swap_chain.h"
 #include "bred/gpu/approach.h"
 #include "bred/gpu/types.h"
 #include "aura/graphics/image/image.h"
@@ -69,6 +70,25 @@ namespace gpu_opengl
       m_hwnd = (HWND) m_pwindow->oswindow();
 
       _create_device(m_pwindow->get_window_rectangle().size());
+
+
+      auto pcontext = main_context();
+
+      pcontext->m_pgpudevice = this;
+
+      pcontext->_send([this, pcontext]()
+         {
+
+            pcontext->initialize_gpu_context(this,
+               ::gpu::e_output_gpu_buffer,
+               m_pwindow,
+               m_pwindow->get_window_rectangle().size());
+
+            auto pswapchain = pcontext->get_swap_chain();
+
+            pswapchain->initialize_swap_chain_window(pcontext, m_pwindow);
+
+         });
 
    }
 

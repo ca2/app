@@ -71,6 +71,7 @@ namespace draw2d
    graphics::graphics()
    {
 
+      m_bForWindowDraw2d = false;
       m_bDraw = true;
       m_puserinteraction = nullptr;
       m_bUseImageMipMapsOrResizedImages = false;
@@ -445,6 +446,8 @@ namespace draw2d
 
    void graphics::create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size)
    {
+
+      m_bForWindowDraw2d = true;
 
       m_puserinteraction = puserinteraction;
 

@@ -423,6 +423,18 @@ namespace gpu
          task_set_name("gctx::3d");
 
       }
+      else if (m_etype == e_type_draw2d)
+      {
+
+         task_set_name("gctx::draw2d");
+
+      }
+      else if (m_etype == e_type_generic)
+      {
+
+         task_set_name("gctx::generic");
+
+      }
       else
       {
 
@@ -607,7 +619,25 @@ namespace gpu
    ::gpu::swap_chain* context::get_swap_chain()
    {
 
-      return nullptr;
+      if (m_etype != e_type_window)
+      {
+
+         throw ::exception(error_failed);
+
+         return nullptr;
+
+      }
+
+      if (!m_pswapchain)
+      {
+
+         __defer_construct(m_pswapchain);
+
+         ///m_pswapchain->initialize_gpu_swap_chain(this, m_pwindow);
+
+      }
+
+      return m_pswapchain;
 
    }
 
@@ -643,7 +673,7 @@ namespace gpu
                   pcontextInnerStart->send_on_context([this, pcontextInnerStart, bForDrawing, procedure]()
                      {
 
-                        if (bForDrawing)
+                        //if (bForDrawing)
                         {
 
                            auto prenderer = pcontextInnerStart->get_gpu_renderer();
@@ -660,12 +690,12 @@ namespace gpu
                            prenderer->do_on_frame(true, λ);
 
                         }
-                        else
-                        {
+                        //else
+                        //{
 
-                           procedure();
+                        //   procedure();
 
-                        }
+                        //}
 
                      });
 

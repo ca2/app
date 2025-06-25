@@ -9841,6 +9841,7 @@ namespace windowing
 #endif
 
 
+
                   pgraphics->on_begin_draw();
 
                   pgraphics->reset_clip();

@@ -48,6 +48,7 @@ namespace gpu
       ::pointer < ::windowing::window >      m_pwindow;
       ::pointer < ::gpu::context >           m_pgpucontextCurrent4;
       ::pointer < ::gpu::context >           m_pgpucontextMain;
+      ::pointer < ::gpu::context >           m_pgpucontextMainDraw2d;
       //::pointer < ::gpu::context >           m_pgpucontextMainWindow;
       //::int_size                             m_sizeNew;
       //::int_size                             m_size;
@@ -79,7 +80,8 @@ namespace gpu
       ///virtual ::gpu::context* current_context();
 
 
-      virtual ::gpu::context * get_main_context();
+      virtual ::gpu::context * main_context();
+      virtual ::gpu::context * main_draw2d_context();
       //virtual void start_gpu_context(const start_context_t& startcontext);
 
       //virtual void initialize_gpu_context(const start_context_t& startcontext);

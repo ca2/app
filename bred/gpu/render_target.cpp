@@ -100,6 +100,13 @@ namespace gpu
    int render_target::get_frame_index()
    {
 
+      if (m_pgpurenderer->m_pgpucontext->m_iOverrideFrame >= 0)
+      {
+
+         return m_pgpurenderer->m_pgpucontext->m_iOverrideFrame;
+
+      }
+
       if (m_pgpurenderer->m_pgpurendertarget->get_frame_count() > 1)
       {
 
@@ -186,8 +193,6 @@ namespace gpu
       return m_size.cy(); 
    
    }
-
-
 
 
    texture * render_target::current_texture()

@@ -79,6 +79,7 @@ namespace gpu
 
 
       //bool m_bOffscreen = true;
+      int                                    m_iOverrideFrame = -1;
       enum_type                              m_etype;
       enum_output                            m_eoutput;
       ::gpu::enum_scene                      m_escene;

@@ -25,7 +25,9 @@ namespace gpu_opengl
    context::context()
    {
 
+      m_gluLayerFrameBuffer = 0;
       m_globalUBO = 0;
+      //m_gluLayFrameBufferRenderer = 0;
 
       //m_fboID = 0;
       //m_texID = 0;
@@ -951,6 +953,85 @@ void main() {
 
 
 
+
+   }
+
+
+   void context::on_start_layer(::gpu::layer* player)
+   {
+
+      _ensure_layer_framebuffer();
+
+      ::gpu::context::on_start_layer(player);
+
+
+   }
+
+
+   void context::_ensure_layer_framebuffer()
+   {
+
+      opengl_lock opengl_lock(this);
+
+      GLint fbo = 0;
+      glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &fbo);
+      GLCheckError("");
+
+      if (m_gluLayerFrameBuffer &&
+         m_gluLayerFrameBuffer == fbo)
+      {
+
+         return; // already bound
+
+      }
+
+      if (!m_gluLayerFrameBuffer)
+      {
+
+         GLuint fboSrc, fboDst;
+         glGenFramebuffers(1, &m_gluLayerFrameBuffer);
+         GLCheckError("");
+
+      }
+
+      glBindFramebuffer(GL_FRAMEBUFFER, m_gluLayerFrameBuffer);
+      GLCheckError("");
+
+      ::cast < texture > ptexture = m_pgpurenderer->m_pgpurendertarget->current_texture();
+
+      int textureID = ptexture->m_gluTextureID;
+
+      glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+         GL_TEXTURE_2D, textureID, 0);
+      GLCheckError("");
+
+      ::cast < context > pgpucontext = this;
+
+      if (pgpucontext->m_escene == ::gpu::e_scene_3d)
+      {
+
+         if (!ptexture->m_gluDepthStencilRBO)
+         {
+
+            int width = pgpucontext->m_rectangle.width();
+
+            int height = pgpucontext->m_rectangle.height();
+
+            glGenRenderbuffers(1, &ptexture->m_gluDepthStencilRBO);
+            GLCheckError("");
+
+            glBindRenderbuffer(GL_RENDERBUFFER, ptexture->m_gluDepthStencilRBO);
+            GLCheckError("");
+
+            glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
+            GLCheckError("");
+
+         }
+
+         glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, ptexture->m_gluDepthStencilRBO);
+         GLCheckError("");
+
+      }
 
    }
 

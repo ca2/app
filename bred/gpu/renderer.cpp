@@ -984,12 +984,15 @@ namespace gpu
    void renderer::on_start_layer(layer* player)
    {
 
+      m_pgpucontext->on_start_layer(player);
 
    }
 
 
    void renderer::on_end_layer(layer* player)
    {
+
+      m_pgpucontext->on_end_layer(player);
 
       m_pgpucontext->copy(player->texture(), m_pgpurendertarget->current_texture());
 

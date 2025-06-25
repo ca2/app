@@ -30,7 +30,6 @@ namespace gpu_opengl
 
       //::int_size m_sizeRenderer;
 
-      GLuint m_iFrameBufferRenderer;
 
 
       renderer();
@@ -43,7 +42,7 @@ namespace gpu_opengl
 
       ::pointer < ::gpu::frame > beginFrame() override;
 
-      virtual void _ensure_renderer_framebuffer();
+      //virtual void _ensure_renderer_framebuffer();
 
       void _on_begin_render(::gpu::frame * pframe) override;
 
@@ -73,8 +72,8 @@ namespace gpu_opengl
 
       //virtual void on_layout(int cx, int cy);
 
-      void on_start_layer(::gpu::layer* player) override;
-      void on_end_layer(::gpu::layer* player) override;
+      //void on_start_layer(::gpu::layer* player) override;
+      //void on_end_layer(::gpu::layer* player) override;
 
 
 

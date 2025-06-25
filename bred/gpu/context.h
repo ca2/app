@@ -246,6 +246,10 @@ namespace gpu
       virtual void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
       virtual void merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera);
 
+      virtual void on_start_layer(::gpu::layer* player);
+      virtual void on_end_layer(::gpu::layer* player);
+
+
 
       virtual void on_create_texture(texture * ptexture);
       //virtual void on_take_snapshot(layer * player);

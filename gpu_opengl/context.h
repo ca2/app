@@ -41,6 +41,9 @@ namespace gpu_opengl
 
       memory                           m_memorySwap;
 
+      GLuint                           m_gluLayerFrameBuffer;
+
+
       context();
       ~context() override;
 
@@ -78,6 +81,8 @@ namespace gpu_opengl
 
       //virtual string get_shader_version_text();
 
+
+
       virtual void _create_offscreen_window(const ::int_size & size);
 
       void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
@@ -106,6 +111,9 @@ namespace gpu_opengl
       virtual void _copy_using_shader(::gpu::texture* ptexture);
       virtual void _copy_using_blit(::gpu::texture* ptexture);
       void merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera) override;
+
+      void on_start_layer(::gpu::layer* player) override;
+      virtual void _ensure_layer_framebuffer();
       
       //void make_current() override;
 
@@ -124,6 +132,8 @@ namespace gpu_opengl
       void _translate_shader(string_array & straFragment) override;
 
       //void swap_buffers() override;
+
+      //void copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource) override;
 
 
    };

@@ -1158,6 +1158,21 @@ namespace gpu
    }
 
 
+   void context::on_start_layer(::gpu::layer* player)
+   {
+
+
+   }
+
+
+   void context::on_end_layer(::gpu::layer* player)
+   {
+
+
+   }
+
+
+
    void context::on_create_texture(texture* ptexture)
    {
 

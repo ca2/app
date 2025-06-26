@@ -121,6 +121,16 @@ namespace bred
    }
 
 
+   ::string application::draw2d_get_default_implementation_name()
+   {
+      
+      auto strName = ::base::application::draw2d_get_default_implementation_name();
+
+      return strName;
+
+   }
+
+
    //#ifdef _OPENGL
    void application::create_gpu_approach()
    {

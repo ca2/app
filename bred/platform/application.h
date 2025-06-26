@@ -38,6 +38,8 @@ namespace bred
       ::gpu::approach* gpu_approach() override;
       void create_gpu_approach() override;
 
+      ::string draw2d_get_default_implementation_name() override;
+
 
    };
 

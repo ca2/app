@@ -155,6 +155,7 @@ namespace aura
 
       ::pointer<::gpu::approach>                         m_pgpu;
       ::string                                           m_strGraphics3DImplementation;
+      ::string                                           m_strDraw2dImplementation;
 
 
       application();
@@ -1064,7 +1065,7 @@ void initialize_context() override;
 //
 //#endif
 
-      //virtual string draw2d_get_default_implementation_name() override;
+      string draw2d_get_default_implementation_name() override;
 
 
       void on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine) override;

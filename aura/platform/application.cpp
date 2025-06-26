@@ -1782,6 +1782,56 @@ namespace aura
       
       ::aqua::application::init_instance();
 
+
+
+      {
+
+         ::string strImplementation = application_file_setting("draw2d.txt");
+
+         strImplementation.make_lower();
+
+         if (strImplementation == "directx11")
+         {
+
+            strImplementation = "directx11";
+
+         }
+         else if (strImplementation == "directx12")
+         {
+
+            strImplementation = "directx12";
+
+         }
+         else if (strImplementation == "opengl")
+         {
+
+            strImplementation = "opengl";
+
+         }
+         else if (strImplementation == "vulkan")
+         {
+
+            strImplementation = "vulkan";
+
+         }
+         else if (strImplementation == "direct2d")
+         {
+
+            strImplementation = "direct2d";
+
+         }
+         else
+         {
+
+            strImplementation.empty();
+
+         }
+
+         m_strDraw2dImplementation = strImplementation;
+
+      }
+
+
       {
 
          ::string strImplementation = application_file_setting("graphics3d.txt");
@@ -9227,12 +9277,19 @@ namespace aura
    // }
    //
 
-   //string application::draw2d_get_default_implementation_name()
-   //{
+   string application::draw2d_get_default_implementation_name()
+   {
 
-   //   return {};
+      if (m_strDraw2dImplementation.has_character())
+      {
 
-   //}
+         return m_strDraw2dImplementation;
+
+      }
+
+      return ::aqua::application::draw2d_get_default_implementation_name();
+
+   }
 
 
    void application::on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine)
@@ -9733,6 +9790,13 @@ namespace aura
          }
          else if (strGraphics3DImplementation.begins("directx"))
          {
+
+            if (m_strDraw2dImplementation.case_insensitive_equals(strGraphics3DImplementation))
+            {
+
+               return m_strDraw2dImplementation;
+
+            }
 
             return system()->implementation_name("draw2d", "direct2d");
 

@@ -131,6 +131,10 @@ namespace gpu
       virtual void defer_make_current();
 
 
+      virtual void _context_lock();
+      virtual void _context_unlock();
+
+
       virtual void create_window_context(::gpu::device* pgpudevice, ::windowing::window * pwindow);
 
       virtual void create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene & escene, const ::int_size& size);

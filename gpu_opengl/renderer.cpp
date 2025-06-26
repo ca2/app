@@ -252,7 +252,7 @@ namespace gpu_opengl
          GLCheckError("");
 
 
-         //glFrontFace(GL_CCW);      // Default
+         //glFrontFace(GL_CW);      // Default
          glDisable(GL_CULL_FACE);   // Optional
          GLCheckError("");
          //glCullFace(GL_BACK);      // Cull back-facing
@@ -362,11 +362,12 @@ namespace gpu_opengl
          GLCheckError("");
 
 
-         glFrontFace(GL_CCW);      // Default
+         glFrontFace(GL_CCW);      // Default CCW
          GLCheckError("");
          glEnable(GL_CULL_FACE);   // Optional
          GLCheckError("");
          glCullFace(GL_FRONT);
+         //glCullFace(GL_BACK);
          GLCheckError("");
 
          bool bYSwap = true;

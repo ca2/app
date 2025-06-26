@@ -1102,7 +1102,7 @@ void initialize_context() override;
 
       //virtual void on_layout_cube(int cx, int cy);
 
-      ::string draw2d_get_default_implementation_name() override;
+      //::string draw2d_get_default_implementation_name() override;
 
       virtual ::string graphics3d_get_implementation_name();
 

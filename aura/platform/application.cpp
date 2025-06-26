@@ -9277,20 +9277,6 @@ namespace aura
    // }
    //
 
-   string application::draw2d_get_default_implementation_name()
-   {
-
-      if (m_strDraw2dImplementation.has_character())
-      {
-
-         return m_strDraw2dImplementation;
-
-      }
-
-      return ::aqua::application::draw2d_get_default_implementation_name();
-
-   }
-
 
    void application::on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine)
    {

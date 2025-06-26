@@ -268,6 +268,22 @@ namespace gpu
    }
 
 
+   void context::_context_lock()
+   {
+
+
+   }
+
+
+   void context::_context_unlock()
+   {
+
+
+
+   }
+
+
+
    void context::create_window_context(::gpu::device* pgpudevice, ::windowing::window* pwindow)
    {
 

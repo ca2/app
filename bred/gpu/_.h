@@ -111,7 +111,7 @@ namespace gpu
 
    };
 
-
+   class command_buffer;
 
 
 } // gpu

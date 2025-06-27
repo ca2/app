@@ -349,13 +349,15 @@ namespace user
 
       ::cast < ::gpu::compositor > pcompositor = pgraphics;
 
+      ::gpu::frame* pgpuframe = nullptr;
+
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
          if(pcompositor)
          {
             
-            pcompositor->end_gpu_layer();
+            pgpuframe = pcompositor->end_gpu_layer();
 
          }
 
@@ -374,7 +376,7 @@ namespace user
          if (pcompositor)
          {
 
-            pcompositor->start_gpu_layer();
+            pcompositor->start_gpu_layer(pgpuframe);
 
          }
 

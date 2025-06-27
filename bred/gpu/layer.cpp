@@ -25,10 +25,14 @@ namespace gpu
    }
 
 
-   void layer::initialize_gpu_layer(::gpu::renderer * pgpurenderer)
+   void layer::initialize_gpu_layer(::gpu::renderer * pgpurenderer, int iFrameIndex, int iLayerIndex)
    {
 
       m_pgpurenderer = pgpurenderer;
+
+      m_iFrameIndex = iFrameIndex;
+
+      m_iLayerIndex = iLayerIndex;
 
       m_pgpurenderer->defer_update_renderer();
 
@@ -73,6 +77,24 @@ namespace gpu
       ptexture->initialize_gpu_texture(m_pgpurenderer, rectangle);
 
       return ptexture;
+
+   }
+
+
+   ::pointer < texture >& layer::source_texture()
+   {
+
+      int iFrameIndex = m_pgpurenderer->m_pgpurendertarget->get_frame_index();
+
+      auto& ptextureSource = m_textureaSource.element_at_grow(iFrameIndex);
+
+      m_pgpurenderer->__defer_construct(ptextureSource);
+
+      auto rectangle = m_pgpurenderer->m_pgpucontext->rectangle();
+
+      ptextureSource->initialize_gpu_texture(m_pgpurenderer, rectangle);
+
+      return ptextureSource;
 
    }
 

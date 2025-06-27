@@ -1,6 +1,7 @@
 // Created from graphics3d/impact3d/renderer by camilo on 2023-06-16 <3ThomasBorregaardSorensenJegElskerDig!! (ThomasLikesNumber5)
 #include "framework.h"
 #include "approach.h"
+#include "command_buffer.h"
 #include "context.h"
 #include "cpu_buffer.h"
 #include "device.h"
@@ -320,6 +321,14 @@ namespace gpu
    }
 
 
+   ::gpu::command_buffer* renderer::getCurrentCommandBuffer2()
+   {
+
+      return nullptr;
+
+   }
+
+
    void renderer::read_to_cpu_buffer()
    {
 
@@ -538,13 +547,35 @@ namespace gpu
          if (m_pgpucontext->m_pgpucompositor)
          {
 
-            m_pgpucontext->m_pgpucompositor->start_gpu_layer();
+            auto etypeContext = m_pgpucontext->m_etype;
+
+            auto eoutputContext = m_pgpucontext->m_eoutput;
+
+            m_iSentLayerCount++;
+
+            m_pgpucontext->m_pgpucompositor->start_gpu_layer(pframe);
 
             bLayerStarted = true;
 
          }
 
       }
+
+      if (m_iSentLayerCount <= 0)
+      {
+
+         auto pcommandbuffer = getCurrentCommandBuffer2();
+
+         if (pcommandbuffer)
+         {
+
+            pcommandbuffer->reset();
+
+         }
+
+      }
+
+
 
       //if(!bLayerStarted)
       {
@@ -565,8 +596,6 @@ namespace gpu
          }
 
       }
-
-
 
 
 
@@ -994,7 +1023,22 @@ namespace gpu
 
       m_pgpucontext->on_end_layer(player);
 
-      m_pgpucontext->copy(player->texture(), m_pgpurendertarget->current_texture());
+      auto ptextureTarget = player->texture();
+      
+      auto ptextureSource = m_pgpurendertarget->current_texture();
+
+      m_pgpucontext->copy(ptextureTarget, ptextureSource);
+
+      auto pcommandbuffer = getCurrentCommandBuffer2();
+
+      if (pcommandbuffer)
+      {
+
+         pcommandbuffer->submit_command_buffer();
+
+         pcommandbuffer->wait_commands_to_execute();
+
+      }
 
    }
 

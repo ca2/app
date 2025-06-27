@@ -9,6 +9,7 @@
 #include "shader.h"
 #include "texture.h"
 #include "aura/graphics/image/image.h"
+#include "bred/gpu/command_buffer.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/types.h"
 #include "glm/mat4x4.hpp"
@@ -1294,7 +1295,6 @@ void main() {
       GLCheckError("");
       glDeleteFramebuffers(1, &fboDst);
       GLCheckError("");
-
 
    }
 

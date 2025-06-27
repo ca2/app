@@ -53,7 +53,7 @@ namespace draw2d_gpu
    bool graphics::_is_ok() const
    {
 
-      return ::is_set(this) & ::is_set(m_pgpucontext);
+      return ::is_set(this) & ::is_set(m_pgpucontextCompositor);
 
    }
 
@@ -86,7 +86,7 @@ namespace draw2d_gpu
 
       }
 
-      m_pgpucontext->on_begin_draw_attach(this);
+      m_pgpucontextCompositor->on_begin_draw_attach(this);
 
    }
 
@@ -103,22 +103,22 @@ namespace draw2d_gpu
 
    //   ::cast < ::windowing::window > pwindow = m_puserinteraction->m_pacmewindowingwindow;
 
-   //   if (!m_pgpucontextOutput)
+   //   if (!m_pgpucontextCompositorOutput)
    //   {
 
-   //      __øconstruct(m_pgpucontextOutput);
+   //      __øconstruct(m_pgpucontextCompositorOutput);
 
-   //      m_pgpucontextOutput = m_papplication->get_gpu()->get_device()->start_swap_chain_context(this, pwindow);
+   //      m_pgpucontextCompositorOutput = m_papplication->get_gpu()->get_device()->start_swap_chain_context(this, pwindow);
 
-   //      //m_pgpucontextOutput->create_window_buffer(pwindow);
+   //      //m_pgpucontextCompositorOutput->create_window_buffer(pwindow);
 
    //   }
 
    //   auto rectanglePlacement = pwindow->get_window_rectangle();
 
-   //   m_pgpucontextOutput->set_placement(rectanglePlacement);
+   //   m_pgpucontextCompositorOutput->set_placement(rectanglePlacement);
 
-   //   auto prendererOutput = m_pgpucontextOutput->get_renderer(::gpu::e_scene_2d);
+   //   auto prendererOutput = m_pgpucontextCompositorOutput->get_renderer(::gpu::e_scene_2d);
 
    //   prendererOutput->defer_update_renderer();
 
@@ -132,7 +132,7 @@ namespace draw2d_gpu
 
       //end_gpu_layer();
 
-      m_pgpucontext->on_end_draw_detach(this);
+      m_pgpucontextCompositor->on_end_draw_detach(this);
 
    }
 
@@ -140,7 +140,7 @@ namespace draw2d_gpu
    //void graphics::start_gpu_layer()
    //{
 
-   //   m_pgpucontext->m_pgpudevice->layer_start(m_pgpucontext->m_pgpurenderer);
+   //   m_pgpucontextCompositor->m_pgpudevice->layer_start(m_pgpucontextCompositor->m_pgpurenderer);
 
    //}
 
@@ -175,7 +175,7 @@ namespace draw2d_gpu
 
       //wglMakeCurrent(m_hdc, m_hglrc);
 
-      //m_pgpucontext->make_current();
+      //m_pgpucontextCompositor->make_current();
 
       thread_graphics(this);
 
@@ -205,10 +205,10 @@ namespace draw2d_gpu
 
       pcontextMain->set_placement(rectangleWindow);
       
-      m_pgpucontext->m_escene = ::gpu::e_scene_2d;
+      m_pgpucontextCompositor->m_escene = ::gpu::e_scene_2d;
 
       pcontextMain->top_send_on_context(
-         m_pgpucontext,
+         m_pgpucontextCompositor,
          m_egraphics & e_graphics_draw,
          procedure);
 
@@ -263,19 +263,19 @@ namespace draw2d_gpu
 
 
    
-   void graphics::bind_draw2d_compositor()
+   void graphics::bind_draw2d_compositor(::gpu::layer* player)
    {
 
-      m_pgpucontext->__bind_draw2d_compositor(this);
+      m_pgpucontextCompositor->__bind_draw2d_compositor(this, player);
 
    }
 
 
 
-   void graphics::soft_unbind_draw2d_compositor()
+   void graphics::soft_unbind_draw2d_compositor(::gpu::layer* player)
    {
 
-      m_pgpucontext->__soft_unbind_draw2d_compositor(this);
+      m_pgpucontextCompositor->__soft_unbind_draw2d_compositor(this, player);
 
    }
 

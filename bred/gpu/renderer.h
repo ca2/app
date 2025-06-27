@@ -16,6 +16,8 @@ namespace gpu
    {
    public:
 
+      int m_iSentLayerCount = 0;
+      ::pointer<::gpu::layer>                         m_pgpulayer;
 
       ::collection::count     m_iDefaultFrameCount;
 
@@ -69,7 +71,7 @@ namespace gpu
 
       //virtual ::int_rectangle rectangle();
       //virtual int height();
-
+      virtual ::gpu::command_buffer* getCurrentCommandBuffer2();
       virtual bool render_step();
 
       virtual void initialize_gpu_renderer(::gpu::context * pgpucontext);

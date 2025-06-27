@@ -20,6 +20,7 @@
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/platform/system.h"
 #include "aura/graphics/image/context.h"
+#include "bred/gpu/command_buffer.h"
 #include "bred/gpu/graphics.h"
 
 
@@ -686,71 +687,128 @@ namespace gpu
             pgpurenderer->do_on_frame(bForDrawing, [this, pcontextInnerStart, bForDrawing, procedure]()
                {
 
-                  pcontextInnerStart->send_on_context([this, pcontextInnerStart, bForDrawing, procedure]()
-                     {
-
-                        //if (bForDrawing)
-                        {
-
-                           auto prenderer = pcontextInnerStart->get_gpu_renderer();
-
-                           prenderer->defer_update_renderer();
-
-                           ::procedure λ = [procedure]()
-                              {
-
-                                 procedure();
-
-                              };
-
-                           prenderer->do_on_frame(true, λ);
-
-                        }
-                        //else
-                        //{
-
-                        //   procedure();
-
-                        //}
-
-                     });
-
                   if (bForDrawing)
                   {
 
-                     auto playera = m_pgpudevice->m_playera;
-
-                     if (playera)
-                     {
-
-                        auto prendererBackBuffer = get_gpu_renderer();
-
-                        auto iFrameIndex = prendererBackBuffer->m_pgpurendertarget->get_frame_index();
-
-                        auto prendertargetBackBuffer = prendererBackBuffer->m_pgpurendertarget;
-
-                        auto ptextureBackBuffer = prendertargetBackBuffer->current_texture();
-
-                        merge_layers(ptextureBackBuffer, m_pgpudevice->m_playera);
-
-                        ::cast < swap_chain > pswapchain = get_swap_chain();
-
-                        if (!pswapchain->m_bSwapChainInitialized)
+                     pcontextInnerStart->send_on_context([this, pcontextInnerStart, bForDrawing, procedure]()
                         {
 
-                           pswapchain->initialize_gpu_swap_chain(prendererBackBuffer);
+                           //if (bForDrawing)
+                           {
+
+                              auto prenderer = pcontextInnerStart->get_gpu_renderer();
+
+                              prenderer->defer_update_renderer();
+
+                              ::procedure λ = [procedure]()
+                                 {
+
+                                    procedure();
+
+                                 };
+
+                              prenderer->do_on_frame(bForDrawing, λ);
+
+                           }
+                           //else
+                           //{
+
+                           //   procedure();
+
+                           //}
+
+                        });
+
+                     if (bForDrawing)
+                     {
+                        while (!m_pgpudevice->m_playera || 
+                           m_pgpudevice->m_playera->count() < 3)
+                        {
+
+                           preempt(10_ms);
 
                         }
 
-                        //auto ptextureSwapChain = pswapchain->current_texture();
+                        auto playera = m_pgpudevice->m_playera;
 
-                        //clear(::color::transparent);
-                        /////clear(::rgba(0.5*0.5, 0.75 * 0.5, 0.95 * 0.5, 0.5));
+                        if (playera)
+                        {
+
+                           auto prendererBackBuffer = get_gpu_renderer();
+
+                           auto iFrameIndex = prendererBackBuffer->m_pgpurendertarget->get_frame_index();
+
+                           auto prendertargetBackBuffer = prendererBackBuffer->m_pgpurendertarget;
+
+                           auto ptextureBackBuffer = prendertargetBackBuffer->current_texture();
+
+                           merge_layers(ptextureBackBuffer, m_pgpudevice->m_playera);
+
+                           ::cast < swap_chain > pswapchain = get_swap_chain();
+
+                           if (!pswapchain->m_bSwapChainInitialized)
+                           {
+
+                              pswapchain->initialize_gpu_swap_chain(prendererBackBuffer);
+
+                           }
+
+                           //auto ptextureSwapChain = pswapchain->current_texture();
+
+                           //clear(::color::transparent);
+                           /////clear(::rgba(0.5*0.5, 0.75 * 0.5, 0.95 * 0.5, 0.5));
 
 
-                        pswapchain->present(ptextureBackBuffer);
+                           pswapchain->present(ptextureBackBuffer);
+
+                           for (auto player : *playera)
+                           {
+
+                              if (player->m_pcommandbufferLayer)
+                              {
+
+                                 player->m_pcommandbufferLayer->wait_commands_to_execute();
+
+                              }
+
+                           }
+
+                        }
 
                      }
+
+                  }
+                  else
+                  {
+
+                     pcontextInnerStart->send_on_context([this, pcontextInnerStart, bForDrawing, procedure]()
+                        {
+
+                           //if (bForDrawing)
+                           {
+
+                              auto prenderer = pcontextInnerStart->get_gpu_renderer();
+
+                              prenderer->defer_update_renderer();
+
+                              ::procedure λ = [procedure]()
+                                 {
+
+                                    procedure();
+
+                                 };
+
+                              prenderer->do_on_frame(bForDrawing, λ);
+
+                           }
+                           //else
+                           //{
+
+                           //   procedure();
+
+                           //}
+
+                        });
 
                   }
 
@@ -1288,14 +1346,14 @@ namespace gpu
    }
 
 
-   void context::__bind_draw2d_compositor(::gpu::compositor* pgpucompositor)
+   void context::__bind_draw2d_compositor(::gpu::compositor* pgpucompositor, ::gpu::layer* player)
    {
 
 
    }
 
 
-   void context::__soft_unbind_draw2d_compositor(::gpu::compositor* pgpucompositor)
+   void context::__soft_unbind_draw2d_compositor(::gpu::compositor* pgpucompositor, ::gpu::layer* player)
    {
 
 

@@ -12,6 +12,9 @@ namespace gpu
    public:
 
 
+      ::pointer < ::gpu::layer > m_pgpulayer;
+
+
       frame();
       ~frame();
 

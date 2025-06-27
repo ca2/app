@@ -59,12 +59,12 @@ namespace gpu
 
    protected:
 
+   public:
+
       using thread::send;
       using thread::post;
       using thread::_send;
       using thread::_post;
-   public:
-
 
       enum enum_type
       {
@@ -275,8 +275,8 @@ namespace gpu
       //virtual render_target* draw2d_render_target();
       //virtual render_target* graphics3d_render_target();
 
-      virtual void __bind_draw2d_compositor(::gpu::compositor * pgpucompositor);
-      virtual void __soft_unbind_draw2d_compositor(::gpu::compositor* pgpucompositor);
+      virtual void __bind_draw2d_compositor(::gpu::compositor * pgpucompositor, ::gpu::layer * player);
+      virtual void __soft_unbind_draw2d_compositor(::gpu::compositor* pgpucompositor, ::gpu::layer * player);
 
 
    };

@@ -1129,7 +1129,7 @@ namespace gpu
 
       __defer_construct_new(player);
 
-      player->initialize_gpu_layer(pgpurenderer);
+      player->initialize_gpu_layer(pgpurenderer, pgpurenderer->m_pgpurendertarget->get_frame_index(), m_iLayer);
 
       pgpurenderer->defer_update_renderer();
 

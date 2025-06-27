@@ -210,7 +210,10 @@
     <ClInclude Include="gpu\guard.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
-    <ClInclude Include="gpu\lock.h">
+    <ClInclude Include="gpu\context_lock.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\command_buffer.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
   </ItemGroup>
@@ -335,7 +338,10 @@
     <ClCompile Include="gpu\guard.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
-    <ClCompile Include="gpu\lock.cpp">
+    <ClCompile Include="gpu\context_lock.cpp">
+      <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\command_buffer.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
   </ItemGroup>

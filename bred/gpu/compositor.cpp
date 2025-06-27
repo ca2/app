@@ -3,6 +3,7 @@
 #include "compositor.h"
 #include "context.h"
 #include "device.h"
+#include "frame.h"
 #include "layer.h"
 #include "renderer.h"
 #include "render_target.h"
@@ -26,28 +27,34 @@ namespace gpu
 
 
 
-   void compositor::start_gpu_layer()
+   void compositor::start_gpu_layer(::gpu::frame* pgpuframe)
    {
 
-      auto player = m_pgpucontext->m_pgpudevice->next_layer(m_pgpucontext->m_pgpurenderer);
+      auto player = m_pgpucontextCompositor->m_pgpudevice->next_layer(m_pgpucontextCompositor->m_pgpurenderer);
+
+      pgpuframe->m_pgpulayer = player;
+
+      player->m_pgpuframe = pgpuframe;
 
       player->layer_start();
 
    }
 
 
-   void compositor::end_gpu_layer()
+   ::gpu::frame * compositor::end_gpu_layer()
    {
 
-      //auto prendererOutput = m_pgpucontext->m_pgpurenderer;
+      //auto prendererOutput = m_pgpucontextCompositor->m_pgpurenderer;
 
       //auto prendertarget = prendererOutput->m_pgpurendertarget;
 
-      auto player = m_pgpucontext->m_pgpudevice->current_layer();
+      auto player = m_pgpucontextCompositor->m_pgpudevice->current_layer();
 
       player->layer_end();
 
-//      m_pgpucontext->copy(player->texture(), prendertarget->current_texture());
+      return player->m_pgpuframe;
+
+//      m_pgpucontextCompositor->copy(player->texture(), prendertarget->current_texture());
 
    }
 

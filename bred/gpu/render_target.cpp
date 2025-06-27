@@ -1,6 +1,7 @@
 // Created by camilo on 2025-06-12 12:38 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "context.h"
+#include "layer.h"
 #include "renderer.h"
 #include "render_state.h"
 #include "render_target.h"
@@ -197,6 +198,13 @@ namespace gpu
 
    texture * render_target::current_texture()
    {
+
+      if (m_pgpurenderer->m_pgpulayer)
+      {
+
+         return m_pgpurenderer->m_pgpulayer->source_texture();
+
+      }
 
       auto pgpucontext = m_pgpurenderer->m_pgpucontext;
 

@@ -3,7 +3,7 @@
 #include "framework.h"
 #include "context.h"
 #include "device.h"
-#include "lock.h"
+#include "context_lock.h"
 
 
 namespace gpu

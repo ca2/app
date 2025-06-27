@@ -60,8 +60,8 @@ namespace draw2d_gpu
       void create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size) override;
 
 
-      virtual void bind_draw2d_compositor();
-      virtual void soft_unbind_draw2d_compositor();
+      virtual void bind_draw2d_compositor(::gpu::layer * player);
+      virtual void soft_unbind_draw2d_compositor(::gpu::layer* player);
 
 
    };

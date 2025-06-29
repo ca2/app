@@ -51,7 +51,7 @@ namespace graphics3d
 
       ::pointer < ::gpu::renderer >        m_pgpurenderer;
 
-      //static ::pointer<model> createModelFromFile(::cube::context * pgpucontext, const ::file::path & path);
+      //static ::pointer<model> createModelFromFile(::graphics3d::context * pgpucontext, const ::file::path & path);
 
 
       model();

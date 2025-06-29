@@ -71,7 +71,7 @@ namespace user
 
 
 
-      //virtual ::pointer < ::cube::application > start_graphics3d_application();
+      //virtual ::pointer < ::graphics3d::application > start_graphics3d_application();
 
 
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
@@ -152,7 +152,7 @@ namespace user
    };
 
 
-} // namespace cube
+} // namespace graphics3d
 
 
 

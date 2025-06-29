@@ -55,6 +55,7 @@ namespace gpu
       bool m_bDepthTestButNoDepthWrite = false;
       bool m_bEnableBlend = false;
       bool m_bAccumulationEnable = false;
+      //bool m_bHasSourceImage = false;
 
 
       string                     m_strError;
@@ -71,13 +72,13 @@ namespace gpu
       memory                     m_memoryFragment;
       memory                     m_memoryGeometry;
 
-      ::gpu::properties          m_propertiesInputLayout;
+      //::gpu::properties          m_propertiesInputLayout;
       ::gpu::properties          m_propertiesPush;
 
       enum_flag                  m_eflag;
       ::comparable_array<enum_descriptor_set_slot>   m_edescriptorsetslota;
       ::particle_pointer         m_pLocalDescriptorSet;
-      ::particle_pointer         m_pVertexInput;
+      ::pointer < input_layout > m_pinputlayout;
 
       bool m_bTextureAndSampler;
 
@@ -92,9 +93,9 @@ namespace gpu
          const ::file::path& pathFragment,
          const ::array<enum_descriptor_set_slot>& eslota = {},
          const ::particle_pointer& pLocalDescriptorSet = {},
-         const ::particle_pointer& pVertexInput = {},
+         //const ::particle_pointer& pVertexInput = {},
          const ::gpu::property* ppropertiesPush = nullptr,
-         const ::gpu::property* ppropertiesInputLayout = nullptr,
+         ::gpu::input_layout* pinputlayout = nullptr,
          enum_flag eflag = e_flag_none);
 
       virtual void initialize_shader_with_block(
@@ -103,9 +104,9 @@ namespace gpu
          const ::block & blockFragment,
          const ::array<enum_descriptor_set_slot>& eslota = {},
          const ::particle_pointer& pLocalDescriptorSet = {},
-         const ::particle_pointer& pVertexInput = {},
+         //const ::particle_pointer& pVertexInput = {},
          const ::gpu::property* ppropertiesPush = nullptr,
-         const ::gpu::property* ppropertiesInputLayout = nullptr,
+         ::gpu::input_layout * pinputlayout = nullptr,
          enum_flag eflag = e_flag_none);
 
       virtual void on_initialize_shader();

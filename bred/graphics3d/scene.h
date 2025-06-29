@@ -47,7 +47,7 @@ namespace graphics3d
 
       //virtual void handle_mouse_move(int x, int y);
 
-      //virtual ::pointer<model> createModelFromFile(::cube::context* pgpucontext, const ::file::path& path);
+      //virtual ::pointer<model> createModelFromFile(::graphics3d::context* pgpucontext, const ::file::path& path);
 
       virtual void on_update_global_ubo(::gpu::context* pgpucontext);
 

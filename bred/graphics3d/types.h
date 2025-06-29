@@ -80,7 +80,24 @@ namespace graphics3d
 	};
 
 
+	struct sequence3_color
+	{
+
+		glm::vec3 position; // x, y, z
+		glm::vec4 color;  // r, g, b, a
+
+	};
+
+
+	BEGIN_GPU_PROPERTIES(sequence3_color)
+		GPU_PROPERTY("position", ::gpu::e_type_seq3)
+		GPU_PROPERTY("color", ::gpu::e_type_seq4)
+	END_GPU_PROPERTIES()
+
+
 } // namespace graphics3d
+
+
 
 
 

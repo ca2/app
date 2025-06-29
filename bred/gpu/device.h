@@ -103,6 +103,9 @@ namespace gpu
 
       virtual ::pointer < ::gpu::context > allocate_context();
 
+
+      virtual ::gpu::layer* get_previous_layer(::gpu::layer* player);
+
 //      virtual ::pointer < ::gpu::context > start_gpu_output_context(const ::gpu::enum_output & eoutput, const ::int_size& size);
 
       ///virtual ::pointer < ::gpu::context > start_cpu_buffer_context(::particle* pparticle, const ::function< void(::image::target* ptarget) >& callbackOnImagePixels, const ::int_rectangle& rectanglePlacement);

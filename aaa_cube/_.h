@@ -36,4 +36,4 @@ namespace cube
    //class scene_object;
 
 
-}//namespace cube
+}//namespace graphics3d

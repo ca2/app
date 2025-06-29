@@ -19,7 +19,10 @@
 #include "aura/graphics/image/image.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/platform/system.h"
+#include "aura/windowing/window.h"
 #include "aura/graphics/image/context.h"
+
+#include "input_layout.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/graphics.h"
 
@@ -308,7 +311,13 @@ namespace gpu
 
             auto eoutput = ::gpu::e_output_swap_chain;
 
-            initialize_gpu_context(pgpudevice, eoutput, pwindow, {});
+            auto pwindowWindow = (::windowing::window*)pwindow;
+
+            auto rectangleWindow = pwindowWindow->get_window_rectangle();
+
+            auto size = rectangleWindow.size();
+
+            initialize_gpu_context(pgpudevice, eoutput, pwindow, size);
 
          });
 
@@ -542,6 +551,18 @@ namespace gpu
    }
 
 
+   ::pointer < ::gpu::input_layout > context::input_layout(const ::gpu::properties & properties)
+   {
+
+      auto pinputlayout = __øcreate<::gpu::input_layout>();
+
+      pinputlayout->initialize_input_layout(this, properties);
+
+      return pinputlayout;
+
+   }
+
+
    ::gpu::cpu_buffer* context::get_cpu_buffer()
    {
 
@@ -721,13 +742,13 @@ namespace gpu
 
                      if (bForDrawing)
                      {
-                        while (!m_pgpudevice->m_playera || 
-                           m_pgpudevice->m_playera->count() < 3)
-                        {
+                        //while (!m_pgpudevice->m_playera || 
+                        //   m_pgpudevice->m_playera->count() < 3)
+                        //{
 
-                           preempt(10_ms);
+                        //   preempt(10_ms);
 
-                        }
+                        //}
 
                         auto playera = m_pgpudevice->m_playera;
 
@@ -750,6 +771,22 @@ namespace gpu
                            {
 
                               pswapchain->initialize_gpu_swap_chain(prendererBackBuffer);
+
+                           }
+
+                           ::cast < gpu::render_target > pgpurendertarget = pswapchain;
+
+                           if (pgpurendertarget)
+                           {
+                              if (!pgpurendertarget->m_pgpurenderer)
+                              {
+
+                                 pgpurendertarget->initialize_render_target(
+                                 m_pgpurenderer,
+                                    m_rectangle.size(), 
+                                    nullptr);
+                                 
+                              }
 
                            }
 

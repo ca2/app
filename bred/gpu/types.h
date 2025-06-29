@@ -23,7 +23,6 @@ namespace gpu
 {
 
 
-
    //struct start_context_t
    //{
 

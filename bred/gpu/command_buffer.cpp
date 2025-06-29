@@ -1,6 +1,7 @@
 // Created by camilo on 2025-06-23 00:16 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "command_buffer.h"
+#include "render_target.h"
 
 
 namespace gpu
@@ -36,7 +37,15 @@ namespace gpu
    //}
 
 
-   void command_buffer::submit_command_buffer()
+   void command_buffer::initialize_command_buffer(::gpu::render_target* pgpurendertarget)
+   {
+
+      m_pgpurendertarget = pgpurendertarget;
+
+   }
+
+
+   void command_buffer::submit_command_buffer(::gpu::layer * pgpulayer)
    {
 
 

@@ -13,8 +13,11 @@ namespace gpu
    texture::texture()
    {
 
+      m_bClearColor = false;
       m_bRenderTarget = false;
       m_bDepthStencil = false;
+      m_bTransferDst = false;
+      m_bCpuRead = false;
 
    }
 

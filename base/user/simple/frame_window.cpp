@@ -2083,7 +2083,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
       //{
 
       //   // TODO: instead of closing all applications in process psystem->m_apptra, should close application that make part of
-      //   // cube, bergedge, session or system.
+      //   // graphics3d, bergedge, session or system.
 
       //   auto applicationa = psystem->get_applicationa();
 

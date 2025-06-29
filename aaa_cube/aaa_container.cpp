@@ -5,7 +5,7 @@
 //#include <stdexcept>
 //
 //
-//namespace cube
+//namespace graphics3d
 //{
 //
 //
@@ -105,7 +105,7 @@
 //	}
 //
 //
-//} // namespace cube
+//} // namespace graphics3d
 //
 //
 //

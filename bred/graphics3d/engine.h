@@ -136,6 +136,6 @@ namespace graphics3d
 	};
 
 	//glm::vec3 camera::pole_up() { return m_pengine->camera_pole_up(); }
-} // namespace cube
+} // namespace graphics3d
 
 

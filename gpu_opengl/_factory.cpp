@@ -12,6 +12,7 @@
 #include "shader.h"
 #include "swap_chain.h"
 #include "texture.h"
+#include "bred/gpu/layer.h"
 
 
 //BEGIN_FACTORY(gpu_opengl)
@@ -37,6 +38,8 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::gpu_opengl::texture, ::gpu::texture >();
 
    pfactory->add_factory_item < ::gpu_opengl::frame_buffer >();
+
+   pfactory->add_factory_item < ::gpu::layer >();
 
 #if defined(WINDOWS_DESKTOP)
 

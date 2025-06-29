@@ -141,6 +141,39 @@ namespace gpu
    }
 
 
+   ::gpu::layer* device::get_previous_layer(::gpu::layer* player)
+   {
+
+      if (!m_playera)
+      {
+
+         return nullptr;
+
+      }
+
+      auto iFind = m_playera->find_first(player);
+      
+      if (iFind <= 0)
+      {
+
+         return nullptr;
+
+      }
+
+      for(int i = iFind - 1; i >= 0; i--)
+      {
+         if (m_playera->element_at(i)->m_pgpurenderer
+             == player->m_pgpurenderer)
+         {
+            return m_playera->element_at(i);
+         }
+      }
+
+      return nullptr;
+
+   }
+
+
    //::pointer < ::gpu::context > device::start_gpu_output_context(const ::gpu::enum_output& eoutput, const ::int_size& size)
    //{
 
@@ -1127,7 +1160,7 @@ namespace gpu
 
       auto & player = m_playera->element_at_grow(m_iLayer);
 
-      __defer_construct_new(player);
+      __defer_construct(player);
 
       player->initialize_gpu_layer(pgpurenderer, pgpurenderer->m_pgpurendertarget->get_frame_index(), m_iLayer);
 

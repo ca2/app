@@ -81,7 +81,7 @@
 //   //   VkInstance m_vkinstance;
 //   //   VkDebugUtilsMessengerEXT debugMessenger;
 //   //   VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
-//   //   ::pointer < ::cube::container > m_pcontainer;
+//   //   ::pointer < ::graphics3d::container > m_pcontainer;
 //   //   VkCommandPool m_vkcommandpool;
 //
 //   //   VkDevice m_vkdevice;

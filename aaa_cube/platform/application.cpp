@@ -39,7 +39,7 @@ namespace cube
    }
 
 
-} // namespace cube
+} // namespace graphics3d
 
 
 

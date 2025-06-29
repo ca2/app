@@ -160,6 +160,7 @@ namespace gpu
 
       virtual ::gpu::enum_output get_eoutput();
 
+      virtual ::pointer < ::gpu::input_layout > input_layout(const ::gpu::properties & properties);
 
       virtual ::gpu::cpu_buffer * get_cpu_buffer();
 

@@ -3,6 +3,7 @@
 #include "renderer.h"
 #include "shader.h"
 #include "acme/exception/interface_only.h"
+#include "bred/gpu/input_layout.h"
 //#include "_.h"
 //#include "_gpu.h"
 
@@ -50,9 +51,9 @@ namespace gpu
       const ::file::path& pathFragment,
       const ::array<enum_descriptor_set_slot>& eslota,
       const ::particle_pointer& pLocalDescriptorSet,
-      const ::particle_pointer& pVertexInput,
+      //const ::particle_pointer& pVertexInput,
       const ::gpu::property* ppropertiesPush,
-      const ::gpu::property* ppropertiesInputLayout,
+      ::gpu::input_layout* pinputlayout,
       enum_flag eflag)
    {
 
@@ -61,15 +62,15 @@ namespace gpu
       m_pathFragment = pathFragment;
       m_edescriptorsetslota.copy(eslota);
       m_pLocalDescriptorSet = pLocalDescriptorSet;
-      m_pVertexInput = pVertexInput;
+      m_pinputlayout = pinputlayout;
       if (ppropertiesPush)
       {
          m_propertiesPush.set(ppropertiesPush);
       }
-      if (ppropertiesInputLayout)
-      {
-         m_propertiesInputLayout.set(ppropertiesInputLayout);
-      }
+      //if (ppropertiesInputLayout)
+      //{
+      //   m_propertiesInputLayout.set(ppropertiesInputLayout);
+      //}
       m_eflag = eflag;
 
       on_initialize_shader();
@@ -83,9 +84,9 @@ namespace gpu
       const ::block& blockFragment,
       const ::array<enum_descriptor_set_slot>& eslota,
       const ::particle_pointer& pLocalDescriptorSet,
-      const ::particle_pointer& pVertexInput,
+      //const ::particle_pointer& pVertexInput,
       const ::gpu::property* ppropertiesPush,
-      const ::gpu::property* ppropertiesInputLayout,
+      ::gpu::input_layout * pinputlayout,
       enum_flag eflag)
    {
 
@@ -94,16 +95,16 @@ namespace gpu
       m_memoryFragment = blockFragment;
       m_edescriptorsetslota.copy(eslota);
       m_pLocalDescriptorSet = pLocalDescriptorSet;
-      m_pVertexInput = pVertexInput;
+      m_pinputlayout = pinputlayout;
       if (ppropertiesPush)
       {
          m_propertiesPush.set(ppropertiesPush);
       }
-      if (ppropertiesInputLayout)
-      {
-         m_propertiesInputLayout.set(ppropertiesInputLayout);
+      //if (ppropertiesInputLayout)
+      //{
+      //   m_propertiesInputLayout.set(ppropertiesInputLayout);
 
-      }
+      //}
       m_eflag = eflag;
 
       on_initialize_shader();

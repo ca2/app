@@ -32,8 +32,9 @@ namespace gpu
 
 
 
-   CLASS_DECL_BRED int get_type_size(enum_type e);
-   
+   CLASS_DECL_BRED int get_type_size(::gpu::enum_type e);
+
+
    //using uniform = int;
    struct payload
    {
@@ -113,6 +114,8 @@ namespace gpu
 
    class command_buffer;
 
+   class input_layout;
+
 
 } // gpu
 
@@ -126,7 +129,6 @@ namespace draw2d_gpu
    class face;
 
    class graphics;
-
 
 } // namespace draw2d_gpu
 

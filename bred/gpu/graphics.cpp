@@ -256,6 +256,8 @@ namespace draw2d_gpu
    void graphics::create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size)
    {
 
+      m_puserinteraction = puserinteraction;
+
       ::draw2d::graphics::create_for_window_draw2d(puserinteraction, size);
       ///create_offscreen_graphics_for_swap_chain_blitting(puserinteraction, size);
 

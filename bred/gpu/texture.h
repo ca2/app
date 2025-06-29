@@ -12,10 +12,14 @@ namespace gpu
    public:
 
 
+      bool                                m_bClearColor;            
+      ::color::color                      m_colorClear;
       bool                                m_bRenderTarget;
       bool                                m_bDepthStencil;
       ::pointer < ::gpu::renderer >       m_pgpurenderer;
       ::int_rectangle                     m_rectangleTarget;
+      bool                                m_bTransferDst;
+      bool                                m_bCpuRead;
 
 
       texture();

@@ -114,17 +114,16 @@ namespace gpu
       const ::file::path& pathFrag,
       const ::array<::gpu::shader::enum_descriptor_set_slot>& eslota,
       const ::particle_pointer& pLocalDescriptorSet,
-      const ::particle_pointer& pVertexInput,
+      //const ::particle_pointer& pVertexInput,
       const ::gpu::property* ppropertiesPush,
-      const ::gpu::property* ppropertiesInputLayout,
+      ::gpu::input_layout* pinputlayout,
       ::gpu::shader::enum_flag eflag)
    {
 
       auto pshader = __øcreate < ::gpu::shader >();
       pshader->initialize_shader(this,
          pathVert, pathFrag, eslota,
-         pLocalDescriptorSet, pVertexInput,
-         ppropertiesPush, ppropertiesInputLayout, eflag);
+         pLocalDescriptorSet, ppropertiesPush, pinputlayout, eflag);
 
       return pshader;
 
@@ -1034,7 +1033,7 @@ namespace gpu
       if (pcommandbuffer)
       {
 
-         pcommandbuffer->submit_command_buffer();
+         pcommandbuffer->submit_command_buffer(player);
 
          pcommandbuffer->wait_commands_to_execute();
 

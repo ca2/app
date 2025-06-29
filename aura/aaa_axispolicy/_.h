@@ -6,7 +6,7 @@ namespace plane
 
    class session;
    class system;
-   //class cube;
+   //class graphics3d;
 
 
 } // namespace plane

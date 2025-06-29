@@ -74,6 +74,8 @@ namespace gpu
 
       auto rectangle = m_pgpurenderer->m_pgpucontext->rectangle();
 
+      ptexture->m_bTransferDst = true;
+
       ptexture->initialize_gpu_texture(m_pgpurenderer, rectangle);
 
       return ptexture;

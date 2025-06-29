@@ -87,9 +87,9 @@ namespace gpu
          const ::file::path& pathFrag,
          const ::array<::gpu::shader::enum_descriptor_set_slot>& eslota = {},
          const ::particle_pointer& pLocalDescriptorSet = {},
-         const ::particle_pointer& pVertexInput = {},
+         //const ::particle_pointer& pVertexInput = {},
          const ::gpu::property* ppropertiesPush = nullptr,
-         const ::gpu::property* ppropertiesInputLayout = nullptr,
+         ::gpu::input_layout * pinputlayout = nullptr,
          ::gpu::shader::enum_flag eflag = ::gpu::shader::e_flag_none);
 
 

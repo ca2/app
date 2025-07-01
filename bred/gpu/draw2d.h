@@ -7,7 +7,7 @@
 #include "bred/typeface/face.h"
 
 
-namespace draw2d_gpu
+namespace gpu
 {
 
 
@@ -34,7 +34,7 @@ namespace draw2d_gpu
    };
 
 
-} // namespace draw2d_gpu
+} // namespace sgpu
 
 
 

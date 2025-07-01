@@ -5,15 +5,6 @@
 
 
 
-//struct OffscreenContext
-//{
-//   HWND window;
-//   HDC dev_context;
-//   HGLRC openGLContext;
-//   int width;
-//   int height;
-//   //fbo_t* fbo;
-//};
 namespace draw2d_gpu
 {
 
@@ -73,7 +64,7 @@ namespace draw2d_gpu
       void start_gpu_layer(::gpu::frame * pgpuframe) override;
       ::gpu::frame * end_gpu_layer() override;
 
-      ::gpu_opengl::context* gpu_context();
+      ::gpu::context* gpu_context();
 
       //void attach(void * pgraphics) override;   // attach/detach affects only the Output DC
       void * detach() override;
@@ -158,11 +149,6 @@ namespace draw2d_gpu
       int_point GetBrushOrg() const;
       int_point SetBrushOrg(int x, int y);
       int_point SetBrushOrg(const ::int_point & point);
-      int EnumObjects(int nObjectType,
-                          int (CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData);
-
-      // Type-safe selection helpers
-   public:
 
       ::draw2d_gpu::draw2d * draw2d_gpu();
 
@@ -190,8 +176,8 @@ namespace draw2d_gpu
       int SetROP2(int nDrawMode);
       int set_interpolation_mode(int nStretchMode);
 
-      bool GetColorAdjustment(LPCOLORADJUSTMENT lpColorAdjust) const;
-      bool SetColorAdjustment(const COLORADJUSTMENT* lpColorAdjust);
+      //bool GetColorAdjustment(LPCOLORADJUSTMENT lpColorAdjust) const;
+      //bool SetColorAdjustment(const COLORADJUSTMENT* lpColorAdjust);
 
 #if (_WIN32_WINNT >= 0x0500)
 
@@ -208,9 +194,9 @@ namespace draw2d_gpu
       int GetGraphicsMode() const;
 
       // World transform
-      bool SetWorldTransform(const XFORM* pXform);
-      bool ModifyWorldTransform(const XFORM* pXform,unsigned int iMode);
-      bool GetWorldTransform(XFORM* pXform) const;
+      //bool SetWorldTransform(const XFORM* pXform);
+      //bool ModifyWorldTransform(const XFORM* pXform,unsigned int iMode);
+      //bool GetWorldTransform(XFORM* pXform) const;
 
       // Mapping Functions
       virtual int GetMapMode() const;
@@ -393,8 +379,8 @@ namespace draw2d_gpu
 //                  int nWidth, int nHeight, ::draw2d::bitmap& maskBitmap, int xMask, int yMask);
       void SetPixelV(int x, int y, ::color::color crColor);
       void SetPixelV(const ::int_point & point, ::color::color crColor);
-      bool GradientFill(TRIVERTEX* pVertices, ULONG nVertices,
-                        void * pMesh, ULONG nMeshElements, unsigned int dwMode);
+      //bool GradientFill(TRIVERTEX* pVertices, ULONG nVertices,
+        //                void * pMesh, ULONG nMeshElements, unsigned int dwMode);
       void TransparentBlt(int xDest, int yDest, int nDestWidth, int nDestHeight,
                           ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight,
                           unsigned int clrTransparent);
@@ -491,25 +477,25 @@ namespace draw2d_gpu
                         //float* lpFloatBuffer) const;
 
       unsigned int GetFontLanguageInfo() const;
-
-#if (_WIN32_WINNT >= 0x0500)
-
-      bool GetCharABCWidthsI(unsigned int giFirst, unsigned int cgi, LPWORD pgi, LPABC lpabc) const;
-      bool GetCharWidthI(unsigned int giFirst, unsigned int cgi, LPWORD pgi, LPINT lpBuffer) const;
-
-#endif
+//
+//#if (_WIN32_WINNT >= 0x0500)
+//
+//      bool GetCharABCWidthsI(unsigned int giFirst, unsigned int cgi, LPWORD pgi, LPABC lpabc) const;
+//      bool GetCharWidthI(unsigned int giFirst, unsigned int cgi, LPWORD pgi, LPINT lpBuffer) const;
+//
+//#endif
 
       // Printer/Device Escape Functions
-      virtual int Escape(int nEscape, int nCount, const ::scoped_string & lpszInData, LPVOID lpOutData);
-      int Escape(int nEscape, int nInputSize,  const char * lpszInputData,int nOutputSize, char * lpszOutputData);
-      int DrawEscape(int nEscape, int nInputSize, const ::scoped_string & lpszInputData);
+      //virtual int Escape(int nEscape, int nCount, const ::scoped_string & lpszInData, LPVOID lpOutData);
+      //int Escape(int nEscape, int nInputSize,  const char * lpszInputData,int nOutputSize, char * lpszOutputData);
+      //int DrawEscape(int nEscape, int nInputSize, const ::scoped_string & lpszInputData);
 
       // Escape helpers
       int StartDoc(const ::scoped_string & lpszDocName);  // old Win3.0 version
-      int StartDoc(LPDOCINFO lpDocInfo);
+      //int StartDoc(LPDOCINFO lpDocInfo);
       int StartPage();
       int EndPage();
-      int SetAbortProc(bool (CALLBACK* lpfn)(HDC, int));
+      //int SetAbortProc(bool (CALLBACK* lpfn)(HDC, int));
       int AbortDoc();
       int EndDoc();
 
@@ -632,12 +618,7 @@ namespace draw2d_gpu
 
    };
 
-
-   CLASS_DECL_DRAW2D_GPU graphics * thread_graphics();
-
-   CLASS_DECL_DRAW2D_GPU void thread_graphics(graphics * graphics);
-
-
+   
 } // namespace draw2d_gpu
 
 

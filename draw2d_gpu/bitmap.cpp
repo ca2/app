@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "_opengl.h"
+//glglgl #include "_opengl.h"
 #include "bitmap.h"
 #include "acme/exception/interface_only.h"
 
@@ -17,9 +17,9 @@ int pbAttrib[] = { GLX_PBUFFER_WIDTH, WIDTH,GLX_PBUFFER_HEIGHT, HEIGHT,GLX_PRESE
 #endif
 
 //extern CLASS_DECL_AXIS thread_int_ptr < DWORD_PTR > t_time1;
-GLfloat LightAmbient[] = { 0.5f, 0.5f, 0.5f, 1.00f };
-GLfloat LightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.00f };
-GLfloat LightPosition[] = { 0.0f, 0.0f, 2.0f, 1.00f };
+//glglgl GLfloat LightAmbient[] = { 0.5f, 0.5f, 0.5f, 1.00f };
+//glglgl GLfloat LightDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.00f };
+//glglgl GLfloat LightPosition[] = { 0.0f, 0.0f, 2.0f, 1.00f };
 //GLfloat LightPosition2[] = { -5.0f, -5.0f, 32.0f, 1.00f };
 
 //#ifdef WINDOWS
@@ -96,13 +96,13 @@ namespace draw2d_gpu
 
    }
 
-   bool bitmap::CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP lpBitmap)
-   {
+   //bool bitmap::CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP lpBitmap)
+   //{
 
-      __UNREFERENCED_PARAMETER(pgraphics);
+   //   __UNREFERENCED_PARAMETER(pgraphics);
 
-      return false;
-   }
+   //   return false;
+   //}
 
 
    void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::int_size& size, void** ppcolorref, int* piScan)
@@ -161,11 +161,11 @@ namespace draw2d_gpu
       return 0;
 
    }
-   unsigned int bitmap::GetBitmapBits(unsigned int dwCount, LPVOID lpBits) const
-   {
-      //return ::GetBitmapBits((HBITMAP)get_handle(), dwCount, lpBits);
-      return 0;
-   }
+   //unsigned int bitmap::GetBitmapBits(unsigned int dwCount, LPVOID lpBits) const
+   //{
+   //   //return ::GetBitmapBits((HBITMAP)get_handle(), dwCount, lpBits);
+   //   return 0;
+   //}
    bool bitmap::LoadBitmap(const ::string & lpszResourceName)
    {
       //   return attach(::LoadBitmap(::aura::FindResourceHandle(
@@ -234,12 +234,12 @@ namespace draw2d_gpu
    }
 
 
-   int bitmap::GetBitmap(BITMAP* pBitMap)
-   {
-      //   ASSERT(get_handle() != nullptr);
-      // return ::GetObject(get_handle(), sizeof(BITMAP), pBitMap);
-      return 0;
-   }
+   //int bitmap::GetBitmap(BITMAP* pBitMap)
+   //{
+   //   //   ASSERT(get_handle() != nullptr);
+   //   // return ::GetObject(get_handle(), sizeof(BITMAP), pBitMap);
+   //   return 0;
+   //}
 
 
    /////////////////////////////////////////////////////////////////////////////
@@ -306,31 +306,31 @@ namespace draw2d_gpu
    }
 
 
-   HBITMAP bitmap::_GetHBITMAP()
-   {
+   //HBITMAP bitmap::_GetHBITMAP()
+   //{
 
-      //if(m_pbitmap == nullptr)
-      //   return nullptr;
-      //
-      //HBITMAP hbitmap = nullptr;
+   //   //if(m_pbitmap == nullptr)
+   //   //   return nullptr;
+   //   //
+   //   //HBITMAP hbitmap = nullptr;
 
-      //plusplus::Color colorBk(0,0,0,0);
+   //   //plusplus::Color colorBk(0,0,0,0);
 
-      //m_pbitmap->GetHBITMAP(colorBk,&hbitmap);
+   //   //m_pbitmap->GetHBITMAP(colorBk,&hbitmap);
 
-      //return hbitmap;
-      return nullptr;
+   //   //return hbitmap;
+   //   return nullptr;
 
-   }
-
-
-   void bitmap::_ReleaseHBITMAP(HBITMAP hbitmap)
-   {
-
-      ::DeleteObject(hbitmap);
+   //}
 
 
-   }
+   //void bitmap::_ReleaseHBITMAP(HBITMAP hbitmap)
+   //{
+
+   //   ::DeleteObject(hbitmap);
+
+
+   //}
 
    void bitmap::destroy_bitmap()
    {
@@ -338,18 +338,18 @@ namespace draw2d_gpu
       m_bTexture = false;
       m_bPBuffer = false;
 
-      if (g_hDC)
-      {
-         if (g_hRC)
-         {
-            wglMakeCurrent(g_hDC, 0);
-            wglDeleteContext(g_hRC);
-            g_hRC = 0;
-         }
+      //if (g_hDC)
+      //{
+      //   if (g_hRC)
+      //   {
+      //      wglMakeCurrent(g_hDC, 0);
+      //      wglDeleteContext(g_hRC);
+      //      g_hRC = 0;
+      //   }
 
-         DeleteDC(g_hDC);
-         g_hDC = 0;
-      }
+      //   DeleteDC(g_hDC);
+      //   g_hDC = 0;
+      //}
 
 
    }
@@ -377,39 +377,39 @@ namespace draw2d_gpu
 
       resizeBilinear(m_memIn, m_sizeIn.cx(), m_sizeIn.cy(), (int*)m_memOut.data(), m_sizeOut.cx(), m_sizeOut.cy());
 
-      glGenTextures(1, &m_texture);
+      //glGenTextures(1, &m_texture);
 
-      GLenum e = glGetError();
+      //GLenum e = glGetError();
 
-      // Create Nearest Filtered Texture
-      glBindTexture(GL_TEXTURE_2D, m_texture);
-      e = glGetError();
-      if (iResampleQuality == 2)
-      {
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-         e = glGetError();
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
-         e = glGetError();
-      }
-      else if (iResampleQuality == 1)
-      {
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-         e = glGetError();
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-         e = glGetError();
-      }
-      else
-      {
+      //// Create Nearest Filtered Texture
+      //glBindTexture(GL_TEXTURE_2D, m_texture);
+      //e = glGetError();
+      //if (iResampleQuality == 2)
+      //{
+      //   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+      //   e = glGetError();
+      //   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
+      //   e = glGetError();
+      //}
+      //else if (iResampleQuality == 1)
+      //{
+      //   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+      //   e = glGetError();
+      //   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+      //   e = glGetError();
+      //}
+      //else
+      //{
 
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-         e = glGetError();
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-         e = glGetError();
+      //   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+      //   e = glGetError();
+      //   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+      //   e = glGetError();
 
-      }
+      //}
 
-      glTexImage2D(GL_TEXTURE_2D, 0, 4, m_sizeIn.cx(), m_sizeIn.cy(), 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, m_memIn.data());
-      e = glGetError();
+      //glTexImage2D(GL_TEXTURE_2D, 0, 4, m_sizeIn.cx(), m_sizeIn.cy(), 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, m_memIn.data());
+      //e = glGetError();
 
 
 
@@ -554,299 +554,299 @@ namespace draw2d_gpu
    void bitmap::defer_reveal()
    {
 
-      if (m_bFlashed)
-      {
-
-         m_bFlashed = false;
-
-         //wglMakeCurrent(g_hDC, g_hRC);
-
-         wglMakeCurrent(g_hPBufferDC, g_hPBufferRC);
-         GLenum e = glGetError();
-
-//         glFlush();
-
-         //m_mem.set_size(cxDIB * cyDIB * 4);
-         //m_mem.zero();
-         glPixelStorei(GL_PACK_ALIGNMENT, 1);
-         e = glGetError();
-
-         color32_t * pdata = (color32_t *) m_memOut.data();
-
-         glReadPixels(0, 0, m_sizeOut.cx(), m_sizeOut.cy(), GL_BGRA_EXT, GL_UNSIGNED_BYTE, pdata);
-         e = glGetError();
-
-         information("error " + ::as_string((int)e));
-
-      }
+//      if (m_bFlashed)
+//      {
+//
+//         m_bFlashed = false;
+//
+//         //wglMakeCurrent(g_hDC, g_hRC);
+//
+//         wglMakeCurrent(g_hPBufferDC, g_hPBufferRC);
+//         GLenum e = glGetError();
+//
+////         glFlush();
+//
+//         //m_mem.set_size(cxDIB * cyDIB * 4);
+//         //m_mem.zero();
+//         glPixelStorei(GL_PACK_ALIGNMENT, 1);
+//         e = glGetError();
+//
+//         color32_t * pdata = (color32_t *) m_memOut.data();
+//
+//         glReadPixels(0, 0, m_sizeOut.cx(), m_sizeOut.cy(), GL_BGRA_EXT, GL_UNSIGNED_BYTE, pdata);
+//         e = glGetError();
+//
+//         information("error " + ::as_string((int)e));
+//
+//      }
 
    }
 
 
-   bool bitmap::InitGL()
-   {
-
-#ifdef WINDOWS
-      // Even though we aren't going to be rendering the scene to the window
-      // we still need to create a dummy rendering context in order to load the
-      // pbuffer extensions and to create our pbuffer.
-
-      PIXELFORMATDESCRIPTOR pfd = { 0 };
-
-      // Don't bother with anything fancy here. This is just a dummy rendering
-      // context so just ask for the bare minimum.
-      pfd.nSize = sizeof(pfd);
-      pfd.nVersion = 1;
-      pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL;
-      pfd.iPixelType = PFD_TYPE_RGBA;
-      pfd.cColorBits = 32;
-      pfd.cDepthBits = 32;
-      pfd.iLayerType = PFD_MAIN_PLANE;
-
-      if (!(g_hDC = GetDC(g_hWnd)))
-         return false;
-
-      int pf = ChoosePixelFormat(g_hDC, &pfd);
-
-      if (!SetPixelFormat(g_hDC, pf, &pfd))
-         return false;
-
-      if (!(g_hRC = wglCreateContext(g_hDC)))
-         return false;
-
-      if (!wglMakeCurrent(g_hDC, g_hRC))
-         return false;
-
-      if (!InitGLExtensions())
-         return false;
-
-      if (!InitPBuffer())
-         return false;
-
-      // Deactivate the dummy rendering context now that the pbuffer is created.
-      wglMakeCurrent(g_hDC, 0);
-      ::DeleteDC(g_hDC);
-      g_hDC = 0;
-
-
-
-      return true;
-#else
-
-
-
-      if (!(dpy = x11_get_display()))
-      {
-         fprintf(stderr, "could not open display");
-         return false;
-      }
-
-      fprintf(stdout, "Info:GLX Extensions:%s\n", glXQueryExtensionsString(dpy, DefaultScreen(dpy)));
-
-      if (!glXQueryExtension(dpy, &dummy, &dummy))
-      {
-         fprintf(stderr, "Error:GLX extensions not supported");
-         return false;
-      }
-
-      fbc = glXChooseFBConfig(dpy, DefaultScreen(dpy), sbAttrib, &nElements);
-      fprintf(stdout, "Info:Number of FBConfigs: %d\n", nElements);
-      if (nElements == 0)
-      {
-         fprintf(stderr, "Error: No valid framebuffers configurations found\n");
-         return false;
-      }
-      /*
-      * For simplicities sake, select the first. This however may not be the right one
-      * for the purpose of an example this will suffice.
-      */
-      vi = glXGetVisualFromFBConfig(dpy, fbc[0]);
-
-      if (!(WinCtx = glXCreateContext(dpy, vi,
-                                      None, /* no sharing of display lists */
-                                      True /* direct rendering if possible */
-                                     )))
-      {
-         fprintf(stderr, "Cound not create rendering context\n");
-         return false;
-      }
-
-      PBuffer = glXCreatePbuffer(dpy, fbc[0], pbAttrib);
-      PBufferCtx = glXCreateNewContext(dpy, fbc[0], GLX_RGBA_TYPE, 0, GL_TRUE);
-
-      cmap = XCreateColormap(dpy, RootWindow(dpy, vi->screen), vi->draw2d, AllocNone);
-      swa.colormap = cmap;
-      swa.border_pixel = 0;
-      swa.event_mask = ExposureMask | ButtonPressMask | StructureNotifyMask;
-      win = XCreateWindow(dpy, RootWindow(dpy, vi->screen), 0, 0, WIDTH, HEIGHT,
-                          0, vi->depth, InputOutput, vi->draw2d,
-                          CWBorderPixel | CWColormap | CWEventMask,
-                          &swa);
-
-      glXMakeContextCurrent(dpy, PBuffer, PBuffer, PBufferCtx);
-
-#endif
-   }
-
-   bool bitmap::Init()
-   {
-      if (!InitGL())
-      {
-         Cleanup();
-         return false;
-      }
-
-      //if (!d->create(cxDIB, cyDIB))
-
-      //   //      if (!ImageCreate(&g_image, cxDIB, cyDIB))
-      //{
-      //   Cleanup();
-      //   return false;
-      //}
-      ::DestroyWindow(g_hWnd);
-      return true;
-   }
-
-
-   bool bitmap::InitGLExtensions()
-   {
-
-//#ifdef WINDOWS
-//#define GPA(x) wglGetProcAddress(x)
+//   bool bitmap::InitGL()
+//   {
+////
+////#ifdef WINDOWS
+////      // Even though we aren't going to be rendering the scene to the window
+////      // we still need to create a dummy rendering context in order to load the
+////      // pbuffer extensions and to create our pbuffer.
+////
+////      PIXELFORMATDESCRIPTOR pfd = { 0 };
+////
+////      // Don't bother with anything fancy here. This is just a dummy rendering
+////      // context so just ask for the bare minimum.
+////      pfd.nSize = sizeof(pfd);
+////      pfd.nVersion = 1;
+////      pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL;
+////      pfd.iPixelType = PFD_TYPE_RGBA;
+////      pfd.cColorBits = 32;
+////      pfd.cDepthBits = 32;
+////      pfd.iLayerType = PFD_MAIN_PLANE;
+////
+////      if (!(g_hDC = GetDC(g_hWnd)))
+////         return false;
+////
+////      int pf = ChoosePixelFormat(g_hDC, &pfd);
+////
+////      if (!SetPixelFormat(g_hDC, pf, &pfd))
+////         return false;
+////
+////      if (!(g_hRC = wglCreateContext(g_hDC)))
+////         return false;
+////
+////      if (!wglMakeCurrent(g_hDC, g_hRC))
+////         return false;
+////
+////      if (!InitGLExtensions())
+////         return false;
+////
+////      if (!InitPBuffer())
+////         return false;
+////
+////      // Deactivate the dummy rendering context now that the pbuffer is created.
+////      wglMakeCurrent(g_hDC, 0);
+////      ::DeleteDC(g_hDC);
+////      g_hDC = 0;
+////
+////
+////
+////      return true;
+////#else
+////
+////
+////
+////      if (!(dpy = x11_get_display()))
+////      {
+////         fprintf(stderr, "could not open display");
+////         return false;
+////      }
+////
+////      fprintf(stdout, "Info:GLX Extensions:%s\n", glXQueryExtensionsString(dpy, DefaultScreen(dpy)));
+////
+////      if (!glXQueryExtension(dpy, &dummy, &dummy))
+////      {
+////         fprintf(stderr, "Error:GLX extensions not supported");
+////         return false;
+////      }
+////
+////      fbc = glXChooseFBConfig(dpy, DefaultScreen(dpy), sbAttrib, &nElements);
+////      fprintf(stdout, "Info:Number of FBConfigs: %d\n", nElements);
+////      if (nElements == 0)
+////      {
+////         fprintf(stderr, "Error: No valid framebuffers configurations found\n");
+////         return false;
+////      }
+////      /*
+////      * For simplicities sake, select the first. This however may not be the right one
+////      * for the purpose of an example this will suffice.
+////      */
+////      vi = glXGetVisualFromFBConfig(dpy, fbc[0]);
+////
+////      if (!(WinCtx = glXCreateContext(dpy, vi,
+////                                      None, /* no sharing of display lists */
+////                                      True /* direct rendering if possible */
+////                                     )))
+////      {
+////         fprintf(stderr, "Cound not create rendering context\n");
+////         return false;
+////      }
+////
+////      PBuffer = glXCreatePbuffer(dpy, fbc[0], pbAttrib);
+////      PBufferCtx = glXCreateNewContext(dpy, fbc[0], GLX_RGBA_TYPE, 0, GL_TRUE);
+////
+////      cmap = XCreateColormap(dpy, RootWindow(dpy, vi->screen), vi->draw2d, AllocNone);
+////      swa.colormap = cmap;
+////      swa.border_pixel = 0;
+////      swa.event_mask = ExposureMask | ButtonPressMask | StructureNotifyMask;
+////      win = XCreateWindow(dpy, RootWindow(dpy, vi->screen), 0, 0, WIDTH, HEIGHT,
+////                          0, vi->depth, InputOutput, vi->draw2d,
+////                          CWBorderPixel | CWColormap | CWEventMask,
+////                          &swa);
+////
+////      glXMakeContextCurrent(dpy, PBuffer, PBuffer, PBufferCtx);
+////
+////#endif
+//   }
 //
-//      // WGL_ARB_pbuffer.
-//      wglDestroyPbufferARB = (PFNWGLDESTROYPBUFFERARBPROC)GPA("wglDestroyPbufferARB");
-//      wglQueryPbufferARB = (PFNWGLQUERYPBUFFERARBPROC)GPA("wglQueryPbufferARB");
-//      wglGetPbufferDCARB = (PFNWGLGETPBUFFERDCARBPROC)GPA("wglGetPbufferDCARB");
-//      wglCreatePbufferARB = (PFNWGLCREATEPBUFFERARBPROC)GPA("wglCreatePbufferARB");
-//      wglReleasePbufferDCARB = (PFNWGLRELEASEPBUFFERDCARBPROC)GPA("wglReleasePbufferDCARB");
+//   bool bitmap::Init()
+//   {
+//      //if (!InitGL())
+//      //{
+//      //   Cleanup();
+//      //   return false;
+//      //}
 //
-//      // WGL_ARB_pixel_format.
-//      wglChoosePixelFormatARB = (PFNWGLCHOOSEPIXELFORMATARBPROC)GPA("wglChoosePixelFormatARB");
-//      wglGetPixelFormatAttribfvARB = (PFNWGLGETPIXELFORMATATTRIBFVARBPROC)GPA("wglGetPixelFormatAttribfvARB");
-//      wglGetPixelFormatAttribivARB = (PFNWGLGETPIXELFORMATATTRIBIVARBPROC)GPA("wglGetPixelFormatAttribivARB");
+//      ////if (!d->create(cxDIB, cyDIB))
 //
-//#undef GPA
+//      ////   //      if (!ImageCreate(&g_image, cxDIB, cyDIB))
+//      ////{
+//      ////   Cleanup();
+//      ////   return false;
+//      ////}
+//      //::DestroyWindow(g_hWnd);
+//      return true;
+//   }
 //
-//      if (!wglDestroyPbufferARB || !wglQueryPbufferARB || !wglGetPbufferDCARB || !wglCreatePbufferARB || !wglReleasePbufferDCARB)
-//      {
-//         MessageBox(0, _T("Required extension WGL_ARB_pbuffer not supported"), _T("Error"), e_message_box_icon_stop);
-//         return false;
-//      }
 //
-//      if (!wglChoosePixelFormatARB || !wglGetPixelFormatAttribfvARB || !wglGetPixelFormatAttribivARB)
-//      {
-//         MessageBox(0, _T("Required extension WGL_ARB_pixel_format not supported"), _T("Error"), e_message_box_icon_stop);
-//         return false;
-//      }
-//#endif
-      return true;
-   }
-
-   bool bitmap::InitPBuffer()
-   {
-//#ifdef WINDOWS
-//      // Create a pbuffer for off-screen rendering. Notice that since we aren't
-//      // going to be using the pbuffer for dynamic texturing (i.e., using the
-//      // pbuffer containing our rendered scene as a texture) we don't need to
-//      // request for WGL_BIND_TO_TEXTURE_RGBA_ARB support in the attribute list.
+//   bool bitmap::InitGLExtensions()
+//   {
 //
-//      int attribList[] =
-//      {
-//         WGL_DRAW_TO_PBUFFER_ARB, true,      // allow rendering to the pbuffer
-//         WGL_SUPPORT_OPENGL_ARB,  true,      // associate with OpenGL
-//         WGL_DOUBLE_BUFFER_ARB,   false,     // single buffered
-//         WGL_RED_BITS_ARB,   8,              // minimum 8-bits for red channel
-//         WGL_GREEN_BITS_ARB, 8,              // minimum 8-bits for green channel
-//         WGL_BLUE_BITS_ARB, 8,              // minimum 8-bits for blue channel
-//         WGL_ALPHA_BITS_ARB, 8,              // minimum 8-bits for alpha channel
-//         WGL_DEPTH_BITS_ARB, 16,             // minimum 16-bits for depth buffer
-//         0
-//      };
+////#ifdef WINDOWS
+////#define GPA(x) wglGetProcAddress(x)
+////
+////      // WGL_ARB_pbuffer.
+////      wglDestroyPbufferARB = (PFNWGLDESTROYPBUFFERARBPROC)GPA("wglDestroyPbufferARB");
+////      wglQueryPbufferARB = (PFNWGLQUERYPBUFFERARBPROC)GPA("wglQueryPbufferARB");
+////      wglGetPbufferDCARB = (PFNWGLGETPBUFFERDCARBPROC)GPA("wglGetPbufferDCARB");
+////      wglCreatePbufferARB = (PFNWGLCREATEPBUFFERARBPROC)GPA("wglCreatePbufferARB");
+////      wglReleasePbufferDCARB = (PFNWGLRELEASEPBUFFERDCARBPROC)GPA("wglReleasePbufferDCARB");
+////
+////      // WGL_ARB_pixel_format.
+////      wglChoosePixelFormatARB = (PFNWGLCHOOSEPIXELFORMATARBPROC)GPA("wglChoosePixelFormatARB");
+////      wglGetPixelFormatAttribfvARB = (PFNWGLGETPIXELFORMATATTRIBFVARBPROC)GPA("wglGetPixelFormatAttribfvARB");
+////      wglGetPixelFormatAttribivARB = (PFNWGLGETPIXELFORMATATTRIBIVARBPROC)GPA("wglGetPixelFormatAttribivARB");
+////
+////#undef GPA
+////
+////      if (!wglDestroyPbufferARB || !wglQueryPbufferARB || !wglGetPbufferDCARB || !wglCreatePbufferARB || !wglReleasePbufferDCARB)
+////      {
+////         MessageBox(0, _T("Required extension WGL_ARB_pbuffer not supported"), _T("Error"), e_message_box_icon_stop);
+////         return false;
+////      }
+////
+////      if (!wglChoosePixelFormatARB || !wglGetPixelFormatAttribfvARB || !wglGetPixelFormatAttribivARB)
+////      {
+////         MessageBox(0, _T("Required extension WGL_ARB_pixel_format not supported"), _T("Error"), e_message_box_icon_stop);
+////         return false;
+////      }
+////#endif
+//      return true;
+//   }
 //
-//      int format = 0;
-//      unsigned int matchingFormats = 0;
+//   bool bitmap::InitPBuffer()
+//   {
+////#ifdef WINDOWS
+////      // Create a pbuffer for off-screen rendering. Notice that since we aren't
+////      // going to be using the pbuffer for dynamic texturing (i.e., using the
+////      // pbuffer containing our rendered scene as a texture) we don't need to
+////      // request for WGL_BIND_TO_TEXTURE_RGBA_ARB support in the attribute list.
+////
+////      int attribList[] =
+////      {
+////         WGL_DRAW_TO_PBUFFER_ARB, true,      // allow rendering to the pbuffer
+////         WGL_SUPPORT_OPENGL_ARB,  true,      // associate with OpenGL
+////         WGL_DOUBLE_BUFFER_ARB,   false,     // single buffered
+////         WGL_RED_BITS_ARB,   8,              // minimum 8-bits for red channel
+////         WGL_GREEN_BITS_ARB, 8,              // minimum 8-bits for green channel
+////         WGL_BLUE_BITS_ARB, 8,              // minimum 8-bits for blue channel
+////         WGL_ALPHA_BITS_ARB, 8,              // minimum 8-bits for alpha channel
+////         WGL_DEPTH_BITS_ARB, 16,             // minimum 16-bits for depth buffer
+////         0
+////      };
+////
+////      int format = 0;
+////      unsigned int matchingFormats = 0;
+////
+////      if (!wglChoosePixelFormatARB(g_hDC, attribList, 0, 1, &format, &matchingFormats))
+////      {
+////         MessageBox(0, _T("wglChoosePixelFormatARB() failed"), _T("Error"), e_message_box_icon_stop);
+////         return false;
+////      }
+////
+////      if (!(g_hPBuffer = wglCreatePbufferARB(g_hDC, format, m_sizeOut.cx(), m_sizeOut.cy(), 0)))
+////      {
+////         MessageBox(0, _T("wglCreatePbufferARB() failed"), _T("Error"), e_message_box_icon_stop);
+////         return false;
+////      }
+////
+////      if (!(g_hPBufferDC = wglGetPbufferDCARB(g_hPBuffer)))
+////      {
+////         MessageBox(0, _T("wglGetPbufferDCARB() failed"), _T("Error"), e_message_box_icon_stop);
+////         return false;
+////      }
+////
+////      if (!(g_hPBufferRC = wglCreateContext(g_hPBufferDC)))
+////      {
+////         MessageBox(0, _T("wglCreateContext() failed for PBuffer"), _T("Error"), e_message_box_icon_stop);
+////         return false;
+////      }
+////#endif
+//      return true;
+//   }
 //
-//      if (!wglChoosePixelFormatARB(g_hDC, attribList, 0, 1, &format, &matchingFormats))
-//      {
-//         MessageBox(0, _T("wglChoosePixelFormatARB() failed"), _T("Error"), e_message_box_icon_stop);
-//         return false;
-//      }
 //
-//      if (!(g_hPBuffer = wglCreatePbufferARB(g_hDC, format, m_sizeOut.cx(), m_sizeOut.cy(), 0)))
-//      {
-//         MessageBox(0, _T("wglCreatePbufferARB() failed"), _T("Error"), e_message_box_icon_stop);
-//         return false;
-//      }
+//   //int pitch = d->m_iScan / 4;
+//   //int iScan = cxDIB * 4;
+//   //for (int i = 0; i < cyDIB; ++i)
+//   //{
+//   //   ::memory_copy(&d->m_pcolorref[pitch * i], &m_mem.get_data()[((cyDIB - 1) - i) * iScan], iScan);
+//   //}
 //
-//      if (!(g_hPBufferDC = wglGetPbufferDCARB(g_hPBuffer)))
-//      {
-//         MessageBox(0, _T("wglGetPbufferDCARB() failed"), _T("Error"), e_message_box_icon_stop);
-//         return false;
-//      }
+//   void bitmap::Cleanup()
+//   {
+////      if (m_texture)
+////      {
+////         glDeleteTextures(1, &m_texture);
+////         m_texture = 0;
+////      }
+////
+////#ifdef WINDOWS
+////      if (g_hPBuffer)
+////      {
+////         wglDeleteContext(g_hPBufferRC);
+////         //wglReleasePbufferDCARB(g_hPBuffer, g_hPBufferDC);
+////         //wglDestroyPbufferARB(g_hPBuffer);
+////         g_hPBufferRC = 0;
+////         g_hPBufferDC = 0;
+////         g_hPBuffer = 0;
+////      }
+////      if (g_hDC)
+////      {
+////         if (g_hRC)
+////         {
+////            wglMakeCurrent(g_hDC, 0);
+////            wglDeleteContext(g_hRC);
+////            g_hRC = 0;
+////         }
+////
+////         DeleteDC(g_hDC);
+////         g_hDC = 0;
+////      }
+////#else
+////      //      if (g_hPBuffer)
+////      //      {
+////      //         glDeleteContext(g_hPBufferRC);
+////      //         wglReleasePbufferDCARB(g_hPBuffer, g_hPBufferDC);
+////      //         glDestroyPbufferARB(g_hPBuffer);
+////      //         g_hPBufferRC = 0;
+////      //         g_hPBufferDC = 0;
+////      //         g_hPBuffer = 0;
+////      //      }
+////#endif
+////
 //
-//      if (!(g_hPBufferRC = wglCreateContext(g_hPBufferDC)))
-//      {
-//         MessageBox(0, _T("wglCreateContext() failed for PBuffer"), _T("Error"), e_message_box_icon_stop);
-//         return false;
-//      }
-//#endif
-      return true;
-   }
-
-
-   //int pitch = d->m_iScan / 4;
-   //int iScan = cxDIB * 4;
-   //for (int i = 0; i < cyDIB; ++i)
-   //{
-   //   ::memory_copy(&d->m_pcolorref[pitch * i], &m_mem.get_data()[((cyDIB - 1) - i) * iScan], iScan);
-   //}
-
-   void bitmap::Cleanup()
-   {
-      if (m_texture)
-      {
-         glDeleteTextures(1, &m_texture);
-         m_texture = 0;
-      }
-
-#ifdef WINDOWS
-      if (g_hPBuffer)
-      {
-         wglDeleteContext(g_hPBufferRC);
-         //wglReleasePbufferDCARB(g_hPBuffer, g_hPBufferDC);
-         //wglDestroyPbufferARB(g_hPBuffer);
-         g_hPBufferRC = 0;
-         g_hPBufferDC = 0;
-         g_hPBuffer = 0;
-      }
-      if (g_hDC)
-      {
-         if (g_hRC)
-         {
-            wglMakeCurrent(g_hDC, 0);
-            wglDeleteContext(g_hRC);
-            g_hRC = 0;
-         }
-
-         DeleteDC(g_hDC);
-         g_hDC = 0;
-      }
-#else
-      //      if (g_hPBuffer)
-      //      {
-      //         glDeleteContext(g_hPBufferRC);
-      //         wglReleasePbufferDCARB(g_hPBuffer, g_hPBufferDC);
-      //         glDestroyPbufferARB(g_hPBuffer);
-      //         g_hPBufferRC = 0;
-      //         g_hPBufferDC = 0;
-      //         g_hPBuffer = 0;
-      //      }
-#endif
-
-
-      //      ImageDestroy(&g_image);
-   }
+//      //      ImageDestroy(&g_image);
+//   }
 
 
 

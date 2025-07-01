@@ -1,30 +1,29 @@
 #include "framework.h"
-#include "_opengl.h"
 #include "draw2d.h"
 #include "acme/exception/resource.h"
 #include "acme/platform/application.h"
 #include "acme/prototype/prototype/memory.h"
 
-int g_iDpiY = -1;
-int get_y_dpi()
-{
-   if (g_iDpiY < 0)
-   {
-      HDC hdc = ::GetDC(NULL);
-      g_iDpiY = GetDeviceCaps(hdc, LOGPIXELSY); // Usually Y axis DPI is used for font sizes
-      if (g_iDpiY < 0)
-      {
-
-         g_iDpiY = 96;
-
-      }
-
-      ReleaseDC(NULL, hdc);
-
-   }
-   return g_iDpiY;
-}
-
+//int g_iDpiY = -1;
+//int get_y_dpi()
+//{
+//   if (g_iDpiY < 0)
+//   {
+//      HDC hdc = ::GetDC(NULL);
+//      g_iDpiY = GetDeviceCaps(hdc, LOGPIXELSY); // Usually Y axis DPI is used for font sizes
+//      if (g_iDpiY < 0)
+//      {
+//
+//         g_iDpiY = 96;
+//
+//      }
+//
+//      ReleaseDC(NULL, hdc);
+//
+//   }
+//   return g_iDpiY;
+//}
+//
 
 
 //CLASS_DECL_DRAW2D_GPU void initialize_opengl();
@@ -107,7 +106,7 @@ namespace draw2d_gpu
 
       //auto estatus = 
 
-      ::draw2d_gpu::draw2d::initialize(pparticle);
+      ::gpu::draw2d::initialize(pparticle);
 
 
       //application()->create_gpu();
@@ -121,7 +120,7 @@ namespace draw2d_gpu
       //estatus = 
 
 
-      opengl_init();
+      //opengl_init();
 
 
       //initialize_opengl();
@@ -142,6 +141,25 @@ namespace draw2d_gpu
    {
 
       return true;
+
+   }
+
+
+
+
+   void draw2d::on_before_create_window(::windowing::window* pwindow)
+   {
+
+
+
+   }
+
+
+
+   void draw2d::on_create_window(::windowing::window* pwindow)
+   {
+
+
 
    }
 
@@ -240,52 +258,52 @@ namespace draw2d_gpu
    //}
 
 
-   LRESULT CALLBACK opengl_window_proc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)
-   {
-      return DefWindowProc(hwnd, message, wparam, lparam);
-   }
+   //LRESULT CALLBACK opengl_window_proc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)
+   //{
+   //   return DefWindowProc(hwnd, message, wparam, lparam);
+   //}
 
 
-   int  draw2d::opengl_init()
-   {
+   //int  draw2d::opengl_init()
+   //{
 
-      //__øconstruct(m_popenglcontext);
+   //   //__øconstruct(m_popenglcontext);
 
-      //if (m_atomClass)
-      //{
+   //   //if (m_atomClass)
+   //   //{
 
-      //   return true;
+   //   //   return true;
 
-      //}
+   //   //}
 
-      //WNDCLASSW wc;
-      //ZeroMemory(&wc, sizeof(wc));
-      //wc.style = CS_OWNDC;
-      //wc.lpfnWndProc = opengl_window_proc;
-      //wc.hInstance = (HINSTANCE) system()->m_hinstanceThis;
-      //wc.lpszClassName = L"draw2d_gpu_offscreen_buffer_window";
-      //m_atomClass = RegisterClassW(&wc);
+   //   //WNDCLASSW wc;
+   //   //ZeroMemory(&wc, sizeof(wc));
+   //   //wc.style = CS_OWNDC;
+   //   //wc.lpfnWndProc = opengl_window_proc;
+   //   //wc.hInstance = (HINSTANCE) system()->m_hinstanceThis;
+   //   //wc.lpszClassName = L"draw2d_gpu_offscreen_buffer_window";
+   //   //m_atomClass = RegisterClassW(&wc);
 
-      //if (!m_atomClass)
-      //{
+   //   //if (!m_atomClass)
+   //   //{
 
-      //   return false;
+   //   //   return false;
 
-      //}
+   //   //}
 
-      //defer_initialize_glad();
+   //   //defer_initialize_glad();
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
-   void draw2d::adjust_composited_window_styles(unsigned int& nExStyle, unsigned int& nStyle)
-   {
+   //void draw2d::adjust_composited_window_styles(unsigned int& nExStyle, unsigned int& nStyle)
+   //{
 
-      nExStyle &= ~WS_EX_LAYERED;
+   //   nExStyle &= ~WS_EX_LAYERED;
 
-   }
+   //}
 
 
 

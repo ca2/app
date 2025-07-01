@@ -29,6 +29,7 @@ namespace gpu
       ::pointer < ::gpu::shader >               m_pshaderSourceRectangle;
       ::pointer < ::gpu::shader >               m_pshaderBlendRectangle;
       ::pool <::gpu::model_buffer >             m_poolmodelbufferRectangle;
+      ::pool <::gpu::model_buffer >             m_poolmodelbufferCharacter;
 
 
       graphics();

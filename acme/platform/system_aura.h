@@ -398,6 +398,9 @@ namespace platform
       virtual ::factory::factory * imaging_factory();
       virtual ::string imaging_get_default_implementation_name();
 
+      virtual ::factory::factory* typeface_factory();
+      virtual ::string typeface_get_default_implementation_name();
+
       //virtual void init_task() override;
       //virtual void term_task() override;
 

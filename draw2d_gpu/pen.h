@@ -5,9 +5,9 @@
 #include "object.h"
 
 
-#define minimum minimum
-#define maximum maximum
-#include <GdiPlus.h>
+//#define minimum minimum
+// #define maximum maximum
+//#include <GdiPlus.h>
 
 
 namespace draw2d_gpu

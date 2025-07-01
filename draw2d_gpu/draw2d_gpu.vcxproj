@@ -737,7 +737,7 @@
     <ClInclude Include="vase_rend_draft_1.h" />
     <ClInclude Include="vase_rend_draft_2.h" />
     <ClInclude Include="windows_interaction_impl.h" />
-    <ClInclude Include="_opengl.h" />
+    <ClInclude Include="aaa_opengl.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="aaa_draw2d_win32.cpp">

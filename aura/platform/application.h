@@ -1067,6 +1067,8 @@ void initialize_context() override;
 
       string draw2d_get_default_implementation_name() override;
 
+      string typeface_get_default_implementation_name() override;
+
 
       void on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine) override;
 

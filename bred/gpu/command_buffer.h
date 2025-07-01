@@ -43,6 +43,8 @@ namespace gpu
 
       virtual void draw(int a);
 
+      virtual void draw(::gpu::pixmap * ppixmap);
+
 
    };
 

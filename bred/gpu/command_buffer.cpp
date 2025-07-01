@@ -73,6 +73,14 @@ namespace gpu
    }
 
 
+   void command_buffer::draw(::gpu::pixmap* ppixmap)
+   {
+
+
+   }
+
+
+
    //void command_buffer::wait_for_gpu()
    //{
 

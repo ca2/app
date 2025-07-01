@@ -9805,6 +9805,15 @@ namespace aura
    }
 
 
+
+   ::string application::typeface_get_default_implementation_name()
+   {
+
+      return ::aqua::application::typeface_get_default_implementation_name();
+
+   }
+
+
    ::string application::graphics3d_get_implementation_name()
    {
 

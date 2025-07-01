@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "_opengl.h"
+//#include "_opengl.h"
 #include "object.h"
 
 

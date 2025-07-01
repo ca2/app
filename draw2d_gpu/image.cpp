@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "_opengl.h"
+#include "graphics.h"
 #include "image.h"
 #include "acme/platform/application.h"
 
@@ -193,7 +193,7 @@ namespace draw2d_gpu
    void image::create(::draw2d::graphics * pgraphics)
    {
 
-      ::draw2d::bitmap * pbitmap = (dynamic_cast<::draw2d_gpu::graphics * >(pgraphics))->get_current_bitmap();
+      ::draw2d::bitmap * pbitmap = (dynamic_cast<::gpu::graphics * >(pgraphics))->get_current_bitmap();
 
       if (pbitmap == nullptr)
       {
@@ -239,15 +239,17 @@ namespace draw2d_gpu
    //}
 
 
-   bool image::from(::draw2d::graphics * pgraphics)
+   bool image::from(::draw2d::graphics * pgraphicsParam)
    {
 
       ::draw2d::bitmap_pointer bitmap;
 
-      bitmap->CreateCompatibleBitmap(pgraphics, 1, 1);
+      bitmap->CreateCompatibleBitmap(pgraphicsParam, 1, 1);
 
       //auto estatus =
-      GL2D_GRAPHICS(pgraphics)->set(bitmap);
+
+      ::cast < graphics > pgraphics = pgraphicsParam;
+      pgraphics->set(bitmap);
 
       //if (!estatus)
       //{
@@ -2797,7 +2799,7 @@ namespace draw2d_gpu
 
       //glGetIntegerv(GL_ALPHA_BITS, &hasAlphaBits);
 
-      glFlush();
+      //glglgl glFlush();
 
       //glReadBuffer(GL_BACK);
       //glReadBuffer(GL_FRONT);
@@ -2812,23 +2814,23 @@ namespace draw2d_gpu
 
       bool bYSwap = m_papplication->m_gpu.m_bUseSwapChainWindow;
 
-      ::opengl::resize(pgraphics->m_sizeWindow, bYSwap);
+      //glglgl ::opengl::resize(pgraphics->m_sizeWindow, bYSwap);
 
-      glReadBuffer(GL_BACK);
+      //glglgl glReadBuffer(GL_BACK);
 
-      glPixelStorei(GL_PACK_SWAP_BYTES, 0);
+      //glglgl glPixelStorei(GL_PACK_SWAP_BYTES, 0);
 
-      glPixelStorei(GL_PACK_ROW_LENGTH, m_iScan/4);
+      //glglgl glPixelStorei(GL_PACK_ROW_LENGTH, m_iScan/4);
 
-      glReadPixels(0, 0, cx, cy, GL_BGRA, GL_UNSIGNED_BYTE, m_pimage32Raw);
+      //glglgl glReadPixels(0, 0, cx, cy, GL_BGRA, GL_UNSIGNED_BYTE, m_pimage32Raw);
 
       //glReadPixels(0, 0, m_size.cx(), m_size.cy(), GL_ARGB, GL_UNSIGNED_BYTE, m_pimage32Raw);
 
-      int i1280 = GL_INVALID_ENUM;
+      //glglgl int i1280 = GL_INVALID_ENUM;
 
-      int i1281 = GL_INVALID_VALUE;
+      //glglgl int i1281 = GL_INVALID_VALUE;
 
-      int iError = glGetError();
+      //glglgl int iError = glGetError();
 
       m_bMapped = true;
 

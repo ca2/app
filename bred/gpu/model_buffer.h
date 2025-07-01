@@ -50,6 +50,16 @@ namespace gpu
 
       }
 
+      template < typename VERTEX >
+      void set_vertex_array(const VERTEX *p, int iVertexCount)
+      {
+
+         auto data = map <VERTEX >();
+
+         memcpy(data, p, sizeof(VERTEX) * iVertexCount);
+
+      }
+
       void sequence2_color_create_rectangle(::gpu::context* pcontext);
       void sequence2_color_create_line(::gpu::context* pcontext);
       void sequence3_color_create_rectangle(::gpu::context* pcontext);

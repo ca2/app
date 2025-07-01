@@ -5,7 +5,7 @@
 #include "bred/gpu/draw2d.h"
 #include "acme/platform/auto_pointer.h"
 #include "aura/graphics/draw2d/draw2d.h"
-#include "gpu_opengl/context.h"
+#include "bred/gpu/context.h"
 #include "face.h"
 
 
@@ -14,7 +14,7 @@ namespace draw2d_gpu
 
 
    class CLASS_DECL_DRAW2D_GPU draw2d :
-      virtual public ::draw2d_gpu::draw2d
+      virtual public ::gpu::draw2d
    {
    public:
 
@@ -66,10 +66,10 @@ namespace draw2d_gpu
 
 
       //virtual private_font * get_file_private_font(::platform::context * pcontext, const ::file::path & path);
-      virtual int  opengl_init();
+      //virtual int  opengl_init();
 
 
-      void adjust_composited_window_styles(unsigned int& nExStyle, unsigned int& nStyle) override;
+      //void adjust_composited_window_styles(unsigned int& nExStyle, unsigned int& nStyle) override;
 
 
    };

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "_opengl.h"
+//glglgl #include "_opengl.h"
 #include "font.h"
 #include "acme/filesystem/filesystem/file_context.h"
 

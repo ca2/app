@@ -420,6 +420,19 @@ namespace platform
    }
 
 
+   ::factory::factory* aura_system_layer::typeface_factory()
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::string aura_system_layer::typeface_get_default_implementation_name()
+   {
+      return {};
+   }
+
    //void aura_system_layer::init_task() override{}
    //void aura_system_layer::term_task() override{}
 

@@ -1395,6 +1395,63 @@ namespace aura
    }
 
 
+   string system::typeface_get_default_implementation_name()
+   {
+
+      string strImplementationName;
+
+      strImplementationName = application()->typeface_get_default_implementation_name();
+
+      if (strImplementationName.has_character())
+      {
+
+         return strImplementationName;
+
+      }
+
+      ::file::path path = directory_system()->roaming() / "system/typeface.txt";
+
+      strImplementationName = file_system()->safe_get_string(path);
+
+      if (strImplementationName.has_character())
+      {
+
+         return implementation_name("typeface", strImplementationName);
+
+      }
+
+      path = directory_system()->roaming() / application()->m_strAppId / "typeface.txt";
+
+      strImplementationName = file_system()->as_string(path);
+
+      if (strImplementationName.has_character())
+      {
+
+         return implementation_name("typeface", strImplementationName);
+
+      }
+
+#ifdef WINDOWS_DESKTOP
+
+      return implementation_name("typeface", "gdiplus");
+
+#elif __APPLE__
+
+      return implementation_name("typeface", "quartz2d");
+
+#elif defined(UNIVERSAL_WINDOWS)
+
+      return implementation_name("typeface", "direct2d");
+
+#else
+
+      return implementation_name("typeface", "freetype");
+
+#endif
+
+   }
+
+
    ::factory::factory * system::imaging_factory()
    {
 
@@ -1512,6 +1569,149 @@ namespace aura
 //      return true;
 //
 //#endif // CUBE
+
+   }
+
+
+   ::factory::factory* system::typeface_factory()
+   {
+
+      ::string strImplementationName;
+
+      if (has_property("typeface"))
+      {
+
+         strImplementationName = payload("typeface");
+
+      }
+
+      ::e_status estatus;
+
+      if (strImplementationName.has_character())
+      {
+
+         auto& pfactoryDraw2d = factory("typeface", strImplementationName);
+
+         if (pfactoryDraw2d)
+         {
+
+            return pfactoryDraw2d;
+
+         }
+
+      }
+
+      strImplementationName = typeface_get_default_implementation_name();
+
+      if (strImplementationName.is_empty())
+      {
+
+#ifdef WINDOWS
+
+         strImplementationName = implementation_name("typeface", "gdiplus");
+
+#else
+
+         strImplementationName = implementation_name("typeface", "freetype");
+
+#endif
+
+      }
+      else if (strImplementationName == "directx11")
+      {
+
+         //strImplementationName = "direct2d";
+
+      }
+      else if (strImplementationName == "directx12")
+      {
+
+         strImplementationName = "direct2d";
+
+      }
+
+      auto& pfactoryDraw2d = factory("typeface", strImplementationName);
+
+      if (pfactoryDraw2d)
+      {
+
+         return pfactoryDraw2d;
+
+      }
+
+#ifdef WINDOWS_DESKTOP
+
+      if (strImplementationName != implementation_name("typeface", "gdiplus"))
+      {
+
+         auto& pfactoryDraw2d = factory("typeface", "gdiplus");
+
+         if (pfactoryDraw2d)
+         {
+
+            return pfactoryDraw2d;
+
+         }
+
+      }
+
+      if (strImplementationName != implementation_name("typeface", "direct2d"))
+      {
+
+         auto& pfactoryDraw2d = factory("typeface", "direct2d");
+
+         if (pfactoryDraw2d)
+         {
+
+            return pfactoryDraw2d;
+
+         }
+
+      }
+
+
+#endif
+
+      if (strImplementationName != implementation_name("typeface", "cairo"))
+      {
+
+         auto& pfactoryDraw2d = factory("typeface", "cairo");
+
+         if (pfactoryDraw2d)
+         {
+
+            return pfactoryDraw2d;
+
+         }
+
+      }
+
+      //informationf("No draw2d pluging available!!.");
+      if (pfactoryDraw2d)
+      {
+
+         return pfactoryDraw2d;
+
+      }
+
+      throw ::exception(error_not_found, "No draw2d plugin available");
+
+      //destroy:
+
+      //   PFN_factory ([a-z0-9_]+)_factory = plibrary->get < PFN_factory >("([a-z0-9_]+)_factory");
+
+      //   if (([a-z0-9_]+)_factory == nullptr)
+      //   {
+
+      //      return false;
+
+      //   }
+
+      //   ([a-z0-9_]+)_factory(::factory::factory * pfactory);
+
+      //   return true;
+
+   //#endif
 
    }
 

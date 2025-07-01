@@ -135,6 +135,10 @@ namespace gpu
       virtual void _context_unlock();
 
 
+      virtual bool defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, memsize size);
+      virtual bool defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, const ::block& block);
+
+
       virtual void create_window_context(::gpu::device* pgpudevice, ::windowing::window * pwindow);
 
       virtual void create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene & escene, const ::int_size& size);
@@ -278,6 +282,12 @@ namespace gpu
 
       virtual void __bind_draw2d_compositor(::gpu::compositor * pgpucompositor, ::gpu::layer * player);
       virtual void __soft_unbind_draw2d_compositor(::gpu::compositor* pgpucompositor, ::gpu::layer * player);
+
+
+      virtual ::memory rectangle_shader_vert();
+      virtual ::memory rectangle_shader_frag();
+
+      virtual void initialize_rectangle_shader(::gpu::shader* pshader);
 
 
    };

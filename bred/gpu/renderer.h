@@ -49,6 +49,13 @@ namespace gpu
       //bool                                m_bPrepared;
       //::string                            m_strRender;
 
+      bool isFrameStarted = false;
+      bool m_bNeedToRecreateSwapChain = false;
+
+
+      ::pointer_array<command_buffer>	         m_commandbuffera;
+
+
       ::pointer < render_target >   m_pgpurendertarget;
       ::pointer < swap_chain >      m_pswapchain;
       ::pointer < render_state >    m_prenderstate;
@@ -67,6 +74,11 @@ namespace gpu
 
       //virtual void set_single_frame();
 
+      virtual void create_command_buffers();
+
+      virtual void free_command_buffers();
+
+      bool isFrameInProgress() const { return isFrameStarted; }
 
 
       //virtual ::int_rectangle rectangle();

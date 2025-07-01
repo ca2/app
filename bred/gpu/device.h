@@ -6,6 +6,7 @@
 ////#include "acme/exception/exception.h"
 #include "acme/constant/gpu.h"
 #include "acme/prototype/geometry2d/size.h"
+#include "acme/prototype/prototype/pool.h"
 #include "acme/prototype/prototype/memory.h"
 #include "aura/graphics/draw3d/matrix.h"
 #include "apex/parallelization/thread.h"
@@ -69,7 +70,9 @@ namespace gpu
       //::int_size                             m_sizeOffscreen;
       //int                                    m_iScanOffscreen;
       //::memory                               m_memoryOffscreen;
-      enum_device_target                       m_edevicetarget;
+      enum_device_target                        m_edevicetarget;
+      ::procedure_array                         m_procedureaOnTopFrameEnd;
+      ::pointer_array < pool_group >            m_poolgroupaFrame;
 
       
 
@@ -78,7 +81,7 @@ namespace gpu
 
 
       ///virtual ::gpu::context* current_context();
-
+      
 
       virtual ::gpu::context * main_context();
       virtual ::gpu::context * main_draw2d_context();
@@ -91,6 +94,9 @@ namespace gpu
       //bool task_iteration() override;
       //void _send(const ::procedure& procedure) override;
       //void _post(const ::procedure& procedure) override;
+      virtual pool_group* frame_pool_group(int iFrameIndex);
+
+      virtual void on_initialize_gpu_device();
 
 
       virtual void lock_context();

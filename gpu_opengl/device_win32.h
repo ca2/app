@@ -17,7 +17,7 @@ namespace gpu_opengl
 
 
       bool                                m_bMesa;
-      HGLRC                               m_hrc;
+      HGLRC                               m_hglrc;
       HDC                                 m_hdc;
       HWND                                m_hwnd;
       HDC                                 m_hdcGraphics;

@@ -4,22 +4,6 @@
 
 #include "bred/gpu/types.h"
 
-// libs
-//namespace graphics3d
-//{
-//
-//	namespace geometry = glm;
-//
-//	using glm::vec3 = glm::vec3;
-//	using glm::vec3 = glm::vec3;
-//	using quad_matrix = glm::mat4;
-//
-//
-//
-//} // namespace graphics3d
-//
-
-
 
 namespace user
 {
@@ -95,8 +79,75 @@ namespace graphics3d
 	END_GPU_PROPERTIES()
 
 
+	struct sequence2_color
+	{
+
+		glm::vec2 position; // x, y
+		glm::vec4 color;  // r, g, b, a
+
+	};
+
+
+	BEGIN_GPU_PROPERTIES(sequence2_color)
+		GPU_PROPERTY("position", ::gpu::e_type_seq2)
+		GPU_PROPERTY("color", ::gpu::e_type_seq4)
+	END_GPU_PROPERTIES()
+
+
+	struct sequence2_uv
+	{
+
+		glm::vec2 position{};
+		glm::vec2 uv{};
+
+	};
+
+
+	BEGIN_GPU_PROPERTIES(sequence2_uv)
+		GPU_PROPERTY("position", ::gpu::e_type_seq2)
+		GPU_PROPERTY("uv", ::gpu::e_type_seq2)
+	END_GPU_PROPERTIES()
+
+
+	struct Vertex
+	{
+
+		glm::vec3 position{};
+		glm::vec3 color{};
+		glm::vec3 normal{};
+		glm::vec2 uv{};
+
+		//static std::vector<VkVertexInputBindingDescription> getBindingDescriptions();
+		//static std::vector<VkVertexInputAttributeDescription> getAttributeDescriptions();
+
+		bool operator==(const Vertex& other) const { return position == other.position && normal == other.normal && uv == other.uv; }
+
+	};
+
+
+	BEGIN_GPU_PROPERTIES(Vertex)
+		GPU_PROPERTY("position", ::gpu::e_type_seq3)
+		GPU_PROPERTY("color", ::gpu::e_type_seq3)
+		GPU_PROPERTY("normal", ::gpu::e_type_seq3)
+		GPU_PROPERTY("uv", ::gpu::e_type_seq2)
+	END_GPU_PROPERTIES()
+
+
 } // namespace graphics3d
 
+
+
+template < >
+inline ::hash32 as_hash32<::graphics3d::Vertex>(const ::graphics3d::Vertex& vertex)
+{
+
+	hash32 seed{};
+
+	::gpu::hash_combine(seed, vertex.position, vertex.color, vertex.normal, vertex.uv);
+
+	return seed;
+
+}
 
 
 

@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "approach.h"
+#include "command_buffer.h"
 #include "context.h"
 #include "cpu_buffer.h"
 #include "device.h"
@@ -12,6 +13,7 @@
 #include "shader.h"
 #include "swap_chain.h"
 #include "texture.h"
+#include "bred/gpu/input_layout.h"
 #include "bred/gpu/layer.h"
 
 
@@ -41,6 +43,8 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
 
    pfactory->add_factory_item < ::gpu::layer >();
 
+   pfactory->add_factory_item < ::gpu::input_layout >();
+
 #if defined(WINDOWS_DESKTOP)
 
    pfactory->add_factory_item < ::gpu_opengl::device_win32, ::gpu::device >();
@@ -49,6 +53,7 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
 
    pfactory->add_factory_item < ::gpu_opengl::offscreen_render_target, ::gpu::render_target >();
    pfactory->add_factory_item < ::gpu_opengl::swap_chain, ::gpu::swap_chain >();
+   pfactory->add_factory_item < ::gpu_opengl::command_buffer, ::gpu::command_buffer >();
 
 
 }

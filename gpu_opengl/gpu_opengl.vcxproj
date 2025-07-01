@@ -690,6 +690,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="assimp.h" />
+    <ClInclude Include="command_buffer.h" />
     <ClInclude Include="cpu_buffer.h" />
     <ClInclude Include="context.h" />
     <ClInclude Include="context_egl.h">
@@ -726,6 +727,7 @@
     <ClInclude Include="device_win32.h" />
     <ClInclude Include="frame.h" />
     <ClInclude Include="frame_buffer.h" />
+    <ClInclude Include="input_layout.h" />
     <ClInclude Include="lock.h" />
     <ClInclude Include="object.h" />
     <ClInclude Include="approach.h" />
@@ -744,6 +746,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="assimp.cpp" />
+    <ClCompile Include="command_buffer.cpp" />
     <ClCompile Include="cpu_buffer.cpp" />
     <ClCompile Include="context.cpp" />
     <ClCompile Include="context_egl.cpp">
@@ -779,6 +782,7 @@
     <ClCompile Include="device.cpp" />
     <ClCompile Include="device_win32.cpp" />
     <ClCompile Include="frame_buffer.cpp" />
+    <ClCompile Include="input_layout.cpp" />
     <ClCompile Include="lock.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="offscreen_render_target.cpp" />

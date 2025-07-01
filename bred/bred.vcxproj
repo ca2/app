@@ -346,6 +346,7 @@
     <ClInclude Include="gpu\command_buffer.h" />
     <ClInclude Include="gpu\compositor.h" />
     <ClInclude Include="gpu\context.h" />
+    <ClInclude Include="gpu\context_object.h" />
     <ClInclude Include="gpu\cpu_buffer.h" />
     <ClInclude Include="gpu\device.h" />
     <ClInclude Include="gpu\draw2d.h" />
@@ -355,6 +356,8 @@
     <ClInclude Include="gpu\guard.h" />
     <ClInclude Include="gpu\context_lock.h" />
     <ClInclude Include="gpu\input_layout.h" />
+    <ClInclude Include="gpu\memory_buffer.h" />
+    <ClInclude Include="gpu\model_buffer.h" />
     <ClInclude Include="gpu\object.h" />
     <ClInclude Include="gpu\program.h" />
     <ClInclude Include="gpu\properties.h" />
@@ -429,6 +432,7 @@
     <ClCompile Include="gpu\command_buffer.cpp" />
     <ClCompile Include="gpu\compositor.cpp" />
     <ClCompile Include="gpu\context.cpp" />
+    <ClCompile Include="gpu\context_object.cpp" />
     <ClCompile Include="gpu\cpu_buffer.cpp" />
     <ClCompile Include="gpu\device.cpp" />
     <ClCompile Include="gpu\draw2d.cpp" />
@@ -438,6 +442,8 @@
     <ClCompile Include="gpu\guard.cpp" />
     <ClCompile Include="gpu\context_lock.cpp" />
     <ClCompile Include="gpu\input_layout.cpp" />
+    <ClCompile Include="gpu\memory_buffer.cpp" />
+    <ClCompile Include="gpu\model_buffer.cpp" />
     <ClCompile Include="gpu\object.cpp" />
     <ClCompile Include="gpu\program.cpp" />
     <ClCompile Include="gpu\properties.cpp" />

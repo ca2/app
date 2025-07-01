@@ -42,6 +42,16 @@ namespace graphics3d
    }
 
 
+   void model::initialize_dummy_model(::gpu::renderer* pgpurenderer, int iVertices)
+   {
+
+      m_pgpurenderer = pgpurenderer;
+      m_bDummy = true;
+      m_iVertices = iVertices;
+
+   }
+
+
    void model::draw()
    {
 
@@ -86,47 +96,65 @@ namespace graphics3d
       }
 
       vertices.clear();
+
       indices.clear();
 
+      ::map<::graphics3d::Vertex, uint32_t> uniqueVertices{};
 
-      ::map<::gpu::Vertex, uint32_t> uniqueVertices{};
-      for (const auto& shape : shapes) {
-         for (const auto& index : shape.mesh.indices) {
-            ::gpu::Vertex vertex{};
+      for (const auto& shape : shapes) 
+      {
 
-            if (index.vertex_index >= 0) {
-               vertex.position = {
+         for (const auto& index : shape.mesh.indices) 
+         {
+
+            ::graphics3d::Vertex vertex{};
+
+            if (index.vertex_index >= 0) 
+            {
+
+               vertex.position = 
+               {
                    attrib.vertices[3 * index.vertex_index + 0],
                    attrib.vertices[3 * index.vertex_index + 1],
                    attrib.vertices[3 * index.vertex_index + 2],
                };
 
-               vertex.color = {
-               attrib.colors[3 * index.vertex_index + 0],
-               attrib.colors[3 * index.vertex_index + 1],
-               attrib.colors[3 * index.vertex_index + 2],
+               vertex.color = 
+               {
+                  attrib.colors[3 * index.vertex_index + 0],
+                  attrib.colors[3 * index.vertex_index + 1],
+                  attrib.colors[3 * index.vertex_index + 2],
                };
 
             }
 
-            if (index.normal_index >= 0) {
-               vertex.normal = {
+            if (index.normal_index >= 0) 
+            {
+
+               vertex.normal = 
+               {
                    attrib.normals[3 * index.normal_index + 0],
                    attrib.normals[3 * index.normal_index + 1],
                    attrib.normals[3 * index.normal_index + 2],
                };
             }
 
-            if (index.texcoord_index >= 0) {
-               vertex.uv = {
+            if (index.texcoord_index >= 0) 
+            {
+
+               vertex.uv = 
+               {
                    attrib.texcoords[2 * index.texcoord_index + 0],
                    attrib.texcoords[2 * index.texcoord_index + 1],
                };
             }
 
-            if (uniqueVertices.count(vertex) == 0) {
+            if (uniqueVertices.count(vertex) == 0) 
+            {
+
                uniqueVertices[vertex] = static_cast<uint32_t>(vertices.size());
                vertices.add(vertex);
+
             }
 
             indices.add(uniqueVertices[vertex]);

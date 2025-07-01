@@ -328,13 +328,13 @@ namespace gpu_opengl
 
          glPixelStorei(GL_UNPACK_ALIGNMENT, 1); // set alignment of data in memory (a good thing to do before glTexImage)
 
-#if defined(__APPLE__) || defined(__ANDROID__)
+//#if defined(__APPLE__) || defined(__ANDROID__)
+//         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+//         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE); // set clamp (GL_CLAMP_TO_EDGE would be better)
+//#else
          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE); // set clamp (GL_CLAMP_TO_EDGE would be better)
-#else
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP); // set clamp (GL_CLAMP_TO_EDGE would be better)
-#endif
+//#endif
          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // set linear filtering (so you can scale your image)
 
@@ -765,12 +765,14 @@ namespace gpu_opengl
       opengl_lock opengl_lock(this);
 
       glBindBuffer(GL_UNIFORM_BUFFER, m_globalUBO);
+      GLCheckError("");
 
       // Map the entire buffer for writing
       void* p = glMapBufferRange(
          GL_UNIFORM_BUFFER,
          0, block.size(),
          GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT);
+      GLCheckError("");
 
       if (p)
       {
@@ -778,6 +780,7 @@ namespace gpu_opengl
          memcpy(p, block.data(), block.size());
 
          glUnmapBuffer(GL_UNIFORM_BUFFER);
+         GLCheckError("");
 
       }
       else
@@ -788,8 +791,10 @@ namespace gpu_opengl
       }
 
       glBindBuffer(GL_UNIFORM_BUFFER, 0);
+      GLCheckError("");
 
    }
+
 
    void createFullscreenQuad(GLuint* vao, GLuint* vbo) {
       float quadVertices[] = {

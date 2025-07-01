@@ -3783,7 +3783,7 @@
     <ClInclude Include="user\user\text.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="prototype\prototype\signal.h">
+    <ClInclude Include="prototype\prototype\call.h">
       <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
     <ClInclude Include="prototype\collection\raw_pointer_array.h">
@@ -4193,6 +4193,21 @@
     </ClInclude>
     <ClInclude Include="constant\gpu.h">
       <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\prototype\signal.h">
+      <Filter>Header Files\prototype\prototype</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\call.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="call.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\prototype\pool.h">
+      <Filter>Header Files\prototype\prototype</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\prototype\poolable.h">
+      <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -5989,6 +6004,9 @@
     </ClCompile>
     <ClCompile Include="prototype\prototype\property_set.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\prototype\pool.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

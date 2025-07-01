@@ -15,10 +15,6 @@ namespace gpu_opengl
    public:
 
 
-      //GLuint m_fboID;
-      //GLuint m_texID;
-      //::int_size m_sizeTex;
-
       bool     m_bDepthBuffer = true;
       GLuint m_vaoFullScreenQuad;
       GLuint m_vboFullScreenQuad;

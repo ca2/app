@@ -11,8 +11,10 @@
 #include "texture.h"
 #include "types.h"
 //#include "_gpu.h"
+#include "acme/call.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/prototype/prototype/call.h"
 #include "aura/platform/application.h"
 #include "aura/platform/system.h"
 ////#include "aura/graphics/draw2d/_component.h"
@@ -886,6 +888,25 @@ namespace gpu
    }
 
 
+   void device::on_initialize_gpu_device()
+   {
+
+
+   }
+
+   
+   pool_group* device::frame_pool_group(int iFrameIndex)
+   {
+
+      auto & ppoolgroupFrame = m_poolgroupaFrame.element_at_grow(iFrameIndex);
+
+      __defer_construct_new(ppoolgroupFrame);
+
+      return ppoolgroupFrame;
+
+   }
+
+
    void device::unlock_context()
    {
 
@@ -1075,8 +1096,19 @@ namespace gpu
    void device::on_top_end_frame()
    {
 
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      auto procedureaOnTopFrameEnd = ::transfer(m_procedureaOnTopFrameEnd);
+
+      for (auto& procedure : procedureaOnTopFrameEnd)
+      {
+
+         procedure();
+
+      }
 
    }
+
 
    int device::get_type_size(::gpu::enum_type etype)
    {

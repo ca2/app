@@ -66,6 +66,13 @@ namespace gpu
    }
 
 
+   void command_buffer::draw(int a)
+   {
+
+
+   }
+
+
    //void command_buffer::wait_for_gpu()
    //{
 

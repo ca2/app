@@ -55,6 +55,7 @@ const char * opengl_error_string(int iError)
    
 }
 
+
 namespace gpu_opengl
 {
 

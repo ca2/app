@@ -181,6 +181,13 @@ namespace draw2d
    //}
 
 
+   void draw2d::on_before_create_window(::windowing::window* pwindow)
+   {
+
+
+   }
+
+
    void draw2d::on_create_window(::windowing::window * pwindow)
    {
 

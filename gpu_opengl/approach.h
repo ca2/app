@@ -45,6 +45,8 @@ namespace gpu_opengl
 
       void initialize(::particle * pparticle) override;
 
+      virtual void _on_before_create_window(::windowing::window* pwindow);
+      virtual void _on_create_window(::windowing::window* pwindow);
 
       ::file::path shader_path(const ::file::path& pathShader) override;
 

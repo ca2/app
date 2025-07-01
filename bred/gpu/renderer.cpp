@@ -194,6 +194,89 @@ namespace gpu
    }
 
 
+   ::gpu::command_buffer* renderer::getCurrentCommandBuffer2()
+   {
+
+      assert(isFrameStarted && "Cannot get command buffer when frame not in progress");
+
+      if (m_commandbuffera.is_empty())
+      {
+
+         create_command_buffers();
+
+      }
+
+      auto pcommandbuffer = m_commandbuffera[m_pgpurendertarget->get_frame_index()];
+
+      return pcommandbuffer;
+
+   }
+
+
+   void renderer::create_command_buffers()
+   {
+
+      m_commandbuffera.set_size(m_pgpurendertarget->get_frame_count());
+
+      //::array<VkCommandBuffer > a;
+
+      //a.set_size(m_commandbuffera.size());
+
+      //VkCommandBufferAllocateInfo allocInfo{};
+      //allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+      //allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+      //allocInfo.commandPool = m_pgpucontext->m_pgpudevice->getCommandPool();
+      //allocInfo.commandBufferCount = (uint32_t) a.size();
+
+      //if (vkAllocateCommandBuffers(
+      //   m_pgpucontext->logicalDevice(),
+      //   &allocInfo, 
+      //   a.data()
+      //) !=  VK_SUCCESS) 
+      //{
+
+      //   throw ::exception(error_failed, "failed to allocate command buffers!");
+
+      //}
+
+      for (int i = 0; i < m_commandbuffera.size(); i++)
+      {
+
+         auto& pcommandbuffer = m_commandbuffera[i];
+
+         __defer_construct(pcommandbuffer);
+
+         pcommandbuffer->initialize_command_buffer(m_pgpurendertarget);
+
+      }
+
+   }
+
+
+   void renderer::free_command_buffers()
+   {
+
+      m_commandbuffera.clear();
+
+      //return ::gpu::renderer::getCurrentCommandBuffer2();
+
+      //assert(isFrameStarted && "Cannot get command buffer when frame not in progress");
+
+      //if (m_commandbuffera.is_empty())
+      //{
+
+      //   create_command_buffers();
+
+      //}
+
+      //auto pcommandbuffer = m_commandbuffera[m_pgpurendertarget->get_frame_index()];
+
+      //return pcommandbuffer;
+
+   }
+
+
+
    void renderer::draw()
    {
 
@@ -320,12 +403,23 @@ namespace gpu
    }
 
 
-   ::gpu::command_buffer* renderer::getCurrentCommandBuffer2()
-   {
+   //::gpu::command_buffer* renderer::getCurrentCommandBuffer2()
+   //{
 
-      return nullptr;
+   //   assert(isFrameStarted && "Cannot get command buffer when frame not in progress");
 
-   }
+   //   if (m_commandbuffera.is_empty())
+   //   {
+
+   //      create_command_buffers();
+
+   //   }
+
+   //   auto pcommandbuffer = m_commandbuffera[m_pgpurendertarget->get_frame_index()];
+
+   //   return pcommandbuffer;
+
+   //}
 
 
    void renderer::read_to_cpu_buffer()

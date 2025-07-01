@@ -19,6 +19,36 @@ namespace gpu
    }
 
 
+   CLASS_DECL_BRED int get_type_unit_count(::gpu::enum_type e)
+   {
+
+      switch (e)
+      {
+      case e_type_int:
+         return 1;
+      case e_type_float:
+         return 1;
+      case e_type_seq2:
+         return 2;
+      case e_type_seq3:
+         return 3;
+      case e_type_seq4:
+         return 4;
+      case e_type_mat2:
+         return 4;
+      case e_type_mat3:
+         return 9;
+      case e_type_mat4:
+         return 16;
+      default:
+         throw ::exception(error_not_implemented);
+
+      }
+
+   }
+
+
+
 } // namespace gpu
 
 

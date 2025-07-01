@@ -34,6 +34,8 @@ namespace gpu
 
    CLASS_DECL_BRED int get_type_size(::gpu::enum_type e);
 
+   CLASS_DECL_BRED int get_type_unit_count(::gpu::enum_type e);
+
 
    //using uniform = int;
    struct payload
@@ -115,6 +117,12 @@ namespace gpu
    class command_buffer;
 
    class input_layout;
+
+   class context_object;
+
+   class memory_buffer;
+
+   class model_buffer;
 
 
 } // gpu

@@ -23,88 +23,6 @@ namespace gpu
 {
 
 
-   //struct start_context_t
-   //{
-
-   //   ::gpu::enum_scene m_escene;
-   //   ::gpu::device * m_pgpudevice;
-   //   ::gpu::enum_output m_eoutput;
-   //   ::windowing::window* m_pwindow;
-   //   //::image32_callback m_callbackImage32CpuBuffer;
-   //   //::image::target * m_pimagetarget;
-   //   ::function< void(::image::target* ptarget) > m_callbackOnImagePixels;
-   //   ::int_rectangle m_rectanglePlacement;
-
-
-   //   start_context_t(::gpu::device* pgpudevice, const enum_output & eoutput, const ::int_rectangle rectanglePlacement):
-   //      m_pgpudevice(pgpudevice),
-   //      m_eoutput(eoutput),
-   //      m_rectanglePlacement(rectanglePlacement),
-   //      m_pwindow(nullptr)
-   //   {
-
-
-   //   }
-
-   //   start_context_t(::gpu::device* pgpudevice, const ::function< void(::image::target* ptarget) >& callbackOnImagePixels, const ::int_rectangle rectanglePlacement) :
-   //      m_pgpudevice(pgpudevice),
-   //      m_eoutput(e_output_cpu_buffer),
-   //      m_callbackOnImagePixels(callbackOnImagePixels),
-   //      m_rectanglePlacement(rectanglePlacement),
-   //      m_pwindow(nullptr)
-   //   {
-
-   //   }
-
-
-   //   start_context_t( ::gpu::device* pgpudevice, ::windowing::window* pwindow) :
-   //      m_pgpudevice(pgpudevice),
-   //      m_eoutput(e_output_swap_chain),
-   //      m_pwindow(pwindow),
-   //      m_rectanglePlacement{}
-   //   {
-
-   //   }
-
-   //};
-
-
-   //struct start_gpu_output_context_t :
-   //   public start_context_t
-   //{
-
-   //   start_gpu_output_context_t(::gpu::device* pgpudevice, const enum_output & eoutput, const ::int_rectangle rectanglePlacement) :
-   //      start_context_t(pgpudevice, eoutput, rectanglePlacement)
-   //   {
-   //   }
-
-   //};
-
-
-   //struct start_cpu_buffer_context_t :
-   //   public start_context_t
-   //{
-
-   //   start_cpu_buffer_context_t(::gpu::device* pgpudevice, const ::function< void(::image::target* ptarget) >& callbackOnImagePixels, const ::int_rectangle rectangleplacement) :
-   //      start_context_t(pgpudevice, callbackOnImagePixels, rectangleplacement)
-   //   {
-   //   }
-
-   //};
-
-
-   //struct start_swap_chain_context_t :
-   //   public start_context_t
-   //{
-
-   //   start_swap_chain_context_t(::gpu::device* pgpudevice, ::windowing::window* pwindow) :
-   //      start_context_t(pgpudevice, pwindow)
-   //   {
-   //   }
-
-   //};
-
-
 
 	// from: https://stackoverflow.com/a/57595105
 	template <typename T, typename... Rest>
@@ -115,46 +33,6 @@ namespace gpu
 	};
 
 
-	struct Vertex
-	{
 
-		glm::vec3 position{};
-		glm::vec3 color{};
-		glm::vec3 normal{};
-		glm::vec2 uv{};
-
-		//static std::vector<VkVertexInputBindingDescription> getBindingDescriptions();
-		//static std::vector<VkVertexInputAttributeDescription> getAttributeDescriptions();
-
-		bool operator==(const Vertex& other) const { return position == other.position && normal == other.normal && uv == other.uv; }
-
-	};
 
 } // namespace gpu
-
-
-BEGIN_GPU_PROPERTIES(gpu_Vertex)
-GPU_PROPERTY("position", ::gpu::e_type_seq3)
-GPU_PROPERTY("color", ::gpu::e_type_seq3)
-GPU_PROPERTY("normal", ::gpu::e_type_seq3)
-GPU_PROPERTY("uv", ::gpu::e_type_seq2)
-END_GPU_PROPERTIES()
-
-
-
-
-
-template < >
-inline ::hash32 as_hash32<gpu::Vertex>(const ::gpu::Vertex& vertex)
-{
-
-	hash32 seed{};
-
-	::gpu::hash_combine(seed, vertex.position, vertex.color, vertex.normal, vertex.uv);
-
-	return seed;
-
-}
-
-
-

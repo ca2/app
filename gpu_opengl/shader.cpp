@@ -220,8 +220,8 @@ namespace gpu_opengl
    void shader::unbind()
    {
 
-      glUseProgram(0);
-      GLCheckError("");
+      //glUseProgram(0);
+      //GLCheckError("");
 
    }
 
@@ -489,12 +489,15 @@ namespace gpu_opengl
    {
       //Bind();  // Ensure the shader program is bound
       GLint location = glGetUniformLocation(m_ProgramID, name);
+      GLCheckError("");
       if (location == -1) {
          warning() << "Uniform " << name << " not found!";
+throw ::exception(error_not_found);
          return;
       }
       glUniform1i(location, i);
       int iGlErrorSetInt = glGetError();
+      GLCheckError("");
       if (iGlErrorSetInt != 0)
       {
          warning() << "Uniform " << name << " not set!";
@@ -505,69 +508,91 @@ namespace gpu_opengl
    {
       //Bind();  // Ensure the shader program is bound
       GLint location = glGetUniformLocation(m_ProgramID, name);
+      GLCheckError("");
       if (location == -1) {
          warning() << "Uniform " << name << " not found!";
+throw ::exception(error_not_found);
          return;
       }
       glUniform1f(location, value);
+      GLCheckError("");
    }
    void shader::_set_vec2(const char* name, const glm::vec2& value) const {
       //Bind();  // Ensure the shader program is bound
       GLint location = glGetUniformLocation(m_ProgramID, name);
+      GLCheckError("");
       if (location == -1) {
          warning() << "Uniform " << name << " not found!";
+throw ::exception(error_not_found);
          return;
       }
       glUniform2f(location, value.x, value.y);
+      GLCheckError("");
    }
    void shader::_set_vec3(const char* name, const glm::vec3& value) const {
       //Bind();  // Ensure the shader program is bound
       GLint location = glGetUniformLocation(m_ProgramID, name);
+      GLCheckError("");
       if (location == -1) {
          warning() << "Uniform " << name << " not found!";
+throw ::exception(error_not_found);
          return;
       }
       glUniform3f(location, value.x, value.y, value.z);
+      GLCheckError("");
    }
    void shader::_set_vec4(const char* name, const glm::vec4& value) const {
       //Bind();  // Ensure the shader program is bound
       GLint location = glGetUniformLocation(m_ProgramID, name);
+      //GLCheckError("");
       if (location == -1) {
          warning() << "Uniform " << name << " not found!";
+throw ::exception(error_not_found);
+         
          return;
       }
       glUniform4f(location, value.x, value.y, value.z, value.w);
+      GLCheckError("");
    }
 
    void shader::_set_mat2(const char* name, const glm::mat2& matrix) const
    {
       GLint location = glGetUniformLocation(m_ProgramID, name);
+      GLCheckError("");
       if (location == -1) {
          warning() << "Uniform " << name << " not found!";
+throw ::exception(error_not_found);
          return;
       }
       glUniformMatrix2fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
+      GLCheckError("");
    }
 
 
    void shader::_set_mat3(const char* name, const glm::mat3& matrix) const
    {
       GLint location = glGetUniformLocation(m_ProgramID, name);
+      GLCheckError("");
       if (location == -1) {
          warning() << "Uniform " << name << " not found!";
+throw ::exception(error_not_found);
          return;
       }
       glUniformMatrix3fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
+      GLCheckError("");
    }
 
    void shader::_set_mat4(const char* name, const glm::mat4& matrix) const
    {
       GLint location = glGetUniformLocation(m_ProgramID, name);
+      GLCheckError("");
       if (location == -1) {
          warning() << "Uniform " << name << " not found!";
+throw ::exception(error_not_found);
          return;
       }
       glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
+      GLCheckError("");
    }
 
 
@@ -655,12 +680,12 @@ namespace gpu_opengl
 
 
    
-   void shader::draw()
-   {
+   //void shader::draw()
+   //{
 
-      glDrawArrays(GL_TRIANGLES, 0, 6);
+   //   glDrawArrays(GL_TRIANGLES, 0, 6);
 
-   }
+   //}
 
 } // namespace gpu_opengl
 

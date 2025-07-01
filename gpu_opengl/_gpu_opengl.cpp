@@ -35,6 +35,33 @@ namespace opengl
    }
 
 
+   CLASS_DECL_GPU_OPENGL GLenum get_gpu_type_unit_opengl_type(::gpu::enum_type etype)
+   {
+
+      switch (etype)
+      {
+      case ::gpu::e_type_int:
+         return GL_INT;
+      case ::gpu::e_type_float:
+         return GL_FLOAT;
+      case ::gpu::e_type_seq2:
+         return GL_FLOAT;
+      case ::gpu::e_type_seq3:
+         return GL_FLOAT;
+      case ::gpu::e_type_seq4:
+         return GL_FLOAT;
+      case ::gpu::e_type_mat2:
+         return GL_FLOAT;
+      case ::gpu::e_type_mat3:
+         return GL_FLOAT;
+      case ::gpu::e_type_mat4:
+         return GL_FLOAT;
+      default:
+         throw ::exception(error_not_implemented);
+
+      }
+   }
+
 } // namespace opengl
 
 

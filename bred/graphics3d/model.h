@@ -35,7 +35,7 @@ namespace graphics3d
 
       struct Builder
       {
-         ::array<gpu::Vertex> vertices{};
+         ::array<::graphics3d::Vertex> vertices{};
          ::array<uint32_t> indices{};
 
       };
@@ -50,7 +50,8 @@ namespace graphics3d
 
 
       ::pointer < ::gpu::renderer >        m_pgpurenderer;
-
+      bool m_bDummy = false;
+      int m_iVertices = 0;
       //static ::pointer<model> createModelFromFile(::graphics3d::context * pgpucontext, const ::file::path & path);
 
 
@@ -59,6 +60,7 @@ namespace graphics3d
 
 
       virtual void initialize_model(::gpu::renderer * prenderer, const model::Builder& builder);
+      virtual void initialize_dummy_model(::gpu::renderer* prenderer, int iVertices);
 
       //virtual void draw(::gpu::context* pgpucontext);
       //virtual void bind(::gpu::context* pgpucontext);

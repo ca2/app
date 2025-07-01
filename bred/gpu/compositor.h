@@ -13,12 +13,18 @@ namespace gpu
    public:
       //bool m_bInLayer = false;
 
-      ::pointer <::gpu::context> m_pgpucontextCompositor;
+      ::pointer <::gpu::context> m_pgpucontextCompositor2;
 
 
       compositor();
       ~compositor() override;
 
+
+      virtual void set_gpu_context(::gpu::context * pgpucontextCompositor);
+
+      virtual void on_set_gpu_context();
+
+      ::gpu::context* gpu_context();
 
       virtual void start_gpu_layer(::gpu::frame* pgpuframe);
       virtual ::gpu::frame * end_gpu_layer();

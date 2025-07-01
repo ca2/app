@@ -47,7 +47,7 @@ void main() {
 namespace gpu_opengl
 {
 
-   void vertex2f(const ::double_polygon& a, float fZ);
+   //void vertex2f(const ::double_polygon& a, float fZ);
 
 
    renderer::renderer()
@@ -124,6 +124,10 @@ namespace gpu_opengl
       //   throw ::exception(error_wrong_state);
 
       //}
+
+      assert(!isFrameStarted && "Can't call beginFrame while already in progress");
+
+      isFrameStarted = true;
 
       ::cast < context > pgpucontext = m_pgpucontext;
 
@@ -276,9 +280,9 @@ namespace gpu_opengl
    ////glViewport(0, 0, size.cx() * d, size.cy() * d);
          glViewport(0, 0, width, height);
          GLCheckError("");
-         glMatrixMode(GL_PROJECTION);
+         //glMatrixMode(GL_PROJECTION);
          GLCheckError("");
-         glLoadIdentity();
+         //glLoadIdentity();
          GLCheckError("");
          ////glOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
          ////glOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
@@ -287,17 +291,17 @@ namespace gpu_opengl
          //glOrtho(0.f, size.cx(), 0.f, -size.cy(), -1.0f, 1.0f);
          if (bYSwap)
          {
-            glOrtho(0.0f, width, height, 0, -1.0f, 1.0f);  // Flip Y
+            //glOrtho(0.0f, width, height, 0, -1.0f, 1.0f);  // Flip Y
             GLCheckError("");
          }
          else
          {
-            glOrtho(0.0f, width, 0, height, -1.0f, 1.0f);  // Flip Y
+            //glOrtho(0.0f, width, 0, height, -1.0f, 1.0f);  // Flip Y
             GLCheckError("");
          }
-         glMatrixMode(GL_MODELVIEW);
+         //glMatrixMode(GL_MODELVIEW);
          GLCheckError("");
-         glLoadIdentity();
+         //glLoadIdentity();
          GLCheckError("");
 
          //glMatrixMode(GL_MODELVIEW);
@@ -314,7 +318,7 @@ namespace gpu_opengl
 
          // Translate to inside of pixel (otherwise inaccuracies can occur on certain gl implementations)
          //if (OpenGL::accuracyTweak())
-         glTranslatef(0.5f, 0.5f, 0);
+         ///glTranslatef(0.5f, 0.5f, 0);
          GLCheckError("");
 
 
@@ -346,7 +350,8 @@ namespace gpu_opengl
          //   glClearColor(0.95f, 0.75f, 0.5f, 0.5f);
 
          //}
-         glClearColor(0.f, 0.f, 0.f, 0.f);
+         //glClearColor(0.f, 0.f, 0.f, 0.f);
+         glClearColor(0.95f * 0.5f, 0.95f * 0.5f, .8f * 0.5f, 0.5f); // light yellow
          GLCheckError("");
          glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
          GLCheckError("");
@@ -377,9 +382,9 @@ namespace gpu_opengl
    ////glViewport(0, 0, size.cx() * d, size.cy() * d);
          glViewport(0, 0, width, height);
          GLCheckError("");
-         glMatrixMode(GL_PROJECTION);
+         //glMatrixMode(GL_PROJECTION);
          GLCheckError("");
-         glLoadIdentity();
+         //glLoadIdentity();
          GLCheckError("");
          ////glOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
          ////glOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
@@ -388,17 +393,17 @@ namespace gpu_opengl
          //glOrtho(0.f, size.cx(), 0.f, -size.cy(), -1.0f, 1.0f);
          if (bYSwap)
          {
-            glOrtho(0.0f, width, height, 0, -1.0f, 1.0f);  // Flip Y
+            //glOrtho(0.0f, width, height, 0, -1.0f, 1.0f);  // Flip Y
             GLCheckError("");
          }
          else
          {
-            glOrtho(0.0f, width, 0, height, -1.0f, 1.0f);  // Flip Y
+            //glOrtho(0.0f, width, 0, height, -1.0f, 1.0f);  // Flip Y
             GLCheckError("");
          }
-         glMatrixMode(GL_MODELVIEW);
+         ///glMatrixMode(GL_MODELVIEW);
          GLCheckError("");
-         glLoadIdentity();
+         //glLoadIdentity();
          GLCheckError("");
 
 
@@ -507,6 +512,10 @@ namespace gpu_opengl
       //glPopMatrix();
 
 
+      //glClearColor(0.5f*0.5f, 0.75f * 0.5f, 0.95f * 0.5f, 0.5f); // RGBA
+      //glClear(GL_COLOR_BUFFER_BIT);
+      
+      
       //glDisable(GL_DEPTH_TEST);
       //glDepthMask(GL_FALSE);
       //glEnable(GL_BLEND);
@@ -558,6 +567,8 @@ namespace gpu_opengl
       //}
 
       m_prenderstate->on_happening(::gpu::e_happening_end_frame);
+
+      isFrameStarted = false;
 
    }
 
@@ -1221,8 +1232,8 @@ namespace gpu_opengl
 
       int hHost = rectangleHost.height();
 
-      glPopAttrib();
-      glPopMatrix();
+      //glPopAttrib();
+      //glPopMatrix();
 
       glViewport(0, 0, wHost, hHost);
 
@@ -1233,8 +1244,8 @@ namespace gpu_opengl
 
 
 
-      glMatrixMode(GL_PROJECTION);
-      glLoadIdentity();
+      //glMatrixMode(GL_PROJECTION);
+      //glLoadIdentity();
       ////glOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
       ////glOrtho(0, size.cx() * d, size.cy() * d, 0.0f, 000.0f, 1000.0f);
       //////glOrtho(0, size.cx() * d, 0.0f, size.cy() * d, 000.0f, 1000.0f);
@@ -1243,14 +1254,14 @@ namespace gpu_opengl
       auto bYSwap = true;
       if (bYSwap)
       {
-         glOrtho(0.0f, wHost, hHost, 0, -1.0f, 1.0f);  // Flip Y
+         //glOrtho(0.0f, wHost, hHost, 0, -1.0f, 1.0f);  // Flip Y
       }
       else
       {
-         glOrtho(0.0f, wHost, 0, hHost, -1.0f, 1.0f);  // Flip Y
+         //glOrtho(0.0f, wHost, 0, hHost, -1.0f, 1.0f);  // Flip Y
       }
-      glMatrixMode(GL_MODELVIEW);
-      glLoadIdentity();
+      //glMatrixMode(GL_MODELVIEW);
+      //glLoadIdentity();
 
       if (!m_pshaderBlend)
       {
@@ -1688,16 +1699,16 @@ namespace gpu_opengl
    }
 
 
-   void vertex2f(const ::double_polygon& a, float fZ)
-   {
-      for (auto& p : a)
-      {
+   //void vertex2f(const ::double_polygon& a, float fZ)
+   //{
+   //   for (auto& p : a)
+   //   {
 
-         glVertex3f((GLfloat)p.x(), (GLfloat)p.y(), fZ);
+   //      glVertex3f((GLfloat)p.x(), (GLfloat)p.y(), fZ);
 
-      }
+   //   }
 
-   }
+   //}
 
 
    void renderer::copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
@@ -1860,7 +1871,7 @@ namespace gpu_opengl
             auto f32Red = (float)(fRed * fOpacity);
             auto f32Green = (float)(fGreen * fOpacity);
             auto f32Blue = (float)(fBlue * fOpacity);
-            ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
+            ///::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
          }
 
          ::double_polygon polygon;
@@ -1869,12 +1880,12 @@ namespace gpu_opengl
 
          polygon = rectangle;
 
-         glBegin(GL_QUADS);
+         //glBegin(GL_QUADS);
 
 
-         vertex2f(polygon, 0.f);
+         //vertex2f(polygon, 0.f);
 
-         glEnd();
+         //glEnd();
 
       }
 

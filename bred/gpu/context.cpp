@@ -4,6 +4,7 @@
 #include "device.h"
 #include "cpu_buffer.h"
 #include "guard.h"
+#include "memory_buffer.h"
 #include "render.h"
 #include "renderer.h"
 #include "render_state.h"
@@ -25,6 +26,7 @@
 #include "input_layout.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/graphics.h"
+#include "bred/graphics3d/types.h"
 
 
 namespace gpu
@@ -285,6 +287,43 @@ namespace gpu
 
 
    }
+
+
+
+   bool context::defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, memsize size)
+   {
+
+      if (__defer_construct_new(pmemorybuffer))
+      {
+
+         pmemorybuffer->initialize_memory_buffer(this, size);
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+   bool context::defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, const ::block& block)
+   {
+
+      if (defer_construct_new(pmemorybuffer, block.size()))
+      {
+
+         pmemorybuffer->assign(block.data(), block.size());
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
 
 
 
@@ -1393,6 +1432,41 @@ namespace gpu
    void context::__soft_unbind_draw2d_compositor(::gpu::compositor* pgpucompositor, ::gpu::layer* player)
    {
 
+
+   }
+
+
+   ::memory context::rectangle_shader_vert()
+   {
+
+      return {};
+
+   }
+
+
+   ::memory context::rectangle_shader_frag()
+   {
+
+      return {};
+
+   }
+
+
+   void context::initialize_rectangle_shader(::gpu::shader* pshader)
+   {
+
+      //auto pcontext = gpu_context();
+
+      //::cast < ::gpu_vulkan::device > pgpudevice = pgpucontext->m_pgpudevice;
+      pshader->initialize_shader_with_block(
+         m_pgpurenderer,
+         rectangle_shader_vert(),
+         //as_memory_block(g_uaAccumulationFragmentShader),
+         rectangle_shader_frag(),
+         {},
+         {},
+         {},
+         this->input_layout(::graphics3d::sequence2_color_properties()));
 
    }
 

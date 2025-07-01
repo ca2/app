@@ -42,6 +42,8 @@ namespace gpu_opengl
 
    class texture;
 
+   class context;
+
 } // namespace gpu_opengl
 
 

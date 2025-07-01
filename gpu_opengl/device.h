@@ -17,26 +17,9 @@ namespace gpu_opengl
    {
    public:
 
-      //GLuint m_iCurrentRendererFrameBuffer;
-      ///itask									m_itaskGpu;
-
-      //unsigned int                     m_VAO;
-      //unsigned int                     m_VBO;
-
-     /* GLint                            m_iMatrixUniform;
-
-      GLuint                           m_gluTextureBitmap1;
-      int                              m_iLastBitmap1Scan;
-      ::int_size                       m_sizeBitmap1;
-
-      memory                           m_memorySwap;*/
-
+   
       device();
       ~device() override;
-
-
-
-      //::pointer < ::gpu::context > allocate_context(::particle* pparticle) override;
 
 
       void on_initialize_particle() override;

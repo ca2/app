@@ -151,6 +151,13 @@ namespace opengl
 
    [[noreturn]] CLASS_DECL_GPU_OPENGL void throw_opengl_exception(const ::scoped_string& scopestrMessage, int iGLError, const ::scoped_string& nameFile, int iLine);
 
+
+
+
+   CLASS_DECL_GPU_OPENGL GLenum get_gpu_type_unit_opengl_type(::gpu::enum_type etype);
+
+
+
 } // namespace opengl
 
 

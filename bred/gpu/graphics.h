@@ -5,6 +5,8 @@
 #include "acme/constant/gpu.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "bred/gpu/compositor.h"
+#include "bred/gpu/context.h"
+#include "bred/gpu/device.h"
 
 
 namespace draw2d_gpu
@@ -24,6 +26,9 @@ namespace draw2d_gpu
       ::pointer < ::gpu::frame >             m_pgpuframe;
       ::geometry2d::matrix                   m_m1;
       //::pointer < ::draw2d_gpu::end_draw >   m_penddraw;
+      ::pointer < ::gpu::shader >               m_pshaderSourceRectangle;
+      ::pointer < ::gpu::shader >               m_pshaderBlendRectangle;
+      ::pool <::gpu::model_buffer >             m_poolmodelbufferRectangle;
 
 
       graphics();
@@ -47,6 +52,14 @@ namespace draw2d_gpu
       //virtual void create_end_draw();
 
 
+      // returns true if it is new
+     
+
+
+         //auto& pmodelbuffer = m_pmodelbufferRectangle;
+
+
+
       //void set_hint_window_output() override;
 
 
@@ -55,6 +68,25 @@ namespace draw2d_gpu
       void _set(const ::geometry2d::matrix& matrix);
 
       void do_on_context(const ::procedure& procedure) override;
+
+      //template < typename TYPE >
+      //void push_on_end_top_frame(::pointer_array < TYPE >& a, const ::pointer < TYPE > & p)
+      //{
+
+      //   m_pgpucontextCompositor->m_pgpudevice->m_procedureaOnTopFrameEnd.add(
+      //      [this, &a, p]()
+      //      {
+
+      //         _synchronous_lock synchronouslock(this->synchronization());
+
+      //         a.add(p);
+
+      //         //      vkDestroyBuffer(logicalDevice, pmodel->m_vertexBuffer, nullptr);
+      //         //      vkFreeMemory(logicalDevice, pmodel->m_vertexMemory, nullptr);
+
+      //      });
+
+      //}
  
       ///void create_offscreen_graphics_for_swap_chain_blitting(::user::interaction* puserinteraction, const ::int_size& size = {}) override;
       void create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size) override;
@@ -63,6 +95,8 @@ namespace draw2d_gpu
       virtual void bind_draw2d_compositor(::gpu::layer * player);
       virtual void soft_unbind_draw2d_compositor(::gpu::layer* player);
 
+
+      virtual void _fill_quad(const ::double_point points[4], const ::color::color& color);
 
    };
 

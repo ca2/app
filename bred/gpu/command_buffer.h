@@ -41,6 +41,8 @@ namespace gpu
 
       virtual void reset();
 
+      virtual void draw(int a);
+
 
    };
 

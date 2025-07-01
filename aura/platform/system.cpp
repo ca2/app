@@ -1395,6 +1395,31 @@ namespace aura
    }
 
 
+   void system::initialize_typeface()
+   {
+
+      ::e_status estatus = ::success;
+
+      //try
+      //{
+
+      if (!m_pfactoryTypeface)
+      {
+
+         m_pfactoryTypeface = typeface_factory();
+
+         //if (m_pfactoryDraw2d)
+         {
+
+            m_pfactoryTypeface->merge_to_global_factory();
+
+         }
+
+      }
+    
+   }
+
+
    string system::typeface_get_default_implementation_name()
    {
 

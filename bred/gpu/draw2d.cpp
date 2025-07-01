@@ -56,6 +56,8 @@ namespace gpu
       if (!pface)
       {
 
+         system()->typeface_factory();
+
          __øconstruct(pface);
 
          pface->m_strFontName = strFontFamilyName;

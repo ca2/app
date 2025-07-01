@@ -37,6 +37,8 @@ namespace platform
       ::factory::factory_pointer                        m_pfactoryDraw2d;
       ::pointer<::draw2d::draw2d>                       m_pdraw2d;
 
+      ::factory::factory_pointer                        m_pfactoryTypeface;
+
       double                                            m_dDpi;
 
       ::pointer < ::mutex >                             m_pmutexUserChildren;
@@ -398,6 +400,7 @@ namespace platform
       virtual ::factory::factory * imaging_factory();
       virtual ::string imaging_get_default_implementation_name();
 
+      virtual void initialize_typeface();
       virtual ::factory::factory* typeface_factory();
       virtual ::string typeface_get_default_implementation_name();
 

@@ -56,7 +56,7 @@ namespace gpu
       if (!pface)
       {
 
-         system()->typeface_factory();
+         system()->initialize_typeface();
 
          __øconstruct(pface);
 

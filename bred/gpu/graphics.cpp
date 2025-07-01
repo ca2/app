@@ -66,6 +66,16 @@ namespace gpu
 
       //thread_select();
 
+      auto pcontext = gpu_context();
+
+      auto pgpudevice = pcontext->m_pgpudevice;
+
+      int iFrameIndex = pcontext->m_pgpurenderer->m_pgpurendertarget->get_frame_index();
+
+      m_poolmodelbufferRectangle.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
+      m_poolmodelbufferCharacter.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
+
+
       ::int_rectangle rectangle;
 
       if (!m_puserinteraction && m_papplication->m_gpu.m_bUseSwapChainWindow)
@@ -88,7 +98,7 @@ namespace gpu
 
       }
 
-      auto pcontext = gpu_context();
+      //auto pcontext = gpu_context();
 
       pcontext->on_begin_draw_attach(this);
 
@@ -129,6 +139,13 @@ namespace gpu
    //   return prendererOutput;
 
    //}
+
+
+   void graphics::on_set_gpu_context()
+   {
+
+
+   }
 
 
    void graphics::on_end_draw()

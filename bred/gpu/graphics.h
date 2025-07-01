@@ -43,6 +43,8 @@ namespace gpu
       void on_end_draw() override;
 
 
+      void on_set_gpu_context() override;
+
       //void start_gpu_layer() override;
       //void end_gpu_layer() override;
 

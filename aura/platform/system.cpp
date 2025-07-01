@@ -1655,12 +1655,12 @@ namespace aura
 
       }
 
-      auto& pfactoryDraw2d = factory("typeface", strImplementationName);
+      auto& pfactoryTypeface = factory("typeface", strImplementationName);
 
-      if (pfactoryDraw2d)
+      if (pfactoryTypeface)
       {
 
-         return pfactoryDraw2d;
+         return pfactoryTypeface;
 
       }
 
@@ -1669,12 +1669,12 @@ namespace aura
       if (strImplementationName != implementation_name("typeface", "gdiplus"))
       {
 
-         auto& pfactoryDraw2d = factory("typeface", "gdiplus");
+         auto& pfactoryTypeface = factory("typeface", "gdiplus");
 
-         if (pfactoryDraw2d)
+         if (pfactoryTypeface)
          {
 
-            return pfactoryDraw2d;
+            return pfactoryTypeface;
 
          }
 
@@ -1683,12 +1683,12 @@ namespace aura
       if (strImplementationName != implementation_name("typeface", "direct2d"))
       {
 
-         auto& pfactoryDraw2d = factory("typeface", "direct2d");
+         auto& pfactoryTypeface = factory("typeface", "direct2d");
 
-         if (pfactoryDraw2d)
+         if (pfactoryTypeface)
          {
 
-            return pfactoryDraw2d;
+            return pfactoryTypeface;
 
          }
 
@@ -1700,26 +1700,26 @@ namespace aura
       if (strImplementationName != implementation_name("typeface", "cairo"))
       {
 
-         auto& pfactoryDraw2d = factory("typeface", "cairo");
+         auto& pfactoryTypeface = factory("typeface", "cairo");
 
-         if (pfactoryDraw2d)
+         if (pfactoryTypeface)
          {
 
-            return pfactoryDraw2d;
+            return pfactoryTypeface;
 
          }
 
       }
 
       //informationf("No draw2d pluging available!!.");
-      if (pfactoryDraw2d)
+      if (pfactoryTypeface)
       {
 
-         return pfactoryDraw2d;
+         return pfactoryTypeface;
 
       }
 
-      throw ::exception(error_not_found, "No draw2d plugin available");
+      throw ::exception(error_not_found, "No typeface plugin available");
 
       //destroy:
 

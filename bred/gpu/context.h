@@ -175,7 +175,7 @@ namespace gpu
       virtual void send_on_context(const ::procedure & procedure);
       virtual void top_send_on_context(::gpu::context * pcontextInnerStart, bool bForDrawing, const ::procedure& procedure);
       
-      virtual bool create_offscreen_graphics_for_swap_chain_blitting(::draw2d_gpu::graphics * pgraphics, const ::int_size& size = {});
+      virtual bool create_offscreen_graphics_for_swap_chain_blitting(::gpu::graphics * pgraphics, const ::int_size& size = {});
 
 
       virtual ::gpu::renderer* get_gpu_renderer();
@@ -266,14 +266,14 @@ namespace gpu
       virtual void frame_prefix();
       virtual void frame_suffix();
 
-      //virtual void on_begin_draw_attach(::draw2d_gpu::graphics* pgpugraphics, const ::int_rectangle& rectangle);
-      //virtual void draw2d_on_begin_draw(::draw2d_gpu::graphics* pgpugraphics, const ::int_rectangle & rectangle);
-      virtual void on_begin_draw_attach(::draw2d_gpu::graphics* pgpugraphics);
-      virtual void draw2d_on_begin_draw(::draw2d_gpu::graphics* pgpugraphics);
+      //virtual void on_begin_draw_attach(::gpu::graphics* pgpugraphics, const ::int_rectangle& rectangle);
+      //virtual void draw2d_on_begin_draw(::gpu::graphics* pgpugraphics, const ::int_rectangle & rectangle);
+      virtual void on_begin_draw_attach(::gpu::graphics* pgpugraphics);
+      virtual void draw2d_on_begin_draw(::gpu::graphics* pgpugraphics);
 
 
-      virtual void on_end_draw_detach(::draw2d_gpu::graphics* pgpugraphics);
-      virtual void draw2d_on_end_draw(::draw2d_gpu::graphics* pgpugraphics);
+      virtual void on_end_draw_detach(::gpu::graphics* pgpugraphics);
+      virtual void draw2d_on_end_draw(::gpu::graphics* pgpugraphics);
       //virtual void start_layer();
       //virtual void end_layer();
 

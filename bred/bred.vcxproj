@@ -350,7 +350,6 @@
     <ClInclude Include="gpu\cpu_buffer.h" />
     <ClInclude Include="gpu\device.h" />
     <ClInclude Include="gpu\draw2d.h" />
-    <ClInclude Include="gpu\face.h" />
     <ClInclude Include="gpu\frame.h" />
     <ClInclude Include="gpu\graphics.h" />
     <ClInclude Include="gpu\guard.h" />
@@ -359,6 +358,7 @@
     <ClInclude Include="gpu\memory_buffer.h" />
     <ClInclude Include="gpu\model_buffer.h" />
     <ClInclude Include="gpu\object.h" />
+    <ClInclude Include="gpu\pixmap.h" />
     <ClInclude Include="gpu\program.h" />
     <ClInclude Include="gpu\properties.h" />
     <ClInclude Include="gpu\render.h" />
@@ -392,6 +392,9 @@
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\system.h" />
     <ClInclude Include="platform\_platform.h" />
+    <ClInclude Include="typeface\character.h" />
+    <ClInclude Include="typeface\face.h" />
+    <ClInclude Include="typeface\_.h" />
     <ClInclude Include="user\user\graphics3d.h" />
     <ClInclude Include="user\user\user.h" />
     <ClInclude Include="_.h" />
@@ -436,7 +439,6 @@
     <ClCompile Include="gpu\cpu_buffer.cpp" />
     <ClCompile Include="gpu\device.cpp" />
     <ClCompile Include="gpu\draw2d.cpp" />
-    <ClCompile Include="gpu\face.cpp" />
     <ClCompile Include="gpu\frame.cpp" />
     <ClCompile Include="gpu\graphics.cpp" />
     <ClCompile Include="gpu\guard.cpp" />
@@ -445,6 +447,7 @@
     <ClCompile Include="gpu\memory_buffer.cpp" />
     <ClCompile Include="gpu\model_buffer.cpp" />
     <ClCompile Include="gpu\object.cpp" />
+    <ClCompile Include="gpu\pixmap.cpp" />
     <ClCompile Include="gpu\program.cpp" />
     <ClCompile Include="gpu\properties.cpp" />
     <ClCompile Include="gpu\render.cpp" />
@@ -469,6 +472,7 @@
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\system.cpp" />
+    <ClCompile Include="typeface\face.cpp" />
     <ClCompile Include="user\user\graphics3d.cpp" />
     <ClCompile Include="user\user\user.cpp" />
     <ClCompile Include="_.cpp" />

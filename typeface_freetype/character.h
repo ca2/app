@@ -1,17 +1,17 @@
 // Created by camilo with Mom and Bilbo support on
-// 2025-06-02 03:08 <3ThomasBorregaardSørensen!!
+// 2025-06-01 23:17 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
 #include <glm/glm.hpp>
 
 
-namespace draw2d_gpu
+namespace typeface_freetype
 {
 
 
    /// Holds all state information relevant to a character as loaded using FreeType
-   struct character
+   struct character 
    {
       int m_iUnicode;
       bool m_bInit;
@@ -29,7 +29,7 @@ namespace draw2d_gpu
    };
 
 
-} // namespace draw2d_opengl
+} // namespace typeface_freetype
 
 
 

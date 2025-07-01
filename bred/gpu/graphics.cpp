@@ -14,15 +14,14 @@
 #include "bred/gpu/swap_chain.h"
 
 
-namespace draw2d_gpu
+namespace gpu
 {
-
 
 
    void thread_graphics(graphics* pgraphics)
    {
 
-      ::get_task()->payload("draw2d_gpu::graphics") = pgraphics;
+      ::get_task()->payload("gpu::graphics") = pgraphics;
 
    }
 
@@ -515,7 +514,7 @@ namespace draw2d_gpu
 
 
 
-} // namespace draw2d_gpu
+} // namespace gpu
 
 
 

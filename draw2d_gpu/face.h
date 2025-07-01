@@ -3,7 +3,7 @@
 #pragma once
 
 
-#include "bred/gpu/face.h"
+#include "bred/typeface/face.h"
 
 
 
@@ -12,25 +12,26 @@ namespace draw2d_gpu
 
 
    class CLASS_DECL_DRAW2D_GPU face:
-      virtual public ::draw2d_gpu::face
+      virtual public ::typeface::face
    {
    public:
 
       
-      unsigned int m_FaceVAO, m_FaceVBO;
+      //sunsigned int m_FaceVAO, m_FaceVBO;
+
+      ::pointer < ::gpu::model_buffer >   m_pmodelbuffer;
 
 
       face();
       ~face() override;
 
-      //virtual character& get_character(const ::scoped_string& scopedstr);
 
 
-      virtual void create_character(::draw2d_gpu::character& ch, const ::scoped_string& scopedstr);
+      virtual void create_character(::typeface::character& ch, const ::scoped_string& scopedstr);
 
       void create_draw_buffers();
 
-      void create_texture(::draw2d_gpu::character& ch, const unsigned char* p);
+      virtual void create_texture(::typeface::character& ch, const unsigned char* p);
 
 
    };

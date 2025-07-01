@@ -4,7 +4,7 @@
 
 #include "acme/platform/auto_pointer.h"
 #include "aura/graphics/draw2d/draw2d.h"
-#include "face.h"
+#include "bred/typeface/face.h"
 
 
 namespace draw2d_gpu
@@ -17,7 +17,7 @@ namespace draw2d_gpu
    public:
 
 
-      ::string_map <::int_map<::pointer <face>>> m_mapFaceSize;
+      ::string_map <::int_map<::pointer <::typeface::face>>> m_mapFaceSize;
 
 
       draw2d();
@@ -26,7 +26,7 @@ namespace draw2d_gpu
 
       void initialize(::particle* pparticle) override;
 
-      face* get_face(::write_text::font* pfont);
+      ::typeface::face* get_face(::write_text::font* pfont);
 
       void on_create_window(::windowing::window* pwindow) override;
     

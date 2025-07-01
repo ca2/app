@@ -3,10 +3,10 @@
 #pragma once
 
 
-#include "character.h"
+#include "bred/typeface/character.h"
 
 
-namespace draw2d_gpu
+namespace typeface
 {
 
 
@@ -16,14 +16,19 @@ namespace draw2d_gpu
    public:
 
 
+      ::pointer < ::gpu::renderer > m_pgpurenderer;
+
       int m_iPixelSize;
       ::string m_strFontName;
-      ::string_map<character> m_mapCharacter;
+      ::string_map<::typeface::character> m_mapCharacter;
 //      unsigned int m_VAO, m_VBO;
 
 
       face();
       ~face() override;
+
+
+      virtual void initialize_gpu_buffer(::gpu::renderer* pgpurenderer);
 
       virtual character& get_character(const ::scoped_string& scopedstr);
 
@@ -38,5 +43,7 @@ namespace draw2d_gpu
    };
 
 
-} // namespace draw2d_gpu
+} // namespace typeface
+
+
 

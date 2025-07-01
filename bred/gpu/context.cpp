@@ -895,7 +895,7 @@ namespace gpu
    }
 
 
-   bool context::create_offscreen_graphics_for_swap_chain_blitting(::draw2d_gpu::graphics* pgraphics, const ::int_size& size)
+   bool context::create_offscreen_graphics_for_swap_chain_blitting(::gpu::graphics* pgraphics, const ::int_size& size)
    {
 
       return false;
@@ -1337,14 +1337,14 @@ namespace gpu
    //}
 
 
-   void context::on_begin_draw_attach(::draw2d_gpu::graphics* pgpugraphics)
+   void context::on_begin_draw_attach(::gpu::graphics* pgpugraphics)
    {
 
       draw2d_on_begin_draw(pgpugraphics);
 
    }
 
-   void context::on_end_draw_detach(::draw2d_gpu::graphics* pgpugraphics)
+   void context::on_end_draw_detach(::gpu::graphics* pgpugraphics)
    {
 
       draw2d_on_end_draw(pgpugraphics);
@@ -1352,7 +1352,7 @@ namespace gpu
    }
 
 
-   void context::draw2d_on_begin_draw(::draw2d_gpu::graphics* pgpugraphics)
+   void context::draw2d_on_begin_draw(::gpu::graphics* pgpugraphics)
    {
 
       //if (pgpugraphics->m_egraphics == e_graphics_draw)
@@ -1398,7 +1398,7 @@ namespace gpu
 
 
 
-   void context::draw2d_on_end_draw(::draw2d_gpu::graphics* pgpugraphics)
+   void context::draw2d_on_end_draw(::gpu::graphics* pgpugraphics)
    {
 
       //if (pgpugraphics->m_egraphics == e_graphics_draw)

@@ -22,7 +22,7 @@ namespace draw2d_gpu
 
 
    class CLASS_DECL_DRAW2D_GPU graphics :
-      virtual public ::draw2d_gpu::graphics
+      virtual public ::gpu::graphics
    {
    public:
 

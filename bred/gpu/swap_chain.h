@@ -27,7 +27,7 @@ namespace gpu
       virtual void initialize_swap_chain_window(::gpu::context * pcontext, ::windowing::window* pwindow);
       virtual void initialize_gpu_swap_chain(::gpu::renderer * pgpurenderer);
 
-      //virtual void endDraw(::draw2d_gpu::graphics* pgraphics, ::user::interaction* puserinteraction, ::gpu::renderer* prendererSrc);
+      //virtual void endDraw(::gpu::graphics* pgraphics, ::user::interaction* puserinteraction, ::gpu::renderer* prendererSrc);
       virtual void present(::gpu::texture * pgputexture);
       virtual void set_present_state();
       virtual void swap_buffers();

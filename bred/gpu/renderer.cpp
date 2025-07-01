@@ -751,7 +751,7 @@ namespace gpu
    }
 
 
-   void renderer::endDraw(::draw2d_gpu::graphics* pgraphics, ::user::interaction* puserinteraction)
+   void renderer::endDraw(::gpu::graphics* pgraphics, ::user::interaction* puserinteraction)
    {
 
 
@@ -1186,14 +1186,14 @@ namespace gpu
    }
 
 
-   //void renderer::on_before_begin_frame(::draw2d_gpu::graphics* pgraphics)
+   //void renderer::on_before_begin_frame(::gpu::graphics* pgraphics)
    //{
 
 
    //}
 
 
-   //void renderer::on_after_end_frame(::draw2d_gpu::graphics* pgraphics)
+   //void renderer::on_after_end_frame(::gpu::graphics* pgraphics)
    //{
 
 

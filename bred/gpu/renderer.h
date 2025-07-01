@@ -28,7 +28,7 @@ namespace gpu
       //string                              m_strFragment;
       //::pointer<::gpu::context>             m_pgpucontextUpper;
       ::pointer<::gpu::context>             m_pgpucontext;
-      ::pointer<::draw2d_gpu::graphics>     m_pgraphics;
+      ::pointer<::gpu::graphics>     m_pgraphics;
       //::pointer<::gpu::context>             m_pgpucontextOutput;
       bool                                  m_bDisableDepthStencil = false;
       ::int_size m_sizeRenderer;
@@ -172,7 +172,7 @@ namespace gpu
       //virtual int __default_get_frame_index();
 
 
-      virtual void endDraw(::draw2d_gpu::graphics* pgraphics, ::user::interaction* puserinteraction);
+      virtual void endDraw(::gpu::graphics* pgraphics, ::user::interaction* puserinteraction);
 
 
       virtual void defer_update_renderer();

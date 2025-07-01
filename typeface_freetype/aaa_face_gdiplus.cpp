@@ -29,7 +29,7 @@ void defer_initialize_gdiplus()
 }
 
 
-namespace draw2d_gpu
+namespace typeface_freetype
 {
 
 
@@ -108,7 +108,7 @@ namespace draw2d_gpu
 
    }
 
-   void face_gdiplus::create_character(::draw2d_gpu::character& ch, const ::scoped_string& scopedstr)
+   void face_gdiplus::create_character(::gpu::character& ch, const ::scoped_string& scopedstr)
       //Character& face_freetype::get_character(const ::scoped_string& scopedstr)
    {
 
@@ -243,6 +243,6 @@ namespace draw2d_gpu
    }
 
 
-}// namespace draw2d_gpu
+}// namespace typeface_freetype
 
 

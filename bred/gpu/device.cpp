@@ -162,7 +162,7 @@ namespace gpu
 
       }
 
-      for(int i = iFind - 1; i >= 0; i--)
+      for(int i = (int) iFind - 1; i >= 0; i--)
       {
          if (m_playera->element_at(i)->m_pgpurenderer
              == player->m_pgpurenderer)

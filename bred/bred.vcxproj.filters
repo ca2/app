@@ -52,6 +52,15 @@
     <Filter Include="Source Files\gpu\const">
       <UniqueIdentifier>{b64687ba-08b5-4462-a4fb-426514e2f646}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\typeface">
+      <UniqueIdentifier>{d3a144f4-dcbf-4f2d-9580-421dc2a4b418}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\typeface">
+      <UniqueIdentifier>{a239bdb3-1f41-4012-a80b-1118414ea886}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\typeface\NewFilter1">
+      <UniqueIdentifier>{79062294-7684-419e-9562-8c78e94b8f42}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -112,9 +121,6 @@
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
     <ClInclude Include="gpu\draw2d.h">
-      <Filter>Header Files\gpu</Filter>
-    </ClInclude>
-    <ClInclude Include="gpu\face.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
     <ClInclude Include="gpu\frame.h">
@@ -228,6 +234,18 @@
     <ClInclude Include="gpu\memory_buffer.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
+    <ClInclude Include="gpu\pixmap.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="typeface\face.h">
+      <Filter>Header Files\typeface</Filter>
+    </ClInclude>
+    <ClInclude Include="typeface\_.h">
+      <Filter>Header Files\typeface</Filter>
+    </ClInclude>
+    <ClInclude Include="typeface\character.h">
+      <Filter>Header Files\typeface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -294,9 +312,6 @@
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\draw2d.cpp">
-      <Filter>Source Files\gpu</Filter>
-    </ClCompile>
-    <ClCompile Include="gpu\face.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\frame.cpp">
@@ -367,6 +382,12 @@
     </ClCompile>
     <ClCompile Include="gpu\model_buffer.cpp">
       <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\pixmap.cpp">
+      <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="typeface\face.cpp">
+      <Filter>Source Files\typeface</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

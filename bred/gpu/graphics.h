@@ -9,7 +9,7 @@
 #include "bred/gpu/device.h"
 
 
-namespace draw2d_gpu
+namespace gpu
 {
 
 

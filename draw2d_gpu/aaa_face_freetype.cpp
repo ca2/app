@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "face_freetype.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "bred/gpu/pixmap.h"
 
 
 #ifdef WINDOWS_DESKTOP
@@ -39,8 +40,8 @@ namespace draw2d_gpu
 
       m_bFace = false;
       m_face = nullptr;
-      m_FaceVAO = 0;
-      m_FaceVBO = 0;
+      //m_FaceVAO = 0;
+      //m_FaceVBO = 0;
 
    }
 
@@ -56,7 +57,7 @@ namespace draw2d_gpu
    }
 
 
-   void face_freetype::create_character(::draw2d_gpu::character &ch, const ::scoped_string& scopedstr)
+   void face_freetype::create_character(::typeface::character &ch, const ::scoped_string& scopedstr)
       //Character& face_freetype::get_character(const ::scoped_string& scopedstr)
    {
 
@@ -87,27 +88,40 @@ namespace draw2d_gpu
          warning() << "ERROR::FREETYTPE: Failed to load Glyph";
          return;
       }
-      glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-      // generate texture
-         //unsigned int texture;
-      glGenTextures(1, &ch.TextureID);
-      glBindTexture(GL_TEXTURE_2D, ch.TextureID);
-      glTexImage2D(
-         GL_TEXTURE_2D,
-         0,
-         GL_RED,
+
+      auto ppixmap = __øcreate < ::gpu::pixmap >();
+
+
+      ppixmap->initialize(m_pgpurenderer,
          m_face->glyph->bitmap.width,
-         m_face->glyph->bitmap.rows,
-         0,
-         GL_RED,
-         GL_UNSIGNED_BYTE,
-         m_face->glyph->bitmap.buffer
+         m_face->glyph->bitmap.rows);
+
+      ppixmap->set_pixels(
+         m_face->glyph->bitmap.buffer,
+         m_face->glyph->bitmap.width,
+         m_face->glyph->bitmap.rows
       );
-      // set texture options
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+      ////sglPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+      //// generate texture
+      //   //unsigned int texture;
+      //glGenTextures(1, &ch.TextureID);
+      //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
+      //glTexImage2D(
+      //   GL_TEXTURE_2D,
+      //   0,
+      //   GL_RED,
+      //   m_face->glyph->bitmap.width,
+      //   m_face->glyph->bitmap.rows,
+      //   0,
+      //   GL_RED,
+      //   GL_UNSIGNED_BYTE,
+      //   m_face->glyph->bitmap.buffer
+      //);
+      //// set texture options
+      //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+      //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+      //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+      //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
       // now store character for later use
       //aracter = {
         //  texture,
@@ -117,7 +131,7 @@ namespace draw2d_gpu
       //};
       //Characters.insert(std::pair<char, Character>(c, character));
    //}
-      glBindTexture(GL_TEXTURE_2D, 0);
+      //glBindTexture(GL_TEXTURE_2D, 0);
       //}
 //else {
 

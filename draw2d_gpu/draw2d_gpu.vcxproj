@@ -722,8 +722,6 @@
     <ClInclude Include="character.h" />
     <ClInclude Include="draw2d.h" />
     <ClInclude Include="face.h" />
-    <ClInclude Include="face_freetype.h" />
-    <ClInclude Include="face_gdiplus.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="factory_exchange.h" />
     <ClInclude Include="font.h" />
@@ -742,10 +740,17 @@
     <ClInclude Include="_opengl.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="draw2d_win32.cpp" />
+    <ClCompile Include="aaa_draw2d_win32.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="face.cpp" />
-    <ClCompile Include="face_freetype.cpp" />
-    <ClCompile Include="face_gdiplus.cpp" />
     <ClCompile Include="initialize_opengl_version.cpp" />
     <ClCompile Include="bitmap.cpp" />
     <ClCompile Include="brush.cpp" />

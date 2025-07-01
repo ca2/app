@@ -2,9 +2,11 @@
 // 2025-06-02 03:52 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "face.h"
+#include "bred/gpu/pixmap.h"
+#include "bred/gpu/renderer.h"
 
 
-namespace draw2d_gpu
+namespace typeface
 {
 
 
@@ -20,6 +22,15 @@ namespace draw2d_gpu
    {
 
 
+
+   }
+
+
+   void face::initialize_gpu_buffer(::gpu::renderer* pgpurenderer)
+   {
+
+
+      m_pgpurenderer = pgpurenderer;
 
    }
 
@@ -64,8 +75,15 @@ namespace draw2d_gpu
 
    }
 
+
    void face::create_texture(character& ch, const unsigned char* p)
    {
+
+      __defer_construct(ch.m_ppixmap);
+
+      ch.m_ppixmap->initialize_gpu_pixmap(m_pgpurenderer, { ch.Size.x, ch.Size.y });
+
+      ch.m_ppixmap->set_pixels(p, ch.Size.x, ch.Size.y);
 
       //glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
       //// generate texture
@@ -94,6 +112,8 @@ namespace draw2d_gpu
 
    }
 
-} // namespace draw2d_gpu
+
+} // namespace typeface
+
 
 

@@ -175,7 +175,7 @@ namespace gpu
    int render_target::imageCount() 
    {
       
-      return m_texturea.size(); 
+      return (int) m_texturea.size(); 
    
    }
 
@@ -221,14 +221,14 @@ namespace gpu
    }
 
 
-   void render_target::on_before_begin_draw_frame(::draw2d_gpu::graphics* pgraphics)
+   void render_target::on_before_begin_draw_frame(::gpu::graphics* pgraphics)
    {
 
 
    }
 
 
-   void render_target::on_after_end_draw_frame(::draw2d_gpu::graphics* pgraphics)
+   void render_target::on_after_end_draw_frame(::gpu::graphics* pgraphics)
    {
 
 

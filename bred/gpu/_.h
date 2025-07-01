@@ -51,6 +51,12 @@ namespace gpu
    };
    using element = int;
 
+
+
+   class draw2d;
+
+   class graphics;
+
    class renderer;
    class render;
 
@@ -62,8 +68,6 @@ namespace gpu
    class device;
 
    class compositor;
-
-   class character;
 
    class swap_chain;
 
@@ -124,21 +128,10 @@ namespace gpu
 
    class model_buffer;
 
+   class pixmap;
 
 } // gpu
 
-
-namespace draw2d_gpu
-{
-
-   
-   class draw2d;
-
-   class face;
-
-   class graphics;
-
-} // namespace draw2d_gpu
 
 
 #include "_constant.h"

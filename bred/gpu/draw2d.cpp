@@ -9,6 +9,7 @@
 #include "acme/platform/system.h"
 #include "acme/prototype/prototype/memory.h"
 #include "acme/windowing/windowing.h"
+#include "bred/typeface/character.h"
 
 
 namespace draw2d_gpu
@@ -34,7 +35,7 @@ namespace draw2d_gpu
    }
 
 
-   face* draw2d::get_face(::write_text::font* pfont)
+   ::typeface::face* draw2d::get_face(::write_text::font* pfont)
    {
 
       int iPixelSize = 0;

@@ -25,7 +25,7 @@ namespace draw2d_gpu
       face_freetype();
       ~face_freetype() override;
 
-      void create_character(::draw2d_gpu::character& ch, const ::scoped_string& scopedstr) override;
+      void create_character(::typeface::character& ch, const ::scoped_string& scopedstr) override;
 
 
    };

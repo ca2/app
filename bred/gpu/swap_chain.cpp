@@ -56,7 +56,7 @@ namespace gpu
    }
 
 
-   //void swap_chain::endDraw(::draw2d_gpu::graphics* pgraphics, ::user::interaction* puserinteraction, ::gpu::renderer* prendererSrc)
+   //void swap_chain::endDraw(::gpu::graphics* pgraphics, ::user::interaction* puserinteraction, ::gpu::renderer* prendererSrc)
    //{
 
    //   ASSERT(m_pgpudevice->m_edevicetarget == ::gpu::e_device_target_swap_chain);

@@ -732,6 +732,7 @@
     <ClInclude Include="object.h" />
     <ClInclude Include="approach.h" />
     <ClInclude Include="offscreen_render_target.h" />
+    <ClInclude Include="pixmap.h" />
     <ClInclude Include="program.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="render_target.h" />
@@ -786,6 +787,7 @@
     <ClCompile Include="lock.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="offscreen_render_target.cpp" />
+    <ClCompile Include="pixmap.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="render_target.cpp" />
     <ClCompile Include="swap_chain.cpp" />

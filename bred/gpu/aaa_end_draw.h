@@ -16,7 +16,7 @@ namespace draw2d_gpu
       ~end_draw() override;
 
 
-      virtual void initialize_end_draw(::draw2d_gpu::graphics* pgraphics);
+      virtual void initialize_end_draw(::gpu::graphics* pgraphics);
 
 
       virtual void endDraw(::user::interaction* puserinteraction, ::gpu::renderer* prendererSrc);

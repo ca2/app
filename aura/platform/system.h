@@ -396,6 +396,7 @@ namespace aura
       virtual ::factory::factory * imaging_factory() override;
       virtual ::string imaging_get_default_implementation_name() override;
 
+      virtual void initialize_typeface() override;
       virtual ::factory::factory* typeface_factory() override;
       virtual ::string typeface_get_default_implementation_name() override;
 

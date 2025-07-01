@@ -420,6 +420,11 @@ namespace platform
    }
 
 
+   void aura_system_layer::initialize_typeface()
+   {
+   }
+
+
    ::factory::factory* aura_system_layer::typeface_factory()
    {
 

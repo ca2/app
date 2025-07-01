@@ -157,6 +157,8 @@ namespace aura
       ::string                                           m_strGraphics3DImplementation;
       ::string                                           m_strDraw2dImplementation;
 
+      ::string                                           m_strTypefaceImplementation;
+
 
       application();
       ~application() override;

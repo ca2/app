@@ -1832,6 +1832,54 @@ namespace aura
       }
 
 
+
+      {
+
+         ::string strImplementation = application_file_setting("typeface.txt");
+
+         strImplementation.make_lower();
+
+         if (strImplementation == "directx11")
+         {
+
+            strImplementation = "directx11";
+
+         }
+         else if (strImplementation == "directx12")
+         {
+
+            strImplementation = "directx12";
+
+         }
+         else if (strImplementation == "opengl")
+         {
+
+            strImplementation = "opengl";
+
+         }
+         else if (strImplementation == "vulkan")
+         {
+
+            strImplementation = "vulkan";
+
+         }
+         else if (strImplementation == "direct2d")
+         {
+
+            strImplementation = "direct2d";
+
+         }
+         else
+         {
+
+            strImplementation.empty();
+
+         }
+
+         m_strDraw2dImplementation = strImplementation;
+
+      }
+
       {
 
          ::string strImplementation = application_file_setting("graphics3d.txt");
@@ -9809,7 +9857,18 @@ namespace aura
    ::string application::typeface_get_default_implementation_name()
    {
 
-      return ::aqua::application::typeface_get_default_implementation_name();
+      if(m_strTypefaceImplementation)
+      {
+
+         return system()->implementation_name("typeface", m_strTypefaceImplementation);
+
+      }
+      else
+      {
+
+         return ::aqua::application::draw2d_get_default_implementation_name();
+
+      }
 
    }
 

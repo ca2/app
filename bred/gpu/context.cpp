@@ -4,6 +4,7 @@
 #include "device.h"
 #include "cpu_buffer.h"
 #include "guard.h"
+#include "input_layout.h"
 #include "memory_buffer.h"
 #include "model_buffer.h"
 #include "render.h"

@@ -24,6 +24,33 @@ namespace gpu_opengl
    }
 
 
+   void command_buffer::set_viewport(const ::int_rectangle& rectangle)
+   {
+
+      glViewport(
+         rectangle.left(),
+         rectangle.top(),
+         rectangle.width(),
+         rectangle.height());
+      GLCheckError("");
+
+   }
+
+
+   void command_buffer::set_scissor(const ::int_rectangle& rectangle)
+   {
+
+      glEnable(GL_SCISSOR_TEST);
+      glScissor(rectangle.left(),
+         rectangle.top(),
+         rectangle.width(),
+         rectangle.height());
+
+
+   }
+
+
+
    void command_buffer::draw(int a)
    {
 

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "command_buffer.h"
 #include "context.h"
 #include "device.h"
 #include "frame_buffer.h"
@@ -258,19 +259,32 @@ else
 
          m_pshaderCopyTextureOnEndDraw->initialize_shader_with_block(
             m_pgpurenderer,
-            pvertexshader, pfragmentshader);
+            pvertexshader, pfragmentshader,
+            {},
+            {},
+            {},
+            m_pgpucontext->input_layout(::graphics3d::sequence2_uv_properties())
+         );
 
 
       }
 
       glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-      m_pshaderCopyTextureOnEndDraw->bind();
 
-      m_pshaderCopyTextureOnEndDraw->bind_source(pgputexture);
+
+      auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2();
+
+      pcommandbuffer->set_viewport(m_pgpucontext->m_rectangle.size());
+
+      pcommandbuffer->set_scissor(m_pgpucontext->m_rectangle.size());
+
+      glDrawBuffer(GL_BACK);
 
       glClearColor(0.f, 0.5f, 0.f, 0.5f);
       glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+      glDisable(GL_BLEND);
+      glDisable(GL_DEPTH_TEST);
 
       if (1)
       {
@@ -282,9 +296,12 @@ else
 
          }*/
 
-         auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2();
 
          auto pmodelbufferFullscreenQuad = m_pgpucontext->sequence2_uv_fullscreen_quad_model_buffer();
+
+         m_pshaderCopyTextureOnEndDraw->bind();
+
+         m_pshaderCopyTextureOnEndDraw->bind_source(pgputexture);
 
          pmodelbufferFullscreenQuad->bind(pcommandbuffer);
 
@@ -346,9 +363,11 @@ else
 
          //debug() << "gl error";
 
+         m_pshaderCopyTextureOnEndDraw->unbind();
+
+
       }
 
-      m_pshaderCopyTextureOnEndDraw->unbind();
 
       ::cast < device > pdevice = m_pgpurenderer->m_pgpucontext->m_pgpudevice;
 

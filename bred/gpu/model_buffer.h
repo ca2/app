@@ -106,6 +106,9 @@ namespace gpu
 
       virtual void unbind(::gpu::command_buffer* pcommandbuffer);
 
+      virtual void defer_set_input_layout(::gpu::input_layout* pinputlayout);
+
+
    };
 
 

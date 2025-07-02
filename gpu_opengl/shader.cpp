@@ -1,5 +1,6 @@
 #include "framework.h"
 //#include "lock.h"
+#include "input_layout.h"
 #include "renderer.h"
 #include "shader.h"
 #include "texture.h"
@@ -175,6 +176,7 @@ namespace gpu_opengl
       //   return estatus;
 
       //}
+
 
       // delete the shaders
       // they're linked into our program

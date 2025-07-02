@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "command_buffer.h"
 #include "context.h"
+#include "input_layout.h"
 #include "memory_buffer.h"
 #include "model_buffer.h"
 #include "acme/prototype/geometry2d/matrix.h"
@@ -45,6 +46,21 @@ namespace gpu_opengl
       glGenVertexArrays(1, &m_gluVao);
       GLCheckError("");
       //glBindVertexArray(vao);
+
+   }
+
+
+   void model_buffer::defer_set_input_layout(::gpu::input_layout* pgpuinputlayout)
+   {
+
+      ::cast < input_layout > pinputlayout = pgpuinputlayout;
+
+      ::cast < memory_buffer > pbufferVertex = m_pbufferVertex;
+
+      pinputlayout->_do_opengl_vao_and_vbo_input_layout(
+         m_gluVao,
+         pbufferVertex->m_gluVbo
+      );
 
    }
 

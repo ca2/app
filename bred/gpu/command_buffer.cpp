@@ -58,6 +58,21 @@ namespace gpu
 
    }
 
+
+   void command_buffer::set_viewport(const ::int_rectangle& rectangle)
+   {
+
+
+   }
+
+
+   void command_buffer::set_scissor(const ::int_rectangle& rectangle)
+   {
+
+
+
+   }
+
    
    void command_buffer::reset()
    {

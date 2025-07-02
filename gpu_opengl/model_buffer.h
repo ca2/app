@@ -25,6 +25,7 @@ namespace gpu_opengl
       
       GLuint m_gluVao;
 
+
       model_buffer();
       ~model_buffer();
 
@@ -90,6 +91,9 @@ namespace gpu_opengl
       void draw(::gpu::command_buffer* pcommandbuffer) override;
 
       void unbind(::gpu::command_buffer* pcommandbuffer) override;
+
+
+      void defer_set_input_layout(::gpu::input_layout* pinputlayout) override;
 
 
    };

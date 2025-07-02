@@ -213,9 +213,15 @@ namespace gpu
       this->create_vertex_array<::graphics3d::sequence2_uv >(
          pcontext, 6);
 
-      auto data = map<::graphics3d::sequence2_uv >();
+      defer_set_input_layout(pcontext->input_layout(::graphics3d::sequence2_uv_properties()));
 
-      memcpy(data, quadVertices, sizeof(quadVertices));
+      {
+
+         auto data = map<::graphics3d::sequence2_uv >();
+
+         memcpy(data, quadVertices, sizeof(quadVertices));
+
+      }
 
    }
 
@@ -787,6 +793,15 @@ namespace gpu
       //}
 
    }
+
+
+   void model_buffer::defer_set_input_layout(::gpu::input_layout* pinputlayout)
+   {
+
+
+   }
+
+
    //void model_buffer::handle(const ::call& call)
    //{
 

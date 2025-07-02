@@ -39,6 +39,10 @@ namespace gpu
 
       virtual void wait_commands_to_execute();
 
+      virtual void set_viewport(const ::int_rectangle& rectangle);
+
+      virtual void set_scissor(const ::int_rectangle& rectangle);
+
       virtual void reset();
 
       virtual void draw(int a);

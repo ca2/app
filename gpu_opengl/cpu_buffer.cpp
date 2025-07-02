@@ -5,6 +5,7 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/target.h"
 #include "bred/gpu/context.h"
+#include "bred/gpu/context_lock.h"
 
 
 namespace gpu_opengl
@@ -35,7 +36,7 @@ namespace gpu_opengl
 
       }
 
-      ::gpu_opengl::opengl_lock opengl_lock(m_pgpucontext);
+      ::gpu::context_lock contextlock(m_pgpucontext);
 
       ////m_pixmap.map();
 

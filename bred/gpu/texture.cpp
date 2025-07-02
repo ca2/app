@@ -80,6 +80,27 @@ namespace gpu
    }
 
 
+   void texture::create_render_target()
+   {
+
+
+   }
+
+
+   void texture::create_depth_resources()
+   {
+
+
+   }
+
+
+   void texture::bind_render_target()
+   {
+
+
+   }
+
+
 } // namespace gpu
 
 

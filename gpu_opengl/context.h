@@ -16,8 +16,8 @@ namespace gpu_opengl
 
 
       bool     m_bDepthBuffer = true;
-      GLuint m_vaoFullScreenQuad;
-      GLuint m_vboFullScreenQuad;
+      //GLuint m_vaoFullScreenQuad;
+      //GLuint m_vboFullScreenQuad;
       ::pointer < ::gpu_opengl::frame_buffer >   m_pframebuffer;
       ::pointer < ::gpu_opengl::shader >   m_pshaderCopy;
       ::int_size                    m_sizeHost;
@@ -56,10 +56,15 @@ namespace gpu_opengl
 
       //void swap_buffers() override;
 
-      virtual void _opengl_lock();
-      virtual void _opengl_unlock();
+      void _context_lock() override;
+      void _context_unlock() override;
 
       virtual void update_framebuffer(const ::int_size& size);
+
+      ::memory rectangle_shader_vert() override;
+      ::memory rectangle_shader_frag() override;
+
+      
 
       //virtual void create_offscreen_buffer(const ::int_size& size);
       //virtual void _create_offscreen_buffer(const ::int_size& size);
@@ -109,7 +114,7 @@ namespace gpu_opengl
       void merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera) override;
 
       void on_start_layer(::gpu::layer* player) override;
-      virtual void _ensure_layer_framebuffer();
+      //virtual void _ensure_layer_framebuffer();
       
       //void make_current() override;
 

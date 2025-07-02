@@ -80,6 +80,13 @@ namespace gpu
    }
 
 
+   void command_buffer::set_render_target()
+   {
+
+
+   }
+
+
 
    //void command_buffer::wait_for_gpu()
    //{

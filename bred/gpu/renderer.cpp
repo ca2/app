@@ -668,15 +668,7 @@ namespace gpu
 
       }
 
-
-
-      //if(!bLayerStarted)
-      {
-
-         _on_begin_render(pframe);
-
-      }
-
+      _on_begin_render(pframe);
 
       ///if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
@@ -1107,6 +1099,8 @@ namespace gpu
    {
 
       m_pgpucontext->on_start_layer(player);
+
+      m_pgpulayer = player;
 
    }
 

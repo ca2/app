@@ -902,6 +902,8 @@ namespace gpu
 
       __defer_construct_new(ppoolgroupFrame);
 
+      ppoolgroupFrame->m_pallocator = this;
+
       return ppoolgroupFrame;
 
    }

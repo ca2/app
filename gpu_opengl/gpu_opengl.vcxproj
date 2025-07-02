@@ -729,6 +729,8 @@
     <ClInclude Include="frame_buffer.h" />
     <ClInclude Include="input_layout.h" />
     <ClInclude Include="lock.h" />
+    <ClInclude Include="memory_buffer.h" />
+    <ClInclude Include="model_buffer.h" />
     <ClInclude Include="object.h" />
     <ClInclude Include="approach.h" />
     <ClInclude Include="offscreen_render_target.h" />
@@ -785,6 +787,8 @@
     <ClCompile Include="frame_buffer.cpp" />
     <ClCompile Include="input_layout.cpp" />
     <ClCompile Include="lock.cpp" />
+    <ClCompile Include="memory_buffer.cpp" />
+    <ClCompile Include="model_buffer.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="offscreen_render_target.cpp" />
     <ClCompile Include="pixmap.cpp" />

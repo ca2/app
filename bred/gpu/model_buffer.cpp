@@ -182,6 +182,44 @@ namespace gpu
    ////}
 
 
+   void model_buffer::sequence2_uv_create_fullscreen_quad(::gpu::context* pcontext)
+   {
+
+      // Vertex data: (x, y, u, v)
+#if 1
+      float quadVertices[] = {
+         //  Position   TexCoords
+         -1.0f,  1.0f,  0.0f, 1.0f, // Top-left
+         -1.0f, -1.0f,  0.0f, 0.0f, // Bottom-left
+          1.0f, -1.0f,  1.0f, 0.0f, // Bottom-right
+
+         -1.0f,  1.0f,  0.0f, 1.0f, // Top-left
+          1.0f, -1.0f,  1.0f, 0.0f, // Bottom-right
+          1.0f,  1.0f,  1.0f, 1.0f  // Top-right
+      };
+#else
+      float quadVertices[] = {
+         //  Position   TexCoords
+         0.0f,  1.0f,  0.0f, 1.0f, // Top-left
+         0.0f, 0.0f,  0.0f, 0.0f, // Bottom-left
+          1.0f, 0.0f,  1.0f, 0.0f, // Bottom-right
+
+         0.0f,  1.0f,  0.0f, 1.0f, // Top-left
+          1.0f, 0.0f,  1.0f, 0.0f, // Bottom-right
+          1.0f,  1.0f,  1.0f, 1.0f  // Top-right
+      };
+#endif
+
+      this->create_vertex_array<::graphics3d::sequence2_uv >(
+         pcontext, 6);
+
+      auto data = map<::graphics3d::sequence2_uv >();
+
+      memcpy(data, quadVertices, sizeof(quadVertices));
+
+   }
+
+
    void model_buffer::sequence2_color_create_rectangle(::gpu::context* pcontext)
    {
 
@@ -718,6 +756,37 @@ namespace gpu
    }
 
 
+   void model_buffer::unbind(::gpu::command_buffer* pgpucommandbuffer)
+   {
+
+      //if (m_pbufferVertex)
+      //{
+
+      //   ::cast < command_buffer > pcommandbuffer = pgpucommandbuffer;
+
+      //   VkDeviceSize offsets[] = { 0 };
+
+      //   ::cast < memory_buffer > pbufferVertex = m_pbufferVertex;
+
+      //   vkCmdBindVertexBuffers(
+      //      pcommandbuffer->m_vkcommandbuffer,
+      //      0, 1,
+      //      &pbufferVertex->m_vkbuffer, offsets);
+
+      //   if (m_pbufferIndex)
+      //   {
+
+      //      ::cast < memory_buffer > pbufferIndex = m_pbufferIndex;
+
+      //      vkCmdBindIndexBuffer(
+      //         pcommandbuffer->m_vkcommandbuffer,
+      //         pbufferIndex->m_vkbuffer, 0, VK_INDEX_TYPE_UINT16);
+
+      //   }
+
+      //}
+
+   }
    //void model_buffer::handle(const ::call& call)
    //{
 

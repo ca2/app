@@ -3,6 +3,7 @@
 #include "device_win32.h"
 #include "frame_buffer.h"
 #include "lock.h"
+#include "model_buffer.h"
 #include "program.h"
 #include "renderer.h"
 #include "render_target.h"
@@ -10,6 +11,7 @@
 #include "texture.h"
 #include "aura/graphics/image/image.h"
 #include "bred/gpu/command_buffer.h"
+#include "bred/gpu/context_lock.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/types.h"
 #include "glm/mat4x4.hpp"
@@ -21,7 +23,7 @@ namespace gpu_opengl
    void vertex2f(const ::double_rectangle& rectangle, float fZ);
 
    void vertex2f(const ::double_polygon& a, float fZ);
-   
+
 
    context::context()
    {
@@ -58,7 +60,7 @@ namespace gpu_opengl
    void context::draw()
    {
 
-      opengl_lock opengl_lock(this);
+      ::gpu::context_lock contextlock(this);
 
       ::cast < device_win32 > pgpudevice = m_pgpudevice;
 
@@ -121,7 +123,7 @@ namespace gpu_opengl
       glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
       // position attribute
-      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
+      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
       glEnableVertexAttribArray(0);
       // color attribute
       //glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
@@ -134,7 +136,7 @@ namespace gpu_opengl
    void context::start_drawing()
    {
 
-      opengl_lock opengl_lock(this);
+      ::gpu::context_lock contextlock(this);
 
       //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo_elements);
 //int iError16 = glGetError();
@@ -189,7 +191,7 @@ namespace gpu_opengl
    void context::global_transform()
    {
 
-      opengl_lock opengl_lock(this);
+      ::gpu::context_lock contextlock(this);
 
       // Get a handle for our "MVP" uniform
       //GLint MatrixID = glGetUniformLocation(programID, "MVP");
@@ -199,8 +201,8 @@ namespace gpu_opengl
 
          // Compute the MVP matrix from keyboard and mouse input
          //computeMatricesFromInputs();
-         ::glm::mat4 matrixProjection = (::glm::mat4 &)projection_matrix();
-         ::glm::mat4 matrixView = (::glm::mat4 &)view_matrix();
+         ::glm::mat4 matrixProjection = (::glm::mat4&)projection_matrix();
+         ::glm::mat4 matrixView = (::glm::mat4&)view_matrix();
          ::glm::mat4 matrixModel = glm::mat4(1.0);
          ::glm::mat4 matrixMVP = matrixProjection * matrixView * matrixModel;
 
@@ -238,7 +240,7 @@ namespace gpu_opengl
    void context::render()
    {
 
-      opengl_lock opengl_lock(this);
+      ::gpu::context_lock contextlock(this);
 
       ::cast < device_win32 > pgpudevice = m_pgpudevice;
 
@@ -298,17 +300,17 @@ namespace gpu_opengl
 
          glDrawArrays(GL_TRIANGLES, 0, 6);
 
-   }
+      }
 
       //return ::success;
 
-}
+   }
 
 
-   void context::set_bitmap_1(::image::image *pimage)
+   void context::set_bitmap_1(::image::image* pimage)
    {
 
-      opengl_lock opengl_lock(this);
+      ::gpu::context_lock contextlock(this);
 
       ::cast < device_win32 > pgpudevice = m_pgpudevice;
 
@@ -328,13 +330,13 @@ namespace gpu_opengl
 
          glPixelStorei(GL_UNPACK_ALIGNMENT, 1); // set alignment of data in memory (a good thing to do before glTexImage)
 
-//#if defined(__APPLE__) || defined(__ANDROID__)
-//         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-//         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE); // set clamp (GL_CLAMP_TO_EDGE would be better)
-//#else
+         //#if defined(__APPLE__) || defined(__ANDROID__)
+         //         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+         //         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE); // set clamp (GL_CLAMP_TO_EDGE would be better)
+         //#else
          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE); // set clamp (GL_CLAMP_TO_EDGE would be better)
-//#endif
+         //#endif
          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // set linear filtering (so you can scale your image)
 
@@ -362,7 +364,7 @@ namespace gpu_opengl
          m_memorySwap.set_size(m_sizeBitmap1.area() * 4);
 
          //vertical_swap_copy_image32_swap_red_blue(
-            ((image32_t *)m_memorySwap.data())->vertical_swap_copy_swap_red_blue(
+         ((image32_t*)m_memorySwap.data())->vertical_swap_copy_swap_red_blue(
             m_sizeBitmap1.cx(),
             m_sizeBitmap1.cy(),
             m_sizeBitmap1.cx() * 4,
@@ -392,6 +394,9 @@ namespace gpu_opengl
    //   pgpudevice->_swap_buffers();
 
    //}
+
+
+
 
 
    void context::update_framebuffer(const ::int_size& size)
@@ -721,7 +726,7 @@ namespace gpu_opengl
       //}
 
 
-   void context::set_matrix_uniform(const ::gpu::payload & uniformMatrix)
+   void context::set_matrix_uniform(const ::gpu::payload& uniformMatrix)
    {
 
       m_iMatrixUniform = uniformMatrix.m_iUniform;
@@ -732,7 +737,7 @@ namespace gpu_opengl
    void context::clear(const ::color::color& color)
    {
 
-      opengl_lock opengl_lock(this);
+      ::gpu::context_lock contextlock(this);
       // Clear the screen 
       GLCheckError("");
       //   glClearColor(0.678f, 0.847f, 0.902f, 1.0f);//
@@ -746,7 +751,7 @@ namespace gpu_opengl
    void context::create_global_ubo(int iGlobalUboSize, int iFrameCount)
    {
 
-      opengl_lock opengl_lock(this);
+      ::gpu::context_lock contextlock(this);
 
       // Create the UBO
       glGenBuffers(1, &m_globalUBO);
@@ -762,7 +767,7 @@ namespace gpu_opengl
    void context::update_global_ubo(const ::block& block)
    {
 
-      opengl_lock opengl_lock(this);
+      ::gpu::context_lock contextlock(this);
 
       glBindBuffer(GL_UNIFORM_BUFFER, m_globalUBO);
       GLCheckError("");
@@ -796,31 +801,31 @@ namespace gpu_opengl
    }
 
 
-   void createFullscreenQuad(GLuint* vao, GLuint* vbo) {
-      float quadVertices[] = {
-         // pos     // uv
-         -1, -1,    0, 0,
-         +1, -1,    1, 0,
-         -1, +1,    0, 1,
-         +1, +1,    1, 1,
-      };
+   //void createFullscreenQuad(GLuint* vao, GLuint* vbo) {
+   //   float quadVertices[] = {
+   //      // pos     // uv
+   //      -1, -1,    0, 0,
+   //      +1, -1,    1, 0,
+   //      -1, +1,    0, 1,
+   //      +1, +1,    1, 1,
+   //   };
 
-      glGenVertexArrays(1, vao);
-      glGenBuffers(1, vbo);
-      glBindVertexArray(*vao);
+   //   glGenVertexArrays(1, vao);
+   //   glGenBuffers(1, vbo);
+   //   glBindVertexArray(*vao);
 
-      glBindBuffer(GL_ARRAY_BUFFER, *vbo);
-      glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
+   //   glBindBuffer(GL_ARRAY_BUFFER, *vbo);
+   //   glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
 
-      glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0); // position
-      glEnableVertexAttribArray(0);
+   //   glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0); // position
+   //   glEnableVertexAttribArray(0);
 
-      glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float))); // UV
-      glEnableVertexAttribArray(1);
+   //   glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float))); // UV
+   //   glEnableVertexAttribArray(1);
 
-      glBindVertexArray(0);
-   }
-   
+   //   glBindVertexArray(0);
+   //}
+
 
    void context::copy(::gpu::texture* ptextureParam)
    {
@@ -833,7 +838,7 @@ namespace gpu_opengl
    void context::_copy_using_shader(::gpu::texture* ptextureParam)
    {
 
-      opengl_lock opengl_lock(this);
+      ::gpu::context_lock contextlock(this);
 
       if (!m_pshaderCopy)
       {
@@ -869,32 +874,45 @@ void main() {
             fragmentShaderSource);
       }
 
-      if (!m_vaoFullScreenQuad)
+      auto pmodelbufferFullScreenQuad = sequence2_uv_fullscreen_quad_model_buffer();
+
+    /*  if (!m_vaoFullScreenQuad)
       {
 
          createFullscreenQuad(&m_vaoFullScreenQuad, &m_vboFullScreenQuad);
 
-      }
+      }*/
       glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
       //glDisable(GL_BLEND);                    // Ensure no blending
 
       int cx = m_rectangle.width();
-      int cy = m_rectangle.height();   
+      int cy = m_rectangle.height();
       glViewport(0, 0, cx, cy);
       //glClearColor(0.1, 0.1, 0.1, 1.0);
       //glClear(GL_COLOR_BUFFER_BIT);
 
+      
       m_pshaderCopy->bind();
-      glBindVertexArray(m_vaoFullScreenQuad);
 
-      ::cast < texture > ptexture = ptextureParam;
+      m_pshaderCopy->bind_source(ptextureParam);
+
+      auto pcommandbuffer = m_pgpurenderer->getCurrentCommandBuffer2();
+
+      pmodelbufferFullScreenQuad->bind(pcommandbuffer);
+
+      // glBindVertexArray(m_vaoFullScreenQuad);
+
+      //::cast < texture > ptexture = ptextureParam;
+      pmodelbufferFullScreenQuad->draw(pcommandbuffer);
 
 
-      glActiveTexture(GL_TEXTURE0);
-      glBindTexture(GL_TEXTURE_2D, ptexture->m_gluTextureID);
-      m_pshaderCopy->_set_int("uTexture", 0);
+      pmodelbufferFullScreenQuad->unbind(pcommandbuffer);
 
-      glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+      ////glActiveTexture(GL_TEXTURE0);
+      //;; glBindTexture(GL_TEXTURE_2D, ptexture->m_gluTextureID);
+      //m_pshaderCopy->_set_int("uTexture", 0);
+
+      //glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
       m_pshaderCopy->unbind();
 
@@ -904,7 +922,7 @@ void main() {
    void context::merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera)
    {
 
-      opengl_lock opengl_lock(this);
+      ::gpu::context_lock contextlock(this);
 
       ::cast < texture > ptextureDst = ptextureTarget;
 
@@ -937,7 +955,7 @@ void main() {
 
       ::cast < renderer > prenderer = m_pgpurenderer;
 
-      for(auto & player : *playera)
+      for (auto& player : *playera)
       {
 
          if (player.is_null())
@@ -946,7 +964,7 @@ void main() {
             continue;
 
          }
-         
+
          prenderer->__blend(ptextureTarget, player->texture());
 
       }
@@ -966,86 +984,99 @@ void main() {
    void context::on_start_layer(::gpu::layer* player)
    {
 
-      _ensure_layer_framebuffer();
-
       ::gpu::context::on_start_layer(player);
 
+      //if (m_escene == ::gpu::e_scene_2d)
+      //{
+
+      //   glClearColor(0.0, 0.0, 0.0, 0.0); // test with a bright clear
+      //   glClear(GL_COLOR_BUFFER_BIT);
+
+      //}
+      //else if (m_escene == ::gpu::e_scene_3d)
+      //{
+
+      //   glClearColor(0.0, 0.0, 0.0, 0.0); // test with a bright clear
+      //   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+      //}
+
 
    }
 
 
-   void context::_ensure_layer_framebuffer()
+   //void context::_ensure_layer_framebuffer()
+   //{
+
+   //   ::gpu::context_lock contextlock(this);
+
+   //   GLint fbo = 0;
+   //   glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &fbo);
+   //   GLCheckError("");
+
+   //   if (m_gluLayerFrameBuffer &&
+   //      m_gluLayerFrameBuffer == fbo)
+   //   {
+
+   //      return; // already bound
+
+   //   }
+
+   //   if (!m_gluLayerFrameBuffer)
+   //   {
+
+   //      GLuint fboSrc, fboDst;
+   //      glGenFramebuffers(1, &m_gluLayerFrameBuffer);
+   //      GLCheckError("");
+
+   //   }
+
+   //   glBindFramebuffer(GL_FRAMEBUFFER, m_gluLayerFrameBuffer);
+   //   GLCheckError("");
+
+   //   ::cast < texture > ptexture = m_pgpurenderer->m_pgpurendertarget->current_texture();
+
+   //   int textureID = ptexture->m_gluTextureID;
+
+   //   glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+   //      GL_TEXTURE_2D, textureID, 0);
+   //   GLCheckError("");
+
+   //   ::cast < context > pgpucontext = this;
+
+   //   if (pgpucontext->m_escene == ::gpu::e_scene_3d)
+   //   {
+
+   //      if (!ptexture->m_gluDepthStencilRBO)
+   //      {
+
+   //         int width = pgpucontext->m_rectangle.width();
+
+   //         int height = pgpucontext->m_rectangle.height();
+
+   //         glGenRenderbuffers(1, &ptexture->m_gluDepthStencilRBO);
+   //         GLCheckError("");
+
+   //         glBindRenderbuffer(GL_RENDERBUFFER, ptexture->m_gluDepthStencilRBO);
+   //         GLCheckError("");
+
+   //         glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
+   //         GLCheckError("");
+
+   //      }
+
+   //      glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, ptexture->m_gluDepthStencilRBO);
+   //      GLCheckError("");
+
+   //   }
+
+   //}
+
+
+   void context::_copy_using_blit(::gpu::texture* ptextureParam)
    {
 
-      opengl_lock opengl_lock(this);
-
-      GLint fbo = 0;
-      glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &fbo);
-      GLCheckError("");
-
-      if (m_gluLayerFrameBuffer &&
-         m_gluLayerFrameBuffer == fbo)
-      {
-
-         return; // already bound
-
-      }
-
-      if (!m_gluLayerFrameBuffer)
-      {
-
-         GLuint fboSrc, fboDst;
-         glGenFramebuffers(1, &m_gluLayerFrameBuffer);
-         GLCheckError("");
-
-      }
-
-      glBindFramebuffer(GL_FRAMEBUFFER, m_gluLayerFrameBuffer);
-      GLCheckError("");
-
-      ::cast < texture > ptexture = m_pgpurenderer->m_pgpurendertarget->current_texture();
-
-      int textureID = ptexture->m_gluTextureID;
-
-      glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-         GL_TEXTURE_2D, textureID, 0);
-      GLCheckError("");
-
-      ::cast < context > pgpucontext = this;
-
-      if (pgpucontext->m_escene == ::gpu::e_scene_3d)
-      {
-
-         if (!ptexture->m_gluDepthStencilRBO)
-         {
-
-            int width = pgpucontext->m_rectangle.width();
-
-            int height = pgpucontext->m_rectangle.height();
-
-            glGenRenderbuffers(1, &ptexture->m_gluDepthStencilRBO);
-            GLCheckError("");
-
-            glBindRenderbuffer(GL_RENDERBUFFER, ptexture->m_gluDepthStencilRBO);
-            GLCheckError("");
-
-            glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
-            GLCheckError("");
-
-         }
-
-         glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, ptexture->m_gluDepthStencilRBO);
-         GLCheckError("");
-
-      }
-
-   }
-
-
-   void context::_copy_using_blit(::gpu::texture * ptextureParam)
-   {
-
-      opengl_lock opengl_lock(this);
+      ::gpu::context_lock contextlock(this);
 
       ::cast < texture > ptexture = ptextureParam;
 
@@ -1136,7 +1167,7 @@ void main() {
 
       }
 #endif // SHOW_DEBUG_DRAWING
-      
+
    }
 
 
@@ -1179,7 +1210,7 @@ void main() {
          //   ASSERT(startcontext.m_callbackImage32CpuBuffer);
          //   ASSERT(!startcontext.m_rectanglePlacement.is_empty());
 
-            create_cpu_buffer(size);
+         create_cpu_buffer(size);
 
          //}
 
@@ -1194,8 +1225,8 @@ void main() {
       {
 
          auto r = ::int_rectangle(::int_point{}, size);
-//         
-  //       ::gpu::rear_guard guard(this);
+         //         
+           //       ::gpu::rear_guard guard(this);
 
          send([this, r]()
             {
@@ -1215,7 +1246,7 @@ void main() {
    void context::copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource)
    {
 
-      opengl_lock opengl_lock(this);
+      ::gpu::context_lock contextlock(this);
 
       ::cast < texture > ptextureDst = ptextureTarget;
 
@@ -1303,7 +1334,7 @@ void main() {
 
    }
 
-   
+
    void context::_create_offscreen_window(const ::int_size& size)
    {
 
@@ -1543,221 +1574,221 @@ void main() {
    void context::_create_window_context(::windowing::window* pwindowParam)
    {
 
-   //   ::cast < ::windowing_win32::window > pwindow = pwindowParam;
+      //   ::cast < ::windowing_win32::window > pwindow = pwindowParam;
 
-   //   if (!m_hdc || !m_hrc)
-   //   {
+      //   if (!m_hdc || !m_hrc)
+      //   {
 
-   //      ::cast < approach > pgpuapproach = m_pgpudevice->m_pgpuapproach;
+      //      ::cast < approach > pgpuapproach = m_pgpudevice->m_pgpuapproach;
 
-   //      //if (!popengl->m_atomClass)
-   //      //{
+      //      //if (!popengl->m_atomClass)
+      //      //{
 
-   //      //   informationf("MS GDI - RegisterClass failed");
+      //      //   informationf("MS GDI - RegisterClass failed");
 
-   //      //   informationf("last-error code: %d\n", GetLastError());
+      //      //   informationf("last-error code: %d\n", GetLastError());
 
-   //      //   throw ::exception(error_failed);
+      //      //   throw ::exception(error_failed);
 
-   //      //}
+      //      //}
 
-   //      if (!m_hwnd)
-   //      {
+      //      if (!m_hwnd)
+      //      {
 
-   //         auto hwnd = pwindow->m_hwnd;
+      //         auto hwnd = pwindow->m_hwnd;
 
 
-   //         m_hwnd = hwnd;
+      //         m_hwnd = hwnd;
 
 
-   //         //// create WGL context, make current
+      //         //// create WGL context, make current
 
-   //         //PIXELFORMATDESCRIPTOR pixformat;
+      //         //PIXELFORMATDESCRIPTOR pixformat;
 
-   //         //int chosenformat;
+      //         //int chosenformat;
 
-   //         HDC hdc = GetDC(m_hwnd);
+      //         HDC hdc = GetDC(m_hwnd);
 
-   //         //if (!hdc)
-   //         //{
+      //         //if (!hdc)
+      //         //{
 
-   //         //   informationf("MS GDI - GetDC failed");
+      //         //   informationf("MS GDI - GetDC failed");
 
-   //         //   informationf("last-error code: %d\n", GetLastError());
+      //         //   informationf("last-error code: %d\n", GetLastError());
 
-   //         //   throw ::exception(error_failed);
+      //         //   throw ::exception(error_failed);
 
-   //         //}
+      //         //}
 
-   //         //zero(pixformat);
-   //         //pixformat.nSize = sizeof(pixformat);
-   //         //pixformat.nVersion = 1;
-   //         //pixformat.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
-   //         //pixformat.iPixelType = PFD_TYPE_RGBA;
-   //         //pixformat.cColorBits = 32;
-   //         //pixformat.cRedShift = 16;
-   //         //pixformat.cGreenShift = 8;
-   //         //pixformat.cBlueShift = 0;
-   //         //pixformat.cAlphaShift = 24;
-   //         //pixformat.cAlphaBits = 8;
-   //         //pixformat.cDepthBits = 24;
-   //         //pixformat.cStencilBits = 8;
+      //         //zero(pixformat);
+      //         //pixformat.nSize = sizeof(pixformat);
+      //         //pixformat.nVersion = 1;
+      //         //pixformat.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
+      //         //pixformat.iPixelType = PFD_TYPE_RGBA;
+      //         //pixformat.cColorBits = 32;
+      //         //pixformat.cRedShift = 16;
+      //         //pixformat.cGreenShift = 8;
+      //         //pixformat.cBlueShift = 0;
+      //         //pixformat.cAlphaShift = 24;
+      //         //pixformat.cAlphaBits = 8;
+      //         //pixformat.cDepthBits = 24;
+      //         //pixformat.cStencilBits = 8;
 
-   //         //chosenformat = ChoosePixelFormat(hdc, &pixformat);
+      //         //chosenformat = ChoosePixelFormat(hdc, &pixformat);
 
-   //         //if (chosenformat == 0)
-   //         //{
+      //         //if (chosenformat == 0)
+      //         //{
 
-   //         //   informationf("MS GDI - ChoosePixelFormat failed");
+      //         //   informationf("MS GDI - ChoosePixelFormat failed");
 
-   //         //   informationf("last-error code: %d\n", GetLastError());
+      //         //   informationf("last-error code: %d\n", GetLastError());
 
-   //         //   ReleaseDC(m_hwnd, hdc);
+      //         //   ReleaseDC(m_hwnd, hdc);
 
-   //         //   throw ::exception(error_failed);
+      //         //   throw ::exception(error_failed);
 
-   //         //}
+      //         //}
 
-   //         //bool spfok = SetPixelFormat(hdc, chosenformat, &pixformat);
+      //         //bool spfok = SetPixelFormat(hdc, chosenformat, &pixformat);
 
-   //         //if (!spfok)
-   //         //{
+      //         //if (!spfok)
+      //         //{
 
-   //         //   informationf("MS GDI - SetPixelFormat failed");
+      //         //   informationf("MS GDI - SetPixelFormat failed");
 
-   //         //   informationf("last-error code: %d\n", GetLastError());
+      //         //   informationf("last-error code: %d\n", GetLastError());
 
-   //         //   ReleaseDC(m_hwnd, hdc);
+      //         //   ReleaseDC(m_hwnd, hdc);
 
-   //         //   throw ::exception(error_failed);
+      //         //   throw ::exception(error_failed);
 
-   //         //}
+      //         //}
 
-   //         auto hglrc = wglCreateContext(hdc);
+      //         auto hglrc = wglCreateContext(hdc);
 
-   //         pwindow->m_hglrcProto = hglrc;
+      //         pwindow->m_hglrcProto = hglrc;
 
-   //         //         int context_attribs[] = {
-   //         //WGL_CONTEXT_MAJOR_VERSION_ARB, 2,
-   //         //WGL_CONTEXT_MINOR_VERSION_ARB, 1,
-   //         //0, 0
-   //         //         };
-   //         //         auto hglrc = wglCreateContextAttribsARB(hdc, NULL, context_attribs);
-   //         //         if (!hglrc) {
-   //         //            //ReleaseDC(hWnd, hDC);
-   //         //            //DestroyWindow(hWnd);
+      //         //         int context_attribs[] = {
+      //         //WGL_CONTEXT_MAJOR_VERSION_ARB, 2,
+      //         //WGL_CONTEXT_MINOR_VERSION_ARB, 1,
+      //         //0, 0
+      //         //         };
+      //         //         auto hglrc = wglCreateContextAttribsARB(hdc, NULL, context_attribs);
+      //         //         if (!hglrc) {
+      //         //            //ReleaseDC(hWnd, hDC);
+      //         //            //DestroyWindow(hWnd);
 
-   //         //            throw ::exception(error_failed);
-   //         //         }
-   //         //         //ReleaseDC(hWnd, hDC);
+      //         //            throw ::exception(error_failed);
+      //         //         }
+      //         //         //ReleaseDC(hWnd, hDC);
 
-   //         if (!pwindow->m_hglrcProto)
-   //         {
+      //         if (!pwindow->m_hglrcProto)
+      //         {
 
-   //            informationf("MS WGL - wglCreateContext failed");
+      //            informationf("MS WGL - wglCreateContext failed");
 
-   //            informationf("last-error code: %d\n", GetLastError());
+      //            informationf("last-error code: %d\n", GetLastError());
 
-   //            ReleaseDC(m_hwnd, hdc);
+      //            ReleaseDC(m_hwnd, hdc);
 
-   //            throw ::exception(error_failed);
+      //            throw ::exception(error_failed);
 
-   //         }
+      //         }
 
-   //         auto hglrcProto = pwindow->m_hglrcProto;
+      //         auto hglrcProto = pwindow->m_hglrcProto;
 
-   //         bool bMakeCurrentOk = wglMakeCurrent(hdc, hglrcProto);
+      //         bool bMakeCurrentOk = wglMakeCurrent(hdc, hglrcProto);
 
-   //         if (!bMakeCurrentOk)
-   //         {
+      //         if (!bMakeCurrentOk)
+      //         {
 
-   //            informationf("MS WGL - wglMakeCurrent failed");
+      //            informationf("MS WGL - wglMakeCurrent failed");
 
-   //            informationf("last-error code: %d\n", GetLastError());
+      //            informationf("last-error code: %d\n", GetLastError());
 
-   //            ReleaseDC(m_hwnd, hdc);
+      //            ReleaseDC(m_hwnd, hdc);
 
-   //            throw ::exception(error_failed);
+      //            throw ::exception(error_failed);
 
-   //         }
+      //         }
 
-   //         m_pgpudevice->m_pgpuapproach->defer_init_gpu_library();
+      //         m_pgpudevice->m_pgpuapproach->defer_init_gpu_library();
 
-   //         auto pszVersion = (const char*)glGetString(GL_VERSION);
-   //         //::e_status estatus = 
+      //         auto pszVersion = (const char*)glGetString(GL_VERSION);
+      //         //::e_status estatus = 
 
-   //         ::string strVersion(pszVersion);
+      //         ::string strVersion(pszVersion);
 
-   //         if (strVersion.case_insensitive_contains("mesa"))
-   //         {
+      //         if (strVersion.case_insensitive_contains("mesa"))
+      //         {
 
-   //            m_bMesa = true;
+      //            m_bMesa = true;
 
-   //         }
+      //         }
 
-   //         //if (!estatus)
-   //         //{
+      //         //if (!estatus)
+      //         //{
 
-   //         //   ReleaseDC(window, hdc);
+      //         //   ReleaseDC(window, hdc);
 
-   //         //   return estatus;
+      //         //   return estatus;
 
-   //         //}
+      //         //}
 
-   //         m_hwnd = m_hwnd;
-   //         m_hdc = hdc;
-   //         m_hrc = pwindow->m_hglrcProto;
+      //         m_hwnd = m_hwnd;
+      //         m_hdc = hdc;
+      //         m_hrc = pwindow->m_hglrcProto;
 
-   //         wglMakeCurrent(nullptr, nullptr);
+      //         wglMakeCurrent(nullptr, nullptr);
 
-   //      }
+      //      }
 
-   //   }
+      //   }
 
-   //   RECT rectClient;
+      //   RECT rectClient;
 
-   //   ::GetClientRect(m_hwnd, &rectClient);
+      //   ::GetClientRect(m_hwnd, &rectClient);
 
-   //   ::int_size sizeNew = { rectClient.right - rectClient.left,
-   //rectClient.bottom - rectClient.top };
+      //   ::int_size sizeNew = { rectClient.right - rectClient.left,
+      //rectClient.bottom - rectClient.top };
 
-   //   if (m_size != sizeNew)
-   //   {
-   //      m_size = sizeNew;
+      //   if (m_size != sizeNew)
+      //   {
+      //      m_size = sizeNew;
 
-   //      m_sizeHost = sizeNew;
-   //      //HDC pdcDIB;                      // контекст устройства в памяти
-   //      //HBITMAP hbmpDIB;                 // и его текущий битмапvoid *pBitsDIB(NULL);            // содержимое битмапаint cxDIB(200); int cyDIB(300);  // его размеры (например для окна 200х300)
-   //      //auto &BIH=pwindow->m_bitmapinfoheaderProto;            // и заголовок// …// создаем DIB section// создаем структуру BITMAPINFOHEADER, описывающую наш DIBint iSize = sizeof(BITMAPINFOHEADER);  // размер
-   //      //memset(&BIH, 0, sizeof(pwindow->m_bitmapinfoheaderProto));
+      //      m_sizeHost = sizeNew;
+      //      //HDC pdcDIB;                      // контекст устройства в памяти
+      //      //HBITMAP hbmpDIB;                 // и его текущий битмапvoid *pBitsDIB(NULL);            // содержимое битмапаint cxDIB(200); int cyDIB(300);  // его размеры (например для окна 200х300)
+      //      //auto &BIH=pwindow->m_bitmapinfoheaderProto;            // и заголовок// …// создаем DIB section// создаем структуру BITMAPINFOHEADER, описывающую наш DIBint iSize = sizeof(BITMAPINFOHEADER);  // размер
+      //      //memset(&BIH, 0, sizeof(pwindow->m_bitmapinfoheaderProto));
 
-   //      //BIH.biSize = sizeof(pwindow->m_bitmapinfoheaderProto);        // размер структуры
-   //      //BIH.biWidth = m_size.cx();       // геометрия
-   //      //BIH.biHeight = m_size.cy();      // битмапа
-   //      //BIH.biPlanes = 1;          // один план
-   //      //BIH.biBitCount = 32;       // 24 bits per pixel
-   //      //BIH.biCompression = BI_RGB;// без сжатия// создаем новый DC в памяти
-   //      ////pdcDIB = CreateCompatibleDC(NULL);
-   //      ////void * pBits = nullptr;
-   //      //// создаем DIB-секцию
-   //      //pwindow->m_hbitmapProto = CreateDIBSection(
-   //      //  m_hdc,                  // контекст устройства
-   //      //  (BITMAPINFO *)&BIH,       // информация о битмапе
-   //      //  DIB_RGB_COLORS,          // параметры цвета
-   //      //  &pwindow->m_pbitsProto,               // местоположение буфера (память выделяет система)
-   //      //  NULL,                    // не привязываемся к отображаемым в память файлам
-   //      //  0);
+      //      //BIH.biSize = sizeof(pwindow->m_bitmapinfoheaderProto);        // размер структуры
+      //      //BIH.biWidth = m_size.cx();       // геометрия
+      //      //BIH.biHeight = m_size.cy();      // битмапа
+      //      //BIH.biPlanes = 1;          // один план
+      //      //BIH.biBitCount = 32;       // 24 bits per pixel
+      //      //BIH.biCompression = BI_RGB;// без сжатия// создаем новый DC в памяти
+      //      ////pdcDIB = CreateCompatibleDC(NULL);
+      //      ////void * pBits = nullptr;
+      //      //// создаем DIB-секцию
+      //      //pwindow->m_hbitmapProto = CreateDIBSection(
+      //      //  m_hdc,                  // контекст устройства
+      //      //  (BITMAPINFO *)&BIH,       // информация о битмапе
+      //      //  DIB_RGB_COLORS,          // параметры цвета
+      //      //  &pwindow->m_pbitsProto,               // местоположение буфера (память выделяет система)
+      //      //  NULL,                    // не привязываемся к отображаемым в память файлам
+      //      //  0);
 
-   //      //// выберем новый битмап (DIB section) для контекста устройства в памяти
-   //      //SelectObject(m_hdc, pwindow->m_hbitmapProto);
-   //      //pwindow->m_hdcProto = m_hdc;
-   //   }
+      //      //// выберем новый битмап (DIB section) для контекста устройства в памяти
+      //      //SelectObject(m_hdc, pwindow->m_hbitmapProto);
+      //      //pwindow->m_hdcProto = m_hdc;
+      //   }
 
-   //   m_itaskGpu = ::current_itask();
+      //   m_itaskGpu = ::current_itask();
 
-   //   m_estatus = ::success;
+      //   m_estatus = ::success;
 
-   //   set_ok_flag();
+      //   set_ok_flag();
 
    }
 
@@ -1801,7 +1832,7 @@ void main() {
       //if (m_papplication->m_bUseSwapChainWindow)
       {
 
-        // return;
+         // return;
 
       }
 
@@ -1813,7 +1844,7 @@ void main() {
 
             create_cpu_buffer(size);
 
-            opengl_lock opengl_lock(this);
+            ::gpu::context_lock contextlock(this);
             ///m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
 
       //#ifdef WINDOWS_DESKTOP
@@ -1927,7 +1958,7 @@ void main() {
    //}
 
 
-   void context::_opengl_lock()
+   void context::_context_lock()
    {
 
       ::cast < device > pdevice = m_pgpudevice;
@@ -1937,13 +1968,13 @@ void main() {
    }
 
 
-   void context::_opengl_unlock()
+   void context::_context_unlock()
    {
 
       ::cast < device > pdevice = m_pgpudevice;
-   
+
       pdevice->_opengl_unlock();
-   
+
    }
 
 
@@ -1964,7 +1995,7 @@ void main() {
       //::e_status estatus = ::success;
 
       //::glDeleteFramebuffers(1, &m_fboID);
-   
+
    }
 
 
@@ -2013,6 +2044,45 @@ void main() {
          iFindPrecision = 1;
 
       }
+
+   }
+
+
+   ::memory context::rectangle_shader_vert()
+   {
+      const char proto_vert[] = R"vert(
+#version 330 core
+
+layout(location = 0) in vec2 inPos;
+layout(location = 1) in vec4 inColor;
+
+out vec4 fragColor;
+
+void main() {
+    gl_Position = vec4(inPos, 0.0, 1.0);
+    fragColor = inColor;
+})vert";
+
+      return ::as_memory_block(proto_vert);
+
+   }
+
+
+   ::memory context::rectangle_shader_frag()
+   {
+
+      const char proto_frag[] = R"frag(
+            #version 330 core
+
+               in vec4 fragColor;      // Input from the vertex shader (location = 0)
+            out vec4 outColor;      // Output to framebuffer (location = 0)
+
+            void main() {
+               outColor = fragColor;
+            }
+)frag";
+
+      return ::as_memory_block(proto_frag);
 
    }
 

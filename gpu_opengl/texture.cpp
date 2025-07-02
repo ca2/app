@@ -3,6 +3,7 @@
 #include "lock.h"
 #include "texture.h"
 #include "renderer.h"
+#include "bred/gpu/context_lock.h"
 
 
 namespace gpu_opengl
@@ -14,6 +15,7 @@ namespace gpu_opengl
 
       m_gluTextureID = 0;
       m_gluDepthStencilRBO = 0;
+      m_gluFbo = 0;
 
    }
 
@@ -24,7 +26,7 @@ namespace gpu_opengl
    }
 
 
-   void texture::initialize_gpu_texture(::gpu::renderer* prenderer, const ::int_rectangle & rectangleTarget) //, bool bCreateRenderTargetView, bool bCreateShaderResourceView)
+   void texture::initialize_gpu_texture(::gpu::renderer* prenderer, const ::int_rectangle& rectangleTarget) //, bool bCreateRenderTargetView, bool bCreateShaderResourceView)
    {
 
       if (m_rectangleTarget == rectangleTarget)
@@ -38,7 +40,7 @@ namespace gpu_opengl
 
       ::gpu::texture::initialize_gpu_texture(prenderer, rectangleTarget);
 
-      opengl_lock opengl_lock(m_pgpurenderer->m_pgpucontext);
+      ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
 
       if (sizeCurrent != rectangleTarget.size())
       {
@@ -97,6 +99,109 @@ namespace gpu_opengl
    //   m_pgpurenderer->blend(this, ptexture, rectangleTarget);
 
    //}
+
+
+   void texture::create_render_target()
+   {
+
+      if (m_gluFbo)
+      {
+
+         return;
+
+      }
+
+      ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
+
+
+      GLuint fboSrc, fboDst;
+      glGenFramebuffers(1, &m_gluFbo);
+      GLCheckError("");
+      glBindFramebuffer(GL_FRAMEBUFFER, m_gluFbo);
+      GLCheckError("");
+
+      if (m_gluTextureID)
+      {
+
+         glBindTexture(GL_TEXTURE_2D, m_gluTextureID);
+
+         glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+            GL_TEXTURE_2D, m_gluTextureID, 0);
+         GLCheckError("");
+
+         // Set draw buffer
+         GLenum drawBufs[] = { GL_COLOR_ATTACHMENT0 };
+         glDrawBuffers(1, drawBufs); // REQUIRED for user-defined FBOs
+
+      }
+
+      if (m_gluDepthStencilRBO)
+      {
+
+         glFramebufferRenderbuffer(
+            GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT,
+            GL_RENDERBUFFER, m_gluDepthStencilRBO);
+         GLCheckError("");
+
+      }
+
+      GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+
+      if (status != GL_FRAMEBUFFER_COMPLETE)
+      {
+
+         warning() << "Framebuffer attachment is not complete";
+
+      }
+
+      glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+   }
+
+
+   void texture::create_depth_resources()
+   {
+
+      if (m_gluDepthStencilRBO)
+      {
+
+         return;
+
+      }
+
+      int width = m_rectangleTarget.width();
+
+      int height = m_rectangleTarget.height();
+
+      glGenRenderbuffers(1, &m_gluDepthStencilRBO);
+      GLCheckError("");
+
+      glBindRenderbuffer(GL_RENDERBUFFER, m_gluDepthStencilRBO);
+      GLCheckError("");
+
+      glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
+      GLCheckError("");
+
+      glBindRenderbuffer(GL_RENDERBUFFER, 0);
+      GLCheckError("");
+
+   }
+
+
+   void texture::bind_render_target()
+   {
+
+      if (!m_gluFbo)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      glBindFramebuffer(GL_FRAMEBUFFER, m_gluFbo);
+      GLCheckError("");
+
+   }
 
 
 } // namespace gpu_opengl

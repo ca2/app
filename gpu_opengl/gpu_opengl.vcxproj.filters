@@ -98,6 +98,12 @@
     <ClInclude Include="pixmap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="memory_buffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="model_buffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -182,6 +188,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pixmap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="memory_buffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="model_buffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

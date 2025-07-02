@@ -45,6 +45,8 @@ namespace gpu
 
       virtual void draw(::gpu::pixmap * ppixmap);
 
+      virtual void set_render_target();
+
 
    };
 

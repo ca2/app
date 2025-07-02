@@ -5,6 +5,7 @@
 #include "cpu_buffer.h"
 #include "guard.h"
 #include "memory_buffer.h"
+#include "model_buffer.h"
 #include "render.h"
 #include "renderer.h"
 #include "render_state.h"
@@ -293,10 +294,10 @@ namespace gpu
    bool context::defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, memsize size)
    {
 
-      if (__defer_construct_new(pmemorybuffer))
+      if (__defer_construct(pmemorybuffer))
       {
 
-         pmemorybuffer->initialize_memory_buffer(this, size);
+         pmemorybuffer->initialize_memory_buffer(this, size, false);
 
          return true;
 
@@ -1467,6 +1468,23 @@ namespace gpu
          {},
          {},
          this->input_layout(::graphics3d::sequence2_color_properties()));
+
+   }
+
+
+   ::gpu::model_buffer* context::sequence2_uv_fullscreen_quad_model_buffer()
+   {
+
+      if (!m_pmodelbufferFullscreenQuad)
+      {
+
+         __defer_construct(m_pmodelbufferFullscreenQuad);
+
+         m_pmodelbufferFullscreenQuad->sequence2_uv_create_fullscreen_quad(this);
+
+      }
+
+      return m_pmodelbufferFullscreenQuad;
 
    }
 

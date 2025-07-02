@@ -101,6 +101,8 @@ namespace gpu
 
       virtual void _fill_quad(const ::double_point points[4], const ::color::color& color);
 
+      void fill_rectangle(const ::double_rectangle& rectangle, const ::color::color& color);
+
    };
 
 

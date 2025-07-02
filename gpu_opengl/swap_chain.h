@@ -18,8 +18,8 @@ namespace gpu_opengl
       //VkSwapchainKHR                m_vkswapchain;
       //uint32_t                      m_uCurrentSwapChainImage;
       //::pointer < ::gpu::context >  m_pgpucontextSwapChain;
-      GLuint m_VAOFullScreenQuad;
-      GLuint m_VBOFullScreenQuad;
+      //GLuint m_VAOFullScreenQuad;
+      //GLuint m_VBOFullScreenQuad;
       ::pointer < ::gpu_opengl::texture > m_ptextureSwapChain;
       ::pointer < ::gpu::shader > m_pshaderCopyTextureOnEndDraw;
 

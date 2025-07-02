@@ -60,10 +60,12 @@ namespace gpu
 
       }
 
+      void sequence2_uv_create_fullscreen_quad(::gpu::context* pcontext);
       void sequence2_color_create_rectangle(::gpu::context* pcontext);
       void sequence2_color_create_line(::gpu::context* pcontext);
       void sequence3_color_create_rectangle(::gpu::context* pcontext);
       void sequence3_color_create_line(::gpu::context* pcontext);
+
 
       void sequence3_color_set_rectangle(
          const ::double_point points1[4],
@@ -102,6 +104,7 @@ namespace gpu
 
       virtual void draw(::gpu::command_buffer* pcommandbuffer);
 
+      virtual void unbind(::gpu::command_buffer* pcommandbuffer);
 
    };
 

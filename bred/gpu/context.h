@@ -107,6 +107,8 @@ namespace gpu
       ::pointer < ::graphics3d::engine >     m_pengine;
       ::pointer_array < ::gpu::render >      m_rendera;
 
+      ::pointer < ::gpu::model_buffer >      m_pmodelbufferFullscreenQuad;
+
       //::image32_callback                     m_callbackImage32CpuBuffer;
 
       //::pointer < ::mutex >                  m_pmutexOffscreen;
@@ -288,6 +290,9 @@ namespace gpu
       virtual ::memory rectangle_shader_frag();
 
       virtual void initialize_rectangle_shader(::gpu::shader* pshader);
+
+
+      virtual ::gpu::model_buffer* sequence2_uv_fullscreen_quad_model_buffer();
 
 
    };

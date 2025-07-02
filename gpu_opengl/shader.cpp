@@ -1,10 +1,12 @@
 #include "framework.h"
-#include "lock.h"
+//#include "lock.h"
 #include "renderer.h"
 #include "shader.h"
+#include "texture.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "bred/gpu/approach.h"
 #include "bred/gpu/context.h"
+#include "bred/gpu/context_lock.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/renderer.h"
 #include "bred/gpu/types.h"
@@ -51,7 +53,7 @@ namespace gpu_opengl
    unsigned int shader::create_shader(const ::block & blockSource, GLenum type)
    {
 
-      opengl_lock opengl_lock(m_pgpurenderer->m_pgpucontext);
+      ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
 
       unsigned int uShader;
 
@@ -220,8 +222,41 @@ namespace gpu_opengl
    void shader::unbind()
    {
 
-      //glUseProgram(0);
-      //GLCheckError("");
+      if (m_bTextureBound)
+      {
+
+         glBindTexture(GL_TEXTURE_2D, 0);
+         GLCheckError("");
+
+         m_bTextureBound = false;
+
+      }
+
+      glUseProgram(0);
+      GLCheckError("");
+
+   }
+
+
+   void shader::bind_source(::gpu::texture * pgputexture)
+   {
+
+      glActiveTexture(GL_TEXTURE0);
+      GLCheckError("");
+
+      ::cast < texture > ptexture = pgputexture;
+
+      GLuint tex = ptexture->m_gluTextureID;
+
+      glBindTexture(GL_TEXTURE_2D, tex);
+      GLCheckError("");
+      
+
+      _set_int("uTexture", 0);
+
+      m_bTextureBound = true;
+
+
 
    }
 

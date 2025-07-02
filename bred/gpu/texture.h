@@ -35,6 +35,13 @@ namespace gpu
       virtual void blend(::gpu::layer * player);
       virtual void blend(::gpu::texture * ptexture);
 
+      virtual void create_render_target();
+
+      virtual void create_depth_resources();
+
+      virtual void bind_render_target();
+
+
    };
 
 

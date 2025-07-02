@@ -22,6 +22,9 @@ namespace gpu_opengl
       void draw(int a) override;
 
 
+      void set_render_target() override;
+
+
    };
 
 

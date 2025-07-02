@@ -3,9 +3,11 @@
 #include "device.h"
 #include "frame_buffer.h"
 #include "lock.h"
+#include "model_buffer.h"
 #include "renderer.h"
 #include "swap_chain.h"
 #include "texture.h"
+#include "bred/gpu/context_lock.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/render_state.h"
 #include "aura/user/user/interaction.h"
@@ -19,8 +21,8 @@ namespace gpu_opengl
    swap_chain::swap_chain()
    {
 
-      m_VAOFullScreenQuad = 0;
-      m_VBOFullScreenQuad = 0;
+      //m_VAOFullScreenQuad = 0;
+      //m_VBOFullScreenQuad = 0;
 
 
    }
@@ -33,7 +35,7 @@ namespace gpu_opengl
    }
 
 
-   GLuint createFullscreenQuad(GLuint& quadVBO);
+   //GLuint createFullscreenQuad(GLuint& quadVBO);
 
 
 //   void swap_chain::initialize_render_target(::gpu::renderer* prenderer, const ::int_size& size, ::pointer <::gpu::render_target>previous)
@@ -215,7 +217,7 @@ namespace gpu_opengl
    void swap_chain::present(::gpu::texture* pgputexture)
    {
 
-      ::gpu_opengl::opengl_lock opengl_lock(m_pgpurenderer->m_pgpucontext);
+      ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
 
       if (!m_pshaderCopyTextureOnEndDraw)
       {
@@ -240,7 +242,15 @@ out vec4 FragColor;
 uniform sampler2D uTexture;
 
 void main() {
-   FragColor = texture(uTexture, TexCoord);
+if(TexCoord.x > 0.5)
+{
+FragColor=vec4(0.0, 0.0, 0.5, 0.5);
+}
+else
+{
+ FragColor = texture(uTexture, TexCoord);
+}
+
 }
 )frag";
 
@@ -253,54 +263,88 @@ void main() {
 
       }
 
+      glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
       m_pshaderCopyTextureOnEndDraw->bind();
 
-      glClearColor(0.f, 0.f, 0.f, 0.f);
+      m_pshaderCopyTextureOnEndDraw->bind_source(pgputexture);
+
+      glClearColor(0.f, 0.5f, 0.f, 0.5f);
       glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
       if (1)
       {
 
-         glActiveTexture(GL_TEXTURE0);
-
-         int iGlError1 = glGetError();
-
-         ::cast < texture > ptexture = pgputexture;
-
-         GLuint tex = ptexture->m_gluTextureID;
-
-         glBindTexture(GL_TEXTURE_2D, tex);
-
-         int iGlError2 = glGetError();
-
-         ::cast < ::gpu_opengl::shader > pshaderOnEndDraw = m_pshaderCopyTextureOnEndDraw;
-
-         pshaderOnEndDraw->_set_int("uTexture", 0);
-
-         if (!m_VAOFullScreenQuad)
+   /*      if (!m_VAOFullScreenQuad)
          {
 
             m_VAOFullScreenQuad = createFullscreenQuad(m_VBOFullScreenQuad);
 
-         }
+         }*/
 
-         glBindVertexArray(m_VAOFullScreenQuad);
+         auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2();
 
-         int iGlError00 = glGetError();
+         auto pmodelbufferFullscreenQuad = m_pgpucontext->sequence2_uv_fullscreen_quad_model_buffer();
 
-         glDrawArrays(GL_TRIANGLES, 0, 6); // assuming 2 triangles (quad)
+         pmodelbufferFullscreenQuad->bind(pcommandbuffer);
 
-         int iGlError01 = glGetError();
+         pmodelbufferFullscreenQuad->draw(pcommandbuffer);
 
-         glBindVertexArray(0);
+         pmodelbufferFullscreenQuad->unbind(pcommandbuffer);
 
-         int iGlErrorA = glGetError();
+         //int iGlError00 = glGetError();
 
-         glBindTexture(GL_TEXTURE_2D, 0);
+         //glDrawArrays(GL_TRIANGLES, 0, 6); // assuming 2 triangles (quad)
 
-         int iGlErrorB = glGetError();
+         //int iGlError01 = glGetError();
 
-         debug() << "gl error";
+         //glBindVertexArray(0);
+
+         //int iGlErrorA = glGetError();
+
+         //debug() << "gl error";
+
+
+         //glActiveTexture(GL_TEXTURE0);
+
+         //int iGlError1 = glGetError();
+
+         //::cast < texture > ptexture = pgputexture;
+
+         //GLuint tex = ptexture->m_gluTextureID;
+
+         //glBindTexture(GL_TEXTURE_2D, tex);
+
+         //int iGlError2 = glGetError();
+
+         //::cast < ::gpu_opengl::shader > pshaderOnEndDraw = m_pshaderCopyTextureOnEndDraw;
+
+         //pshaderOnEndDraw->_set_int("uTexture", 0);
+
+         //if (!m_VAOFullScreenQuad)
+         //{
+
+         //   m_VAOFullScreenQuad = createFullscreenQuad(m_VBOFullScreenQuad);
+
+         //}
+
+         //glBindVertexArray(m_VAOFullScreenQuad);
+
+         //int iGlError00 = glGetError();
+
+         //glDrawArrays(GL_TRIANGLES, 0, 6); // assuming 2 triangles (quad)
+
+         //int iGlError01 = glGetError();
+
+         //glBindVertexArray(0);
+
+         //int iGlErrorA = glGetError();
+
+         //glBindTexture(GL_TEXTURE_2D, 0);
+
+         //int iGlErrorB = glGetError();
+
+         //debug() << "gl error";
 
       }
 

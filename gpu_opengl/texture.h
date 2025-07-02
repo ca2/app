@@ -19,6 +19,7 @@ namespace gpu_opengl
 
       GLuint            m_gluTextureID;
       GLuint            m_gluDepthStencilRBO;
+      GLuint            m_gluFbo;
 
 
       texture();
@@ -30,7 +31,13 @@ namespace gpu_opengl
       //void blend(::gpu::texture* ptexture, const ::int_rectangle& rectangleTarget) override;
 
 
-      
+      void create_render_target() override;
+
+
+      void create_depth_resources() override;
+
+
+      void bind_render_target() override;
 
 
    };

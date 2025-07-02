@@ -6,6 +6,8 @@
 #include "device.h"
 #include "device_win32.h"
 #include "frame_buffer.h"
+#include "memory_buffer.h"
+#include "model_buffer.h"
 #include "object.h"
 #include "offscreen_render_target.h"
 #include "pixmap.h"
@@ -16,7 +18,7 @@
 #include "texture.h"
 #include "bred/gpu/input_layout.h"
 #include "bred/gpu/layer.h"
-#include "bred/gpu/model_buffer.h"
+
 
 
 //BEGIN_FACTORY(gpu_opengl)
@@ -57,7 +59,10 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::gpu_opengl::swap_chain, ::gpu::swap_chain >();
    pfactory->add_factory_item < ::gpu_opengl::command_buffer, ::gpu::command_buffer >();
    pfactory->add_factory_item < ::gpu_opengl::pixmap, ::gpu::pixmap >();
-   pfactory->add_factory_item < ::gpu::model_buffer >();
+   pfactory->add_factory_item < ::gpu_opengl::model_buffer, ::gpu::model_buffer >();
+
+
+   pfactory->add_factory_item < ::gpu_opengl::memory_buffer, ::gpu::memory_buffer >();
 
 
 }

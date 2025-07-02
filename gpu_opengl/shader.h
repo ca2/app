@@ -14,6 +14,7 @@ namespace gpu_opengl
    public:
 
 
+      bool m_bTextureBound = false;
       GLuint m_ProgramID;
 
       //__creatable_from_base(shader, ::gpu::shader);
@@ -89,6 +90,8 @@ namespace gpu_opengl
       void push_properties() override;
 
       //void draw() override;
+
+      void bind_source(::gpu::texture* pgputexture) override;
 
 
    };

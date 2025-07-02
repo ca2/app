@@ -15,6 +15,7 @@
 #include "bred/gpu/graphics.h"
 #include "aura/graphics/image/target.h"
 #include "aura/platform/application.h"
+#include "bred/gpu/context_lock.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/render_state.h"
 #include "bred/user/user/graphics3d.h"
@@ -205,7 +206,7 @@ namespace gpu_opengl
 
       }
 
-      pgpucontext->_ensure_layer_framebuffer();
+      //pgpucontext->_ensure_layer_framebuffer();
 
       return ::gpu::renderer::beginFrame();
 
@@ -218,7 +219,7 @@ namespace gpu_opengl
    void renderer::_on_begin_render(::gpu::frame * pframe)
    {
 
-      opengl_lock opengl_lock(m_pgpucontext);
+      ::gpu::context_lock contextlock(m_pgpucontext);
 
       auto escene = m_pgpucontext->m_escene;
 
@@ -232,28 +233,26 @@ namespace gpu_opengl
 
       int height = r.height();
 
-      if (escene == ::gpu::e_scene_2d)
+      ::cast < texture > ptexture = m_pgpurendertarget->current_texture();
+
+      if (!ptexture->m_gluFbo)
       {
 
-         glDepthMask(GL_TRUE); // Enable writing to depth
-         GLCheckError("");
-         //if (etype == ::gpu::context::e_type_window)
-         //{
+         if (m_pgpucontext->m_escene == ::gpu::e_scene_3d)
+         {
 
-         //   glClearColor(0.5f, 0.75f, .95f, 0.5f);
+            ptexture->create_depth_resources();
 
-         //}
-         //else
-         //{
-         //   glClearColor(0.95f, 0.75f, 0.5f, 0.5f);
+         }
 
-         //}
-         glClearColor(0.f, 0.f, 0.f, 0.f);
-         GLCheckError("");
-         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-         GLCheckError("");
-         glDepthMask(GL_FALSE); // Disable writing to depth
-         GLCheckError("");
+         ptexture->create_render_target();
+
+      }
+
+      ptexture->bind_render_target();
+
+      if (escene == ::gpu::e_scene_2d)
+      {
 
 
          //glFrontFace(GL_CW);      // Default
@@ -279,6 +278,30 @@ namespace gpu_opengl
    //double d = 1.0;
    ////glViewport(0, 0, size.cx() * d, size.cy() * d);
          glViewport(0, 0, width, height);
+
+
+         glDepthMask(GL_TRUE); // Enable writing to depth
+         GLCheckError("");
+         //if (etype == ::gpu::context::e_type_window)
+         //{
+
+         //   glClearColor(0.5f, 0.75f, .95f, 0.5f);
+
+         //}
+         //else
+         //{
+         //   glClearColor(0.95f, 0.75f, 0.5f, 0.5f);
+
+         //}
+         glClearColor(0.f, 0.f, 0.f, 0.f);
+         GLCheckError("");
+         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+         GLCheckError("");
+         glDepthMask(GL_FALSE); // Disable writing to depth
+         GLCheckError("");
+
+
+
          GLCheckError("");
          //glMatrixMode(GL_PROJECTION);
          GLCheckError("");
@@ -490,7 +513,7 @@ namespace gpu_opengl
    void renderer::endFrame()
    {
 
-      opengl_lock opengl_lock(m_pgpucontext);
+      ::gpu::context_lock contextlock(m_pgpucontext);
 
       //if (m_pgpucontext != m_pgpucontext->m_pgpudevice->current_context())
       //{
@@ -750,7 +773,7 @@ namespace gpu_opengl
    {
 
 
-      opengl_lock opengl_lock(m_pgpucontext);
+      ::gpu::context_lock contextlock(m_pgpucontext);
 
       ::cast<context>pgpucontext = m_pgpucontext;
 
@@ -888,53 +911,53 @@ namespace gpu_opengl
    //   m_pgpucontext->swap_buffers();
 
    //}
-   GLuint createFullscreenQuad(GLuint& quadVBO) {
-      // Vertex data: (x, y, u, v)
-#if 1
-      float quadVertices[] = {
-         //  Position   TexCoords
-         -1.0f,  1.0f,  0.0f, 1.0f, // Top-left
-         -1.0f, -1.0f,  0.0f, 0.0f, // Bottom-left
-          1.0f, -1.0f,  1.0f, 0.0f, // Bottom-right
-
-         -1.0f,  1.0f,  0.0f, 1.0f, // Top-left
-          1.0f, -1.0f,  1.0f, 0.0f, // Bottom-right
-          1.0f,  1.0f,  1.0f, 1.0f  // Top-right
-      };
-#else
-      float quadVertices[] = {
-         //  Position   TexCoords
-         0.0f,  1.0f,  0.0f, 1.0f, // Top-left
-         0.0f, 0.0f,  0.0f, 0.0f, // Bottom-left
-          1.0f, 0.0f,  1.0f, 0.0f, // Bottom-right
-
-         0.0f,  1.0f,  0.0f, 1.0f, // Top-left
-          1.0f, 0.0f,  1.0f, 0.0f, // Bottom-right
-          1.0f,  1.0f,  1.0f, 1.0f  // Top-right
-      };
-#endif
-      GLuint quadVAO = 0;
-
-      glGenVertexArrays(1, &quadVAO);
-      glGenBuffers(1, &quadVBO);
-
-      glBindVertexArray(quadVAO);
-      glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
-      glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
-
-      // Position attribute (location = 0)
-      glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
-      glEnableVertexAttribArray(0);
-
-      // Texture Coord attribute (location = 1)
-      glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
-      glEnableVertexAttribArray(1);
-
-      // Unbind for safety
-      glBindVertexArray(0);
-      return quadVAO;
-
-   }
+//   GLuint createFullscreenQuad(GLuint& quadVBO) {
+//      // Vertex data: (x, y, u, v)
+//#if 1
+//      float quadVertices[] = {
+//         //  Position   TexCoords
+//         -1.0f,  1.0f,  0.0f, 1.0f, // Top-left
+//         -1.0f, -1.0f,  0.0f, 0.0f, // Bottom-left
+//          1.0f, -1.0f,  1.0f, 0.0f, // Bottom-right
+//
+//         -1.0f,  1.0f,  0.0f, 1.0f, // Top-left
+//          1.0f, -1.0f,  1.0f, 0.0f, // Bottom-right
+//          1.0f,  1.0f,  1.0f, 1.0f  // Top-right
+//      };
+//#else
+//      float quadVertices[] = {
+//         //  Position   TexCoords
+//         0.0f,  1.0f,  0.0f, 1.0f, // Top-left
+//         0.0f, 0.0f,  0.0f, 0.0f, // Bottom-left
+//          1.0f, 0.0f,  1.0f, 0.0f, // Bottom-right
+//
+//         0.0f,  1.0f,  0.0f, 1.0f, // Top-left
+//          1.0f, 0.0f,  1.0f, 0.0f, // Bottom-right
+//          1.0f,  1.0f,  1.0f, 1.0f  // Top-right
+//      };
+//#endif
+//      GLuint quadVAO = 0;
+//
+//      glGenVertexArrays(1, &quadVAO);
+//      glGenBuffers(1, &quadVBO);
+//
+//      glBindVertexArray(quadVAO);
+//      glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+//      glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
+//
+//      // Position attribute (location = 0)
+//      glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+//      glEnableVertexAttribArray(0);
+//
+//      // Texture Coord attribute (location = 1)
+//      glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+//      glEnableVertexAttribArray(1);
+//
+//      // Unbind for safety
+//      glBindVertexArray(0);
+//      return quadVAO;
+//
+//   }
 
 
 //   void renderer::endDraw(::draw2d_gpu::graphics* pgraphics, ::user::interaction* puserinteraction)
@@ -1224,7 +1247,7 @@ namespace gpu_opengl
    void renderer::blend(::gpu::renderer* prendererSource)
    {
 
-      opengl_lock opengl_lock(m_pgpucontext);
+      ::gpu::context_lock contextlock(m_pgpucontext);
    
       auto rectangleHost = m_pgpucontext->rectangle();
 
@@ -1370,7 +1393,7 @@ namespace gpu_opengl
    void renderer::clear(::gpu::texture* ptextureParam)
    {
 
-      opengl_lock opengl_lock(m_pgpucontext);
+      ::gpu::context_lock contextlock(m_pgpucontext);
 
       ::cast < texture > ptexture = ptextureParam;
 
@@ -1410,7 +1433,7 @@ namespace gpu_opengl
    void renderer::__blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource)
    {
 
-      opengl_lock opengl_lock(m_pgpucontext);
+      ::gpu::context_lock contextlock(m_pgpucontext);
 
       ::cast < ::gpu_opengl::texture > ptextureDst = ptextureTarget;
       ::cast < ::gpu_opengl::texture > ptextureSrc = ptextureSource;
@@ -1554,7 +1577,7 @@ namespace gpu_opengl
    void renderer::blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource)
    {
 
-      opengl_lock opengl_lock(m_pgpucontext);
+      ::gpu::context_lock contextlock(m_pgpucontext);
 
       ::cast < texture > ptextureDst = ptextureTarget;
       ::cast < texture > ptextureSrc = ptextureSource;
@@ -1714,7 +1737,7 @@ namespace gpu_opengl
    void renderer::copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
    {
 
-      opengl_lock opengl_lock(m_pgpucontext);
+      ::gpu::context_lock contextlock(m_pgpucontext);
 
       //glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
@@ -1900,7 +1923,7 @@ namespace gpu_opengl
 //   void renderer::on_end_layer(::gpu::layer* player)
 //   {
 //
-//      opengl_lock opengl_lock(m_pgpucontext);
+//      ::gpu::context_lock contextlock(m_pgpucontext);
 //
 //      ::cast < texture > ptextureDst = player->texture();
 //

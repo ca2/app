@@ -243,14 +243,14 @@ out vec4 FragColor;
 uniform sampler2D uTexture;
 
 void main() {
-if(TexCoord.x > 0.5)
-{
-FragColor=vec4(0.0, 0.0, 0.5, 0.5);
-}
-else
-{
+//if(TexCoord.x > 0.5)
+//{
+//FragColor=vec4(0.0, 0.0, 0.5, 0.5);
+//}
+//else
+//{
  FragColor = texture(uTexture, TexCoord);
-}
+//}
 
 }
 )frag";
@@ -270,8 +270,6 @@ else
       }
 
       glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-
 
       auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2();
 

@@ -17,6 +17,8 @@ namespace gpu
    model_buffer::model_buffer()
    {
 
+      m_iSizeIndex = 0;
+
       m_ppool = nullptr;
 
       m_pMap = nullptr;
@@ -72,7 +74,7 @@ namespace gpu
       m_iVertexCount = 4;
 
 
-      pcontext->defer_construct_new(m_pbufferVertex, ::as_memory_block(quadVertex));
+      pcontext->defer_construct_new(m_pbufferVertex, ::as_memory_block(quadVertex), false);
 
       if (bIndexed)
       {
@@ -84,7 +86,7 @@ namespace gpu
 
          m_iIndexCount = 6;
 
-         pcontext->defer_construct_new(m_pbufferIndex, ::as_memory_block(quadIndex));
+         pcontext->defer_construct_new(m_pbufferIndex, ::as_memory_block(quadIndex), true);
 
       }
 
@@ -232,6 +234,8 @@ namespace gpu
       this->create_vertex_array<::graphics3d::sequence2_color >(
          pcontext, 6);
 
+      defer_set_input_layout(pcontext->input_layout(::graphics3d::sequence2_color_properties()));
+
    }
 
 
@@ -240,6 +244,8 @@ namespace gpu
 
       this->create_vertex_array<::graphics3d::sequence2_color >(
          pcontext, 2);
+
+      defer_set_input_layout(pcontext->input_layout(::graphics3d::sequence2_color_properties()));
 
    }
 
@@ -250,6 +256,8 @@ namespace gpu
       this->create_vertex_array<::graphics3d::sequence3_color >(
          pcontext, 6);
 
+      defer_set_input_layout(pcontext->input_layout(::graphics3d::sequence3_color_properties()));
+
    }
 
 
@@ -258,6 +266,8 @@ namespace gpu
 
       this->create_vertex_array<::graphics3d::sequence3_color >(
          pcontext, 2);
+
+      defer_set_input_layout(pcontext->input_layout(::graphics3d::sequence3_color_properties()));
 
    }
 

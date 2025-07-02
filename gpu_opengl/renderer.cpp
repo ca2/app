@@ -295,6 +295,8 @@ namespace gpu_opengl
          //}
          glClearColor(0.f, 0.f, 0.f, 0.f);
          GLCheckError("");
+         glClearDepth(1.0f);
+         GLCheckError("");
          glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
          GLCheckError("");
          glDepthMask(GL_FALSE); // Disable writing to depth
@@ -361,25 +363,6 @@ namespace gpu_opengl
 
 
          glDepthMask(GL_TRUE); // Enable writing to depth
-         GLCheckError("");
-         //if (etype == ::gpu::context::e_type_window)
-         //{
-
-         //   glClearColor(0.5f, 0.75f, .95f, 0.5f);
-
-         //}
-         //else
-         //{
-         //   glClearColor(0.95f, 0.75f, 0.5f, 0.5f);
-
-         //}
-         //glClearColor(0.f, 0.f, 0.f, 0.f);
-         glClearColor(0.95f * 0.5f, 0.95f * 0.5f, .8f * 0.5f, 0.5f); // light yellow
-         GLCheckError("");
-         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-         GLCheckError("");
-         ///glDepthMask(GL_FALSE); // Disable writing to depth
-
          glDisable(GL_BLEND);
          GLCheckError("");
          //glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
@@ -404,6 +387,28 @@ namespace gpu_opengl
    //double d = 1.0;
    ////glViewport(0, 0, size.cx() * d, size.cy() * d);
          glViewport(0, 0, width, height);
+         GLCheckError("");
+         //if (etype == ::gpu::context::e_type_window)
+         //{
+
+         //   glClearColor(0.5f, 0.75f, .95f, 0.5f);
+
+         //}
+         //else
+         //{
+         //   glClearColor(0.95f, 0.75f, 0.5f, 0.5f);
+
+         //}
+         //glClearColor(0.f, 0.f, 0.f, 0.f);
+         glClearColor(0.95f * 0.5f, 0.95f * 0.5f, .8f * 0.5f, 0.5f); // light yellow
+         GLCheckError("");
+         glClearDepth(1.0f);
+         GLCheckError("");
+         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+         GLCheckError("");
+
+         GLCheckError("");
+         ///glDepthMask(GL_FALSE); // Disable writing to depth
          GLCheckError("");
          //glMatrixMode(GL_PROJECTION);
          GLCheckError("");

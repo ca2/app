@@ -756,7 +756,7 @@ namespace gpu_opengl
       // Create the UBO
       glGenBuffers(1, &m_globalUBO);
       glBindBuffer(GL_UNIFORM_BUFFER, m_globalUBO);
-      glBufferData(GL_UNIFORM_BUFFER, iGlobalUboSize, NULL, GL_DYNAMIC_DRAW); // For 2 mat4s = 2 * sizeof(float) * 16
+      glBufferData(GL_UNIFORM_BUFFER, iGlobalUboSize, NULL, GL_STATIC_DRAW); // For 2 mat4s = 2 * sizeof(float) * 16
       unsigned int uUboBindingPoint = 0;
       glBindBufferBase(GL_UNIFORM_BUFFER, uUboBindingPoint, m_globalUBO);
       glBindBuffer(GL_UNIFORM_BUFFER, 0);
@@ -1256,25 +1256,41 @@ void main() {
 
       auto textureDst = ptextureDst->m_gluTextureID;
 
-      GLuint fboSrc, fboDst;
-      glGenFramebuffers(1, &fboSrc);
-      GLCheckError("");
-      glGenFramebuffers(1, &fboDst);
-      GLCheckError("");
+      glFlush();
+
+      if (!ptextureSrc->m_gluFbo)
+      {
+
+         ptextureSrc->create_render_target();
+
+      }
+
+      if (!ptextureDst->m_gluFbo)
+      {
+
+         ptextureDst->create_render_target();
+
+      }
+
+      //GLuint fboSrc, fboDst;
+      //glGenFramebuffers(1, &fboSrc);
+      //GLCheckError("");
+      //glGenFramebuffers(1, &fboDst);
+      //GLCheckError("");
 
       // Attach source texture to fboSrc
-      glBindFramebuffer(GL_READ_FRAMEBUFFER, fboSrc);
+      glBindFramebuffer(GL_READ_FRAMEBUFFER, ptextureSrc->m_gluFbo);
       GLCheckError("");
-      glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-         GL_TEXTURE_2D, textureSrc, 0);
-      GLCheckError("");
+      //glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+      //   GL_TEXTURE_2D, textureSrc, 0);
+      //GLCheckError("");
 
       // Attach dest texture to fboDst
-      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, fboDst);
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, ptextureDst->m_gluFbo);
       GLCheckError("");
-      glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-         GL_TEXTURE_2D, textureDst, 0);
-      GLCheckError("");
+      //glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+      //   GL_TEXTURE_2D, textureDst, 0);
+      //GLCheckError("");
 
       auto sizeSrc = ptextureSrc->size();
       auto sizeDst = ptextureDst->size();
@@ -1326,11 +1342,11 @@ void main() {
 
       // Cleanup
       glBindFramebuffer(GL_FRAMEBUFFER, 0);
-      GLCheckError("");
-      glDeleteFramebuffers(1, &fboSrc);
-      GLCheckError("");
-      glDeleteFramebuffers(1, &fboDst);
-      GLCheckError("");
+      //GLCheckError("");
+      //glDeleteFramebuffers(1, &fboSrc);
+      //GLCheckError("");
+      //glDeleteFramebuffers(1, &fboDst);
+      //GLCheckError("");
 
    }
 

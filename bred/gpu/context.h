@@ -137,8 +137,8 @@ namespace gpu
       virtual void _context_unlock();
 
 
-      virtual bool defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, memsize size);
-      virtual bool defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, const ::block& block);
+      virtual bool defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, memsize size, bool bIndex);
+      virtual bool defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, const ::block& block, bool bIndex);
 
 
       virtual void create_window_context(::gpu::device* pgpudevice, ::windowing::window * pwindow);

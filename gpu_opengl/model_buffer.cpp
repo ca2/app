@@ -57,10 +57,18 @@ namespace gpu_opengl
 
       ::cast < memory_buffer > pbufferVertex = m_pbufferVertex;
 
-      pinputlayout->_do_opengl_vao_and_vbo_input_layout(
-         m_gluVao,
-         pbufferVertex->m_gluVbo
-      );
+      ::cast < memory_buffer > pbufferIndex = m_pbufferIndex;
+
+      if (pbufferVertex)
+      {
+
+         pinputlayout->_do_opengl_vao_vbo_and_ebo_input_layout(
+            m_gluVao,
+            pbufferVertex->m_gluVbo,
+            pbufferIndex ? pbufferIndex->m_gluVbo : 0
+         );
+
+      }
 
    }
 
@@ -694,14 +702,14 @@ namespace gpu_opengl
          glBindVertexArray(m_gluVao);
          GLCheckError("");
          
-         m_pbufferVertex->bind();
+         //m_pbufferVertex->bind();
 
-         if (m_pbufferIndex)
-         {
+         //if (m_pbufferIndex)
+         //{
 
-            m_pbufferIndex->bind();
+         //   m_pbufferIndex->bind();
 
-         }
+         //}
 
          //glEnableVertexAttribArray(0); // Index must match the layout(location)
          //glVertexAttribPointer(
@@ -752,8 +760,29 @@ namespace gpu_opengl
 
          if (m_pbufferIndex)
          {
+
+            GLenum etype;
+
+            if (m_iSizeIndex == 1)
+            {
+
+               etype = GL_UNSIGNED_BYTE;
+
+            }
+            else if(m_iSizeIndex == 2)
+            {
+
+               etype = GL_UNSIGNED_SHORT;
+
+            }
+            else
+            {
+
+               etype = GL_UNSIGNED_INT;
+
+            }
             
-            glDrawElements(GL_TRIANGLES, m_iIndexCount, GL_UNSIGNED_INT, 0);
+            glDrawElements(GL_TRIANGLES, m_iIndexCount, etype, 0);
             GLCheckError("");
 
          }

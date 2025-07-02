@@ -83,6 +83,8 @@ namespace gpu
       virtual void unmap();
       virtual void* _map(memsize start, memsize count);
       virtual void _unmap();
+      virtual void* __map(memsize start, memsize count);
+      virtual void __unmap();
 
 
       virtual void bind();

@@ -27,6 +27,7 @@ namespace gpu
       ::pointer < memory_buffer > m_pbufferIndex;
       int m_iVertexCount;
       int m_iIndexCount;
+      int m_iSizeIndex;
 
 
 
@@ -46,9 +47,26 @@ namespace gpu
 
          auto size = sizeof(VERTEX) * m_iVertexCount;
 
-         pcontext->defer_construct_new(m_pbufferVertex, size);
+         pcontext->defer_construct_new(m_pbufferVertex, size, false);
 
       }
+
+      template < typename INDEX >
+      void create_index_array(::gpu::context* pcontext, int iIndexCount)
+      {
+
+         initialize_gpu_context_object(pcontext);
+
+         m_iIndexCount = iIndexCount;
+
+         m_iSizeIndex = sizeof(INDEX);
+
+         auto size = m_iSizeIndex * m_iIndexCount;
+
+         pcontext->defer_construct_new(m_pbufferIndex, size, true);
+
+      }
+
 
       template < typename VERTEX >
       void set_vertex_array(const VERTEX *p, int iVertexCount)
@@ -59,6 +77,18 @@ namespace gpu
          memcpy(data, p, sizeof(VERTEX) * iVertexCount);
 
       }
+
+
+      template < typename INDEX >
+      void set_index_array(const INDEX* p, int iIndexCount)
+      {
+
+         auto data = map_indices <INDEX >();
+
+         memcpy(data, p, sizeof(INDEX) * iIndexCount);
+
+      }
+
 
       void sequence2_uv_create_fullscreen_quad(::gpu::context* pcontext);
       void sequence2_color_create_rectangle(::gpu::context* pcontext);
@@ -94,6 +124,14 @@ namespace gpu
       {
 
          return { m_pbufferVertex.m_p, (VERTEX*)nullptr };
+
+      }
+
+      template < typename INDEX >
+      memory_map < memory_buffer, INDEX > map_indices()
+      {
+
+         return { m_pbufferIndex.m_p, (INDEX*)nullptr };
 
       }
 

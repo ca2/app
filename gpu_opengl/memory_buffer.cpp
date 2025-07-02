@@ -65,7 +65,12 @@ namespace gpu_opengl
       GLCheckError("");
 
       //GLsizeiptr size = 1024; // e.g., 1 KB buffer
-      glBufferData(m_iType, (GLsizeiptr) size, NULL, GL_DYNAMIC_DRAW); // just allocate space
+      auto i2 = GL_DYNAMIC_DRAW;
+      if (size > 1024)
+      {
+         i2 = GL_STATIC_DRAW;
+      }
+      glBufferData(m_iType, (GLsizeiptr) size, NULL, i2); // just allocate space
       GLCheckError("");
 
 
@@ -214,6 +219,50 @@ namespace gpu_opengl
    //}
 
 
+   //void* memory_buffer::_map(memsize start, memsize count)
+   //{
+
+   //   glBindBuffer(m_iType, m_gluVbo);
+   //   GLCheckError("");
+
+   //   void* data = glMapBuffer(m_iType, GL_WRITE_ONLY);
+   //   GLCheckError("");
+   //  
+   //   m_pMap = data;
+
+   //   glBindBuffer(m_iType, 0);
+   //   GLCheckError("");
+
+
+   //   return data;
+
+   //}
+
+
+   //void memory_buffer::_unmap()
+   //{
+
+   //   //if (!m_pMap)
+   //   //{
+
+   //   //   return;
+
+   //   //}
+
+   //   glBindBuffer(m_iType, m_gluVbo);
+   //   GLCheckError("");
+
+   //   glUnmapBuffer(m_iType); // Important!
+   //   GLCheckError("");
+
+   //   glBindBuffer(m_iType, 0);
+   //   GLCheckError("");
+
+   //   m_pMap = nullptr;
+
+   //}
+
+
    void* memory_buffer::_map(memsize start, memsize count)
    {
 
@@ -222,12 +271,8 @@ namespace gpu_opengl
 
       void* data = glMapBuffer(m_iType, GL_WRITE_ONLY);
       GLCheckError("");
-     
+
       m_pMap = data;
-
-      glBindBuffer(m_iType, 0);
-      GLCheckError("");
-
 
       return data;
 
@@ -237,23 +282,13 @@ namespace gpu_opengl
    void memory_buffer::_unmap()
    {
 
-      //if (!m_pMap)
-      //{
-
-      //   return;
-
-      //}
-
-      glBindBuffer(m_iType, m_gluVbo);
-      GLCheckError("");
-
       glUnmapBuffer(m_iType); // Important!
       GLCheckError("");
 
       glBindBuffer(m_iType, 0);
       GLCheckError("");
 
-      //m_pMap = nullptr;
+      m_pMap = nullptr;
 
    }
 
@@ -271,8 +306,8 @@ namespace gpu_opengl
    void memory_buffer::unbind()
    {
 
-      glBindBuffer(m_iType, 0);
-      GLCheckError("");
+      //glBindBuffer(m_iType, 0);
+      //GLCheckError("");
 
    }
 

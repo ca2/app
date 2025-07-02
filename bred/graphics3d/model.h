@@ -5,8 +5,11 @@
 
 //#include "device.h"
 //#include "buffer.h"
+#include "bred/gpu/model_buffer.h"
 #include "bred/graphics3d/utilities.h"
 #include "bred/graphics3d/types.h"
+
+
 
 #define GLM_FORCE_RADIANS	
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
@@ -15,10 +18,10 @@
 #include <glm/vec2.hpp>
 #include <functional>
 
-#include <memory>
-#include <vector>
-#include <unordered_map>
-
+//#include <memory>
+//#include <vector>
+//#include <unordered_map>
+//
 
 
 namespace graphics3d
@@ -26,7 +29,7 @@ namespace graphics3d
 
 
    class CLASS_DECL_BRED model :
-      virtual public ::particle
+      virtual public ::gpu::model_buffer
    {
    public:
 

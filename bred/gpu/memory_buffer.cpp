@@ -245,6 +245,21 @@ namespace gpu
    }
 
 
+   void* memory_buffer::__map(memsize start, memsize count)
+   {
+
+      return nullptr;
+
+   }
+
+
+   void memory_buffer::__unmap()
+   {
+
+
+   }
+
+
    void memory_buffer::bind()
    {
 

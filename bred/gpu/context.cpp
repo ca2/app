@@ -291,14 +291,13 @@ namespace gpu
    }
 
 
-
-   bool context::defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, memsize size)
+   bool context::defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, memsize size, bool bIndex)
    {
 
       if (__defer_construct(pmemorybuffer))
       {
 
-         pmemorybuffer->initialize_memory_buffer(this, size, false);
+         pmemorybuffer->initialize_memory_buffer(this, size, bIndex);
 
          return true;
 
@@ -309,10 +308,10 @@ namespace gpu
    }
 
 
-   bool context::defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, const ::block& block)
+   bool context::defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, const ::block& block, bool bIndex)
    {
 
-      if (defer_construct_new(pmemorybuffer, block.size()))
+      if (defer_construct_new(pmemorybuffer, block.size(), bIndex))
       {
 
          pmemorybuffer->assign(block.data(), block.size());

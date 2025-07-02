@@ -11,6 +11,7 @@
 #include "bred/gpu/device.h"
 #include "bred/gpu/model_buffer.h"
 #include "bred/gpu/renderer.h"
+#include "bred/gpu/render_state.h"
 #include "bred/gpu/render_target.h"
 #include "bred/gpu/swap_chain.h"
 
@@ -70,6 +71,25 @@ namespace gpu
       auto pcontext = gpu_context();
 
       auto pgpudevice = pcontext->m_pgpudevice;
+
+      auto prenderer = pcontext->m_pgpurenderer;
+
+      auto prendertarget = prenderer->m_pgpurendertarget;
+
+      if (prenderer->m_prenderstate->m_estate == ::gpu::e_state_began_render)
+      {
+
+         int iFrameIndex = prendertarget->get_frame_index();
+
+         auto ppoolgroupFrame = pgpudevice->frame_pool_group(iFrameIndex);
+
+         ppoolgroupFrame->m_pallocator = pgpudevice;
+
+         ppoolgroupFrame->call_ongoing(e_call_off_to_pool);
+
+         m_poolmodelbufferRectangle.m_ppoolgroup = ppoolgroupFrame;
+
+      }
 
       if (m_egraphics == e_graphics_draw)
       {

@@ -29,7 +29,7 @@ namespace gpu_opengl
       //void on_initialize_input_layout() override;
 
 
-      void _do_opengl_vao_and_vbo_input_layout(GLuint gluVAO, GLuint gluVBO);
+      void _do_opengl_vao_vbo_and_ebo_input_layout(GLuint gluVAO, GLuint gluVBO, GLuint gluEBO);
 
 
    };

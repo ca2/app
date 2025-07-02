@@ -124,6 +124,7 @@ namespace gpu_opengl
       {
 
          glBindTexture(GL_TEXTURE_2D, m_gluTextureID);
+         GLCheckError("");
 
          glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
             GL_TEXTURE_2D, m_gluTextureID, 0);
@@ -132,11 +133,15 @@ namespace gpu_opengl
          // Set draw buffer
          GLenum drawBufs[] = { GL_COLOR_ATTACHMENT0 };
          glDrawBuffers(1, drawBufs); // REQUIRED for user-defined FBOs
+         GLCheckError("");
 
       }
 
       if (m_gluDepthStencilRBO)
       {
+
+         glBindRenderbuffer(GL_RENDERBUFFER, m_gluDepthStencilRBO);
+         GLCheckError("");
 
          glFramebufferRenderbuffer(
             GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT,

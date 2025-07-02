@@ -162,11 +162,11 @@ namespace gpu
 
       //void* data;
 
-      auto data = map(0, size);
+      map(0, size);
 
       //vkMapMemory(m_pcontext->logicalDevice(), m_vkdevicememory, 0, size, 0, &data);
 
-      memcpy(data, pData, size);
+      memcpy(m_pMap, pData, size);
 
       unmap();
 
@@ -183,6 +183,39 @@ namespace gpu
    }
 
 
+   void memory_buffer::_assign(const void* pData, memsize size)
+   {
+
+      if (!is_initialized())
+      {
+
+         throw ::exception(error_wrong_state, "Buffer not initialized");
+
+      }
+
+      //void* data;
+
+      _map(0, size);
+
+      //vkMapMemory(m_pcontext->logicalDevice(), m_vkdevicememory, 0, size, 0, &data);
+
+      memcpy(m_pMap, pData, size);
+
+      _unmap();
+
+      //vkUnmapMemory(m_pcontext->logicalDevice(), m_vkdevicememory);
+
+   }
+
+
+   void memory_buffer::_assign(const ::block& block)
+   {
+
+      _assign(block.data(), block.size());
+
+   }
+
+
    void* memory_buffer::map(memsize start, memsize count)
    {
 
@@ -192,6 +225,8 @@ namespace gpu
          throw ::exception(error_wrong_state);
 
       }
+
+      bind();
 
       if (!m_pMap)
       {
@@ -224,6 +259,8 @@ namespace gpu
       }
 
       _unmap();
+
+      unbind();
 
       m_pMap = nullptr;
 

@@ -28,6 +28,7 @@ namespace gpu_opengl
 
 
       void bind(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource) override;
+      void bind(::gpu::texture* pgputextureTarget) override;
       void bind() override;
       void unbind() override;
       

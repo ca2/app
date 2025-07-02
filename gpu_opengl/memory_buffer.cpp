@@ -266,8 +266,8 @@ namespace gpu_opengl
    void* memory_buffer::_map(memsize start, memsize count)
    {
 
-      glBindBuffer(m_iType, m_gluVbo);
-      GLCheckError("");
+      //glBindBuffer(m_iType, m_gluVbo);
+      //GLCheckError("");
 
       void* data = glMapBuffer(m_iType, GL_WRITE_ONLY);
       GLCheckError("");
@@ -285,8 +285,8 @@ namespace gpu_opengl
       glUnmapBuffer(m_iType); // Important!
       GLCheckError("");
 
-      glBindBuffer(m_iType, 0);
-      GLCheckError("");
+      //glBindBuffer(m_iType, 0);
+      //GLCheckError("");
 
       m_pMap = nullptr;
 

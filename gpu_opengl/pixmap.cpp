@@ -27,6 +27,8 @@ namespace gpu_opengl
       // generate texture
          //unsigned int texture;
       glGenTextures(1, &m_gluTexture);
+      glBindTexture(GL_TEXTURE_2D, m_gluTexture); // You must bind before setting parameters
+
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -44,18 +46,29 @@ namespace gpu_opengl
       glTexImage2D(
          GL_TEXTURE_2D,
          0,
-         GL_RED,
+         GL_BGRA,
          w,
          h,
          0,
-         GL_RED,
+         GL_BGRA,
          GL_UNSIGNED_BYTE,
          data
       );
+      
       glBindTexture(GL_TEXTURE_2D, 0);
+
    }
 
 
-}
+   void pixmap::bind_texture()
+   {
+
+      glBindTexture(GL_TEXTURE_2D, m_gluTexture);
+
+   }
+
+
+
+} // namespace character
 
 

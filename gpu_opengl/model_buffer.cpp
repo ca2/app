@@ -748,6 +748,13 @@ namespace gpu_opengl
          //}
 
       }
+      else
+      {
+
+         glBindVertexArray(m_gluVao);
+         GLCheckError("");
+
+      }
 
    }
 
@@ -795,9 +802,71 @@ namespace gpu_opengl
          }
 
       }
+      else
+      {
+
+         glDrawArrays(GL_TRIANGLES, 0, m_iVertexCount);
+         GLCheckError("");
+
+
+      }
 
    }
 
+
+   void model_buffer::draw_lines(::gpu::command_buffer* pgpucommandbuffer)
+   {
+
+      if (m_pbufferVertex)
+      {
+
+         //if (m_pbufferIndex)
+         //{
+
+         //   GLenum etype;
+
+         //   if (m_iSizeIndex == 1)
+         //   {
+
+         //      etype = GL_UNSIGNED_BYTE;
+
+         //   }
+         //   else if (m_iSizeIndex == 2)
+         //   {
+
+         //      etype = GL_UNSIGNED_SHORT;
+
+         //   }
+         //   else
+         //   {
+
+         //      etype = GL_UNSIGNED_INT;
+
+         //   }
+
+         //   glDrawElements(GL_TRIANGLES, m_iIndexCount, etype, 0);
+         //   GLCheckError("");
+
+         //}
+         //else
+         {
+
+            glDrawArrays(GL_LINES, 0, m_iVertexCount);
+            GLCheckError("");
+
+         }
+
+      }
+      else
+      {
+
+         glDrawArrays(GL_LINES, 0, m_iVertexCount);
+         GLCheckError("");
+
+
+      }
+
+   }
 
    //void model_buffer::handle(const ::call& call)
    //{

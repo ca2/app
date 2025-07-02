@@ -206,14 +206,77 @@ namespace gpu_opengl
    void shader::bind(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
    {
 
-      bind();
+      bind(pgputextureTarget);
+
+      bind_source(pgputextureSource);
 
    }
 
 
+   void shader::bind(::gpu::texture* pgputextureTarget)
+   {
+
+      bind();
+
+      ::cast < texture > ptexture = pgputextureTarget;
+
+      if (!ptexture->m_gluFbo)
+      {
+
+         ptexture->create_render_target();
+
+      }
+
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, ptexture->m_gluFbo);
+      GLCheckError("");
+
+      glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
+      GLCheckError("");
+
+
+   }
+      
+      
    void shader::bind()
    {
-      
+
+      if (m_bEnableBlend)
+      {
+
+         glEnable(GL_BLEND);
+         glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+
+      }
+      else
+      {
+
+         glDisable(GL_BLEND);
+
+      }
+
+
+      if (m_bDisableDepthTest)
+      {
+
+         glDisable(GL_DEPTH_TEST);
+         glDepthMask(GL_FALSE);
+
+      }
+      else if (m_bDepthTestButNoDepthWrite)
+      {
+
+         glEnable(GL_DEPTH_TEST);
+         glDepthMask(GL_FALSE);
+
+      }
+      else
+      {
+
+         glEnable(GL_DEPTH_TEST);
+         glDepthMask(GL_TRUE);
+
+      }
+
       glUseProgram(m_ProgramID);
       GLCheckError("");
       

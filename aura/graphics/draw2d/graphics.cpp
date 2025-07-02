@@ -71,13 +71,19 @@ namespace draw2d
    graphics::graphics()
    {
 
+
       m_bForWindowDraw2d = false;
       m_bDraw = true;
       m_puserinteraction = nullptr;
       m_bUseImageMipMapsOrResizedImages = false;
 
-      m_pointOrigin.x() = 0;
-      m_pointOrigin.y() = 0;
+      m_pointTranslateOutput.x() = 0.;
+      m_pointTranslateOutput.y() = 0.;
+      m_sizeScaleOutput.cx() = 1.0;
+      m_sizeScaleOutput.cy() = 1.0;
+
+      m_pointOrigin.x() = 0.;
+      m_pointOrigin.y() = 0.;
       m_sizeScaling.cx() = 1.0;
       m_sizeScaling.cy() = 1.0;
       //m_estatus = success;
@@ -6331,19 +6337,24 @@ namespace draw2d
    void graphics::update_matrix()
    {
 
-      ::geometry2d::matrix matrixScale;
 
-      ::geometry2d::matrix matrixTranslate;
+      //auto matrix = m_matrixChangeOutput * matrixScale * m_matrix * matrixTranslate;
 
-      matrixScale.a1 = m_sizeScaling.cx();
+      //auto m = m_matrix;
 
-      matrixScale.b2 = m_sizeScaling.cy();
+      auto scaling = ::geometry2d::matrix::scaling(m_sizeScaling);
 
-      matrixTranslate.c1 = m_pointOrigin.x();
+      auto translation = ::geometry2d::matrix::translation(m_pointOrigin);
 
-      matrixTranslate.c2 = m_pointOrigin.y();
+      //m.scale(m_sizeScaling, ::geometry2d::matrix::mode_prepend);
 
-      auto matrix = matrixScale * m_matrix * matrixTranslate;
+      //m.scale(m_sizeScaleOutput, ::geometry2d::matrix::mode_prepend);
+
+      //m.translate(m_pointOrigin, ::geometry2d::matrix::mode_append);
+
+      //m.translate(m_pointTranslateOutput, ::geometry2d::matrix::mode_append);
+
+      auto matrix = scaling * m_matrix * translation;
 
       _set(matrix);
 

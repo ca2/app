@@ -54,6 +54,13 @@ namespace gpu
    }
 
 
+   void pixmap::bind_texture()
+   {
+
+
+   }
+
+
    //void pixmap::merge_layers(::pointer_array < ::gpu::layer >* playera)
    //{
 

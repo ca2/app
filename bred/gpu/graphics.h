@@ -30,6 +30,8 @@ namespace gpu
       ::pointer < ::gpu::shader >               m_pshaderBlendRectangle;
       ::pool <::gpu::model_buffer >             m_poolmodelbufferRectangle;
       ::pool <::gpu::model_buffer >             m_poolmodelbufferCharacter;
+      ::pool <::gpu::model_buffer >             m_poolmodelbufferLine;
+      //int                                       m_iContextHeight;
 
 
       graphics();
@@ -64,7 +66,7 @@ namespace gpu
 
 
       //void set_hint_window_output() override;
-
+      virtual ::gpu::shader* rectangle_shader();
 
       void thread_select() override;
 

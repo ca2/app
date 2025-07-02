@@ -20,6 +20,14 @@ namespace gpu
 {
 
 
+#define __TRANSFORM(p) \
+   m_m1.transform(p); \
+p.y() = iContextHeight - p.y()
+
+#define __USES_TRANSFORM(pcontext) \
+auto iContextHeight = pcontext->m_rectangle.height()
+
+
    void thread_graphics(graphics* pgraphics)
    {
 
@@ -51,11 +59,11 @@ namespace gpu
 
    }
 
-   
+
    bool graphics::_is_ok() const
    {
 
-      auto pcontext = ((graphics *)this)->gpu_context();
+      auto pcontext = ((graphics*)this)->gpu_context();
 
       return ::is_set(this) & ::is_set(pcontext);
 
@@ -88,7 +96,8 @@ namespace gpu
          ppoolgroupFrame->call_ongoing(e_call_off_to_pool);
 
          m_poolmodelbufferRectangle.m_ppoolgroup = ppoolgroupFrame;
-
+         m_poolmodelbufferCharacter.m_ppoolgroup = ppoolgroupFrame;
+         m_poolmodelbufferLine.m_ppoolgroup = ppoolgroupFrame;
       }
 
       if (m_egraphics == e_graphics_draw)
@@ -98,6 +107,7 @@ namespace gpu
 
          m_poolmodelbufferRectangle.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
          m_poolmodelbufferCharacter.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
+         m_poolmodelbufferLine.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
 
       }
 
@@ -253,7 +263,7 @@ namespace gpu
       auto rectangleWindow = pwindow->get_window_rectangle();
 
       pcontextMain->set_placement(rectangleWindow);
-      
+
       auto pcontext = gpu_context();
 
       pcontext->m_escene = ::gpu::e_scene_2d;
@@ -304,7 +314,7 @@ namespace gpu
    //}
 
 
-   void graphics::create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size)
+   void graphics::create_for_window_draw2d(::user::interaction* puserinteraction, const ::int_size& size)
    {
 
       m_puserinteraction = puserinteraction;
@@ -315,7 +325,7 @@ namespace gpu
    }
 
 
-   
+
    void graphics::bind_draw2d_compositor(::gpu::layer* player)
    {
 
@@ -336,11 +346,98 @@ namespace gpu
 
    }
 
+   ::gpu::shader* graphics::rectangle_shader()
+   {
+      auto pcontext = gpu_context();
+      ::gpu::shader* pshader = nullptr;
+   if (m_ealphamode == ::draw2d::e_alpha_mode_set)
+   {
+      if (!m_pshaderSourceRectangle)
+      {
+
+         //auto pshadervertexinput = __allocate::gpu_vulkan::shader_vertex_input();
+
+         //pshadervertexinput->m_bindings.add(
+         //   {
+         //      .binding = 0,
+         //      .stride = sizeof(RectangleVertex),
+         //      .inputRate = VK_VERTEX_INPUT_RATE_VERTEX,
+         //   });
+
+         //pshadervertexinput->m_attribs.add({ .location = 0, .binding = 0, .format = VK_FORMAT_R32G32B32_SFLOAT, .offset = offsetof(RectangleVertex, pos) });
+         //pshadervertexinput->m_attribs.add({ .location = 1, .binding = 0, .format = VK_FORMAT_R32G32B32A32_SFLOAT, .offset = offsetof(RectangleVertex, color) });
+
+         auto pshaderRectangle = __øcreate<::gpu::shader>();
+
+         m_pshaderSourceRectangle = pshaderRectangle;
+         //m_pshaderBlendRectangle->m_bDisableDepthTest = true;
+         m_pshaderSourceRectangle->m_bDisableDepthTest = true;
+         //m_pshaderRectangle->m_iColorAttachmentCount = 2;
+         m_pshaderSourceRectangle->m_bEnableBlend = false;
+         //m_pshaderRectangle->m_bAccumulationEnable = true;
+
+         pcontext->initialize_rectangle_shader(m_pshaderSourceRectangle);
+
+      }
+      pshader = m_pshaderSourceRectangle;
+
+   }
+   else
+   {
+
+      if (!m_pshaderBlendRectangle)
+      {
+
+         //auto pshadervertexinput = __allocate::gpu_vulkan::shader_vertex_input();
+
+         //pshadervertexinput->m_bindings.add(
+         //   {
+         //      .binding = 0,
+         //      .stride = sizeof(RectangleVertex),
+         //      .inputRate = VK_VERTEX_INPUT_RATE_VERTEX,
+         //   });
+
+         //pshadervertexinput->m_attribs.add({ .location = 0, .binding = 0, .format = VK_FORMAT_R32G32B32_SFLOAT, .offset = offsetof(RectangleVertex, pos) });
+         //pshadervertexinput->m_attribs.add({ .location = 1, .binding = 0, .format = VK_FORMAT_R32G32B32A32_SFLOAT, .offset = offsetof(RectangleVertex, color) });
+
+         auto pshaderRectangle = __øcreate<::gpu::shader>();
+
+         m_pshaderBlendRectangle = pshaderRectangle;
+         //m_pshaderBlendRectangle->m_bDisableDepthTest = true;
+         m_pshaderBlendRectangle->m_bDisableDepthTest = true;
+         //m_pshaderRectangle->m_iColorAttachmentCount = 2;
+         m_pshaderBlendRectangle->m_bEnableBlend = true;
+         //m_pshaderRectangle->m_bAccumulationEnable = true;
+
+         ///auto pcontext = gpu_context();
+
+         pcontext->initialize_rectangle_shader(m_pshaderBlendRectangle);
+
+         //::cast < ::gpu_vulkan::device > pgpudevice = pgpucontext->m_pgpudevice;
+         //pshaderRectangle->initialize_shader_with_block(
+         //   pcontext->m_pgpurenderer,
+         //   as_memory_block(g_uaRectangleVertexShader),
+         //   //as_memory_block(g_uaAccumulationFragmentShader),
+         //   as_memory_block(g_uaRectangleFragmentShader),
+         //   { },
+         //   m_psetdescriptorlayoutRectangle,
+         //   {},
+         //   pcontext->input_layout(::graphics3d::sequence2_color_properties()));
+
+      }
+
+      pshader = m_pshaderBlendRectangle;
+
+   }
+   return pshader;
+}
 
    void graphics::_fill_quad(const ::double_point points[4], const ::color::color& color)
    {
-
+      
       auto pcontext = gpu_context();
+
+      __USES_TRANSFORM(pcontext);
 
       auto prenderer = pcontext->m_pgpurenderer;
 
@@ -390,88 +487,9 @@ namespace gpu
 
       //}
 
-      ::gpu::shader* pshader = nullptr;
+      ::gpu::shader* pshader = rectangle_shader();
 
-      if (m_ealphamode == ::draw2d::e_alpha_mode_set)
-      {
-         if (!m_pshaderSourceRectangle)
-         {
-
-            //auto pshadervertexinput = __allocate::gpu_vulkan::shader_vertex_input();
-
-            //pshadervertexinput->m_bindings.add(
-            //   {
-            //      .binding = 0,
-            //      .stride = sizeof(RectangleVertex),
-            //      .inputRate = VK_VERTEX_INPUT_RATE_VERTEX,
-            //   });
-
-            //pshadervertexinput->m_attribs.add({ .location = 0, .binding = 0, .format = VK_FORMAT_R32G32B32_SFLOAT, .offset = offsetof(RectangleVertex, pos) });
-            //pshadervertexinput->m_attribs.add({ .location = 1, .binding = 0, .format = VK_FORMAT_R32G32B32A32_SFLOAT, .offset = offsetof(RectangleVertex, color) });
-
-            auto pshaderRectangle = __øcreate<::gpu::shader>();
-
-            m_pshaderSourceRectangle = pshaderRectangle;
-            //m_pshaderBlendRectangle->m_bDisableDepthTest = true;
-            m_pshaderSourceRectangle->m_bDisableDepthTest = true;
-            //m_pshaderRectangle->m_iColorAttachmentCount = 2;
-            m_pshaderSourceRectangle->m_bEnableBlend = false;
-            //m_pshaderRectangle->m_bAccumulationEnable = true;
-
-            pcontext->initialize_rectangle_shader(m_pshaderSourceRectangle);
-
-         }
-         pshader = m_pshaderSourceRectangle;
-
-      }
-      else
-      {
-
-         if (!m_pshaderBlendRectangle)
-         {
-
-            //auto pshadervertexinput = __allocate::gpu_vulkan::shader_vertex_input();
-
-            //pshadervertexinput->m_bindings.add(
-            //   {
-            //      .binding = 0,
-            //      .stride = sizeof(RectangleVertex),
-            //      .inputRate = VK_VERTEX_INPUT_RATE_VERTEX,
-            //   });
-
-            //pshadervertexinput->m_attribs.add({ .location = 0, .binding = 0, .format = VK_FORMAT_R32G32B32_SFLOAT, .offset = offsetof(RectangleVertex, pos) });
-            //pshadervertexinput->m_attribs.add({ .location = 1, .binding = 0, .format = VK_FORMAT_R32G32B32A32_SFLOAT, .offset = offsetof(RectangleVertex, color) });
-
-            auto pshaderRectangle = __øcreate<::gpu::shader>();
-
-            m_pshaderBlendRectangle = pshaderRectangle;
-            //m_pshaderBlendRectangle->m_bDisableDepthTest = true;
-            m_pshaderBlendRectangle->m_bDisableDepthTest = true;
-            //m_pshaderRectangle->m_iColorAttachmentCount = 2;
-            m_pshaderBlendRectangle->m_bEnableBlend = true;
-            //m_pshaderRectangle->m_bAccumulationEnable = true;
-
-            ///auto pcontext = gpu_context();
-
-            pcontext->initialize_rectangle_shader(m_pshaderBlendRectangle);
-
-            //::cast < ::gpu_vulkan::device > pgpudevice = pgpucontext->m_pgpudevice;
-            //pshaderRectangle->initialize_shader_with_block(
-            //   pcontext->m_pgpurenderer,
-            //   as_memory_block(g_uaRectangleVertexShader),
-            //   //as_memory_block(g_uaAccumulationFragmentShader),
-            //   as_memory_block(g_uaRectangleFragmentShader),
-            //   { },
-            //   m_psetdescriptorlayoutRectangle,
-            //   {},
-            //   pcontext->input_layout(::graphics3d::sequence2_color_properties()));
-
-         }
-
-         pshader = m_pshaderBlendRectangle;
-
-      }
-
+      
       auto pmodelbufferRectangle = m_poolmodelbufferRectangle.get();
 
       if (pmodelbufferRectangle->is_new())
@@ -484,13 +502,17 @@ namespace gpu
       double_point quad[4];
 
       quad[0] = points[0];
-      m_m1.transform(quad[0]);
+      __TRANSFORM(quad[0]);
+      auto& p0 = quad[0];
       quad[1] = points[1];
-      m_m1.transform(quad[1]);
+      __TRANSFORM(quad[1]);
+      auto& p1 = quad[1];
       quad[2] = points[2];
-      m_m1.transform(quad[2]);
+      __TRANSFORM(quad[2]);
+      auto& p2 = quad[2];
       quad[3] = points[3];
-      m_m1.transform(quad[3]);
+      __TRANSFORM(quad[3]);
+      auto& p3 = quad[3];
 
       //pmodelbuffer->sequence3_color_set_rectangle();
       //pgpucontext = pgpudevice->get_main_context();

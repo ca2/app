@@ -217,13 +217,7 @@ namespace gpu
 
       defer_set_input_layout(pcontext->input_layout(::graphics3d::sequence2_uv_properties()));
 
-      {
-
-         auto data = map<::graphics3d::sequence2_uv >();
-
-         memcpy(data, quadVertices, sizeof(quadVertices));
-
-      }
+      m_pbufferVertex->assign(quadVertices, sizeof(quadVertices));
 
    }
 
@@ -749,6 +743,30 @@ namespace gpu
 
 
    void model_buffer::draw(::gpu::command_buffer* pgpucommandbuffer)
+   {
+
+      //if (m_pbufferVertex)
+      //{
+
+      //   ::cast < command_buffer > pcommandbuffer = pgpucommandbuffer;
+
+      //   if (m_pbufferIndex)
+      //   {
+      //      vkCmdDrawIndexed(
+      //         pcommandbuffer->m_vkcommandbuffer,
+      //         m_iIndexCount, 1, 0, 0, 0);
+      //   }
+      //   else
+      //   {
+      //      vkCmdDraw(
+      //         pcommandbuffer->m_vkcommandbuffer,
+      //         m_iVertexCount, 1, 0, 0);
+      //   }
+      //}
+   }
+
+
+   void model_buffer::draw_lines(::gpu::command_buffer* pgpucommandbuffer)
    {
 
       //if (m_pbufferVertex)

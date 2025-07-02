@@ -34,6 +34,9 @@ namespace gpu_opengl
       //virtual void blend(::gpu::layer* player);
       //virtual void blend(::gpu::texture* ptexture);
 
+
+      void bind_texture() override;
+
    };
 
 

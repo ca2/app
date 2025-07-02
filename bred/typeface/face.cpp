@@ -2,8 +2,10 @@
 // 2025-06-02 03:52 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "face.h"
+#include "bred/gpu/model_buffer.h"
 #include "bred/gpu/pixmap.h"
 #include "bred/gpu/renderer.h"
+#include "bred/graphics3d/types.h"
 
 
 namespace typeface
@@ -63,15 +65,20 @@ namespace typeface
 
    void face::create_draw_buffers()
    {
-     /* glGenVertexArrays(1, &m_VAO);
-      glGenBuffers(1, &m_VBO);
-      glBindVertexArray(m_VAO);
-      glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-      glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * 4, NULL, GL_DYNAMIC_DRAW);
-      glEnableVertexAttribArray(0);
-      glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
-      glBindBuffer(GL_ARRAY_BUFFER, 0);
-      glBindVertexArray(0);*/
+      if (__defer_construct(m_pmodelbufferBox))
+      {
+         m_pmodelbufferBox->create_vertex_array<::graphics3d::sequence2_uv>(m_pgpurenderer->m_pgpucontext, 6);
+         /* glGenVertexArrays(1, &m_VAO);
+          glGenBuffers(1, &m_VBO);
+          glBindVertexArray(m_VAO);
+          glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+          glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * 4, NULL, GL_DYNAMIC_DRAW);
+          glEnableVertexAttribArray(0);
+          glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
+          glBindBuffer(GL_ARRAY_BUFFER, 0);
+          glBindVertexArray(0);*/
+
+      }
 
    }
 

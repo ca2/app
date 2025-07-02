@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "command_buffer.h"
 #include "context.h"
 #include "device_win32.h"
 #include "frame_buffer.h"
@@ -922,58 +923,389 @@ void main() {
    void context::merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera)
    {
 
+
       ::gpu::context_lock contextlock(this);
 
-      ::cast < texture > ptextureDst = ptextureTarget;
-
-      GLuint framebuffer;
-      glGenFramebuffers(1, &framebuffer);
-      GLCheckError("glGenFramebuffers");
-      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
-      GLCheckError("glBindFramebuffer");
-
-      auto gluTextureID = ptextureDst->m_gluTextureID;
-
-      // Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
-      glFramebufferTexture2D(
-         GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
-         gluTextureID,
-         0);
-      GLCheckError("glFramebufferTexture2D");
-
-      if (glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
-         printf("Framebuffer not complete!\n");
-         glDeleteFramebuffers(1, &framebuffer);
-         return;
-      }
-
-      glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-      //glClearColor(0.5f * 0.5f, 0.75f * 0.5f, 0.95f * 0.5f, 0.5f);
-      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-      glFlush();
-
-      ::cast < renderer > prenderer = m_pgpurenderer;
-
-      for (auto& player : *playera)
+      if (!m_pmodelbufferDummy)
       {
 
-         if (player.is_null())
+         __defer_construct(m_pmodelbufferDummy);
+
+         m_pmodelbufferDummy->initialize_gpu_context_object(this);
+
+         m_pmodelbufferDummy->m_iVertexCount = 3;
+
+      }
+
+      {
+
+         if (!m_pshaderBlend3)
          {
 
-            continue;
+            const char full_screen_triangle_vertex_shader[] = R"vert(
+#version 330 core
+
+out vec2 uv;
+
+void main() {
+    const vec2 pos[3] = vec2[](
+        vec2(-1.0, -1.0),
+        vec2(-1.0,  3.0),
+        vec2( 3.0, -1.0)
+    );
+
+    const vec2 tex[3] = vec2[](
+        vec2(0.0, 0.0),
+        vec2(0.0, 2.0),
+        vec2(2.0, 0.0)
+    );
+
+    gl_Position = vec4(pos[gl_VertexID], 0.0, 1.0);
+    uv = tex[gl_VertexID];
+}
+)vert";
+
+            const char full_screen_triangle_fragment_shader[] = R"frag(
+#version 330 core
+
+uniform sampler2D uTexture;
+
+in vec2 uv;
+out vec4 outColor;
+
+void main() {
+    vec4 color = texture(uTexture, uv);
+    outColor = color;
+}
+)frag";
+
+            __defer_construct_new(m_pshaderBlend3);
+
+            m_pshaderBlend3->m_bEnableBlend = true;
+            m_pshaderBlend3->m_bTextureAndSampler = true;
+            m_pshaderBlend3->m_bDisableDepthTest = true;
+            //m_pshaderBlend3->m_bT
+            //m_pshaderBlend3->m_pgpurenderer = this;
+            //m_pshaderBlend3->m_iSamplerSlot = 0;
+            // Image Blend descriptors
+   //if (!m_psetdescriptorlayoutImageBlend)
+
+            //m_pshaderBlend3->m_bClearColor = true;
+            //m_pshaderBlend3->m_colorClear = ::color::transparent;
+
+            //m_pshaderBlend3->m_bClearColor = false;
+            //m_pshaderBlend3->m_colorClear = ::color::transparent;
+
+            m_pshaderBlend3->initialize_shader_with_block(
+               m_pgpurenderer,
+               ::as_block(full_screen_triangle_vertex_shader),
+               ::as_block(full_screen_triangle_fragment_shader),
+               {},
+               {},
+               {},
+               {},
+               // this means the vertex input layout will be null/empty
+               // the full screen shader is embed in the shader code
+               ::gpu::shader::e_flag_clear_default_bindings_and_attributes_descriptions
+
+            );
 
          }
 
-         prenderer->__blend(ptextureTarget, player->texture());
+
+         //if (!m_pd3d11blendstateBlend3)
+         //{
+
+         //   D3D12_BLEND_DESC blendDesc = { 0 };
+         //   blendDesc.RenderTarget[0].BlendEnable = TRUE;
+         //   blendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_ONE;              // Premultiplied alpha
+         //   blendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;   // Use inverse of alpha
+         //   blendDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+
+         //   blendDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;         // Alpha blending (optional)
+         //   blendDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_INV_SRC_ALPHA;
+         //   blendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+
+         //   blendDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+         //   ::cast < ::gpu_directx11::device > pgpudevice = m_pgpudevice;
+
+         //   HRESULT hr = pgpudevice->m_pdevice->CreateBlendState(&blendDesc, &m_pd3d11blendstateBlend3);
+         //   ::defer_throw_hresult(hr);
+
+         //}
+
+         ::cast < renderer > prenderer = m_pgpurenderer;
+
+         ::cast < ::gpu_opengl::command_buffer > pcommandbuffer = prenderer->getCurrentCommandBuffer2();
+
+         //auto vkcommandbuffer = pcommandbuffer->m_vkcommandbuffer;
+
+         ::cast <texture > ptextureDst = ptextureTarget;
+
+         int iH = ptextureDst->m_pgpurenderer->m_pgpucontext->m_rectangle.height();
+
+         //ptextureDst->_new_state(
+         //   pcommandbuffer,
+         //   VK_ACCESS_TRANSFER_WRITE_BIT,
+         //   VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
+         //   VK_PIPELINE_STAGE_TRANSFER_BIT
+         //);
+
+
+
+         //pcommandbuffer->set_viewport(m_rectangle.size());
+
+         //pcommandbuffer->set_scissor(m_rectangle.size());
+
+
+         //// 2. Clear
+         //VkClearColorValue clearColor = { .float32 = { 0.0f, 0.0f, 0.0f, 0.0f } };
+         //VkImageSubresourceRange range = {
+         //    .aspectMask = VK_IMAGE_ASPECT_COLOR_BIT,
+         //    .baseMipLevel = 0,
+         //    .levelCount = 1,
+         //    .baseArrayLayer = 0,
+         //    .layerCount = 1,
+         //};
+
+         //vkCmdClearColorImage(
+         //   vkcommandbuffer,
+         //   ptextureDst->m_vkimage,
+         //   VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
+         //   &clearColor,
+         //   1,
+         //   &range);
+
+
+         ////float clearColor[4] = { 0.95f * 0.5f, 0.95f * 0.5f, 0.25f * 0.5f, 0.5f }; // Clear to transparent
+         ////m_pcontext->ClearRenderTargetView(ptextureDst->m_prendertargetview, clearColor);
+         //float clearColor[4] = { 0.f, 0.f, 0.f, 0.f }; // Clear to transparent
+         //pcommandlist->ClearRenderTargetView(ptextureDst->m_handleRenderTargetView, clearColor, 0, nullptr);
+         //ptextureDst->_new_state(pcommandbuffer,
+         //   VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT,
+         //   VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL,
+         //   VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT
+         //);
+
+         //if (!ptextureDst->m_handleRenderTargetView.ptr)
+         //{
+
+           // ptextureDst->create_render_target();
+
+         //}
+
+
+         //m_pshaderBlend3->bind(ptextureTarget);
+
+
+         //int iDescriptorSize = ptextureDst->m_rtvDescriptorSize;
+         //int iFrameIndex = m_pgpurendertarget->get_frame_index();
+         //auto hRtv = pgpurendertargetview->m_rtvHeap->GetCPUDescriptorHandleForHeapStart();
+         //auto hRtv = ptextureDst->m_handleRenderTargetView;
+         //CD3DX12_CPU_DESCRIPTOR_HANDLE rtvHandle(
+           // hRtv,
+            //iFrameIndex,
+            //iDescriptorSize);
+
+         //float clearColor[4] = { 0.5f * 0.5f, 0.75f * 0.5f, 0.9f * 0.5f, 0.5f };
+         //float clearColor[4] = { 0.f, 0.f , 0.f, 0.f };
+         //pcommandlist->ClearRenderTargetView(hRtv, clearColor, 0, nullptr);
+
+         //{
+         //   float blendFactor[4] = { 0, 0, 0, 0 }; // Ignored with this blend mode
+         //   UINT sampleMask = 0xFFFFFFFF;
+         //   m_pcontext->OMSetBlendState(m_pd3d11blendstateBlend3, blendFactor, sampleMask);
+         //}
+
+
+
+         //ID3D11RenderTargetView* rendertargetview[] = { ptextureDst->m_prendertargetview };
+
+         //m_p(1, rendertargetview, nullptr);
+
+         //m_pcontext->OMSetBlendState(g_blendState, nullptr, 0xffffffff);
+         //g_context->VSSetShader(g_vs, nullptr, 0);
+         //g_context->PSSetShader(g_ps, nullptr, 0);
+         //g_context->PSSetSamplers(0, 1, &g_sampler);
+
+         if (1)
+         {
+            int iLayer = 0;
+            for (auto player : *playera)
+            {
+
+               //if (iLayer == 2)
+               {
+
+
+                  ::cast <texture > ptextureSrc = player->texture();
+
+                  //ptextureSrc->_new_state(
+                  //   pcommandbuffer,
+                  //   0,
+                  //   VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL,
+                  //   VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT
+                  //);
+
+                  m_pshaderBlend3->bind(ptextureDst, ptextureSrc);
+
+                  if (iLayer == 0)
+                  {
+
+                     glClearColor(0.f, 0.f, 0.f, 0.f);
+                     glClearDepth(1.0f);
+                     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+                  }
+
+                  auto r = ptextureSrc->m_rectangleTarget;
+
+                  int h = r.height();
+
+                  r.top() = iH - r.bottom();
+
+                  r.bottom() = r.top() + h;
+
+                  pcommandbuffer->set_viewport(r);
+
+                  pcommandbuffer->set_scissor(r);
+
+                  m_pmodelbufferDummy->bind(pcommandbuffer);
+
+                  m_pmodelbufferDummy->draw(pcommandbuffer);
+
+                  m_pmodelbufferDummy->unbind(pcommandbuffer);
+
+                  //ID3D11SamplerState* samplerstatea[] =
+                  //{ ptexture->m_psamplerstate };
+                  //ID3D11ShaderResourceView* sharedresourceviewa[] =
+                  //{ ptexture->m_pshaderresourceview };
+
+                                 // 1. Define viewport and scissor rectangle
+                  //D3D12_VIEWPORT viewport = {};
+                  //viewport.TopLeftX = ptextureSrc->m_rectangleTarget.left();
+                  //viewport.TopLeftY = ptextureSrc->m_rectangleTarget.top();
+                  //viewport.Width = static_cast<float>(ptextureSrc->m_rectangleTarget.width());
+                  //viewport.Height = static_cast<float>(ptextureSrc->m_rectangleTarget.height());
+                  //viewport.MinDepth = 0.0f;
+                  //viewport.MaxDepth = 1.0f;
+
+                  //D3D12_RECT scissorRect = {};
+                  //scissorRect.left = ptextureSrc->m_rectangleTarget.left();
+                  //scissorRect.top = ptextureSrc->m_rectangleTarget.top();
+                  //scissorRect.right = ptextureSrc->m_rectangleTarget.right();
+                  //scissorRect.bottom = ptextureSrc->m_rectangleTarget.bottom();
+
+
+                  ////// 4. Set the viewport and scissor
+                  //pcommandlist->RSSetViewports(1, &viewport);
+                  //pcommandlist->RSSetScissorRects(1, &scissorRect);
+                  //D3D11_VIEWPORT vp = {};
+                  //vp.TopLeftX = ptexture->m_rectangleTarget.left();
+                  //vp.TopLeftY = ptexture->m_rectangleTarget.top();
+                  //vp.Width = static_cast<float>(ptexture->m_rectangleTarget.width());
+                  //vp.Height = static_cast<float>(ptexture->m_rectangleTarget.height());
+                  //vp.MinDepth = 0.0f;
+                  //vp.MaxDepth = 1.0f;
+                  //m_pcontext->RSSetViewports(1, &vp);
+
+                  //m_pcontext->PSSetSamplers(0, 1, samplerstatea);
+                  //m_pcontext->PSSetShaderResources(0, 1, sharedresourceviewa);
+
+
+                  //pcommandlist->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+                  //vkCmdDraw(vkcommandbuffer, 3, 1, 0, 0);
+                  m_pshaderBlend3->unbind();
+               }
+               iLayer++;
+
+            }
+
+         }
+         //}
+
+
+
+         ////::cast <texture > ptextureDst = ptextureTarget;
+         //{
+         //   
+         //   float clearColor2[4] = { 0.95f * 0.5f, 0.75f * 0.5f, 0.95f * 0.5f, 0.5f }; // Clear to transparent
+         //   
+         //   D3D12_RECT r[1];
+         //   
+         //   r[0].left = 100;
+         //   r[0].top = 200;
+         //   r[0].right = 200;
+         //   r[0].bottom = 300;
+         //   
+         //   pcommandlist->ClearRenderTargetView(
+         //      ptextureDst->m_pheapRenderTargetView->GetCPUDescriptorHandleForHeapStart(),
+         //      clearColor2,
+         //      1, r);
+
+         //}
+
 
       }
 
-      glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
-      GLCheckError("glBindFramebuffer");
 
-      glDeleteFramebuffers(1, &framebuffer);
-      GLCheckError("glDeleteFramebuffers");
+      //::gpu::context::merge_layers(ptextureTarget, playera);
+
+      ////::gpu::context_lock contextlock(this);
+
+      ////::cast < texture > ptextureDst = ptextureTarget;
+
+      //////if()
+
+      //////GLuint framebuffer;
+      //////glGenFramebuffers(1, &framebuffer);
+      //////GLCheckError("glGenFramebuffers");
+      //////glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
+      //////GLCheckError("glBindFramebuffer");
+
+      //////auto gluTextureID = ptextureDst->m_gluTextureID;
+
+      //////// Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
+      //////glFramebufferTexture2D(
+      //////   GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
+      //////   gluTextureID,
+      //////   0);
+      //////GLCheckError("glFramebufferTexture2D");
+
+      //////if (glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+      //////   printf("Framebuffer not complete!\n");
+      //////   glDeleteFramebuffers(1, &framebuffer);
+      //////   return;
+      //////}
+
+      //////glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+      ////////glClearColor(0.5f * 0.5f, 0.75f * 0.5f, 0.95f * 0.5f, 0.5f);
+      //////glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+      ////glFlush();
+
+      ////::cast < renderer > prenderer = m_pgpurenderer;
+
+      ////for (auto& player : *playera)
+      ////{
+
+      ////   if (player.is_null())
+      ////   {
+
+      ////      continue;
+
+      ////   }
+
+      ////   prenderer->__blend(ptextureTarget, player->texture());
+
+      ////}
+
+      ////glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
+      ////GLCheckError("glBindFramebuffer");
+
+      ////glDeleteFramebuffers(1, &framebuffer);
+      ////GLCheckError("glDeleteFramebuffers");
 
 
 

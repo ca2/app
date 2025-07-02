@@ -77,6 +77,8 @@ namespace gpu
 
       virtual void assign(const void* pData, memsize size);
       virtual void assign(const ::block& block);
+      virtual void _assign(const void* pData, memsize size);
+      virtual void _assign(const ::block& block);
 
 
       virtual void* map(memsize start, memsize count);

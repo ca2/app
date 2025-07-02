@@ -1,6 +1,7 @@
 // Created by camilo on 2025-06-30 22:42 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "command_buffer.h"
+#include "device.h"
 #include "render_target.h"
 #include "renderer.h"
 #include "texture.h"
@@ -41,11 +42,13 @@ namespace gpu_opengl
    {
 
       glEnable(GL_SCISSOR_TEST);
-      glScissor(rectangle.left(),
+
+      glScissor(
+         rectangle.left(),
          rectangle.top(),
          rectangle.width(),
-         rectangle.height());
-
+         rectangle.height()
+      );
 
    }
 

@@ -20,7 +20,9 @@ namespace gpu_opengl
       //GLuint m_vboFullScreenQuad;
       ::pointer < ::gpu_opengl::frame_buffer >   m_pframebuffer;
       ::pointer < ::gpu_opengl::shader >   m_pshaderCopy;
+      ::pointer < ::gpu_opengl::shader >   m_pshaderBlend3;
       ::int_size                    m_sizeHost;
+      ::pointer < ::gpu::model_buffer >      m_pmodelbufferDummy;
       //bool m_bMesa;
 
       GLuint m_globalUBO;

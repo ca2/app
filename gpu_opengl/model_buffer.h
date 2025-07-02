@@ -90,6 +90,8 @@ namespace gpu_opengl
 
       void draw(::gpu::command_buffer* pcommandbuffer) override;
 
+      void draw_lines(::gpu::command_buffer* pcommandbuffer) override;
+
       void unbind(::gpu::command_buffer* pcommandbuffer) override;
 
 

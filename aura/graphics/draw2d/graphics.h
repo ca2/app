@@ -115,7 +115,9 @@ namespace draw2d
 
       ::double_size                             m_sizeScaling;
       ::double_point                            m_pointOrigin;
-      ::geometry2d::matrix                   m_matrix;
+      ::geometry2d::matrix                      m_matrix;
+      ::double_size                             m_sizeScaleOutput;
+      ::double_point                            m_pointTranslateOutput;
 
       ::double_rectangle                        m_rectangleDraw;
 

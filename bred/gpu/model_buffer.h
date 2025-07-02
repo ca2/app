@@ -72,12 +72,21 @@ namespace gpu
       void set_vertex_array(const VERTEX *p, int iVertexCount)
       {
 
-         auto data = map <VERTEX >();
+         m_pbufferVertex->assign(p, sizeof(VERTEX) * iVertexCount);// data = map <VERTEX >();
 
-         memcpy(data, p, sizeof(VERTEX) * iVertexCount);
-
+         //memcpy(data, p, sizeof(VERTEX) * iVertexCount);
+         //
       }
 
+      template < typename VERTEX >
+      void _set_vertex_array(const VERTEX* p, int iVertexCount)
+      {
+
+         m_pbufferVertex->_assign(p, sizeof(VERTEX) * iVertexCount);// data = map <VERTEX >();
+
+         //memcpy(data, p, sizeof(VERTEX) * iVertexCount);
+         //
+      }
 
       template < typename INDEX >
       void set_index_array(const INDEX* p, int iIndexCount)
@@ -141,6 +150,8 @@ namespace gpu
       virtual void bind(::gpu::command_buffer* pcommandbuffer);
 
       virtual void draw(::gpu::command_buffer* pcommandbuffer);
+
+      virtual void draw_lines(::gpu::command_buffer* pcommandbuffer);
 
       virtual void unbind(::gpu::command_buffer* pcommandbuffer);
 

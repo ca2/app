@@ -257,6 +257,10 @@ void main() {
 
          m_pshaderCopyTextureOnEndDraw = __create_new < ::gpu_opengl::shader >();
 
+         m_pshaderCopyTextureOnEndDraw->m_bEnableBlend = false;
+
+         m_pshaderCopyTextureOnEndDraw->m_bDisableDepthTest = true;
+
          m_pshaderCopyTextureOnEndDraw->initialize_shader_with_block(
             m_pgpurenderer,
             pvertexshader, pfragmentshader,

@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "approach.h"
+#include "command_buffer.h"
 #include "context.h"
 #include "device.h"
 #include "gpu_opengl/context.h"
@@ -251,10 +252,12 @@ namespace gpu_opengl
 
       ptexture->bind_render_target();
 
+      auto pcommandbuffer = getCurrentCommandBuffer2();
+
       if (escene == ::gpu::e_scene_2d)
       {
 
-
+         glDisable(GL_SCISSOR_TEST);
          //glFrontFace(GL_CW);      // Default
          glDisable(GL_CULL_FACE);   // Optional
          GLCheckError("");
@@ -277,7 +280,17 @@ namespace gpu_opengl
 
    //double d = 1.0;
    ////glViewport(0, 0, size.cx() * d, size.cy() * d);
-         glViewport(0, 0, width, height);
+
+         //if (m_pgpucontext == m_pgpucontext->m_pgpudevice->m_pgpucontextMain)
+         //{
+            pcommandbuffer->set_viewport(m_pgpucontext->m_rectangle.size());
+         //}
+         //else
+         //{
+
+         //   pcommandbuffer->set_viewport(m_pgpucontext->m_rectangle);
+         //}
+         //glViewport(0, 0, width, height);
 
 
          glDepthMask(GL_TRUE); // Enable writing to depth
@@ -360,7 +373,8 @@ namespace gpu_opengl
       }
       else if (m_pgpucontext->m_escene == ::gpu::e_scene_3d)
       {
-
+         
+         glDisable(GL_SCISSOR_TEST);
 
          glDepthMask(GL_TRUE); // Enable writing to depth
          glDisable(GL_BLEND);
@@ -386,7 +400,16 @@ namespace gpu_opengl
 
    //double d = 1.0;
    ////glViewport(0, 0, size.cx() * d, size.cy() * d);
-         glViewport(0, 0, width, height);
+         //glViewport(0, 0, width, height);
+         //if (m_pgpucontext == m_pgpucontext->m_pgpudevice->m_pgpucontextMain)
+         //{
+            pcommandbuffer->set_viewport(m_pgpucontext->m_rectangle.size());
+         //}
+         //else
+         //{
+
+         //   pcommandbuffer->set_viewport(m_pgpucontext->m_rectangle);
+         //}
          GLCheckError("");
          //if (etype == ::gpu::context::e_type_window)
          //{
@@ -399,8 +422,8 @@ namespace gpu_opengl
          //   glClearColor(0.95f, 0.75f, 0.5f, 0.5f);
 
          //}
-         //glClearColor(0.f, 0.f, 0.f, 0.f);
-         glClearColor(0.95f * 0.5f, 0.95f * 0.5f, .8f * 0.5f, 0.5f); // light yellow
+         glClearColor(0.f, 0.f, 0.f, 0.f);
+         //glClearColor(0.95f * 0.5f, 0.95f * 0.5f, .8f * 0.5f, 0.5f); // light yellow
          GLCheckError("");
          glClearDepth(1.0f);
          GLCheckError("");
@@ -1832,15 +1855,15 @@ namespace gpu_opengl
 
       glViewport(
          rectangleTarget.left(),
-         ptextureDst->size().cy() - rectangleTarget.bottom(),
+         rectangleTarget.top(),
          rectangleTarget.width(),
          rectangleTarget.height());
 
       // Optional: scissor if you want to limit drawing region
       glEnable(GL_SCISSOR_TEST);
       glScissor(
-         rectangleTarget.left(),
-         ptextureDst->size().cy() - rectangleTarget.bottom(),
+         0,
+         0,
          rectangleTarget.width(),
          rectangleTarget.height()
       );

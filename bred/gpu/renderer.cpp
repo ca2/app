@@ -206,7 +206,9 @@ namespace gpu
 
       }
 
-      auto pcommandbuffer = m_commandbuffera[m_pgpurendertarget->get_frame_index()];
+      auto iFrameIndex = m_pgpurendertarget->get_frame_index();
+
+      auto pcommandbuffer = m_commandbuffera[iFrameIndex];
 
       return pcommandbuffer;
 

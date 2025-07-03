@@ -163,6 +163,7 @@ namespace bred
          if (strDraw2dImplementation.is_empty())
          {
 
+            strDraw2dImplementation = system()->component_factory_implementation_name("draw2d");
 
          }
 

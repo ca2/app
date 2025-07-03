@@ -1876,7 +1876,7 @@ namespace aura
 
          }
 
-         m_strDraw2dImplementation = strImplementation;
+         m_strTypefaceImplementation = strImplementation;
 
       }
 

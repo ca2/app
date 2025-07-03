@@ -188,9 +188,12 @@ namespace graphics3d
 
       auto player = pcontext->m_pgpudevice->next_layer(pcontext->m_pgpurenderer);
 
-      player->layer_start();
+      player->m_pgpuframe = pframe;
 
       pframe->m_pgpulayer = player;
+
+      player->layer_start();
+
 
    }
 

@@ -656,19 +656,19 @@ namespace gpu
 
       }
 
-      if (m_iSentLayerCount <= 0)
-      {
+      //if (m_iSentLayerCount <= 0)
+      //{
 
-         auto pcommandbuffer = getCurrentCommandBuffer2();
+      //   auto pcommandbuffer = getCurrentCommandBuffer2();
 
-         if (pcommandbuffer)
-         {
+      //   if (pcommandbuffer)
+      //   {
 
-            pcommandbuffer->reset();
+      //      pcommandbuffer->reset();
 
-         }
+      //   }
 
-      }
+      //}
 
       if (!bLayerStarted)
       {
@@ -1105,9 +1105,16 @@ namespace gpu
    void renderer::on_start_layer(layer* player)
    {
 
+      m_pgpulayer = player;
+
       m_pgpucontext->on_start_layer(player);
 
-      m_pgpulayer = player;
+      if (m_pgpucontext->m_pgpudevice->get_previous_layer(player) != nullptr)
+      {
+
+         getCurrentCommandBuffer2()->reset();
+
+      }
 
       _on_begin_render(player->m_pgpuframe);
 

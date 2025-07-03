@@ -57,7 +57,9 @@ namespace gpu
 
       auto pcontext = gpu_context();
 
-      auto player = pcontext->m_pgpudevice->next_layer(pcontext->m_pgpurenderer);
+      auto pgpudevice = pcontext->m_pgpudevice;
+
+      auto player = pgpudevice->next_layer(pcontext->m_pgpurenderer);
 
       pgpuframe->m_pgpulayer = player;
 

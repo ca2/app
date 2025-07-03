@@ -8,7 +8,7 @@
 #include "cpu_buffer.h"
 #include "renderer.h"
 #include "swap_chain.h"
-#include "bred/gpu/approach.h"
+#include "bred/gpu/bred_approach.h"
 #include "bred/gpu/types.h"
 #include "aura/graphics/image/image.h"
 #include "acme/platform/application.h"
@@ -99,9 +99,10 @@ namespace gpu_opengl
       ::gpu::device::initialize_gpu_device_for_off_screen(papproach, rectanglePlacement);
 
       m_pgpuapproach = papproach;
-      m_pwindow = nullptr;
+      m_pwindow = m_papplication->m_pacmeuserinteractionMain->window();
       m_bAddSwapChainSupport = false;
-      m_hwnd = nullptr;
+      ::cast < ::windowing_win32::window > pwin32window = m_pwindow;
+      m_hwnd = pwin32window->m_hwnd;
 
       _create_device(rectanglePlacement.size());
 
@@ -361,26 +362,28 @@ HDC hdc = GetDC(m_hwnd);
 //    0
 //};
 
+int_array pixelAttribs;
 
 
-int pixelAttribs[] = {
-    WGL_DRAW_TO_WINDOW_ARB, GL_TRUE,
-    WGL_SUPPORT_OPENGL_ARB, GL_TRUE,
-    WGL_DOUBLE_BUFFER_ARB, GL_TRUE,       // <-- double buffering
-    WGL_PIXEL_TYPE_ARB, WGL_TYPE_RGBA_ARB,
-    WGL_COLOR_BITS_ARB, 32,               // total color bits
-    WGL_RED_BITS_ARB, 8,
-    WGL_GREEN_BITS_ARB, 8,
-    WGL_BLUE_BITS_ARB, 8,
-    WGL_ALPHA_BITS_ARB, 8,                // <-- alpha support
-    WGL_DEPTH_BITS_ARB, 24,               // optional, for depth buffer
-    WGL_STENCIL_BITS_ARB, 8,              // optional, for stencil
-    0
-};
+pixelAttribs.append({ WGL_DRAW_TO_WINDOW_ARB, GL_TRUE });
+pixelAttribs.append({WGL_SUPPORT_OPENGL_ARB, GL_TRUE });
+if(m_bAddSwapChainSupport)
+{
+   pixelAttribs.append({ WGL_DOUBLE_BUFFER_ARB, GL_TRUE });       // <-- double buffering
+}
+pixelAttribs.append({ WGL_PIXEL_TYPE_ARB, WGL_TYPE_RGBA_ARB });
+pixelAttribs.append({ WGL_COLOR_BITS_ARB, 32 });               // total color bits
+pixelAttribs.append({ WGL_RED_BITS_ARB, 8 });
+pixelAttribs.append({ WGL_GREEN_BITS_ARB, 8 });
+pixelAttribs.append({ WGL_BLUE_BITS_ARB, 8 });
+pixelAttribs.append({ WGL_ALPHA_BITS_ARB, 8 });                // <-- alpha support
+pixelAttribs.append({ WGL_DEPTH_BITS_ARB, 24 });              // optional, for depth buffer
+pixelAttribs.append({ WGL_STENCIL_BITS_ARB, 8 });            // optional, for stencil
+pixelAttribs.add(0); // terminator
 
 int format;
 UINT numFormats;
-loaded_wglChoosePixelFormatARB(hdc, pixelAttribs, NULL, 1, &format, &numFormats);
+loaded_wglChoosePixelFormatARB(hdc, pixelAttribs.data(), NULL, 1, &format, &numFormats);
 PIXELFORMATDESCRIPTOR pfd;
 DescribePixelFormat(hdc, format, sizeof(pfd), &pfd);
 SetPixelFormat(hdc, format, &pfd);

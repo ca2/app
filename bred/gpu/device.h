@@ -99,6 +99,12 @@ namespace gpu
       virtual void on_initialize_gpu_device();
 
 
+
+      virtual ::file::path shader_path(const ::file::path& pathShader);
+
+
+      virtual ::gpu::payload load_dds(const ::scoped_string& scopedstrImagePath);
+
       virtual void lock_context();
       virtual void unlock_context();
 

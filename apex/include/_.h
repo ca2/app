@@ -325,6 +325,9 @@ namespace core
 #include "apex/filesystem/_.h"
 
 
+#include "apex/gpu/_.h"
+
+
 #include "apex/handler/_.h"
 
 

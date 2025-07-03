@@ -5,7 +5,7 @@
 #include "shader.h"
 #include "texture.h"
 #include "acme/filesystem/filesystem/file_context.h"
-#include "bred/gpu/approach.h"
+#include "bred/gpu/bred_approach.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/device.h"
@@ -112,14 +112,14 @@ namespace gpu_opengl
       if (m_memoryVertex.is_empty())
       {
 
-         m_memoryVertex = file()->as_memory(m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_pgpuapproach->shader_path(m_pathVertex));
+         m_memoryVertex = file()->as_memory(m_pgpurenderer->m_pgpucontext->m_pgpudevice->shader_path(m_pathVertex));
 
       }
 
       if (m_memoryFragment.is_empty())
       {
 
-         m_memoryFragment = file()->as_memory(m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_pgpuapproach->shader_path(m_pathFragment));
+         m_memoryFragment = file()->as_memory(m_pgpurenderer->m_pgpucontext->m_pgpudevice->shader_path(m_pathFragment));
 
       }
 

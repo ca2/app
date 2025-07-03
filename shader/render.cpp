@@ -3,7 +3,7 @@
 #include "application.h"
 #include "acme/parallelization/single_lock.h"
 #include "bred/gpu/shader.h"
-#include "bred/gpu/approach.h"
+#include "bred/gpu/bred_approach.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/program.h"
 #include "bred/gpu/cpu_buffer.h"

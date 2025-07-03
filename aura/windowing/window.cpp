@@ -8855,7 +8855,7 @@ namespace windowing
 
          }
 
-         draw2d()->on_create_window(this);
+         //draw2d()->on_create_window(this);
 
          user_interaction()->defer_set_icon();
 

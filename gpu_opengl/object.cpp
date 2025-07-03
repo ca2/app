@@ -1,5 +1,7 @@
 // Created by camilo on 2022-04-25 21:02 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "approach.h"
+#include "device.h"
 #include "object.h"
 #include <math.h>
 #include "acme/constant/id.h"
@@ -276,7 +278,7 @@ namespace gpu_opengl
       //auto pszError15 = (const char *)gluErrorString(iError15);
 
       // Load the texture
-      m_payloadTexture = papproach->load_dds(m_path+ ".uvmap.DDS");
+      m_payloadTexture = papproach->get_gpu_device()->load_dds(m_path+ ".uvmap.DDS");
       //m_uniformTexture = papproach->load_dds(m_path + ".uvmap.DDS");
       //m_uniformTexture = papproach->load_normal_map(m_path.folder() / (m_path.title() + ".png"));
 

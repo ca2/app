@@ -28,7 +28,7 @@ namespace gpu
 
       ::typeface::face* get_face(::write_text::font* pfont);
 
-      void on_create_window(::windowing::window* pwindow) override;
+      //void on_create_window(::windowing::window* pwindow) override;
     
 
    };

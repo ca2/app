@@ -62,8 +62,10 @@ namespace gpu_opengl
 
       //void set_matrix_uniform(const ::gpu::payload& uniformMatrix) override;
 
+      ::gpu::payload load_dds(const ::scoped_string& scopedstrImagePath) override;
 
       //void clear(const ::color::color& color) override;
+      ::file::path shader_path(const ::file::path& pathShader) override;
 
 
       virtual void _opengl_lock();

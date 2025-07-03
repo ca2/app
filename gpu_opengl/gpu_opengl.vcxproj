@@ -748,6 +748,7 @@
     <ClInclude Include="_gpu_opengl.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="approach_win32.cpp" />
     <ClCompile Include="assimp.cpp" />
     <ClCompile Include="command_buffer.cpp" />
     <ClCompile Include="cpu_buffer.cpp" />

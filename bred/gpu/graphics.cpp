@@ -5,7 +5,7 @@
 #include "aura/user/user/interaction.h"
 #include "aura/graphics/graphics/graphics.h"
 #include "aura/windowing/window.h"
-#include "bred/gpu/approach.h"
+#include "bred/gpu/bred_approach.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/device.h"

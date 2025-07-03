@@ -3,7 +3,7 @@
 #include "system.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/directory_system.h"
-#include "bred/gpu/approach.h"
+#include "bred/gpu/bred_approach.h"
 
 
 namespace bred
@@ -100,6 +100,13 @@ namespace bred
 
    ::gpu::approach* application::get_gpu_approach()
    {
+
+      if (!m_bGpu)
+      {
+
+         throw ::exception(error_wrong_state, "Gpu application flag should be enabled to use gpu components.");
+
+      }
 
       if (!m_pgpuapproach)
       {

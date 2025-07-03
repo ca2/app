@@ -57,8 +57,8 @@ namespace draw2d_gpu
       bool graphics_context_supports_single_buffer_mode() override;
       bool graphics_context_does_full_redraw() override;
 
-      void on_before_create_window(::windowing::window* pwindow) override;
-      void on_create_window(::windowing::window * pwindow) override;
+      //void on_before_create_window(::windowing::window* pwindow) override;
+      //void on_create_window(::windowing::window * pwindow) override;
       //void defer_initialize_glad();
 
 

@@ -147,21 +147,21 @@ namespace draw2d_gpu
 
 
 
-   void draw2d::on_before_create_window(::windowing::window* pwindow)
-   {
+   //void draw2d::on_before_create_window(::windowing::window* pwindow)
+   //{
 
 
 
-   }
+   //}
 
 
 
-   void draw2d::on_create_window(::windowing::window* pwindow)
-   {
+   //void draw2d::on_create_window(::windowing::window* pwindow)
+   //{
 
 
 
-   }
+   //}
 
 
    bool draw2d::graphics_context_does_full_redraw()

@@ -11,7 +11,7 @@
 #include "acme/platform/node.h"
 #include "apex/database/client.h"
 #include "apex/database/stream.h"
-#include "bred/gpu/approach.h"
+#include "bred/gpu/bred_approach.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/cpu_buffer.h"
 #include "bred/gpu/device.h"

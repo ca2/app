@@ -1,6 +1,6 @@
 // From opengl/draw2d by camilo on 2025-06-02 03:26 <3ThomasBorregaardSørensen!!
 #include "framework.h"
-#include "approach.h"
+#include "bred_approach.h"
 #include "device.h"
 #include "draw2d.h"
 #include "swap_chain.h"
@@ -107,29 +107,29 @@ namespace gpu
    }
 
 
-   void draw2d::on_create_window(::windowing::window* pwindow)
-   {
+   //void draw2d::on_create_window(::windowing::window* pwindow)
+   //{
 
-      //if (m_papplication->m_gpu.m_bUseSwapChainWindow)
-      //{
+   //   //if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+   //   //{
 
-      //   auto pgpuapproach = m_papplication->get_gpu_approach();
+   //   //   auto pgpuapproach = m_papplication->get_gpu_approach();
 
-      //   auto pgpudevice = pgpuapproach->get_gpu_device();
+   //   //   auto pgpudevice = pgpuapproach->get_gpu_device();
 
-      //   auto pswapchain = pgpudevice->get_swap_chain();
+   //   //   auto pswapchain = pgpudevice->get_swap_chain();
 
-      //   if (!pswapchain->m_bWindowInitialized)
-      //   {
+   //   //   if (!pswapchain->m_bWindowInitialized)
+   //   //   {
 
-      //      pswapchain->initialize_swap_chain_window(pgpudevice, pwindow);
+   //   //      pswapchain->initialize_swap_chain_window(pgpudevice, pwindow);
 
-      //   }
+   //   //   }
 
 
-      //}
+   //   //}
 
-   }
+   //}
 
 
 } // namespace gpu

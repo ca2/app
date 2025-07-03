@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "bred/gpu/approach.h"
+#include "bred/gpu/bred_approach.h"
 
 
 namespace gpu_opengl
@@ -9,7 +9,7 @@ namespace gpu_opengl
 
 
    class CLASS_DECL_GPU_OPENGL approach :
-      virtual public ::gpu::approach
+      virtual public ::gpu::bred_approach
    {
    public:
 
@@ -48,9 +48,8 @@ namespace gpu_opengl
       virtual void _on_before_create_window(::windowing::window* pwindow);
       virtual void _on_create_window(::windowing::window* pwindow);
 
-      ::file::path shader_path(const ::file::path& pathShader) override;
 
-
+      
 
       //::pointer < ::gpu::context > _create_context(::particle * pparticle, ::gpu::enum_output eoutput, ::windowing::window* pwindow, const ::int_rectangle& rectanglePlacement) override;
 
@@ -69,8 +68,8 @@ namespace gpu_opengl
 
       //virtual void make_current();
 
-
-      ::gpu::payload load_dds(const ::scoped_string & scopedstrImagePath) override;
+      void on_before_create_window(::windowing::window* pwindow) override;
+      void on_create_window(::windowing::window* pwindow) override;
 
 
    };

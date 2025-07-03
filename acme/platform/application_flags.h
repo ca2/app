@@ -25,6 +25,7 @@ struct CLASS_DECL_ACME APPLICATION_FLAGS // : public ::acme::reference
    ::logic::boolean                       m_bImaging;
    ::logic::boolean                       m_bAudio;
    ::logic::boolean                       m_bMidi;
+   ::logic::boolean                       m_bGpu;
    ::logic::boolean                       m_bInitializeDataCentral;
 #ifdef WINDOWS_DESKTOP
    ::logic::boolean                       m_bGdiplus;

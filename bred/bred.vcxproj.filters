@@ -105,9 +105,6 @@
     <ClInclude Include="gpu\aaaa_gpu.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
-    <ClInclude Include="gpu\approach.h">
-      <Filter>Header Files\gpu</Filter>
-    </ClInclude>
     <ClInclude Include="gpu\character.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
@@ -246,6 +243,9 @@
     <ClInclude Include="typeface\character.h">
       <Filter>Header Files\typeface</Filter>
     </ClInclude>
+    <ClInclude Include="gpu\bred_approach.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -298,9 +298,6 @@
     </ClCompile>
     <ClCompile Include="graphics3d\shader.cpp">
       <Filter>Source Files\graphics3d</Filter>
-    </ClCompile>
-    <ClCompile Include="gpu\approach.cpp">
-      <Filter>Source Files\gpu</Filter>
     </ClCompile>
     <ClCompile Include="gpu\context.cpp">
       <Filter>Source Files\gpu</Filter>
@@ -388,6 +385,9 @@
     </ClCompile>
     <ClCompile Include="typeface\face.cpp">
       <Filter>Source Files\typeface</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\bred_approach.cpp">
+      <Filter>Source Files\gpu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

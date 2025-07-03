@@ -81,8 +81,8 @@ namespace draw2d
 
    public:
 
-      virtual void on_before_create_window(::windowing::window* pwindow);
-      virtual void on_create_window(::windowing::window * pwindow);
+      //virtual void on_before_create_window(::windowing::window* pwindow);
+      //virtual void on_create_window(::windowing::window * pwindow);
 
       void clear_all_objects_os_data();
 

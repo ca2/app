@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "approach.h"
+#include "bred_approach.h"
 #include "context.h"
 #include "device.h"
 #include "cpu_buffer.h"

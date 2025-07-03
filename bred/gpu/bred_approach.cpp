@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "approach.h"
+#include "bred_approach.h"
 #include "context.h"
 #include "device.h"
 #include "types.h"
@@ -13,37 +13,37 @@ namespace gpu
 {
 
 
-   approach::approach()
+   bred_approach::bred_approach()
    {
 
-      m_emode = e_mode_none;
+      //m_emode = e_mode_none;
       //m_bSimpleMessageLoop = false;
 
 
    }
 
 
-   approach::~approach()
+   bred_approach::~bred_approach()
    {
 
    }
 
 
-   void approach::initialize(::particle * pparticle)
+   void bred_approach::initialize(::particle * pparticle)
    {
 
-      ::object::initialize(pparticle);
+      ::gpu::approach::initialize(pparticle);
 
    }
 
 
-   void approach::initialize_gpu_approach()
+   void bred_approach::initialize_gpu_approach()
    {
 
    }
 
 
-   ::gpu::device* approach::get_gpu_device()
+   ::gpu::device* bred_approach::get_gpu_device()
    {
 
       if (!m_pgpudevice)
@@ -78,7 +78,7 @@ namespace gpu
    }
    
 
-   void approach::engine_on_frame_context_initialization(::gpu::context* pgpucontext)
+   void bred_approach::engine_on_frame_context_initialization(::gpu::context* pgpucontext)
    {
 
       pgpucontext->engine_on_frame_context_initialization();
@@ -86,18 +86,12 @@ namespace gpu
    }
 
    
-   ::file::path approach::shader_path(const ::file::path& pathShader)
-   {
-
-      return pathShader;
-
-   }
 
 
 
 
 
-   void approach::defer_init_gpu_library()
+   void bred_approach::defer_init_gpu_library()
    {
 
       //return ::success;
@@ -105,16 +99,31 @@ namespace gpu
    }
 
 
-   ::gpu::payload approach::load_dds(const ::scoped_string & scopedstrImagePath)
+   void bred_approach::on_before_create_window(::windowing::window* pwindow)
    {
 
-      throw interface_only();
-
-      return {};
 
    }
 
-   /*::subparticle* approach::get_draw2d_connector_for_swap_chain(::windowing::window* pwindow)
+
+   void bred_approach::on_create_window(::windowing::window* pwindow)
+   {
+
+
+   }
+
+
+
+   //::gpu::payload bred_approach::load_dds(const ::scoped_string & scopedstrImagePath)
+   //{
+
+   //   throw interface_only();
+
+   //   return {};
+
+   //}
+
+   /*::subparticle* bred_approach::get_draw2d_connector_for_swap_chain(::windowing::window* pwindow)
    {
 
       return nullptr;

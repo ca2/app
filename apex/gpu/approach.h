@@ -8,7 +8,7 @@ namespace gpu
 {
 
 
-   class CLASS_DECL_BRED approach :
+   class CLASS_DECL_APEX approach :
       virtual public ::object
    {
    public:
@@ -73,30 +73,17 @@ namespace gpu
       virtual ::gpu::device* get_gpu_device();
 
 
-      //virtual ::subparticle* get_draw2d_connector_for_swap_chain(::windowing::window* pwindow);
-
-
       virtual void engine_on_frame_context_initialization(::gpu::context* pgpucontext);
-
-
-      virtual ::file::path shader_path(const ::file::path& pathShader);
 
 
 
       virtual void defer_init_gpu_library();
 
-      //virtual void draw();
-      //virtual void start();
-      //virtual void render();
+   
 
-      //virtual bool create_offscreen_buffer(const ::int_size& size);
-      //virtual bool destroy_offscreen_buffer();
+      virtual void on_before_create_window(::windowing::window* pwindow);
+      virtual void on_create_window(::windowing::window* pwindow);
 
-
-      //virtual void make_current();
-
-
-      virtual ::gpu::payload load_dds(const ::scoped_string & scopedstrImagePath);
     
    };
 

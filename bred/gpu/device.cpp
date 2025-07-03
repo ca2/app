@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "approach.h"
+#include "bred_approach.h"
 #include "context.h"
 #include "device.h"
 #include "cpu_buffer.h"
@@ -139,6 +139,24 @@ namespace gpu
       auto pgpucontext = __øcreate< ::gpu::context >();
 
       return pgpucontext;
+
+   }
+
+
+   ::file::path device::shader_path(const ::file::path& pathShader)
+   {
+
+      return pathShader;
+
+   }
+
+
+   ::gpu::payload device::load_dds(const ::scoped_string& scopedstrImagePath)
+   {
+
+      throw interface_only();
+
+      return {};
 
    }
 

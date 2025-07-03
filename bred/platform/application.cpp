@@ -156,18 +156,63 @@ namespace bred
       if (!pfactoryGpu)
       {
 
-         ::string strGpuImplementation = m_papplication->draw2d_get_default_implementation_name();
+         ::string strGpuImplementation;
 
-         if (strGpuImplementation == "vkvg")
+         ::string strDraw2dImplementation = m_papplication->draw2d_get_default_implementation_name();
+
+         if (strDraw2dImplementation.is_empty())
+         {
+
+
+         }
+
+         if (strDraw2dImplementation == "vkvg")
          {
 
             strGpuImplementation = "vulkan";
 
          }
-         else if (strGpuImplementation.begins_eat("direct2d"))
+         else if (strDraw2dImplementation == "opengl")
+         {
+
+            strGpuImplementation = "opengl";
+
+         }
+         else if (strDraw2dImplementation == "directx11")
+         {
+
+            strGpuImplementation = "directx11";
+
+         }
+         else if (strDraw2dImplementation == "directx12")
+         {
+
+            strGpuImplementation = "directx12";
+
+         }
+         else if (strDraw2dImplementation == "gdiplus")
          {
 
             strGpuImplementation = graphics3d_get_implementation_name();
+
+         }
+         else if (strDraw2dImplementation == "cairo")
+         {
+
+            strGpuImplementation = graphics3d_get_implementation_name();
+
+         }
+         else if (strDraw2dImplementation.begins_eat("direct2d"))
+         {
+
+            strGpuImplementation = graphics3d_get_implementation_name();
+
+            if(!strGpuImplementation.case_insensitive_begins("directx"))
+            {
+               
+               strGpuImplementation = "directx12";
+
+            }
 
          }
 

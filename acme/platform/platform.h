@@ -311,6 +311,7 @@ namespace platform
       ::factory::factory_pointer & factory(const ::string & strLibrary);
       ::factory::factory_pointer & factory(const ::string & strComponent, const ::string & strImplementation);
       ::factory::factory* component_factory(const ::string& strComponent);
+      virtual ::string component_factory_implementation_name(const ::string& strComponent);
 
 
       ::pointer<::factory::factory_item_interface> & get_factory_item(const ::atom & atom, const ::atom & atomSource);

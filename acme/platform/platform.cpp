@@ -1038,6 +1038,27 @@ g_bWindowingOutputDebugString = true;
    }
 
 
+   ::string platform::component_factory_implementation_name(const ::string& strComponent)
+   {
+
+      critical_section_lock criticalsectionlock(&m_criticalsection);
+
+      auto& factorymapComponent = m_componentfactorymap[strComponent];
+
+      if (factorymapComponent.size() <= 0)
+      {
+
+         debugf("No existing factory for component \"%s\".\n", strComponent.c_str());
+
+         return nullptr;
+
+      }
+
+      return factorymapComponent.first().element1();
+
+   }
+
+
    ::factory::factory_pointer & platform::factory(const ::string & strComponent, const ::string & strImplementation)
    {
 

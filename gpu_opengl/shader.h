@@ -79,6 +79,7 @@ namespace gpu_opengl
       virtual void program_compile_errors(GLuint program, string & strSummary);
       //::gpu::payload * get_payload(const ::scoped_string & scopedestrUniform) override;
 
+      void _set_bool(const char* name, bool bSet) const;
       void _set_int(const char* name, int value) const;
       void _set_float(const char* name, float value) const;
       void _set_vec2(const char* name, const glm::vec2& value) const;
@@ -93,6 +94,20 @@ namespace gpu_opengl
       //void draw() override;
 
       void bind_source(::gpu::texture* pgputexture) override;
+
+
+      void set_bool(const ::scoped_string& scopedstrName, bool value) override;
+      void set_int(const ::scoped_string& scopedstrName, int value) override;
+      void set_float(const ::scoped_string& scopedstrName, float value) override;
+      void set_vec2(const ::scoped_string& scopedstrName, float x, float y) override;
+      void set_vec2(const ::scoped_string& scopedstrName, const ::glm::vec2& a) override;
+      void set_vec3(const ::scoped_string& scopedstrName, float x, float y, float z) override;
+      void set_vec3(const ::scoped_string& scopedstrName, const ::glm::vec3& a) override;
+      void set_vec4(const ::scoped_string& scopedstrName, float x, float y, float z, float w) override;
+      void set_vec4(const ::scoped_string& scopedstrName, const ::glm::vec4& a) override;
+      void set_mat2(const ::scoped_string& scopedstrName, const ::glm::mat2& a) override;
+      void set_mat3(const ::scoped_string& scopedstrName, const ::glm::mat3& a) override;
+      void set_mat4(const ::scoped_string& scopedstrName, const ::glm::mat4& a) override;
 
 
    };

@@ -55,7 +55,8 @@ namespace gpu_opengl
       void render() override;
 
       void set_bitmap_1(::image::image *pimage) override;
-
+      void set_topic_texture(int iIndex) override;
+      void set_cull_face(bool bSet = true) override;
       //void swap_buffers() override;
 
       void _context_lock() override;

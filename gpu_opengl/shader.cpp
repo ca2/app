@@ -584,7 +584,12 @@ namespace gpu_opengl
 
    }
 
+   void shader::_set_bool(const char* name, bool b) const
+   {
 
+      _set_int(name, b ? 0 : 1);
+
+   }
    void shader::_set_int(const char* name, int i) const
    {
       //Bind();  // Ensure the shader program is bound
@@ -787,6 +792,209 @@ throw ::exception(error_not_found);
 
    //}
 
+
+   void shader::set_bool(const ::scoped_string& scopedstrName, bool value)
+   {
+
+      if (m_propertiesPush.m_pproperties)
+      {
+
+         ::gpu::shader::set_bool(scopedstrName, value);
+
+      }
+      else
+      {
+
+         _set_bool(::string(scopedstrName), value);
+
+      }
+
+   }
+
+
+
+void shader::set_int(const ::scoped_string& scopedstrName, int value)
+{
+
+   if (m_propertiesPush.m_pproperties)
+   {
+
+      ::gpu::shader::set_int(scopedstrName, value);
+
+   }
+   else
+   {
+
+      _set_int(::string(scopedstrName), value);
+
+   }
+
+}void shader::set_float(const ::scoped_string& scopedstrName, float value)
+{
+
+   if (m_propertiesPush.m_pproperties)
+   {
+
+      ::gpu::shader::set_float(scopedstrName, value);
+
+   }
+   else
+   {
+
+      _set_float(::string(scopedstrName), value);
+
+   }
+
+}void shader::set_vec2(const ::scoped_string& scopedstrName, float x, float y)
+{
+
+   if (m_propertiesPush.m_pproperties)
+   {
+
+      ::gpu::shader::set_vec2(scopedstrName, x, y);
+
+   }
+   else
+   {
+
+      _set_vec2(::string(scopedstrName), { x, y });
+
+   }
+
+}void shader::set_vec2(const ::scoped_string& scopedstrName, const ::glm::vec2& a)
+{
+
+   if (m_propertiesPush.m_pproperties)
+   {
+
+      ::gpu::shader::set_vec2(scopedstrName, a);
+
+   }
+   else
+   {
+
+      _set_vec2(::string(scopedstrName), a);
+
+   }
+
+}void shader::set_vec3(const ::scoped_string& scopedstrName, float x, float y, float z)
+{
+
+   if (m_propertiesPush.m_pproperties)
+   {
+
+      ::gpu::shader::set_vec3(scopedstrName, x, y, z);
+
+   }
+   else
+   {
+
+      _set_vec3(::string(scopedstrName), { x, y, z });
+
+   }
+
+}void shader::set_vec3(const ::scoped_string& scopedstrName, const ::glm::vec3& a)
+{
+
+   if (m_propertiesPush.m_pproperties)
+   {
+
+      ::gpu::shader::set_vec3(scopedstrName, a);
+
+   }
+   else
+   {
+
+      _set_vec3(::string(scopedstrName), a);
+
+   }
+
+}
+void shader::set_vec4(const ::scoped_string& scopedstrName, float x, float y, float z, float w)
+{
+
+   if (m_propertiesPush.m_pproperties)
+   {
+
+      ::gpu::shader::set_vec4(scopedstrName, x, y, z, w);
+
+   }
+   else
+   {
+
+      _set_vec4(::string(scopedstrName), { x, y, z, w });
+
+   }
+
+}
+void shader::set_vec4(const ::scoped_string& scopedstrName, const ::glm::vec4& a)
+{
+
+   if (m_propertiesPush.m_pproperties)
+   {
+
+      ::gpu::shader::set_vec4(scopedstrName, a);
+
+   }
+   else
+   {
+
+      _set_vec4(::string(scopedstrName), a);
+
+   }
+
+}
+void shader::set_mat2(const ::scoped_string& scopedstrName, const ::glm::mat2& a)
+{
+
+   if (m_propertiesPush.m_pproperties)
+   {
+
+      ::gpu::shader::set_mat2(scopedstrName, a);
+
+   }
+   else
+   {
+
+      _set_mat2(::string(scopedstrName), a);
+
+   }
+
+}
+void shader::set_mat3(const ::scoped_string& scopedstrName, const ::glm::mat3& a)
+{
+
+   if (m_propertiesPush.m_pproperties)
+   {
+
+      ::gpu::shader::set_mat3(scopedstrName, a);
+
+   }
+   else
+   {
+
+      _set_mat3(::string(scopedstrName), a);
+
+   }
+
+}
+void shader::set_mat4(const ::scoped_string& scopedstrName, const ::glm::mat4& a)
+{
+
+   if (m_propertiesPush.m_pproperties)
+   {
+
+      ::gpu::shader::set_mat4(scopedstrName, a);
+
+   }
+   else
+   {
+
+      _set_mat4(::string(scopedstrName), a);
+
+   }
+
+}
 } // namespace gpu_opengl
 
 

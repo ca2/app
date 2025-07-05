@@ -387,6 +387,51 @@ namespace gpu_opengl
    }
 
 
+   void context::set_topic_texture(int iIndex)
+   {
+
+      ::gpu::context::set_topic_texture(iIndex);
+
+      if (iIndex == 0)
+      {
+
+         glActiveTexture(GL_TEXTURE0);
+         GLCheckError("");
+
+
+      }
+      else
+      {
+
+         throw ::exception(error_failed);
+
+      }
+
+   }
+
+
+   void context::set_cull_face(bool bSet)
+   {
+
+      ::gpu::context::set_cull_face(bSet);
+
+      if (m_bCullFace)
+      {
+
+         glEnable(GL_CULL_FACE);
+         GLCheckError("");
+
+      }
+      else
+      {
+
+         glDisable(GL_CULL_FACE);
+         GLCheckError("");
+
+      }
+
+   }
+
    //void context::swap_buffers()
    //{
 

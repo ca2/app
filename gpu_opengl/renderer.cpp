@@ -222,6 +222,8 @@ namespace gpu_opengl
 
       ::gpu::context_lock contextlock(m_pgpucontext);
 
+      m_pgpucontext->m_iTopicTexture = -1;
+
       auto escene = m_pgpucontext->m_escene;
 
       auto etype = m_pgpucontext->m_etype;

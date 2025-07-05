@@ -1,6 +1,8 @@
 // Created by camilo on 2025-05-31 15:32 <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "draw2d.h"
 #include "graphics.h"
+#include "pixmap.h"
 #include "acme/platform/application.h"
 #include "aura/user/user/interaction.h"
 #include "aura/graphics/graphics/graphics.h"
@@ -812,6 +814,385 @@ auto iContextHeight = pcontext->m_rectangle.height()
 
    }
 
+   
+   double_size graphics::get_text_extent(const ::scoped_string& lpszString)
+   {
+
+      auto pcontext = gpu_context();
+
+      ::gpu::context_lock contextlock(pcontext);
+
+      //return{};
+
+      //if(lpszString.is_empty())
+      //   return int_size(0, 0);
+      set(m_pfont);
+
+      ::pointer<::write_text::font>pfont = m_pfont;
+
+      ::cast < gpu::draw2d>pdraw2d = draw2d();
+
+      ::pointer <::typeface::face> pface = pdraw2d->get_face(pfont);
+
+      if (!pface->m_pgpurenderer)
+      {
+
+         pface->initialize_gpu_buffer(pcontext->m_pgpurenderer);
+
+      }
+
+      //glBindVertexArray(pfont->m_VAO);
+
+   // iterate through all characters
+      ::string strChar;
+      ::string str(lpszString);
+      auto psz = str.c_str();
+
+      float x = 0.0f;
+      float y = 0.0f;
+      //glEnable(GL_CULL_FACE);
+      //glEnable(GL_BLEND);
+      //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+      int xpos = 0;
+      int ypos = 0;
+      while (next_unicode_character(strChar, psz))
+      {
+
+         auto& ch = pface->get_character(strChar);
+
+         //float xpos = x + ch.Bearing.x * scale;
+         //float ypos = y - (ch.Size.y - ch.Bearing.y) * scale;
+
+         float w = ch.Size.x;
+         float h = ch.Size.y;
+         y = maximum(h, y);
+         //// update VBO for each character
+         // render glyph texture over quad
+         if (ch.m_ppixmap)
+         {
+            /* ::graphics3d::sequence2_uv vertices[6] = {
+                 {{xpos,     ypos + h},  { 0.0f, 0.0f } },
+             { {xpos,     ypos    },     {  0.0f, 1.0f }},
+                 {{xpos + w, ypos    },  {     1.0f, 1.0f }},
+                 {{xpos,     ypos + h},  { 0.0f, 0.0f }},
+                 {{xpos + w, ypos    },  {     1.0f, 1.0f }},
+                 {{xpos + w, ypos + h},  { 1.0f, 0.0f }}
+             };
+
+             auto pmodelbuffer = m_poolmodelbufferCharacter.get();
+
+             if (pmodelbuffer->is_null())
+             {
+
+                pmodelbuffer->create_vertex_buffer < ::graphics3d::sequence2_uv>(6);
+
+             }
+
+             pmodelbuffer->sequence2_uv_set_vertex(vertices, 6)*/
+
+             //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
+          //// update content of VBO memory
+          //glBindBuffer(GL_ARRAY_BUFFER, pfont->m_VBO);
+          //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // be sure to use glBufferSubData and not glBufferData
+
+          //auto pcommandbuffer = gpu_context()->m_pgpurenderer->getCurrentCommandBuffer2();
+
+          //pcommandbuffer->
+
+          //pcommandbuffer->draw(ch.m_ppixmap);
+
+          //ch.m_ppixmap;
+          //glBindBuffer(GL_ARRAY_BUFFER, 0);
+          //// render quad
+          //glDrawArrays(GL_TRIANGLES, 0, 6);
+          // now advance cursors for next glyph (note that advance is number of 1/64 pixels)
+            x += ch.Advance; // bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
+
+         }
+
+      }
+
+      return int_size(x, y);
+
+      //wstring wstr = lpszString;
+
+      //character_count iRange = 0;
+      //character_count i = 0;
+      //character_count iLen;
+      //const ::scoped_string & scopedstr = lpszString;
+      //while(i < iIndex)
+      //{
+      //   iLen = ::str::get_utf8_char(psz).length();
+      //   iRange++;
+      //   i += iLen;
+      //   unicode_increment(psz);
+      //   if(psz == nullptr)
+      //      break;
+      //   if(*psz == '\0')
+      //      break;
+      //}
+
+      //set(m_pfont);
+
+      //::pointer<font>pfont = m_pfont;
+
+      //::int_size s = { 0 };
+
+      //::GetTextExtentPointW(pfont->m_hdcFont, wstr, wstr.get_length(), &s);
+
+      //return s;
+
+   }
+
+
+   void graphics::text_out(double x, double yParam, const ::scoped_string& scopedstr)
+   {
+
+      //text_out_2025_06(x, yParam, scopedstr);
+
+      //::gpu::graphics::text_out(x, yParam, scopedstr);
+
+      auto pcontext = gpu_context();
+
+      __USES_TRANSFORM(pcontext);
+
+      ::gpu::context_lock contextlock(pcontext);
+
+      //return;
+      // activate corresponding render state	
+
+      if (!m_pgpushaderTextOut)
+      {
+
+         auto pvertexshader = R"vertexshader(#version 330 core
+layout(location = 0) in vec2 pos;
+layout(location = 1) in vec2 tex;
+out vec2 TexCoords;
+
+uniform mat4 projection;
+
+void main()
+{
+   gl_Position = projection * vec4(pos, 0.0, 1.0);
+   TexCoords = vec2(tex.x, 1.0 - tex.y);
+}
+)vertexshader";
+
+
+         auto pfragmentshader = R"fragmentshader(#version 330 core
+in vec2 TexCoords;
+out vec4 color;
+
+uniform sampler2D text;
+uniform vec4 textColor;
+
+void main()
+{    
+    vec4 sampled = texture(text, TexCoords).rgba;
+vec4 c = vec4(textColor) * sampled;
+    //color = vec4(sqrt(c.r),sqrt(c.g), sqrt(c.b), sqrt(c.a));
+color = vec4(c.r,c.g, c.b, c.a);
+//color = vec4(0.0, 1.0, 0.0, 1.0); // Bright debug color
+}
+)fragmentshader";
+
+         m_pgpushaderTextOut = __øcreate< ::gpu::shader >();
+
+         auto pcontext = gpu_context();
+
+         m_pgpushaderTextOut->m_bEnableBlend = true;
+         m_pgpushaderTextOut->m_bDisableDepthTest = true;
+
+         m_pgpushaderTextOut->initialize_shader_with_block(
+            pcontext->m_pgpurenderer,
+            pvertexshader,
+            pfragmentshader,
+            {},
+            {},
+            {},
+            pcontext->input_layout(::graphics3d::sequence2_uv_properties())
+         );
+
+      }
+
+      m_pgpushaderTextOut->bind();
+      auto color = m_pbrush->m_color;
+      //shader.use();
+      ::cast<::gpu::shader>pshader = m_pgpushaderTextOut;
+      pshader->set_vec4("textColor", { __expand_float_pre_rgba(color) });
+      // glUniform3f(glGetUniformLocation(shader.ID, "textColor"), color.x, color.y, color.z);
+      pshader->set_int("text", 0);
+      //auto pcontext = gpu_context();
+
+      glm::mat4 projection = glm::ortho(
+         0.0f,
+         static_cast<float>(pcontext->m_rectangle.width()),
+         static_cast<float>(pcontext->m_rectangle.height()),
+         0.0f);
+      pshader->set_mat4("projection", projection);
+
+      set(m_pfont);
+
+      ::pointer<::write_text::font>pfont = m_pfont;
+      ::cast < gpu::draw2d>pdraw2d = draw2d();
+
+      auto pgpuface = pdraw2d->get_face(pfont);
+      ::cast < ::typeface::face>pface = pgpuface;
+
+      pcontext->set_topic_texture(0);
+
+
+      //glEnable(GL_BLEND);
+      //glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+
+      //glDisable(GL_DEPTH_TEST);
+      //glDepthMask(GL_FALSE);
+
+      //glBindVertexArray(pface->m_FaceVAO);
+      //GLCheckError("");
+      auto pcommandbuffer = pcontext->m_pgpurenderer->getCurrentCommandBuffer2();
+      pface->m_pmodelbufferBox->bind(pcommandbuffer);
+
+      // iterate through all characters
+      ::string strChar;
+      ::string str(scopedstr);
+      auto psz = str.c_str();
+
+      if (str == "Options")
+      {
+
+         warning() << "draw_text: " << str;
+
+      }
+      //float scale;
+      //if (pfont->m_fontsize.eunit() == e_unit_point)
+      //{
+      //   scale = pfont->m_fontsize.as_float() / FONT_POINT_DENOMINATOR;
+      //}
+      //else
+      //{
+      //   scale = pfont->m_fontsize.as_float() / FONT_PIXEL_DENOMINATOR;
+      //}
+      //auto y = m_pgpucontextCompositor->m_rectangle.height() - yParam - pface->m_iPixelSize;
+      auto y = yParam;
+
+
+      ::int_point point(x, y);
+      int Δx = 0;
+      __TRANSFORM(point);
+
+      //auto pcontext = gpu_context();
+
+      point.y() = pcontext->m_rectangle.height() - point.y() - pface->m_iPixelSize;
+
+      pcontext->set_cull_face();
+
+
+      ::gpu::model_buffer* pmodelbuffer = nullptr;
+      ::gpu::pixmap* ppixmap = nullptr;
+      //glEnable(GL_BLEND);
+      //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+      while (next_unicode_character(strChar, psz))
+      {
+
+         auto& ch = pface->get_character(strChar);
+         float h2 = (ch.Size.y - ch.Bearing.y);
+         float xpos = point.x() + Δx + ch.Bearing.x;
+         float ypos = point.y() + h2;
+
+         float w = ch.Size.x;
+         float h = ch.Size.y;
+         // update VBO for each character
+         float vertices[6][4] = {
+             { xpos,     ypos + h,   0.0f, 0.0f },
+             { xpos,     ypos,       0.0f, 1.0f },
+             { xpos + w, ypos,       1.0f, 1.0f },
+
+             { xpos,     ypos + h,   0.0f, 0.0f },
+             { xpos + w, ypos,       1.0f, 1.0f },
+             { xpos + w, ypos + h,   1.0f, 0.0f }
+         };
+         // render glyph texture over quad
+         if (ch.m_ppixmap)
+         {
+
+
+            pmodelbuffer = m_poolmodelbufferCharacter.get();
+
+            if (pmodelbuffer->is_new())
+            {
+
+               pmodelbuffer->create_vertex_array < ::graphics3d::sequence2_uv>(pcontext, 6);
+
+               pmodelbuffer->defer_set_input_layout(m_pgpushaderTextOut->m_pinputlayout);
+
+            }
+
+            //pmodelbuffer->set_vertex_array(vertices, 6);
+            ppixmap = ch.m_ppixmap;
+            ppixmap->bind_texture();
+            //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
+            //GLCheckError("");
+            //// update content of VBO memory
+            //int iVbo = pface->m_FaceVBO;
+            //glBindBuffer(GL_ARRAY_BUFFER, iVbo);
+            //GLCheckError("");
+            //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // be sure to use glBufferSubData and not glBufferData
+            //GLCheckError("");
+            //glBindBuffer(GL_ARRAY_BUFFER, 0);
+            //GLCheckError("");
+            // render quad
+            // 
+            // 
+
+            auto pcommandbuffer = gpu_context()->m_pgpurenderer->getCurrentCommandBuffer2();
+
+            //pcommandbuffer->draw(ch.m_ppixmap);
+
+            pmodelbuffer->bind(pcommandbuffer);
+
+            pmodelbuffer->m_pbufferVertex->bind();
+
+            pmodelbuffer->_set_vertex_array(vertices, 6);
+
+            pmodelbuffer->draw(pcommandbuffer);
+
+            //pmodelbuffer->unbind(pcommandbuffer);
+
+            //glDrawArrays(GL_TRIANGLES, 0, 6);
+            //GLCheckError("");
+            // now advance cursors for next glyph (note that advance is number of 1/64 pixels)
+            Δx += ch.Advance; // bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
+
+         }
+      }
+
+      if (pmodelbuffer)
+      {
+
+         pmodelbuffer->unbind(pcommandbuffer);
+
+      }
+
+      if (ppixmap)
+      {
+
+         ppixmap->unbind_texture();
+
+      }
+
+      //glBindVertexArray(0);
+      //GLCheckError("");
+
+
+      //glBindTexture(GL_TEXTURE_2D, 0);
+      //GLCheckError("");
+      //glDisable(GL_CULL_FACE);
+      //GLCheckError("");
+
+      pcontext->set_cull_face(false);
+      m_pgpushaderTextOut->unbind();
+   }
 
 } // namespace gpu
 

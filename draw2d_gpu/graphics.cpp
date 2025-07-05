@@ -44,7 +44,7 @@
 #define FONT_PIXEL_DENOMINATOR 35.0
 //int  opengl_init();
 
-#define __expand_float_pre_rgba(color) (color.f32_opacity()*color.f32_red()),(color.f32_opacity()* color.f32_green()), (color.f32_opacity()*color.f32_blue()), color.f32_opacity()
+
 
 
 HGLRC initialize_opengl_version(HDC hdc, int iMajor, int iMinor);

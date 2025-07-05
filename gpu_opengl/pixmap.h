@@ -36,6 +36,8 @@ namespace gpu_opengl
 
 
       void bind_texture() override;
+      void unbind_texture() override;
+
 
    };
 

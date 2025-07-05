@@ -133,8 +133,11 @@ namespace gpu
 } // gpu
 
 
+#define __expand_float_pre_rgba(color) (color.f32_opacity()*color.f32_red()),(color.f32_opacity()* color.f32_green()), (color.f32_opacity()*color.f32_blue()), color.f32_opacity()
+
 
 #include "_constant.h"
+
 
 
 

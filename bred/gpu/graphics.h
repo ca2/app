@@ -32,7 +32,7 @@ namespace gpu
       ::pool <::gpu::model_buffer >             m_poolmodelbufferCharacter;
       ::pool <::gpu::model_buffer >             m_poolmodelbufferLine;
       //int                                       m_iContextHeight;
-
+      ::pointer < ::gpu::shader >         m_pgpushaderTextOut;
 
       graphics();
       ~graphics() override;
@@ -104,6 +104,11 @@ namespace gpu
       virtual void _fill_quad(const ::double_point points[4], const ::color::color& color);
 
       void fill_rectangle(const ::double_rectangle& rectangle, const ::color::color& color);
+
+      double_size get_text_extent(const ::scoped_string& lpszString) override;
+
+      void text_out(double x, double yParam, const ::scoped_string& scopedstr) override;
+
 
    };
 

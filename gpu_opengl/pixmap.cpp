@@ -64,9 +64,18 @@ namespace gpu_opengl
    {
 
       glBindTexture(GL_TEXTURE_2D, m_gluTexture);
+      GLCheckError("");
 
    }
 
+   
+   void pixmap::unbind_texture()
+   {
+
+      glBindTexture(GL_TEXTURE_2D, 0);
+      GLCheckError("");
+
+   }
 
 
 } // namespace character

@@ -114,6 +114,33 @@ namespace gpu
    }
 
 
+   texture* texture::get_depth_texture()
+   {
+
+      if (m_etype & ::gpu::texture::e_type_depth)
+      {
+
+         return this;
+
+      }
+
+      if (m_ptextureDepth)
+      {
+
+         return m_ptextureDepth;
+
+      }
+
+      __defer_construct(m_ptextureDepth);
+
+      m_ptextureDepth->initialize_depth_texture(m_pgpurenderer, m_rectangleTarget);
+
+      return m_ptextureDepth;
+
+   }
+
+
+
 } // namespace gpu
 
 

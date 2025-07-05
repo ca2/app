@@ -32,6 +32,7 @@ namespace gpu
       ::int_rectangle                     m_rectangleTarget;
       bool                                m_bTransferDst;
       bool                                m_bCpuRead;
+      ::pointer < texture >               m_ptextureDepth;
 
 
       texture();
@@ -54,6 +55,8 @@ namespace gpu
       virtual void create_depth_resources();
 
       virtual void bind_render_target();
+
+      virtual texture* get_depth_texture();
 
 
    };

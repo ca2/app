@@ -221,6 +221,64 @@ namespace gpu
    }
 
 
+   texture* render_target::current_depth_texture()
+   {
+
+      if (m_pgpurenderer->m_pgpulayer)
+      {
+
+         ::cast < texture > ptexture = m_pgpurenderer->m_pgpulayer->source_texture();
+
+         if (!ptexture)
+         {
+
+            throw ::exception(error_wrong_state, "No source texture in layer");
+
+         }
+
+         auto ptextureDepth = ptexture->get_depth_texture();
+
+         if(!ptextureDepth)
+         {
+          
+            throw ::exception(error_wrong_state, "No depth texture in source texture");
+
+         }
+
+         return ptextureDepth;
+
+      }
+
+      auto pgpucontext = m_pgpurenderer->m_pgpucontext;
+
+      auto etype = pgpucontext->m_etype;
+
+      int iFrameIndex = get_frame_index();
+
+      auto size = m_texturea.size();
+
+      ::cast < texture > ptexture = m_texturea[iFrameIndex];
+
+      if (!ptexture)
+      {
+
+         throw ::exception(error_wrong_state, "No source texture in layer");
+
+      }
+
+      auto ptextureDepth = ptexture->get_depth_texture();
+
+      if (!ptextureDepth)
+      {
+
+         throw ::exception(error_wrong_state, "No depth texture in source texture");
+
+      }
+
+      return ptextureDepth;
+   }
+
+
    void render_target::on_before_begin_draw_frame(::gpu::graphics* pgraphics)
    {
 

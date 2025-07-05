@@ -22,6 +22,7 @@ namespace gpu
       bool m_bWithDepth;
 
       ::pointer_array < texture >            m_texturea;
+      ::pointer_array < texture >            m_textureaDepth;
 
 
       ::int_size m_size;
@@ -64,7 +65,8 @@ namespace gpu
       virtual int height();
 
 
-      virtual texture * current_texture();
+      virtual texture* current_texture();
+      virtual texture* current_depth_texture();
 
 
       virtual void on_before_begin_draw_frame(::gpu::graphics* pgraphics);

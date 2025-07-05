@@ -268,14 +268,15 @@ namespace gpu
 
       auto ptextureDepth = ptexture->get_depth_texture();
 
-      if (!ptextureDepth)
-      {
+      //if (!ptextureDepth)
+      //{
 
-         throw ::exception(error_wrong_state, "No depth texture in source texture");
+      //   throw ::exception(error_wrong_state, "No depth texture in source texture");
 
-      }
+      //}
 
       return ptextureDepth;
+
    }
 
 

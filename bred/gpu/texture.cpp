@@ -124,6 +124,13 @@ namespace gpu
 
       }
 
+      if (!m_bWithDepth)
+      {
+
+         return nullptr;
+
+      }
+
       if (m_ptextureDepth)
       {
 

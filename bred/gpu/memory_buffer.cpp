@@ -216,6 +216,14 @@ namespace gpu
    }
 
 
+   void* memory_buffer::map()
+   {
+
+      return map(0, m_size);
+
+   }
+
+
    void* memory_buffer::map(memsize start, memsize count)
    {
 
@@ -270,7 +278,7 @@ namespace gpu
    void* memory_buffer::_map(memsize start, memsize count)
    {
 
-      return nullptr;
+      return __map(start, count);
 
    }
 
@@ -278,6 +286,7 @@ namespace gpu
    void memory_buffer::_unmap()
    {
 
+      return __unmap();
 
    }
 

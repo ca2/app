@@ -81,6 +81,10 @@ namespace gpu
       bool isFrameInProgress() const { return isFrameStarted; }
 
 
+      virtual ::pointer_array<::particle >* current_frame_particle_array();
+
+
+
       //virtual ::int_rectangle rectangle();
       //virtual int height();
       virtual ::gpu::command_buffer* getCurrentCommandBuffer2();
@@ -214,7 +218,7 @@ namespace gpu
       virtual void end_frame();
 
 
-      virtual ::pointer < ::gpu::texture > create_texture(const ::int_size& size);
+      virtual ::pointer < ::gpu::texture > create_image_texture(const ::int_size& size, bool bWithDepth);
       //virtual void take_snapshot(layer* player);
      
 

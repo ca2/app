@@ -173,6 +173,12 @@ namespace bred
             strGpuImplementation = "vulkan";
 
          }
+         else if (strDraw2dImplementation == "vulkan")
+         {
+
+            strGpuImplementation = "vulkan";
+
+         }
          else if (strDraw2dImplementation == "opengl")
          {
 
@@ -214,6 +220,12 @@ namespace bred
                strGpuImplementation = "directx12";
 
             }
+
+         }
+         else
+         {
+
+            throw ::exception(error_not_implemented, "Unknown draw2d implementation: " + strDraw2dImplementation);
 
          }
 

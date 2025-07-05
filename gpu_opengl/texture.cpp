@@ -26,7 +26,7 @@ namespace gpu_opengl
    }
 
 
-   void texture::initialize_gpu_texture(::gpu::renderer* prenderer, const ::int_rectangle& rectangleTarget) //, bool bCreateRenderTargetView, bool bCreateShaderResourceView)
+   void texture::initialize_image_texture(::gpu::renderer* prenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth)
    {
 
       if (m_rectangleTarget == rectangleTarget)
@@ -38,7 +38,7 @@ namespace gpu_opengl
 
       auto sizeCurrent = m_rectangleTarget.size();
 
-      ::gpu::texture::initialize_gpu_texture(prenderer, rectangleTarget);
+      ::gpu::texture::initialize_image_texture(prenderer, rectangleTarget, bWithDepth);
 
       ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
 
@@ -114,7 +114,7 @@ namespace gpu_opengl
       ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
 
 
-      GLuint fboSrc, fboDst;
+      //GLuint fboSrc, fboDst;
       glGenFramebuffers(1, &m_gluFbo);
       GLCheckError("");
       glBindFramebuffer(GL_FRAMEBUFFER, m_gluFbo);

@@ -51,6 +51,9 @@ namespace gpu
 
       //unsigned int               m_uId;
 
+      bool                                m_bClearColor;
+      ::color::color                      m_colorClear;
+
       bool m_bDisableDepthTest = false;
       bool m_bDepthTestButNoDepthWrite = false;
       bool m_bEnableBlend = false;

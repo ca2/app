@@ -76,7 +76,7 @@ namespace gpu
 
       ptexture->m_bTransferDst = true;
 
-      ptexture->initialize_gpu_texture(m_pgpurenderer, rectangle);
+      ptexture->initialize_image_texture(m_pgpurenderer, rectangle, false);
 
       return ptexture;
 
@@ -94,7 +94,11 @@ namespace gpu
 
       auto rectangle = m_pgpurenderer->m_pgpucontext->rectangle();
 
-      ptextureSource->initialize_gpu_texture(m_pgpurenderer, rectangle);
+      auto escene = m_pgpurenderer->m_pgpucontext->m_escene;
+
+      bool bWithDepth = escene == ::gpu::e_scene_3d;
+
+      ptextureSource->initialize_image_texture(m_pgpurenderer, rectangle, bWithDepth);
 
       return ptextureSource;
 

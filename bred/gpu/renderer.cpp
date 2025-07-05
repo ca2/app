@@ -95,12 +95,12 @@ namespace gpu
    }
 
 
-   ::pointer < texture> renderer::create_texture(const ::int_size& size)
+   ::pointer < texture> renderer::create_image_texture(const ::int_size& size, bool bWithDepth)
    {
 
       auto ptexture = __øcreate< texture>();
 
-      ptexture->initialize_gpu_texture(this, size);
+      ptexture->initialize_image_texture(this, size, bWithDepth);
 
       m_pgpucontext->on_create_texture(ptexture);
 
@@ -277,7 +277,16 @@ namespace gpu
 
    }
 
+   ::pointer_array<::particle >* renderer::current_frame_particle_array()
+   {
 
+      auto iFrameIndex = m_pgpurendertarget->get_frame_index();
+
+      auto pparticlea = m_pgpucontext->m_pgpudevice->frame_particle_array(iFrameIndex);
+
+      return pparticlea;
+
+   }
 
    void renderer::draw()
    {

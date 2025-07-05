@@ -184,6 +184,14 @@ namespace gpu
    ////}
 
 
+   bool model_buffer::is_dummy() const
+   {
+
+      return m_iIndexCount <= 0 && m_iVertexCount <= 0;
+
+   }
+
+
    void model_buffer::sequence2_uv_create_fullscreen_quad(::gpu::context* pcontext)
    {
 

@@ -19,7 +19,7 @@ namespace gpu
       bool m_bRenderTargetInit;
       bool m_bBackBuffer;
 
-      bool m_bDepthStencil;
+      bool m_bWithDepth;
 
       ::pointer_array < texture >            m_texturea;
 

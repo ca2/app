@@ -54,7 +54,9 @@ namespace graphics3d
 
       ::pointer < ::gpu::renderer >        m_pgpurenderer;
       bool m_bDummy = false;
-      int m_iVertices = 0;
+      //int m_iVertices = 0;
+      ::pointer < ::gpu::command_buffer > m_pcommandbufferLoading;
+
       //static ::pointer<model> createModelFromFile(::graphics3d::context * pgpucontext, const ::file::path & path);
 
 

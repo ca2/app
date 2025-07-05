@@ -13,11 +13,12 @@ namespace gpu
    texture::texture()
    {
 
+      m_etype = e_type_none;
       m_bClearColor = false;
       m_bRenderTarget = false;
-      m_bDepthStencil = false;
       m_bTransferDst = false;
       m_bCpuRead = false;
+      m_bWithDepth = false;
 
    }
 
@@ -28,9 +29,21 @@ namespace gpu
    }
 
 
-   void texture::initialize_gpu_texture(::gpu::renderer * pgpurenderer, const ::int_rectangle& rectangleTarget)
+   void texture::initialize_image_texture(::gpu::renderer * pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth)
    {
 
+      m_etype = e_type_image;
+      m_pgpurenderer = pgpurenderer;
+      m_rectangleTarget = rectangleTarget;
+      m_bWithDepth = bWithDepth;
+
+   }
+
+
+   void texture::initialize_depth_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget)
+   {
+
+      m_etype = e_type_depth;
       m_pgpurenderer = pgpurenderer;
       m_rectangleTarget = rectangleTarget;
 

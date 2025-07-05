@@ -18,7 +18,7 @@ namespace gpu
 
       m_bRenderTargetInit = false;
       m_bBackBuffer = false;
-      m_bDepthStencil = false;
+      m_bWithDepth = false;
 
    }
 
@@ -71,7 +71,7 @@ namespace gpu
       if (m_pgpurenderer->m_pgpucontext->m_escene == ::gpu::e_scene_3d)
       {
 
-         m_bDepthStencil = true;
+         m_bWithDepth = true;
 
       }
 
@@ -163,7 +163,7 @@ namespace gpu
          if (ptexture->size() != m_size && !m_size.is_empty())
          {
 
-            ptexture->initialize_gpu_texture(m_pgpurenderer, m_size);
+            ptexture->initialize_image_texture(m_pgpurenderer, m_size, m_bWithDepth);
 
          }
 

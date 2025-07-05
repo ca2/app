@@ -861,7 +861,7 @@ namespace graphics3d
 
       m_fFrameTime = frameTime;
 
-      if (!m_rectanglePlacementNew.is_empty())
+      if (m_rectanglePlacementNew.has_area())
       {
 
          on_update_frame();

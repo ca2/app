@@ -927,6 +927,16 @@ namespace gpu
    }
 
 
+   ::pointer_array<::particle >* device::frame_particle_array(int iFrameIndex)
+   {
+      
+      auto& particleaFrame = m_particleaFrame.element_at_grow(iFrameIndex);
+
+      return &particleaFrame;
+
+   }
+
+
    void device::unlock_context()
    {
 

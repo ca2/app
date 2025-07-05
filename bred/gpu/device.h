@@ -73,6 +73,7 @@ namespace gpu
       enum_device_target                        m_edevicetarget;
       ::procedure_array                         m_procedureaOnTopFrameEnd;
       ::pointer_array < pool_group >            m_poolgroupaFrame;
+      ::array < ::pointer_array < ::particle > >m_particleaFrame;
 
       
 
@@ -95,6 +96,7 @@ namespace gpu
       //void _send(const ::procedure& procedure) override;
       //void _post(const ::procedure& procedure) override;
       virtual pool_group* frame_pool_group(int iFrameIndex);
+      virtual ::pointer_array<::particle >* frame_particle_array(int iFrameIndex);
 
       virtual void on_initialize_gpu_device();
 

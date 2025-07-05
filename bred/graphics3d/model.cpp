@@ -37,6 +37,8 @@ namespace graphics3d
    void model::initialize_model(::gpu::renderer* pgpurenderer, const model::Builder& builder)
    {
 
+      initialize_gpu_context_object(pgpurenderer->m_pgpucontext);
+
       m_pgpurenderer = pgpurenderer;
 
    }
@@ -45,9 +47,11 @@ namespace graphics3d
    void model::initialize_dummy_model(::gpu::renderer* pgpurenderer, int iVertices)
    {
 
+      initialize_gpu_context_object(pgpurenderer->m_pgpucontext);
+
       m_pgpurenderer = pgpurenderer;
       m_bDummy = true;
-      m_iVertices = iVertices;
+      m_iVertexCount = iVertices;
 
    }
 

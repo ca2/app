@@ -2480,6 +2480,51 @@ void main() {
    }
 
 
+   ::memory context::white_to_color_sampler_vert()
+   {
+
+      auto pvertexshader = R"vertexshader(#version 330 core
+layout(location = 0) in vec2 pos;
+layout(location = 1) in vec2 tex;
+out vec2 TexCoords;
+
+uniform mat4 projection;
+
+void main()
+{
+   gl_Position = projection * vec4(pos, 0.0, 1.0);
+   TexCoords = vec2(tex.x, 1.0 - tex.y);
+}
+)vertexshader";
+
+      return ::as_block(pvertexshader);
+
+   }
+
+
+   ::memory context::white_to_color_sampler_frag()
+   {
+
+      auto pfragmentshader = R"fragmentshader(#version 330 core
+in vec2 TexCoords;
+out vec4 color;
+
+uniform sampler2D text;
+uniform vec4 textColor;
+
+void main()
+{    
+    vec4 sampled = texture(text, TexCoords).rgba;
+vec4 c = vec4(textColor) * sampled;
+    //color = vec4(sqrt(c.r),sqrt(c.g), sqrt(c.b), sqrt(c.a));
+color = vec4(c.r,c.g, c.b, c.a);
+//color = vec4(0.0, 1.0, 0.0, 1.0); // Bright debug color
+}
+)fragmentshader";
+
+      return ::as_block(pfragmentshader);
+   }
+
 } // namespace gpu_opengl
 
 

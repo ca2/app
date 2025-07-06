@@ -105,9 +105,14 @@ namespace gpu
 
       void fill_rectangle(const ::double_rectangle& rectangle, const ::color::color& color);
 
-      double_size get_text_extent(const ::scoped_string& lpszString) override;
+
+      using ::draw2d::graphics::get_text_extent;
+      double_size get_text_extent(const ::scoped_string& scopedstr) override;
 
       void text_out(double x, double yParam, const ::scoped_string& scopedstr) override;
+
+
+      virtual ::typeface::face* get_face(::write_text::font* pfont);
 
 
    };

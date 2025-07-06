@@ -17,7 +17,9 @@ namespace gpu
    model_buffer::model_buffer()
    {
 
-      m_iSizeIndex = 0;
+      m_iVertexTypeSize = -1;
+
+      m_iIndexTypeSize = -1;
 
       m_ppool = nullptr;
 
@@ -71,10 +73,9 @@ namespace gpu
          {{ -1.0f, y1}, { 0.0f, 1.0f}},
       };
 
-      m_iVertexCount = 4;
+      create_vertex_array < ::graphics3d::sequence2_uv>(pcontext, 4);
 
-
-      pcontext->defer_construct_new(m_pbufferVertex, ::as_memory_block(quadVertex), false);
+      set_vertex_array < ::graphics3d::sequence2_uv>(quadVertex, 4);
 
       if (bIndexed)
       {
@@ -84,104 +85,14 @@ namespace gpu
             2, 3, 0
          };
 
-         m_iIndexCount = 6;
+         create_index_array <uint16_t >(pcontext, 6);
 
-         pcontext->defer_construct_new(m_pbufferIndex, ::as_memory_block(quadIndex), true);
+         set_index_array<uint16_t >(quadIndex, 6);
 
       }
 
-      //auto vertexSize = sizeof(quadVertices);
-      //auto indexSize = sizeof(quadIndices);
 
-     /* __defer_construct_new(m_pbufferVertex);
-      __defer_construct_new(m_pbufferIndex);
-
-      m_pbufferVertex->initialize_memory_buffer(pcontext, vertexSize);
-      m_pbufferIndex->initialize_memory_buffer(pcontext, indexSize);
-
-      m_pbufferVertex->set(quadVertices);
-      m_pbufferIndex->set(quadIndices);*/
-
-      //VkBufferCreateInfo bufferInfo = {
-      //   .sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO,
-      //   .size = vertexSize,
-      //   .usage = VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
-      //   .sharingMode = VK_SHARING_MODE_EXCLUSIVE
-      //};
-      //vkCreateBuffer(device, &bufferInfo, NULL, vertexBuffer);
-
-      //VkMemoryRequirements memReq;
-      //vkGetBufferMemoryRequirements(device, *vertexBuffer, &memReq);
-
-      //VkMemoryAllocateInfo allocInfo = {
-      //   .sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO,
-      //   .allocationSize = memReq.size,
-      //   .memoryTypeIndex = 0
-      //};
-
-      //VkPhysicalDeviceMemoryProperties memProps;
-      //vkGetPhysicalDeviceMemoryProperties(physicalDevice, &memProps);
-      //for (uint32_t i = 0; i < memProps.memoryTypeCount; i++) {
-      //   if ((memReq.memoryTypeBits & (1 << i)) &&
-      //      (memProps.memoryTypes[i].propertyFlags & VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT) &&
-      //      (memProps.memoryTypes[i].propertyFlags & VK_MEMORY_PROPERTY_HOST_COHERENT_BIT)) {
-      //      allocInfo.memoryTypeIndex = i;
-      //      break;
-      //   }
-      //}
-
-      //vkAllocateMemory(device, &allocInfo, NULL, vertexMemory);
-      //vkBindBufferMemory(device, *vertexBuffer, *vertexMemory, 0);
-
-      //void* data;
-      //vkMapMemory(device, *vertexMemory, 0, vertexSize, 0, &data);
-      //memcpy(data, quadVertices, (size_t)vertexSize);
-      //vkUnmapMemory(device, *vertexMemory);
-
-      //// Index buffer
-      //bufferInfo.size = indexSize;
-      //bufferInfo.usage = VK_BUFFER_USAGE_INDEX_BUFFER_BIT;
-      //vkCreateBuffer(device, &bufferInfo, NULL, indexBuffer);
-      //vkGetBufferMemoryRequirements(device, *indexBuffer, &memReq);
-      //allocInfo.allocationSize = memReq.size;
-
-   //   for (uint32_t i = 0; i < memProps.memoryTypeCount; i++) {
-   //      if ((memReq.memoryTypeBits & (1 << i)) &&
-   //         (memProps.memoryTypes[i].propertyFlags & VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT) &&
-   //         (memProps.memoryTypes[i].propertyFlags & VK_MEMORY_PROPERTY_HOST_COHERENT_BIT)) {
-   //         allocInfo.memoryTypeIndex = i;
-   //         break;
-   //      }
-   //   }
-
-   //   vkAllocateMemory(device, &allocInfo, NULL, indexMemory);
-   //   vkBindBufferMemory(device, *indexBuffer, *indexMemory, 0);
-   //   vkMapMemory(device, *indexMemory, 0, indexSize, 0, &data);
-   //   memcpy(data, quadIndices, (size_t)indexSize);
-   //   vkUnmapMemory(device, *indexMemory);
-   //}
    }
-
-
-   ////void model_buffer::vec3_color_create_rectangle(::gpu_vulkan::context* pcontext, int iIndexCount)
-   ////{
-
-   ////   m_iVertexCount = 6;
-
-   ////   auto size = sizeof(vec3_color) * m_iVertexCount;
-
-   ////   pcontext->defer_construct_new(m_pbufferVertex, size);
-
-   ////   if (iIndexCount > 0)
-   ////   {
-
-   ////      m_iIndexCount = iIndexCount;
-
-   ////      pcontext->defer_construct_new(m_pbufferIndex, iIndexCount * sizeof(unsigned short));
-
-   ////   }
-
-   ////}
 
 
    bool model_buffer::is_dummy() const
@@ -197,35 +108,34 @@ namespace gpu
 
       // Vertex data: (x, y, u, v)
 #if 1
-      float quadVertices[] = {
+      ::graphics3d::sequence2_uv quadVertices[] = {
          //  Position   TexCoords
-         -1.0f,  1.0f,  0.0f, 1.0f, // Top-left
-         -1.0f, -1.0f,  0.0f, 0.0f, // Bottom-left
-          1.0f, -1.0f,  1.0f, 0.0f, // Bottom-right
+         {{ -1.0f,  1.0f},{  0.0f, 1.0f}}, // Top-left
+         {{-1.0f, -1.0f}, { 0.0f, 0.0f}}, // Bottom-left
+          {{1.0f, -1.0f}, { 1.0f, 0.0f}}, // Bottom-right
 
-         -1.0f,  1.0f,  0.0f, 1.0f, // Top-left
-          1.0f, -1.0f,  1.0f, 0.0f, // Bottom-right
-          1.0f,  1.0f,  1.0f, 1.0f  // Top-right
+         {{-1.0f,  1.0f}, { 0.0f, 1.0f}}, // Top-left
+          {{1.0f, -1.0f}, { 1.0f, 0.0f}}, // Bottom-right
+          {{1.0f,  1.0f}, { 1.0f, 1.0f}}  // Top-right
       };
 #else
-      float quadVertices[] = {
+      ::graphics3d::sequence2_uv quadVertices[] = {
          //  Position   TexCoords
-         0.0f,  1.0f,  0.0f, 1.0f, // Top-left
-         0.0f, 0.0f,  0.0f, 0.0f, // Bottom-left
-          1.0f, 0.0f,  1.0f, 0.0f, // Bottom-right
+         {{ 0.0f,  1.0f}, { 0.0f, 1.0f}}, // Top-left
+         {{0.0f, 0.0f}, { 0.0f, 0.0f}}, // Bottom-left
+          {{1.0f, 0.0f}, { 1.0f, 0.0f}}, // Bottom-right
 
-         0.0f,  1.0f,  0.0f, 1.0f, // Top-left
-          1.0f, 0.0f,  1.0f, 0.0f, // Bottom-right
-          1.0f,  1.0f,  1.0f, 1.0f  // Top-right
+         {{0.0f,  1.0f}, { 0.0f, 1.0f}}, // Top-left
+          {{1.0f, 0.0f}, { 1.0f, 0.0f}}, // Bottom-right
+          {{1.0f,  1.0f},{  1.0f, 1.0f}}  // Top-right
       };
 #endif
 
       this->create_vertex_array<::graphics3d::sequence2_uv >(
          pcontext, 6);
 
-      defer_set_input_layout(pcontext->input_layout(::graphics3d::sequence2_uv_properties()));
+      this->set_vertex_array<::graphics3d::sequence2_uv >(quadVertices, 6);
 
-      m_pbufferVertex->assign(quadVertices, sizeof(quadVertices));
 
    }
 
@@ -236,7 +146,7 @@ namespace gpu
       this->create_vertex_array<::graphics3d::sequence2_color >(
          pcontext, 6);
 
-      defer_set_input_layout(pcontext->input_layout(::graphics3d::sequence2_color_properties()));
+      //defer_set_input_layout(pcontext->input_layout(::gpu_properties<::graphics3d::sequence2_color>()));
 
    }
 
@@ -247,7 +157,7 @@ namespace gpu
       this->create_vertex_array<::graphics3d::sequence2_color >(
          pcontext, 2);
 
-      defer_set_input_layout(pcontext->input_layout(::graphics3d::sequence2_color_properties()));
+      //defer_set_input_layout(pcontext->input_layout(::gpu_properties < ::graphics::sequence2_color>()));
 
    }
 
@@ -258,7 +168,7 @@ namespace gpu
       this->create_vertex_array<::graphics3d::sequence3_color >(
          pcontext, 6);
 
-      defer_set_input_layout(pcontext->input_layout(::graphics3d::sequence3_color_properties()));
+      //defer_set_input_layout(pcontext->input_layout(::graphics3d::sequence3_color_properties()));
 
    }
 
@@ -269,7 +179,7 @@ namespace gpu
       this->create_vertex_array<::graphics3d::sequence3_color >(
          pcontext, 2);
 
-      defer_set_input_layout(pcontext->input_layout(::graphics3d::sequence3_color_properties()));
+      ///defer_set_input_layout(pcontext->input_layout(::graphics3d::sequence3_color_properties()));
 
    }
 

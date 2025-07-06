@@ -27,8 +27,8 @@ namespace gpu
 
       virtual void set_pixels(const void* data, int w, int h);
 
-      virtual void bind_texture();
-      virtual void unbind_texture();
+      virtual void bind_texture(::gpu::shader * pgpushader);
+      virtual void unbind_texture(::gpu::shader* pgpushader);
       //virtual void merge_layers(::pointer_array < ::gpu::layer >* playera);
       //virtual void blend(::gpu::layer* player);
       //virtual void blend(::gpu::texture* ptexture);

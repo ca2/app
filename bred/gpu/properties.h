@@ -439,10 +439,20 @@ namespace gpu
 } // namespace gpu
 
 
+template < typename TYPE >
+inline ::gpu::property* gpu_properties()
+{
+
+	throw ::error_interface_only;
+
+	return nullptr;
+
+}
 
 
-#define BEGIN_GPU_PROPERTIES(name) \
-   inline ::gpu::property * name ##_properties() \
+#define BEGIN_GPU_PROPERTIES(type) \
+	template < >	\
+   inline ::gpu::property * gpu_properties<type>() \
    { \
       static ::gpu::property s_pproperty[]= {
 
@@ -452,7 +462,9 @@ namespace gpu
    {  } \
    }; \
    return { s_pproperty };  \
-}
+} 
+ 
+
 
 
 

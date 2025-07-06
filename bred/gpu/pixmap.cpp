@@ -54,14 +54,14 @@ namespace gpu
    }
 
 
-   void pixmap::bind_texture()
+   void pixmap::bind_texture(::gpu::shader* pgpushader)
    {
 
 
    }
 
 
-   void pixmap::unbind_texture()
+   void pixmap::unbind_texture(::gpu::shader* pgpushader)
    {
 
 

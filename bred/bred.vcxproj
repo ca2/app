@@ -354,6 +354,7 @@
     <ClInclude Include="gpu\graphics.h" />
     <ClInclude Include="gpu\guard.h" />
     <ClInclude Include="gpu\context_lock.h" />
+    <ClInclude Include="gpu\hlsl_context.h" />
     <ClInclude Include="gpu\input_layout.h" />
     <ClInclude Include="gpu\memory_buffer.h" />
     <ClInclude Include="gpu\model_buffer.h" />
@@ -382,7 +383,6 @@
     <ClInclude Include="graphics3d\scene.h" />
     <ClInclude Include="graphics3d\scene_object.h" />
     <ClInclude Include="graphics3d\scene_system.h" />
-    <ClInclude Include="graphics3d\shader.h" />
     <ClInclude Include="graphics3d\types.h" />
     <ClInclude Include="graphics3d\utilities.h" />
     <ClInclude Include="graphics3d\_.h" />
@@ -443,6 +443,7 @@
     <ClCompile Include="gpu\graphics.cpp" />
     <ClCompile Include="gpu\guard.cpp" />
     <ClCompile Include="gpu\context_lock.cpp" />
+    <ClCompile Include="gpu\hlsl_context.cpp" />
     <ClCompile Include="gpu\input_layout.cpp" />
     <ClCompile Include="gpu\memory_buffer.cpp" />
     <ClCompile Include="gpu\model_buffer.cpp" />

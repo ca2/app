@@ -3,16 +3,32 @@
 #pragma once
 
 
+#include "acme/prototype/prototype/poolable.h"
+
+
 namespace gpu
 {
 
 
    class CLASS_DECL_BRED memory_buffer :
-      virtual public ::particle
+      virtual public ::poolable < memory_buffer >
    {
    public:
 
 
+      enum enum_type
+      {
+
+         e_type_none,
+         e_type_vertex_buffer,
+         e_type_index_buffer
+
+      };
+
+
+      enum_type m_etype;
+      
+      ::gpu::model_buffer* m_pmodelbuffer;
       ::gpu::context* m_pcontext;
       //VkDeviceMemory m_vkdevicememory;
       //VkBuffer m_vkbuffer;
@@ -24,56 +40,14 @@ namespace gpu
       ~memory_buffer();
 
 
-      virtual void initialize_memory_buffer(::gpu::context* pcontext, memsize size, bool bIndices);
+      virtual void initialize_memory_buffer_with_context(::gpu::context* pcontext, memsize size, ::gpu::memory_buffer::enum_type etype);
+
+      virtual void initialize_memory_buffer_with_model_buffer(::gpu::model_buffer* pmodelbuffer, memsize size, ::gpu::memory_buffer::enum_type etype);
+
+      virtual void on_initialize_memory_buffer();
 
       virtual bool is_initialized() const;
-      //   VkBufferCreateInfo bufferInfo = {
-      //      .sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO,
-      //      .size = sizeof(graphics::RectangleVertex) * 6,
-      //      .usage = VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
-      //      .sharingMode = VK_SHARING_MODE_EXCLUSIVE
-      //   };
-      //   vkCreateBuffer(device, &bufferInfo, NULL, &vertexBuffer);
-
-      //   VkMemoryRequirements memReq;
-      //   vkGetBufferMemoryRequirements(device, vertexBuffer, &memReq);
-
-      //   uint32_t memTypeIndex = 0;
-      //   VkPhysicalDeviceMemoryProperties memProps;
-      //   vkGetPhysicalDeviceMemoryProperties(physicalDevice, &memProps);
-      //   for (uint32_t i = 0; i < memProps.memoryTypeCount; i++) {
-      //      if ((memReq.memoryTypeBits & (1 << i)) &&
-      //         (memProps.memoryTypes[i].propertyFlags & VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT) &&
-      //         (memProps.memoryTypes[i].propertyFlags & VK_MEMORY_PROPERTY_HOST_COHERENT_BIT)) {
-      //         memTypeIndex = i;
-      //         break;
-      //      }
-      //   }
-
-      //   //VkBufferCreateInfo bufferInfo = {
-      //   //    .sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO,
-      //   //    .size = sizeof(quadVertices),
-      //   //    .usage = VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
-      //   //    .sharingMode = VK_SHARING_MODE_EXCLUSIVE
-      //   //};
-      //   //vkCreateBuffer(device, &bufferInfo, NULL, &vertexBuffer);
-
-
-      //   VkMemoryAllocateInfo allocInfo = {
-      //       .sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO,
-      //       .allocationSize = memReq.size,
-      //       .memoryTypeIndex = memTypeIndex
-      //   };
-      //   vkAllocateMemory(device, &allocInfo, NULL, outMemory);
-      //   vkBindBufferMemory(device, vertexBuffer, *outMemory, 0);
-
-      //   //void* data;
-      //   //vkMapMemory(device, *outMemory, 0, bufferInfo.size, 0, &data);
-      //   //memcpy(data, quadVertices, sizeof(quadVertices));
-      //   //vkUnmapMemory(device, *outMemory);
-
-      //   return vertexBuffer;
-      //}
+     
 
       virtual void assign(const void* pData, memsize size);
       virtual void assign(const ::block& block);

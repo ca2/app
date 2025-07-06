@@ -60,7 +60,7 @@ namespace gpu_opengl
    }
 
 
-   void pixmap::bind_texture()
+   void pixmap::bind_texture(::gpu::shader* pgpushader)
    {
 
       glBindTexture(GL_TEXTURE_2D, m_gluTexture);
@@ -69,7 +69,7 @@ namespace gpu_opengl
    }
 
    
-   void pixmap::unbind_texture()
+   void pixmap::unbind_texture(::gpu::shader* pgpushader)
    {
 
       glBindTexture(GL_TEXTURE_2D, 0);

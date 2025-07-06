@@ -192,9 +192,6 @@
     <ClInclude Include="graphics3d\scene_system.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics3d\shader.h">
-      <Filter>Header Files\graphics3d</Filter>
-    </ClInclude>
     <ClInclude Include="graphics3d\types.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
@@ -244,6 +241,9 @@
       <Filter>Header Files\typeface</Filter>
     </ClInclude>
     <ClInclude Include="gpu\bred_approach.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\hlsl_context.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
   </ItemGroup>
@@ -387,6 +387,9 @@
       <Filter>Source Files\typeface</Filter>
     </ClCompile>
     <ClCompile Include="gpu\bred_approach.cpp">
+      <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\hlsl_context.cpp">
       <Filter>Source Files\gpu</Filter>
     </ClCompile>
   </ItemGroup>

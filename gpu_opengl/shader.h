@@ -79,6 +79,9 @@ namespace gpu_opengl
       virtual void program_compile_errors(GLuint program, string & strSummary);
       //::gpu::payload * get_payload(const ::scoped_string & scopedestrUniform) override;
 
+
+      void setup_sampler_and_texture(const ::scoped_string& scopedstrName, int value) override;
+
       void _set_bool(const char* name, bool bSet) const;
       void _set_int(const char* name, int value) const;
       void _set_float(const char* name, float value) const;

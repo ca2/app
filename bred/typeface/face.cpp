@@ -63,8 +63,16 @@ namespace typeface
 
    }
 
-   void face::create_draw_buffers()
+   //void face::create_draw_buffers()
+   //{
+
+
+   //}
+
+
+   ::gpu::model_buffer* face::box_model_buffer()
    {
+
       if (__defer_construct(m_pmodelbufferBox))
       {
          m_pmodelbufferBox->create_vertex_array<::graphics3d::sequence2_uv>(m_pgpurenderer->m_pgpucontext, 6);
@@ -80,8 +88,8 @@ namespace typeface
 
       }
 
+      return m_pmodelbufferBox;
    }
-
 
    void face::create_texture(character& ch, const unsigned char* p)
    {

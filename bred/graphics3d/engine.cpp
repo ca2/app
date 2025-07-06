@@ -3,7 +3,7 @@
 #include "engine.h"
 #include "input.h"
 #include "scene.h"
-#include "shader.h"
+//#include "shader.h"
 #include "types.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"

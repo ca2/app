@@ -50,7 +50,7 @@ namespace graphics3d
 
 	struct CLASS_DECL_BRED TransformComponent
 	{
-	
+
 		glm::vec3 translation{};
 		glm::vec3 scale{ 1.f, 1.f, 1.f };
 		glm::vec3 rotation{};
@@ -72,11 +72,17 @@ namespace graphics3d
 
 	};
 
+} // namespace graphics3d
 
-	BEGIN_GPU_PROPERTIES(sequence3_color)
-		GPU_PROPERTY("position", ::gpu::e_type_seq3)
-		GPU_PROPERTY("color", ::gpu::e_type_seq4)
-	END_GPU_PROPERTIES()
+
+BEGIN_GPU_PROPERTIES(::graphics3d::sequence3_color)
+	GPU_PROPERTY("position", ::gpu::e_type_seq3)
+	GPU_PROPERTY("color", ::gpu::e_type_seq4)
+END_GPU_PROPERTIES()
+
+
+namespace graphics3d
+{
 
 
 	struct sequence2_color
@@ -88,10 +94,17 @@ namespace graphics3d
 	};
 
 
-	BEGIN_GPU_PROPERTIES(sequence2_color)
-		GPU_PROPERTY("position", ::gpu::e_type_seq2)
-		GPU_PROPERTY("color", ::gpu::e_type_seq4)
-	END_GPU_PROPERTIES()
+} // namespace graphics3d
+
+
+BEGIN_GPU_PROPERTIES(::graphics3d::sequence2_color)
+	GPU_PROPERTY("position", ::gpu::e_type_seq2)
+	GPU_PROPERTY("color", ::gpu::e_type_seq4)
+END_GPU_PROPERTIES()
+
+
+namespace graphics3d
+{
 
 
 	struct sequence2_uv
@@ -103,11 +116,18 @@ namespace graphics3d
 	};
 
 
-	BEGIN_GPU_PROPERTIES(sequence2_uv)
-		GPU_PROPERTY("position", ::gpu::e_type_seq2)
-		GPU_PROPERTY("uv", ::gpu::e_type_seq2)
-	END_GPU_PROPERTIES()
+} // namespace graphics3d
 
+
+
+BEGIN_GPU_PROPERTIES(::graphics3d::sequence2_uv)
+	GPU_PROPERTY("position", ::gpu::e_type_seq2)
+	GPU_PROPERTY("uv", ::gpu::e_type_seq2)
+END_GPU_PROPERTIES()
+
+
+namespace graphics3d
+{
 
 	struct Vertex
 	{
@@ -124,16 +144,18 @@ namespace graphics3d
 
 	};
 
-
-	BEGIN_GPU_PROPERTIES(Vertex)
-		GPU_PROPERTY("position", ::gpu::e_type_seq3)
-		GPU_PROPERTY("color", ::gpu::e_type_seq3)
-		GPU_PROPERTY("normal", ::gpu::e_type_seq3)
-		GPU_PROPERTY("uv", ::gpu::e_type_seq2)
-	END_GPU_PROPERTIES()
-
-
 } // namespace graphics3d
+
+
+BEGIN_GPU_PROPERTIES(::graphics3d::Vertex)
+	GPU_PROPERTY("position", ::gpu::e_type_seq3)
+	GPU_PROPERTY("color", ::gpu::e_type_seq3)
+	GPU_PROPERTY("normal", ::gpu::e_type_seq3)
+	GPU_PROPERTY("uv", ::gpu::e_type_seq2)
+END_GPU_PROPERTIES()
+
+
+
 
 
 

@@ -78,7 +78,7 @@ namespace typeface_freetype
             throw ::exception(error_failed, "Failed to load font");
          }
 
-         create_draw_buffers();
+         //create_draw_buffers();
 
       }
 

@@ -3,10 +3,13 @@
 
 ////#include "acme/exception/exception.h"
 #include "acme/constant/gpu.h"
+#include "acme/prototype/collection/int_map.h"
 #include "acme/prototype/geometry2d/size.h"
 #include "acme/prototype/prototype/memory.h"
+#include "acme/prototype/prototype/pool.h"
 #include "aura/graphics/draw3d/matrix.h"
 #include "apex/parallelization/thread.h"
+#include "bred/gpu/memory_buffer.h"
 #include "bred/gpu/shader.h"
 #include "acme/graphics/image/image32.h"
 
@@ -109,7 +112,8 @@ namespace gpu
       ::pointer_array < ::gpu::render >      m_rendera;
 
       ::pointer < ::gpu::model_buffer >      m_pmodelbufferFullscreenQuad;
-
+      // size memory buffer
+      ::int_map < ::pool <::gpu::memory_buffer > > m_mapPoolMemoryBuffer;
       //::image32_callback                     m_callbackImage32CpuBuffer;
 
       //::pointer < ::mutex >                  m_pmutexOffscreen;
@@ -138,8 +142,8 @@ namespace gpu
       virtual void _context_unlock();
 
 
-      virtual bool defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, memsize size, bool bIndex);
-      virtual bool defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, const ::block& block, bool bIndex);
+      //virtual bool defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, memsize size, memory_buffer::enum_type etype);
+      //virtual bool defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, const ::block& block, memory_buffer::enum_type etype);
 
 
       virtual void create_window_context(::gpu::device* pgpudevice, ::windowing::window * pwindow);
@@ -168,6 +172,17 @@ namespace gpu
       virtual ::gpu::enum_output get_eoutput();
 
       virtual ::pointer < ::gpu::input_layout > input_layout(const ::gpu::properties & properties);
+
+      template < typename VERTEX >
+      ::pointer < ::gpu::input_layout > input_layout()
+      {
+
+         return this->input_layout(::gpu_properties < VERTEX>());
+
+      }
+
+
+
 
       virtual ::gpu::cpu_buffer * get_cpu_buffer();
 
@@ -290,6 +305,14 @@ namespace gpu
 
       virtual ::memory rectangle_shader_vert();
       virtual ::memory rectangle_shader_frag();
+
+
+      virtual void white_to_color_sampler_shader_setup(gpu::shader * pshader);
+      virtual ::memory white_to_color_sampler_vert();
+      virtual ::memory white_to_color_sampler_frag();
+
+
+
 
       virtual void initialize_rectangle_shader(::gpu::shader* pshader);
 

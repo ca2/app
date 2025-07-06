@@ -35,7 +35,7 @@ namespace gpu
    }
 
 
-   ::typeface::face* draw2d::get_face(::write_text::font* pfont)
+   ::typeface::face* draw2d::_get_face(::write_text::font* pfont)
    {
 
       int iPixelSize = 0;

@@ -27,7 +27,9 @@ namespace gpu
       ::pointer < memory_buffer > m_pbufferIndex;
       int m_iVertexCount;
       int m_iIndexCount;
-      int m_iSizeIndex;
+      int m_iVertexTypeSize;
+      int m_iIndexTypeSize;
+      
 
 
 
@@ -35,7 +37,9 @@ namespace gpu
       model_buffer();
       ~model_buffer();
 
+      
       virtual void sequence2_uv_create_rectangle(::gpu::context* pcontext, bool bIndexed, bool bYSwap);
+
 
       template < typename VERTEX >
       void create_vertex_array(::gpu::context* pcontext, int iVertexCount)
@@ -45,11 +49,21 @@ namespace gpu
 
          m_iVertexCount = iVertexCount;
 
-         auto size = sizeof(VERTEX) * m_iVertexCount;
+         m_iVertexTypeSize = sizeof(VERTEX);
 
-         pcontext->defer_construct_new(m_pbufferVertex, size, false);
+         auto size = m_iVertexTypeSize * m_iVertexCount;
+
+         __defer_construct(m_pbufferVertex);
+
+         m_pbufferVertex->initialize_memory_buffer_with_model_buffer(
+            this,
+            size, 
+            memory_buffer::e_type_vertex_buffer);
+
+         defer_set_input_layout(pcontext->input_layout(::gpu_properties< VERTEX >()));
 
       }
+
 
       template < typename INDEX >
       void create_index_array(::gpu::context* pcontext, int iIndexCount)
@@ -59,11 +73,16 @@ namespace gpu
 
          m_iIndexCount = iIndexCount;
 
-         m_iSizeIndex = sizeof(INDEX);
+         m_iIndexTypeSize = sizeof(INDEX);
 
-         auto size = m_iSizeIndex * m_iIndexCount;
+         auto size = m_iIndexTypeSize * m_iIndexCount;
 
-         pcontext->defer_construct_new(m_pbufferIndex, size, true);
+         __defer_construct(m_pbufferIndex);
+
+         m_pbufferIndex->initialize_memory_buffer_with_model_buffer(
+            this,
+            size,
+            memory_buffer::e_type_index_buffer);
 
       }
 
@@ -72,25 +91,43 @@ namespace gpu
       void set_vertex_array(const VERTEX *p, int iVertexCount)
       {
 
+         if (sizeof(VERTEX) != m_iVertexTypeSize)
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
+
          m_pbufferVertex->assign(p, sizeof(VERTEX) * iVertexCount);// data = map <VERTEX >();
 
-         //memcpy(data, p, sizeof(VERTEX) * iVertexCount);
-         //
       }
 
       template < typename VERTEX >
       void _set_vertex_array(const VERTEX* p, int iVertexCount)
       {
 
+         if (sizeof(VERTEX) != m_iVertexTypeSize)
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
+
          m_pbufferVertex->_assign(p, sizeof(VERTEX) * iVertexCount);// data = map <VERTEX >();
 
-         //memcpy(data, p, sizeof(VERTEX) * iVertexCount);
-         //
       }
+
 
       template < typename INDEX >
       void set_index_array(const INDEX* p, int iIndexCount)
       {
+
+         if (sizeof(INDEX) != m_iIndexTypeSize)
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
 
          auto data = map_indices <INDEX >();
 

@@ -291,38 +291,38 @@ namespace gpu
    }
 
 
-   bool context::defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, memsize size, bool bIndex)
-   {
+   //bool context::defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, memsize size, memory_buffer::enum_type etype)
+   //{
 
-      if (__defer_construct(pmemorybuffer))
-      {
+   //   if (__defer_construct(pmemorybuffer))
+   //   {
 
-         pmemorybuffer->initialize_memory_buffer(this, size, bIndex);
+   //      pmemorybuffer->initialize_memory_buffer_with_conext(this, size, etype);
 
-         return true;
+   //      return true;
 
-      }
+   //   }
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
-   bool context::defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, const ::block& block, bool bIndex)
-   {
+   //bool context::defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, const ::block& block, memory_buffer::enum_type etype)
+   //{
 
-      if (defer_construct_new(pmemorybuffer, block.size(), bIndex))
-      {
+   //   if (defer_construct_new(pmemorybuffer, block.size(), etype))
+   //   {
 
-         pmemorybuffer->assign(block.data(), block.size());
+   //      pmemorybuffer->assign(block.data(), block.size());
 
-         return true;
+   //      return true;
 
-      }
+   //   }
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
 
@@ -1469,6 +1469,31 @@ namespace gpu
    }
 
 
+
+   ::memory context::white_to_color_sampler_vert()
+   {
+
+      return {};
+
+   }
+
+
+   void context::white_to_color_sampler_shader_setup(gpu::shader* pshader)
+   {
+
+
+   }
+
+
+   ::memory context::white_to_color_sampler_frag()
+   {
+
+      return {};
+
+   }
+
+
+
    void context::initialize_rectangle_shader(::gpu::shader* pshader)
    {
 
@@ -1483,7 +1508,8 @@ namespace gpu
          {},
          {},
          {},
-         this->input_layout(::graphics3d::sequence2_color_properties()));
+         this->input_layout < ::graphics3d::sequence2_color>()
+      );
 
    }
 

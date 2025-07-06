@@ -36,10 +36,12 @@ namespace typeface
 
       virtual void create_character(character& ch, const ::scoped_string& scopedstr);
 
-      void create_draw_buffers();
+      //virtual void create_draw_buffers();
 
-      void create_texture(character& ch, const unsigned char* p);
+      virtual void create_texture(character& ch, const unsigned char* p);
 
+
+      virtual ::gpu::model_buffer* box_model_buffer();
 
    };
 

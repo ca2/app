@@ -136,6 +136,12 @@ namespace gpu
    }
 
 
+   void shader::on_set_constant_buffer(const ::scoped_string& scopedstrName)
+   {
+
+      
+   }
+
    void shader::bind(::gpu::texture* pgputextureTarget)
    {
 
@@ -307,6 +313,14 @@ namespace gpu
    //}
 
 
+   void shader::setup_sampler_and_texture(const ::scoped_string& scopedstrName, int i)
+   {
+      
+      m_mapSamplerAndTexture[scopedstrName].m_i = i;
+
+   }
+
+
    void shader::set_bool(const ::scoped_string& scopedstrName, bool value)
    {
 
@@ -404,9 +418,26 @@ namespace gpu
    void shader::set_vec4(const ::scoped_string& scopedstrName, const glm::vec4& a)
    {
 
-      ::string strName(scopedstrName);
+      auto p = m_mapConstantBuffer.plookup(scopedstrName);
 
-      m_propertiesPush.seq4(strName) = a;
+      if (p)
+      {
+
+         p->m_element2.m_etype = ::gpu::e_type_seq4;
+         p->m_element2.m_memory = ::as_memory_block(a);
+
+         on_set_constant_buffer(scopedstrName);
+
+      }
+      else
+      {
+
+         ::string strName(scopedstrName);
+
+         m_propertiesPush.seq4(strName) = a;
+
+      }
+
 
    }
 
@@ -434,9 +465,25 @@ namespace gpu
    void shader::set_mat4(const ::scoped_string& scopedstrName, const ::glm::mat4& a)
    {
 
-      ::string strName(scopedstrName);
+      auto p = m_mapConstantBuffer.plookup(scopedstrName);
 
-      m_propertiesPush.mat4(strName.c_str()) = a;
+      if (p)
+      {
+
+         p->m_element2.m_etype = ::gpu::e_type_mat4;
+         p->m_element2.m_memory = ::as_memory_block(a);
+
+         on_set_constant_buffer(scopedstrName);
+
+      }
+      else
+      {
+
+         ::string strName(scopedstrName);
+
+         m_propertiesPush.mat4(strName) = a;
+
+      }
 
    }
 

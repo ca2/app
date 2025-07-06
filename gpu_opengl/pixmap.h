@@ -35,8 +35,8 @@ namespace gpu_opengl
       //virtual void blend(::gpu::texture* ptexture);
 
 
-      void bind_texture() override;
-      void unbind_texture() override;
+      void bind_texture(::gpu::shader* pgpushader) override;
+      void unbind_texture(::gpu::shader* pgpushader) override;
 
 
    };

@@ -5395,10 +5395,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 
       ::pointer<font>pfont = m_pfont;
 
-      ::cast < draw2d_gpu::draw2d>pdraw2d = draw2d();
-
-
-      ::pointer <face> pface = pdraw2d->get_face(pfont);
+      ::pointer <face> pface = get_face(pfont);
 
       //glBindVertexArray(pfont->m_VAO);
 
@@ -5861,9 +5858,9 @@ color = vec4(c.r,c.g, c.b, c.a);
       set(m_pfont);
       
       ::pointer<font>pfont = m_pfont;
-      ::cast < draw2d_gpu::draw2d>pdraw2d = draw2d();
       
-      auto pgpuface = pdraw2d->get_face(pfont);
+
+      auto pgpuface = get_face(pfont);
       ::cast < draw2d_gpu::face>pface = pgpuface;
 
       //glActiveTexture(GL_TEXTURE0);

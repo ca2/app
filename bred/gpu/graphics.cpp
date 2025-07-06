@@ -815,7 +815,7 @@ auto iContextHeight = pcontext->m_rectangle.height()
    }
 
    
-   double_size graphics::get_text_extent(const ::scoped_string& lpszString)
+   double_size graphics::get_text_extent(const ::scoped_string& scopedstr)
    {
 
       auto pcontext = gpu_context();
@@ -830,22 +830,13 @@ auto iContextHeight = pcontext->m_rectangle.height()
 
       ::pointer<::write_text::font>pfont = m_pfont;
 
-      ::cast < gpu::draw2d>pdraw2d = draw2d();
-
-      ::pointer <::typeface::face> pface = pdraw2d->get_face(pfont);
-
-      if (!pface->m_pgpurenderer)
-      {
-
-         pface->initialize_gpu_buffer(pcontext->m_pgpurenderer);
-
-      }
+      ::pointer <::typeface::face> pface = get_face(pfont);
 
       //glBindVertexArray(pfont->m_VAO);
 
    // iterate through all characters
       ::string strChar;
-      ::string str(lpszString);
+      ::string str(scopedstr);
       auto psz = str.c_str();
 
       float x = 0.0f;
@@ -863,8 +854,8 @@ auto iContextHeight = pcontext->m_rectangle.height()
          //float xpos = x + ch.Bearing.x * scale;
          //float ypos = y - (ch.Size.y - ch.Bearing.y) * scale;
 
-         float w = ch.Size.x;
-         float h = ch.Size.y;
+         float w = (float) ch.Size.x;
+         float h = (float)ch.Size.y;
          y = maximum(h, y);
          //// update VBO for each character
          // render glyph texture over quad
@@ -945,6 +936,28 @@ auto iContextHeight = pcontext->m_rectangle.height()
    }
 
 
+   ::typeface::face* graphics::get_face(::write_text::font* pfont)
+   {
+
+
+      ::cast < gpu::draw2d>pdraw2d = draw2d();
+
+      auto pface = pdraw2d->_get_face(pfont);
+
+      if (!pface->m_pgpurenderer)
+      {
+
+         auto prenderer = gpu_context()->m_pgpurenderer;
+
+         pface->initialize_gpu_buffer(prenderer);
+
+      }
+
+      return pface;
+
+   }
+
+
    void graphics::text_out(double x, double yParam, const ::scoped_string& scopedstr)
    {
 
@@ -964,37 +977,8 @@ auto iContextHeight = pcontext->m_rectangle.height()
       if (!m_pgpushaderTextOut)
       {
 
-         auto pvertexshader = R"vertexshader(#version 330 core
-layout(location = 0) in vec2 pos;
-layout(location = 1) in vec2 tex;
-out vec2 TexCoords;
+      
 
-uniform mat4 projection;
-
-void main()
-{
-   gl_Position = projection * vec4(pos, 0.0, 1.0);
-   TexCoords = vec2(tex.x, 1.0 - tex.y);
-}
-)vertexshader";
-
-
-         auto pfragmentshader = R"fragmentshader(#version 330 core
-in vec2 TexCoords;
-out vec4 color;
-
-uniform sampler2D text;
-uniform vec4 textColor;
-
-void main()
-{    
-    vec4 sampled = texture(text, TexCoords).rgba;
-vec4 c = vec4(textColor) * sampled;
-    //color = vec4(sqrt(c.r),sqrt(c.g), sqrt(c.b), sqrt(c.a));
-color = vec4(c.r,c.g, c.b, c.a);
-//color = vec4(0.0, 1.0, 0.0, 1.0); // Bright debug color
-}
-)fragmentshader";
 
          m_pgpushaderTextOut = __øcreate< ::gpu::shader >();
 
@@ -1002,15 +986,17 @@ color = vec4(c.r,c.g, c.b, c.a);
 
          m_pgpushaderTextOut->m_bEnableBlend = true;
          m_pgpushaderTextOut->m_bDisableDepthTest = true;
+         
+         pcontext->white_to_color_sampler_shader_setup(m_pgpushaderTextOut);
 
          m_pgpushaderTextOut->initialize_shader_with_block(
             pcontext->m_pgpurenderer,
-            pvertexshader,
-            pfragmentshader,
+            pcontext->white_to_color_sampler_vert(),
+            pcontext->white_to_color_sampler_frag(),
             {},
             {},
             {},
-            pcontext->input_layout(::graphics3d::sequence2_uv_properties())
+            pcontext->input_layout<::graphics3d::sequence2_uv>()
          );
 
       }
@@ -1019,9 +1005,10 @@ color = vec4(c.r,c.g, c.b, c.a);
       auto color = m_pbrush->m_color;
       //shader.use();
       ::cast<::gpu::shader>pshader = m_pgpushaderTextOut;
-      pshader->set_vec4("textColor", { __expand_float_pre_rgba(color) });
+      ::glm::vec4 vec4TextColor{ __expand_float_pre_rgba(color) };
+      pshader->set_vec4("textColor", vec4TextColor);
       // glUniform3f(glGetUniformLocation(shader.ID, "textColor"), color.x, color.y, color.z);
-      pshader->set_int("text", 0);
+      pshader->setup_sampler_and_texture("text", 0);
       //auto pcontext = gpu_context();
 
       glm::mat4 projection = glm::ortho(
@@ -1034,9 +1021,8 @@ color = vec4(c.r,c.g, c.b, c.a);
       set(m_pfont);
 
       ::pointer<::write_text::font>pfont = m_pfont;
-      ::cast < gpu::draw2d>pdraw2d = draw2d();
 
-      auto pgpuface = pdraw2d->get_face(pfont);
+      auto pgpuface = get_face(pfont);
       ::cast < ::typeface::face>pface = pgpuface;
 
       pcontext->set_topic_texture(0);
@@ -1051,7 +1037,8 @@ color = vec4(c.r,c.g, c.b, c.a);
       //glBindVertexArray(pface->m_FaceVAO);
       //GLCheckError("");
       auto pcommandbuffer = pcontext->m_pgpurenderer->getCurrentCommandBuffer2();
-      pface->m_pmodelbufferBox->bind(pcommandbuffer);
+      
+      pface->box_model_buffer()->bind(pcommandbuffer);
 
       // iterate through all characters
       ::string strChar;
@@ -1116,7 +1103,6 @@ color = vec4(c.r,c.g, c.b, c.a);
          if (ch.m_ppixmap)
          {
 
-
             pmodelbuffer = m_poolmodelbufferCharacter.get();
 
             if (pmodelbuffer->is_new())
@@ -1130,7 +1116,7 @@ color = vec4(c.r,c.g, c.b, c.a);
 
             //pmodelbuffer->set_vertex_array(vertices, 6);
             ppixmap = ch.m_ppixmap;
-            ppixmap->bind_texture();
+            ppixmap->bind_texture(pshader);
             //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
             //GLCheckError("");
             //// update content of VBO memory
@@ -1151,7 +1137,7 @@ color = vec4(c.r,c.g, c.b, c.a);
 
             pmodelbuffer->bind(pcommandbuffer);
 
-            pmodelbuffer->m_pbufferVertex->bind();
+            //pmodelbuffer->m_pbufferVertex->bind();
 
             pmodelbuffer->_set_vertex_array(vertices, 6);
 
@@ -1177,7 +1163,7 @@ color = vec4(c.r,c.g, c.b, c.a);
       if (ppixmap)
       {
 
-         ppixmap->unbind_texture();
+         ppixmap->unbind_texture(pshader);
 
       }
 

@@ -3992,13 +3992,9 @@ namespace draw2d
    double_size graphics::get_text_extent(const scoped_string & scopedstr)
    {
 
-      throw interface_only();
+      auto size = get_text_extent(scopedstr, scopedstr.size());
 
-      //::double_size size;
-
-      //get_text_extent(size, scopedstr);
-
-      return {};
+      return size;
 
    }
 
@@ -4006,13 +4002,9 @@ namespace draw2d
    double_size graphics::get_text_extent(const scoped_string & scopedstr, ::collection::index iIndex)
    {
 
-      throw interface_only();
+      auto size = get_text_extent(scopedstr(0, iIndex));
 
-      //::double_size size;
-
-      //get_text_extent(size, scopedstr);
-
-      return {};
+      return size;
 
    }
 

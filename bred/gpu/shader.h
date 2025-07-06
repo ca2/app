@@ -50,7 +50,22 @@ namespace gpu
       int m_iVertexLevel = -1;
 
       //unsigned int               m_uId;
+      struct constant_buffer
+      {
+         ::gpu::enum_type m_etype;
+         ::memory m_memory;
+         int m_i1VertexShader = -1;
+         int m_i2VertexShader = -1;
+         int m_i1FragmentShader = -1;
+         int m_i2FragmentShader = -1;
+      };
+      ::string_map<constant_buffer> m_mapConstantBuffer;
+      struct sampler_and_texture
+      {
 
+         int m_i;
+      };
+      ::string_map<sampler_and_texture> m_mapSamplerAndTexture;
       bool                                m_bClearColor;
       ::color::color                      m_colorClear;
 
@@ -148,6 +163,9 @@ namespace gpu
       virtual void draw();
 
       //virtual void on_initialize_shader();
+      
+      
+      virtual void on_set_constant_buffer(const ::scoped_string& scopedstrName);
 
 
       virtual void bind(::gpu::texture* pgputextureTarget);
@@ -159,6 +177,8 @@ namespace gpu
 
       virtual void push_properties();
 
+
+      virtual void setup_sampler_and_texture(const ::scoped_string& scopedstrName, int value);
 
       virtual void set_bool(const ::scoped_string& scopedstrName, bool value);
 

@@ -584,6 +584,15 @@ namespace gpu_opengl
 
    }
 
+
+   void shader::setup_sampler_and_texture(const ::scoped_string& scopedstrName, int i)
+   {
+
+      set_int(scopedstrName, i);
+
+   }
+
+
    void shader::_set_bool(const char* name, bool b) const
    {
 

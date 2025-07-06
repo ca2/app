@@ -7,12 +7,12 @@ namespace gpu
 {
 
 
-
-
    frame::frame()
    {
 
    }
+
+
    frame::~frame()
    {
 

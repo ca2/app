@@ -67,7 +67,8 @@ namespace gpu_opengl
       ::memory rectangle_shader_vert() override;
       ::memory rectangle_shader_frag() override;
 
-      
+      ::memory white_to_color_sampler_vert() override;
+      ::memory white_to_color_sampler_frag() override;
 
       //virtual void create_offscreen_buffer(const ::int_size& size);
       //virtual void _create_offscreen_buffer(const ::int_size& size);

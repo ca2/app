@@ -41,12 +41,16 @@ namespace gpu_opengl
    }
 
 
-   void memory_buffer::initialize_memory_buffer(::gpu::context* pgpucontext, memsize size, bool bIndices)
+   void memory_buffer::on_initialize_memory_buffer()
    {
 
-      ::gpu::memory_buffer::initialize_memory_buffer(pgpucontext, size, bIndices);
+      if (m_etype == ::gpu::memory_buffer::e_type_vertex_buffer)
+      {
 
-      if (bIndices)
+         m_iType = GL_ARRAY_BUFFER;
+
+      }
+      else if (m_etype == ::gpu::memory_buffer::e_type_index_buffer)
       {
 
          m_iType = GL_ELEMENT_ARRAY_BUFFER;
@@ -55,7 +59,7 @@ namespace gpu_opengl
       else
       {
 
-         m_iType = GL_ARRAY_BUFFER;
+         throw not_implemented();
 
       }
 

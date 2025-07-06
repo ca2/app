@@ -267,7 +267,7 @@ void main() {
             {},
             {},
             {},
-            m_pgpucontext->input_layout(::graphics3d::sequence2_uv_properties())
+            m_pgpucontext->input_layout(::gpu_properties <::graphics3d::sequence2_uv>())
          );
 
 

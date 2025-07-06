@@ -85,6 +85,74 @@ namespace gpu
 
    }
 
+   
+   memsize memory_buffer::total_size_in_bytes() const
+   {
+
+      if (m_etype == e_type_vertex_buffer)
+      {
+
+         auto size = type_size() * m_pmodelbuffer->m_iVertexCount;
+
+         return size;
+
+      }
+      else if (m_etype == e_type_index_buffer)
+      {
+
+         auto size = type_size() * m_pmodelbuffer->m_iIndexCount;
+
+         return size;
+
+      }
+      else if (m_etype == e_type_constant_buffer)
+      {
+
+         return m_size;
+
+      }
+      else
+      {
+
+         throw ::not_implemented();
+
+      }
+
+   }
+
+
+   memsize memory_buffer::type_size() const
+   {
+
+      if (m_etype == e_type_vertex_buffer)
+      {
+
+         return m_pmodelbuffer->m_iVertexTypeSize;
+
+      }
+      else if (m_etype == e_type_index_buffer)
+      {
+
+         return m_pmodelbuffer->m_iIndexTypeSize;
+
+      }
+      else if (m_etype == e_type_constant_buffer)
+      {
+
+         throw error_not_found;
+
+      }
+      else
+      {
+
+         throw error_not_found;
+
+      }
+
+   }
+
+
+
 
    void memory_buffer::assign(const void* pData, memsize size)
    {

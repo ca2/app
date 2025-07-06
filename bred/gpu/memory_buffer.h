@@ -21,7 +21,8 @@ namespace gpu
 
          e_type_none,
          e_type_vertex_buffer,
-         e_type_index_buffer
+         e_type_index_buffer,
+         e_type_constant_buffer,
 
       };
 
@@ -47,7 +48,11 @@ namespace gpu
       virtual void on_initialize_memory_buffer();
 
       virtual bool is_initialized() const;
-     
+
+
+      virtual memsize total_size_in_bytes() const;
+      virtual memsize type_size() const;
+
 
       virtual void assign(const void* pData, memsize size);
       virtual void assign(const ::block& block);

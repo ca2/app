@@ -433,7 +433,7 @@ auto iContextHeight = pcontext->m_rectangle.height()
             //   { },
             //   m_psetdescriptorlayoutRectangle,
             //   {},
-            //   pcontext->input_layout(::graphics3d::sequence2_color_properties()));
+            //   pcontext->input_layout<::graphics3d::sequence2_color>());
 
          }
 
@@ -666,7 +666,7 @@ auto iContextHeight = pcontext->m_rectangle.height()
        //         {},
        //         {},
        //         {},
-       //         pcontext->input_layout(::graphics3d::sequence2_color_properties()));
+       //         pcontext->input_layout<::graphics3d::sequence2_color>());
 
        //   }
        //   pshader = m_pshaderSourceRectangle;
@@ -710,7 +710,7 @@ auto iContextHeight = pcontext->m_rectangle.height()
        //         { },
        //         {},
        //         {},
-       //         pcontext->input_layout(::graphics3d::sequence2_color_properties()));
+       //         pcontext->input_layout<::graphics3d::sequence2_color>());
 
        //   }
 

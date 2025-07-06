@@ -28,7 +28,7 @@ namespace gpu
 
       m_pgpucontext = pgpucontext;
 
-      set(properties.m_pproperties);
+      set_properties(properties.m_pproperties);
 
       on_initialize_input_layout();
 

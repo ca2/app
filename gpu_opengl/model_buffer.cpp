@@ -770,13 +770,13 @@ namespace gpu_opengl
 
             GLenum etype;
 
-            if (m_iSizeIndex == 1)
+            if (m_iIndexTypeSize == 1)
             {
 
                etype = GL_UNSIGNED_BYTE;
 
             }
-            else if(m_iSizeIndex == 2)
+            else if(m_iIndexTypeSize == 2)
             {
 
                etype = GL_UNSIGNED_SHORT;

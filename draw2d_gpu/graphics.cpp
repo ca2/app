@@ -1198,7 +1198,8 @@ void main() {
                {},
                {},
                {},
-               pcontext->input_layout(::graphics3d::sequence2_color_properties()));
+               pcontext->input_layout<::graphics3d::sequence2_color>()
+            );
 
          }
          pshader = m_pshaderSourceRectangle;
@@ -1242,7 +1243,7 @@ void main() {
                { },
                {},
                {},
-               pcontext->input_layout(::graphics3d::sequence2_color_properties()));
+               pcontext->input_layout<::graphics3d::sequence2_color>());
 
          }
 

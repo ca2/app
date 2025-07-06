@@ -5,6 +5,16 @@
 #include "bred/gpu/_.h"
 #include <glm/glm.hpp>
 
+template < typename TYPE >
+inline ::gpu::property* gpu_properties()
+{
+
+	throw ::error_interface_only;
+
+	return nullptr;
+
+}
+
 
 namespace gpu
 {
@@ -372,10 +382,10 @@ namespace gpu
 		}
 		properties(const ::gpu::property* pproperties)
 		{
-			set(pproperties);
+			set_properties(pproperties);
 		}
 
-		void set(const ::gpu::property* pproperties)
+		void set_properties(const ::gpu::property* pproperties)
 		{
 			properties_interface::set(pproperties);
 			m_memory.set_size(m_pproperties->get_size());
@@ -385,6 +395,14 @@ namespace gpu
 		}
 
 		
+		template < typename TYPE >
+		void set()
+		{
+
+			this->set_properties(::gpu_properties<TYPE>());
+
+		}
+
 
 	};
 
@@ -439,15 +457,6 @@ namespace gpu
 } // namespace gpu
 
 
-template < typename TYPE >
-inline ::gpu::property* gpu_properties()
-{
-
-	throw ::error_interface_only;
-
-	return nullptr;
-
-}
 
 
 #define BEGIN_GPU_PROPERTIES(type) \

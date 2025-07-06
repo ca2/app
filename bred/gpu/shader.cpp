@@ -65,7 +65,7 @@ namespace gpu
       m_pinputlayout = pinputlayout;
       if (ppropertiesPush)
       {
-         m_propertiesPush.set(ppropertiesPush);
+         m_propertiesPush.set_properties(ppropertiesPush);
       }
       //if (ppropertiesInputLayout)
       //{
@@ -98,7 +98,7 @@ namespace gpu
       m_pinputlayout = pinputlayout;
       if (ppropertiesPush)
       {
-         m_propertiesPush.set(ppropertiesPush);
+         m_propertiesPush.set_properties(ppropertiesPush);
       }
       //if (ppropertiesInputLayout)
       //{

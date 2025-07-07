@@ -28,6 +28,8 @@ namespace apex
    public:
 
 
+      ::string m_strPreferredExperience;
+
       //       //__creatable(application);
       //
       //       void * m_pnativeapp;

@@ -5224,16 +5224,16 @@ namespace apex
 
       string strExperience;
 
-      strExperience = payload("experience");
+      strExperience = m_strPreferredExperience;
 
-      if (strExperience.has_character())
+      if (strExperience.is_empty())
       {
 
-         return strExperience;
+         return "core";
 
       }
 
-      return "core";
+      return strExperience;
 
    }
 

@@ -398,6 +398,15 @@ namespace experience
 
       auto pexperience = puser->experience();
 
+      ::string strExperienceRequest(strExperience);
+
+      if (strExperienceRequest.is_empty())
+      {
+
+         strExperienceRequest = m_papplication->preferred_experience();
+
+      }
+
       auto pframe = pexperience->frame_experience(this, strExperience, strFrame);
 
       pframe->m_pframewindow = this;

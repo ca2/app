@@ -1,9 +1,6 @@
 #pragma once
 
 
-
-
-
 class CLASS_DECL_APEX machine_event :
    virtual public ::particle
 {

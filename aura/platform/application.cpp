@@ -3930,20 +3930,10 @@ retry_license:
    string application::preferred_experience()
    {
 
-      string strExperience;
-
-      strExperience = payload("experience");
-
-      if (strExperience.has_character())
-      {
-
-         return strExperience;
-
-      }
-
-      return "core";
+      return ::aqua::application::preferred_experience();
 
    }
+
 
    //::user::document *application::place_hold(::user::interaction * pinteraction)
    //{

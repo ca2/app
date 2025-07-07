@@ -102,7 +102,7 @@ void simple_main_frame::on_message_create(::message::message * pmessage)
 //      else
 //      {
 //
-//#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
+//#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(__ANDROID__)
 //
 //         m_bWindowFrame = false;
 //

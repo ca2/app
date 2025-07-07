@@ -11,7 +11,7 @@
 
 #define CALLSTACK_DEFAULT_SKIP 3
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
 #define CALLSTACK_DEFAULT_SKIP 4
 

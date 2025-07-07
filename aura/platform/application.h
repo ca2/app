@@ -152,11 +152,22 @@ namespace aura
 //       //int                                             m_iGcomBackgroundUpdateMillis;
 //
 //
+
+      ::pointer<::gpu::approach>                         m_pgpu;
+      ::string                                           m_strGraphics3DImplementation;
+      ::string                                           m_strDraw2dImplementation;
+
+      ::string                                           m_strTypefaceImplementation;
+
+
       application();
       ~application() override;
       
 
       virtual void initialize(::particle * pparticle) override;
+
+
+      //virtual string application_file_setting(const ::scoped_string& scopedstrFileName);
 
 
       void on_set_platform() override;
@@ -1056,7 +1067,9 @@ void initialize_context() override;
 //
 //#endif
 
-      virtual string draw2d_get_default_implementation_name() override;
+      string draw2d_get_default_implementation_name() override;
+
+      string typeface_get_default_implementation_name() override;
 
 
       void on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine) override;
@@ -1075,8 +1088,29 @@ void initialize_context() override;
       void on_prompt_write_file(::user::controller * pusercontroller) override;
       
       //::pointer < ::innate_ui::icon > innate_ui_icon(const ::int_size & size) override;
+      //virtual ::gpu::approach* get_gpu();
+      //virtual ::gpu::approach* gpu();
+      //virtual void create_gpu();
 
-      
+      //virtual ::graphics3d::camera get_default_camera();
+
+
+      virtual ::file::path assets_folder();
+
+      virtual ::file::path shaders_folder();
+
+
+      //virtual void initialize_cube(::user::graphics3d* pimpact);
+
+      //virtual void run_application();
+
+      //virtual void on_layout_cube(int cx, int cy);
+
+      //::string draw2d_get_default_implementation_name() override;
+
+      virtual ::string graphics3d_get_implementation_name();
+
+
    };
 
 

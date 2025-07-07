@@ -1,0 +1,5 @@
+LIBRARY "typeface_freetype"
+
+EXPORTS
+typeface_freetype_factory
+

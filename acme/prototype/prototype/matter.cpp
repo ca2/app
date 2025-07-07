@@ -858,7 +858,9 @@ void matter::__send_procedure(const ::function < void(const ::procedure &) > & f
 
    functionPost(procedurePost);
 
-   auto estatus = psignalization->m_happeningReady.wait(procedure.timeout());
+   //auto estatus = psignalization->m_happeningReady.wait(procedure.timeout());
+
+   auto estatus = psignalization->m_happeningReady.wait(6.3_minutes);
 
    if(estatus == error_wait_timeout)
    {

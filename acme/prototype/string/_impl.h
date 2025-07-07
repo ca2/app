@@ -472,8 +472,9 @@ inline bool const_string_range < ITERATOR_TYPE > ::operator==(const ::range < co
 
 
 template < typename ITERATOR_TYPE >
-template < other_primitive_character < typename const_string_range < ITERATOR_TYPE >::CHARACTER > OTHER_CHARACTER >
+template < typename OTHER_CHARACTER >
 inline bool const_string_range < ITERATOR_TYPE > ::operator==(const ::range < const OTHER_CHARACTER* >& range) const
+requires other_primitive_character < OTHER_CHARACTER, CHARACTER >
 {
    return this->equals(string_base(range));
 

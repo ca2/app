@@ -104,7 +104,7 @@ namespace audio
 ////#include "aura/os/ansios/ansios.h"
 ////#include "aura/os/macos/macos.h"
 ////
-//#elif defined(ANDROID)
+//#elif defined(__ANDROID__)
 ////
 ////#include "aura/os/ansios/ansios.h"
 ////#include "aura/os/android/android.h"

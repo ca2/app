@@ -107,6 +107,7 @@ namespace micro
       virtual void draw_foreground(::nano::graphics::device * pnanodevice);
 
       virtual void draw_children(::nano::graphics::device * pnanodevice);
+      virtual void draw_child(::nano::graphics::device* pnanodevice, ::micro::elemental * pelemental);
 
 
 
@@ -137,8 +138,6 @@ namespace micro
       //void on_right_click(const ::payload & payload, ::user::mouse * pmouse) override;
 
                //::micro::child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
-      virtual ::micro::elemental * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder);
-      virtual ::micro::elemental * on_hit_test(const ::int_point & point, ::user::e_zorder ezorder);
       virtual void add_child(::micro::elemental * pchild);
       virtual ::micro::elemental * get_child_by_id(const ::atom & atom);
 
@@ -339,10 +338,10 @@ namespace micro
 
       void display_temporary_file_with_text(const ::string & str) override;
 
-      virtual void back_on_mouse_move(::user::mouse * pmouse);
+      void back_on_mouse_move(::user::mouse * pmouse) override;
+      void fore_on_mouse_move(::user::mouse * pmouse) override;
       virtual void back_on_left_button_down(::user::mouse * pmouse);
       virtual void back_on_left_button_up(::user::mouse * pmouse);
-      virtual void fore_on_mouse_move(::user::mouse * pmouse);
       virtual void fore_on_left_button_down(::user::mouse * pmouse);
       virtual void fore_on_left_button_up(::user::mouse * pmouse);
       virtual void on_click(const ::payload & payload, ::user::mouse * pmouse);

@@ -1,5 +1,6 @@
 // Created by camilo on 2022-05-08 20:20 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "call.h"
 #include "type.h"
 #include "factory.h"
 #include "acme/exception/exit.h"
@@ -584,6 +585,14 @@ networking::networking* particle::networking() const
 }
 
 
+::factory::factory * particle::component_factory(const ::string& strComponent) const
+{
+
+   return platform()->component_factory(strComponent);
+
+}
+
+
 ::factory::factory_pointer& particle::factory(const ::string& strComponent, const ::string& strImplementation) const
 {
 
@@ -658,6 +667,22 @@ void particle::handle(::topic * ptopic, ::handler_context * phandlercontext)
 
 
 }
+
+
+//void particle::send_call(const::call call)
+//{
+//
+//   handle(&call);
+//
+//}
+
+
+void particle::handle(const ::call & call)
+{
+
+
+}
+
 
 
 //void particle::aggregate(::sequence * psequence)

@@ -5,7 +5,7 @@
 //#include "acme/prototype/geometry2d/_geometry2d.h"
 #include "acme/prototype/geometry2d/rectangle.h"
 #include "apex/platform/app_consumer.h"
-#include "aura/graphics/gpu/render.h"
+#include "bred/gpu/render.h"
 
 
 namespace app_shader
@@ -22,8 +22,8 @@ namespace app_shader
       bool                                m_bUpdateShader;
       string                              m_strProjection;
       string                              m_strFragment;
-      //::pointer<::gpu::context>           m_pgpucontext;
-      //::pointer<::gpu::program>           m_pgpuprogram;
+      ::pointer<::gpu::context>           m_pgpucontext;
+      ::pointer<::gpu::shader>            m_pgpushader;
       ::image::image_pointer                     m_pimageFromGpu;
       //int_rectangle                       m_rectangle;
       string                              m_strFont1;

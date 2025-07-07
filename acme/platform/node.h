@@ -15,6 +15,7 @@
 #include "node_aqua.h"
 #include "node_aura.h"
 
+
 namespace platform
 {
 
@@ -141,7 +142,7 @@ namespace platform
 
       virtual ::process_identifier_array module_list_file_processes_identifiers(const ::scoped_string & scopedstr) override;
 
-
+      virtual void defer_add_to_system_recent_file_list(const ::file::path& pathRecentFile);
       virtual ::enum_id key_command(::user::enum_key ekey, ::user::key_state* pkeystate) override;
       //idaPid = pnode->(path, false);
 
@@ -516,7 +517,7 @@ namespace platform
 
 
       virtual void defer_update_call_stack() override;
-//#if defined(ANDROID)
+//#if defined(__ANDROID__)
 //      virtual string unwind_call_stack(const ::scoped_string & scopedstrFormat = call_stack_default_format(), int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
 //#else
       virtual int get_call_stack_default_frame_count() override;
@@ -577,7 +578,7 @@ namespace platform
 //#endif
 
 
-//#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
+//#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__)
 //
 //
 //      //virtual int get_current_processor_index();
@@ -754,7 +755,11 @@ namespace platform
    ::payload connection_settings_get_auto_detect() override;
    ::payload connection_settings_get_auto_config_url() override;
 
-   void open_url_link_at_system_browser(const string & strUrl, const string & strProfile = {}) override;
+      void open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
+                                         const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile = {}, const ::scoped_string & scopedstrTarget = {}) override;
+
+   void open_internet_link(const ::scoped_string & scopedstrUrl, const ::scoped_string &
+                           scopedstrProfile = {}, const ::scoped_string & scopedstrTarget = {}) override;
 
    void local_machine_set_run(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet) override;
    void local_machine_set_run_once(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet) override;
@@ -767,8 +772,8 @@ namespace platform
    void file_extension_get_open_with_list_keys(string_array & straKey, const ::string & strExtension) override;
    void file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & strExtension) override;
 
-   void file_association_set_default_icon(const ::string & strExtension, const ::string & strExtensionNamingClass, const ::string & strIconPath) override;
-   void file_association_set_shell_open_command(const ::string & strExtension, const ::string & strExtensionNamingClass, const ::string & strCommand, const ::string & strParam) override;
+   void file_association_set_default_icon(const ::string & strExtension, const ::string & strExtensionNamingClass, const ::file::path & pathIcon) override;
+   void file_association_set_shell_open_command(const ::string & strExtension, const ::string & strExtensionNamingClass, const ::file::path & pathExecutable, const ::string & strParam) override;
    void file_association_get_shell_open_command(const ::string & strExtension, string & strExtensionNamingClass, string & strCommand, string & strParam) override;
 
    void native_full_web_browser(const ::string & str) override;

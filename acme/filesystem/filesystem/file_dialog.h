@@ -6,16 +6,35 @@ namespace file
 {
 
 
-   struct file_dialog_filter
+   class CLASS_DECL_ACME file_dialog_filter_item
    {
+
+   public:
 
       ::string       m_strName;
       ::string       m_strPatternList;
 
+
+      ::string get_main_extension() const;
+      ::string_array get_preserve_extensions() const;
+
+   };
+
+   class CLASS_DECL_ACME file_dialog_filter :
+      public ::array < file_dialog_filter_item >
+   {
+
+   public:
+
+      using ::array < file_dialog_filter_item >::array;
+
+      ::collection::index find_first_with_extension(const ::scoped_string & scopedstrExtension);
+      ::string_array get_all_related_extensions() const;
+
    };
 
 
-   CLASS_DECL_ACME string_array get_pattern_list(const ::array < file_dialog_filter > & filedialogfiltera);
+   CLASS_DECL_ACME string_array get_pattern_list(const file_dialog_filter & filedialogfiltera);
 
 
    class CLASS_DECL_ACME file_dialog :
@@ -27,12 +46,13 @@ namespace file
       //void *                                           m_poswindow;
       void *                                             m_posdata;
       ::pointer < ::user::element>                       m_puserelement;
-      ::array < file_dialog_filter >                     m_filedialogfiltera;
+      file_dialog_filter                                 m_filedialogfilter;
       ::function < void(::pointer<file_dialog>) >        m_function;
       ::file::path                                       m_pathStartFolder;
       bool                                               m_bSave;
       bool                                               m_bMultiple;
       ::file::path_array                                 m_patha;
+      ::collection::index                                m_iFilter;
 
       
       file_dialog();
@@ -47,7 +67,7 @@ namespace file
       
       void pick_single_file(
          ::user::element * puserelement,
-         const ::array < file_dialog_filter >& filedialogfiltera,
+         const file_dialog_filter& filedialogfiltera,
          const ::function < void(::pointer<file_dialog>) >& function,
          bool save,
          const ::file::path & pathStartFolder = {});
@@ -55,7 +75,7 @@ namespace file
 
       void pick_multiple_file(
                               ::user::element * puserelement,
-         const ::array < file_dialog_filter > & filedialogfiltera,
+         const file_dialog_filter & filedialogfiltera,
                               const ::function < void(::pointer<file_dialog>) >& function,
                               const ::file::path & pathStartFolder = {});
      
@@ -79,7 +99,47 @@ namespace file
    //   {
    //      initialize(pparticle);
    //   }
+
+      ::file::path _get_file_path() const;
+
+      ::file::path get_file_path() const;
+
+      ::file::path process_file_path(const ::file::path & path) const;
+
+      const ::file::file_dialog_filter_item * get_selected_filter() const;
+
+      ::string get_selected_filter_main_extension() const;
+
+      void do_callback();
+
    };
+
+
+   inline void path::defer_set_extension(const ::file::file_dialog* pdialog)
+   {
+
+      if (::is_null(pdialog))
+      {
+
+         return;
+
+      }
+
+      auto pfilteritem = pdialog->get_selected_filter();
+
+      if (::is_null(pfilteritem))
+      {
+
+         return;
+
+      }
+
+      return defer_set_extension(
+         pfilteritem->get_preserve_extensions(),
+         pdialog->m_filedialogfilter.get_all_related_extensions());
+
+   }
+
 
 
 } // namespace file

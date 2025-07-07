@@ -3,7 +3,7 @@
 
 
 class CLASS_DECL_ACME windows_path :
-   protected ::wstring
+   public ::wstring
 {
 public:
 

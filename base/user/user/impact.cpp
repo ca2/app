@@ -1361,14 +1361,14 @@ namespace user
    }
 
 
-//#ifndef ANDROID
+//#ifndef __ANDROID__
 //
 //   /////////////////////////////////////////////////////////////////////////////
 //   // ::user::impact drag/drop support
 //
 //   DROPEFFECT impact::OnDragScroll(unsigned int /*dwKeyState*/, int_point /*int_point*/)
 //   {
-//#if !defined(___NO_OLE_SUPPORT) && !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(SOLARIS)
+//#if !defined(___NO_OLE_SUPPORT) && !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__) && !defined(SOLARIS)
 //      return DROPEFFECT_SCROLL; // this means do the default
 //#else
 //      return 0;
@@ -1404,7 +1404,7 @@ namespace user
 //   }
 //
 //
-//#endif // ANDROID
+//#endif // __ANDROID__
 
 
 

@@ -185,7 +185,7 @@
 //};
 //
 //
-//#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD) //|| defined(ANDROID)
+//#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD) //|| defined(__ANDROID__)
 //
 //
 ////#define __embed_resource(app) \

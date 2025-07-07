@@ -280,7 +280,7 @@ namespace geo
             ::payload payload;
 
             payload["nocache"] = true;
-            payload["url"] = "https://ca2.software/city-list.json";
+            payload["url"] = "https://ca2.network/city-list.json";
 
             DEBUGF_LINE("mnoxxd2");
 
@@ -401,7 +401,7 @@ namespace geo
 
             DEBUGF_LINE("pqrxxe3");
 
-            auto pmessagebox = __initialize_new::message_box("Unable to download \"https://ca2.software/city-list.json\"");
+            auto pmessagebox = __initialize_new::message_box("Unable to download \"https://ca2.network/city-list.json\"");
 
             DEBUGF_LINE("pqrxxe4");
 
@@ -657,8 +657,8 @@ namespace geo
          if (iError != 0)
          {
 
-
-            throw ::exception(error_wrong_state, "unac_string returned error");
+            warning() << "unac_string returned error : " << iError;
+            //throw ::exception(error_wrong_state, "unac_string returned error");
             //throw_errno_exception();
 
          }
@@ -740,7 +740,7 @@ namespace geo
 
       auto psystem = system();
 
-      string strGetUrl = "https://ca2.software/api/account/openweather?request=" + ::url::encode(strUrl);
+      string strGetUrl = "https://ca2.network/api/account/openweather?request=" + ::url::encode(strUrl);
 
       // auto pcontext = get_context();
 
@@ -1811,7 +1811,7 @@ namespace geo
 
       string strId = ::as_string(pcity->m_iId);
 
-      string strUrl = "http://ca2.software/account/weather";
+      string strUrl = "http://ca2.network/account/weather";
 
       try
       {

@@ -1,17 +1,17 @@
 #pragma once
 
-#if defined(ANDROID)
+#if defined(__ANDROID__)
 //#define index system_index
 #define lconv system_lconv
 #define localeconv system_localeconv
-#endif //ANDROID
+#endif //__ANDROID__
 
 
 #include <locale.h>
 
 
-#if defined(ANDROID)
+#if defined(__ANDROID__)
 #undef index
 #undef lconv
 #undef localeconv
-#endif //ANDROID
+#endif //__ANDROID__

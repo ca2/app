@@ -923,7 +923,24 @@ namespace nanoui
 
       }
 
-      pscreen->update_focus(this);
+      pscreen->on_child_set_focus(this);
+
+   }
+
+
+   void Widget::kill_focus()
+   {
+
+      auto pscreen = screen();
+
+      if (::is_null(pscreen))
+      {
+
+         return;
+
+      }
+
+      pscreen->on_child_kill_focus(this);
 
    }
 

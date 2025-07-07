@@ -45,7 +45,7 @@ class happening;
 #endif
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(SOLARIOS)
+#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(SOLARIOS)
 
 //#include "ansios/ansios_file_raw.h"
 

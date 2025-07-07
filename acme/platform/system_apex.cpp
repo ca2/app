@@ -158,7 +158,7 @@ namespace platform
    }
 
 
-   //::string apex_system_layer::::url::encode(const ::string & str){}
+   //::string apex_system_layer::url::encode(const ::string & str){}
 
 
    //void apex_system_layer::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema){}
@@ -201,14 +201,14 @@ namespace platform
    }
 
 
-   void apex_system_layer::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
-   {
-   }
-
-
-   void apex_system_layer::open_profile_link(string strUrl, string strProfile, string strTarget)
-   {
-   }
+   // void apex_system_layer::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
+   // {
+   // }
+   //
+   //
+   // void apex_system_layer::open_profile_link(string strUrl, string strProfile, string strTarget)
+   // {
+   // }
 
 
    // void apex_system_layer::__set_thread_on()
@@ -367,7 +367,7 @@ namespace platform
    //void request(::request * prequest) override{}
 
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 //#pragma message("at macos??")
       bool apex_system_layer::android_set_user_wallpaper(string strUrl){return false;}
       bool apex_system_layer::android_get_user_wallpaper(string & strUrl){return false;}

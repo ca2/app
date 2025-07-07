@@ -29,7 +29,7 @@
 
 
 
-#if defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
+#if defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS) || defined(__ANDROID__)
 
 
 namespace OPERATING_SYSTEM_NAMESPACE
@@ -461,6 +461,8 @@ namespace apex
       // //return true;
       //
       // //return estatus;
+
+      m_bReadyToAttendRequests = true;
 
    }
 
@@ -1855,7 +1857,7 @@ namespace apex
 //
 //      }
 //
-//#if !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
+//#if !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__)
 //      //attach_thread_input_to_main_thread(false);
 //#endif
 //

@@ -108,7 +108,7 @@ namespace platform
 
       m_varCurrentImpactFile = prequest->m_payloadFile;
 
-      papplication->call_request(prequest);
+      papplication->post_request(prequest);
 
    }
 

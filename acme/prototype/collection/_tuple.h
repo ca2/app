@@ -257,7 +257,7 @@ constexpr const typename std::tuple_element < n, ::make_pair < PAIR > >::type &&
 }
 
 
-#if defined(ANDROID)
+#if defined(__ANDROID__)
 
 #define ALIENATED_ANDROID_ANARCHY class
 

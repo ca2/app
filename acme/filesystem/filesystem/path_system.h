@@ -20,6 +20,7 @@ public:
    ~path_system() override;
 
 
+   virtual ::string discrete_shell_path(const ::file::path& path);
    virtual ::string shell_path(const ::file::path & path);
 
 

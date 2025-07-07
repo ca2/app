@@ -40,34 +40,15 @@ namespace draw2d
    {
    public:
 
-
+      bool m_bLocked = false;
       ::draw2d::draw2d * m_pdraw2d;
 
-      lock(::particle * pparticle)
-      {
+      lock(::particle* pparticle);
 
-         m_pdraw2d = pparticle->system()->draw2d();
+      ~lock();
 
-         if (m_pdraw2d)
-         {
 
-            m_pdraw2d->lock_device();
-
-         }
-
-      }
-
-      ~lock()
-      {
-
-         if(m_pdraw2d)
-         {
-
-            m_pdraw2d->unlock_device();
-
-         }
-
-      }
+      void unlock();
 
    };
 

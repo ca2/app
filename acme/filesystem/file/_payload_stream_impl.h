@@ -29,7 +29,7 @@
 //inline void __exchange(::payload_stream& s, short& i) { s.default_exchange(i); }
 //inline void __exchange(::payload_stream& s, int& i) { s.default_exchange(i); }
 //inline void __exchange(::payload_stream& s, long long& i) { s.default_exchange(i); }
-//#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
+//#if defined(__APPLE__) || defined(__ANDROID__) || defined(RASPBERRYPIOS) || defined(WINDOWS)
 //inline void __exchange(::payload_stream& s, long& l) { s.default_exchange(l); }
 //#endif
 //inline void __exchange(::payload_stream& s, unsigned char& u) { s.default_exchange(u); }

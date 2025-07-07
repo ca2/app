@@ -150,6 +150,7 @@ public:
    inline bool is_set() const  { return !is_empty(); }
    inline bool is_empty() const  { return ::is_empty(*this); }
    inline bool is_null() const  { return ::is_null(*this); }
+   inline bool has_area() const { return !is_empty(); }
    template < primitive_point POINT >
    inline bool contains(const POINT & point) const  { return ::contains(*this, point.x(), point.y()); }
    inline bool contains_x(UNIT_TYPE x) const  { return ::contains_x(*this, x); }

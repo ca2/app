@@ -914,7 +914,7 @@ namespace draw2d_cairo
 ////   }
 ////
 //
-//#elif defined(ANDROID)
+//#elif defined(__ANDROID__)
 //
 //
 //

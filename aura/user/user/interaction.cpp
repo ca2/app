@@ -288,7 +288,7 @@ namespace user
       m_bExtendOnParentHostingArea = false;
 
       m_bToolWindow = false;
-      m_bMessageWindow = false;
+      m_bMessageOnlyWindow = false;
       m_bCompositedFrameWindow = false;
 
       m_bOnDraw = true;
@@ -429,7 +429,7 @@ namespace user
 
       m_bRectOk = false;
 
-      m_bMessageWindow = false;
+      m_bMessageOnlyWindow = false;
 
       m_bVoidPaint = false;
 
@@ -2013,6 +2013,20 @@ namespace user
 
       }
 
+      if (
+         window() &&
+         window()->m_pgraphicsthread &&
+         window()->m_pgraphicsthread->m_bFps)
+      {
+
+         //warning() << "graphics thread is going to ignore post redraw as it should be doing Fps drawing";
+
+         m_setneedredrawa.clear();
+
+         return;
+
+      }
+
       if (!this->is_window_screen_visible(e_layout_sketch))
       {
 
@@ -2200,7 +2214,11 @@ namespace user
       //
       //      }
 
-      if (windowing_window()->m_pgraphicsgraphics->is_single_buffer_mode())
+      if (windowing_window()
+         && 
+         windowing_window()->m_pgraphicsgraphics
+         &&
+         windowing_window()->m_pgraphicsgraphics->is_single_buffer_mode())
       {
 
          auto * pinteraction = get_wnd();
@@ -3171,7 +3189,7 @@ namespace user
 
       ::user::interaction_base::install_message_routing(pchannel);
 
-      if (m_bMessageWindow)
+      if (m_bMessageOnlyWindow)
       {
 
          //MESSAGE_LINK(e_message_destroy              , pchannel, this, &interaction::_001OnDestroyMessageWindow);
@@ -3830,6 +3848,18 @@ namespace user
 
    bool interaction::post_pending_set_need_redraw()
    {
+
+      if (window()->m_pgraphicsthread->m_bFps)
+      {
+
+         //warning() << "graphics thread is going to ignore post redraw as it should be doing Fps drawing";
+
+         m_setneedredrawa.clear();
+
+         return true;
+
+      }
+
 
       {
 
@@ -11570,7 +11600,7 @@ if(get_parent())
    bool interaction::is_message_only_window()
    {
 
-      return m_bMessageWindow;
+      return m_bMessageOnlyWindow;
 
    }
 
@@ -16772,7 +16802,7 @@ if(get_parent())
 
       }*/
 
-      if (pwindow->m_pacmeuserinteractionCapture != this)
+      if (pwindow->m_pacmeuserinteractionMouseCapture != this)
       {
 
          return false;
@@ -18552,7 +18582,7 @@ if(get_parent())
          pmessage->m_oswindowNew = (::oswindow)wparam.m_number;
       }
       break;
-#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(__BSD__)
+#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__) && !defined(__BSD__)
       case ::message::e_prototype_window_pos:
 
       {
@@ -22108,6 +22138,13 @@ if(get_parent())
 
       ::pointer < ::user::thread > puserthread;
 
+      if (is_graphical())
+      {
+
+          draw2d();
+
+      }
+
       if (m_ewindowflag & e_window_flag_satellite_window)
       {
 
@@ -22215,7 +22252,7 @@ if(get_parent())
 
       auto pwindow = window();
 
-      if (m_bMessageWindow)
+      if (m_bMessageOnlyWindow)
       {
 
          pwindow->create_message_queue(this, m_strName);
@@ -22320,7 +22357,7 @@ if(get_parent())
 
       //}
 
-      m_bMessageWindow = true;
+      m_bMessageOnlyWindow = true;
 
       m_strName = strName;
 
@@ -28259,6 +28296,13 @@ __check_refdbg;
       {
 
          auto ppath = puseritem->m_ppath;
+
+         if (1)
+         {
+
+            return false;
+
+         }
 
          auto pgraphics = get_internal_draw2d_graphics();
 

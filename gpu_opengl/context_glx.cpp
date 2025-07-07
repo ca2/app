@@ -14,7 +14,7 @@
 ::particle * user_synchronization();
 
 
-namespace opengl
+namespace gpu_opengl
 {
 
 
@@ -46,7 +46,7 @@ namespace opengl
 
       auto psystem = system();
 
-      auto pgpu = psystem->get_gpu();
+      auto pgpu = application()->get_gpu();
 
       ::pointer<::opengl::opengl>popengl = pgpu;
 

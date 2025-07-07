@@ -1,8 +1,7 @@
 #pragma once
 
 
-#include "aura/_.h"
-#include "aura/graphics/gpu/_.h"
+#include "bred/_.h"
 
 
 #if defined(_app_shader_project)

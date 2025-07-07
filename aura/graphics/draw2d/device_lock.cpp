@@ -8,11 +8,11 @@ namespace draw2d
 {
 
 
-   device_lock::device_lock(::matter * pmatter) :
-      m_pmatter(pmatter)
+   device_lock::device_lock(::particle* pparticle) :
+      m_pparticle(pparticle)
    {
 
-      m_pmatter->system()->m_pdraw2d->lock_device();
+      m_bLocked = pparticle->system()->m_pdraw2d->lock_device();
 
    }
 
@@ -20,7 +20,12 @@ namespace draw2d
    device_lock::~device_lock()
    {
 
-      m_pmatter->system()->m_pdraw2d->unlock_device();
+      if (m_bLocked)
+      {
+       
+         m_pparticle->system()->m_pdraw2d->unlock_device();
+
+      }
 
    }
 

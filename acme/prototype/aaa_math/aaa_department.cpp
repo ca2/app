@@ -193,7 +193,7 @@ namespace mathematics
       }
 
 
-//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+//#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
       void generate_random_bytes(void * p, memsize s)
       {

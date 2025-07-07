@@ -139,20 +139,20 @@
 //
 //   extern ::pointer< ::mutex > g_pmutexUiDestroyed;
 //
-////#ifdef ANDROID
+////#ifdef __ANDROID__
 ////
 ////   extern ::pointer< ::mutex > g_pmutexOutputDebugStringA;
 ////
 ////#endif
 //
 //
-//   // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+//   // #if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 //
 //   // extern ::pointer< ::mutex > g_pmutexMq;
 //
 //   // #endif
 ////
-////#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
+////#if defined(LINUX) || defined(__APPLE__) || defined(UNIVERSAL_WINDOWS) || defined(__ANDROID__)
 ////
 //////extern ::pointer< ::mutex > g_pmutexThreadIdHandleLock;
 ////

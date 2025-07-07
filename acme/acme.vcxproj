@@ -1742,6 +1742,9 @@
     <ClInclude Include="acme.h" />
     <ClInclude Include="application.h" />
     <ClInclude Include="array2d.h" />
+    <ClInclude Include="call.h" />
+    <ClInclude Include="constant\call.h" />
+    <ClInclude Include="prototype\prototype\call.h" />
     <ClInclude Include="compress\compress.h" />
     <ClInclude Include="compress\uncompress.h" />
     <ClInclude Include="console\dialog.h" />
@@ -1765,6 +1768,7 @@
     <ClInclude Include="constant\filesystem.h" />
     <ClInclude Include="constant\flag.h" />
     <ClInclude Include="constant\future.h" />
+    <ClInclude Include="constant\gpu.h" />
     <ClInclude Include="constant\happening.h" />
     <ClInclude Include="constant\heap.h" />
     <ClInclude Include="constant\id.h" />
@@ -2314,6 +2318,8 @@
     <ClInclude Include="prototype\data\tree_item_base.h" />
     <ClInclude Include="prototype\geometry2d\_impl.h" />
     <ClInclude Include="prototype\prototype\make_particle.h" />
+    <ClInclude Include="prototype\prototype\pool.h" />
+    <ClInclude Include="prototype\prototype\poolable.h" />
     <ClInclude Include="prototype\prototype\post_procedure_continuation.h" />
     <ClInclude Include="prototype\prototype\realizable.h" />
     <ClInclude Include="prototype\prototype\signal.h" />
@@ -2380,6 +2386,7 @@
     <ClInclude Include="windowing\window.h" />
     <ClInclude Include="windowing\windowing.h" />
     <ClInclude Include="windowing\_.h" />
+    <ClInclude Include="_greek.h" />
     <ClInclude Include="_iostream.h" />
     <ClInclude Include="graphics\draw2d\color32.h" />
     <ClInclude Include="graphics\draw2d\color_array.h" />
@@ -2467,6 +2474,7 @@
     <ClInclude Include="user\user\tool_item.h" />
     <ClInclude Include="_stdio.h" />
     <ClInclude Include="_win32_gdi.h" />
+    <ClInclude Include="λ.h" />
     <None Include="constant\character_set.enum" />
     <None Include="inline\application\main.inl" />
     <None Include="inline\__apps.inl" />
@@ -3300,6 +3308,7 @@
     <ClCompile Include="prototype\prototype\object.cpp" />
     <ClCompile Include="prototype\prototype\object_meta.cpp" />
     <ClCompile Include="prototype\prototype\particle.cpp" />
+    <ClCompile Include="prototype\prototype\pool.cpp" />
     <ClCompile Include="prototype\prototype\sequence_continuation.cpp" />
     <ClCompile Include="prototype\prototype\prototype.cpp" />
     <ClCompile Include="prototype\prototype\property_object.cpp" />

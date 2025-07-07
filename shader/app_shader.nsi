@@ -19,7 +19,7 @@ OutFile "C:\ca2\time\BeatMapperInstaller.exe"
 
 ; Registry key to check for directory (so if you install again, it will 
 ; overwrite the old one automatically)
-InstallDirRegKey HKLM "Software\ca2\app-core\simple_shader" "Install_Dir"
+InstallDirRegKey HKLM "Software\ca2\app-graphics3d\simple_shader" "Install_Dir"
 
 ; Request application privileges for Windows Vista
 RequestExecutionLevel admin
@@ -48,10 +48,10 @@ Section "BeatMapper (required)"
   File /r "C:\ca2\app\appmatter\main\"
   
   ; Set output path to the installation directory.
-  SetOutPath "$INSTDIR\app-core\appmatter\simple_shader"
+  SetOutPath "$INSTDIR\app-graphics3d\appmatter\simple_shader"
   
   ; Put file there
-  File /r "C:\ca2\app-core\appmatter\simple_shader\"
+  File /r "C:\ca2\app-graphics3d\appmatter\simple_shader\"
 
   ; Set output path to the installation directory.
   SetOutPath "$INSTDIR\time\x64\stage"
@@ -77,7 +77,7 @@ Section "BeatMapper (required)"
   File "C:\ca2\time\x64\stage\sqlite.dll"
   File "C:\ca2\time\x64\stage\zlib.dll"
   File "C:\ca2\time\x64\stage\bzip2.dll"
-  File "C:\ca2\time\x64\stage\app_core.dll"
+  File "C:\ca2\time\x64\stage\app.dll"
   File "C:\ca2\time\x64\stage\simple_shader_simple_shader.dll"
   File "C:\ca2\time\x64\stage\simple_shader_simple_shader.exe"
   
@@ -85,7 +85,7 @@ Section "BeatMapper (required)"
   ExecWait '"$INSTDIR\time\x64\stage\simple_shader_simple_shader.exe" : install' $0
   
   ; Write the installation path into the registry
-  WriteRegStr HKLM "SOFTWARE\ca2\app-core\simple_shader" "Install_Dir" "$INSTDIR"
+  WriteRegStr HKLM "SOFTWARE\ca2\app-graphics3d\simple_shader" "Install_Dir" "$INSTDIR"
   
   ; Write the uninstall keys for Windows
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\simple_shader_simple_shader" "DisplayName" "Beat Mapper!!"
@@ -113,7 +113,7 @@ Section "Uninstall"
   
   ; Remove registry keys
   DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\simple_shader_simple_shader"
-  DeleteRegKey HKLM "SOFTWARE\ca2\app-core\simple_shader"
+  DeleteRegKey HKLM "SOFTWARE\ca2\app-graphics3d\simple_shader"
 
   ; Remove files and uninstaller
   Delete "$INSTDIR\simple_shader_simple_shader.nsi"

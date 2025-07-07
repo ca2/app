@@ -31,7 +31,7 @@ public:
 
 
    exception();
-   //#ifdef ANDROID
+   //#ifdef __ANDROID__
    //   exception(const ::e_status & estatus, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrDetails = nullptr, int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER);
    //#else
    exception(const ::e_status & estatus, const char * pszMessage = nullptr, const char * pszDetails = nullptr, int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);

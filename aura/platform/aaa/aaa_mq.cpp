@@ -6,7 +6,7 @@
 #include "message_queue.h"
 
 
-#if defined(LINUX) // || defined(ANDROID)
+#if defined(LINUX) // || defined(__ANDROID__)
 
 
 bool aura_defer_process_x_message(htask htask,LPMESSAGE pMsg,oswindow oswindow,bool bPeek);
@@ -204,7 +204,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,unsigned i
 
    synchronouslock.unlock();
 
-//#if defined(LINUX) // || defined(ANDROID)
+//#if defined(LINUX) // || defined(__ANDROID__)
 //
 //   if(aura_defer_process_x_message(htask,pMsg,oswindow,!(wRemoveMsg & PM_REMOVE)))
 //   {

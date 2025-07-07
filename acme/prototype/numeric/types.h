@@ -43,7 +43,7 @@ using uptr = unsigned long long;
 #define IPTR_MINIMUM I64_MINIMUM
 
 
-//#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS)
+//#if defined(__APPLE__) || defined(__ANDROID__) || defined(RASPBERRYPIOS)
 //
 //#define DO_FOR_NUMBER_TYPES(DO) \
 //DO(char, char, ch, CHAR); \

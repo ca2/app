@@ -482,9 +482,9 @@ namespace platform
       //virtual ::pointer<::acme::library> & library(const ::string &strComponent, const ::string &strImplementation);
 
 
-      virtual void open_profile_link(string strUrl, string strProfile, string strTarget);
-      virtual void open_link(string strUrl, string strProfile, string strTarget);
-      virtual void open_url(string strUrl, string strProfile, string strTarget);
+      virtual void open_internet_link_in_browser(const ::scoped_string & strUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile = {}, const ::scoped_string & scopedstrTarget = {});
+      virtual void open_internet_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile = {}, const ::scoped_string & scopedstrTarget = {});
+      //virtual void open_url(string strUrl, string strProfile, string strTarget);
 
 
       //void __tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const override;

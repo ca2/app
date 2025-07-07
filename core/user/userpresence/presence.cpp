@@ -75,12 +75,12 @@ namespace userpresence
 
       string strHost = file()->as_string(directory()->appdata() / "database\\text\\last_good_known_account_com.txt");
       string_array straRequestingServer;
-      straRequestingServer.add("api.ca2.software");
-      straRequestingServer.add("eu-api.ca2.software");
-      straRequestingServer.add("asia-api.ca2.software");
+      straRequestingServer.add("api.ca2.network");
+      straRequestingServer.add("eu-api.ca2.network");
+      straRequestingServer.add("asia-api.ca2.network");
       if(!straRequestingServer.case_insensitive_contains(strHost))
       {
-         strHost = "api.ca2.software";
+         strHost = "api.ca2.network";
       }
 
       string strUrl = "https://" + strHost + "/i2com/pulse_user_presence";

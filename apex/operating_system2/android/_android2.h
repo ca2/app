@@ -50,7 +50,7 @@ long long get_tick();
 #define MAXIMUM_WAIT_OBJECTS      64
 
 
-#ifndef ANDROID
+#ifndef __ANDROID__
 
 union semun
 {

@@ -1474,7 +1474,7 @@ if (MSVC)
    target_link_libraries(${PROJECT_NAME} PRIVATE zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32 ${library_references} ${global_library_references})
 
 
-elseif (${LINUX} OR ${__BSD__})
+elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
@@ -1497,6 +1497,8 @@ elseif (${LINUX} OR ${__BSD__})
       list(APPEND this_system_libraries pthread z)
    elseif (${FREEBSD})
       list(APPEND this_system_libraries dl pthread z)
+   elseif (${ANDROID})
+      list(APPEND this_system_libraries dl z)
    else ()
       list(APPEND this_system_libraries dl pthread idn z)
    endif ()

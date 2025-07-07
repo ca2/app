@@ -790,6 +790,22 @@ namespace acme
 //
 //      }
 
+      double windowing::get_default_screen_dpi()
+      {
+
+         // just a guess lol :D
+         return 96.0;
+
+      }
+
+
+      float windowing::default_screen_points_to_pixels(float fPoints)
+      {
+
+         return (float)(fPoints * (get_default_screen_dpi() / 72.0));
+
+      }
+
 
    } // namespace windowing
 

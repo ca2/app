@@ -5,21 +5,21 @@
 		<Option title="app_shader"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\source\;CMake Files\source\console\;CMake Files\source\console\application_build_helper\;CMake Files\source\console\hello\;CMake Files\source\console\helloearth\;CMake Files\source\console\hellosolarsystem\;CMake Files\source\console\readlines\;CMake Files\source\app\;CMake Files\source\app\acme\;CMake Files\source\app\apex\;CMake Files\source\app\app\;CMake Files\source\app\just_message_box\;CMake Files\source\app\message_box\;CMake Files\source\app\shader\;CMake Files\source\app\aqua\;CMake Files\source\app\aura\;CMake Files\source\app\axis\;CMake Files\source\app\base\;CMake Files\source\app\draw2d_cairo\;CMake Files\source\app\gpu_opengl\;CMake Files\source\app\crypto_openssl\;CMake Files\source\app\compress_bzip2\;CMake Files\source\app\compress_zlib\;CMake Files\source\app\folder_zip\;CMake Files\source\app\database_sqlite3\;CMake Files\source\app\regular_expression_pcre2\;CMake Files\source\app\experience_core\;CMake Files\source\app\experience_anthill\;CMake Files\source\app\experience_tranquillum\;CMake Files\source\app\imaging_freeimage\;CMake Files\source\app\nanoui\;CMake Files\source\app\bred\;CMake Files\source\app\core\;CMake Files\source\app\programming\;CMake Files\source\app\scripting\;CMake Files\source\app-core\;CMake Files\source\app-core\announcecom\;CMake Files\source\app-core\api_azure\;CMake Files\source\app-core\api_ca2\;CMake Files\source\app-core\api_google\;CMake Files\source\app-core\addressbook\;CMake Files\source\app-core\audioaura\;CMake Files\source\app-core\auraclick\;CMake Files\source\app-core\auratype\;CMake Files\source\app-core\chronometer\;CMake Files\source\app-core\clockverse\;CMake Files\source\app-core\desk\;CMake Files\source\app-core\file_manager\;CMake Files\source\app-core\flag\;CMake Files\source\app-core\hash_hub\;CMake Files\source\app-core\hello_animation\;CMake Files\source\app-core\hello_multiverse\;CMake Files\source\app-core\note\;CMake Files\source\app-core\photo\;CMake Files\source\app-core\picture\;CMake Files\source\app-core\projection\;CMake Files\source\app-core\resident_client\;CMake Files\source\app-core\resident_desktop\;CMake Files\source\app-core\store\;CMake Files\source\app-core\timer\;CMake Files\source\app-core\todo\;CMake Files\source\app-core\weather\;CMake Files\source\app-core\audio\;CMake Files\source\app-core\audio_decode_wave\;CMake Files\source\app-core\audio_resample_swresample\;CMake Files\source\app-core\video_input\;CMake Files\source\app-core\video_input_video_for_linux\;CMake Files\source\app-core\library\;CMake Files\source\app-core\gcom\;CMake Files\source\app-core\target_wallpaper_x11\;CMake Files\source\app-core\text_to_speech_azure\;CMake Files\source\app-core\text_to_speech_google\;CMake Files\source\app-core\userdatetime\;CMake Files\source\app-core\multimedia\;CMake Files\source\app-core\resident\;CMake Files\source\app-core\hash_base\;CMake Files\source\app-cidadedecuritiba\;CMake Files\source\app-cidadedecuritiba\alphaclock\;CMake Files\source\app-complex\;CMake Files\source\app-complex\drawing\;CMake Files\source\app-complex\form\;CMake Files\source\app-complex\video_capture\;CMake Files\source\app-simple\;CMake Files\source\app-simple\application\;CMake Files\source\app-simple\box\;CMake Files\source\app-simple\change_grub_default_entry\;CMake Files\source\app-simple\drawing\;CMake Files\source\app-simple\form\;CMake Files\source\app-simple\nanoui_example\;CMake Files\source\app-simple\networking_application\;CMake Files\source\app-simple\notify_drawing\;CMake Files\source\app-simple\shader\;CMake Files\source\app-veriwell\;CMake Files\source\app-veriwell\asciimedia\;CMake Files\source\app-veriwell\keyboard\;CMake Files\source\app-veriwell\musical_player\;CMake Files\source\app-veriwell\musical_player_lite\;CMake Files\source\app-veriwell\verisimplevideo\;CMake Files\source\app-veriwell\waven\;CMake Files\source\app-veriwell\audio_decode_libmpg123\;CMake Files\source\app-veriwell\music_midi_rtmidi\;CMake Files\source\app-veriwell\multimedia\;CMake Files\source\app-veriwell\video_decode_ffmpeg\;CMake Files\source\game\;CMake Files\source\game\light\;CMake Files\source\game\estamira\;CMake Files\source\game\game_of_life\;CMake Files\source\game\tetris\;CMake Files\source\game\tictactoe\;CMake Files\source\game\arkanoid\;CMake Files\source\game\sokoban\;CMake Files\source\game\pacman\;CMake Files\source\game\coincube\;CMake Files\source\game\arch001\;CMake Files\source\port\;CMake Files\source\port\id3lib\;CMake Files\source\design\;CMake Files\source\design\design\;CMake Files\source\design\text_format\;CMake Files\operating_system\;CMake Files\operating_system\operating_system-linux\;CMake Files\operating_system\operating_system-linux\acme_linux\;CMake Files\operating_system\operating_system-linux\apex_linux\;CMake Files\operating_system\operating_system-linux\audio_mixer_alsa\;CMake Files\operating_system\operating_system-linux\aura_linux\;CMake Files\operating_system\operating_system-linux\node_linux\;CMake Files\operating_system\operating_system-linux\desktop_environment_gnome\;CMake Files\operating_system\operating_system-linux\music_midi_alsa\;CMake Files\operating_system\operating_system-posix\;CMake Files\operating_system\operating_system-posix\acme_posix\;CMake Files\operating_system\operating_system-posix\apex_posix\;CMake Files\operating_system\operating_system-posix\audio_alsa\;CMake Files\operating_system\operating_system-posix\aura_posix\;CMake Files\operating_system\operating_system-posix\windowing_x11\;CMake Files\operating_system\operating_system-posix\node_gtk\;CMake Files\operating_system\operating_system-posix\node_gnome\;CMake Files\operating_system\operating_system-posix\write_text_pango\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\source\;CMake Files\source\console\;CMake Files\source\console\application_build_helper\;CMake Files\source\console\hello\;CMake Files\source\console\helloearth\;CMake Files\source\console\hellosolarsystem\;CMake Files\source\console\readlines\;CMake Files\source\app\;CMake Files\source\app\acme\;CMake Files\source\app\apex\;CMake Files\source\app\app\;CMake Files\source\app\just_message_box\;CMake Files\source\app\message_box\;CMake Files\source\app\shader\;CMake Files\source\app\aqua\;CMake Files\source\app\aura\;CMake Files\source\app\axis\;CMake Files\source\app\base\;CMake Files\source\app\draw2d_cairo\;CMake Files\source\app\gpu_opengl\;CMake Files\source\app\crypto_openssl\;CMake Files\source\app\compress_bzip2\;CMake Files\source\app\compress_zlib\;CMake Files\source\app\folder_zip\;CMake Files\source\app\database_sqlite3\;CMake Files\source\app\regular_expression_pcre2\;CMake Files\source\app\experience_core\;CMake Files\source\app\experience_anthill\;CMake Files\source\app\experience_tranquillum\;CMake Files\source\app\imaging_freeimage\;CMake Files\source\app\nanoui\;CMake Files\source\app\bred\;CMake Files\source\app\core\;CMake Files\source\app\programming\;CMake Files\source\app\scripting\;CMake Files\source\app-graphics3d\;CMake Files\source\app-graphics3d\announcecom\;CMake Files\source\app-graphics3d\api_azure\;CMake Files\source\app-graphics3d\api_ca2\;CMake Files\source\app-graphics3d\api_google\;CMake Files\source\app-graphics3d\addressbook\;CMake Files\source\app-graphics3d\audioaura\;CMake Files\source\app-graphics3d\auraclick\;CMake Files\source\app-graphics3d\auratype\;CMake Files\source\app-graphics3d\chronometer\;CMake Files\source\app-graphics3d\clockverse\;CMake Files\source\app-graphics3d\desk\;CMake Files\source\app-graphics3d\file_manager\;CMake Files\source\app-graphics3d\flag\;CMake Files\source\app-graphics3d\hash_hub\;CMake Files\source\app-graphics3d\hello_animation\;CMake Files\source\app-graphics3d\hello_multiverse\;CMake Files\source\app-graphics3d\note\;CMake Files\source\app-graphics3d\photo\;CMake Files\source\app-graphics3d\picture\;CMake Files\source\app-graphics3d\projection\;CMake Files\source\app-graphics3d\resident_client\;CMake Files\source\app-graphics3d\resident_desktop\;CMake Files\source\app-graphics3d\store\;CMake Files\source\app-graphics3d\timer\;CMake Files\source\app-graphics3d\todo\;CMake Files\source\app-graphics3d\weather\;CMake Files\source\app-graphics3d\audio\;CMake Files\source\app-graphics3d\audio_decode_wave\;CMake Files\source\app-graphics3d\audio_resample_swresample\;CMake Files\source\app-graphics3d\video_input\;CMake Files\source\app-graphics3d\video_input_video_for_linux\;CMake Files\source\app-graphics3d\library\;CMake Files\source\app-graphics3d\gcom\;CMake Files\source\app-graphics3d\target_wallpaper_x11\;CMake Files\source\app-graphics3d\text_to_speech_azure\;CMake Files\source\app-graphics3d\text_to_speech_google\;CMake Files\source\app-graphics3d\userdatetime\;CMake Files\source\app-graphics3d\multimedia\;CMake Files\source\app-graphics3d\resident\;CMake Files\source\app-graphics3d\hash_base\;CMake Files\source\app-cidadedecuritiba\;CMake Files\source\app-cidadedecuritiba\alphaclock\;CMake Files\source\app-complex\;CMake Files\source\app-complex\drawing\;CMake Files\source\app-complex\form\;CMake Files\source\app-complex\video_capture\;CMake Files\source\app-simple\;CMake Files\source\app-simple\application\;CMake Files\source\app-simple\box\;CMake Files\source\app-simple\change_grub_default_entry\;CMake Files\source\app-simple\drawing\;CMake Files\source\app-simple\form\;CMake Files\source\app-simple\nanoui_example\;CMake Files\source\app-simple\networking_application\;CMake Files\source\app-simple\notify_drawing\;CMake Files\source\app-simple\shader\;CMake Files\source\app-veriwell\;CMake Files\source\app-veriwell\asciimedia\;CMake Files\source\app-veriwell\keyboard\;CMake Files\source\app-veriwell\musical_player\;CMake Files\source\app-veriwell\musical_player_lite\;CMake Files\source\app-veriwell\verisimplevideo\;CMake Files\source\app-veriwell\waven\;CMake Files\source\app-veriwell\audio_decode_libmpg123\;CMake Files\source\app-veriwell\music_midi_rtmidi\;CMake Files\source\app-veriwell\multimedia\;CMake Files\source\app-veriwell\video_decode_ffmpeg\;CMake Files\source\game\;CMake Files\source\game\light\;CMake Files\source\game\estamira\;CMake Files\source\game\game_of_life\;CMake Files\source\game\tetris\;CMake Files\source\game\tictactoe\;CMake Files\source\game\arkanoid\;CMake Files\source\game\sokoban\;CMake Files\source\game\pacman\;CMake Files\source\game\coincube\;CMake Files\source\game\arch001\;CMake Files\source\port\;CMake Files\source\port\id3lib\;CMake Files\source\design\;CMake Files\source\design\design\;CMake Files\source\design\text_format\;CMake Files\operating_system\;CMake Files\operating_system\operating_system-linux\;CMake Files\operating_system\operating_system-linux\acme_linux\;CMake Files\operating_system\operating_system-linux\apex_linux\;CMake Files\operating_system\operating_system-linux\audio_mixer_alsa\;CMake Files\operating_system\operating_system-linux\aura_linux\;CMake Files\operating_system\operating_system-linux\node_linux\;CMake Files\operating_system\operating_system-linux\desktop_environment_gnome\;CMake Files\operating_system\operating_system-linux\music_midi_alsa\;CMake Files\operating_system\operating_system-posix\;CMake Files\operating_system\operating_system-posix\acme_posix\;CMake Files\operating_system\operating_system-posix\apex_posix\;CMake Files\operating_system\operating_system-posix\audio_alsa\;CMake Files\operating_system\operating_system-posix\aura_posix\;CMake Files\operating_system\operating_system-posix\windowing_x11\;CMake Files\operating_system\operating_system-posix\node_gtk\;CMake Files\operating_system\operating_system-posix\node_gnome\;CMake Files\operating_system\operating_system-posix\write_text_pango\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/camilo/solution/basis/source/app/shader"/>
+				<Option working_dir="/home/camilo/solution/basis/source/app-graphics3d/shader"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/shader/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/shader/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/shader/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/shader/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app-graphics3d/shader/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app-graphics3d/shader/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app-graphics3d/shader/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app-graphics3d/shader/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="app_shader">
 				<Option output="/home/camilo/solution/basis/output/libapp_shader.so" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/camilo/solution/basis/source/app/shader"/>
+				<Option working_dir="/home/camilo/solution/basis/source/app-graphics3d/shader"/>
 				<Option object_output="./"/>
 				<Option type="3"/>
 				<Option compiler="gcc"/>
@@ -51,20 +51,20 @@
 					<Add directory="/home/camilo/solution/basis/operating_system/third-linux/include"/>
 					<Add directory="/home/camilo/solution/basis/operating_system/third-linux/third/include"/>
 					<Add directory="/home/camilo/solution/basis/operating_system/third-linux/third/include/include"/>
-					<Add directory="/home/camilo/solution/basis/source/app/shader/../.."/>
-					<Add directory="/home/camilo/solution/basis/source/app/shader/.."/>
-					<Add directory="/home/camilo/solution/basis/source/app/shader"/>
+					<Add directory="/home/camilo/solution/basis/source/app-graphics3d/shader/../.."/>
+					<Add directory="/home/camilo/solution/basis/source/app-graphics3d/shader/.."/>
+					<Add directory="/home/camilo/solution/basis/source/app-graphics3d/shader"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/shader/Makefile&quot;  VERBOSE=1 app_shader"/>
-					<CompileFile command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/shader/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/shader/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/shader/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app-graphics3d/shader/Makefile&quot;  VERBOSE=1 app_shader"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app-graphics3d/shader/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app-graphics3d/shader/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app-graphics3d/shader/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="app_shader/fast">
 				<Option output="/home/camilo/solution/basis/output/libapp_shader.so" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/camilo/solution/basis/source/app/shader"/>
+				<Option working_dir="/home/camilo/solution/basis/source/app-graphics3d/shader"/>
 				<Option object_output="./"/>
 				<Option type="3"/>
 				<Option compiler="gcc"/>
@@ -96,15 +96,15 @@
 					<Add directory="/home/camilo/solution/basis/operating_system/third-linux/include"/>
 					<Add directory="/home/camilo/solution/basis/operating_system/third-linux/third/include"/>
 					<Add directory="/home/camilo/solution/basis/operating_system/third-linux/third/include/include"/>
-					<Add directory="/home/camilo/solution/basis/source/app/shader/../.."/>
-					<Add directory="/home/camilo/solution/basis/source/app/shader/.."/>
-					<Add directory="/home/camilo/solution/basis/source/app/shader"/>
+					<Add directory="/home/camilo/solution/basis/source/app-graphics3d/shader/../.."/>
+					<Add directory="/home/camilo/solution/basis/source/app-graphics3d/shader/.."/>
+					<Add directory="/home/camilo/solution/basis/source/app-graphics3d/shader"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/shader/Makefile&quot;  VERBOSE=1 app_shader/fast"/>
-					<CompileFile command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/shader/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/shader/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/shader/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app-graphics3d/shader/Makefile&quot;  VERBOSE=1 app_shader/fast"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app-graphics3d/shader/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app-graphics3d/shader/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app-graphics3d/shader/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="_app_shader">
@@ -140,15 +140,15 @@
 					<Add directory="/home/camilo/solution/basis/operating_system/third-linux/include"/>
 					<Add directory="/home/camilo/solution/basis/operating_system/third-linux/third/include"/>
 					<Add directory="/home/camilo/solution/basis/operating_system/third-linux/third/include/include"/>
-					<Add directory="/home/camilo/solution/basis/source/app/shader/../.."/>
-					<Add directory="/home/camilo/solution/basis/source/app/shader/.."/>
-					<Add directory="/home/camilo/solution/basis/source/app/shader"/>
+					<Add directory="/home/camilo/solution/basis/source/app-graphics3d/shader/../.."/>
+					<Add directory="/home/camilo/solution/basis/source/app-graphics3d/shader/.."/>
+					<Add directory="/home/camilo/solution/basis/source/app-graphics3d/shader"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/shader/Makefile&quot;  VERBOSE=1 _app_shader"/>
-					<CompileFile command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/shader/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/shader/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/shader/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app-graphics3d/shader/Makefile&quot;  VERBOSE=1 _app_shader"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app-graphics3d/shader/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app-graphics3d/shader/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app-graphics3d/shader/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="_app_shader/fast">
@@ -184,58 +184,58 @@
 					<Add directory="/home/camilo/solution/basis/operating_system/third-linux/include"/>
 					<Add directory="/home/camilo/solution/basis/operating_system/third-linux/third/include"/>
 					<Add directory="/home/camilo/solution/basis/operating_system/third-linux/third/include/include"/>
-					<Add directory="/home/camilo/solution/basis/source/app/shader/../.."/>
-					<Add directory="/home/camilo/solution/basis/source/app/shader/.."/>
-					<Add directory="/home/camilo/solution/basis/source/app/shader"/>
+					<Add directory="/home/camilo/solution/basis/source/app-graphics3d/shader/../.."/>
+					<Add directory="/home/camilo/solution/basis/source/app-graphics3d/shader/.."/>
+					<Add directory="/home/camilo/solution/basis/source/app-graphics3d/shader"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/shader/Makefile&quot;  VERBOSE=1 _app_shader/fast"/>
-					<CompileFile command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/shader/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/shader/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/shader/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app-graphics3d/shader/Makefile&quot;  VERBOSE=1 _app_shader/fast"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app-graphics3d/shader/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app-graphics3d/shader/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app-graphics3d/shader/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/camilo/solution/basis/source/app/shader/CMakeFiles/app_shader.dir/cmake_pch.hxx">
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/shader/CMakeFiles/app_shader.dir/cmake_pch.hxx">
 			<Option target="app_shader"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/shader/CMakeFiles/app_shader.dir/cmake_pch.hxx.cxx">
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/shader/CMakeFiles/app_shader.dir/cmake_pch.hxx.cxx">
 			<Option target="app_shader"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/shader/_.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/shader/_.cpp">
 			<Option target="app_shader"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/shader/_.h">
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/shader/_.h">
 			<Option target="app_shader"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/shader/_factory.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/shader/_factory.cpp">
 			<Option target="app_shader"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/shader/_library.h">
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/shader/_library.h">
 			<Option target="app_shader"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/shader/_main.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/shader/_main.cpp">
 			<Option target="_app_shader"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/shader/application.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/shader/application.cpp">
 			<Option target="app_shader"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/shader/application.h">
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/shader/application.h">
 			<Option target="app_shader"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/shader/framework.h">
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/shader/framework.h">
 			<Option target="app_shader"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/shader/main_window.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/shader/main_window.cpp">
 			<Option target="app_shader"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/shader/main_window.h">
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/shader/main_window.h">
 			<Option target="app_shader"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/shader/render.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/shader/render.cpp">
 			<Option target="app_shader"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/shader/render.h">
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/shader/render.h">
 			<Option target="app_shader"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/basis/CMakeLists.txt">
@@ -271,7 +271,7 @@
 		<Unit filename="/home/camilo/solution/basis/source/app/message_box/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\message_box\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/shader/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/shader/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\shader\"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/basis/source/app/aqua/CMakeLists.txt">
@@ -337,125 +337,125 @@
 		<Unit filename="/home/camilo/solution/basis/source/app/scripting/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\scripting\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/announcecom/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\announcecom\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/announcecom/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\announcecom\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/api_azure/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\api_azure\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/api_azure/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\api_azure\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/api_ca2/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\api_ca2\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/api_ca2/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\api_ca2\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/api_google/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\api_google\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/api_google/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\api_google\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/addressbook/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\addressbook\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/addressbook/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\addressbook\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/audioaura/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\audioaura\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/audioaura/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\audioaura\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/auraclick/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\auraclick\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/auraclick/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\auraclick\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/auratype/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\auratype\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/auratype/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\auratype\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/chronometer/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\chronometer\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/chronometer/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\chronometer\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/clockverse/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\clockverse\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/clockverse/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\clockverse\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/desk/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\desk\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/desk/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\desk\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/file_manager/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\file_manager\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/file_manager/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\file_manager\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/flag/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\flag\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/flag/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\flag\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/hash_hub/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\hash_hub\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/hash_hub/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\hash_hub\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/hello_animation/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\hello_animation\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/hello_animation/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\hello_animation\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/hello_multiverse/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\hello_multiverse\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/hello_multiverse/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\hello_multiverse\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/note/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\note\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/note/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\note\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/photo/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\photo\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/photo/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\photo\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/picture/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\picture\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/picture/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\picture\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/projection/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\projection\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/projection/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\projection\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/resident_client/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\resident_client\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/resident_client/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\resident_client\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/resident_desktop/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\resident_desktop\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/resident_desktop/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\resident_desktop\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/store/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\store\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/store/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\store\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/timer/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\timer\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/timer/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\timer\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/todo/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\todo\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/todo/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\todo\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/weather/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\weather\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/weather/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\weather\"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/basis/source/audio/audio/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\audio\"/>
+			<Option virtualFolder="CMake Files\source\app-graphics3d\audio\"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/basis/source/audio/audio_decode_wave/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\audio_decode_wave\"/>
+			<Option virtualFolder="CMake Files\source\app-graphics3d\audio_decode_wave\"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/basis/source/audio/audio_resample_swresample/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\audio_resample_swresample\"/>
+			<Option virtualFolder="CMake Files\source\app-graphics3d\audio_resample_swresample\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/video_input/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\video_input\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/video_input/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\video_input\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/video_input_video_for_linux/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\video_input_video_for_linux\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/video_input_video_for_linux/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\video_input_video_for_linux\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/library/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\library\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/library/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\library\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/gcom/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\gcom\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/gcom/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\gcom\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/target_wallpaper_x11/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\target_wallpaper_x11\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/target_wallpaper_x11/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\target_wallpaper_x11\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/text_to_speech_azure/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\text_to_speech_azure\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/text_to_speech_azure/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\text_to_speech_azure\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/text_to_speech_google/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\text_to_speech_google\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/text_to_speech_google/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\text_to_speech_google\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/userdatetime/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\userdatetime\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/userdatetime/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\userdatetime\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/multimedia/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\multimedia\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/multimedia/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\multimedia\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/resident/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\resident\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/resident/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\resident\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app-core/hash_base/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\hash_base\"/>
+		<Unit filename="/home/camilo/solution/basis/source/app-graphics3d/hash_base/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-graphics3d\hash_base\"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/basis/source/app-cidadedecuritiba/alphaclock/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-cidadedecuritiba\alphaclock\"/>

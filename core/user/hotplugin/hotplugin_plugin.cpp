@@ -8,13 +8,13 @@
 
 #ifdef LINUX
 //#include "axis/os/linux/linux_cross_win_gdi_internal.h"
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 ////#include "axis/os/android/android_cross_win_gdi_internal.h"
 #endif
 
 
 
-#if defined(LINUX) || defined(ANDROID) || defined(APPLEOS) || defined(SOLARIS)
+#if defined(LINUX) || defined(__ANDROID__) || defined(APPLEOS) || defined(SOLARIS)
 iptr get_map_failed();
 void my_munmap(void * pimage32,HANDLE hfile);
 void * my_open_map(const ::string & psz,HANDLE * pfile,bool bRead,bool bWrite,long long int_size);
@@ -1138,7 +1138,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
 
 #ifndef UNIVERSAL_WINDOWS
 
-#if !defined(LINUX) && !defined(APPLEOS) && !defined(ANDROID)
+#if !defined(LINUX) && !defined(APPLEOS) && !defined(__ANDROID__)
       if(bEnsureTx || ::IsWindow(::aura::ipc::tx::m_oswindow))
 #endif
       {

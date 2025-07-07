@@ -269,8 +269,9 @@ public:
    virtual string get_string(memsize iStart, memsize uiSize = -1) const;
 
    void delete_begin(memsize iSize);
-   void eat_begin(void * pdata, memsize iSize);
-   void set_data(void * pdata, memsize uiSize);
+   void eat_begin(const void * pdata, memsize iSize);
+   void set_data(const void * pdata, memsize uiSize);
+   void set_at(::collection::index i, const void * pdata, memsize uiSize);
    void copy_from(const memory_base * pstorage);
    void copy_from(const void * pdata, memsize s);
    void copy_to(void * pdata, memsize s) const;

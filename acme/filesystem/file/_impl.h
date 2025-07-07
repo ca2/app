@@ -799,11 +799,11 @@
 //inline void __exchange(::binary_stream & s, int & i) { s.default_exchange(i); }
 //inline void __exchange(::binary_stream & s, long long & i) { s.default_exchange(i); }
 //
-//#if defined(__APPLE__)  || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
+//#if defined(__APPLE__)  || defined(__ANDROID__) || defined(RASPBERRYPIOS) || defined(WINDOWS)
 //inline void __exchange(::binary_stream & s, long & l) { s.default_exchange(l); }
 //#endif
 //
-//#if defined(__APPLE__) || defined(ANDROID) || defined(WINDOWS) || defined(RASPBERRYPIOS)
+//#if defined(__APPLE__) || defined(__ANDROID__) || defined(WINDOWS) || defined(RASPBERRYPIOS)
 //inline void __exchange(::binary_stream& s, unsigned long& ul) { s.default_exchange(ul); }
 ////inline void __exchange(::binary_stream& s, long& l) { s.default_exchange(l); }
 ////inline void __exchange(::binary_stream & s, long long & hi);

@@ -20,11 +20,11 @@ namespace app_shader
    application::application() 
    {
 
-      m_strAppId = "app/shader";
+      m_strAppId = "app-graphics3d/shader";
 
       m_strAppName = "Shader";
 
-      m_strBaseSupportId = "app/shader";
+      m_strBaseSupportId = "app-graphics3d/shader";
 
       m_bLicense = false;
 

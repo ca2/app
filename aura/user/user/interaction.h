@@ -176,7 +176,7 @@ namespace user
       ::logic::boolean                          m_bExtendOnParentIfOnlyClient;
       ::logic::boolean                          m_bExtendOnParentHostingArea;
       bool                                      m_bToolWindow;
-      bool                                      m_bMessageWindow;
+      //bool                                      m_bMessageWindow;
       ::logic::boolean                          m_bLockGraphicalUpdate;
 
       e_interaction                             m_einteraction;
@@ -794,7 +794,7 @@ namespace user
 
 
 
-      inline bool is_graphical() const { return !m_bMessageWindow && m_ewindowflag & e_window_flag_graphical; }
+      inline bool is_graphical() const { return !m_bMessageOnlyWindow && m_ewindowflag & e_window_flag_graphical; }
 
 
       virtual ::particle * mutex_draw();

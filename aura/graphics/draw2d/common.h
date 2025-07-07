@@ -6,7 +6,7 @@
 //
 //typedef FUNCTION_FACTORY_EXCHANGE * PFUNCTION_FACTORY_EXCHANGE;
 //
-//#if (defined(CUBE) || defined(ANDROID))
+//#if (defined(CUBE) || defined(__ANDROID__))
 //
 //extern PFUNCTION_FACTORY_EXCHANGE g_pfnfactoryexchangeDraw2d;
 //extern PFUNCTION_FACTORY_EXCHANGE g_pfnfactoryexchangeImaging;

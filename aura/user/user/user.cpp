@@ -16,6 +16,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/acme.h"
+#include "acme/platform/keep.h"
 #include "acme/platform/system_setup.h"
 #include "acme/prototype/collection/_container.h"
 #include "apex/message/simple_command.h"
@@ -127,7 +128,7 @@ namespace user
    }
 
 
-   void user::on_initialize_window_object()
+   void user::on_initialize_window_object(::acme::windowing::window* pacmewindowingwindow)
    {
 
       if (m_bOnInitializeWindowObject)
@@ -139,11 +140,13 @@ namespace user
 
       }
 
-      m_bOnInitializeWindowObject = true;
+      __keep_true(m_bOnInitializeWindowObject);
+
+      //m_bOnInitializeWindowObject = true;
 
       //auto estatus = 
       
-      _on_initialize_window_object();
+      _on_initialize_window_object(pacmewindowingwindow);
 
       //if (!estatus)
       //{
@@ -157,24 +160,29 @@ namespace user
    }
 
 
-   void user::_on_initialize_window_object()
+   void user::_on_initialize_window_object(::acme::windowing::window* pacmewindowingwindow)
    {
 
-      //auto estatus = 
-      
-      if (__defer_construct_new(m_puserstyle))
+      if (!pacmewindowingwindow->m_pacmeuserinteraction->m_bMessageOnlyWindow)
       {
 
-         //if (!estatus)
-         //{
+         //auto estatus = 
 
-         //   return estatus;
+         if (__defer_construct_new(m_puserstyle))
+         {
 
-         //}
+            //if (!estatus)
+            //{
 
-         //system()->m_pnode->fetch_user_color();
+            //   return estatus;
 
-         m_puserstyle->default_style_construct();
+            //}
+
+            //system()->m_pnode->fetch_user_color();
+
+            m_puserstyle->default_style_construct();
+
+         }
 
       }
 
@@ -275,7 +283,7 @@ namespace user
 
       //}
       
-      ::cast< ::user::interaction > puserinteraction = pwindow->m_pacmeuserinteractionCapture;
+      ::cast< ::user::interaction > puserinteraction = pwindow->m_pacmeuserinteractionMouseCapture;
 
       return puserinteraction;
 
@@ -610,7 +618,6 @@ namespace user
    {
 
       m_puserstyle.defer_destroy();
-
 
       for (auto & pstyle : m_mapUserStyle.payloads())
       {

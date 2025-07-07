@@ -441,7 +441,7 @@ namespace apex
 
             //set_callstack_mask({ get_callstack_mask(), callstack_fork_global});
 
-#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
+#if !defined(UNIVERSAL_WINDOWS) && !defined(__ANDROID__)
 
       m_pmutexMatter = node()->create_local_named_mutex(this, false, "ca2-appmatter");
 
@@ -601,7 +601,7 @@ namespace apex
       //}
 
 
-#if !defined(ANDROID) && !defined(APPLE_IOS)
+#if !defined(__ANDROID__) && !defined(APPLE_IOS)
 
       if (!application()->is_service() || application()->is_user_service())
       {
@@ -1156,7 +1156,7 @@ pdirectorysystem->create("/ca2core");
 
       //}
 
-//#if !defined(CUBE) && !defined(ANDROID)
+//#if !defined(CUBE) && !defined(__ANDROID__)
 //
 //#if !defined(_DEBUG) || defined(WINDOWS)
 //
@@ -2634,7 +2634,7 @@ pdirectorysystem->create("/ca2core");
    //
    //      return true;
    //
-   //#if defined(CUBE) || defined(ANDROID)
+   //#if defined(CUBE) || defined(__ANDROID__)
    //      return true;
    //#endif
    //
@@ -2774,7 +2774,7 @@ pdirectorysystem->create("/ca2core");
    //
    //      string strLibrary = ::file::path(pszLibrary).title();
    //
-   //#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+   //#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
    //
    //      if(strLibrary == "libbase")
    //      {
@@ -2843,43 +2843,43 @@ pdirectorysystem->create("/ca2core");
 
    //}
 
-#ifdef ANDROID
-
-   bool system::android_set_user_wallpaper(string strUrl)
-   {
-
-      //operating_system_driver::get().m_strSetUserWallpaper = strUrl;
-
-      return true;
-
-   }
-
-   bool system::android_get_user_wallpaper(string & strUrl)
-   {
-
-      //operating_system_driver::get().m_bGetUserWallpaper = true;
-
-      //for(int i = 0; i < 10; i++)
-      //{
-
-      //   if (!operating_system_driver::get().m_bGetUserWallpaper)
-      //   {
-
-
-      //   }
-
-      //   sleep(50_ms);
-
-      //}
-
-      //strUrl = operating_system_driver::get().m_strGetUserWallpaper;
-
-      return true;
-
-   }
-
-
-#endif
+//#ifdef __ANDROID__
+//
+//   bool system::android_set_user_wallpaper(string strUrl)
+//   {
+//
+//      //operating_system_driver::get().m_strSetUserWallpaper = strUrl;
+//
+//      return true;
+//
+//   }
+//
+//   bool system::android_get_user_wallpaper(string & strUrl)
+//   {
+//
+//      //operating_system_driver::get().m_bGetUserWallpaper = true;
+//
+//      //for(int i = 0; i < 10; i++)
+//      //{
+//
+//      //   if (!operating_system_driver::get().m_bGetUserWallpaper)
+//      //   {
+//
+//
+//      //   }
+//
+//      //   sleep(50_ms);
+//
+//      //}
+//
+//      //strUrl = operating_system_driver::get().m_strGetUserWallpaper;
+//
+//      return true;
+//
+//   }
+//
+//
+//#endif
 
    //::crypto::crypto* system::crypto()
    //{
@@ -3171,7 +3171,7 @@ pdirectorysystem->create("/ca2core");
 //    }
 // #endif
 
-//#ifndef ANDROID
+//#ifndef __ANDROID__
 
    void system::on_os_text(enum_os_text etext, string strText)
    {
@@ -3444,11 +3444,27 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   void system::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
+void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    {
 
-      node()->open_url_link_at_system_browser(strUrl, strProfile);
+   
+   
+   ::string strUrl(scopedstrUrl);
+   
+   ::string strBrowser(scopedstrBrowser);
+   
+   ::string strProfile(scopedstrProfile);
+   
+   ::string strTarget(scopedstrProfile);
 
+   fork([this, strUrl, strBrowser, strProfile, strTarget]()
+         {
+      
+      node()->open_internet_link_in_browser(strUrl, strBrowser, strProfile, strTarget);
+
+         });
+
+      //retu
       //return ::success;
 
 #if 0
@@ -3458,7 +3474,7 @@ pdirectorysystem->create("/ca2core");
 
          //::auto pmessagebox = __initialize_new ::message_box(NULL, strUrl, strUrl, e_message_box_ok);
 
-pmessagebox->sync();
+         pmessagebox->sync();
 
          m_papplication->os().link_open(strUrl);
 
@@ -3537,13 +3553,13 @@ pmessagebox->sync();
          if (strBrowser == "firefox")
          {
 
-            //strUrl = "https://ca2.software/open_f___?url=" + ::url::encode(strUrl) + "&profile=" + ::url::encode(strProfile) + "&target=" + ::url::encode(strTarget);
+            //strUrl = "https://ca2.network/open_f___?url=" + ::url::encode(strUrl) + "&profile=" + ::url::encode(strProfile) + "&target=" + ::url::encode(strTarget);
 
          }
          else
          {
 
-            //strUrl = "https://ca2.software/open_tab?url=" + ::url::encode(strUrl) + "&profile=" + ::url::encode(strProfile) + "&target=" + ::url::encode(strTarget);
+            //strUrl = "https://ca2.network/open_tab?url=" + ::url::encode(strUrl) + "&profile=" + ::url::encode(strProfile) + "&target=" + ::url::encode(strTarget);
 
          }
 
@@ -3618,7 +3634,7 @@ pmessagebox->sync();
          //#elif defined(__APPLE__)
          //    openURL(strLink);
          //  return true;
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
          string strOpenUrl;
 
@@ -4172,13 +4188,19 @@ pmessagebox->sync();
    //}
 
 
-   void system::open_profile_link(string strUrl, string strProfile, string strTarget)
+void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    {
+   
+   ::string strUrl(scopedstrUrl);
+   
+   ::string strProfile(scopedstrProfile);
+   
+   ::string strTarget(scopedstrProfile);
 
-      fork([this, strUrl, strProfile, strTarget]()
+   fork([this, strUrl, strProfile, strTarget]()
          {
 
-            browser(strUrl, "", strProfile, strTarget);
+         node()->open_internet_link(strUrl, strProfile, strTarget);
 
          });
 

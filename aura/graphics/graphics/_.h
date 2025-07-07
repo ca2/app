@@ -41,6 +41,8 @@ namespace graphics
 
    class output_purpose;
 
+   class render;
+
 
 } // namespace graphics
 

@@ -900,6 +900,8 @@ constexpr ::color::color color32_color_with_byte_opacity(unsigned char u8Opacity
 
 #define __expand_float_rgba(color) color.f32_red(), color.f32_green(), color.f32_blue(), color.f32_opacity()
 #define __expand_double_rgba(color) color.f64_red(), color.f64_green(), color.f64_blue(), color.f64_opacity()
+#define __expand_float_rgb(color) color.f32_red(), color.f32_green(), color.f32_blue()
+#define __expand_double_rgb(color) color.f64_red(), color.f64_green(), color.f64_blue()
 
 
 

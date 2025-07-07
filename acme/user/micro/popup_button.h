@@ -15,6 +15,8 @@ namespace micro
       virtual public ::micro::dialog
    {
    public:
+
+
       ::payload m_payloadPopupButtonResult;
 
 

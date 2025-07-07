@@ -724,6 +724,8 @@ namespace platform
 
       //return estatus;
 
+      m_bReadyToAttendRequests = true;
+
    }
 
 
@@ -1825,7 +1827,7 @@ namespace platform
    }
 
 
-   void system::open_profile_link(string strUrl, string strProfile, string strTarget)
+void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    {
 
       throw ::interface_only();
@@ -1833,20 +1835,21 @@ namespace platform
    }
 
 
-   void system::open_link(string strUrl, string strProfile, string strTarget)
+void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    {
 
-      open_profile_link(strUrl, strProfile, strTarget);
+      throw ::interface_only();
+      //open_profile_link(strUrl, strProfile, strTarget);
 
    }
 
 
-   void system::open_url(string strUrl, string strProfile, string strTarget)
-   {
-
-      throw ::exception(::error_interface_only);
-
-   }
+   // void system::open_url(string strUrl, string strProfile, string strTarget)
+   // {
+   //
+   //    throw ::exception(::error_interface_only);
+   //
+   // }
 
 
    bool system::_handle_uri(const ::block& block)
@@ -2939,7 +2942,7 @@ namespace platform
       information() << "::apex::system::on_request session = " << ::type(psession).name() << "(" << ((iptr)psession) <<
          ")";
 
-      psession->call_request(prequest);
+      psession->post_request(prequest);
 
    }
 
@@ -2978,11 +2981,15 @@ namespace platform
    {
 
       auto prequest = __create_new<::request>();
+
       prequest->m_ecommand = e_command_application_start;
+
       ::string strAppId = m_papplication->m_strAppId;
+
       prequest->m_strAppId = strAppId;
       prequest->m_bPreferSync = true;
-      call_request(prequest);
+
+      post_request(prequest);
 
    }
 
@@ -3237,10 +3244,12 @@ namespace platform
    {
 
       auto prequest = __create_new<::request>();
+      
       prequest->m_ecommand = e_command_application_started;
       prequest->m_strAppId = m_papplication->m_strAppId;
       prequest->m_bPreferSync = true;
-      call_request(prequest);
+
+      post_request(prequest);
 
    }
 
@@ -3423,9 +3432,9 @@ namespace platform
 
          ::file::path pathFolder;
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
-         pathFolder = system()->m_pathCacheDirectory;
+         pathFolder = this->m_pathCacheDirectory;
 
 #else
 
@@ -3634,7 +3643,7 @@ namespace platform
             //if (plink->m_bProfile)
             {
 
-               open_profile_link(plink->m_strLink, plink->m_strBrowserAccount, plink->m_strTarget);
+               open_internet_link(plink->m_strLink, plink->m_strBrowserAccount, plink->m_strTarget);
 
             }
             //else

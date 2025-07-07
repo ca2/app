@@ -8,6 +8,89 @@ set(LIBRARY_NAME bred)
 list(APPEND library_source
         const/idpool.cpp
         const/idpool.h
+        gpu/_.cpp
+        gpu/_.h
+        gpu/_constant.h
+        #gpu/aaa_end_draw.cpp
+        #gpu/aaa_end_draw.h
+        #gpu/aaaa_gpu.h
+        gpu/approach.cpp
+        gpu/approach.h
+        gpu/character.h
+        gpu/command_buffer.cpp
+        gpu/command_buffer.h
+        gpu/compositor.cpp
+        gpu/compositor.h
+        gpu/context.cpp
+        gpu/context.h
+        gpu/context_lock.cpp
+        gpu/context_lock.h
+        gpu/cpu_buffer.cpp
+        gpu/cpu_buffer.h
+        gpu/device.cpp
+        gpu/device.h
+        gpu/draw2d.cpp
+        gpu/draw2d.h
+        gpu/face.cpp
+        gpu/face.h
+        gpu/frame.cpp
+        gpu/frame.h
+        gpu/graphics.cpp
+        gpu/graphics.h
+        gpu/guard.cpp
+        gpu/guard.h
+        gpu/input_layout.cpp
+        gpu/input_layout.h
+        gpu/layer.cpp
+        gpu/layer.h
+        gpu/object.cpp
+        gpu/object.h
+        gpu/program.cpp
+        gpu/program.h
+        gpu/properties.cpp
+        gpu/properties.h
+        gpu/render.cpp
+        gpu/render.h
+        gpu/render_state.cpp
+        gpu/render_state.h
+        gpu/render_target.cpp
+        gpu/render_target.h
+        gpu/renderer.cpp
+        gpu/renderer.h
+        gpu/shader.cpp
+        gpu/shader.h
+        gpu/swap_chain.cpp
+        gpu/swap_chain.h
+        gpu/texture.cpp
+        gpu/texture.h
+        gpu/types.h
+        graphics3d/_.h
+        #graphics3d/aaa_context.cpp
+        #graphics3d/aaa_context.h
+        #graphics3d/aaa_renderer.cpp
+        #graphics3d/aaa_renderer.h
+        graphics3d/camera.cpp
+        graphics3d/camera.h
+        graphics3d/engine.cpp
+        graphics3d/engine.h
+        graphics3d/frame.cpp
+        graphics3d/frame.h
+        graphics3d/input.cpp
+        graphics3d/input.h
+        graphics3d/key_map.cpp
+        graphics3d/key_map.h
+        graphics3d/model.cpp
+        graphics3d/model.h
+        graphics3d/scene.cpp
+        graphics3d/scene.h
+        graphics3d/scene_object.cpp
+        graphics3d/scene_object.h
+        graphics3d/scene_system.cpp
+        graphics3d/scene_system.h
+        graphics3d/shader.cpp
+        graphics3d/shader.h
+        graphics3d/types.h
+        graphics3d/utilities.h
         include/_.h
         inline/__debug_box_clear_impl.h
         inline/__debug_box_set_impl.h
@@ -29,8 +112,10 @@ list(APPEND library_source
         platform/session.h
         platform/system.cpp
         platform/system.h
-   user/user/user.cpp
-   user/user/user.h
+        user/user/graphics3d.cpp
+        user/user/graphics3d.h
+        user/user/user.cpp
+        user/user/user.h
         _.cpp
         _.h
         _defer.h
@@ -42,12 +127,12 @@ list(APPEND library_source
 
 
 list(APPEND library_references
-   acme
-   apex
-   aqua
-   aura
-   axis
-   base)
+        acme
+        apex
+        aqua
+        aura
+        axis
+        base)
 
 
 add_library(${PROJECT_NAME} SHARED ${library_source})
@@ -81,11 +166,11 @@ if (MSVC)
     target_link_libraries(bred PRIVATE ${library_references} ${global_library_references})
 
 
-elseif(${LINUX} OR ${__BSD__})
+elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
 
-    target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
-    target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
+    target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
+    target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
     target_link_libraries(bred PRIVATE ${library_references} ${global_library_references})
@@ -93,8 +178,7 @@ elseif(${LINUX} OR ${__BSD__})
     # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
 
-
-endif()
+endif ()
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})

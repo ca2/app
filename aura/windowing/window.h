@@ -59,7 +59,7 @@ namespace windowing
 
       ::sandbox_windowing::window *             m_psandboxwindowingwindow;
       //void *                                    m_pWindow4;
-
+      ::task_pointer                            m_ptaskUpdateScreen;
       //::pointer<::windowing::display>           m_pdisplay;
       //::pointer<::user::interaction>            m_puserinteraction;
       string                                    m_strDebug;
@@ -158,7 +158,7 @@ namespace windowing
 
       bool                                      m_bUpdateBufferPending;
 
-      ::pointer<::user::interaction>            m_puserinteractionMouseCapture;
+      //::pointer<::user::interaction>            m_puserinteractionMouseCapture;
       //::pointer<::user::interaction>            aaa_m_pacmeuserinteractionKeyboardFocus;
       //::pointer<::acme::user::interaction>      m_pacmeuserinteractionKeyboardFocusRequest;
       /// message handling helper besides (possibly duplicate of) m_pacmeuserinteractionKeyboardFocusRequest
@@ -219,6 +219,8 @@ namespace windowing
       void user_common_construct();
 
       void on_initialize_particle() override;
+
+      void initialize_window(::acme::user::interaction* puserinteraction) override;
 
       virtual void window_set_keyboard_focus();
       virtual void window_kill_keyboard_focus();

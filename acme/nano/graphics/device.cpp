@@ -31,12 +31,16 @@ namespace nano
       }
 
 
+#ifdef HAS_X11
+
       void device::create_for_x11(const ::x11::handle_t & handle, int w, int h)
       {
 
          throw ::interface_only();
 
       }
+
+#endif
 
 
       void device::resize(const ::int_size & size)

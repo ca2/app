@@ -286,7 +286,7 @@ void image::initialize(const ::int_size & size, ::image32_t * pimage32, int iSca
 //}
 
 
-bool image::host(::pixmap* ppixmap)
+bool image::host(::pixmap* ppixmap, ::windowing::window * pwindow)
 {
    //// callers should be able to deal with graphics backend that doesn't support "hosting" portions of RAM
    //return false;
@@ -4043,6 +4043,30 @@ void image::op(string str)
 
    //return false;
 
+}
+
+
+::memory image::copy_with_no_stride()
+{
+   
+   memory m;
+   m.set_size(area() * 4);
+   auto pimage32Target = (image32_t *) m.data();
+   pimage32Target->copy(this->width(), this->height(), this->width() * 4, this->data(), this->m_iScan);
+   return ::transfer(m);
+   
+}
+
+
+::memory image::vertical_swap_copy_with_no_stride()
+{
+   
+   memory m;
+   m.set_size(area() * 4);
+   auto pimage32Target = (image32_t *) m.data();
+   pimage32Target->vertical_swap_copy(this->width(), this->height(), this->width() * 4, this->data(), this->m_iScan);
+   return ::transfer(m);
+   
 }
 
 

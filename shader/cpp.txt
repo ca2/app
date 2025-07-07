@@ -1,7 +1,7 @@
  Volume in drive C has no label.
  Volume serial Number is CC8D-9F90
 
- Directory of C:\nordroid\app-core\simple_shader
+ Directory of C:\nordroid\app-graphics3d\simple_shader
 
 17/04/2016  03:31                24 framework.cpp
 17/04/2016  03:31               573 simple_shader.cpp

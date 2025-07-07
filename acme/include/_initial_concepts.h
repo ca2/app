@@ -358,15 +358,15 @@ concept has_get_string = requires(HAS_GET_STRING has_get_string)
 //};
 
 
-#ifdef ANDROID
-
-namespace std
-{
-   template<class FROM, class TO>
-   concept convertible_to = ::std::is_convertible_v<FROM, TO>;
-
-}
-#endif
+//#ifdef __ANDROID__
+//
+//namespace std
+//{
+//   template<class FROM, class TO>
+//   concept convertible_to = ::std::is_convertible_v<FROM, TO>;
+//
+//}
+//#endif
 
 
 
@@ -852,3 +852,24 @@ using wstring_array = string_array_base < wstring, wstring >;
 
 template < typename POINTER_BUT_NO_INTEGRAL, typename TYPE >
 concept pointer_but_not_integral = ::std::convertible_to < POINTER_BUT_NO_INTEGRAL, TYPE * > && !primitive_integral < POINTER_BUT_NO_INTEGRAL >;
+
+
+
+_EXPORT_STD template <class>
+constexpr bool is_lvalue_reference = false; // determine whether type argument is an lvalue reference
+
+template <class _Ty>
+constexpr bool is_lvalue_reference<_Ty&> = true;
+
+
+template <class _Ty>
+constexpr _Ty&& land(_Ty&& t, non_reference < _Ty>& _Arg) noexcept {
+   return t = static_cast<_Ty&&>(_Arg);
+}
+
+template <class _Ty>
+constexpr _Ty&& land(_Ty&& t, non_reference < _Ty>&& _Arg) noexcept
+{
+   static_assert(!is_lvalue_reference<_Ty>, "bad argument");
+   return t = static_cast<_Ty&&>(_Arg);
+}

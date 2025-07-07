@@ -10,7 +10,7 @@
 #include "standard.h"
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
+#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(FREEBSD)
 
 
 void * standard_exception::siginfodup(void * psiginfo)

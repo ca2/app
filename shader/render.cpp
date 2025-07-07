@@ -2,15 +2,16 @@
 #include "render.h"
 #include "application.h"
 #include "acme/parallelization/single_lock.h"
-#include "aura/graphics/gpu/shader.h"
-#include "aura/graphics/gpu/approach.h"
-#include "aura/graphics/gpu/context.h"
-#include "aura/graphics/gpu/program.h"
-#include "aura/graphics/gpu/cpu_buffer.h"
+#include "bred/gpu/shader.h"
+#include "bred/gpu/bred_approach.h"
+#include "bred/gpu/context.h"
+#include "bred/gpu/program.h"
+#include "bred/gpu/cpu_buffer.h"
 #include <math.h>
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
+#include "aura/graphics/image/target.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/user/user/interaction.h"
 #include "aura/platform/system.h"
@@ -176,16 +177,16 @@ namespace app_shader
 
       string strFragment = m_strFragment;
 
-      ::gpu::context_lock lock(m_pgpucontext);
+      //::gpu::context_lock lock(m_pgpucontext);
 
-      m_pgpucontext->make_current();
+      //m_pgpucontext->make_current();
 
-      if (!m_pgpuprogram)
+      if (!m_pshader)
       {
 
          //estatus = 
          
-         __øconstruct(m_pgpuprogram);
+         __øconstruct(m_pshader);
 
       }
 
@@ -197,7 +198,7 @@ namespace app_shader
       //{
 
          //estatus = 
-         m_pgpuprogram->create_program(this, strProjection, strFragment);
+         m_pshader->initialize_shader(m_pgpucontext->m_pgpurenderer, strProjection, strFragment);
 
       //}
 
@@ -207,9 +208,13 @@ namespace app_shader
 
       //strDataId = m_pinteraction->id();
 
-      m_pgpucontext->m_pprogram = m_pgpuprogram;
+      //pgpucontext->m_pgpuprogram = m_pgpuprogram;
 
-      m_pgpucontext->draw();
+      m_pgpushader->bind();
+
+      m_pgpushader->draw();
+
+      m_pgpushader->unbind();
 
       //unsigned int texture1;
 
@@ -247,23 +252,25 @@ namespace app_shader
          
       }
       
-      m_pgpucontext->send([this]
+      m_pgpucontext->_send([this]
                                     {
          
-         ::gpu::context_lock lock(m_pgpucontext);
+         //::gpu::context_lock lock(m_pgpucontext);
          
          defer_update_shader();
          
          if (m_pgpucontext &&
-             ::is_set(m_pgpucontext->m_pprogram) &&
-             m_pgpucontext->m_pcpubuffer && m_pgpucontext->m_pcpubuffer->m_pixmap.is_ok())
+             ::is_set(m_pgpushader) &&
+             m_pgpucontext->m_pcpubuffer &&
+            m_pgpucontext->m_pcpubuffer->m_pimagetarget &&
+            m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_pimage.ok())
          {
             
             {
                
                //::gpu::context_lock lock(m_pgpucontext);
                
-               m_pgpucontext->make_current();
+               //m_pgpucontext->make_current();
                
                m_pgpucontext->start_drawing();
                
@@ -279,19 +286,19 @@ namespace app_shader
                   
                   float y = (float)pointCursor.y();
                   
-                  m_pgpucontext->m_pprogram->m_pshader->setVec2("mouse", x, y);
-                  m_pgpucontext->m_pprogram->m_pshader->setVec2("iMouse", x, y);
+                  m_pgpushader->set_vec2("mouse", x, y);
+                  m_pgpushader->set_vec2("iMouse", x, y);
                   
                }
                
                {
                   
-                  float cx = (float)m_pgpucontext->m_pcpubuffer->m_pixmap.width();
+                  float cx = (float)m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_pimage->width();
                   
-                  float cy = (float)m_pgpucontext->m_pcpubuffer->m_pixmap.height();
+                  float cy = (float)m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_pimage->height();
                   
-                  m_pgpucontext->m_pprogram->m_pshader->setVec2("resolution", cx, cy);
-                  m_pgpucontext->m_pprogram->m_pshader->setVec2("iResolution", cx, cy);
+                  m_pgpushader->set_vec2("resolution", cx, cy);
+                  m_pgpushader->set_vec2("iResolution", cx, cy);
                   
                }
                
@@ -301,8 +308,8 @@ namespace app_shader
                   
                   float time = (float)dTime;
                   
-                  m_pgpucontext->m_pprogram->m_pshader->setFloat("time", time);
-                  m_pgpucontext->m_pprogram->m_pshader->setFloat("iTime", time);
+                  m_pgpushader->set_float("time", time);
+                  m_pgpushader->set_float("iTime", time);
                   
                }
 
@@ -457,32 +464,23 @@ namespace app_shader
    void render::_001OnDrawError(::draw2d::graphics_pointer & pgraphics)
    {
       
-      auto pgpuprogram = m_pgpuprogram;
+      auto pgpushader = m_pgpushader;
 
-      if (!pgpuprogram)
+      if (!pgpushader)
       {
 
          return;
 
       }
       
-      auto pshader = pgpuprogram->m_pshader;
-      
-      if(!pshader)
-      {
-       
-         return;
-         
-      }
-
-      if (pshader->m_strError.is_empty())
+      if (pgpushader->m_strError.is_empty())
       {
 
          return;
 
       }
 
-      string strError = m_pgpuprogram->m_pshader->m_strError;
+      string strError = pgpushader->m_strError;
 
       auto pathShader = m_strShaderPath;
 

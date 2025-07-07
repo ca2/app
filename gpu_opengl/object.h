@@ -5,10 +5,10 @@
 #include "glm/vec2.hpp"
 #include "glm/vec3.hpp"
 #include "acme/prototype/geometry3d/location.h"
-#include "aura/graphics/gpu/object.h"
+#include "bred/gpu/object.h"
 
 
-namespace opengl
+namespace gpu_opengl
 {
 
 
@@ -32,7 +32,7 @@ namespace opengl
       ::array<::glm::vec2>       m_uvs;
       ::array<::glm::vec3>       m_normals;
 
-      ::gpu::uniform             m_iTextureUniform;
+      ::gpu::payload             m_payloadTexture;
       ::gpu::element             m_uniformTexture;
 
 
@@ -55,13 +55,13 @@ namespace opengl
       void draw() override;
 
       
-      void set_texture_uniform(::gpu::uniform uniformTexture) override;
+      void set_texture_uniform(const ::gpu::payload & uniformTexture) override;
 
 
    };
 
 
 
-} // namespace opengl
+} // namespace gpu_opengl
 
 

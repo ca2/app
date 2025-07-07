@@ -1,0 +1,8 @@
+LIBRARY "gpu_vulkan"
+
+
+EXPORTS
+gpu_vulkan_factory
+
+
+

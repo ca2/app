@@ -115,7 +115,7 @@ simple_frame_window::simple_frame_window()
 
    //m_bWindowFrame = true;
 
-//#if defined(APPLE_IOS) || defined(ANDROID)
+//#if defined(APPLE_IOS) || defined(__ANDROID__)
 
 //   m_bWindowFrame = false;
 
@@ -934,7 +934,7 @@ void simple_frame_window::initialize_frame_window_experience()
 bool simple_frame_window::would_display_notify_icon()
 {
 
-#if defined(UNIVERSAL_WINDOWS) || defined(ANDROID) || defined(APPLE_IOS) || defined(OPENBSD)
+#if defined(UNIVERSAL_WINDOWS) || defined(__ANDROID__) || defined(APPLE_IOS) || defined(OPENBSD)
 
    return false;
 
@@ -1025,7 +1025,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 //      else
 //      {
 //
-//#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
+//#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(__ANDROID__)
 //
 //         m_bWindowFrame = false;
 //
@@ -1052,7 +1052,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
       if (!(m_ewindowflag & e_window_flag_window_created))
       {
 
-         //#if !defined(APPLE_IOS) && !defined(ANDROID)
+         //#if !defined(APPLE_IOS) && !defined(__ANDROID__)
 
          if (m_pimpactsystem->id().has_character())
          {
@@ -1169,7 +1169,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    }
 
-   //#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID) && !defined(APPLE_IOS)
+   //#if !defined(UNIVERSAL_WINDOWS) && !defined(__ANDROID__) && !defined(APPLE_IOS)
 
    //if (!(m_ewindowflag & e_window_flag_window_created))
    //{
@@ -2083,7 +2083,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
       //{
 
       //   // TODO: instead of closing all applications in process psystem->m_apptra, should close application that make part of
-      //   // cube, bergedge, session or system.
+      //   // graphics3d, bergedge, session or system.
 
       //   auto applicationa = psystem->get_applicationa();
 

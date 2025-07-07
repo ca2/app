@@ -17,9 +17,6 @@
 #include "aura/graphics/write_text/font_enumeration_item.h"
 #include "aura/graphics/write_text/fonts.h"
 #include "acme/parallelization/single_lock.h"
-//#include "acme/prototype/geometry2d/_enhanced.h"
-//#include "acme/prototype/geometry2d/_collection_enhanced.h"
-//#include "acme/prototype/geometry2d/_defer_shape.h"
 #include "acme/prototype/string/str.h"
 #include "aura/user/user/interaction.h"
 #include "nanosvg.h"
@@ -74,12 +71,19 @@ namespace draw2d
    graphics::graphics()
    {
 
+
+      m_bForWindowDraw2d = false;
       m_bDraw = true;
       m_puserinteraction = nullptr;
       m_bUseImageMipMapsOrResizedImages = false;
 
-      m_pointOrigin.x() = 0;
-      m_pointOrigin.y() = 0;
+      m_pointTranslateOutput.x() = 0.;
+      m_pointTranslateOutput.y() = 0.;
+      m_sizeScaleOutput.cx() = 1.0;
+      m_sizeScaleOutput.cy() = 1.0;
+
+      m_pointOrigin.x() = 0.;
+      m_pointOrigin.y() = 0.;
       m_sizeScaling.cx() = 1.0;
       m_sizeScaling.cy() = 1.0;
       //m_estatus = success;
@@ -121,6 +125,12 @@ namespace draw2d
    }
 
 
+   bool graphics::is_gpu_oriented()
+   {
+
+      return false;
+
+   }
 
 
    void graphics::prefer_mapped_image_on_mix()
@@ -151,13 +161,6 @@ namespace draw2d
       return get_os_data() != 0;
 
    }
-
-
-   //void graphics::set_direct2d_plugin(::draw2d_direct2d::plugin * pplugin)
-   //{
-
-
-   //}
 
 
    bool graphics::_is_ok() const
@@ -192,10 +195,33 @@ namespace draw2d
    }
 
 
+   //void graphics::start_gpu_layer()
+   //{
+
+
+   //}
+
+
+   //::int_rectangle graphics::end_gpu_layer()
+   //{
+
+   //   return {};
+
+   //}
+
+
    ::user::redraw * graphics::user_redraw()
    {
 
       return m_puserredraw;
+
+   }
+
+
+   void graphics::defer_add_graphics_render(::graphics::render* pgpurender)
+   {
+
+       
 
    }
 
@@ -212,6 +238,21 @@ namespace draw2d
       //fill_rectangle(get_size(), color);
 
       //return true;
+
+   }
+
+
+   void graphics::__on_begin_draw()
+   {
+
+
+
+   }
+
+
+   void graphics::on_end_draw()
+   {
+
 
    }
 
@@ -374,8 +415,59 @@ namespace draw2d
 
    }
 
+   
+   void graphics::create_window_graphics(::windowing::window * pwindow)
+   {
+
+      //__UNREFERENCED_PARAMETER(size);
+
+      //CreateCompatibleDC(nullptr);
+      //if (!CreateCompatibleDC(nullptr))
+      //{
+
+      //   return false;
+
+      //}
+
+      //return true;
+
+   }
+
+
+   void graphics::create_offscreen_graphics_for_swap_chain_blitting(::user::interaction * puserinteraction, const ::int_size& size)
+   {
+
+      create_memory_graphics(size);
+
+   }
+
 
    void graphics::create_memory_graphics(const ::int_size & size)
+   {
+
+      _create_memory_graphics(size);
+
+   }
+
+
+   void graphics::create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size)
+   {
+
+      m_bForWindowDraw2d = true;
+
+      m_puserinteraction = puserinteraction;
+
+      //create_memory_graphics(size);
+
+   }
+
+
+   void graphics::defer_set_size(const ::int_size& size)
+   {
+
+   }
+
+   void graphics::_create_memory_graphics(const ::int_size& size)
    {
 
       __UNREFERENCED_PARAMETER(size);
@@ -415,6 +507,13 @@ namespace draw2d
       //return false;
 
    }
+
+
+   //void graphics::set_hint_window_output()
+   //{
+
+
+   //}
 
 
    /*   int graphics::ExcludeUpdateRgn(::windowing::window * pwindow)
@@ -1309,7 +1408,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw_at(const ::double_point & pointDst, ::::image::image_frame * pframe)
+   //void graphics::draw_at(const ::double_point & pointDst, ::image::image_frame * pframe)
    //{
 
    //   return draw_at(pointDst, pframe->m_pimage);
@@ -1333,7 +1432,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw(::::image::image_frame * pframe, const ::double_point & pointSrc)
+   //void graphics::draw(::image::image_frame * pframe, const ::double_point & pointSrc)
    //{
 
    //   return draw(pframe->m_pimage, pointSrc);
@@ -1357,7 +1456,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw(const ::double_rectangle & rectangleTarget, ::::image::image_frame * pframe, const ::double_point & pointSrc)
+   //void graphics::draw(const ::double_rectangle & rectangleTarget, ::image::image_frame * pframe, const ::double_point & pointSrc)
    //{
 
    //   return draw(rectangleTarget, pframe->m_pimage, pointSrc);
@@ -1498,7 +1597,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::stretch(const ::double_rectangle & rectangleTarget, ::::image::image_frame * pframe, const ::double_rectangle & rectangleSource)
+   //void graphics::stretch(const ::double_rectangle & rectangleTarget, ::image::image_frame * pframe, const ::double_rectangle & rectangleSource)
    //{
 
    //   return stretch(rectangleTarget, pframe->m_pimage, rectangleSource);
@@ -2003,7 +2102,7 @@ namespace draw2d
    }
 
 
-   //#if !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(SOLARIS)
+   //#if !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__) && !defined(SOLARIS)
    //
    //
    //   void graphics::ResetDC(const DEVMODE* pDevMode)
@@ -3893,13 +3992,9 @@ namespace draw2d
    double_size graphics::get_text_extent(const scoped_string & scopedstr)
    {
 
-      throw interface_only();
+      auto size = get_text_extent(scopedstr, scopedstr.size());
 
-      //::double_size size;
-
-      //get_text_extent(size, scopedstr);
-
-      return {};
+      return size;
 
    }
 
@@ -3907,13 +4002,9 @@ namespace draw2d
    double_size graphics::get_text_extent(const scoped_string & scopedstr, ::collection::index iIndex)
    {
 
-      throw interface_only();
+      auto size = get_text_extent(scopedstr(0, iIndex));
 
-      //::double_size size;
-
-      //get_text_extent(size, scopedstr);
-
-      return {};
+      return size;
 
    }
 
@@ -5274,6 +5365,7 @@ namespace draw2d
 
          rectangle.deflate(0, rectangle.height() / 7.0);
 
+         
          set_current_point(rectangle.bottom_left());
          line_to(rectangle.bottom_right());
          //set_current_point(rectangle.bottom_left() - ::int_size(0,(int)(m_ppen->m_dWidth*2.0)));
@@ -5593,6 +5685,14 @@ namespace draw2d
          draw_rectangle(rectangle, ppen);
 
       }
+
+   }
+
+
+   void graphics::defer_snapshot_for_composition()
+   {
+
+
 
    }
 
@@ -6108,6 +6208,13 @@ namespace draw2d
    }
 
 
+   void graphics::defer_resize_memory_graphics(const ::int_size& size)
+   {
+
+
+   }
+
+
    void graphics::on_begin_draw(oswindow wnd, const double_size & sz)
    {
 
@@ -6115,6 +6222,13 @@ namespace draw2d
 
 
    void graphics::on_end_draw(oswindow wnd)
+   {
+
+
+   }
+
+
+   void graphics::on_present()
    {
 
 
@@ -6215,19 +6329,24 @@ namespace draw2d
    void graphics::update_matrix()
    {
 
-      ::geometry2d::matrix matrixScale;
 
-      ::geometry2d::matrix matrixTranslate;
+      //auto matrix = m_matrixChangeOutput * matrixScale * m_matrix * matrixTranslate;
 
-      matrixScale.a1 = m_sizeScaling.cx();
+      //auto m = m_matrix;
 
-      matrixScale.b2 = m_sizeScaling.cy();
+      auto scaling = ::geometry2d::matrix::scaling(m_sizeScaling);
 
-      matrixTranslate.c1 = m_pointOrigin.x();
+      auto translation = ::geometry2d::matrix::translation(m_pointOrigin);
 
-      matrixTranslate.c2 = m_pointOrigin.y();
+      //m.scale(m_sizeScaling, ::geometry2d::matrix::mode_prepend);
 
-      auto matrix = matrixScale * m_matrix * matrixTranslate;
+      //m.scale(m_sizeScaleOutput, ::geometry2d::matrix::mode_prepend);
+
+      //m.translate(m_pointOrigin, ::geometry2d::matrix::mode_append);
+
+      //m.translate(m_pointTranslateOutput, ::geometry2d::matrix::mode_append);
+
+      auto matrix = scaling * m_matrix * translation;
 
       _set(matrix);
 

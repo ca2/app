@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#if !defined(ANDROID) && !defined(WINDOWS_DESKTOP)
+#if !defined(__ANDROID__) && !defined(WINDOWS_DESKTOP)
 #include "ansios_serial.cpp"
 #include "ansios_base.cpp"
 #endif

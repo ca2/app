@@ -20,12 +20,12 @@
 #ifndef __DFREERDP_H
 #define __DFREERDP_H
 #include "rdpclient/config.h"
-#if defined(ANDROID)
+#if defined(__ANDROID__)
 #include <pthread.h>
 #endif
 #if defined(_WIN32) && !defined(UNIVERSAL_WINDOWS)
 #include "rdpclient/client/Windows/wf_client.h"
-//#elif defined(ANDROID)
+//#elif defined(__ANDROID__)
 //#include "axis/rdpclient/client/A"
 #endif
 #include <freerdp/freerdp.h>

@@ -19,7 +19,7 @@ public:
    bool              m_bSignaled;  // meaningful only when m_bManualEvent
    int           m_iSignalId;  // meaningful only when m_bManualEvent
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
    bool              m_bSignaled;
    int               m_iHold;

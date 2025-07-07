@@ -6619,7 +6619,7 @@ const char * GeoIP_region_name_by_code(const char * country_code,const char * re
       name = "Saint Peter Basseterre";
       break;
       case 12:
-      name = "Saint Thomas Lowland";
+      name = "Saint Thomas vulkan_land";
       break;
       case 13:
       name = "Saint Thomas Middle Island";

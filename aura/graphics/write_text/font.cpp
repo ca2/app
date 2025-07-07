@@ -102,7 +102,7 @@ namespace write_text
 //      {
 //#ifdef MACOS
 //         m_dFontSize = dSize * 1.2;
-//#elif defined(ANDROID)
+//#elif defined(__ANDROID__)
 //         m_dFontSize = dSize * 1.6;
 //#else
 //         m_dFontSize = dSize;

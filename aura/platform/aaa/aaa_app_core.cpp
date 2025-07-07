@@ -271,7 +271,7 @@ void app_core::system_init()
 
    }
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
    {
 
@@ -1624,7 +1624,7 @@ string merge_colon_args(const array < string_array > & straa)
 //}
 //
 
-#elif !defined(ANDROID)
+#elif !defined(__ANDROID__)
 
 
 void app_core::system_proc()
@@ -1768,7 +1768,7 @@ bool app_core::has_aura_application_factory() const
 //// defined at linux_main.cpp
 
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
 
 // LOOK AT ANDROID_MAIN.Cpp
@@ -2051,7 +2051,7 @@ bool app_core::has_aura_application_factory() const
 
    //}
 
-#if !defined(ANDROID)
+#if !defined(__ANDROID__)
 
    if (!papp->is_serviceable() || papp->is_user_service())
    {

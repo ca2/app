@@ -73,41 +73,41 @@
     <frame>
       <ip>0x57B78CF</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::set_command_line(char const*)</fn>
+      <fn>app::set_command_line(char const*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>500</line>
     </frame>
     <frame>
       <ip>0x57B6CF0</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::ini()</fn>
+      <fn>app::ini()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>351</line>
     </frame>
     <frame>
       <ip>0x57B9D8B</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::main()</fn>
+      <fn>app::main()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>1512</line>
     </frame>
     <frame>
       <ip>0x57B8D9A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_main(app_core*)</fn>
+      <fn>aura_main(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>935</line>
     </frame>
     <frame>
       <ip>0x57B8D7F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_boot(app_core*)</fn>
+      <fn>aura_boot(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>926</line>
     </frame>
     <frame>
@@ -115,7 +115,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), acme::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>916</line>
     </frame>
     <frame>
@@ -123,7 +123,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>aura_aura(aura_main_data*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>828</line>
     </frame>
     <frame>
@@ -223,7 +223,7 @@
     <frame>
       <ip>0x57ECF53</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::system::system(object*, app_core*)</fn>
+      <fn>aura::system::system(object*, app*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_system.cpp</file>
       <line>385</line>
@@ -231,7 +231,7 @@
     <frame>
       <ip>0x11E36D55</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>aura::system::system(object*, app_core*)</fn>
+      <fn>aura::system::system(object*, app*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>core_system.cpp</file>
       <line>37</line>
@@ -563,7 +563,7 @@
     <frame>
       <ip>0x57ED270</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::system::system(object*, app_core*)</fn>
+      <fn>aura::system::system(object*, app*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_system.cpp</file>
       <line>229</line>
@@ -571,7 +571,7 @@
     <frame>
       <ip>0x11E36D55</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>aura::system::system(object*, app_core*)</fn>
+      <fn>aura::system::system(object*, app*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>core_system.cpp</file>
       <line>37</line>
@@ -579,7 +579,7 @@
     <frame>
       <ip>0x11DFBCE6</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>core_create_aura_system(app_core*)</fn>
+      <fn>core_create_aura_system(app*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura.cpp</file>
       <line>13</line>
@@ -587,33 +587,33 @@
     <frame>
       <ip>0x57B7055</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::ini()</fn>
+      <fn>app::ini()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>432</line>
     </frame>
     <frame>
       <ip>0x57B9D8B</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::main()</fn>
+      <fn>app::main()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>1512</line>
     </frame>
     <frame>
       <ip>0x57B8D9A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_main(app_core*)</fn>
+      <fn>aura_main(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>935</line>
     </frame>
     <frame>
       <ip>0x57B8D7F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_boot(app_core*)</fn>
+      <fn>aura_boot(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>926</line>
     </frame>
     <frame>
@@ -621,7 +621,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), acme::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>916</line>
     </frame>
     <frame>
@@ -629,7 +629,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>aura_aura(aura_main_data*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>828</line>
     </frame>
   </stack>
@@ -1213,7 +1213,7 @@
     <frame>
       <ip>0xD977A99</ip>
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
-      <fn>axis::system::system(object*, app_core*)</fn>
+      <fn>axis::system::system(object*, app*)</fn>
       <dir>/xcore/app/axis/axis/axis</dir>
       <file>axis_system.cpp</file>
       <line>35</line>
@@ -1221,7 +1221,7 @@
     <frame>
       <ip>0x11E36D7E</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>aura::system::system(object*, app_core*)</fn>
+      <fn>aura::system::system(object*, app*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>core_system.cpp</file>
       <line>37</line>
@@ -1411,7 +1411,7 @@
     <frame>
       <ip>0xD977A9E</ip>
       <obj>/xcore/time/x64/basis/libaxis.so</obj>
-      <fn>axis::system::system(object*, app_core*)</fn>
+      <fn>axis::system::system(object*, app*)</fn>
       <dir>/xcore/app/axis/axis/axis</dir>
       <file>axis_system.cpp</file>
       <line>36</line>
@@ -1419,7 +1419,7 @@
     <frame>
       <ip>0x11E36D7E</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>aura::system::system(object*, app_core*)</fn>
+      <fn>aura::system::system(object*, app*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>core_system.cpp</file>
       <line>37</line>
@@ -1609,7 +1609,7 @@
     <frame>
       <ip>0xE58E2CC</ip>
       <obj>/xcore/time/x64/basis/libbase.so</obj>
-      <fn>base::system::system(object*, app_core*)</fn>
+      <fn>base::system::system(object*, app*)</fn>
       <dir>/xcore/app/base/base/base</dir>
       <file>base_system.cpp</file>
       <line>119</line>
@@ -1617,7 +1617,7 @@
     <frame>
       <ip>0x11E36DA7</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>aura::system::system(object*, app_core*)</fn>
+      <fn>aura::system::system(object*, app*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>core_system.cpp</file>
       <line>37</line>
@@ -1815,9 +1815,9 @@
     <frame>
       <ip>0x57B7277</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::ini()</fn>
+      <fn>app::ini()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>453</line>
     </frame>
   </stack>
@@ -2013,9 +2013,9 @@
     <frame>
       <ip>0x57B7277</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::ini()</fn>
+      <fn>app::ini()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>453</line>
     </frame>
   </stack>
@@ -2179,33 +2179,33 @@
     <frame>
       <ip>0x57B7277</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::ini()</fn>
+      <fn>app::ini()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>453</line>
     </frame>
     <frame>
       <ip>0x57B9D8B</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::main()</fn>
+      <fn>app::main()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>1512</line>
     </frame>
     <frame>
       <ip>0x57B8D9A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_main(app_core*)</fn>
+      <fn>aura_main(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>935</line>
     </frame>
     <frame>
       <ip>0x57B8D7F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_boot(app_core*)</fn>
+      <fn>aura_boot(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>926</line>
     </frame>
     <frame>
@@ -2213,7 +2213,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), acme::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>916</line>
     </frame>
   </stack>
@@ -60066,7 +60066,7 @@
     <frame>
       <ip>0x591CABA</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::run()</fn>
+      <fn>app::run()</fn>
       <dir>/xcore/app/aura/os/linux</dir>
       <file>linux_main.cpp</file>
       <line>148</line>
@@ -60644,7 +60644,7 @@
     <frame>
       <ip>0x591CABA</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::run()</fn>
+      <fn>app::run()</fn>
       <dir>/xcore/app/aura/os/linux</dir>
       <file>linux_main.cpp</file>
       <line>148</line>
@@ -60652,17 +60652,17 @@
     <frame>
       <ip>0x57B9DA6</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::main()</fn>
+      <fn>app::main()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>1515</line>
     </frame>
     <frame>
       <ip>0x57B8D9A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_main(app_core*)</fn>
+      <fn>aura_main(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>935</line>
     </frame>
   </stack>
@@ -60802,33 +60802,33 @@
     <frame>
       <ip>0x57B8066</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::end()</fn>
+      <fn>app::end()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>658</line>
     </frame>
     <frame>
       <ip>0x57B9DB2</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::main()</fn>
+      <fn>app::main()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>1519</line>
     </frame>
     <frame>
       <ip>0x57B8D9A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_main(app_core*)</fn>
+      <fn>aura_main(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>935</line>
     </frame>
     <frame>
       <ip>0x57B8D7F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_boot(app_core*)</fn>
+      <fn>aura_boot(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>926</line>
     </frame>
     <frame>
@@ -60836,7 +60836,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), acme::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>916</line>
     </frame>
     <frame>
@@ -60844,7 +60844,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>aura_aura(aura_main_data*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>828</line>
     </frame>
     <frame>
@@ -61024,33 +61024,33 @@
     <frame>
       <ip>0x57B8066</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::end()</fn>
+      <fn>app::end()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>658</line>
     </frame>
     <frame>
       <ip>0x57B9DB2</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::main()</fn>
+      <fn>app::main()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>1519</line>
     </frame>
     <frame>
       <ip>0x57B8D9A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_main(app_core*)</fn>
+      <fn>aura_main(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>935</line>
     </frame>
     <frame>
       <ip>0x57B8D7F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_boot(app_core*)</fn>
+      <fn>aura_boot(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>926</line>
     </frame>
   </stack>
@@ -61206,33 +61206,33 @@
     <frame>
       <ip>0x57B8066</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::end()</fn>
+      <fn>app::end()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>658</line>
     </frame>
     <frame>
       <ip>0x57B9DB2</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::main()</fn>
+      <fn>app::main()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>1519</line>
     </frame>
     <frame>
       <ip>0x57B8D9A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_main(app_core*)</fn>
+      <fn>aura_main(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>935</line>
     </frame>
     <frame>
       <ip>0x57B8D7F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_boot(app_core*)</fn>
+      <fn>aura_boot(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>926</line>
     </frame>
     <frame>
@@ -61240,7 +61240,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), acme::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>916</line>
     </frame>
     <frame>
@@ -61248,7 +61248,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>aura_aura(aura_main_data*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>828</line>
     </frame>
   </stack>
@@ -61388,33 +61388,33 @@
     <frame>
       <ip>0x57B8066</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::end()</fn>
+      <fn>app::end()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>658</line>
     </frame>
     <frame>
       <ip>0x57B9DB2</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::main()</fn>
+      <fn>app::main()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>1519</line>
     </frame>
     <frame>
       <ip>0x57B8D9A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_main(app_core*)</fn>
+      <fn>aura_main(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>935</line>
     </frame>
     <frame>
       <ip>0x57B8D7F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_boot(app_core*)</fn>
+      <fn>aura_boot(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>926</line>
     </frame>
     <frame>
@@ -61422,7 +61422,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), acme::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>916</line>
     </frame>
     <frame>
@@ -61430,7 +61430,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>aura_aura(aura_main_data*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>828</line>
     </frame>
     <frame>
@@ -61578,33 +61578,33 @@
     <frame>
       <ip>0x57B8066</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::end()</fn>
+      <fn>app::end()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>658</line>
     </frame>
     <frame>
       <ip>0x57B9DB2</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::main()</fn>
+      <fn>app::main()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>1519</line>
     </frame>
     <frame>
       <ip>0x57B8D9A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_main(app_core*)</fn>
+      <fn>aura_main(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>935</line>
     </frame>
     <frame>
       <ip>0x57B8D7F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_boot(app_core*)</fn>
+      <fn>aura_boot(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>926</line>
     </frame>
     <frame>
@@ -61612,7 +61612,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), acme::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>916</line>
     </frame>
     <frame>
@@ -61620,7 +61620,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>aura_aura(aura_main_data*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>828</line>
     </frame>
     <frame>
@@ -61784,33 +61784,33 @@
     <frame>
       <ip>0x57B8066</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::end()</fn>
+      <fn>app::end()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>658</line>
     </frame>
     <frame>
       <ip>0x57B9DB2</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::main()</fn>
+      <fn>app::main()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>1519</line>
     </frame>
     <frame>
       <ip>0x57B8D9A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_main(app_core*)</fn>
+      <fn>aura_main(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>935</line>
     </frame>
     <frame>
       <ip>0x57B8D7F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_boot(app_core*)</fn>
+      <fn>aura_boot(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>926</line>
     </frame>
     <frame>
@@ -61818,7 +61818,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), acme::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>916</line>
     </frame>
     <frame>
@@ -61826,7 +61826,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>aura_aura(aura_main_data*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>828</line>
     </frame>
   </stack>
@@ -61966,33 +61966,33 @@
     <frame>
       <ip>0x57B8066</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::end()</fn>
+      <fn>app::end()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>658</line>
     </frame>
     <frame>
       <ip>0x57B9DB2</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::main()</fn>
+      <fn>app::main()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>1519</line>
     </frame>
     <frame>
       <ip>0x57B8D9A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_main(app_core*)</fn>
+      <fn>aura_main(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>935</line>
     </frame>
     <frame>
       <ip>0x57B8D7F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_boot(app_core*)</fn>
+      <fn>aura_boot(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>926</line>
     </frame>
     <frame>
@@ -62000,7 +62000,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), acme::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>916</line>
     </frame>
     <frame>
@@ -62008,7 +62008,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>aura_aura(aura_main_data*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>828</line>
     </frame>
     <frame>
@@ -62386,17 +62386,17 @@
     <frame>
       <ip>0x57B6651</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::~app_core()</fn>
+      <fn>app::~app()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>230</line>
     </frame>
     <frame>
       <ip>0x57B6791</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::~app_core()</fn>
+      <fn>app::~app()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>233</line>
     </frame>
     <frame>
@@ -62562,7 +62562,7 @@
       <obj>/xcore/time/x64/basis/app_simple_shader</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_shader/../../app/aura/</dir>
-      <file>aura_app_core.h</file>
+      <file>aura_app.h</file>
       <line>52</line>
     </frame>
     <frame>
@@ -62720,7 +62720,7 @@
       <obj>/xcore/time/x64/basis/app_simple_shader</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_shader/../../app/aura/</dir>
-      <file>aura_app_core.h</file>
+      <file>aura_app.h</file>
       <line>52</line>
     </frame>
     <frame>
@@ -62870,7 +62870,7 @@
       <obj>/xcore/time/x64/basis/app_simple_shader</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_shader/../../app/aura/</dir>
-      <file>aura_app_core.h</file>
+      <file>aura_app.h</file>
       <line>52</line>
     </frame>
     <frame>
@@ -63012,7 +63012,7 @@
       <obj>/xcore/time/x64/basis/app_simple_shader</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_shader/../../app/aura/</dir>
-      <file>aura_app_core.h</file>
+      <file>aura_app.h</file>
       <line>52</line>
     </frame>
     <frame>
@@ -63186,7 +63186,7 @@
       <obj>/xcore/time/x64/basis/app_simple_shader</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_shader/../../app/aura/</dir>
-      <file>aura_app_core.h</file>
+      <file>aura_app.h</file>
       <line>52</line>
     </frame>
     <frame>
@@ -63360,7 +63360,7 @@
       <obj>/xcore/time/x64/basis/app_simple_shader</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_shader/../../app/aura/</dir>
-      <file>aura_app_core.h</file>
+      <file>aura_app.h</file>
       <line>52</line>
     </frame>
     <frame>
@@ -63550,7 +63550,7 @@
       <obj>/xcore/time/x64/basis/app_simple_shader</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_shader/../../app/aura/</dir>
-      <file>aura_app_core.h</file>
+      <file>aura_app.h</file>
       <line>52</line>
     </frame>
     <frame>
@@ -63724,7 +63724,7 @@
       <obj>/xcore/time/x64/basis/app_simple_shader</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_shader/../../app/aura/</dir>
-      <file>aura_app_core.h</file>
+      <file>aura_app.h</file>
       <line>52</line>
     </frame>
     <frame>
@@ -63890,7 +63890,7 @@
       <obj>/xcore/time/x64/basis/app_simple_shader</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_shader/../../app/aura/</dir>
-      <file>aura_app_core.h</file>
+      <file>aura_app.h</file>
       <line>52</line>
     </frame>
     <frame>
@@ -64056,7 +64056,7 @@
       <obj>/xcore/time/x64/basis/app_simple_shader</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_shader/../../app/aura/</dir>
-      <file>aura_app_core.h</file>
+      <file>aura_app.h</file>
       <line>52</line>
     </frame>
     <frame>
@@ -64222,7 +64222,7 @@
       <obj>/xcore/time/x64/basis/app_simple_shader</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_shader/../../app/aura/</dir>
-      <file>aura_app_core.h</file>
+      <file>aura_app.h</file>
       <line>52</line>
     </frame>
     <frame>
@@ -64404,7 +64404,7 @@
       <obj>/xcore/time/x64/basis/app_simple_shader</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_shader/../../app/aura/</dir>
-      <file>aura_app_core.h</file>
+      <file>aura_app.h</file>
       <line>52</line>
     </frame>
     <frame>
@@ -64570,7 +64570,7 @@
       <obj>/xcore/time/x64/basis/app_simple_shader</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_shader/../../app/aura/</dir>
-      <file>aura_app_core.h</file>
+      <file>aura_app.h</file>
       <line>52</line>
     </frame>
     <frame>
@@ -64736,7 +64736,7 @@
       <obj>/xcore/time/x64/basis/app_simple_shader</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_shader/../../app/aura/</dir>
-      <file>aura_app_core.h</file>
+      <file>aura_app.h</file>
       <line>52</line>
     </frame>
     <frame>
@@ -64902,7 +64902,7 @@
       <obj>/xcore/time/x64/basis/app_simple_shader</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_shader/../../app/aura/</dir>
-      <file>aura_app_core.h</file>
+      <file>aura_app.h</file>
       <line>52</line>
     </frame>
     <frame>
@@ -65068,7 +65068,7 @@
       <obj>/xcore/time/x64/basis/app_simple_shader</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_shader/../../app/aura/</dir>
-      <file>aura_app_core.h</file>
+      <file>aura_app.h</file>
       <line>52</line>
     </frame>
     <frame>
@@ -65234,7 +65234,7 @@
       <obj>/xcore/time/x64/basis/app_simple_shader</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_shader/../../app/aura/</dir>
-      <file>aura_app_core.h</file>
+      <file>aura_app.h</file>
       <line>52</line>
     </frame>
     <frame>
@@ -65416,7 +65416,7 @@
       <obj>/xcore/time/x64/basis/app_simple_shader</obj>
       <fn>aura_aura::~aura_aura()</fn>
       <dir>/xcore/app-simple/simple_shader/../../app/aura/</dir>
-      <file>aura_app_core.h</file>
+      <file>aura_app.h</file>
       <line>52</line>
     </frame>
     <frame>
@@ -67690,7 +67690,7 @@
     <frame>
       <ip>0x591CA2A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::run()</fn>
+      <fn>app::run()</fn>
       <dir>/xcore/app/aura/os/linux</dir>
       <file>linux_main.cpp</file>
       <line>124</line>
@@ -67698,25 +67698,25 @@
     <frame>
       <ip>0x57B9DA6</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::main()</fn>
+      <fn>app::main()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>1515</line>
     </frame>
     <frame>
       <ip>0x57B8D9A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_main(app_core*)</fn>
+      <fn>aura_main(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>935</line>
     </frame>
     <frame>
       <ip>0x57B8D7F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_boot(app_core*)</fn>
+      <fn>aura_boot(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>926</line>
     </frame>
     <frame>
@@ -67724,7 +67724,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), acme::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>916</line>
     </frame>
     <frame>
@@ -67732,7 +67732,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>aura_aura(aura_main_data*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>828</line>
     </frame>
     <frame>
@@ -69320,7 +69320,7 @@
     <frame>
       <ip>0x57EC82D</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura::system::system(object*, app_core*)</fn>
+      <fn>aura::system::system(object*, app*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura_system.cpp</file>
       <line>265</line>
@@ -69328,7 +69328,7 @@
     <frame>
       <ip>0x11E36D55</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>aura::system::system(object*, app_core*)</fn>
+      <fn>aura::system::system(object*, app*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>core_system.cpp</file>
       <line>37</line>
@@ -69336,7 +69336,7 @@
     <frame>
       <ip>0x11DFBCE6</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>core_create_aura_system(app_core*)</fn>
+      <fn>core_create_aura_system(app*)</fn>
       <dir>/xcore/app/aura/</dir>
       <file>aura.cpp</file>
       <line>13</line>
@@ -69344,33 +69344,33 @@
     <frame>
       <ip>0x57B7055</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::ini()</fn>
+      <fn>app::ini()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>432</line>
     </frame>
     <frame>
       <ip>0x57B9D8B</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::main()</fn>
+      <fn>app::main()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>1512</line>
     </frame>
     <frame>
       <ip>0x57B8D9A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_main(app_core*)</fn>
+      <fn>aura_main(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>935</line>
     </frame>
     <frame>
       <ip>0x57B8D7F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_boot(app_core*)</fn>
+      <fn>aura_boot(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>926</line>
     </frame>
     <frame>
@@ -69378,7 +69378,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), acme::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>916</line>
     </frame>
   </stack>
@@ -70052,7 +70052,7 @@
     <frame>
       <ip>0x591C9D2</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::run()</fn>
+      <fn>app::run()</fn>
       <dir>/xcore/app/aura/os/linux</dir>
       <file>linux_main.cpp</file>
       <line>119</line>
@@ -70060,25 +70060,25 @@
     <frame>
       <ip>0x57B9DA6</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::main()</fn>
+      <fn>app::main()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>1515</line>
     </frame>
     <frame>
       <ip>0x57B8D9A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_main(app_core*)</fn>
+      <fn>aura_main(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>935</line>
     </frame>
     <frame>
       <ip>0x57B8D7F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_boot(app_core*)</fn>
+      <fn>aura_boot(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>926</line>
     </frame>
     <frame>
@@ -70086,7 +70086,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), acme::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>916</line>
     </frame>
     <frame>
@@ -70094,7 +70094,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>aura_aura(aura_main_data*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>828</line>
     </frame>
   </stack>
@@ -73886,7 +73886,7 @@
     <frame>
       <ip>0x591C9D2</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::run()</fn>
+      <fn>app::run()</fn>
       <dir>/xcore/app/aura/os/linux</dir>
       <file>linux_main.cpp</file>
       <line>119</line>
@@ -93488,7 +93488,7 @@
     <frame>
       <ip>0x591C9D2</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::run()</fn>
+      <fn>app::run()</fn>
       <dir>/xcore/app/aura/os/linux</dir>
       <file>linux_main.cpp</file>
       <line>119</line>
@@ -93496,17 +93496,17 @@
     <frame>
       <ip>0x57B9DA6</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::main()</fn>
+      <fn>app::main()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>1515</line>
     </frame>
     <frame>
       <ip>0x57B8D9A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_main(app_core*)</fn>
+      <fn>aura_main(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>935</line>
     </frame>
   </stack>
@@ -103018,7 +103018,7 @@
     <frame>
       <ip>0x591C9D2</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::run()</fn>
+      <fn>app::run()</fn>
       <dir>/xcore/app/aura/os/linux</dir>
       <file>linux_main.cpp</file>
       <line>119</line>
@@ -103026,25 +103026,25 @@
     <frame>
       <ip>0x57B9DA6</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::main()</fn>
+      <fn>app::main()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>1515</line>
     </frame>
     <frame>
       <ip>0x57B8D9A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_main(app_core*)</fn>
+      <fn>aura_main(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>935</line>
     </frame>
     <frame>
       <ip>0x57B8D7F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_boot(app_core*)</fn>
+      <fn>aura_boot(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>926</line>
     </frame>
     <frame>
@@ -103052,7 +103052,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), acme::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>916</line>
     </frame>
     <frame>
@@ -103060,7 +103060,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>aura_aura(aura_main_data*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>828</line>
     </frame>
   </stack>
@@ -103597,7 +103597,7 @@
     <frame>
       <ip>0x591C9D2</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::run()</fn>
+      <fn>app::run()</fn>
       <dir>/xcore/app/aura/os/linux</dir>
       <file>linux_main.cpp</file>
       <line>119</line>
@@ -103605,25 +103605,25 @@
     <frame>
       <ip>0x57B9DA6</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::main()</fn>
+      <fn>app::main()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>1515</line>
     </frame>
     <frame>
       <ip>0x57B8D9A</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_main(app_core*)</fn>
+      <fn>aura_main(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>935</line>
     </frame>
     <frame>
       <ip>0x57B8D7F</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>aura_boot(app_core*)</fn>
+      <fn>aura_boot(app*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>926</line>
     </frame>
     <frame>
@@ -103631,7 +103631,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>_aura_aura(aura_main_data*, aura::application* (*)(object*), acme::library* (*)(object*))</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>916</line>
     </frame>
     <frame>
@@ -103639,7 +103639,7 @@
       <obj>/xcore/time/x64/basis/libaura.so</obj>
       <fn>aura_aura(aura_main_data*)</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>828</line>
     </frame>
   </stack>
@@ -103950,7 +103950,7 @@
     <frame>
       <ip>0x591C9D2</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::run()</fn>
+      <fn>app::run()</fn>
       <dir>/xcore/app/aura/os/linux</dir>
       <file>linux_main.cpp</file>
       <line>119</line>
@@ -103958,9 +103958,9 @@
     <frame>
       <ip>0x57B9DA6</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>app_core::main()</fn>
+      <fn>app::main()</fn>
       <dir>/xcore/app/aura/</dir>
-      <file>aura_app_core.cpp</file>
+      <file>aura_app.cpp</file>
       <line>1515</line>
     </frame>
   </stack>
@@ -106123,7 +106123,7 @@
       <obj>/xcore/time/x64/basis/app_simple_shader</obj>
       <fn>aura_aura::aura_aura()</fn>
       <dir>/xcore/app-simple/simple_shader/../../app/aura/</dir>
-      <file>aura_app_core.h</file>
+      <file>aura_app.h</file>
       <line>40</line>
     </frame>
     <frame>

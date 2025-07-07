@@ -209,7 +209,7 @@ git clone https://github.com/ca2/windows-simple-solution $HOME/simple --recurse-
 <details>
   <summary>Website</summary>
   <ul>
-    <li>https://ca2.software/</li>
+    <li>https://ca2.network/</li>
   </ul>
 </details>
 

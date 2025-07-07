@@ -1289,7 +1289,7 @@ class ::payload & payload::operator = (const ::color::hls & hls)
 //}
 
 
-#if !defined(LINUX) && !defined(MACOS) && !defined(ANDROID) && !defined(APPLE_IOS) && !defined(__BSD__)
+#if !defined(LINUX) && !defined(MACOS) && !defined(__ANDROID__) && !defined(APPLE_IOS) && !defined(__BSD__)
 
 class ::payload & payload::operator = (long l)
 {
@@ -1315,7 +1315,7 @@ class ::payload & payload::operator = (long l)
    }
 #endif
 
-#if defined(ANDROID)
+#if defined(__ANDROID__)
    class ::payload & payload::operator = (long l)
    {
       set_type(e_type_int,false);
@@ -3686,7 +3686,7 @@ long long payload::as_long_long(long long iDefault) const
 
 
 
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
+#if defined(__APPLE__) || defined(__ANDROID__) || defined(RASPBERRYPIOS) || defined(WINDOWS)
 
 
 long payload::get_long(long lDefault) const
@@ -3907,7 +3907,7 @@ char payload::as_char(char iDefault) const
    case e_type_double:
       return (char)m_d;
    case e_type_string:
-#if defined(LINUX) || defined(ANDROID) || defined(__BSD__)
+#if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__)
       return (char)atof(m_str);
 #else
       return (char)_atof_l(m_str, ::get_task()->locale()->m_locale);
@@ -3949,7 +3949,7 @@ unsigned char payload::as_unsigned_char(unsigned char uDefault) const
    case e_type_double:
       return (unsigned char)m_d;
    case e_type_string:
-#if defined(LINUX) || defined(ANDROID) || defined(__BSD__)
+#if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__)
       return (unsigned char)atof(m_str);
 #else
       return (unsigned char)_atof_l(m_str, ::get_task()->locale()->m_locale);
@@ -4018,7 +4018,7 @@ short payload::as_short(short iDefault) const
    case e_type_double:
       return (short)m_d;
    case e_type_string:
-#if defined(LINUX) || defined(ANDROID) || defined(__BSD__)
+#if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__)
       return (short)atof(m_str);
 #else
       return (short)_atof_l(m_str, ::get_task()->locale()->m_locale);
@@ -4088,7 +4088,7 @@ unsigned short payload::as_unsigned_short(unsigned short uDefault) const
    case e_type_double:
       return (unsigned short)m_d;
    case e_type_string:
-#if defined(LINUX) || defined(ANDROID) || defined(__BSD__)
+#if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__)
       return (unsigned short)atof(m_str);
 #else
       return (unsigned short)_atof_l(m_str, ::get_task()->locale()->m_locale);
@@ -4158,7 +4158,7 @@ float payload::as_float(float fDefault) const
    case e_type_double:
       return (float) m_d;
    case e_type_string:
-   #if defined(LINUX) || defined(ANDROID) || defined(__BSD__)
+   #if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__)
       return (float) atof(m_str);
    #else
       return (float) _atof_l(m_str, ::get_task()->locale()->m_locale);
@@ -4269,7 +4269,7 @@ double payload::as_double(double dDefault) const
    else if(m_etype == ::e_type_string)
    {
 
-#if defined(LINUX) || defined(ANDROID) || defined(__BSD__)
+#if defined(LINUX) || defined(__ANDROID__) || defined(__BSD__)
 
       d = atof(m_str);
 
@@ -6080,7 +6080,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   case ::e_type_double:
 //      return m_d / (double) ul;
 //   case ::e_type_string:
-//#if defined(LINUX) || defined(ANDROID)
+//#if defined(LINUX) || defined(__ANDROID__)
 //      return atof(m_str) / (double) ul;
 //#else
 //      return _atof_l(m_str, ::get_task()->locale()->m_locale) / (double) ul;
@@ -6137,7 +6137,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   case ::e_type_double:
 //      return (double) ul / payload.m_d;
 //   case ::e_type_string:
-//#if defined(LINUX) || defined(ANDROID)
+//#if defined(LINUX) || defined(__ANDROID__)
 //      return (double) ul / atof(payload.m_str);
 //#else
 //      return (double) ul / _atof_l(payload.m_str, ::get_task()->locale()->m_locale);
@@ -6197,7 +6197,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   case ::e_type_double:
 //      return m_d * (double) ul;
 //   case ::e_type_string:
-//#if defined(LINUX) || defined(ANDROID)
+//#if defined(LINUX) || defined(__ANDROID__)
 //
 //      return atof(m_str) * (double) ul;
 //#else
@@ -6255,7 +6255,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   case ::e_type_double:
 //      return (double) ul * payload.m_d;
 //   case ::e_type_string:
-//#if defined(LINUX) || defined(ANDROID)
+//#if defined(LINUX) || defined(__ANDROID__)
 //      return (double) ul * atof(payload.m_str);
 //#else
 //      return (double) ul * _atof_l(payload.m_str, ::get_task()->locale()->m_locale);
@@ -6585,7 +6585,7 @@ bool payload::is_floating() const
 
       auto str = ::transfer(this->as_string());
 
-//#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
+//#if defined(LINUX) || defined(__ANDROID__) || defined(FREEBSD) || defined(OPENBSD)
 //      if(is_scalar()
 //            && (fmod(atof(str), 1.0) == 0.0
 //                && fabs(atof(str)) <= pow(2.0, 31.0)))
@@ -7458,7 +7458,7 @@ end:
    if(bFloat)
    {
 
-//#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
+//#if defined(LINUX) || defined(__ANDROID__) || defined(FREEBSD) || defined(OPENBSD)
 
       double d = atof(strNumber);
 
@@ -9683,7 +9683,7 @@ void number_operator_payload_test()
 #endif
 
 
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
+#if defined(__APPLE__) || defined(__ANDROID__) || defined(RASPBERRYPIOS) || defined(WINDOWS)
 
 
 long & payload::long_reference()

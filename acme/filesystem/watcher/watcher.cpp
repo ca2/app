@@ -101,7 +101,7 @@ namespace file
    ::file::watch * watcher::add_watch_listener(const ::file::path & pathFolder, const listener & listener, bool bRecursive)
    {
 
-#ifdef ANDROID
+#ifdef __ANDROID__
       return nullptr;
 #endif
 

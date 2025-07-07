@@ -64,7 +64,7 @@ if (MSVC)
     target_link_options(experience_core PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/experience_core.lib")
     target_link_options(experience_core PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/experience_core.def")
     target_link_libraries(experience_core PRIVATE acme apex aqua aura axis base)
-elseif (${LINUX})
+elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
 
     target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)

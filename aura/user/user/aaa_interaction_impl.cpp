@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "interaction_impl.h"
+#include "aaa_interaction_impl.h"
 #include "interaction.h"
 #include "interaction_scaler.h"
 #include "system.h"
@@ -143,7 +143,7 @@ namespace user
 
       m_bDoingGraphics = false;
 
-#if defined(APPLE_IOS) || defined(ANDROID)
+#if defined(APPLE_IOS) || defined(__ANDROID__)
 
       set_per_second(12.0);
 
@@ -383,7 +383,7 @@ namespace user
 //
 //#endif
 
-#if !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(__BSD__)
+#if !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__) && !defined(__BSD__)
 
 
    ::windowing::window * interaction_impl::GetAncestor(unsigned int gaFlags) const
@@ -7937,7 +7937,7 @@ namespace user
    {
 
 
-      //#ifdef ANDROID
+      //#ifdef __ANDROID__
       //
       //      operating_system_driver::get()->m_bRedraw = true;
       //
@@ -8365,7 +8365,7 @@ namespace user
 //
 //         //informationf("SetWindowPos bottom_right " + as_string(pointBottomRight.x()) + ", " + as_string(pointBottomRight.y()) + "\n");
 //
-//   //#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
+//   //#if !defined(UNIVERSAL_WINDOWS) && !defined(__ANDROID__)
 //
 //            //if (sizeOutput.cx() > m_sizeDrawn.cx() || sizeOutput.cy() > m_sizeDrawn.cy())
 //            // if (sizeOutput != m_sizeDrawn)

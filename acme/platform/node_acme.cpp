@@ -809,7 +809,7 @@ namespace platform
    //virtual ::pointer < ::subparticle > create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon){}
 
 
-   //void acme_node_layer::::micro::message_box(::sequence < ::conversation > * psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox){}
+   //void acme_node_layer::micro::message_box(::sequence < ::conversation > * psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox){}
 
    //virtual ::pointer < ::subparticle > create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon){}
 
@@ -892,7 +892,7 @@ namespace platform
    }
 
 
-   //#if defined(ANDROID)
+   //#if defined(__ANDROID__)
    //      ::string acme_node_layer::unwind_call_stack(const ::scoped_string & scopedstrFormat , int iSkip, int iCount){}
    //#else
    int acme_node_layer::get_call_stack_default_frame_count()
@@ -1002,7 +1002,7 @@ namespace platform
    //#endif
 
 
-   //#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
+   //#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__)
    //
    //
    //      //virtual int get_current_processor_index(){}
@@ -1334,10 +1334,14 @@ namespace platform
    }
 
 
-   void acme_node_layer::open_url_link_at_system_browser(const string& strUrl, const string& strProfile)
+   void acme_node_layer::open_internet_link_in_browser(const ::scoped_string& scopedstrUrl, const ::scoped_string& scopedstrBrowser, const ::scoped_string& scopedstrProfile, const ::scoped_string& scopedstrTarget)
    {
    }
 
+
+void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, const ::scoped_string& scopedstrProfile, const ::scoped_string& scopedstrTarget)
+{
+}
 
    void acme_node_layer::local_machine_set_run(const ::string& strKey, const ::file::path& pathExecutable,
                                                const ::string& strArguments, bool bSet)
@@ -1381,14 +1385,15 @@ namespace platform
 
    void acme_node_layer::file_association_set_default_icon(const ::string& strExtension,
                                                            const ::string& strExtensionNamingClass,
-                                                           const ::string& strIconPath)
+                                                           const ::file::path & pathIcon)
    {
    }
 
 
    void acme_node_layer::file_association_set_shell_open_command(const ::string& strExtension,
                                                                  const ::string& strExtensionNamingClass,
-                                                                 const ::string& strCommand, const ::string& strParam)
+                                                                 const ::file::path & pathExecutable,
+                                                                 const ::string& strParam)
    {
    }
 

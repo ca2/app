@@ -13,7 +13,7 @@
 
 
 #define e_message_kick_idle         0x036A  // (params unused) causes idles to kick in
-#if defined(LINUX) // || defined(ANDROID)
+#if defined(LINUX) // || defined(__ANDROID__)
 
 
 bool apex_defer_process_x_message(htask htask,MESSAGE * pMsg,oswindow oswindow,bool bPeek);

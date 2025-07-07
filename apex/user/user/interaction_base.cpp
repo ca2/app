@@ -3779,7 +3779,7 @@ namespace user
 //         pmessage = __allocate ::message::kill_keyboard_focus();
 //      }
 //      break;
-//#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
+//#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__)
 //      case ::message::PrototypeWindowPos:
 //      {
 //         pmessage = __allocate ::message::window_pos();

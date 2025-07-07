@@ -81,7 +81,8 @@ namespace draw2d
 
    public:
 
-
+      //virtual void on_before_create_window(::windowing::window* pwindow);
+      //virtual void on_create_window(::windowing::window * pwindow);
 
       void clear_all_objects_os_data();
 
@@ -170,9 +171,11 @@ namespace draw2d
       //virtual void enum_draw2d_fonts(::write_text::font_enumeration_item_array& itema);
 
 
-      virtual void lock_device();
+      [[nodiscard]] virtual bool lock_device();
       virtual void unlock_device();
 
+
+      virtual void adjust_composited_window_styles(unsigned int& nExStyle, unsigned int& nStyle);
 
 
    };

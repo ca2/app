@@ -69,7 +69,7 @@ if (MSVC)
     target_link_options(experience_anthill PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/experience_anthill.def")
     target_link_libraries(experience_anthill PRIVATE ${library_references} ${global_library_references})
 
-elseif (${LINUX})
+elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
 
     target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)

@@ -1,1 +1,1 @@
-app-core/simple_shader
+app-graphics3d/simple_shader

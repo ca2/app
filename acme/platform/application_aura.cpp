@@ -973,7 +973,10 @@ namespace platform
       return {};
    }
 
-
+   ::string aura_application_layer::typeface_get_default_implementation_name()
+   {
+      return {};
+   }
    //void on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine) override{}
 
 

@@ -10,6 +10,22 @@
 
 
 
+namespace image
+{
+
+
+   enum enum_copy_disposition
+   {
+
+      e_copy_disposition_none,
+      e_copy_disposition_y_swap,
+
+   };
+
+
+} // namespace image
+
+
 struct CLASS_DECL_ACME image32_t
 {
 
@@ -297,6 +313,10 @@ inline void image32_set_raw_pixel(const ::image32_t * pdata, color_indexes index
 
 
 //inline void copy_image32(::image32_t * pimage32Dst, const ::int_size & size, int iStrideDst, const ::pixmap * ppixmapSrc);
+
+
+using image32_callback = ::function< void(const ::image32_t*, int, int, int) >;
+
 
 
 

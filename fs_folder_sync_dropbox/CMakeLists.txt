@@ -62,7 +62,7 @@ if (MSVC)
     target_link_libraries(compress_bzip2 PRIVATE acme apex aqua aura Gdiplus)
 
 
-elseif (${LINUX})
+elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
 
     if (DEFINED UBUNTU OR DEFINED DEBIAN OR DEFINED RASPBIAN)

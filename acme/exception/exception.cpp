@@ -23,7 +23,7 @@ exception::exception()
 }
 
 
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 exception::exception(const ::e_status & estatus, const ::scoped_string& scopedstrMessage, const ::scoped_string& scopedstrDetails, int iSkip, void * caller_address) :
 exception(estatus, {::error_code(e_error_code_type_unknown, 0)}, scopedstrMessage, scopedstrDetails, iSkip, caller_address)
 {
@@ -50,7 +50,7 @@ m_errorcodea(errorcodea)
 
       }
 
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 //      
 //      m_strCallstack = system()->node()->unwind_callstack(callstack_default_format(), iSkip);
 //
@@ -326,7 +326,7 @@ string exception::get_consolidated_details(::particle * pparticle) const
 //      if (::is_set(m_pcallstack))
 //      {
 //
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 //
 //         string_array stra;
 //

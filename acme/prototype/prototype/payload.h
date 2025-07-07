@@ -74,7 +74,7 @@ public:
       short                                  m_sh;
       unsigned short                         m_ush;
       int                                    m_i;
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS)
+#if defined(__APPLE__) || defined(__ANDROID__) || defined(RASPBERRYPIOS)
       //long                                   m_l;
       //unsigned long                          m_ul;
 #endif
@@ -464,7 +464,7 @@ public:
    void as(::memory_base & memory) const;
 
 
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
+#if defined(__APPLE__) || defined(__ANDROID__) || defined(RASPBERRYPIOS) || defined(WINDOWS)
    long get_long(long lDefault = 0) const;
    unsigned long get_unsigned_long(unsigned long ulDefault = 0) const;
 #endif
@@ -717,7 +717,7 @@ public:
 
 
    bool & bool_reference();
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
+#if defined(__APPLE__) || defined(__ANDROID__) || defined(RASPBERRYPIOS) || defined(WINDOWS)
    long & long_reference();
    unsigned long & unsigned_long_reference();
 #endif
@@ -939,7 +939,7 @@ public:
 
    payload & operator = (para_return & eret);
 #ifdef WINDOWS
-#elif defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS)
+#elif defined(__APPLE__) || defined(__ANDROID__) || defined(RASPBERRYPIOS)
    payload & operator = (long l);
 #endif
 
@@ -1599,7 +1599,7 @@ CLASS_DECL_ACME void payload_skip_network_payload(::ansi_range & range);
 
 
 
-//#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBERRYPIOS) || defined(WINDOWS)
+//#if defined(__APPLE__) || defined(__ANDROID__) || defined(RASPBERRYPIOS) || defined(WINDOWS)
 //
 //
 //inline payload::operator long &()
@@ -1805,7 +1805,7 @@ inline payload::operator unsigned long() const
 }
 
 
-//#elif defined(ANDROID)
+//#elif defined(__ANDROID__)
 //
 //inline payload::operator long() const
 //{

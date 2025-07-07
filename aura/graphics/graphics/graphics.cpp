@@ -32,6 +32,20 @@ namespace graphics
 
       pgraphics->m_egraphics = m_egraphics;
 
+      //if (!pgraphics->m_callbackImage32CpuBuffer)
+      //{
+
+      //   pgraphics->m_callbackImage32CpuBuffer = [this](const ::image32_t * pimage32, int cx, int cy, int scan)
+      //      {
+
+      //         //_synchronous_lock synchronouslock(this->m_pmutex);
+
+      //         m_pimage2->image32()->copy(cx, cy, m_pimage2->m_iScan, pimage32, scan);
+
+      //      };
+
+      //}
+
       return pgraphics;
 
    }
@@ -202,6 +216,13 @@ namespace graphics
 
       }
 
+      if (pbufferitem->m_sizeBufferItemDraw.is_empty())
+      {
+
+         pbufferitem->m_sizeBufferItemDraw = puserinteraction->window()->get_window_rectangle().size();
+
+      }
+
       //pbufferitem->m_point = m_pimpl->m_puserinteraction->const_layout().layout().origin();
 
       //pbufferitem->m_size = m_pimpl->m_puserinteraction->const_layout().layout().size();
@@ -266,6 +287,14 @@ namespace graphics
       {
 
          return nullptr;
+
+      }
+
+      if (pbufferitem->m_pgraphics &&
+         pbufferitem->m_pgraphics.ok())
+      {
+
+         pbufferitem->m_pgraphics->__on_begin_draw();
 
       }
 

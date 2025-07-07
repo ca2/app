@@ -1,10 +1,10 @@
 #pragma once
 
 
-#include "aura/graphics/gpu/cpu_buffer.h"
+#include "bred/gpu/cpu_buffer.h"
 
 
-namespace opengl
+namespace gpu_opengl
 {
 
 
@@ -21,6 +21,9 @@ namespace opengl
       ~cpu_buffer() override;
 
 
+      //void set_size(const ::int_size & size) override;
+
+
       void gpu_read() override;
       void gpu_write() override;
       
@@ -29,7 +32,7 @@ namespace opengl
    };
 
 
-} // namespace opengl
+} // namespace gpu_opengl
 
 
 

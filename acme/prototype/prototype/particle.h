@@ -13,6 +13,7 @@
 
 
 #include "acme/platform/allocator.h"
+//#include "acme/prototype/prototype/signal.h"
 //#include "acme/prototype/prototype/post_procedure_continuation.h"
 
 
@@ -224,6 +225,7 @@ public:
    virtual ::factory::factory_pointer & factory() const;
    virtual ::factory::factory_pointer & factory(const ::string& strLibrary) const;
    virtual ::factory::factory_pointer & factory(const ::string& strComponent, const ::string& strImplementation) const;
+   virtual ::factory::factory * component_factory(const ::string& strComponent) const;
    //::factory::factory* factory(const ::atom& atom);
 
    //virtual void handle(::topic * ptopic, ::handler_context * phandlercontext);
@@ -438,12 +440,13 @@ public:
    //virtual void call(const enum_message, long long iData = 0, ::matter * pmatter = nullptr);
    //virtual void call(const enum_id, long long iData = 0, ::matter* pmatter = nullptr);
    
-
+   ///virtual void send_call(const ::call & call);
 
 
    // ThomasBorregaardSorensen!! Like handlers
    virtual lresult message_handler(::enum_message emessage, ::wparam wparam, ::lparam lparam);
    virtual void handle(::topic * ptopic, ::handler_context * phandlercontext);
+   virtual void handle(const ::call & call);
    virtual void handle_message(::message::message * pmessage);
    virtual void handle_item(::item * pitem);
 
@@ -823,6 +826,7 @@ public:
 
 
 };
+
 
 //
 //

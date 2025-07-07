@@ -181,6 +181,20 @@ namespace draw2d
    //}
 
 
+   //void draw2d::on_before_create_window(::windowing::window* pwindow)
+   //{
+
+
+   //}
+
+
+   //void draw2d::on_create_window(::windowing::window * pwindow)
+   //{
+
+
+   //}
+
+
    void draw2d::clear_all_objects_os_data()
    {
 
@@ -1511,7 +1525,7 @@ void draw2d::emboss_predicate(
 
       return "pango";
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
       return "android";
 
@@ -1530,10 +1544,10 @@ void draw2d::emboss_predicate(
 }
 
 
-   void draw2d::lock_device()
+   bool draw2d::lock_device()
    {
 
-      //return ::success;
+      return false;
 
    }
 
@@ -1541,7 +1555,26 @@ void draw2d::emboss_predicate(
    void draw2d::unlock_device()
    {
 
-      //return ::success;
+
+   }
+
+
+   void draw2d::adjust_composited_window_styles(unsigned int& nExStyle, unsigned int& nStyle)
+   {
+
+      ////if (!m_papplication->m_bUseSwapChainWindow)
+      //{
+
+      //   nExStyle |= WS_EX_LAYERED;
+
+      //}
+      //if (m_papplication->m_bUseSwapChainWindow)
+      //{
+
+      //   nExStyle |= WS_EX_NOREDIRECTIONBITMAP;
+      //   //nExStyle |= WS_EX_TRANSPARENT;
+      //}
+
 
    }
 

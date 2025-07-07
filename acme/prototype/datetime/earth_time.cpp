@@ -619,7 +619,7 @@ str.ReleaseBuffer();
 
 return str;
 
-//#elif defined(ANDROID) || defined(SOLARIS)
+//#elif defined(__ANDROID__) || defined(SOLARIS)
 //
 //      struct tm* ptmTemp = localtime(&m_posixtime);
 //
@@ -631,7 +631,7 @@ return str;
 //      }
 //
  #else
-   //#if defined(LINUX) || defined(ANDROID) || defined(SOLARIS) || defined(__APPLE__)
+   //#if defined(LINUX) || defined(__ANDROID__) || defined(SOLARIS) || defined(__APPLE__)
       char * szBuffer = str.get_buffer(maxTimeBufferSize);
 //   #if OSBIT == 32
   //    const posix_time timet = (const posix_time) timeUtc;
@@ -697,7 +697,7 @@ return str;
 
    //   char szBuffer[maxTimeBufferSize];
 
-   //#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+   //#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
    //   struct tm * ptmTemp = gmtime((posix_time *)&time.m_posixtime);
 

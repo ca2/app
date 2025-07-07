@@ -74,7 +74,7 @@ CLASS_DECL_ACME bool is_verbose();
 #include "acme/operating_system/windows_common/_.h"
 #include "acme/operating_system/windows/_.h"
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
 #include "acme/operating_system/ansi/_.h"
 #include "acme/operating_system/android/_.h"

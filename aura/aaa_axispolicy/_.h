@@ -6,7 +6,7 @@ namespace plane
 
    class session;
    class system;
-   //class cube;
+   //class graphics3d;
 
 
 } // namespace plane
@@ -116,7 +116,7 @@ CLASS_DECL_AURA bool __node_axis_pos_term();
 //#include "axis/axis/os/ansios/ansios.h"
 //#include "axis/axis/os/macos/macos.h"
 //
-//#elif defined(ANDROID)
+//#elif defined(__ANDROID__)
 //
 //#include "axis/os/ansios/ansios.h"
 //#include "axis/os/android/android.h"

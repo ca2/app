@@ -9,6 +9,7 @@
 #include "acme/platform/tracer.h"
 #include "acme/prototype/collection/pointer_array.h"
 #include "acme/prototype/collection/procedure_array.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 class CLASS_DECL_ACME matter :

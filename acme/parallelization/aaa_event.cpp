@@ -12,7 +12,7 @@
 
 void printf_line(const ::ansi_character * pszFormat, ...);
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(__BSD__)
+#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(__BSD__)
 #include <sys/ipc.h>
 #include <sys/time.h>
 #include <time.h>
@@ -164,7 +164,7 @@ happening::happening(const ::scoped_string & scopedstrName, bool bInitiallyOwn, 
 
    }
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
    m_sem = -1;
 
@@ -326,7 +326,7 @@ happening::~happening()
 //       __call__delete ((pthread_mutex_t *)m_pmutex);
 //       m_pmutex = nullptr;
 //    }
-#if defined(ANDROID)
+#if defined(__ANDROID__)
 
    if(m_pcond != nullptr)
    {
@@ -506,7 +506,7 @@ bool happening::set_happening()
 
    return false;
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
    pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
 
@@ -701,7 +701,7 @@ void happening::_wait ()
 
    }
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
    pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
 
@@ -842,7 +842,7 @@ bool happening::_wait (const class time & timeWait)
 
    }
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
    pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
 
@@ -1201,7 +1201,7 @@ bool happening::is_signaled() const
 
    return WAIT_OBJECT_0 == ::WaitForSingleObjectEx((HANDLE)m_handle,0,false);
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
    if(m_bManualEvent)
    {
@@ -1281,7 +1281,7 @@ bool happening::is_signaled() const
 ////   else
 ////      return false;
 ////
-////#elif defined(ANDROID)
+////#elif defined(__ANDROID__)
 ////
 ////   pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
 ////

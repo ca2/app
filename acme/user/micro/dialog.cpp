@@ -85,7 +85,9 @@ namespace micro
    void dialog::run()
    {
 
-      main_post([this]()
+      debug() << "micro::dialog::run";
+
+      main_send([this]()
       {
 
          create_window();

@@ -26,7 +26,7 @@ class single_lock;
 // #endif
 
 
-// #if defined(ANDROID)
+// #if defined(__ANDROID__)
 
 
 // #define MUTEX_COND_TIMED

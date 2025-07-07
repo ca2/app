@@ -399,7 +399,7 @@ bool timer::thread_active() const
 
 
 
-//#if defined(LINUX) || defined(ANDROID)
+//#if defined(LINUX) || defined(__ANDROID__)
 
 //void aura_timer_handler(sigval sigval);
 

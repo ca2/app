@@ -1665,7 +1665,7 @@ restart:
 
 } // namespace install
 
-#if !defined(CUBE) && !defined(ANDROID)
+#if !defined(CUBE) && !defined(__ANDROID__)
 
 ::hotplugin::plugin * new_hotplugin(::particle * pparticle)
 {

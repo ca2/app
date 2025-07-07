@@ -7,7 +7,7 @@
 #include "acme/_operating_system.h"
 
 
-//#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
+//#if defined(LINUX) || defined(__ANDROID__) || defined(FREEBSD) || defined(OPENBSD)
 //#include <sys/stat.h>
 //#include <fcntl.h>
 //#include <unistd.h>

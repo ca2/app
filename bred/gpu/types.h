@@ -1,0 +1,38 @@
+// Created by camilo on 2025-05-22 09:30 PM <3ThomasBorregaardSoerensen!!
+#pragma once
+
+
+#include "acme/constant/gpu.h"
+#include "bred/gpu/properties.h"
+
+#define GLM_ENABLE_EXPERIMENTAL
+#define GLM_FORCE_RADIANS	
+#define GLM_FORCE_DEPTH_ZERO_TO_ONE
+#include <glm/glm.hpp>
+#include <glm/gtx/hash.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
+
+#include <functional>
+
+
+#include "acme/graphics/image/image32.h"
+
+
+namespace gpu
+{
+
+
+
+	// from: https://stackoverflow.com/a/57595105
+	template <typename T, typename... Rest>
+	void hash_combine(::hash32& seed, const T& v, const Rest&... rest)
+	{
+		seed.m_u ^= ::hash32((::uptr)(size_t)::std::hash<T>{}(v)).m_u + 0x9e3779b9 + (seed.m_u << 6) + (seed.m_u >> 2);
+		(hash_combine(seed, rest), ...);
+	};
+
+
+
+
+} // namespace gpu

@@ -160,7 +160,7 @@ void backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * 
 //{
 //
 //
-////#if defined(__clang__) && !defined(ANDROID)
+////#if defined(__clang__) && !defined(__ANDROID__)
 ////
 ////    ::string node::get_callstack()
 ////    {

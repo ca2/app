@@ -139,6 +139,14 @@ public:
    
 //   template < primitive_size PRIMITIVE_SIZE >
 //   inline point_type & operator = (const PRIMITIVE_SIZE  & point) { this->x() = (UNIT_TYPE) point.x(); this->y() = (UNIT_TYPE)point.y(); return *this; }
+   //template < primitive_number E >
+   constexpr bool is_same_by(UNIT_TYPE e, const point_type & p) const
+   {
+
+      return ::std::abs(this->x() - p.x()) < ::std::abs(e)
+         && ::std::abs(this->y() - p.y()) < ::std::abs(e);
+
+   }
 
    
    inline point_type & operator = (const ::point_type < UNIT_TYPE > & point) { this->x() = point.x(); this->y() = point.y(); return *this; }

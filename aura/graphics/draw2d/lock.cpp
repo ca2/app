@@ -85,6 +85,45 @@ namespace draw2d
 //
 //   }
 
+   lock::lock(::particle* pparticle)
+   {
+
+      m_pdraw2d = pparticle->system()->draw2d();
+
+      if (m_pdraw2d)
+      {
+
+         m_bLocked = m_pdraw2d->lock_device();
+
+      }
+
+   }
+
+   lock::~lock()
+   {
+
+      unlock();
+
+   }
+
+
+   void lock::unlock()
+   {
+
+      if (m_bLocked)
+      {
+         //if (m_pdraw2d)
+         {
+
+            m_pdraw2d->unlock_device();
+
+         }
+
+
+      }
+
+
+   }
 
 } // namespace draw2d
 

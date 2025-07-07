@@ -2,6 +2,7 @@
 #include "email_department.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/prototype/url.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/networking/email.h"
 #include "apex/networking/internet.h"
@@ -26,7 +27,7 @@ namespace networking
 
       auto psocket = __create_new < ::sockets::smtp_socket >();
 
-      string strHost = file()->as_string("/sensitive/sensitive/seed/default_sendmail_host.txt");
+      string strHost = file()->as_string(directory()->home() / ".sensitive/sensitive/seed/default_sendmail_host.txt");
 
       if (!psocket->open(strHost, (port_t)25))
       {

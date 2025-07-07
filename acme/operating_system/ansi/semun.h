@@ -9,7 +9,7 @@
 */
 
 
-#if !defined(ANDROID)
+#if !defined(__ANDROID__)
 #ifndef SEMUN_H
 #define SEMUN_H                 /* Prevent accidental double inclusion */
 
@@ -35,6 +35,6 @@ union semun {                   /* Used in calls to semctl() */
 #endif
 
 #endif // !defined(SEMUN_H)
-#endif // !defined(ANDROID)
+#endif // !defined(__ANDROID__)
 
 

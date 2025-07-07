@@ -93,6 +93,6 @@ void _ns_main_send(dispatch_block_t block)
       
    });
  
-   pevent->wait();
+   pevent->_wait();
    
 }

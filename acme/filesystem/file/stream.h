@@ -455,7 +455,7 @@ public:
 //   virtual void write(unsigned int u) { raw_write(u); }
 //   virtual void write(long long i) { raw_write(i); }
 //   virtual void write(unsigned long long u) { raw_write(u); }
-//#if defined(__APPLE__) || defined(ANDROID) || defined(WINDOWS) || defined(RASPBERRYPIOS)
+//#if defined(__APPLE__) || defined(__ANDROID__) || defined(WINDOWS) || defined(RASPBERRYPIOS)
 //   virtual void write(unsigned long ul) { raw_write(ul); }
 //   virtual void write(long l) { raw_write(l); }
 //   //inline void write (long long hi);
@@ -494,7 +494,7 @@ public:
 //#ifdef WINDOWS
 //   virtual void read(unichar & wch);
 //   virtual void read(long & l);
-//#elif defined(__APPLE__)  || defined(ANDROID) || defined(WINDOWS) || defined(RASPBERRYPIOS)
+//#elif defined(__APPLE__)  || defined(__ANDROID__) || defined(WINDOWS) || defined(RASPBERRYPIOS)
 //   virtual void read(long & l);
 //#endif
 //   virtual void read(char & i);
@@ -504,7 +504,7 @@ public:
 //   virtual void read(unsigned int & u);
 //   virtual void read(long long & i);
 //   virtual void read(unsigned long long & u);
-//#if defined(__APPLE__) || defined(ANDROID) || defined(WINDOWS) || defined(RASPBERRYPIOS)
+//#if defined(__APPLE__) || defined(__ANDROID__) || defined(WINDOWS) || defined(RASPBERRYPIOS)
 //   virtual void read(unsigned long & u);
 //   //inline void read (long long & u);
 //#endif
@@ -541,7 +541,7 @@ public:
 //   virtual void exchange(const ::atom & atom, unsigned int & u) { stream_exchange(atom, u); }
 //   virtual void exchange(const ::atom & atom, long long & i) { stream_exchange(atom, i); }
 //   virtual void exchange(const ::atom & atom, unsigned long long & u) { stream_exchange(atom, u); }
-//#if defined(__APPLE__) || defined(ANDROID) || defined(WINDOWS) || defined(RASPBERRYPIOS)
+//#if defined(__APPLE__) || defined(__ANDROID__) || defined(WINDOWS) || defined(RASPBERRYPIOS)
 //   virtual void exchange(const ::atom & atom, unsigned long & ul) { stream_exchange(atom, ul); }
 //   virtual void exchange(const ::atom & atom, long & l) { stream_exchange(atom, l); }
 //   //inline void exchange(const ::atom & atom, long long & hi);

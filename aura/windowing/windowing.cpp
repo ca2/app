@@ -64,6 +64,8 @@ namespace windowing
 
       puserinteraction->__øconstruct(puserinteraction->m_pacmewindowingwindow);
 
+      puserinteraction->m_pacmewindowingwindow->initialize_window(puserinteraction);
+
    }
 
 

@@ -38,6 +38,9 @@ namespace image
    using icon_pointer = ::pointer<icon>;
 
 
+   class target;
+
+
 } // namespace image
 
 

@@ -9,7 +9,7 @@ apex_main_struct::apex_main_struct()
 
    m_pintstringLanguageResourceMap = nullptr;
 
-#if defined(ANDROID) || defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS)
+#if defined(__ANDROID__) || defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS)
 
    m_iMatterFromHttpCache = 1;
 
@@ -26,7 +26,7 @@ apex_main_struct::apex_main_struct()
    if (m_bExperienceMainFrame.is_none())
    {
 
-#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
+#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(__ANDROID__)
 
       m_bExperienceMainFrame = false;
 

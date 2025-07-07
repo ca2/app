@@ -22,6 +22,8 @@
 
 namespace image
 {
+
+
    class CLASS_DECL_AURA image_meta :
       public ::pixmap
    {

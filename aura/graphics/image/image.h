@@ -270,7 +270,7 @@ namespace image
       //virtual void     create(int iWidth, int iHeight, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, void bPreserve = false);
 
 
-      virtual bool host(::pixmap * ppixmap);
+      virtual bool host(::pixmap * ppixmap, ::windowing::window * pwindow);
       virtual bool on_host_read_pixels(::pixmap * ppixmapHost) const;
       void destroy() override;
       void destroy_os_data() override;
@@ -353,6 +353,10 @@ namespace image
       //virtual void _defer_load_multi_frame_image_(memory_pointer pmemory);
 
       virtual void op(string str);
+      
+      
+      virtual ::memory copy_with_no_stride();
+      virtual ::memory vertical_swap_copy_with_no_stride();
 
       //virtual void from( ::image::image *piml);
 

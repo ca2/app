@@ -31,14 +31,14 @@ hyperlink::~hyperlink()
 void hyperlink::run()
 {
 
-   if (m_bProfile)
-   {
+   // if (m_bProfile)
+   // {
+   //
+   //    return system()->open_internet_link(m_strLink, m_strBrowserAccount, m_strTarget);
+   //
+   // }
 
-      return system()->open_profile_link(m_strLink, m_strBrowserAccount, m_strTarget);
-
-   }
-
-   return system()->open_link(m_strLink, m_strBrowserAccount, m_strTarget);
+   return system()->open_internet_link(m_strLink, m_strBrowserAccount, m_strTarget);
 
 }
 

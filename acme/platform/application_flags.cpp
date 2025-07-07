@@ -217,14 +217,14 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //#include "acme/_operating_system.h"
 
 
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 //
 //#include "acme/operating_system/android/_os_local.h"
 //
 //#endif
 
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
 
 #endif
@@ -257,7 +257,7 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //
 //      m_pfnImplement = pmain->m_pfnImplement;
 //
-////#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
+////#if defined(LINUX) || defined(__ANDROID__) || defined(FREEBSD) || defined(OPENBSD)
 ////
 ////      if (!m_pchar_binary__matter_zip_start && !m_pchar_binary__matter_zip_end
 ////         && pmain->m_pchar_binary__matter_zip_start && pmain->m_pchar_binary__matter_zip_end)
@@ -806,7 +806,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////
 ////   }
 ////
-////#elif defined(ANDROID)
+////#elif defined(__ANDROID__)
 ////
 ////   {
 ////
@@ -1516,7 +1516,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////}
 ////
 //
-//#elif !defined(ANDROID)
+//#elif !defined(__ANDROID__)
 //
 //
 //void main::system_proc()
@@ -1606,7 +1606,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////// defined at linux_main.cpp
 //
 //
-//#elif defined(ANDROID)
+//#elif defined(__ANDROID__)
 //
 //
 //// LOOK AT ANDROID_MAIN.Cpp

@@ -1,11 +1,14 @@
 #include "framework.h"
 #include "cpu_buffer.h"
+#include "lock.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/image/image.h"
-#include "aura/graphics/gpu/context.h"
+#include "aura/graphics/image/target.h"
+#include "bred/gpu/context.h"
+#include "bred/gpu/context_lock.h"
 
 
-namespace opengl
+namespace gpu_opengl
 {
 
 
@@ -26,26 +29,28 @@ namespace opengl
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      if (m_pixmap.nok())
+      if (m_pimagetarget->m_pimage.nok())
       {
 
          return;
 
       }
 
-      //m_pixmap.map();
+      ::gpu::context_lock contextlock(m_pgpucontext);
 
-      auto cx = m_pixmap.m_size.cx();
+      ////m_pixmap.map();
 
-      auto cy = m_pixmap.m_size.cy();
+      //auto cx = m_pimagetarget->m_pimage->width();
 
-      //auto sizeNeeded = cx * cy * 4;
+      //auto cy = m_pimagetarget->m_pimage->height();
 
-      //m_pixmap.create(m_memory, sizeNeeded);
+      ////auto sizeNeeded = cx * cy * 4;
+
+      ////m_pixmap.create(m_memory, sizeNeeded);
+      //
+      //auto data = m_pimagetarget->m_pimage->data();
       
-      auto data = m_memory.data();
-      
-#if defined(__APPLE__) || defined(ANDROID)
+#if defined(__APPLE__) || defined(__ANDROID__)
 
       if(data != nullptr)
       {
@@ -85,39 +90,49 @@ namespace opengl
       
 #else
 
-
-      glReadBuffer(GL_FRONT);
+      //glReadBuffer(GL_FRONT);
       
-      if (m_pgpucontext->is_mesa())
+      //if (m_pgpucontext->is_mesa())
+
+      if(glReadnPixels)
       {
 
-         glReadPixels(
+         auto targeting = m_pimagetarget->source_scan_targeting(::image::e_copy_disposition_y_swap);
+
+         auto w = targeting.width();
+         auto h = targeting.height();
+         auto s = targeting.scan() * h * 4;
+         auto p = targeting.data();
+         glReadnPixels(
             0, 0,
-            cx, cy,
+            w, h,
             GL_BGRA,
             GL_UNSIGNED_BYTE,
-            m_pixmap.m_pimage32Raw);
-
+            s,
+            p);
+         GLCheckError("");
       }
       else
       {
 
-         glReadnPixels(
+         auto targeting = m_pimagetarget->no_padded_targeting(::image::e_copy_disposition_y_swap);
+
+         glReadPixels(
             0, 0,
-            cx, cy,
+            targeting.width(), targeting.height(),
             GL_BGRA,
+            //GL_RGBA,
             GL_UNSIGNED_BYTE,
-            cx * cy * 4,
-            data);
+            targeting.data());
+         GLCheckError("");
 
       }
-
       int iError = glGetError();
 
       if(iError != 0)
       {
 
-         printf("glReadnPixels error");
+         warningf("glReadnPixels error %d = \"%s\"", iError, opengl_error_string(iError));
 
       }
 
@@ -125,21 +140,21 @@ namespace opengl
 
 #endif
 
-      {
+      //{
 
-         auto dst = (unsigned char *)data;
-         auto size = cx * cy;
+      //   auto dst = (unsigned char *)data;
+      //   auto size = cx * cy;
 
-         while (size > 0)
-         {
-            dst[0] = byte_clip(((int)dst[0] * (int)dst[3]) / 255);
-            dst[1] = byte_clip(((int)dst[1] * (int)dst[3]) / 255);
-            dst[2] = byte_clip(((int)dst[2] * (int)dst[3]) / 255);
-            dst += 4;
-            size--;
-         }
+      //   while (size > 0)
+      //   {
+      //      dst[0] = byte_clip(((int)dst[0] * (int)dst[3]) / 255);
+      //      dst[1] = byte_clip(((int)dst[1] * (int)dst[3]) / 255);
+      //      dst[2] = byte_clip(((int)dst[2] * (int)dst[3]) / 255);
+      //      dst += 4;
+      //      size--;
+      //   }
 
-      }
+      //}
 
       //::copy_image32(m_pixmap.m_pimage32,
       //   cx, cy,
@@ -154,7 +169,7 @@ namespace opengl
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      if (m_pixmap.nok())
+      if (m_pimagetarget->m_pimage.nok())
       {
 
          return;
@@ -168,16 +183,20 @@ namespace opengl
 //         GL_BGRA,
 //         GL_UNSIGNED_BYTE,
 //         m_pixmap.m_pimage32Raw);
+
+      auto lock = m_pimagetarget->no_padded_lock(::image::e_copy_disposition_y_swap);
       
-      glTexImage2D(GL_TEXTURE_2D, 0, 0, 0,
-                   m_pixmap.m_size.cx(), m_pixmap.m_size.cy(),
-                   GL_RGBA, GL_UNSIGNED_BYTE,
-                   m_pixmap.m_pimage32Raw);
+      glTexImage2D(GL_TEXTURE_2D, 0, 0, 0, 
+         lock.width(), 
+         lock.height(), 
+         GL_RGBA, GL_UNSIGNED_BYTE, 
+         lock.data());
+      GLCheckError("");
 
    }
 
 
-} // namespace opengl
+} // namespace gpu_opengl
 
 
 

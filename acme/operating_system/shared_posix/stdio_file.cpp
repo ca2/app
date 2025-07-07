@@ -567,6 +567,87 @@ memory file_system::safe_get_memory(const ::file::path & pathParam, character_co
 }
 
 
+memory file_system::__safe_get_memory(const ::file::path& pathParam, character_count iReadAtMostByteCount, bool bNoExceptionIfNotFound)
+{
+
+   FILE* file = fopen(pathParam, "r");
+   if (file == NULL) {
+      //fprintf(stderr, "Could not open file\n");
+      return {};
+   }
+
+   fseek(file, 0, SEEK_END);
+   long size = ftell(file);
+   fseek(file, 0, SEEK_SET);
+   ::string str;
+   memory m;
+   m.set_size(size);
+   auto data = m.data();
+   if (data == NULL) {
+//      fprintf(stderr, "Memory allocation failed\n");
+      fclose(file);
+      return {};
+   }
+
+   fread(data, 1, size, file);
+   //str.release_buffer(size);
+
+   fclose(file);
+
+   //printf("File content:\n%s\n", buffer);
+
+   //free(buffer);
+
+   return ::transfer(m);
+
+}
+
+#define BUFFER_SIZE 4096
+
+memsize file_system::__safe_find_string(const ::file::path& path, const char* psz)
+{
+   int targetLength = strlen(psz);
+
+   if (targetLength >= BUFFER_SIZE)
+   {
+      return -3;
+   }
+   FILE* file = fopen(path, "r");
+   if (file == NULL) {
+      //perror("Error opening file");
+      return -2;
+   }
+
+   char buffer[BUFFER_SIZE * 2];
+   char* found;
+   size_t bytesRead;
+   int offset = 0;
+   memsize pos=0;
+   int amountToRead = BUFFER_SIZE;
+   int whereToRead = 0;
+   while ((bytesRead = fread(buffer + whereToRead, 1, amountToRead, file)) > 0) 
+   {
+      (buffer + whereToRead)[bytesRead] = '\0';
+      found = strstr(buffer, psz);
+      if (found != NULL) {
+         fclose(file);
+         return pos + (found-buffer)-whereToRead; // String found
+      }
+      if (bytesRead == BUFFER_SIZE) 
+      {
+         offset = BUFFER_SIZE - targetLength + 1;
+         memmove(buffer, buffer + offset, targetLength - 1);
+         amountToRead = offset;
+         whereToRead = targetLength - 1;
+         //fseek(file, -offset, SEEK_CUR);
+      }
+      pos += bytesRead;
+   }
+   fclose(file);
+   return -1; // String not found
+}
+
+
 
 CLASS_DECL_ACME void destroy_pointer(FILE * p)
 {
@@ -863,7 +944,7 @@ void file_system::append_wait(const ::file::path & pathFile, const block & block
    while (true)
    {
 
-#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(__BSD__)
+#if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__) || defined(__BSD__)
 
       pfile = fopen(pathFile, "ab");
 
@@ -1013,7 +1094,7 @@ void file_system::append_wait(const ::string & strFile, const block & block, con
    while (true)
    {
 
-#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(__BSD__)
+#if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__) || defined(__BSD__)
 
       pfile = fopen(strFile.c_str(), "ab");
 

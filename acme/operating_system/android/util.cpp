@@ -72,7 +72,7 @@ oswindow CLASS_DECL_lnx _::windows_definition::ChildWindowFromPoint(oswindow hWn
 
 
 
-/*
+
 void CLASS_DECL_lnx ::windows_definition::DeleteObject(HGDIOBJ* pObject)
 {
    ENSURE_ARG(pObject != nullptr);
@@ -81,9 +81,9 @@ void CLASS_DECL_lnx ::windows_definition::DeleteObject(HGDIOBJ* pObject)
       ::DeleteObject(*pObject);
       *pObject = nullptr;
    }
-}*/
+}
 
-/*
+
 void CLASS_DECL_lnx ::windows_definition::cancelModes(oswindow hWndRcvr)
 {
    // if we receive a message destined for a ::interaction_impl, cancel any combobox
@@ -115,9 +115,9 @@ void CLASS_DECL_lnx ::windows_definition::cancelModes(oswindow hWndRcvr)
 
    // finally, we should cancel the mode!
    ::SendMessage(hWndcancel, CB_SHOWDROPDOWN, false, 0L);
-}*/
+}
 
-/*
+
 void CLASS_DECL_lnx ::windows_definition::GlobalFree(HGLOBAL hGlobal)
 {
    if (hGlobal == nullptr)

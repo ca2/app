@@ -459,7 +459,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
          m_ppopup->mouse_button_event(
             p - m_pos + absolute_position() - m_ppopup->absolute_position() + m_ppopup->position(), emouse, down, bDoubleClick, ekeyModifiers);
 
-         pscreen->update_focus(this);
+         pscreen->on_child_set_focus(this);
 
          pscreen->erase_child(m_ppopup);
 

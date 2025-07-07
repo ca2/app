@@ -63,7 +63,7 @@ typedef address_array < oswindow_data * > oswindow_dataptra;
 struct CLASS_DECL_ACME oswindow_data
 {
 
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 //
 //   engine                        m_engine;
 //

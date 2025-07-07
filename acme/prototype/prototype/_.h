@@ -4,6 +4,7 @@
 #include "acme/user/user/_constant.h"
 
 
+class call;
 
 
 namespace acme

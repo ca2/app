@@ -61,12 +61,14 @@ namespace acme
          //return nullptr;
 
       }
-   
-   void message_box::set_dialog_result(const ::payload & payloadResult)
-   {
-      
-      
-   }
+
+
+      void message_box::set_dialog_result(const ::payload & payloadResult)
+      {
+
+
+      }
+
 
    } // namespace user
 

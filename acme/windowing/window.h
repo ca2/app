@@ -49,6 +49,8 @@ namespace acme
          class ::time                              m_timeHoverNoiseSuppression;
 
 
+         bool m_bMouseOn;
+
 
          int_rectangle                             m_rectangle;
          ::int_rectangle                           m_rectanglePointingTo;
@@ -79,7 +81,7 @@ namespace acme
          ::pointer<::acme::user::interaction>               m_pacmeuserinteraction;
          ::pointer<::acme::user::interaction>               m_pacmeuserinteractionKeyboardFocus;
          ::pointer<::acme::user::interaction>               m_pacmeuserinteractionHover;
-         ::pointer<::acme::user::interaction>               m_pacmeuserinteractionCapture;
+         ::pointer<::acme::user::interaction>               m_pacmeuserinteractionMouseCapture;
          //::pointer<::acme::user::interaction>               m_pacmeuserinteractionOwner;
 
 
@@ -100,6 +102,8 @@ namespace acme
          //virtual ::pointer < item_container > item_form();
 
          void on_initialize_particle() override;
+
+         virtual void initialize_window(::acme::user::interaction* pacmeuserinteraction);
 
          virtual ::oswindow oswindow();
 
@@ -163,6 +167,11 @@ namespace acme
          virtual void set_window_text(const ::scoped_string & scopedstrString);
 
          ::pointer<::nano::graphics::device>create_device();
+
+         virtual void on_mouse_enter();
+         virtual void fore_on_mouse_move(::user::mouse * pmouse);
+         virtual void back_on_mouse_move(::user::mouse * pmouse);
+         virtual void on_mouse_leave();
 
 
          virtual ::pointer < ::user::activation_token > get_initial_frame_display_activation_token();

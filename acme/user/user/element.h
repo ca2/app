@@ -896,19 +896,23 @@ namespace user
       virtual ::user::element * previous_user_element();
 
 
-      virtual void pick_single_file(
-         const ::array < ::file::file_dialog_filter > & filedialogfiltera,
-         const ::function < void(const ::file::path &) > & function,
-         bool save);
+      virtual void pick_single_file_to_save(
+         const ::file::file_dialog_filter & filedialogfiltera,
+         const ::function < void(::file::file_dialog* pdialog) > & function);
+
+      
+      virtual void pick_single_file_to_open(
+         const ::file::file_dialog_filter & filedialogfiltera,
+         const ::function < void(::file::file_dialog* pdialog) > & function);
 
 
       virtual void pick_multiple_file(
-         const ::array < ::file::file_dialog_filter > & filedialogfiltera,
-         const ::function < void(const ::file::path_array &) > & function);
+         const ::file::file_dialog_filter & filedialogfiltera,
+         const ::function < void(::file::file_dialog* pdialog) > & function);
 
 
       virtual void pick_single_folder(
-         const ::function < void(const ::file::path &) > & function);
+         const ::function < void(::file::file_dialog* pdialog) > & function);
 
       virtual bool update_impact();
       virtual bool on_impact_update();

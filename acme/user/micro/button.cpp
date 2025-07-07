@@ -35,7 +35,24 @@ namespace micro
       if (has_keyboard_focus())
       {
 
-         ppenBorder = micro_theme()->m_ppenBorderFocus;
+         if (m_bHover)
+         {
+
+            ppenBorder = micro_theme()->m_ppenBorderHoverAndFocus;
+
+         }
+         else
+         {
+
+            ppenBorder = micro_theme()->m_ppenBorderFocus;
+
+         }
+
+      }
+      else if(m_bHover)
+      {
+
+         ppenBorder = micro_theme()->m_ppenBorderHover;
 
       }
       else

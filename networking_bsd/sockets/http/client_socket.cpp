@@ -136,7 +136,7 @@ string op_sys()
    return "OS X";
 #elif defined(APPLE_IOS)
    return "iOS";
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
    return "Android";
 #elif defined(UNIVERSAL_WINDOWS)
    return "Windows Store";
@@ -772,7 +772,7 @@ namespace sockets
       return "Mozilla/5.0 (Linux; x86_64) AppleWebKit/537.36 (ca2, like Gecko) " + strAddUp;
 #elif defined(APPLE_IOS)
       return "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12) AppleWebKit/537.36 (ca2, like Gecko) " + strAddUp;
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
       return "Mozilla/5.0 (Android; x86) AppleWebKit/537.36 (ca2, like Gecko) " + strAddUp;
 #else
       throw ::exception(todo);

@@ -210,7 +210,7 @@ if (len)
 
 return _strnicmp(left, right, len);
 
-#elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+#elif defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
 return case_insensitive_ansi_count_compare(left, right, len);
 
@@ -228,7 +228,7 @@ else
 
 return _stricmp(left, right);
 
-#elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+#elif defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
 return case_insensitive_ansi_compare(left, right);
 
@@ -253,7 +253,7 @@ CLASS_DECL_ACME int compare_ignore_case(const string & left, const string & righ
 
       return _strnicmp(left.c_str(), right.c_str(), len);
 
-#elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+#elif defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
       return case_insensitive_ansi_count_compare(left.c_str(), right.c_str(), len);
 
@@ -271,7 +271,7 @@ CLASS_DECL_ACME int compare_ignore_case(const string & left, const string & righ
 
       return _stricmp(left.c_str(), right.c_str());
 
-#elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+#elif defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
       return case_insensitive_ansi_compare(left.c_str(), right.c_str());
 
@@ -297,7 +297,7 @@ CLASS_DECL_ACME int compare_ignore_case(const char * left, const string & right,
 
       return _strnicmp(left, right.c_str(), len);
 
-#elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+#elif defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
       return case_insensitive_ansi_count_compare(left, right.c_str(), len);
 
@@ -315,7 +315,7 @@ CLASS_DECL_ACME int compare_ignore_case(const char * left, const string & right,
 
       return _stricmp(left, right.c_str());
 
-#elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+#elif defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
       return case_insensitive_ansi_compare(left, right.c_str());
 
@@ -340,7 +340,7 @@ CLASS_DECL_ACME int compare_ignore_case(const string & left, const char * right,
 
       return _strnicmp(left.c_str(), right, len);
 
-#elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+#elif defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
       return case_insensitive_ansi_count_compare(left.c_str(), right, len);
 
@@ -358,7 +358,7 @@ CLASS_DECL_ACME int compare_ignore_case(const string & left, const char * right,
 
       return _stricmp(left.c_str(), right);
 
-#elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+#elif defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 
       return case_insensitive_ansi_compare(left.c_str(), right);
 

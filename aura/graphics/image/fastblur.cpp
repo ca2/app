@@ -73,7 +73,7 @@ inline void kernelPosition(int boxBlur,unsigned& std,int& dLeft,int& dRight)
 
 
 
-#if defined(__arm__) && !defined(ANDROID) && !defined(RASPBERRYPIOS)
+#if defined(__arm__) && !defined(__ANDROID__) && !defined(RASPBERRYPIOS)
 
 #include <arm_neon.h>
 
@@ -641,7 +641,7 @@ auto tick2 = ::time::now();
       */
 #endif
 
-#if defined(ANDROID)
+#if defined(__ANDROID__)
 
       pimage->mult_alpha();
 
@@ -651,7 +651,7 @@ auto tick2 = ::time::now();
 
    }
 
-#if defined(__arm__) && !defined(ANDROID) && !defined(RASPBERRYPIOS)
+#if defined(__arm__) && !defined(__ANDROID__) && !defined(RASPBERRYPIOS)
 
 
    inline void boxBlurNEON(unsigned int* sourcePixel,unsigned int* destinationPixel,

@@ -19,7 +19,6 @@
 #include "aura/constant/idpool.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/task_tool.h"
-#include "aura/graphics/gpu/approach.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/graphics/image/imaging.h"
 #include "aura/hardware/devices.h"
@@ -414,7 +413,7 @@ namespace aura
 //            if (!plibrary->open(strLibrary))
 //            {
 //
-////#if !defined(ANDROID)
+////#if !defined(__ANDROID__)
 ////               if (!plibrary->open(directory()->ca2module() / pszLibrary))
 ////#endif
 ////               {
@@ -1196,7 +1195,6 @@ namespace aura
    }
 
 
-
    string system::draw2d_get_default_implementation_name()
    {
 
@@ -1298,6 +1296,18 @@ namespace aura
 #endif
 
       }
+      else if (strImplementationName == "directx11")
+      {
+
+         //strImplementationName = "direct2d";
+
+      }
+      else if (strImplementationName == "directx12")
+      {
+
+         strImplementationName = "direct2d";
+
+      }
 
       auto & pfactoryDraw2d = factory("draw2d", strImplementationName);
 
@@ -1381,6 +1391,88 @@ namespace aura
    //   return true;
 
 //#endif
+
+   }
+
+
+   void system::initialize_typeface()
+   {
+
+      ::e_status estatus = ::success;
+
+      //try
+      //{
+
+      if (!m_pfactoryTypeface)
+      {
+
+         m_pfactoryTypeface = typeface_factory();
+
+         //if (m_pfactoryDraw2d)
+         {
+
+            m_pfactoryTypeface->merge_to_global_factory();
+
+         }
+
+      }
+    
+   }
+
+
+   string system::typeface_get_default_implementation_name()
+   {
+
+      string strImplementationName;
+
+      strImplementationName = application()->typeface_get_default_implementation_name();
+
+      if (strImplementationName.has_character())
+      {
+
+         return strImplementationName;
+
+      }
+
+      ::file::path path = directory_system()->roaming() / "system/typeface.txt";
+
+      strImplementationName = file_system()->safe_get_string(path);
+
+      if (strImplementationName.has_character())
+      {
+
+         return implementation_name("typeface", strImplementationName);
+
+      }
+
+      path = directory_system()->roaming() / application()->m_strAppId / "typeface.txt";
+
+      strImplementationName = file_system()->as_string(path);
+
+      if (strImplementationName.has_character())
+      {
+
+         return implementation_name("typeface", strImplementationName);
+
+      }
+
+#ifdef WINDOWS_DESKTOP
+
+      return implementation_name("typeface", "gdiplus");
+
+#elif __APPLE__
+
+      return implementation_name("typeface", "quartz2d");
+
+#elif defined(UNIVERSAL_WINDOWS)
+
+      return implementation_name("typeface", "direct2d");
+
+#else
+
+      return implementation_name("typeface", "freetype");
+
+#endif
 
    }
 
@@ -1502,6 +1594,149 @@ namespace aura
 //      return true;
 //
 //#endif // CUBE
+
+   }
+
+
+   ::factory::factory* system::typeface_factory()
+   {
+
+      ::string strImplementationName;
+
+      if (has_property("typeface"))
+      {
+
+         strImplementationName = payload("typeface");
+
+      }
+
+      ::e_status estatus;
+
+      if (strImplementationName.has_character())
+      {
+
+         auto& pfactoryDraw2d = factory("typeface", strImplementationName);
+
+         if (pfactoryDraw2d)
+         {
+
+            return pfactoryDraw2d;
+
+         }
+
+      }
+
+      strImplementationName = typeface_get_default_implementation_name();
+
+      if (strImplementationName.is_empty())
+      {
+
+#ifdef WINDOWS
+
+         strImplementationName = implementation_name("typeface", "gdiplus");
+
+#else
+
+         strImplementationName = implementation_name("typeface", "freetype");
+
+#endif
+
+      }
+      else if (strImplementationName == "directx11")
+      {
+
+         //strImplementationName = "direct2d";
+
+      }
+      else if (strImplementationName == "directx12")
+      {
+
+         strImplementationName = "direct2d";
+
+      }
+
+      auto& pfactoryTypeface = factory("typeface", strImplementationName);
+
+      if (pfactoryTypeface)
+      {
+
+         return pfactoryTypeface;
+
+      }
+
+#ifdef WINDOWS_DESKTOP
+
+      if (strImplementationName != implementation_name("typeface", "gdiplus"))
+      {
+
+         auto& pfactoryTypeface = factory("typeface", "gdiplus");
+
+         if (pfactoryTypeface)
+         {
+
+            return pfactoryTypeface;
+
+         }
+
+      }
+
+      if (strImplementationName != implementation_name("typeface", "direct2d"))
+      {
+
+         auto& pfactoryTypeface = factory("typeface", "direct2d");
+
+         if (pfactoryTypeface)
+         {
+
+            return pfactoryTypeface;
+
+         }
+
+      }
+
+
+#endif
+
+      if (strImplementationName != implementation_name("typeface", "cairo"))
+      {
+
+         auto& pfactoryTypeface = factory("typeface", "cairo");
+
+         if (pfactoryTypeface)
+         {
+
+            return pfactoryTypeface;
+
+         }
+
+      }
+
+      //informationf("No draw2d pluging available!!.");
+      if (pfactoryTypeface)
+      {
+
+         return pfactoryTypeface;
+
+      }
+
+      throw ::exception(error_not_found, "No typeface plugin available");
+
+      //destroy:
+
+      //   PFN_factory ([a-z0-9_]+)_factory = plibrary->get < PFN_factory >("([a-z0-9_]+)_factory");
+
+      //   if (([a-z0-9_]+)_factory == nullptr)
+      //   {
+
+      //      return false;
+
+      //   }
+
+      //   ([a-z0-9_]+)_factory(::factory::factory * pfactory);
+
+      //   return true;
+
+   //#endif
 
    }
 
@@ -1697,7 +1932,7 @@ namespace aura
 
       //}
 
-//#if !defined(CUBE) && !defined(ANDROID)
+//#if !defined(CUBE) && !defined(__ANDROID__)
 //
 //#if !defined(_DEBUG) || defined(WINDOWS)
 //
@@ -2940,7 +3175,7 @@ namespace aura
 //
 //      return true;
 //
-//#if defined(CUBE) || defined(ANDROID)
+//#if defined(CUBE) || defined(__ANDROID__)
 //      return true;
 //#endif
 //
@@ -3080,7 +3315,7 @@ namespace aura
 //
 //      string strLibrary = ::file::path(pszLibrary).title();
 //
-//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+//#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 //
 //      if(strLibrary == "libbase")
 //      {
@@ -3399,7 +3634,7 @@ namespace aura
 //    }
 // #endif
 
-//#ifndef ANDROID
+//#ifndef __ANDROID__
 //
 //   void system::on_os_text(e_os_text etext, string strText)
 //   {
@@ -3961,13 +4196,13 @@ namespace aura
 //         if (strBrowser == "firefox")
 //         {
 //
-//            //strUrl = "https://ca2.software/open_f___?url=" + ::url::encode(strUrl) + "&profile=" + ::url::encode(strProfile) + "&target=" + ::url::encode(strTarget);
+//            //strUrl = "https://ca2.network/open_f___?url=" + ::url::encode(strUrl) + "&profile=" + ::url::encode(strProfile) + "&target=" + ::url::encode(strTarget);
 //
 //         }
 //         else
 //         {
 //
-//            //strUrl = "https://ca2.software/open_tab?url=" + ::url::encode(strUrl) + "&profile=" + ::url::encode(strProfile) + "&target=" + ::url::encode(strTarget);
+//            //strUrl = "https://ca2.network/open_tab?url=" + ::url::encode(strUrl) + "&profile=" + ::url::encode(strProfile) + "&target=" + ::url::encode(strTarget);
 //
 //         }
 //
@@ -4578,55 +4813,57 @@ namespace aura
 //      m_threadidmap.erase_key(pthread);
 //
 //   }
-::gpu::approach* system::get_gpu()
-{ if (!m_pgpu) create_gpu(); return m_pgpu.get(); };
-::gpu::approach* system::gpu()  { return m_pgpu.get(); };
-
-
-//#ifdef _OPENGL
-   void system::create_gpu()
-   {
-
-      if (m_pgpu)
-      {
-
-         return;
-
-      }
-
-      //load_library("gpu_opengl");
-
-      auto & pfactoryGpu = factory("gpu", "opengl");
-
-      //get_library("gpu_opengl");
-
-
-
-      //if (!pfactoryGpu)
-      //{
-
-      //   error() <<"gpu_opengl ([a-z0-9_]+)_factory has failed";
-
-      //   return pfactoryGpu;
-
-      //}
-
-      pfactoryGpu->merge_to_global_factory();
-
-      //auto estatus =
-      
-      pfactoryGpu->__øconstruct(this, m_pgpu);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return ::success;
-
-   }
+//::gpu::approach* system::get_gpu()
+//{ if (!m_pgpu) create_gpu(); return m_pgpu.get(); };
+//::gpu::approach* system::gpu()  { return m_pgpu.get(); };
+//
+//
+////#ifdef _OPENGL
+//   void system::create_gpu()
+//   {
+//
+//      if (m_pgpu)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      //load_library("gpu_opengl");
+//
+//      ::string strImplementation = m_papplication->draw2d_get_default_implementation_name();
+//
+//      auto & pfactoryGpu = factory("gpu", strImplementation);
+//
+//      //get_library("gpu_opengl");
+//
+//
+//
+//      //if (!pfactoryGpu)
+//      //{
+//
+//      //   error() <<"gpu_opengl ([a-z0-9_]+)_factory has failed";
+//
+//      //   return pfactoryGpu;
+//
+//      //}
+//
+//      pfactoryGpu->merge_to_global_factory();
+//
+//      //auto estatus =
+//      
+//      pfactoryGpu->__øconstruct(this, m_pgpu);
+//
+//      //if (!estatus)
+//      //{
+//
+//      //   return estatus;
+//
+//      //}
+//
+//      //return ::success;
+//
+//   }
 //#endif
 
 
@@ -5240,7 +5477,7 @@ namespace aura
   //
   //      add_factory_item < ::image::icon >();
   //
-  //      //#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
+  //      //#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(__ANDROID__)
   //      //
   //      //      m_possystemwindow = ___new os_system_window();
   //      //
@@ -5697,7 +5934,7 @@ if(!m_pimaging)
 //      //if(psession->account()->create_system_user("system") == nullptr)
 //      // return false;
 //
-//#if !defined(CUBE) && !defined(ANDROID)
+//#if !defined(CUBE) && !defined(__ANDROID__)
 //
 //#if !defined(_DEBUG) || defined(WINDOWS)
 //      try
@@ -6381,7 +6618,7 @@ if(!m_pimaging)
 //
 //      g_pszCooperativeLevel = "aura";
 //
-//#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
+//#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(__ANDROID__)
 //
 //      m_possystemwindow = ___new os_system_window();
 //

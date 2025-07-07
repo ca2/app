@@ -109,7 +109,7 @@ IDR_MATTER              ZIP                     "../_matter.zip"
 
 STRINGTABLE
 BEGIN
-    IDS_APP_TITLE           "app_core_hello_multiverse"
+    IDS_APP_TITLE           "app_hello_multiverse"
 END
 
 #endif    // English (United States) resources

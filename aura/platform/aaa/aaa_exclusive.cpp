@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(__ANDROID__)
 #include <sys/stat.h>
 #include <fcntl.h>
 #endif

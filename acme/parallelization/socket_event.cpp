@@ -4,7 +4,7 @@
 #if 0 
 
 
-#if defined(ANDROID)
+#if defined(__ANDROID__)
 #undef USE_MISC
 
 #endif

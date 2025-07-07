@@ -335,6 +335,41 @@ string file_system::safe_get_string(const ::file::path& pathParam, character_cou
 }
 
 
+string file_system::__safe_get_string(const ::file::path& pathParam, character_count iReadAtMostByteCount,
+   bool bNoExceptionIfNotFound)
+{
+
+   auto memory = __safe_get_memory(pathParam, iReadAtMostByteCount);
+
+   ::string str;
+
+   auto data = (char*)memory.data();
+
+   auto size = memory.size();
+
+   if (::is_null(data) || size <= 0)
+   {
+
+      return {};
+
+   }
+   else if (data[0] == '\xEF' && data[1] == '\xBB' && data[2] == '\xBF') // BOM
+   {
+
+      return { (const char*)data + 3, size - 3 };
+
+   }
+   else
+   {
+
+      return { (const char*)data, size };
+
+   }
+
+   return str;
+
+}
+
 string file_system::get_temporary_file_name(const ::scoped_string& scopedstrName,
                                             const ::scoped_string& scopedstrExtension)
 {
@@ -496,6 +531,30 @@ bool file_system::exists(const ::file::path& pathParam)
    {
 
       return true;
+
+   }
+
+   auto bExists = _exists(path);
+
+   if (!bExists)
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+
+bool file_system::__exists(const ::file::path& path)
+{
+
+   if (path.is_empty())
+   {
+
+      return false;
 
    }
 

@@ -17,7 +17,7 @@
 
 #include "application/macos.h"
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
 #include "application/android.h"
 

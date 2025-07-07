@@ -28,7 +28,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 //#include "axis/html/html_lite/_.h"
 #endif
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__)
 #include <sys/mman.h>
 #include <unistd.h>
 #endif

@@ -198,6 +198,12 @@
     <Filter Include="Header Files\windowing">
       <UniqueIdentifier>{91099477-e364-4f93-ad3b-1302cd207746}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\gpu">
+      <UniqueIdentifier>{98c6301b-c7a8-4576-858c-7cbeb8b20ce1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gpu">
+      <UniqueIdentifier>{def1e6ac-fcbf-40c1-8ef8-5312128d3e3b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -1070,6 +1076,12 @@
     <ClInclude Include="filesystem\fs\raw_folder_protocol.h">
       <Filter>Header Files\filesystem\fs</Filter>
     </ClInclude>
+    <ClInclude Include="gpu\approach.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\_.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1545,6 +1557,9 @@
     </ClCompile>
     <ClCompile Include="filesystem\fs\raw_folder_protocol.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\approach.cpp">
+      <Filter>Source Files\gpu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

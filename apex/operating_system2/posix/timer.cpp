@@ -5,7 +5,7 @@
 #include <time.h>
 
 
-//#if defined(LINUX) || defined(ANDROID)
+//#if defined(LINUX) || defined(__ANDROID__)
 
 //void apex_timer_handler(sigval sigval);
 

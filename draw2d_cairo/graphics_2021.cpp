@@ -5434,7 +5434,7 @@ namespace draw2d_cairo
 
       }
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
       float fDpi = maximum(::operating_system_driver::get()->m_fDpiX, ::operating_system_driver::get()->m_fDpiY);
 
@@ -5445,7 +5445,7 @@ namespace draw2d_cairo
       if (pfontParam->m_eunitFontSize == ::draw2d::e_unit_pixel)
       {
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
          cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * fDensity * 0.5);
 
@@ -5459,7 +5459,7 @@ namespace draw2d_cairo
       else
       {
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
          cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * fDensity * 0.5 * 96.0 / 72.0);
 
@@ -6607,7 +6607,7 @@ namespace draw2d_cairo
 ////
 ////   ::draw2d::wingdi_enum_fonts(itema, false, true, false);
 ////
-////#elif defined(ANDROID)
+////#elif defined(__ANDROID__)
 ////
 ////   
 ////

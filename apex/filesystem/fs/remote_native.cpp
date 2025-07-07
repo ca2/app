@@ -366,7 +366,7 @@ namespace fs
 
       if(!m_bInitialized)
       {
-         //http()->get("http://file.ca2.software/");
+         //http()->get("http://file.ca2.network/");
          m_bInitialized = true;
       }
 

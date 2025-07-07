@@ -296,6 +296,13 @@ namespace platform
    }
 
 
+   void node::defer_add_to_system_recent_file_list(const ::file::path& pathNew)
+   {
+
+
+   }
+
+
    ::particle_pointer node::create_mutex()
    {
 
@@ -2308,15 +2315,22 @@ return false;
    }
 
 
-   void node::open_url_link_at_system_browser(const string & strUrl, const string & strProfile)
+   void node::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile
+                                            , const ::scoped_string & scopedstrTarget)
    {
 
-      //throw ::interface_only();
-
-      //::operating_system_open_url(strUrl);
+      open_internet_link(scopedstrUrl, scopedstrProfile, scopedstrTarget);
 
    }
 
+
+void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile
+                                         , const ::scoped_string & scopedstrTarget)
+{
+
+   open_internet_link_in_browser(scopedstrUrl, {}, scopedstrProfile, scopedstrTarget);
+
+}
 
    void node::shell_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const ::file::path& pathWorkingDirectory)
    {
@@ -3964,24 +3978,24 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
    }
 
 
-   void node::file_association_set_default_icon(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::string & pszIconPath)
+   void node::file_association_set_default_icon(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::file::path & pathIcon)
    {
 
       __UNREFERENCED_PARAMETER(pszExtension);
       __UNREFERENCED_PARAMETER(pszExtensionNamingClass);
-      __UNREFERENCED_PARAMETER(pszIconPath);
+      __UNREFERENCED_PARAMETER(pathIcon);
 
       //return false;
 
    }
 
 
-   void node::file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass,  const ::string & pszCommand, const ::string & pszParam)
+   void node::file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::file::path & pathExecutable, const ::string & pszParam)
    {
 
       __UNREFERENCED_PARAMETER(pszExtension);
       __UNREFERENCED_PARAMETER(pszExtensionNamingClass);
-      __UNREFERENCED_PARAMETER(pszCommand);
+      __UNREFERENCED_PARAMETER(pathExecutable);
       __UNREFERENCED_PARAMETER(pszParam);
 
       //return false;

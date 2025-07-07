@@ -256,7 +256,7 @@ string directory_system::system_short_name()
 
    return path;
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
    return "./";
 
@@ -287,7 +287,7 @@ string directory_system::system_short_name()
 
    return path;
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
    return         "./";
 
@@ -318,7 +318,7 @@ string directory_system::system_short_name()
 ::file::path directory_system::default_install()
 {
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
    return "./";
 
@@ -456,7 +456,7 @@ bool directory_system::has_icloud_container(const char * pszContentIdentifier)
 //#endif
 
 
-//#if defined(UNIVERSAL_WINDOWS) || defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
+//#if defined(UNIVERSAL_WINDOWS) || defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__)
 //
 
 ::file::path directory_system::bookmark()
@@ -1235,6 +1235,16 @@ int directory_system::make_path(const ::scoped_string & scopedstr)
 }
 
 
+::file::e_type directory_system::__file_type(const ::file::path& path)
+{
+
+   auto etype = ::safe_file_type(path);
+
+   return etype;
+
+}
+
+
 void directory_system::_create4(const ::file::path & path)
 {
 
@@ -1545,7 +1555,7 @@ void directory_system::init_system()
 
    auto pdirectorysystem = this;
 
-#if defined(__APPLE__) || (defined(_DEBUG)) || defined(ANDROID) || defined(UNIVERSAL_WINDOWS)
+#if defined(__APPLE__) || (defined(_DEBUG)) || defined(__ANDROID__) || defined(UNIVERSAL_WINDOWS)
 
    if ( pdirectorysystem->is(application()->side_get_matter_path("app/_matter/main")))
    {

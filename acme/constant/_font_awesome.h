@@ -999,7 +999,7 @@
   *            </tr>
   *            <tr class="row-even">
   *              <td align="right"><code>FA_CUBE</code></td>
-  *              <td align="center"><span class="fa-cube"></span></td>
+  *              <td align="center"><span class="fa-graphics3d"></span></td>
   *            </tr>
   *            <tr class="row-odd">
   *              <td align="right"><code>FA_CUBES</code></td>

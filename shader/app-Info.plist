@@ -46,6 +46,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>ca2_command_line</key>
-	<string>app : app=app-core/simple_shader</string>
+	<string>app : app=app-graphics3d/simple_shader</string>
 </dict>
 </plist>

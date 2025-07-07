@@ -197,8 +197,8 @@ namespace platform
 
 
 
-      virtual void browser(string strUrl, string strBrowser, string strProfile, string strTarget);
-      virtual void open_profile_link(string strUrl, string strProfile, string strTarget);
+      //virtual void browser(string strUrl, string strBrowser, string strProfile, string strTarget);
+      //void open_internet_link(string strUrl, string strProfile, string strTarget) override;
 
 
       //virtual void __set_thread_on();
@@ -296,7 +296,7 @@ namespace platform
       //void request(::request * prequest) override;
 
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 //#pragma message("at macos??")
       virtual bool android_set_user_wallpaper(string strUrl);
       virtual bool android_get_user_wallpaper(string & strUrl);

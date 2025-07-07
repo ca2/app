@@ -24,13 +24,23 @@
 #else
 #include <sched.h>
 #endif
+#if defined(__ANDROID__)
+#if defined(_PTHREAD_H)
+#error "informational error (you can comment out): pthread already included"
+#else
+//#i
+//#define __USE_GNU
+//#error "informational error (you can comment out): pthread going to be included"
+#include <pthread.h>
+#endif
+#endif
 
 #ifdef __APPLE__
 #include <mach/thread_act.h>
 #include <errno.h>
 #endif
 
-#if defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD) || defined(NETBSD)
+#if defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD) || defined(NETBSD) || defined(__ANDROID__)
 
 int SetThreadAffinityMask(htask h, unsigned int dwThreadAffinityMask)
 {
@@ -113,8 +123,28 @@ int SetThreadAffinityMask(htask h, unsigned int dwThreadAffinityMask)
 
     return iCpuSetErrorCount <= 0;
 
-#else
+#elif defined(__ANDROID__)
+    cpu_set_t c;
+    CPU_ZERO(&c);
+    for(int i = 0; i < sizeof(dwThreadAffinityMask) * 8; i++)
+    {
 
+        if((1 << i) & dwThreadAffinityMask)
+        {
+
+            CPU_SET(i, &c);
+
+        }
+
+    }
+
+    auto pid = pthread_gettid_np(::literal_cast < pthread_t >(h));
+
+    int iRet = sched_setaffinity(pid, sizeof(c), &c);
+
+    return iRet != 0;
+
+#else
     cpuset_t c;
 
     CPU_ZERO(&c);

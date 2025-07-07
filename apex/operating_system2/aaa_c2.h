@@ -20,7 +20,7 @@
 // C-includes
 
 
-#if defined(ANDROID)
+#if defined(__ANDROID__)
 #include "apex/os/ansios/_c.h"
 #include "apex/os/android/_c.h"
 #elif defined(MACOS)

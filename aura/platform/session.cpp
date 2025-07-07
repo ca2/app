@@ -25,7 +25,7 @@ CLASS_DECL_ACME ::subparticle* refdbg_get_track_allocation();
 #endif
 
 
-#if defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
+#if defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS) || defined(__ANDROID__)
 
 
 namespace OPERATING_SYSTEM_NAMESPACE
@@ -1826,7 +1826,7 @@ return m_psavings;
 
       //return ::success;
 
-//#if !defined(APPLE_IOS) && !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
+//#if !defined(APPLE_IOS) && !defined(UNIVERSAL_WINDOWS) && !defined(__ANDROID__)
 //
 //      return ::success;
 //

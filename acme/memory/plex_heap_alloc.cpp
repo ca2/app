@@ -121,7 +121,7 @@ void plex_heap_alloc::pre_finalize()
 #define STR(x) STR_HELPER(x)
 #ifdef RASPBERRYPIOS
 #define QUOTED_KERNEL_SPACE (1024)
-#elif  defined(ANDROID)
+#elif  defined(__ANDROID__)
 #define QUOTED_KERNEL_SPACE (1024 * 1024)
 #else
 #if OSBIT == 64

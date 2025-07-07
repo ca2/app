@@ -394,9 +394,9 @@ namespace platform
       //virtual ::pointer<::acme::library> & library(const ::string &strComponent, const ::string &strImplementation);
 
 
-      virtual void open_profile_link(string strUrl, string strProfile, string strTarget) override;
-      virtual void open_link(string strUrl, string strProfile, string strTarget) override;
-      virtual void open_url(string strUrl, string strProfile, string strTarget) override;
+      virtual void open_internet_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile = {}, const ::scoped_string & scopedstrTarget = {}) override;
+      virtual void open_internet_link_in_browser(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile = {}, const ::scoped_string & scopedstrTarget = {}) override;
+//      virtual void open_url(string strUrl, string strProfile, string strTarget) override;
 
 
       bool _handle_uri(const ::block & block) override;
@@ -1173,7 +1173,7 @@ namespace platform
 //       //virtual ::collection::index openweather_find_city2(string strQuery, string & strCit, long long & iId, double & dLat, double & dLon);
 //       //virtual ::collection::index openweather_find_city2(string strQ1, string strQ2, string & strCit, long long & iId, double & dLat, double & dLon, bool bPrefix);
 //
-// //#ifdef ANDROID
+// //#ifdef __ANDROID__
 // ////#pragma message("at macos??")
 // //      virtual bool android_set_user_wallpaper(string strUrl) override;
 // //      virtual bool android_get_user_wallpaper(string & strUrl) override;

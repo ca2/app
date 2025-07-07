@@ -932,7 +932,7 @@ namespace user
 //#include "aura/user/user/shell_ios.h"
 //#elif defined(LINUX)
 //#include "aura/user/user/shell_linux.h"
-//#elif defined(ANDROID)
+//#elif defined(__ANDROID__)
 //#include "aura/user/user/shell_android.h"
 //#elif defined(UNIVERSAL_WINDOWS)
 //#include "aura/user/user/shell_uwp.h"

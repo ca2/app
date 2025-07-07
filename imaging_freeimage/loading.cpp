@@ -50,7 +50,7 @@ namespace imaging_freeimage
 
       pimage->map();
 
-#if defined(ANDROID) && defined(ARM)
+#if defined(__ANDROID__) && defined(ARM)
 
       for (::collection::index y = 0; y < pimage->height(); y++)
       {

@@ -1350,6 +1350,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="gpu\approach.cpp" />
     <ClCompile Include="handler\manager.cpp" />
     <ClCompile Include="handler\manager_room.cpp" />
     <ClCompile Include="handler\signal.cpp" />
@@ -1464,6 +1465,8 @@
     <ClInclude Include="filesystem\fs\native.h" />
     <ClInclude Include="filesystem\fs\raw_folder_protocol.h" />
     <ClInclude Include="filesystem\_.h" />
+    <ClInclude Include="gpu\approach.h" />
+    <ClInclude Include="gpu\_.h" />
     <ClInclude Include="handler\context.h" />
     <ClInclude Include="handler\manager.h" />
     <ClInclude Include="handler\aaa_predicate.h" />

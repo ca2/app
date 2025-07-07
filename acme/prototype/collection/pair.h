@@ -190,7 +190,7 @@ public:
 };
 
 
-#if defined(ANDROID)
+#if defined(__ANDROID__)
 
 #define ALIENATED_ANDROID_ANARCHY class
 

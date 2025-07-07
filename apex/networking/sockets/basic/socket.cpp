@@ -130,7 +130,7 @@ namespace sockets
 //
 //      int protno;
 //
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 //
 //      protno = 6;
 //

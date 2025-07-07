@@ -40,7 +40,7 @@ namespace write_text
 
       m_pparticleFontTextMapSynchronization = node()->create_mutex();
 
-#ifdef ANDROID
+#ifdef __ANDROID__
 
       auto pfonts = fonts();
 

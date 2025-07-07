@@ -130,7 +130,7 @@ CLASS_DECL_APEX void apex_ref();
 #endif
 
 
-#if defined(APPLE_IOS) || defined(ANDROID) || defined(UNIVERSAL_WINDOWS)
+#if defined(APPLE_IOS) || defined(__ANDROID__) || defined(UNIVERSAL_WINDOWS)
 
 #define MOBILE_PLATFORM 1
 
@@ -323,6 +323,9 @@ namespace core
 
 
 #include "apex/filesystem/_.h"
+
+
+#include "apex/gpu/_.h"
 
 
 #include "apex/handler/_.h"
@@ -869,7 +872,7 @@ namespace core
 //#include "apex/os/ansios/ansios.h"
 //#include "apex/os/macos/macos.h"
 //
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 //
 //#include "apex/os/ansios/ansios.h"
 //#include "apex/os/android/android.h"

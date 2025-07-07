@@ -66,26 +66,26 @@ void main_asynchronous(const ::procedure & procedure)
 
    };
 
-   auto psystem = this->::system()->system();
+   auto psystem = ::system();
 
    psystem->node()->user_post(predicate);
 
 }
 
 
-namespace acme
-{
-
-
-   void node::user_post(const ::procedure & procedure)
-   {
-
-      main_asynchronous(procedure);
-
-   }
-
-
-} // namespace acme
+//namespace platform
+//{
+//
+//
+//   void node::user_post(const ::procedure & procedure)
+//   {
+//
+//      main_asynchronous(procedure);
+//
+//   }
+//
+//
+//} // namespace platform
 
 
 bool __os_init_thread()

@@ -306,7 +306,7 @@ extern "C"
 
    wchar_t* c_wide_str(const char* str)
    {
-#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
+#if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__)
       wchar_t* p = ansi_to_wd32_dup(str);
       wchar_t* point2 = wcsdup(p);
       ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(p);

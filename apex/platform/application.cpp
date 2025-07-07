@@ -134,7 +134,7 @@ void ns_launch_app(const ::scoped_string & scopedstr, const char ** argv, int iF
 //#include <link.h>
 #elif defined(__APPLE__)
 //#include <dlfcn.h>
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
 //#include "apex/operating_system/ansios/ansios.h"
 //#include "apex/operating_system/android/_.h"
@@ -936,7 +936,7 @@ namespace apex
 
          m_bApplicationFirstRequest = false;
 
-         init_instance();
+         //init_instance();
 
          //if (!init_instance())
          //{
@@ -1006,7 +1006,7 @@ namespace apex
          try
          {
 
-            on_request(prequest);
+            ::platform::application::request(prequest);
             
 
          }

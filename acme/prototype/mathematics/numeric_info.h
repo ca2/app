@@ -450,7 +450,8 @@ class CLASS_DECL_ACME numeric_info < unsigned long long > :
    && !defined(OPENBSD) \
       && !defined(WINDOWS_DESKTOP) \
       && !defined(__APPLE__) \
-      && !defined(UNIVERSAL_WINDOWS)
+      && !defined(UNIVERSAL_WINDOWS) \
+   && !defined(__ANDROID__)
 
    template < >
    class CLASS_DECL_ACME numeric_info < long long > :

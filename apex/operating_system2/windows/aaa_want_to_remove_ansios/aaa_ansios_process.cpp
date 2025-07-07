@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#if defined(LINUX) || defined(ANDROID)
+#if defined(LINUX) || defined(__ANDROID__)
 
 
 

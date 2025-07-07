@@ -2400,7 +2400,7 @@ namespace platform
    //
    //          ::file::path pathFolder;
    //
-   // #ifdef ANDROID
+   // #ifdef __ANDROID__
    //
    //          pathFolder = system()->m_pathCacheDirectory;
    //
@@ -4464,19 +4464,19 @@ return nullptr;
    //virtual ::pointer<::acme::library> & library(const ::string &strComponent, const ::string &strImplementation){}
 
 
-   void acme_system_layer::open_profile_link(string strUrl, string strProfile, string strTarget)
+void acme_system_layer::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    {
    }
 
 
-   void acme_system_layer::open_link(string strUrl, string strProfile, string strTarget)
+void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget)
    {
    }
 
 
-   void acme_system_layer::open_url(string strUrl, string strProfile, string strTarget)
-   {
-   }
+   // void acme_system_layer::open_url(string strUrl, string strProfile, string strTarget)
+   // {
+   // }
 
 
    //void acme_system_layer::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const override{}

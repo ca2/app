@@ -5,7 +5,7 @@
 #if !defined(WINDOWS) \
  && !defined(LINUX) \
  && !defined(__APPLE__) \
- && !defined(ANDROID) \
+ && !defined(__ANDROID__) \
  && !defined(FREEBSD) \
  && !defined(OPENBSD)
 

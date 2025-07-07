@@ -1,6 +1,6 @@
 #include "framework.h"
 //#include "apex/networking/sockets/_sockets.h"
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
+#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(FREEBSD)
 #include <arpa/inet.h>
 #endif
 
@@ -8,7 +8,7 @@
 //#include <arpa/inet.h>
 //#endif
 
-#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+#if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__) || defined(FREEBSD)
 #include <netdb.h>
 #endif
 
@@ -64,7 +64,7 @@ static const uchar index_hex[256] =
 #elif defined(LINUX)
 #define pr_s6_addr16 __in6_u.__u6_addr16
 #define pr_s6_addr __in6_u.__u6_addr8
-#elif defined(ANDROID) || defined(SOLARIS)
+#elif defined(__ANDROID__) || defined(SOLARIS)
 #define pr_s6_addr16 s6_addr16
 #define pr_s6_addr s6_addr
 #else

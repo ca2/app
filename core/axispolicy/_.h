@@ -6,7 +6,7 @@
 //
 //   class session;
 //   class system;
-//   //class cube;
+//   //class graphics3d;
 //
 //
 //} // namespace plane
@@ -116,7 +116,7 @@
 ////#include "axis/axis/os/ansios/ansios.h"
 ////#include "axis/axis/os/macos/macos.h"
 ////
-////#elif defined(ANDROID)
+////#elif defined(__ANDROID__)
 ////
 ////#include "axis/os/ansios/ansios.h"
 ////#include "axis/os/android/android.h"

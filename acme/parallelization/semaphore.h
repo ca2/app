@@ -17,7 +17,7 @@ public:
 
    ::hsynchronization      m_handleSemaphore;
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
    int              m_lMaxCount;
    sem_t *           m_psem;
@@ -33,7 +33,7 @@ public:
    ~semaphore() override;
 
 
-//#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(SOLARIS) || defined(FREEBSD) || defined(OPENBSD)
+//#if defined(__APPLE__) || defined(LINUX) || defined(__ANDROID__) || defined(SOLARIS) || defined(FREEBSD) || defined(OPENBSD)
 //   using matter::lock;
    bool _wait(const class time & timeWait) override;
 //#endif

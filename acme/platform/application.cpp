@@ -8,6 +8,7 @@
 #include "application_menu.h"
 #include "acme/exception/exit.h"
 #include "acme/exception/interface_only.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -53,6 +54,12 @@ namespace platform
 
    application::application()
    {
+
+      
+      m_gpu.m_bUseSwapChainWindow = false;
+      m_gpu.m_eoutputDraw2d = ::gpu::e_output_none;
+      m_gpu.m_eoutputEngine = ::gpu::e_output_none;
+
 
       //m_bTransferToContainer = true;
       //m_bTransferredToContainer = false;
@@ -190,6 +197,37 @@ namespace platform
       return nullptr;
 
    }
+
+
+   ::gpu::approach* application::get_gpu_approach()
+   {
+
+      if (!m_pgpuapproach)
+      {
+
+         create_gpu_approach();
+
+      }
+
+      return m_pgpuapproach;
+
+   }
+   
+   
+   ::gpu::approach* application::gpu_approach()
+   {
+
+      return m_pgpuapproach;
+
+   }
+
+
+   void application::create_gpu_approach()
+   {
+
+
+   }
+
 
    //int application::application_main()
    //{
@@ -672,7 +710,7 @@ void application::start_application()
 
          m_pathModule = ::get_module_path((HMODULE)system()->m_hinstanceThis);
 
-#elif defined(ANDROID)
+#elif defined(__ANDROID__)
 
          m_pathModule.empty();
 
@@ -1744,6 +1782,9 @@ void application::start_application()
 
       }
 
+      init_instance();
+
+
       //return true;
 
    }
@@ -2406,6 +2447,33 @@ void application::start_application()
 
       system()->acme_windowing()->windowing_application_main_loop();
 
+
+   }
+
+
+   string application::application_file_setting(const ::scoped_string& scopedstrFileName)
+   {
+
+      ::file::path path;
+
+      path = "dropbox-app://" / scopedstrFileName;
+
+      ::string str = file()->safe_get_string(path);
+
+      str.trim();
+
+      if (str.is_empty())
+      {
+
+         path = directory()->home() / scopedstrFileName;
+
+         str = file()->safe_get_string(path);
+
+         str.trim();
+
+      }
+
+      return str;
 
    }
 

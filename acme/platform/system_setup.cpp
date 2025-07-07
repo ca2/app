@@ -62,7 +62,7 @@ void system_setup::construct()
 }
 
 
-system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const ::scoped_string & scopedstrName)
+system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const char * pszName)
 {
 
    auto psetup = s_psetupList;
@@ -71,7 +71,7 @@ system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const ::s
    {
 
       if ((int)(psetup->m_eflag & eflag) == (int)eflag
-      && (scopedstrName.is_empty() || scopedstrName == psetup->m_pszName))
+      && (::is_empty(pszName) || string_equals(pszName, psetup->m_pszName)))
       {
 
          return psetup;
@@ -134,10 +134,10 @@ CLASS_DECL_ACME ::string get_library_component(const string & strName)
 }
 
 
-PFN_factory system_setup::get_factory_function(const ::scoped_string & scopedstrName)
+PFN_factory system_setup::get_factory_function(const char * pszName)
 {
 
-   if (scopedstrName.is_empty())
+   if (::is_empty(pszName))
    {
 
       return nullptr;
@@ -151,7 +151,7 @@ PFN_factory system_setup::get_factory_function(const ::scoped_string & scopedstr
       while (psetup != nullptr)
       {
 
-         if (psetup->m_eflag == flag_factory && scopedstrName == psetup->m_pszName)
+         if (psetup->m_eflag == flag_factory && string_equals(pszName, psetup->m_pszName))
          {
 
             return psetup->m_pfnFactory;
@@ -168,7 +168,7 @@ PFN_factory system_setup::get_factory_function(const ::scoped_string & scopedstr
 
       auto psetup = s_psetupList;
 
-      string strComponentSearch = get_library_component(scopedstrName);
+      string strComponentSearch = get_library_component(pszName);
 
       while (psetup != nullptr)
       {
@@ -198,7 +198,7 @@ PFN_factory system_setup::get_factory_function(const ::scoped_string & scopedstr
 
 }
 
-system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const ::scoped_string & scopedstrName)
+system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const char * pszName)
 {
 
    auto psetup = s_psetupList;
@@ -207,7 +207,7 @@ system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const ::sc
    {
 
       if ((int)(psetup->m_eflag & eflag) == (int)eflag
-         && (scopedstrName.is_empty() || scopedstrName == psetup->m_pszName))
+         && (::is_empty(pszName) || ::string_equals(pszName, psetup->m_pszName)))
       {
 
          return psetup;

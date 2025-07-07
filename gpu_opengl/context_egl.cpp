@@ -10,7 +10,7 @@
 //} // extern "C"
 //
 
-namespace opengl
+namespace gpu_opengl
 {
 
 
@@ -27,7 +27,7 @@ namespace opengl
 
 //      gladLoadGL();
 
-//#if !defined(ANDROID)
+//#if !defined(__ANDROID__)
 //
 //      if (glewInit() != GLEW_NO_ERROR)
 //      {
@@ -55,7 +55,7 @@ namespace opengl
 
 //      auto psystem = system();
 //
-//      auto pgpu = psystem->get_gpu();
+//      auto pgpu = application()->get_gpu();
 //
 //      ::pointer<opengl>popengl = pgpu;
 //
@@ -208,7 +208,7 @@ namespace opengl
 //
 //      auto psystem = system();
 //
-//      auto pgpu = psystem->get_gpu();
+//      auto pgpu = application()->get_gpu();
 //
 //      ::pointer<opengl>popengl = pgpu;
 //
@@ -352,7 +352,7 @@ namespace opengl
 
       auto psystem = system();
 
-      auto pgpu = psystem->get_gpu();
+      auto pgpu = application()->get_gpu();
 
       ::pointer<opengl>popengl = pgpu;
 
@@ -572,7 +572,7 @@ namespace opengl
    string context_egl::get_shader_version_text()
    {
 
-#if defined(ANDROID)
+#if defined(__ANDROID__)
 
       return "#version 300 es";
 
@@ -621,6 +621,104 @@ namespace opengl
       }
 
       stra.replace_with("fragmentColor", "gl_FragColor");
+
+   }
+
+
+   void context::copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
+   {
+
+      //::cast < texture > ptextureDst = player->texture();
+
+      //::cast < texture > ptextureSrc = m_pgpurendertarget->current_texture();
+
+      ::cast < texture > ptextureDst = pgputextureTarget;
+
+      ::cast < texture > ptextureSrc = pgputextureSource;
+
+      auto textureSrc = ptextureSrc->m_gluTextureID;
+
+      auto textureDst = ptextureDst->m_gluTextureID;
+
+      glFlush();
+      GLCheckError("");
+
+      GLuint fboSrc, fboDst;
+      glGenFramebuffers(1, &fboSrc);
+      GLCheckError("");
+      glGenFramebuffers(1, &fboDst);
+      GLCheckError("");
+
+      // Attach source texture to fboSrc
+      glBindFramebuffer(GL_READ_FRAMEBUFFER, fboSrc);
+      GLCheckError("");
+      glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+         GL_TEXTURE_2D, textureSrc, 0);
+      GLCheckError("");
+
+      // Attach dest texture to fboDst
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, fboDst);
+      GLCheckError("");
+      glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
+         GL_TEXTURE_2D, textureDst, 0);
+      GLCheckError("");
+
+      auto sizeSrc = ptextureSrc->size();
+      auto sizeDst = ptextureDst->size();
+
+      // Blit from source to destination
+      glBlitFramebuffer(
+         0, 0, sizeSrc.cx(), sizeSrc.cy(),
+         0, 0, sizeDst.cx(), sizeDst.cy(),
+         GL_COLOR_BUFFER_BIT, GL_NEAREST
+      );
+      GLCheckError("");
+#ifdef SHOW_DEBUG_DRAWING
+      {
+
+         //glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+
+         glEnable(GL_BLEND);
+         glBlendFunc(GL_ONE, GL_ZERO); // Source Copy mode
+         //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
+
+         {
+            float fOpacity = 0.5;
+            float fRed = 0.5;
+            float fGreen = 0.75;
+            float fBlue = 0.95;
+            auto f32Opacity = (float)fOpacity;
+            auto f32Red = (float)(fRed * fOpacity);
+            auto f32Green = (float)(fGreen * fOpacity);
+            auto f32Blue = (float)(fBlue * fOpacity);
+            ::glColor4f(f32Red, f32Green, f32Blue, f32Opacity);
+         }
+
+         ::double_polygon polygon;
+
+         ::double_rectangle rectangle(300, 300, 400, 400);
+
+         polygon = rectangle;
+
+         glBegin(GL_QUADS);
+
+
+         vertex2f(polygon, 0.f);
+
+         glEnd();
+
+      }
+#endif
+
+      // Cleanup
+      glBindFramebuffer(GL_FRAMEBUFFER, 0);
+      GLCheckError("");
+      glDeleteFramebuffers(1, &fboSrc);
+      GLCheckError("");
+      glDeleteFramebuffers(1, &fboDst);
+      GLCheckError("");
+
 
    }
 

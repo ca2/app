@@ -190,9 +190,11 @@ public:
    //virtual ::file::path tool();
 
    inline bool is(const ::file::path& path) { return file_type(path) & ::file::e_type_folder2; }
+   inline bool __is(const ::file::path& path) { return __file_type(path) & ::file::e_type_folder2; }
 
    virtual ::file::e_type file_type(const ::file::path& path);
    virtual ::file::e_type _file_type(const ::file::path& path);
+   virtual ::file::e_type __file_type(const ::file::path& path);
    // From acme/filesystem/file/dir.cpp by camilo 
    // From acme_posix/directory_system.h
 // on 2021-08-09 03:20 BRT

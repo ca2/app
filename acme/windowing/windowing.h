@@ -228,6 +228,8 @@ namespace acme
          //virtual bool set_wallpaper(::collection::index iScreen, string strLocalImagePath, ::acme::windowing::display * pwindowingdisplay);
 
          //virtual string get_wallpaper(::collection::index iScreen, ::acme::windowing::display * pwindowingdisplay);
+         virtual double get_default_screen_dpi();
+         virtual float default_screen_points_to_pixels(float fPoints);
 
 
       };

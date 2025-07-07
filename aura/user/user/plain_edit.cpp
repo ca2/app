@@ -1136,7 +1136,7 @@ namespace user
 
       pcreate->previous();
 
-#if !defined(APPLE_IOS) && !defined(ANDROID)
+#if !defined(APPLE_IOS) && !defined(__ANDROID__)
 
       ::pointer<::aura::application>papp = get_app();
 
@@ -2254,7 +2254,7 @@ namespace user
 
       }
 
-      //#ifdef ANDROID
+      //#ifdef __ANDROID__
       //
       //      if (action_context.is_user_source())
       //      {

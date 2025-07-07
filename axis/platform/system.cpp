@@ -464,7 +464,7 @@ namespace axis
 
 
 
-//#ifdef ANDROID
+//#ifdef __ANDROID__
 //
 //   bool system::android_set_user_wallpaper(string strUrl)
 //   {

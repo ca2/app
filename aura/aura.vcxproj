@@ -1461,13 +1461,6 @@
     <ClCompile Include="graphics\draw2d\task_tool.cpp" />
     <ClCompile Include="graphics\draw2d\_.cpp" />
     <ClCompile Include="graphics\draw3d\ortho.cpp" />
-    <ClCompile Include="graphics\gpu\approach.cpp" />
-    <ClCompile Include="graphics\gpu\cpu_buffer.cpp" />
-    <ClCompile Include="graphics\gpu\context.cpp" />
-    <ClCompile Include="graphics\gpu\object.cpp" />
-    <ClCompile Include="graphics\gpu\program.cpp" />
-    <ClCompile Include="graphics\gpu\render.cpp" />
-    <ClCompile Include="graphics\gpu\shader.cpp" />
     <ClCompile Include="graphics\graphics\bitmap_source_buffer.cpp" />
     <ClCompile Include="graphics\graphics\buffer.cpp" />
     <ClCompile Include="graphics\graphics\console.cpp" />
@@ -1478,6 +1471,7 @@
     <ClCompile Include="graphics\graphics\multiple_buffer.cpp" />
     <ClCompile Include="graphics\graphics\target.cpp" />
     <ClCompile Include="graphics\image\array.cpp" />
+    <ClCompile Include="graphics\image\buffer.cpp" />
     <ClCompile Include="graphics\image\context.cpp" />
     <ClCompile Include="graphics\image\cursor.cpp" />
     <ClCompile Include="graphics\image\drawer.cpp" />
@@ -1498,6 +1492,7 @@
     <ClCompile Include="graphics\image\nanosvg.cpp" />
     <ClCompile Include="graphics\image\frame_array.cpp" />
     <ClCompile Include="graphics\image\source.cpp" />
+    <ClCompile Include="graphics\image\target.cpp" />
     <ClCompile Include="graphics\image\_.cpp" />
     <ClCompile Include="graphics\user\control_box_button.cpp" />
     <ClCompile Include="graphics\user\control_box_icon.cpp" />
@@ -1735,16 +1730,6 @@
     <ClInclude Include="graphics\draw3d\matrix.h" />
     <ClInclude Include="graphics\draw3d\ortho.h" />
     <ClInclude Include="graphics\draw3d\_.h" />
-    <ClInclude Include="graphics\gpu\aaaa_gpu.h" />
-    <ClInclude Include="graphics\gpu\approach.h" />
-    <ClInclude Include="graphics\gpu\cpu_buffer.h" />
-    <ClInclude Include="graphics\gpu\context.h" />
-    <ClInclude Include="graphics\gpu\object.h" />
-    <ClInclude Include="graphics\gpu\program.h" />
-    <ClInclude Include="graphics\gpu\render.h" />
-    <ClInclude Include="graphics\gpu\shader.h" />
-    <ClInclude Include="graphics\gpu\_.h" />
-    <ClInclude Include="graphics\gpu\_constant.h" />
     <ClInclude Include="graphics\graphics\aaa_wat_to_remove_window_graphics.h" />
     <ClInclude Include="graphics\graphics\bitmap_source_buffer.h" />
     <ClInclude Include="graphics\graphics\buffer.h" />
@@ -1756,6 +1741,7 @@
     <ClInclude Include="graphics\graphics\graphics.h" />
     <ClInclude Include="graphics\graphics\image_console.h" />
     <ClInclude Include="graphics\graphics\multiple_buffer.h" />
+    <ClInclude Include="graphics\graphics\render.h" />
     <ClInclude Include="graphics\graphics\target.h" />
     <ClInclude Include="graphics\graphics\window.h" />
     <ClInclude Include="graphics\graphics\window_buffer.h" />
@@ -1764,6 +1750,7 @@
     <ClInclude Include="graphics\graphics\_graphics.h" />
     <ClInclude Include="graphics\graphics\_impl.h" />
     <ClInclude Include="graphics\image\array.h" />
+    <ClInclude Include="graphics\image\buffer.h" />
     <ClInclude Include="graphics\image\context.h" />
     <ClInclude Include="graphics\image\cursor.h" />
     <ClInclude Include="graphics\image\drawer.h" />
@@ -1779,11 +1766,13 @@
     <ClInclude Include="graphics\image\imaging.h" />
     <ClInclude Include="graphics\image\list.h" />
     <ClInclude Include="graphics\image\load_image.h" />
+    <ClInclude Include="graphics\image\lock.h" />
     <ClInclude Include="graphics\image\map.h" />
     <ClInclude Include="graphics\image\map_ex1.h" />
     <ClInclude Include="graphics\image\meta.h" />
     <ClInclude Include="graphics\image\palette.h" />
     <ClInclude Include="graphics\image\source.h" />
+    <ClInclude Include="graphics\image\target.h" />
     <ClInclude Include="graphics\image\transformation.h" />
     <ClInclude Include="graphics\image\wallpaper_transform.h" />
     <ClInclude Include="graphics\image\_.h" />

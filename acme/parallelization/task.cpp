@@ -74,6 +74,7 @@ CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception &
 task::task()
 {
 
+   m_timeSample = 1_s;
    //m_bAutoRelease = false;
 
    m_pfnImplement = nullptr;
@@ -862,6 +863,8 @@ void task::main()
 
    call_init_task();
 
+   m_bReadyToAttendRequests = true;
+
    if (defer_implement(application()))
    {
 
@@ -929,6 +932,19 @@ void task::main()
 }
 
 
+void task::run_loop()
+{
+
+   while (task_get_run())
+   {
+
+      task_run(m_timeSample);
+
+   }
+
+}
+
+
 void task::run()
 {
 
@@ -958,12 +974,7 @@ void task::run()
       if (b)
       {
 
-         while (task_get_run())
-         {
-
-            task_run(1_s);
-
-         }
+         run_loop();
 
       }
 
@@ -1914,6 +1925,14 @@ void task::_send(const ::procedure & procedure)
 
    if (!waitforendofsequence.lock(procedure.timeout()))
    {
+
+#ifdef _DEBUG
+
+      warning() << "waitforendofsequence timeout";
+
+      debug_break();
+
+#endif
 
       procedure.m_pbase->on_timed_out();
 

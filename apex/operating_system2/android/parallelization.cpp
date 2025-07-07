@@ -7,7 +7,7 @@
 
 bool defer_process_x_message(htask htask, MESSAGE * lpMsg, oswindow interaction_impl, bool bPeek)
 {
-#ifndef ANDROID
+#ifndef __ANDROID__
 
 
    if(htask == nullptr || htask->m_pthread == nullptr || htask->get_x_window_count() <= 0)
@@ -415,7 +415,7 @@ bool defer_process_x_message(htask htask, MESSAGE * lpMsg, oswindow interaction_
 //} // namespace apex
 
 
-#if !defined(ANDROID) || defined(__arm__)
+#if !defined(__ANDROID__) || defined(__arm__)
 
 ::thread_object < _TEB > t_pteb;
 

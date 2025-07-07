@@ -30,11 +30,10 @@ namespace micro
    }
 
 
-
    void popup_button::calculate_size_and_position(int x, int y)
    {
 
-#if !defined(UNIVERSAL_WINDOWS) && !defined(ANDROID)
+#if !defined(UNIVERSAL_WINDOWS) && !defined(__ANDROID__)
 
       //int wScreen = 1280;
       //int hScreen = 768;
@@ -94,7 +93,6 @@ namespace micro
       m_pacmeuserinteractionOwner = pacmeuserinteractionOwner;
 
       calculate_size_and_position(x, y);
-
 
       add_button(strText, e_dialog_result_yes, 'y');
 

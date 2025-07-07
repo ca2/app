@@ -58,7 +58,7 @@ namespace universal_windows
 
       m_pdirectorysystem->m_strCa2 = strCa2Module;
 
-      //#if !defined(CUBE) && !defined(ANDROID)
+      //#if !defined(CUBE) && !defined(__ANDROID__)
       //
       //      m_strCa2 -= 2;
       //

@@ -161,8 +161,8 @@ namespace user
    //
    //   };
    //
-   //#elif defined(APPLE_IOS) || defined(ANDROID)
-#if defined(APPLE_IOS) || defined(ANDROID)
+   //#elif defined(APPLE_IOS) || defined(__ANDROID__)
+#if defined(APPLE_IOS) || defined(__ANDROID__)
 
    class CLASS_DECL_AURA native_window_initialize
    {
@@ -191,6 +191,7 @@ namespace user
 
    //CLASS_DECL_AURA ::user::interaction * message_user_interaction(::user::message * pusermessage);
 
+   class graphics3d;
 
 } // namespace user
 

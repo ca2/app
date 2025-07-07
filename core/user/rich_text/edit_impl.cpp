@@ -166,7 +166,7 @@ namespace user
 
             });
 
-         //#if !defined(APPLE_IOS) && !defined(ANDROID)
+         //#if !defined(APPLE_IOS) && !defined(__ANDROID__)
          //         psession->keyboard(); // trigger keyboard creationg
          //#endif
 

@@ -11,10 +11,11 @@ namespace draw2d
    public:
    
    
-      ::matter *                    m_pmatter;
+      bool                    m_bLocked;
+      ::particle *            m_pparticle;
    
       
-      device_lock(::matter * pmatter);
+      device_lock(::particle* pparticle);
       ~device_lock();
 
    

@@ -16,5 +16,5 @@
 //  Created by Camilo Sasuke Thomas Borregaard Soerensen on 1/19/13.
 //  Copyright (c) 2013 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
-#define _APP_ID "app/shader"
+#define _APP_ID "app-graphics3d/shader"
 #include "aura/application.h"

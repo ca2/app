@@ -1,0 +1,5 @@
+LIBRARY "draw2d_gpu"
+
+EXPORTS
+draw2d_gpu_factory
+

@@ -85,16 +85,16 @@ namespace sockets
       
       strHost = m_request.header("host");
 
-      if (strHost.case_insensitive_ends_eat(".test.ca2.software"))
+      if (strHost.case_insensitive_ends_eat(".test.ca2.network"))
       {
 
-         m_request.header("host") = strHost + ".ca2.software";
+         m_request.header("host") = strHost + ".ca2.network";
 
       }
-      else if (strHost == "test.ca2.software")
+      else if (strHost == "test.ca2.network")
       {
 
-         m_request.header("host") = "ca2.software";
+         m_request.header("host") = "ca2.network";
 
       }
 
@@ -106,7 +106,7 @@ namespace sockets
 
       string strTest(strHost);
 
-      if (strTest.case_insensitive_ends_eat(".ca2.software"))
+      if (strTest.case_insensitive_ends_eat(".ca2.network"))
       {
 
          if (strTest.find_index('.') > 0)
@@ -196,10 +196,10 @@ namespace sockets
             informationf(" *** keepalive: false");
          }*/
 
-      if (m_request.m_url.as_string() == "https://ca2.software/")
+      if (m_request.m_url.as_string() == "https://ca2.network/")
       {
 
-         print_line("Testing Response for https://ca2.software/");
+         print_line("Testing Response for https://ca2.network/");
 
       }
 
@@ -488,7 +488,7 @@ namespace sockets
 
       string_array straAllowedOrigin;
 
-      straAllowedOrigin.add("ca2.software");
+      straAllowedOrigin.add("ca2.network");
       straAllowedOrigin.add("ca2.network");
       straAllowedOrigin.add("ca2.network");
       straAllowedOrigin.add("ca2.store");

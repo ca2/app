@@ -95,6 +95,14 @@ namespace gpu
    }
 
 
+   ::particle_array* renderer::ongoing_particle_array()
+   {
+
+      return current_frame_particle_array();
+
+   }
+
+
    ::pointer < texture> renderer::create_image_texture(const ::int_size& size, bool bWithDepth)
    {
 

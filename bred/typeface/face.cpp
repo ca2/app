@@ -75,7 +75,10 @@ namespace typeface
 
       if (__defer_construct(m_pmodelbufferBox))
       {
-         m_pmodelbufferBox->create_vertex_array<::graphics3d::sequence2_uv>(m_pgpurenderer->m_pgpucontext, 6);
+
+         m_pmodelbufferBox->initialize_gpu_context_object(m_pgpurenderer->m_pgpucontext);
+
+         m_pmodelbufferBox->create_vertices<::graphics3d::sequence2_uv>(6);
          /* glGenVertexArrays(1, &m_VAO);
           glGenBuffers(1, &m_VBO);
           glBindVertexArray(m_VAO);

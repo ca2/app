@@ -4,6 +4,16 @@
 
 #include "acme/prototype/prototype/call.h"
 
+class CLASS_DECL_ACME ongoing_particle_array_source :
+   virtual public ::particle
+{
+public:
+
+   virtual ::particle_array* ongoing_particle_array();
+
+
+};
+
 
 class CLASS_DECL_ACME pool_group :
    virtual public ::particle
@@ -11,18 +21,23 @@ class CLASS_DECL_ACME pool_group :
 public:
 
 
-   ::particle* m_pallocator;
-   ::particle_array  m_particleaOngoing;
+   ::particle*                   m_pallocator;
+   // frame
+   //::array<::particle_array >    m_particleaOngoing;
+   ::pointer < ongoing_particle_array_source >    m_pongoingparticlearraysource;
 
 
    pool_group();
    ~pool_group() override;
 
 
-   void on_initialize_particle();
+   void on_initialize_particle() override;
 
 
-   void call_ongoing(const ::call& call);
+   virtual void call_ongoing(const ::call& call);
+
+
+   virtual ::particle_array* ongoing_particle_array();
 
 
 };
@@ -71,7 +86,7 @@ public:
 
          pGet = p;
 
-         m_ppoolgroup->m_particleaOngoing.add(::transfer(p));
+         m_ppoolgroup->ongoing_particle_array()->add(::transfer(p));
 
       }
       else
@@ -90,7 +105,7 @@ public:
 
          pGet = p;
 
-         m_ppoolgroup->m_particleaOngoing.add(::transfer(p));
+         m_ppoolgroup->ongoing_particle_array()->add(::transfer(p));
 
       }
 

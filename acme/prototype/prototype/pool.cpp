@@ -25,22 +25,37 @@ void pool_group::on_initialize_particle()
 }
 
 
+::particle_array* ongoing_particle_array_source::ongoing_particle_array()
+{
+
+   return nullptr;
+
+}
+
+
 void pool_group::call_ongoing(const ::call& call)
 {
 
    _synchronous_lock synchronouslock(this->synchronization());
 
-   auto particleaOngoing = ::transfer(m_particleaOngoing);
+   auto pparticleaOngoing = m_pongoingparticlearraysource->ongoing_particle_array();
 
-   for (auto& pparticleOngoing : particleaOngoing)
+   for (auto& pparticleOngoing : *pparticleaOngoing)
    {
 
-      pparticleOngoing->handle(call);
+      pparticleaOngoing->handle(call);
 
    }
 
 }
 
+
+::particle_array* pool_group::ongoing_particle_array()
+{
+
+   return m_pongoingparticlearraysource->ongoing_particle_array();
+
+}
 
 
 

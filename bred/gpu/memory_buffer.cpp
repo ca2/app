@@ -70,8 +70,41 @@ namespace gpu
 
    }
 
+   
+   void memory_buffer::static_initialize_memory_buffer_with_context(::gpu::context* pcontext, const void * data, memsize size, enum_type etype)
+   {
 
-   void memory_buffer::on_initialize_memory_buffer()
+      m_pmodelbuffer = nullptr;
+
+      m_pcontext = pcontext;
+
+      m_size = size;
+
+      m_etype = etype;
+
+      on_initialize_memory_buffer(data, size);
+
+   }
+
+
+
+   void memory_buffer::static_initialize_memory_buffer_with_model_buffer(::gpu::model_buffer* pmodelbuffer, const void * data, memsize size, enum_type etype)
+   {
+
+      m_pmodelbuffer = pmodelbuffer;
+
+      m_pcontext = pmodelbuffer->m_pgpucontext;
+
+      m_size = size;
+
+      m_etype = etype;
+
+      on_initialize_memory_buffer(data, size);
+
+   }
+
+
+   void memory_buffer::on_initialize_memory_buffer(const void * dataStatic, memsize sizeStatic)
    {
 
 
@@ -152,9 +185,7 @@ namespace gpu
    }
 
 
-
-
-   void memory_buffer::assign(const void* pData, memsize size)
+   void memory_buffer::assign(const void* data, memsize size)
    {
 
       if (!is_initialized())
@@ -164,17 +195,11 @@ namespace gpu
 
       }
 
-      //void* data;
+      bind();
 
-      map(0, size);
+      _assign(data, size);
 
-      //vkMapMemory(m_pcontext->logicalDevice(), m_vkdevicememory, 0, size, 0, &data);
-
-      memcpy(m_pMap, pData, size);
-
-      unmap();
-
-      //vkUnmapMemory(m_pcontext->logicalDevice(), m_vkdevicememory);
+      unbind();
 
    }
 
@@ -197,17 +222,11 @@ namespace gpu
 
       }
 
-      //void* data;
-
       _map(0, size);
-
-      //vkMapMemory(m_pcontext->logicalDevice(), m_vkdevicememory, 0, size, 0, &data);
 
       memcpy(m_pMap, pData, size);
 
       _unmap();
-
-      //vkUnmapMemory(m_pcontext->logicalDevice(), m_vkdevicememory);
 
    }
 
@@ -282,32 +301,34 @@ namespace gpu
    void* memory_buffer::_map(memsize start, memsize count)
    {
 
-      return __map(start, count);
+      throw ::interface_only();
 
+      return nullptr;
+      
    }
 
 
    void memory_buffer::_unmap()
    {
 
-      return __unmap();
+      throw ::interface_only();
 
    }
 
 
-   void* memory_buffer::__map(memsize start, memsize count)
-   {
+   //void* memory_buffer::__map(memsize start, memsize count)
+   //{
 
-      return nullptr;
+   //   return nullptr;
 
-   }
-
-
-   void memory_buffer::__unmap()
-   {
+   //}
 
 
-   }
+   //void memory_buffer::__unmap()
+   //{
+
+
+   //}
 
 
    void memory_buffer::bind()

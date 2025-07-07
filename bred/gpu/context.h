@@ -80,7 +80,7 @@ namespace gpu
       };
 
 
-      int                                    m_iTopicTexture = -1;
+      //int                                    m_iTopicTexture = -1;
       bool                                   m_bCullFace = false;
       //bool m_bOffscreen = true;
       int                                    m_iOverrideFrame = -1;
@@ -202,7 +202,7 @@ namespace gpu
       //virtual ::gpu::renderer* graphics3d_renderer();
 
       //virtual ::gpu::renderer* new_draw2d_renderer();
-      virtual void set_topic_texture(int iIndex);
+      //virtual void set_topic_texture(int iIndex);
       virtual void set_cull_face(bool bSet = true);
 
       virtual ::int_rectangle rectangle();

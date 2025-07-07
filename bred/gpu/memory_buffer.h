@@ -45,7 +45,11 @@ namespace gpu
 
       virtual void initialize_memory_buffer_with_model_buffer(::gpu::model_buffer* pmodelbuffer, memsize size, ::gpu::memory_buffer::enum_type etype);
 
-      virtual void on_initialize_memory_buffer();
+      virtual void static_initialize_memory_buffer_with_context(::gpu::context* pcontext, const void * data, memsize size, ::gpu::memory_buffer::enum_type etype);
+
+      virtual void static_initialize_memory_buffer_with_model_buffer(::gpu::model_buffer* pmodelbuffer, const void * data, memsize size, ::gpu::memory_buffer::enum_type etype);
+
+      virtual void on_initialize_memory_buffer(const void * dataStatic = nullptr, memsize sizeStatic = 0);
 
       virtual bool is_initialized() const;
 
@@ -64,8 +68,8 @@ namespace gpu
       virtual void unmap();
       virtual void* _map(memsize start, memsize count);
       virtual void _unmap();
-      virtual void* __map(memsize start, memsize count);
-      virtual void __unmap();
+      //virtual void* __map(memsize start, memsize count);
+      //virtual void __unmap();
 
 
       virtual void bind();

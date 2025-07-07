@@ -642,12 +642,12 @@ namespace gpu
    }
 
 
-   void context::set_topic_texture(int iIndex)
-   {
+   //void context::set_topic_texture(int iIndex)
+   //{
 
-      m_iTopicTexture = iIndex;
+   //   m_iTopicTexture = iIndex;
 
-   }
+   //}
 
 
    void context::set_cull_face(bool bSet)

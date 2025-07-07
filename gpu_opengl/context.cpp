@@ -387,27 +387,27 @@ namespace gpu_opengl
    }
 
 
-   void context::set_topic_texture(int iIndex)
-   {
+   //void context::set_topic_texture(int iIndex)
+   //{
 
-      ::gpu::context::set_topic_texture(iIndex);
+   //   ::gpu::context::set_topic_texture(iIndex);
 
-      if (iIndex == 0)
-      {
+   //   if (iIndex == 0)
+   //   {
 
-         glActiveTexture(GL_TEXTURE0);
-         GLCheckError("");
+   //      glActiveTexture(GL_TEXTURE0);
+   //      GLCheckError("");
 
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         throw ::exception(error_failed);
+   //      throw ::exception(error_failed);
 
-      }
+   //   }
 
-   }
+   //}
 
 
    void context::set_cull_face(bool bSet)
@@ -1220,7 +1220,7 @@ void main() {
 
                   m_pmodelbufferDummy->draw(pcommandbuffer);
 
-                  m_pmodelbufferDummy->unbind(pcommandbuffer);
+                  //m_pmodelbufferDummy->unbind(pcommandbuffer);
 
                   //ID3D11SamplerState* samplerstatea[] =
                   //{ ptexture->m_psamplerstate };

@@ -4,6 +4,7 @@
 #include "context.h"
 #include "memory_buffer.h"
 #include "model_buffer.h"
+#include "renderer.h"
 #include "acme/prototype/geometry2d/matrix.h"
 #include "acme/prototype/prototype/call.h"
 #include "bred/gpu/types.h"
@@ -65,7 +66,7 @@ namespace gpu
 
 
       // Fullscreen quad vertex data
-      ::graphics3d::sequence2_uv quadVertex[] = {
+      ::array<::graphics3d::sequence2_uv> quadVertex = {
          // pos         // uv
          {{ -1.0f, y0}, { 0.0f, 0.0f}},
          {{  1.0f, y0}, { 1.0f, 0.0f}},
@@ -73,21 +74,21 @@ namespace gpu
          {{ -1.0f, y1}, { 0.0f, 1.0f}},
       };
 
-      create_vertex_array < ::graphics3d::sequence2_uv>(pcontext, 4);
+      static_initialize_vertices(quadVertex);
 
-      set_vertex_array < ::graphics3d::sequence2_uv>(quadVertex, 4);
+//      set_vertex_array < ::graphics3d::sequence2_uv>(quadVertex, 4);
 
       if (bIndexed)
       {
 
-         uint16_t quadIndex[] = {
+         ::array<uint16_t> quadIndex = {
             0, 1, 2,
             2, 3, 0
          };
 
-         create_index_array <uint16_t >(pcontext, 6);
+         static_initialize_indices(quadIndex);
 
-         set_index_array<uint16_t >(quadIndex, 6);
+//         set_index_array<uint16_t >(quadIndex, 6);
 
       }
 
@@ -106,9 +107,11 @@ namespace gpu
    void model_buffer::sequence2_uv_create_fullscreen_quad(::gpu::context* pcontext)
    {
 
+      initialize_gpu_context_object(pcontext);
+
       // Vertex data: (x, y, u, v)
 #if 1
-      ::graphics3d::sequence2_uv quadVertices[] = {
+      ::array< ::graphics3d::sequence2_uv > quadVertices = {
          //  Position   TexCoords
          {{ -1.0f,  1.0f},{  0.0f, 1.0f}}, // Top-left
          {{-1.0f, -1.0f}, { 0.0f, 0.0f}}, // Bottom-left
@@ -119,7 +122,7 @@ namespace gpu
           {{1.0f,  1.0f}, { 1.0f, 1.0f}}  // Top-right
       };
 #else
-      ::graphics3d::sequence2_uv quadVertices[] = {
+      ::array < ::graphics3d::sequence2_uv >quadVertices = {
          //  Position   TexCoords
          {{ 0.0f,  1.0f}, { 0.0f, 1.0f}}, // Top-left
          {{0.0f, 0.0f}, { 0.0f, 0.0f}}, // Bottom-left
@@ -131,10 +134,17 @@ namespace gpu
       };
 #endif
 
-      this->create_vertex_array<::graphics3d::sequence2_uv >(
-         pcontext, 6);
+      this->bind(pcontext->m_pgpurenderer->getCurrentCommandBuffer2());
 
-      this->set_vertex_array<::graphics3d::sequence2_uv >(quadVertices, 6);
+
+      this->static_initialize_vertices<::graphics3d::sequence2_uv >(
+         quadVertices);
+
+      this->unbind(pcontext->m_pgpurenderer->getCurrentCommandBuffer2());
+
+
+
+      //this->set_vertex_array<::graphics3d::sequence2_uv >(quadVertices, 6);
 
 
    }
@@ -143,8 +153,15 @@ namespace gpu
    void model_buffer::sequence2_color_create_rectangle(::gpu::context* pcontext)
    {
 
-      this->create_vertex_array<::graphics3d::sequence2_color >(
-         pcontext, 6);
+      initialize_gpu_context_object(pcontext);
+
+      auto pcommandbuffer = pcontext->m_pgpurenderer->getCurrentCommandBuffer2();
+
+      bind(pcommandbuffer);
+
+      this->create_vertices<::graphics3d::sequence2_color >(6);
+
+      unbind(pcommandbuffer);
 
       //defer_set_input_layout(pcontext->input_layout(::gpu_properties<::graphics3d::sequence2_color>()));
 
@@ -154,8 +171,16 @@ namespace gpu
    void model_buffer::sequence2_color_create_line(::gpu::context* pcontext)
    {
 
-      this->create_vertex_array<::graphics3d::sequence2_color >(
-         pcontext, 2);
+      initialize_gpu_context_object(pcontext);
+
+      auto pcommandbuffer = pcontext->m_pgpurenderer->getCurrentCommandBuffer2();
+
+      bind(pcommandbuffer);
+
+      this->create_vertices<::graphics3d::sequence2_color >(
+         2);
+
+      unbind(pcommandbuffer);
 
       //defer_set_input_layout(pcontext->input_layout(::gpu_properties < ::graphics::sequence2_color>()));
 
@@ -165,8 +190,16 @@ namespace gpu
    void model_buffer::sequence3_color_create_rectangle(::gpu::context* pcontext)
    {
 
-      this->create_vertex_array<::graphics3d::sequence3_color >(
-         pcontext, 6);
+      initialize_gpu_context_object(pcontext);
+
+      auto pcommandbuffer = pcontext->m_pgpurenderer->getCurrentCommandBuffer2();
+
+      bind(pcommandbuffer);
+
+      this->create_vertices<::graphics3d::sequence3_color >(
+         6);
+
+      unbind(pcommandbuffer);
 
       //defer_set_input_layout(pcontext->input_layout(::graphics3d::sequence3_color_properties()));
 
@@ -176,8 +209,16 @@ namespace gpu
    void model_buffer::sequence3_color_create_line(::gpu::context* pcontext)
    {
 
-      this->create_vertex_array<::graphics3d::sequence3_color >(
-         pcontext, 2);
+      initialize_gpu_context_object(pcontext);
+
+      auto pcommandbuffer = pcontext->m_pgpurenderer->getCurrentCommandBuffer2();
+
+      bind(pcommandbuffer);
+
+      this->create_vertices<::graphics3d::sequence3_color >(
+         2);
+
+      unbind(pcommandbuffer);
 
       ///defer_set_input_layout(pcontext->input_layout(::graphics3d::sequence3_color_properties()));
 
@@ -307,7 +348,7 @@ namespace gpu
 
       float g_z = 0.0f; // Assuming z is 0 for 2D rendering, adjust as needed
 
-      ::graphics3d::sequence2_color quadVertices[] = {
+      ::array<::graphics3d::sequence2_color> quadVertices = {
          // Triangle 1
          {{(float)points[0].x(), (float)points[0].y()}, {fR, fG, fB, fA}}, // Red
          {{(float)points[1].x(), (float)points[1].y()}, {fR, fG, fB, fA}}, // Green
@@ -318,8 +359,9 @@ namespace gpu
          {{(float)points[3].x(), (float)points[3].y()}, {fR, fG, fB, fA}}, // Blue
       };
 
+      this->set_vertices(quadVertices);
 
-      m_pbufferVertex->assign(::as_memory_block(quadVertices));
+      //m_pbufferVertex->assign(::as_memory_block(quadVertices));
 
    }
 

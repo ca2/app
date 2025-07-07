@@ -42,10 +42,8 @@ namespace gpu
 
 
       template < typename VERTEX >
-      void create_vertex_array(::gpu::context* pcontext, int iVertexCount)
+      void create_vertices(int iVertexCount)
       {
-
-         initialize_gpu_context_object(pcontext);
 
          m_iVertexCount = iVertexCount;
 
@@ -60,18 +58,39 @@ namespace gpu
             size, 
             memory_buffer::e_type_vertex_buffer);
 
-         defer_set_input_layout(pcontext->input_layout(::gpu_properties< VERTEX >()));
+         defer_set_input_layout(m_pgpucontext->input_layout(::gpu_properties< VERTEX >()));
+
+      }
+
+
+      template < typename VERTEX >
+      void static_initialize_vertices(const ::array<VERTEX> & vertexa)
+      {
+
+         m_iVertexCount = (int) vertexa.size();
+
+         m_iVertexTypeSize = sizeof(VERTEX);
+
+         auto size = vertexa.get_size_in_bytes();
+
+         __defer_construct(m_pbufferVertex);
+
+         m_pbufferVertex->static_initialize_memory_buffer_with_model_buffer(
+            this,
+            vertexa.data(),
+            size,
+            memory_buffer::e_type_vertex_buffer);
+
+         defer_set_input_layout(m_pgpucontext->input_layout(::gpu_properties< VERTEX >()));
 
       }
 
 
       template < typename INDEX >
-      void create_index_array(::gpu::context* pcontext, int iIndexCount)
+      void create_indices(::collection::count iIndexCount)
       {
 
-         initialize_gpu_context_object(pcontext);
-
-         m_iIndexCount = iIndexCount;
+         m_iIndexCount = (int) iIndexCount;
 
          m_iIndexTypeSize = sizeof(INDEX);
 
@@ -86,9 +105,30 @@ namespace gpu
 
       }
 
+      
+      template < typename INDEX >
+      void static_initialize_indices(const ::array<INDEX>& indexa)
+      {
+
+         m_iIndexCount = (int)indexa.count();
+
+         m_iIndexTypeSize = sizeof(INDEX);
+
+         auto size = indexa.get_size_in_bytes();
+
+         __defer_construct(m_pbufferIndex);
+
+         m_pbufferIndex->static_initialize_memory_buffer_with_model_buffer(
+            this,
+            indexa.data(),
+            size,
+            memory_buffer::e_type_index_buffer);
+
+      }
+
 
       template < typename VERTEX >
-      void set_vertex_array(const VERTEX *p, int iVertexCount)
+      void set_vertices(const ::array < VERTEX > & vertexa)
       {
 
          if (sizeof(VERTEX) != m_iVertexTypeSize)
@@ -98,12 +138,29 @@ namespace gpu
 
          }
 
-         m_pbufferVertex->assign(p, sizeof(VERTEX) * iVertexCount);// data = map <VERTEX >();
+         m_pbufferVertex->assign(vertexa.data(), vertexa.get_size_in_bytes());// data = map <VERTEX >();
 
       }
 
+
+      template < typename INDEX >
+      void set_index_array(const INDEX* p, ::collection::count iIndexCount)
+      {
+
+         if (sizeof(INDEX) != m_iIndexTypeSize)
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
+
+         m_pbufferIndex->assign(p, sizeof(INDEX) * iIndexCount);
+
+      }
+
+
       template < typename VERTEX >
-      void _set_vertex_array(const VERTEX* p, int iVertexCount)
+      void _set_vertex_array(const VERTEX* p, ::collection::count iVertexCount)
       {
 
          if (sizeof(VERTEX) != m_iVertexTypeSize)
@@ -119,7 +176,7 @@ namespace gpu
 
 
       template < typename INDEX >
-      void set_index_array(const INDEX* p, int iIndexCount)
+      void _set_index_array(const INDEX* p, ::collection::count iIndexCount)
       {
 
          if (sizeof(INDEX) != m_iIndexTypeSize)
@@ -129,9 +186,7 @@ namespace gpu
 
          }
 
-         auto data = map_indices <INDEX >();
-
-         memcpy(data, p, sizeof(INDEX) * iIndexCount);
+         m_pbufferIndex->_assign(p, sizeof(INDEX) * iIndexCount);
 
       }
 

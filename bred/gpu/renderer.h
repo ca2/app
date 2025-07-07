@@ -5,6 +5,7 @@
 #include "acme/constant/gpu.h"
 #include "acme/prototype/geometry2d/rectangle.h"
 #include "bred/gpu/shader.h"
+#include "acme/prototype/prototype/pool.h"
 
 
 namespace gpu
@@ -12,7 +13,8 @@ namespace gpu
 
 
    class CLASS_DECL_BRED renderer :
-      virtual public ::particle
+      virtual public ::particle,
+      virtual public ::ongoing_particle_array_source
    {
    public:
 
@@ -81,7 +83,8 @@ namespace gpu
       bool isFrameInProgress() const { return isFrameStarted; }
 
 
-      virtual ::pointer_array<::particle >* current_frame_particle_array();
+      virtual ::particle_array * current_frame_particle_array();
+      ::particle_array* ongoing_particle_array() override;
 
 
 

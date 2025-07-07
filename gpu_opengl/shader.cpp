@@ -588,6 +588,14 @@ namespace gpu_opengl
    void shader::setup_sampler_and_texture(const ::scoped_string& scopedstrName, int i)
    {
 
+      if (i == 0)
+      {
+
+         glActiveTexture(GL_TEXTURE0);
+         GLCheckError("");
+
+      }
+
       set_int(scopedstrName, i);
 
    }

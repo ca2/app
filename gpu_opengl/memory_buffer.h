@@ -32,61 +32,13 @@ namespace gpu_opengl
       //void initialize_memory_buffer_with_context(::gpu::context* pcontext, memsize size, memory_buffer::enum_type etype) override;
       //void initialize_memory_buffer_with_model_buffer(::gpu::model_buffer* pmodelbuffer, memsize size, memory_buffer::enum_type etype) override;
 
-      void on_initialize_memory_buffer() override;
+      void on_initialize_memory_buffer(const void * dataStatic = nullptr, memsize size = 0) override;
 
 
       bool is_initialized() const override;
 
-      //   VkBufferCreateInfo bufferInfo = {
-      //      .sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO,
-      //      .size = sizeof(graphics::RectangleVertex) * 6,
-      //      .usage = VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
-      //      .sharingMode = VK_SHARING_MODE_EXCLUSIVE
-      //   };
-      //   vkCreateBuffer(device, &bufferInfo, NULL, &vertexBuffer);
 
-      //   VkMemoryRequirements memReq;
-      //   vkGetBufferMemoryRequirements(device, vertexBuffer, &memReq);
-
-      //   uint32_t memTypeIndex = 0;
-      //   VkPhysicalDeviceMemoryProperties memProps;
-      //   vkGetPhysicalDeviceMemoryProperties(physicalDevice, &memProps);
-      //   for (uint32_t i = 0; i < memProps.memoryTypeCount; i++) {
-      //      if ((memReq.memoryTypeBits & (1 << i)) &&
-      //         (memProps.memoryTypes[i].propertyFlags & VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT) &&
-      //         (memProps.memoryTypes[i].propertyFlags & VK_MEMORY_PROPERTY_HOST_COHERENT_BIT)) {
-      //         memTypeIndex = i;
-      //         break;
-      //      }
-      //   }
-
-      //   //VkBufferCreateInfo bufferInfo = {
-      //   //    .sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO,
-      //   //    .size = sizeof(quadVertices),
-      //   //    .usage = VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
-      //   //    .sharingMode = VK_SHARING_MODE_EXCLUSIVE
-      //   //};
-      //   //vkCreateBuffer(device, &bufferInfo, NULL, &vertexBuffer);
-
-
-      //   VkMemoryAllocateInfo allocInfo = {
-      //       .sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO,
-      //       .allocationSize = memReq.size,
-      //       .memoryTypeIndex = memTypeIndex
-      //   };
-      //   vkAllocateMemory(device, &allocInfo, NULL, outMemory);
-      //   vkBindBufferMemory(device, vertexBuffer, *outMemory, 0);
-
-      //   //void* data;
-      //   //vkMapMemory(device, *outMemory, 0, bufferInfo.size, 0, &data);
-      //   //memcpy(data, quadVertices, sizeof(quadVertices));
-      //   //vkUnmapMemory(device, *outMemory);
-
-      //   return vertexBuffer;
-      //}
-
-      //virtual void assign(const void* pData, memsize size);
-      //virtual void assign(const ::block & block);
+      void _assign(const void* data, memsize size) override;
 
 
       void * _map(memsize start, memsize count) override;

@@ -157,6 +157,16 @@ namespace platform
     }
 
 
+    string node::_get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string& scopedstrFormat, int iSkip, void* caller_address, int iCount)
+    {
+
+       string strCallStack;
+          dumpBacktrace(strCallStack, stack, iCount);
+
+       return strCallStack;
+
+    }
+
 
 } // namespace node
 

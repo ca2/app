@@ -8,8 +8,8 @@
 //
 #pragma once
 
-
+#if !defined(ANDROID)
 CLASS_DECL_ACME string _ansi_stack_trace(::particle * pparticle, void * const * ppui, int frames, const ::ansi_character * pszFormat, int iSkip = -1);
-
+#endif
 
 

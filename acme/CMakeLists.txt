@@ -2050,6 +2050,7 @@ if (ANDROID)
             #operating_system/android/_os_local.h
             #operating_system/android/_os_object.h
             #operating_system/android/_os_remote.h
+            operating_system/android/acme.cpp
             operating_system/android/callstack.cpp
             operating_system/android/cross_win_file.h
             operating_system/android/cross_win_gdi.h

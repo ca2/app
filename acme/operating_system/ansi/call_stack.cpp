@@ -214,25 +214,37 @@ namespace platform
    }
 
 
-   string node::get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string & strFormat, int iSkip, void *caller_address, int iCount)
+   string node::get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string &scopedstrFormat, int iSkip, void *caller_address, int iCount)
    {
 
-      auto psynchronization = ::system()->synchronization();
-
-      _synchronous_lock sl(psynchronization);
-
-#if defined(FREEBSD) || defined(OPENBSD)
-      const int iMaximumFramesToCapture = 32;
-#else
-      const int iMaximumFramesToCapture = 96;
-#endif
-
-      string str = _ansi_stack_trace(this, stack, minimum_non_negative(frame_count, iMaximumFramesToCapture), strFormat, maximum(iSkip, 0));
-
-      return str;
+      return _get_call_stack_trace(stack, iCount, scopedstrFormat, iSkip, caller_address);
 
    }
 
+#if !defined(ANDROID)
+
+    string node::_get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string & strFormat, int iSkip, void *caller_address, int iCount)
+    {
+
+       auto psynchronization = ::system()->synchronization();
+
+       _synchronous_lock sl(psynchronization);
+
+#if defined(FREEBSD) || defined(OPENBSD)
+       const int iMaximumFramesToCapture = 32;
+#else
+       const int iMaximumFramesToCapture = 96;
+#endif
+
+       string str = _ansi_stack_trace(this, stack, minimum_non_negative(frame_count, iMaximumFramesToCapture), strFormat, maximum(iSkip, 0));
+
+       return str;
+
+    }
+
+
+
+#endif
 
 } // namespace acme
 

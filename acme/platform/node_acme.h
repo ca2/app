@@ -681,7 +681,13 @@ namespace platform
                                            int iCount = -1);
 
 
-      virtual ::string get_command_line();
+      virtual string _get_call_stack_trace(void** stack, int frame_count,
+                                            const ::scoped_string& scopedstrFormat = call_stack_default_format(),
+                                            int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr,
+                                            int iCount = -1);
+
+
+        virtual ::string get_command_line();
 
 
       //virtual ::pointer<::acme::exclusive> get_exclusive(string str, const security_attributes & securityattributes = nullptr);

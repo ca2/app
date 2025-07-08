@@ -3790,7 +3790,7 @@ namespace platform
 */
 
 
-::interlocked_long_long g_iNewTaskIndex = 1;
+::interlocked_count g_iNewTaskIndex = 1;
 
 
 static ::task_index new_task_index()

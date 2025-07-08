@@ -4,6 +4,7 @@
 #include "acme/platform/acme.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
+#include "acme/windowing/windowing.h"
 
 
 void task_set_name(long l, const char * psz)
@@ -21,10 +22,12 @@ void task_set_name(long l, const char * psz)
 }
 
 
-void task_set_name(const char * psz)
+void task_set_name(const ::scoped_string & scopedstrName)
 {
 
-   task_set_name(pthread_self(), psz);
+   ::string strName(scopedstrName);
+
+   task_set_name(pthread_self(), strName);
 
 }
 
@@ -116,3 +119,20 @@ void _do_tasks()
 
 
 }
+
+
+namespace platform
+{
+
+
+    void node::_user_post(const ::procedure &procedure)
+    {
+
+       //information() << "::platform::node::user_post going to display_post";
+
+       system()->acme_windowing()->_user_post(procedure);
+
+    }
+
+
+} // namespace platform

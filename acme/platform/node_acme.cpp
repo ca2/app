@@ -934,6 +934,14 @@ namespace platform
       return{};
    }
 
+    ::string acme_node_layer::_get_call_stack_trace(void** stack, int frame_count,
+                                                    const ::scoped_string& scopedstrFormat ,
+                                                    int iSkip,
+                                                    void* caller_address,
+                                                    int iCount)
+    {
+       return{};
+    }
 
    ::string  acme_node_layer::get_command_line()
    {

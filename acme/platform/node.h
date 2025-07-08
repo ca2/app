@@ -520,12 +520,15 @@ namespace platform
 //#if defined(__ANDROID__)
 //      virtual string unwind_call_stack(const ::scoped_string & scopedstrFormat = call_stack_default_format(), int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, int iCount = -1);
 //#else
-      virtual int get_call_stack_default_frame_count() override;
-      virtual void get_call_stack_frames(void ** stack, int & frame_count) override;
-      virtual string get_call_stack_trace(const ::scoped_string & scopedstrFormat = call_stack_default_format(), int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1) override;
-      virtual string get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string& scopedstrFormat = call_stack_default_format(), int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr, int iCount = -1) override;
+      int get_call_stack_default_frame_count() override;
+      void get_call_stack_frames(void ** stack, int & frame_count) override;
+      string get_call_stack_trace(const ::scoped_string & scopedstrFormat = call_stack_default_format(), int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1) override;
+
+      string get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string& scopedstrFormat = call_stack_default_format(), int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr, int iCount = -1) override;
 //#endif
-      virtual string _get_call_stack_trace(const ::scoped_string & scopedstrFormat = call_stack_default_format(), int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1) override;
+      string _get_call_stack_trace(const ::scoped_string & scopedstrFormat = call_stack_default_format(), int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1) override;
+
+      string _get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string& scopedstrFormat = call_stack_default_format(), int iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void* caller_address = nullptr, int iCount = -1) override;
 
 
 

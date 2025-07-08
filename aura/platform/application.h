@@ -1088,9 +1088,9 @@ void initialize_context() override;
       void on_prompt_write_file(::user::controller * pusercontroller) override;
       
       //::pointer < ::innate_ui::icon > innate_ui_icon(const ::int_size & size) override;
-      //virtual ::gpu::approach* get_gpu();
-      //virtual ::gpu::approach* gpu();
-      //virtual void create_gpu();
+      ::gpu::approach* get_gpu() override;
+      ::gpu::approach* gpu() override;
+      void create_gpu() override;
 
       //virtual ::graphics3d::camera get_default_camera();
 

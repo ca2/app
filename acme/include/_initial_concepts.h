@@ -855,7 +855,7 @@ concept pointer_but_not_integral = ::std::convertible_to < POINTER_BUT_NO_INTEGR
 
 
 
-_EXPORT_STD template <class>
+template <class>
 constexpr bool is_lvalue_reference = false; // determine whether type argument is an lvalue reference
 
 template <class _Ty>

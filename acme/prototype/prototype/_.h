@@ -32,7 +32,7 @@ namespace acme
 
 
 // Created by camilo on 2022-11-07 22:00 <3ThomasBorregaardSorensen!!
-#pragma once
+
 
 
 //CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate, const char** ppszRequest = nullptr);

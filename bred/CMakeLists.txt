@@ -2,9 +2,6 @@ cmake_minimum_required(VERSION 3.16)
 project(bred CXX)
 
 
-set(LIBRARY_NAME bred)
-
-
 list(APPEND library_source
         const/idpool.cpp
         const/idpool.h
@@ -14,9 +11,8 @@ list(APPEND library_source
         #gpu/aaa_end_draw.cpp
         #gpu/aaa_end_draw.h
         #gpu/aaaa_gpu.h
-        gpu/approach.cpp
-        gpu/approach.h
-        gpu/character.h
+        gpu/bred_approach.cpp
+        gpu/bred_approach.h
         gpu/command_buffer.cpp
         gpu/command_buffer.h
         gpu/compositor.cpp
@@ -31,8 +27,6 @@ list(APPEND library_source
         gpu/device.h
         gpu/draw2d.cpp
         gpu/draw2d.h
-        gpu/face.cpp
-        gpu/face.h
         gpu/frame.cpp
         gpu/frame.h
         gpu/graphics.cpp
@@ -87,8 +81,6 @@ list(APPEND library_source
         graphics3d/scene_object.h
         graphics3d/scene_system.cpp
         graphics3d/scene_system.h
-        graphics3d/shader.cpp
-        graphics3d/shader.h
         graphics3d/types.h
         graphics3d/utilities.h
         include/_.h
@@ -112,6 +104,10 @@ list(APPEND library_source
         platform/session.h
         platform/system.cpp
         platform/system.h
+        typeface/_.h
+        typeface/character.h
+        typeface/face.cpp
+        typeface/face.h
         user/user/graphics3d.cpp
         user/user/graphics3d.h
         user/user/user.cpp
@@ -123,7 +119,8 @@ list(APPEND library_source
         framework.cpp
         framework.h
         id.h
-        library.h)
+        library.h
+)
 
 
 list(APPEND library_references
@@ -145,25 +142,19 @@ if (NOT ${NO_PRECOMPILED_HEADER})
     target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
 
 endif ()
-if (NOT ${NO_PRECOMPILED_HEADER})
-
-    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
-    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
-
-endif ()
 
 
-set_target_properties(bred PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
 
 
-    target_compile_options(bred PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(bred PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(bred PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/bred.lib")
-    #target_link_options(bred PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/bred.def")
-    target_link_libraries(bred PRIVATE ${library_references} ${global_library_references})
+    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+    #target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})
 
 
 elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
@@ -173,7 +164,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
     target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
-    target_link_libraries(bred PRIVATE ${library_references} ${global_library_references})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
@@ -191,8 +182,8 @@ target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_dire
 
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
-target_compile_definitions(bred PRIVATE UNICODE)
-target_compile_definitions(bred PRIVATE _UNICODE)
+target_compile_definitions(${PROJECT_NAME} PRIVATE UNICODE)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _UNICODE)
 
 
 

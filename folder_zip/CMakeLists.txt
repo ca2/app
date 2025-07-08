@@ -41,7 +41,9 @@ list(APPEND library_references acme)
 list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
-
+if(${ANDROID})
+    list(APPEND library_references zlib)
+endif()
 
 if (NOT ${NO_PRECOMPILED_HEADER})
 

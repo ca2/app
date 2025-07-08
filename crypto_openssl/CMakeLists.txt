@@ -39,6 +39,11 @@ if (NOT ${NO_PRECOMPILED_HEADER})
 
 endif ()
 
+if(${ANDROID})
+    list(APPEND library_references
+    crypto)
+endif()
+
 
 set_target_properties(crypto_openssl PROPERTIES LINKER_LANGUAGE CXX)
 
@@ -71,6 +76,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
     message(STATUS "(A) PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()
+
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})

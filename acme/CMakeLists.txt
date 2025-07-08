@@ -2060,6 +2060,8 @@ if (ANDROID)
             operating_system/android/graphics.h
             operating_system/android/internal.h
             operating_system/android/process.h
+            operating_system/android/standard_exception.cpp
+            operating_system/android/standard_exception.h
             operating_system/android/time.cpp
     )
 

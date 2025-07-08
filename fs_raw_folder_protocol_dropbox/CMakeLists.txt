@@ -50,7 +50,7 @@ if (NOT ${NO_PRECOMPILED_HEADER})
 
 endif ()
 
-set_target_properties(compress_bzip2 PROPERTIES LINKER_LANGUAGE CXX)
+#set_target_properties(compress_bzip2 PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
@@ -66,28 +66,28 @@ if (MSVC)
 elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
 
-    if (DEFINED UBUNTU OR DEFINED DEBIAN OR DEFINED RASPBIAN)
+#    if (DEFINED UBUNTU OR DEFINED DEBIAN OR DEFINED RASPBIAN)
+#
+#
+#        list(APPEND library_references
+#                bz2)
+#
+#        message("including bz2 \"manually\" at ubuntu/debian")
+#
+#
+#    else ()
 
 
-        list(APPEND library_references
-                bz2)
-
-        message("including bz2 \"manually\" at ubuntu/debian")
-
-
-    else ()
-
-
-        if (USE_PKGCONFIG)
-            pkg_check_modules(PKGCONFIG bzip2)
-        endif ()
+#        if (USE_PKGCONFIG)
+#            pkg_check_modules(PKGCONFIG bzip2)
+#        endif ()
         target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
         target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
         target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
         target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES})
 
 
-    endif ()
+#    endif ()
 
 
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})

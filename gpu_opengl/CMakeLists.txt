@@ -20,8 +20,8 @@ list(APPEND library_source
         image_opengl.cpp
         object.cpp
         object.h
-        opengl.cpp
-        opengl.h
+        #opengl.cpp
+        #opengl.h
         program.cpp
         program.h
         shader.cpp

@@ -104,6 +104,9 @@ list(APPEND apex_source
    filesystem/fs/set.h
    filesystem/_impl.h
    filesystem/filesystem.h
+        gpu/_.h
+        gpu/approach.cpp
+        gpu/approach.h
    handler/manager.cpp
    handler/manager.h
    handler/manager_room.cpp

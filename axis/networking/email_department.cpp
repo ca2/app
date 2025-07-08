@@ -29,7 +29,10 @@ namespace networking
 
       string strHost = file()->as_string(directory()->home() / ".sensitive/sensitive/seed/default_sendmail_host.txt");
 
-      if (!psocket->open(strHost, (port_t)25))
+      psocket->EnableSSL();
+      // psocket->SetSSLNegotiate();
+
+      if (!psocket->open(strHost, (port_t)465))
       {
 
          return false;

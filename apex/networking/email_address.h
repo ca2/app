@@ -1,14 +1,15 @@
 #pragma once
 
 
-
+#include "acme/handler/item.h"
 
 
 namespace networking
 {
 
 
-   class CLASS_DECL_APEX email_address
+   class CLASS_DECL_APEX email_address :
+      virtual public ::item
    {
    public:
 

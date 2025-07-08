@@ -129,7 +129,7 @@ namespace sockets
 
       auto pinterface = base_socket_interface();
 
-      if (pinterface)
+      if (pinterface != this)
       {
 
          return pinterface->get_request_url_string();

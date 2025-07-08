@@ -145,7 +145,7 @@ namespace sockets_bsd
 
       m_iSelectWrite = bWrite ? 1 : 0;
 
-      m_iSelectRead = bError ? 1 : 0;
+      m_iSelectError = bError ? 1 : 0;
 
    }
 

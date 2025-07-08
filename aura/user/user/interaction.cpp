@@ -27876,12 +27876,12 @@ __check_refdbg;
          if (rectanglea.has_element())
          {
 
-            informationf("user::interaction::update_hover set_need_redraw (%d rectangle(s))", rectanglea.size());
+            //informationf("user::interaction::update_hover set_need_redraw (%d rectangle(s))", rectanglea.size());
 
              for (auto & rectangle : rectanglea)
              {
 
-                information() << "user::interaction::update_hover set_need_redraw" << rectangle;
+                //information() << "user::interaction::update_hover set_need_redraw" << rectangle;
 
              }
 

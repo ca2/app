@@ -187,6 +187,12 @@
     <Filter Include="Source Files\graphics\graphics">
       <UniqueIdentifier>{c6fa53da-4b5d-47a1-a174-c553bdddaa8d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\networking\bsd">
+      <UniqueIdentifier>{dbd15256-4106-4c22-8ccf-fa7e0c8998cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking\bsd\smtp">
+      <UniqueIdentifier>{cc630e4d-14fc-4689-aa8c-47dcccd1684d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -755,6 +761,12 @@
     </ClInclude>
     <ClInclude Include="graphics\graphics\color_selector.h">
       <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\email_department.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\smtp\smtp_socket.h">
+      <Filter>Header Files\networking\bsd\smtp</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

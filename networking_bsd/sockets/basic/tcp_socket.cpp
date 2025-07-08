@@ -2200,7 +2200,8 @@ m_ibuf(isize)
 
          if (x509_err != X509_V_OK
             && x509_err != X509_V_ERR_SELF_SIGNED_CERT_IN_CHAIN
-            && x509_err != X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY)
+            && x509_err != X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY
+            && x509_err != X509_V_ERR_APPLICATION_VERIFICATION)
          {
 
 

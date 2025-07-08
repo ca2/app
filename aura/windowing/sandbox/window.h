@@ -52,7 +52,7 @@ namespace sandbox_windowing
 
       void exit_zoomed() override;
 
-      void set_user_interaction(::windowing::window* pinteraction) override;
+      void set_user_interaction(::acme::user::interaction * pacmeuserinteraction) override;
 
       void post_nc_destroy() override;
 

@@ -6,8 +6,6 @@
 #if OSBIT == 32
 
 
-using long long = long long int;
-using unsigned long long = unsigned long long int;
 using iptr = int;
 using uptr = unsigned int;
 

@@ -47,7 +47,7 @@ if (MSVC)
     target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})
-    add_dependencies(${PROJECT_NAME} draw2d_gdiplus)
+    add_dependencies(${PROJECT_NAME} draw2d_gdiplus draw2d_cairo)
 
 
 elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})

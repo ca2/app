@@ -4,6 +4,16 @@
 set(CMAKE_CXX_STANDARD 20)
 
 
+if (CMAKE_SYSTEM_PROCESSOR MATCHES "(x86)|(X86)|(amd64)|(AMD64)")
+   message(STATUS "Target system is x86 or x86_64 architecture.")
+   # You can set a variable or perform specific actions here
+   set(IS_X86_ARCH TRUE)
+else()
+   message(STATUS "Target system is not x86 or x86_64 architecture.")
+   set(IS_X86_ARCH FALSE)
+endif()
+
+
 if("${CMAKE_BUILD_TYPE}" STREQUAL "")
 
    set(__CMAKE_BUILD_TYPE "Debug")
@@ -93,12 +103,9 @@ if(NOT ${HAS_SYSTEM_UNAC})
 endif()
 
 
-
-
-
-add_subdirectory(source/app)
 add_subdirectory(operating_system)
 add_subdirectory(port)
+add_subdirectory(source/app)
 add_subdirectory(source)
 
 

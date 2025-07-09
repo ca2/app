@@ -45,6 +45,10 @@ if(${ANDROID})
     list(APPEND library_references zlib)
 endif()
 
+if(${WIN32})
+    list(APPEND library_references zlib)
+endif()
+
 if (NOT ${NO_PRECOMPILED_HEADER})
 
     target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)

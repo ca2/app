@@ -21,6 +21,8 @@ list(APPEND library_source
         gpu/context.h
         gpu/context_lock.cpp
         gpu/context_lock.h
+        gpu/context_object.cpp
+        gpu/context_object.h
         gpu/cpu_buffer.cpp
         gpu/cpu_buffer.h
         gpu/device.cpp
@@ -37,8 +39,14 @@ list(APPEND library_source
         gpu/input_layout.h
         gpu/layer.cpp
         gpu/layer.h
+        gpu/memory_buffer.cpp
+        gpu/memory_buffer.h
+        gpu/model_buffer.cpp
+        gpu/model_buffer.h
         gpu/object.cpp
         gpu/object.h
+        gpu/pixmap.cpp
+        gpu/pixmap.h
         gpu/program.cpp
         gpu/program.h
         gpu/properties.cpp

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
-project(typeface_gdiplus CXX)
+project(typeface_freetype CXX)
 
 
 
@@ -13,6 +13,16 @@ list(APPEND library_source
         framework.h
 )
 
+list(APPEND library_references
+        acme
+        apex
+        aqua
+        aura
+        axis
+        base
+        bred
+        freetype
+)
 
 
 
@@ -26,8 +36,8 @@ if (MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
-    target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
-    target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura Gdiplus)
+    #target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
 elseif(LINUX)
 
     if(NOT DONT_USE_PKG_CONFIG)

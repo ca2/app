@@ -107,7 +107,7 @@
 //#include <gl/glew.h>
 //#include <gl/gl.h>
 #define GLAD_GLAPI_EXPORT
-#include <glad.h>
+#include <glad/glad.h>
 
 
 #endif

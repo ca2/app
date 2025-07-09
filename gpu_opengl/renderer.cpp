@@ -7,7 +7,6 @@
 #include "gpu_opengl/cpu_buffer.h"
 #include "frame.h"
 #include "frame_buffer.h"
-#include "glad.h"
 #include "lock.h"
 #include "offscreen_render_target.h"
 #include "renderer.h"
@@ -21,6 +20,7 @@
 #include "bred/gpu/render_state.h"
 #include "bred/user/user/graphics3d.h"
 #include "aura/windowing/window.h"
+#include <glad/glad.h>
 
 
 

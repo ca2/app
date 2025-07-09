@@ -9,28 +9,61 @@ list(APPEND library_source
         _.cpp
         _.h
         _factory.cpp
+        _gpu_opengl.cpp
+        _gpu_opengl.h
+        approach.cpp
+        approach.h
         assimp.cpp
         assimp.h
+        command_buffer.cpp
+        command_buffer.h
         cpu_buffer.cpp
         cpu_buffer.h
         context.cpp
         context.h
+        device.cpp
+        device.h
+        frame.h
+        frame_buffer.cpp
+        frame_buffer.h
         framework.cpp
         framework.h
         image_opengl.cpp
+        input_layout.cpp
+        input_layout.h
+        lock.cpp
+        lock.h
+        memory_buffer.cpp
+        memory_buffer.h
+        model_buffer.cpp
+        model_buffer.h
         object.cpp
         object.h
+        offscreen_render_target.cpp
+        offscreen_render_target.h
         #opengl.cpp
         #opengl.h
+        pixmap.cpp
+        pixmap.h
         program.cpp
         program.h
+        render_target.cpp
+        render_target.h
+        renderer.cpp
+        renderer.h
         shader.cpp
-        shader.h)
+        shader.h
+        swap_chain.cpp
+        swap_chain.h
+        texture.cpp
+        texture.h
+)
 
 if (WIN32)
     list(APPEND library_source
-            context_win32.cpp
-            context_win32.h
+            approach_win32.cpp
+            device_win32.cpp
+            device_win32.h
             )
 
 endif ()
@@ -63,6 +96,8 @@ list(APPEND library_references
         apex
         aqua
         aura
+        base
+        bred
         )
 
 

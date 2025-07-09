@@ -52,7 +52,9 @@ if(INCLUDE_IMAGING_FREEIMAGE)
 
 endif()
 
-
+if(${INCLUDE_OPENGL} OR ${INCLUDE_DIRECTX11} OR ${INCLUDE_DIRECT2D} OR ${INCLUDE_VULKAN})
+    add_subdirectory(typeface_freetype)
+endif()
 #if(INCLUDE_GPU_OPENGL)
 #
 #    add_subdirectory(gpu_opengl)

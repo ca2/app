@@ -4,7 +4,7 @@
 #include "device.h"
 #include "cpu_buffer.h"
 #include "renderer.h"
-#include "bred/gpu/approach.h"
+#include "bred/gpu/bred_approach.h"
 #include "bred/gpu/types.h"
 #include "aura/graphics/image/image.h"
 #include "acme/platform/application.h"

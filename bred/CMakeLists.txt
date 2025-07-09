@@ -130,6 +130,13 @@ list(APPEND library_source
         library.h
 )
 
+if (${WIN32})
+    list(APPEND library_source
+            gpu/hlsl_context.cpp
+            gpu/hlsl_context.h
+    )
+
+endif ()
 
 list(APPEND library_references
         acme

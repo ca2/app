@@ -1520,8 +1520,9 @@ void draw2d::emboss_predicate(
 
    string draw2d::write_text_get_default_implementation_name()
    {
-
-#ifdef LINUX
+#if defined(WINDOWS_DESKTOP)
+      return "win32";
+#elif defined(LINUX)
 
       return "pango";
 
@@ -1530,6 +1531,7 @@ void draw2d::emboss_predicate(
       return "android";
 
 #elif defined(__BSD__)
+
 
       return "pango";
 

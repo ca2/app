@@ -38,6 +38,13 @@ list(APPEND library_source
    region.cpp
    region.h)
 
+if(${WIN32})
+
+    list(APPEND library_source
+
+            draw2d_win32.cpp)
+
+endif()
 
 add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})

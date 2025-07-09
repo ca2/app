@@ -78,7 +78,8 @@ namespace draw2d_cairo
 
       // Constructors
       //bool CreateDC(const ::string & lpszDriverName, const ::string & lpszDeviceName, const ::string & lpszOutput, const void * lpInitData) override;
-      //bool CreateIC(const ::string & lpszDriverName, const ::string & lpszDeviceName, const ::string & lpszOutput, const void * lpInitData) override;
+      //bool CreateIC(const ::string & lpszDriverName, const ::string & lpszDeviceName, const ::string & lpszOutput, const void * lpInitData) override
+      void create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size) override;
       void CreateCompatibleDC(::draw2d::graphics * pgraphics) override;
 
       void DeleteDC() override;

@@ -293,6 +293,18 @@ namespace draw2d_cairo
    }
 
 
+   void graphics::create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size)
+   {
+
+      m_bForWindowDraw2d = true;
+
+      m_puserinteraction = puserinteraction;
+
+      create_memory_graphics(size);
+
+   }
+
+
    void graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
    {
 

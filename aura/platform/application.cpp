@@ -1820,6 +1820,12 @@ namespace aura
             strImplementation = "direct2d";
 
          }
+         else if (strImplementation == "cairo")
+         {
+
+            strImplementation = "cairo";
+
+         }
          else
          {
 
@@ -9836,7 +9842,7 @@ namespace aura
       else
       {
 
-         return ::aqua::application::draw2d_get_default_implementation_name();
+         return m_strDraw2dImplementation;
 
       }
 

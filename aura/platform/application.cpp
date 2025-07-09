@@ -1838,7 +1838,6 @@ namespace aura
       }
 
 
-
       {
 
          ::string strImplementation = application_file_setting("typeface.txt");
@@ -1885,6 +1884,43 @@ namespace aura
          m_strTypefaceImplementation = strImplementation;
 
       }
+
+
+      {
+
+         ::string strImplementation = application_file_setting("imaging.txt");
+
+         strImplementation.make_lower();
+
+         if (strImplementation == "wic")
+         {
+
+            strImplementation = "wic";
+
+         }
+         else if (strImplementation == "freeimage")
+         {
+
+            strImplementation = "freeimage";
+
+         }
+         else if (strImplementation == "quartz2d")
+         {
+
+            strImplementation = "quartz2d";
+
+         }
+         else
+         {
+
+            strImplementation.empty();
+
+         }
+
+         m_strImagingImplementation = strImplementation;
+
+      }
+
 
       {
 
@@ -9863,6 +9899,25 @@ namespace aura
       {
 
          return ::aqua::application::draw2d_get_default_implementation_name();
+
+      }
+
+   }
+
+
+   ::string application::imaging_get_default_implementation_name()
+   {
+
+      if(m_strImagingImplementation.has_character())
+      {
+
+         return system()->implementation_name("imaging", m_strImagingImplementation);
+
+      }
+      else
+      {
+
+         return ::aqua::application::imaging_get_default_implementation_name();
 
       }
 

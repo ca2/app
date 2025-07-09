@@ -159,6 +159,8 @@ namespace aura
 
       ::string                                           m_strTypefaceImplementation;
 
+      ::string                                           m_strImagingImplementation;
+
 
       application();
       ~application() override;
@@ -1070,6 +1072,8 @@ void initialize_context() override;
       string draw2d_get_default_implementation_name() override;
 
       string typeface_get_default_implementation_name() override;
+
+      string imaging_get_default_implementation_name() override;
 
 
       void on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine) override;

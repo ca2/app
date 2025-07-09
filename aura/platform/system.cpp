@@ -1744,6 +1744,17 @@ namespace aura
    string system::imaging_get_default_implementation_name()
    {
 
+      string strImplementationName;
+
+      strImplementationName = application()->imaging_get_default_implementation_name();
+
+      if (strImplementationName.has_character())
+      {
+
+         return strImplementationName;
+
+      }
+
 #ifdef WINDOWS
 
       return implementation_name("imaging", "wic");

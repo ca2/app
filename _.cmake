@@ -1,5 +1,8 @@
 # Created by camilo on 2023-02 <3ThomasBorregaardSorensen!!
-
+set(INCLUDE_IMAGING_FREEIMAGE FALSE)
+set(INCLUDE_FREEIMAGE FALSE)
+set(WIN32 FALSE)
+set(__APPLE__ FALSE)
 
 set(CMAKE_CXX_STANDARD 20)
 

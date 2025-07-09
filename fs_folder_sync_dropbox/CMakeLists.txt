@@ -80,10 +80,10 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
         if (USE_PKGCONFIG)
             pkg_check_modules(PKGCONFIG bzip2)
         endif ()
-        target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
-        target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
-        target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
-        target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES})
+        target_compile_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_CFLAGS})
+        target_compile_options(static_${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_CFLAGS})
+        target_link_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_LDFLAGS})
+        target_link_libraries(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES})
 
 
     endif ()
@@ -93,7 +93,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
-    #message(STATUS "(8) PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+    #message(STATUS "(8) PKGCONFIG_LIBRARIES is " ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES})
 
 
 endif ()

@@ -69,8 +69,9 @@ namespace draw2d_cairo
       cairo_font_face_t * private_ftface_from_memory(const ::block & block, const ::string & strName);
       cairo_font_face_t * private_ftface_from_file(::platform::context * pcontext, const ::payload & payloadFile);
 
+#if defined(WINDOWS_DESKTOP)
       void adjust_composited_window_styles(unsigned int& nExStyle, unsigned int& nStyle);
-
+#endif
 
    };
 

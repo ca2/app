@@ -99,6 +99,10 @@ int __implement();
 #if defined(WINDOWS)
 int WINAPI wWinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, WCHAR* pCmdLine, int nCmdShow)
 #elif defined(ANDROID)
+int main(int argc, char * argv[], char * envp[])
+{
+   return 0;
+}
 extern "C" int android_main(int argc, char* argv[], char* envp[], const char* p1, const char* p2)
 #else
 int main(int argc, char * argv[], char * envp[])

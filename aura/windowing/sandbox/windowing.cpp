@@ -554,7 +554,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
       
       ::cast < ::windowing::window > pwindowingwindow = pwindow;
 
-      pwindowingwindow->m_puserinteractionMouseCapture.release();
+      pwindowingwindow->m_pacmeuserinteractionMouseCapture.release();
 
       m_pwindowMouseCapture.release();
 

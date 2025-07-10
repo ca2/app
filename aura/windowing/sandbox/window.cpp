@@ -44,7 +44,7 @@ namespace sandbox_windowing
       
       auto pusersystem = puserinteraction->m_pusersystem;
       
-      puserinteraction->m_bMessageWindow = false;
+      puserinteraction->m_bMessageOnlyWindow = false;
       
       auto pwindowing = windowing();
       
@@ -1080,7 +1080,7 @@ namespace sandbox_windowing
    }
 
 
-   void window::set_user_interaction(::windowing::window* pimpl)
+   void window::set_user_interaction(::acme::user::interaction * pacmeuserinteraction)
    {
 
       //      single_lock sl(ms_pmutex, true);
@@ -1092,11 +1092,13 @@ namespace sandbox_windowing
       //
       //      }
 
+      m_pacmeuserinteraction = pacmeuserinteraction;
+
       //m_pwindow = pimpl;
 
-      m_htask = sandbox_windowing()->m_htask;
+      //m_htask = sandbox_windowing()->m_htask;
 
-      m_pmessagequeue = m_puserthread->get_message_queue();
+      ///m_pmessagequeue = m_puserthread->get_message_queue();
 
       //oswindow_assign(this, pimpl);
 
@@ -3553,7 +3555,7 @@ namespace sandbox_windowing
             if (pwindowing->m_pwindowMouseCapture)
             {
 
-               pwindowing->m_pwindowMouseCapture->m_pacmeuserinteractionCapture.release();
+               pwindowing->m_pwindowMouseCapture->m_pacmeuserinteractionMouseCapture.release();
 
             }
 

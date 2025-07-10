@@ -70,3 +70,14 @@ class component;
 
 class component_implementation;
 
+namespace acme
+{
+
+    class asset;
+
+    class asset_manager;
+
+} // namespace acme
+
+
+

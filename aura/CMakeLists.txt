@@ -567,7 +567,16 @@ list(APPEND library_source
         #procedure.h
         #update.h
 )
-
+if (${ANDROID})
+    list(APPEND library_source
+            windowing/sandbox/host_interaction.cpp
+            windowing/sandbox/host_interaction.h
+            windowing/sandbox/window.h
+            windowing/sandbox/window.cpp
+            windowing/sandbox/windowing.h
+            windowing/sandbox/windowing.cpp
+    )
+endif()
 if (WIN32)
 
     list(APPEND library_source

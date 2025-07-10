@@ -1,6 +1,12 @@
 #include "framework.h"
 #include "acme/platform/acme.h"
 
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <limits.h>
+
 
 #include <sys/wait.h>
 #undef USE_MISC
@@ -440,4 +446,17 @@ unsigned int get_current_process_id()
 
    return getpid();
 
+}
+
+
+char* _android_get_executable_path_dup()
+{
+   char exe_path[PATH_MAX *8];
+   ssize_t len = readlink("/proc/self/exe", exe_path, sizeof(exe_path) - 1);
+   if (len != -1) {
+      exe_path[len] = '\0';
+      return strdup(exe_path);
+   } else {
+      return strdup("");
+   }
 }

@@ -11,7 +11,9 @@ string get_sys_temp_path()
    return ::file::path(getenv("HOME")) / ".ca2" / "time";
 
 }
-
+#ifdef __ANDROID__
+char * _android_get_executable_path_dup();
+#endif
 
 
 bool __node_further_file_is_equal(const ::file::path &,  const ::file::path &)
@@ -134,6 +136,10 @@ namespace path
 
       pszModuleFilePath = ns_get_executable_path();
 
+#elif defined(__ANDROID__)
+
+      pszModuleFilePath = _android_get_executable_path_dup();
+
 #else
 
       pszModuleFilePath = br_find_exe("app");
@@ -164,7 +170,13 @@ namespace path
 
    ::file::path path;
 
-   char *pszModule = nullptr;
+   char *pszModule;
+
+#ifdef __ANDROID__
+
+   pszModule = _android_get_executable_path_dup();
+
+#else
 
    if ((pszModule = br_find_exe(nullptr)) == nullptr)
    {
@@ -192,6 +204,8 @@ namespace path
       }
 
    }
+
+#endif
 
    path = pszModule;
 

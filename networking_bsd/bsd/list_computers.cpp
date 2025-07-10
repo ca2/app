@@ -74,7 +74,7 @@ int kernel_arp(PREDICATE pred) {
       struct nlmsghdr *answer = (struct nlmsghdr *) p; /* netlink header structure */
 
       int len = answer->nlmsg_len; /* netlink message length including header */
-      struct ndmsg *msg = NLMSG_DATA(answer); /* macro to get a ptr right after header */
+      struct ndmsg *msg = (struct ndmsg *) NLMSG_DATA(answer); /* macro to get a ptr right after header */
       /* Given the payload length, len, this macro returns the aligned
        * length to store in the nlmsg_len field of the nlmsghdr.
        * */
@@ -96,7 +96,7 @@ int kernel_arp(PREDICATE pred) {
          pred(ip);
       }
       if (tb[NDA_LLADDR]) { /* this is hardware mac address */
-         const unsigned char *addr = RTA_DATA(tb[NDA_LLADDR]);
+         const unsigned char *addr = (const unsigned char *) RTA_DATA(tb[NDA_LLADDR]);
          fprintf(stderr, "lladdr: %02X:%02X:%02X:%02X:%02X:%02X\n",
                  addr[0], addr[1], addr[2], addr[3], addr[4], addr[5]);
       } else {

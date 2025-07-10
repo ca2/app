@@ -59,6 +59,15 @@ endif ()
 
 
 # default configuration
+set(INCLUDE_DRAW2D_CAIRO FALSE)
+set(INCLUDE_FREETYPE FALSE)
+set(INCLUDE_IMAGING_FREEIMAGE FALSE)
+set(INCLUDE_IDN FALSE)
+set(INCLUDE_OPENGL FALSE)
+set(INCLUDE_VULKAN FALSE)
+set(INCLUDE_DIRECTX11 FALSE)
+set(INCLUDE_DIRECTX12 FALSE)
+set(INCLUDE_DIRECT2D FALSE)
 set(HAS_SYSTEM_UNAC FALSE)
 set(HAS_APP_VERIWELL FALSE)
 set(HAS_AUDIO_SYSTEM FALSE)
@@ -81,6 +90,9 @@ set(DEBIAN FALSE)
 set(ANDROID FALSE)
 set(HAS_NO_APPINDICATOR FALSE)
 
+
+message(STATUS "going to include \"operating_system/__.cmake\"")
+include(operating_system/__.cmake)
 
 
 message(STATUS "going to include \"source/_.cmake\"")

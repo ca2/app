@@ -132,7 +132,7 @@ if (WIN32 OR UWP)
 endif ()
 
 
-if (${LINUX} OR ${__BSD__})
+if (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
    list(APPEND library_source
       bsd/_.cpp
@@ -192,6 +192,9 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
    if (${USE_PKGCONFIG})
       message(STATUS "networking_bsd USE_PKGCONFIG")
       pkg_check_modules(PKGCONFIG libcrypto libssl)
+   else()
+      list(APPEND library_references
+      crypto ssl)
    endif ()
 
 

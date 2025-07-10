@@ -2047,7 +2047,7 @@ list(APPEND library_source
         include/_impl.h
 )
 
-if (ANDROID)
+if (${ANDROID})
     list(APPEND library_source
 
             operating_system/android/_.h
@@ -2658,7 +2658,7 @@ if (APPLE)
 endif ()
 
 
-if (ANDROID)
+if (${ANDROID})
 
 
     list(APPEND library_source
@@ -3114,11 +3114,14 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
         list(APPEND static_this_system_libraries util z pthread iconv execinfo elf)
         message(STATUS "NETBSD acme this_system_libraries ${this_system_libraries}")
     elseif (${ANDROID})
+
         #list(APPEND this_system_libraries z idn)
-        list(APPEND this_system_libraries z iconv idn log)
+        list(APPEND library_references zlib iconv idn)
+        list(APPEND this_system_libraries log)
         #list(APPEND static_this_system_libraries pthread)
         #message(SEND_ERROR "test is really android?! ${this_system_libraries}")
-        message(STATUS "ELSE acme this_system_libraries ${this_system_libraries}")
+        message(STATUS "For acme at ANDROID library_references ${library_references}")
+        message(STATUS "For acme at ANDROID this_system_libraries ${this_system_libraries}")
     else ()
         list(APPEND this_system_libraries z pthread idn)
         list(APPEND static_this_system_libraries pthread)
@@ -3133,7 +3136,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
     #      -lstatic_nano_dynamic_library_dl
     #)
     target_link_libraries(${PROJECT_NAME} PRIVATE
-            ${this_system_libraries}
+            ${library_references} ${this_system_libraries}
     )
     target_link_libraries(static_${PROJECT_NAME} PRIVATE
             ${static_this_system_libraries}

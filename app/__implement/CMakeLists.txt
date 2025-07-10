@@ -11,6 +11,7 @@ endif()
 
 
 add_executable(${PROJECT_NAME} ${application_source})
+add_library(applib${PROJECT_NAME} SHARED ${application_source})
 
 
 list(APPEND executable_references

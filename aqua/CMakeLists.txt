@@ -138,7 +138,7 @@ list(APPEND library_source
 )
 
 if (MACOS)
-   list(APPEND aqua_source
+   list(APPEND ${PROJECT_NAME}_source
       operating_system/macos/graphics.cpp
    )
 endif ()
@@ -171,14 +171,15 @@ if (NOT ${NO_PRECOMPILED_HEADER})
 
 endif ()
 
-set_target_properties(aqua PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
+target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
 if (MSVC)
-   target_compile_options(aqua PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-   target_link_options(aqua PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-   target_link_options(aqua PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/aqua.lib")
-   #target_link_options(aqua PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/aqua.def")
-   target_link_libraries(aqua PRIVATE acme apex)
+   target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+   target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+   target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
+   #target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
+   target_link_libraries(${PROJECT_NAME} PRIVATE acme apex)
 elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
    target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
    target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)

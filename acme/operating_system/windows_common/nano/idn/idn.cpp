@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "idn.h"
 #include "acme/_operating_system.h"
+#pragma comment(lib, "Normaliz.lib")
 
 
 namespace windows_common

@@ -2252,6 +2252,7 @@ if (WIN32)
             #      operating_system/windows/nano/user/window.cpp
             #      operating_system/windows/nano/user/window.h
             #      operating_system/windows/nano/user/http/_nano_http.cpp
+            operating_system/windows/nano/http/_factory.cpp
             operating_system/windows/nano/http/_http.h
             operating_system/windows/nano/http/hinternet.cpp
             operating_system/windows/nano/http/hinternet.h
@@ -2335,6 +2336,18 @@ endif ()
 if (${WIN32} OR ${UWP})
 
     list(APPEND library_source
+            operating_system/windows_common/com/bstring.cpp
+            operating_system/windows_common/com/bstring.h
+            operating_system/windows_common/com/comptr.h
+            operating_system/windows_common/com/comptr_array.h
+            operating_system/windows_common/com/cotaskptr.h
+            operating_system/windows_common/com/hresult_exception.cpp
+            operating_system/windows_common/com/hresult_exception.h
+            operating_system/windows_common/com/prop_variant.h
+            operating_system/windows_common/com/variant.h
+            operating_system/windows_common/nano/compress/_factory.cpp
+            operating_system/windows_common/nano/compress/compress.h
+            operating_system/windows_common/nano/compress/compress.cpp
             operating_system/windows_common/nano/idn/_.h
             operating_system/windows_common/nano/idn/_idn.cpp
             operating_system/windows_common/nano/idn/idn.cpp
@@ -3045,7 +3058,8 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+        operating_system/windows_common/nano/compress/_factory.cpp)
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}
@@ -3061,7 +3075,8 @@ endif ()
 
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
-set_target_properties(static_${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
+#set_target_properties(static_${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
+target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
 
 if (MSVC)

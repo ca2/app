@@ -17,7 +17,7 @@
 ////#include "acme/prototype/prototype/function.h"
 //#include "acme/prototype/prototype/memory.h"
 //#include <dbghelp.h>
-//#pragma comment(lib, "dbghelp.lib")
+#pragma comment(lib, "dbghelp.lib")
 //
 //
 //#ifdef WINDOWS

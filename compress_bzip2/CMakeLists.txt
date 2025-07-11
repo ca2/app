@@ -43,6 +43,8 @@ endif ()
 
 set_target_properties(compress_bzip2 PROPERTIES LINKER_LANGUAGE CXX)
 
+target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
+
 
 if (MSVC)
 

@@ -1463,7 +1463,8 @@ endif ()
 
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
-set_target_properties(static_${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
+target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
+#set_target_properties(static_${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)

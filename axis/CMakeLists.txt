@@ -421,6 +421,9 @@ endif ()
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 
+target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
+
+
 if (MSVC)
 
 

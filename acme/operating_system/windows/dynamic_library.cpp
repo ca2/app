@@ -11,7 +11,7 @@
 #include "acme/platform/application.h"
 #include "acme/_operating_system.h"
 
-
+#pragma comment(lib, "shlwapi.lib")
 namespace windows
 {
 

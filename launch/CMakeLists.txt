@@ -7,10 +7,12 @@ list(APPEND executable_source
         #_wget.cpp
         application.cpp
         application.h
+        main.cpp
 )
 
-add_executable(${PROJECT_NAME} ${executable_source}
-        application_main.cpp
+
+add_executable(${PROJECT_NAME}
+        ${executable_source}
 )
 
 add_library(static_${PROJECT_NAME}_library STATIC ${executable_source})
@@ -51,8 +53,13 @@ elseif(${NETBSD})
    target_link_options(${PROJECT_NAME} PRIVATE -static)
 endif()
 
-add_dependencies(${PROJECT_NAME} static_acme)
+target_link_libraries(${PROJECT_NAME} PRIVATE static_acme)
+target_link_libraries(${PROJECT_NAME} PRIVATE static_acme_windows_common)
+target_link_libraries(${PROJECT_NAME} PRIVATE static_acme_windows)
+
 add_dependencies(static_${PROJECT_NAME}_library static_acme)
+
+
 
 if(${LINUX})
 
@@ -66,8 +73,11 @@ add_dependencies(static_${PROJECT_NAME}_library static_nano_compress_command_lin
 add_dependencies(static_${PROJECT_NAME}_library static_nano_http_command_line)
 endif()
 
-set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
-set_target_properties(static_${PROJECT_NAME}_library PROPERTIES LINKER_LANGUAGE CXX)
+#set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
+#set_target_properties(static_${PROJECT_NAME}_library PROPERTIES LINKER_LANGUAGE CXX)
+target_compile_definitions(${PROJECT_NAME} PRIVATE CUBE)
+target_compile_definitions(static_${PROJECT_NAME}_library PRIVATE CUBE)
+
 
 if(${__CMAKE_BUILD_TYPE} STREQUAL "Release")
 

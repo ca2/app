@@ -7,7 +7,7 @@
 
 
 
-void nano_http_wininet_factory(::factory::factory * pfactory)
+__FACTORY_EXPORT void nano_http_wininet_factory(::factory::factory * pfactory)
 {
 
    pfactory->add_factory_item<::windows::nano::http::http, ::nano::http::http>();

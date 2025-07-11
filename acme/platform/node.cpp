@@ -35,7 +35,8 @@
 
 #ifdef WINDOWS_DESKTOP
 
-void nano_http_wininet_factory(::factory::factory * pfactory);
+__FACTORY_IMPORT void nano_http_wininet_factory(::factory::factory * pfactory);
+__FACTORY_IMPORT void nano_compress_windows_factory(::factory::factory * pfactory);
 
 #endif
 
@@ -3094,7 +3095,19 @@ bool node::defer_component_factory(const ::scoped_string & scopedstrComponent)
       return true;
 
    }
-   
+      else if (scopedstrComponent == "nano_compress")
+      {
+
+         auto pfactory = __allocate::factory::factory();
+
+         nano_compress_windows_factory(pfactory);
+
+         pfactory->merge_to_global_factory();
+
+         return true;
+
+      }
+
 #endif
 
    return false;

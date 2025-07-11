@@ -199,12 +199,17 @@ int getche()
 #endif // defined(HAVE_TERMIOS_H) && HAVE_TERMIOS_Hc
 
 
-//CLASS_DECL_ACME enum_dialog_result message_box_for_console(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
-//{
-//
-//   return message_box_for_console(scopedstr, scopedstrTitle, emessagebox, nullptr);
-//
-//}
+enum_dialog_result message_box_for_console(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrTitle,
+   const ::enum_message_box& emessagebox)
+{
+
+   //return message_box_for_console(scopedstr, scopedstrTitle, emessagebox, nullptr);
+
+   throw todo;
+
+   return e_dialog_result_none;
+
+}
 
 
 std_out_buffer::std_out_buffer()

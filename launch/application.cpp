@@ -13,7 +13,9 @@
 #include "acme/prototype/datetime/datetime.h"
 
 
-namespace launch
+IMPLEMENT_APPLICATION_FACTORY(app_launch);
+
+namespace app_launch
 {
 
 
@@ -632,7 +634,7 @@ namespace launch
    }
 
 
-} // namespace launch
+} // namespace app_launch
 
 
 //    // void application::log_system(const char * pszCommand)

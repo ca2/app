@@ -296,6 +296,9 @@ list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
 
+target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
+
+
 if (NOT ${NO_PRECOMPILED_HEADER})
 
    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)

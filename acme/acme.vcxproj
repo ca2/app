@@ -1744,6 +1744,7 @@
     <ClInclude Include="array2d.h" />
     <ClInclude Include="call.h" />
     <ClInclude Include="constant\call.h" />
+    <ClInclude Include="platform\http.h" />
     <ClInclude Include="prototype\prototype\call.h" />
     <ClInclude Include="compress\compress.h" />
     <ClInclude Include="compress\uncompress.h" />
@@ -2770,6 +2771,7 @@
     <ClInclude Include="operating_system\windows\find_file.h" />
     <ClCompile Include="operating_system\windows\message_box.cpp" />
     <ClCompile Include="operating_system\windows\message_loop.cpp" />
+    <ClCompile Include="operating_system\windows\nano\http\_factory.cpp" />
     <ClCompile Include="operating_system\windows\nano\http\hinternet.cpp" />
     <ClCompile Include="operating_system\windows\nano\http\http.cpp" />
     <ClCompile Include="operating_system\windows\nano\http\connect.cpp" />

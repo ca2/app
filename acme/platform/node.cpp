@@ -33,6 +33,11 @@
 #include "acme/windowing/windowing.h"
 #include "filesystem/filesystem/listing.h"
 
+#ifdef WINDOWS_DESKTOP
+
+void nano_http_wininet_factory(::factory::factory * pfactory);
+
+#endif
 
 //namespace nano{namespace  user{
 //::user::enum_operating_ambient calculate_edesktop();
@@ -3074,7 +3079,23 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
 
 bool node::defer_component_factory(const ::scoped_string & scopedstrComponent)
 {
+
+#ifdef WINDOWS_DESKTOP
+
+   if (scopedstrComponent == "nano_http")
+   {
+
+      auto pfactory = __allocate::factory::factory();
+
+      nano_http_wininet_factory(pfactory);
+
+      pfactory->merge_to_global_factory();
+
+      return true;
+
+   }
    
+#endif
 
    return false;
 

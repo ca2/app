@@ -1518,7 +1518,7 @@ namespace experience_nanoui
 
          auto periodFadeOut = 490_ms;
 
-         double dRate = maximum(0u, minimum(1.0, pbar->find_unsigned_int("tracking_alpha")/255.0));
+         double dRate = maximum(0u, minimum(1.0, pbar->get_unsigned_int("tracking_alpha")/255.0));
 
          if (pbar->m_bTracking)
          {

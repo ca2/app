@@ -466,6 +466,12 @@
     <Filter Include="Header Files\operating_system-windows">
       <UniqueIdentifier>{e79eec09-d61c-4f2d-8bf1-4d512e72d311}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\operating_system\windows_common\nano\compress">
+      <UniqueIdentifier>{355ca080-36e8-4c57-8f00-e2a514c91e24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\windows_common\com">
+      <UniqueIdentifier>{c205b87d-5477-43d6-b6fc-2c9223af30a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -6013,6 +6019,21 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows\nano\http\_factory.cpp">
       <Filter>Source Files\operating_system\windows\nano\http</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\nano\compress\_factory.cpp">
+      <Filter>Source Files\operating_system\windows_common\nano\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\nano\compress\compress.cpp">
+      <Filter>Source Files\operating_system\windows_common\nano\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\com\_.cpp">
+      <Filter>Source Files\operating_system\windows_common\com</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\com\bstring.cpp">
+      <Filter>Source Files\operating_system\windows_common\com</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\com\hresult_exception.cpp">
+      <Filter>Source Files\operating_system\windows_common\com</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -2787,6 +2787,9 @@
     <ClCompile Include="operating_system\windows\windows.cpp" />
     <ClCompile Include="operating_system\windows\_factory.cpp" />
     <ClCompile Include="operating_system\windows_common\acme.cpp" />
+    <ClCompile Include="operating_system\windows_common\com\bstring.cpp" />
+    <ClCompile Include="operating_system\windows_common\com\hresult_exception.cpp" />
+    <ClCompile Include="operating_system\windows_common\com\_.cpp" />
     <ClCompile Include="operating_system\windows_common\Debug.cpp" />
     <ClCompile Include="operating_system\windows_common\file1.cpp" />
     <ClCompile Include="operating_system\windows_common\find_file.cpp" />
@@ -2797,6 +2800,8 @@
     <ClCompile Include="operating_system\windows_common\dll.cpp" />
     <ClCompile Include="operating_system\windows_common\file.cpp" />
     <ClCompile Include="operating_system\windows_common\memory.cpp" />
+    <ClCompile Include="operating_system\windows_common\nano\compress\compress.cpp" />
+    <ClCompile Include="operating_system\windows_common\nano\compress\_factory.cpp" />
     <ClCompile Include="operating_system\windows_common\nano\idn\idn.cpp" />
     <ClCompile Include="operating_system\windows_common\nano\idn\_idn.cpp" />
     <ClCompile Include="operating_system\windows_common\parallelization.cpp" />

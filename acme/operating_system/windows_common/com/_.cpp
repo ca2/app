@@ -3,7 +3,7 @@
 #include "acme/_operating_system.h"
 
 
-CLASS_DECL_ACME_WINDOWS_COMMON void throw_if_failed(HRESULT hr)
+CLASS_DECL_ACME void throw_if_failed(HRESULT hr)
 {
 
    if (FAILED(hr))

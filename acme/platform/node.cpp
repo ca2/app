@@ -35,8 +35,8 @@
 
 #ifdef WINDOWS_DESKTOP
 
-__FACTORY_IMPORT void nano_http_wininet_factory(::factory::factory * pfactory);
-__FACTORY_IMPORT void nano_compress_windows_factory(::factory::factory * pfactory);
+__FACTORY_EXPORT void nano_http_wininet_factory(::factory::factory * pfactory);
+__FACTORY_EXPORT void nano_compress_windows_factory(::factory::factory * pfactory);
 
 #endif
 

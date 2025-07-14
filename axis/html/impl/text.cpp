@@ -609,11 +609,14 @@ namespace html
 
          ::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
 
+         ::draw2d::save_context savecontext(pgraphics);
+
+
          //::int_rectangle rectangleWindow;
          //m_pcheckbox->window_rectangle(rectangleWindow);
-         ::int_point pointPreviousContextOrg = pgraphics->get_origin();
+         auto offsetcontext = pgraphics->offset_context();
 
-         pgraphics->offset_origin((int) m_box.left(), (int) m_box.top());
+         offsetcontext += m_box;
 
          if (::is_set(m_pedit) && m_pedit->is_window() && pdata->m_pcoredata->m_bEdit)
          {
@@ -660,7 +663,7 @@ namespace html
 
          }
 
-         pgraphics->set_origin(pointPreviousContextOrg);
+         //pgraphics->shift_impact_area(pointPreviousContextOrg);
 
          /*
 

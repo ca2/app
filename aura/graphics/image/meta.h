@@ -34,8 +34,8 @@ namespace image
       ::pointer<::draw2d::graphics>             m_pgraphics;
       double                                    m_dSpeed;
       double                                    m_dIsotropicRate;
-      ::int_size                                m_sizeAlloc;
-      int_point                                 m_point;
+      //::int_size                                m_sizeAlloc;
+      //int_point                                 m_point;
       double                                    m_dFontFactor;
       //::draw2d::enum_alpha_mode               m_ealphamode;
       bool                                      m_bOwn;
@@ -47,9 +47,7 @@ namespace image
       image_dynamic                             m_dynamic;
 
 
-      image_meta() :
-         m_sizeAlloc(0, 0),
-         m_point(0, 0)
+      image_meta()
       {
 
          //m_uImageFlags = DEFAULT_CREATE_IMAGE_FLAGS;

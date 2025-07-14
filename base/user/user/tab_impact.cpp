@@ -1497,7 +1497,7 @@ namespace user
 
          }
 
-         pgraphics->offset_origin((int)pointOffset.x(), (int)pointOffset.y());
+         pgraphics->shift_impact_area(pointOffset, const_layout().layout().size());
 
       }
 

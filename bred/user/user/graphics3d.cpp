@@ -356,6 +356,14 @@ namespace user
 
          if(pcompositor)
          {
+
+            double_rectangle r;
+            r.left() = 10.0;
+            r.top() = 10.0;
+            r.right() = 60.0;
+            r.bottom() = 60.0;
+
+            pgraphics->fill_solid_rectangle(r, argb(1.0, 0.5, 0.75, 0.95));
             
             pgpuframe = pcompositor->end_gpu_layer();
 
@@ -363,7 +371,7 @@ namespace user
 
       }
             
-      if (1)
+      if (0)
       {
 
          m_pengine->_001OnDraw(pgraphics);

@@ -1161,13 +1161,15 @@ namespace user
 
             ::int_size sz = m_ppictureimpl->m_rectangleDrawing.size();
 
-            pimage->g()->set_origin(sz.cx() / 2, sz.cy() / 2);
+            auto offset = sz / 2;
+
+            pimage->g()->offset(offset);
 
             ::draw2d::graphics_pointer pgraphicsImage = pimage->g();
 
             draw_text(pgraphicsImage, rectangle);
 
-            pimage->g()->set_origin(0, 0);
+            pimage->g()->offset(-offset);
 
             defer_draw_drop_shadow_phase1(rDropShadow, blurDropShadow, imageDropShadow, pimage);
 

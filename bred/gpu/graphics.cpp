@@ -82,7 +82,7 @@ auto iContextHeight = pcontext->m_rectangle.height()
 
       auto pgpudevice = pcontext->m_pgpudevice;
 
-      auto prenderer = pcontext->m_pgpurenderer;
+      auto prenderer = pcontext->get_gpu_renderer();
 
       auto prendertarget = prenderer->m_pgpurendertarget;
 
@@ -189,6 +189,36 @@ auto iContextHeight = pcontext->m_rectangle.height()
 
 
    }
+
+
+   void graphics::update_matrix()
+   {
+
+
+      //auto matrix = m_matrixChangeOutput * matrixScale * m_matrix * matrixTranslate;
+
+      //auto m = m_matrix;
+
+      auto scaling = ::geometry2d::matrix::scaling(m_sizeScaling);
+
+      auto translation = ::geometry2d::matrix::translation(m_pointOrigin);
+
+      //m.scale(m_sizeScaling, ::geometry2d::matrix::mode_prepend);
+
+      //m.scale(m_sizeScaleOutput, ::geometry2d::matrix::mode_prepend);
+
+      //m.translate(m_pointOrigin, ::geometry2d::matrix::mode_append);
+
+      //m.translate(m_pointTranslateOutput, ::geometry2d::matrix::mode_append);
+
+      auto matrix = scaling * m_matrix * translation;
+
+      _set(matrix);
+
+   }
+
+
+
 
 
    void graphics::on_end_draw()
@@ -339,6 +369,34 @@ auto iContextHeight = pcontext->m_rectangle.height()
       auto pcontext = gpu_context();
 
       pcontext->__bind_draw2d_compositor(this, player);
+
+   }
+
+
+
+   void graphics::defer_create_swap_chain(::user::interaction* puserinteraction)
+   {
+
+      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+      {
+
+         auto pgpucontext = gpu_context();
+
+         auto pgpudevice = pgpucontext->m_pgpudevice;
+
+         auto pcontextMain = pgpudevice->main_context();
+
+         auto pswapchain = pcontextMain->get_swap_chain();
+
+         if (!pswapchain->m_bSwapChainInitialized)
+         {
+
+            pswapchain->initialize_swap_chain_window(pcontextMain, puserinteraction->window());
+
+         }
+
+      }
+
 
    }
 

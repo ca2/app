@@ -203,9 +203,9 @@ namespace draw2d_gpu
       //virtual int_point get_origin() const;
       virtual int SetMapMode(int nMapMode);
       // Context Origin
-      virtual int_point set_origin(int x, int y);
-      virtual int_point set_origin(const ::int_point & point);
-      virtual int_point offset_origin(int nWidth, int nHeight);
+      //virtual int_point set_origin(int x, int y);
+      //virtual int_point set_origin(const ::int_point & point);
+      //virtual int_point offset_origin(int nWidth, int nHeight);
 
       // Context Extent
       virtual int_size get_context_extents() const;

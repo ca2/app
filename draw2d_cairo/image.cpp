@@ -188,10 +188,10 @@ namespace draw2d_cairo
       m_pgraphics = pgraphics;
 
       m_pgraphics->set(m_pbitmap);
-      m_pgraphics->set_origin(m_point);
+      m_pgraphics->reset_impact_area();
       m_pgraphics->m_pimage = this;
       m_sizeRaw = size;
-      m_sizeAlloc = size;
+      //m_sizeAlloc = size;
       m_pimage32 = nullptr;
 
       //init(size, pimage32Raw, iScan);

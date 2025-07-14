@@ -706,13 +706,13 @@ namespace draw2d_cairo
    }
 
 
-// non-virtual helpers calling virtual mapping functions
-   double_point graphics::set_origin(const ::double_point & point)
-   {
-
-      return set_origin(point.x(), point.y());
-
-   }
+//// non-virtual helpers calling virtual mapping functions
+//   double_point graphics::set_origin(const ::double_point & point)
+//   {
+//
+//      return set_origin(point.x(), point.y());
+//
+//   }
 
 
    double_size graphics::set_extents(const ::double_size & double_size)
@@ -731,12 +731,12 @@ namespace draw2d_cairo
    }
 
 
-   double_size graphics::set_window_ext(const ::double_size & double_size)
-   {
+   //double_size graphics::set_window_ext(const ::double_size & double_size)
+   //{
 
-      return ::double_size(0, 0);
+   //   return ::double_size(0, 0);
 
-   }
+   //}
 
 
    void graphics::DPtoLP(::double_point * lpPoints, ::collection::count nCount)
@@ -3414,28 +3414,28 @@ namespace draw2d_cairo
 //}
 
 
-   double_point graphics::get_origin()
-   {
+   //double_point graphics::get_origin()
+   //{
 
-      return ::draw2d::graphics::get_origin();
+   //   return ::draw2d::graphics::get_origin();
 
-   }
-
-
-   double_point graphics::set_origin(double x, double y)
-   {
-
-      return ::draw2d::graphics::set_origin(x, y);
-
-   }
+   //}
 
 
-   double_point graphics::offset_origin(double nWidth, double nHeight)
-   {
+   //double_point graphics::set_origin(double x, double y)
+   //{
 
-      return ::draw2d::graphics::offset_origin(nWidth, nHeight);
+   //   return ::draw2d::graphics::set_origin(x, y);
 
-   }
+   //}
+
+
+   //double_point graphics::offset_origin(double nWidth, double nHeight)
+   //{
+
+   //   return ::draw2d::graphics::offset_origin(nWidth, nHeight);
+
+   //}
 
 
    double_size graphics::set_extents(double x, double y)
@@ -3476,24 +3476,24 @@ namespace draw2d_cairo
    }
 
 
-   double_size graphics::set_window_ext(double x, double y)
-   {
+   //double_size graphics::set_window_ext(double x, double y)
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-      return ::double_size(0, 0);
+   //   return ::double_size(0, 0);
 
-   }
+   //}
 
 
-   double_size graphics::scale_window_ext(double xNum, double xDenom, double yNum, double yDenom)
-   {
+   //double_size graphics::scale_window_ext(double xNum, double xDenom, double yNum, double yDenom)
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-      return ::double_size(0, 0);
+   //   return ::double_size(0, 0);
 
-   }
+   //}
 
 
    int graphics::get_clip_box(::double_rectangle & rectangle)

@@ -30,11 +30,9 @@ namespace draw2d
 
       ::int_rectangle clipRect;
 
-      int_size viewportExt = pgraphics->get_extents();
-      int_point viewportOrg = pgraphics->get_origin();
+      auto offsetcontext = pgraphics->offset_context();
 
-      pgraphics->offset_origin(ppointOffset->x(), ppointOffset->y());
-
+      offsetcontext += *ppointOffset;
 
       pgraphics->scale_extents((int)dRateX, 1, 1, 1);
 
@@ -44,8 +42,8 @@ namespace draw2d
       pgraphics->end_path();
       pgraphics->stroke_path();
 
-      pgraphics->set_window_ext(viewportExt);
-      pgraphics->set_origin(viewportOrg);
+      //pgraphics->place_impact_area(origin, extents);
+      //pgraphics->set_origin(viewportOrg);
 
    }
 
@@ -60,11 +58,12 @@ namespace draw2d
 
       ::int_rectangle clipRect;
 
-      int_size viewportExt = pgraphics->get_extents();
-      int_point viewportOrg = pgraphics->get_origin();
+      //int_size viewportExt = pgraphics->get_extents();
+      auto offsetcontext = pgraphics->offset_context();
 
-      pgraphics->offset_origin(ppointOffset->x(), ppointOffset->y());
+      offsetcontext += *ppointOffset;
 
+      //pgraphics->shift_impact_area(*ppointOffset, viewportExt);
 
       pgraphics->scale_extents((int)dRateX, 1, 1, 1);
 
@@ -74,10 +73,11 @@ namespace draw2d
       pgraphics->end_path();
       pgraphics->stroke_and_fill_path();
 
-      pgraphics->set_window_ext(viewportExt);
-      pgraphics->set_origin(viewportOrg);
+      //pgraphics->place_impact_area(viewportOrg, viewportExt);
+      //pgraphics->set_origin();
 
    }
+
 
    void api::draw_and_fill_beziers(
    ::draw2d::graphics_pointer & pgraphics,
@@ -91,11 +91,9 @@ namespace draw2d
 
       ::int_rectangle clipRect;
 
-      int_size viewportExt = pgraphics->get_extents();
+      auto offsetcontext = pgraphics->offset_context();
 
-      int_point viewportOrg = pgraphics->get_origin();
-
-      pgraphics->offset_origin(ppointOffset->x(), ppointOffset->y());
+      offsetcontext += *ppointOffset;
 
       pgraphics->scale_extents((int)(dRateX * 1000.0), 1, 1, 1);
 
@@ -106,10 +104,10 @@ namespace draw2d
 
       }
 
-      pgraphics->set_window_ext(viewportExt);
-      pgraphics->set_origin(viewportOrg);
+      //pgraphics->place_impact_area(viewportOrg, viewportExt);
 
    }
+
 
    void api::embossed_text_out(
    ::draw2d::graphics_pointer &     pgraphics,

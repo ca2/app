@@ -1,5 +1,6 @@
 // Created by camilo on 2025-06-18 19:58 <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "bred_approach.h"
 #include "compositor.h"
 #include "context.h"
 #include "device.h"
@@ -7,6 +8,7 @@
 #include "layer.h"
 #include "renderer.h"
 #include "render_target.h"
+#include "acme/platform/application.h"
 
 
 namespace gpu
@@ -44,10 +46,77 @@ namespace gpu
    }
 
 
+   //void compositor::defer_yield_gpu_context()
+   //{
+
+
+
+   //}
+
+
+   void compositor::defer_yield_gpu_context(const ::int_rectangle & rectanglePlacement)
+   {
+
+       if (!m_pgpucontextCompositor2)
+       {
+
+           auto pgpuapproach = application()->get_gpu_approach();
+
+           //if (!m_puserinteraction)
+           //{
+
+           //   m_puserinteraction = dynamic_cast <::user::interaction*>(application()->m_pacmeuserinteractionMain.m_p);
+
+           //}
+
+           //ASSERT(m_puserinteraction);
+
+           auto pgpudevice = pgpuapproach->get_gpu_device();
+
+           auto pgpucontext = pgpudevice->create_draw2d_context(::gpu::e_output_gpu_buffer, rectanglePlacement.size());
+
+           //::gpu::start_context_t startcontext;
+           //startcontext.m_pparticle = this;
+           //startcontext.m_pgpudevice = pgpudevice;
+           //startcontext.m_eoutput = ::gpu::e_output_color_and_alpha_accumulation_buffers;
+           //startcontext.m_rectanglePlacement = rectanglePlacement;
+
+           auto pgpucontextNew = pgpucontext;
+
+           set_gpu_context(pgpucontextNew);
+
+           m_pgpucontextCompositor2->m_pgpucompositor = this;
+
+           //pcontext = gpu_context();
+
+           //pcontext->m_pgpucompositor = this;
+           //m_pgpucontextCompositor = pgpudevice->start_gpu_output_context(
+           //   this,
+           //   ::gpu::e_output_color_and_alpha_accumulation_buffers,
+           //   rectanglePlacement
+           //);
+
+
+       }
+       else
+       {
+
+           m_pgpucontextCompositor2->set_placement(rectanglePlacement);
+
+       }
+
+       //return m_pgpucontextCompositor2;
+
+   }
+
+
+
+
+
    ::gpu::context* compositor::gpu_context()
    {
 
-      return m_pgpucontextCompositor2;
+       return m_pgpucontextCompositor2;
 
    }
 

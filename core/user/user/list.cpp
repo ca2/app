@@ -277,7 +277,7 @@ namespace user
 
          pbrushText->create_solid(get_color(pstyle,::e_element_text));
 
-         auto pointContextOrg = pgraphics->get_origin();
+         auto offsetcontext = pgraphics->offset_context();
 
          pgraphics->set(pbrushText);
 
@@ -332,7 +332,7 @@ namespace user
             }
          }
 
-         pgraphics->set_origin(pointContextOrg);
+         //pgraphics->set_origin(pointContextOrg);
 
       }
 

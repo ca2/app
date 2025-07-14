@@ -617,11 +617,15 @@ void draw2d::emboss_predicate(
       pbrushText->create_solid(argb(255, 255, 255, 255));
       pimage->get_graphics()->set(pbrushText);
 
-      pimage->get_graphics()->offset_origin(rectangleCache.left() - rectangle.left(), rectangleCache.top() - rectangle.top());
+      auto shift = rectangleCache.top_left() - rectangle.top_left();
+
+      auto extent = rectangleCache.size();
+
+      pimage->get_graphics()->shift_impact_area(shift, extent);
 
       functionDraw(pimage->get_graphics());
 
-      pimage->get_graphics()->offset_origin(-rectangleCache.left() + rectangle.left(), -rectangleCache.top() + rectangle.top());
+      pimage->get_graphics()->shift_impact_area(-shift, extent);
 
       auto psystem = system();
 

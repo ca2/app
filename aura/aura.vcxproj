@@ -1451,6 +1451,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\object.cpp" />
+    <ClCompile Include="graphics\draw2d\offset.cpp" />
     <ClCompile Include="graphics\draw2d\palette.cpp" />
     <ClCompile Include="graphics\draw2d\path.cpp" />
     <ClCompile Include="graphics\draw2d\path_optimization.cpp" />
@@ -1714,6 +1715,7 @@
     <ClInclude Include="graphics\draw2d\item.h" />
     <ClInclude Include="graphics\draw2d\lock.h" />
     <ClInclude Include="graphics\draw2d\object.h" />
+    <ClInclude Include="graphics\draw2d\offset.h" />
     <ClInclude Include="graphics\draw2d\palette.h" />
     <ClInclude Include="graphics\draw2d\path.h" />
     <ClInclude Include="graphics\draw2d\path_shape.h" />

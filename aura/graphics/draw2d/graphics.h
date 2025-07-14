@@ -14,6 +14,7 @@
 #include "aura/user/user/redraw.h"
 #include "aura/graphics/draw2d/region.h"
 #include "aura/graphics/draw2d/bitmap.h"
+#include "aura/graphics/draw2d/offset.h"
 namespace gpu
 {
 
@@ -57,6 +58,8 @@ namespace draw2d
 
    //};
 
+
+
 /// <summary>
 /// graphics * -> ::image::image_source_pointer concept
 /// </summary>
@@ -64,7 +67,8 @@ namespace draw2d
       virtual public ::aura::simple_chain < ::aura::draw_context >,
       virtual public ::image::image_drawer,
       virtual public ::write_text::drawer,
-      virtual public ::image::image_source_interface
+      virtual public ::image::image_source_interface,
+      virtual public ::draw2d::offsetable
    {
    public:
 
@@ -102,6 +106,7 @@ namespace draw2d
       ::double_point                            m_point;
 
    protected:
+      bool                                   _m_bYFlip;
       enum_alpha_mode                        m_ealphamode;
 
 
@@ -115,6 +120,7 @@ namespace draw2d
 
       ::double_size                             m_sizeScaling;
       ::double_point                            m_pointOrigin;
+      ::double_size                             m_sizeImpact;
       ::geometry2d::matrix                      m_matrix;
       ::double_size                             m_sizeScaleOutput;
       ::double_point                            m_pointTranslateOutput;
@@ -431,13 +437,32 @@ namespace draw2d
 
       // Mapping Functions
       ///virtual int GetMapMode();
-      virtual ::double_point get_origin();
+      ///virtual ::double_point _get_origin();
       //virtual int SetMapMode(int nMapMode);
       // Context Origin
-      virtual ::double_point set_origin(double x, double y);
-      virtual ::double_point set_origin(const ::double_point& double_point);
-      virtual ::double_point offset_origin(double x, double y);
+      //virtual void _set_origin(double x, double y);
+      //virtual void _set_origin(const ::double_point& double_point);
+      //virtual void _offset_origin(double x, double y);
 
+
+      virtual void reset_impact_area();
+      virtual void place_impact_area(double x, double y, double w, double h);
+      virtual void place_impact_area(const ::double_point& pointImpactArea, const ::double_size & sizeImpactArea);
+      virtual void place_impact_area(const ::double_rectangle& rectangleImpactArea);
+      void shift_impact_area(double dx, double dy, double w, double h) override;
+      virtual void shift_impact_area(const ::double_size& shiftImpactArea, const ::double_size& sizeImpactArea);
+      virtual void shift_impact_area(const ::double_rectangle& rectangleImpactArea);
+
+
+      void x_offset(double dx) override;
+      void y_offset(double dy) override;
+      void offset(double dx, double dy) override;
+      virtual void _x_offset(double dx);
+      virtual void _y_offset(double dy);
+      virtual void _offset(double dx, double dy);
+      virtual void offset(const ::double_size& size);
+
+      
       // Context Extent
       virtual ::double_size get_extents();
       virtual ::double_size set_extents(double cx, double cy);
@@ -452,9 +477,9 @@ namespace draw2d
 
       // Window extent
       virtual ::double_size GetWindowExt();
-      virtual ::double_size set_window_ext(double cx, double cy);
-      virtual ::double_size set_window_ext(const ::double_size& size);
-      virtual ::double_size scale_window_ext(double xNum, double xDenom, double yNum, double yDenom);
+      //virtual ::double_size set_window_ext(double cx, double cy);
+      //virtual ::double_size set_window_ext(const ::double_size& size);
+      //virtual ::double_size scale_window_ext(double xNum, double xDenom, double yNum, double yDenom);
 
       // Coordinate Functions
       virtual void DPtoLP(::double_point* ppoint, ::collection::count nCount = 1);
@@ -1136,6 +1161,10 @@ namespace draw2d
       virtual void append(const ::geometry2d::matrix& matrix);
       virtual void prepend(const ::geometry2d::matrix& matrix);
       virtual void update_matrix();
+      //void _apply_offset() override;
+      void _get(::draw2d::offset_context* poffsetcontext) override;
+      void _set(::draw2d::offset_context* poffsetcontext) override;
+
 
       virtual void _get(::geometry2d::matrix& matrix);
       virtual void _set(const ::geometry2d::matrix& matrix);
@@ -1321,8 +1350,6 @@ namespace draw2d
 
    //CLASS_DECL_AURA ::draw2d::graphics_pointer create_graphics();
    //CLASS_DECL_AURA ::draw2d::graphics_pointer create_memory_graphics();
-
-
 
 } // namespace draw2d
 

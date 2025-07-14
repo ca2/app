@@ -9,6 +9,8 @@
 #include "bred/gpu/device.h"
 
 
+
+
 namespace gpu
 {
 
@@ -47,6 +49,9 @@ namespace gpu
 
       void on_set_gpu_context() override;
 
+
+      void update_matrix() override;
+
       //void start_gpu_layer() override;
       //void end_gpu_layer() override;
 
@@ -63,7 +68,9 @@ namespace gpu
 
          //auto& pmodelbuffer = m_pmodelbufferRectangle;
 
+      //void defer_yield_gpu_context() override;
 
+      //::gpu::context* gpu_context() override;
 
       //void set_hint_window_output() override;
       virtual ::gpu::shader* rectangle_shader();
@@ -95,6 +102,7 @@ namespace gpu
  
       ///void create_offscreen_graphics_for_swap_chain_blitting(::user::interaction* puserinteraction, const ::int_size& size = {}) override;
       void create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size) override;
+      virtual void defer_create_swap_chain(::user::interaction* puserinteraction);
 
 
       virtual void bind_draw2d_compositor(::gpu::layer * player);

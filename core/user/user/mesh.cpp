@@ -248,7 +248,7 @@ namespace user
 
          pbrushText->create_solid(get_color(pstyle, ::e_element_text));
 
-         const ::int_point & pointContextOrg = pgraphics->get_origin();
+         auto offsetContext = pgraphics->offset_context();
 
          pgraphics->set(pbrushText);
          ::double_size_array sizea;
@@ -290,7 +290,7 @@ namespace user
                iStart = iNewStart;
             }
          }
-         pgraphics->set_origin(pointContextOrg);
+         //pgraphics->set_origin(pointContextOrg);
       }
 
 

@@ -693,6 +693,9 @@
     <ClCompile Include="graphics\image\buffer.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\draw2d\offset.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windowing\_.h">
@@ -1684,6 +1687,9 @@
     </ClInclude>
     <ClInclude Include="graphics\image\lock.h">
       <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\offset.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -752,6 +752,7 @@
     <ClCompile Include="brush.cpp" />
     <ClCompile Include="cairo.cpp" />
     <ClCompile Include="draw2d.cpp" />
+    <ClCompile Include="draw2d_win32.cpp" />
     <ClCompile Include="_cairo.cpp" />
     <ClCompile Include="_factory.cpp" />
     <ClCompile Include="font.cpp" />

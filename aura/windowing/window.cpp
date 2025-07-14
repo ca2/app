@@ -9846,7 +9846,7 @@ namespace windowing
 
                   pgraphics->reset_clip();
 
-                  pgraphics->set_origin(0., 0.);
+                  pgraphics->reset_impact_area();
 
                   //{
 
@@ -10164,7 +10164,7 @@ namespace windowing
 
                   pgraphics->reset_clip();
 
-                  pgraphics->set_origin(0., 0.);
+                  pgraphics->reset_impact_area();
 
                   //{
 

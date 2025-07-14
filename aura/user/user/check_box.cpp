@@ -197,7 +197,7 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->offset_origin(rectangleX.left(), rectangleX.top());
+      pgraphics->shift_impact_area(rectangleX);
 
       ::int_rectangle rectangleCheckBox;
 

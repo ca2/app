@@ -5688,6 +5688,8 @@ namespace user
 
          ::int_point pointOffset;
 
+         ::int_size sizeImpact;
+
          if (m_puserinteractionParent != nullptr)
          {
 
@@ -5702,7 +5704,9 @@ namespace user
 
          }
 
-         pgraphics->offset_origin((int)pointOffset.x(), (int)pointOffset.y());
+         sizeImpact = layout().layout().size();
+
+         pgraphics->shift_impact_area(pointOffset, sizeImpact);
 
       }
 
@@ -5710,9 +5714,9 @@ namespace user
 
          auto pointContextOffset = get_context_offset();
 
-         auto offset = -pointContextOffset;
+         auto sizeImpact = layout().layout().size();
 
-         pgraphics->offset_origin((int)offset.x(), (int)offset.y());
+         pgraphics->shift_impact_area(-pointContextOffset, sizeImpact);
 
       }
 

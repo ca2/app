@@ -72,6 +72,7 @@ namespace draw2d
    {
 
 
+      _m_bYFlip = false;
       m_bForWindowDraw2d = false;
       m_bDraw = true;
       m_puserinteraction = nullptr;
@@ -731,12 +732,12 @@ namespace draw2d
    //}
 
 
-   double_point graphics::get_origin()
-   {
+   //double_point graphics::get_origin()
+   //{
 
-      return ::int_point((int)m_pointOrigin.x(), (int)m_pointOrigin.y());
+   //   return ::int_point((int)m_pointOrigin.x(), (int)m_pointOrigin.y());
 
-   }
+   //}
 
 
    double_size graphics::get_extents()
@@ -763,12 +764,12 @@ namespace draw2d
    }
 
 
-   double_point graphics::set_origin(const ::double_point & point)
-   {
+   //void graphics::_set_origin(const ::double_point & point)
+   //{
 
-      return set_origin(point.x(), point.y());
+   //   _set_origin(point.x(), point.y());
 
-   }
+   //}
 
 
    double_size graphics::set_extents(const ::double_size & size)
@@ -791,14 +792,14 @@ namespace draw2d
    }
 
 
-   double_size graphics::set_window_ext(const ::double_size & size)
-   {
+   //double_size graphics::set_window_ext(const ::double_size & size)
+   //{
 
-      __UNREFERENCED_PARAMETER(size);
+   //   __UNREFERENCED_PARAMETER(size);
 
-      return ::double_size(0, 0);
+   //   return ::double_size(0, 0);
 
-   }
+   //}
 
 
    void graphics::DPtoLP(double_point * ppoints, ::collection::count nCount)
@@ -2961,14 +2962,182 @@ namespace draw2d
       //}
 
 
-   double_point graphics::set_origin(double x, double y)
+   void graphics::reset_impact_area()
    {
 
-      m_pointOrigin = { x, y };
+      m_pointOrigin.x() = 0;
+      m_pointOrigin.y() = 0;
+
+      //m_sizeImpact.cx() = m_sizeImpactRaw.cx();
+      //m_sizeImpact.cy() = m_sizeImpactRaw.cy();
+
+   }
+
+
+   void graphics::place_impact_area(double x, double y, double w, double h)
+   {
+
+      m_pointOrigin.x() = x;
+
+      if (_m_bYFlip)
+      {
+
+         m_pointOrigin.y() = m_sizeImpact.height() - (y + h);
+
+      }
+      else
+      {
+
+         m_pointOrigin.y() = y;
+
+      }
+
+      m_sizeImpact = { w, h };
 
       update_matrix();
 
-      return m_pointOrigin;
+   }
+
+
+   void graphics::place_impact_area(const ::double_point& pointImpactArea, const ::double_size& sizeImpactArea)
+   {
+
+      place_impact_area(
+         pointImpactArea.x(),
+         pointImpactArea.y(),
+         sizeImpactArea.width(),
+         sizeImpactArea.height());
+
+   }
+
+
+   void graphics::place_impact_area(const ::double_rectangle& rectangleImpactArea)
+   {
+
+      place_impact_area(rectangleImpactArea.top_left(), rectangleImpactArea.size());
+
+   }
+
+
+   void graphics::shift_impact_area(double dx, double dy, double w, double h)
+   {
+
+      m_pointOrigin.x() += dx;
+
+      if (_m_bYFlip)
+      {
+
+         m_pointOrigin.y() = m_sizeImpact.height() - (m_pointOrigin.y() - dx + h);
+
+      }
+      else
+      {
+
+         m_pointOrigin.y() += dy;
+
+      }
+
+      m_sizeImpact = { w, h };
+
+      update_matrix();
+
+
+   }
+
+
+   void graphics::shift_impact_area(const ::double_size& shiftImpactArea, const ::double_size& sizeImpactArea)
+   {
+
+      place_impact_area(
+         shiftImpactArea.cx(),
+         shiftImpactArea.cy(),
+         sizeImpactArea.width(),
+         sizeImpactArea.height());
+
+   }
+
+
+   void graphics::shift_impact_area(const ::double_rectangle& rectangleImpactArea)
+   {
+
+      shift_impact_area(rectangleImpactArea.top_left(), rectangleImpactArea.size());
+
+   }
+
+
+   void graphics::_x_offset(double dx)
+   {
+
+      m_pointOrigin.x() += dx;
+
+   }
+
+
+   void graphics::x_offset(double dx)
+   {
+
+      _x_offset(dx);
+
+      update_matrix();
+
+   }
+
+
+   void graphics::_y_offset(double dy)
+   {
+
+      if (_m_bYFlip)
+      {
+
+         m_pointOrigin.y() -= dy;
+
+      }
+      else
+      {
+
+         m_pointOrigin.y() += dy;
+
+      }
+
+   }
+
+
+   void graphics::y_offset(double dy)
+   {
+
+      _y_offset(dy);
+
+      update_matrix();
+
+   }
+
+
+   void graphics::offset(double dx, double dy)
+   {
+
+      _offset(dx, dy);
+
+      update_matrix();
+
+   }
+
+
+   void graphics::_offset(double dx, double dy)
+   {
+
+      _x_offset(dx);
+
+      _y_offset(dy);
+
+   }
+
+
+   void graphics::offset(const double_size& size)
+   {
+
+      _offset(size.cx(), size.cy());
+
+      update_matrix();
 
    }
 
@@ -2981,16 +3150,21 @@ namespace draw2d
    }
 
 
-   double_point graphics::offset_origin(double nWidth, double nHeight)
-   {
+   //double_point graphics::offset_origin(double nWidth, double nHeight)
+   //{
 
-      ::shift_int(nWidth, nHeight)(m_pointOrigin);
+   //   ::shift_int(nWidth, nHeight)(m_pointOrigin);
 
-      update_matrix();
+   //   update_matrix();
 
-      return m_pointOrigin;
+   //   return m_pointOrigin;
 
-   }
+   //}
+
+
+   //virtual void shift_impact_area(const ::double_point& pointImpactArea, const ::double_size& sizeImpactArea);
+   //virtual void shift_impact_area(const ::double_rectangle& rectangleImpactArea);
+
 
 
    double_size graphics::set_extents(double x, double y)
@@ -3040,28 +3214,28 @@ namespace draw2d
    }
 
 
-   double_size graphics::set_window_ext(double x, double y)
-   {
+   //double_size graphics::set_window_ext(double x, double y)
+   //{
 
-      __UNREFERENCED_PARAMETER(x);
-      __UNREFERENCED_PARAMETER(y);
+   //   __UNREFERENCED_PARAMETER(x);
+   //   __UNREFERENCED_PARAMETER(y);
 
-      return double_size(0, 0);
+   //   return double_size(0, 0);
 
-   }
+   //}
 
 
-   double_size graphics::scale_window_ext(double xNum, double xDenom, double yNum, double yDenom)
-   {
+   //double_size graphics::scale_window_ext(double xNum, double xDenom, double yNum, double yDenom)
+   //{
 
-      __UNREFERENCED_PARAMETER(xNum);
-      __UNREFERENCED_PARAMETER(xDenom);
-      __UNREFERENCED_PARAMETER(yNum);
-      __UNREFERENCED_PARAMETER(yDenom);
+   //   __UNREFERENCED_PARAMETER(xNum);
+   //   __UNREFERENCED_PARAMETER(xDenom);
+   //   __UNREFERENCED_PARAMETER(yNum);
+   //   __UNREFERENCED_PARAMETER(yDenom);
 
-      return double_size(0, 0);
+   //   return double_size(0, 0);
 
-   }
+   //}
 
 
    //int graphics::get_clip_box(::double_rectangle * int_rectangle)
@@ -6079,7 +6253,7 @@ namespace draw2d
    }
 
 
-   void graphics::nanosvg_drawframe(NSVGimage * pnsvgimage, int x, int y, int width, int height)
+   void graphics::nanosvg_drawframe(NSVGimage * pnsvgimage, int x, int y, int w, int h)
    {
 
       float impact[4], cx, cy, hw, hh, aspect, px;
@@ -6095,7 +6269,7 @@ namespace draw2d
 
       save_context savecontext(this);
 
-      offset_origin(x, y);
+      place_impact_area(x, y, w, h);
 
       //glClearColor(220.0f / 255.0f, 220.0f / 255.0f, 220.0f / 255.0f, 1.0f);
       //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -6111,9 +6285,9 @@ namespace draw2d
       hw = pnsvgimage->width * 0.5f;
       hh = pnsvgimage->height * 0.5f;
 
-      if (width / hw < height / hh)
+      if (w / hw < h / hh)
       {
-         aspect = (float)height / (float)width;
+         aspect = (float)h / (float)w;
          impact[0] = cx - hw * 1.2f;
          impact[2] = cx + hw * 1.2f;
          impact[1] = cy - hw * 1.2f * aspect;
@@ -6121,14 +6295,14 @@ namespace draw2d
       }
       else
       {
-         aspect = (float)width / (float)height;
+         aspect = (float)w / (float)h;
          impact[0] = cx - hh * 1.2f * aspect;
          impact[2] = cx + hh * 1.2f * aspect;
          impact[1] = cy - hh * 1.2f;
          impact[3] = cy + hh * 1.2f;
       }
       // Size of one pixel.
-      px = (impact[2] - impact[1]) / (float)width;
+      px = (impact[2] - impact[1]) / (float)w;
 
       //glOrtho(impact[0], impact[2], impact[3], impact[1], -1, 1);
 
@@ -6329,28 +6503,44 @@ namespace draw2d
    void graphics::update_matrix()
    {
 
-
-      //auto matrix = m_matrixChangeOutput * matrixScale * m_matrix * matrixTranslate;
-
-      //auto m = m_matrix;
-
       auto scaling = ::geometry2d::matrix::scaling(m_sizeScaling);
 
       auto translation = ::geometry2d::matrix::translation(m_pointOrigin);
-
-      //m.scale(m_sizeScaling, ::geometry2d::matrix::mode_prepend);
-
-      //m.scale(m_sizeScaleOutput, ::geometry2d::matrix::mode_prepend);
-
-      //m.translate(m_pointOrigin, ::geometry2d::matrix::mode_append);
-
-      //m.translate(m_pointTranslateOutput, ::geometry2d::matrix::mode_append);
 
       auto matrix = scaling * m_matrix * translation;
 
       _set(matrix);
 
    }
+
+
+   void graphics::_get(::draw2d::offset_context* poffsetcontext)
+   {
+
+      poffsetcontext->m_poffsetable = this;
+      poffsetcontext->m_point = m_pointOrigin;
+      poffsetcontext->m_size = m_sizeImpact;
+
+   }
+   
+   
+   void graphics::_set(::draw2d::offset_context* poffsetcontext)
+   {
+
+      if (poffsetcontext->m_poffsetable != this)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      m_pointOrigin = poffsetcontext->m_point;
+      m_sizeImpact = poffsetcontext->m_size;
+
+      update_matrix();
+
+   }
+
 
 
    void graphics::append(const ::geometry2d::matrix & matrix)

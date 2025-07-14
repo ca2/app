@@ -383,9 +383,9 @@ bool image::host(::pixmap* ppixmap, ::windowing::window * pwindow)
 
    m_pgraphics->m_pimage = this;
 
-   m_pgraphics->set_origin(0, 0);
+   m_pgraphics->place_impact_area(0., 0., m_size.cx(), m_size.cy());
 
-   m_sizeAlloc = ppixmap->size();
+   m_sizeRaw = ppixmap->size();
 
    set_ok_flag();
 
@@ -593,8 +593,6 @@ void image::destroy()
    m_sizeRaw.cy() = 0;
    m_size.cx() = 0;
    m_size.cy() = 0;
-   m_sizeAlloc.cx() = 0;
-   m_sizeAlloc.cy() = 0;
    pixmap::reset();
    pixmap::unmap();
    clear_flag(e_flag_success);
@@ -7522,7 +7520,7 @@ void image::set_origin(const ::int_point& point)
    if (!m_bMapped)
    {
 
-      get_graphics()->set_origin(point);
+      get_graphics()->place_impact_area(point, m_size);
 
    }
 
@@ -9129,13 +9127,13 @@ void image::unmap() const
          if (rectangleThis.contains(rectangleMap.origin()))
          {
 
-            _get_graphics()->set_origin(rectangleMap.origin());
+            _get_graphics()->place_impact_area(rectangleMap);
 
          }
          else
          {
 
-            _get_graphics()->set_origin(0, 0);
+            _get_graphics()->place_impact_area(0, 0, m_sizeRaw.width(), m_sizeRaw.height());
 
          }
 

@@ -859,13 +859,13 @@ void main() {
       return size;
    }
 
-   // non-virtual helpers calling virtual mapping functions
-   int_point graphics::set_origin(const ::int_point& point)
-   {
+   //// non-virtual helpers calling virtual mapping functions
+   //int_point graphics::set_origin(const ::int_point& point)
+   //{
 
-      return set_origin(point.x(), point.y());
+   //   return set_origin(point.x(), point.y());
 
-   }
+   //}
 
    //int_size graphics::set_context_extents(const ::int_size & size)
    //{
@@ -4534,21 +4534,21 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   int_point graphics::set_origin(int x, int y)
-   {
+   //int_point graphics::set_origin(int x, int y)
+   //{
 
-      return ::draw2d::graphics::set_origin(x, y);
+   //   return ::draw2d::graphics::set_origin(x, y);
 
-   }
-
-
-   int_point graphics::offset_origin(int nWidth, int nHeight)
-   {
-
-      return ::draw2d_gpu::graphics::offset_origin(nWidth, nHeight);
+   //}
 
 
-   }
+   //int_point graphics::offset_origin(int nWidth, int nHeight)
+   //{
+
+   //   return ::draw2d_gpu::graphics::offset_origin(nWidth, nHeight);
+
+
+   //}
 
 
    //int_size graphics::set_context_extents(int x, int y)
@@ -5917,14 +5917,13 @@ color = vec4(c.r,c.g, c.b, c.a);
          float w = ch.Size.x;
          float h = ch.Size.y;
          // update VBO for each character
-         float vertices[6][4] = {
-             { xpos,     ypos + h,   0.0f, 0.0f },
-             { xpos,     ypos,       0.0f, 1.0f },
-             { xpos + w, ypos,       1.0f, 1.0f },
-
-             { xpos,     ypos + h,   0.0f, 0.0f },
-             { xpos + w, ypos,       1.0f, 1.0f },
-             { xpos + w, ypos + h,   1.0f, 0.0f }
+         array< ::graphics3d::sequence2_uv> vertices = {
+             {{ xpos,     ypos + h},{   0.0f, 0.0f} },
+             {{ xpos,     ypos},{       0.0f, 1.0f} },
+             {{ xpos + w, ypos},{       1.0f, 1.0f} },
+             {{ xpos,     ypos + h},{   0.0f, 0.0f} },
+             {{ xpos + w, ypos},{       1.0f, 1.0f} },
+             {{ xpos + w, ypos + h},{   1.0f, 0.0f} }
          };
          // render glyph texture over quad
          if (ch.m_ppixmap)
@@ -5935,11 +5934,11 @@ color = vec4(c.r,c.g, c.b, c.a);
             if (pmodelbuffer->is_null())
             {
 
-               pmodelbuffer->create_vertex_array < ::graphics3d::sequence2_uv>(pcontext, 6);
+               pmodelbuffer->create_vertices < ::graphics3d::sequence2_uv>(6);
 
             }
 
-            pmodelbuffer->set_vertex_array(vertices, 6);
+            pmodelbuffer->set_vertices(vertices);
 
             //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
             //GLCheckError("");

@@ -1790,6 +1790,8 @@ namespace aura
 
          strImplementation.make_lower();
 
+         strImplementation.case_insensitive_begins_eat("draw2d_");
+
          if (strImplementation == "directx11")
          {
 
@@ -1812,6 +1814,12 @@ namespace aura
          {
 
             strImplementation = "vulkan";
+
+         }
+         else if (strImplementation == "vkvg")
+         {
+
+             strImplementation = "vkvg";
 
          }
          else if (strImplementation == "direct2d")
@@ -1966,6 +1974,8 @@ namespace aura
       {
 
          ::string strOutput = application_file_setting("graphics3d_output.txt");
+
+         strOutput.trim();
 
          strOutput.make_lower();
 
@@ -9849,9 +9859,20 @@ namespace aura
          if (strGraphics3DImplementation == "vulkan")
          {
 
-            //return system()->implementation_name("draw2d", "vkvg");
+             ::string strImpl = m_strDraw2dImplementation;
 
-            return system()->implementation_name("draw2d", "vulkan");
+             strImpl.trim();
+
+             strImpl.begins_eat("draw2d_");
+
+             if (strImpl.case_insensitive_equals("vkvg"))
+             {
+
+                 return system()->implementation_name("draw2d", "vkvg");
+
+             }
+
+             return system()->implementation_name("draw2d", "vulkan");
 
          }
          else if (strGraphics3DImplementation.begins("directx"))

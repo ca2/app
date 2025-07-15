@@ -269,6 +269,28 @@ namespace gpu
    //}
 
 
+   ::gpu::texture* context::current_target_texture()
+   {
+
+      if (m_pgpucompositor)
+      {
+
+         auto ptexture = m_pgpucompositor->current_target_texture();
+
+         if (ptexture)
+         {
+
+            return ptexture;
+
+         }
+
+      }
+
+      return m_pgpurenderer->current_render_target_texture();
+
+   }
+
+
    void context::defer_make_current()
    {
 
@@ -734,6 +756,9 @@ namespace gpu
       return m_pswapchain;
 
    }
+
+
+
 
 
    void context::top_send_on_context(::gpu::context* pcontextInnerStart, bool bForDrawing, const ::procedure& procedure)

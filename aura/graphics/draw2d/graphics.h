@@ -120,7 +120,8 @@ namespace draw2d
 
       ::double_size                             m_sizeScaling;
       ::double_point                            m_pointOrigin;
-      ::double_size                             m_sizeImpact;
+      ::double_size                             m_sizeImpact2;
+      ::double_size                             m_sizeTotal2;
       ::geometry2d::matrix                      m_matrix;
       ::double_size                             m_sizeScaleOutput;
       ::double_point                            m_pointTranslateOutput;
@@ -452,6 +453,10 @@ namespace draw2d
       void shift_impact_area(double dx, double dy, double w, double h) override;
       virtual void shift_impact_area(const ::double_size& shiftImpactArea, const ::double_size& sizeImpactArea);
       virtual void shift_impact_area(const ::double_rectangle& rectangleImpactArea);
+
+
+      virtual ::double_size impact_size();
+      virtual ::double_size total_size();
 
 
       void x_offset(double dx) override;

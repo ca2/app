@@ -765,89 +765,97 @@ namespace experience_core
       else if (!pframewindow->layout().is_full_screen() && !m_pframewindow->frame_is_transparent())
       {
 
-         //pgraphics->fill_rectangle(m_rectangleCaptionTextBk, m_colorCaptionTextBk);
-         pgraphics->fill_rectangle(m_rectangleCaption, m_colorCaptionTextBk);
+         _001DrawCaptionBar(pgraphics);
 
-         ::int_rectangle rectangleIcon;
+      }
 
-         auto pframewindow = m_pframewindow;
+   }
 
-         status < ::color::color > crMoveableBorder;
 
-         status < ::color::color > crMoveableBorderHilight;
+   void frame::_001DrawCaptionBar(::draw2d::graphics_pointer& pgraphics)
+   {
 
-         status < ::color::color > crMoveableBorderShadow;
+      //pgraphics->fill_rectangle(m_rectangleCaptionTextBk, m_colorCaptionTextBk);
+      pgraphics->fill_rectangle(m_rectangleCaption, m_colorCaptionTextBk);
 
-         auto strWindowText = pframewindow->get_window_text();
+      ::int_rectangle rectangleIcon;
 
-         //pframewindow->get_window_text(str);
+      auto pframewindow = m_pframewindow;
 
-         if (pframewindow->is_active_window())
-         {
+      status < ::color::color > crMoveableBorder;
 
-            crMoveableBorder = m_colorMoveableBorder;
+      status < ::color::color > crMoveableBorderHilight;
 
-            crMoveableBorderHilight = m_colorMoveableBorderHilight;
+      status < ::color::color > crMoveableBorderShadow;
 
-            crMoveableBorderShadow = m_colorMoveableBorderShadow;
+      auto strWindowText = pframewindow->get_window_text();
 
-         }
-         else
-         {
+      //pframewindow->get_window_text(str);
 
-            auto pstyle = pframewindow->get_style(pgraphics);
+      if (pframewindow->is_active_window())
+      {
 
-            crMoveableBorder = pframewindow->get_color(pstyle, ::e_element_button_background);
+         crMoveableBorder = m_colorMoveableBorder;
 
-            crMoveableBorderHilight = pframewindow->get_color(pstyle, ::e_element_button_hilite);
+         crMoveableBorderHilight = m_colorMoveableBorderHilight;
 
-            crMoveableBorderShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
+         crMoveableBorderShadow = m_colorMoveableBorderShadow;
 
-         }
+      }
+      else
+      {
+
+         auto pstyle = pframewindow->get_style(pgraphics);
+
+         crMoveableBorder = pframewindow->get_color(pstyle, ::e_element_button_background);
+
+         crMoveableBorderHilight = pframewindow->get_color(pstyle, ::e_element_button_hilite);
+
+         crMoveableBorderShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
+
+      }
 
 #if !defined(UNIVERSAL_WINDOWS)
 
-         ::int_rectangle rectangle;
+      ::int_rectangle rectangle;
 
-         pframewindow->window_rectangle(rectangle);
+      pframewindow->window_rectangle(rectangle);
 
-         rectangle -= rectangle.top_left();
+      rectangle -= rectangle.top_left();
 
-         if (get_element_rectangle(rectangleIcon, e_element_top_left_icon))
+      if (get_element_rectangle(rectangleIcon, e_element_top_left_icon))
+      {
+
+         auto pdrawicon = m_pframewindow->get_draw_icon();
+
+         if (::is_set(pdrawicon) && pdrawicon->is_ok())
          {
 
-            auto pdrawicon = m_pframewindow->get_draw_icon();
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            if (::is_set(pdrawicon) && pdrawicon->is_ok())
-            {
+            ::image::image_source imagesource(pdrawicon);
 
-               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            ::image::image_drawing_options imagedrawingoptions(rectangleIcon);
 
-               ::image::image_source imagesource(pdrawicon);
+            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-               ::image::image_drawing_options imagedrawingoptions(rectangleIcon);
-
-               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-               pgraphics->draw(imagedrawing);
-
-            }
+            pgraphics->draw(imagedrawing);
 
          }
 
-         auto wstrWindowText = pframewindow->get_window_text();
+      }
 
-         pgraphics->set_text_color(m_colorCaptionText);
+      auto wstrWindowText = pframewindow->get_window_text();
 
-         pgraphics->set_font(pframewindow, ::e_element_window_title);
+      pgraphics->set_text_color(m_colorCaptionText);
 
-         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pgraphics->set_font(pframewindow, ::e_element_window_title);
 
-         pgraphics->_DrawText(wstrWindowText, m_rectangleWindowText, { e_align_left, e_align_vertical_center }, e_draw_text_no_prefix);
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+      pgraphics->_DrawText(wstrWindowText, m_rectangleWindowText, { e_align_left, e_align_vertical_center }, e_draw_text_no_prefix);
 
 #endif
-
-      }
 
    }
 

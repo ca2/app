@@ -64,7 +64,7 @@ namespace gpu
 
       // returns true if it is new
      
-
+      ::double_size total_size() override;
 
          //auto& pmodelbuffer = m_pmodelbufferRectangle;
 

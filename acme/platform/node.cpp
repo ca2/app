@@ -4932,6 +4932,39 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
    }
 
 
+   ::file::path node::get_font_path_from_name(const ::scoped_string& scopedstrName)
+   {
+
+      auto p = m_mapFont.plookup(scopedstrName);
+
+      if (!p)
+      {
+
+         m_mapFont[scopedstrName].m_path = _get_font_path_from_name(scopedstrName);
+
+         p = m_mapFont.plookup(scopedstrName);
+
+      }
+
+      if (!p)
+      {
+      
+         return {};
+
+      }
+
+      return p->m_element2.m_path;
+
+   }
+
+
+   ::file::path node::_get_font_path_from_name(const ::scoped_string& scopedstrName)
+   {
+
+      return {};
+
+   }
+
 } // namespace platform
 
 

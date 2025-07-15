@@ -202,6 +202,14 @@ namespace gpu
    }
 
 
+   ::gpu::texture* renderer::current_render_target_texture()
+   {
+
+      return m_pgpurendertarget->current_texture();
+
+   }
+
+
    ::gpu::command_buffer* renderer::getCurrentCommandBuffer2()
    {
 
@@ -1144,8 +1152,10 @@ namespace gpu
       m_pgpucontext->on_end_layer(player);
 
       auto ptextureTarget = player->texture();
+
+      auto ptextureSource = m_pgpucontext->current_target_texture();
       
-      auto ptextureSource = m_pgpurendertarget->current_texture();
+      //auto ptextureSource = m_pgpurendertarget->current_texture();
 
       m_pgpucontext->copy(ptextureTarget, ptextureSource);
 

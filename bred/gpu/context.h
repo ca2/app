@@ -129,7 +129,7 @@ namespace gpu
 
       virtual ::gpu::swap_chain* get_swap_chain();
 
-
+      virtual ::gpu::texture* current_target_texture();
 
       void _send(const ::procedure& procedure) override;
       //void _post(const ::procedure& procedure) override;

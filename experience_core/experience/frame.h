@@ -46,6 +46,8 @@ namespace experience_core
 
       status < ::color::color > get_border_main_body_color() override;
 
+      virtual void _001DrawCaptionBar(::draw2d::graphics_pointer& pgraphics);
+
       void set_moveable_border_color(const ::color::color& colorMoveableBorder) override;
 
       virtual void set_button_color_schema_001(const ::color::color& colorMoveableBorder);

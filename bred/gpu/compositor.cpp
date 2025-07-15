@@ -27,6 +27,14 @@ namespace gpu
 
    }
 
+
+   ::gpu::texture* compositor::current_target_texture()
+   {
+
+      return nullptr;
+
+   }
+
    
    void compositor::set_gpu_context(::gpu::context* pgpucontextCompositor)
    {

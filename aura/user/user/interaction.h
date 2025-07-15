@@ -2209,7 +2209,7 @@ namespace user
       //virtual void set_context_offset_y(::draw2d::graphics_pointer & pgraphics, int y);
       //virtual void set_context_offset(::draw2d::graphics_pointer & pgraphics, int x, int y);
       //virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics);
-      virtual void on_context_offset(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_context_offset(::draw2d::offset_context & offsetcontext);
       virtual ::double_size get_total_size(::user::enum_layout elayout = ::user::e_layout_design);
       virtual ::double_size get_page_size(::user::enum_layout elayout = ::user::e_layout_design);
       virtual ::double_point get_context_offset(::user::enum_layout elayout = ::user::e_layout_design);

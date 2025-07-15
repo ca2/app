@@ -121,6 +121,12 @@ namespace platform
    //
    //    enum_application_capability_array                     m_eapplicationcapabilitya;
    //    string_map < ::pointer<::acme::exclusive > >          m_mapExclusive;
+      struct font_t
+      {
+         ::file::path m_path;
+
+ };
+      ::string_map < font_t > m_mapFont;
 
       node();
       ~node() override;
@@ -1035,6 +1041,10 @@ namespace platform
       void realize(::particle_pointer pparticle) override;
       virtual ::string dynamic_library_prefix();
       virtual ::string dynamic_library_suffix();
+
+
+      virtual ::file::path get_font_path_from_name(const ::scoped_string& scopedstrName);
+      virtual ::file::path _get_font_path_from_name(const ::scoped_string& scopedstrName);
 
    };
 

@@ -5681,7 +5681,7 @@ namespace user
    }
 
 
-   void interaction::on_context_offset(::draw2d::graphics_pointer & pgraphics)
+   void interaction::on_context_offset(::draw2d::offset_context & offsetcontext)
    {
 
       {
@@ -5706,19 +5706,23 @@ namespace user
 
          sizeImpact = layout().layout().size();
 
-         pgraphics->shift_impact_area(pointOffset, sizeImpact);
+         ::double_rectangle rectangle(pointOffset, sizeImpact);
+
+         offsetcontext += rectangle;
+
+         //pgraphics->shift_impact_area(pointOffset, sizeImpact);
 
       }
 
-      {
+      //{
 
-         auto pointContextOffset = get_context_offset();
+      //   auto pointContextOffset = get_context_offset();
 
-         auto sizeImpact = layout().layout().size();
+      //   auto sizeImpact = layout().layout().size();
 
-         pgraphics->shift_impact_area(-pointContextOffset, sizeImpact);
+      //   pgraphics->shift_impact_area(-pointContextOffset, sizeImpact);
 
-      }
+      //}
 
    }
 
@@ -7114,7 +7118,9 @@ namespace user
 
          ::draw2d::save_context savecontext(pgraphics);
 
-         on_context_offset(pgraphics);
+         auto offsetcontext = pgraphics->offset_context();
+
+         on_context_offset(offsetcontext);
 
          try
          {

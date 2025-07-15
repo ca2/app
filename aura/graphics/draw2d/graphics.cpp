@@ -1170,7 +1170,12 @@ namespace draw2d
    void graphics::fill_ellipse(const ::double_rectangle & rectangle)
    {
 
-      __UNREFERENCED_PARAMETER(rectangle);
+      fill_ellipse(
+         rectangle.left(),
+         rectangle.top(),
+         rectangle.width(),
+         rectangle.height()
+      );
 
       //return false;
 
@@ -2968,8 +2973,7 @@ namespace draw2d
       m_pointOrigin.x() = 0;
       m_pointOrigin.y() = 0;
 
-      //m_sizeImpact.cx() = m_sizeImpactRaw.cx();
-      //m_sizeImpact.cy() = m_sizeImpactRaw.cy();
+      update_matrix();
 
    }
 
@@ -2979,10 +2983,12 @@ namespace draw2d
 
       m_pointOrigin.x() = x;
 
+      auto sizeImpact = impact_size();
+
       if (_m_bYFlip)
       {
 
-         m_pointOrigin.y() = m_sizeImpact.height() - (y + h);
+         m_pointOrigin.y() = sizeImpact.height() - (y + h);
 
       }
       else
@@ -2992,7 +2998,7 @@ namespace draw2d
 
       }
 
-      m_sizeImpact = { w, h };
+      m_sizeImpact2 = { w, h };
 
       update_matrix();
 
@@ -3024,23 +3030,24 @@ namespace draw2d
 
       m_pointOrigin.x() += dx;
 
-      if (_m_bYFlip)
-      {
+      auto sizeOffset = total_size();
 
-         m_pointOrigin.y() = m_sizeImpact.height() - (m_pointOrigin.y() - dx + h);
+      //if (_m_bYFlip)
+      //{
 
-      }
-      else
-      {
+      //   m_pointOrigin.y() = sizeOffset.height() - (m_pointOrigin.y() - dy + h);
+
+      //}
+      //else
+      //{
 
          m_pointOrigin.y() += dy;
 
-      }
+      //}
 
-      m_sizeImpact = { w, h };
+      m_sizeImpact2 = { w, h };
 
       update_matrix();
-
 
    }
 
@@ -3048,7 +3055,7 @@ namespace draw2d
    void graphics::shift_impact_area(const ::double_size& shiftImpactArea, const ::double_size& sizeImpactArea)
    {
 
-      place_impact_area(
+      shift_impact_area(
          shiftImpactArea.cx(),
          shiftImpactArea.cy(),
          sizeImpactArea.width(),
@@ -3063,6 +3070,41 @@ namespace draw2d
       shift_impact_area(rectangleImpactArea.top_left(), rectangleImpactArea.size());
 
    }
+
+
+   ::double_size graphics::impact_size()
+   {
+
+      if (m_sizeImpact2.is_empty())
+      {
+
+         return m_sizeTotal2;
+
+      }
+
+      return m_sizeImpact2;
+
+   }
+
+
+   ::double_size graphics::total_size()
+   {
+
+      if (m_pimage)
+      {
+
+         return m_pimage->size();
+
+      }
+      else
+      {
+
+         return m_sizeTotal2;
+
+      }
+
+   }
+
 
 
    void graphics::_x_offset(double dx)
@@ -3086,18 +3128,7 @@ namespace draw2d
    void graphics::_y_offset(double dy)
    {
 
-      if (_m_bYFlip)
-      {
-
-         m_pointOrigin.y() -= dy;
-
-      }
-      else
-      {
-
-         m_pointOrigin.y() += dy;
-
-      }
+      m_pointOrigin.y() += dy;
 
    }
 
@@ -4996,6 +5027,8 @@ namespace draw2d
 
             sz = get_text_extent(str);
 
+            //text.m_bSize = true;
+
          }
 
          if (sz.cx() > rectangleClip.width())
@@ -6509,6 +6542,23 @@ namespace draw2d
 
       auto matrix = scaling * m_matrix * translation;
 
+      if (_m_bYFlip)
+      {
+
+         ::double_size sizeYFlip(1.0, -1.0);
+
+         auto scalingYFlip = ::geometry2d::matrix::scaling(sizeYFlip);
+
+         auto sizeTotal = total_size();
+
+         ::double_size pointYFlip(0, sizeTotal.height());
+
+         auto translationYFlip = ::geometry2d::matrix::translation(pointYFlip);
+
+         matrix = matrix * scalingYFlip * translationYFlip;
+
+      }
+
       _set(matrix);
 
    }
@@ -6519,7 +6569,7 @@ namespace draw2d
 
       poffsetcontext->m_poffsetable = this;
       poffsetcontext->m_point = m_pointOrigin;
-      poffsetcontext->m_size = m_sizeImpact;
+      poffsetcontext->m_size = impact_size();
 
    }
    
@@ -6535,7 +6585,7 @@ namespace draw2d
       }
 
       m_pointOrigin = poffsetcontext->m_point;
-      m_sizeImpact = poffsetcontext->m_size;
+      m_sizeImpact2 = poffsetcontext->m_size;
 
       update_matrix();
 

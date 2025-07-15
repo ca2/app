@@ -194,26 +194,27 @@ auto iContextHeight = pcontext->m_rectangle.height()
    void graphics::update_matrix()
    {
 
+      ::draw2d::graphics::update_matrix();
 
-      //auto matrix = m_matrixChangeOutput * matrixScale * m_matrix * matrixTranslate;
+      ////auto matrix = m_matrixChangeOutput * matrixScale * m_matrix * matrixTranslate;
 
-      //auto m = m_matrix;
+      ////auto m = m_matrix;
 
-      auto scaling = ::geometry2d::matrix::scaling(m_sizeScaling);
+      //auto scaling = ::geometry2d::matrix::scaling(m_sizeScaling);
 
-      auto translation = ::geometry2d::matrix::translation(m_pointOrigin);
+      //auto translation = ::geometry2d::matrix::translation(m_pointOrigin);
 
-      //m.scale(m_sizeScaling, ::geometry2d::matrix::mode_prepend);
+      ////m.scale(m_sizeScaling, ::geometry2d::matrix::mode_prepend);
 
-      //m.scale(m_sizeScaleOutput, ::geometry2d::matrix::mode_prepend);
+      ////m.scale(m_sizeScaleOutput, ::geometry2d::matrix::mode_prepend);
 
-      //m.translate(m_pointOrigin, ::geometry2d::matrix::mode_append);
+      ////m.translate(m_pointOrigin, ::geometry2d::matrix::mode_append);
 
-      //m.translate(m_pointTranslateOutput, ::geometry2d::matrix::mode_append);
+      ////m.translate(m_pointTranslateOutput, ::geometry2d::matrix::mode_append);
 
-      auto matrix = scaling * m_matrix * translation;
+      //auto matrix = scaling * m_matrix * translation;
 
-      _set(matrix);
+      //_set(matrix);
 
    }
 
@@ -410,6 +411,24 @@ auto iContextHeight = pcontext->m_rectangle.height()
       pcontext->__soft_unbind_draw2d_compositor(this, player);
 
    }
+
+
+   ::double_size graphics::total_size()
+   {
+
+      auto pcontext = gpu_context();
+
+      if (pcontext)
+      {
+
+         return pcontext->m_rectangle.size();
+
+      }
+
+      return ::gpu::graphics::total_size();
+
+   }
+
 
    
    ::gpu::shader* graphics::rectangle_shader()

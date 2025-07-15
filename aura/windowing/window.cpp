@@ -10162,9 +10162,9 @@ namespace windowing
 
                   pgraphics->on_begin_draw();
 
-                  pgraphics->reset_clip();
+                  //pgraphics->reset_clip();
 
-                  pgraphics->reset_impact_area();
+                  //pgraphics->reset_impact_area();
 
                   //{
 

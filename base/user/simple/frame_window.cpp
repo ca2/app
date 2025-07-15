@@ -7,7 +7,6 @@
 #include "acme/platform/keep.h"
 #include "acme/handler/request.h"
 #include "acme/platform/system.h"
-#include "acme/platform/system.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/user/user/_text_stream.h"
 #include "apex/handler/signal.h"

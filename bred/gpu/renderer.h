@@ -87,6 +87,7 @@ namespace gpu
       ::particle_array* ongoing_particle_array() override;
 
 
+      virtual ::gpu::texture* current_render_target_texture();
 
       //virtual ::int_rectangle rectangle();
       //virtual int height();

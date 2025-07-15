@@ -20,6 +20,9 @@ namespace gpu
       ~compositor() override;
 
 
+      virtual ::gpu::texture* current_target_texture();
+
+
       virtual void set_gpu_context(::gpu::context * pgpucontextCompositor);
 
       virtual void on_set_gpu_context();

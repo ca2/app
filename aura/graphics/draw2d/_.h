@@ -49,6 +49,9 @@ namespace draw2d
    class graphics_call_base;
 
 
+   class offset_context;
+
+
    using graphics_call_array = pointer_array < graphics_call_base >;
 
    using brush_pointer = ::pointer<brush>;

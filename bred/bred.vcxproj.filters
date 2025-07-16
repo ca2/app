@@ -246,6 +246,9 @@
     <ClInclude Include="gpu\hlsl_context.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
+    <ClInclude Include="graphics3d\shape_factory.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">

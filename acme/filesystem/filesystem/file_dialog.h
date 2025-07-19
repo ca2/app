@@ -30,11 +30,12 @@ namespace file
 
       ::collection::index find_first_with_extension(const ::scoped_string & scopedstrExtension);
       ::string_array get_all_related_extensions() const;
+      ::string_array get_pattern_list() const;
 
    };
 
 
-   CLASS_DECL_ACME string_array get_pattern_list(const file_dialog_filter & filedialogfiltera);
+   //CLASS_DECL_ACME string_array get_pattern_list(const file_dialog_filter & filedialogfiltera);
 
 
    class CLASS_DECL_ACME file_dialog :

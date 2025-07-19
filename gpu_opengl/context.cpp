@@ -968,12 +968,6 @@ void main() {
    void context::on_end_layer(::gpu::layer* player)
    {
 
-      auto ptextureTarget = player->texture();
-
-      auto ptextureSource = current_target_texture();
-
-      //auto ptextureSource = m_pgpurendertarget->current_texture();
-
       {
 
          ::string strMessage;
@@ -989,7 +983,16 @@ void main() {
 
       }
 
-      copy(ptextureTarget, ptextureSource);
+      ::gpu::context::on_end_layer(player);
+
+      //auto ptextureTarget = player->texture();
+
+      //auto ptextureSource = current_target_texture();
+
+      ////auto ptextureSource = m_pgpurendertarget->current_texture();
+
+
+      //copy(ptextureTarget, ptextureSource);
 
 
    }

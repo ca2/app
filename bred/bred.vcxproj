@@ -386,7 +386,6 @@
     <ClInclude Include="graphics3d\scene_object.h" />
     <ClInclude Include="graphics3d\scene_system.h" />
     <ClInclude Include="graphics3d\shape_factory.h" />
-    <ClInclude Include="graphics3d\type.h" />
     <ClInclude Include="graphics3d\types.h" />
     <ClInclude Include="graphics3d\utilities.h" />
     <ClInclude Include="graphics3d\_.h" />

@@ -525,11 +525,15 @@ namespace user
 
                pgraphics->set(ppen);
 
-               pgraphics->set_current_point(rectangleBorder.right(), rectangleBorder.bottom());
-               pgraphics->line_to(rectangleBorder.left() + 1, rectangleBorder.bottom());
-               pgraphics->line_to(rectangleBorder.left(), rectangleBorder.top() - (rectangleBorder.left() - rectangleX.left()));
-               pgraphics->line_to(rectangleX.left(), rectangleBorder.top());
-               pgraphics->line_to(rectangleBorder.right(), rectangleBorder.top());
+               auto ppath = __øcreate<::draw2d::path>();
+
+               ppath->set_current_point(rectangleBorder.right(), rectangleBorder.bottom());
+               ppath->add_line(rectangleBorder.left() + 1, rectangleBorder.bottom());
+               ppath->add_line(rectangleBorder.left(), rectangleBorder.top() - (rectangleBorder.left() - rectangleX.left()));
+               ppath->add_line(rectangleX.left(), rectangleBorder.top());
+               ppath->add_line(rectangleBorder.right(), rectangleBorder.top());
+
+               pgraphics->draw(ppath);
 
                auto pstyle = get_style(pgraphics);
 
@@ -547,12 +551,16 @@ namespace user
 
                pgraphics->set(ppen);
 
-               pgraphics->set_current_point(rectangleBorder.right(), rectangleBorder.bottom());
-               pgraphics->line_to(rectangleBorder.left() + 1, rectangleBorder.bottom());
-               pgraphics->line_to(rectangleBorder.left(), rectangleBorder.top() - (rectangleBorder.left() - rectangleX.left()));
-               pgraphics->line_to(rectangleText.left(), rectangleBorder.top());
-               pgraphics->line_to(rectangleBorder.right(), rectangleBorder.top());
-               pgraphics->line_to(rectangleBorder.right(), rectangleBorder.bottom());
+               auto ppath = __øcreate<::draw2d::path>();
+
+               ppath->set_current_point(rectangleBorder.right(), rectangleBorder.bottom());
+               ppath->add_line(rectangleBorder.left() + 1, rectangleBorder.bottom());
+               ppath->add_line(rectangleBorder.left(), rectangleBorder.top() - (rectangleBorder.left() - rectangleX.left()));
+               ppath->add_line(rectangleText.left(), rectangleBorder.top());
+               ppath->add_line(rectangleBorder.right(), rectangleBorder.top());
+               ppath->add_line(rectangleBorder.right(), rectangleBorder.bottom());
+
+               pgraphics->draw(ppath);
 
                if (::is_item(m_pitemHover, iVisiblePane) && !::is_element(m_pitemHover, e_element_close_tab_button))
                {
@@ -608,11 +616,15 @@ namespace user
 
                pgraphics->set(ppen);
 
-               pgraphics->set_current_point(rectangleBorder.left(), rectangleX.bottom());
-               pgraphics->line_to(rectangleBorder.left(), rectangleBorder.top());
-               pgraphics->line_to(rectangleX.right(), rectangleBorder.top());
-               pgraphics->line_to(rectangleBorder.right(), rectangleBorder.top() + (rectangleBorder.right() - rectangleX.right()));
-               pgraphics->line_to(rectangleBorder.right() - 1, rectangleX.bottom());
+               auto ppath = __øcreate<::draw2d::path >();
+
+               ppath->set_current_point(rectangleBorder.left(), rectangleX.bottom());
+               ppath->add_line(rectangleBorder.left(), rectangleBorder.top());
+               ppath->add_line(rectangleX.right(), rectangleBorder.top());
+               ppath->add_line(rectangleBorder.right(), rectangleBorder.top() + (rectangleBorder.right() - rectangleX.right()));
+               ppath->add_line(rectangleBorder.right() - 1, rectangleX.bottom());
+
+               pgraphics->draw(ppath);
 
                auto pstyle = get_style(pgraphics);
 
@@ -630,12 +642,16 @@ namespace user
 
                pgraphics->set(ppen);
 
-               pgraphics->set_current_point(rectangleBorder.left(), rectangleX.bottom());
-               pgraphics->line_to(rectangleBorder.left(), rectangleBorder.top());
-               pgraphics->line_to(rectangleX.right(), rectangleBorder.top());
-               pgraphics->line_to(rectangleBorder.right(), rectangleBorder.top() + (rectangleBorder.right() - rectangleX.right()));
-               pgraphics->line_to(rectangleBorder.right() - 1, rectangleX.bottom());
-               pgraphics->line_to(rectangleBorder.left(), rectangleX.bottom());
+               auto ppath = __øcreate<::draw2d::path >();
+
+               ppath->set_current_point(rectangleBorder.left(), rectangleX.bottom());
+               ppath->add_line(rectangleBorder.left(), rectangleBorder.top());
+               ppath->add_line(rectangleX.right(), rectangleBorder.top());
+               ppath->add_line(rectangleBorder.right(), rectangleBorder.top() + (rectangleBorder.right() - rectangleX.right()));
+               ppath->add_line(rectangleBorder.right() - 1, rectangleX.bottom());
+               ppath->add_line(rectangleBorder.left(), rectangleX.bottom());
+
+               pgraphics->draw(ppath);
 
                if (::is_item(m_pitemHover, iVisiblePane) && !::is_element(m_pitemHover, e_element_close_tab_button))
                {

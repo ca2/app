@@ -4,6 +4,7 @@
 #include "renderer.h"
 #include "texture.h"
 #include "acme/exception/interface_only.h"
+#include "aura/graphics/image/context.h"
 
 
 namespace gpu
@@ -29,10 +30,10 @@ namespace gpu
    }
 
 
-   void texture::initialize_image_texture(::gpu::renderer * pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth)
+   void texture::initialize_image_texture(::gpu::renderer * pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, ::pixmap * ppixmap, enum_type etype)
    {
 
-      m_etype = e_type_image;
+      m_etype = etype;
       m_pgpurenderer = pgpurenderer;
       m_rectangleTarget = rectangleTarget;
       m_bWithDepth = bWithDepth;
@@ -54,6 +55,55 @@ namespace gpu
    {
 
       return m_rectangleTarget.size();
+
+   }
+
+
+   int texture::width()
+   {
+
+      return m_rectangleTarget.width();
+
+   }
+
+
+   int texture::height()
+   {
+
+      return m_rectangleTarget.height();
+
+   }
+
+
+   void texture::initialize_image_texture(::gpu::renderer* pgpurenderer, const ::file::path& path)
+   {
+
+      auto pimage = image()->path_image(path);
+
+      initialize_image_texture(pgpurenderer, pimage);
+
+   }
+
+
+   void texture::initialize_image_texture(::gpu::renderer* pgpurenderer, ::image::image * pimage, enum_type etype)
+   {
+
+      if (etype == e_type_cube_map)
+      {
+
+         auto r = pimage->rectangle();
+
+         r.right() = r.left() + r.width() / 6;
+
+         initialize_image_texture(pgpurenderer, r, false, pimage, etype);
+
+      }
+      else
+      {
+
+         initialize_image_texture(pgpurenderer, pimage->rectangle(), false, pimage, etype);
+
+      }
 
    }
 
@@ -146,7 +196,12 @@ namespace gpu
 
    }
 
+   ::string texture::texture_type()
+   {
 
+      return m_strTextureType;
+
+   }
 
 } // namespace gpu
 

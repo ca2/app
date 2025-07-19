@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "cpu_buffer.h"
 #include "lock.h"
+#include "texture.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/target.h"
@@ -37,6 +38,10 @@ namespace gpu_opengl
       }
 
       ::gpu::context_lock contextlock(m_pgpucontext);
+
+      ::cast < texture > ptexture = m_pgpucontext->current_target_texture();
+
+      glBindFramebuffer(GL_FRAMEBUFFER, ptexture->m_gluFbo);
 
       ////m_pixmap.map();
 
@@ -117,13 +122,16 @@ namespace gpu_opengl
 
          auto targeting = m_pimagetarget->no_padded_targeting(::image::e_copy_disposition_y_swap);
 
+         auto w = targeting.width();
+         auto h = targeting.height();
+         auto p = targeting.data();
          glReadPixels(
             0, 0,
-            targeting.width(), targeting.height(),
+            w, h,
             GL_BGRA,
             //GL_RGBA,
             GL_UNSIGNED_BYTE,
-            targeting.data());
+            p);
          GLCheckError("");
 
       }
@@ -160,6 +168,8 @@ namespace gpu_opengl
       //   cx, cy,
       //   m_pixmap.m_iScan,
       //   (const ::image32_t*) data, cx * 4);
+
+      glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
    }
 

@@ -3,6 +3,7 @@
 #include "lock.h"
 #include "texture.h"
 #include "renderer.h"
+#include "acme/graphics/image/pixmap.h"
 #include "bred/gpu/context_lock.h"
 
 
@@ -26,7 +27,7 @@ namespace gpu_opengl
    }
 
 
-   void texture::initialize_image_texture(::gpu::renderer* prenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth)
+   void texture::initialize_image_texture(::gpu::renderer* prenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, ::pixmap * ppixmap, enum_type etype)
    {
 
       if (m_rectangleTarget == rectangleTarget)
@@ -36,9 +37,22 @@ namespace gpu_opengl
 
       }
 
+      if (etype == e_type_cube_map)
+      {
+
+         m_gluType = GL_TEXTURE_CUBE_MAP;
+
+      }
+      else
+      {
+
+         m_gluType = GL_TEXTURE_2D;
+
+      }
+
       auto sizeCurrent = m_rectangleTarget.size();
 
-      ::gpu::texture::initialize_image_texture(prenderer, rectangleTarget, bWithDepth);
+      ::gpu::texture::initialize_image_texture(prenderer, rectangleTarget, bWithDepth, ppixmap, etype);
 
       ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
 
@@ -53,39 +67,114 @@ namespace gpu_opengl
 
          }
 
-         glBindTexture(GL_TEXTURE_2D, m_gluTextureID);  // 2. Bind the texture to the 2D texture target
+         glBindTexture(m_gluType, m_gluTextureID);  // 2. Bind the texture to the 2D texture target
          GLCheckError("");
 
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+         glTexParameteri(m_gluType, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
          GLCheckError("");
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+         glTexParameteri(m_gluType, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
          GLCheckError("");
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+         if (m_gluType == GL_TEXTURE_CUBE_MAP)
+         {
+            glTexParameteri(m_gluType, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+            GLCheckError("");
+         }
+         glTexParameteri(m_gluType, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
          GLCheckError("");
-         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+         glTexParameteri(m_gluType, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
          GLCheckError("");
 
-         ::memory memory;
+         if (m_gluType == GL_TEXTURE_2D)
+         {
 
-         auto scan_area = m_rectangleTarget.area() * 4;
+            ::memory memory;
 
-         memory.set_size(scan_area);
+            if (ppixmap)
+            {
 
-         auto data = memory.data();
+               auto scan_area = m_rectangleTarget.area() * 4;
 
-         glTexImage2D(
-            GL_TEXTURE_2D, 0, GL_RGBA,
-            m_rectangleTarget.width(),
-            m_rectangleTarget.height(),
-            0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-         GLCheckError("");
+               memory.set_size(scan_area);
+
+               if (ppixmap->size() != rectangleTarget.size())
+               {
+
+                  throw ::exception(error_wrong_state);
+
+               }
+
+               auto pimage32 = (image32_t*)memory.data();
+
+               pimage32->copy(ppixmap);
+
+            }
+
+            auto data = memory.data();
+
+            glTexImage2D(
+               GL_TEXTURE_2D, 0, GL_RGBA,
+               m_rectangleTarget.width(),
+               m_rectangleTarget.height(),
+               0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+            GLCheckError("");
+         }
+         else if (m_gluType == GL_TEXTURE_CUBE_MAP)
+         {
+
+            if (ppixmap->width() <= 0 || ppixmap->height() <= 0)
+            {
+
+               throw ::exception(error_wrong_state);
+
+            }
+            else if (ppixmap->height() * 6 != ppixmap->width())
+            {
+
+               throw ::exception(error_wrong_state);
+            }
+            ::memory memory;
+            memory.set_size(ppixmap->area() * 4);
+            ::int_point point(0, 0);
+            ::int_size size(ppixmap->height(), ppixmap->height());
+            int scan = size.width() * 4;
+            for (unsigned int i = 0; i < 6; i++) 
+            {
+               auto pimage32 = (::image32_t *) memory.data();
+
+               pimage32->vertical_swap_copy(size.cx(),size.cy(), scan,
+                  ppixmap->image32() + size.width() * i, ppixmap->m_iScan);
+               
+               if (pimage32) {
+                  // Load the texture data into the cubemap
+                  glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
+                     0, GL_BGRA, size.cx(), size.cy(), 0, GL_BGRA, GL_UNSIGNED_BYTE, pimage32);
+                  GLCheckError("");
+                  //stbi_image_free(data);
+               }
+               //else if (data) {
+               //   glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
+               //      0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+               //   stbi_image_free(data);
+               //}
+               //else {
+               //   std::cout << "Failed to load cubemap texture at path: " << facesCubemap[i] << std::endl;
+               //   stbi_image_free(data);
+               //}
+            }
+         }
+         else
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
 
          // Optional: generate mipmaps
          // glGenerateMipmap(GL_TEXTURE_2D);
 
          //free(data);
 
-         glBindTexture(GL_TEXTURE_2D, 0);  // Unbind when done
+         glBindTexture(m_gluType, 0);  // Unbind when done
          GLCheckError("");
 
       }
@@ -204,6 +293,9 @@ namespace gpu_opengl
       }
 
       glBindFramebuffer(GL_FRAMEBUFFER, m_gluFbo);
+      GLCheckError("");
+
+      glDrawBuffer(GL_COLOR_ATTACHMENT0);
       GLCheckError("");
 
    }

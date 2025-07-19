@@ -35,6 +35,9 @@ namespace gpu
    {
 
       m_bTextureAndSampler = false;
+      //m_SamplerSlot = -1;
+      //m_setbindingCubeSampler = -1;
+
    }
 
 
@@ -150,7 +153,7 @@ namespace gpu
    }
 
 
-   void shader::bind_source(::gpu::texture* pgputextureSource)
+   void shader::bind_source(::gpu::texture* pgputextureSource, int iSlot)
    {
 
       throw ::interface_only("shader::bind_source(::gpu::texture*) not implemented at this shader implementation");

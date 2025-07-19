@@ -19,6 +19,7 @@ namespace gpu
          e_type_image = 1,
          e_type_depth = 2,
          e_type_depth_stencil = 3,
+         e_type_cube_map = 4,
 
       };
 
@@ -34,16 +35,25 @@ namespace gpu
       bool                                m_bCpuRead;
       ::pointer < texture >               m_ptextureDepth;
 
+      ::string                            m_strTextureType;
+      ::string                            m_strUniform;
+
+      ::file::path                        m_path;
 
       texture();
       ~texture() override;
 
 
       virtual ::int_size size();
+      virtual int width();
+      virtual int height();
 
       
-      virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth);
+      virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, ::pixmap * ppixmap = nullptr, enum_type etype = e_type_image);
       virtual void initialize_depth_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget);
+
+      virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::file::path & path);
+      virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, ::image::image * pimage, enum_type etype = e_type_image);
 
 
       virtual void merge_layers(::pointer_array < ::gpu::layer >* playera);
@@ -57,6 +67,8 @@ namespace gpu
       virtual void bind_render_target();
 
       virtual texture* get_depth_texture();
+
+      virtual ::string texture_type();
 
 
    };

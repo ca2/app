@@ -3,8 +3,9 @@
 #include "aura/user/user/frame_interaction.h"
 #include "aura/user/user/interaction.h"
 #include "aura/graphics/draw2d/graphics.h"
-#include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/path.h"
+#include "aura/graphics/draw2d/pen.h"
 
 
 namespace axis
@@ -164,12 +165,20 @@ namespace axis
 
          pgraphics->set(ppen);
 
-         pgraphics->set_current_point(2 * w / 15, 8 * h / 15);
-         pgraphics->line_to(6 * w / 15, 12 * h / 15);
-         pgraphics->line_to(13 * w / 15, 5 * h / 15);
-         pgraphics->set_current_point(2 * w / 15, 9 * h / 15);
-         pgraphics->line_to(6 * w / 15, 13 * h / 15);
-         pgraphics->line_to(13 * w / 15, 6 * h / 15);
+         auto ppath1 = __øcreate < ::draw2d::path>();
+
+         ppath1->set_current_point(2 * w / 15, 8 * h / 15);
+         ppath1->add_line(6 * w / 15, 12 * h / 15);
+         ppath1->add_line(13 * w / 15, 5 * h / 15);
+
+         auto ppath2 = __øcreate < ::draw2d::path>();
+
+         ppath2->set_current_point(2 * w / 15, 9 * h / 15);
+         ppath2->add_line(6 * w / 15, 13 * h / 15);
+         ppath2->add_line(13 * w / 15, 6 * h / 15);
+
+         pgraphics->draw(ppath1);
+         pgraphics->draw(ppath2);
 
       }
 

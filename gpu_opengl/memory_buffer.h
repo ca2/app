@@ -34,6 +34,10 @@ namespace gpu_opengl
 
       void on_initialize_memory_buffer(const void * dataStatic = nullptr, memsize size = 0) override;
 
+      void on_set_memory_buffer(const void* data = nullptr, memsize size = 0) override;
+
+      void _on_set_memory_buffer(const void* data = nullptr, memsize size = 0) override;
+
 
       bool is_initialized() const override;
 

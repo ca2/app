@@ -950,9 +950,9 @@ namespace user
 
          pgraphics->set(ppen);
 
-         pgraphics->set_current_point(rectangleDivider.left(), rectangleDivider.top());
-
-         pgraphics->line_to(rectangleDivider.left(), rectangleDivider.bottom());
+         pgraphics->line(
+            rectangleDivider.left(), rectangleDivider.top(),
+               rectangleDivider.left(), rectangleDivider.bottom());
 
          //pgraphics->draw_inset_3d_rectangle(rectangleDivider, crButtonShadow, psession->get_default_color(COLOR_BTNHIGHLIGHT));
 

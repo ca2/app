@@ -75,6 +75,8 @@ list(APPEND library_source
         graphics/draw2d/nano_svg_rasterization.cpp
         graphics/draw2d/object.cpp
         graphics/draw2d/object.h
+        graphics/draw2d/offset.cpp
+        graphics/draw2d/offset.h
         graphics/draw2d/palette.cpp
         graphics/draw2d/palette.h
         graphics/draw2d/path.cpp

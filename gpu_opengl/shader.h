@@ -14,7 +14,7 @@ namespace gpu_opengl
    public:
 
 
-      bool m_bTextureBound = false;
+      ::gpu::texture * m_ptextureBound = nullptr;
       GLuint m_ProgramID;
 
       //__creatable_from_base(shader, ::gpu::shader);
@@ -96,7 +96,7 @@ namespace gpu_opengl
 
       //void draw() override;
 
-      void bind_source(::gpu::texture* pgputexture) override;
+      void bind_source(::gpu::texture* pgputexture, int iSlot) override;
 
 
       void set_bool(const ::scoped_string& scopedstrName, bool value) override;

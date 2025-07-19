@@ -2,6 +2,7 @@
 #include "bred_approach.h"
 #include "context.h"
 #include "device.h"
+#include "context_lock.h"
 #include "cpu_buffer.h"
 #include "guard.h"
 #include "input_layout.h"
@@ -287,6 +288,38 @@ namespace gpu
       }
 
       return m_pgpurenderer->current_render_target_texture();
+
+   }
+
+
+   ::gpu::texture* context::texture(const ::file::path& path)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      auto& ptexture = m_texturemap[path];
+
+      if (!ptexture)
+      {
+
+         load_texture(ptexture, path);
+
+      }
+
+      return ptexture;
+
+   }
+
+
+   void context::load_texture(::pointer < ::gpu::texture >& ptexture, const ::file::path& path)
+   {
+
+      if (__defer_construct(ptexture))
+      {
+
+         ptexture->initialize_image_texture(m_pgpurenderer, path);
+
+      }
 
    }
 
@@ -758,9 +791,6 @@ namespace gpu
    }
 
 
-
-
-
    void context::top_send_on_context(::gpu::context* pcontextInnerStart, bool bForDrawing, const ::procedure& procedure)
    {
 
@@ -859,6 +889,7 @@ namespace gpu
 
                            if (pgpurendertarget)
                            {
+
                               if (!pgpurendertarget->m_pgpurenderer)
                               {
 
@@ -1360,12 +1391,29 @@ namespace gpu
    void context::on_end_layer(::gpu::layer* player)
    {
 
+      ::gpu::context_lock contextlock(this);
+
+      if (m_pgpucompositor)
+      {
+
+         m_pgpucompositor->on_end_layer(player);
+
+      }
+
+      auto ptextureTarget = player->texture();
+
+      auto ptextureSource = current_target_texture();
+
+      //auto ptextureSource = m_pgpurendertarget->current_texture();
+
+      copy(ptextureTarget, ptextureSource);
+
 
    }
 
 
 
-   void context::on_create_texture(texture* ptexture)
+   void context::on_create_texture(::gpu::texture* ptexture)
    {
 
 

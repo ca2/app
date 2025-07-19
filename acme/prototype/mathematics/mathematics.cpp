@@ -18,6 +18,11 @@ namespace mathematics
 {
 
 
+   double mathematics::s_π = atan(1.0) * 4.0;
+
+   float mathematics::s_fπ = atanf(1.0f) * 4.0f;
+
+
    struct math_os_data :
       virtual public ::matter
    {
@@ -273,9 +278,6 @@ namespace mathematics
       //task_on_after_new_particle(m_posdata);
 
       // initial rng seed
-      m_dPi = atan(1.0) * 4.0;
-
-      m_fPi = atanf(1.0f) * 4.0f;
 
    }
 

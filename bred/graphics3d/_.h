@@ -24,7 +24,16 @@ namespace graphics3d
    class engine;
 
    class engine;
+
+   template < typename TYPE >
    class model;
+
+
+   template < typename VERTEX >
+   class model_data;
+
+   template < typename VERTEX >
+   class model_instance;
    //class context;
 
    class scene;
@@ -42,6 +51,7 @@ namespace graphics3d
 
 
    class frame;
+   class sky_box;
 
 
 

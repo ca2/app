@@ -10,6 +10,8 @@
 #include "acme/prototype/geometry2d/_defer_item.h"
 #include "aura/graphics/write_text/_defer_geometry2d_item.h"
 #include "path_shape.h"
+#include "nanosvg.h"
+
 //#include "acme/prototype/geometry2d/_defer_shape.h"
 
 
@@ -1937,6 +1939,267 @@ namespace draw2d
 
       return *this;
    }
+
+
+   float path::nanosvg_distPtSeg(float x, float y, float px, float py, float qx, float qy)
+   {
+
+      float pqx, pqy, Δx, Δy, d, t;
+      pqx = qx - px;
+      pqy = qy - py;
+      Δx = x - px;
+      Δy = y - py;
+      d = pqx * pqx + pqy * pqy;
+      t = pqx * Δx + pqy * Δy;
+      if (d > 0) t /= d;
+      if (t < 0) t = 0;
+      else if (t > 1) t = 1;
+      Δx = px + t * pqx - x;
+      Δy = py + t * pqy - y;
+      return Δx * Δx + Δy * Δy;
+
+   }
+
+
+   void path::nanosvg_cubicBez(float x1, float y1, float x2, float y2,
+      float x3, float y3, float x4, float y4,
+      float tol, int level)
+   {
+      float x12, y12, x23, y23, x34, y34, x123, y123, x234, y234, x1234, y1234;
+      float d;
+
+      if (level > 12) return;
+
+      x12 = (x1 + x2) * 0.5f;
+      y12 = (y1 + y2) * 0.5f;
+      x23 = (x2 + x3) * 0.5f;
+      y23 = (y2 + y3) * 0.5f;
+      x34 = (x3 + x4) * 0.5f;
+      y34 = (y3 + y4) * 0.5f;
+      x123 = (x12 + x23) * 0.5f;
+      y123 = (y12 + y23) * 0.5f;
+      x234 = (x23 + x34) * 0.5f;
+      y234 = (y23 + y34) * 0.5f;
+      x1234 = (x123 + x234) * 0.5f;
+      y1234 = (y123 + y234) * 0.5f;
+
+      d = nanosvg_distPtSeg(x1234, y1234, x1, y1, x4, y4);
+      if (d > tol * tol)
+      {
+         nanosvg_cubicBez(x1, y1, x12, y12, x123, y123, x1234, y1234, tol, level + 1);
+         nanosvg_cubicBez(x1234, y1234, x234, y234, x34, y34, x4, y4, tol, level + 1);
+      }
+      else
+      {
+
+         add_line(double_point(x4, y4));
+
+      }
+
+   }
+
+
+   void path::nanosvg_drawPath(float* pts, int npts, char closed, float tol, const ::color::color& color)
+   {
+
+      int i;
+
+      begin_figure();
+
+      //set_current_point(double_point(pts[0], pts[1]));
+
+      for (i = 0; i < npts - 1; i += 3)
+      {
+
+         float* p = &pts[i * 2];
+
+         nanosvg_cubicBez(p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], tol, 0);
+
+      }
+
+      if (closed)
+      {
+
+         set_current_point(double_point(pts[0], pts[1]));
+
+      }
+
+      end_figure();
+
+   }
+
+
+   void path::nanosvg_drawControlPts(float* pts, int npts)
+   {
+
+      int i;
+
+      // Control lines
+      //glColor4ubv(lineColor);
+      //glBegin(GL_LINES);
+      begin_figure();
+
+      for (i = 0; i < npts - 1; i += 3)
+      {
+
+         float* p = &pts[i * 2];
+
+         set_current_point(::int_point((int)p[0], (int)p[1]));
+         add_line(::int_point((int)p[2], (int)p[3]));
+         add_line(::int_point((int)p[4], (int)p[5]));
+         add_line(::int_point((int)p[6], (int)p[7]));
+
+      }
+
+      end_figure();
+
+      // Points
+      //glPointSize(6.0f);
+      //glColor4ubv(lineColor);
+
+      //glBegin(GL_POINTS);
+      //glVertex2f(pts[0], pts[1]);
+      //for (i = 0; i < npts - 1; i += 3) {
+      // float* point = &pts[i * 2];
+      //glVertex2f(int_point[6], int_point[7]);
+      //}
+      //glEnd();
+
+      // Points
+      //glPointSize(3.0f);
+
+      //glBegin(GL_POINTS);
+      //glColor4ubv(bgColor);
+      //glVertex2f(pts[0], pts[1]);
+      //for (i = 0; i < npts - 1; i += 3) {
+      //   float* point = &pts[i * 2];
+      //   glColor4ubv(lineColor);
+      //   glVertex2f(int_point[2], int_point[3]);
+      //   glVertex2f(int_point[4], int_point[5]);
+      //   glColor4ubv(bgColor);
+      //   glVertex2f(int_point[6], int_point[7]);
+      //}
+      //glEnd();
+
+   }
+
+
+   void path::nanosvg_drawframe(NSVGimage* pnsvgimage, int x, int y, int w, int h)
+   {
+
+      float impact[4], cx, cy, hw, hh, aspect, px;
+
+      NSVGshape* pnsvgshape;
+
+      NSVGpath* pnsvgpath;
+
+      //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+      //glfwGetFramebufferSize(window, &width, &height);
+
+      //glContext(0, 0, width, height);
+
+
+      //glClearColor(220.0f / 255.0f, 220.0f / 255.0f, 220.0f / 255.0f, 1.0f);
+      //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+      //glEnable(GL_BLEND);
+      //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+      //glDisable(GL_TEXTURE_2D);
+      //glMatrixMode(GL_PROJECTION);
+      //glLoadIdentity();
+
+      // Fit impact to bounds
+      cx = pnsvgimage->width * 0.5f;
+      cy = pnsvgimage->height * 0.5f;
+      hw = pnsvgimage->width * 0.5f;
+      hh = pnsvgimage->height * 0.5f;
+
+      if (w / hw < h / hh)
+      {
+         aspect = (float)h / (float)w;
+         impact[0] = cx - hw * 1.2f;
+         impact[2] = cx + hw * 1.2f;
+         impact[1] = cy - hw * 1.2f * aspect;
+         impact[3] = cy + hw * 1.2f * aspect;
+      }
+      else
+      {
+         aspect = (float)w / (float)h;
+         impact[0] = cx - hh * 1.2f * aspect;
+         impact[2] = cx + hh * 1.2f * aspect;
+         impact[1] = cy - hh * 1.2f;
+         impact[3] = cy + hh * 1.2f;
+      }
+      // Size of one pixel.
+      px = (impact[2] - impact[1]) / (float)w;
+
+      //glOrtho(impact[0], impact[2], impact[3], impact[1], -1, 1);
+
+      //glMatrixMode(GL_MODELVIEW);
+      //glLoadIdentity();
+      //glDisable(GL_DEPTH_TEST);
+      //glColor4ub(255, 255, 255, 255);
+      //glEnable(GL_BLEND);
+      //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+      // Draw bounds
+      //glColor4ub(0, 0, 0, 64);
+      //glBegin(GL_LINE_LOOP);
+      //glVertex2f(0, 0);
+      //glVertex2f(pnsvgimage->width, 0);
+      //glVertex2f(pnsvgimage->width, pnsvgimage->height);
+      //glVertex2f(0, pnsvgimage->height);
+      //glEnd();
+
+      //auto ppen = __øcreate < ::draw2d::pen >();
+
+      //ppen->create_solid(1.0, argb(255, 0, 128, 0));
+
+      //set(ppen);
+
+      for (pnsvgshape = pnsvgimage->shapes; pnsvgshape != nullptr; pnsvgshape = pnsvgshape->next)
+      {
+
+         for (pnsvgpath = pnsvgshape->paths; pnsvgpath != nullptr; pnsvgpath = pnsvgpath->next)
+         {
+
+            nanosvg_drawPath(pnsvgpath->pts, pnsvgpath->npts, pnsvgpath->closed, px / 3.0f, argb(255, 0, 128, 0));
+
+            //            nanosvg_drawControlPts(ppath->pts, ppath->npts);
+
+         }
+
+      }
+
+      //glfwSwapBuffers(window);
+
+
+
+   }
+
+   //void graphics::nanosvg_resizecb(int width, int height)
+   //{
+   //   // Update and render
+   //   NSVG_NOTUSED(width);
+   //   NSVG_NOTUSED(height);
+   //   //drawframe(window);
+   //}
+
+
+   void path::nanosvg(string str, int x, int y, int w, int h)
+   {
+
+      struct NSVGimage* pnsvgimage;
+
+      pnsvgimage = nsvgParse((char*)(const char*)str, "px", 96);
+
+      nanosvg_drawframe(pnsvgimage, x, y, w, h);
+
+      nsvgDelete(pnsvgimage);
+
+      //return true;
+
+   }
+
 
 
 } // namespace draw2d

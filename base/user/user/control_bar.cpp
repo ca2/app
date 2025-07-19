@@ -1018,8 +1018,9 @@ namespace user
             ppen->create_solid(1, clr);
 
             pgraphics->set(ppen);
-            pgraphics->set_current_point(0, 7);
-            pgraphics->line_to(7, 0);
+            pgraphics->line(
+               0, 7,
+            7, 0);
 
          }
       }

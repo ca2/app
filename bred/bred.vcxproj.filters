@@ -246,6 +246,18 @@
     <ClInclude Include="gpu\hlsl_context.h">
       <Filter>Header Files\gpu</Filter>
     </ClInclude>
+    <ClInclude Include="graphics3d\shape_factory.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\cube_map.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\mesh.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\type.h">
+      <Filter>Header Files\graphics3d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -391,6 +403,12 @@
     </ClCompile>
     <ClCompile Include="gpu\hlsl_context.cpp">
       <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\cube_map.cpp">
+      <Filter>Source Files\graphics3d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics3d\mesh.cpp">
+      <Filter>Source Files\graphics3d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

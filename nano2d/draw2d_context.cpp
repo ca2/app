@@ -18,6 +18,8 @@ namespace nano2d
    draw2d_context::draw2d_context(::particle * pparticle) 
    {
 
+      m_bHasCurrentPoint = false;
+
       initialize(pparticle);
 
       m_iPaintImageSeed = 1;
@@ -976,7 +978,11 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
       else
       {
 
-         m_pgraphics->set_current_point(::double_point(x, y));
+         m_point.x() = x;
+
+         m_point.y() = y;
+
+         m_bHasCurrentPoint = true;
 
       }
 
@@ -998,7 +1004,18 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
       else
       {
 
-         m_pgraphics->line_to(::double_point(x, y));
+         if (!m_bHasCurrentPoint)
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
+
+         m_pgraphics->line(m_point.x(), m_point.y(), x, y);
+
+         m_point.x() = x;
+
+         m_point.y() = y;
 
       }
 

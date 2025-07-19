@@ -1223,11 +1223,11 @@ auto iContextHeight = pcontext->m_rectangle.height()
 
             //pmodelbuffer->m_pbufferVertex->bind();
 
-            pmodelbuffer->set_vertices(vertices);
+            pmodelbuffer->_set_vertices(vertices);
 
             pmodelbuffer->draw(pcommandbuffer);
 
-            //pmodelbuffer->unbind(pcommandbuffer);
+            pmodelbuffer->unbind(pcommandbuffer);
 
             //glDrawArrays(GL_TRIANGLES, 0, 6);
             //GLCheckError("");
@@ -1263,6 +1263,24 @@ auto iContextHeight = pcontext->m_rectangle.height()
       pcontext->set_cull_face(false);
       m_pgpushaderTextOut->unbind();
    }
+
+
+   // void graphics::nanosvg(string str, int x, int y, int w, int h)
+   // {
+   //
+   //    struct NSVGimage* pnsvgimage;
+   //
+   //    pnsvgimage = nsvgParse((char*)(const char*)str, "px", 96);
+   //
+   //    nanosvg_drawframe(pnsvgimage, x, y, w, h);
+   //
+   //    nsvgDelete(pnsvgimage);
+   //
+   //    //return true;
+   //
+   // }
+   //
+
 
 } // namespace gpu
 

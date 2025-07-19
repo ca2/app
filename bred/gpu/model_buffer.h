@@ -25,10 +25,16 @@ namespace gpu
       void* m_pMap;
       ::pointer < memory_buffer > m_pbufferVertex;
       ::pointer < memory_buffer > m_pbufferIndex;
+      ::pointer < input_layout > m_pinputlayout;
+      ::pointer < command_buffer >  m_pcommandbufferLoading;
       int m_iVertexCount;
-      int m_iIndexCount;
+      int m_iVertexByteSize;
       int m_iVertexTypeSize;
+      int m_iIndexCount;
+      int m_iIndexByteSize;
       int m_iIndexTypeSize;
+
+      bool m_bDummy;
       
 
 
@@ -58,7 +64,7 @@ namespace gpu
             size, 
             memory_buffer::e_type_vertex_buffer);
 
-         defer_set_input_layout(m_pgpucontext->input_layout(::gpu_properties< VERTEX >()));
+         set_input_layout(m_pgpucontext->input_layout(::gpu_properties< VERTEX >()));
 
       }
 
@@ -67,24 +73,20 @@ namespace gpu
       void static_initialize_vertices(const ::array<VERTEX> & vertexa)
       {
 
-         m_iVertexCount = (int) vertexa.size();
-
-         m_iVertexTypeSize = sizeof(VERTEX);
-
-         auto size = vertexa.get_size_in_bytes();
-
-         __defer_construct(m_pbufferVertex);
-
-         m_pbufferVertex->static_initialize_memory_buffer_with_model_buffer(
-            this,
+         static_initialize_vertex_buffer(
             vertexa.data(),
-            size,
-            memory_buffer::e_type_vertex_buffer);
+            sizeof(VERTEX),
+            vertexa.size());
 
-         defer_set_input_layout(m_pgpucontext->input_layout(::gpu_properties< VERTEX >()));
+         set_input_layout(m_pgpucontext->input_layout(::gpu_properties< VERTEX >()));
 
       }
 
+      virtual void static_initialize_vertex_buffer(const void* data, memsize iTypeSize, ::collection::count iVertexCount);
+      virtual void static_initialize_index_buffer(const void* data, memsize iTypeSize, ::collection::count iIndexCount);
+
+      virtual void static_initialize_vertices_block(const ::block& blockVertices);
+      virtual void static_initialize_indices_block(const ::block& blockIndices);
 
       template < typename INDEX >
       void create_indices(::collection::count iIndexCount)
@@ -92,7 +94,7 @@ namespace gpu
 
          m_iIndexCount = (int) iIndexCount;
 
-         m_iIndexTypeSize = sizeof(INDEX);
+         m_iIndexTypeSize = (int) sizeof(INDEX);
 
          auto size = m_iIndexTypeSize * m_iIndexCount;
 
@@ -110,19 +112,24 @@ namespace gpu
       void static_initialize_indices(const ::array<INDEX>& indexa)
       {
 
-         m_iIndexCount = (int)indexa.count();
+         //m_iIndexCount = (int)indexa.count();
 
-         m_iIndexTypeSize = sizeof(INDEX);
+         //m_iIndexTypeSize = sizeof(INDEX);
 
-         auto size = indexa.get_size_in_bytes();
+         //auto size = indexa.get_size_in_bytes();
 
-         __defer_construct(m_pbufferIndex);
+         //__defer_construct(m_pbufferIndex);
 
-         m_pbufferIndex->static_initialize_memory_buffer_with_model_buffer(
-            this,
+         //m_pbufferIndex->static_initialize_memory_buffer_with_model_buffer(
+         //   this,
+         //   indexa.data(),
+         //   size,
+         //   memory_buffer::e_type_index_buffer);
+
+         static_initialize_index_buffer(
             indexa.data(),
-            size,
-            memory_buffer::e_type_index_buffer);
+            sizeof(INDEX),
+            indexa.size());
 
       }
 
@@ -138,7 +145,23 @@ namespace gpu
 
          }
 
-         m_pbufferVertex->assign(vertexa.data(), vertexa.get_size_in_bytes());// data = map <VERTEX >();
+         m_pbufferVertex->on_set_memory_buffer(vertexa.data(), vertexa.get_size_in_bytes());
+
+      }
+
+
+      template < typename VERTEX >
+      void _set_vertices(const ::array < VERTEX >& vertexa)
+      {
+
+         if (sizeof(VERTEX) != m_iVertexTypeSize)
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
+
+         m_pbufferVertex->_on_set_memory_buffer(vertexa.data(), vertexa.get_size_in_bytes());
 
       }
 
@@ -249,7 +272,9 @@ namespace gpu
 
       virtual void unbind(::gpu::command_buffer* pcommandbuffer);
 
-      virtual void defer_set_input_layout(::gpu::input_layout* pinputlayout);
+      virtual void set_input_layout(::gpu::input_layout* pinputlayout);
+
+      virtual void apply_input_layout();
 
 
    };

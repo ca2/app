@@ -268,7 +268,7 @@ namespace draw2d_gpu
       // int_point GetCurrentPosition() const;
 //      int_point MoveTo(int x, int y);
       //    int_point MoveTo(const ::int_point & point);
-      void line_to(double x, double y) override;
+      void line(double x1, double y1, double x2, double y2) override;
       //bool LineTo(int x,int y);
       //  bool LineTo(const ::int_point & point);
       void polyline(const ::double_point* ppoints,::collection::count nCount) override;

@@ -254,11 +254,11 @@ namespace draw2d_cairo
 
       // Line-Output Functions
       double_point current_position() override;
-      void set_current_point(double x, double y) override;
+      //void set_current_point(double x, double y) override;
       //    double_point MoveTo(const ::double_point & double_point) override;
-      void line_to(double x, double y) override;
+      void line(double x1, double y1, double x2, double y2) override;
       //  bool LineTo(const ::double_point & double_point) override;
-      void draw_line(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen) override;
+      void line(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen) override;
       void arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) override;
       void arc(double x, double y, double w, double h, ::double_angle start, ::double_angle extends) override;
       void arc(const ::double_rectangle & double_rectangle, const ::double_point & pointStart, const ::double_point & pointEnd) override;

@@ -4,6 +4,7 @@
 #include "device.h"
 #include "memory_buffer.h"
 #include "model_buffer.h"
+#include "renderer.h"
 
 
 namespace gpu_opengl
@@ -28,6 +29,13 @@ namespace gpu_opengl
 
    void memory_buffer::on_initialize_memory_buffer(const void* dataStatic, memsize sizeStatic)
    {
+
+      if (m_pmodelbuffer->m_bDummy)
+      {
+
+         return;
+
+      }
 
       memsize size;
 
@@ -57,7 +65,7 @@ namespace gpu_opengl
       glGenBuffers(1, &m_gluVbo);                            // Create a buffer ID
       
       GLCheckError("");
-      
+
       glBindBuffer(m_iType, m_gluVbo);              // Bind as a vertex buffer
       
       GLCheckError("");
@@ -66,6 +74,36 @@ namespace gpu_opengl
       auto usageFlags = dataStatic ? GL_STATIC_DRAW : GL_DYNAMIC_DRAW;
       
       glBufferData(m_iType, (GLsizeiptr) size, dataStatic, usageFlags); // just allocate space
+      GLCheckError("");
+
+   }
+
+
+   void memory_buffer::on_set_memory_buffer(const void* data, memsize size)
+   {
+
+      if (m_pmodelbuffer->m_bDummy)
+      {
+
+         return;
+
+      }
+
+      m_pmodelbuffer->bind(m_pcontext->m_pgpurenderer->getCurrentCommandBuffer2());
+
+      _on_set_memory_buffer(data, size);
+
+      m_pmodelbuffer->unbind(m_pmodelbuffer->m_pcommandbufferLoading);
+
+   }
+
+
+   void memory_buffer::_on_set_memory_buffer(const void* data, memsize size)
+   {
+
+      bind();
+
+      glBufferData(m_iType, (GLsizeiptr)size, data, GL_DYNAMIC_DRAW); // just allocate space
       GLCheckError("");
 
    }

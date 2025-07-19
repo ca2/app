@@ -46,10 +46,10 @@ namespace gpu_opengl
    }
 
 
-   void model_buffer::defer_set_input_layout(::gpu::input_layout* pgpuinputlayout)
+   void model_buffer::apply_input_layout()
    {
 
-      ::cast < input_layout > pinputlayout = pgpuinputlayout;
+      //m_pinputlayout = pgpuinputlayout;
 
       ::cast < memory_buffer > pbufferVertex = m_pbufferVertex;
 
@@ -58,7 +58,9 @@ namespace gpu_opengl
       if (pbufferVertex)
       {
 
-         pinputlayout->_do_opengl_vao_vbo_and_ebo_input_layout(
+         ::cast < input_layout > pinputlayout = m_pinputlayout;
+
+         pinputlayout->__do_opengl_vao_vbo_and_ebo_input_layout(
             m_gluVao,
             pbufferVertex->m_gluVbo,
             pbufferIndex ? pbufferIndex->m_gluVbo : 0
@@ -259,6 +261,8 @@ namespace gpu_opengl
          m_pbufferVertex->unbind();
 
       }
+
+      glBindVertexArray(0);
 
    }
 

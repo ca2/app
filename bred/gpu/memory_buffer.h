@@ -51,6 +51,10 @@ namespace gpu
 
       virtual void on_initialize_memory_buffer(const void * dataStatic = nullptr, memsize sizeStatic = 0);
 
+      virtual void on_set_memory_buffer(const void* dataStatic = nullptr, memsize sizeStatic = 0);
+
+      virtual void _on_set_memory_buffer(const void* dataStatic = nullptr, memsize sizeStatic = 0);
+
       virtual bool is_initialized() const;
 
 

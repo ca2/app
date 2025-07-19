@@ -251,13 +251,11 @@ namespace user
       if(m_bSlide)
       {
          
-         pgraphics->set_current_point(rectangle.center());
-         
          auto pointCursor = host_mouse_cursor_position();
 
          host_to_client()(pointCursor);
 
-         pgraphics->line_to(pointCursor);
+         pgraphics->line(rectangle.center(),  pointCursor);
 
       }
 

@@ -106,6 +106,7 @@ struct CLASS_DECL_ACME image32_t
    {
       copy(rectangle.top_left(), rectangle.size(), iStrideDst, pimage32Src, iStrideSrc);
    }
+   inline void copy(const ::pixmap* p);
    void copy_swap_red_blue(int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
    void _001ProperCopyColorref(int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc = -1);
 

@@ -3612,20 +3612,20 @@ namespace draw2d_cairo
 //}
 
 
-   void graphics::set_current_point(double x, double y)
-   {
+   //void graphics::set_current_point(double x1, double y1, double x2, double y2)
+   //{
 
-      _synchronous_lock ml(::draw2d_cairo::mutex());
+   //   _synchronous_lock ml(::draw2d_cairo::mutex());
 
-      cairo_move_to(m_pdc, x, y);
+   //   cairo_move_to(m_pdc, x, y);
 
-      m_point.x() = x;
+   //   m_point.x() = x2;
 
-      m_point.y() = y;
+   //   m_point.y() = y2;
 
-      //return true;
+   //   //return true;
 
-   }
+   //}
 
 
    unsigned int graphics::SetTextAlign(unsigned int nFlags)
@@ -4765,32 +4765,27 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::line_to(double x, double y)
+   void graphics::line(double x1, double y1, double x2, double y2)
    {
 
       _synchronous_lock ml(::draw2d_cairo::mutex());
 
-      if (!cairo_has_current_point(m_pdc))
-      {
+      cairo_move_to(m_pdc, x1, y1);
 
-         cairo_move_to(m_pdc, m_point.x(), m_point.y());
-
-      }
-
-      cairo_line_to(m_pdc, x, y);
+      cairo_line_to(m_pdc, x2, y2);
 
       draw();
 
-      m_point.x() = x;
+      m_point.x() = x2;
 
-      m_point.y() = y;
+      m_point.y() = y2;
 
       //return true;
 
    }
 
 
-   void graphics::draw_line(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen)
+   void graphics::line(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen)
    {
 
       _synchronous_lock ml(::draw2d_cairo::mutex());

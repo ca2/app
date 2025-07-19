@@ -166,7 +166,7 @@ namespace simple_ui
          unsigned char b1 = __byte_rate(dRate, 23, 127);
          ppen->create_solid(1.0, argb(a1, r1, g1, b1));
          pgraphics->set(ppen);
-         pgraphics->draw_line(rectangleDraw.left(), i, rectangleDraw.right(), i);
+         pgraphics->line(rectangleDraw.left(), i, rectangleDraw.right(), i);
 
       }
 

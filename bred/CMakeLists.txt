@@ -73,6 +73,8 @@ list(APPEND library_source
         #graphics3d/aaa_renderer.h
         graphics3d/camera.cpp
         graphics3d/camera.h
+        graphics3d/cube_map.cpp
+        graphics3d/cube_map.h
         graphics3d/engine.cpp
         graphics3d/engine.h
         graphics3d/frame.cpp

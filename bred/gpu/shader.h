@@ -14,6 +14,23 @@ namespace gpu
       shader_projection,
 
    };
+   
+   struct binding
+   {
+
+      bool              m_bSet = false;
+      unsigned int      m_uSet = 0;
+      unsigned int      m_uBinding = 0;
+
+      void set(unsigned int uBinding = 0)
+      {
+
+         m_bSet = true;
+         m_uBinding = uBinding;
+
+      }
+      bool is_set()const { return m_bSet; }
+   };
 
    class CLASS_DECL_BRED shader :
       virtual public ::matter
@@ -71,10 +88,13 @@ namespace gpu
 
       bool m_bDisableDepthTest = false;
       bool m_bDepthTestButNoDepthWrite = false;
+      bool m_bLequalDepth = false;
       bool m_bEnableBlend = false;
       bool m_bAccumulationEnable = false;
       //bool m_bHasSourceImage = false;
 
+      binding m_bindingSampler;
+      binding m_bindingCubeSampler;
 
       string                     m_strError;
 
@@ -170,7 +190,7 @@ namespace gpu
 
       virtual void bind(::gpu::texture* pgputextureTarget);
       virtual void bind(::gpu::texture * pgputextureTarget, ::gpu::texture* pgputextureSource);
-      virtual void bind_source(::gpu::texture* pgputextureSource);
+      virtual void bind_source(::gpu::texture* pgputextureSource, int iSlot = 0);
       virtual void bind();
       virtual void unbind();
 

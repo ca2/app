@@ -308,12 +308,12 @@ void image32_t::copy(int cx, int cy, int iStrideDst, const ::image32_t * pimage3
 
       }
 
-      int wsrc = iStrideSrc / sizeof(::image32_t);
-      int wdst = iStrideDst / sizeof(::image32_t);
+      int wsrc = iStrideSrc;
+      int wdst = iStrideDst;
       int cw = cx * sizeof(::image32_t);
 
-      auto psrc = pimage32Src;
-      auto pdst = pimage32Dst;
+      auto psrc = (unsigned char*) pimage32Src;
+      auto pdst = (unsigned char*) pimage32Dst;
 
       for (int i = 0; i < cy; i++)
       {

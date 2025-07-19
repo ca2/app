@@ -120,7 +120,7 @@ namespace graphics3d
    }
 
 
-   ::pointer<model> scene::create_tinyobjloader_model(const ::file::path& path)
+   model<::graphics3d::Vertex> scene::create_tinyobjloader_model(const ::file::path& path)
    {
 
       auto pmodel = m_pengine->create_tinyobjloader_model(path);

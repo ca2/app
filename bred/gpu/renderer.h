@@ -92,6 +92,7 @@ namespace gpu
       //virtual ::int_rectangle rectangle();
       //virtual int height();
       virtual ::gpu::command_buffer* getCurrentCommandBuffer2();
+      virtual ::gpu::command_buffer* getLoadAssetsCommandBuffer();
       virtual bool render_step();
 
       virtual void initialize_gpu_renderer(::gpu::context * pgpucontext);

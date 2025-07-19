@@ -222,3 +222,10 @@ inline void image32_t::copy(const ::int_size & size, int iStrideDst, const ::pix
    copy(size.minimum(ppixmapSrc->size()), iStrideDst, ppixmapSrc->m_pimage32, ppixmapSrc->m_iScan);
 
 }
+
+
+
+inline void image32_t::copy(const ::pixmap* p)
+{
+   copy(::int_point(), p->size(), p->width() * 4, p->image32(), p->m_iScan);
+}

@@ -841,7 +841,7 @@ namespace gpu_opengl
 
       }
 
-      glBindBuffer(GL_UNIFORM_BUFFER, 0);
+      glBindBufferBase(GL_UNIFORM_BUFFER, 0, m_globalUBO);
       GLCheckError("");
 
    }
@@ -940,7 +940,7 @@ void main() {
       
       m_pshaderCopy->bind();
 
-      m_pshaderCopy->bind_source(ptextureParam);
+      m_pshaderCopy->bind_source(ptextureParam, 0);
 
       auto pcommandbuffer = m_pgpurenderer->getCurrentCommandBuffer2();
 
@@ -961,6 +961,36 @@ void main() {
       //glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
       m_pshaderCopy->unbind();
+
+   }
+
+
+   void context::on_end_layer(::gpu::layer* player)
+   {
+
+      auto ptextureTarget = player->texture();
+
+      auto ptextureSource = current_target_texture();
+
+      //auto ptextureSource = m_pgpurendertarget->current_texture();
+
+      {
+
+         ::string strMessage;
+
+         strMessage.formatf("ø gpu_opengl::context::on_end_layer");
+
+         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+            GL_DEBUG_TYPE_MARKER,
+            0,
+            GL_DEBUG_SEVERITY_NOTIFICATION,
+            -1,
+            strMessage);
+
+      }
+
+      copy(ptextureTarget, ptextureSource);
+
 
    }
 
@@ -1031,7 +1061,7 @@ void main() {
             m_pshaderBlend3->m_bDisableDepthTest = true;
             //m_pshaderBlend3->m_bT
             //m_pshaderBlend3->m_pgpurenderer = this;
-            //m_pshaderBlend3->m_iSamplerSlot = 0;
+            //m_pshaderBlend3->m_setbindingSampler = 0;
             // Image Blend descriptors
    //if (!m_psetdescriptorlayoutImageBlend)
 
@@ -1086,7 +1116,7 @@ void main() {
 
          //auto vkcommandbuffer = pcommandbuffer->m_vkcommandbuffer;
 
-         ::cast <texture > ptextureDst = ptextureTarget;
+         ::cast < ::gpu_opengl::texture > ptextureDst = ptextureTarget;
 
          int iH = ptextureDst->m_pgpurenderer->m_pgpucontext->m_rectangle.height();
 
@@ -1184,7 +1214,7 @@ void main() {
                {
 
 
-                  ::cast <texture > ptextureSrc = player->texture();
+                  ::cast < ::gpu_opengl::texture > ptextureSrc = player->texture();
 
                   //ptextureSrc->_new_state(
                   //   pcommandbuffer,
@@ -1217,6 +1247,53 @@ void main() {
                   pcommandbuffer->set_scissor(r);
 
                   m_pmodelbufferDummy->bind(pcommandbuffer);
+
+
+                  {
+
+                     //GLint objName = 0;
+                     //glGetFramebufferAttachmentParameteriv(target, GL_COLOR_ATTACHMENT0,
+                     //   GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME, &objName);
+
+                     GLint drawFbo = 0;
+                     glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFbo);
+
+                     GLint readFbo = 0;
+                     glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFbo);
+
+                     ::string strMessage;
+
+                     strMessage.formatf("ø merge%d drawFbo=%d readFbo=%d", iLayer, drawFbo, readFbo);
+
+                     glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+                        GL_DEBUG_TYPE_MARKER,
+                        0,
+                        GL_DEBUG_SEVERITY_NOTIFICATION,
+                        -1,
+                        strMessage);
+
+                  }
+
+                  {
+
+                     GLint activeTex = -1;
+
+                     glGetIntegerv(GL_TEXTURE_BINDING_2D, &activeTex); // query the bound texture for target
+
+                     auto samplerTex = ptextureSrc->m_gluTextureID;
+
+                     ::string strMessage;
+
+                     strMessage.formatf("ø merge%d activeTex=%d samplerTex=%d", iLayer, activeTex, samplerTex);
+
+                     glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+                        GL_DEBUG_TYPE_MARKER,
+                        0,
+                        GL_DEBUG_SEVERITY_NOTIFICATION,
+                        -1,
+                        strMessage);
+
+                  }
 
                   m_pmodelbufferDummy->draw(pcommandbuffer);
 
@@ -1455,7 +1532,7 @@ void main() {
 
       ::gpu::context_lock contextlock(this);
 
-      ::cast < texture > ptexture = ptextureParam;
+      ::cast < ::gpu_opengl::texture > ptexture = ptextureParam;
 
 
       GLuint framebuffer;
@@ -1625,9 +1702,9 @@ void main() {
 
       ::gpu::context_lock contextlock(this);
 
-      ::cast < texture > ptextureDst = ptextureTarget;
+      ::cast < ::gpu_opengl::texture > ptextureDst = ptextureTarget;
 
-      ::cast < texture > ptextureSrc = ptextureSource;
+      ::cast < ::gpu_opengl::texture > ptextureSrc = ptextureSource;
 
       auto textureSrc = ptextureSrc->m_gluTextureID;
 
@@ -1665,9 +1742,53 @@ void main() {
       // Attach dest texture to fboDst
       glBindFramebuffer(GL_DRAW_FRAMEBUFFER, ptextureDst->m_gluFbo);
       GLCheckError("");
+      
+      glDrawBuffer(GL_COLOR_ATTACHMENT0);
+      GLCheckError("");
+      
       //glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
       //   GL_TEXTURE_2D, textureDst, 0);
       //GLCheckError("");
+
+      {
+
+         ::string strMessage;
+
+         auto texDst = ptextureDst->m_gluTextureID;
+
+         auto texSrc = ptextureSrc->m_gluTextureID;
+
+         strMessage.formatf("ø texDst=%d texSrc=%d", texDst, texSrc);
+
+         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+            GL_DEBUG_TYPE_MARKER,
+            0,
+            GL_DEBUG_SEVERITY_NOTIFICATION,
+            -1,
+            strMessage);
+
+      }
+
+      {
+
+         GLint drawFbo = 0;
+         glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFbo);
+
+         GLint readFbo = 0;
+         glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFbo);
+
+         ::string strMessage;
+
+         strMessage.formatf("ø copy drawFbo=%d readFbo=%d", drawFbo, readFbo);
+
+         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+            GL_DEBUG_TYPE_MARKER,
+            0,
+            GL_DEBUG_SEVERITY_NOTIFICATION,
+            -1,
+            strMessage);
+
+      }
 
       auto sizeSrc = ptextureSrc->size();
       auto sizeDst = ptextureDst->size();

@@ -54,7 +54,7 @@ namespace graphics3d
       virtual void on_render(::gpu::context * pgpucontext);
 
 
-      virtual ::pointer<::graphics3d::model> create_tinyobjloader_model(const ::file::path& path);
+      virtual ::graphics3d::model<::graphics3d::Vertex> create_tinyobjloader_model(const ::file::path& path);
       virtual scene_object & tinyobjloader_object(const ::file::path& path);
 
       virtual void add_object(::graphics3d::scene_object* pobject);

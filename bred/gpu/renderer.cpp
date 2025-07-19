@@ -231,6 +231,14 @@ namespace gpu
    }
 
 
+   ::gpu::command_buffer* renderer::getLoadAssetsCommandBuffer()
+   {
+
+      return nullptr;
+
+   }
+
+
    void renderer::create_command_buffers()
    {
 
@@ -1151,13 +1159,13 @@ namespace gpu
 
       m_pgpucontext->on_end_layer(player);
 
-      auto ptextureTarget = player->texture();
+      //auto ptextureTarget = player->texture();
 
-      auto ptextureSource = m_pgpucontext->current_target_texture();
-      
-      //auto ptextureSource = m_pgpurendertarget->current_texture();
+      //auto ptextureSource = m_pgpucontext->current_target_texture();
+      //
+      ////auto ptextureSource = m_pgpurendertarget->current_texture();
 
-      m_pgpucontext->copy(ptextureTarget, ptextureSource);
+      //m_pgpucontext->copy(ptextureTarget, ptextureSource);
 
       auto pcommandbuffer = getCurrentCommandBuffer2();
 

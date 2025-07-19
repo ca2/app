@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/path.h"
 #include "frame_002.h"
 #include "base/user/experience/frame_window.h"
 #include "base/user/experience/size_manager.h"
@@ -497,15 +498,13 @@ namespace experience_core
          pointA = rectangleA.top_left();
          pointB = pointA;
          pointB.x() += 16;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA,pointB);
 
 
          pointA = rectangleA.top_left();
          pointB = pointA;
          pointB.y() += 16;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA,pointB);
 
          pgraphics->set(m_ppenFace1);
 
@@ -514,16 +513,14 @@ namespace experience_core
          pointA.y()++;
          pointB = pointA;
          pointB.x() += 15;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
 
          pointA = rectangleA.top_left();
          pointA.x() += 2;
          pointA.y() += 2;
          pointB = pointA;
          pointB.x() += 14;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
 
 
          pointA = rectangleA.top_left();
@@ -531,16 +528,14 @@ namespace experience_core
          pointA.y()++;
          pointB = pointA;
          pointB.y() += 15;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
 
          pointA = rectangleA.top_left();
          pointA.x() += 2;
          pointA.y() += 2;
          pointB = pointA;
          pointB.y() += 14;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenShadow1);
 
@@ -549,8 +544,7 @@ namespace experience_core
          pointA.y() += 3;
          pointB = pointA;
          pointB.x() += 13;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA,pointB);
 
 
          pointA = rectangleA.top_left();
@@ -558,8 +552,7 @@ namespace experience_core
          pointA.y() += 3;
          pointB = pointA;
          pointB.y() += 13;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenDkShadow1);
 
@@ -570,9 +563,23 @@ namespace experience_core
          pointB.y() += 12;
          pointC = pointB;
          pointC.x() -= 3;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
-         pgraphics->line_to(pointC);
+            {
+
+            auto ppath = __øcreate  <::draw2d::path>();
+
+            {
+
+               auto ppath = __øcreate  <::draw2d::path>();
+
+               ppath->set_current_point(pointA);
+               ppath->add_line(pointB);
+               ppath->add_line(pointC);
+
+               pgraphics->draw(ppath);
+            }
+
+            pgraphics->draw(ppath);
+            }
 
          pointA = rectangleA.top_left();
          pointA.x() += 4;
@@ -581,9 +588,23 @@ namespace experience_core
          pointB.x() += 12;
          pointC = pointB;
          pointC.y() -= 3;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
-         pgraphics->line_to(pointC);
+            {
+
+            auto ppath = __øcreate  <::draw2d::path>();
+
+            {
+
+               auto ppath = __øcreate  <::draw2d::path>();
+
+               ppath->set_current_point(pointA);
+               ppath->add_line(pointB);
+               ppath->add_line(pointC);
+
+               pgraphics->draw(ppath);
+            }
+
+            pgraphics->draw(ppath);
+            }
       }
       break;
       case e_grip_top_right:
@@ -601,17 +622,23 @@ namespace experience_core
          pointB.x() -= 16;
          pointC = pointB;
          pointC.y() += 4;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
-         pgraphics->line_to(pointC);
+            {
+
+            auto ppath = __øcreate  <::draw2d::path>();
+
+            ppath->set_current_point(pointA);
+            ppath->add_line(pointB);
+            ppath->add_line(pointC);
+
+            pgraphics->draw(ppath);
+            }
 
          pointB = rectangleA.top_right();
          pointB.x() -= 4;
          pointB.y() += 4;
          pointC = pointB;
          pointC.y() += 12;
-         pgraphics->set_current_point(pointB);
-         pgraphics->line_to(pointC);
+         pgraphics->line(pointB,pointC);
 
          pgraphics->set(m_ppenFace1);
 
@@ -620,32 +647,28 @@ namespace experience_core
          pointA.y()++;
          pointB = pointA;
          pointB.x() -= 14;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA,pointB);
 
          pointA = rectangleA.top_right();
          pointA.x() -= 2;
          pointA.y() += 2;
          pointB = pointA;
          pointB.x() -= 13;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA,pointB);
 
          pointA = rectangleA.top_right();
          pointA.x() -= 2;
          pointA.y() += 2;
          pointB = pointA;
          pointB.y() += 13;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA,            pointB);
 
          pointA = rectangleA.top_right();
          pointA.x() -= 3;
          pointA.y() += 3;
          pointB = pointA;
          pointB.y() += 12;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA,pointB);
 
          pgraphics->set(m_ppenShadow1);
 
@@ -654,16 +677,14 @@ namespace experience_core
          pointA.y() += 3;
          pointB = pointA;
          pointB.x() -= 12;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA,pointB);
 
          pointA = rectangleA.top_right();
          pointA.x()--;
          pointA.y()++;
          pointB = pointA;
          pointB.y() += 14;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenDkShadow1);
 
@@ -672,8 +693,16 @@ namespace experience_core
          pointB.y() += 4;
          pointC = pointB;
          pointC.x() -= 12;
-         pgraphics->set_current_point(pointB);
-         pgraphics->line_to(pointC);
+            {
+
+            auto ppath = __øcreate  <::draw2d::path>();
+
+            ppath->set_current_point(pointA);
+            ppath->add_line(pointB);
+            ppath->add_line(pointC);
+
+            pgraphics->draw(ppath);
+            }
 
 
          pointA = rectangleA.top_right();
@@ -681,9 +710,16 @@ namespace experience_core
          pointB.y() += 16;
          pointC = pointB;
          pointC.x() -= 4;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
-         pgraphics->line_to(pointC);
+            {
+
+            auto ppath = __øcreate  <::draw2d::path>();
+
+            ppath->set_current_point(pointA);
+            ppath->add_line(pointB);
+            ppath->add_line(pointC);
+
+            pgraphics->draw(ppath);
+            }
 
       }
       break;
@@ -702,9 +738,16 @@ namespace experience_core
          pointB.y() -= 16;
          pointC = pointB;
          pointC.x() += 4;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB); // vertical left hilite
-         pgraphics->line_to(pointC); // horizontal top hilite
+            {
+
+            auto ppath = __øcreate  <::draw2d::path>();
+
+            ppath->set_current_point(pointA);
+            ppath->add_line(pointB);
+            ppath->add_line(pointC);
+
+            pgraphics->draw(ppath);
+            }
 
 
          pointB = rectangleA.bottom_left();
@@ -712,8 +755,7 @@ namespace experience_core
          pointB.x() += 4;
          pointC = pointB;
          pointC.x() += 12;
-         pgraphics->set_current_point(pointB);
-         pgraphics->line_to(pointC); // horizontal bottom hillite
+         pgraphics->line(pointB,pointC); // horizontal bottom hillite
 
          pgraphics->set(m_ppenFace1);
 
@@ -722,32 +764,28 @@ namespace experience_core
          pointA.x()++;
          pointB = pointA;
          pointB.y() -= 14;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
 
          pointA = rectangleA.bottom_left();
          pointA.y() -= 2;
          pointA.x() += 2;
          pointB = pointA;
          pointB.y() -= 13;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA,pointB);
 
          pointA = rectangleA.bottom_left();
          pointA.y() -= 2;
          pointA.x() += 2;
          pointB = pointA;
          pointB.x() += 13;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA,pointB);
 
          pointA = rectangleA.bottom_left();
          pointA.y() -= 3;
          pointA.x() += 3;
          pointB = pointA;
          pointB.x() += 12;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA,pointB);
 
          pgraphics->set(m_ppenShadow1);
 
@@ -756,16 +794,14 @@ namespace experience_core
          pointA.x() += 3;
          pointB = pointA;
          pointB.y() -= 12;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
 
          pointA = rectangleA.bottom_left();
          pointA.y()--;
          pointA.x()++;
          pointB = pointA;
          pointB.x() += 14;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenDkShadow1);
 
@@ -774,17 +810,23 @@ namespace experience_core
          pointB.x() += 4;
          pointC = pointB;
          pointC.y() -= 12;
-         pgraphics->set_current_point(pointB);
-         pgraphics->line_to(pointC);
+         pgraphics->line(pointB, pointC);
 
          pointA = rectangleA.bottom_left();
          pointB = pointA;
          pointB.x() += 16;
          pointC = pointB;
          pointC.y() -= 4;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
-         pgraphics->line_to(pointC);
+            {
+
+            auto ppath = __øcreate  <::draw2d::path>();
+
+            ppath->set_current_point(pointA);
+            ppath->add_line(pointB);
+            ppath->add_line(pointC);
+
+            pgraphics->draw(ppath);
+            }
 
       }
       break;
@@ -801,14 +843,12 @@ namespace experience_core
          pointA = rectangleA.bottom_right();
          pointB = pointA;
          pointB.x() -= 16;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA,pointB);
 
          pointA = rectangleA.bottom_right();
          pointB = pointA;
          pointB.y() -= 16;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA,pointB);
 
          pgraphics->set(m_ppenShadow1);
 
@@ -817,16 +857,14 @@ namespace experience_core
          pointA.x()--;
          pointB = pointA;
          pointB.x() -= 15;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA,pointB);
 
          pointA = rectangleA.bottom_right();
          pointA.y()--;
          pointA.x()--;
          pointB = pointA;
          pointB.y() -= 15;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
 
 
          pgraphics->set(m_ppenFace1);
@@ -836,32 +874,29 @@ namespace experience_core
          pointA.x() -= 3;
          pointB = pointA;
          pointB.x() -= 13;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA,
+            pointB);
 
          pointA = rectangleA.bottom_right();
          pointA.y() -= 2;
          pointA.x() -= 2;
          pointB = pointA;
          pointB.x() -= 14;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA,pointB);
 
          pointA = rectangleA.bottom_right();
          pointA.y() -= 3;
          pointA.x() -= 3;
          pointB = pointA;
          pointB.y() -= 13;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA,pointB);
 
          pointA = rectangleA.bottom_right();
          pointA.y() -= 2;
          pointA.x() -= 2;
          pointB = pointA;
          pointB.y() -= 14;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA,pointB);
 
 
          pgraphics->set(m_ppenHilight1);
@@ -874,11 +909,17 @@ namespace experience_core
          pointC = pointB;
          pointC.y() += 4;
 
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
-         pgraphics->line_to(pointC);
+            {
 
-         pointA = rectangleA.bottom_right();
+            auto ppath = __øcreate  <::draw2d::path>();
+
+            ppath->set_current_point(pointA);
+            ppath->add_line(pointB);
+            ppath->add_line(pointC);
+
+            pgraphics->draw(ppath);
+            }
+            pointA = rectangleA.bottom_right();
          pointA.x() -= 4;
          pointA.y() -= 4;
          pointB = pointA;
@@ -886,10 +927,16 @@ namespace experience_core
          pointC = pointB;
          pointC.x() += 4;
 
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
-         pgraphics->line_to(pointC);
+            {
 
+            auto ppath = __øcreate  <::draw2d::path>();
+
+            ppath->set_current_point(pointA);
+            ppath->add_line(pointB);
+            ppath->add_line(pointC);
+
+            pgraphics->draw(ppath);
+            }
       }
       break;
       case e_grip_top:

@@ -1822,6 +1822,12 @@ namespace aura
              strImplementation = "vkvg";
 
          }
+         else if (strImplementation == "nanovg")
+         {
+
+            strImplementation = "nanovg";
+
+         }
          else if (strImplementation == "direct2d")
          {
 
@@ -9873,6 +9879,25 @@ namespace aura
              }
 
              return system()->implementation_name("draw2d", "vulkan");
+
+         }
+         else if (strGraphics3DImplementation == "opengl")
+         {
+
+            ::string strImpl = m_strDraw2dImplementation;
+
+            strImpl.trim();
+
+            strImpl.begins_eat("draw2d_");
+
+            if (strImpl.case_insensitive_equals("nanovg"))
+            {
+
+               return system()->implementation_name("draw2d", "nanovg");
+
+            }
+
+            return system()->implementation_name("draw2d", "opengl");
 
          }
          else if (strGraphics3DImplementation.begins("directx"))

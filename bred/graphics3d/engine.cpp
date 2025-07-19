@@ -1021,18 +1021,18 @@ namespace graphics3d
    }
 
 
-   ::pointer<model> engine::create_tinyobjloader_model(const ::file::path& path)
+   model<::graphics3d::Vertex> engine::create_tinyobjloader_model(const ::file::path& path)
    {
 
-      model::tinyobjloader_Builder builder{};
+      tinyobjloader_Builder builder{};
 
       auto pcontext = gpu_context();
 
       builder.loadModel(pcontext, path);
 
-      auto pmodel = __øcreate < model>();
+      model<::graphics3d::Vertex> pmodel;
 
-      pmodel->initialize_model(pcontext->m_pgpurenderer, builder);
+      pmodel.initialize_model(pcontext->m_pgpurenderer, builder);
 
       return pmodel;
 

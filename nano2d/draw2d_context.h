@@ -25,7 +25,8 @@ namespace nano2d
       ::draw2d::graphics_pointer          m_pgraphics;
       ::pointer<::nano2d::font_sink>      m_pfontsink;
       int                                 m_iPaint = -1;
-
+      bool                                m_bHasCurrentPoint;
+      ::float_point                       m_point;
 
 
       class draw2d_state :

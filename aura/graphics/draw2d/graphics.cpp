@@ -71,7 +71,7 @@ namespace draw2d
    graphics::graphics()
    {
 
-
+      //m_bHasCurrentPoint = false;
       _m_bYFlip = false;
       m_bForWindowDraw2d = false;
       m_bDraw = true;
@@ -888,35 +888,37 @@ namespace draw2d
    }
 
 
-   void graphics::set_current_point(double x, double y)
+   //void graphics::set_current_point(double x, double y)
+   //{
+
+   //   m_point.x() = x;
+
+   //   m_point.y() = y;
+
+   //   m_bHasCurrentPoint = true;
+
+   //   //return true;
+
+   //}
+
+
+   //void graphics::line_to(double x, double y)
+   //{
+
+   //   return draw_line(m_point.x(), m_point.y(), x, y);
+
+   //}
+
+
+   void graphics::line(double x1, double y1, double x2, double y2)
    {
 
-      m_point.x() = x;
-
-      m_point.y() = y;
-
-      //return true;
+      return line(x1, y1, x2, y2, m_ppen);
 
    }
 
 
-   void graphics::line_to(double x, double y)
-   {
-
-      return draw_line(m_point.x(), m_point.y(), x, y);
-
-   }
-
-
-   void graphics::draw_line(double x1, double y1, double x2, double y2)
-   {
-
-      return draw_line(x1, y1, x2, y2, m_ppen);
-
-   }
-
-
-   void graphics::draw_line(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen)
+   void graphics::line(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen)
    {
 
       // return draw_line(double_point(point1), double_point(point2), ppen);
@@ -5512,58 +5514,42 @@ namespace draw2d
 
          draw_rectangle(rect2);
 
-         if (::is_set(m_ppen))
-         {
+         m_ppen->m_elinecapBeg = ::draw2d::e_line_cap_flat;
+         m_ppen->m_elinecapEnd = ::draw2d::e_line_cap_flat;
+         m_ppen->set_modified();
+            
+         line(
+            rect2.top_left() + ::double_size(0., (m_ppen->m_dWidth / 2.0)),
+            rect2.top_right() + ::double_size(0., (m_ppen->m_dWidth / 2.0)));
 
-            m_ppen->m_elinecapBeg = ::draw2d::e_line_cap_flat;
-            m_ppen->m_elinecapEnd = ::draw2d::e_line_cap_flat;
-            set_current_point(rect2.top_left() + ::double_size(0., (m_ppen->m_dWidth / 2.0)));
-            line_to(rect2.top_right() + ::double_size(0., (m_ppen->m_dWidth / 2.0)));
-            set_current_point(rect2.top_left() + ::double_size(0., (m_ppen->m_dWidth)));
-            line_to(rect2.top_right() + ::double_size(0., (m_ppen->m_dWidth)));
+         line(
+            rect2.top_left() + ::double_size(0., (m_ppen->m_dWidth)),
+            rect2.top_right() + ::double_size(0., (m_ppen->m_dWidth)));
 
-         }
+         line(rect1.top_left(), rect1.top_right());
 
+         line(
+            rect1.top_left() + ::double_size(0., (m_ppen->m_dWidth / 2.0)),
+            rect1.top_right() + ::double_size(0., (m_ppen->m_dWidth / 2.0)));
 
-         set_current_point(rect1.top_left());
-         line_to(rect1.top_right());
+         line(
+            rect1.top_left() + ::double_size(0., (m_ppen->m_dWidth)),
+            rect1.top_right() + ::double_size(0., (m_ppen->m_dWidth)));
 
-         if (::is_set(m_ppen))
-         {
+         m_ppen->m_elinecapBeg = ::draw2d::e_line_cap_square;
+         m_ppen->m_elinecapEnd = ::draw2d::e_line_cap_square;
+         m_ppen->set_modified();
 
-            set_current_point(rect1.top_left() + ::double_size(0., (m_ppen->m_dWidth / 2.0)));
-            line_to(rect1.top_right() + ::double_size(0., (m_ppen->m_dWidth / 2.0)));
-            set_current_point(rect1.top_left() + ::double_size(0., (m_ppen->m_dWidth)));
-            line_to(rect1.top_right() + ::double_size(0., (m_ppen->m_dWidth)));
+         line(
+            rect1.top_left() + ::double_size(0, (m_ppen->m_dWidth)),
+            rect1.bottom_left());
+         line(
+            rect1.bottom_left(),
+            rect2.bottom_left());
 
-         }
-
-         if (::is_set(m_ppen))
-         {
-
-            m_ppen->m_elinecapBeg = ::draw2d::e_line_cap_square;
-            m_ppen->m_elinecapEnd = ::draw2d::e_line_cap_square;
-            m_ppen->set_modified();
-
-         }
-
-         if (::is_set(m_ppen))
-         {
-
-            set_current_point(rect1.top_left() + ::double_size(0, (m_ppen->m_dWidth)));
-
-         }
-
-         line_to(rect1.bottom_left());
-         line_to(rect2.bottom_left());
-
-         if (::is_set(m_ppen))
-         {
-
-            set_current_point(rect1.top_right() + ::double_size(0, (m_ppen->m_dWidth)));
-            line_to(double_point(rect1.right(), (int)(rect2.top() - (m_ppen->m_dWidth))));
-
-         }
+         line(
+            rect1.top_right() + ::double_size(0, (m_ppen->m_dWidth)),
+            double_point(rect1.right(), (int)(rect2.top() - (m_ppen->m_dWidth))));
 
       }
       else if (estockicon == e_stock_icon_iconify)
@@ -5573,8 +5559,8 @@ namespace draw2d
          rectangle.deflate(0, rectangle.height() / 7.0);
 
          
-         set_current_point(rectangle.bottom_left());
-         line_to(rectangle.bottom_right());
+         //set_current_point();
+         line(rectangle.bottom_left(), rectangle.bottom_right());
          //set_current_point(rectangle.bottom_left() - ::int_size(0,(int)(m_ppen->m_dWidth*2.0)));
          //line_to(rectangle.bottom_right() - ::int_size(0,(int)(m_ppen->m_dWidth*2.0)));
          //set_current_point(rectangle.bottom_left() - ::int_size(0,(int)(m_ppen->m_dWidth*3.0 / 2.0)));
@@ -5701,7 +5687,7 @@ namespace draw2d
       if (iStyle == 0)
       {
 
-         draw_line({ x1, h }, { x2, h });
+         line({ x1, h }, { x2, h });
 
       }
       else
@@ -6143,267 +6129,6 @@ namespace draw2d
    //}
 
 
-   float graphics::nanosvg_distPtSeg(float x, float y, float px, float py, float qx, float qy)
-   {
-
-      float pqx, pqy, Δx, Δy, d, t;
-      pqx = qx - px;
-      pqy = qy - py;
-      Δx = x - px;
-      Δy = y - py;
-      d = pqx * pqx + pqy * pqy;
-      t = pqx * Δx + pqy * Δy;
-      if (d > 0) t /= d;
-      if (t < 0) t = 0;
-      else if (t > 1) t = 1;
-      Δx = px + t * pqx - x;
-      Δy = py + t * pqy - y;
-      return Δx * Δx + Δy * Δy;
-
-   }
-
-
-   void graphics::nanosvg_cubicBez(float x1, float y1, float x2, float y2,
-                                   float x3, float y3, float x4, float y4,
-                                   float tol, int level)
-   {
-      float x12, y12, x23, y23, x34, y34, x123, y123, x234, y234, x1234, y1234;
-      float d;
-
-      if (level > 12) return;
-
-      x12 = (x1 + x2) * 0.5f;
-      y12 = (y1 + y2) * 0.5f;
-      x23 = (x2 + x3) * 0.5f;
-      y23 = (y2 + y3) * 0.5f;
-      x34 = (x3 + x4) * 0.5f;
-      y34 = (y3 + y4) * 0.5f;
-      x123 = (x12 + x23) * 0.5f;
-      y123 = (y12 + y23) * 0.5f;
-      x234 = (x23 + x34) * 0.5f;
-      y234 = (y23 + y34) * 0.5f;
-      x1234 = (x123 + x234) * 0.5f;
-      y1234 = (y123 + y234) * 0.5f;
-
-      d = nanosvg_distPtSeg(x1234, y1234, x1, y1, x4, y4);
-      if (d > tol * tol)
-      {
-         nanosvg_cubicBez(x1, y1, x12, y12, x123, y123, x1234, y1234, tol, level + 1);
-         nanosvg_cubicBez(x1234, y1234, x234, y234, x34, y34, x4, y4, tol, level + 1);
-      }
-      else
-      {
-
-         line_to(double_point(x4, y4));
-
-      }
-
-   }
-
-
-   void graphics::nanosvg_drawPath(float * pts, int npts, char closed, float tol, const ::color::color & color)
-   {
-
-      int i;
-
-      begin_path();
-
-      set_current_point(double_point(pts[0], pts[1]));
-
-      for (i = 0; i < npts - 1; i += 3)
-      {
-
-         float * p = &pts[i * 2];
-
-         nanosvg_cubicBez(p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], tol, 0);
-
-      }
-
-      if (closed)
-      {
-
-         set_current_point(double_point(pts[0], pts[1]));
-
-      }
-
-      end_path();
-
-   }
-
-
-   void graphics::nanosvg_drawControlPts(float * pts, int npts)
-   {
-
-      int i;
-
-      // Control lines
-      //glColor4ubv(lineColor);
-      //glBegin(GL_LINES);
-      begin_path();
-
-      for (i = 0; i < npts - 1; i += 3)
-      {
-
-         float * p = &pts[i * 2];
-
-         set_current_point(::int_point((int)p[0], (int)p[1]));
-         line_to(::int_point((int)p[2], (int)p[3]));
-         line_to(::int_point((int)p[4], (int)p[5]));
-         line_to(::int_point((int)p[6], (int)p[7]));
-
-      }
-
-      end_path();
-
-      // Points
-      //glPointSize(6.0f);
-      //glColor4ubv(lineColor);
-
-      //glBegin(GL_POINTS);
-      //glVertex2f(pts[0], pts[1]);
-      //for (i = 0; i < npts - 1; i += 3) {
-      // float* point = &pts[i * 2];
-      //glVertex2f(int_point[6], int_point[7]);
-      //}
-      //glEnd();
-
-      // Points
-      //glPointSize(3.0f);
-
-      //glBegin(GL_POINTS);
-      //glColor4ubv(bgColor);
-      //glVertex2f(pts[0], pts[1]);
-      //for (i = 0; i < npts - 1; i += 3) {
-      //   float* point = &pts[i * 2];
-      //   glColor4ubv(lineColor);
-      //   glVertex2f(int_point[2], int_point[3]);
-      //   glVertex2f(int_point[4], int_point[5]);
-      //   glColor4ubv(bgColor);
-      //   glVertex2f(int_point[6], int_point[7]);
-      //}
-      //glEnd();
-
-   }
-
-
-   void graphics::nanosvg_drawframe(NSVGimage * pnsvgimage, int x, int y, int w, int h)
-   {
-
-      float impact[4], cx, cy, hw, hh, aspect, px;
-
-      NSVGshape * pnsvgshape;
-
-      NSVGpath * pnsvgpath;
-
-      //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-      //glfwGetFramebufferSize(window, &width, &height);
-
-      //glContext(0, 0, width, height);
-
-      save_context savecontext(this);
-
-      place_impact_area(x, y, w, h);
-
-      //glClearColor(220.0f / 255.0f, 220.0f / 255.0f, 220.0f / 255.0f, 1.0f);
-      //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-      //glEnable(GL_BLEND);
-      //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-      //glDisable(GL_TEXTURE_2D);
-      //glMatrixMode(GL_PROJECTION);
-      //glLoadIdentity();
-
-      // Fit impact to bounds
-      cx = pnsvgimage->width * 0.5f;
-      cy = pnsvgimage->height * 0.5f;
-      hw = pnsvgimage->width * 0.5f;
-      hh = pnsvgimage->height * 0.5f;
-
-      if (w / hw < h / hh)
-      {
-         aspect = (float)h / (float)w;
-         impact[0] = cx - hw * 1.2f;
-         impact[2] = cx + hw * 1.2f;
-         impact[1] = cy - hw * 1.2f * aspect;
-         impact[3] = cy + hw * 1.2f * aspect;
-      }
-      else
-      {
-         aspect = (float)w / (float)h;
-         impact[0] = cx - hh * 1.2f * aspect;
-         impact[2] = cx + hh * 1.2f * aspect;
-         impact[1] = cy - hh * 1.2f;
-         impact[3] = cy + hh * 1.2f;
-      }
-      // Size of one pixel.
-      px = (impact[2] - impact[1]) / (float)w;
-
-      //glOrtho(impact[0], impact[2], impact[3], impact[1], -1, 1);
-
-      //glMatrixMode(GL_MODELVIEW);
-      //glLoadIdentity();
-      //glDisable(GL_DEPTH_TEST);
-      //glColor4ub(255, 255, 255, 255);
-      //glEnable(GL_BLEND);
-      //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-      // Draw bounds
-      //glColor4ub(0, 0, 0, 64);
-      //glBegin(GL_LINE_LOOP);
-      //glVertex2f(0, 0);
-      //glVertex2f(pnsvgimage->width, 0);
-      //glVertex2f(pnsvgimage->width, pnsvgimage->height);
-      //glVertex2f(0, pnsvgimage->height);
-      //glEnd();
-
-      auto ppen = __øcreate < ::draw2d::pen >();
-
-      ppen->create_solid(1.0, argb(255, 0, 128, 0));
-
-      set(ppen);
-
-      for (pnsvgshape = pnsvgimage->shapes; pnsvgshape != nullptr; pnsvgshape = pnsvgshape->next)
-      {
-
-         for (pnsvgpath = pnsvgshape->paths; pnsvgpath != nullptr; pnsvgpath = pnsvgpath->next)
-         {
-
-            nanosvg_drawPath(pnsvgpath->pts, pnsvgpath->npts, pnsvgpath->closed, px / 3.0f, argb(255, 0, 128, 0));
-
-            //            nanosvg_drawControlPts(ppath->pts, ppath->npts);
-
-         }
-
-      }
-
-      //glfwSwapBuffers(window);
-
-
-
-   }
-
-   //void graphics::nanosvg_resizecb(int width, int height)
-   //{
-   //   // Update and render
-   //   NSVG_NOTUSED(width);
-   //   NSVG_NOTUSED(height);
-   //   //drawframe(window);
-   //}
-
-
-   void graphics::nanosvg(string str, int x, int y, int w, int h)
-   {
-
-      struct NSVGimage * pnsvgimage;
-
-      pnsvgimage = nsvgParse((char *)(const char *)str, "px", 96);
-
-      nanosvg_drawframe(pnsvgimage, x, y, w, h);
-
-      nsvgDelete(pnsvgimage);
-
-      //return true;
-
-   }
 
 
 
@@ -6619,36 +6344,36 @@ namespace draw2d
       if (eborder & e_border_top)
       {
 
-         set_current_point(rectangle.top_left());
-
-         line_to(rectangle.top_right());
+         line(
+            rectangle.top_left(),
+            rectangle.top_right());
 
       }
 
       if (eborder & e_border_right)
       {
 
-         set_current_point(rectangle.top_right());
-
-         line_to(rectangle.bottom_right());
+         line(
+            rectangle.top_right(),
+            rectangle.bottom_right());
 
       }
 
       if (eborder & e_border_bottom)
       {
 
-         set_current_point(rectangle.bottom_right());
-
-         line_to(rectangle.bottom_left());
+         line(
+            rectangle.bottom_right(),
+            rectangle.bottom_left());
 
       }
 
       if (eborder & e_border_left)
       {
 
-         set_current_point(rectangle.bottom_left());
-
-         line_to(rectangle.top_left());
+         line(
+            rectangle.bottom_left(),
+            rectangle.top_left());
 
       }
 
@@ -6688,6 +6413,43 @@ namespace draw2d
 
    }
 
+
+   void graphics::nanosvg_drawframe(NSVGimage* pnsvgimage, int x, int y, int w, int h)
+   {
+
+      float impact[4], cx, cy, hw, hh, aspect, px;
+
+      auto ppath = __øcreate < ::draw2d::path >();
+
+      ppath->nanosvg_drawframe(pnsvgimage, x, y, w, h);
+
+      save_context savecontext(this);
+
+      place_impact_area(x, y, w, h);
+
+      auto ppen = __øcreate < ::draw2d::pen >();
+
+      ppen->create_solid(1.0, argb(255, 0, 128, 0));
+
+      set(ppen);
+
+      draw(ppath);
+
+   }
+
+
+   void graphics::nanosvg(string str, int x, int y, int w, int h)
+   {
+
+      struct NSVGimage* pnsvgimage;
+
+      pnsvgimage = nsvgParse((char*)(const char*)str, "px", 96);
+
+      nanosvg_drawframe(pnsvgimage, x, y, w, h);
+
+      nsvgDelete(pnsvgimage);
+
+   }
 
 
 } // namespace draw2d

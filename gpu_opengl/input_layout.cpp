@@ -25,14 +25,14 @@ namespace gpu_opengl
 	}
 
 
-   void input_layout::_do_opengl_vao_vbo_and_ebo_input_layout(GLuint gluVAO, GLuint gluVBO, GLuint gluEBO)
+   void input_layout::__do_opengl_vao_vbo_and_ebo_input_layout(GLuint gluVAO, GLuint gluVBO, GLuint gluEBO)
 	{
 
 		//glBindVertexArray(gluVAO);
 		//GLCheckError("");
 
-		glBindBuffer(GL_ARRAY_BUFFER, gluVBO);
-		GLCheckError("");
+		//glBindBuffer(GL_ARRAY_BUFFER, gluVBO);
+		//GLCheckError("");
 
 		//for(int i = 0; i < m)
 		//// vertex positions

@@ -30,6 +30,9 @@ namespace graphics3d
 	{
 	public:
 
+
+		using Vertex = ::graphics3d::Vertex;
+
 		::string m_strPath;
 
 		::collection::index m_iId;
@@ -38,7 +41,7 @@ namespace graphics3d
 
 		glm::vec3 m_color;
 
-		::pointer<model> m_pmodel;
+		::graphics3d::model<Vertex> m_pmodel;
 
 		using map = index_map < ::pointer < scene_object > >;
 

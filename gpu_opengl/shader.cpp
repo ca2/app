@@ -208,7 +208,7 @@ namespace gpu_opengl
 
       bind(pgputextureTarget);
 
-      bind_source(pgputextureSource);
+      bind_source(pgputextureSource, 0);
 
    }
 
@@ -227,11 +227,40 @@ namespace gpu_opengl
 
       }
 
-      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, ptexture->m_gluFbo);
+      //glBindFramebuffer(GL_DRAW_FRAMEBUFFER, ptexture->m_gluFbo);
+      //GLCheckError("");
+
+      glBindFramebuffer(GL_FRAMEBUFFER, ptexture->m_gluFbo);
       GLCheckError("");
 
-      glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
+      glDrawBuffer(GL_COLOR_ATTACHMENT0);
       GLCheckError("");
+
+      //glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
+      //GLCheckError("");
+
+      {
+
+         GLint drawFbo = 0;
+         glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFbo);
+
+         GLint readFbo = 0;
+         glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFbo);
+
+         ::string strMessage;
+
+         strMessage.formatf("ø shader_bind drawFbo=%d readFbo=%d", drawFbo, readFbo);
+
+         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+            GL_DEBUG_TYPE_MARKER,
+            0,
+            GL_DEBUG_SEVERITY_NOTIFICATION,
+            -1,
+            strMessage);
+
+      }
+
+
 
 
    }
@@ -274,6 +303,16 @@ namespace gpu_opengl
 
          glEnable(GL_DEPTH_TEST);
          glDepthMask(GL_TRUE);
+         if (m_bLequalDepth)
+         {
+
+            glDepthFunc(GL_LEQUAL);
+         }
+         else
+         {
+
+            glDepthFunc(GL_LESS);
+         }
 
       }
 
@@ -287,13 +326,15 @@ namespace gpu_opengl
    void shader::unbind()
    {
 
-      if (m_bTextureBound)
+      if (m_ptextureBound)
       {
 
-         glBindTexture(GL_TEXTURE_2D, 0);
+         ::cast < texture > ptextureBound = m_ptextureBound;
+
+         glBindTexture(ptextureBound->m_gluType, 0);
          GLCheckError("");
 
-         m_bTextureBound = false;
+         m_ptextureBound = nullptr;
 
       }
 
@@ -303,7 +344,7 @@ namespace gpu_opengl
    }
 
 
-   void shader::bind_source(::gpu::texture * pgputexture)
+   void shader::bind_source(::gpu::texture * pgputexture, int iSlot)
    {
 
       glActiveTexture(GL_TEXTURE0);
@@ -313,15 +354,21 @@ namespace gpu_opengl
 
       GLuint tex = ptexture->m_gluTextureID;
 
-      glBindTexture(GL_TEXTURE_2D, tex);
+      glBindTexture(ptexture->m_gluType, tex);
       GLCheckError("");
       
+      ::string strTexture = pgputexture->m_strUniform;
 
-      _set_int("uTexture", 0);
+      if (strTexture.is_empty())
+      {
 
-      m_bTextureBound = true;
+         strTexture = "uTexture";
 
+      }
 
+      _set_int(strTexture, iSlot);
+
+      m_ptextureBound = ptexture;
 
    }
 

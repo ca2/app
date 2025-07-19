@@ -419,7 +419,7 @@ namespace graphics
 
             m_pimage->g()->set(ppen2);
 
-            m_pimage->g()->draw_line(
+            m_pimage->g()->line(
                ::int_point(m_iBorder + x * m_sizeTile.cx(),
                   m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2),
                ::int_point(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() + 1,
@@ -428,7 +428,7 @@ namespace graphics
 
             m_pimage->g()->set(ppen1);
 
-            m_pimage->g()->draw_line(
+            m_pimage->g()->line(
                ::int_point(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
                   m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2),
                ::int_point(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
@@ -451,7 +451,7 @@ namespace graphics
 
             }
 
-            m_pimage->g()->draw_line(
+            m_pimage->g()->line(
                int_point(m_iBorder + x * m_sizeTile.cx(),
                   m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2),
                int_point(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() + 1,
@@ -474,7 +474,7 @@ namespace graphics
 
             }
 
-            m_pimage->g()->draw_line(
+            m_pimage->g()->line(
                int_point(m_iBorder + x * m_sizeTile.cx(),
                   m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2),
                int_point(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() + 1,
@@ -497,7 +497,7 @@ namespace graphics
 
             }
 
-            m_pimage->g()->draw_line(
+            m_pimage->g()->line(
                int_point(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
                   m_iBorder + y * m_sizeTile.cy()),
                int_point(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
@@ -514,7 +514,7 @@ namespace graphics
             ::draw2d::pen_pointer & ppen1 = get_pen1(edoscolor);
             m_pimage->g()->set(ppen2);
 
-           m_pimage->g()->draw_line(
+           m_pimage->g()->line(
               ::double_point( m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
                m_iBorder + y * m_sizeTile.cy() ),
               ::double_point( m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
@@ -522,7 +522,7 @@ namespace graphics
             );
             m_pimage->g()->set(ppen1);
 
-            m_pimage->g()->draw_line(
+            m_pimage->g()->line(
                ::double_point(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
                m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2),
                ::double_point(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() + 1,
@@ -539,7 +539,7 @@ namespace graphics
             ::draw2d::pen_pointer & ppen1 = get_pen1(edoscolor);
             m_pimage->g()->set(ppen2);
 
-            m_pimage->g()->draw_line(
+            m_pimage->g()->line(
                ::double_point(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
                m_iBorder + y * m_sizeTile.cy()),
                ::double_point(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2, 
@@ -547,7 +547,7 @@ namespace graphics
             );
             m_pimage->g()->set(ppen1);
 
-            m_pimage->g()->draw_line(
+            m_pimage->g()->line(
                ::double_point(m_iBorder + x * m_sizeTile.cx(),
                m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2),
                ::double_point(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
@@ -570,7 +570,7 @@ namespace graphics
 
             }
 
-            m_pimage->g()->draw_line(
+            m_pimage->g()->line(
                ::double_point(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
                m_iBorder + y * m_sizeTile.cy()),
                ::double_point(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2, 
@@ -593,13 +593,13 @@ namespace graphics
 
             }
 
-            m_pimage->g()->draw_line(
+            m_pimage->g()->line(
                ::double_point(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
                m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2),
                ::double_point(m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() + 1, 
                   m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2)
             );
-            m_pimage->g()->draw_line(
+            m_pimage->g()->line(
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
                m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2, m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy()
@@ -621,12 +621,12 @@ namespace graphics
 
             }
 
-            m_pimage->g()->draw_line(
+            m_pimage->g()->line(
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2 - i2,
                m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() + 1, m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2
             );
-            m_pimage->g()->draw_line(
+            m_pimage->g()->line(
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
                m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2, m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() + 1
@@ -648,12 +648,12 @@ namespace graphics
 
             }
 
-            m_pimage->g()->draw_line(
+            m_pimage->g()->line(
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2 - i2,
                m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() + 1, m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2
             );
-            m_pimage->g()->draw_line(
+            m_pimage->g()->line(
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
                m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2, m_iBorder + y * m_sizeTile.cy()
@@ -675,12 +675,12 @@ namespace graphics
 
             }
 
-            m_pimage->g()->draw_line(
+            m_pimage->g()->line(
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
                m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() + 1, m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2
             );
-            m_pimage->g()->draw_line(
+            m_pimage->g()->line(
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
                m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2, m_iBorder + y * m_sizeTile.cy()
@@ -702,12 +702,12 @@ namespace graphics
 
             }
 
-           m_pimage->g()->draw_line(
+           m_pimage->g()->line(
                m_iBorder + x * m_sizeTile.cx(),
                m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2 + i2, m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2
             );
-            m_pimage->g()->draw_line(
+            m_pimage->g()->line(
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
                m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2, m_iBorder + y * m_sizeTile.cy()
@@ -729,12 +729,12 @@ namespace graphics
 
             }
 
-            m_pimage->g()->draw_line(
+            m_pimage->g()->line(
                m_iBorder + x * m_sizeTile.cx(),
                m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2, m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2
             );
-            m_pimage->g()->draw_line(
+            m_pimage->g()->line(
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
                m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2, m_iBorder + y * m_sizeTile.cy()
@@ -756,12 +756,12 @@ namespace graphics
 
             }
 
-            m_pimage->g()->draw_line(
+            m_pimage->g()->line(
                m_iBorder + x * m_sizeTile.cx(),
                m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2 + i2, m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2
             );
-            m_pimage->g()->draw_line(
+            m_pimage->g()->line(
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
                m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2, m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() + 1
@@ -783,12 +783,12 @@ namespace graphics
 
             }
 
-            m_pimage->g()->draw_line(
+            m_pimage->g()->line(
                m_iBorder + x * m_sizeTile.cx(),
                m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2, m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2
             );
-            m_pimage->g()->draw_line(
+            m_pimage->g()->line(
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2,
                m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() / 2,
                m_iBorder + x * m_sizeTile.cx() + m_sizeTile.cx() / 2, m_iBorder + y * m_sizeTile.cy() + m_sizeTile.cy() + 1

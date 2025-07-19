@@ -20,13 +20,14 @@ namespace gpu_opengl
       GLuint            m_gluTextureID;
       GLuint            m_gluDepthStencilRBO;
       GLuint            m_gluFbo;
+      GLenum            m_gluType;
 
 
       texture();
       ~texture() override;
 
 
-      void initialize_image_texture(::gpu::renderer* prenderer, const ::int_rectangle & rectangleTarget, bool bWithDepth) override;
+      void initialize_image_texture(::gpu::renderer* prenderer, const ::int_rectangle & rectangleTarget, bool bWithDepth, ::pixmap * ppixmap, enum_type etype) override;
 
       //void blend(::gpu::texture* ptexture, const ::int_rectangle& rectangleTarget) override;
 

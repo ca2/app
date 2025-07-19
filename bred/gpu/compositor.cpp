@@ -188,7 +188,7 @@ namespace gpu
    }
 
 
-   void compositor::on_start_layer()
+   void compositor::on_start_layer(::gpu::layer* pgpulayer)
    {
 
 
@@ -196,7 +196,7 @@ namespace gpu
    }
 
 
-   void compositor::on_end_layer()
+   void compositor::on_end_layer(::gpu::layer* pgpulayer)
    {
 
 

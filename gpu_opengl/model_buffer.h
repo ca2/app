@@ -95,7 +95,7 @@ namespace gpu_opengl
       void unbind(::gpu::command_buffer* pcommandbuffer) override;
 
 
-      void defer_set_input_layout(::gpu::input_layout* pinputlayout) override;
+      void apply_input_layout() override;
 
 
    };

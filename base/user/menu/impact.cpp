@@ -15,6 +15,7 @@
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/message/user.h"
@@ -593,8 +594,9 @@ namespace user
 
                pgraphics->set(m_ppenBkSel);
 
-               pgraphics->set_current_point(puseritem->m_rectangle2.left() + 1, puseritem->m_rectangle2.top());
-               pgraphics->line_to(puseritem->m_rectangle2.left() + 1, puseritem->m_rectangle2.bottom() - 1);
+               pgraphics->line(
+                  puseritem->m_rectangle2.left() + 1, puseritem->m_rectangle2.top(),
+                  puseritem->m_rectangle2.left() + 1, puseritem->m_rectangle2.bottom() - 1);
 
                pimage1 = m_pimageMap[atom];
 
@@ -841,13 +843,13 @@ namespace user
    void menu_impact::draw_border_rectangle(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle)
    {
 
-      pgraphics->set_current_point(rectangle.left(), rectangle.top());
+      pgraphics->line(
+         rectangle.left(), rectangle.top(),
+         rectangle.right(), rectangle.top());
 
-      pgraphics->line_to(rectangle.right(), rectangle.top());
-
-      pgraphics->set_current_point(rectangle.left(), rectangle.bottom());
-
-      pgraphics->line_to(rectangle.right(), rectangle.bottom());
+      pgraphics->line(
+         rectangle.left(), rectangle.bottom(),
+         rectangle.right(), rectangle.bottom());
 
    }
 
@@ -855,8 +857,9 @@ namespace user
    void menu_impact::draw_header_separator(::draw2d::graphics_pointer & pgraphics, const ::int_point& point1, const ::int_point& point2)
    {
 
-      pgraphics->set_current_point(point1);
-      pgraphics->line_to(point2);
+      pgraphics->line(
+         point1,
+         point2);
 
    }
 
@@ -866,13 +869,13 @@ namespace user
 
       pgraphics->fill_rectangle(rectangle, argb(255, 240, 240, 240));
 
-      pgraphics->set_current_point(rectangle.left(), rectangle.top());
+      pgraphics->line(
+         rectangle.left(), rectangle.top(),
+         rectangle.left(), rectangle.bottom());
 
-      pgraphics->line_to(rectangle.left(), rectangle.bottom());
-
-      pgraphics->set_current_point(rectangle.right(), rectangle.top());
-
-      pgraphics->line_to(rectangle.right(), rectangle.bottom());
+      pgraphics->line(
+         rectangle.right(), rectangle.top(),
+         rectangle.right(), rectangle.bottom());
 
 
 
@@ -883,14 +886,13 @@ namespace user
    void menu_impact::draw_item_rectangle(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle)
    {
 
-      pgraphics->set_current_point(rectangle.left(), rectangle.top());
+      pgraphics->line(
+         rectangle.left(), rectangle.top(),
+         rectangle.left(), rectangle.bottom());
 
-      pgraphics->line_to(rectangle.left(), rectangle.bottom());
-
-      pgraphics->set_current_point(rectangle.right(), rectangle.top());
-
-      pgraphics->line_to(rectangle.right(), rectangle.bottom());
-
+      pgraphics->line(
+         rectangle.right(), rectangle.top(),
+         rectangle.right(), rectangle.bottom());
 
    }
 
@@ -900,17 +902,13 @@ namespace user
 
       pgraphics->fill_rectangle(rectangle);
 
+      pgraphics->line(
+         rectangle.left(), rectangle.top(),
+         rectangle.left(), rectangle.bottom());
 
-      pgraphics->set_current_point(rectangle.left(), rectangle.top());
-
-      pgraphics->line_to(rectangle.left(), rectangle.bottom());
-
-
-
-      pgraphics->set_current_point(rectangle.right(), rectangle.top());
-
-      pgraphics->line_to(rectangle.right(), rectangle.bottom());
-
+      pgraphics->line(
+         rectangle.right(), rectangle.top(),
+         rectangle.right(), rectangle.bottom());
 
    }
 
@@ -920,15 +918,18 @@ namespace user
 
       pgraphics->fill_rectangle(rectangle);
 
-      pgraphics->set_current_point(rectangle.left(), rectangle.top());
-
-      pgraphics->line_to(rectangle.left(), rectangle.bottom());
-
-      pgraphics->set_current_point(rectangle.right(), rectangle.bottom() - 1);
+      pgraphics->line(
+         rectangle.left(), rectangle.top(),  
+         rectangle.left(), rectangle.bottom());
 
       int h = ::height(rectangle);
 
+      pgraphics->line(
+         rectangle.right(), rectangle.bottom() - 1,
+         rectangle.right(), rectangle.bottom() - h / 3 - 2);
+
       double_point_array pta;
+
       pta.add(rectangle.right(), rectangle.bottom() - h / 3 - 2);
 
       pta.add(rectangle.right() + h * 3 / 16, rectangle.bottom() - h / 2 - 2);
@@ -936,30 +937,41 @@ namespace user
       pta.add(rectangle.right(), rectangle.bottom() - h * 2 / 3 - 2);
 
       pgraphics->fill_polygon(pta);
-      pgraphics->line_to(rectangle.right(), rectangle.bottom() - h / 3 - 2);
 
-      pgraphics->line_to(rectangle.right() + h * 3 / 16, rectangle.bottom() - h / 2 - 2);
+      auto ppath = __øcreate<::draw2d::path>();
 
-      pgraphics->line_to(rectangle.right(), rectangle.bottom() - h * 2 / 3 - 2);
+      ppath->set_current_point(rectangle.right(), rectangle.bottom() - h * 2 / 3 - 2);
+      
+      ppath->add_line(rectangle.right(), rectangle.bottom() - h / 3 - 2);
 
-      pgraphics->line_to(rectangle.right(), rectangle.top());
+      ppath->add_line(rectangle.right() + h * 3 / 16, rectangle.bottom() - h / 2 - 2);
+
+      ppath->add_line(rectangle.right(), rectangle.bottom() - h * 2 / 3 - 2);
+
+      ppath->add_line(rectangle.right(), rectangle.top());
+
+      pgraphics->draw(ppath);
 
    }
+
 
    void menu_impact::draw_item_rectangle_hover_sel001(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle)
    {
 
       pgraphics->fill_rectangle(rectangle);
 
-      pgraphics->set_current_point(rectangle.left(), rectangle.top());
-
-      pgraphics->line_to(rectangle.left(), rectangle.bottom());
-
-      pgraphics->set_current_point(rectangle.right(), rectangle.bottom() - 1);
+      pgraphics->line(
+         rectangle.left(), rectangle.top(),
+            rectangle.left(), rectangle.bottom());
 
       int h = ::height(rectangle);
 
+      pgraphics->line(
+         rectangle.right(), rectangle.bottom() - 1,
+         rectangle.right(), rectangle.bottom() - h / 3 - 2);
+
       double_point_array pta;
+
       pta.add(rectangle.right(), rectangle.bottom() - h / 3 - 2);
 
       pta.add(rectangle.right() + h * 3 / 16, rectangle.bottom() - h / 2 - 2);
@@ -967,24 +979,29 @@ namespace user
       pta.add(rectangle.right(), rectangle.bottom() - h * 2 / 3 - 2);
 
       pgraphics->fill_polygon(pta);
-      pgraphics->line_to(rectangle.right(), rectangle.bottom() - h / 3 - 2);
 
-      pgraphics->line_to(rectangle.right() + h * 3 / 16, rectangle.bottom() - h / 2 - 2);
+      auto ppath = __øcreate<::draw2d::path>();
 
-      pgraphics->line_to(rectangle.right(), rectangle.bottom() - h * 2 / 3 - 2);
+      ppath->set_current_point(rectangle.right(), rectangle.bottom() - h * 2 / 3 - 2);
 
+      ppath->add_line(rectangle.right(), rectangle.bottom() - h / 3 - 2);
 
-      pgraphics->line_to(rectangle.right(), rectangle.top());
+      ppath->add_line(rectangle.right() + h * 3 / 16, rectangle.bottom() - h / 2 - 2);
 
+      ppath->add_line(rectangle.right(), rectangle.bottom() - h * 2 / 3 - 2);
+
+      ppath->add_line(rectangle.right(), rectangle.top());
+
+      pgraphics->draw(ppath);
 
    }
 
 
-   void menu_impact::draw_item_separator(::draw2d::graphics_pointer & pgraphics, const ::int_point & point1, const ::int_point & point2)
+   void menu_impact::draw_item_separator(::draw2d::graphics_pointer& pgraphics, const ::int_point& point1, const ::int_point& point2)
    {
 
-      pgraphics->set_current_point(point1);
-      pgraphics->line_to(point2);
+      pgraphics->line(point1, point2);
+
    }
 
 

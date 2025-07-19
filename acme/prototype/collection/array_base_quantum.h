@@ -332,6 +332,15 @@ public:
 
    }
 
+   
+   ::block as_block()const
+   {
+      
+      return { (const void*)this->data(), this->get_size_in_bytes() };
+
+   }
+
+
    //template < typename iterator >
    //struct make_iterator : iterator
    //{

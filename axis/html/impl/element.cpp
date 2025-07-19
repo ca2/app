@@ -850,7 +850,7 @@ namespace html
                auto ppen = pdata->__øcreate < ::draw2d::pen >();
                ppen->create_solid(m_border.left(), m_border.colorLeft);
                pgraphics->set(ppen);
-               pgraphics->draw_line(point1.x(), point1.y(), point2.x(), point2.y());
+               pgraphics->line(point1.x(), point1.y(), point2.x(), point2.y());
             }
             else
             {
@@ -874,7 +874,7 @@ namespace html
                auto ppen = pdata->__øcreate < ::draw2d::pen >();
                ppen->create_solid(m_border.top(), m_border.colorTop);
                pgraphics->set(ppen);
-               pgraphics->draw_line(point1.x(), point1.y(), point2.x(), point2.y());
+               pgraphics->line(point1.x(), point1.y(), point2.x(), point2.y());
             }
             else
             {
@@ -898,7 +898,7 @@ namespace html
                auto ppen = pdata->__øcreate < ::draw2d::pen >();
                ppen->create_solid(m_border.right(), m_border.colorRight);
                pgraphics->set(ppen);
-               pgraphics->draw_line(point1.x(), point1.y(), point2.x(), point2.y());
+               pgraphics->line(point1.x(), point1.y(), point2.x(), point2.y());
             }
             else
             {
@@ -922,7 +922,7 @@ namespace html
                auto ppen = pdata->__øcreate < ::draw2d::pen >();
                ppen->create_solid(m_border.bottom(), m_border.colorBottom);
                pgraphics->set(ppen);
-               pgraphics->draw_line(point1.x(), point1.y(), point2.x(), point2.y());
+               pgraphics->line(point1.x(), point1.y(), point2.x(), point2.y());
             }
             else
             {

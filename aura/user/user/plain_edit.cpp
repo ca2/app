@@ -1071,9 +1071,9 @@ namespace user
 
                pgraphics->set(ppenCaret);
 
-               pgraphics->set_current_point(left + x1, y);
-
-               pgraphics->line_to(left + x1, y + dLineHeight);
+               pgraphics->line(
+                     left + x1, y,
+                     left + x1, y + dLineHeight);
 
             }
             else if (iCurLineSelCur >= 0 && bFocus && bCaretOn && iCurLineSelCur == iCurLineSelEnd)
@@ -1093,9 +1093,9 @@ namespace user
 
                pgraphics->set(ppenCaret);
 
-               pgraphics->set_current_point(left + x2, y);
-
-               pgraphics->line_to(left + x2, y + dLineHeight);
+               pgraphics->line(
+                  left + x2, y,
+                  left + x2, y + dLineHeight);
 
             }
 

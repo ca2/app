@@ -391,7 +391,8 @@ namespace gpu_opengl
 
          glFrontFace(GL_CCW);      // Default CCW
          GLCheckError("");
-         glEnable(GL_CULL_FACE);   // Optional
+         //glEnable(GL_CULL_FACE);   // Optional
+         glDisable(GL_CULL_FACE); // or make sure front face winding is correct
          GLCheckError("");
          glCullFace(GL_FRONT);
          //glCullFace(GL_BACK);
@@ -566,7 +567,7 @@ namespace gpu_opengl
 
 
       //glClearColor(0.5f*0.5f, 0.75f * 0.5f, 0.95f * 0.5f, 0.5f); // RGBA
-      //glClear(GL_COLOR_BUFFER_BIT);
+      //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
       
       
       //glDisable(GL_DEPTH_TEST);

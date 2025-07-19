@@ -118,6 +118,9 @@ namespace gpu_opengl
       void merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera) override;
 
       void on_start_layer(::gpu::layer* player) override;
+
+      void on_end_layer(::gpu::layer* player) override;
+
       //virtual void _ensure_layer_framebuffer();
       
       //void make_current() override;

@@ -121,6 +121,7 @@ namespace gpu
       //int                                    m_iScanOffscreen;
       //::memory                               m_memoryOffscreen;
       ::pointer < ::gpu::swap_chain >          m_pswapchain;
+      ::string_map < ::pointer < ::gpu::texture > > m_texturemap;
 
 
       context();
@@ -133,6 +134,10 @@ namespace gpu
 
       void _send(const ::procedure& procedure) override;
       //void _post(const ::procedure& procedure) override;
+
+      virtual ::gpu::texture* texture(const ::file::path& path);
+
+      virtual void load_texture(::pointer < ::gpu::texture > & ptexture, const ::file::path& path);
 
 
       virtual void defer_make_current();
@@ -279,7 +284,7 @@ namespace gpu
 
 
 
-      virtual void on_create_texture(texture * ptexture);
+      virtual void on_create_texture(::gpu::texture * ptexture);
       //virtual void on_take_snapshot(layer * player);
 
       virtual void frame_prefix();

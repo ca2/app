@@ -124,7 +124,7 @@ namespace graphics3d
 
 		virtual void on_update_frame();
 
-		virtual ::pointer<model> create_tinyobjloader_model(const ::file::path& path);
+		virtual ::graphics3d::model < ::graphics3d::Vertex > create_tinyobjloader_model(const ::file::path& path);
 
 		virtual void add_scene(::graphics3d::scene* pscene);
 

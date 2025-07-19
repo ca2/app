@@ -72,6 +72,8 @@ namespace gpu
 
       m_pgpurenderer->__defer_construct(ptexture);
 
+      ptexture->m_bRenderTarget = true;
+
       auto rectangle = m_pgpurenderer->m_pgpucontext->rectangle();
 
       ptexture->m_bTransferDst = true;
@@ -91,6 +93,8 @@ namespace gpu
       auto& ptextureSource = m_textureaSource.element_at_grow(iFrameIndex);
 
       m_pgpurenderer->__defer_construct(ptextureSource);
+
+      ptextureSource->m_bRenderTarget = true;
 
       auto rectangle = m_pgpurenderer->m_pgpucontext->rectangle();
 

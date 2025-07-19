@@ -78,6 +78,9 @@ namespace draw2d
       bool                                         m_bForWindowDraw2d;
       bool                                         m_bBeginDraw;
       bool                                         m_bInheritDraw;
+      // try to draw using paths and full primitives
+      // there is little control over lines drawn with move_to line_to than generalized
+      //bool                                         m_bHasCurrentPoint;
       bool                                         m_bOutline;
       void* m_pthis;
       ::user::interaction* m_puserinteraction;
@@ -584,40 +587,40 @@ namespace draw2d
       //}
 
 
-      virtual void set_current_point(double x, double y);
-      virtual void line_to(double x, double y);
-      virtual void draw_line(double x1, double y1, double x2, double y2);
-      virtual void draw_line(double x1, double y1, double x2, double y2, ::draw2d::pen* ppen);
+      //virtual void set_current_point(double x, double y);
+      //virtual void line_to(double x, double y);
+      virtual void line(double x1, double y1, double x2, double y2);
+      virtual void line(double x1, double y1, double x2, double y2, ::draw2d::pen* ppen);
 
 
-      inline void set_current_point(const ::double_point& point)
+      //inline void set_current_point(const ::double_point& point)
+      //{
+
+      //   return set_current_point(point.x(), point.y());
+
+      //}
+
+
+      //virtual void line_to(const ::double_point& point)
+      //{
+
+      //   return line_to(point.x(), point.y());
+
+      //}
+
+
+      inline void line(const ::double_point& point1, const ::double_point& point2)
       {
 
-         return set_current_point(point.x(), point.y());
+         return line(point1.x(), point1.y(), point2.x(), point2.y());
 
       }
 
 
-      virtual void line_to(const ::double_point& point)
+      inline void line(const ::double_point& point1, const ::double_point& point2, ::draw2d::pen* ppen)
       {
 
-         return line_to(point.x(), point.y());
-
-      }
-
-
-      inline void draw_line(const ::double_point& point1, const ::double_point& point2)
-      {
-
-         return draw_line(point1.x(), point1.y(), point2.x(), point2.y());
-
-      }
-
-
-      inline void draw_line(const ::double_point& point1, const ::double_point& point2, ::draw2d::pen* ppen)
-      {
-
-         return draw_line(point1.x(), point1.y(), point2.x(), point2.y(), ppen);
+         return line(point1.x(), point1.y(), point2.x(), point2.y(), ppen);
 
       }
 
@@ -1249,10 +1252,10 @@ namespace draw2d
 
 
 
-      virtual float nanosvg_distPtSeg(float x, float y, float px, float py, float qx, float qy);
-      virtual void nanosvg_cubicBez(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, float tol, int level);
-      virtual void nanosvg_drawPath(float* pts, int npts, char closed, float tol, const ::color::color& color);
-      virtual void nanosvg_drawControlPts(float* pts, int npts);
+      //virtual float nanosvg_distPtSeg(float x, float y, float px, float py, float qx, float qy);
+      //virtual void nanosvg_cubicBez(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, float tol, int level);
+      //virtual void nanosvg_drawPath(float* pts, int npts, char closed, float tol, const ::color::color& color);
+      //virtual void nanosvg_drawControlPts(float* pts, int npts);
       virtual void nanosvg_drawframe(NSVGimage* pimage, int x, int y, int w, int h);
       // virtual void nanosvg_resizecb(int width, int height, int x, int y, int w, int h);
 

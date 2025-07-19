@@ -43,8 +43,10 @@ namespace gpu
 
       virtual void just_after_new_frame();
 
-      virtual void on_start_layer();
-      virtual void on_end_layer();
+      
+      virtual void on_start_layer(::gpu::layer * pgpulayer);
+      virtual void on_end_layer(::gpu::layer* pgpulayer);
+
 
    };
 

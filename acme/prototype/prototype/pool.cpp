@@ -43,7 +43,7 @@ void pool_group::call_ongoing(const ::call& call)
    for (auto& pparticleOngoing : *pparticleaOngoing)
    {
 
-      pparticleaOngoing->handle(call);
+      pparticleOngoing->handle(call);
 
    }
 

@@ -860,6 +860,8 @@ namespace gpu
 
          m_pgpucontextMainDraw2d->m_eoutput = ::gpu::e_output_gpu_buffer;
 
+         m_pgpucontextMainDraw2d->m_pgpudevice = this;
+
          ::cast < ::user::interaction > puserinteraction = m_papplication->m_pacmeuserinteractionMain;
 
          if (!m_pgpucontextMainDraw2d->m_itask
@@ -1225,7 +1227,9 @@ namespace gpu
 
       __defer_construct(player);
 
-      player->initialize_gpu_layer(pgpurenderer, pgpurenderer->m_pgpurendertarget->get_frame_index(), m_iLayer);
+      auto iFrameIndex = pgpurenderer->m_pgpurendertarget->get_frame_index();
+
+      player->initialize_gpu_layer(pgpurenderer, iFrameIndex, m_iLayer);
 
       pgpurenderer->defer_update_renderer();
 

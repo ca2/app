@@ -88,9 +88,9 @@ namespace user
 
          pgraphics->set(ppen);
 
-         pgraphics->set_current_point(rectangleX.left(), (rectangleX.top() + rectangleX.bottom()) / 2);
-
-         pgraphics->line_to(rectangleX.right(), (rectangleX.top() + rectangleX.bottom()) / 2);
+         pgraphics->line(
+            rectangleX.left(), (rectangleX.top() + rectangleX.bottom()) / 2,
+            rectangleX.right(), (rectangleX.top() + rectangleX.bottom()) / 2);
 
          return;
 

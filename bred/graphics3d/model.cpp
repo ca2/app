@@ -20,67 +20,8 @@ namespace graphics3d
 {
 
 
-   model::model()
-   {
 
-
-   }
-   
-   
-   model::~model() 
-   {
-
-
-   }
-
-
-   void model::initialize_model(::gpu::renderer* pgpurenderer, const model::Builder& builder)
-   {
-
-      initialize_gpu_context_object(pgpurenderer->m_pgpucontext);
-
-      m_pgpurenderer = pgpurenderer;
-
-   }
-
-
-   void model::initialize_dummy_model(::gpu::renderer* pgpurenderer, int iVertices)
-   {
-
-      initialize_gpu_context_object(pgpurenderer->m_pgpucontext);
-
-      m_pgpurenderer = pgpurenderer;
-      m_bDummy = true;
-      m_iVertexCount = iVertices;
-
-   }
-
-
-   void model::draw()
-   {
-
-
-   }
-
-
-
-   void model::bind()
-   {
-
-
-
-   }
-
-
-   void model::unbind()
-   {
-
-
-
-   }
-
-
-   void model::tinyobjloader_Builder::loadModel(::gpu::context* pgpucontext, const ::file::path & path)
+   void tinyobjloader_Builder::loadModel(::gpu::context* pgpucontext, const ::file::path& path)
    {
 
       tinyobj::attrib_t attrib;
@@ -92,38 +33,38 @@ namespace graphics3d
 
       ::string str(::system()->path_system()->shell_path(pathFile));
 
-      if (!tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, str.c_str())) 
+      if (!tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, str.c_str()))
       {
-         
+
          throw std::runtime_error(warn + err);
 
       }
 
-      vertices.clear();
+      m_vertices.clear();
 
-      indices.clear();
+      m_indices.clear();
 
       ::map<::graphics3d::Vertex, uint32_t> uniqueVertices{};
 
-      for (const auto& shape : shapes) 
+      for (const auto& shape : shapes)
       {
 
-         for (const auto& index : shape.mesh.indices) 
+         for (const auto& index : shape.mesh.indices)
          {
 
             ::graphics3d::Vertex vertex{};
 
-            if (index.vertex_index >= 0) 
+            if (index.vertex_index >= 0)
             {
 
-               vertex.position = 
+               vertex.position =
                {
                    attrib.vertices[3 * index.vertex_index + 0],
                    attrib.vertices[3 * index.vertex_index + 1],
                    attrib.vertices[3 * index.vertex_index + 2],
                };
 
-               vertex.color = 
+               vertex.color =
                {
                   attrib.colors[3 * index.vertex_index + 0],
                   attrib.colors[3 * index.vertex_index + 1],
@@ -132,10 +73,10 @@ namespace graphics3d
 
             }
 
-            if (index.normal_index >= 0) 
+            if (index.normal_index >= 0)
             {
 
-               vertex.normal = 
+               vertex.normal =
                {
                    attrib.normals[3 * index.normal_index + 0],
                    attrib.normals[3 * index.normal_index + 1],
@@ -143,31 +84,32 @@ namespace graphics3d
                };
             }
 
-            if (index.texcoord_index >= 0) 
+            if (index.texcoord_index >= 0)
             {
 
-               vertex.uv = 
+               vertex.uv =
                {
                    attrib.texcoords[2 * index.texcoord_index + 0],
                    attrib.texcoords[2 * index.texcoord_index + 1],
                };
             }
 
-            if (uniqueVertices.count(vertex) == 0) 
+            if (uniqueVertices.count(vertex) == 0)
             {
 
-               uniqueVertices[vertex] = static_cast<uint32_t>(vertices.size());
-               vertices.add(vertex);
+               uniqueVertices[vertex] = static_cast<uint32_t>(m_vertices.size());
+               m_vertices.add(vertex);
 
             }
 
-            indices.add(uniqueVertices[vertex]);
+            m_indices.add(uniqueVertices[vertex]);
 
          }
 
       }
 
    }
+
 
 
 }  // namespace graphics3d

@@ -66,7 +66,7 @@ namespace gpu
 
       m_etype = etype;
 
-      on_initialize_memory_buffer();
+      on_initialize_memory_buffer(nullptr, size);
 
    }
 
@@ -105,6 +105,20 @@ namespace gpu
 
 
    void memory_buffer::on_initialize_memory_buffer(const void * dataStatic, memsize sizeStatic)
+   {
+
+
+   }
+
+
+   void memory_buffer::on_set_memory_buffer(const void* dataStatic, memsize sizeStatic)
+   {
+
+
+   }
+
+
+   void memory_buffer::_on_set_memory_buffer(const void* dataStatic, memsize sizeStatic)
    {
 
 

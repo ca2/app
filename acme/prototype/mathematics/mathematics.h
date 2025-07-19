@@ -30,8 +30,8 @@ namespace mathematics
    private:
 
 
-      double         m_dPi;
-      float          m_fPi;
+      static double           s_π;
+      static float            s_fπ;
       unsigned int            dwMode;
       unsigned char           pbData[16];
 
@@ -52,8 +52,8 @@ namespace mathematics
       int LinearMap(int iMin, int iMax, int iValue, int iValueMin, int iValueMax);
 
       double LinearMap(double dMin, double dMax, double dValue, double dValueMin, double dValueMax);
-      inline double get_pi() const { return m_dPi; }
-      inline float get_pi_f() const { return m_fPi; }
+      static inline double π() { return s_π; }
+      static inline float πf() { return s_fπ; }
 
       static bool IsPowerOfTwo(unsigned long long uiValue);
       static unsigned int ReverseBits(unsigned int index, unsigned int NumBits);

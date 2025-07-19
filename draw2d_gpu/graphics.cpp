@@ -5739,7 +5739,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    }
 
 
-   void graphics::line_to(double x, double y)
+   void graphics::line(double x1, double y1, double x2, double y2)
    {
 
       auto pcontext = gpu_context();
@@ -5778,8 +5778,8 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
 
       //glEnd();
 
-      m_point.x() = x;
-      m_point.y() = y;
+      m_point.x() = x2;
+      m_point.y() = y2;
 
       //return true;
 

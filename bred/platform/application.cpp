@@ -167,7 +167,13 @@ namespace bred
 
          }
 
-         if (strDraw2dImplementation == "vkvg")
+         if (strDraw2dImplementation == "nanovg")
+         {
+
+            strGpuImplementation = "opengl";
+
+         }
+         else if (strDraw2dImplementation == "vkvg")
          {
 
             strGpuImplementation = "vulkan";

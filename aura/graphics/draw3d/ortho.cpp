@@ -182,7 +182,7 @@ namespace draw3d
 
             m_pdc->set(ppen);
 
-            m_pdc->draw_line(::double_point(locationa[point1[iMax]].cxy()), ::double_point(locationa[point2[iMax]].cxy()));
+            m_pdc->line(::double_point(locationa[point1[iMax]].cxy()), ::double_point(locationa[point2[iMax]].cxy()));
 
          }
 

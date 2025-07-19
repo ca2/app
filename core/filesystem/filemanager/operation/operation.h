@@ -3,6 +3,7 @@
 
 ////#include "acme/prototype/prototype/object.h"
 #include "acme/filesystem/filesystem/listing.h"
+#include "core/filesystem/filemanager/_constant.h"
 
 
 namespace filemanager

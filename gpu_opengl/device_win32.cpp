@@ -14,7 +14,7 @@
 #include "acme/platform/application.h"
 #include "aura/platform/system.h"
 #include "windowing_win32/window.h"
-#include "glad_wgl.h"
+#include <glad/glad_wgl.h>
 
 
 namespace gpu_opengl

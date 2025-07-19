@@ -1426,7 +1426,7 @@ namespace experience_tranquillum
 
             //      pgraphics->set(ptab->get_data()->m_ppenBorder);
 
-            //      pgraphics->draw_line(rcTab.left(), rectangleX.bottom(), rectangleBorder.left(), rectangleX.bottom());
+            //      pgraphics->line(rcTab.left(), rectangleX.bottom(), rectangleBorder.left(), rectangleX.bottom());
 
             //   }
 
@@ -1536,7 +1536,7 @@ namespace experience_tranquillum
 
             //      pgraphics->set(ptab->get_data()->m_ppenBorder);
 
-            //      pgraphics->draw_line(rectangleBorder.right() - 1, rectangleX.bottom(), rcTab.right(), rectangleX.bottom());
+            //      pgraphics->line(rectangleBorder.right() - 1, rectangleX.bottom(), rcTab.right(), rectangleX.bottom());
 
             //   }
 

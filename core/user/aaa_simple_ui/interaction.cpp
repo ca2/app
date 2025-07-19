@@ -719,7 +719,7 @@ namespace simple_ui
 //         unsigned char b1 = brate(dRate, 23, 127);
 //         int_point->create_solid(1.0, argb(a1, r1, g1, b1));
 //         pgraphics->set(point);
-//         pgraphics->draw_line(rectangleWindow.left(), i, rectangleWindow.right(), i);
+//         pgraphics->line(rectangleWindow.left(), i, rectangleWindow.right(), i);
 //
 //      }
 //

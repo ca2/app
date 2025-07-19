@@ -277,7 +277,7 @@ namespace lite
 
                   pgraphics->SelectObject(ptab->get_data()->m_ppenBorder);
 
-                  pgraphics->draw_line(rcTab.left(), rectangleX.bottom(), rectangleBorder.left(), rectangleX.bottom());
+                  pgraphics->line(rcTab.left(), rectangleX.bottom(), rectangleBorder.left(), rectangleX.bottom());
 
                }
 
@@ -409,7 +409,7 @@ namespace lite
 
                   pgraphics->SelectObject(ptab->get_data()->m_ppenBorder);
 
-                  pgraphics->draw_line(rectangleBorder.right() - 1, rectangleX.bottom(), rcTab.right(), rectangleX.bottom());
+                  pgraphics->line(rectangleBorder.right() - 1, rectangleX.bottom(), rcTab.right(), rectangleX.bottom());
 
                }
 

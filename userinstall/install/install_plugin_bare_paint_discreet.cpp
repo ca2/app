@@ -287,21 +287,21 @@ auto m_timeSync = ::time::now();
       int iOffset = 3;
 
       ppen->create_solid(1.0, argb(220, 180, 180, 180));
-      pgraphics->draw_line(rectangle.left() + cx / iRate - iOffset, rectangle.top() + (cy - iBarHeight) / 2 - iOffset, rectangle.left() + cx - cx / iRate + iOffset, rectangle.top() + (cy - iBarHeight) / 2 - iOffset, ppen);
-      pgraphics->draw_line(rectangle.left() + cx / iRate - iOffset, rectangle.top() + (cy - iBarHeight) / 2 - iOffset, rectangle.left() + cx / iRate - iOffset, rectangle.top() + (cy + iBarHeight) / 2 + iOffset, ppen);
+      pgraphics->line(rectangle.left() + cx / iRate - iOffset, rectangle.top() + (cy - iBarHeight) / 2 - iOffset, rectangle.left() + cx - cx / iRate + iOffset, rectangle.top() + (cy - iBarHeight) / 2 - iOffset, ppen);
+      pgraphics->line(rectangle.left() + cx / iRate - iOffset, rectangle.top() + (cy - iBarHeight) / 2 - iOffset, rectangle.left() + cx / iRate - iOffset, rectangle.top() + (cy + iBarHeight) / 2 + iOffset, ppen);
 
       ppen->create_solid(1.0, argb(220, 80, 80, 80));
-      pgraphics->draw_line(rectangle.left() + cx / iRate - iOffset, rectangle.top() + (cy + iBarHeight) / 2 + iOffset, rectangle.left() + cx - cx / iRate + iOffset, rectangle.top() + (cy + iBarHeight) / 2 + iOffset, ppen);
-      pgraphics->draw_line(rectangle.left() + cx - cx / iRate + iOffset, rectangle.top() + (cy - iBarHeight) / 2 - iOffset, rectangle.left() + cx - cx / iRate + iOffset, rectangle.top() + (cy + iBarHeight) / 2 + iOffset, ppen);
+      pgraphics->line(rectangle.left() + cx / iRate - iOffset, rectangle.top() + (cy + iBarHeight) / 2 + iOffset, rectangle.left() + cx - cx / iRate + iOffset, rectangle.top() + (cy + iBarHeight) / 2 + iOffset, ppen);
+      pgraphics->line(rectangle.left() + cx - cx / iRate + iOffset, rectangle.top() + (cy - iBarHeight) / 2 - iOffset, rectangle.left() + cx - cx / iRate + iOffset, rectangle.top() + (cy + iBarHeight) / 2 + iOffset, ppen);
 
       iOffset = 2;
       ppen->create_solid(1.0, argb(220, 90, 90, 90));
-      pgraphics->draw_line(rectangle.left() + cx / iRate - iOffset, rectangle.top() + (cy - iBarHeight) / 2 - iOffset, rectangle.left() + cx - cx / iRate + iOffset, rectangle.top() + (cy - iBarHeight) / 2 - iOffset, ppen);
-      pgraphics->draw_line(rectangle.left() + cx / iRate - iOffset, rectangle.top() + (cy - iBarHeight) / 2 - iOffset, rectangle.left() + cx / iRate - iOffset, rectangle.top() + (cy + iBarHeight) / 2 + iOffset, ppen);
+      pgraphics->line(rectangle.left() + cx / iRate - iOffset, rectangle.top() + (cy - iBarHeight) / 2 - iOffset, rectangle.left() + cx - cx / iRate + iOffset, rectangle.top() + (cy - iBarHeight) / 2 - iOffset, ppen);
+      pgraphics->line(rectangle.left() + cx / iRate - iOffset, rectangle.top() + (cy - iBarHeight) / 2 - iOffset, rectangle.left() + cx / iRate - iOffset, rectangle.top() + (cy + iBarHeight) / 2 + iOffset, ppen);
 
       ppen->create_solid(1.0, argb(220, 170, 170, 170));
-      pgraphics->draw_line(rectangle.left() + cx / iRate - iOffset, rectangle.top() + (cy + iBarHeight) / 2 + iOffset, rectangle.left() + cx - cx / iRate + iOffset, rectangle.top() + (cy + iBarHeight) / 2 + iOffset, ppen);
-      pgraphics->draw_line(rectangle.left() + cx - cx / iRate + iOffset, rectangle.top() + (cy - iBarHeight) / 2 - iOffset, rectangle.left() + cx - cx / iRate + iOffset, rectangle.top() + (cy + iBarHeight) / 2 + iOffset, ppen);
+      pgraphics->line(rectangle.left() + cx / iRate - iOffset, rectangle.top() + (cy + iBarHeight) / 2 + iOffset, rectangle.left() + cx - cx / iRate + iOffset, rectangle.top() + (cy + iBarHeight) / 2 + iOffset, ppen);
+      pgraphics->line(rectangle.left() + cx - cx / iRate + iOffset, rectangle.top() + (cy - iBarHeight) / 2 - iOffset, rectangle.left() + cx - cx / iRate + iOffset, rectangle.top() + (cy + iBarHeight) / 2 + iOffset, ppen);
 
 
       pbrush->create_solid(argb(127, 255, 255, 255));

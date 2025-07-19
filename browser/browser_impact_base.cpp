@@ -418,7 +418,7 @@ pdirectorysystem->system() / "obs.png");
             for (int i = 0; i < size.cy(); i += 3)
             {
 
-               pgraphics->draw_line(0, i, size.cx(), i);
+               pgraphics->line(0, i, size.cx(), i);
 
             }
 

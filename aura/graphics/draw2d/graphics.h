@@ -325,6 +325,11 @@ namespace draw2d
       virtual void CreateCompatibleDC(::draw2d::graphics* pgraphics);
       virtual void CreateWindowDC(oswindow wnd);
 
+
+      virtual ::pointer < ::draw2d::path > create_path();
+      virtual ::pointer < ::draw2d::pen > create_solid_pen(double dWidth, const ::color::color & color);
+      virtual ::pointer < ::draw2d::brush > create_solid_brush(const ::color::color & color);
+
       //virtual void set_hint_window_output();
 
       virtual void defer_resize_memory_graphics(const ::int_size& size);
@@ -608,6 +613,14 @@ namespace draw2d
 
       //}
 
+      template< typename POINT>
+      void process_line(POINT & pointLast, const POINT & pointNow)
+      {
+
+         line(pointLast, pointNow);
+         pointLast = pointNow;
+
+      }
 
       inline void line(const ::double_point& point1, const ::double_point& point2)
       {

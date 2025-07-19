@@ -1654,7 +1654,11 @@ namespace nanoui
 
       context.set_font_sink(m_pfontsink);
 
-      pgraphics->offset_origin(-m_pos.x(), -m_pos.y());
+      //pgraphics->offset_origin(-m_pos.x(), -m_pos.y());
+
+      auto offsetcontext = pgraphics->offset_context();
+
+      offsetcontext -=m_pos;
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

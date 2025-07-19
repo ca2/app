@@ -6140,6 +6140,40 @@ namespace draw2d
    }
 
 
+   ::pointer < ::draw2d::path > graphics::create_path()
+   {
+
+      return __øcreate<::draw2d::path>();
+
+   }
+
+
+   ::pointer < ::draw2d::pen > graphics::create_solid_pen(double dWidth, const ::color::color & color)
+   {
+
+      auto ppen  =__øcreate<::draw2d::pen>();
+
+      ppen->create_solid(dWidth, color);
+
+      return ppen;
+
+   }
+
+
+   ::pointer < ::draw2d::brush > graphics::create_solid_brush(const ::color::color & color)
+   {
+
+      auto pbrush  =__øcreate<::draw2d::brush>();
+
+      pbrush->create_solid(color);
+
+      return pbrush;
+
+   }
+
+
+
+
    void graphics::defer_resize_memory_graphics(const ::int_size& size)
    {
 

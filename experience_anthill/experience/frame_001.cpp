@@ -470,9 +470,17 @@ namespace experience_anthill
          pointC = rectangleA.top_left();
          pointC.x() += 15;
 
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
-         pgraphics->line_to(pointC);
+         {
+
+            auto ppath = pgraphics->create_path();
+
+            ppath->set_current_point(pointA);
+            ppath->add_line(pointB);
+            ppath->add_line(pointC);
+
+            pgraphics->draw(ppath);
+
+         }
 
          pgraphics->set(m_ppenFace1);
 

@@ -473,18 +473,14 @@ namespace experience_anthill
       if (eborder & e_border_top)
       {
 
-         pgraphics->set_current_point(x, y);
-
-         pgraphics->line_to(x + cx, y);
+         pgraphics->line(x, y,x + cx, y);
 
       }
 
       if (eborder & e_border_left)
       {
 
-         pgraphics->set_current_point(x, y);
-
-         pgraphics->line_to(x, y + cy);
+         pgraphics->line(x, y,x, y + cy);
 
       }
 
@@ -502,18 +498,14 @@ namespace experience_anthill
       if (eborder & e_border_right)
       {
 
-         pgraphics->set_current_point(x + cx, y);
-
-         pgraphics->line_to(x + cx, y + cy);
+         pgraphics->line(x + cx, y,x + cx, y + cy);
 
       }
 
       if (eborder & e_border_bottom)
       {
 
-         pgraphics->set_current_point(x, y + cy);
-
-         pgraphics->line_to(x + cx, y + cy);
+         pgraphics->line(x, y + cy,x + cx, y + cy);
 
       }
 

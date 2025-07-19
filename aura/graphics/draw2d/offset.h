@@ -41,9 +41,10 @@ namespace draw2d
 
       }
 
-      x_offset& operator +=(double dx)
+      template < primitive_number NUMBER>
+      x_offset& operator +=(NUMBER dx)
       {
-         m_pxoffsetable->x_offset(dx);
+         m_pxoffsetable->x_offset((double) dx);
          return *this;
       }
 
@@ -63,9 +64,10 @@ namespace draw2d
       }
 
 
-      y_offset& operator +=(double dy)
+      template < primitive_number NUMBER>
+      y_offset& operator +=(NUMBER dy)
       {
-         m_pyoffsetable->y_offset(dy);
+         m_pyoffsetable->y_offset((double) dy);
          return *this;
       }
 

@@ -476,9 +476,19 @@ namespace experience_nanoui
          pointC = rectangleA.top_left();
          pointC.x() += 15;
 
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
-         pgraphics->line_to(pointC);
+
+         {
+
+            auto ppath = pgraphics->create_path();
+
+            ppath->set_current_point(pointA);
+            ppath->add_line(pointB);
+            ppath->add_line(pointC);
+
+            pgraphics->draw(ppath);
+
+         }
+
 
          pgraphics->set(m_ppenFace1);
 
@@ -491,9 +501,19 @@ namespace experience_nanoui
          pointB = rectangleA.top_left();
          pointC = rectangleA.top_left();
          pointC.x() += 16;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
-         pgraphics->line_to(pointC);
+
+         {
+
+            auto ppath = pgraphics->create_path();
+
+            ppath->set_current_point(pointA);
+            ppath->add_line(pointB);
+            ppath->add_line(pointC);
+
+            pgraphics->draw(ppath);
+
+         }
+
 
          // Midle int_rectangle
 
@@ -509,9 +529,19 @@ namespace experience_nanoui
          pointB = rectangleA.top_left();
          pointC = rectangleA.top_left();
          pointC.x() += 14;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
-         pgraphics->line_to(pointC);
+
+         {
+
+            auto ppath = pgraphics->create_path();
+
+            ppath->set_current_point(pointA);
+            ppath->add_line(pointB);
+            ppath->add_line(pointC);
+
+            pgraphics->draw(ppath);
+
+         }
+
 
          pgraphics->set(m_ppenShadow1);
 
@@ -533,9 +563,19 @@ namespace experience_nanoui
          pointB = rectangleA.top_left();
          pointC = rectangleA.top_left();
          pointC.x() += 13;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
-         pgraphics->line_to(pointC);
+
+         {
+
+            auto ppath = pgraphics->create_path();
+
+            ppath->set_current_point(pointA);
+            ppath->add_line(pointB);
+            ppath->add_line(pointC);
+
+            pgraphics->draw(ppath);
+
+         }
+
 
          pgraphics->set(m_ppenDkShadow1);
 
@@ -551,9 +591,19 @@ namespace experience_nanoui
          pointB = rectangleA.top_left();
          pointC = rectangleA.top_left();
          pointC.x() += 12;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
-         pgraphics->line_to(pointC);
+
+         {
+
+            auto ppath = pgraphics->create_path();
+
+            ppath->set_current_point(pointA);
+            ppath->add_line(pointB);
+            ppath->add_line(pointC);
+
+            pgraphics->draw(ppath);
+
+         }
+
 
          pgraphics->set(m_ppenShadow1);
 
@@ -563,8 +613,7 @@ namespace experience_nanoui
          pointA.y() = rectangleXB.top() + 1;
          pointB.x() = rectangleXB.left() + 14;
          pointB.y() = rectangleXB.top() + 3;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
 
 
          // Details
@@ -573,8 +622,7 @@ namespace experience_nanoui
          pointA.y() = rectangleXB.top() + 14;
          pointB.x() = rectangleXB.left() + 3;
          pointB.y() = rectangleXB.top() + 14;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenDkShadow1);
 
@@ -584,8 +632,7 @@ namespace experience_nanoui
          pointA.y() = rectangleXB.top() + 1;
          pointB.x() = rectangleXB.left() + 15;
          pointB.y() = rectangleXB.top() + 5;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
 
          // Details
 
@@ -593,8 +640,7 @@ namespace experience_nanoui
          pointA.y() = rectangleXB.top() + 15;
          pointB.x() = rectangleXB.left() + 5;
          pointB.y() = rectangleXB.top() + 15;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
       }
       break;
       case e_grip_top_right:
@@ -611,8 +657,7 @@ namespace experience_nanoui
          pointA = rectangleA.top_right();
          pointA.x() -= 15;
          pointB = rectangleA.top_right();
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
 
          rectangleA.top() += 2;
          rectangleA.left() += 2;
@@ -622,8 +667,7 @@ namespace experience_nanoui
          pointB = rectangleA.top_right();
          pointC = rectangleA.top_right();
          pointC.y() += 13;
-         pgraphics->set_current_point(pointB);
-         pgraphics->line_to(pointC);
+         pgraphics->line(pointB, pointC);
 
          pgraphics->set(m_ppenFace1);
 
@@ -634,8 +678,7 @@ namespace experience_nanoui
          pointA = rectangleA.top_right();
          pointA.x() -= 16;
          pointB = rectangleA.top_right();
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
 
 
          // Most internal int_rectangle
@@ -648,8 +691,7 @@ namespace experience_nanoui
          pointB = rectangleA.top_right();
          pointC = rectangleA.top_right();
          pointC.y() += 12;
-         pgraphics->set_current_point(pointB);
-         pgraphics->line_to(pointC);
+         pgraphics->line(pointB, pointC);
 
          // Midle int_rectangle
 
@@ -665,9 +707,19 @@ namespace experience_nanoui
          pointB = rectangleA.top_right();
          pointC = rectangleA.top_right();
          pointC.y() += 14;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
-         pgraphics->line_to(pointC);
+
+         {
+
+            auto ppath = pgraphics->create_path();
+
+            ppath->set_current_point(pointA);
+            ppath->add_line(pointB);
+            ppath->add_line(pointC);
+
+            pgraphics->draw(ppath);
+
+         }
+
 
          pgraphics->set(m_ppenShadow1);
 
@@ -681,8 +733,7 @@ namespace experience_nanoui
          pointB = rectangleA.top_right();
          pointC = rectangleA.top_right();
          pointC.y() += 15;
-         pgraphics->set_current_point(pointB);
-         pgraphics->line_to(pointC);
+         pgraphics->line(pointB, pointC);
 
          rectangleA.top() += 2;
          rectangleA.left() += 2;
@@ -692,8 +743,7 @@ namespace experience_nanoui
          pointA = rectangleA.top_right();
          pointA.x() -= 12;
          pointB = rectangleA.top_right();
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenDkShadow1);
 
@@ -702,8 +752,7 @@ namespace experience_nanoui
          pointB = rectangleA.top_right();
          pointC = rectangleA.top_right();
          pointC.y() += 16;
-         pgraphics->set_current_point(pointB);
-         pgraphics->line_to(pointC);
+         pgraphics->line(pointB, pointC);
 
          rectangleA.top() += 4;
          rectangleA.left() += 4;
@@ -713,8 +762,7 @@ namespace experience_nanoui
          pointA = rectangleA.top_right();
          pointA.x() -= 11;
          pointB = rectangleA.top_right();
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenHilight1);
 
@@ -722,8 +770,7 @@ namespace experience_nanoui
          pointA.y() = rectangleXB.top() + 1;
          pointB.x() = rectangleXB.right() - 14;
          pointB.y() = rectangleXB.top() + 4;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenFace1);
 
@@ -733,8 +780,7 @@ namespace experience_nanoui
          pointA.y() = rectangleXB.top();
          pointB.x() = rectangleXB.right() - 15;
          pointB.y() = rectangleXB.top() + 5;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenShadow1);
 
@@ -744,8 +790,7 @@ namespace experience_nanoui
          pointA.y() = rectangleXB.top() + 14;
          pointB.x() = rectangleXB.right() - 1;
          pointB.y() = rectangleXB.top() + 14;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenDkShadow1);
 
@@ -755,8 +800,7 @@ namespace experience_nanoui
          pointA.y() = rectangleXB.top() + 15;
          pointB.x() = rectangleXB.right();
          pointB.y() = rectangleXB.top() + 15;
-         pgraphics->set_current_point(pointB);
-         pgraphics->line_to(pointA);
+         pgraphics->line(pointB, pointA);
       }
       break;
       case e_grip_bottom_left:
@@ -773,8 +817,7 @@ namespace experience_nanoui
          pointA = rectangleA.bottom_left();
          pointA.y() -= 16;
          pointB = rectangleA.bottom_left();
-         pgraphics->set_current_point(pointB);
-         pgraphics->line_to(pointA);
+         pgraphics->line(pointB, pointA);
 
          rectangleA = rectangleX;
 
@@ -785,8 +828,7 @@ namespace experience_nanoui
          pointB = rectangleA.bottom_left();
          pointC = rectangleA.bottom_left();
          pointC.x() += 12;
-         pgraphics->set_current_point(pointC);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointC, pointB);
 
          pgraphics->set(m_ppenFace1);
 
@@ -797,8 +839,7 @@ namespace experience_nanoui
          pointA = rectangleA.bottom_left();
          pointA.y() -= 15;
          pointB = rectangleA.bottom_left();
-         pgraphics->set_current_point(pointB);
-         pgraphics->line_to(pointA);
+         pgraphics->line(pointB, pointA);
 
          // Most internal int_rectangle 4
 
@@ -810,8 +851,7 @@ namespace experience_nanoui
          pointB = rectangleA.bottom_left();
          pointC = rectangleA.bottom_left();
          pointC.x() += 12;
-         pgraphics->set_current_point(pointB);
-         pgraphics->line_to(pointC);
+         pgraphics->line(pointB, pointC);
 
          // Midle int_rectangle 2
 
@@ -827,9 +867,19 @@ namespace experience_nanoui
          pointB = rectangleA.bottom_left();
          pointC = rectangleA.bottom_left();
          pointC.x() += 14;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
-         pgraphics->line_to(pointC);
+
+         {
+
+            auto ppath = pgraphics->create_path();
+
+            ppath->set_current_point(pointA);
+            ppath->add_line(pointB);
+            ppath->add_line(pointC);
+
+            pgraphics->draw(ppath);
+
+         }
+
 
          pgraphics->set(m_ppenShadow1);
 
@@ -841,8 +891,7 @@ namespace experience_nanoui
          pointB = rectangleA.bottom_left();
          pointC = rectangleA.bottom_left();
          pointC.x() += 14;
-         pgraphics->set_current_point(pointB);
-         pgraphics->line_to(pointC);
+         pgraphics->line(pointB, pointC);
 
          rectangleA = rectangleX;
 
@@ -852,8 +901,7 @@ namespace experience_nanoui
          pointA = rectangleA.bottom_left();
          pointA.y() -= 12;
          pointB = rectangleA.bottom_left();
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenDkShadow1);
 
@@ -863,8 +911,7 @@ namespace experience_nanoui
          pointB.x()++;
          pointC = rectangleA.bottom_left();
          pointC.x() += 16;
-         pgraphics->set_current_point(pointB);
-         pgraphics->line_to(pointC);
+         pgraphics->line(pointB, pointC);
 
          rectangleA.left() += 4;
          rectangleA.bottom() -= 3;
@@ -872,8 +919,7 @@ namespace experience_nanoui
          pointA = rectangleA.bottom_left();
          pointA.y() -= 11;
          pointB = rectangleA.bottom_left();
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
 
          // Details - top most
 
@@ -883,8 +929,7 @@ namespace experience_nanoui
          pointA.y() = rectangleXB.bottom() - 15;
          pointB.x() = rectangleXB.left() + 4;
          pointB.y() = rectangleXB.bottom() - 15;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
 
          // Details - top most
 
@@ -894,8 +939,7 @@ namespace experience_nanoui
          pointA.y() = rectangleXB.bottom() - 15;
          pointB.x() = rectangleXB.left() + 5;
          pointB.y() = rectangleXB.bottom() - 15;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
+         pgraphics->line(pointA, pointB);
 
          pgraphics->set(m_ppenShadow1);
 
@@ -905,8 +949,7 @@ namespace experience_nanoui
          pointA.y() = rectangleXB.bottom() - 4;
          pointB.x() = rectangleXB.left() + 14;
          pointB.y() = rectangleXB.bottom() - 1;
-         pgraphics->set_current_point(pointB);
-         pgraphics->line_to(pointA);
+         pgraphics->line(pointB, pointA);
 
          pgraphics->set(m_ppenDkShadow1);
 
@@ -916,8 +959,7 @@ namespace experience_nanoui
          pointA.y() = rectangleXB.bottom() - 4;
          pointB.x() = rectangleXB.left() + 15;
          pointB.y() = rectangleXB.bottom();
-         pgraphics->set_current_point(pointB);
-         pgraphics->line_to(pointA);
+         pgraphics->line(pointB, pointA);
       }
       break;
       case e_grip_bottom_right:
@@ -941,9 +983,19 @@ namespace experience_nanoui
          pointB = rectangleA.bottom_right();
          pointC = rectangleA.bottom_right();
          pointC.x() -= 13;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
-         pgraphics->line_to(pointC);
+
+         {
+
+            auto ppath = pgraphics->create_path();
+
+            ppath->set_current_point(pointA);
+            ppath->add_line(pointB);
+            ppath->add_line(pointC);
+
+            pgraphics->draw(ppath);
+
+         }
+
 
          pgraphics->set(m_ppenFace1);
 
@@ -961,9 +1013,19 @@ namespace experience_nanoui
          pointB = rectangleA.bottom_right();
          pointC = rectangleA.bottom_right();
          pointC.x() -= 12;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
-         pgraphics->line_to(pointC);
+
+         {
+
+            auto ppath = pgraphics->create_path();
+
+            ppath->set_current_point(pointA);
+            ppath->add_line(pointB);
+            ppath->add_line(pointC);
+
+            pgraphics->draw(ppath);
+
+         }
+
 
          // Midle int_rectangle
 
@@ -979,9 +1041,19 @@ namespace experience_nanoui
          pointB = rectangleA.bottom_right();
          pointC = rectangleA.bottom_right();
          pointC.x() -= 14;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
-         pgraphics->line_to(pointC);
+
+         {
+
+            auto ppath = pgraphics->create_path();
+
+            ppath->set_current_point(pointA);
+            ppath->add_line(pointB);
+            ppath->add_line(pointC);
+
+            pgraphics->draw(ppath);
+
+         }
+
          pgraphics->set(m_ppenShadow1);
 
          rectangleA = rectangleX;
@@ -996,9 +1068,19 @@ namespace experience_nanoui
          pointB = rectangleA.bottom_right();
          pointC = rectangleA.bottom_right();
          pointC.x() -= 15;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
-         pgraphics->line_to(pointC);
+
+         {
+
+            auto ppath = pgraphics->create_path();
+
+            ppath->set_current_point(pointA);
+            ppath->add_line(pointB);
+            ppath->add_line(pointC);
+
+            pgraphics->draw(ppath);
+
+         }
+
 
          pgraphics->set(m_ppenDkShadow1);
 
@@ -1009,9 +1091,19 @@ namespace experience_nanoui
          pointB = rectangleA.bottom_right();
          pointC = rectangleA.bottom_right();
          pointC.x() -= 15;
-         pgraphics->set_current_point(pointA);
-         pgraphics->line_to(pointB);
-         pgraphics->line_to(pointC);
+
+         {
+
+            auto ppath = pgraphics->create_path();
+
+            ppath->set_current_point(pointA);
+            ppath->add_line(pointB);
+            ppath->add_line(pointC);
+
+            pgraphics->draw(ppath);
+
+         }
+
 
          pgraphics->set(m_ppenHilight1);
 
@@ -1019,15 +1111,13 @@ namespace experience_nanoui
          pointA.y() = rectangleXB.bottom() - 14;
          pointB.x() = rectangleXB.right() - 1;
          pointB.y() = rectangleXB.bottom() - 14;
-         pgraphics->set_current_point(pointB);
-         pgraphics->line_to(pointA);
+         pgraphics->line(pointB, pointA);
 
          pointA.x() = rectangleXB.right() - 14;
          pointA.y() = rectangleXB.bottom() - 3;
          pointB.x() = rectangleXB.right() - 14;
          pointB.y() = rectangleXB.bottom() - 1;
-         pgraphics->set_current_point(pointB);
-         pgraphics->line_to(pointA);
+         pgraphics->line(pointB, pointA);
 
          pgraphics->set(m_ppenFace1);
 
@@ -1037,15 +1127,13 @@ namespace experience_nanoui
          pointA.y() = rectangleXB.bottom() - 15;
          pointB.x() = rectangleXB.right();
          pointB.y() = rectangleXB.bottom() - 15;
-         pgraphics->set_current_point(pointB);
-         pgraphics->line_to(pointA);
+         pgraphics->line(pointB, pointA);
 
          pointA.x() = rectangleXB.right() - 15;
          pointA.y() = rectangleXB.bottom() - 5;
          pointB.x() = rectangleXB.right() - 15;
          pointB.y() = rectangleXB.bottom();
-         pgraphics->set_current_point(pointB);
-         pgraphics->line_to(pointA);
+         pgraphics->line(pointB, pointA);
       }
       break;
       case e_grip_top:

@@ -21,6 +21,9 @@ list(APPEND library_references
    apex
    aqua
    aura
+   axis
+   base
+   bred
    )
 
 

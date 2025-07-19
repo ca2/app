@@ -5,7 +5,7 @@
 #include "acme/platform/application.h"
 #include "bred/gpu/context.h"
 #include "windowing_win32/window.h"
-#include "glad_wgl.h"
+#include <glad/glad_wgl.h>
 
 #include <dwmapi.h>
 
@@ -57,6 +57,7 @@ namespace gpu_opengl
       *outHWND = hwnd;
       return rc;
    }
+
    PFNWGLCREATECONTEXTATTRIBSARBPROC loaded_wglCreateContextAttribsARB = NULL;
    PFNWGLCHOOSEPIXELFORMATARBPROC loaded_wglChoosePixelFormatARB = NULL;
    // Load only required WGL extensions

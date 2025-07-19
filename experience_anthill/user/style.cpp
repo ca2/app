@@ -1214,7 +1214,7 @@ namespace experience_anthill
 
                   pgraphics->set(ppenBorder);
 
-                  pgraphics->draw_line(rcTab.left(), rectangleX.bottom(), rectangleBorder.left(), rectangleX.bottom());
+                  pgraphics->line(rcTab.left(), rectangleX.bottom(), rectangleBorder.left(), rectangleX.bottom());
 
                }
 
@@ -1237,14 +1237,12 @@ namespace experience_anthill
 
                ::int_size sizeTopOffset(0, 2);
 
-               pgraphics->set_current_point(rectangleBorder.bottom_right());
-
-               pgraphics->line_to(rectangleBorder.top_right() + sizeTopOffset);
+               pgraphics->line(rectangleBorder.bottom_right(),rectangleBorder.top_right() + sizeTopOffset);
 
                if (estate & ::user::e_state_selected)
                {
 
-                  pgraphics->line_to(rectangleBorder.top_left() + sizeTopOffset);
+                  pgraphics->line(rectangleBorder.top_right() + sizeTopOffset, rectangleBorder.top_left() + sizeTopOffset);
 
                }
 
@@ -1357,7 +1355,7 @@ namespace experience_anthill
 
                   pgraphics->set(ppenBorder);
 
-                  pgraphics->draw_line(rectangleBorder.right() - 1, rectangleX.bottom(), rcTab.right(), rectangleX.bottom());
+                  pgraphics->line(rectangleBorder.right() - 1, rectangleX.bottom(), rcTab.right(), rectangleX.bottom());
 
                }
 

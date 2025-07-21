@@ -4,7 +4,7 @@
 #include "axis/_.h"
 
 
-#if defined(_CA2_DATA_DLL)
+#if defined(_database_mysql_project)
 #define CLASS_DECL_CA2_DATA  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_CA2_DATA  CLASS_DECL_IMPORT

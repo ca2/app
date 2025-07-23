@@ -345,7 +345,6 @@ public:
 
 };
 
-
 template < class TYPE, class ARG_TYPE, class TYPED, class MEMORY, ::enum_type t_etypeContainer >
 class array :
    virtual public ::particle,
@@ -368,6 +367,8 @@ public:
    array(const BASE_ARRAY & a) : BASE_ARRAY(a) {}
    array(BASE_ARRAY && a) noexcept : BASE_ARRAY(::transfer(a)) { }
    array(enum_create_new, ::collection::count n) : BASE_ARRAY(e_create_new, n) {}
+   array(pre_allocate_t, ::collection::count n) : BASE_ARRAY() { this->m_countAddUp = n; }
+   array(zeroe_on_allocation_t, ::collection::count n) : BASE_ARRAY(zeroe_on_allocation_t{}, n) { }
    array(::collection::count n) : BASE_ARRAY(n) {}
    array(::collection::count n, ARG_TYPE t) : BASE_ARRAY(n, t) {}
    array(::range < typename BASE_ARRAY::const_iterator > constrange) : BASE_ARRAY(constrange) {}

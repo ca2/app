@@ -97,6 +97,8 @@ namespace gpu
       int_point                              m_pointTranslate;
       ::pointer<::gpu::cpu_buffer>           m_pcpubuffer;
       ::pointer<::gpu::shader>               m_pshader;
+      ::pointer<::gpu::shader>               m_pshaderBound;
+      ::pointer<::gpu::render_target>        m_prendertargetBound;
       bool                                   m_bCreated;
       ::draw3d::matrix                       m_matrixProjection;
       ::draw3d::matrix                       m_matrixImpact;
@@ -120,7 +122,7 @@ namespace gpu
       //::int_size                             m_sizeOffscreen;
       //int                                    m_iScanOffscreen;
       //::memory                               m_memoryOffscreen;
-      ::pointer < ::gpu::swap_chain >          m_pswapchain;
+      ::pointer < ::gpu::swap_chain >          m_pgpuswapchain;
       ::string_map < ::pointer < ::gpu::texture > > m_texturemap;
 
 
@@ -130,7 +132,7 @@ namespace gpu
 
       virtual ::gpu::swap_chain* get_swap_chain();
 
-      virtual ::gpu::texture* current_target_texture();
+      virtual ::gpu::texture* current_target_texture(::gpu::frame* pgpuframe);
 
       void _send(const ::procedure& procedure) override;
       //void _post(const ::procedure& procedure) override;
@@ -146,7 +148,9 @@ namespace gpu
       virtual void _context_lock();
       virtual void _context_unlock();
 
-
+      virtual void defer_bind(::gpu::shader* pgpushader);
+      virtual void defer_unbind(::gpu::shader* pgpushader);
+      virtual void defer_unbind_shader();
       //virtual bool defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, memsize size, memory_buffer::enum_type etype);
       //virtual bool defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, const ::block& block, memory_buffer::enum_type etype);
 
@@ -305,7 +309,7 @@ namespace gpu
       //virtual render_target* graphics3d_render_target();
 
       virtual void __bind_draw2d_compositor(::gpu::compositor * pgpucompositor, ::gpu::layer * player);
-      virtual void __soft_unbind_draw2d_compositor(::gpu::compositor* pgpucompositor, ::gpu::layer * player);
+      virtual void __defer_soft_unbind_draw2d_compositor(::gpu::compositor* pgpucompositor, ::gpu::layer * player);
 
 
       virtual ::memory rectangle_shader_vert();
@@ -322,7 +326,7 @@ namespace gpu
       virtual void initialize_rectangle_shader(::gpu::shader* pshader);
 
 
-      virtual ::gpu::model_buffer* sequence2_uv_fullscreen_quad_model_buffer();
+      virtual ::gpu::model_buffer* sequence2_uv_fullscreen_quad_model_buffer(::gpu::frame* pgpuframe);
 
 
    };

@@ -10,6 +10,7 @@
 #include "texture.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/device.h"
+#include "bred/gpu/frame.h"
 #include "bred/gpu/render_state.h"
 #include "aura/user/user/interaction.h"
 #include "aura/windowing/window.h"
@@ -275,7 +276,7 @@ void main() {
 
       glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-      auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2();
+      auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
       pcommandbuffer->set_viewport(m_pgpucontext->m_rectangle.size());
 
@@ -299,7 +300,7 @@ void main() {
          }*/
 
 
-         auto pmodelbufferFullscreenQuad = m_pgpucontext->sequence2_uv_fullscreen_quad_model_buffer();
+         auto pmodelbufferFullscreenQuad = m_pgpucontext->sequence2_uv_fullscreen_quad_model_buffer(::gpu::current_frame());
 
          m_pshaderCopyTextureOnEndDraw->bind();
 

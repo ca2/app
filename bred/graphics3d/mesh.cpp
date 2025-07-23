@@ -1,6 +1,7 @@
 #include "framework.h"
-//#include "GLFW/glfw3.h"  
+//#include "GLFW/glfw3.h" 
 #include "mesh.h"
+#include "bred/gpu/frame.h"
 #include "bred/gpu/texture.h"
 #include "bred/gpu/shader.h"
 #include "bred/graphics3d/model.h"
@@ -87,7 +88,7 @@ namespace graphics3d
          //glBindTexture(GL_TEXTURE_2D, m_texturea[i]->m_TextureID);
       }
 
-      auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2();
+      auto pcommandbuffer = m_pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
       m_pmodel->bind(pcommandbuffer);
 

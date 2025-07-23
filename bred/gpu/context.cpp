@@ -270,13 +270,13 @@ namespace gpu
    //}
 
 
-   ::gpu::texture* context::current_target_texture()
+   ::gpu::texture* context::current_target_texture(::gpu::frame* pgpuframe)
    {
 
       if (m_pgpucompositor)
       {
 
-         auto ptexture = m_pgpucompositor->current_target_texture();
+         auto ptexture = m_pgpucompositor->current_target_texture(pgpuframe);
 
          if (ptexture)
          {
@@ -287,7 +287,7 @@ namespace gpu
 
       }
 
-      return m_pgpurenderer->current_render_target_texture();
+      return m_pgpurenderer->current_render_target_texture(pgpuframe);
 
    }
 
@@ -342,6 +342,54 @@ namespace gpu
    {
 
 
+
+   }
+
+
+   void context::defer_bind(::gpu::shader* pgpushader)
+   {
+
+      if (pgpushader == m_pshaderBound)
+      {
+
+         return;
+
+      }
+
+      if (m_pshaderBound)
+      {
+
+         m_pshaderBound->unbind();
+
+      }
+
+      pgpushader->bind();
+
+      m_pshaderBound = pgpushader;
+
+   }
+
+
+   void context::defer_unbind(::gpu::shader* pgpushader)
+   {
+
+
+   }
+
+
+   void context::defer_unbind_shader()
+   {
+
+      if (m_pshaderBound)
+      {
+
+         auto pshaderBound = m_pshaderBound;
+
+         m_pshaderBound.release();
+
+         pshaderBound->unbind();
+
+      }
 
    }
 
@@ -777,16 +825,16 @@ namespace gpu
 
       }
 
-      if (!m_pswapchain)
+      if (!m_pgpuswapchain)
       {
 
-         __defer_construct(m_pswapchain);
+         __defer_construct(m_pgpuswapchain);
 
          ///m_pswapchain->initialize_gpu_swap_chain(this, m_pwindow);
 
       }
 
-      return m_pswapchain;
+      return m_pgpuswapchain;
 
    }
 
@@ -816,7 +864,7 @@ namespace gpu
 
             auto pgpurenderer = get_gpu_renderer();
 
-            pgpurenderer->do_on_frame(bForDrawing, [this, pcontextInnerStart, bForDrawing, procedure]()
+            pgpurenderer->do_on_frame(bForDrawing, [this, pcontextInnerStart, bForDrawing, procedure](::gpu::frame* pgpuframe)
                {
 
                   if (bForDrawing)
@@ -832,7 +880,7 @@ namespace gpu
 
                               prenderer->defer_update_renderer();
 
-                              ::procedure λ = [procedure]()
+                              auto λ = [procedure](::gpu::frame* pgpuframe)
                                  {
 
                                     procedure();
@@ -872,7 +920,7 @@ namespace gpu
 
                            auto prendertargetBackBuffer = prendererBackBuffer->m_pgpurendertarget;
 
-                           auto ptextureBackBuffer = prendertargetBackBuffer->current_texture();
+                           auto ptextureBackBuffer = prendertargetBackBuffer->current_texture(pgpuframe);
 
                            merge_layers(ptextureBackBuffer, m_pgpudevice->m_playera);
 
@@ -913,10 +961,10 @@ namespace gpu
                            for (auto player : *playera)
                            {
 
-                              if (player->m_pcommandbufferLayer)
+                              if (player->getCurrentCommandBuffer4())
                               {
 
-                                 player->m_pcommandbufferLayer->wait_commands_to_execute();
+                                 player->getCurrentCommandBuffer4()->wait_commands_to_execute();
 
                               }
 
@@ -940,7 +988,7 @@ namespace gpu
 
                               prenderer->defer_update_renderer();
 
-                              ::procedure λ = [procedure]()
+                              auto λ = [procedure](::gpu::frame* pgpuframe)
                                  {
 
                                     procedure();
@@ -1393,6 +1441,8 @@ namespace gpu
 
       ::gpu::context_lock contextlock(this);
 
+      defer_unbind_shader();
+
       if (m_pgpucompositor)
       {
 
@@ -1402,7 +1452,7 @@ namespace gpu
 
       auto ptextureTarget = player->texture();
 
-      auto ptextureSource = current_target_texture();
+      auto ptextureSource = current_target_texture(player->m_pgpuframe);
 
       //auto ptextureSource = m_pgpurendertarget->current_texture();
 
@@ -1519,7 +1569,7 @@ namespace gpu
    }
 
 
-   void context::__soft_unbind_draw2d_compositor(::gpu::compositor* pgpucompositor, ::gpu::layer* player)
+   void context::__defer_soft_unbind_draw2d_compositor(::gpu::compositor* pgpucompositor, ::gpu::layer* player)
    {
 
 
@@ -1587,7 +1637,7 @@ namespace gpu
    }
 
 
-   ::gpu::model_buffer* context::sequence2_uv_fullscreen_quad_model_buffer()
+   ::gpu::model_buffer* context::sequence2_uv_fullscreen_quad_model_buffer(::gpu::frame* pgpuframe)
    {
 
       if (!m_pmodelbufferFullscreenQuad)
@@ -1595,7 +1645,7 @@ namespace gpu
 
          __defer_construct(m_pmodelbufferFullscreenQuad);
 
-         m_pmodelbufferFullscreenQuad->sequence2_uv_create_fullscreen_quad(this);
+         m_pmodelbufferFullscreenQuad->sequence2_uv_create_fullscreen_quad(pgpuframe);
 
       }
 

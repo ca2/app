@@ -20,7 +20,7 @@ namespace graphics3d
       {
 
          ::glm::vec3    m_position;
-         ::glm::vec3    m_color;
+         ::glm::vec3    m_normal;
          ::glm::vec2    m_uv;
 
          /*Vertex() {}
@@ -192,9 +192,9 @@ namespace graphics3d
                vertex.m_position.y = xy * sinf(sectorAngle);             // r * cos(u) * sin(v)
 
                // normalized vertex normal (nx, ny, nz)
-               vertex.m_color.x = vertex.m_position.x * lengthInv;
-               vertex.m_color.y = vertex.m_position.y * lengthInv;
-               vertex.m_color.z = vertex.m_position.z * lengthInv;
+               vertex.m_normal.x = vertex.m_position.x * lengthInv;
+               vertex.m_normal.y = vertex.m_position.y * lengthInv;
+               vertex.m_normal.z = vertex.m_position.z * lengthInv;
 
                // vertex tex coord (s, t) range between [0, 1]
                vertex.m_uv.x = (float)j / sectorCount;
@@ -257,7 +257,7 @@ namespace graphics3d
 
 BEGIN_GPU_PROPERTIES(::graphics3d::shape_factory::Vertex)
 GPU_PROPERTY("position", ::gpu::e_type_seq3)
-GPU_PROPERTY("color", ::gpu::e_type_seq3)
+GPU_PROPERTY("normal", ::gpu::e_type_seq3)
 GPU_PROPERTY("uv", ::gpu::e_type_seq2)
 END_GPU_PROPERTIES()
 

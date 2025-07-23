@@ -48,7 +48,7 @@ namespace graphics3d
    void scene_system::render(::gpu::context* pgpucontext, ::graphics3d::scene* pscene)
    {
 
-      pgpucontext->current_target_texture()->bind_render_target();
+      //testall pgpucontext->current_target_texture()->bind_render_target();
 
       on_render(pgpucontext, pscene);
 

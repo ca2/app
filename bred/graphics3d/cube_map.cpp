@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "cube_map.h"
 #include "engine.h"
+#include "bred/gpu/frame.h"
 #include "bred/gpu/render_target.h"
 #include "bred/gpu/texture.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -47,6 +48,7 @@ namespace graphics3d
       m_pshader->m_bDisableDepthTest = true;
       m_pshader->m_bLequalDepth = false;
       m_pshader->m_bEnableBlend = true;
+      m_pshader->m_ecullmode = ::gpu::e_cull_mode_none;
       m_pshader->m_bindingCubeSampler.set();
 
       m_pshader->initialize_shader(pengine->gpu_context()->m_pgpurenderer,
@@ -183,9 +185,10 @@ namespace graphics3d
 
       __defer_construct(m_ptextureCubeMap);
 
+      m_ptextureCubeMap->m_bTransferDst = true;
+
       m_ptextureCubeMap->initialize_image_texture(m_pmodelCube->m_pgpucontext->m_pgpurenderer,
          pimageCubeMap, ::gpu::texture::e_type_cube_map);
-
 
       //m_pshader->set_int("skybox", 0);
 
@@ -222,7 +225,7 @@ namespace graphics3d
 
       // Set uniforms in the shader
       auto iFrameSerial = m_pengine->gpu_context()->m_pgpurenderer->m_pgpurendertarget->m_iFrameSerial2;
-      auto ptextureDst = m_pengine->gpu_context()->m_pgpurenderer->current_render_target_texture();
+      auto ptextureDst = m_pengine->gpu_context()->m_pgpurenderer->current_render_target_texture(::gpu::current_frame());
       m_ptextureCubeMap->m_strUniform = "skybox";
       m_pshader->bind(ptextureDst, m_ptextureCubeMap); // Make sure to bind the shader first
       //auto view = m_pengine->m_pcamera->getView();
@@ -256,7 +259,7 @@ namespace graphics3d
    void sky_box::on_render(::gpu::context* pgpucontext, ::graphics3d::scene* pscene)
    {
 
-      auto pcommandbuffer = pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2();
+      auto pcommandbuffer = pgpucontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
       bind(pcommandbuffer);
       draw(pcommandbuffer);

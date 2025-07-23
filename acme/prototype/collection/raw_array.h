@@ -69,6 +69,7 @@ public:
    ::collection::index append(const raw_array_quantum& src);
    virtual TYPE * add_new(::collection::count count);
    virtual TYPE & add_new();
+
    //::collection::index append(const raw_array_quantum& src);
    //void copy(const raw_array_quantum& src);
 

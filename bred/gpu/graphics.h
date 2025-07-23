@@ -25,7 +25,7 @@ namespace gpu
       //::pointer < ::gpu::context >           m_pgpucontextDraw2d;
       //::gpu::enum_output                     m_eoutputOnEndDraw;
       //::pointer < ::gpu::context >           m_pgpucontextOutput;
-      ::pointer < ::gpu::frame >             m_pgpuframe;
+      //::pointer < ::gpu::frame >             m_pgpuframe;
       ::geometry2d::matrix                   m_m1;
       //::pointer < ::draw2d_gpu::end_draw >   m_penddraw;
       ::pointer < ::gpu::shader >               m_pshaderSourceRectangle;
@@ -45,7 +45,7 @@ namespace gpu
       
       void on_begin_draw() override;
       void on_end_draw() override;
-
+      void gpu_layer_on_before_end_render() override;
 
       void on_set_gpu_context() override;
 
@@ -106,7 +106,7 @@ namespace gpu
 
 
       virtual void bind_draw2d_compositor(::gpu::layer * player);
-      virtual void soft_unbind_draw2d_compositor(::gpu::layer* player);
+      virtual void defer_soft_unbind_draw2d_compositor(::gpu::layer* player);
 
 
       virtual void _fill_quad(const ::double_point points[4], const ::color::color& color);

@@ -2,9 +2,11 @@
 #include "framework.h"
 #include "command_buffer.h"
 #include "context.h"
+#include "frame.h"
 #include "input_layout.h"
 #include "memory_buffer.h"
 #include "model_buffer.h"
+#include "render_target.h"
 #include "renderer.h"
 #include "acme/prototype/geometry2d/matrix.h"
 #include "acme/prototype/prototype/call.h"
@@ -107,10 +109,10 @@ namespace gpu
    }
 
 
-   void model_buffer::sequence2_uv_create_fullscreen_quad(::gpu::context* pcontext)
+   void model_buffer::sequence2_uv_create_fullscreen_quad(::gpu::frame* pgpuframe)
    {
 
-      initialize_gpu_context_object(pcontext);
+      initialize_gpu_context_object(pgpuframe->m_pgpucommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext);
 
       // Vertex data: (x, y, u, v)
 #if 1
@@ -137,13 +139,13 @@ namespace gpu
       };
 #endif
 
-      this->bind(pcontext->m_pgpurenderer->getCurrentCommandBuffer2());
+      this->bind(pgpuframe->m_pgpucommandbuffer);
 
 
       this->static_initialize_vertices<::graphics3d::sequence2_uv >(
          quadVertices);
 
-      this->unbind(pcontext->m_pgpurenderer->getCurrentCommandBuffer2());
+      this->unbind(pgpuframe->m_pgpucommandbuffer);
 
 
 
@@ -153,12 +155,12 @@ namespace gpu
    }
 
 
-   void model_buffer::sequence2_color_create_rectangle(::gpu::context* pcontext)
+   void model_buffer::sequence2_color_create_rectangle(::gpu::frame* pgpuframe)
    {
 
-      initialize_gpu_context_object(pcontext);
+      initialize_gpu_context_object(pgpuframe->gpu_context());
 
-      auto pcommandbuffer = pcontext->m_pgpurenderer->getCurrentCommandBuffer2();
+      auto pcommandbuffer = pgpuframe->m_pgpucommandbuffer;
 
       bind(pcommandbuffer);
 
@@ -171,12 +173,12 @@ namespace gpu
    }
 
 
-   void model_buffer::sequence2_color_create_line(::gpu::context* pcontext)
+   void model_buffer::sequence2_color_create_line(::gpu::frame * pgpuframe)
    {
 
-      initialize_gpu_context_object(pcontext);
+      initialize_gpu_context_object(pgpuframe->gpu_context());
 
-      auto pcommandbuffer = pcontext->m_pgpurenderer->getCurrentCommandBuffer2();
+      auto pcommandbuffer = pgpuframe->m_pgpucommandbuffer;
 
       bind(pcommandbuffer);
 
@@ -190,12 +192,12 @@ namespace gpu
    }
 
 
-   void model_buffer::sequence3_color_create_rectangle(::gpu::context* pcontext)
+   void model_buffer::sequence3_color_create_rectangle(::gpu::frame* pgpuframe)
    {
 
-      initialize_gpu_context_object(pcontext);
+      initialize_gpu_context_object(pgpuframe->gpu_context());
 
-      auto pcommandbuffer = pcontext->m_pgpurenderer->getCurrentCommandBuffer2();
+      auto pcommandbuffer = pgpuframe->m_pgpucommandbuffer;
 
       bind(pcommandbuffer);
 
@@ -209,12 +211,12 @@ namespace gpu
    }
 
 
-   void model_buffer::sequence3_color_create_line(::gpu::context* pcontext)
+   void model_buffer::sequence3_color_create_line(::gpu::frame* pgpuframe)
    {
 
-      initialize_gpu_context_object(pcontext);
+      initialize_gpu_context_object(pgpuframe->gpu_context());
 
-      auto pcommandbuffer = pcontext->m_pgpurenderer->getCurrentCommandBuffer2();
+      auto pcommandbuffer = pgpuframe->m_pgpucommandbuffer;
 
       bind(pcommandbuffer);
 

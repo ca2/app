@@ -19,7 +19,7 @@ namespace gpu
    public:
 
       int m_iSentLayerCount = 0;
-      ::pointer<::gpu::layer>                         m_pgpulayer;
+      //::pointer<::gpu::layer>                         m_pgpulayer;
 
       ::collection::count     m_iDefaultFrameCount;
 
@@ -87,11 +87,11 @@ namespace gpu
       ::particle_array* ongoing_particle_array() override;
 
 
-      virtual ::gpu::texture* current_render_target_texture();
+      virtual ::gpu::texture* current_render_target_texture(::gpu::frame* pgpuframe);
 
       //virtual ::int_rectangle rectangle();
       //virtual int height();
-      virtual ::gpu::command_buffer* getCurrentCommandBuffer2();
+      virtual ::gpu::command_buffer* getCurrentCommandBuffer2(::gpu::frame* pgpuframe);
       virtual ::gpu::command_buffer* getLoadAssetsCommandBuffer();
       virtual bool render_step();
 
@@ -156,10 +156,13 @@ namespace gpu
 
       virtual ::pointer < frame > beginFrame();
 
-
+      virtual void on_begin_frame();
 
       virtual void endFrame();
 
+      virtual void wait_swap_chain_command_buffer_ready();
+
+      virtual void wait_command_buffer_ready();
 
 
       virtual void on_begin_draw();
@@ -205,8 +208,9 @@ namespace gpu
       virtual void endDrawEndDraw();
 
 
-      virtual void do_on_frame(bool bForDrawing, const ::procedure& procedure);
-
+      virtual void do_on_frame(bool bForDrawing, const ::function < void(::gpu::frame*) > & on_frame);
+      virtual void frame_prefix();
+      virtual void frame_suffix();
 
       //virtual void start_layer(const ::int_rectangle& rectangleTarget);
       virtual void start_layer();

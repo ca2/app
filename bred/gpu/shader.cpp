@@ -34,7 +34,7 @@ namespace gpu
    shader::shader()
    {
 
-      m_bTextureAndSampler = false;
+      //m_bTextureAndSampler = false;
       //m_SamplerSlot = -1;
       //m_setbindingCubeSampler = -1;
 

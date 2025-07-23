@@ -15,6 +15,8 @@ namespace gpu
    swap_chain::swap_chain()
    {
 
+      m_iCurrentSwapChainFrame = 0;
+
       m_bWindowInitialized = false;
       m_bSwapChainInitialized = false;
 
@@ -56,14 +58,6 @@ namespace gpu
    }
 
 
-   //void swap_chain::endDraw(::gpu::graphics* pgraphics, ::user::interaction* puserinteraction, ::gpu::renderer* prendererSrc)
-   //{
-
-   //   ASSERT(m_pgpudevice->m_edevicetarget == ::gpu::e_device_target_swap_chain);
-
-   //}
-
-
    void swap_chain::present(::gpu::texture * pgputexture)
    {
 
@@ -85,19 +79,27 @@ namespace gpu
    }
 
 
-   void swap_chain::get_new_swap_chain_index()
+   int swap_chain::swap_chain_frame_index()
    {
 
+      return m_iCurrentSwapChainFrame;
 
    }
 
 
-   //::gpu::texture* swap_chain::current_texture()
-   //{
+   ::gpu::texture* swap_chain::current_swap_chain_texture()
+   {
 
-   //   return nullptr;
+      if (!m_ptextureaSwapChain)
+      {
 
-   //}
+         return nullptr;
+
+      }
+
+      return m_ptextureaSwapChain->element_at(m_iCurrentSwapChainFrame);
+
+   }
 
 
 } // namespace direct2d

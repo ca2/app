@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "context.h"
 #include "device.h"
+#include "bred/gpu/frame.h"
 #include "memory_buffer.h"
 #include "model_buffer.h"
 #include "renderer.h"
@@ -89,7 +90,7 @@ namespace gpu_opengl
 
       }
 
-      m_pmodelbuffer->bind(m_pcontext->m_pgpurenderer->getCurrentCommandBuffer2());
+      m_pmodelbuffer->bind(m_pcontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame()));
 
       _on_set_memory_buffer(data, size);
 

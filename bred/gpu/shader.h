@@ -14,6 +14,7 @@ namespace gpu
       shader_projection,
 
    };
+
    
    struct binding
    {
@@ -43,6 +44,7 @@ namespace gpu
          e_flag_clear_default_bindings_and_attributes_descriptions = 1,
 
       };
+
 
       /// Trying to following suggestion from:
       /// https://vkguide.dev/docs/chapter-4/descriptors/ "Mental Model"
@@ -91,6 +93,7 @@ namespace gpu
       bool m_bLequalDepth = false;
       bool m_bEnableBlend = false;
       bool m_bAccumulationEnable = false;
+      enum_cull_mode m_ecullmode = e_cull_mode_back;
       //bool m_bHasSourceImage = false;
 
       binding m_bindingSampler;
@@ -118,7 +121,7 @@ namespace gpu
       ::particle_pointer         m_pLocalDescriptorSet;
       ::pointer < input_layout > m_pinputlayout;
 
-      bool m_bTextureAndSampler;
+      //bool m_bTextureAndSampler;
 
 
       shader();

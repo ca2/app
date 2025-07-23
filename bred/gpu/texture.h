@@ -30,8 +30,10 @@ namespace gpu
       ::color::color                      m_colorClear;
       bool                                m_bRenderTarget;
       ::pointer < ::gpu::renderer >       m_pgpurenderer;
+      ::pointer < ::gpu::render_target >  m_pgpurendertarget;
       ::int_rectangle                     m_rectangleTarget;
       bool                                m_bTransferDst;
+      bool                                m_bTransferSrc;
       bool                                m_bCpuRead;
       ::pointer < texture >               m_ptextureDepth;
 

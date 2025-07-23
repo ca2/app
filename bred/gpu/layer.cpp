@@ -25,6 +25,14 @@ namespace gpu
    }
 
 
+   ::gpu::command_buffer* layer::getCurrentCommandBuffer4()
+   {
+
+      return m_commandbufferaLayer[m_pgpurenderer->m_pgpurendertarget->get_frame_index()];
+
+   }
+
+
    void layer::initialize_gpu_layer(::gpu::renderer * pgpurenderer, int iFrameIndex, int iLayerIndex)
    {
 

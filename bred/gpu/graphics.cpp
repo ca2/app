@@ -1,6 +1,7 @@
 // Created by camilo on 2025-05-31 15:32 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "draw2d.h"
+#include "frame.h"
 #include "graphics.h"
 #include "pixmap.h"
 #include "acme/platform/application.h"
@@ -190,6 +191,16 @@ auto iContextHeight = pcontext->m_rectangle.height()
 
    }
 
+
+
+   void graphics::gpu_layer_on_before_end_render()
+   {
+
+      gpu_context()->defer_unbind_shader();
+
+
+
+   }
 
    void graphics::update_matrix()
    {
@@ -403,12 +414,12 @@ auto iContextHeight = pcontext->m_rectangle.height()
 
 
 
-   void graphics::soft_unbind_draw2d_compositor(::gpu::layer* player)
+   void graphics::defer_soft_unbind_draw2d_compositor(::gpu::layer* player)
    {
 
       auto pcontext = gpu_context();
 
-      pcontext->__soft_unbind_draw2d_compositor(this, player);
+      pcontext->__defer_soft_unbind_draw2d_compositor(this, player);
 
    }
 
@@ -588,7 +599,7 @@ auto iContextHeight = pcontext->m_rectangle.height()
       if (pmodelbufferRectangle->is_new())
       {
 
-         pmodelbufferRectangle->sequence2_color_create_rectangle(pcontext);
+         pmodelbufferRectangle->sequence2_color_create_rectangle(::gpu::current_frame());
 
       }
 
@@ -620,10 +631,10 @@ auto iContextHeight = pcontext->m_rectangle.height()
          pgpucontext->m_rectangle.size());
 
 
-      pshader->bind();
+      pcontext->defer_bind(pshader);
 
       //vkCmdBeginRenderPass(cmd, &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
-      auto pcommandbuffer = prenderer->getCurrentCommandBuffer2();
+      auto pcommandbuffer = prenderer->getCurrentCommandBuffer2(::gpu::current_frame());
       //VkDeviceSize offset = 0;
       ///vkCmdBindPipeline(pcommandbuffer->m_vkcommandbuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline);
       //vkCmdBindVertexBuffers(pcommandbuffer->m_vkcommandbuffer, 0, 1, &pmodelbuffer->m_vertexBuffer, &offset);
@@ -639,7 +650,7 @@ auto iContextHeight = pcontext->m_rectangle.height()
 
 
 
-      pshader->unbind();
+      pcontext->defer_unbind(pshader);
       //vkvg_rectangle(m_pdc, rectangle.left(), rectangle.top(), rectangle.right() - rectangle.left(),
         // rectangle.bottom() - rectangle.top());
 
@@ -868,7 +879,7 @@ auto iContextHeight = pcontext->m_rectangle.height()
       //pshader->bind();
 
       ////vkCmdBeginRenderPass(cmd, &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
-      //auto pcommandbuffer = prenderer->getCurrentCommandBuffer2();
+      //auto pcommandbuffer = prenderer->getCurrentCommandBuffer2(::gpu::current_frame());
       ////VkDeviceSize offset = 0;
       /////vkCmdBindPipeline(pcommandbuffer->m_vkcommandbuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline);
       ////vkCmdBindVertexBuffers(pcommandbuffer->m_vkcommandbuffer, 0, 1, &pmodelbuffer->m_vertexBuffer, &offset);
@@ -965,7 +976,7 @@ auto iContextHeight = pcontext->m_rectangle.height()
           //glBindBuffer(GL_ARRAY_BUFFER, pfont->m_VBO);
           //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); // be sure to use glBufferSubData and not glBufferData
 
-          //auto pcommandbuffer = gpu_context()->m_pgpurenderer->getCurrentCommandBuffer2();
+          //auto pcommandbuffer = gpu_context()->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
           //pcommandbuffer->
 
@@ -1115,7 +1126,7 @@ auto iContextHeight = pcontext->m_rectangle.height()
 
       //glBindVertexArray(pface->m_FaceVAO);
       //GLCheckError("");
-      auto pcommandbuffer = pcontext->m_pgpurenderer->getCurrentCommandBuffer2();
+      auto pcommandbuffer = pcontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
       
       pface->box_model_buffer()->bind(pcommandbuffer);
 
@@ -1215,7 +1226,7 @@ auto iContextHeight = pcontext->m_rectangle.height()
             // 
             // 
 
-            auto pcommandbuffer = gpu_context()->m_pgpurenderer->getCurrentCommandBuffer2();
+            auto pcommandbuffer = gpu_context()->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
             //pcommandbuffer->draw(ch.m_ppixmap);
 

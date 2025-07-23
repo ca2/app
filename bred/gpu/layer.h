@@ -21,10 +21,13 @@ namespace gpu
       ::pointer < ::gpu::frame > m_pgpuframe;
       //::comptr < ID3D12Resource > m_presource;
 
-      ::pointer < command_buffer >  m_pcommandbufferLayer;
+      ::pointer_array<command_buffer>	 m_commandbufferaLayer;
 
       layer();
       ~layer() override;
+
+      
+      virtual ::gpu::command_buffer* getCurrentCommandBuffer4();
 
 
       virtual void initialize_gpu_layer(renderer * pgpurenderer, int iFrameIndex, int iLayerIndex);

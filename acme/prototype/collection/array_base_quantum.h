@@ -166,6 +166,16 @@ auto distance(const pointer_rear_iterator < A > & a, const pointer_rear_iterator
 template < typename A, typename B >
 auto distance(const A * pa, const B * pb) { return (pa < pb) ? (pb - pa) : (pa - pb); }
 
+struct array_flags
+{
+   bool m_bZeroeOnAllocation : 1 = false;
+
+};
+
+
+struct pre_allocate_t {};
+struct zeroe_on_allocation_t {};
+
 
 // raw_array is an array that does not call constructors or destructor in elements
 // array is an array that call only copy constructor and destructor in elements
@@ -200,12 +210,15 @@ public:
    ::collection::count     m_countAllocation;
    ::collection::count     m_countAddUp;
    ::collection::count     m_countAllocationOffset;
+   array_flags             m_arrayflags;
 
    
    array_base_quantum();
    array_base_quantum(std::initializer_list < TYPE > initializer_list);
    array_base_quantum(const array_base_quantum & a);
    array_base_quantum(array_base_quantum && a) noexcept;
+   array_base_quantum(pre_allocate_t, ::collection::count n) : array_base_quantum() { this->m_countAddUp = n; }
+   array_base_quantum(zeroe_on_allocation_t, ::collection::count n) : array_base_quantum() { this->m_arrayflags.m_bZeroeOnAllocation = true; this->m_countAddUp = n; }
    array_base_quantum(const TYPE * p, ::collection::count c);
    array_base_quantum(::range < const_iterator > constrange) : array_base_quantum(constrange.begin(), constrange.end()) {}
    template < primitive_integral INTEGRAL >
@@ -279,6 +292,26 @@ public:
       
       return *this;
    
+   }
+
+
+   // Forwarding constructor arguments to T's constructor
+   template<typename... Args>
+   TYPE& add_construct(Args&&... args)
+   {
+      return this->add(TYPE(std::forward<Args>(args)...));
+   }
+   TYPE& add_construct()
+   {
+      return this->add(TYPE());
+   }
+
+
+   TYPE& øadd()
+   {
+      TYPE t;
+      memset(&t, 0, sizeof(TYPE));
+      return this->add(t);
    }
 
 
@@ -2544,6 +2577,17 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
             
 
          }
+         else
+         {
+
+            if (this->m_arrayflags.m_bZeroeOnAllocation)
+            {
+
+               memset(this->m_begin, 0, this->size() * sizeof(TYPE));
+
+            }
+
+         }
 
       }
 
@@ -2612,6 +2656,13 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
       this->m_begin = MEMORY::allocate(nAllocSize, &nAllocSize);
 
 #endif
+
+      if (this->m_arrayflags.m_bZeroeOnAllocation)
+      {
+
+         memset(this->m_begin, 0, nAllocSize * sizeof(TYPE));
+
+      }
       
       if(!bRaw)
       {
@@ -2665,6 +2716,13 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
          {
 
             TYPED::destruct_count(this->m_begin + nNewSize, countOld - nNewSize);
+
+            if (this->m_arrayflags.m_bZeroeOnAllocation)
+            {
+
+               memset(this->m_begin + nNewSize, 0, (countOld - nNewSize) * sizeof(TYPE));
+
+            }
 
          }
 
@@ -2765,6 +2823,13 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 
       // copy ___new data from old
       ::safe_memory_copy2(pNewData, (size_t)countNewAllocation, this->m_begin, (size_t) countOld);
+
+      if (this->m_arrayflags.m_bZeroeOnAllocation)
+      {
+
+         memset(this->m_begin + countOld, 0, (countNewAllocation - countOld) * sizeof(TYPE));
+
+      }
 
       if(!bRaw)
       {

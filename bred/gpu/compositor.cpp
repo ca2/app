@@ -27,8 +27,23 @@ namespace gpu
 
    }
 
+   
 
-   ::gpu::texture* compositor::current_target_texture()
+   //::gpu::frame* compositor::gpu_frame()
+   //{
+
+   //   return t_pgpuframe;
+
+   //}
+
+
+   //void compositor::set_gpu_frame(::gpu::frame* pgpuframe)
+   //{
+
+
+   //}
+
+   ::gpu::texture* compositor::current_target_texture(::gpu::frame* pgpuframe)
    {
 
       return nullptr;
@@ -136,18 +151,14 @@ namespace gpu
 
       auto pgpudevice = pcontext->m_pgpudevice;
 
-      auto player = pgpudevice->next_layer(pcontext->m_pgpurenderer);
-
-      pgpuframe->m_pgpulayer = player;
-
-      player->m_pgpuframe = pgpuframe;
+      auto player = pgpuframe->m_pgpulayer;
 
       player->layer_start();
 
    }
 
 
-   ::gpu::frame * compositor::end_gpu_layer()
+   ::gpu::frame * compositor::end_gpu_layer(::gpu::frame* pgpuframe)
    {
 
       //auto prendererOutput = m_pgpucontextCompositor->m_pgpurenderer;
@@ -156,7 +167,7 @@ namespace gpu
 
       auto pcontext = gpu_context();
 
-      auto player = pcontext->m_pgpudevice->current_layer();
+      auto player = pgpuframe->m_pgpulayer;
 
       player->layer_end();
 

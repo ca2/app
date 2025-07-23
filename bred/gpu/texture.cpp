@@ -18,6 +18,7 @@ namespace gpu
       m_bClearColor = false;
       m_bRenderTarget = false;
       m_bTransferDst = false;
+      m_bTransferSrc = false;
       m_bCpuRead = false;
       m_bWithDepth = false;
 

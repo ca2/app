@@ -2,6 +2,7 @@
 // 2025-06-02 03:52 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "face.h"
+#include "bred/gpu/frame.h"
 #include "bred/gpu/model_buffer.h"
 #include "bred/gpu/pixmap.h"
 #include "bred/gpu/renderer.h"
@@ -78,7 +79,7 @@ namespace typeface
 
          m_pmodelbufferBox->initialize_gpu_context_object(m_pgpurenderer->m_pgpucontext);
 
-         m_pmodelbufferBox->bind(m_pgpurenderer->getCurrentCommandBuffer2());
+         m_pmodelbufferBox->bind(m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame()));
 
          m_pmodelbufferBox->create_vertices<::graphics3d::sequence2_uv>(6);
          /* glGenVertexArrays(1, &m_VAO);
@@ -91,7 +92,7 @@ namespace typeface
           glBindBuffer(GL_ARRAY_BUFFER, 0);
           glBindVertexArray(0);*/
 
-         m_pmodelbufferBox->unbind(m_pgpurenderer->getCurrentCommandBuffer2());
+         m_pmodelbufferBox->unbind(m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame()));
 
       }
 

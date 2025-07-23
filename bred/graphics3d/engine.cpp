@@ -184,13 +184,15 @@ namespace graphics3d
    void engine::start_gpu_layer(::gpu::frame * pframe)
    {
 
-      auto pcontext = gpu_context();
+      //auto pcontext = gpu_context();
 
-      auto player = pcontext->m_pgpudevice->next_layer(pcontext->m_pgpurenderer);
+      //auto player = pcontext->m_pgpudevice->next_layer(pcontext->m_pgpurenderer);
 
-      player->m_pgpuframe = pframe;
+      auto player = pframe->m_pgpulayer;
 
-      pframe->m_pgpulayer = player;
+      //player->m_pgpuframe = pframe;
+
+      //pframe->m_pgpulayer = player;
 
       player->layer_start();
 
@@ -198,7 +200,7 @@ namespace graphics3d
    }
 
 
-   void engine::end_gpu_layer(::gpu::frame * pframe)
+   ::gpu::frame* engine::end_gpu_layer(::gpu::frame * pgpuframe)
    {
 
       auto pcontext = gpu_context();
@@ -206,6 +208,8 @@ namespace graphics3d
       auto player = pcontext->m_pgpudevice->current_layer();
 
       player->layer_end();
+
+      return pgpuframe;
 
    }
 

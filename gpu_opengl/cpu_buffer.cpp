@@ -7,6 +7,7 @@
 #include "aura/graphics/image/target.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
+#include "bred/gpu/frame.h"
 
 
 namespace gpu_opengl
@@ -39,7 +40,7 @@ namespace gpu_opengl
 
       ::gpu::context_lock contextlock(m_pgpucontext);
 
-      ::cast < texture > ptexture = m_pgpucontext->current_target_texture();
+      ::cast < texture > ptexture = m_pgpucontext->current_target_texture(::gpu::current_frame());
 
       glBindFramebuffer(GL_FRAMEBUFFER, ptexture->m_gluFbo);
 

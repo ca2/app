@@ -16,6 +16,7 @@
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/cpu_buffer.h"
 #include "bred/gpu/device.h"
+#include "bred/gpu/frame.h"
 #include "bred/gpu/model_buffer.h"
 #include "bred/gpu/render.h"
 #include "bred/gpu/renderer.h"
@@ -1260,7 +1261,7 @@ void main() {
       if (pmodelbufferRectangle->is_new())
       {
 
-         pmodelbufferRectangle->sequence2_color_create_rectangle(pcontext);
+         pmodelbufferRectangle->sequence2_color_create_rectangle(::gpu::current_frame());
 
       }
 
@@ -1318,7 +1319,7 @@ void main() {
       pshader->bind();
 
       //vkCmdBeginRenderPass(cmd, &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
-      auto pcommandbuffer = prenderer->getCurrentCommandBuffer2();
+      auto pcommandbuffer = prenderer->getCurrentCommandBuffer2(::gpu::current_frame());
       //VkDeviceSize offset = 0;
       ///vkCmdBindPipeline(pcommandbuffer->m_vkcommandbuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline);
       //vkCmdBindVertexBuffers(pcommandbuffer->m_vkcommandbuffer, 0, 1, &pmodelbuffer->m_vertexBuffer, &offset);
@@ -5954,7 +5955,7 @@ color = vec4(c.r,c.g, c.b, c.a);
             // 
             // 
 
-            auto pcommandbuffer = gpu_context()->m_pgpurenderer->getCurrentCommandBuffer2();
+            auto pcommandbuffer = gpu_context()->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
             pcommandbuffer->draw(ch.m_ppixmap);
             //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
@@ -6684,12 +6685,13 @@ color = vec4(c.r,c.g, c.b, c.a);
    }
 
 
-   ::gpu::frame * graphics::end_gpu_layer()
+   ::gpu::frame * graphics::end_gpu_layer(::gpu::frame * pgpuframe)
    {
 
-      return ::draw2d_gpu::graphics::end_gpu_layer();
+      return ::draw2d_gpu::graphics::end_gpu_layer(pgpuframe);
 
    }
+
 
    ::gpu::context* graphics::gpu_context()
    {

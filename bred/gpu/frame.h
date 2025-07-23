@@ -14,6 +14,7 @@ namespace gpu
 
       ::pointer < ::gpu::layer > m_pgpulayer;
 
+      ::pointer < ::gpu::command_buffer > m_pgpucommandbuffer;
 
       frame();
       ~frame();
@@ -21,11 +22,13 @@ namespace gpu
 
       virtual void initialize_frame();
 
-
+      virtual ::gpu::context* gpu_context();
 
 
    };
 
+   CLASS_DECL_BRED void set_current_frame(::gpu::frame* pgpuframe);
+   CLASS_DECL_BRED ::gpu::frame* current_frame();
 
 }  // namespace gpu
 

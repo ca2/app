@@ -193,10 +193,10 @@ namespace gpu_opengl
 
       defer_update_renderer();
 
-      if (!m_pgpurendertarget->m_pframe)
+      if (!m_pgpurendertarget->m_pgpuframe)
       {
 
-         m_pgpurendertarget->m_pframe = __create_new < ::gpu_opengl::frame >();
+         __øconstruct(m_pgpurendertarget->m_pgpuframe);/* = __create_new < ::gpu_opengl::frame >()*/;
 
       }
 
@@ -236,7 +236,7 @@ namespace gpu_opengl
 
       int height = r.height();
 
-      ::cast < texture > ptexture = m_pgpurendertarget->current_texture();
+      ::cast < texture > ptexture = m_pgpurendertarget->current_texture(pframe);
 
       if (!ptexture->m_gluFbo)
       {
@@ -254,7 +254,7 @@ namespace gpu_opengl
 
       ptexture->bind_render_target();
 
-      auto pcommandbuffer = getCurrentCommandBuffer2();
+      auto pcommandbuffer = getCurrentCommandBuffer2(::gpu::current_frame());
 
       if (escene == ::gpu::e_scene_2d)
       {

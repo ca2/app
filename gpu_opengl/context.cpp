@@ -13,6 +13,7 @@
 #include "aura/graphics/image/image.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context_lock.h"
+#include "bred/gpu/frame.h"
 #include "bred/gpu/layer.h"
 #include "bred/gpu/types.h"
 #include "glm/mat4x4.hpp"
@@ -920,7 +921,7 @@ void main() {
             fragmentShaderSource);
       }
 
-      auto pmodelbufferFullScreenQuad = sequence2_uv_fullscreen_quad_model_buffer();
+      auto pmodelbufferFullScreenQuad = sequence2_uv_fullscreen_quad_model_buffer(::gpu::current_frame());
 
     /*  if (!m_vaoFullScreenQuad)
       {
@@ -942,7 +943,7 @@ void main() {
 
       m_pshaderCopy->bind_source(ptextureParam, 0);
 
-      auto pcommandbuffer = m_pgpurenderer->getCurrentCommandBuffer2();
+      auto pcommandbuffer = m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
       pmodelbufferFullScreenQuad->bind(pcommandbuffer);
 
@@ -1060,7 +1061,7 @@ void main() {
             __defer_construct_new(m_pshaderBlend3);
 
             m_pshaderBlend3->m_bEnableBlend = true;
-            m_pshaderBlend3->m_bTextureAndSampler = true;
+            m_pshaderBlend3->m_bindingSampler.set();
             m_pshaderBlend3->m_bDisableDepthTest = true;
             //m_pshaderBlend3->m_bT
             //m_pshaderBlend3->m_pgpurenderer = this;
@@ -1115,7 +1116,7 @@ void main() {
 
          ::cast < renderer > prenderer = m_pgpurenderer;
 
-         ::cast < ::gpu_opengl::command_buffer > pcommandbuffer = prenderer->getCurrentCommandBuffer2();
+         ::cast < ::gpu_opengl::command_buffer > pcommandbuffer = prenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
          //auto vkcommandbuffer = pcommandbuffer->m_vkcommandbuffer;
 

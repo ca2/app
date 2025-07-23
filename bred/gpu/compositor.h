@@ -16,11 +16,14 @@ namespace gpu
       ::pointer <::gpu::context> m_pgpucontextCompositor2;
 
 
+
+
       compositor();
       ~compositor() override;
 
-
-      virtual ::gpu::texture* current_target_texture();
+      //virtual ::gpu::frame* gpu_frame();
+      //virtual void set_gpu_frame(::gpu::frame*);
+      virtual ::gpu::texture* current_target_texture(::gpu::frame* pgpuframe);
 
 
       virtual void set_gpu_context(::gpu::context * pgpucontextCompositor);
@@ -34,7 +37,7 @@ namespace gpu
       ::gpu::context* gpu_context();
 
       virtual void start_gpu_layer(::gpu::frame* pgpuframe);
-      virtual ::gpu::frame * end_gpu_layer();
+      virtual ::gpu::frame * end_gpu_layer(::gpu::frame* pgpuframe);
 
 
       virtual void gpu_layer_on_after_begin_render();

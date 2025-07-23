@@ -216,11 +216,11 @@ namespace gpu
 
       virtual bool is_dummy() const;
 
-      void sequence2_uv_create_fullscreen_quad(::gpu::context* pcontext);
-      void sequence2_color_create_rectangle(::gpu::context* pcontext);
-      void sequence2_color_create_line(::gpu::context* pcontext);
-      void sequence3_color_create_rectangle(::gpu::context* pcontext);
-      void sequence3_color_create_line(::gpu::context* pcontext);
+      void sequence2_uv_create_fullscreen_quad(::gpu::frame* pgpuframe);
+      void sequence2_color_create_rectangle(::gpu::frame* pgpuframe);
+      void sequence2_color_create_line(::gpu::frame* pgpuframe);
+      void sequence3_color_create_rectangle(::gpu::frame* pgpuframe);
+      void sequence3_color_create_line(::gpu::frame* pgpuframe);
 
 
       void sequence3_color_set_rectangle(

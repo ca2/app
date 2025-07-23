@@ -14,6 +14,17 @@ namespace gpu
    };
 
 
+   enum enum_cull_mode
+   {
+
+      e_cull_mode_none,
+      e_cull_mode_front,
+      e_cull_mode_back,
+
+   };
+
+
+
 } // namespace gpu
 
 

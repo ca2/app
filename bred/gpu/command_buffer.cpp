@@ -10,7 +10,7 @@ namespace gpu
 
    command_buffer::command_buffer()
    {
-
+      m_bLoadingCommandBuffer = false;
    }
 
 
@@ -41,6 +41,13 @@ namespace gpu
    {
 
       m_pgpurendertarget = pgpurendertarget;
+
+   }
+
+
+   void command_buffer::begin_command_buffer(bool bOneTime)
+   {
+
 
    }
 

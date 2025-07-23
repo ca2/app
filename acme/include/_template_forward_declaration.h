@@ -244,6 +244,9 @@ namespace typed
    class def;
 
    template < typename TYPE >
+   class def_with_zero_init;
+
+   template < typename TYPE >
    class nodef;
 
    template < typename TYPE >
@@ -277,6 +280,9 @@ class array_2d;
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::def < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
 class array;
+
+template < class TYPE, class ARG_TYPE = const TYPE&, class TYPED = ::typed::def_with_zero_init < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
+using array_with_zero_init = array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::def < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
 class array_non_particle;

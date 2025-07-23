@@ -25,7 +25,7 @@ namespace gpu
       enum_state m_estate = e_state_none;
 
       ::pointer < ::gpu::render_target > m_pgpurendertarget;
-
+      bool        m_bLoadingCommandBuffer;
 
 
       command_buffer();
@@ -34,6 +34,7 @@ namespace gpu
 
       virtual void initialize_command_buffer(::gpu::render_target* pgpurendertarget);
 
+      virtual void begin_command_buffer(bool bOneTime);
 
       virtual void submit_command_buffer(::gpu::layer * pgpulayer);
 

@@ -5,6 +5,7 @@
 #include "render_target.h"
 #include "renderer.h"
 #include "texture.h"
+#include "bred/gpu/frame.h"
 
 
 namespace gpu_opengl
@@ -69,7 +70,7 @@ namespace gpu_opengl
 
       ::cast < render_target > prendertarget = m_pgpurendertarget;
 
-      ::cast < texture > ptexture = prendertarget->current_texture();
+      ::cast < texture > ptexture = prendertarget->current_texture(::gpu::current_frame());
 
       if (!ptexture->m_gluFbo)
       {

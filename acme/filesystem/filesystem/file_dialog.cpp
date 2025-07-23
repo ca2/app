@@ -153,6 +153,31 @@ namespace file
    }
 
 
+   string_array file_dialog_filter::get_pattern_list() const
+   {
+
+      ::string_array stra;
+
+      for (auto & filedialogfilter : *this)
+      {
+
+         ::string_array straPattern;
+
+         straPattern.explode(";", filedialogfilter.m_strPatternList);
+
+         straPattern.trim();
+
+         stra.append_unique(straPattern);
+
+
+      }
+
+      return stra;
+
+   }
+
+
+
    file_dialog::file_dialog()
    {
 

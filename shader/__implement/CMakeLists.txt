@@ -21,6 +21,9 @@ list(APPEND executable_references
    apex
    aqua
    aura
+   axis
+   base
+   bred
    app_shader
    )
 

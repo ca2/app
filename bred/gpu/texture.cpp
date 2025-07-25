@@ -1,6 +1,7 @@
 // Created by camilo on 2025-06-12 21:07 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "layer.h"
+#include "render_target.h"
 #include "renderer.h"
 #include "texture.h"
 #include "acme/exception/interface_only.h"
@@ -36,6 +37,7 @@ namespace gpu
 
       m_etype = etype;
       m_pgpurenderer = pgpurenderer;
+      //m_pgpurendertarget = pgpurenderer->m_pgpurendertarget;
       m_rectangleTarget = rectangleTarget;
       m_bWithDepth = bWithDepth;
 

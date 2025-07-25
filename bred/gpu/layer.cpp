@@ -1,6 +1,8 @@
 // Created by camilo on 2025-06-12 21:08 <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "command_buffer.h"
 #include "context.h"
+#include "device.h"
 #include "layer.h"
 #include "renderer.h"
 #include "render_target.h"
@@ -28,7 +30,20 @@ namespace gpu
    ::gpu::command_buffer* layer::getCurrentCommandBuffer4()
    {
 
-      return m_commandbufferaLayer[m_pgpurenderer->m_pgpurendertarget->get_frame_index()];
+      if (m_commandbufferaLayer.is_empty())
+      {
+
+         create_command_buffers();
+
+      }
+
+      auto pgpurenderer = m_pgpurenderer;
+
+      auto pgpurendertarget = pgpurenderer->m_pgpurendertarget;
+
+      auto iFrameIndex = pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index();
+
+      return m_commandbufferaLayer[iFrameIndex];
 
    }
 
@@ -63,6 +78,39 @@ namespace gpu
    }
 
 
+   void layer::create_command_buffers()
+   {
+
+      m_commandbufferaLayer.set_size(m_pgpurenderer->m_iDefaultFrameCount);
+
+      for (auto& pcommandbufferLayer : m_commandbufferaLayer)
+      {
+
+         __defer_construct(pcommandbufferLayer);
+
+         pcommandbufferLayer->initialize_command_buffer(m_pgpurenderer->m_pgpurendertarget);
+
+      }
+
+      //commandBuffers.resize(render_target_view::MAX_FRAMES_IN_FLIGHT);
+
+      //VkCommandBufferAllocateInfo allocInfo{};
+      //allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+      //allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+      //allocInfo.commandPool = m_pgpucontext->m_pgpudevice->getCommandPool();
+      //allocInfo.commandBufferCount = static_cast<uint32_t>(commandBuffers.size());
+
+      //if (vkAllocateCommandBuffers(m_pgpucontext->logicalDevice(), &allocInfo, commandBuffers.data()) !=
+      //   VK_SUCCESS) {
+      //   throw ::exception(error_failed, "failed to allocate command buffers!");
+      //}
+
+
+   }
+
+
+
+
    void layer::layer_end()
    {
 
@@ -74,7 +122,7 @@ namespace gpu
    ::pointer < texture >& layer::texture()
    {
 
-      int iFrameIndex = m_pgpurenderer->m_pgpurendertarget->get_frame_index();
+      int iFrameIndex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index();
 
       auto & ptexture = m_texturea.element_at_grow(iFrameIndex);
 
@@ -96,7 +144,7 @@ namespace gpu
    ::pointer < texture >& layer::source_texture()
    {
 
-      int iFrameIndex = m_pgpurenderer->m_pgpurendertarget->get_frame_index();
+      int iFrameIndex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index();
 
       auto& ptextureSource = m_textureaSource.element_at_grow(iFrameIndex);
 

@@ -7,7 +7,6 @@
 #include "device_win32.h"
 #include "frame_buffer.h"
 #include "input_layout.h"
-
 #include "memory_buffer.h"
 #include "model_buffer.h"
 #include "object.h"
@@ -18,6 +17,7 @@
 #include "shader.h"
 #include "swap_chain.h"
 #include "texture.h"
+#include "bred/gpu/frame.h"
 #include "bred/gpu/layer.h"
 
 
@@ -47,6 +47,8 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::gpu_opengl::frame_buffer >();
 
    pfactory->add_factory_item < ::gpu::layer >();
+
+   pfactory->add_factory_item < ::gpu::frame >();
 
    pfactory->add_factory_item < ::gpu_opengl::input_layout, ::gpu::input_layout >();
 

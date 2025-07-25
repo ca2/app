@@ -129,6 +129,9 @@ namespace gpu
       context();
       ~context() override;
 
+      
+      virtual void gpu_debug_message(const ::scoped_string& scopedstr);
+
 
       virtual ::gpu::swap_chain* get_swap_chain();
 

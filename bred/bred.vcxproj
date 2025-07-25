@@ -373,6 +373,7 @@
     <ClInclude Include="gpu\types.h" />
     <ClInclude Include="gpu\_.h" />
     <ClInclude Include="gpu\_constant.h" />
+    <ClInclude Include="gpu\_model.h" />
     <ClInclude Include="graphics3d\aaa_context.h" />
     <ClInclude Include="graphics3d\camera.h" />
     <ClInclude Include="graphics3d\cube_map.h" />

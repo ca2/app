@@ -12,6 +12,7 @@
 #include "acme/platform/application.h"
 #include "acme/prototype/geometry2d/item.h"
 #include "acme/prototype/mathematics/mathematics.h"
+#include "bred/gpu/_model.h"
 #include "bred/gpu/bred_approach.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/cpu_buffer.h"
@@ -199,7 +200,6 @@ void main() {
    //   //return Attach(::CreateIC(lpszDriverName, lpszDeviceName, lpszOutput, (const DEVMODE*) lpInitData));
    //   return false;
    //}
-
 
    void graphics::create_memory_graphics(const ::int_size& sizeParam)
    {
@@ -1256,7 +1256,7 @@ void main() {
 
       //::cast < ::gpu_vulkan::context > pcontext = m_pgpucontextCompositor;
 
-      auto pmodelbufferRectangle = m_poolmodelbufferRectangle.get();
+      auto pmodelbufferRectangle = model_buffer(::draw2d::e_model_fill_rectangle);
 
       if (pmodelbufferRectangle->is_new())
       {
@@ -5930,7 +5930,7 @@ color = vec4(c.r,c.g, c.b, c.a);
          if (ch.m_ppixmap)
          {
 
-            auto pmodelbuffer = m_poolmodelbufferCharacter.get();
+            auto pmodelbuffer = model_buffer(::draw2d::e_model_character);
 
             if (pmodelbuffer->is_null())
             {

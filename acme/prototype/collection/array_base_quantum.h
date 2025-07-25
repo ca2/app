@@ -2528,6 +2528,31 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 ::collection::count array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::_allocate(::collection::count nNewSize, bool bShrink, bool bRaw, const TYPE * ptype)
 {
 
+   if (this->m_eflagElement & e_flag_preallocated)
+   {
+
+      if (nNewSize > this->m_countAllocation)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      if (ptype)
+      {
+
+         auto nOldSize = this->size();
+
+         TYPED::copy_construct_count(this->m_begin + nOldSize, nNewSize - nOldSize, *ptype);
+
+      }
+
+      this->m_end = this->m_begin + nNewSize;
+
+      return nNewSize;
+
+   }
+
    ASSERT(nNewSize >= 0);
 
    if(nNewSize < 0)
@@ -3872,14 +3897,14 @@ public:
    using CONTAINER_ITEM_TYPE = typename ARRAY_BASE::CONTAINER_ITEM_TYPE;
    
    
-   char  m_chaPreallocated[t_preallocated_array_size * sizeof(CONTAINER_ITEM_TYPE)];
+   CONTAINER_ITEM_TYPE  m_elementaPreallocated[t_preallocated_array_size];
    
    preallocated_array()
    {
       
       this->m_eflagElement |= e_flag_preallocated;
-      this->m_begin = (CONTAINER_ITEM_TYPE *)m_chaPreallocated;
-      this->m_end = (CONTAINER_ITEM_TYPE *)m_chaPreallocated;
+      this->m_begin = m_elementaPreallocated;
+      this->m_end = m_elementaPreallocated;
       this->m_countAllocation = t_preallocated_array_size;
       
    }

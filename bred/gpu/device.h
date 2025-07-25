@@ -34,11 +34,14 @@ namespace gpu
    public:
 
 
-      ::gpu::enum_output m_eoutput;
+      ::gpu::enum_output                     m_eoutput;
 
 
-      int m_iLayer;
-      int m_iLayerCount;
+      ::collection::index                    m_iCurrentFrame2 = -1;
+      ::collection::index                    m_iFrameSerial2 = -1;
+      ::collection::count                    m_iFrameCount = 3;
+      int                                    m_iLayer;
+      int                                    m_iLayerCount;
       //::pointer < layer > m_playerComposing;
       //::array<::comptr<ID3D12Resource>>   m_resourceaSnapshot;
       ::pointer < ::pointer_array < layer > >     m_playera;
@@ -99,6 +102,14 @@ namespace gpu
       virtual ::pointer_array<::particle >* frame_particle_array(int iFrameIndex);
 
       virtual void on_initialize_gpu_device();
+
+      virtual void on_new_frame();
+      virtual int get_frame_index();
+      virtual int get_frame_count();
+      virtual void restart_frame_counter();
+      virtual bool is_starting_frame()const;
+
+
 
 
 

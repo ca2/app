@@ -7,6 +7,7 @@
 #include "bred/graphics3d/types.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_object.h"
+#include "bred/gpu/frame.h"
 #include "bred/gpu/memory_buffer.h"
 
 
@@ -67,6 +68,29 @@ namespace gpu
          set_input_layout(m_pgpucontext->input_layout(::gpu_properties< VERTEX >()));
 
       }
+
+
+      template < typename VERTEX >
+      void create_vertex_array(int iCount)
+      {
+
+         auto pgpuframe = ::gpu::current_frame();
+
+         initialize_gpu_context_object(pgpuframe->gpu_context());
+
+         auto pcommandbuffer = pgpuframe->m_pgpucommandbuffer;
+
+         bind(pcommandbuffer);
+
+         this->create_vertices<::graphics3d::sequence2_color >(iCount);
+
+         unbind(pcommandbuffer);
+
+         //defer_set_input_layout(pcontext->input_layout(::gpu_properties < ::graphics::sequence2_color>()));
+
+      }
+
+
 
 
       template < typename VERTEX >
@@ -229,9 +253,13 @@ namespace gpu
          const ::double_size& size);
 
       void sequence2_color_set_rectangle(
-         const ::double_point points1[4],
+         const ::double_point * ppoints1 /* [4]tl,tr,br,bl */,
          const ::color::color& color,
          const ::double_size& size);
+
+      void sequence2_color_set_rectangle(
+         const ::double_point* ppoints1 /* [4]tl,tr,br,bl */,
+         const ::color::color& color);
 
       void sequence3_color_set_line(
          const ::double_point& pointA,

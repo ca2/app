@@ -302,7 +302,7 @@ void main() {
 
          auto pmodelbufferFullscreenQuad = m_pgpucontext->sequence2_uv_fullscreen_quad_model_buffer(::gpu::current_frame());
 
-         m_pshaderCopyTextureOnEndDraw->bind();
+         m_pshaderCopyTextureOnEndDraw->_bind();
 
          m_pshaderCopyTextureOnEndDraw->bind_source(pgputexture);
 

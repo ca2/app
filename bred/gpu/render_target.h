@@ -14,8 +14,8 @@ namespace gpu
 
       bool                                         m_bAdvancedPipelineSynchronization = false;
 
-      ::collection::index                          m_iCurrentFrame2 = -1;
-      ::collection::index                          m_iFrameSerial2 = -1;
+      //::collection::index                          m_iCurrentFrame2 = -1;
+      //::collection::index                          m_iFrameSerial2 = -1;
 
 
       bool                                         m_bRenderTargetInit;
@@ -52,7 +52,7 @@ namespace gpu
       virtual bool is_starting_frame()const;
 
 
-      virtual void on_new_frame();
+      //virtual void on_new_frame();
 
       virtual void init();
 

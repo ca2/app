@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "cube_map.h"
 #include "engine.h"
+#include "bred/gpu/device.h"
 #include "bred/gpu/frame.h"
 #include "bred/gpu/render_target.h"
 #include "bred/gpu/texture.h"
@@ -224,7 +225,7 @@ namespace graphics3d
    {
 
       // Set uniforms in the shader
-      auto iFrameSerial = m_pengine->gpu_context()->m_pgpurenderer->m_pgpurendertarget->m_iFrameSerial2;
+      auto iFrameSerial = m_pengine->gpu_context()->m_pgpudevice->m_iFrameSerial2;
       auto ptextureDst = m_pengine->gpu_context()->m_pgpurenderer->current_render_target_texture(::gpu::current_frame());
       m_ptextureCubeMap->m_strUniform = "skybox";
       m_pshader->bind(ptextureDst, m_ptextureCubeMap); // Make sure to bind the shader first

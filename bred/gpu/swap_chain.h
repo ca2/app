@@ -30,6 +30,9 @@ namespace gpu
       ~swap_chain() override;
 
 
+      virtual void create_images();
+
+
       virtual void initialize_swap_chain_window(::gpu::context * pcontext, ::windowing::window* pwindow);
       virtual void initialize_gpu_swap_chain(::gpu::renderer * pgpurenderer);
 

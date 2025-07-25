@@ -89,7 +89,7 @@ namespace graphics3d
 
       auto prenderer = gpu_context()->m_pgpurenderer;
 
-      prenderer->on_new_frame();
+      //prenderer->on_new_frame();
 
       if (auto pframe = prenderer->beginFrame())
       {
@@ -463,6 +463,18 @@ namespace graphics3d
 
                try
                {
+
+                  try
+                  {
+
+                     m_pgpucontextCompositor2->m_pgpudevice->on_new_frame();
+
+                  }
+                  catch (...)
+                  {
+
+
+                  }
 
                   _do_frame_step();
 

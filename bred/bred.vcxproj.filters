@@ -249,6 +249,15 @@
     <ClInclude Include="graphics3d\shape_factory.h">
       <Filter>Header Files\graphics3d</Filter>
     </ClInclude>
+    <ClInclude Include="graphics3d\cube_map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics3d\mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\_model.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">

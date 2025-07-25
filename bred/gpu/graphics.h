@@ -14,7 +14,6 @@
 namespace gpu
 {
 
-
    class CLASS_DECL_BRED graphics :
       virtual public ::draw2d::graphics,
       virtual public ::gpu::compositor
@@ -30,11 +29,13 @@ namespace gpu
       //::pointer < ::draw2d_gpu::end_draw >   m_penddraw;
       ::pointer < ::gpu::shader >               m_pshaderSourceRectangle;
       ::pointer < ::gpu::shader >               m_pshaderBlendRectangle;
-      ::pool <::gpu::model_buffer >             m_poolmodelbufferRectangle;
-      ::pool <::gpu::model_buffer >             m_poolmodelbufferCharacter;
-      ::pool <::gpu::model_buffer >             m_poolmodelbufferLine;
+      map < ::draw2d::enum_model, ::pool <::gpu::model_buffer > >   m_mapModelBufferPool;
+      //::pool <::gpu::model_buffer >             m_poolmodelbufferCharacter;
+      //::pool <::gpu::model_buffer >             m_poolmodelbufferLine;
       //int                                       m_iContextHeight;
       ::pointer < ::gpu::shader >         m_pgpushaderTextOut;
+
+      pool_group* m_ppoolgroupFrame;
 
       graphics();
       ~graphics() override;
@@ -45,11 +46,13 @@ namespace gpu
       
       void on_begin_draw() override;
       void on_end_draw() override;
+      virtual void on_new_frame();
       void gpu_layer_on_before_end_render() override;
 
       void on_set_gpu_context() override;
 
-
+      virtual ::pool <::gpu::model_buffer >& model_buffer_pool(::draw2d::enum_model epool);
+      virtual ::gpu::model_buffer * model_buffer(::draw2d::enum_model epool);
       void update_matrix() override;
 
       //void start_gpu_layer() override;
@@ -60,6 +63,46 @@ namespace gpu
 
 
       //virtual void create_end_draw();
+
+
+      virtual ::geometry2d::matrix context_matrix();
+      virtual ::geometry2d::matrix context_scale_matrix();
+
+
+      template < primitive_point POINT >
+      POINT& __transform(POINT& p)
+      {
+         m_m1.transform(p);
+         p.y() = m_pgpucontextCompositor2->m_rectangle.height() - p.y();
+         return p;
+      }
+
+      template < primitive_array POINT_ARRAY >
+      POINT_ARRAY& __transform(POINT_ARRAY& a)
+      {
+         for (auto& p : a)__transform(p);
+         return a;
+      }
+
+      template < primitive_point POINT >
+      POINT& context_scale(POINT& p)
+      {
+         context_scale_matrix().transform(p);
+         return p;
+      }
+
+      template < primitive_point POINT >
+      POINT& context_transform(POINT& p)
+      {
+         context_matrix().transform(p);
+         return p;
+      }
+      template < primitive_array POINT_ARRAY >
+      POINT_ARRAY& context_transform(POINT_ARRAY& a)
+      {
+         for (auto& p : a)context_transform(p);
+         return a;
+      }
 
 
       // returns true if it is new

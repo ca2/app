@@ -100,7 +100,7 @@ namespace gpu
    {
 
       e_happening_reset_frame_counter,
-      e_happening_new_frame,
+      //e_happening_new_frame,
       e_happening_begin_frame,
       e_happening_begin_render,
       e_happening_end_render,
@@ -131,6 +131,16 @@ namespace gpu
    class pixmap;
 
 } // gpu
+
+
+namespace draw2d
+{
+
+
+   enum enum_model;
+
+
+} // namespace draw2d
 
 
 #define __expand_float_pre_rgba(color) (color.f32_opacity()*color.f32_red()),(color.f32_opacity()* color.f32_green()), (color.f32_opacity()*color.f32_blue()), color.f32_opacity()

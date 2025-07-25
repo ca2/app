@@ -1600,6 +1600,24 @@ public:
 
    }
 
+   template < primitive_array ARRAY >
+      ARRAY & add_clockwise_edges(ARRAY &a) const
+   {
+      a.add(this->top_left());
+      a.add(this->top_right());
+      a.add(this->bottom_right());
+      a.add(this->bottom_left());
+      return a;
+   }
+      template < primitive_array ARRAY >
+      ARRAY& set_clockwise_edges(ARRAY& a, ::collection::index iOffset = 0) const
+      {
+         a[iOffset + 0] = this->top_left();
+         a[iOffset + 1] = this->top_right();
+         a[iOffset + 2] = this->bottom_right();
+         a[iOffset + 3] = this->bottom_left();
+         return a;
+      }
 
 };
 

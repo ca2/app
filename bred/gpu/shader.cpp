@@ -272,7 +272,14 @@ namespace gpu
 
    }
 
+
+   void shader::_bind()
+   {
+
+
+   }
    
+
    //void shader::on_initialize_shader()
    //{
 

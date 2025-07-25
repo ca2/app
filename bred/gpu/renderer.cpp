@@ -13,6 +13,7 @@
 #include "render_target.h"
 #include "acme/exception/interface_only.h"
 #include "acme/prototype/geometry2d/matrix.h"
+#include "bred/gpu/context_lock.h"
 #include "bred/gpu/graphics.h"
 #include "bred/gpu/swap_chain.h"
 #include "aura/graphics/image/drawing.h"
@@ -203,6 +204,27 @@ namespace gpu
    }
 
 
+   void renderer::defer_end_frame_layer_copy()
+   {
+
+      auto player = ::gpu::current_frame()->m_pgpulayer;
+
+      if (player)
+      {
+
+         auto ptextureTarget = player->texture();
+
+         auto ptextureSource = m_pgpucontext->current_target_texture(player->m_pgpuframe);
+
+         m_pgpucontext->copy(ptextureTarget, ptextureSource);
+
+      }
+
+
+
+   }
+
+
    ::gpu::texture* renderer::current_render_target_texture(::gpu::frame* pgpuframe)
    {
 
@@ -230,7 +252,7 @@ namespace gpu
 
       }
 
-      auto iFrameIndex = m_pgpurendertarget->get_frame_index();
+      auto iFrameIndex = m_pgpucontext->m_pgpudevice->get_frame_index();
 
       auto pcommandbuffer = m_commandbuffera[iFrameIndex];
 
@@ -250,7 +272,7 @@ namespace gpu
    void renderer::create_command_buffers()
    {
 
-      m_commandbuffera.set_size(m_pgpurendertarget->get_frame_count());
+      m_commandbuffera.set_size(m_pgpucontext->m_pgpudevice->get_frame_count());
 
       //::array<VkCommandBuffer > a;
 
@@ -312,7 +334,7 @@ namespace gpu
    ::pointer_array<::particle >* renderer::current_frame_particle_array()
    {
 
-      auto iFrameIndex = m_pgpurendertarget->get_frame_index();
+      auto iFrameIndex = m_pgpucontext->m_pgpudevice->get_frame_index();
 
       auto pparticlea = m_pgpucontext->m_pgpudevice->frame_particle_array(iFrameIndex);
 
@@ -1131,7 +1153,7 @@ namespace gpu
 
       defer_update_renderer();
 
-      on_new_frame();
+      //on_new_frame();
 
       auto pframe = beginFrame();
 
@@ -1142,6 +1164,8 @@ namespace gpu
 
    void renderer::frame_suffix()
    {
+
+      ::gpu::context_lock contextlock(m_pgpucontext);
 
       on_end_render(::gpu::current_frame());
 
@@ -1248,7 +1272,7 @@ namespace gpu
 
       defer_update_renderer();
 
-      on_new_frame();
+      //on_new_frame();
 
       beginFrame();
 
@@ -1262,19 +1286,19 @@ namespace gpu
    bool renderer::is_starting_frame()const
    {
 
-      return m_pgpurendertarget->is_starting_frame();
+      return m_pgpucontext->m_pgpudevice->is_starting_frame();
 
    }
 
 
-   void renderer::on_new_frame()
-   {
+   //void renderer::on_new_frame()
+   //{
 
-      m_pgpurendertarget->on_new_frame();
+   //   m_pgpucontext->m_pgpudevice->on_new_frame();
 
-      m_prenderstate->on_happening(e_happening_new_frame);
+   //   m_prenderstate->on_happening(e_happening_new_frame);
 
-   }
+   //}
 
 
 
@@ -1291,6 +1315,12 @@ namespace gpu
       auto pgpuframe = __øcreate < ::gpu::frame >();
 
       ::gpu::set_current_frame(pgpuframe);
+
+      m_prenderstate->on_happening(e_happening_begin_frame);
+
+      assert(!isFrameStarted && "Can't call beginFrame while already in progress");
+
+      isFrameStarted = true;
 
       if (m_papplication->m_gpu.m_bUseSwapChainWindow
          && m_pgpucontext->m_etype != ::gpu::context::e_type_window)
@@ -1310,10 +1340,6 @@ namespace gpu
 
       }
 
-      assert(!isFrameStarted && "Can't call beginFrame while already in progress");
-
-      isFrameStarted = true;
-
       ::cast < command_buffer > pcommandbuffer = getCurrentCommandBuffer2(pgpuframe);
 
       on_begin_frame();
@@ -1321,8 +1347,6 @@ namespace gpu
       pgpuframe->m_pgpucommandbuffer = pcommandbuffer.m_p;
 
       m_pgpurendertarget->m_pgpuframe = pgpuframe;
-
-      m_prenderstate->on_happening(e_happening_begin_frame);
 
       if (!m_papplication->m_gpu.m_bUseSwapChainWindow
          || m_pgpucontext->m_etype != ::gpu::context::e_type_window)

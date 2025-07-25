@@ -152,7 +152,7 @@ namespace gpu
 
       virtual bool is_starting_frame()const;
 
-      virtual void on_new_frame();
+      //virtual void on_new_frame();
 
       virtual ::pointer < frame > beginFrame();
 
@@ -168,6 +168,7 @@ namespace gpu
       virtual void on_begin_draw();
       virtual void on_end_draw();
 
+      virtual void defer_end_frame_layer_copy();
 
       virtual void draw();
       virtual void read_to_cpu_buffer();

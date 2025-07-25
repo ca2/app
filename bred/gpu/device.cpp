@@ -23,6 +23,7 @@
 #include "aura/platform/system.h"
 #include "aura/graphics/image/context.h"
 #include "aura/windowing/window.h"
+#include <assert.h>
 
 
 namespace gpu
@@ -913,6 +914,71 @@ namespace gpu
 
 
    }
+
+
+   void device::on_new_frame()
+   {
+
+      auto iFrameCount = get_frame_count();
+
+      m_iFrameSerial2++;
+
+      m_iCurrentFrame2 = (m_iCurrentFrame2 + 1) % iFrameCount;
+
+   }
+
+
+   bool device::is_starting_frame()const
+   {
+
+      return m_iFrameSerial2 == m_iCurrentFrame2;
+
+   }
+
+
+   void device::restart_frame_counter()
+   {
+
+      if (this->get_frame_count() > 1)
+      {
+
+         m_iCurrentFrame2 = -1;
+         m_iFrameSerial2 = -1;
+
+         //m_pgpurenderer->m_prenderstate->on_happening(e_happening_reset_frame_counter);
+
+      }
+
+   }
+
+
+   int device::get_frame_index()
+   {
+
+      if (this->get_frame_count() > 1)
+      {
+
+         return (int)m_iCurrentFrame2;
+
+      }
+      else
+      {
+
+         return 0;
+
+      }
+
+   }
+
+
+   int device::get_frame_count()
+   {
+
+      return (int)m_iFrameCount;
+
+   }
+
+
 
    
    pool_group* device::frame_pool_group(int iFrameIndex)

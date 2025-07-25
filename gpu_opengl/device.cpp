@@ -670,6 +670,23 @@ namespace gpu_opengl
 
    }
 
+
+   int device::get_frame_index()
+   {
+
+      return 0;
+
+   }
+
+
+   int device::get_frame_count()
+   {
+
+      return 1;
+
+   }
+
+
    
    ::gpu::payload device::load_dds(const ::scoped_string& scopedstrImagePath)
    {

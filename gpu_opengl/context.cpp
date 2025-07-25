@@ -965,6 +965,25 @@ void main() {
 
    }
 
+   
+   void context::gpu_debug_message(const ::scoped_string& scopedstrMessage)
+   {
+
+      {
+
+         ::string strMessage(scopedstrMessage);
+
+         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+            GL_DEBUG_TYPE_MARKER,
+            0,
+            GL_DEBUG_SEVERITY_NOTIFICATION,
+            -1,
+            strMessage);
+
+      }
+
+   }
+
 
    void context::on_end_layer(::gpu::layer* player)
    {
@@ -1001,7 +1020,6 @@ void main() {
 
    void context::merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera)
    {
-
 
       ::gpu::context_lock contextlock(this);
 
@@ -1124,93 +1142,42 @@ void main() {
 
          int iH = ptextureDst->m_pgpurenderer->m_pgpucontext->m_rectangle.height();
 
-         //ptextureDst->_new_state(
-         //   pcommandbuffer,
-         //   VK_ACCESS_TRANSFER_WRITE_BIT,
-         //   VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
-         //   VK_PIPELINE_STAGE_TRANSFER_BIT
-         //);
+         ptextureDst->bind_render_target();
 
+         {
 
+            //GLint objName = 0;
+            //glGetFramebufferAttachmentParameteriv(target, GL_COLOR_ATTACHMENT0,
+            //   GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME, &objName);
 
-         //pcommandbuffer->set_viewport(m_rectangle.size());
+            GLint drawFbo = 0;
+            glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFbo);
 
-         //pcommandbuffer->set_scissor(m_rectangle.size());
+            GLint readFbo = 0;
+            glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFbo);
 
+            ::string strMessage;
 
-         //// 2. Clear
-         //VkClearColorValue clearColor = { .float32 = { 0.0f, 0.0f, 0.0f, 0.0f } };
-         //VkImageSubresourceRange range = {
-         //    .aspectMask = VK_IMAGE_ASPECT_COLOR_BIT,
-         //    .baseMipLevel = 0,
-         //    .levelCount = 1,
-         //    .baseArrayLayer = 0,
-         //    .layerCount = 1,
-         //};
+            strMessage.formatf("ø clear drawFbo=%d readFbo=%d tex=%d", drawFbo, readFbo, ptextureDst->m_gluTextureID);
 
-         //vkCmdClearColorImage(
-         //   vkcommandbuffer,
-         //   ptextureDst->m_vkimage,
-         //   VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
-         //   &clearColor,
-         //   1,
-         //   &range);
+            glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+               GL_DEBUG_TYPE_MARKER,
+               0,
+               GL_DEBUG_SEVERITY_NOTIFICATION,
+               -1,
+               strMessage);
 
+         }
 
-         ////float clearColor[4] = { 0.95f * 0.5f, 0.95f * 0.5f, 0.25f * 0.5f, 0.5f }; // Clear to transparent
-         ////m_pcontext->ClearRenderTargetView(ptextureDst->m_prendertargetview, clearColor);
-         //float clearColor[4] = { 0.f, 0.f, 0.f, 0.f }; // Clear to transparent
-         //pcommandlist->ClearRenderTargetView(ptextureDst->m_handleRenderTargetView, clearColor, 0, nullptr);
-         //ptextureDst->_new_state(pcommandbuffer,
-         //   VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT,
-         //   VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL,
-         //   VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT
-         //);
-
-         //if (!ptextureDst->m_handleRenderTargetView.ptr)
-         //{
-
-           // ptextureDst->create_render_target();
-
-         //}
-
-
-         //m_pshaderBlend3->bind(ptextureTarget);
-
-
-         //int iDescriptorSize = ptextureDst->m_rtvDescriptorSize;
-         //int iFrameIndex = m_pgpurendertarget->get_frame_index();
-         //auto hRtv = pgpurendertargetview->m_rtvHeap->GetCPUDescriptorHandleForHeapStart();
-         //auto hRtv = ptextureDst->m_handleRenderTargetView;
-         //CD3DX12_CPU_DESCRIPTOR_HANDLE rtvHandle(
-           // hRtv,
-            //iFrameIndex,
-            //iDescriptorSize);
-
-         //float clearColor[4] = { 0.5f * 0.5f, 0.75f * 0.5f, 0.9f * 0.5f, 0.5f };
-         //float clearColor[4] = { 0.f, 0.f , 0.f, 0.f };
-         //pcommandlist->ClearRenderTargetView(hRtv, clearColor, 0, nullptr);
-
-         //{
-         //   float blendFactor[4] = { 0, 0, 0, 0 }; // Ignored with this blend mode
-         //   UINT sampleMask = 0xFFFFFFFF;
-         //   m_pcontext->OMSetBlendState(m_pd3d11blendstateBlend3, blendFactor, sampleMask);
-         //}
-
-
-
-         //ID3D11RenderTargetView* rendertargetview[] = { ptextureDst->m_prendertargetview };
-
-         //m_p(1, rendertargetview, nullptr);
-
-         //m_pcontext->OMSetBlendState(g_blendState, nullptr, 0xffffffff);
-         //g_context->VSSetShader(g_vs, nullptr, 0);
-         //g_context->PSSetShader(g_ps, nullptr, 0);
-         //g_context->PSSetSamplers(0, 1, &g_sampler);
+         glClearColor(0.f, 0.f, 0.f, 0.f);
+         glClearDepth(1.0f);
+         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
          if (1)
          {
+            
             int iLayer = 0;
+
             for (auto player : *playera)
             {
 
@@ -1228,15 +1195,6 @@ void main() {
                   //);
 
                   m_pshaderBlend3->bind(ptextureDst, ptextureSrc);
-
-                  if (iLayer == 0)
-                  {
-
-                     glClearColor(0.f, 0.f, 0.f, 0.f);
-                     glClearDepth(1.0f);
-                     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-                  }
 
                   auto r = ptextureSrc->m_rectangleTarget;
 
@@ -1267,7 +1225,7 @@ void main() {
 
                      ::string strMessage;
 
-                     strMessage.formatf("ø merge%d drawFbo=%d readFbo=%d", iLayer, drawFbo, readFbo);
+                     strMessage.formatf("ø merge%d drawFbo=%d readFbo=%d texDst=%d", iLayer, drawFbo, readFbo, ptextureDst->m_gluTextureID);
 
                      glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
                         GL_DEBUG_TYPE_MARKER,
@@ -1301,7 +1259,7 @@ void main() {
 
                   m_pmodelbufferDummy->draw(pcommandbuffer);
 
-                  //m_pmodelbufferDummy->unbind(pcommandbuffer);
+                  m_pmodelbufferDummy->unbind(pcommandbuffer);
 
                   //ID3D11SamplerState* samplerstatea[] =
                   //{ ptexture->m_psamplerstate };
@@ -1737,14 +1695,16 @@ void main() {
       //GLCheckError("");
 
       // Attach source texture to fboSrc
-      glBindFramebuffer(GL_READ_FRAMEBUFFER, ptextureSrc->m_gluFbo);
+      auto gluSrcFbo = ptextureSrc->m_gluFbo;
+      glBindFramebuffer(GL_READ_FRAMEBUFFER, gluSrcFbo);
       GLCheckError("");
       //glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
       //   GL_TEXTURE_2D, textureSrc, 0);
       //GLCheckError("");
 
       // Attach dest texture to fboDst
-      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, ptextureDst->m_gluFbo);
+      auto gluDstFbo = ptextureDst->m_gluFbo;
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, gluDstFbo);
       GLCheckError("");
       
       glDrawBuffer(GL_COLOR_ATTACHMENT0);
@@ -1784,6 +1744,38 @@ void main() {
          ::string strMessage;
 
          strMessage.formatf("ø copy drawFbo=%d readFbo=%d", drawFbo, readFbo);
+
+         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+            GL_DEBUG_TYPE_MARKER,
+            0,
+            GL_DEBUG_SEVERITY_NOTIFICATION,
+            -1,
+            strMessage);
+
+      }
+
+      {
+
+         GLint textureDrawFbo = 0;
+         glGetFramebufferAttachmentParameteriv(
+            GL_DRAW_FRAMEBUFFER,
+            GL_COLOR_ATTACHMENT0,               // or GL_DEPTH_ATTACHMENT, etc.
+            GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME,
+            &textureDrawFbo
+         );
+
+         GLint textureReadFbo = 0;
+         glGetFramebufferAttachmentParameteriv(
+            GL_READ_FRAMEBUFFER,
+            GL_COLOR_ATTACHMENT0,               // or GL_DEPTH_ATTACHMENT, etc.
+            GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME,
+            &textureReadFbo
+         );
+
+
+         ::string strMessage;
+
+         strMessage.formatf("ø copy drawFboTex=%d readFboText=%d", textureDrawFbo, textureReadFbo);
 
          glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
             GL_DEBUG_TYPE_MARKER,

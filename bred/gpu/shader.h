@@ -184,7 +184,7 @@ namespace gpu
 
       //virtual ::gpu::payload * get_payload(const ::scoped_string & scopedstrName);
       virtual void draw();
-
+      virtual void _bind();
       //virtual void on_initialize_shader();
       
       

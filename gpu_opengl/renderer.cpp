@@ -120,16 +120,24 @@ namespace gpu_opengl
    ::pointer < ::gpu::frame > renderer::beginFrame()
    {
 
+      return ::gpu::renderer::beginFrame();
+
+   }
+
+
+   void renderer::on_begin_frame()
+   {
+
       //if (m_pgpucontext != m_pgpucontext->m_pgpudevice->current_context())
-      //{
+//{
 
-      //   throw ::exception(error_wrong_state);
+//   throw ::exception(error_wrong_state);
 
-      //}
+//}
 
-      assert(!isFrameStarted && "Can't call beginFrame while already in progress");
+      //assert(!isFrameStarted && "Can't call beginFrame while already in progress");
 
-      isFrameStarted = true;
+      //isFrameStarted = true;
 
       ::cast < context > pgpucontext = m_pgpucontext;
 
@@ -193,12 +201,12 @@ namespace gpu_opengl
 
       defer_update_renderer();
 
-      if (!m_pgpurendertarget->m_pgpuframe)
-      {
+      //if (!m_pgpurendertarget->m_pgpuframe)
+      //{
 
-         __øconstruct(m_pgpurendertarget->m_pgpuframe);/* = __create_new < ::gpu_opengl::frame >()*/;
+      //   __øconstruct(m_pgpurendertarget->m_pgpuframe);/* = __create_new < ::gpu_opengl::frame >()*/;
 
-      }
+      //}
 
       if (!m_pgpurendertarget->m_bRenderTargetInit)
       {
@@ -209,7 +217,6 @@ namespace gpu_opengl
 
       //pgpucontext->_ensure_layer_framebuffer();
 
-      return ::gpu::renderer::beginFrame();
 
    }
 
@@ -576,6 +583,8 @@ namespace gpu_opengl
       //glDisable(GL_SCISSOR_TEST);
       glFlush();
       GLCheckError("");
+
+      defer_end_frame_layer_copy();
 
       //GLint drawFboId = 0, readFboId = 0;
 

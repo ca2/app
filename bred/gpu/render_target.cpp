@@ -1,6 +1,7 @@
 // Created by camilo on 2025-06-12 12:38 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "context.h"
+#include "device.h"
 #include "frame.h"
 #include "layer.h"
 #include "renderer.h"
@@ -85,12 +86,12 @@ namespace gpu
 
       }
 
-      if (!m_bBackBuffer)
-      {
+      //if (!m_bBackBuffer)
+      //{
 
-         restart_frame_counter();
+      //   restart_frame_counter();
 
-      }
+      //}
 
       if (m_pgpurenderer->m_pgpucontext->m_escene == ::gpu::e_scene_3d)
       {
@@ -146,8 +147,7 @@ namespace gpu
       if (m_pgpurenderer->m_pgpurendertarget->get_frame_count() > 1)
       {
 
-         m_iCurrentFrame2 = -1;
-         m_iFrameSerial2 = -1;
+         m_pgpurenderer->m_pgpucontext->m_pgpudevice->restart_frame_counter();
 
          m_pgpurenderer->m_prenderstate->on_happening(e_happening_reset_frame_counter);
 
@@ -169,12 +169,19 @@ namespace gpu
       if (m_pgpurenderer->m_pgpurendertarget->get_frame_count() > 1)
       {
 
-         assert(m_iFrameSerial2 >= 0
-            && m_iCurrentFrame2 >= 0
-            && m_pgpurenderer->m_prenderstate->m_estate != e_state_initial
+         auto iFrameSerial2 = m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iFrameSerial2;
+
+         auto iCurrentFrame2 = m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame2;
+
+         auto estate = m_pgpurenderer->m_prenderstate->m_estate;
+
+         assert(
+            iFrameSerial2 >= 0 
+            && iCurrentFrame2 >= 0 
+            && estate != e_state_initial
             && "Cannot get frame index when frame not in progress");
 
-         return (int)m_iCurrentFrame2;
+         return (int)m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame2;
 
       }
       else
@@ -227,7 +234,7 @@ namespace gpu
 
             on_create_render_target_texture(ptexture);
 
-            ptexture->m_pgpurendertarget = this;
+            //ptexture->m_pgpurendertarget = this;
 
             ptexture->initialize_image_texture(m_pgpurenderer, m_size, m_bWithDepth);
 
@@ -378,24 +385,26 @@ namespace gpu
    //}
 
 
-   void render_target::on_new_frame()
-   {
+   //void render_target::on_new_frame()
+   //{
 
-      auto iFrameCount = get_frame_count();
+   //   auto iFrameCount = get_frame_count();
 
-      m_iFrameSerial2++;
+   //   m_iFrameSerial2++;
 
-      m_iCurrentFrame2 = (m_iCurrentFrame2 + 1) % iFrameCount;
+   //   m_iCurrentFrame2 = (m_iCurrentFrame2 + 1) % iFrameCount;
 
-   }
+   //}
 
 
    bool render_target::is_starting_frame()const
    {
 
-      return m_iFrameSerial2 == m_iCurrentFrame2;
+      return m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iFrameSerial2 
+         == m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame2;
 
    }
+
 
 } // namespace gpu
 

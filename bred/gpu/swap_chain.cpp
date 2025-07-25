@@ -29,6 +29,13 @@ namespace gpu
    }
 
 
+   void swap_chain::create_images()
+   {
+
+
+   }
+
+
    void swap_chain::initialize_swap_chain_window(::gpu::context * pgpucontext, ::windowing::window* pwindow)
    {
 
@@ -93,7 +100,7 @@ namespace gpu
       if (!m_ptextureaSwapChain)
       {
 
-         return nullptr;
+         create_images();
 
       }
 

@@ -8,6 +8,7 @@
 #include "aura/user/user/interaction.h"
 #include "aura/graphics/graphics/graphics.h"
 #include "aura/windowing/window.h"
+#include "bred/gpu/_model.h"
 #include "bred/gpu/bred_approach.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
@@ -19,18 +20,20 @@
 #include "bred/gpu/swap_chain.h"
 
 
+
 namespace gpu
 {
 
-
-#define __TRANSFORM(p) \
-   m_m1.transform(p); \
-p.y() = iContextHeight - p.y()
-
-#define __USES_TRANSFORM(pcontext) \
-auto iContextHeight = pcontext->m_rectangle.height()
-
-
+//
+//#define __TRANSFORM(p) \
+//   m_m1.transform(p); \
+//p.y() = iContextHeight - p.y()
+//
+//#define __USES_TRANSFORM(pcontext) \
+//auto iContextHeight = pcontext->m_rectangle.height()
+//
+//
+//
    void thread_graphics(graphics* pgraphics)
    {
 
@@ -42,6 +45,8 @@ auto iContextHeight = pcontext->m_rectangle.height()
 
    graphics::graphics()
    {
+
+      m_ppoolgroupFrame = nullptr;
 
       //m_eoutputOnEndDraw = ::gpu::e_output_none;
 
@@ -73,6 +78,32 @@ auto iContextHeight = pcontext->m_rectangle.height()
    }
 
 
+   void graphics::on_new_frame()
+   {
+
+      auto pcontext = gpu_context();
+
+      auto pgpudevice = pcontext->m_pgpudevice;
+
+      auto prenderer = pcontext->get_gpu_renderer();
+
+      auto prendertarget = prenderer->m_pgpurendertarget;
+
+      int iFrameIndex = prendertarget->get_frame_index();
+
+      auto ppoolgroupFrame = pgpudevice->frame_pool_group(iFrameIndex);
+
+      m_ppoolgroupFrame = ppoolgroupFrame;
+
+      for (auto& pool : m_mapModelBufferPool.payloads())
+      {
+
+         pool.m_ppoolgroup = m_ppoolgroupFrame;
+
+      }
+
+   }
+
 
    void graphics::on_begin_draw()
    {
@@ -100,9 +131,8 @@ auto iContextHeight = pcontext->m_rectangle.height()
 
          ppoolgroupFrame->call_ongoing(e_call_off_to_pool);
 
-         m_poolmodelbufferRectangle.m_ppoolgroup = ppoolgroupFrame;
-         m_poolmodelbufferCharacter.m_ppoolgroup = ppoolgroupFrame;
-         m_poolmodelbufferLine.m_ppoolgroup = ppoolgroupFrame;
+         //m_poolmodelbufferCharacter.m_ppoolgroup = ppoolgroupFrame;
+         //m_poolmodelbufferLine.m_ppoolgroup = ppoolgroupFrame;
 
          prenderer->current_frame_particle_array()->clear();
 
@@ -111,11 +141,13 @@ auto iContextHeight = pcontext->m_rectangle.height()
       if (m_egraphics == e_graphics_draw)
       {
 
-         int iFrameIndex = pcontext->m_pgpurenderer->m_pgpurendertarget->get_frame_index();
+         on_new_frame();
 
-         m_poolmodelbufferRectangle.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
-         m_poolmodelbufferCharacter.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
-         m_poolmodelbufferLine.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
+         //int iFrameIndex = pcontext->m_pgpurenderer->m_pgpurendertarget->get_frame_index();
+
+         //m_poolmodelbufferRectangle.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
+         //m_poolmodelbufferCharacter.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
+         //m_poolmodelbufferLine.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
 
       }
 
@@ -191,6 +223,33 @@ auto iContextHeight = pcontext->m_rectangle.height()
 
    }
 
+   ::geometry2d::matrix graphics::context_matrix()
+   {
+      auto pcontext = gpu_context();
+      auto size = pcontext->m_rectangle.size();
+
+
+
+      ::geometry2d::matrix contextmatrix;
+      contextmatrix.translate(0.5, -0.5);
+      contextmatrix.append(context_scale_matrix());
+      return contextmatrix;
+   }
+
+
+   ::geometry2d::matrix graphics::context_scale_matrix()
+   {
+      auto pcontext = gpu_context();
+      auto size = pcontext->m_rectangle.size();
+
+
+
+      ::geometry2d::matrix contextmatrix;
+      contextmatrix.scale(2.0 / size.cx(), 2.0 / size.cy());
+      contextmatrix.translate(-1.0, -1.0);
+      return contextmatrix;
+   }
+
 
 
    void graphics::gpu_layer_on_before_end_render()
@@ -201,6 +260,48 @@ auto iContextHeight = pcontext->m_rectangle.height()
 
 
    }
+
+
+   ::pool <::gpu::model_buffer >& graphics::model_buffer_pool(::draw2d::enum_model epool)
+   {
+
+      auto& pool = m_mapModelBufferPool[epool];
+
+      if (!pool.m_ppoolgroup)
+      {
+
+         auto pcontext = gpu_context();
+
+         auto pgpudevice = pcontext->m_pgpudevice;
+
+         auto prenderer = pcontext->get_gpu_renderer();
+
+         auto prendertarget = prenderer->m_pgpurendertarget;
+
+         int iFrameIndex = prendertarget->get_frame_index();
+
+         auto ppoolgroupFrame = pgpudevice->frame_pool_group(iFrameIndex);
+
+         pool.m_ppoolgroup = ppoolgroupFrame;
+
+      }
+
+      return pool;
+
+   }
+
+
+   ::gpu::model_buffer * graphics::model_buffer(::draw2d::enum_model emodel)
+   {
+
+      auto & pool = model_buffer_pool(emodel);
+
+      auto pbuffer = pool.get();
+
+      return pbuffer;
+
+   }
+
 
    void graphics::update_matrix()
    {
@@ -236,9 +337,14 @@ auto iContextHeight = pcontext->m_rectangle.height()
    void graphics::on_end_draw()
    {
 
+      
       //end_gpu_layer();
 
       auto pcontext = gpu_context();
+
+      ::gpu::context_lock contextlock(pcontext);
+
+      pcontext->defer_unbind_shader();
 
       pcontext->on_end_draw_detach(this);
 
@@ -509,7 +615,7 @@ auto iContextHeight = pcontext->m_rectangle.height()
             //m_pshaderRectangle->m_iColorAttachmentCount = 2;
             m_pshaderBlendRectangle->m_bEnableBlend = true;
             //m_pshaderRectangle->m_bAccumulationEnable = true;
-
+            m_pshaderBlendRectangle->m_ecullmode = ::gpu::e_cull_mode_none;
             ///auto pcontext = gpu_context();
 
             pcontext->initialize_rectangle_shader(m_pshaderBlendRectangle);
@@ -539,9 +645,19 @@ auto iContextHeight = pcontext->m_rectangle.height()
    void graphics::_fill_quad(const ::double_point points[4], const ::color::color& color)
    {
 
+      if (::get_task()->payload("debug").as_int() == 123)
+      {
+         ::string strMessage;
+
+         strMessage.formatf("ødebug123 _fill_quad");
+
+         m_pgpucontextCompositor2->gpu_debug_message(strMessage);
+
+      }
+
       auto pcontext = gpu_context();
 
-      __USES_TRANSFORM(pcontext);
+      //__USES_TRANSFORM(pcontext);
 
       auto prenderer = pcontext->m_pgpurenderer;
 
@@ -593,8 +709,7 @@ auto iContextHeight = pcontext->m_rectangle.height()
 
       ::gpu::shader* pshader = rectangle_shader();
 
-
-      auto pmodelbufferRectangle = m_poolmodelbufferRectangle.get();
+      auto pmodelbufferRectangle = model_buffer(::draw2d::e_model_fill_rectangle);
 
       if (pmodelbufferRectangle->is_new())
       {
@@ -603,32 +718,22 @@ auto iContextHeight = pcontext->m_rectangle.height()
 
       }
 
-      double_point quad[4];
+      ::preallocated_array < double_point_array, 4 > quad;
 
-      quad[0] = points[0];
-      __TRANSFORM(quad[0]);
-      auto& p0 = quad[0];
-      quad[1] = points[1];
-      __TRANSFORM(quad[1]);
-      auto& p1 = quad[1];
-      quad[2] = points[2];
-      __TRANSFORM(quad[2]);
-      auto& p2 = quad[2];
-      quad[3] = points[3];
-      __TRANSFORM(quad[3]);
-      auto& p3 = quad[3];
+      quad.add(points[0]);
+      quad.add(points[1]);
+      quad.add(points[2]);
+      quad.add(points[3]);
 
-      //pmodelbuffer->sequence3_color_set_rectangle();
-      //pgpucontext = pgpudevice->get_main_context();
-      //editQuadVertexBuffer(
-      //   pgpucontext->logicalDevice(),
-      //   pmodel->m_vertexMemory,
-      //   quad, color, pgpucontext->rectangle().size());
+      __transform(quad);
+
+
+      context_matrix().transform(quad);
+
 
       pmodelbufferRectangle->sequence2_color_set_rectangle(
-         quad,
-         color,
-         pgpucontext->m_rectangle.size());
+         quad.data(),
+         color);
 
 
       pcontext->defer_bind(pshader);
@@ -1057,7 +1162,7 @@ auto iContextHeight = pcontext->m_rectangle.height()
 
       auto pcontext = gpu_context();
 
-      __USES_TRANSFORM(pcontext);
+      //__USES_TRANSFORM(pcontext);
 
       ::gpu::context_lock contextlock(pcontext);
 
@@ -1091,7 +1196,7 @@ auto iContextHeight = pcontext->m_rectangle.height()
 
       }
 
-      m_pgpushaderTextOut->bind();
+      pcontext->defer_bind(m_pgpushaderTextOut);
       auto color = m_pbrush->m_color;
       //shader.use();
       ::cast<::gpu::shader>pshader = m_pgpushaderTextOut;
@@ -1156,7 +1261,7 @@ auto iContextHeight = pcontext->m_rectangle.height()
 
       ::int_point point(x, y);
       int Δx = 0;
-      __TRANSFORM(point);
+      __transform(point);
 
       //auto pcontext = gpu_context();
 
@@ -1192,7 +1297,7 @@ auto iContextHeight = pcontext->m_rectangle.height()
          if (ch.m_ppixmap)
          {
 
-            pmodelbuffer = m_poolmodelbufferCharacter.get();
+            pmodelbuffer = model_buffer(::draw2d::e_model_character);
 
             if (pmodelbuffer->is_new())
             {
@@ -1272,7 +1377,7 @@ auto iContextHeight = pcontext->m_rectangle.height()
       //GLCheckError("");
 
       pcontext->set_cull_face(false);
-      m_pgpushaderTextOut->unbind();
+      pcontext->defer_unbind(m_pgpushaderTextOut);
    }
 
 

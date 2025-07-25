@@ -56,6 +56,21 @@ namespace gpu
    };
 
 
+   struct CLASS_DECL_BRED scoped_command_buffer
+   {
+
+      ::pointer < ::gpu::command_buffer > m_pcommandbufferOut;
+      ::pointer < ::gpu::command_buffer > m_pcommandbufferIn;
+
+      scoped_command_buffer(::gpu::command_buffer* pcommandbufferIn);
+      ~scoped_command_buffer();
+
+   };
+
+
+
+
+
 } // namespace gpu
 
 

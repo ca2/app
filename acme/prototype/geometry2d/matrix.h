@@ -102,6 +102,11 @@ namespace geometry2d
       void transform(sequence2_int& point);
 
       void transform(sequence2_double& point);
+      void transform(sequence2_double * ppoint, ::collection::count c);
+
+      template < primitive_container CONTAINER >
+      void transform(CONTAINER& container) 
+      { for (auto& item : container) transform(item); }
 
    };
 

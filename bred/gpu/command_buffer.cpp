@@ -1,11 +1,32 @@
 // Created by camilo on 2025-06-23 00:16 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "command_buffer.h"
+#include "frame.h"
 #include "render_target.h"
 
 
 namespace gpu
 {
+
+
+   scoped_command_buffer::scoped_command_buffer(::gpu::command_buffer* pcommandbufferIn)
+   {
+
+      m_pcommandbufferOut = ::gpu::current_frame()->m_pgpucommandbuffer;
+      m_pcommandbufferIn = pcommandbufferIn;
+      ::gpu::current_frame()->m_pgpucommandbuffer = m_pcommandbufferIn;
+
+
+   }
+
+   scoped_command_buffer::~scoped_command_buffer()
+   {
+
+      ::gpu::current_frame()->m_pgpucommandbuffer = m_pcommandbufferOut;
+
+   }
+
+
 
 
    command_buffer::command_buffer()

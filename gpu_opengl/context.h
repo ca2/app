@@ -63,7 +63,7 @@ namespace gpu_opengl
       void _context_unlock() override;
 
       virtual void update_framebuffer(const ::int_size& size);
-
+      void gpu_debug_message(const ::scoped_string& scopedstrMessage) override;
       ::memory rectangle_shader_vert() override;
       ::memory rectangle_shader_frag() override;
 

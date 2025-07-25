@@ -370,7 +370,48 @@ namespace gpu
 
    }
 
-//
+
+   void model_buffer::sequence2_color_set_rectangle(
+      const ::double_point * pointa,
+      const  ::color::color& color)
+   {
+
+
+         //  0 l,t
+        //  1 r,t
+        //  2 r,b
+         //  3 l,b
+
+
+      float fA = color.f32_opacity();
+      //float fR = color.f32_red();
+      //float fG = color.f32_green();
+      //float fB = color.f32_blue();
+      float fR = color.f32_red() * fA;
+      float fG = color.f32_green() * fA;
+      float fB = color.f32_blue() * fA;
+
+      float g_z = 0.0f; // Assuming z is 0 for 2D rendering, adjust as needed
+
+      ::array<::graphics3d::sequence2_color> quadVertices = {
+         // Triangle 1
+         {{(float)pointa[0].x(), (float)pointa[0].y()}, {fR, fG, fB, fA}}, // Red
+         {{(float)pointa[1].x(), (float)pointa[1].y()}, {fR, fG, fB, fA}}, // Green
+         {{(float)pointa[2].x(), (float)pointa[2].y()}, {fR, fG, fB, fA}}, // Blue
+         // Triangle 2
+         {{(float)pointa[0].x(), (float)pointa[0].y()}, {fR, fG, fB, fA}}, // Green
+         {{(float)pointa[2].x(), (float)pointa[2].y()}, {fR, fG, fB, fA}}, // Yellow
+         {{(float)pointa[3].x(), (float)pointa[3].y()}, {fR, fG, fB, fA}}, // Blue
+      };
+
+      this->set_vertices(quadVertices);
+
+      //m_pbufferVertex->assign(::as_memory_block(quadVertices));
+
+   }
+
+   
+   //
    void model_buffer::sequence3_color_set_line(
       const ::double_point& pointA,
       const ::double_point& pointB,

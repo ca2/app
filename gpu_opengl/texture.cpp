@@ -292,7 +292,7 @@ namespace gpu_opengl
 
       }
 
-      glBindFramebuffer(GL_FRAMEBUFFER, m_gluFbo);
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_gluFbo);
       GLCheckError("");
 
       glDrawBuffer(GL_COLOR_ATTACHMENT0);

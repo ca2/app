@@ -813,15 +813,36 @@ namespace gpu
    }
 
 
+   void context::gpu_debug_message(const ::scoped_string& scopedstrMessage)
+   {
+
+      //{
+
+      //   ::string strMessage(scopedstrMessage);
+
+      //   glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+      //      GL_DEBUG_TYPE_MARKER,
+      //      0,
+      //      GL_DEBUG_SEVERITY_NOTIFICATION,
+      //      -1,
+      //      strMessage);
+
+      //}
+
+   }
+
+
    ::gpu::swap_chain* context::get_swap_chain()
    {
 
       if (m_etype != e_type_window)
       {
 
-         throw ::exception(error_failed);
+         //throw ::exception(error_failed);
 
-         return nullptr;
+         return m_pgpudevice->m_pgpucontextMain->get_swap_chain();
+
+//         return nullptr;
 
       }
 
@@ -839,8 +860,18 @@ namespace gpu
    }
 
 
+
+
+
    void context::top_send_on_context(::gpu::context* pcontextInnerStart, bool bForDrawing, const ::procedure& procedure)
    {
+
+      if (bForDrawing)
+      {
+
+         m_pgpudevice->on_new_frame();
+
+      }
 
       auto etype = this->m_etype;
 
@@ -1450,13 +1481,13 @@ namespace gpu
 
       }
 
-      auto ptextureTarget = player->texture();
+      //auto ptextureTarget = player->texture();
 
-      auto ptextureSource = current_target_texture(player->m_pgpuframe);
+      //auto ptextureSource = current_target_texture(player->m_pgpuframe);
 
-      //auto ptextureSource = m_pgpurendertarget->current_texture();
+      ////auto ptextureSource = m_pgpurendertarget->current_texture();
 
-      copy(ptextureTarget, ptextureSource);
+      //copy(ptextureTarget, ptextureSource);
 
 
    }

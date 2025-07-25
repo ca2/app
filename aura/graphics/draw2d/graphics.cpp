@@ -5502,11 +5502,11 @@ namespace draw2d
       else if (estockicon == e_stock_icon_restore)
       {
 
-         rectangle.deflate(0, rectangle.height() / 7.0);
+         rectangle.deflate(0, rectangle.height() / 6.0);
 
          ::double_rectangle rect1(rectangle);
 
-         rect1.deflate(0, 0, rectangle.width() / 3.0, rectangle.height() / 3.0);
+         rect1.deflate(0, 0, ceil(rectangle.width() / 3.0), ceil(rectangle.height() / 3.0));
 
          ::double_rectangle rect2(rect1);
 
@@ -5514,42 +5514,55 @@ namespace draw2d
 
          draw_rectangle(rect2);
 
-         m_ppen->m_elinecapBeg = ::draw2d::e_line_cap_flat;
-         m_ppen->m_elinecapEnd = ::draw2d::e_line_cap_flat;
+         m_ppen->m_elinecapBeg = ::draw2d::e_line_cap_square;
+         m_ppen->m_elinecapEnd = ::draw2d::e_line_cap_square;
          m_ppen->set_modified();
+
+         auto dPenWidth = m_ppen->m_dWidth;
             
          line(
-            rect2.top_left() + ::double_size(0., (m_ppen->m_dWidth / 2.0)),
-            rect2.top_right() + ::double_size(0., (m_ppen->m_dWidth / 2.0)));
+            rect2.top_left() + ::double_size(0., (dPenWidth / 2.0)),
+            rect2.top_right() + ::double_size(0., (dPenWidth / 2.0)));
 
          line(
-            rect2.top_left() + ::double_size(0., (m_ppen->m_dWidth)),
-            rect2.top_right() + ::double_size(0., (m_ppen->m_dWidth)));
+            rect2.top_left() + ::double_size(0., (dPenWidth)),
+            rect2.top_right() + ::double_size(0., (dPenWidth)));
 
-         line(rect1.top_left(), rect1.top_right());
-
-         line(
-            rect1.top_left() + ::double_size(0., (m_ppen->m_dWidth / 2.0)),
-            rect1.top_right() + ::double_size(0., (m_ppen->m_dWidth / 2.0)));
+         line(rect2.top_left(), rect2.top_right());
 
          line(
-            rect1.top_left() + ::double_size(0., (m_ppen->m_dWidth)),
-            rect1.top_right() + ::double_size(0., (m_ppen->m_dWidth)));
+            rect1.top_left() + ::double_size(0., (dPenWidth / 2.0)),
+            rect1.top_right() + ::double_size(0., (dPenWidth / 2.0)));
+
+         line(
+            rect1.top_left() + ::double_size(0., (dPenWidth)),
+            rect1.top_right() + ::double_size(0., (dPenWidth)));
+         line(
+            rect1.top_left(),
+            rect1.top_right());
 
          m_ppen->m_elinecapBeg = ::draw2d::e_line_cap_square;
          m_ppen->m_elinecapEnd = ::draw2d::e_line_cap_square;
          m_ppen->set_modified();
 
          line(
-            rect1.top_left() + ::double_size(0, (m_ppen->m_dWidth)),
+            rect1.top_left(),
             rect1.bottom_left());
          line(
-            rect1.bottom_left(),
-            rect2.bottom_left());
-
+            rect1.top_right(),
+            { rect1.right(), rect2.top() });
          line(
-            rect1.top_right() + ::double_size(0, (m_ppen->m_dWidth)),
-            double_point(rect1.right(), (int)(rect2.top() - (m_ppen->m_dWidth))));
+            rect1.bottom_left(),
+            { rect2.left(), rect1.bottom() });
+         line(
+            rect2.top_left(),
+            rect2.bottom_left());
+         line(
+            rect2.top_right(),
+            rect2.bottom_right());
+         line(
+            rect2.bottom_left(),
+            rect2.bottom_right());
 
       }
       else if (estockicon == e_stock_icon_iconify)

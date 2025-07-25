@@ -50,6 +50,9 @@ namespace gpu_opengl
       virtual void createSyncObjects();
 
 
+      int get_frame_index() override;
+
+
    };
 
 

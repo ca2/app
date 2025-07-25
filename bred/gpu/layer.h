@@ -33,6 +33,8 @@ namespace gpu
       virtual void initialize_gpu_layer(renderer * pgpurenderer, int iFrameIndex, int iLayerIndex);
 
 
+      virtual void create_command_buffers();
+
       //virtual void set_target_texture(texture* ptextureTarget);
 
       virtual void layer_start();

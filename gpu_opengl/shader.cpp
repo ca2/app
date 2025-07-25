@@ -1,6 +1,7 @@
 #include "framework.h"
 //#include "lock.h"
 #include "input_layout.h"
+#include "render_target.h"
 #include "renderer.h"
 #include "shader.h"
 #include "texture.h"
@@ -9,6 +10,7 @@
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/device.h"
+#include "bred/gpu/frame.h"
 #include "bred/gpu/renderer.h"
 #include "bred/gpu/types.h"
 
@@ -211,12 +213,23 @@ namespace gpu_opengl
       bind_source(pgputextureSource, 0);
 
    }
+   
+   void shader::bind()
+   {
+
+      ::cast < render_target> prendertarget = m_pgpurenderer->m_pgpurendertarget;
+
+      ::cast < texture > ptexture = prendertarget->current_texture(::gpu::current_frame());
+
+      bind(ptexture);
+
+   }
 
 
    void shader::bind(::gpu::texture* pgputextureTarget)
    {
 
-      bind();
+      _bind();
 
       ::cast < texture > ptexture = pgputextureTarget;
 
@@ -266,7 +279,7 @@ namespace gpu_opengl
    }
       
       
-   void shader::bind()
+   void shader::_bind()
    {
 
       if (m_bEnableBlend)

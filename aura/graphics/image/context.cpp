@@ -1394,6 +1394,12 @@ namespace image
          return ::image::e_format_bmp;
 
       }
+      else if (strText == "webp")
+      {
+
+         return ::image::e_format_webp;
+
+      }
       else
       {
 

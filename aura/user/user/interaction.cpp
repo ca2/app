@@ -5714,15 +5714,15 @@ namespace user
 
       }
 
-      //{
+      {
 
-      //   auto pointContextOffset = get_context_offset();
+         auto pointContextOffset = get_context_offset();
+         
+         auto sizeImpact = layout().layout().size();
 
-      //   auto sizeImpact = layout().layout().size();
+         offsetcontext -=pointContextOffset;
 
-      //   pgraphics->shift_impact_area(-pointContextOffset, sizeImpact);
-
-      //}
+      }
 
    }
 

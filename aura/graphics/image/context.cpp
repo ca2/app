@@ -1382,6 +1382,12 @@ namespace image
          return ::image::e_format_gif;
 
       }
+      else if (strText == "webp")
+      {
+
+         return ::image::e_format_webp;
+
+      }
       else if (strText == "bmp")
       {
 

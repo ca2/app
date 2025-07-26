@@ -4742,6 +4742,10 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array & patha)
       {
          return "image/jpeg";
       }
+      else if (strExtension == "webp")
+      {
+         return "image/webp";
+      }
       else if (strExtension == "png")
       {
          return "image/png";

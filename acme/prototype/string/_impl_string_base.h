@@ -5507,6 +5507,13 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::formatf_arguments
 
    character_count nLength = get_formatted_length(pszFormat, ptr1);
 
+   if (nLength < 0)
+   {
+
+      throw ::exception(error_failed);
+
+   }
+
    va_end(ptr1);
 
    CHARACTER * pszBuffer = get_buffer(nLength);

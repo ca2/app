@@ -26,6 +26,7 @@ namespace image
       e_format_gif,
       e_format_jpeg,
       e_format_tga,
+      e_format_webp, // Jumdum.com
    };
 
 

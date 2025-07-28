@@ -50,6 +50,8 @@ namespace gpu
       virtual int width();
       virtual int height();
 
+
+      void defer_throw_if_cube_map_images_are_not_ok(const ::pointer_array < ::image::image >& imagea);
       
       virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, const ::pointer_array < ::image::image >& imagea = {}, enum_type etype = e_type_image);
       virtual void initialize_depth_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget);

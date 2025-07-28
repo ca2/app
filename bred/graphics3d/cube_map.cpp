@@ -275,8 +275,6 @@ namespace graphics3d
    }
 
 
-
-
 } // namespace graphics3d
 
 

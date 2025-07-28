@@ -31,12 +31,12 @@ void image32_t::vertical_swap_copy(int cxParam, int cyParam, int iStrideDst, con
 
       }
 
-      int wsrc = iStrideSrc / sizeof(::image32_t);
-      int wdst = iStrideDst / sizeof(::image32_t);
+      int wsrc = iStrideSrc;
+      int wdst = iStrideDst;
       int cw = cxParam * sizeof(::image32_t);
 
-      auto * psrc = pimage32Src;
-      auto * pdst = (::image32_t *)((unsigned char *)(pimage32Dst)+iStrideDst * (cyParam - 1));
+      unsigned char * psrc = (unsigned char*)pimage32Src;
+      unsigned char * pdst = ((unsigned char *)(pimage32Dst)+iStrideDst * (cyParam - 1));
 
       for (int i = 0; i < cyParam; i++)
       {
@@ -49,9 +49,7 @@ void image32_t::vertical_swap_copy(int cxParam, int cyParam, int iStrideDst, con
 
       }
 
-
    }
-
    catch (...)
    {
 

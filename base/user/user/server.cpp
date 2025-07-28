@@ -98,6 +98,8 @@ namespace user
 
       auto prequest = pappOnBehalfOf->__create_new< ::request>();
 
+      prequest->m_ecommand = e_command_file_open;
+
       ::payload payloadOptions;
 
       payloadOptions["visible"] = bMakeVisible;

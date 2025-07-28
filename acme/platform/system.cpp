@@ -3124,26 +3124,26 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          m_bPostedCommandLineFileOpen = true;
 
-         auto prequest = __create_new<::request>();
-
          auto strCommandLine = this->m_strCommandLine;
 
          strCommandLine.trim();
 
-         prequest->m_strAppId = application()->m_strAppId;
+         ::payload payloadFile;
+         
+         ::string strAppId = application()->m_strAppId;
 
          ::string strApp;
+
+         ::property_set setRequest;
 
          if (strCommandLine.has_character())
          {
 
             information() << "system::defer_post_initial_request ***strCommandLine*** : ***" << strCommandLine << "***";
 
-            prequest->m_strCommandLine = strCommandLine;
-
-            prequest->property_set()._008ParseCommandFork(
+            setRequest._008ParseCommandFork(
                strCommandLine,
-               prequest->m_payloadFile,
+               m_payloadFile,
                strApp);
 
          }
@@ -3186,7 +3186,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
                if (strArgument.begins("-"))
                {
 
-                  prequest->property_set()._008AddArgument(strArgument);
+                  setRequest._008AddArgument(strArgument);
 
                }
                else
@@ -3206,13 +3206,13 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
                if (straFiles.size() == 1)
                {
 
-                  prequest->m_payloadFile = straFiles[0];
+                  payloadFile = straFiles[0];
 
                }
                else
                {
 
-                  prequest->m_payloadFile.string_array_reference() = straFiles;
+                  payloadFile.string_array_reference() = straFiles;
 
                }
 
@@ -3220,11 +3220,19 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          }
 
-         if (!prequest->m_payloadFile.is_empty())
+         if (!payloadFile.is_empty())
          {
+
+            auto prequest = __create_new<::request>();
 
             prequest->m_ecommand = e_command_file_open;
 
+            prequest->m_strAppId = strAppId;
+
+            prequest->property_set().merge(setRequest);
+
+            prequest->m_payloadFile = payloadFile;
+ 
             payload("command_line_arg0") = strApp;
 
             application()->property_set().merge(prequest->property_set());

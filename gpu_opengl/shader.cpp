@@ -304,27 +304,35 @@ namespace gpu_opengl
          glDepthMask(GL_FALSE);
 
       }
-      else if (m_bDepthTestButNoDepthWrite)
-      {
-
-         glEnable(GL_DEPTH_TEST);
-         glDepthMask(GL_FALSE);
-
-      }
       else
       {
 
          glEnable(GL_DEPTH_TEST);
-         glDepthMask(GL_TRUE);
+         
+         if (m_bDepthTestButNoDepthWrite)
+         {
+
+            glDepthMask(GL_FALSE);
+
+         }
+         else
+         {
+
+            glDepthMask(GL_TRUE);
+
+         }
+
          if (m_bLequalDepth)
          {
 
             glDepthFunc(GL_LEQUAL);
+
          }
          else
          {
 
             glDepthFunc(GL_LESS);
+
          }
 
       }

@@ -37,7 +37,6 @@ namespace gpu
 
       m_etype = etype;
       m_pgpurenderer = pgpurenderer;
-      //m_pgpurendertarget = pgpurenderer->m_pgpurendertarget;
       m_rectangleTarget = rectangleTarget;
       m_bWithDepth = bWithDepth;
 
@@ -89,11 +88,68 @@ namespace gpu
 
    }
 
+   
+   void texture::defer_throw_if_cube_map_images_are_not_ok(const ::pointer_array < ::image::image >& imagea)
+   {
+
+      if (imagea.size() != 6)
+      {
+
+         throw ::exception(error_failed, "Cube map texture must have exactly 6 images");
+
+      }
+
+      auto pimageFirst = imagea.first();
+
+      if (pimageFirst->is_empty())
+      {
+
+         throw ::exception(error_failed, "Cube map texture cannot be empty");
+
+      }
+
+      if (pimageFirst->width() != pimageFirst->height())
+      {
+
+         throw ::exception(error_failed, "Cube map texture images must be square");
+
+      }
+
+      for (auto& pimage : imagea)
+      {
+         
+         if (pimage != pimageFirst)
+         {
+
+            if (pimage->size() != pimageFirst->size())
+            {
+               
+               throw ::exception(error_failed, "Cube map texture images must have the same dimensions");
+
+            }
+
+         }
+
+      }
+
+   }
 
    void texture::initialize_image_texture(::gpu::renderer* pgpurenderer, const ::pointer_array < ::image::image >& imagea, enum_type etype)
    {
 
       auto r = imagea.first()->rectangle();
+
+      if (imagea.has_element())
+      {
+
+         if (etype == e_type_cube_map)
+         {
+
+            defer_throw_if_cube_map_images_are_not_ok(imagea);
+
+         }
+
+      }
 
       initialize_image_texture(pgpurenderer, r, false, imagea, etype);
 

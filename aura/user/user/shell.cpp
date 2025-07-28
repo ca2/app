@@ -319,12 +319,15 @@ namespace user
 
       pathFinal = final_path(getfileimage);
 
-      if (pathFinal.case_insensitive_ends(".jpg")
-         || pathFinal.case_insensitive_ends(".jpeg")
-         || pathFinal.case_insensitive_ends(".png")
-         || pathFinal.case_insensitive_ends(".gif")
-         || pathFinal.case_insensitive_ends(".bmp")
-         || pathFinal.case_insensitive_ends(".svg")
+      auto strFinalExtension = pathFinal.final_extension();
+
+      if (strFinalExtension.case_insensitive_equals("jpg")
+         || strFinalExtension.case_insensitive_equals("jpeg")
+         || strFinalExtension.case_insensitive_equals("png")
+         || strFinalExtension.case_insensitive_equals("gif")
+         || strFinalExtension.case_insensitive_equals("bmp")
+         || strFinalExtension.case_insensitive_equals("svg")
+         || strFinalExtension.case_insensitive_equals("webp")
          )
       {
 

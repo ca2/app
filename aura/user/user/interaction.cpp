@@ -3849,17 +3849,30 @@ namespace user
    bool interaction::post_pending_set_need_redraw()
    {
 
-      if (window()->m_pgraphicsthread->m_bFps)
+      auto pwindow = window();
+
+      if (pwindow)
       {
 
-         //warning() << "graphics thread is going to ignore post redraw as it should be doing Fps drawing";
+         auto pgraphicsthread = pwindow->m_pgraphicsthread;
 
-         m_setneedredrawa.clear();
+         if (pgraphicsthread)
+         {
 
-         return true;
+            if (pgraphicsthread->m_bFps)
+            {
+
+               //warning() << "graphics thread is going to ignore post redraw as it should be doing Fps drawing";
+
+               m_setneedredrawa.clear();
+
+               return true;
+
+            }
+
+         }
 
       }
-
 
       {
 
@@ -5714,15 +5727,15 @@ namespace user
 
       }
 
-      //{
+      {
 
-      //   auto pointContextOffset = get_context_offset();
+         auto pointContextOffset = get_context_offset();
+         
+         auto sizeImpact = layout().layout().size();
 
-      //   auto sizeImpact = layout().layout().size();
+         offsetcontext -=pointContextOffset;
 
-      //   pgraphics->shift_impact_area(-pointContextOffset, sizeImpact);
-
-      //}
+      }
 
    }
 

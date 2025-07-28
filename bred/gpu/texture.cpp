@@ -32,7 +32,7 @@ namespace gpu
    }
 
 
-   void texture::initialize_image_texture(::gpu::renderer * pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, ::pixmap * ppixmap, enum_type etype)
+   void texture::initialize_image_texture(::gpu::renderer * pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, const ::pointer_array < ::image::image >& imagea, enum_type etype)
    {
 
       m_etype = etype;
@@ -83,30 +83,19 @@ namespace gpu
 
       auto pimage = image()->path_image(path);
 
-      initialize_image_texture(pgpurenderer, pimage);
+      ::pointer_array < ::image::image > imagea({ pimage });
+
+      initialize_image_texture(pgpurenderer, imagea);
 
    }
 
 
-   void texture::initialize_image_texture(::gpu::renderer* pgpurenderer, ::image::image * pimage, enum_type etype)
+   void texture::initialize_image_texture(::gpu::renderer* pgpurenderer, const ::pointer_array < ::image::image >& imagea, enum_type etype)
    {
 
-      if (etype == e_type_cube_map)
-      {
+      auto r = imagea.first()->rectangle();
 
-         auto r = pimage->rectangle();
-
-         r.right() = r.left() + r.width() / 6;
-
-         initialize_image_texture(pgpurenderer, r, false, pimage, etype);
-
-      }
-      else
-      {
-
-         initialize_image_texture(pgpurenderer, pimage->rectangle(), false, pimage, etype);
-
-      }
+      initialize_image_texture(pgpurenderer, r, false, imagea, etype);
 
    }
 

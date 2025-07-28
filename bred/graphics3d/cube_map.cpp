@@ -46,8 +46,9 @@ namespace graphics3d
       // Initialize skybox shader
       __defer_construct(m_pshader);
 
-      m_pshader->m_bDisableDepthTest = true;
-      m_pshader->m_bLequalDepth = false;
+      m_pshader->m_bDisableDepthTest = false;
+      m_pshader->m_bDepthTestButNoDepthWrite = true;
+      m_pshader->m_bLequalDepth = true;
       m_pshader->m_bEnableBlend = true;
       m_pshader->m_ecullmode = ::gpu::e_cull_mode_none;
       m_pshader->m_bindingCubeSampler.set();
@@ -159,28 +160,32 @@ namespace graphics3d
       //int w = 0;
       //int h = 0;
     
-      auto pimageCubeMap = image()->create_image({ m_sizeSquare.width() * 6, m_sizeSquare.height()});
+      //auto pimageCubeMap = image()->create_image({ m_sizeSquare.width() * 6, m_sizeSquare.height()});
 
-      pimageCubeMap->map();
+      //pimageCubeMap->map();
 
       auto sizeItem = m_sizeSquare;
 
-      auto scanCubeMap = pimageCubeMap->m_iScan;
+      //auto scanCubeMap = pimageCubeMap->m_iScan;
 
       ::int_point point;
+
+      ::pointer_array < ::image::image > imagea;
 
       for(auto & face : m_cube)
       {
 
          auto pimage = face.m_pimage;
 
-         auto scan = pimage->m_iScan;
+         imagea.add(pimage);
 
-         auto pimage32 = pimage->image32();
+         //auto scan = pimage->m_iScan;
 
-         pimageCubeMap->image32()->copy(point, sizeItem, scanCubeMap, pimage32, scan);
+         //auto pimage32 = pimage->image32();
 
-         point.x() += m_sizeSquare.width();
+         //pimageCubeMap->image32()->copy(point, sizeItem, scanCubeMap, pimage32, scan);
+
+         //point.x() += m_sizeSquare.width();
 
       }
 
@@ -188,8 +193,9 @@ namespace graphics3d
 
       m_ptextureCubeMap->m_bTransferDst = true;
 
-      m_ptextureCubeMap->initialize_image_texture(m_pmodelCube->m_pgpucontext->m_pgpurenderer,
-         pimageCubeMap, ::gpu::texture::e_type_cube_map);
+      m_ptextureCubeMap->initialize_image_texture(
+         m_pmodelCube->m_pgpucontext->m_pgpurenderer,
+         imagea, ::gpu::texture::e_type_cube_map);
 
       //m_pshader->set_int("skybox", 0);
 

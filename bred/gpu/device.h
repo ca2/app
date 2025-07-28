@@ -104,7 +104,7 @@ namespace gpu
       virtual void on_initialize_gpu_device();
 
       virtual void on_new_frame();
-      virtual int get_frame_index();
+      virtual int get_frame_index2();
       virtual int get_frame_count();
       virtual void restart_frame_counter();
       virtual bool is_starting_frame()const;

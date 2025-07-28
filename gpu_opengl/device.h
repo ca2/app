@@ -71,7 +71,7 @@ namespace gpu_opengl
       virtual void _opengl_lock();
       virtual void _opengl_unlock();
 
-      int get_frame_index() override;
+      int get_frame_index2() override;
 
       int get_frame_count() override;
 

@@ -23,6 +23,7 @@ namespace gpu
 
       ::pointer_array<command_buffer>	 m_commandbufferaLayer;
 
+
       layer();
       ~layer() override;
 

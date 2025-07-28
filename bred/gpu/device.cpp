@@ -952,7 +952,7 @@ namespace gpu
    }
 
 
-   int device::get_frame_index()
+   int device::get_frame_index2()
    {
 
       if (this->get_frame_count() > 1)

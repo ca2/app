@@ -41,9 +41,28 @@ namespace gpu
 
       auto pgpurendertarget = pgpurenderer->m_pgpurendertarget;
 
-      auto iFrameIndex = pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index();
+      auto iFrameIndex = pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index2();
 
-      return m_commandbufferaLayer[iFrameIndex];
+      auto pcommandbufferLayer = m_commandbufferaLayer[iFrameIndex];
+
+      pcommandbufferLayer->m_iFrameIndex = iFrameIndex;
+
+      pcommandbufferLayer->m_strAnnotation = "layer";
+
+      if (pgpurenderer->m_pgpucontext->m_etype == ::gpu::context::e_type_draw2d)
+      {
+
+         pcommandbufferLayer->m_strAnnotation += ".draw2d";
+
+      }
+      else if (pgpurenderer->m_pgpucontext->m_etype == ::gpu::context::e_type_graphics3d)
+      {
+
+         pcommandbufferLayer->m_strAnnotation += ".graphics3d";
+
+      }
+
+      return pcommandbufferLayer;
 
    }
 
@@ -88,7 +107,9 @@ namespace gpu
 
          __defer_construct(pcommandbufferLayer);
 
-         pcommandbufferLayer->initialize_command_buffer(m_pgpurenderer->m_pgpurendertarget);
+         pcommandbufferLayer->initialize_command_buffer(
+            m_pgpurenderer->m_pgpurendertarget,
+            ::gpu::e_command_buffer_graphics);
 
       }
 
@@ -122,7 +143,7 @@ namespace gpu
    ::pointer < texture >& layer::texture()
    {
 
-      int iFrameIndex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index();
+      int iFrameIndex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index2();
 
       auto & ptexture = m_texturea.element_at_grow(iFrameIndex);
 
@@ -144,7 +165,7 @@ namespace gpu
    ::pointer < texture >& layer::source_texture()
    {
 
-      int iFrameIndex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index();
+      int iFrameIndex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index2();
 
       auto& ptextureSource = m_textureaSource.element_at_grow(iFrameIndex);
 

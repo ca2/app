@@ -220,8 +220,6 @@ namespace gpu
 
       }
 
-
-
    }
 
 
@@ -252,9 +250,26 @@ namespace gpu
 
       }
 
-      auto iFrameIndex = m_pgpucontext->m_pgpudevice->get_frame_index();
+      ::collection::index iFrameIndex;
+
+      if (m_pgpucontext->m_eoutput == e_output_swap_chain)
+      {
+
+         iFrameIndex = m_pgpucontext->get_swap_chain()->swap_chain_frame_index();
+
+      }
+      else
+      {
+
+         iFrameIndex = m_pgpurendertarget->get_frame_index();
+
+      }
 
       auto pcommandbuffer = m_commandbuffera[iFrameIndex];
+
+      pcommandbuffer->m_iFrameIndex = iFrameIndex;
+
+      pcommandbuffer->m_strAnnotation.empty();
 
       return pcommandbuffer;
 
@@ -302,7 +317,8 @@ namespace gpu
 
          __defer_construct(pcommandbuffer);
 
-         pcommandbuffer->initialize_command_buffer(m_pgpurendertarget);
+         pcommandbuffer->initialize_command_buffer(m_pgpurendertarget,
+            e_command_buffer_graphics);
 
       }
 
@@ -334,7 +350,7 @@ namespace gpu
    ::pointer_array<::particle >* renderer::current_frame_particle_array()
    {
 
-      auto iFrameIndex = m_pgpucontext->m_pgpudevice->get_frame_index();
+      auto iFrameIndex = m_pgpucontext->m_pgpudevice->get_frame_index2();
 
       auto pparticlea = m_pgpucontext->m_pgpudevice->frame_particle_array(iFrameIndex);
 
@@ -771,10 +787,16 @@ namespace gpu
 
       }
 
-
+      on_final_begin_render();
 
    }
 
+
+   void renderer::on_final_begin_render()
+   {
+
+
+   }
 
    void renderer::on_end_render(frame* pframe)
    {
@@ -830,6 +852,38 @@ namespace gpu
    void renderer::_on_begin_render(frame* pframe)
    {
 
+
+   }
+
+
+   void renderer::on_after_load_scene(::graphics3d::scene* pscene)
+   {
+
+      auto pcommandbufferLoadAssets = ::transfer(m_pcommandbufferLoadAssets);
+
+      if (pcommandbufferLoadAssets)
+      {
+
+         m_pcommandbufferLoadAssets2 = pcommandbufferLoadAssets;
+         //if (prenderer->m_pcommandbufferLoadAssets)
+         //{
+
+         //   auto pcommandbufferLoadAssets = ::transfer(prenderer->m_pcommandbufferLoadAssets);
+
+         //   m_papplication->fork([pcommandbufferLoadAssets]()
+         //      {
+
+         pcommandbufferLoadAssets->submit_command_buffer(nullptr);
+
+         pcommandbufferLoadAssets->wait_commands_to_execute();
+
+//         });
+
+//   }
+
+//}
+
+      }
 
    }
 
@@ -1153,8 +1207,6 @@ namespace gpu
 
       defer_update_renderer();
 
-      //on_new_frame();
-
       auto pframe = beginFrame();
 
       on_begin_render(pframe);
@@ -1222,12 +1274,12 @@ namespace gpu
 
       m_pgpucontext->on_start_layer(player);
 
-      if (m_pgpucontext->m_pgpudevice->get_previous_layer(player) != nullptr)
-      {
+      //if (m_pgpucontext->m_pgpudevice->get_previous_layer(player) != nullptr)
+      //{
 
-         getCurrentCommandBuffer2(player->m_pgpuframe)->reset();
+      //   getCurrentCommandBuffer2(player->m_pgpuframe)->reset();
 
-      }
+      //}
 
       _on_begin_render(player->m_pgpuframe);
 
@@ -1272,8 +1324,6 @@ namespace gpu
 
       defer_update_renderer();
 
-      //on_new_frame();
-
       beginFrame();
 
       on_begin_render(m_pgpurendertarget->m_pgpuframe);
@@ -1291,17 +1341,6 @@ namespace gpu
    }
 
 
-   //void renderer::on_new_frame()
-   //{
-
-   //   m_pgpucontext->m_pgpudevice->on_new_frame();
-
-   //   m_prenderstate->on_happening(e_happening_new_frame);
-
-   //}
-
-
-
    void renderer::on_begin_frame()
    {
 
@@ -1311,6 +1350,10 @@ namespace gpu
 
    ::pointer < frame > renderer::beginFrame()
    {
+
+      auto pcontext = m_pgpucontext;
+
+      auto pgpudevice = pcontext->m_pgpudevice;
 
       auto pgpuframe = __øcreate < ::gpu::frame >();
 
@@ -1326,10 +1369,6 @@ namespace gpu
          && m_pgpucontext->m_etype != ::gpu::context::e_type_window)
       {
 
-         auto pcontext = m_pgpucontext;
-
-         auto pgpudevice = pcontext->m_pgpudevice;
-
          auto player = pgpudevice->next_layer(pcontext->m_pgpurenderer);
 
          //m_pgpulayer = player;
@@ -1341,6 +1380,25 @@ namespace gpu
       }
 
       ::cast < command_buffer > pcommandbuffer = getCurrentCommandBuffer2(pgpuframe);
+
+      auto iFrameIndex = pcommandbuffer->m_iFrameIndex;
+
+      auto pszCommandBufferAnnotation = pcommandbuffer->m_strAnnotation.c_str();
+
+      static int s_iFrameIndex0LayerDraw2dCount = 0;
+
+      auto iLayer = pgpudevice->m_iLayer;
+
+      auto iFrameSerial = pgpudevice->m_iFrameSerial2;
+
+      auto iCurrentFrame = pgpudevice->m_iCurrentFrame2;
+
+      if (iFrameIndex == 0 && pcommandbuffer->m_strAnnotation == "layer.draw2d")
+      {
+
+         s_iFrameIndex0LayerDraw2dCount++;
+
+      }
 
       on_begin_frame();
 
@@ -1367,6 +1425,8 @@ namespace gpu
    {
 
       m_prenderstate->on_happening(e_happening_end_frame);
+
+      isFrameStarted = false;
 
    }
 

@@ -4,6 +4,7 @@
 #include "texture.h"
 #include "renderer.h"
 #include "acme/graphics/image/pixmap.h"
+#include "aura/graphics/image/image.h"
 #include "bred/gpu/context_lock.h"
 
 
@@ -27,7 +28,7 @@ namespace gpu_opengl
    }
 
 
-   void texture::initialize_image_texture(::gpu::renderer* prenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, ::pixmap * ppixmap, enum_type etype)
+   void texture::initialize_image_texture(::gpu::renderer* prenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, const ::pointer_array < ::image::image >& imagea, enum_type etype)
    {
 
       if (m_rectangleTarget == rectangleTarget)
@@ -52,7 +53,7 @@ namespace gpu_opengl
 
       auto sizeCurrent = m_rectangleTarget.size();
 
-      ::gpu::texture::initialize_image_texture(prenderer, rectangleTarget, bWithDepth, ppixmap, etype);
+      ::gpu::texture::initialize_image_texture(prenderer, rectangleTarget, bWithDepth, imagea, etype);
 
       ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
 
@@ -89,14 +90,14 @@ namespace gpu_opengl
 
             ::memory memory;
 
-            if (ppixmap)
+            if (imagea.has_element())
             {
 
                auto scan_area = m_rectangleTarget.area() * 4;
 
                memory.set_size(scan_area);
 
-               if (ppixmap->size() != rectangleTarget.size())
+               if (imagea.size() != rectangleTarget.size())
                {
 
                   throw ::exception(error_wrong_state);
@@ -105,7 +106,7 @@ namespace gpu_opengl
 
                auto pimage32 = (image32_t*)memory.data();
 
-               pimage32->copy(ppixmap);
+               pimage32->copy(imagea.first());
 
             }
 
@@ -121,34 +122,46 @@ namespace gpu_opengl
          else if (m_gluType == GL_TEXTURE_CUBE_MAP)
          {
 
-            if (ppixmap->width() <= 0 || ppixmap->height() <= 0)
+            if (imagea.first()->width() <= 0 || imagea.first()->height() <= 0)
             {
 
                throw ::exception(error_wrong_state);
 
             }
-            else if (ppixmap->height() * 6 != ppixmap->width())
+            else if (imagea.first()->height() != imagea.first()->width())
             {
 
                throw ::exception(error_wrong_state);
+
             }
+            
             ::memory memory;
-            memory.set_size(ppixmap->area() * 4);
+            
+            memory.set_size(imagea.first()->area() * 4);
+            
             ::int_point point(0, 0);
-            ::int_size size(ppixmap->height(), ppixmap->height());
+            
+            ::int_size size(imagea.first()->size());
+            
             int scan = size.width() * 4;
+
             for (unsigned int i = 0; i < 6; i++) 
             {
+               
                auto pimage32 = (::image32_t *) memory.data();
 
                pimage32->vertical_swap_copy(size.cx(),size.cy(), scan,
-                  ppixmap->image32() + size.width() * i, ppixmap->m_iScan);
+                  imagea[i]->image32(), imagea[i]->m_iScan);
                
-               if (pimage32) {
+               if (pimage32) 
+               {
+
                   // Load the texture data into the cubemap
                   glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
                      0, GL_BGRA, size.cx(), size.cy(), 0, GL_BGRA, GL_UNSIGNED_BYTE, pimage32);
+
                   GLCheckError("");
+
                   //stbi_image_free(data);
                }
                //else if (data) {

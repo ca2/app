@@ -27,7 +27,7 @@ namespace gpu_opengl
       ~texture() override;
 
 
-      void initialize_image_texture(::gpu::renderer* prenderer, const ::int_rectangle & rectangleTarget, bool bWithDepth, ::pixmap * ppixmap, enum_type etype) override;
+      void initialize_image_texture(::gpu::renderer* prenderer, const ::int_rectangle & rectangleTarget, bool bWithDepth, const ::pointer_array < ::image::image >& imagea, enum_type etype) override;
 
       //void blend(::gpu::texture* ptexture, const ::int_rectangle& rectangleTarget) override;
 

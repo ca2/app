@@ -31,7 +31,9 @@ namespace gpu
 
    command_buffer::command_buffer()
    {
+      m_ecommandbuffer = e_command_buffer_none;
       m_bLoadingCommandBuffer = false;
+      m_iFrameIndex = -1;
    }
 
 
@@ -58,10 +60,12 @@ namespace gpu
    //}
 
 
-   void command_buffer::initialize_command_buffer(::gpu::render_target* pgpurendertarget)
+   void command_buffer::initialize_command_buffer(::gpu::render_target* pgpurendertarget, enum_command_buffer ecommandbuffer)
    {
 
       m_pgpurendertarget = pgpurendertarget;
+
+      m_ecommandbuffer = ecommandbuffer;
 
    }
 

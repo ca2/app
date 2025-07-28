@@ -671,7 +671,14 @@ namespace graphics3d
    void engine::engine_on_after_load_scene(::graphics3d::scene* pscene)
    {
 
+      auto pcontext = gpu_context();
 
+      pcontext->m_pgpurenderer->on_after_load_scene(pscene);
+      //{
+
+
+
+      //}
 
    }
 

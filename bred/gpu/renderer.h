@@ -34,6 +34,9 @@ namespace gpu
       //::pointer<::gpu::context>             m_pgpucontextOutput;
       bool                                  m_bDisableDepthStencil = false;
       ::int_size m_sizeRenderer;
+      ::pointer < command_buffer >            m_pcommandbufferLoadAssets;
+      ::pointer < command_buffer >            m_pcommandbufferLoadAssets2;
+
       //::pointer<::gpu::approach>            m_papproach;
       //::image::image_pointer                m_pimageFromGpu;
       ///::pointer<::gpu::shader>              m_pshader;
@@ -144,6 +147,10 @@ namespace gpu
       virtual void on_begin_render(frame* pframe);
       virtual void on_end_render(frame* pframe);
 
+
+      virtual void on_final_begin_render();
+
+
       virtual void _on_begin_render(frame* pframe);
       virtual void _on_end_render(frame* pframe);
 
@@ -230,7 +237,10 @@ namespace gpu
 
       virtual ::pointer < ::gpu::texture > create_image_texture(const ::int_size& size, bool bWithDepth);
       //virtual void take_snapshot(layer* player);
-     
+
+
+      virtual void on_after_load_scene(::graphics3d::scene* pscene);
+
 
    };
 

@@ -671,7 +671,7 @@ namespace gpu_opengl
    }
 
 
-   int device::get_frame_index()
+   int device::get_frame_index2()
    {
 
       return 0;

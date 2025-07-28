@@ -21,18 +21,20 @@ namespace gpu
          e_state_submitted,
       };
 
-      bool m_bClosed;
-      enum_state m_estate = e_state_none;
-
-      ::pointer < ::gpu::render_target > m_pgpurendertarget;
-      bool        m_bLoadingCommandBuffer;
+      bool                                m_bClosed;
+      enum_state                          m_estate = e_state_none;
+      enum_command_buffer                 m_ecommandbuffer;
+      ::pointer < ::gpu::render_target >  m_pgpurendertarget;
+      bool                                m_bLoadingCommandBuffer;
+      ::collection::index                 m_iFrameIndex;
+      ::string                            m_strAnnotation;
 
 
       command_buffer();
       ~command_buffer() override;
 
 
-      virtual void initialize_command_buffer(::gpu::render_target* pgpurendertarget);
+      virtual void initialize_command_buffer(::gpu::render_target* pgpurendertarget, enum_command_buffer ecommandbuffer);
 
       virtual void begin_command_buffer(bool bOneTime);
 

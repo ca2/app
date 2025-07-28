@@ -51,11 +51,11 @@ namespace gpu
       virtual int height();
 
       
-      virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, ::pixmap * ppixmap = nullptr, enum_type etype = e_type_image);
+      virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget, bool bWithDepth, const ::pointer_array < ::image::image >& imagea = {}, enum_type etype = e_type_image);
       virtual void initialize_depth_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget);
 
       virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::file::path & path);
-      virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, ::image::image * pimage, enum_type etype = e_type_image);
+      virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::pointer_array < ::image::image >& imagea, enum_type etype = e_type_image);
 
 
       virtual void merge_layers(::pointer_array < ::gpu::layer >* playera);

@@ -24,6 +24,15 @@ namespace gpu
    };
 
 
+   enum enum_command_buffer
+   {
+
+      e_command_buffer_none,
+      e_command_buffer_graphics,
+      e_command_buffer_copy,
+      e_command_buffer_present,
+
+   };
 
 } // namespace gpu
 

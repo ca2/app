@@ -2830,6 +2830,14 @@ namespace draw2d
    }
 
 
+   bool graphics::is_y_flip()
+   {
+
+      return false;
+
+   }
+
+
    void graphics::do_on_context(const ::procedure & procedure)
    {
 
@@ -6312,22 +6320,22 @@ namespace draw2d
 
       auto matrix = scaling * m_matrix * translation;
 
-      //if (_m_bYFlip)
-      //{
+      if (is_y_flip())
+      {
 
-      //   ::double_size sizeYFlip(1.0, -1.0);
+         ::double_size sizeYFlip(1.0, -1.0);
 
-      //   auto scalingYFlip = ::geometry2d::matrix::scaling(sizeYFlip);
+         auto scalingYFlip = ::geometry2d::matrix::scaling(sizeYFlip);
 
-      //   auto sizeTotal = total_size();
+         auto sizeTotal = total_size();
 
-      //   ::double_size pointYFlip(0, sizeTotal.height());
+         ::double_size pointYFlip(0, sizeTotal.height());
 
-      //   auto translationYFlip = ::geometry2d::matrix::translation(pointYFlip);
+         auto translationYFlip = ::geometry2d::matrix::translation(pointYFlip);
 
-      //   matrix = matrix * scalingYFlip * translationYFlip;
+         matrix = matrix * scalingYFlip * translationYFlip;
 
-      //}
+      }
 
       _set(matrix);
 

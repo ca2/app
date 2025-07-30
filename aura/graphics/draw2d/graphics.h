@@ -159,6 +159,10 @@ namespace draw2d
       void destroy() override;
       void destroy_os_data() override;
 
+
+      virtual bool is_y_flip();
+
+
       virtual void do_on_context(const ::procedure& procedure);
 
       inline operator ::user::style& ()

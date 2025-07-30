@@ -966,7 +966,8 @@ void main() {
    }
 
    
-   void context::gpu_debug_message(const ::scoped_string& scopedstrMessage)
+   //void context::gpu_debug_message(const ::scoped_string& scopedstrMessage)
+   void context::start_debug_happening(const ::scoped_string& scopedstrMessage)
    {
 
       {
@@ -2600,35 +2601,44 @@ void main() {
    ::memory context::white_to_color_sampler_vert()
    {
 
-      auto pvertexshader = R"vertexshader(#version 330 core
+      auto pvertexshader = R"vertexshader(cbuffer PushConstants : register(b0)
+{
+    float4x4 projection;
+    float4 quad;       // l, t, r, b
+    float4 texcoords;  // l, t, r, b
+    float4 textColor;  // (optional for pixel shader)
+};
 
-out vec2 TexCoords;
+struct VSOut
+{
+    float4 pos : SV_POSITION;  // this replaces gl_Position
+    float2 uv  : TEXCOORD0;    // this replaces out vec2 TexCoords
+};
 
-uniform mat4 projection;
-uniform vec4 quad;       // l, t, r, b
-uniform vec4 texcoords;  // l, t, r, b
-uniform vec4 textColor;  // (if needed in fragment shader)
+VSOut main(uint vid : SV_VertexID)
+{
+    VSOut output;
 
-void main() {
     // 4 vertices: 0–3
-    vec2 positions[4] = vec2[](
-        vec2(quad.x, quad.y),
-        vec2(quad.z, quad.y),
-        vec2(quad.x, quad.w),
-        vec2(quad.z, quad.w)
-    );
+    float2 positions[4] = {
+        float2(quad.x, quad.y),
+        float2(quad.z, quad.y),
+        float2(quad.x, quad.w),
+        float2(quad.z, quad.w)
+    };
 
-    vec2 uvs[4] = vec2[](
-        vec2(texcoords.x, texcoords.y),
-        vec2(texcoords.z, texcoords.y),
-        vec2(texcoords.x, texcoords.w),
-        vec2(texcoords.z, texcoords.w)
-    );
+    float2 uvs[4] = {
+        float2(texcoords.x, texcoords.y),
+        float2(texcoords.z, texcoords.y),
+        float2(texcoords.x, texcoords.w),
+        float2(texcoords.z, texcoords.w)
+    };
 
-    int vid = gl_VertexID;
-    gl_Position = projection * vec4(positions[vid], 0.0, 1.0);
-    TexCoords = uvs[vid];
+    output.pos = mul(projection, float4(positions[vid], 0.0f, 1.0f)); // SV_POSITION
+    output.uv  = uvs[vid];
+    return output;
 }
+
 )vertexshader";
 
       return ::as_block(pvertexshader);
@@ -2639,25 +2649,39 @@ void main() {
    ::memory context::white_to_color_sampler_frag()
    {
 
-      auto pfragmentshader = R"fragmentshader(#version 330 core
-in vec2 TexCoords;
-out vec4 color;
+      auto pfragmentshader = R"fragmentshader(Texture2D text : register(t0);
+SamplerState textSampler : register(s0);
 
-uniform sampler2D text;
-uniform vec4 textColor;
+cbuffer PushConstants : register(b0)
+{
+    float4x4 projection;
+    float4 quad;
+    float4 texcoords;
+    float4 textColor;
+};
 
-void main()
-{    
-    vec4 sampled = texture(text, TexCoords).rgba;
-vec4 c = vec4(textColor) * sampled;
-    //color = vec4(sqrt(c.r),sqrt(c.g), sqrt(c.b), sqrt(c.a));
-color = vec4(c.r,c.g, c.b, c.a);
-//color = vec4(0.0, 1.0, 0.0, 1.0); // Bright debug color
+struct PSIn
+{
+    float4 pos : SV_POSITION;
+    float2 uv  : TEXCOORD0;
+};
+
+float4 main(PSIn input) : SV_TARGET
+{
+    float4 sampled = text.Sample(textSampler, input.uv);
+    float4 c = textColor * sampled;
+
+    // If you want gamma correction (sqrt), uncomment:
+    // return float4(sqrt(c.rgb), sqrt(c.a));
+
+    return c;
 }
+
 )fragmentshader";
 
       return ::as_block(pfragmentshader);
    }
+
 
 } // namespace gpu_opengl
 

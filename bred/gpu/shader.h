@@ -80,7 +80,7 @@ namespace gpu
          int m_i1FragmentShader = -1;
          int m_i2FragmentShader = -1;
       };
-      ::string_map<constant_buffer> m_mapConstantBuffer;
+      //::string_map<constant_buffer> m_mapConstantBuffer;
       //struct sampler_and_texture
       //{
 

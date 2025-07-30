@@ -113,11 +113,11 @@ namespace gpu
    }
 
 
-   void command_buffer::set_primitive_topology_triangle_strip()
-   {
+   //void command_buffer::set_primitive_topology_triangle_strip()
+   //{
 
 
-   }
+   //}
 
 
    void command_buffer::draw(int a)

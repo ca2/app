@@ -131,7 +131,7 @@ namespace gpu
       ~context() override;
 
       
-      virtual void gpu_debug_message(const ::scoped_string& scopedstr);
+      //virtual void gpu_debug_message(const ::scoped_string& scopedstr);
 
       virtual void manage_retired_objects();
 
@@ -147,6 +147,10 @@ namespace gpu
       virtual void øconstruct(::pointer < ::gpu::shader >& pgpushader);
 
       virtual ::gpu::texture* texture(const ::file::path& path);
+
+
+      virtual void start_debug_happening(const ::scoped_string& scopedstrDebugHappening);
+      virtual void end_debug_happening();
 
       virtual void load_texture(::pointer < ::gpu::texture > & ptexture, const ::file::path& path);
 

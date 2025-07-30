@@ -446,18 +446,18 @@ namespace gpu
    void shader::set_vec4(const ::scoped_string& scopedstrName, const glm::vec4& a)
    {
 
-      auto p = m_mapConstantBuffer.plookup(scopedstrName);
+      //auto p = m_mapConstantBuffer.plookup(scopedstrName);
 
-      if (p)
-      {
+      //if (p)
+      //{
 
-         p->m_element2.m_etype = ::gpu::e_type_seq4;
-         p->m_element2.m_memory = ::as_memory_block(a);
+      //   p->m_element2.m_etype = ::gpu::e_type_seq4;
+      //   p->m_element2.m_memory = ::as_memory_block(a);
 
-         on_set_constant_buffer(scopedstrName);
+      //   on_set_constant_buffer(scopedstrName);
 
-      }
-      else
+      //}
+      //else
       {
 
          ::string strName(scopedstrName);
@@ -493,18 +493,18 @@ namespace gpu
    void shader::set_mat4(const ::scoped_string& scopedstrName, const ::glm::mat4& a)
    {
 
-      auto p = m_mapConstantBuffer.plookup(scopedstrName);
+      //auto p = m_mapConstantBuffer.plookup(scopedstrName);
 
-      if (p)
-      {
+      //if (p)
+      //{
 
-         p->m_element2.m_etype = ::gpu::e_type_mat4;
-         p->m_element2.m_memory = ::as_memory_block(a);
+      //   p->m_element2.m_etype = ::gpu::e_type_mat4;
+      //   p->m_element2.m_memory = ::as_memory_block(a);
 
-         on_set_constant_buffer(scopedstrName);
+      //   on_set_constant_buffer(scopedstrName);
 
-      }
-      else
+      //}
+      //else
       {
 
          ::string strName(scopedstrName);

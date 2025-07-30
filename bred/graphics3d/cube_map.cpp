@@ -242,6 +242,7 @@ namespace graphics3d
 
       // Set uniforms in the shader
       auto iFrameSerial = m_pengine->gpu_context()->m_pgpudevice->m_iFrameSerial2;
+
       auto ptextureDst = m_pengine->gpu_context()->m_pgpurenderer->current_render_target_texture(::gpu::current_frame());
       
       m_pshader->m_bindingCubeSampler.m_strUniform = "skybox";

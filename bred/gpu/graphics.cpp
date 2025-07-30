@@ -14,6 +14,7 @@
 #include "bred/gpu/bred_approach.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
+#include "bred/gpu/debug_scope.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/model_buffer.h"
 #include "bred/gpu/renderer.h"
@@ -635,13 +636,20 @@ namespace gpu
    void graphics::_fill_quad(const ::double_point points[4], const ::color::color& color)
    {
 
+      ::gpu::debug_scope debugscopeFillQuad(
+         m_pgpucontextCompositor2,
+         "ødebug123 _fill_quad",
+         false
+      );
+
       if (::get_task()->payload("debug").as_int() == 123)
       {
-         ::string strMessage;
+         //::string strMessage;
 
-         strMessage.formatf("ødebug123 _fill_quad");
+         //strMessage.formatf("ødebug123 _fill_quad");
 
-         m_pgpucontextCompositor2->gpu_debug_message(strMessage);
+         //m_pgpucontextCompositor2->gpu_debug_message(strMessage);
+         debugscopeFillQuad.start();
 
       }
 
@@ -1118,6 +1126,7 @@ namespace gpu
 
    void graphics::text_out(double x, double yParam, const ::scoped_string& scopedstr)
    {
+      //return;
 
       //text_out_2025_06(x, yParam, scopedstr);
 
@@ -1167,8 +1176,8 @@ namespace gpu
       ::string str(scopedstr);
 
       strMessage.formatf("bound text out shader '%s'", str.c_str());
-
-      pcontext->gpu_debug_message(strMessage);
+      ::gpu::debug_scope debugscopeBoundTextOutShader(pcontext, strMessage);
+      //pcontext->gpu_debug_message(strMessage);
 
       auto color = m_pbrush->m_color;
       //shader.use();
@@ -1178,14 +1187,13 @@ namespace gpu
       // glUniform3f(glGetUniformLocation(shader.ID, "textColor"), color.x, color.y, color.z);
       //pshader->setup_sampler_and_texture("text", 0);
       //auto pcontext = gpu_context();
-
+      auto size = pcontext->m_rectangle.size();
       glm::mat4 projection = glm::ortho(
          0.0f,
-         static_cast<float>(pcontext->m_rectangle.width()),
-         static_cast<float>(pcontext->m_rectangle.height()),
+         static_cast<float>(size.width()),
+         static_cast<float>(size.height()),
          0.0f);
-      pshader->set_mat4("projection", projection);
-      pshader->push_properties();
+      //pshader->push_properties();
       set(m_pfont);
 
       ::pointer<::write_text::font>pfont = m_pfont;
@@ -1256,7 +1264,7 @@ namespace gpu
 
       //auto pcommandbuffer = gpu_context()->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
-      pcommandbuffer->set_primitive_topology_triangle_strip();
+      //pcommandbuffer->set_primitive_topology_triangle_strip();
 
       m_pmodelbufferTextOutDummy->bind(pcommandbuffer);
 
@@ -1304,6 +1312,8 @@ namespace gpu
                pshader->bind_source(ppixmap);
 
             }
+
+            pshader->set_mat4("projection", projection);
 
             {
 
@@ -1357,7 +1367,9 @@ namespace gpu
 
             strMessage.formatf("char bound '%s' (%d, %d)", strChar.c_str(), w, h);
 
-            pcontext->gpu_debug_message(strMessage);
+            ::gpu::debug_scope debugscope(pcontext, strMessage);
+
+            //pcontext->gpu_debug_message(strMessage);
 
             //pmodelbuffer->m_pbufferVertex->bind();
 

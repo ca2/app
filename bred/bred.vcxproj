@@ -348,6 +348,7 @@
     <ClInclude Include="gpu\context.h" />
     <ClInclude Include="gpu\context_object.h" />
     <ClInclude Include="gpu\cpu_buffer.h" />
+    <ClInclude Include="gpu\debug_scope.h" />
     <ClInclude Include="gpu\device.h" />
     <ClInclude Include="gpu\draw2d.h" />
     <ClInclude Include="gpu\frame.h" />

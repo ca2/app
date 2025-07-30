@@ -353,6 +353,22 @@ namespace gpu
    }
 
 
+   void context::start_debug_happening(const ::scoped_string& scopedstrDebugHappening)
+   {
+
+
+   }
+   
+   
+   void context::end_debug_happening()
+   {
+
+
+
+   }
+
+
+
    ::gpu::texture* context::texture(const ::file::path& path)
    {
 
@@ -935,23 +951,24 @@ namespace gpu
    }
 
 
-   void context::gpu_debug_message(const ::scoped_string& scopedstrMessage)
-   {
+   ////void context::gpu_debug_message(const ::scoped_string& scopedstrMessage)
+   //void context::gpu_debug_message(const ::scoped_string& scopedstrMessage)
+   //{
 
-      //{
+   //   //{
 
-      //   ::string strMessage(scopedstrMessage);
+   //   //   ::string strMessage(scopedstrMessage);
 
-      //   glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-      //      GL_DEBUG_TYPE_MARKER,
-      //      0,
-      //      GL_DEBUG_SEVERITY_NOTIFICATION,
-      //      -1,
-      //      strMessage);
+   //   //   glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+   //   //      GL_DEBUG_TYPE_MARKER,
+   //   //      0,
+   //   //      GL_DEBUG_SEVERITY_NOTIFICATION,
+   //   //      -1,
+   //   //      strMessage);
 
-      //}
+   //   //}
 
-   }
+   //}
 
 
    ::pointer < ::gpu::pixmap > context::create_gpu_pixmap(const ::int_size& size)

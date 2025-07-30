@@ -33,9 +33,7 @@ namespace gpu_opengl
    void model_buffer::initialize_dummy_model(::gpu::context* pgpucontext, int iVertexCount)
    {
 
-      initialize_gpu_context_object(pgpucontext);
-
-      m_iVertexCount = iVertexCount;
+      ::gpu::model_buffer::initialize_dummy_model(pgpucontext, iVertexCount);
 
    }
 

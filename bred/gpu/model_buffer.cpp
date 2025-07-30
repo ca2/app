@@ -858,9 +858,14 @@ namespace gpu
    //}
 
 
-   void model_buffer::initialize_dummy_model(::gpu::context* pcontext, int iVertexCount)
+   void model_buffer::initialize_dummy_model(::gpu::context* pgpucontext, int iVertexCount)
    {
 
+      initialize_gpu_context_object(pgpucontext);
+
+      m_iVertexCount = iVertexCount;
+
+      m_bDummy = true;
 
    }
 

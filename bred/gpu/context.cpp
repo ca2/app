@@ -105,6 +105,8 @@ namespace gpu
    }
 
 
+
+
    //void context::swap_buffers()
    //{
 
@@ -292,6 +294,65 @@ namespace gpu
    }
 
 
+   void context::øconstruct(::pointer < ::gpu::shader >& pgpushader)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      try
+      {
+
+         if (::is_set(pgpushader))
+         {
+
+            pgpushader->m_timeRetire.Now();
+
+            m_shaderaRetire.add(pgpushader);
+
+         }
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+      __øconstruct(pgpushader);
+
+   }
+
+
+   void context::manage_retired_objects()
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      for (::collection::index i = 0; i < m_shaderaRetire.size();)
+      {
+
+         auto& pshader = m_shaderaRetire[i];
+
+         if (pshader->m_timeRetire.elapsed() > 15_s)
+         {
+
+            ::release(pshader);
+
+            m_shaderaRetire.erase_at(i);
+
+         }
+         else
+         {
+
+            i++;
+
+         }
+
+      }
+
+   }
+
+
    ::gpu::texture* context::texture(const ::file::path& path)
    {
 
@@ -327,6 +388,50 @@ namespace gpu
    void context::defer_make_current()
    {
 
+
+   }
+
+
+   ::pointer < ::gpu::command_buffer >context::beginSingleTimeCommands(::gpu::enum_command_buffer ecommandbuffer)
+   {
+
+      return {};
+
+   }
+
+
+   void context::endSingleTimeCommands(::gpu::command_buffer *pcommandbuffer)
+   {
+
+   }
+
+
+   ::gpu::command_buffer* context::defer_get_upload_command_buffer()
+   {
+
+      if (!m_pcommandbufferUpload)
+      {
+
+         m_pcommandbufferUpload = beginSingleTimeCommands();
+
+      }
+
+      return m_pcommandbufferUpload;
+
+   }
+
+
+   void context::defer_end_upload_command_buffer()
+   {
+
+      if (m_pcommandbufferUpload)
+      {
+
+         endSingleTimeCommands(m_pcommandbufferUpload);
+
+         m_pcommandbufferUpload.release();
+
+      }
 
    }
 
@@ -779,9 +884,26 @@ namespace gpu
    }
 
 
-   void context::resize_offscreen_buffer(const ::int_size& size)
+   void context::on_resize(const ::int_size& size)
    {
 
+      m_rectangle.top_left() = { 0, 0 };
+
+      m_rectangle.set_size(size);
+
+      if (m_pgpurenderer)
+      {
+
+         m_pgpurenderer->on_resize(size);
+
+      }
+
+      if (m_pgpucompositor)
+      {
+
+         m_pgpucompositor->on_gpu_context_placement_change(size);
+
+      }
 
    }
 
@@ -828,6 +950,38 @@ namespace gpu
       //      strMessage);
 
       //}
+
+   }
+
+
+   ::pointer < ::gpu::pixmap > context::create_gpu_pixmap(const ::int_size& size)
+   {
+
+      ::pointer < ::gpu::pixmap > ppixmap;
+
+      if (m_textureaAtlas.is_empty()
+         || (!(ppixmap = m_textureaAtlas.last()->create_gpu_pixmap(size))))
+      {
+
+         auto ptextureNewAtlas = __øcreate<::gpu::texture >();
+
+         ptextureNewAtlas->initialize_image_texture(m_pgpurenderer, 
+            { 0, 0, 4096, 4096 }, false);
+
+         m_textureaAtlas.add(ptextureNewAtlas);
+
+         ppixmap = m_textureaAtlas.last()->create_gpu_pixmap(size);
+
+         if (!ppixmap)
+         {
+
+            throw ::exception(error_failed);
+
+         }
+
+      }
+
+      return ppixmap;
 
    }
 

@@ -213,6 +213,23 @@ namespace gpu
    }
 
 
+   void render_target::on_resize(const ::int_size& size)
+   {
+
+      if (m_size == size)
+      {
+
+         return;
+
+      }
+
+      m_size = size;
+
+      create_images();
+
+   }
+
+
    void render_target::create_images()
    {
 

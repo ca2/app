@@ -58,6 +58,7 @@ namespace gpu
 
       virtual void on_init();
 
+      virtual void on_resize(const ::int_size & size);
 
       virtual void create_images();
 

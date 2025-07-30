@@ -80,7 +80,7 @@ namespace gpu_opengl
       //::gpu::payload * get_payload(const ::scoped_string & scopedestrUniform) override;
 
 
-      void setup_sampler_and_texture(const ::scoped_string& scopedstrName, int value) override;
+      //void setup_sampler_and_texture(const ::scoped_string& scopedstrName, int value) override;
 
       void _set_bool(const char* name, bool bSet) const;
       void _set_int(const char* name, int value) const;

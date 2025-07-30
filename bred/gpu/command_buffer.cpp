@@ -113,12 +113,31 @@ namespace gpu
    }
 
 
+   void command_buffer::set_primitive_topology_triangle_strip()
+   {
+
+
+   }
+
+
    void command_buffer::draw(int a)
    {
 
 
    }
 
+   void command_buffer::draw_vertices(int iVertexCount)
+   {
+
+
+   }
+
+
+   void command_buffer::draw_indices(int iIndexCount)
+   {
+
+
+   }
 
    void command_buffer::draw(::gpu::pixmap* ppixmap)
    {

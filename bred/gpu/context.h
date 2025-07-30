@@ -112,18 +112,19 @@ namespace gpu
       ::pointer_array < ::gpu::renderer >    m_gpurendereraDraw2d;
       ::pointer < ::graphics3d::engine >     m_pengine;
       ::pointer_array < ::gpu::render >      m_rendera;
-
+      ::pointer < ::gpu::command_buffer >    m_pcommandbufferUpload;
       ::pointer < ::gpu::model_buffer >      m_pmodelbufferFullscreenQuad;
       // size memory buffer
       ::int_map < ::pool <::gpu::memory_buffer > > m_mapPoolMemoryBuffer;
       //::image32_callback                     m_callbackImage32CpuBuffer;
-
+      ::pointer_array < ::gpu::texture >        m_textureaAtlas;
       //::pointer < ::mutex >                  m_pmutexOffscreen;
       //::int_size                             m_sizeOffscreen;
       //int                                    m_iScanOffscreen;
       //::memory                               m_memoryOffscreen;
       ::pointer < ::gpu::swap_chain >          m_pgpuswapchain;
       ::string_map < ::pointer < ::gpu::texture > > m_texturemap;
+      ::pointer_array < ::gpu::shader >         m_shaderaRetire;
 
 
       context();
@@ -132,6 +133,9 @@ namespace gpu
       
       virtual void gpu_debug_message(const ::scoped_string& scopedstr);
 
+      virtual void manage_retired_objects();
+
+      virtual ::pointer < ::gpu::pixmap > create_gpu_pixmap(const ::int_size& size);
 
       virtual ::gpu::swap_chain* get_swap_chain();
 
@@ -140,12 +144,21 @@ namespace gpu
       void _send(const ::procedure& procedure) override;
       //void _post(const ::procedure& procedure) override;
 
+      virtual void øconstruct(::pointer < ::gpu::shader >& pgpushader);
+
       virtual ::gpu::texture* texture(const ::file::path& path);
 
       virtual void load_texture(::pointer < ::gpu::texture > & ptexture, const ::file::path& path);
 
 
+
       virtual void defer_make_current();
+
+      virtual ::pointer < ::gpu::command_buffer > beginSingleTimeCommands(::gpu::enum_command_buffer ecommandbuffer = ::gpu::e_command_buffer_graphics);
+      virtual void endSingleTimeCommands(::gpu::command_buffer * pcommandbuffer);
+
+      virtual ::gpu::command_buffer* defer_get_upload_command_buffer();
+      virtual void defer_end_upload_command_buffer();
 
 
       virtual void _context_lock();
@@ -219,7 +232,7 @@ namespace gpu
 
       virtual ::int_rectangle rectangle();
       virtual void set_placement(const ::int_rectangle & rectanglePlacement);
-      virtual void resize_offscreen_buffer(const ::int_size& size);
+      virtual void on_resize(const ::int_size& size);
 
       virtual string _001GetIntroProjection();
       virtual string _001GetIntroFragment();

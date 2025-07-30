@@ -14,6 +14,7 @@ namespace gpu
    memory_buffer::memory_buffer()
    {
 
+      m_bDynamic = false;
       m_pmodelbuffer = nullptr;
       m_etype = e_type_none;
       m_pcontext = nullptr;
@@ -55,7 +56,7 @@ namespace gpu
 
 
 
-   void memory_buffer::initialize_memory_buffer_with_model_buffer(::gpu::model_buffer* pmodelbuffer, memsize size, enum_type etype)
+   void memory_buffer::initialize_memory_buffer_with_model_buffer(::gpu::model_buffer* pmodelbuffer, memsize size, enum_type etype, bool bDynamic)
    {
 
       m_pmodelbuffer = pmodelbuffer;
@@ -65,6 +66,8 @@ namespace gpu
       m_size = size;
 
       m_etype = etype;
+
+      m_bDynamic = bDynamic;
 
       on_initialize_memory_buffer(nullptr, size);
 

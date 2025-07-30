@@ -31,7 +31,10 @@ namespace gpu
       virtual void on_set_gpu_context();
 
 
-      virtual void defer_yield_gpu_context(const ::int_rectangle & rectanglePlacement);
+      virtual void on_gpu_context_placement_change(const ::int_rectangle& rectanglePlacement);
+
+
+      //virtual void on_gpu_context_placement_change(const ::int_rectangle & rectanglePlacement);
 
 
       ::gpu::context* gpu_context();

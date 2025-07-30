@@ -35,6 +35,7 @@ namespace gpu
       //VkBuffer m_vkbuffer;
       memsize m_size;
       void* m_pMap;
+      bool m_bDynamic;
 
 
       memory_buffer();
@@ -43,7 +44,7 @@ namespace gpu
 
       virtual void initialize_memory_buffer_with_context(::gpu::context* pcontext, memsize size, ::gpu::memory_buffer::enum_type etype);
 
-      virtual void initialize_memory_buffer_with_model_buffer(::gpu::model_buffer* pmodelbuffer, memsize size, ::gpu::memory_buffer::enum_type etype);
+      virtual void initialize_memory_buffer_with_model_buffer(::gpu::model_buffer* pmodelbuffer, memsize size, ::gpu::memory_buffer::enum_type etype, bool bDynamic = false);
 
       virtual void static_initialize_memory_buffer_with_context(::gpu::context* pcontext, const void * data, memsize size, ::gpu::memory_buffer::enum_type etype);
 

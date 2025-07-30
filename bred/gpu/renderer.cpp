@@ -97,6 +97,113 @@ namespace gpu
    }
 
 
+   void renderer::on_resize(const ::int_size& size)
+   {
+
+      if (size == m_sizeRenderer)
+      {
+
+         return;
+
+      }
+
+      auto eoutput = m_pgpucontext->m_eoutput;
+
+      auto previous = m_pgpurendertarget;
+
+      m_pgpurendertarget = on_create_render_target();
+      //on_defer_update_renderer_allocate_render_target(eoutput, size, previous);
+
+      if (!m_pgpurendertarget)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      m_sizeRenderer = size;
+
+      //m_pgpurendertarget = pgpurendertarget;
+      //      else if (eoutput == ::gpu::e_output_gpu_buffer)
+      //      {
+      //
+      //         auto poffscreenrendertargetview = __allocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
+      //#ifdef WINDOWS_DESKTOP
+      //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
+      //#else
+      //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
+      //#endif
+      //         m_prendertargetview = poffscreenrendertargetview;
+      //         //m_prendererResolve;
+      //
+      //      }
+      //      else if (eoutput == ::gpu::e_output_color_and_alpha_accumulation_buffers)
+      //      {
+      //
+      //         auto paccumulationrendertargetview = __allocate accumulation_render_target(this, m_extentRenderer, m_prendertargetview);
+      //         paccumulationrendertargetview->m_formatImage = VK_FORMAT_R32G32B32A32_SFLOAT;
+      //         paccumulationrendertargetview->m_formatAlphaAccumulation = VK_FORMAT_R32_SFLOAT;
+      //         m_prendertargetview = paccumulationrendertargetview;
+      //
+      //         //__construct_new(m_prendererResolve);
+      //
+      //         //m_prendererResolve->initialize_renderer(m_pgpucontext, ::gpu::e_output_resolve_color_and_alpha_accumulation_buffers);
+      //
+      //         //m_prendererResolve->set_placement(m_pgpucontext->rectangle);
+      //         //
+      //         //            auto poffscreenrendertargetview = __allocate offscreen_render_target(m_pgpucontext, m_extentRenderer, m_prendertargetviewResolve);
+      //         //#ifdef WINDOWS_DESKTOP
+      //         //            poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
+      //         //#else
+      //         //            poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
+      //         //#endif
+      //         //            m_prendertargetviewResolve = poffscreenrendertargetview;
+      //      }
+      //      else if (eoutput == ::gpu::e_output_resolve_color_and_alpha_accumulation_buffers)
+      //      {
+      //
+      //         auto poffscreenrendertargetview = __allocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
+      //#ifdef WINDOWS_DESKTOP
+      //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
+      //#else
+      //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
+      //#endif
+      //         m_prendertargetview = poffscreenrendertargetview;
+      //
+      //      }
+      //      else
+      //      {
+      //
+      //         throw ::exception(error_wrong_state, "Unexpected gpu e_output");
+      //
+      //      }
+      //
+      if (!m_pgpurendertarget->has_ok_flag())
+      {
+
+         m_pgpurendertarget->initialize_render_target(this, size, previous);
+
+         //if (!size.is_empty() && m_pgpucontext->is_current_task())
+         if (!size.is_empty())
+            //if (!size.is_empty())
+         {
+
+            m_pgpurendertarget->init();
+
+         }
+
+      }
+
+      //if (m_pgpurendertarget)
+      //{
+
+      //   m_pgpurendertarget->on_resize(size);
+
+      //}
+
+   }
+
+
    ::particle_array* renderer::ongoing_particle_array()
    {
 
@@ -975,94 +1082,7 @@ namespace gpu
 
       }
 
-      auto size = m_pgpucontext->rectangle().size();
-
-      auto eoutput = m_pgpucontext->m_eoutput;
-
-      auto previous = m_pgpurendertarget;
-
-      m_pgpurendertarget = on_create_render_target();
-      //on_defer_update_renderer_allocate_render_target(eoutput, size, previous);
-
-      if (!m_pgpurendertarget)
-      {
-
-         throw ::exception(error_wrong_state);
-
-      }
-
-      m_sizeRenderer = size;
-
-      //m_pgpurendertarget = pgpurendertarget;
-      //      else if (eoutput == ::gpu::e_output_gpu_buffer)
-      //      {
-      //
-      //         auto poffscreenrendertargetview = __allocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
-      //#ifdef WINDOWS_DESKTOP
-      //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
-      //#else
-      //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
-      //#endif
-      //         m_prendertargetview = poffscreenrendertargetview;
-      //         //m_prendererResolve;
-      //
-      //      }
-      //      else if (eoutput == ::gpu::e_output_color_and_alpha_accumulation_buffers)
-      //      {
-      //
-      //         auto paccumulationrendertargetview = __allocate accumulation_render_target(this, m_extentRenderer, m_prendertargetview);
-      //         paccumulationrendertargetview->m_formatImage = VK_FORMAT_R32G32B32A32_SFLOAT;
-      //         paccumulationrendertargetview->m_formatAlphaAccumulation = VK_FORMAT_R32_SFLOAT;
-      //         m_prendertargetview = paccumulationrendertargetview;
-      //
-      //         //__construct_new(m_prendererResolve);
-      //
-      //         //m_prendererResolve->initialize_renderer(m_pgpucontext, ::gpu::e_output_resolve_color_and_alpha_accumulation_buffers);
-      //
-      //         //m_prendererResolve->set_placement(m_pgpucontext->rectangle);
-      //         //
-      //         //            auto poffscreenrendertargetview = __allocate offscreen_render_target(m_pgpucontext, m_extentRenderer, m_prendertargetviewResolve);
-      //         //#ifdef WINDOWS_DESKTOP
-      //         //            poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
-      //         //#else
-      //         //            poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
-      //         //#endif
-      //         //            m_prendertargetviewResolve = poffscreenrendertargetview;
-      //      }
-      //      else if (eoutput == ::gpu::e_output_resolve_color_and_alpha_accumulation_buffers)
-      //      {
-      //
-      //         auto poffscreenrendertargetview = __allocate offscreen_render_target(this, m_extentRenderer, m_prendertargetview);
-      //#ifdef WINDOWS_DESKTOP
-      //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_B8G8R8A8_UNORM;
-      //#else
-      //         poffscreenrendertargetview->m_formatImage = VK_FORMAT_R8G8B8A8_UNORM;
-      //#endif
-      //         m_prendertargetview = poffscreenrendertargetview;
-      //
-      //      }
-      //      else
-      //      {
-      //
-      //         throw ::exception(error_wrong_state, "Unexpected gpu e_output");
-      //
-      //      }
-      //
-      if (!m_pgpurendertarget->has_ok_flag())
-      {
-
-         m_pgpurendertarget->initialize_render_target(this, size, previous);
-
-         //if (!size.is_empty() && m_pgpucontext->is_current_task())
-         if (!size.is_empty())
-         //if (!size.is_empty())
-         {
-
-            m_pgpurendertarget->init();
-
-         }
-
-      }
+      on_resize(sizeContext);
 
    }
 
@@ -1427,6 +1447,20 @@ namespace gpu
       m_prenderstate->on_happening(e_happening_end_frame);
 
       isFrameStarted = false;
+
+      if (m_timeLast5s.elapsed() > 5_s)
+      {
+
+         m_timeLast5s.Now();
+
+         m_papplication->post([this]()
+            {
+
+               m_pgpucontext->manage_retired_objects();
+
+            });
+
+      }
 
    }
 

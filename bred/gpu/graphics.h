@@ -21,18 +21,10 @@ namespace gpu
    public:
 
 
-      //::pointer < ::gpu::context >           m_pgpucontextDraw2d;
-      //::gpu::enum_output                     m_eoutputOnEndDraw;
-      //::pointer < ::gpu::context >           m_pgpucontextOutput;
-      //::pointer < ::gpu::frame >             m_pgpuframe;
       ::geometry2d::matrix                   m_m1;
-      //::pointer < ::draw2d_gpu::end_draw >   m_penddraw;
       ::pointer < ::gpu::shader >               m_pshaderSourceRectangle;
       ::pointer < ::gpu::shader >               m_pshaderBlendRectangle;
       map < ::draw2d::enum_model, ::pool <::gpu::model_buffer > >   m_mapModelBufferPool;
-      //::pool <::gpu::model_buffer >             m_poolmodelbufferCharacter;
-      //::pool <::gpu::model_buffer >             m_poolmodelbufferLine;
-      //int                                       m_iContextHeight;
       ::pointer < ::gpu::shader >         m_pgpushaderTextOut;
 
       pool_group* m_ppoolgroupFrame;
@@ -51,19 +43,12 @@ namespace gpu
 
       void on_set_gpu_context() override;
 
+
+      void on_gpu_context_placement_change(const ::int_rectangle & rectanglePlacement) override;
+
       virtual ::pool <::gpu::model_buffer >& model_buffer_pool(::draw2d::enum_model epool);
       virtual ::gpu::model_buffer * model_buffer(::draw2d::enum_model epool);
       void update_matrix() override;
-
-      //void start_gpu_layer() override;
-      //void end_gpu_layer() override;
-
-
-      //virtual ::gpu::renderer* end_draw_renderer_output();
-
-
-      //virtual void create_end_draw();
-
 
       virtual ::geometry2d::matrix context_matrix();
       virtual ::geometry2d::matrix context_scale_matrix();
@@ -72,50 +57,62 @@ namespace gpu
       template < primitive_point POINT >
       POINT& __transform(POINT& p)
       {
+         
          m_m1.transform(p);
+         
          p.y() = m_pgpucontextCompositor2->m_rectangle.height() - p.y();
+         
          return p;
+
       }
+
 
       template < primitive_array POINT_ARRAY >
       POINT_ARRAY& __transform(POINT_ARRAY& a)
       {
+         
          for (auto& p : a)__transform(p);
+
          return a;
+
       }
+
 
       template < primitive_point POINT >
       POINT& context_scale(POINT& p)
       {
+
          context_scale_matrix().transform(p);
+
          return p;
+
       }
+
 
       template < primitive_point POINT >
       POINT& context_transform(POINT& p)
       {
+         
          context_matrix().transform(p);
+         
          return p;
+
       }
+
+
       template < primitive_array POINT_ARRAY >
       POINT_ARRAY& context_transform(POINT_ARRAY& a)
       {
+
          for (auto& p : a)context_transform(p);
+
          return a;
+
       }
 
-
-      // returns true if it is new
-     
+    
       ::double_size total_size() override;
 
-         //auto& pmodelbuffer = m_pmodelbufferRectangle;
-
-      //void defer_yield_gpu_context() override;
-
-      //::gpu::context* gpu_context() override;
-
-      //void set_hint_window_output() override;
       virtual ::gpu::shader* rectangle_shader();
 
       void thread_select() override;
@@ -159,6 +156,11 @@ namespace gpu
 
       using ::draw2d::graphics::get_text_extent;
       double_size get_text_extent(const ::scoped_string& scopedstr) override;
+
+
+      using ::draw2d::graphics::get_text_metrics;
+      void get_text_metrics(::write_text::text_metric* pmetrics) override;
+
 
       void text_out(double x, double yParam, const ::scoped_string& scopedstr) override;
 

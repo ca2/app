@@ -6058,7 +6058,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    void graphics::set(::draw2d::brush* pbrush)
    {
 
-      ::draw2d::graphics::set(pbrush);
+      ::gpu::graphics::set(pbrush);
       //::opengl::color(pbrush->m_color);
 
       //return ::success;

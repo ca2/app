@@ -12,6 +12,8 @@ namespace gpu
    public:
 
 
+      ::collection::index                                m_iSwapSeed;
+      ::collection::index                                m_iCurrentSwapSerial;
       bool                                               m_bWindowInitialized;
       bool                                               m_bSwapChainInitialized;
 
@@ -32,6 +34,9 @@ namespace gpu
 
       virtual void create_images();
 
+      virtual void defer_check_swap_chain();
+
+      virtual void on_new_swap_chain();
 
       virtual void initialize_swap_chain_window(::gpu::context * pcontext, ::windowing::window* pwindow);
       virtual void initialize_gpu_swap_chain(::gpu::renderer * pgpurenderer);

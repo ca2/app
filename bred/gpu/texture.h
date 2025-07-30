@@ -23,7 +23,9 @@ namespace gpu
 
       };
 
-
+      int                                 m_iAtlasX;
+      int                                 m_iAtlasY;
+      int                                 m_iAtlasCurrentRowHeight;
       enum_type                           m_etype;
       bool                                m_bWithDepth;
       bool                                m_bClearColor;
@@ -38,7 +40,7 @@ namespace gpu
       ::pointer < texture >               m_ptextureDepth;
 
       ::string                            m_strTextureType;
-      ::string                            m_strUniform;
+      //::string                            m_strUniform;
 
       ::file::path                        m_path;
 
@@ -59,6 +61,7 @@ namespace gpu
       virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::file::path & path);
       virtual void initialize_image_texture(::gpu::renderer* pgpurenderer, const ::pointer_array < ::image::image >& imagea, enum_type etype = e_type_image);
 
+      virtual ::pointer < ::gpu::pixmap > create_gpu_pixmap(const ::int_size & size);
 
       virtual void merge_layers(::pointer_array < ::gpu::layer >* playera);
       virtual void blend(::gpu::layer * player);
@@ -73,7 +76,7 @@ namespace gpu
       virtual texture* get_depth_texture();
 
       virtual ::string texture_type();
-
+      virtual void set_pixels(const ::int_rectangle& rectangle, const void* data);
 
    };
 

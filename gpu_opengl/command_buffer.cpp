@@ -90,6 +90,21 @@ namespace gpu_opengl
 
    }
 
+   
+   void command_buffer::draw_vertices(int iVertexCount)
+   {
+
+
+   }
+   
+   
+   void command_buffer::draw_indices(int iIndexCount)
+   {
+
+
+   }
+
+
 
 //   GLuint createFullscreenQuad(GLuint& quadVBO) {
 //      // Vertex data: (x, y, u, v)

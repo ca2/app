@@ -72,7 +72,7 @@ namespace draw2d
    {
 
       //m_bHasCurrentPoint = false;
-      _m_bYFlip = false;
+      //_m_bYFlip = false;
       m_bForWindowDraw2d = false;
       m_bDraw = true;
       m_puserinteraction = nullptr;
@@ -1746,7 +1746,7 @@ namespace draw2d
    void graphics::TextOutRaw(double x, double y, const ::scoped_string & scopedstr)
    {
 
-      //return false;
+      text_out({ x, y }, scopedstr);
 
    }
 
@@ -2987,13 +2987,13 @@ namespace draw2d
 
       auto sizeImpact = impact_size();
 
-      if (_m_bYFlip)
-      {
+      //if (_m_bYFlip)
+      //{
 
-         m_pointOrigin.y() = sizeImpact.height() - (y + h);
+      //   m_pointOrigin.y() = sizeImpact.height() - (y + h);
 
-      }
-      else
+      //}
+      //else
       {
 
          m_pointOrigin.y() = y;
@@ -6300,8 +6300,6 @@ namespace draw2d
 
       update_matrix();
 
-      //return true;
-
    }
 
 
@@ -6314,22 +6312,22 @@ namespace draw2d
 
       auto matrix = scaling * m_matrix * translation;
 
-      if (_m_bYFlip)
-      {
+      //if (_m_bYFlip)
+      //{
 
-         ::double_size sizeYFlip(1.0, -1.0);
+      //   ::double_size sizeYFlip(1.0, -1.0);
 
-         auto scalingYFlip = ::geometry2d::matrix::scaling(sizeYFlip);
+      //   auto scalingYFlip = ::geometry2d::matrix::scaling(sizeYFlip);
 
-         auto sizeTotal = total_size();
+      //   auto sizeTotal = total_size();
 
-         ::double_size pointYFlip(0, sizeTotal.height());
+      //   ::double_size pointYFlip(0, sizeTotal.height());
 
-         auto translationYFlip = ::geometry2d::matrix::translation(pointYFlip);
+      //   auto translationYFlip = ::geometry2d::matrix::translation(pointYFlip);
 
-         matrix = matrix * scalingYFlip * translationYFlip;
+      //   matrix = matrix * scalingYFlip * translationYFlip;
 
-      }
+      //}
 
       _set(matrix);
 

@@ -11,7 +11,6 @@ namespace gpu
 {
 
 
-
    swap_chain::swap_chain()
    {
 
@@ -32,6 +31,31 @@ namespace gpu
    void swap_chain::create_images()
    {
 
+
+   }
+
+
+   void swap_chain::defer_check_swap_chain()
+   {
+
+      if (::is_set(m_ptextureaSwapChain) && m_iSwapSeed == m_iCurrentSwapSerial)
+      {
+
+         return;
+
+      }
+
+      m_iCurrentSwapSerial = m_iSwapSeed;
+
+      on_new_swap_chain();
+
+   }
+
+
+   void swap_chain::on_new_swap_chain()
+   {
+
+      create_images();
 
    }
 
@@ -97,12 +121,7 @@ namespace gpu
    ::gpu::texture* swap_chain::current_swap_chain_texture()
    {
 
-      if (!m_ptextureaSwapChain)
-      {
-
-         create_images();
-
-      }
+      defer_check_swap_chain();
 
       return m_ptextureaSwapChain->element_at(m_iCurrentSwapChainFrame);
 

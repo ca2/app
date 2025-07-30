@@ -1,6 +1,7 @@
 // Created by camilo on 2025-06-12 21:07 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "layer.h"
+#include "pixmap.h"
 #include "render_target.h"
 #include "renderer.h"
 #include "texture.h"
@@ -15,6 +16,9 @@ namespace gpu
    texture::texture()
    {
 
+      m_iAtlasX = 0;
+      m_iAtlasY = 0;
+      m_iAtlasCurrentRowHeight = 0;
       m_etype = e_type_none;
       m_bClearColor = false;
       m_bRenderTarget = false;
@@ -156,6 +160,74 @@ namespace gpu
    }
 
 
+   ::pointer < ::gpu::pixmap > texture::create_gpu_pixmap(const ::int_size& size)
+   {
+
+      if (m_iAtlasX >= m_rectangleTarget.width() ||
+         m_iAtlasY >= m_rectangleTarget.height())
+      {
+
+         return nullptr;
+
+      }
+
+      int iAtlasX = m_iAtlasX;
+      int iAtlasY = m_iAtlasY;
+      int iAtlasH = m_iAtlasCurrentRowHeight;
+
+      if (size.cx() > m_rectangleTarget.width() - iAtlasX)
+      {
+
+         if (iAtlasX <= 0)
+         {
+
+            throw ::exception(error_wrong_state, "pixmap is wider than texture atlas");
+
+         }
+
+         iAtlasX = 0;
+         iAtlasY += iAtlasH;
+         iAtlasH = 0;
+
+      }
+
+      if (size.cy() > m_rectangleTarget.height() - iAtlasY)
+      {
+
+         if (iAtlasY <= 0)
+         {
+
+            throw ::exception(error_wrong_state, "pixmap is higher than texture height");
+
+         }
+
+         // this texture atlas would be full with this new image
+
+         return nullptr;
+
+      }
+
+      iAtlasH = maximum(iAtlasH, size.cy());
+
+      m_iAtlasX = iAtlasX;
+      m_iAtlasY = iAtlasY;
+      m_iAtlasCurrentRowHeight = iAtlasH;
+
+      auto ppixmap = __øcreate<::gpu::pixmap>();
+
+      ppixmap->initialize_gpu_pixmap(this, 
+         {iAtlasX, iAtlasY,
+         iAtlasX + size.cx(),
+         iAtlasY + size.cy()});
+
+      m_iAtlasX += size.cx();
+      m_iAtlasCurrentRowHeight = maximum(m_iAtlasCurrentRowHeight, size.cy());
+
+      return ppixmap;
+
+   }
+
+
    void texture::merge_layers(::pointer_array < ::gpu::layer >* playera)
    {
 
@@ -250,6 +322,14 @@ namespace gpu
       return m_strTextureType;
 
    }
+
+
+   void texture::set_pixels(const ::int_rectangle& rectangle, const void* data)
+   {
+
+
+   }
+
 
 } // namespace gpu
 

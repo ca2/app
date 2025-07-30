@@ -28,10 +28,19 @@ namespace graphics3d
          ::file::path               m_path;
          ::image::image_pointer     m_pimage;
 
+
+         cube_face() {}
+         cube_face(const ::file::path& path) :
+            m_path(path)
+         {
+
+
+         }
+
       };
 
       struct cube :
-         public ::static_array < cube_face, 6 >
+         public ::preallocated_array < ::array < cube_face >, 6 >
       {
       public:
 
@@ -72,7 +81,7 @@ namespace graphics3d
       ~sky_box();
 
 
-      virtual void initialize_sky_box(engine * pengine, const cube & cube);
+      virtual void initialize_sky_box(engine * pengine, const ::scoped_string & scopedstrName);
 
       virtual void SetupSkybox();
 

@@ -4,6 +4,7 @@
 #include "shader.h"
 #include "acme/exception/interface_only.h"
 #include "bred/gpu/input_layout.h"
+#include "bred/gpu/pixmap.h"
 //#include "_.h"
 //#include "_gpu.h"
 
@@ -34,6 +35,7 @@ namespace gpu
    shader::shader()
    {
 
+      m_etopology = e_topology_triangle_list;
       //m_bTextureAndSampler = false;
       //m_SamplerSlot = -1;
       //m_setbindingCubeSampler = -1;
@@ -44,6 +46,14 @@ namespace gpu
    shader::~shader()
    {
 
+
+   }
+
+
+   bool shader::need_rebuild()
+   {
+
+      return false;
 
    }
 
@@ -157,6 +167,14 @@ namespace gpu
    {
 
       throw ::interface_only("shader::bind_source(::gpu::texture*) not implemented at this shader implementation");
+
+   }
+
+
+   void shader::bind_source(::gpu::pixmap* pgpupixmapSource, int iSlot)
+   {
+
+      bind_source(pgpupixmapSource->m_pgputexture, iSlot);
 
    }
 
@@ -323,12 +341,12 @@ namespace gpu
    //}
 
 
-   void shader::setup_sampler_and_texture(const ::scoped_string& scopedstrName, int i)
-   {
-      
-      m_mapSamplerAndTexture[scopedstrName].m_i = i;
+   //void shader::setup_sampler_and_texture(const ::scoped_string& scopedstrName, int i)
+   //{
+   //   
+   //   m_mapSamplerAndTexture[scopedstrName].m_i = i;
 
-   }
+   //}
 
 
    void shader::set_bool(const ::scoped_string& scopedstrName, bool value)

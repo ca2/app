@@ -32,12 +32,22 @@ namespace graphics3d
    }
 
 
-   void sky_box::initialize_sky_box(engine * pengine, const cube & cube)
+   void sky_box::initialize_sky_box(engine * pengine, const ::scoped_string & scopedstrName)
    {
-      
+
+      cube cube;
+
+      cube.add(::file::path("matter://textures") / scopedstrName / "right.png");
+      cube.add(::file::path("matter://textures") / scopedstrName / "left.png");
+      cube.add(::file::path("matter://textures") / scopedstrName / "top.png");
+      cube.add(::file::path("matter://textures") / scopedstrName / "bottom.png");
+      cube.add(::file::path("matter://textures") / scopedstrName / "front.png");
+      cube.add(::file::path("matter://textures") / scopedstrName / "back.png");
+
       m_cube = cube;
 
       m_pengine = pengine;
+
 
       auto modeldataCube = ::graphics3d::shape_factory::create_cube(32.0f);
 
@@ -233,7 +243,9 @@ namespace graphics3d
       // Set uniforms in the shader
       auto iFrameSerial = m_pengine->gpu_context()->m_pgpudevice->m_iFrameSerial2;
       auto ptextureDst = m_pengine->gpu_context()->m_pgpurenderer->current_render_target_texture(::gpu::current_frame());
-      m_ptextureCubeMap->m_strUniform = "skybox";
+      
+      m_pshader->m_bindingCubeSampler.m_strUniform = "skybox";
+
       m_pshader->bind(ptextureDst, m_ptextureCubeMap); // Make sure to bind the shader first
       //auto view = m_pengine->m_pcamera->getView();
       //glm::mat4 skyboxView = glm::mat4(glm::mat3(view)); // <-- drop translation

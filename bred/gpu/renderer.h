@@ -18,6 +18,8 @@ namespace gpu
    {
    public:
 
+      class ::time m_timeLast5s;
+
       int m_iSentLayerCount = 0;
       //::pointer<::gpu::layer>                         m_pgpulayer;
 
@@ -99,6 +101,8 @@ namespace gpu
       virtual bool render_step();
 
       virtual void initialize_gpu_renderer(::gpu::context * pgpucontext);
+
+      virtual void on_resize(const ::int_size& size);
 
       //virtual void initialize_render(::user::interaction * puserinteraction);
       ///// Initialization routines

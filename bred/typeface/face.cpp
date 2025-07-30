@@ -59,6 +59,13 @@ namespace typeface
    }
 
 
+   void face::get_text_metric(::write_text::text_metric* ptextmetrics)
+   {
+
+
+   }
+
+
    void face::create_character(character& ch, const ::scoped_string& scopedstr)
    {
 
@@ -71,42 +78,43 @@ namespace typeface
    //}
 
 
-   ::gpu::model_buffer* face::box_model_buffer()
-   {
+   //::gpu::model_buffer* face::box_model_buffer()
+   //{
 
-      if (__defer_construct(m_pmodelbufferBox))
-      {
+   //   if (__defer_construct(m_pmodelbufferBox))
+   //   {
 
-         m_pmodelbufferBox->initialize_gpu_context_object(m_pgpurenderer->m_pgpucontext);
+   //      m_pmodelbufferBox->initialize_gpu_context_object(m_pgpurenderer->m_pgpucontext);
 
-         m_pmodelbufferBox->bind(m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame()));
+   //      m_pmodelbufferBox->bind(m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame()));
 
-         m_pmodelbufferBox->create_vertices<::graphics3d::sequence2_uv>(6);
-         /* glGenVertexArrays(1, &m_VAO);
-          glGenBuffers(1, &m_VBO);
-          glBindVertexArray(m_VAO);
-          glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-          glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * 4, NULL, GL_DYNAMIC_DRAW);
-          glEnableVertexAttribArray(0);
-          glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
-          glBindBuffer(GL_ARRAY_BUFFER, 0);
-          glBindVertexArray(0);*/
+   //      m_pmodelbufferBox->create_vertices<::graphics3d::sequence2_uv>(6);
+   //      /* glGenVertexArrays(1, &m_VAO);
+   //       glGenBuffers(1, &m_VBO);
+   //       glBindVertexArray(m_VAO);
+   //       glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+   //       glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * 4, NULL, GL_DYNAMIC_DRAW);
+   //       glEnableVertexAttribArray(0);
+   //       glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
+   //       glBindBuffer(GL_ARRAY_BUFFER, 0);
+   //       glBindVertexArray(0);*/
 
-         m_pmodelbufferBox->unbind(m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame()));
+   //      m_pmodelbufferBox->unbind(m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame()));
 
-      }
+   //   }
 
-      return m_pmodelbufferBox;
-   }
+   //   return m_pmodelbufferBox;
+   //}
 
+   
    void face::create_texture(character& ch, const unsigned char* p)
    {
 
-      __defer_construct(ch.m_ppixmap);
+      ch.m_ppixmap = m_pgpurenderer->m_pgpucontext->create_gpu_pixmap({ ch.Size.x, ch.Size.y });
 
-      ch.m_ppixmap->initialize_gpu_pixmap(m_pgpurenderer, { ch.Size.x, ch.Size.y });
+      //ch.m_ppixmap->initialize_gpu_pixmap(m_pgpurenderer, { ch.Size.x, ch.Size.y });
 
-      ch.m_ppixmap->set_pixels(p, ch.Size.x, ch.Size.y);
+      ch.m_ppixmap->set_pixels(p);
 
       //glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
       //// generate texture

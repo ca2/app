@@ -28,6 +28,8 @@ namespace gpu_opengl
 
 
       void set_render_target() override;
+      void draw_vertices(int iVertexCount) override;
+      void draw_indices(int iIndexCount) override;
 
 
    };

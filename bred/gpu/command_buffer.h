@@ -28,6 +28,7 @@ namespace gpu
       bool                                m_bLoadingCommandBuffer;
       ::collection::index                 m_iFrameIndex;
       ::string                            m_strAnnotation;
+      ::pointer_array < ::particle >      m_particleaHold;
 
 
       command_buffer();
@@ -48,7 +49,13 @@ namespace gpu
 
       virtual void reset();
 
+      virtual void set_primitive_topology_triangle_strip();
+
       virtual void draw(int a);
+
+      virtual void draw_vertices(int iVertexCount);
+      virtual void draw_indices(int iIndexCount);
+
 
       virtual void draw(::gpu::pixmap * ppixmap);
 

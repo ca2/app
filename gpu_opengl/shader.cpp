@@ -378,16 +378,21 @@ namespace gpu_opengl
       glBindTexture(ptexture->m_gluType, tex);
       GLCheckError("");
 
-      ::string strTexture = pgputexture->m_strUniform;
+      ::string strUniform;
 
-      if (strTexture.is_empty())
+      if (m_bindingSampler.is_set())
+         strUniform = m_bindingSampler.m_strUniform;
+      else if(m_bindingCubeSampler.is_set())
+         strUniform = m_bindingCubeSampler.m_strUniform;
+
+      if (strUniform.is_empty())
       {
 
-         strTexture = "uTexture";
+         strUniform = "uTexture";
 
       }
 
-      _set_int(strTexture, iSlot);
+      _set_int(strUniform, iSlot);
 
       m_ptextureBound = ptexture;
 
@@ -653,20 +658,20 @@ namespace gpu_opengl
    }
 
 
-   void shader::setup_sampler_and_texture(const ::scoped_string& scopedstrName, int i)
-   {
+   //void shader::setup_sampler_and_texture(const ::scoped_string& scopedstrName, int i)
+   //{
 
-      if (i == 0)
-      {
+   //   if (i == 0)
+   //   {
 
-         glActiveTexture(GL_TEXTURE0);
-         GLCheckError("");
+   //      glActiveTexture(GL_TEXTURE0);
+   //      GLCheckError("");
 
-      }
+   //   }
 
-      set_int(scopedstrName, i);
+   //   set_int(scopedstrName, i);
 
-   }
+   //}
 
 
    void shader::_set_bool(const char* name, bool b) const
@@ -675,6 +680,8 @@ namespace gpu_opengl
       _set_int(name, b ? 0 : 1);
 
    }
+
+
    void shader::_set_int(const char* name, int i) const
    {
       //Bind();  // Ensure the shader program is bound

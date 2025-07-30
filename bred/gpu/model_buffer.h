@@ -49,7 +49,7 @@ namespace gpu
 
 
       template < typename VERTEX >
-      void create_vertices(int iVertexCount)
+      void create_vertices(int iVertexCount, bool bDynamic = false)
       {
 
          m_iVertexCount = iVertexCount;
@@ -63,7 +63,7 @@ namespace gpu
          m_pbufferVertex->initialize_memory_buffer_with_model_buffer(
             this,
             size, 
-            memory_buffer::e_type_vertex_buffer);
+            memory_buffer::e_type_vertex_buffer, bDynamic);
 
          set_input_layout(m_pgpucontext->input_layout(::gpu_properties< VERTEX >()));
 

@@ -79,7 +79,7 @@ namespace app_shader
       if (m_pgpucontext)
       {
 
-         m_pgpucontext->resize_offscreen_buffer(m_rectangle.size());
+         m_pgpucontext->on_resize(m_rectangle.size());
 
       }
       

@@ -19,6 +19,7 @@
 #include "texture.h"
 #include "bred/gpu/frame.h"
 #include "bred/gpu/layer.h"
+#include "bred/gpu/pixmap.h"
 
 
 
@@ -61,7 +62,8 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::gpu_opengl::offscreen_render_target, ::gpu::render_target >();
    pfactory->add_factory_item < ::gpu_opengl::swap_chain, ::gpu::swap_chain >();
    pfactory->add_factory_item < ::gpu_opengl::command_buffer, ::gpu::command_buffer >();
-   pfactory->add_factory_item < ::gpu_opengl::pixmap, ::gpu::pixmap >();
+   //pfactory->add_factory_item < ::gpu_opengl::pixmap, ::gpu::pixmap >();
+   pfactory->add_factory_item <  ::gpu::pixmap >();
    pfactory->add_factory_item < ::gpu_opengl::model_buffer, ::gpu::model_buffer >();
 
 

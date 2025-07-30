@@ -150,7 +150,7 @@ namespace gpu_opengl
                
                auto pimage32 = (::image32_t *) memory.data();
 
-               pimage32->vertical_swap_copy(size.cx(),size.cy(), scan,
+               pimage32->copy(size.cx(),size.cy(), scan,
                   imagea[i]->image32(), imagea[i]->m_iScan);
                
                if (pimage32) 

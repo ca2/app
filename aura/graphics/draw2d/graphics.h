@@ -109,7 +109,7 @@ namespace draw2d
       ::double_point                            m_point;
 
    protected:
-      bool                                   _m_bYFlip;
+      //bool                                   _m_bYFlip;
       enum_alpha_mode                        m_ealphamode;
 
 

@@ -34,6 +34,18 @@ namespace gpu
 
    };
 
+
+   enum enum_topology
+   {
+
+      e_topology_none,
+      e_topology_triangle_list,
+      e_topology_triangle_strip,
+      e_topology_line_list,
+
+   };
+
+
 } // namespace gpu
 
 

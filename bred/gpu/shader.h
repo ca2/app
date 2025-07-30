@@ -22,6 +22,7 @@ namespace gpu
       bool              m_bSet = false;
       unsigned int      m_uSet = 0;
       unsigned int      m_uBinding = 0;
+      ::string          m_strUniform;
 
       void set(unsigned int uBinding = 0)
       {
@@ -32,6 +33,7 @@ namespace gpu
       }
       bool is_set()const { return m_bSet; }
    };
+
 
    class CLASS_DECL_BRED shader :
       virtual public ::matter
@@ -63,7 +65,7 @@ namespace gpu
          e_descriptor_set_slot_material,
          e_descriptor_set_slot_local,
          e_descriptor_set_slot_s1,
-         e_descriptor_set_shader_resource_view_and_sampler,
+         //e_descriptor_set_shader_resource_view_and_sampler,
 
       };
       int m_iVertexLevel = -1;
@@ -79,15 +81,15 @@ namespace gpu
          int m_i2FragmentShader = -1;
       };
       ::string_map<constant_buffer> m_mapConstantBuffer;
-      struct sampler_and_texture
-      {
+      //struct sampler_and_texture
+      //{
 
-         int m_i;
-      };
-      ::string_map<sampler_and_texture> m_mapSamplerAndTexture;
+      //   int m_i;
+      //};
+      //::string_map<sampler_and_texture> m_mapSamplerAndTexture;
       bool                                m_bClearColor;
       ::color::color                      m_colorClear;
-
+      ::gpu::enum_topology                m_etopology;
       bool m_bDisableDepthTest = false;
       bool m_bDepthTestButNoDepthWrite = false;
       bool m_bLequalDepth = false;
@@ -120,13 +122,15 @@ namespace gpu
       ::comparable_array<enum_descriptor_set_slot>   m_edescriptorsetslota;
       ::particle_pointer         m_pLocalDescriptorSet;
       ::pointer < input_layout > m_pinputlayout;
-
+      class ::time               m_timeRetire;
       //bool m_bTextureAndSampler;
 
 
       shader();
       ~shader() override;
 
+
+      virtual bool need_rebuild();
       
       virtual void initialize_shader(
          ::gpu::renderer * pgpurenderer,
@@ -194,6 +198,7 @@ namespace gpu
       virtual void bind(::gpu::texture* pgputextureTarget);
       virtual void bind(::gpu::texture * pgputextureTarget, ::gpu::texture* pgputextureSource);
       virtual void bind_source(::gpu::texture* pgputextureSource, int iSlot = 0);
+      virtual void bind_source(::gpu::pixmap* pgpupixmapSource, int iSlot = 0);
       virtual void bind();
       virtual void unbind();
 
@@ -201,7 +206,7 @@ namespace gpu
       virtual void push_properties();
 
 
-      virtual void setup_sampler_and_texture(const ::scoped_string& scopedstrName, int value);
+      //virtual void setup_sampler_and_texture(const ::scoped_string& scopedstrName, int value);
 
       virtual void set_bool(const ::scoped_string& scopedstrName, bool value);
 
@@ -228,6 +233,28 @@ namespace gpu
 
 
 } // namespace gpu
+
+
+inline bool nok(::pointer < ::gpu::shader >& pgpushader)
+{
+
+   if (::is_null(pgpushader))
+   {
+
+      return true;
+
+   }
+
+   if (pgpushader->need_rebuild())
+   {
+
+      return true;
+
+   }
+
+   return false;
+
+}
 
 
 

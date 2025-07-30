@@ -106,6 +106,9 @@ namespace gpu
 
       }
 
+
+      virtual void initialize_dummy_model(::gpu::context* pcontext, int iVertexCount);
+
       virtual void static_initialize_vertex_buffer(const void* data, memsize iTypeSize, ::collection::count iVertexCount);
       virtual void static_initialize_index_buffer(const void* data, memsize iTypeSize, ::collection::count iIndexCount);
 

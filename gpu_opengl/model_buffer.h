@@ -30,6 +30,9 @@ namespace gpu_opengl
       ~model_buffer();
 
 
+      void initialize_dummy_model(::gpu::context* pgpucontext, int iVertexCount) override;
+
+
       void on_initialize_gpu_context_object() override;
 
       //void sequence2_uv_create_rectangle(::gpu::context* pcontext, bool bIndexed, bool bYSwap) override;

@@ -156,6 +156,7 @@ namespace opengl
 
    CLASS_DECL_GPU_OPENGL GLenum get_gpu_type_unit_opengl_type(::gpu::enum_type etype);
 
+   CLASS_DECL_GPU_OPENGL GLenum as_gl_draw_mode(::gpu::enum_topology etopology);
 
 
 } // namespace opengl

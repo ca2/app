@@ -30,6 +30,16 @@ namespace gpu_opengl
    }
 
 
+   void model_buffer::initialize_dummy_model(::gpu::context* pgpucontext, int iVertexCount)
+   {
+
+      initialize_gpu_context_object(pgpucontext);
+
+      m_iVertexCount = iVertexCount;
+
+   }
+
+
    void model_buffer::on_initialize_gpu_context_object()
    {
 
@@ -140,6 +150,19 @@ namespace gpu_opengl
    void model_buffer::draw(::gpu::command_buffer* pgpucommandbuffer)
    {
 
+      GLenum mode = GL_TRIANGLES;
+
+      auto pshaderBound = m_pgpucontext->m_pshaderBound;
+
+      if (pshaderBound)
+      {
+
+         auto etopology = pshaderBound->m_etopology;
+
+         mode = ::opengl::as_gl_draw_mode(etopology);
+
+      }
+
       if (m_pbufferVertex)
       {
 
@@ -167,14 +190,14 @@ namespace gpu_opengl
 
             }
             
-            glDrawElements(GL_TRIANGLES, m_iIndexCount, etype, 0);
+            glDrawElements(mode, m_iIndexCount, etype, 0);
             GLCheckError("");
 
          }
          else
          {
 
-            glDrawArrays(GL_TRIANGLES, 0, m_iVertexCount);
+            glDrawArrays(mode, 0, m_iVertexCount);
             GLCheckError("");
 
          }
@@ -183,7 +206,7 @@ namespace gpu_opengl
       else
       {
 
-         glDrawArrays(GL_TRIANGLES, 0, m_iVertexCount);
+         glDrawArrays(mode, 0, m_iVertexCount);
          GLCheckError("");
 
       }

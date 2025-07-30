@@ -858,6 +858,13 @@ namespace gpu
    //}
 
 
+   void model_buffer::initialize_dummy_model(::gpu::context* pcontext, int iVertexCount)
+   {
+
+
+   }
+
+
    void model_buffer::static_initialize_vertex_buffer(const void* data, memsize iTypeSize, ::collection::count iVertexCount)
    {
 

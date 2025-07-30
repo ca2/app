@@ -1205,11 +1205,21 @@ namespace gpu
       //glBindVertexArray(pface->m_FaceVAO);
       //GLCheckError("");
       auto pcommandbuffer = pcontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+
+      if (!m_pmodelbufferTextOutDummy)
+      {
+
+         m_pmodelbufferTextOutDummy = __øcreate < ::gpu::model_buffer >();
+
+         m_pmodelbufferTextOutDummy->initialize_dummy_model(pcontext, 4);
+
+      }
       
       //pface->box_model_buffer()->bind(pcommandbuffer);
 
       // iterate through all characters
       ::string strChar;
+
       auto psz = str.c_str();
 
       if (str == "Options")
@@ -1242,12 +1252,13 @@ namespace gpu
       pcontext->set_cull_face();
 
       ::gpu::texture* pgputexture = nullptr;
-      ::gpu::model_buffer* pmodelbuffer = nullptr;
       ::gpu::pixmap* ppixmap = nullptr;
 
       //auto pcommandbuffer = gpu_context()->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
       pcommandbuffer->set_primitive_topology_triangle_strip();
+
+      m_pmodelbufferTextOutDummy->bind(pcommandbuffer);
 
       //glEnable(GL_BLEND);
       //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -1365,7 +1376,7 @@ namespace gpu
             //pmodelbuffer->_set_vertices(vertices);
 
 
-            pcommandbuffer->draw_vertices(4);
+            m_pmodelbufferTextOutDummy->draw(pcommandbuffer);
 
             //pmodelbuffer->unbind(pcommandbuffer);
 
@@ -1377,10 +1388,10 @@ namespace gpu
          }
       }
 
-      if (pmodelbuffer)
+      if (m_pmodelbufferTextOutDummy)
       {
 
-         pmodelbuffer->unbind(pcommandbuffer);
+         m_pmodelbufferTextOutDummy->unbind(pcommandbuffer);
 
       }
 

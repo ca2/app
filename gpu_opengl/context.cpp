@@ -2601,16 +2601,33 @@ void main() {
    {
 
       auto pvertexshader = R"vertexshader(#version 330 core
-layout(location = 0) in vec2 pos;
-layout(location = 1) in vec2 tex;
+
 out vec2 TexCoords;
 
 uniform mat4 projection;
+uniform vec4 quad;       // l, t, r, b
+uniform vec4 texcoords;  // l, t, r, b
+uniform vec4 textColor;  // (if needed in fragment shader)
 
-void main()
-{
-   gl_Position = projection * vec4(pos, 0.0, 1.0);
-   TexCoords = vec2(tex.x, 1.0 - tex.y);
+void main() {
+    // 4 vertices: 0–3
+    vec2 positions[4] = vec2[](
+        vec2(quad.x, quad.y),
+        vec2(quad.z, quad.y),
+        vec2(quad.x, quad.w),
+        vec2(quad.z, quad.w)
+    );
+
+    vec2 uvs[4] = vec2[](
+        vec2(texcoords.x, texcoords.y),
+        vec2(texcoords.z, texcoords.y),
+        vec2(texcoords.x, texcoords.w),
+        vec2(texcoords.z, texcoords.w)
+    );
+
+    int vid = gl_VertexID;
+    gl_Position = projection * vec4(positions[vid], 0.0, 1.0);
+    TexCoords = uvs[vid];
 }
 )vertexshader";
 

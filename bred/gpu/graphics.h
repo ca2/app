@@ -26,6 +26,7 @@ namespace gpu
       ::pointer < ::gpu::shader >               m_pshaderBlendRectangle;
       map < ::draw2d::enum_model, ::pool <::gpu::model_buffer > >   m_mapModelBufferPool;
       ::pointer < ::gpu::shader >         m_pgpushaderTextOut;
+      ::pointer < ::gpu::model_buffer >         m_pmodelbufferTextOutDummy;
 
       pool_group* m_ppoolgroupFrame;
 

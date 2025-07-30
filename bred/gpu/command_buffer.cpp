@@ -126,6 +126,7 @@ namespace gpu
 
    }
 
+
    void command_buffer::draw_vertices(int iVertexCount)
    {
 
@@ -138,6 +139,7 @@ namespace gpu
 
 
    }
+
 
    void command_buffer::draw(::gpu::pixmap* ppixmap)
    {

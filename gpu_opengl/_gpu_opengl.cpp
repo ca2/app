@@ -60,7 +60,27 @@ namespace opengl
          throw ::exception(error_not_implemented);
 
       }
+
    }
+
+
+   CLASS_DECL_GPU_OPENGL GLenum as_gl_draw_mode(::gpu::enum_topology etopology)
+   {
+
+      switch (etopology)
+      {
+      case ::gpu::e_topology_triangle_list:
+         return GL_TRIANGLES;
+      case ::gpu::e_topology_triangle_strip:
+         return GL_TRIANGLE_STRIP;
+      case ::gpu::e_topology_line_list:
+         return GL_LINES;
+      default:
+         throw ::exception(error_unexpected);
+      }
+
+   }
+
 
 } // namespace opengl
 

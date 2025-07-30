@@ -94,13 +94,47 @@ namespace gpu_opengl
    void command_buffer::draw_vertices(int iVertexCount)
    {
 
+      GLenum mode = GL_TRIANGLES;
+
+      auto pshaderBound = m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->m_pshaderBound;
+
+      if (pshaderBound)
+      {
+
+         auto etopology = pshaderBound->m_etopology;
+
+         mode = ::opengl::as_gl_draw_mode(etopology);
+
+      }
+
+      glDrawArrays(mode, 0, iVertexCount);
+      GLCheckError("");
 
    }
-   
-   
+
+
    void command_buffer::draw_indices(int iIndexCount)
    {
 
+      GLenum mode = GL_TRIANGLES;
+
+      auto pshaderBound = m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->m_pshaderBound;
+
+      if (pshaderBound)
+      {
+
+         auto etopology = pshaderBound->m_etopology;
+
+         mode = ::opengl::as_gl_draw_mode(etopology);
+
+      }
+
+      GLenum etype;
+
+      etype = GL_UNSIGNED_INT;
+
+      glDrawElements(mode, iIndexCount, etype, 0);
+      GLCheckError("");
 
    }
 

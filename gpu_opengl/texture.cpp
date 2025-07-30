@@ -314,6 +314,26 @@ namespace gpu_opengl
    }
 
 
+   void texture::set_pixels(const ::int_rectangle& rectangle, const void* data)
+   {
+
+      glBindTexture(GL_TEXTURE_2D, m_gluTextureID);
+      glTexSubImage2D(
+         GL_TEXTURE_2D,
+         0,                 // mip level
+         rectangle.left(), rectangle.top(),              // offset inside the texture
+         rectangle.width(), rectangle.height(),
+         GL_RGBA,           // format of the new data
+         GL_UNSIGNED_BYTE,  // type of the new data
+         data         // pointer to new pixels
+      );
+
+      glBindTexture(GL_TEXTURE_2D, 0);
+
+   }
+
+
+
 } // namespace gpu_opengl
 
 

@@ -41,6 +41,9 @@ namespace gpu_opengl
       void bind_render_target() override;
 
 
+      void set_pixels(const ::int_rectangle& rectangle, const void* data) override;
+
+
    };
 
 

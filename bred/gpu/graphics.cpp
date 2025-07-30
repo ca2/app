@@ -1153,8 +1153,9 @@ namespace gpu
          m_pgpushaderTextOut->m_bindingSampler.set();
          m_pgpushaderTextOut->m_bindingSampler.m_strUniform = "text";
          m_pgpushaderTextOut->m_etopology = ::gpu::e_topology_triangle_strip;
+         m_pgpushaderTextOut->m_ecullmode = ::gpu::e_cull_mode_none;
          
-         pcontext->white_to_color_sampler_shader_setup(m_pgpushaderTextOut);
+         //pcontext->white_to_color_sampler_shader_setup(m_pgpushaderTextOut);
 
          m_pgpushaderTextOut->initialize_shader_with_block(
             pcontext->m_pgpurenderer,
@@ -1329,11 +1330,18 @@ namespace gpu
             }
 
             {
+
+               auto size = ppixmap->m_pgputexture->m_rectangleTarget.size();
+
+               auto w = (float)(size.width());
+               auto h = (float)(size.height());
+
+               float_rectangle rectangle = ppixmap->m_rectangle;
              
-               float l = (float)(ppixmap->m_rectangle.left()) / (float)(ppixmap->m_pgputexture->m_rectangleTarget.width());
-               float t = (float)(ppixmap->m_rectangle.top()) / (float)(ppixmap->m_pgputexture->m_rectangleTarget.height());
-               float r = (float)(ppixmap->m_rectangle.right()) / (float)(ppixmap->m_pgputexture->m_rectangleTarget.width());
-               float b = (float)(ppixmap->m_rectangle.bottom()) / (float)(ppixmap->m_pgputexture->m_rectangleTarget.height());
+               float l = rectangle.left() / w;
+               float t = rectangle.top() / h;
+               float r = rectangle.right() / w;
+               float b = rectangle.bottom() / h;
 
                ::glm::vec4 texcoords(l, t, r, b);
 

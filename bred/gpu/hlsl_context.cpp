@@ -53,7 +53,7 @@ struct VSOut
     float2 uv  : TEXCOORD0;
 };
 
-VSOut main(uint vid : SV_VertexID)
+VSOut main(uint id : SV_VertexID)
 {
     VSOut output;
 
@@ -73,8 +73,8 @@ VSOut main(uint vid : SV_VertexID)
         float2(texcoords.z, texcoords.w)
     };
 
-    output.pos = mul(projection, float4(positions[vid], 0.0f, 1.0f));
-    output.uv = uvs[vid];
+    output.pos = mul(projection, float4(positions[id], 0.0f, 1.0f));
+    output.uv = uvs[id];
     return output;
 }
 )vertexshader";
@@ -92,7 +92,10 @@ SamplerState textSampler : register(s0);
 
 cbuffer TextColorBuffer : register(b1)
 {
-    float4 textColor;
+    float4x4 projection;
+    float4 quad;        // l, t, r, b
+    float4 texcoords;   // l, t, r, b
+    float4 textColor;   // (not used here but available for pixel shader)
 };
 
 struct PSInput
@@ -115,18 +118,18 @@ float4 main(PSInput input) : SV_TARGET
    }
 
 
-   void hlsl_context::white_to_color_sampler_shader_setup(gpu::shader* pshader)
-   {
+   //void hlsl_context::white_to_color_sampler_shader_setup(gpu::shader* pshader)
+   //{
 
-      //auto& bindingTextColor = pshader->m_propertiesPush["textColor"];
-      //bindingTextColor.m_i1FragmentShader = 1;
-      //bindingTextColor.m_i2FragmentShader = 1;
+   //   //auto& bindingTextColor = pshader->m_propertiesPush["textColor"];
+   //   //bindingTextColor.m_i1FragmentShader = 1;
+   //   //bindingTextColor.m_i2FragmentShader = 1;
 
-      //auto& bindingProjection = pshader->m_mapConstantBuffer["projection"];
-      //bindingProjection.m_i1VertexShader = 0;
-      //bindingProjection.m_i2VertexShader = 1;
+   //   //auto& bindingProjection = pshader->m_mapConstantBuffer["projection"];
+   //   //bindingProjection.m_i1VertexShader = 0;
+   //   //bindingProjection.m_i2VertexShader = 1;
 
-   }
+   //}
 
 
 

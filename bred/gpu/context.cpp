@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "bred_approach.h"
 #include "context.h"
+#include "debug_scope.h"
 #include "device.h"
 #include "context_lock.h"
 #include "cpu_buffer.h"
@@ -480,9 +481,12 @@ namespace gpu
       if (m_pshaderBound)
       {
 
-         m_pshaderBound->unbind();
+         end_debug_happening();
+
+      //   m_pshaderBound->unbind();
 
       }
+      start_debug_happening("shader changing");
 
       pgpushader->bind();
 
@@ -509,6 +513,8 @@ namespace gpu
          m_pshaderBound.release();
 
          pshaderBound->unbind();
+
+         end_debug_happening();
 
       }
 
@@ -1803,11 +1809,11 @@ namespace gpu
    }
 
 
-   void context::white_to_color_sampler_shader_setup(gpu::shader* pshader)
-   {
+   //void context::white_to_color_sampler_shader_setup(gpu::shader* pshader)
+   //{
 
 
-   }
+   //}
 
 
    ::memory context::white_to_color_sampler_frag()

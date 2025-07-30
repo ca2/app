@@ -336,7 +336,7 @@ namespace gpu
       virtual ::memory rectangle_shader_frag();
 
 
-      virtual void white_to_color_sampler_shader_setup(gpu::shader * pshader);
+      //virtual void white_to_color_sampler_shader_setup(gpu::shader * pshader);
       virtual ::memory white_to_color_sampler_vert();
       virtual ::memory white_to_color_sampler_frag();
 
